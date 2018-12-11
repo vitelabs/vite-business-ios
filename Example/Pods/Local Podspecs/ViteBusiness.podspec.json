@@ -1,0 +1,22 @@
+{
+  "name": "ViteBusiness",
+  "version": "0.1.0",
+  "summary": "A short description of ViteBusiness.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/haoshenyang/ViteBusiness",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "haoshenyang": "shenyang@vite.org"
+  },
+  "source": {
+    "git": "https://github.com/haoshenyang/ViteBusiness.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ViteBusiness/Classes/**/*"
+}

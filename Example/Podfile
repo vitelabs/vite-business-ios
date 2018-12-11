@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ViteBusiness_Example' do
+  pod 'ViteBusiness', :path => '../'
+
+  target 'ViteBusiness_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
