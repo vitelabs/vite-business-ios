@@ -1,9 +1,9 @@
 {
   "name": "ViteBusiness",
   "version": "0.1.0",
-  "summary": "A short description of ViteBusiness.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/haoshenyang/ViteBusiness",
+  "summary": "Vite Business",
+  "description": "Vite Business",
+  "homepage": "https://github.com/vitelabs/vite-business-ios",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,144 @@
     "haoshenyang": "shenyang@vite.org"
   },
   "source": {
-    "git": "https://github.com/haoshenyang/ViteBusiness.git",
+    "git": "https://github.com/vitelabs/vite-business-ios.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "ViteBusiness/Classes/**/*"
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "4.2"
+  },
+  "source_files": "ViteBusiness/Classes/**/*",
+  "resources": "ViteBusiness/Assets/ViteBusiness.bundle",
+  "static_framework": true,
+  "dependencies": {
+    "R.swift": [
+      "5.0.0.alpha.3"
+    ],
+    "RxSwift": [
+      "~> 4.0"
+    ],
+    "SnapKit": [
+      "~> 4.0.0"
+    ],
+    "RxCocoa": [
+
+    ],
+    "XCGLogger": [
+      "~> 6.1.0"
+    ],
+    "CryptoSwift": [
+
+    ],
+    "ObjectMapper": [
+
+    ],
+    "Then": [
+
+    ],
+    "NSObject+Rx": [
+
+    ],
+    "ViteUtils": [
+
+    ],
+    "MBProgressHUD": [
+
+    ],
+    "RxOptional": [
+
+    ],
+    "PromiseKit": [
+      "~> 6.0"
+    ],
+    "Vite_HDWalletKit": [
+
+    ],
+    "Eureka": [
+      "~> 4.3.0"
+    ],
+    "KeychainSwift": [
+
+    ],
+    "Alamofire": [
+
+    ],
+    "Moya": [
+
+    ],
+    "SwiftyJSON": [
+
+    ],
+    "JSONRPCKit": [
+      "~> 3.0.0"
+    ],
+    "APIKit": [
+
+    ],
+    "BigInt": [
+      "~> 3.0"
+    ],
+    "MJRefresh": [
+
+    ],
+    "KMNavigationBarTransition": [
+
+    ],
+    "pop": [
+      "~> 1.0"
+    ],
+    "DACircularProgress": [
+      "2.3.1"
+    ],
+    "Kingfisher": [
+      "~> 4.0"
+    ],
+    "NYXImagesKit": [
+      "2.3"
+    ],
+    "BaiduMobStat": [
+
+    ],
+    "ActionSheetPicker-3.0": [
+
+    ],
+    "Toast-Swift": [
+      "~> 4.0.1"
+    ],
+    "RazzleDazzle": [
+
+    ],
+    "CHIPageControl": [
+
+    ],
+    "RxDataSources": [
+      "~> 3.0"
+    ],
+    "RxGesture": [
+
+    ],
+    "Action": [
+
+    ],
+    "ReusableKit": [
+      "~> 2.1.0"
+    ],
+    "ReactorKit": [
+
+    ],
+    "SwiftLint": [
+
+    ],
+    "Fabric": [
+
+    ],
+    "Crashlytics": [
+
+    ],
+    "MLeaksFinder": [
+
+    ]
+  }
 }

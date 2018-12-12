@@ -1,0 +1,6 @@
+framework module ViteUtils {
+  umbrella header "ViteUtils-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -2,10 +2,22 @@ use_frameworks!
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
+  pod 'ViteUtils', :git => 'git@github.com:vitelabs/vite-utils-ios.git', :branch=>'develop'
 
   target 'ViteBusiness_Tests' do
     inherit! :search_paths
+    pod 'R.swift', '5.0.0.alpha.3'
 
     pod 'FBSnapshotTestCase' , '~> 2.1.4'
   end
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if ['RazzleDazzle', 'JSONRPCKit', 'APIKit'].include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
 end

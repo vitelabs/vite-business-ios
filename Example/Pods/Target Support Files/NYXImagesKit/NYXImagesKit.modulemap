@@ -1,0 +1,6 @@
+framework module NYXImagesKit {
+  umbrella header "NYXImagesKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

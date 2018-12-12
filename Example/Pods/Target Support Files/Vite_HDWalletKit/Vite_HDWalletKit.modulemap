@@ -1,0 +1,6 @@
+framework module Vite_HDWalletKit {
+  umbrella header "Vite_HDWalletKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

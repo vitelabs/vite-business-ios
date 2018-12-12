@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "ViteStatistics.h"
 
 FOUNDATION_EXPORT double ViteBusinessVersionNumber;
 FOUNDATION_EXPORT const unsigned char ViteBusinessVersionString[];
