@@ -1,6 +1,0 @@
-framework module ViteBusiness {
-  umbrella header "ViteBusiness-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,0 @@
-framework module TrezorCryptoEd25519WithBlake2b {
-  umbrella header "TrezorCryptoEd25519WithBlake2b.h"
-
-  export *
-  module * { export * }
-}
