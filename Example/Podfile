@@ -12,6 +12,10 @@ target 'ViteBusiness_Example' do
   end
 end
 
+target 'UpdateRswift' do
+  pod 'R.swift', '5.0.0.alpha.3'
+end
+
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         if ['RazzleDazzle', 'JSONRPCKit', 'APIKit'].include? target.name
