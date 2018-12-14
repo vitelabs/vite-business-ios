@@ -12,7 +12,6 @@ import RxCocoa
 import RxSwift
 import Vite_HDWalletKit
 import LocalAuthentication
-import ViteBusiness
 
 class LockViewController: BaseViewController {
     override func viewDidLoad() {

@@ -31,7 +31,10 @@ Pod::Spec.new do |s|
 
 
   s.source_files = 'ViteBusiness/Classes/**/*'
-  s.resources = 'ViteBusiness/Assets/ViteBusiness.bundle'
+  s.resource_bundles = {
+      'ViteBusiness' => ['ViteBusiness/Assets/*']
+  }
+  #s.resources = 'ViteBusiness/Assets/ViteBusiness.bundle'
 
 
   s.static_framework = true

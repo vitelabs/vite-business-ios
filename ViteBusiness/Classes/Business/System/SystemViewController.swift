@@ -10,7 +10,6 @@ import UIKit
 import Eureka
 import Vite_HDWalletKit
 import LocalAuthentication
-import ViteBusiness
 
 class SystemViewController: FormViewController {
     fileprivate var viewModel: SystemViewModel

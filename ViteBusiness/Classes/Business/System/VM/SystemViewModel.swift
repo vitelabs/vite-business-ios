@@ -12,7 +12,6 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
-import ViteBusiness
 
 final class SystemViewModel: NSObject {
     var isRequireAuthentication =  false

@@ -13,9 +13,12 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72325BA3F51143C80C74CAA2 /* Pods_ViteBusiness_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D1BDB038C2A953F7682592 /* Pods_ViteBusiness_Tests.framework */; };
-		74C537C721BFB7EA0012492F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74C537C121BFB7E90012492F /* Localizable.strings */; };
-		74C537C821BFB7EA0012492F /* ViteBusiness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74C537C321BFB7E90012492F /* ViteBusiness.xcassets */; };
-		74C537C921BFB7EA0012492F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74C537C521BFB7EA0012492F /* Localizable.strings */; };
+		74B6A82721C3540000D0BA5A /* ViteBusiness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82021C3540000D0BA5A /* ViteBusiness.xcassets */; };
+		74B6A82821C3540000D0BA5A /* ViteBusiness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82021C3540000D0BA5A /* ViteBusiness.xcassets */; };
+		74B6A82921C3540000D0BA5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82221C3540000D0BA5A /* Localizable.strings */; };
+		74B6A82A21C3540000D0BA5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82221C3540000D0BA5A /* Localizable.strings */; };
+		74B6A82B21C3540000D0BA5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82521C3540000D0BA5A /* Localizable.strings */; };
+		74B6A82C21C3540000D0BA5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74B6A82521C3540000D0BA5A /* Localizable.strings */; };
 		A9B81ACC60FA5ACD71D11BCF /* Pods_ViteBusiness_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17545168B86EC86F8DE41AB0 /* Pods_ViteBusiness_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,9 +49,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		650C110099DC7EDC6F16206C /* ViteBusiness.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ViteBusiness.podspec; path = ../ViteBusiness.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		74C537C221BFB7E90012492F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
-		74C537C321BFB7E90012492F /* ViteBusiness.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ViteBusiness.xcassets; path = ../../ViteBusiness/Assets/ViteBusiness.bundle/ViteBusiness.xcassets; sourceTree = "<group>"; };
-		74C537C621BFB7EA0012492F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
+		74B6A82021C3540000D0BA5A /* ViteBusiness.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ViteBusiness.xcassets; path = ../../ViteBusiness/Assets/ViteBusiness.xcassets; sourceTree = "<group>"; };
+		74B6A82321C3540000D0BA5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		74B6A82621C3540000D0BA5A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		BB0994D933B36644CF69078F /* Pods-ViteBusiness_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViteBusiness_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D8D1BDB038C2A953F7682592 /* Pods_ViteBusiness_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViteBusiness_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,11 +102,11 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				74B6A82121C3540000D0BA5A /* en.lproj */,
+				74B6A82021C3540000D0BA5A /* ViteBusiness.xcassets */,
+				74B6A82421C3540000D0BA5A /* zh-Hans.lproj */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				74C537C021BFB7E90012492F /* en.lproj */,
-				74C537C321BFB7E90012492F /* ViteBusiness.xcassets */,
-				74C537C421BFB7EA0012492F /* zh-Hans.lproj */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for ViteBusiness";
@@ -145,22 +148,22 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		74C537C021BFB7E90012492F /* en.lproj */ = {
+		74B6A82121C3540000D0BA5A /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				74C537C121BFB7E90012492F /* Localizable.strings */,
+				74B6A82221C3540000D0BA5A /* Localizable.strings */,
 			);
 			name = en.lproj;
-			path = ../../ViteBusiness/Assets/ViteBusiness.bundle/en.lproj;
+			path = ../../ViteBusiness/Assets/en.lproj;
 			sourceTree = "<group>";
 		};
-		74C537C421BFB7EA0012492F /* zh-Hans.lproj */ = {
+		74B6A82421C3540000D0BA5A /* zh-Hans.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				74C537C521BFB7EA0012492F /* Localizable.strings */,
+				74B6A82521C3540000D0BA5A /* Localizable.strings */,
 			);
 			name = "zh-Hans.lproj";
-			path = "../../ViteBusiness/Assets/ViteBusiness.bundle/zh-Hans.lproj";
+			path = "../../ViteBusiness/Assets/zh-Hans.lproj";
 			sourceTree = "<group>";
 		};
 		B1CEBF817ED7F5FCFA9A41EE /* Pods */ = {
@@ -196,6 +199,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				5ADF1DA3A5B1E3000F7DBB42 /* [CP] Embed Pods Frameworks */,
+				74B6A82E21C3555D00D0BA5A /* Run SwiftLint */,
 				EAAD84195839C7D5C5F115CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -273,11 +277,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C537C921BFB7EA0012492F /* Localizable.strings in Resources */,
-				74C537C721BFB7EA0012492F /* Localizable.strings in Resources */,
+				74B6A82B21C3540000D0BA5A /* Localizable.strings in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				74C537C821BFB7EA0012492F /* ViteBusiness.xcassets in Resources */,
+				74B6A82921C3540000D0BA5A /* Localizable.strings in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				74B6A82721C3540000D0BA5A /* ViteBusiness.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +289,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74B6A82821C3540000D0BA5A /* ViteBusiness.xcassets in Resources */,
+				74B6A82C21C3540000D0BA5A /* Localizable.strings in Resources */,
+				74B6A82A21C3540000D0BA5A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +430,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		74B6A82E21C3555D00D0BA5A /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		74C3537C21BFADB900731668 /* Run.R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,7 +464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\nmv \"$SRCROOT/R.generated.swift\" \"$SRCROOT/../ViteBusiness/Classes\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\nsed -i \"\" 's/fileprivate static let hostingBundle = Bundle(for: R.Class.self)/fileprivate static let hostingBundle = Bundle(path: Bundle(for: R.Class.self).path(forResource: \"ViteBusiness\", ofType: \"bundle\")!)!/' R.generated.swift\nmv \"$SRCROOT/R.generated.swift\" \"$SRCROOT/../ViteBusiness/Classes\"\n\n";
 		};
 		CF8134B12B89FB3868BCEEC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -496,7 +521,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-resources.sh",
-				"${PODS_ROOT}/../../ViteBusiness/Assets/ViteBusiness.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ViteBusiness/ViteBusiness.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -548,18 +573,18 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		74C537C121BFB7E90012492F /* Localizable.strings */ = {
+		74B6A82221C3540000D0BA5A /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				74C537C221BFB7E90012492F /* en */,
+				74B6A82321C3540000D0BA5A /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		74C537C521BFB7EA0012492F /* Localizable.strings */ = {
+		74B6A82521C3540000D0BA5A /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				74C537C621BFB7EA0012492F /* zh-Hans */,
+				74B6A82621C3540000D0BA5A /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

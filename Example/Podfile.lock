@@ -106,7 +106,7 @@ PODS:
     - BigInt (~> 3.0)
     - CryptoSwift (~> 0.12.0)
     - TrezorCryptoEd25519WithBlake2b (~> 0.0.1)
-  - ViteBusiness (0.1.0):
+  - ViteBusiness (0.0.1):
     - Action
     - ActionSheetPicker-3.0
     - Alamofire
@@ -285,7 +285,7 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: e176de4fa30871c3af853ceceadaed8e244db732
+  ViteBusiness: a0a0246c7fe718b803c28bb8af8b1e3d6fd0bf7a
   ViteUtils: ee9d150bdf3b0de850b4e2f124048110e6915240
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
