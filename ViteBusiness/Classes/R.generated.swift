@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 81 images.
+  /// This `R.image` struct is generated, and contains static references to 82 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -168,6 +168,8 @@ struct R: Rswift.Validatable {
     static let quota_bell = Rswift.ImageResource(bundle: R.hostingBundle, name: "quota_bell")
     /// Image `splash_slogen`.
     static let splash_slogen = Rswift.ImageResource(bundle: R.hostingBundle, name: "splash_slogen")
+    /// Image `success`.
+    static let success = Rswift.ImageResource(bundle: R.hostingBundle, name: "success")
     /// Image `switch_mode_icon`.
     static let switch_mode_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "switch_mode_icon")
     /// Image `tabber_shadow`.
@@ -554,6 +556,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "splash_slogen", bundle: ..., traitCollection: ...)`
     static func splash_slogen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.splash_slogen, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "success", bundle: ..., traitCollection: ...)`
+    static func success(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.success, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "switch_mode_icon", bundle: ..., traitCollection: ...)`
