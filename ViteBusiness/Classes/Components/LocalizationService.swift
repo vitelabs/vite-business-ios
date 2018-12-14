@@ -88,23 +88,7 @@ public class LocalizationService {
             currentLanguage = getSystemLanguage()
             UserDefaultsService.instance.setObject(currentLanguage.rawValue, forKey: Key.language.rawValue, inCollection: Key.collection.rawValue)
         }
-        object_setClass(Bundle.main, AnyLanguageBundle.self)
         reloadCacheLocalization()
-    }
-}
-
-private class AnyLanguageBundle: Bundle {
-    override func localizedString(forKey key: String, value: String?, table tableName: String?) -> String {
-
-        if let ret = LocalizationService.sharedInstance.cacheTextDic[key] {
-            return ret
-        }
-
-        guard let path = Bundle.main.path(forResource: LocalizationService.sharedInstance.currentLanguage.rawValue, ofType: "lproj"),
-            let bundle = Bundle(path: path) else {
-                return super.localizedString(forKey: key, value: value, table: tableName)
-        }
-        return bundle.localizedString(forKey: key, value: value, table: tableName)
     }
 }
 

@@ -541,7 +541,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\nsed -i \"\" 's/fileprivate static let hostingBundle = Bundle(for: R.Class.self)/fileprivate static let hostingBundle = Bundle(path: Bundle(for: R.Class.self).path(forResource: \"ViteBusiness\", ofType: \"bundle\")!)!/' R.generated.swift\nmv \"$SRCROOT/R.generated.swift\" \"$SRCROOT/../ViteBusiness/Classes\"\n\n\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\nsed -i \"\" 's/fileprivate static let hostingBundle = Bundle(for: R.Class.self)/fileprivate static let hostingBundle = VitePodRawBundle(path: Bundle(for: R.Class.self).path(forResource: \"ViteBusiness\", ofType: \"bundle\")!)!/' R.generated.swift\nmv \"$SRCROOT/R.generated.swift\" \"$SRCROOT/../ViteBusiness/Classes\"\n\n\n";
 		};
 		CF8134B12B89FB3868BCEEC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

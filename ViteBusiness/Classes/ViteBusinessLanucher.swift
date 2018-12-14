@@ -23,6 +23,7 @@ public class ViteBusinessLanucher: NSObject {
     public func start(with window: UIWindow) {
         self.window = window
 
+        VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
         _ = LocalizationService.sharedInstance
