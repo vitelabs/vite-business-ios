@@ -45,7 +45,15 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_me_select()?.withRenderingMode(.alwaysOriginal)
         }
 
-        self.viewControllers = [walletNav, voteNav, myNav]
+        var subViewControlles: [UIViewController] = [walletNav, voteNav, myNav]
+        for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo where !subViewControlles.contains(viewController) {
+            if subViewControlles.count <= index {
+                subViewControlles.append(viewController)
+            } else {
+                subViewControlles.insert(viewController, at: index)
+            }
+        }
+        self.viewControllers = subViewControlles
     }
 
     required init?(coder aDecoder: NSCoder) {
