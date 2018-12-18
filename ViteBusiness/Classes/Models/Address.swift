@@ -9,9 +9,9 @@
 import Foundation
 import Vite_HDWalletKit
 
-struct Address: CustomStringConvertible, Equatable {
+public struct Address: CustomStringConvertible, Equatable {
 
-    static func isValid(string: String) -> Bool {
+    public static func isValid(string: String) -> Bool {
         guard string.count == 55 else { return false }
         let prefix = (string as NSString).substring(to: 5) as String
         let hash = (string as NSString).substring(with: NSRange(location: 5, length: 40)) as String
@@ -22,24 +22,24 @@ struct Address: CustomStringConvertible, Equatable {
     }
 
     private var address: String
-    let isValid: Bool
+    public let isValid: Bool
 
-    init(string: String = "") {
+    public init(string: String = "") {
         isValid = Address.isValid(string: string)
         address = string
     }
 
-    var description: String {
+    public var description: String {
         return address
     }
 
-    var raw: String {
+    public var raw: String {
         guard address.count == 55 else { return "" }
         let string = (address as NSString).substring(with: NSRange(location: 5, length: 40)) as String
         return string
     }
 
-    static func == (lhs: Address, rhs: Address) -> Bool {
+    public static func == (lhs: Address, rhs: Address) -> Bool {
         return lhs.address == rhs.address
     }
 }

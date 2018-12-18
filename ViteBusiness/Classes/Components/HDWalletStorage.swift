@@ -12,7 +12,7 @@ import ObjectMapper
 import CryptoSwift
 import ViteUtils
 
-final class HDWalletStorage: Mappable {
+public final class HDWalletStorage: Mappable {
 
     fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "HDWallet"
@@ -30,9 +30,9 @@ final class HDWalletStorage: Mappable {
         }
     }
 
-    init?(map: Map) {}
+    public init?(map: Map) {}
 
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         wallets <- map["wallets"]
         currentWalletUuid <- map["currentWalletUuid"]
         isLogin <- map["isLogin"]
@@ -171,7 +171,7 @@ extension HDWalletStorage {
 
 extension HDWalletStorage {
 
-    struct Wallet: Mappable {
+    public struct Wallet: Mappable {
 
         fileprivate(set) var uuid: String = ""
         fileprivate(set) var name: String = ""
@@ -186,7 +186,7 @@ extension HDWalletStorage {
         fileprivate(set) var isAuthenticatedByBiometry: Bool = false
         fileprivate(set) var isTransferByBiometry: Bool = false
 
-        init?(map: Map) {}
+        public init?(map: Map) {}
 
         init(uuid: String = "",
              name: String = "",
@@ -219,7 +219,7 @@ extension HDWalletStorage {
             return type(of: self).decrypt(ciphertext: ciphertext, encryptKey: encryptKey)
         }
 
-        mutating func mapping(map: Map) {
+        public mutating func mapping(map: Map) {
             uuid <- map["uuid"]
             name <- map["name"]
             ciphertext <- map["ciphertext"]

@@ -43,13 +43,13 @@ public final class HDWalletManager {
         }).disposed(by: disposeBag)
     }
 
-    lazy var walletDriver: Driver<HDWalletStorage.Wallet> = self.walletBehaviorRelay.asDriver().filterNil()
-    lazy var bagsDriver: Driver<[Bag]> = self.bagsBehaviorRelay.asDriver()
-    lazy var bagDriver: Driver<Bag> = self.bagBehaviorRelay.asDriver().filterNil()
+    public lazy var walletDriver: Driver<HDWalletStorage.Wallet> = self.walletBehaviorRelay.asDriver().filterNil()
+    public lazy var bagsDriver: Driver<[Bag]> = self.bagsBehaviorRelay.asDriver()
+    public lazy var bagDriver: Driver<Bag> = self.bagBehaviorRelay.asDriver().filterNil()
 
-    fileprivate var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
-    fileprivate var bagsBehaviorRelay = BehaviorRelay(value: [Bag]())
-    fileprivate var bagBehaviorRelay: BehaviorRelay<Bag?> = BehaviorRelay(value: nil)
+    public var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
+    public var bagsBehaviorRelay = BehaviorRelay(value: [Bag]())
+    public var bagBehaviorRelay: BehaviorRelay<Bag?> = BehaviorRelay(value: nil)
     fileprivate var bags = [Bag]()
 
     fileprivate let storage = HDWalletStorage()
@@ -279,12 +279,12 @@ extension HDWalletManager {
 // MARK: - Bag
 extension HDWalletManager {
 
-    struct Bag {
-        let secretKey: String
-        let publicKey: String
-        let address: Address
+    public struct Bag {
+        public let secretKey: String
+        public let publicKey: String
+        public let address: Address
 
-        init(secretKey: String = "nil", publicKey: String = "nil", address: Address = Address(string: "nil")) {
+        public init(secretKey: String = "nil", publicKey: String = "nil", address: Address = Address(string: "nil")) {
             self.secretKey = secretKey
             self.publicKey = publicKey
             self.address = address
