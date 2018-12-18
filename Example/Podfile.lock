@@ -72,7 +72,7 @@ PODS:
     - PromiseKit/CorePromise
   - R.swift (5.0.0.alpha.3):
     - R.swift.Library (~> 5.0.0.alpha.2)
-  - R.swift.Library (5.0.0.alpha.2)
+  - R.swift.Library (5.0.0)
   - RazzleDazzle (0.1.5)
   - ReactorKit (1.2.1):
     - RxSwift (>= 4.0.0)
@@ -148,6 +148,7 @@ PODS:
     - Toast-Swift (~> 4.0.1)
     - Vite_HDWalletKit
     - ViteUtils
+    - ViteWallet
     - XCGLogger (~> 6.1.0)
   - ViteUtils (0.0.1):
     - CryptoSwift
@@ -159,6 +160,14 @@ PODS:
     - SwiftyJSON
     - Then
     - XCGLogger
+  - ViteWallet (0.1.0):
+    - APIKit
+    - BigInt
+    - CryptoSwift
+    - JSONRPCKit
+    - ObjectMapper
+    - PromiseKit
+    - Vite_HDWalletKit
   - XCGLogger (6.1.0):
     - XCGLogger/Core (= 6.1.0)
   - XCGLogger/Core (6.1.0):
@@ -169,6 +178,7 @@ DEPENDENCIES:
   - R.swift (= 5.0.0.alpha.3)
   - ViteBusiness (from `../`)
   - "ViteUtils (from `git@github.com:vitelabs/vite-utils-ios.git`, branch `develop`)"
+  - "ViteWallet (from `git@github.com:vitelabs/vite-wallet-ios.git`, branch `develop`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -229,11 +239,17 @@ EXTERNAL SOURCES:
   ViteUtils:
     :branch: develop
     :git: "git@github.com:vitelabs/vite-utils-ios.git"
+  ViteWallet:
+    :branch: develop
+    :git: "git@github.com:vitelabs/vite-wallet-ios.git"
 
 CHECKOUT OPTIONS:
   ViteUtils:
-    :commit: 3d200f8bd3fa6400dd43bc68c087ed5a1c23f0fb
+    :commit: 05452b3037977e5f77c7682bea5f43d450b6c8ee
     :git: "git@github.com:vitelabs/vite-utils-ios.git"
+  ViteWallet:
+    :commit: 986a7b1a9b2006ac54393a2c2e75452deb80bb03
+    :git: "git@github.com:vitelabs/vite-wallet-ios.git"
 
 SPEC CHECKSUMS:
   Action: 2f461c203c480b17aa99b3bb166e4329ecff6908
@@ -266,7 +282,7 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PromiseKit: 453ddcc947fe7b302f3ef41882b81d31c554df7f
   R.swift: ca4207ecc94545a1611ca0b2ae1197458b6ba30a
-  R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
+  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -285,10 +301,11 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: a0a0246c7fe718b803c28bb8af8b1e3d6fd0bf7a
+  ViteBusiness: 2f937ad55a98bfc3d23f7259be4bac90b62a1450
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
+  ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: 48ec5637fedab3825b6088350213ee045a27ec94
+PODFILE CHECKSUM: 5f7ec9d73bac4d32592bc13018d58fd3b6111816
 
 COCOAPODS: 1.5.3

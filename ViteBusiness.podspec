@@ -49,7 +49,6 @@ Pod::Spec.new do |s|
   s.dependency 'ObjectMapper'
   s.dependency 'Then'
   s.dependency 'NSObject+Rx'
-  s.dependency 'ViteUtils'
   s.dependency 'MBProgressHUD'
   s.dependency 'RxOptional'
   s.dependency 'PromiseKit'
@@ -118,6 +117,9 @@ Pod::Spec.new do |s|
   s.dependency 'Crashlytics'
 
   s.dependency 'MLeaksFinder'
+
+  s.dependency 'ViteUtils'
+  s.dependency 'ViteWallet'
 
   # s.resource_bundles = {
   #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']
