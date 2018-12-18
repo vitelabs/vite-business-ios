@@ -11,8 +11,9 @@ import Vite_HDWalletKit
 import ObjectMapper
 import CryptoSwift
 import ViteUtils
+import ViteWallet
 
-final class HDWalletStorage: Mappable {
+public final class HDWalletStorage: Mappable {
 
     fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "HDWallet"
@@ -30,9 +31,9 @@ final class HDWalletStorage: Mappable {
         }
     }
 
-    init?(map: Map) {}
+    public init?(map: Map) {}
 
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         wallets <- map["wallets"]
         currentWalletUuid <- map["currentWalletUuid"]
         isLogin <- map["isLogin"]
@@ -62,7 +63,7 @@ final class HDWalletStorage: Mappable {
 extension HDWalletStorage {
 
     func addAddLoginWallet(uuid: String, name: String, mnemonic: String, hash: String, encryptKey: String, needRecoverAddresses: Bool) -> Wallet {
-        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: needRecoverAddresses)
+        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: .english, encryptedKey: encryptKey, needRecoverAddresses: needRecoverAddresses)
 
         var index: Int?
         for (i, wallet) in wallets.enumerated() where wallet.hash == hash {
@@ -85,13 +86,14 @@ extension HDWalletStorage {
     func login(encryptKey: String, uuid: String? = nil) -> (Wallet, String)? {
         let uuid = uuid ?? self.currentWalletUuid ?? ""
         guard let (_, wallet) = pri_walletAndIndexForUuid(uuid) else { return nil }
-        currentWalletUuid = wallet.uuid
-        isLogin = true
-        pri_save()
 
-        if let mnemonic = wallet.mnemonic(encryptKey: encryptKey) {
+        do {
+            let mnemonic = try wallet.mnemonic(encryptKey: encryptKey)
+            currentWalletUuid = wallet.uuid
+            isLogin = true
+            pri_save()
             return (wallet, mnemonic)
-        } else {
+        } catch {
             return nil
         }
     }
@@ -110,7 +112,7 @@ extension HDWalletStorage {
 
     func updateCurrentWalletName(_ name: String) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in
-            wallet.name = name
+            wallet.updateName(name)
         }
     }
 
@@ -171,12 +173,7 @@ extension HDWalletStorage {
 
 extension HDWalletStorage {
 
-    struct Wallet: Mappable {
-
-        fileprivate(set) var uuid: String = ""
-        fileprivate(set) var name: String = ""
-        fileprivate(set) var ciphertext: String?
-        fileprivate(set) var hash: String?
+    public class Wallet: ViteWallet.Wallet{
 
         fileprivate(set) var addressIndex: Int = 0
         fileprivate(set) var addressCount: Int = 1
@@ -186,24 +183,22 @@ extension HDWalletStorage {
         fileprivate(set) var isAuthenticatedByBiometry: Bool = false
         fileprivate(set) var isTransferByBiometry: Bool = false
 
-        init?(map: Map) {}
+        required init?(map: Map) {
+            super.init(map: map)
+        }
 
-        init(uuid: String = "",
-             name: String = "",
-             mnemonic: String = "",
-             hash: String = "",
-             encryptKey: String = "",
-             addressIndex: Int = 0,
-             addressCount: Int = 1,
-             needRecoverAddresses: Bool = true,
-             isRequireAuthentication: Bool = false,
-             isAuthenticatedByBiometry: Bool = false,
-             isTransferByBiometry: Bool = false) {
-
-            self.uuid = uuid
-            self.name = name
-            self.ciphertext = type(of: self).encrypt(plaintext: mnemonic, encryptKey: encryptKey)
-            self.hash = hash
+        public init(uuid: String,
+                    name: String,
+                    mnemonic: String,
+                    language: MnemonicCodeBook,
+                    encryptedKey: String,
+                    addressIndex: Int = 0,
+                    addressCount: Int = 1,
+                    needRecoverAddresses: Bool = true,
+                    isRequireAuthentication: Bool = false,
+                    isAuthenticatedByBiometry: Bool = false,
+                    isTransferByBiometry: Bool = false) {
+            super.init(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptedKey)
 
             self.addressIndex = addressIndex
             self.addressCount = addressCount
@@ -214,16 +209,8 @@ extension HDWalletStorage {
             self.isTransferByBiometry = isTransferByBiometry
         }
 
-        func mnemonic(encryptKey: String) -> String? {
-            guard let ciphertext = ciphertext else { return nil }
-            return type(of: self).decrypt(ciphertext: ciphertext, encryptKey: encryptKey)
-        }
-
-        mutating func mapping(map: Map) {
-            uuid <- map["uuid"]
-            name <- map["name"]
-            ciphertext <- map["ciphertext"]
-            hash <- map["hash"]
+        override public func mapping(map: Map) {
+            super.mapping(map: map)
 
             addressIndex <- map["addressIndex"]
             addressCount <- map["addressCount"]
@@ -232,33 +219,6 @@ extension HDWalletStorage {
             isRequireAuthentication <- map["isRequireAuthentication"]
             isAuthenticatedByBiometry <- map["isAuthenticatedByBiometry"]
             isTransferByBiometry <- map["isTransferByBiometry"]
-        }
-
-        static let gcm = GCM(iv: "vite mnemonic iv".md5().hex2Bytes, mode: .combined)
-
-        static func encrypt(plaintext: String, encryptKey: String) -> String? {
-            do {
-                guard let data = encryptKey.data(using: .utf8) else { return nil }
-                guard let entropy = Mnemonic.mnemonicsToEntropy(plaintext) else { return nil }
-                let key = [UInt8](data.sha256())
-                let aes = try AES(key: key, blockMode: gcm, padding: .noPadding)
-                let cipher = try aes.encrypt([UInt8](entropy))
-                return cipher.toHexString()
-            } catch {
-                return nil
-            }
-        }
-
-        static func decrypt(ciphertext: String, encryptKey: String) -> String? {
-            do {
-                guard let data = encryptKey.data(using: .utf8) else { return nil }
-                let key = [UInt8](data.sha256())
-                let aes = try AES(key: key, blockMode: gcm, padding: .noPadding)
-                let entropy = try aes.decrypt(ciphertext.hex2Bytes)
-                return Mnemonic.generator(entropy: Data(bytes: entropy))
-            } catch {
-                return nil
-            }
         }
     }
 }

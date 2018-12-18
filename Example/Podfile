@@ -1,7 +1,9 @@
+platform :ios, '10.0'
 use_frameworks!
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
+  pod 'ViteWallet', :git => 'git@github.com:vitelabs/vite-wallet-ios.git', :branch=>'develop'
   pod 'ViteUtils', :git => 'git@github.com:vitelabs/vite-utils-ios.git', :branch=>'develop'
 
   target 'ViteBusiness_Tests' do
