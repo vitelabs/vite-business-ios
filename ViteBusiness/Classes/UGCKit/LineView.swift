@@ -9,21 +9,21 @@
 import UIKit
 import SnapKit
 
-enum LineViewDirection {
+public enum LineViewDirection {
     case horizontal
     case vertical
 }
 
-class LineView: UIView {
+public class LineView: UIView {
 
-    init(direction: LineViewDirection) {
+    public init(direction: LineViewDirection) {
         super.init(frame: CGRect.zero)
 
         self.backgroundColor = .white
         self.alpha = 0.3
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required  public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

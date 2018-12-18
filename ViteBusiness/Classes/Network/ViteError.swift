@@ -39,7 +39,7 @@ extension Error {
     }
 }
 
-struct ViteError: Error {
+public struct ViteError: Error {
 
     let code: ViteErrorCode
     let message: String

@@ -9,11 +9,11 @@
 import APIKit
 import JSONRPCKit
 
-enum NetworkResult<T> {
+public enum NetworkResult<T> {
     case success(T)
     case failure(ViteError)
 
-    static func wrapError(_ error: Error) -> NetworkResult {
+    static public func wrapError(_ error: Error) -> NetworkResult {
         if let e = error as? ViteError {
             return NetworkResult.failure(e)
         } else {

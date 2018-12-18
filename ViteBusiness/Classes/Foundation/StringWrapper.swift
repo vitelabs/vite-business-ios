@@ -9,23 +9,23 @@
 import Foundation
 import ObjectMapper
 
-struct StringWrapper: Mappable {
+public struct StringWrapper: Mappable {
 
     fileprivate var base: String = ""
     fileprivate var localized: [String: String] = [:]
 
-    init(string: String) {
+    public init(string: String) {
         self.base = string
     }
 
-    init?(map: Map) { }
+    public init?(map: Map) { }
 
-    mutating func mapping(map: Map) {
+    mutating public func mapping(map: Map) {
         base <- map["base"]
         localized <- map["localized"]
     }
 
-    var string: String {
+    public var string: String {
         return localized[LocalizationService.sharedInstance.currentLanguage.rawValue] ?? base
     }
 }

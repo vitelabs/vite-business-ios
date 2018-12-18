@@ -9,9 +9,9 @@
 import UIKit
 import SnapKit
 
-class NavigationTitleView: UIView {
+public class NavigationTitleView: UIView {
 
-    enum Style {
+    public enum Style {
         case `default`
         case white
         case custom(color: UIColor)
@@ -23,7 +23,7 @@ class NavigationTitleView: UIView {
         $0.adjustsFontSizeToFitWidth = true
     }
 
-    init(title: String?, style: Style = .default) {
+    public init(title: String?, style: Style = .default) {
         super.init(frame: CGRect.zero)
         titleLabel.text = title
         addSubview(titleLabel)
@@ -48,7 +48,7 @@ class NavigationTitleView: UIView {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

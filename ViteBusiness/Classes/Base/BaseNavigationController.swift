@@ -8,27 +8,27 @@
 
 import UIKit
 
-class BaseNavigationController: UINavigationController {
+public class BaseNavigationController: UINavigationController {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    override public func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if children.count == 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)
     }
 
-    override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+    override public func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
         viewControllers.last?.hidesBottomBarWhenPushed = true
         super.setViewControllers(viewControllers, animated: animated)
     }
@@ -42,7 +42,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         viewController.navigationItem.backBarButtonItem = item
     }
 
-    override var childForStatusBarStyle: UIViewController? {
+    override public var childForStatusBarStyle: UIViewController? {
         return self.topViewController
     }
 }

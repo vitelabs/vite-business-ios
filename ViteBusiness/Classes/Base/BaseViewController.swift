@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
 
     var statisticsPageName: String?
     var automaticallyShowDismissButton: Bool = true
     var navigationBarStyle = NavigationBarStyle.default
-    var navigationTitleView: UIView? {
+    open var navigationTitleView: UIView? {
         didSet {
             if let old = oldValue {
                 old.removeFromSuperview()
@@ -70,15 +70,15 @@ class BaseViewController: UIViewController {
         }
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
@@ -99,7 +99,7 @@ class BaseViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navigationTitleView = navigationTitleView {
             view.bringSubviewToFront(navigationTitleView)
@@ -107,14 +107,14 @@ class BaseViewController: UIViewController {
         NavigationBarStyle.configStyle(navigationBarStyle, viewController: self)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let name = statisticsPageName {
             Statistics.pageviewStart(with: name)
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if let name = statisticsPageName {
             Statistics.pageviewEnd(with: name)

@@ -9,9 +9,9 @@
 import UIKit
 
 // screen height
-let kScreenH = UIScreen.main.bounds.height
+public let kScreenH = UIScreen.main.bounds.height
 // screen width
-let kScreenW = UIScreen.main.bounds.width
+public let kScreenW = UIScreen.main.bounds.width
 //Adaptive iPhoneX
 let kNavibarH: CGFloat = UIDevice.current.isIPhoneX() ? 88.0 : 64.0
 
@@ -35,13 +35,13 @@ extension UIDevice {
         return false
     }
 }
-struct Fonts {
+public struct Fonts {
     static let descFont = UIFont.systemFont(ofSize: 16, weight: .regular)
     static let light14 = UIFont.systemFont(ofSize: 14, weight: .light)
     static let light16 = UIFont.systemFont(ofSize: 16, weight: .light)
     static let Font12 = UIFont.systemFont(ofSize: 12, weight: .semibold)
-    static let Font14 = UIFont.systemFont(ofSize: 14, weight: .regular)
-    static let Font14_b = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    public static let Font14 = UIFont.systemFont(ofSize: 14, weight: .regular)
+    public static let Font14_b = UIFont.systemFont(ofSize: 14, weight: .semibold)
     static let Font16_b = UIFont.systemFont(ofSize: 16, weight: .semibold)
     static let Font17 = UIFont.systemFont(ofSize: 17, weight: .semibold)
     static let Font18 = UIFont.systemFont(ofSize: 18, weight: .regular)
@@ -49,7 +49,7 @@ struct Fonts {
     static let Font24 = UIFont.systemFont(ofSize: 24, weight: .semibold)
 }
 
-enum AppStyle {
+public enum AppStyle {
     case inputDescWord
     case descWord
     case heading
