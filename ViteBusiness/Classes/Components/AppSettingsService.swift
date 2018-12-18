@@ -29,7 +29,8 @@ public class AppSettingsService {
             let config = AppConfig(JSONString: jsonString) {
             appConfigHash = jsonString.md5()
             configBehaviorRelay = BehaviorRelay(value: config)
-        } else if let config: AppConfig = Bundle.getObject(forResource: type(of: self).saveKey) {
+        } else if let bundle = Bundle.podBundle(for: type(of: self).self, bundleName: "ViteBusiness"),
+            let config: AppConfig = bundle.getObject(forResource: type(of: self).saveKey, withExtension: nil, subdirectory: "Config") {
             appConfigHash = nil
             configBehaviorRelay = BehaviorRelay(value: config)
         } else {

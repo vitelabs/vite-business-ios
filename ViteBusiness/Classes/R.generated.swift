@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 84 images.
+  /// This `R.image` struct is generated, and contains static references to 82 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -108,10 +108,6 @@ struct R: Rswift.Validatable {
     static let icon_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_search")
     /// Image `icon_setting`.
     static let icon_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_setting")
-    /// Image `icon_tabbar_discover_select`.
-    static let icon_tabbar_discover_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_discover_select")
-    /// Image `icon_tabbar_discover`.
-    static let icon_tabbar_discover = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_discover")
     /// Image `icon_tabbar_me_select`.
     static let icon_tabbar_me_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me_select")
     /// Image `icon_tabbar_me`.
@@ -410,16 +406,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_setting", bundle: ..., traitCollection: ...)`
     static func icon_setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_setting, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_discover", bundle: ..., traitCollection: ...)`
-    static func icon_tabbar_discover(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_discover, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_discover_select", bundle: ..., traitCollection: ...)`
-    static func icon_tabbar_discover_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_discover_select, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_tabbar_me", bundle: ..., traitCollection: ...)`

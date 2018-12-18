@@ -8,10 +8,12 @@
 import Foundation
 import ViteUtils
 
-class VitePodRawLocalizationService: VitePodLocalizationService {}
+class VitePodRawLocalizationService: VitePodLocalizationService {
+    static let  sharedInstance = VitePodRawLocalizationService()
+}
 
 class VitePodRawBundle: VitePodLanguageBundle {
-    override class func podLocalizationServiceClass() -> AnyClass {
-        return VitePodRawLocalizationService.self
+    override class func podLocalizationServicesharedInstance() -> VitePodLocalizationService {
+        return VitePodRawLocalizationService.sharedInstance
     }
 }

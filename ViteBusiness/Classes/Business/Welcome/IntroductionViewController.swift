@@ -128,7 +128,8 @@ extension IntroductionViewController {
             scaleFactor = Float(Float(divisor)/10.0)
         }
         for (index, item) in self.iconsDict.enumerated() {
-            var iconImg = UIImage(named: item)
+            let bundle = Bundle.podBundle(for: type(of: self), bundleName: "ViteBusiness")
+            var iconImg = UIImage(named: item, in: bundle, compatibleWith: nil)
             if iconImg !=  nil {
                 iconImg = scaleFactor != 1.0 ? iconImg?.scale(byFactor: scaleFactor) : iconImg
                 let iconImgView = UIImageView(image: iconImg)
