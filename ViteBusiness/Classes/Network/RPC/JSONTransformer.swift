@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 import BigInt
 
-struct JSONTransformer {
-    static let timestamp = TransformOf<Date, UInt64>(fromJSON: { (timestamp) -> Date? in
+public struct JSONTransformer {
+    public static let timestamp = TransformOf<Date, UInt64>(fromJSON: { (timestamp) -> Date? in
         guard let timestamp = timestamp else { return nil }
         return Date(timeIntervalSince1970: TimeInterval(timestamp))
     }, toJSON: { (date) -> UInt64? in

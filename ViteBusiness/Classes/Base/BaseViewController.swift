@@ -13,7 +13,7 @@ import RxSwift
 open class BaseViewController: UIViewController {
 
     var statisticsPageName: String?
-    var automaticallyShowDismissButton: Bool = true
+    open var automaticallyShowDismissButton: Bool = true
     var navigationBarStyle = NavigationBarStyle.default
     open var navigationTitleView: UIView? {
         didSet {

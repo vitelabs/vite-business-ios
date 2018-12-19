@@ -75,7 +75,7 @@ class VoteListViewController: BaseViewController {
 
         let result = reactor.result()
 
-        self.view.displayLoading()
+        self.view.displayLoading(text: R.string.localizable.loading())
         result
             .filterNil()
             .map { $0.isEmpty }
@@ -210,7 +210,7 @@ class VoteListViewController: BaseViewController {
                                                           nodeName: nodeName) { [unowned self] (result) in
                                                             switch result {
                                                             case .success:
-                                                                self.view.displayLoading()
+                                                                self.view.displayLoading(text: R.string.localizable.loading())
                                                                 self.reactor.vote.value = nodeName
                                                             case .passwordAuthFailed:
                                                                 Alert.show(into: self,
@@ -249,7 +249,7 @@ class VoteListViewController: BaseViewController {
                         return cancelPow
                     }, powCompletion: { (_) in
                         getPowFloatView.finish {}
-                        self?.view.displayLoading()
+                        self?.view.displayLoading(text: R.string.localizable.loading())
                     }, completion: { (_) in
 
                     })
@@ -288,7 +288,7 @@ extension VoteListViewController: ViewControllerDataStatusable {
 
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
         return UIView.defaultNetworkErrorView(error: error) { [weak self] in
-            self?.view.displayLoading()
+            self?.view.displayLoading(text: R.string.localizable.loading())
             retry()
         }
     }

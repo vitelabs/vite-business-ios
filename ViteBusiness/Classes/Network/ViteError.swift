@@ -42,7 +42,7 @@ extension Error {
 public struct ViteError: Error {
 
     let code: ViteErrorCode
-    let message: String
+    public let message: String
     let rawMessage: String
     let rawError: Error?
 

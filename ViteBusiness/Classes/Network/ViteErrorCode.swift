@@ -9,11 +9,11 @@
 import Foundation
 
 extension ViteErrorCode: Hashable {
-    static func == (lhs: ViteErrorCode, rhs: ViteErrorCode) -> Bool {
+    public static func == (lhs: ViteErrorCode, rhs: ViteErrorCode) -> Bool {
         return lhs.id == rhs.id && lhs.type == rhs.type
     }
 
-    var hashValue: Int {
+    public var hashValue: Int {
         return toString().hashValue
     }
 }
@@ -24,16 +24,16 @@ extension ViteErrorCode: CustomStringConvertible, CustomDebugStringConvertible {
         return type.rawValue.uppercased().replacingOccurrences(of: "_", with: ".") + "." + String(id)
     }
 
-    var description: String {
+    public var description: String {
         return toString()
     }
 
-    var debugDescription: String {
+    public var debugDescription: String {
         return toString()
     }
 }
 
-struct ViteErrorCode {
+public struct ViteErrorCode {
 
     let type: CodeType
     let id: Int

@@ -13,15 +13,15 @@ import ViteUtils
 
 extension UIView {
 
-    func displayLoading(
-        text: String = R.string.localizable.loading(),
+    public func displayLoading(
+        text: String = "",
         animated: Bool = true
         ) {
         let hud = MBProgressHUD.showAdded(to: self, animated: animated)
         hud.label.text = text
     }
 
-    func hideLoading(animated: Bool = true) {
+    public func hideLoading(animated: Bool = true) {
         MBProgressHUD.hide(for: self, animated: animated)
     }
 
