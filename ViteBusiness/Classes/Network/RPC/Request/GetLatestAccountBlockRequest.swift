@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import JSONRPCKit
 
 struct GetLatestAccountBlockRequest: JSONRPCKit.Request {
@@ -28,7 +29,7 @@ struct GetLatestAccountBlockRequest: JSONRPCKit.Request {
 
     func response(from resultObject: Any) throws -> Response {
         if let _ = resultObject as? NSNull {
-            return AccountBlock(address: Address(string: self.address))
+            return AccountBlock()
         } else if let response = resultObject as? [String: Any] {
             if let ret = AccountBlock(JSON: response) {
                 return ret

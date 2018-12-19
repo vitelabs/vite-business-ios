@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import SnapKit
 import RxSwift
 import RxCocoa
@@ -240,7 +241,7 @@ extension QuotaManageViewController {
     //auto run pledgeAndGainQuotaWithGetPow with error
     func pledgeAndGainQuotaWithoutGetPow(beneficialAddress: Address, amount: BigInt) {
         HUD.show()
-        Provider.instance.pledgeAndGainQuotaWithoutGetPow(bag: bag, beneficialAddress: beneficialAddress, tokenId: TokenCacheService.instance.viteToken.id, amount: amount) { [weak self] (result) in
+        Provider.instance.pledgeAndGainQuotaWithoutGetPow(bag: bag, beneficialAddress: beneficialAddress, tokenId: TokenCacheService.instance.viteToken.id, amount: Balance(value: amount)) { [weak self] (result) in
             guard let `self` = self else { return }
             HUD.hide()
             switch result {

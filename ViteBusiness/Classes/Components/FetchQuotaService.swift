@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import PromiseKit
 import RxSwift
 import RxCocoa
@@ -24,8 +25,9 @@ final class FetchQuotaService {
     fileprivate var maxTxCountBehaviorRelay: BehaviorRelay<String> = BehaviorRelay(value: "0")
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var uuid: String! = nil
     fileprivate var fileHelper: FileHelper! = nil
+
+    fileprivate var service: ViteWallet.FetchPledgeQuotaService?
     fileprivate var retainCount = 0
 
     fileprivate enum Key: String {
@@ -35,68 +37,72 @@ final class FetchQuotaService {
     }
 
     func start() {
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] in
+        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
-            self.fileHelper = FileHelper(.library, appending: "\(FileHelper.accountPathComponent)/\($0.address.description)")
-            if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
-                let dic = try? JSONSerialization.jsonObject(with: data) as? [String: String],
-                let quota = dic?[Key.quota.rawValue],
-                let maxTxCount = dic?[Key.maxTxCount.rawValue] {
-                self.quotaBehaviorRelay.accept(quota)
-                self.maxTxCountBehaviorRelay.accept(maxTxCount)
+            if let account = a {
+                self.fileHelper = FileHelper(.library, appending: "\(FileHelper.accountPathComponent)/\(account.address.description)")
+                if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
+                    let dic = try? JSONSerialization.jsonObject(with: data) as? [String: String],
+                    let quota = dic?[Key.quota.rawValue],
+                    let maxTxCount = dic?[Key.maxTxCount.rawValue] {
+                    self.quotaBehaviorRelay.accept(quota)
+                    self.maxTxCountBehaviorRelay.accept(maxTxCount)
+                }
+
+                let address = account.address
+                let service = ViteWallet.FetchPledgeQuotaService(address: address, interval: 5, completion: { [weak self] (r) in
+                    guard let `self` = self else { return }
+
+                    switch r {
+                    case .success(let (quota, maxTxCount)):
+                        plog(level: .debug, log: address.description + ": " + "quota \(String(quota)) \(String(maxTxCount))", tag: .transaction)
+
+                        self.quotaBehaviorRelay.accept(String(quota))
+                        self.maxTxCountBehaviorRelay.accept(String(maxTxCount))
+
+                        let dic = [Key.quota.rawValue: String(quota), Key.maxTxCount.rawValue: String(maxTxCount)]
+                        if let data = try? JSONSerialization.data(withJSONObject: dic) {
+                            if let error = self.fileHelper.writeData(data, relativePath: Key.fileName.rawValue) {
+                                assert(false, error.localizedDescription)
+                            }
+                        }
+                    case .failure(let error):
+                        plog(level: .warning, log: address.description + ": " + error.message, tag: .transaction)
+                    }
+                })
+
+                if self.retainCount > 0 {
+                    plog(level: .debug, log: "start fetch quota", tag: .transaction)
+                    service.startPoll()
+                }
+
+                self.service = service
+            } else {
+                self.service = nil
             }
 
-            if self.retainCount > 0 {
-                self.uuid = UUID().uuidString
-                self.getQuota(self.uuid)
-            }
         }).disposed(by: disposeBag)
     }
 
     func retainQuota() {
         retainCount += 1
-        startFetchIfNeeded()
+        plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
+
+        guard let service = self.service else { return }
+
+        if service.isPolling == false {
+            plog(level: .debug, log: "start fetch quota", tag: .transaction)
+            service.startPoll()
+        }
     }
 
     func releaseQuota() {
         retainCount = max(0, retainCount - 1)
-    }
-
-    fileprivate func startFetchIfNeeded() {
-        if retainCount == 1 {
-            self.uuid = UUID().uuidString
-            self.getQuota(self.uuid)
-        }
-    }
-
-    fileprivate func getQuota(_ uuid: String) {
-        guard uuid == self.uuid else { return }
-        guard let bag = HDWalletManager.instance.bag else { return }
-        plog(level: .debug, log: bag.address.description, tag: .transaction)
-        Provider.instance.getPledgeQuota(address: bag.address) { [weak self] result in
-            guard let `self` = self else { return }
-            guard uuid == self.uuid else { return }
-
-            switch result {
-            case .success(let quota, let maxTxCount):
-                self.quotaBehaviorRelay.accept(quota)
-                self.maxTxCountBehaviorRelay.accept(maxTxCount)
-
-                let dic = [Key.quota.rawValue: quota, Key.maxTxCount.rawValue: maxTxCount]
-                if let data = try? JSONSerialization.data(withJSONObject: dic) {
-                    if let error = self.fileHelper.writeData(data, relativePath: Key.fileName.rawValue) {
-                        assert(false, error.localizedDescription)
-                    }
-                }
-
-            case .failure(let error):
-                plog(level: .warning, log: bag.address.description + ": " + error.message, tag: .transaction)
-            }
-
-            if self.retainCount > 0 {
-                GCD.delay(5, task: { self.getQuota(uuid) })
-            }
+        plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
+        if retainCount == 0 {
+            plog(level: .debug, log: "stop fetch quota", tag: .transaction)
+            self.service?.stopPoll()
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ViteWallet
 import PromiseKit
 import JSONRPCKit
 import APIKit
@@ -52,7 +53,7 @@ extension Provider {
                 self.sendTransactionWithoutGetPow(bag: bag,
                                                   toAddress: Const.ContractAddress.vote.address,
                                                   tokenId: TokenCacheService.instance.viteToken.id,
-                                                  amount: 0,
+                                                  amount: Balance(value: BigInt(0)),
                                                   data: data,
                                                   completion: { result in
                                                     switch result {

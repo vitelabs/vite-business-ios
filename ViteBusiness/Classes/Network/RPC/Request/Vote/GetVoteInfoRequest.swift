@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ViteWallet
 import JSONRPCKit
 
 struct GetVoteInfoRequest: JSONRPCKit.Request {

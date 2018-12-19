@@ -13,7 +13,7 @@ import Vite_HDWalletKit
 
 class AddressManagerTableViewModel: AddressManagerTableViewModelType {
 
-    lazy var defaultAddressDriver: Driver<String> = HDWalletManager.instance.bagDriver.map { $0.address.description }
+    lazy var defaultAddressDriver: Driver<String> = HDWalletManager.instance.bagDriver.map { $0?.address.description ?? ""}
     lazy var addressesDriver: Driver<[AddressManageAddressViewModelType]> =
         Driver.combineLatest(HDWalletManager.instance.bagsDriver, HDWalletManager.instance.bagDriver)
             .map { (bags, _) -> [AddressManageAddressViewModelType] in

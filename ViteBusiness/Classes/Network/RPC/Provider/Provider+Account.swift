@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ViteWallet
 import PromiseKit
 import JSONRPCKit
 import APIKit
@@ -18,8 +19,8 @@ extension Provider {
             let request = ViteServiceRequest(for: server, batch: BatchFactory().create(GetBalanceInfosRequest(address: address.description), GetUnconfirmedInfosRequest(address: address.description)))
             Session.send(request) { result in
                 switch result {
-                case .success(let (balanceInfos, unConfirmedInfos)):
-                    seal.fulfill(BalanceInfo.mergeBalanceInfos(balanceInfos, unConfirmedInfos: unConfirmedInfos))
+                case .success(let (balanceInfos, onroadInfos)):
+                    seal.fulfill(BalanceInfo.mergeBalanceInfos(balanceInfos, onroadInfos: onroadInfos))
                 case .failure(let error):
                     seal.reject(error)
                 }
@@ -145,9 +146,9 @@ extension Provider {
                 Session.send(request) { result in
                     switch result {
                     case .success(let (bStart, uStart, bMid, uMid, bEnd, uEnd)):
-                        let s = BalanceInfo.mergeBalanceInfos(bStart, unConfirmedInfos: uStart)
-                        let m = BalanceInfo.mergeBalanceInfos(bMid, unConfirmedInfos: uMid)
-                        let e = BalanceInfo.mergeBalanceInfos(bEnd, unConfirmedInfos: uEnd)
+                        let s = BalanceInfo.mergeBalanceInfos(bStart, onroadInfos: uStart)
+                        let m = BalanceInfo.mergeBalanceInfos(bMid, onroadInfos: uMid)
+                        let e = BalanceInfo.mergeBalanceInfos(bEnd, onroadInfos: uEnd)
                         if !e.isEmpty {
                             seal.fulfill(end)
                         } else if !m.isEmpty {

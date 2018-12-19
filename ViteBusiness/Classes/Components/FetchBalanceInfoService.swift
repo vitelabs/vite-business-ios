@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import PromiseKit
 import RxSwift
 import RxCocoa
@@ -22,67 +23,61 @@ final class FetchBalanceInfoService {
     fileprivate var balanceInfos: BehaviorRelay<[WalletHomeBalanceInfoViewModelType]>! = nil
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let provider = Provider(server: RPCServer.shared)
-
-    fileprivate var uuid: String! = nil
     fileprivate var fileHelper: FileHelper! = nil
     fileprivate static let saveKey = "BalanceInfos"
 
+    fileprivate var service: ViteWallet.FetchBalanceInfoService?
+
     func start() {
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] in
+        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
-            self.uuid = UUID().uuidString
-            self.fileHelper = FileHelper(.library, appending: "\(FileHelper.accountPathComponent)/\($0.address.description)")
-
-            var oldBalanceInfos: [BalanceInfo]!
-            if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-                let jsonString = String(data: data, encoding: .utf8),
-                let array = [BalanceInfo](JSONString: jsonString) {
-                oldBalanceInfos = array
-            } else {
-                oldBalanceInfos = BalanceInfo.mergeBalanceInfos([])
-            }
-
-            if self.balanceInfos == nil {
-                self.balanceInfos = BehaviorRelay<[WalletHomeBalanceInfoViewModelType]>(value: oldBalanceInfos.map {
-                    WalletHomeBalanceInfoViewModel(balanceInfo: $0)
-                })
-            } else {
-                self.balanceInfos.accept(oldBalanceInfos.map {
-                    WalletHomeBalanceInfoViewModel(balanceInfo: $0)
-                })
-            }
-
-            self.getchBalanceInfo(self.uuid)
-        }).disposed(by: disposeBag)
-
-    }
-
-    fileprivate func getchBalanceInfo(_ uuid: String) {
-        guard uuid == self.uuid else { return }
-        guard let address = HDWalletManager.instance.bag?.address else { return }
-        plog(level: .debug, log: address.description, tag: .transaction)
-        Provider.instance.getBalanceInfos(address: address) { [weak self] result in
-            guard let `self` = self else { return }
-            guard uuid == self.uuid else { return }
-
-            switch result {
-            case .success(let balanceInfos):
-                let allBalanceInfos = BalanceInfo.mergeBalanceInfos(balanceInfos)
-
-                let tokens = allBalanceInfos.map { $0.token }
-                TokenCacheService.instance.updateTokensIfNeeded(tokens)
-
-                if let data = allBalanceInfos.toJSONString()?.data(using: .utf8) {
-                    if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                        assert(false, error.localizedDescription)
-                    }
+            if let account = a {
+                self.fileHelper = FileHelper(.library, appending: "\(FileHelper.accountPathComponent)/\(account.address.description)")
+                var oldBalanceInfos: [BalanceInfo]!
+                if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+                    let jsonString = String(data: data, encoding: .utf8),
+                    let array = [BalanceInfo](JSONString: jsonString) {
+                    oldBalanceInfos = array
+                } else {
+                    oldBalanceInfos = BalanceInfo.mergeDefaultBalanceInfos([])
                 }
-                self.balanceInfos.accept(allBalanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) })
-            case .failure(let error):
-                plog(level: .warning, log: address.description + ": " + error.message, tag: .transaction)
+
+                let viewModels = oldBalanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) }
+                if self.balanceInfos == nil {
+                    self.balanceInfos = BehaviorRelay<[WalletHomeBalanceInfoViewModelType]>(value: viewModels)
+                } else {
+                    self.balanceInfos.accept(viewModels)
+                }
+
+                plog(level: .debug, log: account.address.description + ": " + "start fetch balanceInfo", tag: .transaction)
+                let address = account.address
+                let service = ViteWallet.FetchBalanceInfoService(address: address, interval: 5, completion: { [weak self] (r) in
+                    guard let `self` = self else { return }
+                    
+                    switch r {
+                    case .success(let balanceInfos):
+
+                        plog(level: .debug, log: address.description + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balanceShortString }))", tag: .transaction)
+                        let allBalanceInfos = BalanceInfo.mergeDefaultBalanceInfos(balanceInfos)
+                        let tokens = allBalanceInfos.map { $0.token }
+                        TokenCacheService.instance.updateTokensIfNeeded(tokens)
+
+                        if let data = allBalanceInfos.toJSONString()?.data(using: .utf8) {
+                            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
+                                assert(false, error.localizedDescription)
+                            }
+                        }
+                        self.balanceInfos.accept(allBalanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) })
+                    case .failure(let error):
+                        plog(level: .warning, log: address.description + ": " + error.message, tag: .transaction)
+                    }
+                })
+                service.startPoll()
+                self.service = service
+            } else {
+                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+                self.service = nil
             }
-            GCD.delay(5) { self.getchBalanceInfo(uuid) }
-        }
+        }).disposed(by: disposeBag)
     }
 }

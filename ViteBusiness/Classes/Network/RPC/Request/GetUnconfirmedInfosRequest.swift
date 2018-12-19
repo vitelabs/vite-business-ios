@@ -6,11 +6,12 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import JSONRPCKit
 
 class GetUnconfirmedInfosRequest: JSONRPCKit.Request {
-    typealias Response = [UnConfirmedInfo]
+    typealias Response = [OnroadInfo]
 
     let address: String
 
@@ -26,7 +27,7 @@ class GetUnconfirmedInfosRequest: JSONRPCKit.Request {
         self.address = address
     }
 
-    func response(from resultObject: Any) throws -> [UnConfirmedInfo] {
+    func response(from resultObject: Any) throws -> [OnroadInfo] {
 
         if let _ = resultObject as? NSNull {
             return []
@@ -36,14 +37,14 @@ class GetUnconfirmedInfosRequest: JSONRPCKit.Request {
             throw ViteError.JSONTypeError()
         }
 
-        var unConfirmedInfoArray = [[String: Any]]()
+        var onroadInfoArray = [[String: Any]]()
         if let map = response["tokenBalanceInfoMap"] as?  [String: Any],
             let array = Array(map.values) as? [[String: Any]] {
-            unConfirmedInfoArray = array
+            onroadInfoArray = array
         }
 
-        let unConfirmedInfos = unConfirmedInfoArray.map({ UnConfirmedInfo(JSON: $0) })
-        let ret = unConfirmedInfos.compactMap { $0 }
+        let onroadInfos = onroadInfoArray.map({ OnroadInfo(JSON: $0) })
+        let ret = onroadInfos.compactMap { $0 }
         return ret
     }
 }

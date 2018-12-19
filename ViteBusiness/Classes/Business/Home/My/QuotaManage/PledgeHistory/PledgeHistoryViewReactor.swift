@@ -6,6 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
+import Foundation
+import ViteWallet
 import ReactorKit
 import RxCocoa
 import RxSwift

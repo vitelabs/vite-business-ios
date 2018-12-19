@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import Vite_HDWalletKit
 import ObjectMapper
 import RxSwift
@@ -45,7 +46,7 @@ public final class HDWalletManager {
 
     public lazy var walletDriver: Driver<HDWalletStorage.Wallet> = self.walletBehaviorRelay.asDriver().filterNil()
     public lazy var bagsDriver: Driver<[Bag]> = self.bagsBehaviorRelay.asDriver()
-    public lazy var bagDriver: Driver<Bag> = self.bagBehaviorRelay.asDriver().filterNil()
+    public lazy var bagDriver: Driver<Bag?> = self.bagBehaviorRelay.asDriver()
 
     public var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
     public var bagsBehaviorRelay = BehaviorRelay(value: [Bag]())
@@ -279,17 +280,7 @@ extension HDWalletManager {
 // MARK: - Bag
 extension HDWalletManager {
 
-    public struct Bag {
-        public let secretKey: String
-        public let publicKey: String
-        public let address: Address
-
-        public init(secretKey: String = "nil", publicKey: String = "nil", address: Address = Address(string: "nil")) {
-            self.secretKey = secretKey
-            self.publicKey = publicKey
-            self.address = address
-        }
-    }
+    public class Bag: Wallet.Account { }
 }
 
 extension FileHelper {

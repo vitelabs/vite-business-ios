@@ -6,6 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
+import Foundation
+import ViteWallet
 import ReactorKit
 import RxCocoa
 import RxSwift
@@ -13,7 +15,7 @@ import NSObject_Rx
 import ViteUtils
 
 final class MyVoteInfoViewReactor: Reactor {
-    let bag = HDWalletManager.instance.bag ??  HDWalletManager.Bag()
+    let bag = HDWalletManager.instance.bag ??  HDWalletManager.Bag(secretKey: "", publicKey: "", address: Address(string: ""))
     var disposeBag = DisposeBag()
     var pollingVoteInfoTask: GCD.Task?
 

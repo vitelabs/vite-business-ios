@@ -6,6 +6,9 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
+import Foundation
+import ViteWallet
+
 enum VoteStatus: Int {
     case noVote = 0
     case voteSuccess = 1
@@ -199,6 +202,17 @@ class VoteInfoView: UIView {
             make.centerY.equalTo(nodePollsTitleLab)
             make.right.equalTo(self).offset(-14)
             make.height.equalTo(25)
+        }
+    }
+}
+
+extension VoteInfo.NodeStatus {
+    var display: String {
+        switch self {
+        case .valid:
+            return R.string.localizable.votePageNodeStatusValidTitle()
+        case .invalid:
+            return R.string.localizable.votePageNodeStatusInvalidTitle()
         }
     }
 }

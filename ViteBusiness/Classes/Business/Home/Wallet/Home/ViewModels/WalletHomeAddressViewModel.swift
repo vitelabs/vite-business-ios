@@ -13,14 +13,14 @@ import RxOptional
 
 final class WalletHomeAddressViewModel: WalletHomeAddressViewModelType {
 
-    let defaultAddressDriver: Driver<String> = HDWalletManager.instance.bagDriver.map({ $0.address.description })
+    let defaultAddressDriver: Driver<String> = HDWalletManager.instance.bagDriver.map({ $0?.address.description ?? "" })
 
     private var address: String?
     private let disposeBag = DisposeBag()
 
     init() {
         HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] bag in
-            self?.address = bag.address.description
+            self?.address = bag?.address.description ?? ""
         }).disposed(by: disposeBag)
     }
 

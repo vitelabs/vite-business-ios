@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ViteWallet
 import PromiseKit
 import JSONRPCKit
 import APIKit
@@ -65,12 +66,14 @@ extension Provider {
                 })
             })
             .then({ [unowned self] (latestAccountBlock, fittestSnapshotHash, data) -> Promise<Void> in
-                let send = AccountBlock.makeSendAccountBlock(latest: latestAccountBlock,
-                                                             bag: bag,
+                let send = AccountBlock.makeSendAccountBlock(secretKey: bag.secretKey,
+                                                             publicKey: bag.publicKey,
+                                                             address: bag.address,
+                                                             latest: latestAccountBlock,
                                                              snapshotHash: fittestSnapshotHash,
-                                                             toAddress: Const.ContractAddress.vote.address,
-                                                             tokenId: TokenCacheService.instance.viteToken.id,
-                                                             amount: BigInt(0),
+                                                             toAddress: ViteWalletConst.ContractAddress.vote.address,
+                                                             tokenId: ViteWalletConst.viteToken.id,
+                                                             amount: Balance(value: BigInt(0)),
                                                              data: data,
                                                              nonce: nil,
                                                              difficulty: nil)
@@ -107,4 +110,30 @@ extension Provider {
             }
     }
 
+}
+
+extension AccountBlock {
+    struct Const {
+        static let defaultHash = "0000000000000000000000000000000000000000000000000000000000000000"
+
+        enum Difficulty {
+            case sendWithoutData
+            case receive
+            case pledge
+            case vote
+            case cancelVote
+
+            var value: BigInt {
+                switch self {
+                case .sendWithoutData:
+                    return BigInt("157108864")!
+                case .receive, .pledge:
+                    return BigInt("67108864")!
+                case .vote, .cancelVote:
+                    return BigInt("201564160")!
+                }
+
+            }
+        }
+    }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+import ViteWallet
 
 protocol WalletHomeBalanceInfoViewModelType {
 

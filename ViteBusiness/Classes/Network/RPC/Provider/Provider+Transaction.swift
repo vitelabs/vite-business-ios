@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ViteWallet
 import PromiseKit
 import JSONRPCKit
 import APIKit
@@ -114,9 +115,11 @@ extension Provider {
             })
             .then({ [unowned self] ret -> Promise<Void> in
                 if let (accountBlock, latestAccountBlock, fittestSnapshotHash) = ret {
-                    let receive = AccountBlock.makeReceiveAccountBlock(unconfirmed: accountBlock,
+                    let receive = AccountBlock.makeReceiveAccountBlock(secretKey: bag.secretKey,
+                                                                       publicKey: bag.publicKey,
+                                                                       address: bag.address,
+                                                                       unconfirmed: accountBlock,
                                                                        latest: latestAccountBlock,
-                                                                       bag: bag,
                                                                        snapshotHash: fittestSnapshotHash,
                                                                        nonce: nil,
                                                                        difficulty: nil)
@@ -156,9 +159,11 @@ extension Provider {
             })
             .then({ [unowned self] ret -> Promise<Void> in
                 if let (accountBlock, latestAccountBlock, fittestSnapshotHash, nonce) = ret {
-                    let receive = AccountBlock.makeReceiveAccountBlock(unconfirmed: accountBlock,
+                    let receive = AccountBlock.makeReceiveAccountBlock(secretKey: bag.secretKey,
+                                                                       publicKey: bag.publicKey,
+                                                                       address: bag.address,
+                                                                       unconfirmed: accountBlock,
                                                                        latest: latestAccountBlock,
-                                                                       bag: bag,
                                                                        snapshotHash: fittestSnapshotHash,
                                                                        nonce: nonce,
                                                                        difficulty: difficulty)
@@ -178,14 +183,16 @@ extension Provider {
     func sendTransactionWithoutGetPow(bag: HDWalletManager.Bag,
                                       toAddress: Address,
                                       tokenId: String,
-                                      amount: BigInt,
+                                      amount: Balance,
                                       data: String?,
                                       completion: @escaping (NetworkResult<Void>) -> Void) {
 
         getLatestAccountBlockAndSnapshotHash(address: bag.address)
             .then({ [unowned self] (latestAccountBlock, fittestSnapshotHash) -> Promise<Void> in
-                let send = AccountBlock.makeSendAccountBlock(latest: latestAccountBlock,
-                                                             bag: bag,
+                let send = AccountBlock.makeSendAccountBlock(secretKey: bag.secretKey,
+                                                             publicKey: bag.publicKey,
+                                                             address: bag.address,
+                                                             latest: latestAccountBlock,
                                                              snapshotHash: fittestSnapshotHash,
                                                              toAddress: toAddress,
                                                              tokenId: tokenId,
@@ -241,22 +248,21 @@ extension Provider {
     func sendTransactionWithContext(_ context: SendTransactionContext,
                                     completion: @escaping (NetworkResult<Void>) -> Void) {
 
-        let send = AccountBlock.makeSendAccountBlock(latest: context.latestAccountBlock,
-                                                     bag: context.bag,
-                                                     snapshotHash: context.fittestSnapshotHash,
-                                                     toAddress: context.toAddress,
-                                                     tokenId: context.tokenId,
-                                                     amount: context.amount,
-                                                     data: context.data,
-                                                     nonce: context.nonce,
-                                                     difficulty: context.difficulty)
-        createTransaction(accountBlock: send)
-            .done ({
-                completion(NetworkResult.success($0))
-            })
-            .catch({
-                completion(NetworkResult.wrapError($0))
-            })
+//        let send = AccountBlock.makeSendAccountBlock(latest: context.latestAccountBlock,
+//                                                     snapshotHash: context.fittestSnapshotHash,
+//                                                     toAddress: context.toAddress,
+//                                                     tokenId: context.tokenId,
+//                                                     amount: context.amount,
+//                                                     data: context.data,
+//                                                     nonce: context.nonce,
+//                                                     difficulty: context.difficulty)
+//        createTransaction(accountBlock: send)
+//            .done ({
+//                completion(NetworkResult.success($0))
+//            })
+//            .catch({
+//                completion(NetworkResult.wrapError($0))
+//            })
     }
 }
 
@@ -347,7 +353,7 @@ extension Provider {
     func pledgeAndGainQuotaWithoutGetPow(bag: HDWalletManager.Bag,
                                          beneficialAddress: Address,
                                          tokenId: String,
-                                         amount: BigInt,
+                                         amount: Balance,
                                          completion: @escaping (NetworkResult<Void>) -> Void) {
         getPledgeData(beneficialAddress: beneficialAddress)
             .then({ [unowned self] (data) -> Promise<(latestAccountBlock: AccountBlock, fittestSnapshotHash: String, data: String)> in
@@ -356,8 +362,10 @@ extension Provider {
                 })
             })
             .then({ [unowned self] (latestAccountBlock, fittestSnapshotHash, data) -> Promise<Void> in
-                let send = AccountBlock.makeSendAccountBlock(latest: latestAccountBlock,
-                                                             bag: bag,
+                let send = AccountBlock.makeSendAccountBlock(secretKey: bag.secretKey,
+                                                             publicKey: bag.publicKey,
+                                                             address: bag.address,
+                                                             latest: latestAccountBlock,
                                                              snapshotHash: fittestSnapshotHash,
                                                              toAddress: Const.ContractAddress.pledge.address,
                                                              tokenId: tokenId,

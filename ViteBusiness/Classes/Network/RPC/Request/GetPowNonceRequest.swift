@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import BigInt
 import JSONRPCKit
 import Vite_HDWalletKit
@@ -23,7 +24,7 @@ struct GetPowNonceRequest: JSONRPCKit.Request {
     }
 
     var parameters: Any? {
-        let preHash = self.preHash ?? AccountBlock.Const.defaultHash
+        let preHash = self.preHash ?? "0000000000000000000000000000000000000000000000000000000000000000"
         let text = address.raw + preHash
         let data: String = Blake2b.hash(outLength: 32, in: text.hex2Bytes)?.toHexString() ?? ""
         return [String(difficulty), data]

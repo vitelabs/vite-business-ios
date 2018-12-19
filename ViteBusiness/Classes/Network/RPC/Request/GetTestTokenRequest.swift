@@ -6,7 +6,8 @@
 //  Copyright © 2018 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import JSONRPCKit
 
 struct GetTestTokenRequest: JSONRPCKit.Request {

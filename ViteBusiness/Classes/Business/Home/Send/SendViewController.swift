@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import SnapKit
 import Vite_HDWalletKit
 import BigInt
@@ -205,7 +206,7 @@ class SendViewController: BaseViewController {
 
     private func sendTransactionWithoutGetPow(bag: HDWalletManager.Bag, toAddress: Address, tokenId: String, amount: BigInt, note: String?) {
         HUD.show()
-        Provider.instance.sendTransactionWithoutGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, data: note?.bytes.toBase64()) { [weak self] result in
+        Provider.instance.sendTransactionWithoutGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: Balance(value: amount), data: note?.bytes.toBase64()) { [weak self] result in
             guard let `self` = self else { return }
             HUD.hide()
             switch result {
@@ -245,7 +246,7 @@ class SendViewController: BaseViewController {
         }
 
         getPowFloatView.show()
-        Provider.instance.sendTransactionWithGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, data: note?.bytes.toBase64(), difficulty: AccountBlock.Const.Difficulty.sendWithoutData.value, completion: { [weak self] (result) in
+        Provider.instance.sendTransactionWithGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, data: note?.bytes.toBase64(), difficulty: ViteWalletConst.DefaultDifficulty.send.value, completion: { [weak self] (result) in
 
             guard cancelPow == false else { return }
             guard let `self` = self else { return }
