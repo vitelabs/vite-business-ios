@@ -49,6 +49,14 @@ public class ViteBusinessLanucher: NSObject {
         AutoGatheringService.instance.start()
         FetchBalanceInfoService.instance.start()
         FetchQuotaService.instance.start()
+
+        //web
+        self.handleWebConfig()
+    }
+
+    func handleWebConfig() {
+        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()
+        WKWebViewConfig.instance.closeStr = R.string.localizable.close()
     }
 
     func handleNotification() {
