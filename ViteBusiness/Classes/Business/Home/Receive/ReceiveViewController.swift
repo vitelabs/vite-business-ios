@@ -22,7 +22,7 @@ class ReceiveViewController: BaseViewController {
 
     let token: Token
     let wallet: HDWalletStorage.Wallet
-    let bag: HDWalletManager.Bag
+    let account: Wallet.Account
     let style: Style
 
     let amountBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -32,9 +32,9 @@ class ReceiveViewController: BaseViewController {
         self.token = token
         // FIXME: Optional
         self.wallet = HDWalletManager.instance.wallet!
-        self.bag = HDWalletManager.instance.bag!
+        self.account = HDWalletManager.instance.account!
         self.style = style
-        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transfer(address: bag.address, tokenId: token.id, amountString: nil, decimalsString: nil, data: nil))
+        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transfer(address: account.address, tokenId: token.id, amountString: nil, decimalsString: nil, data: nil))
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -72,7 +72,7 @@ class ReceiveViewController: BaseViewController {
         }
     }
 
-    lazy var headerView = ReceiveHeaderView(name: self.wallet.name, address: bag.address.description)
+    lazy var headerView = ReceiveHeaderView(name: self.wallet.name, address: account.address.description)
     let middleView = ReceiveMiddleView()
     let qrcodeView = ReceiveQRCodeView()
     let footerView = ReceiveFooterView()
@@ -142,7 +142,7 @@ class ReceiveViewController: BaseViewController {
 
             Observable.combineLatest(amountBehaviorRelay.asObservable(), footerView.noteTitleTextFieldView.textField.rx.text.asObservable())
                 .map {
-                    ViteURI.transfer(address: self.bag.address, tokenId: self.token.id, amountString: $0, decimalsString: "\(self.token.decimals)", data: $1)
+                    ViteURI.transfer(address: self.account.address, tokenId: self.token.id, amountString: $0, decimalsString: "\(self.token.decimals)", data: $1)
                 }
                 .bind(to: uriBehaviorRelay).disposed(by: rx.disposeBag)
         }
@@ -184,7 +184,7 @@ class ReceiveViewController: BaseViewController {
             m.bottom.equalTo(backView).offset(-70)
         }
 
-        let headerView = ReceiveShareHeaderView(name: self.wallet.name, address: bag.address.description)
+        let headerView = ReceiveShareHeaderView(name: self.wallet.name, address: account.address.description)
         let middleView = ReceiveMiddleView()
         let qrcodeView = UIImageView(image: self.qrcodeView.imageView.screenshot)
         let footerView = ReceiveShareFooterView(text: self.footerView.noteTitleTextFieldView.textField.text)

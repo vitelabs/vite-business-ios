@@ -24,26 +24,25 @@ final class VoteListReactor {
     var voteSuccess = PublishSubject<Void>()
     var lastVoteInfo = Variable<(VoteStatus, VoteInfo?)>((.voteInvalid, nil))
 
-    let bag = DisposeBag()
+    let account = DisposeBag()
 
     init() {
         vote.asObservable().skip(1).bind {
             self.vote(nodeName: $0)
-        }.disposed(by: bag)
+        }.disposed(by: account)
     }
 
     func result() -> Observable<[Candidate]?> {
         let polling = Observable.concat([
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    _ = Provider.instance.getCandidateList { [weak self] result in
-                        switch result {
-                        case .success(let candidates):
+                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                        .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
-                        case .failure(let error):
+                        }
+                        .catch { [weak self] (error) in
                             self?.fetchCandidateError.value = error
                             observer.onCompleted()
-                        }
                     }
                     return Disposables.create()
                 }),
@@ -51,14 +50,13 @@ final class VoteListReactor {
                 Observable<Int>.interval(30, scheduler: MainScheduler.instance)
                 .flatMap { [weak self] _ in
                     Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                        _ = Provider.instance.getCandidateList { result in
-                            switch result {
-                            case .success(let candidates):
+                        Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                            .done { [weak self] (candidates) in
                                 self?.fetchCandidateError.value = nil
                                 observer.onNext(candidates)
-                            case .failure(let error):
-                                self?.fetchCandidateError.value = error
                             }
+                            .catch { [weak self] (error) in
+                                self?.fetchCandidateError.value = error
                         }
                         return Disposables.create()
                     })
@@ -72,19 +70,18 @@ final class VoteListReactor {
             }
             .distinctUntilChanged({ $0.0 == $1.0 && $0.1?.nodeName == $1.1?.nodeName })
 
-        statusChanged.bind { self.lastVoteInfo.value = $0 }.disposed(by: bag)
+        statusChanged.bind { self.lastVoteInfo.value = $0 }.disposed(by: account)
 
         let fetchWhenStatusChange = statusChanged
             .flatMapLatest({ (_, _)  in
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    _ = Provider.instance.getCandidateList { result in
-                        switch result {
-                        case .success(let candidates):
+                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                        .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
-                        case .failure:
-                            observer.onCompleted()
                         }
+                        .catch { (error) in
+                            observer.onCompleted()
                     }
                     return Disposables.create()
                 })
@@ -93,15 +90,14 @@ final class VoteListReactor {
         let fetchManually = self.fetchManually
             .flatMap({ [weak self] (_)  in
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    _ = Provider.instance.getCandidateList { result in
-                        switch result {
-                        case .success(let candidates):
+                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                        .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
-                        case .failure(let error):
+                        }
+                        .catch { (error) in
                             self?.fetchCandidateError.value = error
                             observer.onCompleted()
-                        }
                     }
                     return Disposables.create()
                 })
@@ -138,40 +134,40 @@ final class VoteListReactor {
     }
 
     func vote(nodeName: String) {
-        guard let bag = HDWalletManager.instance.bag else { return }
-        Provider.instance.vote(bag: bag, benefitedNodeName: nodeName) { result in
-            if case .success = result {
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
-                }
-                self.voteSuccess.onNext(Void())
-            } else if case let .failure(error) = result {
-                self.voteError.value = (nodeName, error)
-            }
-        }
+//        guard let account = HDWalletManager.instance.account else { return }
+//        Provider.instance.vote(account: account, benefitedNodeName: nodeName) { result in
+//            if case .success = result {
+//                DispatchQueue.main.async {
+//                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
+//                }
+//                self.voteSuccess.onNext(Void())
+//            } else if case let .failure(error) = result {
+//                self.voteError.value = (nodeName, error)
+//            }
+//        }
     }
 
-    func voteWithPow(nodeName: String,
-                     tryToCancel: @escaping () -> Bool,
-                     powCompletion: @escaping (NetworkResult<Provider.SendTransactionContext>) -> Void,
-                     completion: @escaping (NetworkResult<Void>) -> Void) {
-        guard let bag = HDWalletManager.instance.bag else { return }
-
-        Provider.instance.voteWithPow(bag: bag,
-                                      benefitedNodeName: nodeName,
-                                      tryToCancel: tryToCancel,
-                                      powCompletion: powCompletion) { (result) in
-            if case .success = result {
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
-                }
-                self.voteSuccess.onNext(Void())
-            } else if case let .failure(error) = result {
-                self.voteError.value = (nodeName, error)
-            }
-            completion(result)
-        }
-
-    }
+//    func voteWithPow(nodeName: String,
+//                     tryToCancel: @escaping () -> Bool,
+//                     powCompletion: @escaping (NetworkResult<Provider.SendTransactionContext>) -> Void,
+//                     completion: @escaping (NetworkResult<Void>) -> Void) {
+////        guard let account = HDWalletManager.instance.account else { return }
+////
+////        Provider.instance.voteWithPow(account: account,
+////                                      benefitedNodeName: nodeName,
+////                                      tryToCancel: tryToCancel,
+////                                      powCompletion: powCompletion) { (result) in
+////            if case .success = result {
+////                DispatchQueue.main.async {
+////                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
+////                }
+////                self.voteSuccess.onNext(Void())
+////            } else if case let .failure(error) = result {
+////                self.voteError.value = (nodeName, error)
+////            }
+////            completion(result)
+////        }
+//
+//    }
 
 }

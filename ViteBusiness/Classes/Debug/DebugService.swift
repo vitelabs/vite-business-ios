@@ -210,9 +210,9 @@ class DebugService: Mappable {
 
         if !rpcUseOnlineUrl {
             if let url = URL(string: rpcCustomUrl) {
-                ViteWallet.Provider.default.update(server: ViteWallet.RPCServer(url: url))
+                Provider.default.update(server: ViteWallet.RPCServer(url: url))
             } else {
-                ViteWallet.Provider.default.update(server: ViteWallet.RPCServer(url: rpcDefaultTestEnvironmentUrl))
+                Provider.default.update(server: ViteWallet.RPCServer(url: rpcDefaultTestEnvironmentUrl))
             }
         }
     }

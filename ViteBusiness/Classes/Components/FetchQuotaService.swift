@@ -37,7 +37,7 @@ final class FetchQuotaService {
     }
 
     func start() {
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] a in
+        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
             if let account = a {

@@ -16,7 +16,7 @@ import MJRefresh
 
 class TransactionListViewController: BaseTableViewController {
 
-    let address = HDWalletManager.instance.bag?.address ?? Address()
+    let address = HDWalletManager.instance.account?.address ?? Address()
 
     typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TransactionViewModelType>>
 

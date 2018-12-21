@@ -27,6 +27,25 @@ extension ConfirmViewController {
     }
 
     //Comfirm Vote
+    class func comfirmTranscation(address: String,
+                                  token: String,
+                                  amount: String,
+                                  completion:@escaping ((ConfirmTransactionResult) -> Void)) -> ConfirmTransactionViewController {
+
+        let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
+        let confirmType: ConfirmTransactionViewController.ConfirmTransactionType =  biometryAuthConfig ? .biometry : .password
+        return ConfirmTransactionViewController
+            .init(confirmType: confirmType,
+                  title: R.string.localizable.confirmTransactionPageTitle(),
+                  infoTitle: R.string.localizable.confirmTransactionAddressTitle(),
+                  info: address,
+                  token: token,
+                  amount: amount,
+                  confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
+                  completion: completion)
+    }
+
+    //Comfirm Vote
     class func comfirmVote(title: String,
                            nodeName: String,
                            completion:@escaping ((ConfirmTransactionResult) -> Void)) -> ConfirmTransactionViewController {
@@ -73,7 +92,7 @@ class ConfirmViewController: UIViewController, PasswordInputViewDelegate {
 
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
-        self.modalPresentationStyle = .custom
+        self.modalPresentationStyle = .overFullScreen
 
         confirmView.type = confirmType
         confirmView.titleLabel.text = title

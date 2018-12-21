@@ -21,7 +21,7 @@ final class AutoGatheringService {
     fileprivate var service: ReceiveTransactionService?
 
     func start() {
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] account in
+        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] account in
             guard let `self` = self else { return }
             if let account = account {
                 plog(level: .debug, log: account.address.description + ": " + "start receive", tag: .transaction)

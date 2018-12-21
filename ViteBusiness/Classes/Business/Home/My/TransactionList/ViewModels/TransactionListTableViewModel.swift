@@ -55,10 +55,9 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
 
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
-        Provider.instance.getTransactions(address: address, hash: hash, count: 10) { [weak self] result in
-            guard let `self` = self else { return }
-            switch result {
-            case .success((let transactions, let nextHash)):
+        Provider.default.getTransactions(address: address, hash: hash, count: 10)
+            .done { [weak self] (transactions, nextHash) in
+                guard let `self` = self else { return }
                 self.hash = nextHash
                 self.viewModels.addObjects(from: transactions.map {
                     TransactionViewModel(transaction: $0)
@@ -67,10 +66,11 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
                 self.hasMore.accept(nextHash != nil)
                 self.loadingStatus = .no
                 completion(nil)
-            case .failure(let error):
+            }
+            .catch { [weak self] (error) in
+                guard let `self` = self else { return }
                 self.loadingStatus = .no
                 completion(error)
-            }
         }
     }
 }

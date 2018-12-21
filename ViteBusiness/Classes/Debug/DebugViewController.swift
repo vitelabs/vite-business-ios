@@ -10,6 +10,8 @@ import UIKit
 import Eureka
 import Crashlytics
 import ViteUtils
+import ViteWallet
+import BigInt
 
 class DebugViewController: FormViewController {
 
@@ -286,15 +288,14 @@ class DebugViewController: FormViewController {
             <<< LabelRow("getTestToken") {
                 $0.title =  "Get Test Token"
             }.onCellSelection({ _, _  in
-                if let address = HDWalletManager.instance.bag?.address {
-                    Provider.instance.getTestToken(address: address, completion: { (result) in
-                        switch result {
-                        case .success:
+                if let address = HDWalletManager.instance.account?.address {
+                    Provider.default.getTestToken(address: address)
+                        .done { (ret) in
                             Toast.show("\(address.description) get test token complete")
-                        case .failure(let error):
-                            Toast.show(error.message)
                         }
-                    })
+                        .catch { (error) in
+                            Toast.show(error.message)
+                    }
                 } else {
                     Toast.show("Login firstly")
                 }
@@ -356,6 +357,21 @@ class DebugViewController: FormViewController {
                 $0.title =  "test crash"
             }.onCellSelection({_, _  in
                     Crashlytics.sharedInstance().throwException()
+                })
+            +++
+            Section {
+                $0.header = HeaderFooterView(title: "Workflow")
+            }
+            <<< LabelRow("Transaction") {
+                $0.title =  "Transaction"
+                }.onCellSelection({ _, _  in
+                    if let account = HDWalletManager.instance.account {
+                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, token: ViteWalletConst.viteToken, amount: Balance(value: BigInt("10000000000000000000")!), note: "haha") { (r) in
+                            print(r)
+                        }
+                    } else {
+                        Toast.show("Login firstly")
+                    }
                 })
         #endif
     }

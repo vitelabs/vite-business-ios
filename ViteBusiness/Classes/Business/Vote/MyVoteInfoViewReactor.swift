@@ -15,7 +15,7 @@ import NSObject_Rx
 import ViteUtils
 
 final class MyVoteInfoViewReactor: Reactor {
-    let bag = HDWalletManager.instance.bag ??  HDWalletManager.Bag(secretKey: "", publicKey: "", address: Address(string: ""))
+    let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: Address(string: ""))
     var disposeBag = DisposeBag()
     var pollingVoteInfoTask: GCD.Task?
 
@@ -40,7 +40,7 @@ final class MyVoteInfoViewReactor: Reactor {
     init() {
         self.initialState = State.init(voteInfo: nil, voteStatus: nil, error: nil)
         self.pollingVoteInfoTask = {cancel in
-            self.action.onNext(.refreshData(HDWalletManager.instance.bag?.address.description ?? ""))
+            self.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
         }
     }
 
@@ -87,21 +87,20 @@ final class MyVoteInfoViewReactor: Reactor {
 
     func fetchVoteInfo(_ address: String) -> Observable<(VoteInfo?, Error? )> {
         return Observable<(VoteInfo?, Error?)>.create({ (observer) -> Disposable in
-            Provider.instance.getVoteInfo(address: address
-            ) { [weak self](result) in
-                switch result {
-                case .success(let voteInfo):
+            Provider.default.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: Address(string: address))
+                .done { (voteInfo) in
                     plog(level: .debug, log: String.init(format: "fetchVoteInfo  success address=%@, voteInfo.nodeName = %@", address, voteInfo?.nodeName ?? ""), tag: .vote)
                     observer.onNext((voteInfo, nil))
                     observer.onCompleted()
-                case .failure(let error):
+                }
+                .catch { (error) in
                     plog(level: .debug, log: String.init(format: "fetchVoteInfo error  error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
                     observer.onNext((nil, error))
                     observer.onCompleted()
-                }
-                self?.pollingVoteInfoTask =  GCD.delay(3, task: {
-                    self?.action.onNext(.refreshData(HDWalletManager.instance.bag?.address.description ?? ""))
-                })
+                }.finally { [weak self] in
+                    self?.pollingVoteInfoTask =  GCD.delay(3, task: {
+                        self?.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
+                    })
             }
             return Disposables.create()
         })
@@ -109,44 +108,44 @@ final class MyVoteInfoViewReactor: Reactor {
 
     func cancelVoteAndSendWithoutGetPow()-> Observable<(Error? )> {
         return Observable<(Error?)>.create({ (observer) -> Disposable in
-            Provider.instance.cancelVoteAndSendWithoutGetPow(bag: self.bag
-            ) { (result) in
-                switch result {
-                case .success:
-                    plog(level: .info, log: "cancelVoteAndSendWithoutGetPow success ", tag: .vote)
-                    observer.onNext(nil)
-                    observer.onCompleted()
-                case .failure(let error):
-                    plog(level: .info, log: String.init(format: "cancelVoteAndSendWithoutGetPow error  error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
-                    observer.onNext(error)
-                    observer.onCompleted()
-                }
-            }
+//            Provider.instance.cancelVoteAndSendWithoutGetPow(account: self.account
+//            ) { (result) in
+//                switch result {
+//                case .success:
+//                    plog(level: .info, log: "cancelVoteAndSendWithoutGetPow success ", tag: .vote)
+//                    observer.onNext(nil)
+//                    observer.onCompleted()
+//                case .failure(let error):
+//                    plog(level: .info, log: String.init(format: "cancelVoteAndSendWithoutGetPow error  error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
+//                    observer.onNext(error)
+//                    observer.onCompleted()
+//                }
+//            }
             return Disposables.create()
         })
     }
 
-    func cancelVoteAndSendWithGetPow(completion: @escaping (NetworkResult<Provider.SendTransactionContext>) -> Void) {
-            Provider.instance.cancelVoteAndSendWithGetPow(bag: self.bag
-            ) { (result) in
-                if case .success = result {
-                        plog(level: .info, log: "cancelVoteAndSendWithGetPow success", tag: .vote)
-                } else if case let .failure(error) = result {
-                        plog(level: .info, log: String.init(format: "cancelVoteAndSendWithGetPow error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
-                }
-                completion(result)
-            }
-        }
-
-    func cancelVoteSendTransaction(_ context: Provider.SendTransactionContext, completion: @escaping (NetworkResult<Void>) -> Void) {
-        Provider.instance.sendTransactionWithContext(context
-        ) { (result) in
-            if case .success = result {
-                plog(level: .info, log: "cancelVoteSendTransaction success", tag: .vote)
-            } else if case let .failure(error) = result {
-                plog(level: .info, log: String.init(format: "cancelVoteSendTransaction error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
-            }
-            completion(result)
-        }
-    }
+//    func cancelVoteAndSendWithGetPow(completion: @escaping (NetworkResult<Provider.SendTransactionContext>) -> Void) {
+////            Provider.instance.cancelVoteAndSendWithGetPow(account: self.account
+////            ) { (result) in
+////                if case .success = result {
+////                        plog(level: .info, log: "cancelVoteAndSendWithGetPow success", tag: .vote)
+////                } else if case let .failure(error) = result {
+////                        plog(level: .info, log: String.init(format: "cancelVoteAndSendWithGetPow error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
+////                }
+////                completion(result)
+////            }
+//        }
+//
+//    func cancelVoteSendTransaction(_ context: Provider.SendTransactionContext, completion: @escaping (NetworkResult<Void>) -> Void) {
+////        Provider.instance.sendTransactionWithContext(context
+////        ) { (result) in
+////            if case .success = result {
+////                plog(level: .info, log: "cancelVoteSendTransaction success", tag: .vote)
+////            } else if case let .failure(error) = result {
+////                plog(level: .info, log: String.init(format: "cancelVoteSendTransaction error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
+////            }
+////            completion(result)
+////        }
+//    }
 }

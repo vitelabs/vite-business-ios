@@ -167,3 +167,24 @@ extension ViewControllerDataStatusable where Self: UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    public static var current: UIViewController? {
+        guard let rootVC = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+
+        func current(_ vc: UIViewController?) -> UIViewController? {
+            if let vc = vc?.presentedViewController {
+                return current(vc)
+            } else if let vc = vc as? UITabBarController {
+                return current(vc.selectedViewController)
+            } else if let vc = vc as? UINavigationController {
+                return current(vc.visibleViewController)
+            } else {
+                return vc
+            }
+        }
+
+
+        return current(rootVC)
+    }
+}

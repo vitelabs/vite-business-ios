@@ -138,16 +138,12 @@ class WalletHomeViewController: BaseTableViewController {
                         scanViewController?.view.hideLoading()
                         switch result {
                         case .success(let token):
-                            if let token = token {
-                                let amount = uri.amountToBigInt()
-                                let sendViewController = SendViewController(token: token, address: address, amount: amount, note: note)
-                                guard var viewControllers = self.navigationController?.viewControllers else { return }
-                                _ = viewControllers.popLast()
-                                viewControllers.append(sendViewController)
-                                scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
-                            } else {
-                                scanViewController?.showToast(string: R.string.localizable.sendPageTokenInfoError())
-                            }
+                            let amount = uri.amountToBigInt()
+                            let sendViewController = SendViewController(token: token, address: address, amount: amount, note: note)
+                            guard var viewControllers = self.navigationController?.viewControllers else { return }
+                            _ = viewControllers.popLast()
+                            viewControllers.append(sendViewController)
+                            scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
                         case .failure(let error):
                             scanViewController?.showToast(string: error.message)
                         }

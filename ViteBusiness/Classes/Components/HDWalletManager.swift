@@ -26,9 +26,9 @@ public final class HDWalletManager {
         }.drive(onNext: { [weak self] addressCount in
             guard let `self` = self else { return }
             if let count = addressCount {
-                self.bagsBehaviorRelay.accept(Array(self.bags[..<count]))
+                self.accountsBehaviorRelay.accept(Array(self.accounts[..<count]))
             } else {
-                self.bagsBehaviorRelay.accept(Array([Bag]()))
+                self.accountsBehaviorRelay.accept(Array([Wallet.Account]()))
             }
         }).disposed(by: disposeBag)
 
@@ -37,21 +37,21 @@ public final class HDWalletManager {
         }.drive(onNext: { [weak self] addressIndex in
             guard let `self` = self else { return }
             if let index = addressIndex {
-                self.bagBehaviorRelay.accept(self.bagsBehaviorRelay.value[index])
+                self.accountBehaviorRelay.accept(self.accountsBehaviorRelay.value[index])
             } else {
-                self.bagBehaviorRelay.accept(nil)
+                self.accountBehaviorRelay.accept(nil)
             }
         }).disposed(by: disposeBag)
     }
 
     public lazy var walletDriver: Driver<HDWalletStorage.Wallet> = self.walletBehaviorRelay.asDriver().filterNil()
-    public lazy var bagsDriver: Driver<[Bag]> = self.bagsBehaviorRelay.asDriver()
-    public lazy var bagDriver: Driver<Bag?> = self.bagBehaviorRelay.asDriver()
+    public lazy var accountsDriver: Driver<[Wallet.Account]> = self.accountsBehaviorRelay.asDriver()
+    public lazy var accountDriver: Driver<Wallet.Account?> = self.accountBehaviorRelay.asDriver()
 
     public var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
-    public var bagsBehaviorRelay = BehaviorRelay(value: [Bag]())
-    public var bagBehaviorRelay: BehaviorRelay<Bag?> = BehaviorRelay(value: nil)
-    fileprivate var bags = [Bag]()
+    public var accountsBehaviorRelay = BehaviorRelay(value: [Wallet.Account]())
+    public var accountBehaviorRelay: BehaviorRelay<Wallet.Account?> = BehaviorRelay(value: nil)
+    fileprivate var accounts = [Wallet.Account]()
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
@@ -87,15 +87,15 @@ public final class HDWalletManager {
         return storage.currentWallet
     }
 
-    var bag: Bag? {
-        return bagBehaviorRelay.value
+    var account: Wallet.Account? {
+        return accountBehaviorRelay.value
     }
 
     var selectBagIndex: Int {
         return walletBehaviorRelay.value?.addressIndex ?? 0
     }
 
-    var canGenerateNextBag: Bool {
+    var canGenerateNextAccount: Bool {
         guard let wallet = walletBehaviorRelay.value else { return false }
         return wallet.addressCount < type(of: self).maxAddressCount
     }
@@ -178,7 +178,7 @@ extension HDWalletManager {
         storage.logout()
         mnemonic = nil
         encryptKey = nil
-        bags = [Bag]()
+        accounts = [Wallet.Account]()
         walletBehaviorRelay.accept(nil)
     }
 
@@ -214,19 +214,21 @@ extension HDWalletManager {
         guard let wallet = self.walletBehaviorRelay.value else { return }
         guard uuid == wallet.uuid else { return }
         guard wallet.needRecoverAddresses else { return }
-        let addresses = bags.map { $0.address }
-        Provider.instance.recoverAddresses(addresses, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            guard let wallet = self.walletBehaviorRelay.value else { return }
-            guard uuid == wallet.uuid else { return }
-            switch result {
-            case .success(let count):
+        let addresses = accounts.map { $0.address }
+        Provider.default.recoverAddresses(addresses)
+            .done { [weak self] (count) in
+                guard let `self` = self else { return }
+                guard let wallet = self.walletBehaviorRelay.value else { return }
+                guard uuid == wallet.uuid else { return }
                 let current = wallet.addressCount
                 self.pri_update(addressIndex: wallet.addressIndex, addressCount: max(current, count), needRecoverAddresses: false)
-            case .failure:
-                GCD.delay(3, task: { self.pri_recoverAddressesIfNeeded(uuid) })
             }
-        })
+            .catch { [weak self] (error) in
+                guard let `self` = self else { return }
+                guard let wallet = self.walletBehaviorRelay.value else { return }
+                guard uuid == wallet.uuid else { return }
+                GCD.delay(3, task: { self.pri_recoverAddressesIfNeeded(uuid) })
+        }
     }
 
     fileprivate func pri_update(addressIndex: Int, addressCount: Int, needRecoverAddresses: Bool? = nil) {
@@ -238,7 +240,7 @@ extension HDWalletManager {
 
     fileprivate func pri_generateAllBags() {
         guard let mnemonic = mnemonic else { return }
-        bags = pri_generateBags(mnemonic: mnemonic, count: type(of: self).maxAddressCount)
+        accounts = pri_generateBags(mnemonic: mnemonic, count: type(of: self).maxAddressCount)
     }
 
     fileprivate func pri_mnemonicHash(mnemonic: String) -> String {
@@ -246,16 +248,16 @@ extension HDWalletManager {
         return firstAddress.sha1()
     }
 
-    private func pri_generateBags(mnemonic: String, count: Int) -> [Bag] {
+    private func pri_generateBags(mnemonic: String, count: Int) -> [Wallet.Account] {
         let seed = Mnemonic.createBIP39Seed(mnemonic: mnemonic).toHexString()
         let keys = NSMutableArray()
         for index in 0..<count {
             if let (secretKey, publicKey, address) = HDBip.accountsForIndex(index, seed: seed) {
-                let key = Bag(secretKey: secretKey, publicKey: publicKey, address: Address(string: address))
+                let key = Wallet.Account(secretKey: secretKey, publicKey: publicKey, address: Address(string: address))
                 keys.add(key)
             }
         }
-        return keys as! [Bag]
+        return keys as! [Wallet.Account]
     }
 }
 
@@ -267,7 +269,7 @@ extension HDWalletManager {
         storage.deleteAllWallets()
         mnemonic = nil
         encryptKey = nil
-        bags = [Bag]()
+        accounts = [Wallet.Account]()
         walletBehaviorRelay.accept(nil)
     }
 
@@ -276,12 +278,6 @@ extension HDWalletManager {
     }
 }
 #endif
-
-// MARK: - Bag
-extension HDWalletManager {
-
-    public class Bag: Wallet.Account { }
-}
 
 extension FileHelper {
     static var appPathComponent = "app"

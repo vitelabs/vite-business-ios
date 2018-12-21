@@ -65,7 +65,7 @@ struct WebHandler {
     fileprivate static func appendQuery(urlString: String) -> String {
         let querys = ["version": Bundle.main.versionNumber,
                       "channel": Constants.appDownloadChannel.rawValue,
-                      "address": HDWalletManager.instance.bag?.address.description ?? "",
+                      "address": HDWalletManager.instance.account?.address.description ?? "",
                       "language": LocalizationService.sharedInstance.currentLanguage.rawValue]
 
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4

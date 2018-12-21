@@ -29,7 +29,7 @@ final class FetchBalanceInfoService {
     fileprivate var service: ViteWallet.FetchBalanceInfoService?
 
     func start() {
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] a in
+        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
             if let account = a {
                 self.fileHelper = FileHelper(.library, appending: "\(FileHelper.accountPathComponent)/\(account.address.description)")
