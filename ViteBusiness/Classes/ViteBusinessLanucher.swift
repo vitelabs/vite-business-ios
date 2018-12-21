@@ -49,6 +49,24 @@ public class ViteBusinessLanucher: NSObject {
         AutoGatheringService.instance.start()
         FetchBalanceInfoService.instance.start()
         FetchQuotaService.instance.start()
+
+        //web
+        self.handleWebConfig()
+    }
+
+    func handleWebConfig() {
+        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
+        WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
+        WKWebViewConfig.instance.closeStr = R.string.localizable.close()
+
+        WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> String? in
+            if let url = data?["url"] as? String {
+                let activityViewController = UIActivityViewController(activityItems:[url], applicationActivities: nil)
+                Route.getTopVC()?.present(activityViewController, animated: true)
+            }
+
+            return nil
+        }
     }
 
     func handleNotification() {

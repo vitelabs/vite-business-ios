@@ -43,7 +43,7 @@ extension UIView {
         return view
     }
 
-    static func  defaultNetworkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
+    open static func  defaultNetworkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
 
         let view = UIView()
         let layoutGuide = UILayoutGuide()

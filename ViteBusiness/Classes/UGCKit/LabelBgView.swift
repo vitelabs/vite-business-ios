@@ -9,12 +9,12 @@
 import UIKit
 import SnapKit
 
-class LabelBgView: UIView {
-    let titleLab = UILabel().then {
+public class LabelBgView: UIView {
+    public let titleLab = UILabel().then {
         $0.textAlignment = .center
     }
 
-    let bgImg = UIImageView().then {
+    public let bgImg = UIImageView().then {
         $0.image = R.image.btn_path_bg()
     }
 

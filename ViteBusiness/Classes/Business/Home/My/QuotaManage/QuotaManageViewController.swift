@@ -70,7 +70,7 @@ class QuotaManageViewController: BaseViewController {
         let str = R.string.localizable.quotaManagePageQuotaSnapshootHeightDesc("3")
         let range = str.range(of: "3")!
         let attributedString = NSMutableAttributedString(string: str)
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: Colors.titleGray_40], range: NSRange.init(range, in: str))
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: Colors.titleGray_45], range: NSRange.init(range, in: str))
         $0.descLab.attributedText = attributedString
     }
 

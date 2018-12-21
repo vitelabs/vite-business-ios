@@ -9,16 +9,16 @@
 import UIKit
 import SnapKit
 
-class IconLabelView: UIView {
-    let titleLab = UILabel().then {
+public class IconLabelView: UIView {
+    public let titleLab = UILabel().then {
         $0.textAlignment = .left
     }
 
-    let tipImg = UIImageView().then {
+    public let tipImg = UIImageView().then {
         $0.image = R.image.icon_votecount()
     }
 
-    init(_ title: String) {
+    public init(_ title: String="") {
         super.init(frame: CGRect.zero)
         self.backgroundColor = .clear
         titleLab.text = title
@@ -28,6 +28,7 @@ class IconLabelView: UIView {
 
         tipImg.snp.makeConstraints { (m) in
             m.left.centerY.equalTo(self)
+            m.width.equalTo(tipImg.snp.height)
         }
         titleLab.snp.makeConstraints { (m) in
             m.top.bottom.right.equalTo(self)

@@ -20,6 +20,7 @@
 "Update.app" = "Update App";
 "Submit.success" = "Submit Successful";
 "Submit.cancel" = "Cancel";
+"Close"="close";
 
 /* Login */
 "create.account" = "Create Account";
