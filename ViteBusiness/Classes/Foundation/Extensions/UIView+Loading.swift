@@ -54,12 +54,26 @@ extension UIView {
 }
 
 extension UIView {
-    func  setupShadow (_ shadowOffset: CGSize) {
+    public func  setupShadow (_ shadowOffset: CGSize) {
         self.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
         self.layer.shadowOpacity = 0.1
         self.layer.shadowOffset = shadowOffset
         self.layer.shadowRadius = 9
         self.clipsToBounds = false
+    }
+
+    public func  setupShadowAndCorner (_ shadowOffset: CGSize, _ cornerRadius:CGFloat) {
+        let subLayer = CALayer()
+        subLayer.frame = self.frame
+        subLayer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        subLayer.shadowOpacity = 0.1
+        subLayer.shadowOffset = shadowOffset
+        subLayer.shadowRadius = 9
+        subLayer.masksToBounds = false
+        self.layer.insertSublayer(subLayer, at: 0)
+
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
     }
 
     func setShadow(width: CGFloat, height: CGFloat, radius: CGFloat) {

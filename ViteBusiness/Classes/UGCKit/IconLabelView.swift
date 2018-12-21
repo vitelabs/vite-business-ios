@@ -28,6 +28,7 @@ public class IconLabelView: UIView {
 
         tipImg.snp.makeConstraints { (m) in
             m.left.centerY.equalTo(self)
+            m.width.equalTo(tipImg.snp.height)
         }
         titleLab.snp.makeConstraints { (m) in
             m.top.bottom.right.equalTo(self)
