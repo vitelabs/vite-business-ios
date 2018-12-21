@@ -5,6 +5,9 @@
 //  Created by Water on 2018/11/5.
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
+
+import Foundation
+import ViteWallet
 import BigInt
 import RxSwift
 import ReactorKit
@@ -13,7 +16,7 @@ import ViteUtils
 
 class MyVoteInfoViewController: BaseViewController, View {
     // FIXME: Optional
-    let bag = HDWalletManager.instance.bag!
+    let account = HDWalletManager.instance.account!
     var disposeBag = DisposeBag()
     var balance: Balance?
     var oldVoteInfo: VoteInfo?
@@ -44,7 +47,7 @@ class MyVoteInfoViewController: BaseViewController, View {
     }
 
     private func _pollingInfoData () {
-        self.reactor?.action.onNext(.refreshData(HDWalletManager.instance.bag?.address.description ?? ""))
+        self.reactor?.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
 
     }
 
@@ -63,7 +66,7 @@ class MyVoteInfoViewController: BaseViewController, View {
         }).disposed(by: rx.disposeBag)
 
         //change address
-        HDWalletManager.instance.bagDriver.drive(onNext: { [weak self] _ in
+        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] _ in
             self?.viewInfoView.resetView()
             self?.viewInfoView.isHidden = true
             self?.voteInfoEmptyView.isHidden = false
@@ -196,6 +199,12 @@ extension MyVoteInfoViewController {
 extension MyVoteInfoViewController {
     private func cancelVoteAction() {
          DispatchQueue.main.async {
+            Workflow.cancelVoteWithConfirm(account: self.reactor!.account, name: self.viewInfoView.voteInfo?.nodeName ?? "", completion: { (r) in
+                if case .success = r {
+                    self.viewInfoView.changeInfoCancelVoting()
+                }
+            })
+            return
             let confirmVC = ConfirmTransactionViewController.comfirmVote(title: R.string.localizable.votePageVoteInfoCancelVoteTitle(),
                                                                          nodeName: self.viewInfoView.voteInfo?.nodeName ?? "") { [unowned self] (result) in
                                                                             switch result {
@@ -223,56 +232,56 @@ extension MyVoteInfoViewController {
     }
 
     private func handlerCancelError(_ error: Error) {
-        HUD.hide()
-        if error.code == ViteErrorCode.rpcNotEnoughBalance {
-            AlertSheet.show(into: self,
-                            title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                            message: nil,
-                            actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.votePageVoteInfoAlertQuota(), actions: [
-                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
-                    var cancelPow = false
-                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-                        cancelPow = true
-                    }
-                    getPowFloatView.show()
-
-                    //get pow data
-                    self?.reactor?.cancelVoteAndSendWithGetPow(completion: { (result) in
-                        guard cancelPow == false else { return }
-                        guard let `self` = self else { return }
-                        if case let .success(context) = result {
-                            getPowFloatView.finish(completion: {
-                                //send transaction
-                                HUD.show()
-                                self.reactor?.cancelVoteSendTransaction(context, completion: { (result) in
-                                    HUD.hide()
-                                    if case .success = result {
-                                        //in the end
-                                        self.viewInfoView.changeInfoCancelVoting()
-                                        Toast.show(R.string.localizable.votePageVoteInfoCancelVoteToastTitle())
-                                    } else if case let .failure(error) = result {
-                                           Toast.show(error.message)
-                                    }
-                                })
-                            })
-                        } else if case let .failure(error) = result {
-                            getPowFloatView.hide()
-                            Toast.show(error.message)
-                        }
-                    })
-                }),
-                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-                    let vc = QuotaManageViewController()
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }),
-                (.cancel, nil),
-                ], config: { alert in
-                    alert.preferredAction = alert.actions[0]
-            })
-        } else {
-            Toast.show(error.message)
-        }
+//        HUD.hide()
+//        if error.code == ViteErrorCode.rpcNotEnoughBalance {
+//            AlertSheet.show(into: self,
+//                            title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
+//                            message: nil,
+//                            actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
+//        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
+//            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.votePageVoteInfoAlertQuota(), actions: [
+//                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
+//                    var cancelPow = false
+//                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
+//                        cancelPow = true
+//                    }
+//                    getPowFloatView.show()
+//
+//                    //get pow data
+//                    self?.reactor?.cancelVoteAndSendWithGetPow(completion: { (result) in
+//                        guard cancelPow == false else { return }
+//                        guard let `self` = self else { return }
+//                        if case let .success(context) = result {
+//                            getPowFloatView.finish(completion: {
+//                                //send transaction
+//                                HUD.show()
+//                                self.reactor?.cancelVoteSendTransaction(context, completion: { (result) in
+//                                    HUD.hide()
+//                                    if case .success = result {
+//                                        //in the end
+//                                        self.viewInfoView.changeInfoCancelVoting()
+//                                        Toast.show(R.string.localizable.votePageVoteInfoCancelVoteToastTitle())
+//                                    } else if case let .failure(error) = result {
+//                                           Toast.show(error.message)
+//                                    }
+//                                })
+//                            })
+//                        } else if case let .failure(error) = result {
+//                            getPowFloatView.hide()
+//                            Toast.show(error.message)
+//                        }
+//                    })
+//                }),
+//                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
+//                    let vc = QuotaManageViewController()
+//                    self?.navigationController?.pushViewController(vc, animated: true)
+//                }),
+//                (.cancel, nil),
+//                ], config: { alert in
+//                    alert.preferredAction = alert.actions[0]
+//            })
+//        } else {
+//            Toast.show(error.message)
+//        }
     }
 }

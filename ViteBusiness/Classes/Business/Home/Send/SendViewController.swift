@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import SnapKit
 import Vite_HDWalletKit
 import BigInt
@@ -17,7 +18,7 @@ import ViteUtils
 class SendViewController: BaseViewController {
 
     // FIXME: Optional
-    let bag = HDWalletManager.instance.bag!
+    let account = HDWalletManager.instance.account!
 
     var token: Token
     var balance: Balance
@@ -74,7 +75,7 @@ class SendViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: bag.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description)
 
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", symbol: token.symbol)
     lazy var noteView = SendNoteView(note: note ?? "", canEdit: noteCanEdit)
@@ -154,7 +155,12 @@ class SendViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
-                self.showConfirmTransactionViewController(address: address, amountString: amountString, amount: amount)
+
+                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, token: self.token, amount: Balance(value: amount), note: self.noteView.textField.text, completion: { (r) in
+                    if case .success = r {
+                        GCD.delay(1) { self.dismiss() }
+                    }
+                })
             }
             .disposed(by: rx.disposeBag)
     }
@@ -173,121 +179,6 @@ class SendViewController: BaseViewController {
         }).disposed(by: rx.disposeBag)
         FetchQuotaService.instance.quotaDriver.drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
         FetchQuotaService.instance.maxTxCountDriver.drive(headerView.maxTxCountLabel.rx.text).disposed(by: rx.disposeBag)
-    }
-
-    private func showConfirmTransactionViewController(address: Address, amountString: String, amount: BigInt) {
-
-        let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
-        let confirmType: ConfirmTransactionViewController.ConfirmTransactionType =  biometryAuthConfig ? .biometry : .password
-        let confirmViewController = ConfirmTransactionViewController(confirmType: confirmType, address: address.description, token: self.token.symbol, amount: amountString, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            switch result {
-            case .success:
-                self.sendTransactionWithoutGetPow(bag: self.bag, toAddress: address, tokenId: self.token.id, amount: amount, note: self.noteView.textField.text)
-            case .cancelled:
-                plog(level: .info, log: "Confirm cancelled", tag: .transaction)
-            case .biometryAuthFailed:
-                Alert.show(into: self,
-                           title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(),
-                           message: nil,
-                           actions: [(.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack()), nil)])
-            case .passwordAuthFailed:
-                Alert.show(into: self,
-                           title: R.string.localizable.confirmTransactionPageToastPasswordError(),
-                           message: nil,
-                           actions: [(.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry()), { [unowned self] _ in
-                                self.showConfirmTransactionViewController(address: address, amountString: amountString, amount: amount)
-                           }), (.cancel, nil)])
-            }
-        })
-        self.present(confirmViewController, animated: false, completion: nil)
-    }
-
-    private func sendTransactionWithoutGetPow(bag: HDWalletManager.Bag, toAddress: Address, tokenId: String, amount: BigInt, note: String?) {
-        HUD.show()
-        Provider.instance.sendTransactionWithoutGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, data: note?.bytes.toBase64()) { [weak self] result in
-            guard let `self` = self else { return }
-            HUD.hide()
-            switch result {
-            case .success:
-                AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
-                GCD.delay(1) { self.dismiss() }
-            case .failure(let error):
-                if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                    AlertSheet.show(into: self,
-                                    title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                                    message: nil,
-                                    actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-                    AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertPowAndQuotaMessage(), actions: [
-                        (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { _ in
-                            self.sendTransactionWithGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, note: note)
-                        }),
-                        (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-                            let vc = QuotaManageViewController()
-                            self?.navigationController?.pushViewController(vc, animated: true)
-                        }),
-                        (.cancel, nil),
-                        ], config: { alert in
-                            alert.preferredAction = alert.actions[0]
-                    })
-                } else {
-                    Toast.show(error.message)
-                }
-            }
-        }
-    }
-
-    private func sendTransactionWithGetPow(bag: HDWalletManager.Bag, toAddress: Address, tokenId: String, amount: BigInt, note: String?) {
-        var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-            cancelPow = true
-        }
-
-        getPowFloatView.show()
-        Provider.instance.sendTransactionWithGetPow(bag: bag, toAddress: toAddress, tokenId: tokenId, amount: amount, data: note?.bytes.toBase64(), difficulty: AccountBlock.Const.Difficulty.sendWithoutData.value, completion: { [weak self] (result) in
-
-            guard cancelPow == false else { return }
-            guard let `self` = self else { return }
-            switch result {
-            case .success(let context):
-
-                getPowFloatView.finish {
-                    HUD.show()
-                    Provider.instance.sendTransactionWithContext(context, completion: { [weak self] (result) in
-                        HUD.hide()
-                        guard let `self` = self else { return }
-                        switch result {
-                        case .success:
-                            AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
-                            GCD.delay(1) { self.dismiss() }
-                        case .failure(let error):
-                            if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                                AlertSheet.show(into: self,
-                                                title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                                                message: nil,
-                                                actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-                            } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-                                AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertNeedQuotaMessage(), actions: [
-                                    (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-                                        let vc = QuotaManageViewController()
-                                        self?.navigationController?.pushViewController(vc, animated: true)
-                                    }),
-                                    (.cancel, nil),
-                                    ], config: { alert in
-                                        alert.preferredAction = alert.actions[0]
-                                })
-                            } else {
-                                Toast.show(error.message)
-                            }
-                        }
-                    })
-                }
-            case .failure(let error):
-                getPowFloatView.hide()
-                Toast.show(error.message)
-            }
-        })
     }
 }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
+import ViteWallet
 import Foundation
 import ObjectMapper
 import ViteUtils
@@ -205,6 +206,14 @@ class DebugService: Mappable {
             self.configEnvironment = d.configEnvironment
             self.showStatisticsToast = d.showStatisticsToast
             self.reportEventInDebug = d.reportEventInDebug
+        }
+
+        if !rpcUseOnlineUrl {
+            if let url = URL(string: rpcCustomUrl) {
+                Provider.default.update(server: ViteWallet.RPCServer(url: url))
+            } else {
+                Provider.default.update(server: ViteWallet.RPCServer(url: rpcDefaultTestEnvironmentUrl))
+            }
         }
     }
 

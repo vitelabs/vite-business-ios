@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import SnapKit
 import RxSwift
 import RxCocoa
@@ -16,7 +17,7 @@ import ViteUtils
 
 class QuotaManageViewController: BaseViewController {
     // FIXME: Optional
-    let bag = HDWalletManager.instance.bag!
+    let account = HDWalletManager.instance.account!
 
     var address: Address?
     var balance: Balance
@@ -57,7 +58,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: bag.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description)
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: TokenCacheService.instance.viteToken.symbol).then {
@@ -73,7 +74,7 @@ class QuotaManageViewController: BaseViewController {
         $0.descLab.attributedText = attributedString
     }
 
-    lazy var addressView = AddressTextViewView(currentAddress: self.bag.address.description, placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
+    lazy var addressView = AddressTextViewView(currentAddress: self.account.address.description, placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
         $0.textView.keyboardType = .default
     }
@@ -234,82 +235,15 @@ extension QuotaManageViewController {
     }
 }
 
-//service
-extension QuotaManageViewController {
-    //no run pow request service
-    //auto run pledgeAndGainQuotaWithGetPow with error
-    func pledgeAndGainQuotaWithoutGetPow(beneficialAddress: Address, amount: BigInt) {
-        HUD.show()
-        Provider.instance.pledgeAndGainQuotaWithoutGetPow(bag: bag, beneficialAddress: beneficialAddress, tokenId: TokenCacheService.instance.viteToken.id, amount: amount) { [weak self] (result) in
-            guard let `self` = self else { return }
-            HUD.hide()
-            switch result {
-            case .success:
-                self.refreshDataBySuccess()
-                Toast.show(R.string.localizable.submitSuccess())
-            case .failure(let error):
-                if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                    Alert.show(into: self,
-                               title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                               message: nil,
-                               actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-                    self.pledgeAndGainQuotaWithGetPow(beneficialAddress: beneficialAddress, amount: amount)
-                } else {
-                    Toast.show(error.message)
-                }
-            }
-        }
-    }
-
-    //run pow request service
-    func pledgeAndGainQuotaWithGetPow(beneficialAddress: Address, amount: BigInt) {
-        var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-            cancelPow = true
-        }
-
-        getPowFloatView.show()
-        Provider.instance.pledgeAndGainQuotaWithGetPow(bag: bag, beneficialAddress: beneficialAddress, tokenId: TokenCacheService.instance.viteToken.id, amount: amount, difficulty: AccountBlock.Const.Difficulty.pledge.value) { [weak self] (result) in
-
-            guard cancelPow == false else { return }
-            guard let `self` = self else { return }
-            switch result {
-            case .success(let context):
-
-                getPowFloatView.finish {
-                    HUD.show()
-                    Provider.instance.sendTransactionWithContext(context, completion: { [weak self] (result) in
-                        HUD.hide()
-                        guard let `self` = self else { return }
-                        switch result {
-                        case .success:
-                              self.refreshDataBySuccess()
-                              Toast.show(R.string.localizable.submitSuccess())
-                        case .failure(let error):
-                            if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                                Alert.show(into: self,
-                                           title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                                           message: nil,
-                                           actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-                            } else {
-                                Toast.show(error.message)
-                            }
-                        }
-                    })
-                }
-            case .failure(let error):
-                getPowFloatView.hide()
-                Toast.show(error.message)
-            }
-        }
-    }
-}
-
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
     func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        self.showConfirmTransactionViewController(beneficialAddress: beneficialAddress, amountString: amountString, amount: amount)
+        let amount = Balance(value: amountString.toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)!)
+        Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
+            if case .success = r {
+                self.refreshDataBySuccess()
+            }
+        }
     }
 }
 
@@ -333,34 +267,5 @@ extension QuotaManageViewController: UITextFieldDelegate {
         if textField == amountView.textField {
             amountView.symbolLabel.isHidden = textField.text?.isEmpty ?? true
         }
-    }
-}
-
-extension QuotaManageViewController {
-    private func showConfirmTransactionViewController(beneficialAddress: Address, amountString: String, amount: BigInt) {
-        let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
-        let confirmType: ConfirmTransactionViewController.ConfirmTransactionType =  biometryAuthConfig ? .biometry : .password
-        let confirmViewController = ConfirmTransactionViewController(confirmType: confirmType, address: beneficialAddress.description, token: TokenCacheService.instance.viteToken.symbol, amount: amountString, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            switch result {
-            case .success:
-                self.pledgeAndGainQuotaWithoutGetPow(beneficialAddress: beneficialAddress, amount: amount)
-            case .cancelled:
-                plog(level: .info, log: "Confirm cancelled", tag: .transaction)
-            case .biometryAuthFailed:
-                Alert.show(into: self,
-                           title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(),
-                           message: nil,
-                           actions: [(.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack()), nil)])
-            case .passwordAuthFailed:
-                Alert.show(into: self,
-                           title: R.string.localizable.confirmTransactionPageToastPasswordError(),
-                           message: nil,
-                           actions: [(.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry()), { [unowned self] _ in self.showConfirmTransactionViewController(beneficialAddress: beneficialAddress, amountString: amountString, amount: amount)
-                           }), (.cancel, nil)])
-            }
-        })
-        confirmViewController.confirmView.transactionInfoView.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
-        self.present(confirmViewController, animated: false, completion: nil)
     }
 }

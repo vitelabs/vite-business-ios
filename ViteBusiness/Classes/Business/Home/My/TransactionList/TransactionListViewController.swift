@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import RxSwift
 import RxCocoa
 import NSObject_Rx
@@ -15,7 +16,7 @@ import MJRefresh
 
 class TransactionListViewController: BaseTableViewController {
 
-    let address = HDWalletManager.instance.bag?.address ?? Address()
+    let address = HDWalletManager.instance.account?.address ?? Address()
 
     typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TransactionViewModelType>>
 

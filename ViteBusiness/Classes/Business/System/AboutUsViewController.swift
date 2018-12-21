@@ -6,6 +6,7 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 import UIKit
+import ViteWallet
 import Eureka
 import SnapKit
 import RxSwift
@@ -140,17 +141,13 @@ extension AboutUsViewController {
     }
 
     func getSnapshotChainHeight() {
-        Provider.instance.getSnapshotChainHeight(completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            guard let cell = self.form.rowBy(tag: "aboutUsPageCellBlockHeight") as? LabelRow else { return }
-            switch result {
-            case .success(let string):
-                cell.value = string
+        Provider.default.getSnapshotChainHeight()
+            .done { [weak self] (height) in
+                guard let `self` = self else { return }
+                guard let cell = self.form.rowBy(tag: "aboutUsPageCellBlockHeight") as? LabelRow else { return }
+                cell.value = String(height)
                 cell.updateCell()
-            case .failure:
-                break
-            }
-        })
+        }
     }
 
     func sendUsEmail() {

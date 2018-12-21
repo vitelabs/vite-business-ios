@@ -6,6 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
+import Foundation
+import ViteWallet
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -75,7 +77,7 @@ class VoteListViewController: BaseViewController {
 
         let result = reactor.result()
 
-        self.view.displayLoading(text: R.string.localizable.loading())
+        self.view.displayLoading()
         result
             .filterNil()
             .map { $0.isEmpty }
@@ -206,11 +208,18 @@ class VoteListViewController: BaseViewController {
     }
 
     func confirmVote(nodeName: String) {
+
+        Workflow.voteWithConfirm(account: HDWalletManager.instance.account!, name: nodeName) { (r) in
+            if case .success = r {
+
+            }
+        }
+        return
         let confirmVC = ConfirmViewController.comfirmVote(title: R.string.localizable.vote(),
                                                           nodeName: nodeName) { [unowned self] (result) in
                                                             switch result {
                                                             case .success:
-                                                                self.view.displayLoading(text: R.string.localizable.loading())
+                                                                self.view.displayLoading()
                                                                 self.reactor.vote.value = nodeName
                                                             case .passwordAuthFailed:
                                                                 Alert.show(into: self,
@@ -232,42 +241,42 @@ class VoteListViewController: BaseViewController {
     }
 
     func handler(error: Error, nodeName: String) {
-        if error.code == ViteErrorCode.rpcNotEnoughBalance {
-            Alert.show(into: self,
-                       title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-                       message: nil,
-                       actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.voteListAlertQuota(), actions: [
-                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
-                    var cancelPow = false
-                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-                        cancelPow = true
-                    }
-                    getPowFloatView.show()
-                    self?.reactor.voteWithPow(nodeName: nodeName, tryToCancel: { () -> Bool in
-                        return cancelPow
-                    }, powCompletion: { (_) in
-                        getPowFloatView.finish {}
-                        self?.view.displayLoading(text: R.string.localizable.loading())
-                    }, completion: { (_) in
-
-                    })
-
-                }),
-                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-                    let vc = QuotaManageViewController()
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }),
-                (.cancel, nil),
-                ], config: { alert in
-                    alert.preferredAction = alert.actions[0]
-            })
-        } else if error.code == ViteErrorCode.rpcNoTransactionBefore {
-            Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
-        } else {
-            Toast.show(error.message)
-        }
+//        if error.code == ViteErrorCode.rpcNotEnoughBalance {
+//            Alert.show(into: self,
+//                       title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
+//                       message: nil,
+//                       actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
+//        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
+//            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.voteListAlertQuota(), actions: [
+//                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
+//                    var cancelPow = false
+//                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
+//                        cancelPow = true
+//                    }
+//                    getPowFloatView.show()
+//                    self?.reactor.voteWithPow(nodeName: nodeName, tryToCancel: { () -> Bool in
+//                        return cancelPow
+//                    }, powCompletion: { (_) in
+//                        getPowFloatView.finish {}
+//                        self?.view.displayLoading()
+//                    }, completion: { (_) in
+//
+//                    })
+//
+//                }),
+//                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
+//                    let vc = QuotaManageViewController()
+//                    self?.navigationController?.pushViewController(vc, animated: true)
+//                }),
+//                (.cancel, nil),
+//                ], config: { alert in
+//                    alert.preferredAction = alert.actions[0]
+//            })
+//        } else if error.code == ViteErrorCode.rpcNoTransactionBefore {
+//            Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+//        } else {
+//            Toast.show(error.message)
+//        }
     }
 
     var appear = false
@@ -288,7 +297,7 @@ extension VoteListViewController: ViewControllerDataStatusable {
 
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
         return UIView.defaultNetworkErrorView(error: error) { [weak self] in
-            self?.view.displayLoading(text: R.string.localizable.loading())
+            self?.view.displayLoading()
             retry()
         }
     }

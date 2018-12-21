@@ -6,7 +6,8 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import ViteWallet
 import ObjectMapper
 import Alamofire
 import Moya
@@ -103,21 +104,18 @@ extension TokenCacheService {
 
     var viteToken: Token { return defaultTokens[0] }
 
-    func tokenForId(_ id: String, completion: @escaping (Alamofire.Result<Token?>) -> Void) {
+    func tokenForId(_ id: String, completion: @escaping (Alamofire.Result<Token>) -> Void) {
 
         if let token = tokenForId(id) {
             completion(Result.success(token))
         } else {
-            Provider.instance.getTokenForId(id) { result in
-                switch result {
-                case .success(let token):
-                    if let t = token {
-                        TokenCacheService.instance.updateTokensIfNeeded([t])
-                    }
+            Provider.default.getToken(for: id)
+                .done { (token) in
+                    TokenCacheService.instance.updateTokensIfNeeded([token])
                     completion(Result.success(token))
-                case .failure(let error):
-                    completion(Result.failure(error))
                 }
+                .catch { (error) in
+                    completion(Result.failure(error))
             }
         }
     }
