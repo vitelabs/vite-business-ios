@@ -23,7 +23,7 @@ class AboutUsTableBottomView: UIView {
     override init(frame: CGRect) {
         self.dataList =
              [
-                ["img": "icon_button_github", "web": "https://github.com/vitelabs/vite-app-ios"],
+                ["img": "icon_button_github", "web": "https://github.com/vitelabs"],
                 ["img": "icon_button_twitter", "web": "https://twitter.com/vitelabs"],
                 ["img": "icon_button_telegram", "web": "https://t.me/vite_en"],
                 ["img": "icon_button_reddit", "web": "https://www.reddit.com/r/vitelabs"],
@@ -125,7 +125,8 @@ extension AboutUsTableBottomView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(Reusable.aboutUsCollectionViewCell, for: indexPath)
         let dic = dataList[indexPath.row]
-        cell.iconImgView.image = UIImage.init(named: dic["img"]!)
+        let bundle = Bundle.podBundle(for: type(of: self), bundleName: "ViteBusiness")
+        cell.iconImgView.image = UIImage(named: dic["img"]!, in: bundle, compatibleWith: nil)
         return cell
     }
 

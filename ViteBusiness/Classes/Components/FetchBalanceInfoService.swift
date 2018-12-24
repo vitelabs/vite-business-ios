@@ -69,7 +69,7 @@ final class FetchBalanceInfoService {
                         }
                         self.balanceInfos.accept(allBalanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) })
                     case .failure(let error):
-                        plog(level: .warning, log: address.description + ": " + error.message, tag: .transaction)
+                        plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
                     }
                 })
                 service.startPoll()

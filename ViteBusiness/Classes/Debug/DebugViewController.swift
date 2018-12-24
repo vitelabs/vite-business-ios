@@ -294,7 +294,7 @@ class DebugViewController: FormViewController {
                             Toast.show("\(address.description) get test token complete")
                         }
                         .catch { (error) in
-                            Toast.show(error.message)
+                            Toast.show(error.viteErrorMessage)
                     }
                 } else {
                     Toast.show("Login firstly")

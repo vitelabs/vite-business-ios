@@ -59,7 +59,7 @@ class AppUpdateService: NSObject {
                     }
                 }
             case .failure(let error):
-                plog(level: .warning, log: error.message, tag: .getConfig)
+                plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
                 GCD.delay(2, task: { self.checkUpdate() })
             }
         }

@@ -219,7 +219,7 @@ extension AlertControl {
             m.height.equalTo(140)
             m.center.equalToSuperview()
         }
-        GCD.delay(2) {
+        GCD.delay(1) {
             vc.disMiss(completion: nil)
         }
     }

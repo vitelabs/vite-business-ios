@@ -99,7 +99,7 @@ final class PledgeHistoryViewReactor: Reactor {
                     observer.onCompleted()
                 }
                 .catch { (error) in
-                    observer.onNext((nil, error.message))
+                    observer.onNext((nil, error.viteErrorMessage))
                     observer.onCompleted()
             }
             return Disposables.create()

@@ -53,7 +53,7 @@ public class AppSettingsService {
                 self.getAppSettingsConfig(hash: configHash.appConfig)
                 LocalizationService.sharedInstance.updateLocalizableIfNeeded(localizationHash: configHash.localization)
             case .failure(let error):
-                plog(level: .warning, log: error.message, tag: .getConfig)
+                plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
                 GCD.delay(2, task: { self.getConfigHash() })
             }
         }
@@ -80,7 +80,7 @@ public class AppSettingsService {
                 }
 
             case .failure(let error):
-                plog(level: .warning, log: error.message, tag: .getConfig)
+                plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
                 GCD.delay(2, task: { self.getAppSettingsConfig(hash: hash) })
             }
         }

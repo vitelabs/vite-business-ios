@@ -14,8 +14,8 @@ import ViteUtils
 import enum Result.Result
 
 extension ViteError {
-    public static var authFailed: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10000), message: "Auth Failed", rawError: nil) }
-    public static var cancel: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10001), message: "Cancel Operation", rawError: nil) }
+    public static var authFailed: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10000), rawMessage: "Auth Failed", rawError: nil) }
+    public static var cancel: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10001), rawMessage: "Cancel Operation", rawError: nil) }
 }
 
 //MARK: Private
@@ -24,6 +24,7 @@ public struct Workflow {
     enum workflowType {
         case other
         case pledge
+        case vote
     }
 
     private static func confirmWorkflow(title: String,
@@ -73,7 +74,7 @@ public struct Workflow {
             .recover { (e) -> Promise<Void> in
                 if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
                     switch type {
-                    case .other:
+                    case .other, .vote:
                         return AlertSheet.show(title: R.string.localizable.quotaAlertTitle(),
                                                message: R.string.localizable.quotaAlertPowAndQuotaMessage(),
                                                titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
@@ -108,7 +109,7 @@ public struct Workflow {
                                     titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
                 } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
                     switch type {
-                    case .other:
+                    case .other, .vote:
                         AlertSheet.show(title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertNeedQuotaMessage(),
                                         titles: [.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
                                                  .cancel],
@@ -121,10 +122,14 @@ public struct Workflow {
                             alert.preferredAction = alert.actions[0]
                         })
                     case .pledge:
-                        Toast.show(error.message)
+                        Toast.show(error.viteErrorMessage)
                     }
                 } else if error != ViteError.cancel {
-                    Toast.show(error.message)
+                    if case .vote = type, error.code == ViteErrorCode.rpcNoTransactionBefore {
+                        Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+                    } else {
+                        Toast.show(error.viteErrorMessage)
+                    }
                 }
                 completion(Result(error: error))
         }
@@ -228,7 +233,7 @@ extension Workflow {
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
                               successToast: R.string.localizable.voteListSendSuccess(),
-                              type: .other,
+                              type: .vote,
                               completion: completion)
         }
 

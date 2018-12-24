@@ -94,7 +94,7 @@ final class MyVoteInfoViewReactor: Reactor {
                     observer.onCompleted()
                 }
                 .catch { (error) in
-                    plog(level: .debug, log: String.init(format: "fetchVoteInfo error  error = %d=%@", error.code.description, error.localizedDescription), tag: .vote)
+                    plog(level: .debug, log: String.init(format: "fetchVoteInfo error  error = %d=%@", error.viteErrorCode.description, error.localizedDescription), tag: .vote)
                     observer.onNext((nil, error))
                     observer.onCompleted()
                 }.finally { [weak self] in

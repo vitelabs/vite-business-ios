@@ -9,16 +9,6 @@
 import Foundation
 import ViteWallet
 
-extension Token {
-    var backgroundColors: [UIColor] {
-        return TokenCacheService.instance.backgroundColorsForId(id)
-    }
-
-    var icon: ImageWrapper {
-        return TokenCacheService.instance.iconForId(id)
-    }
-}
-
 extension BalanceInfo {
 
     var balanceShortString: String {
@@ -47,17 +37,5 @@ extension BalanceInfo {
         }
         ret.addObjects(from: infos as! [Any])
         return ret as! [BalanceInfo]
-    }
-}
-
-extension AccountBlock {
-    var amountShortString: String {
-        guard let amount = amount, let token = token else { return "" }
-        return amount.amountShort(decimals: token.decimals)
-    }
-
-    var amountFullString: String {
-        guard let amount = amount, let token = token else { return "" }
-        return amount.amountFull(decimals: token.decimals)
     }
 }

@@ -145,7 +145,7 @@ class WalletHomeViewController: BaseTableViewController {
                             viewControllers.append(sendViewController)
                             scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
                         case .failure(let error):
-                            scanViewController?.showToast(string: error.message)
+                            scanViewController?.showToast(string: error.viteErrorMessage)
                         }
                     }
                 }

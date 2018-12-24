@@ -13,4 +13,5 @@ import RxCocoa
 protocol WalletHomeAddressViewModelType {
     var defaultAddressDriver: Driver<String> { get }
     func copy()
+    func clickedAddress()
 }

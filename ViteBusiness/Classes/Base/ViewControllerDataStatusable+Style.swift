@@ -51,7 +51,7 @@ extension UIView {
         let label = UILabel().then {
             $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
             $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.text = error.message
+            $0.text = error.viteErrorMessage
             $0.numberOfLines = 0
             $0.textAlignment = .center
         }

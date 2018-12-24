@@ -14,6 +14,7 @@ import Moya
 import SwiftyJSON
 import ObjectMapper
 import ViteUtils
+import enum Alamofire.Result
 
 class COSProvider: MoyaProvider<COSAPI> {
     static let instance = COSProvider(manager: Manager(
@@ -28,33 +29,33 @@ class COSProvider: MoyaProvider<COSAPI> {
 
 extension COSProvider {
 
-    func getConfigHash(completion: @escaping (NetworkResult<String?>) -> Void) {
+    func getConfigHash(completion: @escaping (Result<String?>) -> Void) {
         sendRequest(api: .getConfigHash, completion: completion)
     }
 
-    func getLocalizable(language: ViteLanguage, completion: @escaping (NetworkResult<String?>) -> Void) {
+    func getLocalizable(language: ViteLanguage, completion: @escaping (Result<String?>) -> Void) {
         sendRequest(api: .getLocalizable(language.rawValue), completion: completion)
     }
 
-    func getAppConfig(completion: @escaping (NetworkResult<String?>) -> Void) {
+    func getAppConfig(completion: @escaping (Result<String?>) -> Void) {
         sendRequest(api: .getAppConfig, completion: completion)
     }
 
-    func checkUpdate(completion: @escaping (NetworkResult<String?>) -> Void) {
+    func checkUpdate(completion: @escaping (Result<String?>) -> Void) {
         sendRequest(api: .checkUpdate, completion: completion)
     }
 
-    fileprivate func sendRequest(api: COSAPI, completion: @escaping (NetworkResult<String?>) -> Void) {
+    fileprivate func sendRequest(api: COSAPI, completion: @escaping (Result<String?>) -> Void) {
         request(api) { (result) in
             switch result {
             case .success(let response):
                 if let string = try? response.mapString() {
-                    completion(NetworkResult.success(string))
+                    completion(Result.success(string))
                 } else {
-                    completion(NetworkResult.success(nil))
+                    completion(Result.success(nil))
                 }
             case .failure(let error):
-                completion(NetworkResult.wrapError(error))
+                completion(Result.failure(error))
             }
         }
     }

@@ -28,4 +28,9 @@ final class WalletHomeAddressViewModel: WalletHomeAddressViewModelType {
         UIPasteboard.general.string = address
         Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
     }
+
+    func clickedAddress() {
+        let vc = AddressManageViewController()
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

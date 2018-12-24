@@ -68,7 +68,7 @@ final class FetchQuotaService {
                             }
                         }
                     case .failure(let error):
-                        plog(level: .warning, log: address.description + ": " + error.message, tag: .transaction)
+                        plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
                     }
                 })
 

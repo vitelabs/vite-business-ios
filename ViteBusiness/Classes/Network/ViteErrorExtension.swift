@@ -11,35 +11,66 @@ import ViteWallet
 import APIKit
 import JSONRPCKit
 
+extension ViteError {
+
+    fileprivate static let code2MessageMap: [ViteErrorCode: String] = [
+        ViteErrorCode.rpcNotEnoughBalance: R.string.localizable.viteErrorRpcErrorCodeNotEnoughBalance(),
+        ViteErrorCode.rpcNotEnoughQuota: R.string.localizable.viteErrorRpcErrorCodeNotEnoughQuota(),
+        ViteErrorCode.rpcIdConflict: R.string.localizable.viteErrorRpcErrorCodeIdConflict(),
+        ViteErrorCode.rpcContractDataIllegal: R.string.localizable.viteErrorRpcErrorCodeContractDataIllegal(),
+        ViteErrorCode.rpcRefrenceSameSnapshootBlock: R.string.localizable.viteErrorRpcErrorCodeRefrenceSameSnapshootBlock(),
+        ViteErrorCode.rpcContractMethodNotExist: R.string.localizable.viteErrorRpcErrorCodeContractMethodNotExist(),
+        ViteErrorCode.rpcNoTransactionBefore: R.string.localizable.viteErrorRpcErrorCodeNoTransactionBefore(),
+        ViteErrorCode.rpcHashVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeHashVerifyFailure(),
+        ViteErrorCode.rpcSignatureVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeSignatureVerifyFailure(),
+        ViteErrorCode.rpcPowNonceVerifyFailure: R.string.localizable.viteErrorRpcErrorCodePowNonceVerifyFailure(),
+        ViteErrorCode.rpcRefrenceSnapshootBlockIllegal: R.string.localizable.viteErrorRpcErrorCodeRefrenceSnapshootBlockIllegal(),
+        ]
+
+    public var localizedDescription: String {
+        return viteErrorMessage
+    }
+}
+
 extension Error {
 
-    var code: ViteErrorCode {
+    var viteErrorCode: ViteErrorCode {
         if let error = self as? ViteError {
             return error.code
         } else {
-            return ViteErrorCode(type: .custom, id: (self as NSError).code)
+            return ViteError.conversion(from: self).code
         }
     }
 
     // show in UI
-    var message: String {
-        if let error = self as? ViteError {
-            return error.message
+    var viteErrorMessage: String {
+        var ret = ""
+        let error = ViteError.conversion(from: self)
+        if let str = ViteError.code2MessageMap[error.code] {
+            ret = str
         } else {
-            return (self as NSError).localizedDescription
+            switch error.code.type {
+            case .custom:
+                ret = error.rawMessage
+            case .st_con, .st_req, .st_res:
+                ret = "\(R.string.localizable.viteErrorNetworkError())(\(error.code.toString()))"
+            default:
+                ret = "\(R.string.localizable.viteErrorOperationFailure())(\(error.code.toString()))"
+            }
         }
+        return ret
     }
 
     // print in log
-    var rawMessage: String {
+    var viteErrorRawMessage: String {
         if let error = self as? ViteError {
             return error.rawMessage
         } else {
-            return message
+            return ViteError.conversion(from: self).rawMessage
         }
     }
 }
-
+//
 //public struct ViteError: Error {
 //
 //    let code: ViteErrorCode

@@ -34,7 +34,7 @@ final class AutoGatheringService {
                             plog(level: .debug, log: account.address.description + ": " + "no need to receive", tag: .transaction)
                         }
                     case .failure(let error):
-                        plog(level: .warning, log: account.address.description + ": " + error.message, tag: .transaction)
+                        plog(level: .warning, log: account.address.description + ": " + error.viteErrorMessage, tag: .transaction)
                     }
                 }
                 service.startPoll()
