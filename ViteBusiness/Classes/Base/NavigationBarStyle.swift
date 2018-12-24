@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum NavigationBarStyle {
+public enum NavigationBarStyle {
 
     case `default`
     case clear
     case custom(tintColor: UIColor, backgroundColor: UIColor)
 
-    static func configStyle(_ style: NavigationBarStyle, viewController: UIViewController) {
+    public static func configStyle(_ style: NavigationBarStyle, viewController: UIViewController) {
 
         guard let navigationBar = viewController.navigationController?.navigationBar else { return }
 
