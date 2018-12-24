@@ -24,7 +24,7 @@ public class Statistics: NSObject {
 
     public static func log(eventId: String, attributes: [String: String] = [:]) {
         #if DEBUG || TEST
-        if DebugService.instance.showStatisticsToast {
+        if DebugService.instance.config.showStatisticsToast {
             if attributes.isEmpty {
                 Toast.show("Statistics Event Start: \(eventId)")
             } else {
@@ -37,7 +37,7 @@ public class Statistics: NSObject {
             }
         }
 
-        if DebugService.instance.reportEventInDebug {
+        if DebugService.instance.config.reportEventInDebug {
             if attributes.isEmpty {
                 stat.logEvent(eventId, eventLabel: eventId)
             } else {
@@ -57,11 +57,11 @@ public class Statistics: NSObject {
 
     public static func pageviewStart(with name: String) {
         #if DEBUG || TEST
-        if DebugService.instance.showStatisticsToast {
+        if DebugService.instance.config.showStatisticsToast {
             Toast.show("Statistics Page Start: \(name)")
         }
 
-        if DebugService.instance.reportEventInDebug {
+        if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
             stat.logEvent(name, eventLabel: name)
         }
@@ -73,11 +73,11 @@ public class Statistics: NSObject {
 
     public static func pageviewEnd(with name: String) {
         #if DEBUG || TEST
-        if DebugService.instance.showStatisticsToast {
+        if DebugService.instance.config.showStatisticsToast {
             Toast.show("Statistics Page End: \(name)")
         }
 
-        if DebugService.instance.reportEventInDebug {
+        if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)
         }
         #else

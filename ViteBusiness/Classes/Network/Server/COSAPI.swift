@@ -19,11 +19,7 @@ enum COSAPI {
 extension COSAPI: TargetType {
 
     var baseURL: URL {
-        #if DEBUG || TEST
-        return DebugService.instance.configEnvironment.url
-        #else
-        return URL(string: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com/config")!
-        #endif
+        return COSServer.baseURL.appendingPathComponent("config")
     }
 
     var path: String {

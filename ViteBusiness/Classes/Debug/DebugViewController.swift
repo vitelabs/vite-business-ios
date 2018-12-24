@@ -56,7 +56,7 @@ class DebugViewController: FormViewController {
             }
             <<< LabelRow("appEnvironment") {
                 $0.title = "Environment"
-                $0.value = DebugService.instance.appEnvironment.name
+                $0.value = DebugService.instance.config.appEnvironment.name
             }.onCellSelection { [weak self] _, _ in
 
                 var actions = DebugService.AppEnvironment.allValues.map { config -> (Alert.UIAlertControllerAletrActionTitle, ((UIAlertController) -> Void)?) in
@@ -64,22 +64,22 @@ class DebugViewController: FormViewController {
 
                         guard let `self` = self else { return }
                         guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        DebugService.instance.appEnvironment = config
+                        DebugService.instance.setAppEnvironment(config)
                         cell.value = config.name
                         cell.updateCell()
 
                         guard let useBigDifficultyCell = self.form.rowBy(tag: "useBigDifficulty") as? SwitchRow else { return }
-                        useBigDifficultyCell.value = DebugService.instance.useBigDifficulty
+                        useBigDifficultyCell.value = DebugService.instance.config.useBigDifficulty
                         useBigDifficultyCell.updateCell()
 
                         guard let rpcUseOnlineUrlCell = self.form.rowBy(tag: "rpcUseOnlineUrl") as? SwitchRow else { return }
-                        rpcUseOnlineUrlCell.value = DebugService.instance.rpcUseOnlineUrl
+                        rpcUseOnlineUrlCell.value = DebugService.instance.config.rpcUseOnlineUrl
                         rpcUseOnlineUrlCell.updateCell()
 
                         guard let rpcCustomUrlCell = self.form.rowBy(tag: "rpcCustomUrl") as? LabelRow else { return }
-                        if let _ = URL(string: DebugService.instance.rpcCustomUrl) {
+                        if let _ = URL(string: DebugService.instance.config.rpcCustomUrl) {
                             rpcCustomUrlCell.title = "Custom URL"
-                            rpcCustomUrlCell.value = DebugService.instance.rpcCustomUrl
+                            rpcCustomUrlCell.value = DebugService.instance.config.rpcCustomUrl
                         } else {
                             rpcCustomUrlCell.title = "Test URL"
                             rpcCustomUrlCell.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
@@ -87,13 +87,13 @@ class DebugViewController: FormViewController {
                         rpcCustomUrlCell.updateCell()
 
                         guard let browserUseOnlineUrlCell = self.form.rowBy(tag: "browserUseOnlineUrl") as? SwitchRow else { return }
-                        browserUseOnlineUrlCell.value = DebugService.instance.browserUseOnlineUrl
+                        browserUseOnlineUrlCell.value = DebugService.instance.config.browserUseOnlineUrl
                         browserUseOnlineUrlCell.updateCell()
 
                         guard let browserCustomUrlCell = self.form.rowBy(tag: "browserCustomUrl") as? LabelRow else { return }
-                        if let _ = URL(string: DebugService.instance.browserCustomUrl) {
+                        if let _ = URL(string: DebugService.instance.config.browserCustomUrl) {
                             browserCustomUrlCell.title = "Custom URL"
-                            browserCustomUrlCell.value = DebugService.instance.browserCustomUrl
+                            browserCustomUrlCell.value = DebugService.instance.config.browserCustomUrl
                         } else {
                             browserCustomUrlCell.title = "Test URL"
                             browserCustomUrlCell.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
@@ -101,7 +101,7 @@ class DebugViewController: FormViewController {
                         browserCustomUrlCell.updateCell()
 
                         guard let configEnvironmentCell = self.form.rowBy(tag: "configEnvironment") as? LabelRow else { return }
-                        configEnvironmentCell.value = DebugService.instance.configEnvironment.name
+                        configEnvironmentCell.value = DebugService.instance.config.configEnvironment.name
                         configEnvironmentCell.updateCell()
                     })
                 }
@@ -115,13 +115,13 @@ class DebugViewController: FormViewController {
             }
             <<< SwitchRow("useBigDifficulty") {
                 $0.title = "Use Big Difficulty (Use GPU)"
-                $0.value = DebugService.instance.useBigDifficulty
+                $0.value = DebugService.instance.config.useBigDifficulty
             }.onChange { [weak self] row in
                 guard let `self` = self else { return }
                 guard let ret = row.value else { return }
-                DebugService.instance.useBigDifficulty = ret
+                DebugService.instance.config.useBigDifficulty = ret
                 guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.appEnvironment.name
+                cell.value = DebugService.instance.config.appEnvironment.name
                 cell.updateCell()
             }
             +++
@@ -130,20 +130,20 @@ class DebugViewController: FormViewController {
             }
             <<< SwitchRow("rpcUseOnlineUrl") {
                 $0.title = "Use Online URL"
-                $0.value = DebugService.instance.rpcUseOnlineUrl
+                $0.value = DebugService.instance.config.rpcUseOnlineUrl
             }.onChange { [weak self] row in
                 guard let `self` = self else { return }
                 guard let ret = row.value else { return }
-                DebugService.instance.rpcUseOnlineUrl = ret
+                DebugService.instance.config.rpcUseOnlineUrl = ret
                 guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.appEnvironment.name
+                cell.value = DebugService.instance.config.appEnvironment.name
                 cell.updateCell()
             }
             <<< LabelRow("rpcCustomUrl") {
                 $0.hidden = "$rpcUseOnlineUrl == true"
-                if let _ = URL(string: DebugService.instance.rpcCustomUrl) {
+                if let _ = URL(string: DebugService.instance.config.rpcCustomUrl) {
                     $0.title = "Custom URL"
-                    $0.value = DebugService.instance.rpcCustomUrl
+                    $0.value = DebugService.instance.config.rpcCustomUrl
                 } else {
                     $0.title = "Test URL"
                     $0.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
@@ -155,12 +155,12 @@ class DebugViewController: FormViewController {
                         guard let `self` = self else { return }
                         guard let cell = self.form.rowBy(tag: "rpcCustomUrl") as? LabelRow else { return }
                         if let text = alert.textFields?.first?.text, (text.hasPrefix("http://") || text.hasPrefix("https://")), let _ = URL(string: text) {
-                            DebugService.instance.rpcCustomUrl = text
+                            DebugService.instance.config.rpcCustomUrl = text
                             cell.title = "Custom"
                             cell.value = text
                             cell.updateCell()
                         } else if let text = alert.textFields?.first?.text, text.isEmpty {
-                            DebugService.instance.rpcCustomUrl = ""
+                            DebugService.instance.config.rpcCustomUrl = ""
                             cell.title = "Test"
                             cell.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
                             cell.updateCell()
@@ -168,13 +168,13 @@ class DebugViewController: FormViewController {
                             Toast.show("Error Format")
                         }
                         guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.appEnvironment.name
+                        appCell.value = DebugService.instance.config.appEnvironment.name
                         appCell.updateCell()
                     }),
                     ], config: { alert in
                         alert.addTextField(configurationHandler: { (textField) in
                             textField.clearButtonMode = .always
-                            textField.text = DebugService.instance.rpcCustomUrl
+                            textField.text = DebugService.instance.config.rpcCustomUrl
                             textField.placeholder = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
                         })
                 })
@@ -185,20 +185,20 @@ class DebugViewController: FormViewController {
             }
             <<< SwitchRow("browserUseOnlineUrl") {
                 $0.title = "Use Online URL"
-                $0.value = DebugService.instance.browserUseOnlineUrl
+                $0.value = DebugService.instance.config.browserUseOnlineUrl
             }.onChange { [weak self] row in
                 guard let `self` = self else { return }
                 guard let ret = row.value else { return }
-                DebugService.instance.browserUseOnlineUrl = ret
+                DebugService.instance.config.browserUseOnlineUrl = ret
                 guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.appEnvironment.name
+                cell.value = DebugService.instance.config.appEnvironment.name
                 cell.updateCell()
             }
             <<< LabelRow("browserCustomUrl") {
                 $0.hidden = "$browserUseOnlineUrl == true"
-                if let _ = URL(string: DebugService.instance.browserCustomUrl) {
+                if let _ = URL(string: DebugService.instance.config.browserCustomUrl) {
                     $0.title = "Custom URL"
-                    $0.value = DebugService.instance.browserCustomUrl
+                    $0.value = DebugService.instance.config.browserCustomUrl
                 } else {
                     $0.title = "Test URL"
                     $0.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
@@ -210,12 +210,12 @@ class DebugViewController: FormViewController {
                         guard let `self` = self else { return }
                         guard let cell = self.form.rowBy(tag: "browserCustomUrl") as? LabelRow else { return }
                         if let text = alert.textFields?.first?.text, (text.hasPrefix("http://") || text.hasPrefix("https://")), let _ = URL(string: text) {
-                            DebugService.instance.browserCustomUrl = text
+                            DebugService.instance.config.browserCustomUrl = text
                             cell.title = "Custom"
                             cell.value = text
                             cell.updateCell()
                         } else if let text = alert.textFields?.first?.text, text.isEmpty {
-                            DebugService.instance.browserCustomUrl = ""
+                            DebugService.instance.config.browserCustomUrl = ""
                             cell.title = "Test"
                             cell.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
                             cell.updateCell()
@@ -223,13 +223,13 @@ class DebugViewController: FormViewController {
                             Toast.show("Error Format")
                         }
                         guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.appEnvironment.name
+                        appCell.value = DebugService.instance.config.appEnvironment.name
                         appCell.updateCell()
                     }),
                     ], config: { alert in
                         alert.addTextField(configurationHandler: { (textField) in
                             textField.clearButtonMode = .always
-                            textField.text = DebugService.instance.browserCustomUrl
+                            textField.text = DebugService.instance.config.browserCustomUrl
                             textField.placeholder = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
                         })
                 })
@@ -240,17 +240,17 @@ class DebugViewController: FormViewController {
             }
             <<< LabelRow("configEnvironment") {
                 $0.title = "Config Environment"
-                $0.value = DebugService.instance.configEnvironment.name
+                $0.value = DebugService.instance.config.configEnvironment.name
             }.onCellSelection { [weak self] _, _ in
                 var actions = DebugService.ConfigEnvironment.allValues.map { config -> (Alert.UIAlertControllerAletrActionTitle, ((UIAlertController) -> Void)?) in
                     (.default(title: config.name), { [weak self] alert in
                         guard let `self` = self else { return }
                         guard let cell = self.form.rowBy(tag: "configEnvironment") as? LabelRow else { return }
-                        DebugService.instance.configEnvironment = config
+                        DebugService.instance.config.configEnvironment = config
                         cell.value = config.name
                         cell.updateCell()
                         guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.appEnvironment.name
+                        appCell.value = DebugService.instance.config.appEnvironment.name
                         appCell.updateCell()
                     })
                 }
@@ -269,17 +269,17 @@ class DebugViewController: FormViewController {
             })
             <<< SwitchRow("showStatisticsToast") {
                 $0.title = "Show Statistics Toast"
-                $0.value = DebugService.instance.showStatisticsToast
+                $0.value = DebugService.instance.config.showStatisticsToast
             }.onChange { row in
                 guard let ret = row.value else { return }
-                DebugService.instance.showStatisticsToast = ret
+                DebugService.instance.config.showStatisticsToast = ret
             }
             <<< SwitchRow("reportEventInDebug") {
                 $0.title = "Report Event In Debug"
-                $0.value = DebugService.instance.reportEventInDebug
+                $0.value = DebugService.instance.config.reportEventInDebug
             }.onChange { row in
                 guard let ret = row.value else { return }
-                DebugService.instance.reportEventInDebug = ret
+                DebugService.instance.config.reportEventInDebug = ret
             }
             +++
             Section {

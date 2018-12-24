@@ -258,7 +258,7 @@ extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.voteListSendSuccess(),
+                              successToast: R.string.localizable.votePageVoteInfoCancelVoteToastTitle(),
                               type: .other,
                               completion: completion)
         }
