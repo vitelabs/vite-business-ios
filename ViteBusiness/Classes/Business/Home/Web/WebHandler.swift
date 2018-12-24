@@ -12,10 +12,10 @@ import ViteUtils
 struct WebHandler {
     #if DEBUG || TEST
     fileprivate static var browserUrlString: String {
-        if DebugService.instance.browserUseOnlineUrl {
+        if DebugService.instance.config.browserUseOnlineUrl {
             return "https://explorer.vite.net"
         } else {
-            if let url = URL(string: DebugService.instance.browserCustomUrl) {
+            if let url = URL(string: DebugService.instance.config.browserCustomUrl) {
                 return url.absoluteString
             } else {
                 return DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString

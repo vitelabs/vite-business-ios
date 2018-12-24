@@ -28,10 +28,10 @@ class AddressManagerTableViewModel: AddressManagerTableViewModelType {
     var canGenerateAddress: Bool { return HDWalletManager.instance.canGenerateNextAccount }
 
     func generateAddress() {
-        _ = HDWalletManager.instance.generateNextBag()
+        _ = HDWalletManager.instance.generateNextAccount()
     }
 
     func setDefaultAddressIndex(_ index: Int) {
-        _ = HDWalletManager.instance.selectBag(index: index)
+        _ = HDWalletManager.instance.selectAccount(index: index)
     }
 }
