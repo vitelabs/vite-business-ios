@@ -134,20 +134,7 @@ class VoteListViewController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
-        reactor.voteError.asObservable()
-            .filter { $0.0 != nil && $0.1 != nil }
-            .bind { [weak self] in
-                self?.view.hideLoading()
-                self?.handler(error: $0.1!, nodeName: $0.0!)
-            }
-            .disposed(by: rx.disposeBag)
 
-        reactor.voteSuccess.asObserver()
-            .bind { [weak self] _ in
-                self?.view.hideLoading()
-                AlertControl.showCompletion(R.string.localizable.voteListSendSuccess())
-            }
-            .disposed(by: rx.disposeBag)
 
         Observable.merge([
             NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification),
@@ -190,93 +177,24 @@ class VoteListViewController: BaseViewController {
     func vote(nodeName: String) {
         let (status, info) = self.reactor.lastVoteInfo.value
         let voted = status == .voteSuccess || status == .voting
-
-        if !voted {
-            self.confirmVote(nodeName: nodeName)
-        } else {
+        if voted {
             Alert.show(into: self,
                        title: R.string.localizable.vote(),
                        message: R.string.localizable.voteListAlertAlreadyVoted(info?.nodeName ?? ""),
                        actions: [
                         (.default(title:R.string.localizable.voteListConfirmRevote()), { [unowned self] _ in
-                            self.confirmVote(nodeName: nodeName)
-                       }),
+                            self.vote(to: nodeName)
+                        }),
                         (.cancel, { [unowned self] _ in
                             self.dismiss(animated: false, completion: nil)
-                       })])
+                        })])
+        } else {
+            self.vote(to: nodeName)
         }
     }
 
-    func confirmVote(nodeName: String) {
-
-        Workflow.voteWithConfirm(account: HDWalletManager.instance.account!, name: nodeName) { (r) in
-            if case .success = r {
-
-            }
-        }
-        return
-        let confirmVC = ConfirmViewController.comfirmVote(title: R.string.localizable.vote(),
-                                                          nodeName: nodeName) { [unowned self] (result) in
-                                                            switch result {
-                                                            case .success:
-                                                                self.view.displayLoading()
-                                                                self.reactor.vote.value = nodeName
-                                                            case .passwordAuthFailed:
-                                                                Alert.show(into: self,
-                                                                           title: R.string.localizable.confirmTransactionPageToastPasswordError(),
-                                                                           message: nil,
-                                                                           actions: [(.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry()), { [unowned self] _ in
-                                                                            self.confirmVote(nodeName: nodeName)
-                                                                           }), (.cancel, nil)])
-                                                            case .biometryAuthFailed:
-                                                                Alert.show(into: self,
-                                                                           title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(),
-                                                                           message: nil,
-                                                                           actions: [(.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack()), nil)])
-                                                            default:
-                                                                break
-                                                            }
-        }
-        self.present(confirmVC, animated: false, completion: nil)
-    }
-
-    func handler(error: Error, nodeName: String) {
-//        if error.code == ViteErrorCode.rpcNotEnoughBalance {
-//            Alert.show(into: self,
-//                       title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-//                       message: nil,
-//                       actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-//        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-//            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.voteListAlertQuota(), actions: [
-//                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
-//                    var cancelPow = false
-//                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-//                        cancelPow = true
-//                    }
-//                    getPowFloatView.show()
-//                    self?.reactor.voteWithPow(nodeName: nodeName, tryToCancel: { () -> Bool in
-//                        return cancelPow
-//                    }, powCompletion: { (_) in
-//                        getPowFloatView.finish {}
-//                        self?.view.displayLoading()
-//                    }, completion: { (_) in
-//
-//                    })
-//
-//                }),
-//                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-//                    let vc = QuotaManageViewController()
-//                    self?.navigationController?.pushViewController(vc, animated: true)
-//                }),
-//                (.cancel, nil),
-//                ], config: { alert in
-//                    alert.preferredAction = alert.actions[0]
-//            })
-//        } else if error.code == ViteErrorCode.rpcNoTransactionBefore {
-//            Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
-//        } else {
-//            Toast.show(error.message)
-//        }
+    func vote(to nodeName: String) {
+      self.reactor.vote(nodeName: nodeName)
     }
 
     var appear = false

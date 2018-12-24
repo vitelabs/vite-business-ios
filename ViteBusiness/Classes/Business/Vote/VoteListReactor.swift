@@ -20,7 +20,6 @@ final class VoteListReactor {
     let fetchManually = PublishSubject<Void>()
 
     var fetchCandidateError = Variable<Error?>(nil)
-    var voteError = Variable<(String?, Error?)>((nil, nil))
     var voteSuccess = PublishSubject<Void>()
     var lastVoteInfo = Variable<(VoteStatus, VoteInfo?)>((.voteInvalid, nil))
 
@@ -134,40 +133,12 @@ final class VoteListReactor {
     }
 
     func vote(nodeName: String) {
-//        guard let account = HDWalletManager.instance.account else { return }
-//        Provider.instance.vote(account: account, benefitedNodeName: nodeName) { result in
-//            if case .success = result {
-//                DispatchQueue.main.async {
-//                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
-//                }
-//                self.voteSuccess.onNext(Void())
-//            } else if case let .failure(error) = result {
-//                self.voteError.value = (nodeName, error)
-//            }
-//        }
+        Workflow.voteWithConfirm(account: HDWalletManager.instance.account!, name: nodeName) { (result) in
+            if case .success = result {
+                NotificationCenter.default.post(name: .userDidVote, object: nodeName)
+                self.voteSuccess.onNext(Void())
+            }
+        }
     }
-
-//    func voteWithPow(nodeName: String,
-//                     tryToCancel: @escaping () -> Bool,
-//                     powCompletion: @escaping (NetworkResult<Provider.SendTransactionContext>) -> Void,
-//                     completion: @escaping (NetworkResult<Void>) -> Void) {
-////        guard let account = HDWalletManager.instance.account else { return }
-////
-////        Provider.instance.voteWithPow(account: account,
-////                                      benefitedNodeName: nodeName,
-////                                      tryToCancel: tryToCancel,
-////                                      powCompletion: powCompletion) { (result) in
-////            if case .success = result {
-////                DispatchQueue.main.async {
-////                    NotificationCenter.default.post(name: .userDidVote, object: nodeName)
-////                }
-////                self.voteSuccess.onNext(Void())
-////            } else if case let .failure(error) = result {
-////                self.voteError.value = (nodeName, error)
-////            }
-////            completion(result)
-////        }
-//
-//    }
 
 }
