@@ -373,6 +373,17 @@ class DebugViewController: FormViewController {
                         Toast.show("Login firstly")
                     }
                 })
+         +++
+        Section {
+            $0.header = HeaderFooterView(title: "H5 bridge")
+            }
+            <<< LabelRow("testURL") {
+                $0.title =  "test url"
+                }.onCellSelection({ _, _  in
+                    let vc = WKWebViewController.init(url: URL(string: "https://app.vite.net/test/#/")!)
+                    Route.getTopVC()?.navigationController?.pushViewController(vc, animated: true)
+                })
+
         #endif
     }
 

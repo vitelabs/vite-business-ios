@@ -12,6 +12,8 @@ import Crashlytics
 import NSObject_Rx
 import Vite_HDWalletKit
 import ViteUtils
+import ViteWallet
+import BigInt
 
 public class ViteBusinessLanucher: NSObject {
 
@@ -61,10 +63,43 @@ public class ViteBusinessLanucher: NSObject {
 
         WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> String? in
             if let url = data?["url"] as? String {
-                let activityViewController = UIActivityViewController(activityItems:[url], applicationActivities: nil)
-                Route.getTopVC()?.present(activityViewController, animated: true)
+                let shareUrl = URL.init(string: url)
+                Workflow.share(activityItems: [shareUrl])
             }
+            return nil
+        }
 
+        WKWebViewConfig.instance.sendTransaction = { (_ data: [String: String]?) -> String? in
+
+
+
+            do {
+                if let str = data?["data"] as? String {
+                    var data  = str.data(using: .utf8)!
+                    let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as! [String: Any]
+
+                    guard let account = HDWalletManager.instance.account else {
+                        return nil
+                    }
+                    if let tokenStr = json["token"] as? String {
+                        guard let token = Token(JSONString: tokenStr) else {
+                            return nil
+                        }
+                        if let addressStr = json["toAddress"] as? String {
+                            let address = Address.init(string: addressStr)
+                            if let amountStr = json["amount"] as? String {
+                                let amount =                                 Balance(value: amountStr.toBigInt(decimals: token.decimals) ?? BigInt(0))
+                                let noteStr = json["note"] as? String ?? ""
+
+                                Workflow.sendTransactionWithConfirm(account: account, toAddress: address, token: token, amount: amount, note:noteStr , completion: { (r) in
+                                })
+                            }
+                        }
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
             return nil
         }
     }
