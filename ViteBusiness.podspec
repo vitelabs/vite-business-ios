@@ -27,37 +27,39 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
-
-
-  s.source_files = 'ViteBusiness/Classes/**/*'
-  s.resource_bundles = {
-      'ViteBusiness' => ['ViteBusiness/Assets/*']
-  }
+  
   #s.resources = 'ViteBusiness/Assets/ViteBusiness.bundle'
 
 
   s.static_framework = true
 
-  s.default_subspec = 'default'
-  s.subspec 'default' do |c|
+  s.default_subspec = 'Default'
+  s.subspec 'Default' do |c|
+    c.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+    c.source_files = 'ViteBusiness/Classes/**/*'
+    c.resource_bundles = {
+        'ViteBusiness' => ['ViteBusiness/Assets/*']
+    }
   end
 
-  s.subspec 'official' do |c|
+  s.subspec 'Official' do |c|
+    c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
       'OTHER_SWIFT_FLAGS' => '-D OFFICIAL'
     }
   end
 
-  s.subspec 'test' do |c|
+  s.subspec 'Test' do |c|
+    c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = { 
       'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
       'OTHER_SWIFT_FLAGS' => '-D TEST'
     }
   end
 
-  s.subspec 'enterprise' do |c|
+  s.subspec 'Enterprise' do |c|
+    c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = { 
       'GCC_PREPROCESSOR_DEFINITIONS' => 'ENTERPRISE=1',
       'OTHER_SWIFT_FLAGS' => '-D ENTERPRISE'
