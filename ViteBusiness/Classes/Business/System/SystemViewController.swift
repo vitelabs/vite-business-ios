@@ -104,7 +104,7 @@ class SystemViewController: FormViewController {
                 self.showChangeLanguageList(isSettingPage: true)
             })
 
-            <<< SwitchRow("systemPageCellLoginPwd") {
+            <<< SwitchRow("systemPageCellLoginPwd") {[unowned self] in 
                 $0.title = R.string.localizable.systemPageCellLoginPwd()
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
@@ -117,7 +117,7 @@ class SystemViewController: FormViewController {
                     HDWalletManager.instance.setIsRequireAuthentication(enabled)
             }
 
-            <<< SwitchRow("systemPageCellLoginFaceId") {
+            <<< SwitchRow("systemPageCellLoginFaceId") {[unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellLoginFaceId() : R.string.localizable.systemPageCellLoginTouchId()
                 $0.title = title
@@ -133,14 +133,14 @@ class SystemViewController: FormViewController {
                     self.showBiometricAuth("systemPageCellLoginFaceId", value: enabled)
             }
 
-            <<< SwitchRow("systemPageCellTransferFaceId") {
+            <<< SwitchRow("systemPageCellTransferFaceId") { [unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellTransferFaceId() : R.string.localizable.systemPageCellTransferTouchId()
                 $0.title = title
                 $0.value = self.viewModel.isTransferByBiometry
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
-            }.cellUpdate({ (cell, _) in
+            }.cellUpdate({ [unowned self] (cell, _) in
                    cell.textLabel?.textColor = Colors.cellTitleGray
                    cell.textLabel?.font = Fonts.light16
                    cell.isHidden = self.viewModel.isTransferByBiometryHide
