@@ -231,8 +231,7 @@ class ReceiveViewController: BaseViewController {
         superView.layoutIfNeeded()
         backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
         guard let image = backView.screenshot else { return }
-        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        present(activityViewController, animated: true)
+        Workflow.share(activityItems: [image])
     }
 }
 

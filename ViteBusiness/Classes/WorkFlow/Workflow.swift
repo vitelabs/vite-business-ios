@@ -11,7 +11,7 @@ import UIKit
 import ViteWallet
 import PromiseKit
 import ViteUtils
-import enum Result.Result
+import enum ViteWallet.Result
 
 extension ViteError {
     public static var authFailed: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10000), rawMessage: "Auth Failed", rawError: nil) }
@@ -33,7 +33,7 @@ public struct Workflow {
                                         token: String?,
                                         amount: String?,
                                         confirmTitle: String,
-                                        completion: @escaping (Result<Void, ViteError>) -> (),
+                                        completion: @escaping (Result<Void>) -> (),
                                         confirmSuccess: @escaping () -> Void) {
         func showConfirm() {
             let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
@@ -62,10 +62,10 @@ public struct Workflow {
     }
 
     private static func sendRawTxWorkflow(withoutPowPromise: Promise<Void>,
-                                          getPowPromise: Promise<Provider.SendRawTxContext>,
+                                          getPowPromise: Promise<Provider.SendBlockContext>,
                                           successToast: String,
                                           type: workflowType,
-                                          completion: @escaping (Result<Void, ViteError>) -> ()) {
+                                          completion: @escaping (Result<Void>) -> ()) {
         HUD.show()
         withoutPowPromise
             .always {
@@ -135,19 +135,19 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWithPowWorkflow(getPowPromise: Promise<Provider.SendRawTxContext>) -> Promise<Void> {
+    private static func sendRawTxWithPowWorkflow(getPowPromise: Promise<Provider.SendBlockContext>) -> Promise<Void> {
         var cancelPow = false
         let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
             cancelPow = true
         }
         getPowFloatView.show()
         return getPowPromise
-            .recover { (e) -> Promise<Provider.SendRawTxContext> in
+            .recover { (e) -> Promise<Provider.SendBlockContext> in
                 getPowFloatView.hide()
                 return Promise(error: e)
             }
-            .then { context -> Promise<Provider.SendRawTxContext> in
-                return Promise<Provider.SendRawTxContext> { seal in
+            .then { context -> Promise<Provider.SendBlockContext> in
+                return Promise<Provider.SendBlockContext> { seal in
                     getPowFloatView.finish { seal.fulfill(context) }
                 }
             }
@@ -155,7 +155,7 @@ public struct Workflow {
                 HUD.show()
             }
             .then { context -> Promise<Void> in
-                return Provider.default.sendRawTxContext(context)
+                return Provider.default.sendRawTxWithContext(context)
             }.always {
                 HUD.hide()
         }
@@ -163,13 +163,13 @@ public struct Workflow {
 }
 
 //MARK: Public
-extension Workflow {
-    public static func sendTransactionWithConfirm(account: Wallet.Account,
-                                                  toAddress: Address,
-                                                  token: Token,
-                                                  amount: Balance,
-                                                  note: String?,
-                                                  completion: @escaping (Result<Void, ViteError>) -> ()) {
+public extension Workflow {
+    static func sendTransactionWithConfirm(account: Wallet.Account,
+                                           toAddress: Address,
+                                           token: Token,
+                                           amount: Balance,
+                                           note: String?,
+                                           completion: @escaping (Result<Void>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.sendTransactionWithoutPow(account: account, toAddress: toAddress,
@@ -194,10 +194,10 @@ extension Workflow {
                         confirmSuccess: sendBlock)
     }
 
-    public static func pledgeWithConfirm(account: Wallet.Account,
-                                         beneficialAddress: Address,
-                                         amount: Balance,
-                                         completion: @escaping (Result<Void, ViteError>) -> ()) {
+    static func pledgeWithConfirm(account: Wallet.Account,
+                                  beneficialAddress: Address,
+                                  amount: Balance,
+                                  completion: @escaping (Result<Void>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -221,9 +221,9 @@ extension Workflow {
                         confirmSuccess: sendBlock)
     }
 
-    public static func voteWithConfirm(account: Wallet.Account,
-                                       name: String,
-                                       completion: @escaping (Result<Void, ViteError>) -> ()) {
+    static func voteWithConfirm(account: Wallet.Account,
+                                name: String,
+                                completion: @escaping (Result<Void>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -247,9 +247,9 @@ extension Workflow {
                         confirmSuccess: sendBlock)
     }
 
-    public static func cancelVoteWithConfirm(account: Wallet.Account,
-                                             name: String,
-                                             completion: @escaping (Result<Void, ViteError>) -> ()) {
+    static func cancelVoteWithConfirm(account: Wallet.Account,
+                                      name: String,
+                                      completion: @escaping (Result<Void>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -273,3 +273,25 @@ extension Workflow {
                         confirmSuccess: sendBlock)
     }
 }
+
+//MARK: Share
+public extension Workflow {
+
+    static func share(activityItems: [Any], applicationActivities: [UIActivity]? = nil, completion: ((Result<Void>) -> ())? = nil) {
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        if let completion = completion {
+            activityViewController.completionWithItemsHandler = { (_, completed, _, error) in
+                if let error = error {
+                    completion(Result(error: error))
+                } else if completed {
+                    completion(Result(value: ()))
+                } else {
+                    completion(Result(error: ViteError.cancel))
+                }
+            }
+        }
+        UIViewController.current?.present(activityViewController, animated: true)
+    }
+}
+
+
