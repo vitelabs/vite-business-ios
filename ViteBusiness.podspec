@@ -144,7 +144,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'ViteUtils'
   s.dependency 'ViteWallet'
-  s.dependency 'ViteCommunity'
 
   # s.resource_bundles = {
   #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']
