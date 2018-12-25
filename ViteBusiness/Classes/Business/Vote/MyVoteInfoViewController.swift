@@ -185,13 +185,6 @@ extension MyVoteInfoViewController {
                     self?.refreshVoteInfoView(voteInfo, voteStatus)
                     return
                 }
-
-                //cancel voting handle error
-                if voteStatus == .cancelVoting {
-                    DispatchQueue.main.async {
-                        self?.handlerCancelError(error)
-                    }
-                }
             }.disposed(by: disposeBag)
     }
 }
@@ -204,84 +197,7 @@ extension MyVoteInfoViewController {
                     self.viewInfoView.changeInfoCancelVoting()
                 }
             })
-            return
-            let confirmVC = ConfirmTransactionViewController.comfirmVote(title: R.string.localizable.votePageVoteInfoCancelVoteTitle(),
-                                                                         nodeName: self.viewInfoView.voteInfo?.nodeName ?? "") { [unowned self] (result) in
-                                                                            switch result {
-                                                                            case .success:
-                                                                                    HUD.show()
-                                                                                    self.reactor?.action.onNext(.cancelVoteWithoutGetPow)
-                                                                            case .cancelled:
-                                                                                plog(level: .info, log: "Confirm vote cancel cancelled", tag: .vote)
-                                                                            case .biometryAuthFailed:
-                                                                                Alert.show(into: self,
-                                                                                           title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(),
-                                                                                           message: nil,
-                                                                                           actions: [(.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack()), nil)])
-                                                                            case .passwordAuthFailed:
-                                                                                Alert.show(into: self,
-                                                                                           title: R.string.localizable.confirmTransactionPageToastPasswordError(),
-                                                                                           message: nil,
-                                                                                           actions: [(.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry()), { [unowned self] _ in
-                                                                                            self.cancelVoteAction()
-                                                                                           }), (.cancel, nil)])
-                                                                            }
-            }
-            self.present(confirmVC, animated: false, completion: nil)
          }
     }
 
-    private func handlerCancelError(_ error: Error) {
-//        HUD.hide()
-//        if error.code == ViteErrorCode.rpcNotEnoughBalance {
-//            AlertSheet.show(into: self,
-//                            title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(),
-//                            message: nil,
-//                            actions: [(.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton()), nil)])
-//        } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-//            AlertSheet.show(into: self, title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.votePageVoteInfoAlertQuota(), actions: [
-//                (.default(title: R.string.localizable.quotaAlertPowButtonTitle()), { [weak self] _ in
-//                    var cancelPow = false
-//                    let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
-//                        cancelPow = true
-//                    }
-//                    getPowFloatView.show()
-//
-//                    //get pow data
-//                    self?.reactor?.cancelVoteAndSendWithGetPow(completion: { (result) in
-//                        guard cancelPow == false else { return }
-//                        guard let `self` = self else { return }
-//                        if case let .success(context) = result {
-//                            getPowFloatView.finish(completion: {
-//                                //send transaction
-//                                HUD.show()
-//                                self.reactor?.cancelVoteSendTransaction(context, completion: { (result) in
-//                                    HUD.hide()
-//                                    if case .success = result {
-//                                        //in the end
-//                                        self.viewInfoView.changeInfoCancelVoting()
-//                                        Toast.show(R.string.localizable.votePageVoteInfoCancelVoteToastTitle())
-//                                    } else if case let .failure(error) = result {
-//                                           Toast.show(error.message)
-//                                    }
-//                                })
-//                            })
-//                        } else if case let .failure(error) = result {
-//                            getPowFloatView.hide()
-//                            Toast.show(error.message)
-//                        }
-//                    })
-//                }),
-//                (.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()), { [weak self] _ in
-//                    let vc = QuotaManageViewController()
-//                    self?.navigationController?.pushViewController(vc, animated: true)
-//                }),
-//                (.cancel, nil),
-//                ], config: { alert in
-//                    alert.preferredAction = alert.actions[0]
-//            })
-//        } else {
-//            Toast.show(error.message)
-//        }
-    }
 }

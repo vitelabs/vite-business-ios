@@ -14,19 +14,20 @@ import NSObject_Rx
 import Vite_HDWalletKit
 
 extension CreateWalletAccountViewController {
+
     private func _bindViewModel() {
         self.createNameAndPwdVM = CreateNameAndPwdVM(input: (self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.passwordInputView.textField, self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField))
-        self.createNameAndPwdVM?.submitBtnEnable.drive(onNext: { (isEnabled) in
+        self.createNameAndPwdVM?.submitBtnEnable.drive(onNext: { [unowned self] (isEnabled) in
                 self.submitBtn.isEnabled = isEnabled
             }).disposed(by: rx.disposeBag)
 
-        self.submitBtn.rx.tap.bind {_ in
-            self.createNameAndPwdVM?.submitAction.execute((self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.passwordInputView.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text ?? "")).subscribe(onNext: { (result) in
+        self.submitBtn.rx.tap.bind {[unowned self]  in
+          self.createNameAndPwdVM?.submitAction.execute((self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.passwordInputView.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text ?? "")).subscribe(onNext: { [unowned self](result) in
                 switch result {
                 case .ok:
-                        self.goNextVC()
+                    self.goNextVC()
                 case .empty, .failed:
-                        self.view.showToast(str: result.description)
+                    self.view.showToast(str: result.description)
                 }
             }).disposed(by: self.disposeBag)
         }.disposed(by: rx.disposeBag)

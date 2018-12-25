@@ -53,10 +53,10 @@ class BackupMnemonicViewController: BaseViewController {
         switchTipView.titleLab.textColor = UIColor(netHex: 0x007AFF)
         switchTipView.tipButton.setImage(R.image.switch_mode_icon(), for: .normal)
         switchTipView.tipButton.setImage(R.image.switch_mode_icon(), for: .highlighted)
-        switchTipView.rx.tap.bind {
+        switchTipView.rx.tap.bind {[unowned self] in
             self.viewModel.switchModeMnemonicWordsAction?.execute(())
         }.disposed(by: rx.disposeBag)
-        switchTipView.tipButton.rx.tap.bind {
+        switchTipView.tipButton.rx.tap.bind {[unowned self] in
             self.viewModel.switchModeMnemonicWordsAction?.execute(())
         }.disposed(by: rx.disposeBag)
         return switchTipView
@@ -70,7 +70,7 @@ class BackupMnemonicViewController: BaseViewController {
     lazy var afreshMnemonicBtn: UIButton = {
         let afreshMnemonicBtn = UIButton.init(style: .white)
     afreshMnemonicBtn.setTitle(R.string.localizable.mnemonicBackupPageTipAnewBtnTitle(), for: .normal)
-        afreshMnemonicBtn.rx.tap.bind {
+        afreshMnemonicBtn.rx.tap.bind {[unowned self] in
                     self.viewModel.fetchNewMnemonicWordsAction?.execute(())
         }.disposed(by: rx.disposeBag)
         return afreshMnemonicBtn
@@ -91,7 +91,7 @@ class BackupMnemonicViewController: BaseViewController {
 
 extension BackupMnemonicViewController {
     private func _bindViewModel() {
-        self.viewModel.mnemonicWordsList.asObservable().subscribe { (_) in
+        self.viewModel.mnemonicWordsList.asObservable().subscribe { [unowned self](_) in
             if self.viewModel.mnemonicWordsList.value.count == 12 {
                 self.switchTipView.titleLab.text = R.string.localizable.mnemonicBackupPageSwitchModeTitle("24")
                 self.mnemonicCollectionView.snp.updateConstraints { (make) -> Void in

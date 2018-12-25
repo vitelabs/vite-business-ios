@@ -56,14 +56,14 @@ class AffirmInputMnemonicViewController: BaseViewController, MnemonicCollectionV
         return submitBtn
     }()
 
-    lazy var chooseMnemonicCollectionView: MnemonicCollectionView = {
+    lazy var chooseMnemonicCollectionView: MnemonicCollectionView = {[unowned self]  in
         let chooseMnemonicCollectionView = MnemonicCollectionView.init(isHasSelected: true)
         chooseMnemonicCollectionView.delegate = self
         chooseMnemonicCollectionView.h_num = CGFloat(CGFloat(self.viewModel.mnemonicWordsList.count) / 4.0)
         return chooseMnemonicCollectionView
     }()
 
-    lazy var defaultMnemonicCollectionView: MnemonicCollectionView = {
+    lazy var defaultMnemonicCollectionView: MnemonicCollectionView = {[unowned self]  in
         let defaultMnemonicCollectionView = MnemonicCollectionView.init(isHasSelected: false)
         defaultMnemonicCollectionView.delegate = self
         defaultMnemonicCollectionView.h_num = CGFloat(CGFloat(self.viewModel.mnemonicWordsList.count) / 4.0)
@@ -77,11 +77,11 @@ class AffirmInputMnemonicViewController: BaseViewController, MnemonicCollectionV
 
 extension AffirmInputMnemonicViewController {
     private func _bindViewModel() {
-        self.viewModel.hasChooseMnemonicWordsList.asObservable().subscribe { (_) in
+        self.viewModel.hasChooseMnemonicWordsList.asObservable().subscribe { [unowned self]  (_) in
             self.chooseMnemonicCollectionView.dataList = (self.viewModel.hasChooseMnemonicWordsList.value)
         }.disposed(by: rx.disposeBag)
 
-        self.viewModel.hasLeftMnemonicWordsList.asObservable().subscribe { (_) in
+        self.viewModel.hasLeftMnemonicWordsList.asObservable().subscribe {[unowned self]   (_) in
             self.defaultMnemonicCollectionView.dataList = (self.viewModel.hasLeftMnemonicWordsList.value)
         }.disposed(by: rx.disposeBag)
     }
