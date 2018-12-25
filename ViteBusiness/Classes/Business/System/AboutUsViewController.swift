@@ -105,11 +105,17 @@ extension AboutUsViewController {
                 #else
                 $0.value = "\(Bundle.main.versionNumber) (T\(Bundle.main.buildNumber))"
                 #endif
-                #else
+                #elseif OFFICIAL
                 #if DEBUG
                 $0.value = "\(Bundle.main.versionNumber) (DA\(Bundle.main.buildNumber))"
                 #else
                 $0.value = "\(Bundle.main.versionNumber) (A\(Bundle.main.buildNumber))"
+                #endif
+                #else
+                #if DEBUG
+                $0.value = "\(Bundle.main.versionNumber) (DD\(Bundle.main.buildNumber))"
+                #else
+                $0.value = "\(Bundle.main.versionNumber) (D\(Bundle.main.buildNumber))"
                 #endif
                 #endif
                 $0.cell.height = { 60 }

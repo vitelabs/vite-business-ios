@@ -3,8 +3,8 @@ use_frameworks!
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
-  pod 'ViteWallet', :git => 'git@github.com:vitelabs/vite-wallet-ios.git', :branch=>'develop'
-  pod 'ViteUtils', :git => 'git@github.com:vitelabs/vite-utils-ios.git', :branch=>'develop'
+  pod 'ViteUtils', :git => 'https://github.com/vitelabs/vite-utils-ios.git', :commit => '62af5410efd9368709b8fe6e4cfbf15616474ef5'
+  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => 'c395465dfb62d9097e29ee9da076e4761788b324'
 
   target 'ViteBusiness_Tests' do
     inherit! :search_paths

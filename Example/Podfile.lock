@@ -147,6 +147,51 @@ PODS:
     - Then
     - Toast-Swift (~> 4.0.1)
     - Vite_HDWalletKit
+    - ViteBusiness/Default (= 0.0.1)
+    - ViteUtils
+    - ViteWallet
+    - XCGLogger (~> 6.1.0)
+  - ViteBusiness/Default (0.0.1):
+    - Action
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - APIKit
+    - BaiduMobStat
+    - BigInt (~> 3.0)
+    - CHIPageControl
+    - Crashlytics
+    - CryptoSwift
+    - DACircularProgress (= 2.3.1)
+    - Eureka (~> 4.3.0)
+    - Fabric
+    - JSONRPCKit (~> 3.0.0)
+    - KeychainSwift
+    - Kingfisher (~> 4.0)
+    - KMNavigationBarTransition
+    - MBProgressHUD
+    - MJRefresh
+    - MLeaksFinder
+    - Moya
+    - "NSObject+Rx"
+    - NYXImagesKit (= 2.3)
+    - ObjectMapper
+    - pop (~> 1.0)
+    - PromiseKit (~> 6.0)
+    - R.swift (= 5.0.0.alpha.3)
+    - RazzleDazzle
+    - ReactorKit
+    - ReusableKit (~> 2.1.0)
+    - RxCocoa
+    - RxDataSources (~> 3.0)
+    - RxGesture
+    - RxOptional
+    - RxSwift (~> 4.0)
+    - SnapKit (~> 4.0.0)
+    - SwiftLint
+    - SwiftyJSON
+    - Then
+    - Toast-Swift (~> 4.0.1)
+    - Vite_HDWalletKit
     - ViteUtils
     - ViteWallet
     - XCGLogger (~> 6.1.0)
@@ -177,8 +222,8 @@ DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
   - R.swift (= 5.0.0.alpha.3)
   - ViteBusiness (from `../`)
-  - "ViteUtils (from `git@github.com:vitelabs/vite-utils-ios.git`, branch `develop`)"
-  - "ViteWallet (from `git@github.com:vitelabs/vite-wallet-ios.git`, branch `develop`)"
+  - ViteUtils (from `https://github.com/vitelabs/vite-utils-ios.git`, commit `62af5410efd9368709b8fe6e4cfbf15616474ef5`)
+  - ViteWallet (from `https://github.com/vitelabs/vite-wallet-ios.git`, commit `c395465dfb62d9097e29ee9da076e4761788b324`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -237,19 +282,19 @@ EXTERNAL SOURCES:
   ViteBusiness:
     :path: "../"
   ViteUtils:
-    :branch: develop
-    :git: "git@github.com:vitelabs/vite-utils-ios.git"
+    :commit: 62af5410efd9368709b8fe6e4cfbf15616474ef5
+    :git: https://github.com/vitelabs/vite-utils-ios.git
   ViteWallet:
-    :branch: develop
-    :git: "git@github.com:vitelabs/vite-wallet-ios.git"
+    :commit: c395465dfb62d9097e29ee9da076e4761788b324
+    :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 CHECKOUT OPTIONS:
   ViteUtils:
-    :commit: 05452b3037977e5f77c7682bea5f43d450b6c8ee
-    :git: "git@github.com:vitelabs/vite-utils-ios.git"
+    :commit: 62af5410efd9368709b8fe6e4cfbf15616474ef5
+    :git: https://github.com/vitelabs/vite-utils-ios.git
   ViteWallet:
-    :commit: 986a7b1a9b2006ac54393a2c2e75452deb80bb03
-    :git: "git@github.com:vitelabs/vite-wallet-ios.git"
+    :commit: c395465dfb62d9097e29ee9da076e4761788b324
+    :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 SPEC CHECKSUMS:
   Action: 2f461c203c480b17aa99b3bb166e4329ecff6908
@@ -301,11 +346,11 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: 2f937ad55a98bfc3d23f7259be4bac90b62a1450
+  ViteBusiness: 1e126d51d9ab72c982e40a791f1454adf0761559
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: 5f7ec9d73bac4d32592bc13018d58fd3b6111816
+PODFILE CHECKSUM: 62ddbbb1ac41170272686af5e2fbd3c092f3ef12
 
 COCOAPODS: 1.5.3
