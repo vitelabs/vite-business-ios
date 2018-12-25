@@ -39,6 +39,30 @@ Pod::Spec.new do |s|
 
   s.static_framework = true
 
+  s.default_subspec = 'default'
+  s.subspec 'default' do |c|
+  end
+
+  s.subspec 'official' do |c|
+    c.pod_target_xcconfig = {
+      'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
+      'OTHER_SWIFT_FLAGS' => '-D OFFICIAL'
+    }
+  end
+
+  s.subspec 'test' do |c|
+    c.pod_target_xcconfig = { 
+      'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
+      'OTHER_SWIFT_FLAGS' => '-D TEST'
+    }
+  end
+
+  s.subspec 'enterprise' do |c|
+    c.pod_target_xcconfig = { 
+      'GCC_PREPROCESSOR_DEFINITIONS' => 'ENTERPRISE=1',
+      'OTHER_SWIFT_FLAGS' => '-D ENTERPRISE'
+    }
+  end
 
   s.dependency 'R.swift'
   s.dependency 'RxSwift'
