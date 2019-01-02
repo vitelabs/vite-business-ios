@@ -32,13 +32,12 @@ Pod::Spec.new do |s|
 
 
   s.static_framework = true
-
   s.default_subspec = 'Default'
   s.subspec 'Default' do |c|
     c.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
     c.source_files = 'ViteBusiness/Classes/**/*'
     c.resource_bundles = {
-        'ViteBusiness' => ['ViteBusiness/Assets/*']
+      'ViteBusiness' => ['ViteBusiness/Assets/*']
     }
   end
 
