@@ -21,7 +21,7 @@ public class AppSettingsService {
     fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "AppConfig"
 
-    fileprivate let appConfigHash: String?
+    fileprivate var appConfigHash: String?
 
     private init() {
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
@@ -68,7 +68,8 @@ public class AppSettingsService {
             case .success(let jsonString):
                 plog(level: .debug, log: "get app config finished", tag: .getConfig)
                 guard let string = jsonString else { return }
-                plog(level: .debug, log: "md5: \(string.md5())", tag: .getConfig)
+                self.appConfigHash = string.md5()
+                plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
                 if let data = string.data(using: .utf8) {
                     if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
                         assert(false, error.localizedDescription)
