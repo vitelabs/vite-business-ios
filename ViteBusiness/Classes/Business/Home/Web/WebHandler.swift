@@ -9,7 +9,7 @@
 import UIKit
 import ViteUtils
 
-struct WebHandler {
+public struct WebHandler {
     #if DEBUG || TEST
     fileprivate static var browserUrlString: String {
         if DebugService.instance.config.browserUseOnlineUrl {
@@ -82,5 +82,13 @@ struct WebHandler {
             string = string.appending(value.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? "")
         }
         return string
+    }
+
+    public static func appendQuery(url: URL) -> URL {
+        if let new = URL(string: appendQuery(urlString: url.absoluteString)) {
+            return new
+        } else {
+            return url
+        }
     }
 }
