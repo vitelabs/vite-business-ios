@@ -45,6 +45,7 @@ Pod::Spec.new do |s|
     c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL',
       'OTHER_SWIFT_FLAGS' => '-D OFFICIAL'
     }
   end
@@ -53,6 +54,7 @@ Pod::Spec.new do |s|
     c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = { 
       'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST',
       'OTHER_SWIFT_FLAGS' => '-D TEST'
     }
   end
@@ -61,6 +63,7 @@ Pod::Spec.new do |s|
     c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = { 
       'GCC_PREPROCESSOR_DEFINITIONS' => 'ENTERPRISE=1',
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ENTERPRISE',
       'OTHER_SWIFT_FLAGS' => '-D ENTERPRISE'
     }
   end
