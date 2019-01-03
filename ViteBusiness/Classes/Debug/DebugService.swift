@@ -6,7 +6,6 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 
-#if DEBUG || TEST
 import ViteWallet
 import Foundation
 import ObjectMapper
@@ -258,4 +257,3 @@ public extension DebugService {
         debugViewControllers.append((title, viewController))
     }
 }
-#endif
