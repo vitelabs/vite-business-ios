@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Statistics {
+public extension Statistics {
 
-    enum Page {
+    public enum Page {
 
         enum Debug: String {
             case test = "debug_page_test"
@@ -22,6 +22,10 @@ extension Statistics {
 
         enum WalletHome {
             static var name = "wallet_home_page"
+        }
+
+        enum MyHome {
+            static var name = "my_home_page"
         }
 
         enum WalletQuota: String {
