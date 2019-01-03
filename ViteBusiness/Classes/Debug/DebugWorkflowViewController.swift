@@ -4,7 +4,7 @@
 //
 //  Created by Stone on 2019/1/3.
 //
-
+#if DEBUG || TEST
 import UIKit
 import Eureka
 import ViteUtils
@@ -37,3 +37,4 @@ class DebugWorkflowViewController: FormViewController {
                 })
     }
 }
+#endif

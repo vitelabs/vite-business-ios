@@ -5,7 +5,7 @@
 //  Created by Stone on 2018/10/12.
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
-
+#if DEBUG || TEST
 import UIKit
 import Eureka
 import Crashlytics
@@ -139,3 +139,4 @@ class DebugViewController: FormViewController {
         Statistics.pageviewEnd(with: Statistics.Page.Debug.name)
     }
 }
+#endif
