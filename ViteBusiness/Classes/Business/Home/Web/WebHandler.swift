@@ -73,13 +73,22 @@ public struct WebHandler {
         var allowedCharacterSet = CharacterSet.urlQueryAllowed
         allowedCharacterSet.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
 
-        var string = urlString
+        let array = urlString.split(separator: "#")
+        guard array.isEmpty == false else { return urlString }
+        var string = String(array[0])
+
         for (key, value) in querys {
             let separator = string.contains("?") ? "&" : "?"
             string = string.appending(separator)
             string = string.appending(key.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? "")
             string = string.appending("=")
             string = string.appending(value.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? "")
+        }
+
+        if array.count > 1 {
+            let fragment = String(array[1])
+            string.append("#")
+            string.append(fragment)
         }
         return string
     }

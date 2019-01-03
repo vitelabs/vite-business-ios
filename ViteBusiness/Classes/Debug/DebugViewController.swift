@@ -67,334 +67,66 @@ class DebugViewController: FormViewController {
 
                 var actions = DebugService.AppEnvironment.allValues.map { config -> (Alert.UIAlertControllerAletrActionTitle, ((UIAlertController) -> Void)?) in
                     (.default(title: config.name), { [weak self] alert in
-
                         guard let `self` = self else { return }
                         guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
                         DebugService.instance.setAppEnvironment(config)
                         cell.value = config.name
                         cell.updateCell()
-
-                        guard let useBigDifficultyCell = self.form.rowBy(tag: "useBigDifficulty") as? SwitchRow else { return }
-                        useBigDifficultyCell.value = DebugService.instance.config.useBigDifficulty
-                        useBigDifficultyCell.updateCell()
-
-                        guard let rpcUseOnlineUrlCell = self.form.rowBy(tag: "rpcUseOnlineUrl") as? SwitchRow else { return }
-                        rpcUseOnlineUrlCell.value = DebugService.instance.config.rpcUseOnlineUrl
-                        rpcUseOnlineUrlCell.updateCell()
-
-                        guard let rpcCustomUrlCell = self.form.rowBy(tag: "rpcCustomUrl") as? LabelRow else { return }
-                        if let _ = URL(string: DebugService.instance.config.rpcCustomUrl) {
-                            rpcCustomUrlCell.title = "Custom URL"
-                            rpcCustomUrlCell.value = DebugService.instance.config.rpcCustomUrl
-                        } else {
-                            rpcCustomUrlCell.title = "Test URL"
-                            rpcCustomUrlCell.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
-                        }
-                        rpcCustomUrlCell.updateCell()
-
-                        guard let browserUseOnlineUrlCell = self.form.rowBy(tag: "browserUseOnlineUrl") as? SwitchRow else { return }
-                        browserUseOnlineUrlCell.value = DebugService.instance.config.browserUseOnlineUrl
-                        browserUseOnlineUrlCell.updateCell()
-
-                        guard let browserCustomUrlCell = self.form.rowBy(tag: "browserCustomUrl") as? LabelRow else { return }
-                        if let _ = URL(string: DebugService.instance.config.browserCustomUrl) {
-                            browserCustomUrlCell.title = "Custom URL"
-                            browserCustomUrlCell.value = DebugService.instance.config.browserCustomUrl
-                        } else {
-                            browserCustomUrlCell.title = "Test URL"
-                            browserCustomUrlCell.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-                        }
-                        browserCustomUrlCell.updateCell()
-
-                        guard let configEnvironmentCell = self.form.rowBy(tag: "configEnvironment") as? LabelRow else { return }
-                        configEnvironmentCell.value = DebugService.instance.config.configEnvironment.name
-                        configEnvironmentCell.updateCell()
                     })
                 }
 
+                actions.append((.default(title: "Custom"), { [weak self] alert in
+                    self?.navigationController?.pushViewController(DebugEnvironmentViewController(), animated: true)
+                }))
                 actions.append((.cancel, nil))
                 DebugActionSheet.show(title: "Select App Environment", message: nil, actions: actions)
             }
             +++
-            Section {
-                $0.header = HeaderFooterView(title: "Wallet")
-            }
-            <<< SwitchRow("useBigDifficulty") {
-                $0.title = "Use Big Difficulty (Use GPU)"
-                $0.value = DebugService.instance.config.useBigDifficulty
-            }.onChange { [weak self] row in
-                guard let `self` = self else { return }
-                guard let ret = row.value else { return }
-                DebugService.instance.config.useBigDifficulty = ret
-                guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.config.appEnvironment.name
-                cell.updateCell()
-            }
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "RPC")
-            }
-            <<< SwitchRow("rpcUseOnlineUrl") {
-                $0.title = "Use Online URL"
-                $0.value = DebugService.instance.config.rpcUseOnlineUrl
-            }.onChange { [weak self] row in
-                guard let `self` = self else { return }
-                guard let ret = row.value else { return }
-                DebugService.instance.config.rpcUseOnlineUrl = ret
-                guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.config.appEnvironment.name
-                cell.updateCell()
-            }
-            <<< LabelRow("rpcCustomUrl") {
-                $0.hidden = "$rpcUseOnlineUrl == true"
-                if let _ = URL(string: DebugService.instance.config.rpcCustomUrl) {
-                    $0.title = "Custom URL"
-                    $0.value = DebugService.instance.config.rpcCustomUrl
-                } else {
-                    $0.title = "Test URL"
-                    $0.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
-                }
-            }.onCellSelection({ [weak self] _, _  in
-                Alert.show(into: self, title: "RPC Custom URL", message: nil, actions: [
-                    (.cancel, nil),
-                    (.default(title: "OK"), { [weak self] alert in
-                        guard let `self` = self else { return }
-                        guard let cell = self.form.rowBy(tag: "rpcCustomUrl") as? LabelRow else { return }
-                        if let text = alert.textFields?.first?.text, (text.hasPrefix("http://") || text.hasPrefix("https://")), let _ = URL(string: text) {
-                            DebugService.instance.config.rpcCustomUrl = text
-                            cell.title = "Custom"
-                            cell.value = text
-                            cell.updateCell()
-                        } else if let text = alert.textFields?.first?.text, text.isEmpty {
-                            DebugService.instance.config.rpcCustomUrl = ""
-                            cell.title = "Test"
-                            cell.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
-                            cell.updateCell()
-                        } else {
-                            Toast.show("Error Format")
-                        }
-                        guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.config.appEnvironment.name
-                        appCell.updateCell()
-                    }),
-                    ], config: { alert in
-                        alert.addTextField(configurationHandler: { (textField) in
-                            textField.clearButtonMode = .always
-                            textField.text = DebugService.instance.config.rpcCustomUrl
-                            textField.placeholder = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
-                        })
-                })
-            })
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "Browser")
-            }
-            <<< SwitchRow("browserUseOnlineUrl") {
-                $0.title = "Use Online URL"
-                $0.value = DebugService.instance.config.browserUseOnlineUrl
-            }.onChange { [weak self] row in
-                guard let `self` = self else { return }
-                guard let ret = row.value else { return }
-                DebugService.instance.config.browserUseOnlineUrl = ret
-                guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                cell.value = DebugService.instance.config.appEnvironment.name
-                cell.updateCell()
-            }
-            <<< LabelRow("browserCustomUrl") {
-                $0.hidden = "$browserUseOnlineUrl == true"
-                if let _ = URL(string: DebugService.instance.config.browserCustomUrl) {
-                    $0.title = "Custom URL"
-                    $0.value = DebugService.instance.config.browserCustomUrl
-                } else {
-                    $0.title = "Test URL"
-                    $0.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-                }
-            }.onCellSelection({ [weak self] _, _  in
-                Alert.show(into: self, title: "Browser Custom URL", message: nil, actions: [
-                    (.cancel, nil),
-                    (.default(title: "OK"), { [weak self] alert in
-                        guard let `self` = self else { return }
-                        guard let cell = self.form.rowBy(tag: "browserCustomUrl") as? LabelRow else { return }
-                        if let text = alert.textFields?.first?.text, (text.hasPrefix("http://") || text.hasPrefix("https://")), let _ = URL(string: text) {
-                            DebugService.instance.config.browserCustomUrl = text
-                            cell.title = "Custom"
-                            cell.value = text
-                            cell.updateCell()
-                        } else if let text = alert.textFields?.first?.text, text.isEmpty {
-                            DebugService.instance.config.browserCustomUrl = ""
-                            cell.title = "Test"
-                            cell.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-                            cell.updateCell()
-                        } else {
-                            Toast.show("Error Format")
-                        }
-                        guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.config.appEnvironment.name
-                        appCell.updateCell()
-                    }),
-                    ], config: { alert in
-                        alert.addTextField(configurationHandler: { (textField) in
-                            textField.clearButtonMode = .always
-                            textField.text = DebugService.instance.config.browserCustomUrl
-                            textField.placeholder = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-                        })
-                })
-            })
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "Config")
-            }
-            <<< LabelRow("configEnvironment") {
-                $0.title = "Config Environment"
-                $0.value = DebugService.instance.config.configEnvironment.name
-            }.onCellSelection { [weak self] _, _ in
-                var actions = DebugService.ConfigEnvironment.allValues.map { config -> (Alert.UIAlertControllerAletrActionTitle, ((UIAlertController) -> Void)?) in
-                    (.default(title: config.name), { [weak self] alert in
-                        guard let `self` = self else { return }
-                        guard let cell = self.form.rowBy(tag: "configEnvironment") as? LabelRow else { return }
-                        DebugService.instance.config.configEnvironment = config
-                        cell.value = config.name
-                        cell.updateCell()
-                        guard let appCell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
-                        appCell.value = DebugService.instance.config.appEnvironment.name
-                        appCell.updateCell()
-                    })
-                }
+            MultivaluedSection(multivaluedOptions: [],
+                               header: "Others",
+                               footer: "") { section in
 
-                actions.append((.cancel, nil))
-                DebugActionSheet.show(title: "Select Config Environment", message: nil, actions: actions)
-            }
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "Statistics")
-            }
-            <<< LabelRow("testStatistics") {
-                $0.title =  "Test Statistics"
-            }.onCellSelection({ _, _  in
-                Statistics.log(eventId: Statistics.Page.Debug.test.rawValue)
-            })
-            <<< SwitchRow("showStatisticsToast") {
-                $0.title = "Show Statistics Toast"
-                $0.value = DebugService.instance.config.showStatisticsToast
-            }.onChange { row in
-                guard let ret = row.value else { return }
-                DebugService.instance.config.showStatisticsToast = ret
-            }
-            <<< SwitchRow("reportEventInDebug") {
-                $0.title = "Report Event In Debug"
-                $0.value = DebugService.instance.config.reportEventInDebug
-            }.onChange { row in
-                guard let ret = row.value else { return }
-                DebugService.instance.config.reportEventInDebug = ret
-            }
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "Operation")
-            }
-            <<< LabelRow("getTestToken") {
-                $0.title =  "Get Test Token"
-            }.onCellSelection({ _, _  in
-                if let address = HDWalletManager.instance.account?.address {
-                    Provider.default.getTestToken(address: address)
-                        .done { (ret) in
-                            Toast.show("\(address.description) get test token complete")
-                        }
-                        .catch { (error) in
-                            Toast.show(error.viteErrorMessage)
-                    }
-                } else {
-                    Toast.show("Login firstly")
-                }
-            })
-            <<< LabelRow("del intro page version") {
-                $0.title =  "del intro page version"
-            }.onCellSelection({ _, _  in
-                    UserDefaultsService.instance.setObject("", forKey: "IntroView", inCollection: "IntroViewPageVersion")
-                    Toast.show("del intro page version")
-                })
-            <<< LabelRow("reloadConfig") {
-                $0.title =  "Reload Config"
-            }.onCellSelection({ _, _  in
-                AppSettingsService.instance.start()
-                Toast.show("Operation complete")
-            })
-            <<< LabelRow("checkUpdate") {
-                $0.title =  "Check Update"
-            }.onCellSelection({ _, _  in
-                AppUpdateService.checkUpdate()
-                Toast.show("Operation complete")
-            })
-            <<< LabelRow("deleteAllWallets") {
-                $0.title =  "Delete All Wallets"
-            }.onCellSelection({ [weak self]  _, _  in
-                guard let `self` = self else { return }
-                self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
-                DispatchQueue.global().async {
-                    HDWalletManager.instance.deleteAllWallets()
-                    KeychainService.instance.clearCurrentWallet()
-                    DispatchQueue.main.async {
-                        self.view.hideLoading()
-                        NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
-                    }
-                }
-            })
-            <<< LabelRow("resetCurrentWalletBagCount") {
-                $0.title =  "Reset Current Wallet Bag Count"
-            }.onCellSelection({ _, _  in
-                HDWalletManager.instance.resetBagCount()
-                Toast.show("Operation complete")
-            })
-            <<< LabelRow("deleteTokenCache") {
-                $0.title =  "Delete Token Cache"
-            }.onCellSelection({ _, _  in
-                TokenCacheService.instance.deleteCache()
-                Toast.show("Operation complete")
-            })
-            <<< LabelRow("exportLogFile") {
-                $0.title =  "Export Log File"
-            }.onCellSelection({ [weak self] _, _  in
-                guard let `self` = self else { return }
-                let cachePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-                let logURL = cachePath.appendingPathComponent("logger.log")
-                let activityViewController = UIActivityViewController(activityItems: [logURL], applicationActivities: nil)
-                self.present(activityViewController, animated: true)
-            })
-            <<< LabelRow("test crash") {
-                $0.title =  "test crash"
-            }.onCellSelection({_, _  in
-                    Crashlytics.sharedInstance().throwException()
-                })
-            +++
-            Section {
-                $0.header = HeaderFooterView(title: "Workflow")
-            }
-            <<< LabelRow("Transaction") {
-                $0.title =  "Transaction"
-                }.onCellSelection({ _, _  in
-                    if let account = HDWalletManager.instance.account {
-                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, token: ViteWalletConst.viteToken, amount: Balance(value: BigInt("10000000000000000000")!), note: "haha") { (r) in
-                            print(r)
-                        }
-                    } else {
-                        Toast.show("Login firstly")
-                    }
-                })
-         +++
-        Section {
-            $0.header = HeaderFooterView(title: "H5 bridge")
-            }
-            <<< LabelRow("testURL") {
-                $0.title =  "test url"
-                }.onCellSelection({ _, _  in
-                    let vc = WKWebViewController.init(url: URL(string: "https://app.vite.net/test/#/")!)
-                    Route.getTopVC()?.navigationController?.pushViewController(vc, animated: true)
-                })
+                                let array: [(String, () -> UIViewController)] =
+                                    [("Operation", {DebugOperationViewController()}),
+                                     ("Workflow", {DebugWorkflowViewController()}),
+                                     ("H5 Bridge", {WKWebViewController.init(url: URL(string: "https://app.vite.net/test/#/")!)}),
+                                     ("Statistics", {DebugStatisticsViewController()})]
+
+                                array.forEach({ (title, block) in
+                                    section <<< LabelRow(title) {
+                                        $0.title =  title
+                                        }.onCellSelection({ [weak self] _, _  in
+                                            guard let `self` = self else { return }
+                                            let vc = block()
+                                            if !(vc is WKWebViewController) {
+                                                vc.navigationItem.title = title
+                                            }
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        })
+                                })
+
+                                DebugService.instance.debugViewControllers.forEach({ (title, vc) in
+                                    section <<< LabelRow(title) {
+                                        $0.title =  title
+                                        }.onCellSelection({ [weak self] _, _  in
+                                            guard let `self` = self else { return }
+                                            self.navigationController?.pushViewController(vc(), animated: true)
+                                        })
+                                })
+        }
 
         #endif
     }
 
     @objc fileprivate func _onCancel() {
         dismiss(animated: true, completion: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let cell = self.form.rowBy(tag: "appEnvironment") as? LabelRow else { return }
+        cell.value = DebugService.instance.config.appEnvironment.name
+        cell.updateCell()
     }
 
     override func viewDidAppear(_ animated: Bool) {

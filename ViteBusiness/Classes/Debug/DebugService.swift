@@ -11,8 +11,8 @@ import Foundation
 import ObjectMapper
 import ViteUtils
 
-class DebugService {
-    static let instance = DebugService()
+public class DebugService {
+    public static let instance = DebugService()
     fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "DebugService"
 
@@ -202,9 +202,9 @@ class DebugService {
             }
         }
 
-        init?(map: Map) { }
+        public init?(map: Map) { }
 
-        mutating func mapping(map: Map) {
+        mutating public func mapping(map: Map) {
             useBigDifficulty <- map["useBigDifficulty"]
             rpcUseOnlineUrl <- map["rpcUseOnlineUrl"]
             rpcCustomUrl <- map["rpcCustomUrl"]
@@ -247,5 +247,13 @@ class DebugService {
                 assert(false, error.localizedDescription)
             }
         }
+    }
+
+    var debugViewControllers: [(String, () -> UIViewController)] = []
+}
+
+public extension DebugService {
+    func addDebugViewController(title: String, viewController: @autoclosure @escaping () -> UIViewController) {
+        debugViewControllers.append((title, viewController))
     }
 }
