@@ -57,6 +57,13 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func handleWebConfig() {
+       let languageChangedInSetting = NotificationCenter.default.rx.notification(.languageChangedInSetting)
+
+        languageChangedInSetting.subscribe {[weak self] (_) in
+            guard let `self` = self else { return }
+            WKWebViewConfig.instance.closeStr = R.string.localizable.close()
+        }.disposed(by: rx.disposeBag)
+
         WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
         WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
         WKWebViewConfig.instance.closeStr = R.string.localizable.close()
@@ -70,9 +77,6 @@ public class ViteBusinessLanucher: NSObject {
         }
 
         WKWebViewConfig.instance.sendTransaction = { (_ data: [String: String]?) -> String? in
-
-
-
             do {
                 if let str = data?["data"] as? String {
                     var data  = str.data(using: .utf8)!
