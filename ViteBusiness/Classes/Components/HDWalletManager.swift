@@ -81,7 +81,7 @@ public final class HDWalletManager {
         return storage.wallets
     }
 
-    var wallet: HDWalletStorage.Wallet? {
+    public var wallet: HDWalletStorage.Wallet? {
         return storage.currentWallet
     }
 
@@ -140,7 +140,7 @@ extension HDWalletManager {
         return nil
     }
 
-    func addAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
+    func addAndLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
         let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false)
         self.mnemonic = mnemonic

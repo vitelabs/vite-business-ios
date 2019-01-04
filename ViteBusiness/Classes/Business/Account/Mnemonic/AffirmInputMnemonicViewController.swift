@@ -149,7 +149,7 @@ extension AffirmInputMnemonicViewController {
                 let uuid = UUID().uuidString
                 let encryptKey = CreateWalletService.sharedInstance.password.toEncryptKey(salt: uuid)
                 KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: encryptKey)
-                HDWalletManager.instance.addAddLoginWallet(uuid: uuid, name: CreateWalletService.sharedInstance.name, mnemonic: CreateWalletService.sharedInstance.mnemonic, encryptKey: encryptKey)
+                HDWalletManager.instance.addAndLoginWallet(uuid: uuid, name: CreateWalletService.sharedInstance.name, mnemonic: CreateWalletService.sharedInstance.mnemonic, encryptKey: encryptKey)
                 DispatchQueue.main.async {
                     self.view.hideLoading()
                     NotificationCenter.default.post(name: .createAccountSuccess, object: nil)

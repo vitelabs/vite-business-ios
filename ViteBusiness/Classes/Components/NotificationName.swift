@@ -22,4 +22,6 @@ extension Notification.Name {
     public static let finishShowIntroPage = NSNotification.Name(rawValue: "Vite_finishShowIntroPage")
     public static let userDidVote = NSNotification.Name(rawValue: "Vite_userDidVote")
     public static let userVoteInfoChange = NSNotification.Name(rawValue: "Vite_userVoteInfoChange")
+
+    public static let homePageDidAppear = NSNotification.Name(rawValue: "Vite_homePageDidAppear")
 }
