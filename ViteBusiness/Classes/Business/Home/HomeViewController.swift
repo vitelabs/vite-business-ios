@@ -68,6 +68,11 @@ class HomeViewController: UITabBarController {
         GCD.delay(1) { AppUpdateService.checkUpdate() }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.post(name: .homePageDidAppear, object: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
