@@ -268,7 +268,7 @@ public extension Workflow {
                         info: name,
                         token: nil,
                         amount: nil,
-                        confirmTitle: R.string.localizable.votePageVoteInfoCancelVoteToastTitle(),
+                        confirmTitle: R.string.localizable.voteListConfirmButtonTitle(),
                         completion: completion,
                         confirmSuccess: sendBlock)
     }

@@ -216,7 +216,6 @@ extension AlertControl {
         vc.contentView = alertCompletionView
         alertCompletionView.snp.makeConstraints { (m) in
             m.width.equalTo(270)
-            m.height.equalTo(140)
             m.center.equalToSuperview()
         }
         GCD.delay(1) {
@@ -233,6 +232,7 @@ private class AlertCompletionView: UIView {
 
     let titleLabel = UILabel().then {
         $0.textAlignment = .center
+        $0.numberOfLines = 0
         $0.font = UIFont.boldSystemFont(ofSize: 17)
     }
 
@@ -253,6 +253,7 @@ private class AlertCompletionView: UIView {
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(imageView.snp.bottom).offset(25)
             m.left.right.equalToSuperview()
+            m.bottom.equalToSuperview().offset(-18)
         }
 
     }
