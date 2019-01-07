@@ -44,7 +44,7 @@ class PopViewController: BaseViewController {
         $0.layer.masksToBounds = true
     }
 
-    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 18, left: 24, bottom: 18, right: 24)).then {
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 18, left: 24, bottom: 0, right: 24)).then {
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
