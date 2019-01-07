@@ -217,7 +217,6 @@ extension String {
             isAll = false
             break
         }
-
         return isAll
     }
 
