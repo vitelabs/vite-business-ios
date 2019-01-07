@@ -35,8 +35,8 @@ class VoteHomeViewController: BaseViewController {
         }
 
         titleLabel.tipButton.rx.tap.bind {
-            let url  = URL(string: String(format: "%@?localize=%@", Constants.voteDefinitionURL, LocalizationService.sharedInstance.currentLanguage.rawValue))!
-            let vc = PopViewController(url: url)
+            let htmlString = R.string.localizable.popPageTipVote()
+            let vc = PopViewController(htmlString: htmlString)
             vc.modalPresentationStyle = .overCurrentContext
             let delegate =  StyleActionSheetTranstionDelegate()
             vc.transitioningDelegate = delegate

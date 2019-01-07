@@ -14,11 +14,11 @@ import NSObject_Rx
 import WebKit
 
 class PopViewController: BaseViewController {
-    let url: URL
+    let htmlString: String
     weak var delegate: QuotaSubmitPopViewControllerDelegate?
 
-    init(url: URL) {
-        self.url = url
+    init(htmlString: String) {
+        self.htmlString = htmlString
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,14 +30,7 @@ class PopViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         initBinds()
-        self.reloadWeb()
-    }
-
-    private func reloadWeb() {
-        let request =
-        URLRequest(url: self.url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 5)
-        self.webView.load(request)
-        self.webView.displayLoading(text: "")
+        label.attributedText = htmlString.htmlToAttributedString
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,12 +44,17 @@ class PopViewController: BaseViewController {
         $0.layer.masksToBounds = true
     }
 
-    lazy var webView = WKWebView().then {
-        $0.backgroundColor = .white
-        $0.navigationDelegate = self
-        $0.scrollView.bounces = true
-        $0.scrollView.alwaysBounceVertical = true
-        $0.scrollView.showsHorizontalScrollIndicator = false
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 18, left: 24, bottom: 18, right: 24)).then {
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        $0.stackView.addArrangedSubview(self.label)
+    }
+
+    lazy var label = UILabel().then {
+        $0.numberOfLines = 0
     }
 
     lazy var cancelBtn = UIButton(style: .white, title: R.string.localizable.close())
@@ -71,20 +69,19 @@ class PopViewController: BaseViewController {
             make.left.equalTo(view).offset(52)
             make.right.equalTo(view).offset(-52)
             make.top.greaterThanOrEqualTo(view.safeAreaLayoutGuideSnpTop).offset(80)
-            make.bottom.greaterThanOrEqualTo(view.safeAreaLayoutGuideSnpBottom).offset(-80)
+            make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuideSnpBottom).offset(-80)
         }
 
-        bgView.addSubview(webView)
-        webView.snp.makeConstraints { (m) in
+        bgView.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (m) in
             m.left.right.equalTo(bgView)
             m.top.equalTo(bgView)
-            m.height.lessThanOrEqualTo(120)
         }
 
         bgView.addSubview(cancelBtn)
         cancelBtn.snp.makeConstraints { (m) in
             m.left.right.equalTo(bgView)
-            m.top.equalTo(webView.snp.bottom).offset(15)
+            m.top.equalTo(scrollView.snp.bottom)
             m.bottom.equalTo(bgView)
             m.height.equalTo(50)
         }
@@ -105,26 +102,16 @@ class PopViewController: BaseViewController {
     }
 }
 
-extension PopViewController: WKNavigationDelegate {
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        _ = self.webView.evaluateJavaScript("document.body.scrollHeight") { (result, _) in
-            self.webView.hideLoading()
-            let num = result as! NSNumber
-            let webViewHeight =  num.floatValue
-            webView.snp.updateConstraints { (m) in
-                m.height.lessThanOrEqualTo(webViewHeight)
-            }
-            UIView.animate(withDuration: 0.3, animations: {
-                webView.layoutIfNeeded()
-            })
+extension String {
+    var htmlToAttributedString: NSAttributedString {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
         }
     }
-
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        self.webView.hideLoading()
-        self.webView.displayRetry(retry: {[weak self] in
-                self?.reloadWeb()
-        })
+    var htmlToString: String {
+        return htmlToAttributedString.string ?? ""
     }
 }

@@ -73,8 +73,8 @@ class MyVoteInfoViewController: BaseViewController, View {
         }).disposed(by: disposeBag)
 
         self.viewInfoView.nodeStatusLab.tipButton.rx.tap.bind {
-            let url  = URL(string: String(format: "%@?localize=%@&nodeName=%@", Constants.voteLoserURL, LocalizationService.sharedInstance.currentLanguage.rawValue, self.viewInfoView.voteInfo?.nodeName ?? ""))!
-            let vc = PopViewController(url: url)
+            let htmlString = R.string.localizable.popPageTipVoteLoser(self.viewInfoView.voteInfo?.nodeName ?? "", self.viewInfoView.voteInfo?.nodeName ?? "")
+            let vc = PopViewController(htmlString: htmlString)
             vc.modalPresentationStyle = .overCurrentContext
             let delegate =  StyleActionSheetTranstionDelegate()
             vc.transitioningDelegate = delegate

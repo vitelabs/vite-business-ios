@@ -154,8 +154,8 @@ class QuotaManageViewController: BaseViewController {
         }
 
         titleLabel.tipButton.rx.tap.bind { [weak self] in
-            let url  = URL(string: String(format: "%@?localize=%@", Constants.quotaDefinitionURL, LocalizationService.sharedInstance.currentLanguage.rawValue))!
-            let vc = PopViewController(url: url)
+            let htmlString = R.string.localizable.popPageTipQuota()
+            let vc = PopViewController(htmlString: htmlString)
             vc.modalPresentationStyle = .overCurrentContext
             let delegate =  StyleActionSheetTranstionDelegate()
             vc.transitioningDelegate = delegate

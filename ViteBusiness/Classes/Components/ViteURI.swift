@@ -67,7 +67,7 @@ extension ViteURI {
             if let data = data, !data.isEmpty,
                 let d = data.data(using: .utf8) {
                 let note = d.base64EncodedWithURLSafeString()
-                string.append(key: Key.data.rawValue, value: "\"\(note)\"")
+                string.append(key: Key.data.rawValue, value: "\(note)")
             }
         }
 
@@ -122,12 +122,8 @@ extension ViteURI {
 
         var data: String?
         if let dataString = dic[Key.data.rawValue],
-            !dataString.isEmpty,
-            dataString.hasPrefix("\""),
-            dataString.hasSuffix("\"") {
+            !dataString.isEmpty {
             var note = dataString
-            note = String(note.dropFirst())
-            note = String(note.dropLast())
             if let d = Data(base64EncodedWithURLSafe: note) {
                 data = String(bytes: d, encoding: .utf8)
             }
