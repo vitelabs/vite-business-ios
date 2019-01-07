@@ -102,6 +102,7 @@ extension LockViewController {
                 if let wallet = KeychainService.instance.currentWallet,
                     wallet.uuid == HDWalletManager.instance.wallet?.uuid,
                     HDWalletManager.instance.loginCurrent(encryptKey: wallet.encryptKey) {
+                    HDWalletManager.instance.locked = false
                     DispatchQueue.main.async {
                         self.view.hideLoading()
                         NotificationCenter.default.post(name: .unlockDidSuccess, object: nil)

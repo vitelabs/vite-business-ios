@@ -175,6 +175,7 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func goLockPage() {
+        HDWalletManager.instance.locked = true
         let rootVC: BaseViewController
         if HDWalletManager.instance.isAuthenticatedByBiometry {
             rootVC = LockViewController()

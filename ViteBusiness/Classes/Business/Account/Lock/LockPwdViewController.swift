@@ -158,6 +158,7 @@ extension LockPwdViewController {
             if let wallet = HDWalletManager.instance.wallet,
                 HDWalletManager.instance.loginCurrent(encryptKey: password.toEncryptKey(salt: wallet.uuid)) {
                 KeychainService.instance.setCurrentWallet(uuid: wallet.uuid, encryptKey: password.toEncryptKey(salt: wallet.uuid))
+                HDWalletManager.instance.locked = false
                 DispatchQueue.main.async {
                     self.view.hideLoading()
                     NotificationCenter.default.post(name: .unlockDidSuccess, object: nil)

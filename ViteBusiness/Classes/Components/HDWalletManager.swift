@@ -55,6 +55,8 @@ public final class HDWalletManager {
     fileprivate(set) var mnemonic: String?
     fileprivate var encryptedKey: String?
 
+    public internal(set) var locked = false
+
     fileprivate static let maxAddressCount = 10
 
     func updateName(name: String) {
