@@ -175,6 +175,9 @@ class VoteListViewController: BaseViewController {
     }
 
     func vote(nodeName: String) {
+        if self.searchBar.textField.isFirstResponder {
+            self.searchBar.textField.resignFirstResponder()
+        }
         let (status, info) = self.reactor.lastVoteInfo.value
         let voted = status == .voteSuccess || status == .voting
         if voted {
@@ -194,7 +197,7 @@ class VoteListViewController: BaseViewController {
     }
 
     func vote(to nodeName: String) {
-      self.reactor.vote(nodeName: nodeName)
+        self.reactor.vote(nodeName: nodeName)
     }
 
     var appear = false
