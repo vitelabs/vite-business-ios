@@ -21,17 +21,17 @@ public class ViteBusinessLanucher: NSObject {
 
     public var window: UIWindow!
 
-    var subVCInfo = [(UIViewController, Int)]()
+    var subVCInfo = [(() -> UIViewController, Int)]()
 
-    public func add(homePageSubTabViewController viewController: UIViewController ,atIndex index: Int) {
+    public func add(homePageSubTabViewController viewController: @autoclosure @escaping () -> UIViewController ,atIndex index: Int) {
         self.subVCInfo.append((viewController,index))
         guard let window = window,
             let rootVC = window.rootViewController as? HomeViewController else { return }
         var subViewControlles = rootVC.viewControllers ?? []
         if subViewControlles.count <= index {
-            rootVC.viewControllers?.append(viewController)
+            rootVC.viewControllers?.append(viewController())
         } else {
-            subViewControlles.insert(viewController, at: index)
+            subViewControlles.insert(viewController(), at: index)
             rootVC.viewControllers = subViewControlles
         }
     }
