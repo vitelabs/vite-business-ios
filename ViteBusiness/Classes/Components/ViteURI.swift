@@ -63,11 +63,19 @@ extension ViteURI {
                 string.append(key: Key.decimals.rawValue, value: decimalsString)
             }
 
-            // base64 url safe https://tools.ietf.org/html/rfc4648#section-5
-            if let data = data, !data.isEmpty,
-                let d = data.data(using: .utf8) {
-                let note = d.base64EncodedWithURLSafeString()
-                string.append(key: Key.data.rawValue, value: "\(note)")
+            if let data = data, !data.isEmpty {
+                var note = data
+                note = note.replacingOccurrences(of: "%", with: "%25")
+                note = note.replacingOccurrences(of: ":", with: "%3A")
+                note = note.replacingOccurrences(of: "-", with: "%2D")
+                note = note.replacingOccurrences(of: "@", with: "%40")
+                note = note.replacingOccurrences(of: "/", with: "%2F")
+                note = note.replacingOccurrences(of: "?", with: "%3F")
+                note = note.replacingOccurrences(of: "&", with: "%26")
+                note = note.replacingOccurrences(of: "=", with: "%3D")
+                note = note.replacingOccurrences(of: "\\", with: "%5C")
+                note = note.replacingOccurrences(of: "\"", with: "%22")
+                string.append(key: Key.data.rawValue, value: "\"\(note)\"")
             }
         }
 
@@ -122,11 +130,23 @@ extension ViteURI {
 
         var data: String?
         if let dataString = dic[Key.data.rawValue],
-            !dataString.isEmpty {
+            !dataString.isEmpty,
+            dataString.hasPrefix("\""),
+            dataString.hasSuffix("\"") {
+
             var note = dataString
-            if let d = Data(base64EncodedWithURLSafe: note) {
-                data = String(bytes: d, encoding: .utf8)
-            }
+            note = note.replacingOccurrences(of: "%25", with: "%")
+            note = note.replacingOccurrences(of: "%3A", with: ":")
+            note = note.replacingOccurrences(of: "%2D", with: "-")
+            note = note.replacingOccurrences(of: "%40", with: "@")
+            note = note.replacingOccurrences(of: "%2F", with: "/")
+            note = note.replacingOccurrences(of: "%3F", with: "?")
+            note = note.replacingOccurrences(of: "%26", with: "&")
+            note = note.replacingOccurrences(of: "%3D", with: "=")
+            note = note.replacingOccurrences(of: "%5C", with: "\\")
+            note = note.replacingOccurrences(of: "%22", with: "\"")
+            note = String(note.dropFirst())
+            data = String(note.dropLast())
         }
 
         return ViteURI.transfer(address: address, tokenId: tokenId, amountString: amountString, decimalsString: decimalsString, data: data)
@@ -213,6 +233,7 @@ extension String {
             isAll = false
             break
         }
+
         return isAll
     }
 
