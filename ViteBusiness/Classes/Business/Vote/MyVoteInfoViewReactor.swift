@@ -22,6 +22,7 @@ final class MyVoteInfoViewReactor: Reactor {
     enum Action {
         case refreshData(String)
         case voting(String, Balance?)
+        case cancelVote()
     }
 
     enum Mutation {
@@ -46,13 +47,17 @@ final class MyVoteInfoViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refreshData((let address)):
-            return Observable.concat([
-                self.fetchVoteInfo(address).map { Mutation.replace(voteInfo: $0.0, voteStatus: .voteSuccess, error: $0.1) },
-                ])
+            return
+                self.fetchVoteInfo(address).map { Mutation.replace(voteInfo: $0.0, voteStatus: .voteSuccess, error: $0.1) }
+
         case .voting(let nodeName, let banlance):
-            return Observable.concat([
-                self.createLocalVoteInfo(nodeName, banlance, false).map { Mutation.replace(voteInfo: $0.0, voteStatus: .voting, error: nil) },
-                ])
+            return
+                self.createLocalVoteInfo(nodeName, banlance, false).map { Mutation.replace(voteInfo: $0.0, voteStatus: .voting, error: nil) }
+
+        case .cancelVote():
+            return
+                    Observable.just(Mutation.replace(voteInfo: nil, voteStatus: .cancelVoting, error:nil))
+
         }
     }
 

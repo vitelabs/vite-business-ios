@@ -89,6 +89,7 @@ class MyVoteInfoViewController: BaseViewController, View {
         //vote success
         _ = NotificationCenter.default.rx.notification(.userDidVote).takeUntil(self.rx.deallocated).observeOn(MainScheduler.instance).subscribe({[weak self] (notification)   in
             let nodeName = notification.element?.object
+             plog(level: .debug, log: String.init(format: "notification  userDidVote voteInfo.nodeName = %@",  nodeName as! String), tag: .vote)
             self?.reactor?.action.onNext(.voting(nodeName as! String, self?.balance))
         })
     }
@@ -152,29 +153,29 @@ extension MyVoteInfoViewController {
                 guard let voteStatus = $1 else {
                     return
                 }
+                //handle cancel vote
+                if voteStatus == .cancelVoting {
+                    self?.viewInfoView.changeInfoCancelVoting()
+                    HUD.hide()
+                    return
+                }
                 guard let error = $2 else {
-                    //handle cancel vote
-                    if voteStatus == .cancelVoting {
-                        self?.viewInfoView.changeInfoCancelVoting()
-                        HUD.hide()
-                        Toast.show(R.string.localizable.votePageVoteInfoCancelVoteToastTitle())
-                        return
-                    }
-
                     guard let voteInfo = $0 else {
                         //voteInfo == nil && old voteStatus = voting
                         if self?.viewInfoView.voteStatus != .voting {
                             UIView.animate(withDuration: 0.3, animations: {
+                                self?.viewInfoView.resetView()
                                 self?.viewInfoView.isHidden = true
                                 self?.voteInfoEmptyView.isHidden = false
                             })
                         }
+                        self?.oldVoteInfo = nil
                         self?.notificationList(nil, .noVote)
                         return
                     }
                     //server node can't affirm
                     if self?.oldVoteInfo?.nodeName == voteInfo.nodeName &&
-                        (self?.viewInfoView.voteStatus == .voting || self?.viewInfoView.voteStatus == .cancelVoting) {
+                        (self?.viewInfoView.voteStatus == .cancelVoting) {
                         return
                     }
                     //voteInfo != nil && new voteStatus = voting, old  voteInfo
@@ -182,9 +183,11 @@ extension MyVoteInfoViewController {
                         self?.oldVoteInfo = voteInfo
                     }
 
+                    plog(level: .debug, log: String.init(format: "self?.oldVoteInfo=%@  , voteInfo.nodeName = %@, voteStatus=%@ ", self?.oldVoteInfo?.nodeName ?? "", voteInfo.nodeName ?? "", voteStatus.display ), tag: .vote)
                     self?.refreshVoteInfoView(voteInfo, voteStatus)
                     return
                 }
+                self?.oldVoteInfo = nil
             }.disposed(by: disposeBag)
     }
 }
@@ -194,7 +197,7 @@ extension MyVoteInfoViewController {
          DispatchQueue.main.async {
             Workflow.cancelVoteWithConfirm(account: self.reactor!.account, name: self.viewInfoView.voteInfo?.nodeName ?? "", completion: { (r) in
                 if case .success = r {
-                    self.viewInfoView.changeInfoCancelVoting()
+                    self.reactor?.action.onNext(.cancelVote())
                 }
             })
          }
