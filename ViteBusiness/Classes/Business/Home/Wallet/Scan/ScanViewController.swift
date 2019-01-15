@@ -16,33 +16,17 @@ import RxSwift
 import RxCocoa
 import ViteUtils
 
-enum ScanResult {
-    case viteURI(ViteURI)
-    case otherString(String?)
-}
-
 extension Reactive where Base: ScanViewController {
-    var result: Observable<ScanResult> {
+    var result: Observable<String> {
         return base.result.asObservable().share()
     }
 }
 
 class ScanViewController: BaseViewController, View {
 
-    private let dismissWhenComplete: Bool
-
     private var pickingImage = false
 
-    init(dismissWhenComplete: Bool = true) {
-        self.dismissWhenComplete = dismissWhenComplete
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    fileprivate var result: PublishSubject<ScanResult> = PublishSubject<ScanResult>()
+    fileprivate var result: PublishSubject<String> = PublishSubject<String>()
 
     var disposeBag = DisposeBag()
 
@@ -236,27 +220,13 @@ class ScanViewController: BaseViewController, View {
             })
             .disposed(by: disposeBag)
 
-        reactor.state
-            .map { $0.alertMessage }
-            .filterNil()
-            .subscribe(onNext: { [unowned self] in
-                self.showAlertMessage($0)
-            })
-            .disposed(by: disposeBag)
 
         reactor.state
-            .map { $0.result }
+            .map { $0.resultString }
             .filterNil()
             .bind {[weak self] result in
                 self?.stopCaptureSession()
-                if case .viteURI(_) = result {
-                    if self?.dismissWhenComplete == true {
-                        self?.result.onNext(result)
-                        self?.navigationController?.popViewController(animated: true)
-                    } else {
-                        self?.result.onNext(result)
-                    }
-                }
+                self?.result.onNext(result)
             }
             .disposed(by: disposeBag)
     }

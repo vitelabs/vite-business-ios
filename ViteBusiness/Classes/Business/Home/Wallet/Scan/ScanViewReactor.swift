@@ -22,14 +22,11 @@ final class ScanViewReactor: Reactor {
     enum Mutation {
         case processAVMetadata(AVMetadataObject?)
         case processImage(UIImage?)
-        case creatURI
     }
 
     struct State {
         var resultString: String?
-        var result: ScanResult?
         var toastMessage: String?
-        var alertMessage: String?
     }
 
     var initialState: State
@@ -37,36 +34,26 @@ final class ScanViewReactor: Reactor {
     init() {
         self.initialState = State(
             resultString: nil,
-            result: nil,
-            toastMessage: nil,
-            alertMessage: nil)
+            toastMessage: nil)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .pickeImage(pickedImage):
-            return Observable.concat([
-                Observable.just(Mutation.processImage(pickedImage)),
-                Observable.just(Mutation.creatURI),
-            ])
+            return Observable.just(Mutation.processImage(pickedImage))
         case let .scanQRCode(metadataObject):
-            return Observable.concat([
-                Observable.just(Mutation.processAVMetadata(metadataObject)),
-                Observable.just(Mutation.creatURI),
-                ])
+            return Observable.just(Mutation.processAVMetadata(metadataObject))
         }
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-        newState.toastMessage = nil; newState.alertMessage = nil
+        newState.toastMessage = nil
         switch mutation {
         case let .processImage(pickedImage):
             (newState.resultString, newState.toastMessage) = self.processImage(pickedImage)
         case let .processAVMetadata(metadata):
             newState.resultString = self.processAVMetadata(metadata)
-        case .creatURI:
-            (newState.result, newState.alertMessage ) = self.creatURI(newState.resultString)
         }
         return newState
     }
@@ -102,18 +89,6 @@ final class ScanViewReactor: Reactor {
     func processAVMetadata(_ metadataObject: AVMetadataObject?) -> String? {
         guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return nil }
         return readableObject.stringValue
-    }
-
-    func creatURI(_ string: String?) -> (result: ScanResult?, alertString: String?) {
-        var scanResult: ScanResult
-        var alertString: String?
-        if let string = string, let uri = ViteURI.parser(string: string) {
-            scanResult = .viteURI(uri)
-        } else {
-            scanResult = .otherString(string)
-            alertString = string
-        }
-        return (scanResult, alertString)
     }
 
 }

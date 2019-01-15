@@ -19,7 +19,7 @@ public class DebugService {
     let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
     let browserDefaultTestEnvironmentUrl = URL(string: "http://132.232.134.168:8080")!
 
-    enum AppEnvironment: Int {
+    public enum AppEnvironment: Int {
         case test = 0
         case stage = 1
         case online = 2
@@ -41,7 +41,7 @@ public class DebugService {
         static var allValues: [AppEnvironment] = [.test, .stage, .online]
     }
 
-    enum ConfigEnvironment: Int {
+    public enum ConfigEnvironment: Int {
         case test = 0
         case stage = 1
         case online = 2
@@ -84,7 +84,7 @@ public class DebugService {
         }
     }
 
-    var config: Config {
+    public var config: Config {
         didSet {
             guard config != oldValue else { return }
             pri_save()
@@ -173,7 +173,7 @@ public class DebugService {
                           reportEventInDebug: nil)
         }
 
-        var appEnvironment: AppEnvironment {
+        public var appEnvironment: AppEnvironment {
             get {
                 let test = Config.test
                 let stage = Config.stage
