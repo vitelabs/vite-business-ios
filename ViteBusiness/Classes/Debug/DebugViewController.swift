@@ -89,7 +89,7 @@ class DebugViewController: FormViewController {
                                 let array: [(String, () -> UIViewController)] =
                                     [("Operation", {DebugOperationViewController()}),
                                      ("Workflow", {DebugWorkflowViewController()}),
-                                     ("H5 Bridge", {WKWebViewController.init(url: URL(string: "https://app.vite.net/test/#/")!)}),
+                                     ("H5 Bridge", {WKWebViewController.init(url: URL(string: "http://192.168.31.224:3824/")!)}),
                                      ("Statistics", {DebugStatisticsViewController()})]
 
                                 array.forEach({ (title, block) in
