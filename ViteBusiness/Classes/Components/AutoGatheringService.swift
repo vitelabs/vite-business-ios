@@ -29,7 +29,7 @@ final class AutoGatheringService {
                     switch r {
                     case .success(let a):
                         if let accountBlock = a {
-                            plog(level: .debug, log: account.address.description + ": " + "receive \(accountBlock.amountShortString)", tag: .transaction)
+                            plog(level: .debug, log: account.address.description + ": " + "receive block hash: \(accountBlock.hash!)", tag: .transaction)
                         } else {
                             plog(level: .debug, log: account.address.description + ": " + "no need to receive", tag: .transaction)
                         }

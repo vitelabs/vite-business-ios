@@ -287,6 +287,10 @@
 "vote.list.search.empty" = "No result, please try another input";
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
 
+// Contract
+"contract.confirm.title" = "合约交易";
+"contract.confirm.info" = "合约地址";
+
 //RefreshFooter
 "vite.RefreshBackFooter.IdleText" = "Pull up to load more";
 "Vite.RefreshBackFooter.PullingText" = "Release to load more.";

@@ -13,6 +13,7 @@ import NSObject_Rx
 import RxDataSources
 import Vite_HDWalletKit
 import ViteUtils
+import ViteWallet
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -129,7 +130,7 @@ class WalletHomeViewController: BaseTableViewController {
         let scanViewController = ScanViewController()
         scanViewController.reactor = ScanViewReactor.init()
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
-            if let uri = ViteURI.parser(string: result) {
+            if case .success(let uri) = ViteURI.parser(string: result) {
                 self.handleScanResult(with: uri, scanViewController: scanViewController)
             } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
@@ -141,23 +142,35 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func handleScanResult(with uri: ViteURI, scanViewController: ScanViewController?) {
-        switch uri {
-        case let .transfer(address, tokenId, _, _, note):
-            let tokenId = tokenId ?? TokenCacheService.instance.viteToken.id
-            scanViewController?.view.displayLoading(text: "")
-            TokenCacheService.instance.tokenForId(tokenId) {[weak scanViewController] (result) in
-                scanViewController?.view.hideLoading()
-                switch result {
-                case .success(let token):
-                    let amount = uri.amountToBigInt()
-                    let sendViewController = SendViewController(token: token, address: address, amount: amount, note: note)
+        scanViewController?.view.displayLoading(text: "")
+        TokenCacheService.instance.tokenForId(uri.tokenId) {[weak scanViewController] (result) in
+            scanViewController?.view.hideLoading()
+            switch result {
+            case .success(let token):
+                let amount = uri.amountForSmallestUnit(decimals: token.decimals)
+                switch uri.type {
+                case .transfer:
+                    var note = ""
+                    if let data = uri.data,
+                        let ret = String(bytes: data, encoding: .utf8) {
+                        note = ret
+                    }
+                    let sendViewController = SendViewController(token: token, address: uri.address, amount: amount, note: note)
                     guard var viewControllers = self.navigationController?.viewControllers else { return }
                     _ = viewControllers.popLast()
                     viewControllers.append(sendViewController)
                     scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
-                case .failure(let error):
-                    scanViewController?.showToast(string: error.viteErrorMessage)
+                case .contract:
+                    self.navigationController?.popViewController(animated: true)
+                    Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
+                                                     toAddress: uri.address,
+                                                     token: token,
+                                                     amount: Balance(value: amount),
+                                                     data: uri.data?.toBase64(),
+                                                     completion: { _ in })
                 }
+            case .failure(let error):
+                scanViewController?.showToast(string: error.viteErrorMessage)
             }
         }
     }

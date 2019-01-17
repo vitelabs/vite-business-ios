@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ViteWallet
+import Vite_HDWalletKit
 import PromiseKit
 import ViteUtils
 import enum ViteWallet.Result
@@ -33,7 +34,7 @@ public struct Workflow {
                                         token: String?,
                                         amount: String?,
                                         confirmTitle: String,
-                                        completion: @escaping (Result<Void>) -> (),
+                                        completion: @escaping (Result<AccountBlock>) -> (),
                                         confirmSuccess: @escaping () -> Void) {
         func showConfirm() {
             let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
@@ -61,17 +62,17 @@ public struct Workflow {
         showConfirm()
     }
 
-    private static func sendRawTxWorkflow(withoutPowPromise: Promise<Void>,
+    private static func sendRawTxWorkflow(withoutPowPromise: Promise<AccountBlock>,
                                           getPowPromise: Promise<Provider.SendBlockContext>,
                                           successToast: String,
                                           type: workflowType,
-                                          completion: @escaping (Result<Void>) -> ()) {
+                                          completion: @escaping (Result<AccountBlock>) -> ()) {
         HUD.show()
         withoutPowPromise
             .always {
                 HUD.hide()
             }
-            .recover { (e) -> Promise<Void> in
+            .recover { (e) -> Promise<AccountBlock> in
                 if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
                     switch type {
                     case .other, .vote:
@@ -80,7 +81,7 @@ public struct Workflow {
                                                titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
                                                         .default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
                                                         .cancel], config: { $0.preferredAction = $0.actions[0] })
-                            .then({ (_, index) -> Promise<Void> in
+                            .then({ (_, index) -> Promise<AccountBlock> in
                                 if index == 0 {
                                     return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
                                 } else if index == 1 {
@@ -98,9 +99,9 @@ public struct Workflow {
                     return Promise(error: e)
                 }
             }
-            .done { _ in
+            .done {
                 AlertControl.showCompletion(successToast)
-                completion(Result(value: ()))
+                completion(Result(value: $0))
             }
             .catch { e in
                 let error = ViteError.conversion(from: e)
@@ -135,7 +136,7 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWithPowWorkflow(getPowPromise: Promise<Provider.SendBlockContext>) -> Promise<Void> {
+    private static func sendRawTxWithPowWorkflow(getPowPromise: Promise<Provider.SendBlockContext>) -> Promise<AccountBlock> {
         var cancelPow = false
         let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
             cancelPow = true
@@ -154,7 +155,7 @@ public struct Workflow {
             .always {
                 HUD.show()
             }
-            .then { context -> Promise<Void> in
+            .then { context -> Promise<AccountBlock> in
                 return Provider.default.sendRawTxWithContext(context)
             }.always {
                 HUD.hide()
@@ -169,7 +170,7 @@ public extension Workflow {
                                            token: Token,
                                            amount: Balance,
                                            note: String?,
-                                           completion: @escaping (Result<Void>) -> ()) {
+                                           completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.sendTransactionWithoutPow(account: account, toAddress: toAddress,
@@ -197,7 +198,7 @@ public extension Workflow {
     static func pledgeWithConfirm(account: Wallet.Account,
                                   beneficialAddress: Address,
                                   amount: Balance,
-                                  completion: @escaping (Result<Void>) -> ()) {
+                                  completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -223,7 +224,7 @@ public extension Workflow {
 
     static func voteWithConfirm(account: Wallet.Account,
                                 name: String,
-                                completion: @escaping (Result<Void>) -> ()) {
+                                completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -249,7 +250,7 @@ public extension Workflow {
 
     static func cancelVoteWithConfirm(account: Wallet.Account,
                                       name: String,
-                                      completion: @escaping (Result<Void>) -> ()) {
+                                      completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
             let provider = Provider.default
@@ -271,6 +272,62 @@ public extension Workflow {
                         confirmTitle: R.string.localizable.voteListConfirmButtonTitle(),
                         completion: completion,
                         confirmSuccess: sendBlock)
+    }
+
+    static func callContractWithConfirm(account: Wallet.Account,
+                                        toAddress: Address,
+                                        token: Token,
+                                        amount: Balance,
+                                        data: String?,
+                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            let provider = Provider.default
+            let withoutPowPromise = provider.sendRawTxWithoutPow(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data)
+            let getPowPromise = provider.getPowForSendRawTx(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data, difficulty: ViteWalletConst.DefaultDifficulty.send.value)
+
+            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
+                              getPowPromise: getPowPromise,
+                              successToast: R.string.localizable.sendPageToastSendSuccess(),
+                              type: .other,
+                              completion: completion)
+        }
+
+        confirmWorkflow(title: R.string.localizable.contractConfirmTitle(),
+                        infoTitle: R.string.localizable.contractConfirmInfo(),
+                        info: toAddress.description,
+                        token: token.symbol,
+                        amount: amount.amountFull(decimals: token.decimals),
+                        confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
+                        completion: completion,
+                        confirmSuccess: sendBlock)
+    }
+
+    static func sendRawTx(by uri: ViteURI, accountAddress: Address, token: Token, completion: @escaping (Result<AccountBlock>) -> ()) {
+        guard let account = HDWalletManager.instance.account else {
+            completion(Result(error: WorkfilwError.notLogin))
+            return
+        }
+        guard account.address.description == accountAddress.description else {
+            completion(Result(error: WorkfilwError.accountAddressInconformity))
+            return
+        }
+
+        switch uri.type {
+        case .transfer:
+            var note: String?
+            if let data = uri.data,
+                let ret = String(bytes: data, encoding: .utf8) {
+                note = ret
+            }
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: uri.amountForSmallestUnit(decimals: token.decimals)), note: note, completion: completion)
+        case .contract:
+            callContractWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: uri.amountForSmallestUnit(decimals: token.decimals)), data: uri.data?.toBase64(), completion: completion)
+        }
+    }
+
+    enum WorkfilwError: Error {
+        case notLogin
+        case accountAddressInconformity
     }
 }
 

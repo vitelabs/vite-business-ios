@@ -34,7 +34,7 @@ class ReceiveViewController: BaseViewController {
         self.wallet = HDWalletManager.instance.wallet!
         self.account = HDWalletManager.instance.account!
         self.style = style
-        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transfer(address: account.address, tokenId: token.id, amountString: nil, decimalsString: nil, data: nil))
+        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: account.address, tokenId: token.id, amount: nil, note: nil))
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -142,7 +142,7 @@ class ReceiveViewController: BaseViewController {
 
             Observable.combineLatest(amountBehaviorRelay.asObservable(), footerView.noteTitleTextFieldView.textField.rx.text.asObservable())
                 .map {
-                    ViteURI.transfer(address: self.account.address, tokenId: self.token.id, amountString: $0, decimalsString: "\(self.token.decimals)", data: $1)
+                    ViteURI.transferURI(address: self.account.address, tokenId: self.token.id, amount: $0, note: $1)
                 }
                 .bind(to: uriBehaviorRelay).disposed(by: rx.disposeBag)
         }
