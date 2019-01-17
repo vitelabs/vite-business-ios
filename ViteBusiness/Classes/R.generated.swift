@@ -598,7 +598,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 249 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 251 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -608,22 +608,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailUnconfirmedCountTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.count.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 111
-      /// 
-      /// Locales: en, zh-Hans
-      static let popPageTipQuota = Rswift.StringResource(key: "pop.page.tip.quota", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 222
-      /// 
-      /// Locales: en, zh-Hans
-      static let popPageTipVote = Rswift.StringResource(key: "pop.page.tip.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 333
-      /// 
-      /// Locales: en, zh-Hans
-      static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 6 digits numeric password
       /// 
       /// Locales: en, zh-Hans
       static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let popPageTipVote = Rswift.StringResource(key: "pop.page.tip.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 10 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let popPageTipQuota = Rswift.StringResource(key: "pop.page.tip.quota", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: About Us
       /// 
       /// Locales: en, zh-Hans
@@ -704,14 +704,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPageTipTitle = Rswift.StringResource(key: "create.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Backup Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let createPageTipNextBtn = Rswift.StringResource(key: "create.page.tip.nextBtn", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Backup Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Balance
       /// 
       /// Locales: en, zh-Hans
@@ -872,6 +864,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip1Title = Rswift.StringResource(key: "introduction.page.tip1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Generate Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static let createPageTipNextBtn = Rswift.StringResource(key: "create.page.tip.nextBtn", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Generate Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get Bonus
       /// 
       /// Locales: en, zh-Hans
@@ -888,6 +888,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressManageTipAlertOk = Rswift.StringResource(key: "address.manage.tip.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: I want a different seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Import Account
       /// 
       /// Locales: en, zh-Hans
@@ -944,10 +948,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteStatusVoteInvalid = Rswift.StringResource(key: "vote.page.voteStatus.voteInvalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: It isn't a safe way to keep your seed phrase by screenshot. We suggest that you'd better write it down and keep it in a safe place.
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageAlterTitle = Rswift.StringResource(key: "mnemonic.backup.page.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Language
       /// 
       /// Locales: en, zh-Hans
@@ -1008,14 +1008,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageAddCurrentAddressButtonTitle = Rswift.StringResource(key: "send.page.add.current.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
+      /// 
+      /// Locales: en, zh-Hans
+      static let createPageTipContent = Rswift.StringResource(key: "create.page.tip.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mnemonic seed phrase is used to restore your wallet when switching devices or deleting app, better write it down and keep it in a safe place where only you can access, otherwise your assets will be at tremendous risks
-      /// 
-      /// Locales: en, zh-Hans
-      static let createPageTipContent = Rswift.StringResource(key: "create.page.tip.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Address
       /// 
       /// Locales: en, zh-Hans
@@ -1172,14 +1172,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageNetworkError = Rswift.StringResource(key: "transaction.list.page.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Regenerate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Regenerate seed phrase？
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageAlterMessage = Rswift.StringResource(key: "mnemonic.backup.page.alter.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Registration
       /// 
       /// Locales: en, zh-Hans
@@ -1328,10 +1320,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteStatusVoteSuccess = Rswift.StringResource(key: "vote.page.voteStatus.voteSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Successfully backup your seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Successfully copied!
       /// 
       /// Locales: en, zh-Hans
@@ -1548,6 +1536,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let manageWalletPageErrorTypeName = Rswift.StringResource(key: "manage.wallet.page.error.type.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageAlterTitle = Rswift.StringResource(key: "mnemonic.backup.page.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Withdrawal of staking quota
       /// 
       /// Locales: en, zh-Hans
@@ -1556,6 +1548,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCancelCoin = Rswift.StringResource(key: "transaction.list.transaction.type.name.cancelCoin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Would you like to create a new seed phrase?
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageAlterMessage = Rswift.StringResource(key: "mnemonic.backup.page.alter.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wrong Password!
       /// 
       /// Locales: en, zh-Hans
@@ -1580,6 +1576,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let yes = Rswift.StringResource(key: "Yes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Yes, I have written down my seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You cannot make any transfer until you receive a transaction.
       /// 
       /// Locales: en, zh-Hans
@@ -1596,6 +1596,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let close = Rswift.StringResource(key: "Close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约交易
+      /// 
+      /// Locales: en, zh-Hans
+      static let contractConfirmTitle = Rswift.StringResource(key: "contract.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1611,32 +1619,32 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("balance.info.detail.unconfirmed.count.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: 111
+      /// en translation: 6 digits numeric password
       /// 
       /// Locales: en, zh-Hans
-      static func popPageTipQuota(_: Void = ()) -> String {
-        return NSLocalizedString("pop.page.tip.quota", bundle: R.hostingBundle, comment: "")
+      static func exportPageAlterTfPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 222
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
       /// 
       /// Locales: en, zh-Hans
       static func popPageTipVote(_: Void = ()) -> String {
         return NSLocalizedString("pop.page.tip.vote", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 333
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 10 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static func popPageTipQuota(_: Void = ()) -> String {
+        return NSLocalizedString("pop.page.tip.quota", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: <p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>
       /// 
       /// Locales: en, zh-Hans
       static func popPageTipVoteLoser(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("pop.page.tip.vote.loser", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
-      /// en translation: 6 digits numeric password
-      /// 
-      /// Locales: en, zh-Hans
-      static func exportPageAlterTfPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: About Us
@@ -1777,20 +1785,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func createPageTipTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.tip.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Backup Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func createPageTipNextBtn(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.tip.nextBtn", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Backup Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Balance
@@ -2073,6 +2067,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("introduction.page.tip1.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Generate Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static func createPageTipNextBtn(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.nextBtn", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Generate Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Get Bonus
       /// 
       /// Locales: en, zh-Hans
@@ -2099,6 +2107,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func addressManageTipAlertOk(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.tip.alert.ok", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: I want a different seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Import Account
@@ -2197,13 +2212,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func votePageVoteStatusVoteInvalid(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteStatus.voteInvalid", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: It isn't a safe way to keep your seed phrase by screenshot. We suggest that you'd better write it down and keep it in a safe place.
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageAlterTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Language
@@ -2311,18 +2319,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.add.current.address.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
+      /// 
+      /// Locales: en, zh-Hans
+      static func createPageTipContent(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.content", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
       /// 
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageTipTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Mnemonic seed phrase is used to restore your wallet when switching devices or deleting app, better write it down and keep it in a safe place where only you can access, otherwise your assets will be at tremendous risks
-      /// 
-      /// Locales: en, zh-Hans
-      static func createPageTipContent(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.tip.content", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My Address
@@ -2598,20 +2606,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transaction.list.page.network.error", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Regenerate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Regenerate seed phrase？
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageAlterMessage(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.alter.message", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Registration
       /// 
       /// Locales: en, zh-Hans
@@ -2869,13 +2863,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func votePageVoteStatusVoteSuccess(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteStatus.voteSuccess", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Successfully backup your seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Successfully copied!
@@ -3256,6 +3243,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("manage.wallet.page.error.type.name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageAlterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.alter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Withdrawal of staking quota
       /// 
       /// Locales: en, zh-Hans
@@ -3268,6 +3262,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameCancelCoin(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.cancelCoin", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Would you like to create a new seed phrase?
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageAlterMessage(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.alter.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Wrong Password!
@@ -3312,6 +3313,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Yes", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Yes, I have written down my seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: You cannot make any transfer until you receive a transaction.
       /// 
       /// Locales: en, zh-Hans
@@ -3338,6 +3346,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func close(_: Void = ()) -> String {
         return NSLocalizedString("Close", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合约交易
+      /// 
+      /// Locales: en, zh-Hans
+      static func contractConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contract.confirm.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contractConfirmInfo(_: Void = ()) -> String {
+        return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

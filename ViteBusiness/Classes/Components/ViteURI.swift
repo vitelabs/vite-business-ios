@@ -13,7 +13,7 @@ import Vite_HDWalletKit
 import enum Result.Result
 
 
-struct ViteURI {
+public struct ViteURI {
 
     enum URIType {
         case transfer

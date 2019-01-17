@@ -286,6 +286,10 @@
 "vote.list.search.empty" = "无结果，换个输入试试";
 "vote.list.search.no.transaction.before" = "您的地址未发生过交易，暂不能投票";
 
+// Contract
+"contract.confirm.title" = "合约交易";
+"contract.confirm.info" = "合约地址";
+
 //RefreshFooter
 "vite.RefreshBackFooter.IdleText" = "上拉可以加载更多";
 "Vite.RefreshBackFooter.PullingText" = "松开立即加载更多";
