@@ -68,7 +68,21 @@ public class ViteBusinessLanucher: NSObject {
         WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
         WKWebViewConfig.instance.closeStr = R.string.localizable.close()
 
-        WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> String? in
+        WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?) -> Response? in
+                //handle not login
+                //handle lock
+
+            if !HDWalletManager.instance.isRequireAuthentication
+                 {
+                return Response(code:.success,msg: "ok",data: ["address":HDWalletManager.instance.account?.address.description ?? ""])
+            } else {
+                return Response(code:.failure,msg: "Lock",data:nil)
+            }
+
+            return nil
+        }
+
+        WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> Response? in
             if let url = data?["url"] as? String {
                 let shareUrl = URL.init(string: url)
                 Workflow.share(activityItems: [shareUrl])
@@ -76,36 +90,29 @@ public class ViteBusinessLanucher: NSObject {
             return nil
         }
 
-        WKWebViewConfig.instance.sendTransaction = { (_ data: [String: String]?) -> String? in
-            do {
-                if let str = data?["data"] as? String {
-                    var data  = str.data(using: .utf8)!
-                    let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as! [String: Any]
 
+        WKWebViewConfig.instance.sendTransaction = { (_ json: [String: String]?) -> Response? in
                     guard let account = HDWalletManager.instance.account else {
-                        return nil
+                        return Response(code:.failure,msg: "no account",data: nil)
                     }
-                    if let tokenStr = json["token"] as? String {
+                    if let tokenStr = json?["token"] as? String {
                         guard let token = Token(JSONString: tokenStr) else {
                             return nil
                         }
-                        if let addressStr = json["toAddress"] as? String {
+                        if let addressStr = json?["toAddress"] as? String {
                             let address = Address.init(string: addressStr)
-                            if let amountStr = json["amount"] as? String {
+                            if let amountStr = json?["amount"] as? String {
                                 let amount =                                 Balance(value: amountStr.toBigInt(decimals: token.decimals) ?? BigInt(0))
-                                let noteStr = json["note"] as? String ?? ""
+                                let noteStr = json?["note"] as? String ?? ""
 
                                 Workflow.sendTransactionWithConfirm(account: account, toAddress: address, token: token, amount: amount, note:noteStr , completion: { (r) in
                                 })
+                                 return Response(code:.success,msg: "ok",data: nil)
                             }
                         }
                     }
-                }
-            } catch {
-                print(error.localizedDescription)
+                return nil
             }
-            return nil
-        }
     }
 
     func handleNotification() {
