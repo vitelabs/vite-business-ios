@@ -176,7 +176,7 @@ public extension Workflow {
             let withoutPowPromise = provider.sendTransactionWithoutPow(account: account, toAddress: toAddress,
                                                                                           tokenId: token.id, amount: amount, note: note)
             let getPowPromise = provider.getPowForSendTransaction(account: account, toAddress: toAddress, tokenId: token.id,
-                                                                                     amount: amount, note: note, difficulty: ViteWalletConst.DefaultDifficulty.send.value)
+                                                                                     amount: amount, note: note)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -203,7 +203,7 @@ public extension Workflow {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.pledgeWithoutPow(account: account, beneficialAddress: beneficialAddress, amount: amount)
-            let getPowPromise = provider.getPowForPledge(account: account, beneficialAddress: beneficialAddress, amount: amount, difficulty: ViteWalletConst.DefaultDifficulty.pledge.value)
+            let getPowPromise = provider.getPowForPledge(account: account, beneficialAddress: beneficialAddress, amount: amount)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -229,7 +229,7 @@ public extension Workflow {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.voteWithoutPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name)
-            let getPowPromise = provider.getPowForVote(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name, difficulty: ViteWalletConst.DefaultDifficulty.vote.value)
+            let getPowPromise = provider.getPowForVote(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -255,7 +255,7 @@ public extension Workflow {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.cancelVoteWithoutPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id)
-            let getPowPromise = provider.getPowForCancelVote(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, difficulty: ViteWalletConst.DefaultDifficulty.cancelVote.value)
+            let getPowPromise = provider.getPowForCancelVote(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -283,7 +283,7 @@ public extension Workflow {
         let sendBlock = {
             let provider = Provider.default
             let withoutPowPromise = provider.sendRawTxWithoutPow(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data)
-            let getPowPromise = provider.getPowForSendRawTx(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data, difficulty: ViteWalletConst.DefaultDifficulty.send.value)
+            let getPowPromise = provider.getPowForSendRawTx(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
