@@ -81,6 +81,12 @@ class DebugViewController: FormViewController {
                 actions.append((.cancel, nil))
                 DebugActionSheet.show(title: "Select App Environment", message: nil, actions: actions)
             }
+            <<< LabelRow("weburlinput") {
+                $0.title = "web url input"
+                $0.value = ""
+                }.onCellSelection { [weak self] _, _ in
+                    self?.goToInputUrl()
+            }
             +++
             MultivaluedSection(multivaluedOptions: [],
                                header: "Others",
@@ -116,6 +122,26 @@ class DebugViewController: FormViewController {
         }
 
         #endif
+    }
+
+    func goToInputUrl() {
+        let controller = AlertControl(title: "请输入跳转URL", message: nil)
+        let cancelAction = AlertAction(title: R.string.localizable.cancel(), style: .light, handler: nil)
+        let okAction = AlertAction(title: R.string.localizable.confirm(), style: .light) { controller in
+            let textField = (controller.textFields?.first)! as UITextField
+
+            guard let text = textField.text, (text.hasPrefix("http://") || text.hasPrefix("https://")) else {
+                return
+            }
+            let vc = WKWebViewController(url: URL(string:text)!)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        controller.addTextField { (textfield) in
+            textfield.text = "http://192.168.31.224:8081/#/"
+        }
+        controller.addAction(cancelAction)
+        controller.addAction(okAction)
+        controller.show()
     }
 
     @objc fileprivate func _onCancel() {
