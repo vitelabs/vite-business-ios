@@ -137,7 +137,7 @@ class DebugViewController: FormViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         controller.addTextField { (textfield) in
-            textfield.text = "http://192.168.31.224:8081/#/"
+            textfield.text = "http://192.168.31.224:3824/#/"
         }
         controller.addAction(cancelAction)
         controller.addAction(okAction)

@@ -93,6 +93,20 @@ public class ViteBusinessLanucher: NSObject {
             }
             return nil
         }
+
+        WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: String]?) -> Response? in
+            return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.rawValue)
+        }
+
+        WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: String]?) -> Response? in
+            let data = [
+                "platform":"ios",
+                "versionName":"1.0.0",
+                "versionCode":1024,
+                "env":"test"
+                ] as [String : Any]
+            return Response(code:.success,msg: "ok",data: data)
+        }
     }
 
     func handleWebUIConfig() {
