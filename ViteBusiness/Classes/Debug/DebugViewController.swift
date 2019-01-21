@@ -95,7 +95,7 @@ class DebugViewController: FormViewController {
                                 let array: [(String, () -> UIViewController)] =
                                     [("Operation", {DebugOperationViewController()}),
                                      ("Workflow", {DebugWorkflowViewController()}),
-                                     ("H5 Bridge", {WKWebViewController.init(url: URL(string: "http://0.0.0.0:3824/")!)}),
+                                     ("H5 Bridge", {WKWebViewController.init(url: URL(string: "https://bridge-demo.netlify.com")!)}),
                                      ("Statistics", {DebugStatisticsViewController()})]
 
                                 array.forEach({ (title, block) in

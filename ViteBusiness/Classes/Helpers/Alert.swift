@@ -56,7 +56,7 @@ struct DebugActionSheet {
     }
 }
 
-struct Alert {
+public struct Alert {
     @discardableResult
     public static func show(into viewController: UIViewController? = nil,
                             title: String?,
