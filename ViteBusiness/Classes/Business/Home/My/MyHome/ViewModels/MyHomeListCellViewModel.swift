@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import ViteUtils
 
 class MyHomeListCellViewModel: Mappable {
 
@@ -60,7 +61,8 @@ class MyHomeListCellViewModel: Mappable {
             viewController.navigationController?.pushViewController(vc, animated: true)
         case .custom:
             guard let url = URL(string: url) else { return }
-            WebHandler.open(url)
+            let webvc = WKWebViewController(url: WebHandler.appendQuery(url: url))
+            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
         }
     }
 }
