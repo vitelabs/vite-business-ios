@@ -31,14 +31,14 @@ public struct ViteURI {
     let fee: String?
     let data: Bytes?
 
-    func amountForSmallestUnit(decimals: Int) -> BigInt {
+    func amountForSmallestUnit(decimals: Int) -> BigInt? {
         guard let amount = amount else { return BigInt(0) }
-        return amount.uriNumberTypeStringToBigint(decimals: decimals) ?? BigInt(0)
+        return amount.uriNumberTypeStringToBigint(decimals: decimals)
     }
 
-    func feeForSmallestUnit(decimals: Int) -> BigInt {
+    func feeForSmallestUnit(decimals: Int) -> BigInt? {
         guard let fee = fee else { return BigInt(0) }
-        return fee.uriNumberTypeStringToBigint(decimals: decimals) ?? BigInt(0)
+        return fee.uriNumberTypeStringToBigint(decimals: decimals)
     }
 
     var parameters: [(String, String)]?

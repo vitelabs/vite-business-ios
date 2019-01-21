@@ -304,11 +304,16 @@ public extension Workflow {
 
     static func sendRawTx(by uri: ViteURI, accountAddress: Address, token: Token, completion: @escaping (Result<AccountBlock>) -> ()) {
         guard let account = HDWalletManager.instance.account else {
-            completion(Result(error: WorkfilwError.notLogin))
+            completion(Result(error: WorkflowError.notLogin))
             return
         }
         guard account.address.description == accountAddress.description else {
-            completion(Result(error: WorkfilwError.accountAddressInconformity))
+            completion(Result(error: WorkflowError.accountAddressInconformity))
+            return
+        }
+
+        guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
+            completion(Result(error: WorkflowError.amountInvalid))
             return
         }
 
@@ -319,15 +324,16 @@ public extension Workflow {
                 let ret = String(bytes: data, encoding: .utf8) {
                 note = ret
             }
-            sendTransactionWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: uri.amountForSmallestUnit(decimals: token.decimals)), note: note, completion: completion)
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: amount), note: note, completion: completion)
         case .contract:
-            callContractWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: uri.amountForSmallestUnit(decimals: token.decimals)), data: uri.data?.toBase64(), completion: completion)
+            callContractWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: amount), data: uri.data?.toBase64(), completion: completion)
         }
     }
 
-    enum WorkfilwError: Error {
+    enum WorkflowError: Error {
         case notLogin
         case accountAddressInconformity
+        case amountInvalid
     }
 }
 

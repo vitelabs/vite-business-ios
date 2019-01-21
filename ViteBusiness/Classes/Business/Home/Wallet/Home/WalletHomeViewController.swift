@@ -147,7 +147,10 @@ class WalletHomeViewController: BaseTableViewController {
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let token):
-                let amount = uri.amountForSmallestUnit(decimals: token.decimals)
+                guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
+                    scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
+                    return
+                }
                 switch uri.type {
                 case .transfer:
                     var note = ""
