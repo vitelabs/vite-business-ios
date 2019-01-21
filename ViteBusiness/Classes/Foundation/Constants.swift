@@ -30,4 +30,10 @@ public struct Constants {
     public static let voteLoserURL = "https://app.vite.net/voteLoser"
     public static let voteOfficeURL = "https://www.vite.org/"
     public static let IntroductionPageVersion = "1.0"
+
+    public static let whiteList = ["vite.org",
+                                   "vite.net",
+                                   "vite.store",
+                                   "vite.wiki",
+                                   "vite.blog"]
 }

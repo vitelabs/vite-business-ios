@@ -179,10 +179,42 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func handleScanResult(with url: URL, scanViewController: ScanViewController?) {
-        guard var viewControllers = self.navigationController?.viewControllers else { return }
-        let webvc = WKWebViewController.init(url: url)
-        _ = viewControllers.popLast()
-        viewControllers.append(webvc)
-        scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+
+
+
+        func goWeb() {
+            guard var viewControllers = self.navigationController?.viewControllers else { return }
+            let webvc = WKWebViewController.init(url: url)
+            _ = viewControllers.popLast()
+            viewControllers.append(webvc)
+            scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+        }
+
+        var showAlert = true
+        for string in Constants.whiteList {
+            if url.host?.lowercased() == string ||
+                (url.host?.lowercased() ?? "").hasSuffix("." + string) {
+                showAlert = false
+                break
+            }
+        }
+
+        if showAlert {
+            Alert.show(title: R.string.localizable.walletHomeScanUrlAlertTitle(),
+                       message: R.string.localizable.walletHomeScanUrlAlertMessage(),
+                       actions: [
+                        (.cancel, { _ in
+                            scanViewController?.startCaptureSession()
+                        }),
+                        (.default(title: R.string.localizable.confirm()), { _ in
+                            goWeb()
+                        })
+                ])
+        } else {
+            goWeb()
+        }
+
+
+
     }
 }

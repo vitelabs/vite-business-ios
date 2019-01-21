@@ -598,7 +598,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 252 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 254 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1596,6 +1596,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let close = Rswift.StringResource(key: "Close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。
+      /// 
+      /// Locales: en, zh-Hans
+      static let walletHomeScanUrlAlertMessage = Rswift.StringResource(key: "wallet.home.scan.url.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 合约交易
       /// 
       /// Locales: en, zh-Hans
@@ -1604,6 +1608,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 警告
+      /// 
+      /// Locales: en, zh-Hans
+      static let walletHomeScanUrlAlertTitle = Rswift.StringResource(key: "wallet.home.scan.url.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 转账金额格式错误
       /// 
       /// Locales: en, zh-Hans
@@ -3352,6 +3360,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Close", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。
+      /// 
+      /// Locales: en, zh-Hans
+      static func walletHomeScanUrlAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.scan.url.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 合约交易
       /// 
       /// Locales: en, zh-Hans
@@ -3364,6 +3379,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func contractConfirmInfo(_: Void = ()) -> String {
         return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 警告
+      /// 
+      /// Locales: en, zh-Hans
+      static func walletHomeScanUrlAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.scan.url.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 转账金额格式错误
