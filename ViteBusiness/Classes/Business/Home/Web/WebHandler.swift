@@ -27,30 +27,19 @@ public struct WebHandler {
     #endif
 
     static func open(_ url: URL) {
-
-        guard let rootVC = UIApplication.shared.keyWindow?.rootViewController else { return }
-        var top = rootVC
-        while let presentedViewController = top.presentedViewController {
-            top = presentedViewController
-        }
-
-        let string = appendQuery(urlString: url.absoluteString)
-        let ret = URL(string: string)!
-        let safariViewController = SafariViewController(url: ret)
-        top.present(safariViewController, animated: true, completion: nil)
+        let webvc = WKWebViewController(url: url)
+        UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
     }
 
     static func openTranscationDetailPage(hash: String) {
         let host = appendLanguagePath(urlString: browserUrlString)
-        let string = appendQuery(urlString: "\(host)/transaction/\(hash)")
-        let url = URL(string: string)!
+        let url = URL(string: "\(host)/transaction/\(hash)")!
         open(url)
     }
 
     static func openSBPDetailPage(name: String) {
         let host = appendLanguagePath(urlString: browserUrlString)
-        let string = appendQuery(urlString: "\(host)/SBPDetail/\(name)")
-        let url = URL(string: string)!
+        let url = URL(string: "\(host)/SBPDetail/\(name)")!
         open(url)
     }
 
