@@ -48,9 +48,8 @@ public class LocalizationService {
     public func updateLocalizableIfNeeded(localizationHash: [String: Any]) {
         let language = currentLanguage
         self.localizationHash = localizationHash
-        guard let current = localizationHash[language.rawValue] as? [String: Any],
-            let hash = current["hash"] as? String, let build = current["build"] as? Int else { return }
-        guard Bundle.main.buildNumberInt <= build, cacheFileHash(language: language) != hash else { return }
+        guard let hash = localizationHash[language.rawValue] as? String else { return }
+        guard cacheFileHash(language: language) != hash else { return }
 
         COSProvider.instance.getLocalizable(language: language) { (result) in
             switch result {
@@ -107,11 +106,34 @@ extension LocalizationService {
         let sandboxPath = fileHelper.rootPath + "/\(currentLanguage.rawValue).strings"
         if FileManager.default.fileExists(atPath: sandboxPath),
             let ret = NSDictionary(contentsOfFile: sandboxPath) as? [String: String] {
-            cacheTextDic = ret
+            ret.forEach { (key, value) in
+                if let (build, string) = stripBuildNumber(string: key) {
+                    if build >= Bundle.main.buildNumberInt {
+                        cacheTextDic[string] = value
+                    }
+                }
+            }
         } else {
             cacheTextDic = [:]
         }
+
         NotificationCenter.default.post(name: .localizedStringChanged, object: nil, userInfo: ["language": currentLanguage, "cacheTextDic": cacheTextDic])
+    }
+
+    fileprivate func stripBuildNumber(string: String) -> (Int, String)? {
+        if let range = string.range(of:".", options: .literal) {
+            if !range.isEmpty {
+                let index = string.distance(from: string.startIndex, to: range.lowerBound)
+                let prefix = (string as NSString).substring(to: index) as String
+                let string = (string as NSString).substring(from: index + 1) as String
+                if let number = Int(prefix) {
+                    return (number, string)
+                } else {
+                    return nil
+                }
+            }
+        }
+        return nil
     }
 
     fileprivate func cacheFileHash(language: ViteLanguage) -> String? {

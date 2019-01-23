@@ -65,7 +65,7 @@ public class ViteBusinessLanucher: NSObject {
                 return
             }
 
-            callback(Response(code:.success,msg: "",data: ["address": account.address.description]),callbackId)
+            callback(Response(code:.success,msg: "",data: account.address.description),callbackId)
         }
 
         WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
