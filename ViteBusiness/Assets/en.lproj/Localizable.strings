@@ -97,8 +97,8 @@
 "wallet.home.balance.title" = "Balance";
 "wallet.home.unconfirmed.title" = "Unreceived %@";
 "wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "警告";
-"wallet.home.scan.url.alert.message" = "即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。";
+"wallet.home.scan.url.alert.title" = "NOTICE";
+"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "Wallet Management";
@@ -290,8 +290,8 @@
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
 
 // Contract
-"contract.confirm.title" = "合约交易";
-"contract.confirm.info" = "合约地址";
+"contract.confirm.title" = "Contract Transaction";
+"contract.confirm.info" = "Contract Address";
 
 //RefreshFooter
 "vite.RefreshBackFooter.IdleText" = "Pull up to load more";
@@ -331,4 +331,4 @@
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
 
 // ViteURI
-"vite.uri.amount.format.error" = "转账金额格式错误";
+"vite.uri.amount.format.error" = "Wrong format with transaction amount";
