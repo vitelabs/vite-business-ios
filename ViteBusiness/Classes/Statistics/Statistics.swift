@@ -9,12 +9,12 @@
 import Foundation
 import SwiftyJSON
 import ViteUtils
-
+import FirebaseAnalytics
 
 public class Statistics: NSObject {
 
     private static let stat = ViteStatistics()
-//
+
     public static func initializeConfig() {
         stat.channelId = Constants.appDownloadChannel.rawValue
         stat.shortAppVersion  =  Bundle.main.versionNumber
@@ -40,16 +40,20 @@ public class Statistics: NSObject {
         if DebugService.instance.config.reportEventInDebug {
             if attributes.isEmpty {
                 stat.logEvent(eventId, eventLabel: eventId)
+                Analytics.logEvent(eventId, parameters: [:])
             } else {
                 stat.logEvent(eventId, eventLabel: eventId, attributes: attributes)
+                Analytics.logEvent(eventId, parameters: attributes)
             }
         }
 
         #else
         if attributes.isEmpty {
             stat.logEvent(eventId, eventLabel: eventId)
+            Analytics.logEvent(eventId, parameters: [:])
         } else {
             stat.logEvent(eventId, eventLabel: eventId, attributes: attributes)
+            Analytics.logEvent(eventId, parameters: attributes)
         }
         #endif
 
@@ -64,10 +68,18 @@ public class Statistics: NSObject {
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
             stat.logEvent(name, eventLabel: name)
+            Analytics.logEvent(AnalyticsEventViewItem,
+                               parameters: [AnalyticsParameterItemID:name,
+                                            AnalyticsParameterItemName: name,
+                                            AnalyticsParameterItemCategory:name])
         }
         #else
         stat.pageviewStart(withName: name)
         stat.logEvent(name, eventLabel: name)
+        Analytics.logEvent(AnalyticsEventViewItem,
+                           parameters: [AnalyticsParameterItemID:name,
+                                        AnalyticsParameterItemName: name,
+                                        AnalyticsParameterItemCategory:name])
         #endif
     }
 
@@ -79,9 +91,17 @@ public class Statistics: NSObject {
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)
+            Analytics.logEvent(AnalyticsEventViewItem,
+                               parameters: [AnalyticsParameterItemID:name,
+                                            AnalyticsParameterItemName: name,
+                                            AnalyticsParameterItemCategory:name])
         }
         #else
         stat.pageviewEnd(withName: name)
+        Analytics.logEvent(AnalyticsEventViewItem,
+                           parameters: [AnalyticsParameterItemID:name,
+                                        AnalyticsParameterItemName: name,
+                                        AnalyticsParameterItemCategory:name])
         #endif
     }
 }
