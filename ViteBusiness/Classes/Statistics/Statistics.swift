@@ -91,17 +91,9 @@ public class Statistics: NSObject {
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)
-            Analytics.logEvent(AnalyticsEventViewItem,
-                               parameters: [AnalyticsParameterItemID:name,
-                                            AnalyticsParameterItemName: name,
-                                            AnalyticsParameterItemCategory:name])
         }
         #else
         stat.pageviewEnd(withName: name)
-        Analytics.logEvent(AnalyticsEventViewItem,
-                           parameters: [AnalyticsParameterItemID:name,
-                                        AnalyticsParameterItemName: name,
-                                        AnalyticsParameterItemCategory:name])
         #endif
     }
 }
