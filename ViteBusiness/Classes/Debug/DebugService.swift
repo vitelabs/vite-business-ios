@@ -254,6 +254,11 @@ public class DebugService {
 
 public extension DebugService {
     func addDebugViewController(title: String, viewController: @autoclosure @escaping () -> UIViewController) {
+        for (t, _) in debugViewControllers {
+            if t == title {
+                return
+            }
+        }
         debugViewControllers.append((title, viewController))
     }
 }
