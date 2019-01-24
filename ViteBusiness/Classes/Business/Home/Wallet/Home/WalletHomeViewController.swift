@@ -158,7 +158,7 @@ class WalletHomeViewController: BaseTableViewController {
                         let ret = String(bytes: data, encoding: .utf8) {
                         note = ret
                     }
-                    let sendViewController = SendViewController(token: token, address: uri.address, amount: amount, note: note)
+                    let sendViewController = SendViewController(token: token, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
                     guard var viewControllers = self.navigationController?.viewControllers else { return }
                     _ = viewControllers.popLast()
                     viewControllers.append(sendViewController)
