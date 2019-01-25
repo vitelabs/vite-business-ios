@@ -187,7 +187,7 @@
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.confirm.button" = "Confirm";
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.page.use.password.title" = "Please";
+"confirm.transaction.page.use.password.title" = "Enter Password";
 "confirm.transaction.page.toast.password.error" = "Wrong password!";
 "confirm.transaction.page.node.name" = "Node Name";
 "confirm.transaction.page.vote" = "Vote";
