@@ -292,7 +292,7 @@ public extension Workflow {
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.contractConfirmTitle(),
+        confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
                         infoTitle: R.string.localizable.contractConfirmInfo(),
                         info: toAddress.description,
                         token: token.symbol,

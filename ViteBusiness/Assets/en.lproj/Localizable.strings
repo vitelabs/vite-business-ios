@@ -290,7 +290,6 @@
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
 
 // Contract
-"contract.confirm.title" = "Contract Transaction";
 "contract.confirm.info" = "Contract Address";
 
 //RefreshFooter

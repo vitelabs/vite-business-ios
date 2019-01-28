@@ -289,7 +289,6 @@
 "vote.list.search.no.transaction.before" = "您的地址未发生过交易，暂不能投票";
 
 // Contract
-"contract.confirm.title" = "合约交易";
 "contract.confirm.info" = "合约地址";
 
 //RefreshFooter

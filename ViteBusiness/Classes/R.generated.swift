@@ -598,7 +598,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 254 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 253 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -752,6 +752,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageConfirmBiometryAuthFailedTitle = Rswift.StringResource(key: "send.page.confirm.biometryAuthFailed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Close
+      /// 
+      /// Locales: en, zh-Hans
+      static let close = Rswift.StringResource(key: "Close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Comment
       /// 
       /// Locales: en, zh-Hans
@@ -792,6 +796,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellContact = Rswift.StringResource(key: "aboutUs.page.cell.contact", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Contract Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Create
       /// 
       /// Locales: en, zh-Hans
@@ -844,6 +852,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageEmpty = Rswift.StringResource(key: "transaction.list.page.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Enter Password
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageUsePasswordTitle = Rswift.StringResource(key: "confirm.transaction.page.use.password.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -1040,6 +1052,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageTitle = Rswift.StringResource(key: "vote.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: NOTICE
+      /// 
+      /// Locales: en, zh-Hans
+      static let walletHomeScanUrlAlertTitle = Rswift.StringResource(key: "wallet.home.scan.url.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -1084,10 +1100,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let confirmTransactionPageTitle = Rswift.StringResource(key: "confirm.transaction.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please
-      /// 
-      /// Locales: en, zh-Hans
-      static let confirmTransactionPageUsePasswordTitle = Rswift.StringResource(key: "confirm.transaction.page.use.password.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please Input Password
       /// 
       /// Locales: en, zh-Hans
@@ -1560,6 +1572,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageToastAddressError = Rswift.StringResource(key: "send.page.toast.address.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Wrong format with transaction amount
+      /// 
+      /// Locales: en, zh-Hans
+      static let viteUriAmountFormatError = Rswift.StringResource(key: "vite.uri.amount.format.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wrong password!
       /// 
       /// Locales: en, zh-Hans
@@ -1580,6 +1596,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
+      /// 
+      /// Locales: en, zh-Hans
+      static let walletHomeScanUrlAlertMessage = Rswift.StringResource(key: "wallet.home.scan.url.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You cannot make any transfer until you receive a transaction.
       /// 
       /// Locales: en, zh-Hans
@@ -1592,30 +1612,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: close
-      /// 
-      /// Locales: en, zh-Hans
-      static let close = Rswift.StringResource(key: "Close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。
-      /// 
-      /// Locales: en, zh-Hans
-      static let walletHomeScanUrlAlertMessage = Rswift.StringResource(key: "wallet.home.scan.url.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 合约交易
-      /// 
-      /// Locales: en, zh-Hans
-      static let contractConfirmTitle = Rswift.StringResource(key: "contract.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 合约地址
-      /// 
-      /// Locales: en, zh-Hans
-      static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 警告
-      /// 
-      /// Locales: en, zh-Hans
-      static let walletHomeScanUrlAlertTitle = Rswift.StringResource(key: "wallet.home.scan.url.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账金额格式错误
-      /// 
-      /// Locales: en, zh-Hans
-      static let viteUriAmountFormatError = Rswift.StringResource(key: "vite.uri.amount.format.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1883,6 +1879,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.confirm.biometryAuthFailed.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Close
+      /// 
+      /// Locales: en, zh-Hans
+      static func close(_: Void = ()) -> String {
+        return NSLocalizedString("Close", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Comment
       /// 
       /// Locales: en, zh-Hans
@@ -1951,6 +1954,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func aboutUsPageCellContact(_: Void = ()) -> String {
         return NSLocalizedString("aboutUs.page.cell.contact", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Contract Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func contractConfirmInfo(_: Void = ()) -> String {
+        return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Create
@@ -2042,6 +2052,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListPageEmpty(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.page.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Enter Password
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageUsePasswordTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.use.password.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Export Seed Phrase
@@ -2387,6 +2404,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: NOTICE
+      /// 
+      /// Locales: en, zh-Hans
+      static func walletHomeScanUrlAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.scan.url.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -2462,13 +2486,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func confirmTransactionPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Please
-      /// 
-      /// Locales: en, zh-Hans
-      static func confirmTransactionPageUsePasswordTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.use.password.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please Input Password
@@ -3297,6 +3314,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.toast.address.error", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Wrong format with transaction amount
+      /// 
+      /// Locales: en, zh-Hans
+      static func viteUriAmountFormatError(_: Void = ()) -> String {
+        return NSLocalizedString("vite.uri.amount.format.error", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Wrong password!
       /// 
       /// Locales: en, zh-Hans
@@ -3332,6 +3356,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
+      /// 
+      /// Locales: en, zh-Hans
+      static func walletHomeScanUrlAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.scan.url.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: You cannot make any transfer until you receive a transaction.
       /// 
       /// Locales: en, zh-Hans
@@ -3351,48 +3382,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func voteListAlertAlreadyVoted(_ value1: String) -> String {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: close
-      /// 
-      /// Locales: en, zh-Hans
-      static func close(_: Void = ()) -> String {
-        return NSLocalizedString("Close", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。
-      /// 
-      /// Locales: en, zh-Hans
-      static func walletHomeScanUrlAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("wallet.home.scan.url.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 合约交易
-      /// 
-      /// Locales: en, zh-Hans
-      static func contractConfirmTitle(_: Void = ()) -> String {
-        return NSLocalizedString("contract.confirm.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 合约地址
-      /// 
-      /// Locales: en, zh-Hans
-      static func contractConfirmInfo(_: Void = ()) -> String {
-        return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 警告
-      /// 
-      /// Locales: en, zh-Hans
-      static func walletHomeScanUrlAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("wallet.home.scan.url.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转账金额格式错误
-      /// 
-      /// Locales: en, zh-Hans
-      static func viteUriAmountFormatError(_: Void = ()) -> String {
-        return NSLocalizedString("vite.uri.amount.format.error", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
