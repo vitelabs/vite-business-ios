@@ -20,7 +20,7 @@
 "Update.app" = "Update App";
 "Submit.success" = "Submit Successful";
 "Submit.cancel" = "Cancel";
-"Close"="close";
+"Close" = "Close";
 
 /* Login */
 "create.account" = "Create Account";
@@ -97,6 +97,8 @@
 "wallet.home.balance.title" = "Balance";
 "wallet.home.unconfirmed.title" = "Unreceived %@";
 "wallet.home.toast.copy.address" = "Successfully copied!";
+"wallet.home.scan.url.alert.title" = "NOTICE";
+"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "Wallet Management";
@@ -185,7 +187,7 @@
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.confirm.button" = "Confirm";
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.page.use.password.title" = "Please";
+"confirm.transaction.page.use.password.title" = "Enter Password";
 "confirm.transaction.page.toast.password.error" = "Wrong password!";
 "confirm.transaction.page.node.name" = "Node Name";
 "confirm.transaction.page.vote" = "Vote";
@@ -287,6 +289,9 @@
 "vote.list.search.empty" = "No result, please try another input";
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
 
+// Contract
+"contract.confirm.info" = "Contract Address";
+
 //RefreshFooter
 "vite.RefreshBackFooter.IdleText" = "Pull up to load more";
 "Vite.RefreshBackFooter.PullingText" = "Release to load more.";
@@ -323,3 +328,6 @@
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 10 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "Wrong format with transaction amount";

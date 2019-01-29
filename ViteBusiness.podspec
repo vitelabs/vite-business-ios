@@ -140,6 +140,7 @@ Pod::Spec.new do |s|
   #crash
   s.dependency 'Fabric'
   s.dependency 'Crashlytics'
+  s.dependency 'Firebase/Core'
 
   s.dependency 'MLeaksFinder'
 
