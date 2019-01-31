@@ -353,7 +353,11 @@ public extension Workflow {
                 }
             }
         }
-        UIViewController.current?.present(activityViewController, animated: true)
+
+        guard let current = UIViewController.current else { return }
+        activityViewController.popoverPresentationController?.sourceView = current.view
+        activityViewController.popoverPresentationController?.sourceRect = current.view.bounds
+        current.present(activityViewController, animated: true)
     }
 }
 
