@@ -33,13 +33,15 @@ public struct WebHandler {
 
     static func openTranscationDetailPage(hash: String) {
         let host = appendLanguagePath(urlString: browserUrlString)
-        let url = URL(string: "\(host)/transaction/\(hash)")!
+        guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+        guard let url = URL(string: "\(host)/transaction/\(string)") else { return }
         open(url)
     }
 
     static func openSBPDetailPage(name: String) {
         let host = appendLanguagePath(urlString: browserUrlString)
-        let url = URL(string: "\(host)/SBPDetail/\(name)")!
+        guard let string = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+        guard let url = URL(string: "\(host)/SBPDetail/\(string)") else { return }
         open(url)
     }
 
