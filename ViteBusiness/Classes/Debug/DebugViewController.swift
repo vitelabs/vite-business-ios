@@ -116,7 +116,11 @@ class DebugViewController: FormViewController {
                                         $0.title =  title
                                         }.onCellSelection({ [weak self] _, _  in
                                             guard let `self` = self else { return }
-                                            self.navigationController?.pushViewController(vc(), animated: true)
+                                            let vc = vc()
+                                            if !(vc is WKWebViewController) {
+                                                vc.navigationItem.title = title
+                                            }
+                                            self.navigationController?.pushViewController(vc, animated: true)
                                         })
                                 })
         }

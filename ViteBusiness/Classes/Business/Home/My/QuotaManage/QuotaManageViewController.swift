@@ -197,7 +197,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount >= "10".toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)! else {
+                guard amount >= "1000".toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
