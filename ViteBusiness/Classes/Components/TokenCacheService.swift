@@ -53,7 +53,7 @@ public class TokenCacheService: NSObject, Mappable {
     }
 
     public func start() {
-        AppSettingsService.instance.configDriver.asObservable().bind { [weak self] (config) in
+        AppConfigService.instance.configDriver.asObservable().bind { [weak self] (config) in
             guard let `self` = self else { return }
             guard let array = config.defaultTokens["defaults"] as? [[String: Any]],
                 let other = config.defaultTokens["other"] as? [String: Any],

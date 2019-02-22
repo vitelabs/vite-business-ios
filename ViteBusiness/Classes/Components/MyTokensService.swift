@@ -1,5 +1,5 @@
 //
-//  MyTokensManager.swift
+//  MyTokensService.swift
 //  Pods
 //
 //  Created by Stone on 2019/2/21.
@@ -11,8 +11,8 @@ import RxCocoa
 import ViteUtils
 
 
-public final class MyTokensManager {
-    public static let instance = MyTokensManager()
+public final class MyTokensService {
+    public static let instance = MyTokensService()
 
     fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "MyTokens"

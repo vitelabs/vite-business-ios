@@ -153,6 +153,7 @@
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
 "address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
 "address.manage.tip.alert.ok" = "I know";
+"address.manage.default.address.name" = "我的地址";
 
 /* Send Page */
 "send.page.title" = "Transfer";

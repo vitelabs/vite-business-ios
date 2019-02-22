@@ -96,7 +96,7 @@ public class DebugService {
             if config.configEnvironment != oldValue.configEnvironment {
                 DispatchQueue.main.async {
                     AppUpdateService.checkUpdate()
-                    AppSettingsService.instance.start()
+                    AppConfigService.instance.start()
                 }
             }
         }
