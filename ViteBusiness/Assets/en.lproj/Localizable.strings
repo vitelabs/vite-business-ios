@@ -194,8 +194,6 @@
 "confirm.transaction.page.vote" = "Vote";
 "confirm.transaction.page.cancel.vote" = "Revoke Vote";
 
-
-
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
 "Receive.page.mine.title" = "My QRCode";
@@ -203,6 +201,7 @@
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.wallet.name" = "Vite Wallet";
 
 /* Scan Page */
 "Scan.page.title" = "Scan";

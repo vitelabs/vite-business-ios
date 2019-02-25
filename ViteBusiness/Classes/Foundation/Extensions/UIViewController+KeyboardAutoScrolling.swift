@@ -70,8 +70,11 @@ final class KeyboardAutoScrollingObserver {
             rect = firstResponderView.convert(firstResponderView.bounds, to: targetView)
             rect.size.height += viewController.bottomInset
 
-            let contentInset = UIEdgeInsets(top: self.contentInset.top, left: self.contentInset.left, bottom: max(keyboardSize.height, self.contentInset.bottom), right: self.contentInset.right)
-            let scrollIndicatorInsets = UIEdgeInsets(top: self.scrollIndicatorInsets.top, left: self.scrollIndicatorInsets.left, bottom: max(keyboardSize.height, self.scrollIndicatorInsets.bottom), right: self.scrollIndicatorInsets.right)
+            let targetViewRect = targetView.convert(targetView.bounds, to: UIApplication.shared.keyWindow)
+            let dy = UIScreen.main.bounds.height - targetViewRect.origin.y - targetViewRect.height
+
+            let contentInset = UIEdgeInsets(top: self.contentInset.top, left: self.contentInset.left, bottom: max(keyboardSize.height - dy, self.contentInset.bottom), right: self.contentInset.right)
+            let scrollIndicatorInsets = UIEdgeInsets(top: self.scrollIndicatorInsets.top, left: self.scrollIndicatorInsets.left, bottom: max(keyboardSize.height - dy, self.scrollIndicatorInsets.bottom), right: self.scrollIndicatorInsets.right)
 
             scrollView.contentInset = contentInset
             scrollView.scrollIndicatorInsets = scrollIndicatorInsets

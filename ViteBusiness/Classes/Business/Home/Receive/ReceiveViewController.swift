@@ -15,26 +15,20 @@ import BigInt
 
 class ReceiveViewController: BaseViewController {
 
-    enum Style {
-        case `default`
-        case token
-    }
-
     let token: Token
-    let wallet: HDWalletStorage.Wallet
-    let account: Wallet.Account
-    let style: Style
+    let walletName: String
+    let address: String
+    let addressName: String
 
     let amountBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let uriBehaviorRelay: BehaviorRelay<ViteURI>
 
-    init(token: Token, style: Style) {
+    init(token: Token) {
         self.token = token
-        // FIXME: Optional
-        self.wallet = HDWalletManager.instance.wallet!
-        self.account = HDWalletManager.instance.account!
-        self.style = style
-        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: account.address, tokenId: token.id, amount: nil, note: nil))
+        self.walletName = HDWalletManager.instance.wallet?.name ?? ""
+        self.address = HDWalletManager.instance.account?.address.description ?? ""
+        self.addressName = AddressManageService.instance.name(for: Address(string: self.address))
+        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: Address(string: address), tokenId: token.id, amount: nil, note: nil))
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,11 +39,12 @@ class ReceiveViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -57,14 +52,8 @@ class ReceiveViewController: BaseViewController {
     }
 
     // View
-    let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
-        $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        $0.layer.shadowOpacity = 0.1
-        $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-        $0.layer.shadowRadius = 20
-    }
-
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)).then {
+        $0.stackView.spacing = 0
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
@@ -72,17 +61,21 @@ class ReceiveViewController: BaseViewController {
         }
     }
 
-    lazy var headerView = ReceiveHeaderView(name: self.wallet.name, address: account.address.description)
-    let middleView = ReceiveMiddleView()
+    lazy var addressView = ReceiveAddressView(name: self.walletName, address: self.address, addressName: self.addressName)
     let qrcodeView = ReceiveQRCodeView()
-    let footerView = ReceiveFooterView()
+    let noteView = ReceiveNoteView()
 
     func setupView() {
-
         navigationBarStyle = .clear
-        navigationItem.title = .token == style ? R.string.localizable.receivePageTokenTitle() : R.string.localizable.receivePageMineTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_share_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onShare))
         view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
+
+        let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
+            $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+            $0.layer.shadowOpacity = 0.1
+            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
+            $0.layer.shadowRadius = 20
+        }
 
         view.addSubview(whiteView)
         view.addSubview(scrollView)
@@ -96,142 +89,90 @@ class ReceiveViewController: BaseViewController {
             m.centerY.equalTo(view).priority(.medium)
             m.left.equalTo(view).offset(24)
             m.right.equalTo(view).offset(-24)
-            m.bottom.lessThanOrEqualTo(view).offset(-24)
+            m.bottom.lessThanOrEqualTo(view).offset(-74)
         }
 
-        scrollView.stackView.addArrangedSubview(headerView)
+        scrollView.stackView.addArrangedSubview(addressView)
+        scrollView.stackView.addArrangedSubview(qrcodeView)
+        scrollView.stackView.addArrangedSubview(noteView)
 
-        switch style {
-        case .default:
-            scrollView.stackView.addArrangedSubview(qrcodeView)
-            scrollView.stackView.addPlaceholder(height: 10)
-        case .token:
-            scrollView.stackView.addArrangedSubview(middleView)
-            scrollView.stackView.addArrangedSubview(qrcodeView)
-            scrollView.stackView.addArrangedSubview(footerView)
+        let layoutGuide = UILayoutGuide()
+        let iconImageView = UIImageView(image: R.image.icon_receive_logo())
+        let label = UILabel()
+        label.text = R.string.localizable.receivePageWalletName()
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
 
-            footerView.amountButton.rx.tap
-                .bind {
-                    Alert.show(into: self,
-                               title: R.string.localizable.receivePageTokenAmountAlertTitle(),
-                               message: nil,
-                               actions: [(.cancel, nil),
-                                         (.default(title: R.string.localizable.confirm()), {[weak self] alertController in
-                                            guard let textField = alertController.textFields?.first else { fatalError() }
-                                            self?.amountBehaviorRelay.accept(textField.text)
-                                         }),
-                                         ], config: { alertController in
-                                            alertController.addTextField(configurationHandler: { [weak self] in
-                                                $0.keyboardType = .decimalPad
-                                                $0.text = self?.amountBehaviorRelay.value
-                                                $0.delegate = self
-                                            })
-                    })
-                }.disposed(by: rx.disposeBag)
+        view.addLayoutGuide(layoutGuide)
+        view.addSubview(iconImageView)
+        view.addSubview(label)
 
-            amountBehaviorRelay.asDriver()
-                .map { [weak self] in
-                    guard let `self` = self else { return "" }
-                    if let amount = $0 {
-                        return "\(amount) \(self.token.symbol)"
-                    } else {
-                        return R.string.localizable.receivePageTokenNameLabel(self.token.symbol)
-                    }
-                }
-                .drive(middleView.tokenSymbolLabel.rx.text).disposed(by: rx.disposeBag)
-
-            Observable.combineLatest(amountBehaviorRelay.asObservable(), footerView.noteTitleTextFieldView.textField.rx.text.asObservable())
-                .map {
-                    ViteURI.transferURI(address: self.account.address, tokenId: self.token.id, amount: $0, note: $1)
-                }
-                .bind(to: uriBehaviorRelay).disposed(by: rx.disposeBag)
+        layoutGuide.snp.makeConstraints { (m) in
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-26)
+            m.centerX.equalTo(view)
+            m.height.equalTo(1)
         }
 
+        iconImageView.snp.makeConstraints { (m) in
+            m.bottom.left.equalTo(layoutGuide)
+        }
+
+        label.snp.makeConstraints { (m) in
+            m.right.bottom.equalTo(layoutGuide)
+            m.left.equalTo(iconImageView.snp.right).offset(10)
+        }
+    }
+
+    func bind() {
+        qrcodeView.amountButton.rx.tap
+            .bind { [weak self] in
+                Alert.show(title: R.string.localizable.receivePageTokenAmountAlertTitle(),
+                           message: nil,
+                           actions: [(.cancel, nil),
+                                     (.default(title: R.string.localizable.confirm()), {[weak self] alertController in
+                                        guard let textField = alertController.textFields?.first else { fatalError() }
+                                        self?.amountBehaviorRelay.accept(textField.text)
+                                     }),
+                                     ], config: { alertController in
+                                        alertController.addTextField(configurationHandler: { [weak self] in
+                                            $0.keyboardType = .decimalPad
+                                            $0.text = self?.amountBehaviorRelay.value
+                                            $0.delegate = self
+                                        })
+                })
+            }.disposed(by: rx.disposeBag)
+
+        amountBehaviorRelay.asDriver()
+            .map { [weak self] in
+                guard let `self` = self else { return "" }
+                if let amount = $0 {
+                    return "\(amount) \(self.token.symbol)"
+                } else {
+                    return R.string.localizable.receivePageTokenNameLabel(self.token.symbol)
+                }
+            }
+            .drive(qrcodeView.tokenSymbolLabel.rx.text).disposed(by: rx.disposeBag)
+
+        Observable.combineLatest(amountBehaviorRelay.asObservable(), noteView.noteTitleTextFieldView.textField.rx.text.asObservable())
+            .map { [weak self] in
+                let address = self?.address ?? ""
+                let id = self?.token.id ?? ""
+                return ViteURI.transferURI(address: Address(string: address), tokenId: id, amount: $0, note: $1)
+            }
+            .bind(to: uriBehaviorRelay).disposed(by: rx.disposeBag)
         uriBehaviorRelay.asObservable()
             .map {
                 $0.string()
             }
-            .bind {
+            .bind { [weak self] in
                 QRCodeHelper.createQRCode(string: $0) { [weak self] image in
                     self?.qrcodeView.imageView.image = image
                 }
-            }
-            .disposed(by: rx.disposeBag)
+        }
     }
 
     @objc func onShare() {
-
-        let superView = UIView()
-        let backView = UIView()
-        let contentView = UIImageView(image: R.image.background_button_white()?.resizable).then {
-            $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-            $0.layer.shadowOpacity = 0.1
-            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-            $0.layer.shadowRadius = 20
-        }
-
-        superView.addSubview(backView)
-        backView.snp.makeConstraints { (m) in
-            m.center.equalTo(superView)
-            m.width.equalTo(375)
-        }
-
-        backView.addSubview(contentView)
-        contentView.snp.makeConstraints { (m) in
-            m.top.equalTo(backView).offset(70)
-            m.left.equalTo(backView).offset(24)
-            m.right.equalTo(backView).offset(-24)
-            m.bottom.equalTo(backView).offset(-70)
-        }
-
-        let headerView = ReceiveShareHeaderView(name: self.wallet.name, address: account.address.description)
-        let middleView = ReceiveMiddleView()
-        let qrcodeView = UIImageView(image: self.qrcodeView.imageView.screenshot)
-        let footerView = ReceiveShareFooterView(text: self.footerView.noteTitleTextFieldView.textField.text)
-
-        middleView.tokenSymbolLabel.text = self.middleView.tokenSymbolLabel.text
-
-        contentView.addSubview(headerView)
-        contentView.addSubview(qrcodeView)
-
-        headerView.snp.makeConstraints { (m) in
-            m.top.left.right.equalTo(contentView)
-        }
-
-        switch style {
-        case .default:
-            qrcodeView.snp.makeConstraints { (m) in
-                m.top.equalTo(headerView.snp.bottom).offset(20)
-                m.centerX.equalTo(contentView)
-                m.size.equalTo(CGSize(width: 170, height: 170))
-                m.bottom.equalTo(contentView).offset(-30)
-            }
-        case .token:
-            contentView.addSubview(middleView)
-            contentView.addSubview(footerView)
-
-            middleView.snp.makeConstraints { (m) in
-                m.top.equalTo(headerView.snp.bottom)
-                m.left.right.equalTo(contentView)
-            }
-
-            qrcodeView.snp.makeConstraints { (m) in
-                m.top.equalTo(middleView.snp.bottom).offset(20)
-                m.centerX.equalTo(contentView)
-                m.size.equalTo(CGSize(width: 170, height: 170))
-            }
-
-            footerView.snp.makeConstraints { (m) in
-                m.top.equalTo(qrcodeView.snp.bottom).offset(20)
-                m.left.right.bottom.equalTo(contentView)
-            }
-        }
-
-        superView.setNeedsLayout()
-        superView.layoutIfNeeded()
-        backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
-        guard let image = backView.screenshot else { return }
-        Workflow.share(activityItems: [image])
+        share(walletName: self.walletName, token: self.token, address: self.address, addressName: self.addressName, uri: self.uriBehaviorRelay.value.string(), note: self.noteView.noteTitleTextFieldView.textField.text)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ReceiveShareFooterView.swift
+//  ReceiveShareNoteView.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/26.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReceiveShareFooterView: UIView {
+class ReceiveShareNoteView: UIView {
 
     let titleLabel = UILabel().then {
         $0.textColor = Colors.titleGray

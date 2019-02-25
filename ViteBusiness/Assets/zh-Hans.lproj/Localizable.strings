@@ -201,6 +201,7 @@
 "Receive.page.token.amount.button.title" = "设置金额";
 "Receive.page.token.note.label" = "备注";
 "Receive.page.token.amount.alert.title" = "输入金额";
+"Receive.page.wallet.name" = "Vite Wallet";
 
 /* Scan Page */
 "Scan.page.title" = "扫一扫";
