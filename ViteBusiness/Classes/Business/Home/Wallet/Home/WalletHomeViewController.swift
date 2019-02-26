@@ -72,7 +72,7 @@ class WalletHomeViewController: BaseTableViewController {
         }
 
         qrcodeItem.rx.tap.bind { [weak self] _ in
-            self?.navigationController?.pushViewController(ReceiveViewController(token: TokenCacheService.instance.viteToken, style: .default), animated: true)
+            self?.navigationController?.pushViewController(ReceiveViewController(token: TokenCacheService.instance.viteToken), animated: true)
         }.disposed(by: rx.disposeBag)
 
         scanItem.rx.tap.bind { [unowned self] _ in

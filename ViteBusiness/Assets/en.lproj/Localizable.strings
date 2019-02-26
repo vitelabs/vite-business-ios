@@ -153,6 +153,7 @@
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
 "address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
 "address.manage.tip.alert.ok" = "I know";
+"address.manage.default.address.name" = "我的地址";
 
 /* Send Page */
 "send.page.title" = "Transfer";
@@ -193,8 +194,6 @@
 "confirm.transaction.page.vote" = "Vote";
 "confirm.transaction.page.cancel.vote" = "Revoke Vote";
 
-
-
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
 "Receive.page.mine.title" = "My QRCode";
@@ -202,6 +201,7 @@
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.wallet.name" = "Vite Wallet";
 
 /* Scan Page */
 "Scan.page.title" = "Scan";

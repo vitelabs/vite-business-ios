@@ -104,6 +104,8 @@ struct R: Rswift.Validatable {
     static let icon_nav_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_share_black")
     /// Image `icon_quota`.
     static let icon_quota = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_quota")
+    /// Image `icon_receive_logo`.
+    static let icon_receive_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_receive_logo")
     /// Image `icon_right_white`.
     static let icon_right_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_right_white")
     /// Image `icon_search`.
@@ -400,6 +402,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_quota, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_receive_logo", bundle: ..., traitCollection: ...)`
+    static func icon_receive_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_receive_logo, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_right_white", bundle: ..., traitCollection: ...)`
     static func icon_right_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_right_white, compatibleWith: traitCollection)
@@ -605,7 +612,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 253 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 255 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1495,6 +1502,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailShowTransactionsButtonTitle = Rswift.StringResource(key: "balance.info.detail.show.transactions.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite Wallet
+      /// 
+      /// Locales: en, zh-Hans
+      static let receivePageWalletName = Rswift.StringResource(key: "Receive.page.wallet.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite.blog
       /// 
       /// Locales: en, zh-Hans
@@ -1619,6 +1630,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -3174,6 +3189,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.show.transactions.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Vite Wallet
+      /// 
+      /// Locales: en, zh-Hans
+      static func receivePageWalletName(_: Void = ()) -> String {
+        return NSLocalizedString("Receive.page.wallet.name", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vite.blog
       /// 
       /// Locales: en, zh-Hans
@@ -3389,6 +3411,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func voteListAlertAlreadyVoted(_ value1: String) -> String {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 我的地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageDefaultAddressName(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

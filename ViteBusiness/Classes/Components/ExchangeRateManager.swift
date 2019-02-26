@@ -38,32 +38,29 @@ public final class ExchangeRateManager {
     }
 }
 
-public struct ExchangeRate {
-    enum CurrencyCode: String {
-        case USD
-        case CNY
+public enum CurrencyCode: String {
+    case USD
+    case CNY
 
-        var symbol: String {
-            switch self {
-            case .USD:
-                return "$"
-            case .CNY:
-                return "¥"
-            }
+    var symbol: String {
+        switch self {
+        case .USD:
+            return "$"
+        case .CNY:
+            return "¥"
         }
     }
+}
+
+public struct ExchangeRate {
 
     let code: CurrencyCode
-    let rate: Double
+    let rate: [String: String]
 
-    init(code: CurrencyCode, rate: Double) {
-        self.code = code
-        self.rate = rate
-    }
 }
 
-extension Balance {
-    public func price(decimals: Int, rate: ExchangeRate) -> String {
-        return "\(rate.code.symbol) 100.00"
-    }
-}
+//extension Balance {
+//    public func price(decimals: Int, rate: ExchangeRate) -> String {
+//        return "\(rate.code.symbol) 100.00"
+//    }
+//}

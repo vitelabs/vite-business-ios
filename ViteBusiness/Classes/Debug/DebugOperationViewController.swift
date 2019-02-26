@@ -48,7 +48,7 @@ class DebugOperationViewController: FormViewController {
             <<< LabelRow("reloadConfig") {
                 $0.title =  "Reload Config"
                 }.onCellSelection({ _, _  in
-                    AppSettingsService.instance.start()
+                    AppConfigService.instance.start()
                     Toast.show("Operation complete")
                 })
             <<< LabelRow("checkUpdate") {

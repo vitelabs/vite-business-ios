@@ -154,6 +154,7 @@
 "address.manage.address.generate.button.toast" = "最多只能添加10个地址";
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
+"address.manage.default.address.name" = "我的地址";
 
 /* Send Page */
 "send.page.title" = "转账";
@@ -200,6 +201,7 @@
 "Receive.page.token.amount.button.title" = "设置金额";
 "Receive.page.token.note.label" = "备注";
 "Receive.page.token.amount.alert.title" = "输入金额";
+"Receive.page.wallet.name" = "Vite Wallet";
 
 /* Scan Page */
 "Scan.page.title" = "扫一扫";

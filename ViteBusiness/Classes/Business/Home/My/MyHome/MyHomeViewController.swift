@@ -37,7 +37,7 @@ class MyHomeViewController: BaseTableViewController {
     })
 
     fileprivate func bind() {
-        AppSettingsService.instance.configDriver.asObservable().map { config -> [SectionModel<String, MyHomeListCellViewModel>] in
+        AppConfigService.instance.configDriver.asObservable().map { config -> [SectionModel<String, MyHomeListCellViewModel>] in
             let configViewModel = MyHomeConfigViewModel(JSON: config.myPage)!
             return [SectionModel(model: "item", items: configViewModel.items)]
         }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
