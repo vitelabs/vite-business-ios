@@ -112,11 +112,9 @@
 
 /* my */
 "my.page.contacts.cell.title" = "联系人";
-"my.page.dealLog.cell.title" = "助记词";
-"my.page.quota.cell.title" = "配额管理";
+"my.page.mnemonic.cell.title" = "助记词";
 "my.page.system.cell.title" = "使用设置";
 "my.page.aboutUs.cell.title" = "关于我们";
-"my.page.fetchMoney.cell.title" = "领福利";
 
 /* Transaction List */
 "transaction.list.page.title" = "交易记录";

@@ -51,28 +51,12 @@ class SystemViewController: FormViewController {
         self._setupView()
     }
 
-    lazy var logoutBtn: UIButton = {
-        let logoutBtn = UIButton.init(style: .white)
-        logoutBtn.setTitle(R.string.localizable.systemPageCellLogoutTitle(), for: .normal)
-        logoutBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
-        logoutBtn.addTarget(self, action: #selector(logoutBtnAction), for: .touchUpInside)
-        return logoutBtn
-    }()
-
     private func _setupView() {
         navigationTitleView = NavigationTitleView(title: R.string.localizable.myPageSystemCellTitle())
         self.view.backgroundColor = .white
         self.automaticallyAdjustsScrollViewInsets = false
 
         self.setupTableView()
-
-        self.view.addSubview(self.logoutBtn)
-        self.logoutBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
     }
 
     func setupTableView() {
@@ -185,16 +169,4 @@ extension SystemViewController {
     }
 }
 
-extension SystemViewController {
-    @objc func logoutBtnAction() {
-        self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
-        DispatchQueue.global().async {
-            HDWalletManager.instance.logout()
-            KeychainService.instance.clearCurrentWallet()
-            DispatchQueue.main.async {
-                self.view.hideLoading()
-                NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
-            }
-        }
-    }
-}
+
