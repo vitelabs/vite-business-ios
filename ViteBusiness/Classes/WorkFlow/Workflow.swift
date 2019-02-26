@@ -28,7 +28,7 @@ public struct Workflow {
         case vote
     }
 
-    private static func confirmWorkflow(title: String,
+    public static func confirmWorkflow(title: String,
                                         infoTitle: String,
                                         info: String,
                                         token: String?,
@@ -360,5 +360,4 @@ public extension Workflow {
         current.present(activityViewController, animated: true)
     }
 }
-
 

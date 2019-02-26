@@ -32,4 +32,12 @@ public struct ETHToken: Mappable {
         symbol <- map["tokenSymbol"]
         decimals <- map["decimals"]
     }
+
+    public func  isToken()->Bool {
+        if contractAddress != "" {
+            return true
+        }else {
+            return false
+        }
+    }
 }

@@ -10,6 +10,8 @@ import ViteWallet
 import Foundation
 import ObjectMapper
 import ViteUtils
+import ViteEthereum
+import web3swift
 
 public class DebugService {
     public static let instance = DebugService()
@@ -75,11 +77,16 @@ public class DebugService {
         switch appEnvironment {
         case .test:
             config = Config.test
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
+
         case .stage:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
             config = Config.stage
         case .online:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
             config = Config.online
         case .custom:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
             break
         }
     }

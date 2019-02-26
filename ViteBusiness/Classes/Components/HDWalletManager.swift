@@ -14,6 +14,7 @@ import RxSwift
 import RxCocoa
 import CryptoSwift
 import ViteUtils
+import ViteEthereum
 
 public final class HDWalletManager {
     public static let instance = HDWalletManager()
@@ -148,6 +149,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
     }
 
     func importAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
@@ -156,6 +158,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
     }
 
     func loginWithUuid(_ uuid: String, encryptKey: String) -> Bool {
@@ -163,6 +166,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
         return true
     }
 
@@ -171,6 +175,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
         return true
     }
 
@@ -179,6 +184,8 @@ extension HDWalletManager {
         mnemonic = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
+
+        pri_LogoutEthWallet()
     }
 
     func verifyPassword(_ password: String) -> Bool {
@@ -206,6 +213,16 @@ extension HDWalletManager {
     fileprivate func pri_updateWallet(_ wallet: HDWalletStorage.Wallet) {
         walletBehaviorRelay.accept(wallet)
         pri_recoverAddressesIfNeeded(wallet.uuid)
+    }
+
+    fileprivate func pri_LoginEthWallet() {
+        guard let mnemonic = self.mnemonic  else {
+            return
+        }
+        _ = try? EtherWallet.account.importAccount(mnemonics: mnemonic, password: "")
+    }
+    fileprivate func pri_LogoutEthWallet() {
+        _ = try? EtherWallet.account.logout()
     }
 
     fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
