@@ -224,6 +224,7 @@ extension HDWalletManager {
             return
         }
         _ = try? EtherWallet.account.importAccount(mnemonics: mnemonic, password: "")
+        self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
     }
     fileprivate func pri_LogoutEthWallet() {
         _ = try? EtherWallet.account.logout()

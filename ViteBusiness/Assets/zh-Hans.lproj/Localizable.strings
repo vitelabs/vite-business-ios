@@ -111,11 +111,10 @@
 "manage.wallet.page.error.type.name" = "账户名不能为空";
 
 /* my */
-"my.page.title" = "我";
-"my.page.mangeWallet.cell.title" = "管理钱包";
-"my.page.dealLog.cell.title" = "交易记录";
+"my.page.contacts.cell.title" = "联系人";
+"my.page.dealLog.cell.title" = "助记词";
 "my.page.quota.cell.title" = "配额管理";
-"my.page.system.cell.title" = "系统设置";
+"my.page.system.cell.title" = "使用设置";
 "my.page.aboutUs.cell.title" = "关于我们";
 "my.page.fetchMoney.cell.title" = "领福利";
 

@@ -110,7 +110,6 @@
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
 /* my */
-"my.page.title" = "Me";
 "my.page.mangeWallet.cell.title" = "Wallet";
 "my.page.dealLog.cell.title" = "Transaction";
 "my.page.quota.cell.title" = "Quota";
