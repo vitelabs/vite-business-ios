@@ -52,10 +52,6 @@ class EthSendTokenController: BaseViewController {
         kas_activateAutoScrollingForView(scrollView.stackView)
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
     // View
     private lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
         $0.layer.masksToBounds = false
