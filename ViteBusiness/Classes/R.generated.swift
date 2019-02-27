@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 83 images.
+  /// This `R.image` struct is generated, and contains static references to 85 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -32,6 +32,8 @@ struct R: Rswift.Validatable {
     static let beifen = Rswift.ImageResource(bundle: R.hostingBundle, name: "beifen")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
+    /// Image `cardBg`.
+    static let cardBg = Rswift.ImageResource(bundle: R.hostingBundle, name: "cardBg")
     /// Image `dotted_line`.
     static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
@@ -88,8 +90,12 @@ struct R: Rswift.Validatable {
     static let icon_cell_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_select")
     /// Image `icon_cell_unselect`.
     static let icon_cell_unselect = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_unselect")
+    /// Image `icon_contacts`.
+    static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
     /// Image `icon_logo`.
     static let icon_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo")
+    /// Image `icon_mnemonic`.
+    static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
     /// Image `icon_nav_back_black`.
     static let icon_nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black")
     /// Image `icon_nav_close_black`.
@@ -128,8 +134,6 @@ struct R: Rswift.Validatable {
     static let icon_token_vite_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_vite_white")
     /// Image `icon_token_vite`.
     static let icon_token_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_vite")
-    /// Image `icon_transrecord`.
-    static let icon_transrecord = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_transrecord")
     /// Image `icon_tx_coin`.
     static let icon_tx_coin = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_coin")
     /// Image `icon_tx_pledge`.
@@ -150,8 +154,6 @@ struct R: Rswift.Validatable {
     static let icon_voteaddress = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_voteaddress")
     /// Image `icon_votecount`.
     static let icon_votecount = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_votecount")
-    /// Image `icon_wallet`.
-    static let icon_wallet = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_wallet")
     /// Image `intro_icon_0`.
     static let intro_icon_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_0")
     /// Image `intro_icon_1`.
@@ -220,6 +222,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "btn_path_bg", bundle: ..., traitCollection: ...)`
     static func btn_path_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.btn_path_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cardBg", bundle: ..., traitCollection: ...)`
+    static func cardBg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cardBg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
@@ -362,9 +369,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_cell_unselect, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_contacts", bundle: ..., traitCollection: ...)`
+    static func icon_contacts(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_contacts, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_logo", bundle: ..., traitCollection: ...)`
     static func icon_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_logo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mnemonic", bundle: ..., traitCollection: ...)`
+    static func icon_mnemonic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_back_black", bundle: ..., traitCollection: ...)`
@@ -462,11 +479,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_token_vite_white, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_transrecord", bundle: ..., traitCollection: ...)`
-    static func icon_transrecord(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_transrecord, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_tx_coin", bundle: ..., traitCollection: ...)`
     static func icon_tx_coin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tx_coin, compatibleWith: traitCollection)
@@ -515,11 +527,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_votecount", bundle: ..., traitCollection: ...)`
     static func icon_votecount(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_votecount, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_wallet", bundle: ..., traitCollection: ...)`
-    static func icon_wallet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_wallet, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "intro_icon_0", bundle: ..., traitCollection: ...)`
@@ -612,7 +619,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 255 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 253 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -638,10 +645,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: About Us
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageAboutUsCellTitle = Rswift.StringResource(key: "my.page.aboutUs.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -898,10 +901,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Get Bonus
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageFetchMoneyCellTitle = Rswift.StringResource(key: "my.page.fetchMoney.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
@@ -1022,10 +1021,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageMyMaxTxCountTitle = Rswift.StringResource(key: "send.page.my.max.tx.count.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Me
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageTitle = Rswift.StringResource(key: "my.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Me
       /// 
       /// Locales: en, zh-Hans
@@ -1170,10 +1165,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let scanPageQccodeNotIdentifiable = Rswift.StringResource(key: "Scan.page.qccode.not.identifiable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Quota
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageQuotaCellTitle = Rswift.StringResource(key: "my.page.quota.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
@@ -1366,10 +1357,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageSwitchModeTitle = Rswift.StringResource(key: "mnemonic.backup.page.switch.mode.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: System Settings
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageSystemCellTitle = Rswift.StringResource(key: "my.page.system.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: System verify failed, please try again later (-35002)
       /// 
       /// Locales: en, zh-Hans
@@ -1406,10 +1393,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCoin = Rswift.StringResource(key: "transaction.list.transaction.type.name.coin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transaction
-      /// 
-      /// Locales: en, zh-Hans
-      static let myPageDealLogCellTitle = Rswift.StringResource(key: "my.page.dealLog.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction History
       /// 
       /// Locales: en, zh-Hans
@@ -1553,10 +1536,6 @@ struct R: Rswift.Validatable {
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
-      static let myPageMangeWalletCellTitle = Rswift.StringResource(key: "my.page.mangeWallet.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Wallet
-      /// 
-      /// Locales: en, zh-Hans
       static let tabbarItemTitleWallet = Rswift.StringResource(key: "tabbar.item.title.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wallet Management
       /// 
@@ -1630,10 +1609,30 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用设置
+      /// 
+      /// Locales: en, zh-Hans
+      static let myPageSystemCellTitle = Rswift.StringResource(key: "my.page.system.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 修改账户名
+      /// 
+      /// Locales: en, zh-Hans
+      static let myPageChangeWalletNameAlterTitle = Rswift.StringResource(key: "my.page.change.wallet.name.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 关于我们
+      /// 
+      /// Locales: en, zh-Hans
+      static let myPageAboutUsCellTitle = Rswift.StringResource(key: "my.page.aboutUs.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 助记词
+      /// 
+      /// Locales: en, zh-Hans
+      static let myPageMnemonicCellTitle = Rswift.StringResource(key: "my.page.mnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 联系人
+      /// 
+      /// Locales: en, zh-Hans
+      static let myPageContactsCellTitle = Rswift.StringResource(key: "my.page.contacts.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1675,13 +1674,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func popPageTipVoteLoser(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("pop.page.tip.vote.loser", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
-      /// en translation: About Us
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageAboutUsCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.aboutUs.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Account Name
@@ -2132,13 +2124,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Get Bonus
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageFetchMoneyCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.fetchMoney.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
@@ -2347,13 +2332,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageMyMaxTxCountTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.my.max.tx.count.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Me
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Me
@@ -2606,13 +2584,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func scanPageQccodeNotIdentifiable(_: Void = ()) -> String {
         return NSLocalizedString("Scan.page.qccode.not.identifiable", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Quota
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageQuotaCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.quota.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Quota Beneficiary
@@ -2951,13 +2922,6 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("mnemonic.backup.page.switch.mode.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: System Settings
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageSystemCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.system.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: System verify failed, please try again later (-35002)
       /// 
       /// Locales: en, zh-Hans
@@ -3019,13 +2983,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameCoin(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.coin", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transaction
-      /// 
-      /// Locales: en, zh-Hans
-      static func myPageDealLogCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.dealLog.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction History
@@ -3276,13 +3233,6 @@ struct R: Rswift.Validatable {
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
-      static func myPageMangeWalletCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.mangeWallet.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Wallet
-      /// 
-      /// Locales: en, zh-Hans
       static func tabbarItemTitleWallet(_: Void = ()) -> String {
         return NSLocalizedString("tabbar.item.title.wallet", bundle: R.hostingBundle, comment: "")
       }
@@ -3413,11 +3363,46 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: 使用设置
+      /// 
+      /// Locales: en, zh-Hans
+      static func myPageSystemCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.system.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 修改账户名
+      /// 
+      /// Locales: en, zh-Hans
+      static func myPageChangeWalletNameAlterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.change.wallet.name.alter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 关于我们
+      /// 
+      /// Locales: en, zh-Hans
+      static func myPageAboutUsCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.aboutUs.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 助记词
+      /// 
+      /// Locales: en, zh-Hans
+      static func myPageMnemonicCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.mnemonic.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static func addressManageDefaultAddressName(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 联系人
+      /// 
+      /// Locales: en, zh-Hans
+      static func myPageContactsCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.contacts.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

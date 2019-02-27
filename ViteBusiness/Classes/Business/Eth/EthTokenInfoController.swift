@@ -14,6 +14,8 @@ import NSObject_Rx
 import ViteUtils
 import ViteEthereum
 
+import RAMPaperSwitch
+
 class EthTokenInfoController: BaseViewController {
     var tokenInfo : ETHToken
     var tokenName: String = ""
@@ -30,9 +32,24 @@ class EthTokenInfoController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    @objc func switchChanged() {
+
     }
+    private lazy var switchControl: SwitchControl = {
+        let switchControl = SwitchControl(frame: CGRect(x: 0, y: 0, width: 37, height: 20))
+        switchControl.on = true
+        switchControl.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+
+        switchControl.thumbTintColor = .white
+        switchControl.activeColor = UIColor.init(netHex: 0x007AFF)
+        switchControl.inactiveColor = UIColor.init(netHex: 0xE5E5EA)
+        switchControl.onTintColor =   UIColor.init(netHex: 0x007AFF)
+        switchControl.borderColor = UIColor.clear
+        switchControl.shadowColor = UIColor.black
+
+        return switchControl
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +57,7 @@ class EthTokenInfoController: BaseViewController {
       }
 
     fileprivate func setupView() {
-        navigationBarStyle = .clear
+//        navigationBarStyle = .clear
 
         let detailView = BalanceInfoDetailView()
         let imageView = UIImageView(image: R.image.empty())
@@ -59,6 +76,15 @@ class EthTokenInfoController: BaseViewController {
         view.addSubview(showTransactionsButton)
         view.addSubview(receiveButton)
         view.addSubview(sendButton)
+
+
+        view.addSubview(self.switchControl)
+        switchControl.snp.makeConstraints { (m) in
+            m.top.equalTo(view).offset(100)
+            m.left.equalTo(view).offset(100)
+            m.width.equalTo(37)
+            m.height.equalTo(20)
+        }
 
         detailView.snp.makeConstraints { (m) in
             m.top.equalTo(view)

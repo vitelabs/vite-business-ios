@@ -109,13 +109,11 @@
 "manage.wallet.page.changeName.loading" = "Editing";
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
-/* my */
-"my.page.mangeWallet.cell.title" = "Wallet";
-"my.page.dealLog.cell.title" = "Transaction";
-"my.page.quota.cell.title" = "Quota";
-"my.page.system.cell.title" = "System Settings";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.fetchMoney.cell.title" = "Get Bonus";
+"my.page.contacts.cell.title" = "联系人";
+"my.page.mnemonic.cell.title" = "助记词";
+"my.page.system.cell.title" = "使用设置";
+"my.page.aboutUs.cell.title" = "关于我们";
+"my.page.change.wallet.name.alter.title" = "修改账户名";
 
 /* Transaction List */
 "transaction.list.page.title" = "Transaction History";

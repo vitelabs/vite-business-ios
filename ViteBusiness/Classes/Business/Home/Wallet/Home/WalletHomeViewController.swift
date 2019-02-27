@@ -76,7 +76,11 @@ class WalletHomeViewController: BaseTableViewController {
         }.disposed(by: rx.disposeBag)
 
         scanItem.rx.tap.bind { [unowned self] _ in
-            self.scan()
+            let eth = ETHToken.init(contractAddress: "", name: "Eth", symbol: "Eth symbol", decimals: 8)
+            let vc = EthTokenInfoController.init(eth)
+            self.navigationController?.pushViewController(vc, animated: true)
+
+//            self.scan()
         }.disposed(by: rx.disposeBag)
     }
 

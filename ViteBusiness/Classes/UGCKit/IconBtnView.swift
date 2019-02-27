@@ -27,7 +27,9 @@ class IconBtnView: UIImageView {
     init(iconImg: UIImage, text: String = "") {
         super.init(frame: CGRect.init(x: 1, y: 1, width: 1, height: 1))
         self.isUserInteractionEnabled = true
-        self.image = R.image.icon_background()?.resizable
+        self.backgroundColor = .white
+        self.setupShadow(CGSize(width: 0, height: 5))
+
         iconView.image =  iconImg
         titleLabel.text = text
 
@@ -45,7 +47,7 @@ class IconBtnView: UIImageView {
         }
 
         titleLabel.snp.makeConstraints { (m) in
-            m.centerX.right.equalTo(self)
+            m.centerX.equalTo(self)
             m.top.equalTo(iconView.snp.bottom).offset(4 * scale)
         }
 

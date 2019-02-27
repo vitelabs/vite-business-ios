@@ -49,7 +49,7 @@ class MyHomeListCell: BaseTableViewCell {
 
         rightImageView.snp.makeConstraints { (make) in
             make.left.equalTo(titleLab.snp.right).offset(10)
-            make.right.equalTo(contentView).offset(-20)
+            make.right.equalTo(contentView).offset(-24)
             make.centerY.equalTo(contentView)
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
