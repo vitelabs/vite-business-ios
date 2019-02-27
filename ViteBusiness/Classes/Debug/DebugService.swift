@@ -77,18 +77,14 @@ public class DebugService {
         switch appEnvironment {
         case .test:
             config = Config.test
-            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
-
         case .stage:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
             config = Config.stage
         case .online:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
             config = Config.online
         case .custom:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
             break
         }
+        updateETHServer()
     }
 
     public var config: Config {
@@ -235,6 +231,19 @@ public class DebugService {
         }
     }
 
+    private func updateETHServer() {
+        switch config.appEnvironment {
+        case .test:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
+        case .stage:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        case .online:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        case .custom:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
+        }
+    }
+
     private init() {
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
@@ -246,6 +255,7 @@ public class DebugService {
         }
 
         updateRPCServerProvider()
+        updateETHServer()
     }
 
     fileprivate func pri_save() {

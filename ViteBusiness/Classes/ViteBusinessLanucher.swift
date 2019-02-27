@@ -50,6 +50,7 @@ public class ViteBusinessLanucher: NSObject {
         TokenCacheService.instance.start()
         AutoGatheringService.instance.start()
         FetchBalanceInfoService.instance.start()
+        FetchBalanceInfoManager.instance.start()
         FetchQuotaService.instance.start()
 
         //web

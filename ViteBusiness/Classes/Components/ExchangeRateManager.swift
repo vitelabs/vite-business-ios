@@ -23,7 +23,7 @@ public final class ExchangeRateManager {
         pri_save()
     }
 
-    public func removeToken(for tokenCode: String) {
+    public func removeToken(for tokenCode: TokenCode) {
         var tokens = tokensBehaviorRelay.value
         for (index, token) in tokens.enumerated() where token.tokenCode == tokenCode {
             tokens.remove(at: index)
@@ -59,8 +59,8 @@ public struct ExchangeRate {
 
 }
 
-//extension Balance {
-//    public func price(decimals: Int, rate: ExchangeRate) -> String {
-//        return "\(rate.code.symbol) 100.00"
-//    }
-//}
+extension Balance {
+    public func price(decimals: Int, rate: ExchangeRate) -> String {
+        return "\(rate.code.symbol) 100.00"
+    }
+}

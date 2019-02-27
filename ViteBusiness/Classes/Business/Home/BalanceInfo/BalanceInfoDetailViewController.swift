@@ -121,3 +121,32 @@ class BalanceInfoDetailViewController: BaseViewController {
         detailView.bind(viewModelBehaviorRelay: viewModelBehaviorRelay)
     }
 }
+
+
+class n_BalanceInfoDetailViewController: BaseViewController {
+
+    let tokenInfo: TokenInfo
+
+    init(tokenInfo: TokenInfo) {
+        self.tokenInfo = tokenInfo
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+
+    let navView = BalanceInfoNavView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        setupView()
+    }
+
+
+}
