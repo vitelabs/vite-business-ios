@@ -155,8 +155,8 @@ class DebugViewController: FormViewController {
 
     func goToInputUrl() {
         let controller = AlertControl(title: "Input URL", message: nil)
-        let cancelAction = AlertAction(title: R.string.localizable.cancel(), style: .light, handler: nil)
-        let okAction = AlertAction(title: R.string.localizable.confirm(), style: .light) { controller in
+        let cancelAction = AlertAction(title: "Cancel", style: .light, handler: nil)
+        let okAction = AlertAction(title: "Go", style: .light) { controller in
             let textField = (controller.textFields?.first)! as UITextField
             guard let text = textField.text, (text.lowercased().hasPrefix("http://") || text.lowercased().hasPrefix("https://")), let url = URL(string:text) else {
                 Toast.show("Invalid URL")
