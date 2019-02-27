@@ -47,6 +47,12 @@ class AppUpdateService: NSObject {
 
     static func checkUpdate() {
 
+        #if DEBUG || TEST
+        if DebugService.instance.config.ignoreCheckUpdate {
+            return
+        }
+        #endif
+
         COSProvider.instance.checkUpdate { (result) in
             switch result {
             case .success(let jsonString):
