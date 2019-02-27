@@ -14,8 +14,6 @@ import NSObject_Rx
 import ViteUtils
 import ViteEthereum
 
-import RAMPaperSwitch
-
 class EthTokenInfoController: BaseViewController {
     var tokenInfo : ETHToken
     var tokenName: String = ""
