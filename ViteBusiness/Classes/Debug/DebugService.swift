@@ -115,6 +115,8 @@ public class DebugService {
         var configEnvironment = ConfigEnvironment.test
         var showStatisticsToast = false
         var reportEventInDebug = false
+        var urls: [String] = []
+        var ignoreCheckUpdate = true
 
         init(useBigDifficulty: Bool,
              rpcUseOnlineUrl: Bool,
@@ -123,7 +125,9 @@ public class DebugService {
              browserCustomUrl: String?,
              configEnvironment: ConfigEnvironment,
              showStatisticsToast: Bool?,
-             reportEventInDebug: Bool?) {
+             reportEventInDebug: Bool?,
+             urls: [String]?,
+             ignoreCheckUpdate: Bool?) {
 
             self.useBigDifficulty = useBigDifficulty
             self.rpcUseOnlineUrl = rpcUseOnlineUrl
@@ -141,6 +145,13 @@ public class DebugService {
             if let reportEventInDebug = reportEventInDebug {
                 self.reportEventInDebug = reportEventInDebug
             }
+            if let urls = urls {
+                self.urls = urls
+            }
+            if let ignoreCheckUpdate = ignoreCheckUpdate {
+                self.ignoreCheckUpdate = ignoreCheckUpdate
+            }
+
         }
 
         static var test: Config {
@@ -151,7 +162,9 @@ public class DebugService {
                           browserCustomUrl: "",
                           configEnvironment: .test,
                           showStatisticsToast: nil,
-                          reportEventInDebug: nil)
+                          reportEventInDebug: nil,
+                          urls: nil,
+                          ignoreCheckUpdate: nil)
         }
 
         static var stage: Config {
@@ -162,7 +175,9 @@ public class DebugService {
                           browserCustomUrl: nil,
                           configEnvironment: .stage,
                           showStatisticsToast: nil,
-                          reportEventInDebug: nil)
+                          reportEventInDebug: nil,
+                          urls:nil,
+                          ignoreCheckUpdate: nil)
         }
 
         static var online: Config {
@@ -173,7 +188,9 @@ public class DebugService {
                           browserCustomUrl: nil,
                           configEnvironment: .online,
                           showStatisticsToast: nil,
-                          reportEventInDebug: nil)
+                          reportEventInDebug: nil,
+                          urls:nil,
+                          ignoreCheckUpdate: nil)
         }
 
         public var appEnvironment: AppEnvironment {
@@ -216,6 +233,8 @@ public class DebugService {
             configEnvironment <- map["configEnvironment"]
             showStatisticsToast <- map["showStatisticsToast"]
             reportEventInDebug <- map["reportEventInDebug"]
+            urls <- map["urls"]
+            ignoreCheckUpdate <- map["ignoreCheckUpdate"]
         }
     }
 

@@ -81,11 +81,36 @@ class DebugViewController: FormViewController {
                 actions.append((.cancel, nil))
                 DebugActionSheet.show(title: "Select App Environment", message: nil, actions: actions)
             }
-            <<< LabelRow("weburlinput") {
-                $0.title = "web url input"
-                $0.value = ""
-                }.onCellSelection { [weak self] _, _ in
-                    self?.goToInputUrl()
+            <<< SwitchRow("ignoreCheckUpdate") {
+                $0.title = "Ignore Check Update"
+                $0.value = DebugService.instance.config.ignoreCheckUpdate
+                }.onChange { [weak self] row in
+                    guard let `self` = self else { return }
+                    guard let ret = row.value else { return }
+                    DebugService.instance.config.ignoreCheckUpdate = ret
+            }
+            +++
+            MultivaluedSection(multivaluedOptions: [],
+                               header: "Web",
+                               footer: "") { section in
+
+                                section <<< LabelRow("Add URL") {
+                                    $0.title = "Add URL"
+                                    $0.value = ""
+                                    }.onCellSelection { [weak self] _, _ in
+                                        self?.goToInputUrl()
+                                }
+
+                                DebugService.instance.config.urls.forEach({ (string) in
+                                    section <<< LabelRow(string) {
+                                        $0.title =  string
+                                        }.onCellSelection({ [weak self] _, _  in
+                                            guard let `self` = self else { return }
+                                            let url = URL(string: string)!
+                                            let vc = WKWebViewController(url: url)
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        })
+                                })
             }
             +++
             MultivaluedSection(multivaluedOptions: [],
@@ -129,19 +154,20 @@ class DebugViewController: FormViewController {
     }
 
     func goToInputUrl() {
-        let controller = AlertControl(title: "请输入跳转URL", message: nil)
-        let cancelAction = AlertAction(title: R.string.localizable.cancel(), style: .light, handler: nil)
-        let okAction = AlertAction(title: R.string.localizable.confirm(), style: .light) { controller in
+        let controller = AlertControl(title: "Input URL", message: nil)
+        let cancelAction = AlertAction(title: "Cancel", style: .light, handler: nil)
+        let okAction = AlertAction(title: "Go", style: .light) { controller in
             let textField = (controller.textFields?.first)! as UITextField
-
-            guard let text = textField.text, (text.hasPrefix("http://") || text.hasPrefix("https://")) else {
+            guard let text = textField.text, (text.lowercased().hasPrefix("http://") || text.lowercased().hasPrefix("https://")), let url = URL(string:text) else {
+                Toast.show("Invalid URL")
                 return
             }
-            let vc = WKWebViewController(url: URL(string:text)!)
+            let vc = WKWebViewController(url: url)
             self.navigationController?.pushViewController(vc, animated: true)
+            DebugService.instance.config.urls.append(url.absoluteString)
         }
-        controller.addTextField { (textfield) in
-            textfield.text = "http://192.168.31.224:3824/#/"
+        controller.addTextField { (textField) in
+            textField.placeholder = "http:// or https://"
         }
         controller.addAction(cancelAction)
         controller.addAction(okAction)
