@@ -26,7 +26,7 @@ class TokenIconView: UIView {
 
         chainIconImageView.snp.makeConstraints { (m) in
             m.bottom.right.equalToSuperview()
-            m.width.height.equalToSuperview().multipliedBy(40.0/18)
+            m.width.height.equalToSuperview().multipliedBy(18.0/40.0)
         }
 
         tokenIconImageView.backgroundColor = UIColor.red
@@ -43,6 +43,8 @@ class TokenIconView: UIView {
             guard let url = URL(string: tokenInfo.icon) else { return }
             tokenIconImageView.kf.cancelDownloadTask()
             tokenIconImageView.kf.setImage(with: url)
+            chainIconImageView.image = tokenInfo.chainIcon
+            chainIconImageView.isHidden = tokenInfo.chainIcon == nil
         }
     }
 }

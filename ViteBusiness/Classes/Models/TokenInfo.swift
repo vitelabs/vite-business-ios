@@ -115,10 +115,12 @@ extension TokenInfo {
 
 
 // UI Style
-//extension TokenInfo {
-//    var chainIcon: UIImage? {
-//        if self == TokenInfo.Const.viteCoin {
-//            
-//        }
-//    }
-//}
+extension TokenInfo {
+    var chainIcon: UIImage? {
+        if self == TokenInfo.Const.etherCoin {
+            return R.image.icon_logo_chain_eth()
+        } else {
+            return nil
+        }
+    }
+}

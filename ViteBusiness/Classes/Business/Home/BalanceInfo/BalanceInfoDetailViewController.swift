@@ -145,8 +145,25 @@ class n_BalanceInfoDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupView()
+        setupView()
+        bind()
     }
 
+    func setupView() {
+        navigationBarStyle = .default
 
+
+        view.addSubview(navView)
+
+        navView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(128)
+        }
+
+    }
+
+    func bind() {
+        navView.bind(tokenInfo: tokenInfo)
+    }
 }
