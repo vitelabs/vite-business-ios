@@ -7,6 +7,23 @@
 import UIKit
 import QuartzCore
 
+
+extension UIView {
+    public static func createSwitchControl()->SwitchControl {
+        let switchControl = SwitchControl(frame: CGRect(x: 0, y: 0, width: 37, height: 20))
+        switchControl.on = true
+        switchControl.thumbTintColor = .white
+        switchControl.activeColor = UIColor.init(netHex: 0x007AFF)
+        switchControl.inactiveColor = UIColor.init(netHex: 0xE5E5EA)
+        switchControl.onTintColor =   UIColor.init(netHex: 0x007AFF)
+        switchControl.borderColor = UIColor.clear
+        switchControl.shadowColor = UIColor.black
+        return switchControl
+    }
+
+}
+
+
 @IBDesignable @objc open class SwitchControl: UIControl {
 
     var contentViewHeight : CGFloat = 8.0

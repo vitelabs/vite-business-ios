@@ -10,71 +10,118 @@ import SnapKit
 import ViteUtils
 
 class EthInfoCardView: UIView {
+    let bgImgView = UIImageView().then {
+        $0.isUserInteractionEnabled = true
+        $0.image = R.image.eth_cardBg()
+        $0.contentMode = .scaleAspectFill
+    }
 
-    let addressTitleLabel = UILabel().then {
+    let addressIcon = UIImageView().then {
+        $0.isUserInteractionEnabled = true
+        $0.image = R.image.icon_button_paste_white()
+        $0.contentMode = .scaleAspectFill
+    }
+
+    let addressLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         $0.text = R.string.localizable.sendPageMyAddressTitle()
     }
 
-    let addressLabel = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        $0.numberOfLines = 2
+    let copyAddressBtn = UIButton().then {
+        $0.setImage(R.image.icon_button_paste_white(), for: .normal)
+        $0.setImage(R.image.icon_button_paste_white(), for: .highlighted)
     }
 
-    let balanceTitleLabel = UILabel().then {
+    let balanceLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyBalanceTitle()
+        $0.text = R.string.localizable.sendPageMyAddressTitle()
     }
-
-    let balanceLabel = UILabel().then {
+    let balanceLegalTenderLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        $0.text = R.string.localizable.sendPageMyAddressTitle()
     }
 
-    init(address: String) {
+    let receiveButton = UIButton().then {
+    $0.setTitle(R.string.localizable.balanceInfoDetailReveiceButtonTitle(), for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.white, for: .highlighted)
+    }
+
+    let sendButton = UIButton().then {
+        $0.setTitle(R.string.localizable.balanceInfoDetailSendButtonTitle(), for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.white, for: .highlighted)
+    }
+
+    init(_ token: ETHToken) {
         super.init(frame: CGRect.zero)
-        addressLabel.text = address
 
-        let contentView = createContentViewAndSetShadow(width: 0, height: 5, radius: 9)
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 2
-
-        let line = UIView().then { $0.backgroundColor = UIColor(netHex: 0x759BFA) }
-
-        contentView.addSubview(line)
-        contentView.addSubview(addressTitleLabel)
-        contentView.addSubview(addressLabel)
-        contentView.addSubview(balanceTitleLabel)
-        contentView.addSubview(balanceLabel)
-
-        line.snp.makeConstraints({ (m) in
-            m.top.bottom.left.equalTo(contentView)
-            m.width.equalTo(3)
+        self.addSubview(bgImgView)
+        bgImgView.snp.makeConstraints({ (m) in
+            m.edges.equalTo(self)
         })
 
-        addressTitleLabel.snp.makeConstraints({ (m) in
-            m.top.equalTo(contentView).offset(16)
-            m.left.equalTo(contentView).offset(19)
-            m.right.equalTo(contentView).offset(-16)
+        self.addSubview(addressIcon)
+        addressIcon.snp.makeConstraints({ (m) in
+            m.top.equalToSuperview().offset(14)
+            m.left.equalToSuperview().offset(14)
+            m.width.height.equalTo(12)
+        })
+        self.addSubview(addressLab)
+        addressLab.snp.makeConstraints({ (m) in
+            m.centerY.equalTo(self.addressIcon)
+            m.left.equalTo(self.addressIcon.snp.right).offset(5)
+            m.height.equalTo(16)
         })
 
-        addressLabel.snp.makeConstraints({ (m) in
-            m.top.equalTo(addressTitleLabel.snp.bottom).offset(8)
-            m.left.right.equalTo(addressTitleLabel)
+        self.addSubview(copyAddressBtn)
+        copyAddressBtn.snp.makeConstraints({ (m) in
+            m.centerY.equalTo(self.addressIcon)
+            m.right.equalToSuperview().offset(-14)
+            m.width.height.equalTo(12)
         })
 
-        balanceTitleLabel.snp.makeConstraints({ (m) in
-            m.top.equalTo(addressLabel.snp.bottom).offset(16)
-            m.left.right.equalTo(addressTitleLabel)
+        self.addSubview(balanceLab)
+        balanceLab.snp.makeConstraints({ (m) in
+            m.top.equalToSuperview().offset(60)
+            m.left.equalToSuperview().offset(14)
+            m.height.equalTo(20)
         })
 
-        balanceLabel.snp.makeConstraints({ (m) in
-            m.top.equalTo(balanceTitleLabel.snp.bottom).offset(8)
-            m.left.right.equalTo(addressTitleLabel)
-            m.bottom.equalToSuperview().offset(-16)
+        self.addSubview(balanceLegalTenderLab)
+        balanceLegalTenderLab.snp.makeConstraints({ (m) in
+            m.top.equalTo(self.balanceLab.snp.bottom).offset(14)
+            m.left.equalToSuperview().offset(14)
+            m.height.equalTo(16)
+        })
+
+        self.addSubview(receiveButton)
+        receiveButton.snp.makeConstraints({ (m) in
+            m.left.equalToSuperview()
+            m.bottom.equalToSuperview()
+            m.height.equalTo(44)
+            m.width.equalToSuperview().dividedBy(2)
+        })
+
+        self.addSubview(sendButton)
+        sendButton.snp.makeConstraints({ (m) in
+            m.right.equalToSuperview()
+            m.bottom.equalToSuperview()
+            m.height.equalTo(44)
+            m.width.equalToSuperview().dividedBy(2)
+        })
+
+        let lineView = UIView()
+        lineView.backgroundColor = .white
+        self.addSubview(lineView)
+        lineView.snp.makeConstraints({ (m) in
+            m.bottom.equalToSuperview().offset(-7)
+            m.left.centerY.equalTo(self.sendButton)
+            m.width.equalTo(1)
+            m.height.equalTo(30)
         })
     }
 

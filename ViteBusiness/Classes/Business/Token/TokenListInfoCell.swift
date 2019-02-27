@@ -32,6 +32,16 @@ class TokenListInfoCell: UITableViewCell {
         $0.isUserInteractionEnabled = true
     }
 
+    private lazy var switchControl: SwitchControl = {
+        let switchControl = UIView.createSwitchControl()
+        switchControl.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+        return switchControl
+    }()
+
+    @objc func switchChanged() {
+
+    }
+
     let rightContentView = UIView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

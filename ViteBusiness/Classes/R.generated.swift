@@ -32,12 +32,12 @@ struct R: Rswift.Validatable {
     static let beifen = Rswift.ImageResource(bundle: R.hostingBundle, name: "beifen")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
-    /// Image `cardBg`.
-    static let cardBg = Rswift.ImageResource(bundle: R.hostingBundle, name: "cardBg")
     /// Image `dotted_line`.
     static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
     static let empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "empty")
+    /// Image `eth_cardBg`.
+    static let eth_cardBg = Rswift.ImageResource(bundle: R.hostingBundle, name: "eth_cardBg")
     /// Image `face_id`.
     static let face_id = Rswift.ImageResource(bundle: R.hostingBundle, name: "face_id")
     /// Image `fetch_gift_bg`.
@@ -224,11 +224,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.btn_path_bg, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "cardBg", bundle: ..., traitCollection: ...)`
-    static func cardBg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cardBg, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
     static func dotted_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.dotted_line, compatibleWith: traitCollection)
@@ -237,6 +232,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "empty", bundle: ..., traitCollection: ...)`
     static func empty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.empty, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "eth_cardBg", bundle: ..., traitCollection: ...)`
+    static func eth_cardBg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eth_cardBg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "face_id", bundle: ..., traitCollection: ...)`
