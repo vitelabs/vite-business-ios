@@ -40,7 +40,7 @@ class MyHomeViewController: BaseTableViewController {
     fileprivate func setupView() {
         statisticsPageName = Statistics.Page.MyHome.name
         navigationTitleView = createNavigationTitleView()
-    self.titleBtn.setTitle(HDWalletManager.instance.wallet?.name, for: .normal)
+        self.titleBtn.setTitle(HDWalletManager.instance.wallet?.name, for: .normal)
         self.titleBtn.setTitle(HDWalletManager.instance.wallet?.name, for: .highlighted)
         tableView.snp.remakeConstraints { (m) in
             m.top.equalTo(navigationTitleView!.snp.bottom)
@@ -51,7 +51,6 @@ class MyHomeViewController: BaseTableViewController {
         let headerView = MyHomeListHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 116))
         headerView.delegate = self
         tableView.tableHeaderView = headerView
-
 
         self.view.addSubview(self.logoutBtn)
         self.logoutBtn.snp.makeConstraints { (make) in
@@ -89,7 +88,6 @@ class MyHomeViewController: BaseTableViewController {
 }
 
 extension MyHomeViewController: MyHomeListHeaderViewDelegate {
-
     func contactsBtnAction() {
         let vc = TransactionListViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -99,22 +97,22 @@ extension MyHomeViewController: MyHomeListHeaderViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 
-
-    
+    @objc func titleBtnAction() {
+        self.showInputDialog(title: R.string.localizable.myPageChangeWalletNameAlterTitle(),
+                              actionTitle: R.string.localizable.confirm(),
+                              cancelTitle: R.string.localizable.cancel(),
+                              inputPlaceholder: HDWalletManager.instance.wallet?.name)
+        {[weak self]   (input:String?) in
+                self?.changeWalletName(name:input)
+        }
+    }
 }
 
 
 extension MyHomeViewController {
     func changeWalletName(name: String?) {
-
         let name = name ?? ""
         var changed = false
-
-        defer {
-            if !changed {
-//                self.nameTextField?.text = HDWalletManager.instance.wallet?.name
-            }
-        }
 
         if name.isEmpty {
             self.view.showToast(str: R.string.localizable.manageWalletPageErrorTypeName())
@@ -138,7 +136,6 @@ extension MyHomeViewController {
                 self.titleBtn.setTitle(HDWalletManager.instance.wallet?.name, for: .highlighted)
             }
         }
-
     }
 }
 
@@ -155,14 +152,36 @@ extension MyHomeViewController {
             m.bottom.equalTo(view).offset(-20)
             m.height.equalTo(29)
         }
+        self.titleBtn.addTarget(self, action: #selector(titleBtnAction), for: .touchUpInside)
 
-        self.titleBtn.rx.tap.bind { [weak self] in
-            self?.changeWalletName(name:HDWalletManager.instance.wallet?.name )
-            }.disposed(by: rx.disposeBag)
         return view
     }
 }
 
+extension UIViewController {
+    func showInputDialog(title:String? = nil,
+                         subtitle:String? = nil,
+                         actionTitle:String? = "",
+                         cancelTitle:String? = "",
+                         inputPlaceholder:String? = nil,
+                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         actionHandler: ((_ text: String?) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.text = inputPlaceholder
+            textField.keyboardType = inputKeyboardType
+        }
+        alert.addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: {[weak alert] (action:UIAlertAction) in
+            guard let textField =  alert?.textFields?.first else {
+                return
+            }
+            actionHandler?(textField.text)
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 
 extension MyHomeViewController {
     @objc func logoutBtnAction() {

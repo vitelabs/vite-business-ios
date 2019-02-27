@@ -20,15 +20,14 @@ class MyHomeListHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         let margin = 24
-        let width = (kScreenW-48)/2.0
-        let height = 88.0 * (kScreenW / 375.0)
+        let width = (kScreenW-48-15)/2.0
+        let height = 78
 
         self.addSubview(self.contactsBtn)
         self.contactsBtn.snp.makeConstraints {  (make) -> Void in
-            make.left.equalTo(self).offset(margin)
             make.top.equalTo(self).offset(12)
+            make.left.equalTo(self).offset(margin)
             make.height.equalTo(height)
             make.width.equalTo(width)
         }
@@ -36,20 +35,20 @@ class MyHomeListHeaderView: UIView {
         self.addSubview(mnemonicBtn)
         self.mnemonicBtn.snp.makeConstraints {  (make) -> Void in
             make.top.equalTo(self).offset(12)
+            make.right.equalTo(self).offset(-margin)
             make.height.equalTo(height)
             make.width.equalTo(width)
-            make.right.equalTo(self).offset(-margin)
         }
     }
 
     lazy var contactsBtn: IconBtnView = {
-        let contactsBtn = IconBtnView.init(iconImg: R.image.icon_wallet()!, text: R.string.localizable.myPageContactsCellTitle())
+        let contactsBtn = IconBtnView.init(iconImg: R.image.icon_contacts()!, text: R.string.localizable.myPageContactsCellTitle())
         contactsBtn.btn.addTarget(self, action: #selector(contactsBtnAction), for: .touchUpInside)
         return contactsBtn
     }()
 
     lazy var mnemonicBtn: IconBtnView = {
-        let mnemonicBtn = IconBtnView.init(iconImg: R.image.icon_transrecord()!, text: R.string.localizable.myPageMnemonicCellTitle())
+        let mnemonicBtn = IconBtnView.init(iconImg: R.image.icon_mnemonic()!, text: R.string.localizable.myPageMnemonicCellTitle())
         mnemonicBtn.btn.addTarget(self, action: #selector(mnemonicBtnAction), for: .touchUpInside)
         return mnemonicBtn
     }()
