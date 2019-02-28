@@ -123,7 +123,6 @@ PODS:
   - R.swift (5.0.0.alpha.3):
     - R.swift.Library (~> 5.0.0.alpha.2)
   - R.swift.Library (5.0.0)
-  - RAMPaperSwitch (3.0.0)
   - RazzleDazzle (0.1.5)
   - ReactorKit (1.2.1):
     - RxSwift (>= 4.0.0)
@@ -188,7 +187,6 @@ PODS:
     - pop (~> 1.0)
     - PromiseKit (~> 6.0)
     - R.swift (= 5.0.0.alpha.3)
-    - RAMPaperSwitch
     - RazzleDazzle
     - ReactorKit
     - ReusableKit (~> 2.1.0)
@@ -236,7 +234,6 @@ PODS:
     - pop (~> 1.0)
     - PromiseKit (~> 6.0)
     - R.swift (= 5.0.0.alpha.3)
-    - RAMPaperSwitch
     - RazzleDazzle
     - ReactorKit
     - ReusableKit (~> 2.1.0)
@@ -337,7 +334,6 @@ SPEC REPOS:
     - PromiseKit
     - R.swift
     - R.swift.Library
-    - RAMPaperSwitch
     - RazzleDazzle
     - ReactorKit
     - Result
@@ -425,7 +421,6 @@ SPEC CHECKSUMS:
   PromiseKit: 453ddcc947fe7b302f3ef41882b81d31c554df7f
   R.swift: ca4207ecc94545a1611ca0b2ae1197458b6ba30a
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
-  RAMPaperSwitch: 9b81604ec2e7d6dda3fd2cbac53eb012f7a5cc87
   RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -447,7 +442,7 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: 8177cf5c761024ca40d1bc07ed5e67d74f182f02
+  ViteBusiness: bb71c75cf48209ec3c075c46becf4e669592883b
   ViteEthereum: 1ec6e02ff0cd7c63a4379a0bdf3577fa5dcf1029
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a

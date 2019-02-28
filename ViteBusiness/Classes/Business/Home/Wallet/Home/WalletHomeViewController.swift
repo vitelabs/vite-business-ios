@@ -17,7 +17,7 @@ import ViteWallet
 
 class WalletHomeViewController: BaseTableViewController {
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModelType>>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, n_WalletHomeBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class WalletHomeViewController: BaseTableViewController {
     let walletDriver = HDWalletManager.instance.walletDriver
     let addressView = WalletHomeAddressView()
     var addressViewModel: WalletHomeAddressViewModel!
-    var tableViewModel: WalletHomeBalanceInfoTableViewModel!
+    var tableViewModel: n_WalletHomeBalanceInfoTableViewModel!
     weak var balanceInfoDetailViewController: BalanceInfoDetailViewController?
 
     fileprivate func setupView() {
@@ -97,7 +97,7 @@ class WalletHomeViewController: BaseTableViewController {
         }
 
         addressViewModel = WalletHomeAddressViewModel()
-        tableViewModel = WalletHomeBalanceInfoTableViewModel()
+        tableViewModel = n_WalletHomeBalanceInfoTableViewModel()
 
         addressView.bind(viewModel: addressViewModel)
 
@@ -111,23 +111,23 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let `self` = self else { fatalError() }
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModelType {
+                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? n_WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                    let balanceInfoDetailViewController = BalanceInfoDetailViewController(viewModel: viewModel)
+                    let balanceInfoDetailViewController = n_BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
-                    self.balanceInfoDetailViewController = balanceInfoDetailViewController
+//                    self.balanceInfoDetailViewController = balanceInfoDetailViewController
                 }
             }
             .disposed(by: rx.disposeBag)
 
-        tableViewModel.balanceInfosDriver.asObservable().bind { [weak self] in
-            if let viewModelBehaviorRelay = self?.balanceInfoDetailViewController?.viewModelBehaviorRelay {
-                for viewModel in $0 where viewModelBehaviorRelay.value.token.id == viewModel.token.id {
-                    viewModelBehaviorRelay.accept(viewModel)
-                    break
-                }
-            }
-        }.disposed(by: rx.disposeBag)
+//        tableViewModel.balanceInfosDriver.asObservable().bind { [weak self] in
+//            if let viewModelBehaviorRelay = self?.balanceInfoDetailViewController?.viewModelBehaviorRelay {
+//                for viewModel in $0 where viewModelBehaviorRelay.value.token.id == viewModel.token.id {
+//                    viewModelBehaviorRelay.accept(viewModel)
+//                    break
+//                }
+//            }
+//        }.disposed(by: rx.disposeBag)
     }
 
     func scan() {

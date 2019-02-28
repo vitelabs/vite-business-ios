@@ -19,7 +19,12 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     fileprivate let symbolLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = UIColor.white
+        $0.textColor = UIColor.black
+    }
+
+    let coinFamilyLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
     }
 
     fileprivate let balanceLabel = UILabel().then {
@@ -28,7 +33,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         $0.numberOfLines = 1
     }
 
-    fileprivate let unconfirmedLabel = UILabel().then {
+    fileprivate let priceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor(netHex: 0x4B5461)
         $0.numberOfLines = 1
@@ -52,11 +57,6 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         }
 
         let arrowView = UIImageView(image: R.image.icon_right_white())
-        let balanceTitleView = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 14)
-            $0.textColor = UIColor(netHex: 0x3E4A59)
-            $0.text = R.string.localizable.walletHomeBalanceTitle()
-        }
 
         backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
@@ -69,9 +69,9 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         colorView.addSubview(arrowView)
 
         whiteView.addSubview(colorView)
-        whiteView.addSubview(balanceTitleView)
+        whiteView.addSubview(coinFamilyLabel)
         whiteView.addSubview(balanceLabel)
-        whiteView.addSubview(unconfirmedLabel)
+        whiteView.addSubview(priceLabel)
 
         shadowView.snp.makeConstraints { (m) in
             m.top.equalTo(contentView)
@@ -111,7 +111,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             m.right.equalTo(colorView).offset(-10)
         }
 
-        balanceTitleView.snp.makeConstraints { (m) in
+        coinFamilyLabel.snp.makeConstraints { (m) in
             m.top.equalTo(colorView.snp.bottom).offset(17)
             m.left.equalTo(whiteView).offset(16)
         }
@@ -121,7 +121,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             m.right.equalTo(whiteView).offset(-16)
         }
 
-        unconfirmedLabel.snp.makeConstraints { (m) in
+        priceLabel.snp.makeConstraints { (m) in
             m.right.equalTo(whiteView).offset(-16)
             m.bottom.equalTo(whiteView).offset(-8)
         }
@@ -139,14 +139,18 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         highlightedMaskView.isHidden = !selected
     }
 
-    func bind(viewModel: WalletHomeBalanceInfoViewModelType) {
+    func bind(viewModel: n_WalletHomeBalanceInfoViewModel) {
 
-        viewModel.token.icon.putIn(iconImageView)
+        iconImageView.kf.cancelDownloadTask()
+        iconImageView.kf.setImage(with: viewModel.icon)
+
         symbolLabel.text = viewModel.symbol
-        balanceLabel.text = viewModel.balance.amountShort(decimals: viewModel.token.decimals)
-        unconfirmedLabel.text = R.string.localizable.walletHomeUnconfirmedTitle(viewModel.unconfirmed.amountShort(decimals: viewModel.token.decimals))
+        coinFamilyLabel.text = viewModel.coinFamily
+        balanceLabel.text = viewModel.balance
+        priceLabel.text = viewModel.price
+
         DispatchQueue.main.async {
-            self.colorView.backgroundColor = UIColor.gradientColor(style: .left2right, frame: self.colorView.frame, colors: viewModel.token.backgroundColors)
+//            self.colorView.backgroundColor = UIColor.gradientColor(style: .left2right, frame: self.colorView.frame, colors: viewModel.token.backgroundColors)
         }
     }
 }
