@@ -76,11 +76,7 @@ class WalletHomeViewController: BaseTableViewController {
         }.disposed(by: rx.disposeBag)
 
         scanItem.rx.tap.bind { [unowned self] _ in
-            let eth = ETHToken.init(contractAddress: "", name: "Eth", symbol: "Eth symbol", decimals: 8)
-            let vc = EthTokenInfoController.init(eth)
-            self.navigationController?.pushViewController(vc, animated: true)
-
-//            self.scan()
+            self.scan()
         }.disposed(by: rx.disposeBag)
     }
 
@@ -113,7 +109,12 @@ class WalletHomeViewController: BaseTableViewController {
                 guard let `self` = self else { fatalError() }
                 if let viewModel = (try? self.dataSource.model(at: indexPath)) as? n_WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                    let balanceInfoDetailViewController = n_BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
+                    let balanceInfoDetailViewController : UIViewController
+                    if indexPath.row == 0 {
+                         balanceInfoDetailViewController = n_BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
+                    }else {
+                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo.toETHToken()!)
+                    }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
 //                    self.balanceInfoDetailViewController = balanceInfoDetailViewController
                 }
