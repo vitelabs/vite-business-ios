@@ -13,14 +13,20 @@ import BigInt
 public extension Workflow {
     static func sendEthTransactionWithConfirm(
         toAddress: String,
-        token: ETHToken,
+        token: TokenInfo,
         amount: String,
         gasPrice: Float,
         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            if token.isToken() {
+            if token.tokenCode == TokenInfo.Const.etherCoin.tokenCode {
                 do {
-                    _ = try EtherWallet.transaction.sendTokenSync(to: toAddress, contractAddress: token.contractAddress, amount:amount, password: "", decimal: 18 ,gasPrice: gasPrice)
+                   _ = try EtherWallet.transaction.sendEtherSync(to:toAddress , amount: amount, password: "", gasPrice: gasPrice)
+                }catch {
+
+                }
+            }else {
+                do {
+                    _ = try EtherWallet.transaction.sendTokenSync(to: toAddress, contractAddress: token.ethContractAddress, amount:amount, password: "", decimal: 18 ,gasPrice: gasPrice)
                 }catch {
 
                 }

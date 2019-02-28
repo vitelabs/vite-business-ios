@@ -25,12 +25,12 @@ class EthSendTokenController: BaseViewController {
 
     var tokenName: String = ""
     var contractAddress :String = ""
-    var tokenInfo : ETHToken
+    var tokenInfo : TokenInfo
 
-    init(_ tokenInfo: ETHToken, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
+    init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
         self.tokenInfo = tokenInfo
         self.tokenName = self.tokenInfo.name
-        self.contractAddress = self.tokenInfo.contractAddress
+        self.contractAddress = self.tokenInfo.ethContractAddress
 
         self.address = toAddress
         self.amount = amount
@@ -64,12 +64,13 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var logoImgView: UIImageView = {
         let logoImgView = UIImageView()
-        logoImgView.contentMode = .scaleToFill
+        logoImgView.backgroundColor = .red
         return logoImgView
     }()
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
         let gasSliderView = EthGasFeeSliderView()
+        gasSliderView.value = 1.0
         return gasSliderView
     }()
 
@@ -102,6 +103,8 @@ class EthSendTokenController: BaseViewController {
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addArrangedSubview(gasSliderView)
+        scrollView.stackView.addPlaceholder(height: 50)
+
 
         sendButton.snp.makeConstraints { (m) in
             m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
@@ -126,9 +129,6 @@ class EthSendTokenController: BaseViewController {
 
         addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
         amountView.textField.delegate = self
-
-
-
     }
 
     private func bind() {
@@ -139,7 +139,7 @@ class EthSendTokenController: BaseViewController {
                guard let `self` = self else { return }
                 let toAddress = Address(self.addressView.textView.text ?? "")
                 guard toAddress.isValid else {
- Toast.show(R.string.localizable.sendPageToastAddressError())
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
                 guard let amountString = self.amountView.textField.text,
@@ -153,13 +153,21 @@ class EthSendTokenController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: 1.2, completion: { (r) in
+
+
+                //TODO:::
+//                if self.tokenInfo.
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: self.gasSliderView.value, completion: { (r) in
                     if case .success = r {
 
                     }
                 })
             }
             .disposed(by: rx.disposeBag)
+
+
+        //TODO:::
+        //balance loop
         FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
             guard let `self` = self else { return }
 //            for balanceInfo in balanceInfos where self.token.id == balanceInfo.token.id {

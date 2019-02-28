@@ -8,7 +8,18 @@ import UIKit
 import SnapKit
 import ViteUtils
 
-class EthGasFeeSliderView: UIView {
+public class EthGasFeeSliderView: UIView {
+    public var value : Float = 0.0 {
+        didSet {
+            guard value != oldValue else {
+                return
+            }
+
+            self.feeSlider.value = oldValue
+            self.valueLab.text = String(format: "%.4fgwei", self.feeSlider.value)
+        }
+    }
+
     let totalGasFeeTitleLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -50,7 +61,7 @@ class EthGasFeeSliderView: UIView {
     }
 
     @objc fileprivate func valueChanged() {
-        self.valueLab.text = String.init(format: "%.4fgwei", self.feeSlider.value)
+        self.value = Float(String(format: "%.4f", self.feeSlider.value)) ?? 0.0
     }
 
     init() {

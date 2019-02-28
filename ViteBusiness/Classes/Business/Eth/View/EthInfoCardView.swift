@@ -8,40 +8,37 @@
 import UIKit
 import SnapKit
 import ViteUtils
+import ViteEthereum
 
 class EthInfoCardView: UIView {
     let bgImgView = UIImageView().then {
         $0.isUserInteractionEnabled = true
-        $0.image = R.image.eth_cardBg()
-        $0.contentMode = .scaleAspectFill
+        $0.backgroundColor = .blue
     }
 
     let addressIcon = UIImageView().then {
         $0.isUserInteractionEnabled = true
         $0.image = R.image.icon_button_paste_white()
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
 
-    let addressLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyAddressTitle()
-    }
+    let addressLab = EthAddressView()
 
     let copyAddressBtn = UIButton().then {
         $0.setImage(R.image.icon_button_paste_white(), for: .normal)
         $0.setImage(R.image.icon_button_paste_white(), for: .highlighted)
+        $0.addTarget(self, action: #selector(copy), for: .touchUpInside)
     }
 
     let balanceLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyAddressTitle()
+        $0.textColor = .white
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        $0.text = "11212"
     }
     let balanceLegalTenderLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyAddressTitle()
+        $0.textColor = .white
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.text = "￥33.1"
     }
 
     let receiveButton = UIButton().then {
@@ -56,7 +53,7 @@ class EthInfoCardView: UIView {
         $0.setTitleColor(.white, for: .highlighted)
     }
 
-    init(_ token: ETHToken) {
+    init(_ token: TokenInfo) {
         super.init(frame: CGRect.zero)
 
         self.addSubview(bgImgView)
@@ -75,6 +72,7 @@ class EthInfoCardView: UIView {
             m.centerY.equalTo(self.addressIcon)
             m.left.equalTo(self.addressIcon.snp.right).offset(5)
             m.height.equalTo(16)
+            m.width.equalTo(135)
         })
 
         self.addSubview(copyAddressBtn)
@@ -127,6 +125,11 @@ class EthInfoCardView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func copy() {
+        UIPasteboard.general.string = EtherWallet.account.address
+        Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
     }
 }
 

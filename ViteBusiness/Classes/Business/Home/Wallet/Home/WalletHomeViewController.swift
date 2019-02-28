@@ -113,7 +113,7 @@ class WalletHomeViewController: BaseTableViewController {
                     if indexPath.row == 0 {
                          balanceInfoDetailViewController = n_BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }else {
-                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo.toETHToken()!)
+                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
 //                    self.balanceInfoDetailViewController = balanceInfoDetailViewController

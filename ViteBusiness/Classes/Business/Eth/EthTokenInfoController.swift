@@ -13,16 +13,13 @@ import RxCocoa
 import NSObject_Rx
 import ViteUtils
 import ViteEthereum
+import web3swift
 
 class EthTokenInfoController: BaseViewController {
-    var tokenInfo : ETHToken
-    var tokenName: String = ""
-    var contractAddress :String = ""
+    var tokenInfo : TokenInfo
 
-    init(_ tokenInfo: ETHToken, _ contractAddress: String="") {
+    init(_ tokenInfo: TokenInfo) {
         self.tokenInfo = tokenInfo
-        self.tokenName = self.tokenInfo.name
-        self.contractAddress = self.tokenInfo.contractAddress
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,12 +27,20 @@ class EthTokenInfoController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
     }
+
+    func bind() {
+        navView.bind(tokenInfo: tokenInfo)
+    }
+
+    private lazy var navView: BalanceInfoNavView = {
+        let navView = BalanceInfoNavView()
+        return navView
+    }()
 
     private lazy var ethInfoCardView: EthInfoCardView = {
         let ethInfoCardView = EthInfoCardView(self.tokenInfo)
@@ -43,7 +48,13 @@ class EthTokenInfoController: BaseViewController {
     }()
 
     fileprivate func setupView() {
-        let detailView = BalanceInfoDetailView()
+        view.addSubview(navView)
+        navView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(128)
+        }
+
         let imageView = UIImageView(image: R.image.empty())
         let showTransactionsButton = UIButton.init(type: .system).then {
             $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -51,24 +62,14 @@ class EthTokenInfoController: BaseViewController {
             $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
             $0.setTitle(R.string.localizable.balanceInfoDetailShowTransactionsButtonTitle(), for: .normal)
         }
-
-        view.addSubview(detailView)
         view.addSubview(imageView)
         view.addSubview(showTransactionsButton)
-
         view.addSubview(ethInfoCardView)
         ethInfoCardView.snp.makeConstraints { (m) in
-            m.top.equalTo(view).offset(100)
+            m.top.equalTo(navView.snp.bottom).offset(-60)
             m.left.equalTo(view).offset(24)
             m.right.equalTo(view).offset(-24)
             m.height.equalTo(188)
-        }
-
-
-        detailView.snp.makeConstraints { (m) in
-            m.top.equalTo(view)
-            m.left.right.equalTo(view)
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(182)
         }
 
         let contentLayout = UILayoutGuide()
@@ -79,7 +80,7 @@ class EthTokenInfoController: BaseViewController {
 
         contentLayout.snp.makeConstraints { (m) in
             m.left.right.equalTo(view)
-            m.top.equalTo(detailView.snp.bottom)
+            m.top.equalTo(ethInfoCardView.snp.bottom)
             m.bottom.equalTo(view)
         }
 
@@ -90,6 +91,7 @@ class EthTokenInfoController: BaseViewController {
 
         imageView.snp.makeConstraints { (m) in
             m.top.equalTo(centerLayout)
+            m.width.height.equalTo(120)
             m.centerX.equalTo(centerLayout)
         }
 
@@ -99,10 +101,8 @@ class EthTokenInfoController: BaseViewController {
             m.centerX.equalTo(centerLayout)
         }
 
-
-        
         showTransactionsButton.rx.tap.bind { [weak self] in
-            var infoUrl = String.init(format: "https://ropsten.etherscan.io/address/%@", EtherWallet.account.address ?? "")
+            var infoUrl = String.init(format: "%@%@",EtherWallet.network.getEtherInfoH5Url(), EtherWallet.account.address ?? "")
             guard let url = URL(string: infoUrl) else { return }
             let vc = WKWebViewController.init(url: url)
             self?.navigationController?.pushViewController(vc, animated: true)
@@ -110,6 +110,7 @@ class EthTokenInfoController: BaseViewController {
 
         self.ethInfoCardView.receiveButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
+            //TODO:::  action
 
             }.disposed(by: rx.disposeBag)
 
