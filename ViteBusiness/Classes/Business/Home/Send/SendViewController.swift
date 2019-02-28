@@ -166,17 +166,18 @@ class SendViewController: BaseViewController {
     }
 
     private func bind() {
-        FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
+        FetchBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
+            .drive(onNext: { [weak self] ret in
             guard let `self` = self else { return }
-            for balanceInfo in balanceInfos where self.token.id == balanceInfo.token.id {
+            if let (balanceInfo, token) = ret {
                 self.balance = balanceInfo.balance
-                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: balanceInfo.token.decimals)
-                return
+                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: token.decimals)
+            } else {
+                // no balanceInfo, set 0.0
+                self.headerView.balanceLabel.text = "0.0"
             }
-
-            // no balanceInfo, set 0.0
-            self.headerView.balanceLabel.text = "0.0"
         }).disposed(by: rx.disposeBag)
+        
         FetchQuotaService.instance.quotaDriver.drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
         FetchQuotaService.instance.maxTxCountDriver.drive(headerView.maxTxCountLabel.rx.text).disposed(by: rx.disposeBag)
     }

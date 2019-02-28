@@ -76,7 +76,7 @@ extension EtherWallet {
         var otherTokenInfos: [TokenInfo] = []
 
         for info in tokenInfos {
-            if info.tokenCode == TokenInfo.Const.etherCoin.tokenCode {
+            if info.isEtherCoin {
                 etherTokenInfo = info
             } else {
                 otherTokenInfos.append(info)
@@ -118,7 +118,7 @@ extension EtherWallet {
                 do {
                     let balance = try self.etherBalanceSync()
                     DispatchQueue.main.async {
-                        seal.fulfill(CommonBalanceInfo(tokenCode: TokenInfo.Const.etherCoin.tokenCode, balance: Balance(value: balance)))
+                        seal.fulfill(CommonBalanceInfo(tokenCode: TokenCode.etherCoin, balance: Balance(value: balance)))
                     }
                 } catch let error {
                     DispatchQueue.main.async {

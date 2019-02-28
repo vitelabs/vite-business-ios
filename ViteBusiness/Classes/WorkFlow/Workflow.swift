@@ -215,8 +215,8 @@ public extension Workflow {
         confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
                         infoTitle: R.string.localizable.quotaManagePageInputAddressTitle(),
                         info: beneficialAddress.description,
-                        token: TokenCacheService.instance.viteToken.symbol,
-                        amount: amount.amountFull(decimals: TokenCacheService.instance.viteToken.decimals),
+                        token: ViteWalletConst.viteToken.symbol,
+                        amount: amount.amountFull(decimals: ViteWalletConst.viteToken.decimals),
                         confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
                         completion: completion,
                         confirmSuccess: sendBlock)

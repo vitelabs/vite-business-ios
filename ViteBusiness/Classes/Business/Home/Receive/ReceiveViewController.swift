@@ -68,7 +68,7 @@ class ReceiveViewController: BaseViewController {
     func setupView() {
         navigationBarStyle = .clear
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_share_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onShare))
-        view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
+//        view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
 
         let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
             $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor

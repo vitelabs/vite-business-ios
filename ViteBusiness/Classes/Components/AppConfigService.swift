@@ -92,13 +92,13 @@ extension AppConfigService {
 
     public struct AppConfig: Mappable {
         fileprivate(set) var myPage: [String: Any] = [:]
-        fileprivate(set) var defaultTokens: [String: Any] = [:]
+        fileprivate(set) var defaultTokenInfos: [[String: Any]] = []
 
         public init?(map: Map) { }
 
         public mutating func mapping(map: Map) {
             myPage <- map["my_page"]
-            defaultTokens <- map["default_tokens"]
+            defaultTokenInfos <- map["default_tokenInfos"]
         }
     }
 

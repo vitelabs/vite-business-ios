@@ -76,12 +76,6 @@ class DebugOperationViewController: FormViewController {
                     HDWalletManager.instance.resetBagCount()
                     Toast.show("Operation complete")
                 })
-            <<< LabelRow("deleteTokenCache") {
-                $0.title =  "Delete Token Cache"
-                }.onCellSelection({ _, _  in
-                    TokenCacheService.instance.deleteCache()
-                    Toast.show("Operation complete")
-                })
             <<< LabelRow("exportLogFile") {
                 $0.title =  "Export Log File"
                 }.onCellSelection({ _, _  in

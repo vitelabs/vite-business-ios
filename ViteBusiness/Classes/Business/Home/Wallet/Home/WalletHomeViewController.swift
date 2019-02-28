@@ -17,7 +17,7 @@ import ViteWallet
 
 class WalletHomeViewController: BaseTableViewController {
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, n_WalletHomeBalanceInfoViewModel>>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,7 @@ class WalletHomeViewController: BaseTableViewController {
     let walletDriver = HDWalletManager.instance.walletDriver
     let addressView = WalletHomeAddressView()
     var addressViewModel: WalletHomeAddressViewModel!
-    var tableViewModel: n_WalletHomeBalanceInfoTableViewModel!
-    weak var balanceInfoDetailViewController: BalanceInfoDetailViewController?
+    var tableViewModel: WalletHomeBalanceInfoTableViewModel!
 
     fileprivate func setupView() {
 
@@ -72,7 +71,7 @@ class WalletHomeViewController: BaseTableViewController {
         }
 
         qrcodeItem.rx.tap.bind { [weak self] _ in
-            self?.navigationController?.pushViewController(ReceiveViewController(token: TokenCacheService.instance.viteToken), animated: true)
+            self?.navigationController?.pushViewController(ReceiveViewController(token: ViteWalletConst.viteToken), animated: true)
         }.disposed(by: rx.disposeBag)
 
         scanItem.rx.tap.bind { [unowned self] _ in
@@ -89,15 +88,18 @@ class WalletHomeViewController: BaseTableViewController {
     fileprivate func bind() {
 
         if let navigationTitleView = navigationTitleView as? NavigationTitleView {
-            walletDriver.map({ $0.name }).drive(navigationTitleView.titleLabel.rx.text).disposed(by: rx.disposeBag)
+            walletDriver.filterNil().map({ $0.name }).drive(navigationTitleView.titleLabel.rx.text).disposed(by: rx.disposeBag)
         }
 
         addressViewModel = WalletHomeAddressViewModel()
-        tableViewModel = n_WalletHomeBalanceInfoTableViewModel()
+        tableViewModel = WalletHomeBalanceInfoTableViewModel()
 
         addressView.bind(viewModel: addressViewModel)
 
         tableViewModel.balanceInfosDriver.asObservable()
+            .map { balanceInfos in
+                balanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) }
+            }
             .map { balanceInfoViewModels in
                 [SectionModel(model: "balanceInfo", items: balanceInfoViewModels)]
             }
@@ -107,28 +109,19 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let `self` = self else { fatalError() }
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? n_WalletHomeBalanceInfoViewModel {
+                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     let balanceInfoDetailViewController : UIViewController
-                    if indexPath.row == 0 {
-                         balanceInfoDetailViewController = n_BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
-                    }else {
+                    if viewModel.tokenInfo.chainType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
+                    } else {
+                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
+
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
-//                    self.balanceInfoDetailViewController = balanceInfoDetailViewController
                 }
             }
             .disposed(by: rx.disposeBag)
-
-//        tableViewModel.balanceInfosDriver.asObservable().bind { [weak self] in
-//            if let viewModelBehaviorRelay = self?.balanceInfoDetailViewController?.viewModelBehaviorRelay {
-//                for viewModel in $0 where viewModelBehaviorRelay.value.token.id == viewModel.token.id {
-//                    viewModelBehaviorRelay.accept(viewModel)
-//                    break
-//                }
-//            }
-//        }.disposed(by: rx.disposeBag)
     }
 
     func scan() {
@@ -148,10 +141,11 @@ class WalletHomeViewController: BaseTableViewController {
 
     func handleScanResult(with uri: ViteURI, scanViewController: ScanViewController?) {
         scanViewController?.view.displayLoading(text: "")
-        TokenCacheService.instance.tokenForId(uri.tokenId) {[weak scanViewController] (result) in
+        MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId) {[weak scanViewController] (result) in
             scanViewController?.view.hideLoading()
             switch result {
-            case .success(let token):
+            case .success(let tokenInfo):
+                let token = tokenInfo.toViteToken()!
                 guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
                     scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
                     return
@@ -218,8 +212,5 @@ class WalletHomeViewController: BaseTableViewController {
         } else {
             goWeb()
         }
-
-
-
     }
 }

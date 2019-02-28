@@ -25,19 +25,6 @@ class DebugEnvironmentViewController: FormViewController {
         form
             +++
             Section {
-                $0.header = HeaderFooterView(title: "Wallet")
-            }
-            <<< SwitchRow("useBigDifficulty") {
-                $0.title = "Use Big Difficulty (Use GPU)"
-                $0.value = DebugService.instance.config.useBigDifficulty
-                }.onChange { [weak self] row in
-                    guard let `self` = self else { return }
-                    guard let ret = row.value else { return }
-                    DebugService.instance.config.useBigDifficulty = ret
-                    self.updateTitle()
-            }
-            +++
-            Section {
                 $0.header = HeaderFooterView(title: "RPC")
             }
             <<< SwitchRow("rpcUseOnlineUrl") {

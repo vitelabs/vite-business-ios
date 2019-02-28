@@ -61,7 +61,7 @@ class WalletHomeAddressView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(viewModel: WalletHomeAddressViewModelType) {
+    func bind(viewModel: WalletHomeAddressViewModel) {
         viewModel.defaultAddressDriver.drive(addressLabel.rx.text).disposed(by: rx.disposeBag)
         copyButton.rx.tap.bind { viewModel.copy() }.disposed(by: rx.disposeBag)
         backButton.rx.tap.bind { viewModel.clickedAddress() }.disposed(by: rx.disposeBag)

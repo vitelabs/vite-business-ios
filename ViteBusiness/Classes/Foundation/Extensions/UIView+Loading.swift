@@ -78,8 +78,8 @@ extension UIView {
 
     public func setShadow(width: CGFloat, height: CGFloat, radius: CGFloat) {
         backgroundColor = UIColor.white
-        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        layer.shadowOpacity = 0.1
+        layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
+        layer.shadowOpacity = 1
         layer.shadowOffset = CGSize(width: width, height: height)
         layer.shadowRadius = radius
     }

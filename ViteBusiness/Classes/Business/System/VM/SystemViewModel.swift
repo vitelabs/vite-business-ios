@@ -21,7 +21,7 @@ final class SystemViewModel: NSObject {
 
     override init() {
         super.init()
-        HDWalletManager.instance.walletDriver.drive(onNext: { [weak self] (wallet) in
+        HDWalletManager.instance.walletDriver.filterNil().drive(onNext: { [weak self] (wallet) in
             guard let `self` = self else { return }
             self.isRequireAuthentication = wallet.isRequireAuthentication
             self.isAuthenticatedByBiometry = wallet.isAuthenticatedByBiometry

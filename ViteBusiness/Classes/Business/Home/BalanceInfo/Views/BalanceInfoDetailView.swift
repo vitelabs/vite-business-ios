@@ -108,18 +108,18 @@ class BalanceInfoDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(viewModelBehaviorRelay: BehaviorRelay<WalletHomeBalanceInfoViewModelType>) {
-        viewModelBehaviorRelay.asObservable().bind { [weak self] in
-            guard let `self` = self else { return }
-            $0.token.icon.putIn(self.iconImageView)
-            self.symbolLabel.text = $0.symbol
-            self.balanceLabel.text = $0.balance.amountFull(decimals: $0.token.decimals)
-            self.unconfirmedLabel.text = $0.unconfirmed.amountFull(decimals: $0.token.decimals)
-            self.unconfirmedCountLabel.text = R.string.localizable.balanceInfoDetailUnconfirmedCountTitle(String($0.unconfirmedCount))
-            self.backgroundColors = $0.token.backgroundColors
-            DispatchQueue.main.async {
-                self.backgroundColor = UIColor.gradientColor(style: .left2right, frame: self.frame, colors: self.backgroundColors)
-            }
-        }.disposed(by: rx.disposeBag)
-    }
+//    func bind(viewModelBehaviorRelay: BehaviorRelay<WalletHomeBalanceInfoViewModel>) {
+//        viewModelBehaviorRelay.asObservable().bind { [weak self] in
+//            guard let `self` = self else { return }
+//            $0.token.icon.putIn(self.iconImageView)
+//            self.symbolLabel.text = $0.symbol
+//            self.balanceLabel.text = $0.balance.amountFull(decimals: $0.token.decimals)
+//            self.unconfirmedLabel.text = $0.unconfirmed.amountFull(decimals: $0.token.decimals)
+//            self.unconfirmedCountLabel.text = R.string.localizable.balanceInfoDetailUnconfirmedCountTitle(String($0.unconfirmedCount))
+//            self.backgroundColors = $0.token.backgroundColors
+//            DispatchQueue.main.async {
+//                self.backgroundColor = UIColor.gradientColor(style: .left2right, frame: self.frame, colors: self.backgroundColors)
+//            }
+//        }.disposed(by: rx.disposeBag)
+//    }
 }

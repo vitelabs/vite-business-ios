@@ -28,9 +28,6 @@ class TokenIconView: UIView {
             m.bottom.right.equalToSuperview()
             m.width.height.equalToSuperview().multipliedBy(18.0/40.0)
         }
-
-        tokenIconImageView.backgroundColor = UIColor.red
-        chainIconImageView.backgroundColor = UIColor.green
     }
 
     required init?(coder aDecoder: NSCoder) {

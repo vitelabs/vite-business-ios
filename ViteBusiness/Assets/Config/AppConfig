@@ -9,44 +9,43 @@
             }
         ]
     },
-    "default_tokens":{
-        "defaults":[
-            {
-                "tokenName":"Vite Token",
-                "tokenSymbol":"VITE",
-                "decimals":18,
-                "tokenId":"tti_5649544520544f4b454e6e40",
-                "colors":[
-                    "0x0C3EE6",
-                    "0x00C3FF"
-                ]
-            },
-            {
-                "tokenName":"Vite Community Point",
-                "tokenSymbol":"VCP",
-                "decimals":0,
-                "tokenId":"tti_251a3e67a41b5ea2373936c8",
-                "colors":[
-                    "0xF76B1C",
-                    "0xFAD961"
-                ]
-            },
-            {
-                "tokenName":"Vite Test Token",
-                "tokenSymbol":"VTT",
-                "decimals":18,
-                "tokenId":"tti_c55ec37a916b7f447575ae59",
-                "colors":[
-                    "0x429321",
-                    "0xB4EC51"
-                ]
-            }
-        ],
-        "other":{
-            "colors":[
-                "0x24283E",
-                "0x485173"
-            ]
+    "default_tokenInfos":[
+        {
+            "tokenCode":"viteCoin",
+            "platform":"vite",
+            "name":"Vite Token",
+            "symbol":"VITE",
+            "decimals":18,
+            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
+            "tokenAddress":"tti_5649544520544f4b454e6e40"
+        },
+        {
+            "tokenCode":"vcpToken",
+            "platform":"vite",
+            "name":"Vite Community Point",
+            "symbol":"VCP",
+            "decimals":1,
+            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
+            "tokenAddress":"tti_6c69ef4506e1d440ee39f248"
+        },
+        {
+            "tokenCode":"etherCoin",
+            "platform":"eth",
+            "name":"Ethereum",
+            "symbol":"ETH",
+            "decimals":18,
+            "icon":"https://www.cryptosaurus.cc/ctrl/wp-content/uploads/ETHEREUM.png",
+            "tokenAddress":""
+        },
+        {
+            "tokenCode":"viteERC20",
+            "platform":"eth",
+            "name":"Vite ERC20",
+            "symbol":"VITE",
+            "decimals":18,
+            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
+            "tokenAddress":"0x54b716345c14ba851f1b51dcc1491abee6ba8f44"
         }
-    }
+    ]
 }
+

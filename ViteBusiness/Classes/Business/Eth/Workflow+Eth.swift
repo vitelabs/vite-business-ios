@@ -18,7 +18,7 @@ public extension Workflow {
         gasPrice: Float,
         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            if token.tokenCode == TokenInfo.Const.etherCoin.tokenCode {
+            if token.isEtherCoin {
                 do {
                    _ = try EtherWallet.transaction.sendEtherSync(to:toAddress , amount: amount, password: "", gasPrice: gasPrice)
                 }catch {

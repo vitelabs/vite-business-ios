@@ -47,9 +47,8 @@ public class ViteBusinessLanucher: NSObject {
         goShowIntroViewPage()
 
         AppConfigService.instance.start()
-        TokenCacheService.instance.start()
+        MyTokenInfosService.instance.start()
         AutoGatheringService.instance.start()
-        FetchBalanceInfoService.instance.start()
         FetchBalanceInfoManager.instance.start()
         FetchQuotaService.instance.start()
 
@@ -112,10 +111,11 @@ public class ViteBusinessLanucher: NSObject {
             switch ViteURI.parser(string: uriString) {
             case .success(let uri):
                 HUD.show()
-                TokenCacheService.instance.tokenForId(uri.tokenId, completion: { (r) in
+                MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
                     switch r {
-                    case .success(let token):
+                    case .success(let tokenInfo):
+                        let token = tokenInfo.toViteToken()!
                         Workflow.sendRawTx(by: uri, accountAddress: account.address, token: token, completion: { (r) in
                             WKWebViewConfig.instance.isInvokingUri = false
                             switch r {

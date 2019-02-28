@@ -61,7 +61,7 @@ class QuotaManageViewController: BaseViewController {
     lazy var headerView = SendHeaderView(address: account.address.description)
 
     // money
-    lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: TokenCacheService.instance.viteToken.symbol).then {
+    lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
         $0.textField.keyboardType = .decimalPad
     }
 
@@ -182,7 +182,7 @@ extension QuotaManageViewController {
 
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: TokenCacheService.instance.viteToken.decimals) else {
+                    let amount = amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
@@ -197,7 +197,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount >= "1000".toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)! else {
+                guard amount >= "1000".toBigInt(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
@@ -219,17 +219,18 @@ extension QuotaManageViewController {
     }
 
     func initBinds() {
-        FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
-            guard let `self` = self else { return }
-            for balanceInfo in balanceInfos where TokenCacheService.instance.viteToken.id == balanceInfo.token.id {
-                self.balance = balanceInfo.balance
-                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: balanceInfo.token.decimals)
-                return
-            }
+        FetchBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
+            .drive(onNext: { [weak self] ret in
+                guard let `self` = self else { return }
+                if let (balanceInfo, token) = ret {
+                    self.balance = balanceInfo.balance
+                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: token.decimals)
+                } else {
+                    // no balanceInfo, set 0.0
+                    self.headerView.balanceLabel.text = "0.0"
+                }
+            }).disposed(by: rx.disposeBag)
 
-            // no balanceInfo, set 0.0
-            self.headerView.balanceLabel.text = "0.0"
-        }).disposed(by: rx.disposeBag)
         FetchQuotaService.instance.quotaDriver.drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
         FetchQuotaService.instance.maxTxCountDriver.drive(headerView.maxTxCountLabel.rx.text).disposed(by: rx.disposeBag)
     }
@@ -238,7 +239,7 @@ extension QuotaManageViewController {
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
     func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        let amount = Balance(value: amountString.toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)!)
+        let amount = Balance(value: amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals)!)
         Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
             if case .success = r {
                 self.refreshDataBySuccess()
@@ -250,7 +251,7 @@ extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
 extension QuotaManageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, TokenCacheService.instance.viteToken.decimals))
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, ViteWalletConst.viteToken.decimals))
             textField.text = text
             return ret
         } else {

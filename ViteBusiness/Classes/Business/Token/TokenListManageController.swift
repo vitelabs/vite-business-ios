@@ -92,7 +92,7 @@ class TokenListManageController: BaseViewController {
         let dataSource = DataSource(configureCell: { [weak self] (_, tableView, indexPath, candidate) -> UITableViewCell in
             let cell: CandidateCell = tableView.dequeueReusableCell(for: indexPath)
             cell.nodeNameLabel.text = candidate.name
-            cell.voteCountLabel.text = candidate.voteNum.amountShort(decimals: TokenCacheService.instance.viteToken.decimals)
+            cell.voteCountLabel.text = candidate.voteNum.amountShort(decimals: ViteWalletConst.viteToken.decimals)
             cell.addressLabel.text = " " + candidate.nodeAddr.description
             cell.updateRank(candidate.rank)
             cell.disposeable?.dispose()

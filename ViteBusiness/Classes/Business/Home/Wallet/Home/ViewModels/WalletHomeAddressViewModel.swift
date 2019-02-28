@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
-final class WalletHomeAddressViewModel: WalletHomeAddressViewModelType {
+final class WalletHomeAddressViewModel {
 
     let defaultAddressDriver: Driver<String> = HDWalletManager.instance.accountDriver.map({ $0?.address.description ?? "" })
 

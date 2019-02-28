@@ -8,12 +8,18 @@
 import ObjectMapper
 import ViteWallet
 
-public enum ChainType {
+public enum ChainType: String {
     case vite
     case eth
 }
 
 public typealias TokenCode = String
+
+extension TokenCode {
+    public static let viteCoin = "viteCoin"
+    public static let etherCoin = "etherCoin"
+    public static let viteERC20 = "viteERC20"
+}
 
 public struct TokenInfo: Mappable {
 
@@ -28,13 +34,13 @@ public struct TokenInfo: Mappable {
     public var coinFamily: String {
         switch chainType {
         case .vite:
-            if tokenCode == TokenInfo.Const.viteCoin.tokenCode {
+            if isViteCoin {
                 return "Vite Coin"
             } else {
                 return "Vite Token"
             }
         case .eth:
-            if tokenCode == TokenInfo.Const.etherCoin.tokenCode {
+            if isEtherCoin {
                 return "ETH Coin"
             } else {
                 return "ERC20 Token"
@@ -54,13 +60,21 @@ public struct TokenInfo: Mappable {
 
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
-        chainType <- map["platform"]
+        chainType <- (map["platform"], chainTypeTransform)
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimals"]
         icon <- map["icon"]
         id <- map["tokenAddress"]
     }
+
+    private let chainTypeTransform = TransformOf<ChainType, String>(fromJSON: { (string) -> ChainType? in
+        guard let string = string else { return nil }
+        return ChainType(rawValue: string)
+    }, toJSON: { (chainType) -> String? in
+        guard let chainType = chainType else { return nil }
+        return chainType.rawValue
+    })
 
     init(tokenCode: TokenCode, chainType: ChainType, name: String, symbol: String, decimals: Int, icon: String, id: String) {
         self.tokenCode = tokenCode
@@ -77,6 +91,10 @@ extension TokenInfo: Equatable {
     public static func == (lhs: TokenInfo, rhs: TokenInfo) -> Bool {
         return lhs.tokenCode == rhs.tokenCode
     }
+
+    var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
+    var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
+    var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
 }
 
 extension TokenInfo {
@@ -97,30 +115,31 @@ extension TokenInfo {
     }
 }
 
-extension TokenInfo {
-    public struct Const {
-        public static let etherCoin = TokenInfo(tokenCode: "etherCoin", chainType: .eth, name: "Ether", symbol: "Ether", decimals: 18, icon: "https://xx", id: "")
-
-        public static let viteERC20 = TokenInfo(tokenCode: "viteERC20", chainType: .eth, name: "vite erc20", symbol: "vite erc20", decimals: 18, icon: "https://xx", id: "0x54b716345c14ba851f1b51dcc1491abee6ba8f44")
-        
-        public static let viteCoin = TokenInfo(tokenCode: "viteCoin",
-                                               chainType: .vite,
-                                               name: ViteWalletConst.viteToken.name,
-                                               symbol: ViteWalletConst.viteToken.symbol,
-                                               decimals: ViteWalletConst.viteToken.decimals,
-                                               icon: "https://xx",
-                                               id: ViteWalletConst.viteToken.id)
-    }
-}
-
-
 // UI Style
 extension TokenInfo {
     var chainIcon: UIImage? {
-        if self == TokenInfo.Const.etherCoin {
+        if isEtherCoin {
             return R.image.icon_logo_chain_eth()
         } else {
             return nil
+        }
+    }
+
+    var chainBackgroundGradientColors: [UIColor] {
+        switch chainType {
+        case .vite:
+            return [
+                UIColor(netHex: 0x0B30E4),
+                UIColor(netHex: 0x0D6CEF),
+                UIColor(netHex: 0x0998F3),
+                UIColor(netHex: 0x00C3FF),
+                UIColor(netHex: 0x00ECFF),
+            ]
+        case .eth:
+            return [
+                UIColor(netHex: 0x429321),
+                UIColor(netHex: 0xB4EC51),
+            ]
         }
     }
 }

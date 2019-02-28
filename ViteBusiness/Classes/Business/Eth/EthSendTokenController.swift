@@ -165,10 +165,9 @@ class EthSendTokenController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
-
         //TODO:::
         //balance loop
-        FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
+        FetchBalanceInfoManager.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
             guard let `self` = self else { return }
 //            for balanceInfo in balanceInfos where self.token.id == balanceInfo.token.id {
 //                self.balance = balanceInfo.balance

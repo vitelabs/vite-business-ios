@@ -27,7 +27,7 @@ final class TransactionViewModel: TransactionViewModelType {
         let symbol = transaction.amount.value == 0 ? "" : (transaction.type == .receive ? "+" : "-")
         self.balanceString = "\(symbol)\(transaction.amount.amountShort(decimals: transaction.token.decimals))"
         self.balanceColor = transaction.type == .receive ? UIColor(netHex: 0xFF0008) : UIColor(netHex: 0x5BC500)
-        self.symbolString = TokenCacheService.instance.tokenForId(transaction.token.id)?.symbol ?? ""
+        self.symbolString = "xxx"
         self.hash = transaction.hash
     }
 }

@@ -139,7 +139,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         highlightedMaskView.isHidden = !selected
     }
 
-    func bind(viewModel: n_WalletHomeBalanceInfoViewModel) {
+    func bind(viewModel: WalletHomeBalanceInfoViewModel) {
 
         iconImageView.kf.cancelDownloadTask()
         iconImageView.kf.setImage(with: viewModel.icon)
