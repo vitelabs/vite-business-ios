@@ -44,6 +44,10 @@ public class AppSettingsService {
         currencyBehaviorRelay.accept(currency)
         pri_save()
     }
+
+    var currency: CurrencyCode {
+        return currencyBehaviorRelay.value
+    }
 }
 
 extension AppSettingsService {
