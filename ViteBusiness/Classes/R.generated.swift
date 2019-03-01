@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 89 images.
+  /// This `R.image` struct is generated, and contains static references to 87 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -130,10 +130,6 @@ struct R: Rswift.Validatable {
     static let icon_tabbar_me_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me_select")
     /// Image `icon_tabbar_me`.
     static let icon_tabbar_me = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me")
-    /// Image `icon_tabbar_vote_select`.
-    static let icon_tabbar_vote_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_vote_select")
-    /// Image `icon_tabbar_vote`.
-    static let icon_tabbar_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_vote")
     /// Image `icon_tabbar_wallet_select`.
     static let icon_tabbar_wallet_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet_select")
     /// Image `icon_tabbar_wallet`.
@@ -477,16 +473,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tabbar_me_select, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_tabbar_vote", bundle: ..., traitCollection: ...)`
-    static func icon_tabbar_vote(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_vote, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_vote_select", bundle: ..., traitCollection: ...)`
-    static func icon_tabbar_vote_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_vote_select, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_tabbar_wallet", bundle: ..., traitCollection: ...)`
     static func icon_tabbar_wallet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_wallet, compatibleWith: traitCollection)
@@ -647,7 +633,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 255 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 258 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -932,10 +918,6 @@ struct R: Rswift.Validatable {
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
-      static let balanceInfoDetailPledge = Rswift.StringResource(key: "balance.info.detail.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Get TPS quota
-      /// 
-      /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNamePledge = Rswift.StringResource(key: "transaction.list.transaction.type.name.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: HD Wallet Structure
       /// 
@@ -1197,6 +1179,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let scanPageQccodeNotIdentifiable = Rswift.StringResource(key: "Scan.page.qccode.not.identifiable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailPledge = Rswift.StringResource(key: "balance.info.detail.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
@@ -1661,10 +1647,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageMnemonicCellTitle = Rswift.StringResource(key: "my.page.mnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 快
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeFastTitle = Rswift.StringResource(key: "eth.page.gasFee.fast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 慢
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeSlowTitle = Rswift.StringResource(key: "eth.page.gasFee.slow.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 矿工费用
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeTitle = Rswift.StringResource(key: "eth.page.gasFee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 联系人
       /// 
       /// Locales: en, zh-Hans
@@ -2163,13 +2161,6 @@ struct R: Rswift.Validatable {
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
-      static func balanceInfoDetailPledge(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.pledge", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Get TPS quota
-      /// 
-      /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNamePledge(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.pledge", bundle: R.hostingBundle, comment: "")
       }
@@ -2627,6 +2618,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func scanPageQccodeNotIdentifiable(_: Void = ()) -> String {
         return NSLocalizedString("Scan.page.qccode.not.identifiable", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailPledge(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Quota Beneficiary
@@ -3441,11 +3439,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.mnemonic.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 快
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeFastTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.fast.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 慢
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeSlowTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.slow.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static func addressManageDefaultAddressName(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 矿工费用
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 联系人
