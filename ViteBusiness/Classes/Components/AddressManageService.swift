@@ -15,7 +15,7 @@ import ViteWallet
 public final class AddressManageService {
     public static let instance = AddressManageService()
 
-    fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
     fileprivate static let saveKey = "AddressManage"
 
     //MARK: save to disk
@@ -23,12 +23,14 @@ public final class AddressManageService {
         if let data = fileHelper.contentsAtRelativePath(type(of: self).saveKey),
             let jsonString = String(data: data, encoding: .utf8),
             let manager = AddressManager(JSONString: jsonString) {
-            myAddressNameMap = manager.myAddressNameMap
+            myAddressNameMap = BehaviorRelay(value: manager.myAddressNameMap)
+        } else {
+            myAddressNameMap = BehaviorRelay(value: [:])
         }
     }
 
     private func pri_save() {
-        let manager = AddressManager(myAddressNameMap: myAddressNameMap)
+        let manager = AddressManager(myAddressNameMap: myAddressNameMap.value)
         if let data = manager.toJSONString()?.data(using: .utf8) {
             if let error = fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
                 assert(false, error.localizedDescription)
@@ -37,14 +39,17 @@ public final class AddressManageService {
     }
 
     //MARK: my address name
-    private var myAddressNameMap: [String: String] = [:]
+    public lazy var myAddressNameMapDriver: Driver<[String: String]> = self.myAddressNameMap.asDriver()
+    private var myAddressNameMap: BehaviorRelay<[String: String]>
 
     func name(for myAddress: Address) -> String {
-        return myAddressNameMap[myAddress.description] ?? R.string.localizable.addressManageDefaultAddressName()
+        return myAddressNameMap.value[myAddress.description] ?? R.string.localizable.addressManageDefaultAddressName()
     }
 
     func updateName(for myAddress: Address, name: String) {
-        myAddressNameMap[myAddress.description] = name
+        var map = myAddressNameMap.value
+        map[myAddress.description] = name
+        myAddressNameMap.accept(map)
         pri_save()
     }
 }

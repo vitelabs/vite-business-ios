@@ -27,7 +27,7 @@ class BalanceInfoDetailViewController: BaseViewController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
 
 

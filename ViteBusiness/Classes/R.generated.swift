@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 85 images.
+  /// This `R.image` struct is generated, and contains static references to 89 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,8 +48,16 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `icon_address_name`.
+    static let icon_address_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_name")
     /// Image `icon_background`.
     static let icon_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_background")
+    /// Image `icon_balance_detail_arrows`.
+    static let icon_balance_detail_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_arrows")
+    /// Image `icon_balance_detail_pledge`.
+    static let icon_balance_detail_pledge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_pledge")
+    /// Image `icon_balance_detail_vote`.
+    static let icon_balance_detail_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_vote")
     /// Image `icon_button_add`.
     static let icon_button_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_add")
     /// Image `icon_button_address_add`.
@@ -264,9 +272,29 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.gift, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_address_name", bundle: ..., traitCollection: ...)`
+    static func icon_address_name(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_address_name, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_background", bundle: ..., traitCollection: ...)`
     static func icon_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_background, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_balance_detail_arrows", bundle: ..., traitCollection: ...)`
+    static func icon_balance_detail_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_detail_arrows, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_balance_detail_pledge", bundle: ..., traitCollection: ...)`
+    static func icon_balance_detail_pledge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_detail_pledge, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_balance_detail_vote", bundle: ..., traitCollection: ...)`
+    static func icon_balance_detail_vote(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_detail_vote, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_add", bundle: ..., traitCollection: ...)`

@@ -5,37 +5,40 @@
 //  Created by Stone on 2019/2/22.
 //
 
-import ViteWallet
 import RxSwift
 import RxCocoa
+import ViteUtils
+import ViteWallet
+
+public typealias ExchangeRateMap = [String: [String: String]]
 
 public final class ExchangeRateManager {
     public static let instance = ExchangeRateManager()
-    private init() {}
 
-    public lazy var tokensDriver: Driver<[TokenInfo]> = self.tokensBehaviorRelay.asDriver()
-    private var tokensBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [TokenInfo]())
 
-    public func append(token: TokenInfo) {
-        var tokens = tokensBehaviorRelay.value
-        tokens.append(token)
-        tokensBehaviorRelay.accept(tokens)
-        pri_save()
-    }
+    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate static let saveKey = "ExchangeRate"
 
-    public func removeToken(for tokenCode: TokenCode) {
-        var tokens = tokensBehaviorRelay.value
-        for (index, token) in tokens.enumerated() where token.tokenCode == tokenCode {
-            tokens.remove(at: index)
-            break
+    private init() {
+        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+            let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+            let map = dic as? ExchangeRateMap {
+            rateMapBehaviorRelay = BehaviorRelay(value: map)
+        } else {
+            rateMapBehaviorRelay = BehaviorRelay(value: ExchangeRateMap())
         }
-        tokensBehaviorRelay.accept(tokens)
-        pri_save()
     }
 
     private func pri_save() {
-
+        if let data = try? JSONSerialization.data(withJSONObject: rateMapBehaviorRelay.value, options: []) {
+            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
+                assert(false, error.localizedDescription)
+            }
+        }
     }
+
+    public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
+    private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap>
 }
 
 public enum CurrencyCode: String {
@@ -52,15 +55,14 @@ public enum CurrencyCode: String {
     }
 }
 
-public struct ExchangeRate {
-
-    let code: CurrencyCode
-    let rate: [String: String]
-
-}
-
-extension Balance {
-    public func price(decimals: Int, rate: ExchangeRate) -> String {
-        return "\(rate.code.symbol) 100.00"
+public extension Dictionary where Key == String, Value == [String: String] {
+    func priceString(for tokenInfo: TokenInfo, balance: Balance) -> String {
+        let currency = AppSettingsService.instance.currency
+        if let dic = self[tokenInfo.tokenCode] as? [String: String],
+            let rate = dic[currency.rawValue] as? [String] {
+            return "\(currency.symbol) \(balance.amountFull(decimals: tokenInfo.decimals)) * \(rate)"
+        } else {
+            return "\(currency.symbol) 0.00"
+        }
     }
 }
