@@ -328,3 +328,9 @@
 
 // ViteURI
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
+
+// eth
+"eth.page.gasFee.title" = "矿工费用";
+"eth.page.gasFee.slow.title" = "慢";
+"eth.page.gasFee.fast.title" = "快";
+

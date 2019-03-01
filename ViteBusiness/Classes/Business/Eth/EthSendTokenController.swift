@@ -17,20 +17,15 @@ import web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
-    let account = HDWalletManager.instance.account!
     let fromAddress : EthereumAddress = EtherWallet.shared.ethereumAddress!
 
     var address:  web3swift.Address? = nil
     var amount: Balance? = nil
 
-    var tokenName: String = ""
-    var contractAddress :String = ""
     var tokenInfo : TokenInfo
 
     init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
         self.tokenInfo = tokenInfo
-        self.tokenName = self.tokenInfo.name
-        self.contractAddress = self.tokenInfo.ethContractAddress
 
         self.address = toAddress
         self.amount = amount
@@ -45,6 +40,7 @@ class EthSendTokenController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+        fetchGasPrice()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +60,6 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var logoImgView: UIImageView = {
         let logoImgView = UIImageView()
-        logoImgView.backgroundColor = .red
         return logoImgView
     }()
 
@@ -87,10 +82,27 @@ class EthSendTokenController: BaseViewController {
         }
     }()
 
+    private func fetchGasPrice() {
+        EtherWallet.transaction.fetchGasPrice { (result) in
+            guard let gas = result else { return }
+            self.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
+        }
+    }
+
     private func setupView() {
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账", self.tokenInfo.symbol))
+        navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.tokenCode))
 
+        self.amountView.symbolLabel.text = self.tokenInfo.symbol
+
+        self.logoImgView.kf.setImage(with: URL(string: self.tokenInfo.icon))
+
+        navigationTitleView!.addSubview(logoImgView)
+        logoImgView.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.right.equalToSuperview().offset(-24)
+            m.width.height.equalTo(50)
+        }
         view.addSubview(scrollView)
         view.addSubview(sendButton)
 
@@ -99,12 +111,12 @@ class EthSendTokenController: BaseViewController {
             m.left.right.equalTo(view)
         }
         scrollView.stackView.addArrangedSubview(headerView)
-        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addPlaceholder(height: 1)
         scrollView.stackView.addArrangedSubview(gasSliderView)
         scrollView.stackView.addPlaceholder(height: 50)
-
 
         sendButton.snp.makeConstraints { (m) in
             m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
@@ -153,37 +165,31 @@ class EthSendTokenController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
-
-
-                //TODO:::
-//                if self.tokenInfo.
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: self.gasSliderView.value, completion: { (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: { (r) in
                     if case .success = r {
-
+                        self.navigationController?.popViewController(animated: true)
                     }
                 })
             }
             .disposed(by: rx.disposeBag)
 
-        //TODO:::
         //balance loop
-        FetchBalanceInfoManager.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
-            guard let `self` = self else { return }
-//            for balanceInfo in balanceInfos where self.token.id == balanceInfo.token.id {
-//                self.balance = balanceInfo.balance
-//                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: balanceInfo.token.decimals)
-//                return
-//            }
-
-            // no balanceInfo, set 0.0
-            self.headerView.balanceLabel.text = "0.0"
-        }).disposed(by: rx.disposeBag)
-
+        FetchBalanceInfoManager.instance.balanceInfoDriver(forETHContractAddress: self.tokenInfo.ethContractAddress)
+            .drive(onNext: { [weak self] ret in
+                guard let `self` = self else { return }
+                if let (balanceInfo, token) = ret {
+                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: token.decimals)
+                    //TODO:::  汇率
+                } else {
+                    // no balanceInfo, set 0.0
+                    self.headerView.balanceLabel.text = "0.0"
+                    //TODO:::  汇率
+                }
+            }).disposed(by: rx.disposeBag)
     }
 }
 
 extension EthSendTokenController: UITextFieldDelegate {
-
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
             let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, 18))

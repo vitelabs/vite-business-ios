@@ -331,3 +331,8 @@
 
 // ViteURI
 "vite.uri.amount.format.error" = "转账金额格式错误";
+
+// eth
+"eth.page.gasFee.title" = "矿工费用";
+"eth.page.gasFee.slow.title" = "慢";
+"eth.page.gasFee.fast.title" = "快";

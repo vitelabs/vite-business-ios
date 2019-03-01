@@ -7,6 +7,8 @@
 import UIKit
 import SnapKit
 import ViteUtils
+import BigInt
+import web3swift
 
 public class EthGasFeeSliderView: UIView {
     public var value : Float = 0.0 {
@@ -14,20 +16,35 @@ public class EthGasFeeSliderView: UIView {
             guard value != oldValue else {
                 return
             }
+            if value == self.feeSlider.minimumValue || value == self.feeSlider.maximumValue {
+                self.valueLab.text = String(format: "%.2fgwei", value)
+            }else {
+                self.valueLab.text = String(format: "%.4fgwei", value)
+            }
+            var eth = (value * Float(self.gasLimit) * pow(10.0, -9))
+            eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
 
-            self.feeSlider.value = oldValue
-            self.valueLab.text = String(format: "%.4fgwei", self.feeSlider.value)
+            var rateFee = ""
+            if rate != 0.0 {
+                rateFee = String(format: "≈ %@%.2f",self.rateSymbol, rate * Float(eth))
+            }
+            if eth <= 0.0001 {
+                self.totalGasFeeLab.text = String(format: "%.5f ETH%@", eth,rateFee)
+            } else {
+                self.totalGasFeeLab.text = String(format: "%.4f ETH%@", eth,rateFee)
+            }
+            self.feeSlider.value = Float(value)
         }
     }
 
     let totalGasFeeTitleLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.text = "矿工费用"
+        $0.text = R.string.localizable.ethPageGasFeeTitle()
     }
 
     let totalGasFeeLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.textColor = UIColor(netHex: 0x24272B)
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
@@ -46,13 +63,13 @@ public class EthGasFeeSliderView: UIView {
     let slowLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x5E6875)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.text = "Slow"
+        $0.text = R.string.localizable.ethPageGasFeeSlowTitle()
     }
 
     let fastLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x5E6875)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.text = "Fast"
+        $0.text = R.string.localizable.ethPageGasFeeFastTitle()
     }
 
     let valueLab = UILabel().then {
@@ -61,11 +78,20 @@ public class EthGasFeeSliderView: UIView {
     }
 
     @objc fileprivate func valueChanged() {
-        self.value = Float(String(format: "%.4f", self.feeSlider.value)) ?? 0.0
+        self.value = self.feeSlider.value.roundTo(4)
     }
 
-    init() {
+    var gasLimit:Int
+    var rate:Float
+    var rateSymbol:String
+
+    init(gasLimit:Int = 10000,rate:Float=0.0,rateSymbol:String="￥") {
+        self.gasLimit = gasLimit
+        self.rate = rate
+        self.rateSymbol = rateSymbol
+
         super.init(frame: CGRect.zero)
+
         self.addSubview(totalGasFeeTitleLab)
         totalGasFeeTitleLab.snp.makeConstraints({ (m) in
             m.top.left.equalToSuperview()
@@ -124,5 +150,13 @@ class GasFeeSliderView: UISlider {
        let newRect = CGRect.init(x: bounds.origin.x, y: bounds.origin.y , width: bounds.size.width, height: 4)
         self.layer.cornerRadius = 4
         return newRect
+    }
+}
+
+extension Float {
+    /// Rounds the double to decimal places value
+    func roundTo(_ places:Int) -> Float {
+        let divisor = pow(10.0, Float(places))
+        return (self * divisor).rounded() / divisor
     }
 }

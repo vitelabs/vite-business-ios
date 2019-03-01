@@ -13,7 +13,6 @@ import ViteEthereum
 class EthInfoCardView: UIView {
     let bgImgView = UIImageView().then {
         $0.isUserInteractionEnabled = true
-        $0.backgroundColor = .blue
     }
 
     let addressIcon = UIImageView().then {
@@ -33,12 +32,12 @@ class EthInfoCardView: UIView {
     let balanceLab = UILabel().then {
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        $0.text = "11212"
+        $0.text = ""
     }
     let balanceLegalTenderLab = UILabel().then {
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.text = "￥33.1"
+        $0.text = ""
     }
 
     let receiveButton = UIButton().then {
@@ -55,6 +54,10 @@ class EthInfoCardView: UIView {
 
     init(_ token: TokenInfo) {
         super.init(frame: CGRect.zero)
+
+        DispatchQueue.main.async {
+            self.bgImgView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: token.chainBackgroundGradientColors)
+        }
 
         self.addSubview(bgImgView)
         bgImgView.snp.makeConstraints({ (m) in

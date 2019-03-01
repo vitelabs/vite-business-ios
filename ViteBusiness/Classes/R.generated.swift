@@ -619,7 +619,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 253 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 256 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1625,10 +1625,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageMnemonicCellTitle = Rswift.StringResource(key: "my.page.mnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 快
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeFastTitle = Rswift.StringResource(key: "eth.page.gasFee.fast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 慢
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeSlowTitle = Rswift.StringResource(key: "eth.page.gasFee.slow.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 矿工费用
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeTitle = Rswift.StringResource(key: "eth.page.gasFee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 联系人
       /// 
       /// Locales: en, zh-Hans
@@ -3391,11 +3403,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.mnemonic.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 快
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeFastTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.fast.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 慢
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeSlowTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.slow.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static func addressManageDefaultAddressName(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 矿工费用
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 联系人
