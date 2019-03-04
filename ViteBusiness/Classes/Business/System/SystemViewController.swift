@@ -63,7 +63,7 @@ class SystemViewController: FormViewController {
         self.tableView.backgroundColor = .white
         self.tableView.separatorStyle = .none
 
-        SwitchRow.defaultCellSetup = { cell, row in
+        ViteSwitchRow.defaultCellSetup = { cell, row in
             cell.preservesSuperviewLayoutMargins = false
             cell.layoutMargins.left = 24
             cell.layoutMargins.right = 24
@@ -88,7 +88,7 @@ class SystemViewController: FormViewController {
                 self.showChangeLanguageList(isSettingPage: true)
             })
 
-            <<< SwitchRow("systemPageCellLoginPwd") {[unowned self] in 
+            <<< ViteSwitchRow("systemPageCellLoginPwd") {[unowned self] in
                 $0.title = R.string.localizable.systemPageCellLoginPwd()
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
@@ -101,7 +101,7 @@ class SystemViewController: FormViewController {
                     HDWalletManager.instance.setIsRequireAuthentication(enabled)
             }
 
-            <<< SwitchRow("systemPageCellLoginFaceId") {[unowned self] in
+            <<< ViteSwitchRow("systemPageCellLoginFaceId") {[unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellLoginFaceId() : R.string.localizable.systemPageCellLoginTouchId()
                 $0.title = title
@@ -117,7 +117,7 @@ class SystemViewController: FormViewController {
                     self.showBiometricAuth("systemPageCellLoginFaceId", value: enabled)
             }
 
-            <<< SwitchRow("systemPageCellTransferFaceId") { [unowned self] in
+            <<< ViteSwitchRow("systemPageCellTransferFaceId") { [unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellTransferFaceId() : R.string.localizable.systemPageCellTransferTouchId()
                 $0.title = title
@@ -163,7 +163,7 @@ extension SystemViewController {
     }
 
     func changeSwitchRowValue (_ tag: String, value: Bool) {
-        let row = self.form.rowBy(tag: tag) as! SwitchRow
+        let row = self.form.rowBy(tag: tag) as! ViteSwitchRow
         row.value = value
         row.updateCell()
     }

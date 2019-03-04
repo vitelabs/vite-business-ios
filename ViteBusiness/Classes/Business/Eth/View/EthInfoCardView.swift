@@ -15,9 +15,11 @@ class EthInfoCardView: UIView {
         $0.isUserInteractionEnabled = true
     }
 
+    let lineImageView = UIImageView(image: R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
+
     let addressIcon = UIImageView().then {
         $0.isUserInteractionEnabled = true
-        $0.image = R.image.icon_button_paste_white()
+        $0.image = R.image.icon_address_name()
         $0.contentMode = .scaleToFill
     }
 
@@ -85,6 +87,13 @@ class EthInfoCardView: UIView {
             m.width.height.equalTo(12)
         })
 
+        self.addSubview(lineImageView)
+        lineImageView.snp.makeConstraints({ (m) in
+            m.left.right.equalToSuperview()
+            m.top.equalToSuperview().offset(44)
+            m.height.equalTo(1)
+        })
+
         self.addSubview(balanceLab)
         balanceLab.snp.makeConstraints({ (m) in
             m.top.equalToSuperview().offset(60)
@@ -97,6 +106,19 @@ class EthInfoCardView: UIView {
             m.top.equalTo(self.balanceLab.snp.bottom).offset(14)
             m.left.equalToSuperview().offset(14)
             m.height.equalTo(16)
+        })
+
+        let buttonBgView = UIView().then {
+            $0.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+            $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.06).cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowOffset = CGSize(width: 0, height: -2)
+            $0.layer.shadowRadius = 2
+        }
+        self.addSubview(buttonBgView)
+        buttonBgView.snp.makeConstraints({ (m) in
+            m.left.right.bottom.equalToSuperview()
+            m.height.equalTo(44)
         })
 
         self.addSubview(receiveButton)
