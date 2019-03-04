@@ -141,6 +141,8 @@
 "balance.info.detail.show.transactions.button.title" = "View Transaction History";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
+"balance.info.detail.vote" = "Vote";
+"balance.info.detail.pledge" = "Quota";
 
 /* Address Manage Page */
 "address.manage.page.title" = "Address Management";

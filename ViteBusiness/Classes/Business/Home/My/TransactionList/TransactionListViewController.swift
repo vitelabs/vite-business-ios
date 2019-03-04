@@ -30,7 +30,7 @@ class TransactionListViewController: BaseTableViewController {
 
     fileprivate func setupView() {
 
-        navigationTitleView = NavigationTitleView(title: R.string.localizable.transactionListPageTitle())
+//        navigationTitleView = NavigationTitleView(title: R.string.localizable.transactionListPageTitle())
 
         tableView.separatorStyle = .none
         tableView.rowHeight = TransactionCell.cellHeight

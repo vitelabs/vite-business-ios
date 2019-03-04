@@ -26,8 +26,8 @@ final class TransactionViewModel: TransactionViewModelType {
         self.timeString = transaction.timestamp.format("yyyy.MM.dd")
         let symbol = transaction.amount.value == 0 ? "" : (transaction.type == .receive ? "+" : "-")
         self.balanceString = "\(symbol)\(transaction.amount.amountShort(decimals: transaction.token.decimals))"
-        self.balanceColor = transaction.type == .receive ? UIColor(netHex: 0xFF0008) : UIColor(netHex: 0x5BC500)
-        self.symbolString = "xxx"
+        self.balanceColor = transaction.type == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+        self.symbolString = transaction.token.symbol
         self.hash = transaction.hash
     }
 }

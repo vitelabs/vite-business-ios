@@ -647,7 +647,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 253 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 255 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -929,6 +929,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Get TPS quota
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailPledge = Rswift.StringResource(key: "balance.info.detail.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
@@ -1529,6 +1533,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailVote = Rswift.StringResource(key: "balance.info.detail.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -2150,6 +2158,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Get TPS quota
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailPledge(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Get TPS quota
@@ -3200,6 +3215,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func aboutUsPageCellOfficialWebsite(_: Void = ()) -> String {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailVote(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.vote", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vote

@@ -106,51 +106,65 @@ public final class MyTokenInfosService: NSObject {
 
 extension MyTokenInfosService {
 
+    public func tokenInfo(forViteTokenId viteTokenId: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.chainType == .vite && tokenInfo.viteTokenId == viteTokenId {
+            return tokenInfo
+        }
+        return nil
+    }
+
+    public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.chainType == .eth && tokenInfo.ethContractAddress == address {
+            return tokenInfo
+        }
+        return nil
+    }
+
     func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(for: tokenCode) {
             completion(Result.success(tokenInfo))
         } else {
-//            Provider.default.getToken(for: id)
-//                .done { (token) in
-//                    completion(Result.success(token))
-//                }
-//                .catch { (error) in
-//                    completion(Result.failure(error))
-//            }
-//            append(tokenInfo: xxx)
+            //            Provider.default.getToken(for: id)
+            //                .done { (token) in
+            //                    completion(Result.success(token))
+            //                }
+            //                .catch { (error) in
+            //                    completion(Result.failure(error))
+            //            }
+            //            append(tokenInfo: xxx)
         }
     }
 
     func tokenInfo(forViteTokenId viteTokenId: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-        for tokenInfo in tokenInfos where tokenInfo.chainType == .vite && tokenInfo.viteTokenId == viteTokenId {
-            completion(Result.success(tokenInfo))
-            return
-        }
-        //            Provider.default.getToken(for: id)
-        //                .done { (token) in
-        //                    completion(Result.success(token))
-        //                }
-        //                .catch { (error) in
-        //                    completion(Result.failure(error))
-        //            }
-        //            append(tokenInfo: xxx)
 
+        if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
+            completion(Result.success(tokenInfo))
+        } else {
+            //            Provider.default.getToken(for: id)
+            //                .done { (token) in
+            //                    completion(Result.success(token))
+            //                }
+            //                .catch { (error) in
+            //                    completion(Result.failure(error))
+            //            }
+            //            append(tokenInfo: xxx)
+        }
     }
 
     func tokenInfo(forEthContractAddress address: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-        for tokenInfo in tokenInfos where tokenInfo.chainType == .eth && tokenInfo.ethContractAddress == address {
-            completion(Result.success(tokenInfo))
-            return
-        }
-        //            Provider.default.getToken(for: id)
-        //                .done { (token) in
-        //                    completion(Result.success(token))
-        //                }
-        //                .catch { (error) in
-        //                    completion(Result.failure(error))
-        //            }
-        //            append(tokenInfo: xxx)
 
+        if let tokenInfo = tokenInfo(forEthContractAddress: address) {
+            completion(Result.success(tokenInfo))
+        } else {
+            //            Provider.default.getToken(for: id)
+            //                .done { (token) in
+            //                    completion(Result.success(token))
+            //                }
+            //                .catch { (error) in
+            //                    completion(Result.failure(error))
+            //            }
+            //            append(tokenInfo: xxx)
+        }
     }
 }

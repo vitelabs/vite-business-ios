@@ -144,6 +144,8 @@
 "balance.info.detail.show.transactions.button.title" = "查看交易记录";
 "balance.info.detail.reveice.button.title" = "收款";
 "balance.info.detail.send.button.title" = "转账";
+"balance.info.detail.vote" = "投票";
+"balance.info.detail.pledge" = "获取配额";
 
 /* Address Manage Page */
 "address.manage.page.title" = "地址管理";

@@ -71,6 +71,7 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalToSuperview()
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
+            m.height.equalTo(188)
         }
 
         cardView.bind(tokenInfo: tokenInfo)
@@ -81,6 +82,7 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalTo(cardView.snp.bottom).offset(16)
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
+            m.height.equalTo(44)
         }
 
         let transactionsView = BalanceInfoViteChainTransactionsView()
