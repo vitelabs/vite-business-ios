@@ -40,6 +40,16 @@ class BalanceInfoDetailViewController: BaseViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+    }
+
     func setupView() {
         navigationBarStyle = .default
 

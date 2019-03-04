@@ -25,6 +25,16 @@ class WalletHomeViewController: BaseTableViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableViewModel.registerFetchAll()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableViewModel.unregisterFetchAll()
+    }
+
     let walletDriver = HDWalletManager.instance.walletDriver
     let addressView = WalletHomeAddressView()
     var addressViewModel: WalletHomeAddressViewModel!
@@ -112,7 +122,7 @@ class WalletHomeViewController: BaseTableViewController {
                 if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     let balanceInfoDetailViewController : UIViewController
-                    if viewModel.tokenInfo.chainType == .eth {
+                    if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
                     } else {
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)

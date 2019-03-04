@@ -107,14 +107,14 @@ public final class MyTokenInfosService: NSObject {
 extension MyTokenInfosService {
 
     public func tokenInfo(forViteTokenId viteTokenId: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.chainType == .vite && tokenInfo.viteTokenId == viteTokenId {
+        for tokenInfo in tokenInfos where tokenInfo.coinType == .vite && tokenInfo.viteTokenId == viteTokenId {
             return tokenInfo
         }
         return nil
     }
 
     public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.chainType == .eth && tokenInfo.ethContractAddress == address {
+        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress == address {
             return tokenInfo
         }
         return nil

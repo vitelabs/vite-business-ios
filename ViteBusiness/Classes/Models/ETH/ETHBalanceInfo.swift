@@ -10,7 +10,7 @@ import ObjectMapper
 import BigInt
 import ViteWallet
 
-public struct CommonBalanceInfo: Mappable {
+public struct ETHBalanceInfo: Mappable {
 
     public fileprivate(set) var tokenCode = ""
     public fileprivate(set) var balance = Balance()

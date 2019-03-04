@@ -8,7 +8,7 @@
 import ObjectMapper
 import ViteWallet
 
-public enum ChainType: String {
+public enum CoinType: String {
     case vite
     case eth
 }
@@ -24,7 +24,7 @@ extension TokenCode {
 public struct TokenInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
-    public fileprivate(set)  var chainType: ChainType = .vite
+    public fileprivate(set)  var coinType: CoinType = .vite
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var decimals: Int = 0
@@ -32,7 +32,7 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
 
     public var coinFamily: String {
-        switch chainType {
+        switch coinType {
         case .vite:
             if isViteCoin {
                 return "Vite Coin"
@@ -60,7 +60,7 @@ public struct TokenInfo: Mappable {
 
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
-        chainType <- (map["platform"], chainTypeTransform)
+        coinType <- (map["platform"], coinTypeTransform)
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimals"]
@@ -68,17 +68,17 @@ public struct TokenInfo: Mappable {
         id <- map["tokenAddress"]
     }
 
-    private let chainTypeTransform = TransformOf<ChainType, String>(fromJSON: { (string) -> ChainType? in
+    private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
         guard let string = string else { return nil }
-        return ChainType(rawValue: string)
-    }, toJSON: { (chainType) -> String? in
-        guard let chainType = chainType else { return nil }
-        return chainType.rawValue
+        return CoinType(rawValue: string)
+    }, toJSON: { (coinType) -> String? in
+        guard let coinType = coinType else { return nil }
+        return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, chainType: ChainType, name: String, symbol: String, decimals: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, icon: String, id: String) {
         self.tokenCode = tokenCode
-        self.chainType = chainType
+        self.coinType = coinType
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
@@ -99,7 +99,7 @@ extension TokenInfo: Equatable {
 
 extension TokenInfo {
     func toViteToken() -> Token? {
-        guard chainType == .vite else {
+        guard coinType == .vite else {
             return nil
         }
 
@@ -107,7 +107,7 @@ extension TokenInfo {
     }
 
     func toETHToken() -> ETHToken? {
-        guard chainType == .eth else {
+        guard coinType == .eth else {
             return nil
         }
 
@@ -126,7 +126,7 @@ extension TokenInfo {
     }
 
     var chainBackgroundGradientColors: [UIColor] {
-        switch chainType {
+        switch coinType {
         case .vite:
             return [
                 UIColor(netHex: 0x0B30E4),

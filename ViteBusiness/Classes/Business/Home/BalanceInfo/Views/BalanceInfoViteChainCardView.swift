@@ -186,9 +186,6 @@ class BalanceInfoViteChainCardView: UIView {
             $0.numberOfLines = 1
         }
 
-
-        onroadLabel.text = "dfjslajfdjsahfdsakfhdsakfdsafiewourfuewrfiweifusadfjds"
-
         addSubview(onroadView)
         onroadView.addSubview(onroadLabel)
 
@@ -259,20 +256,26 @@ class BalanceInfoViteChainCardView: UIView {
     var onroadLabel: UILabel!
     var priceLabel: UILabel!
 
-//    var service: FetchOnroadInfoService?
-
     func bind(tokenInfo: TokenInfo) {
         guard let token = tokenInfo.toViteToken() else { return }
 
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
-            FetchBalanceInfoManager.instance.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()).map({ (map, balanceInfo) -> String in
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()).map({ (map, balanceInfo) -> String in
                 map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
-        FetchBalanceInfoManager.instance.balanceInfoDriver(for: tokenInfo.tokenCode)
-            .map({ $0?.balance.amountFull(decimals: token.decimals) })
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
+            .map({ $0.balance.amountFull(decimals: token.decimals) })
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
+
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
+            .map({ $0.unconfirmedBalance.amountFull(decimals: token.decimals) })
+            .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
+
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
+            .map({ $0.unconfirmedBalance.value == 0 })
+            .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
             UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(token: token), animated: true)
@@ -282,33 +285,6 @@ class BalanceInfoViteChainCardView: UIView {
             let sendViewController = SendViewController(token: token, address: nil, amount: nil, note: nil)
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
-
-//        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] (account) in
-//            guard let `self` = self else { return }
-//            self.service?.stopPoll()
-//            if let address = account?.address {
-//                self.service = FetchOnroadInfoService(address: address, interval: 5, completion: { [weak self] (r) in
-//                    guard let `self` = self else { return }
-//                    switch r {
-//                    case .success(let onroadInfos):
-//                        let onroadInfo = onroadInfos.filter({ $0.token.id == tokenInfo.viteTokenId }).first
-//                        if let onroadInfo = onroadInfo {
-//                            self.onroadLabel.text = onroadInfo.unconfirmedBalance.amountFull(decimals: token.decimals)
-//                            self.onroadView.isHidden = false
-//                            plog(level: .debug, log: address.description + ": " + "onroad: \(self.onroadLabel.text!)", tag: .transaction)
-//                        } else {
-//                            self.onroadView.isHidden = true
-//                            plog(level: .debug, log: address.description + ": " + "onroad: 0", tag: .transaction)
-//                        }
-//                    case .failure(let error):
-//                        plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
-//                    }
-//                })
-//                self.service?.startPoll()
-//            } else {
-//                self.service = nil
-//            }
-//        }).disposed(by: rx.disposeBag)
 
         DispatchQueue.main.async {
             self.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: tokenInfo.chainBackgroundGradientColors)

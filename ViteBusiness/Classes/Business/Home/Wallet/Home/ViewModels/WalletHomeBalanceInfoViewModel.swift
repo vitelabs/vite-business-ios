@@ -20,7 +20,7 @@ final class WalletHomeBalanceInfoViewModel {
     let balance: String
     let price: String
 
-    init(balanceInfo: CommonBalanceInfo) {
+    init(balanceInfo: WalletHomeBalanceInfo) {
         self.tokenInfo = balanceInfo.tokenInfo
         self.icon = URL(string: tokenInfo.icon)!
         self.symbol = tokenInfo.symbol
