@@ -49,8 +49,10 @@ public class EthGasFeeSliderView: UIView {
     }
 
     let feeSlider = GasFeeSliderView().then {
-    $0.setMinimumTrackImage(UIImage.color(UIColor(netHex: 0x007AFF)), for: .normal)
-    $0.setMaximumTrackImage(UIImage.color(UIColor(netHex: 0xF3F6F9)), for: .normal)
+        $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
+        $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .selected)
+        $0.setMaximumTrackImage(UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
+        $0.setMaximumTrackImage(UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .selected)
         $0.minimumValue = 1
         $0.maximumValue = 100
         $0.isContinuous = true
@@ -141,14 +143,39 @@ public class EthGasFeeSliderView: UIView {
 }
 
 class GasFeeSliderView: UISlider {
+    var lastBounds : CGRect = .zero
+
     override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
         let newRect = CGRect.init(x: rect.origin.x-5, y: rect.origin.y , width: rect.size.width + 10, height: rect.size.height)
-        return super.thumbRect(forBounds: bounds, trackRect: newRect, value: value).insetBy(dx: 5, dy: 5)
+        let result = super.thumbRect(forBounds: bounds, trackRect: newRect, value: value).insetBy(dx: 5, dy: 5)
+        lastBounds = result
+        return result
+    }
+
+    let Fix_X  = CGFloat(30)
+    let Fix_Y = CGFloat(40)
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        var view = super.hitTest(point, with: event)
+        if view != self {
+            if point.y >= -15 && point.y < (lastBounds.size.height + Fix_Y) && point.x >= 0 && point.x < self.bounds.size.width {
+                view = self
+            }
+        }
+        return view
+    }
+
+   override  func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        var result = super.point(inside: point, with: event)
+        if !result {
+            if point.x >= (lastBounds.origin.x - Fix_X) && point.x <= (lastBounds.origin.x + lastBounds.size.width + Fix_X) && point.y >= -Fix_Y && point.y < (lastBounds.size.height + Fix_Y) {
+                result = true
+            }
+        }
+        return result
     }
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
        let newRect = CGRect.init(x: bounds.origin.x, y: bounds.origin.y , width: bounds.size.width, height: 4)
-        self.layer.cornerRadius = 4
         return newRect
     }
 }
@@ -160,3 +187,20 @@ extension Float {
         return (self * divisor).rounded() / divisor
     }
 }
+
+
+extension UIImage {
+    public static func line_color(_ color: UIColor, _ width:CGFloat) -> UIImage {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: width, height: 10)
+        layer.cornerRadius = 3
+        layer.backgroundColor = color.cgColor
+        UIGraphicsBeginImageContext(layer.frame.size)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+}
+
+

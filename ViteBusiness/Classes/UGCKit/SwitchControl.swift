@@ -17,12 +17,10 @@ extension UIView {
         switchControl.inactiveColor = UIColor.init(netHex: 0xE5E5EA)
         switchControl.onTintColor =   UIColor.init(netHex: 0x007AFF)
         switchControl.borderColor = UIColor.clear
-        switchControl.shadowColor = UIColor.black
+        switchControl.shadowColor = UIColor.init(netHex: 0x000000, alpha:0.5)
         return switchControl
     }
-
 }
-
 
 @IBDesignable @objc open class SwitchControl: UIControl {
 
@@ -135,7 +133,7 @@ extension UIView {
         willSet {
             if newValue {
                 backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
-                thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+                thumbView.layer.cornerRadius = (self.frame.size.height * 0.5)
             }
             else {
                 backgroundView.layer.cornerRadius = 2
@@ -264,9 +262,9 @@ extension UIView {
         backgroundView.addSubview(offLabel)
 
         // thumb
-        self.thumbView = UIView(frame: CGRect(x: 1, y: 1, width: self.frame.size.height - 2, height: self.frame.size.height - 2))
+        self.thumbView = UIView(frame: CGRect(x: 1, y: 1, width: self.frame.size.height, height: self.frame.size.height))
         thumbView.backgroundColor = self.thumbTintColor
-        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5)
         thumbView.layer.shadowColor = self.shadowColor.cgColor
         thumbView.layer.shadowRadius = 9
         thumbView.layer.shadowOpacity = 0.5
