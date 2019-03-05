@@ -64,7 +64,7 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
-        let gasSliderView = EthGasFeeSliderView()
+        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer)
         gasSliderView.value = 1.0
         return gasSliderView
     }()

@@ -111,7 +111,7 @@ class EthTokenInfoController: BaseViewController {
 
         imageView.snp.makeConstraints { (m) in
             m.top.equalTo(centerLayout)
-            m.width.height.equalTo(120)
+            m.width.height.equalTo(130)
             m.centerX.equalTo(centerLayout)
         }
 

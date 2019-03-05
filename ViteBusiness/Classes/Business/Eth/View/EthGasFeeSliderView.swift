@@ -26,9 +26,6 @@ public class EthGasFeeSliderView: UIView {
             eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
 
             var rateFee = ""
-
-            //            TODO:::
-
             let balance = Balance(value: BigInt(eth))
             rateFee = ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) ?? ""
 
@@ -88,7 +85,7 @@ public class EthGasFeeSliderView: UIView {
     }
 
     var gasLimit:Int
-    init(gasLimit:Int = 10000) {
+    init(gasLimit:Int) {
         self.gasLimit = gasLimit
         super.init(frame: CGRect.zero)
 

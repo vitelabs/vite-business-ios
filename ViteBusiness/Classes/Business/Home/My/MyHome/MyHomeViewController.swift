@@ -154,6 +154,16 @@ extension MyHomeViewController {
         }
         self.titleBtn.addTarget(self, action: #selector(titleBtnAction), for: .touchUpInside)
 
+        let iconBtn = UIButton()
+        iconBtn.setImage(R.image.icon_edit_name(), for: .normal)
+        iconBtn.setImage(R.image.icon_edit_name(), for: .highlighted)
+        view.addSubview(iconBtn)
+        iconBtn.snp.makeConstraints { (m) in
+            m.centerY.equalTo(self.titleBtn)
+            m.left.equalTo(self.titleBtn.snp.right).offset(6)
+        }
+        iconBtn.addTarget(self, action: #selector(titleBtnAction), for: .touchUpInside)
+
         return view
     }
 }
