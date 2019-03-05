@@ -29,8 +29,9 @@ final class WalletHomeBalanceInfoTableViewModel {
 
     init() {
         balanceInfosDriver = Driver.combineLatest(
+            ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver).map({ (viteMap, ethMap) -> [WalletHomeBalanceInfo] in
+            ETHBalanceInfoManager.instance.balanceInfosDriver).map({ (_, viteMap, ethMap) -> [WalletHomeBalanceInfo] in
                 return MyTokenInfosService.instance.tokenInfos.map({ (tokenInfo) -> WalletHomeBalanceInfo in
                     switch tokenInfo.coinType {
                     case .vite:
@@ -52,6 +53,3 @@ final class WalletHomeBalanceInfoTableViewModel {
         ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
     }
 }
-
-
-

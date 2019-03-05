@@ -26,6 +26,6 @@ final class WalletHomeBalanceInfoViewModel {
         self.symbol = tokenInfo.symbol
         self.coinFamily = tokenInfo.coinFamily
         self.balance = balanceInfo.balance.amountShort(decimals: tokenInfo.decimals)
-        self.price = "Come Soon"
+        self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
     }
 }

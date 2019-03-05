@@ -43,11 +43,13 @@ class BalanceInfoDetailViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        FetchQuotaService.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        FetchQuotaService.instance.releaseQuota()
     }
 
     func setupView() {

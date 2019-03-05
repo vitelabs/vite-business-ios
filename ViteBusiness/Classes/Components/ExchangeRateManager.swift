@@ -38,6 +38,7 @@ public final class ExchangeRateManager {
     }
 
     public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
+    public var rateMap: ExchangeRateMap { return rateMapBehaviorRelay.value }
     private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap>
 }
 
@@ -60,9 +61,9 @@ public extension Dictionary where Key == String, Value == [String: String] {
         let currency = AppSettingsService.instance.currency
         if let dic = self[tokenInfo.tokenCode] as? [String: String],
             let rate = dic[currency.rawValue] as? [String] {
-            return "\(currency.symbol) \(balance.amountFull(decimals: tokenInfo.decimals)) * \(rate)"
+            return "\(currency.symbol)\(balance.amountFull(decimals: tokenInfo.decimals)) * \(rate)"
         } else {
-            return "\(currency.symbol) 0.00"
+            return "\(currency.symbol)0.00"
         }
     }
 }

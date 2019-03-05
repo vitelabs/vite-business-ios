@@ -137,7 +137,7 @@ class BalanceInfoViteChainCardView: UIView {
             $0.numberOfLines = 1
         }
 
-        let quotaLabel = UILabel().then {
+        quotaLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
             $0.textColor = UIColor.white.withAlphaComponent(0.7)
             $0.numberOfLines = 1
@@ -173,9 +173,6 @@ class BalanceInfoViteChainCardView: UIView {
 
         priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         quotaLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
-        priceLabel.text = "≈¥100,000.00"
-        quotaLabel.text = "配额 12 UTPS"
     }
 
     func setupOnroadView() {
@@ -255,6 +252,7 @@ class BalanceInfoViteChainCardView: UIView {
     var sendButton: UIButton!
     var onroadLabel: UILabel!
     var priceLabel: UILabel!
+    var quotaLabel: UILabel!
 
     func bind(tokenInfo: TokenInfo) {
         guard let token = tokenInfo.toViteToken() else { return }
@@ -262,7 +260,7 @@ class BalanceInfoViteChainCardView: UIView {
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()).map({ (map, balanceInfo) -> String in
-                map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+                "≈" + map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
@@ -271,11 +269,16 @@ class BalanceInfoViteChainCardView: UIView {
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
             .map({ $0.unconfirmedBalance.amountFull(decimals: token.decimals) })
+            .map({ R.string.localizable.balanceInfoDetailOnroadAmountContent($0) })
             .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
             .map({ $0.unconfirmedBalance.value == 0 })
             .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
+
+        FetchQuotaService.instance.maxTxCountDriver
+            .map({ R.string.localizable.balanceInfoDetailPledgeCountContent($0) })
+            .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
             UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(token: token), animated: true)

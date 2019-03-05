@@ -633,7 +633,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 258 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 260 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -643,6 +643,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailUnconfirmedCountTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.count.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ 待确认
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 6 digits numeric password
       /// 
       /// Locales: en, zh-Hans
@@ -1667,6 +1671,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageContactsCellTitle = Rswift.StringResource(key: "my.page.contacts.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配额 %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1680,6 +1688,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func balanceInfoDetailUnconfirmedCountTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("balance.info.detail.unconfirmed.count.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@ 待确认
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 6 digits numeric password
@@ -3472,6 +3487,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func myPageContactsCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.contacts.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 配额 %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailPledgeCountContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       fileprivate init() {}
