@@ -165,9 +165,11 @@ class EthSendTokenController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: { (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
                     if case .success = r {
-                        self.navigationController?.popViewController(animated: true)
+                        self?.dismiss()
+                    } else if case .failure(let error) = r {
+                        Toast.show(error.viteErrorMessage)
                     }
                 })
             }
