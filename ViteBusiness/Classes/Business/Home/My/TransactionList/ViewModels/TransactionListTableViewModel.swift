@@ -24,6 +24,7 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
 
     fileprivate let transactions: BehaviorRelay<[TransactionViewModelType]>
     fileprivate let address: Address
+    fileprivate let token: Token
     fileprivate let disposeBag = DisposeBag()
 
     fileprivate let viewModels = NSMutableArray()
@@ -31,8 +32,9 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     fileprivate var hash: String?
     fileprivate var loadingStatus = LoadingStatus.no
 
-    init(address: Address) {
+    init(address: Address, token: Token) {
         self.address = address
+        self.token = token
         transactions = BehaviorRelay<[TransactionViewModelType]>(value: viewModels as! [TransactionViewModelType])
         hasMore = BehaviorRelay<Bool>(value: false)
     }
@@ -55,7 +57,7 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
 
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
-        Provider.default.getTransactions(address: address, hash: hash, count: 10)
+        Provider.default.getTokenTransactions(address: address, hash: hash, tokenId: token.id, count: 10)
             .done { [weak self] (transactions, nextHash) in
                 guard let `self` = self else { return }
                 self.hash = nextHash

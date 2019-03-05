@@ -89,8 +89,8 @@ class MyHomeViewController: BaseTableViewController {
 
 extension MyHomeViewController: MyHomeListHeaderViewDelegate {
     func contactsBtnAction() {
-        let vc = TransactionListViewController()
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = TransactionListViewController()
+//        navigationController?.pushViewController(vc, animated: true)
     }
     func mnemonicBtnAction() {
         let vc = ManageWalletViewController()

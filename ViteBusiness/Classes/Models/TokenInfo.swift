@@ -142,4 +142,22 @@ extension TokenInfo {
             ]
         }
     }
+
+    var mainColor: UIColor {
+        switch coinType {
+        case .vite:
+            return UIColor(netHex: 0x007AFF)
+        case .eth:
+            return UIColor(netHex: 0x5BC500)
+        }
+    }
+
+    var strokeColor: UIColor {
+        switch coinType {
+        case .vite:
+            return UIColor(netHex: 0x007AFF, alpha: 0.67)
+        case .eth:
+            return UIColor(netHex: 0x5BC500)
+        }
+    }
 }

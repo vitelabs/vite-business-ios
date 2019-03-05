@@ -16,9 +16,11 @@ import NSObject_Rx
 class BalanceInfoDetailViewController: BaseViewController {
 
     let tokenInfo: TokenInfo
+    let adapter: BalanceInfoDetailAdapter
 
     init(tokenInfo: TokenInfo) {
         self.tokenInfo = tokenInfo
+        self.adapter = tokenInfo.createBalanceInfoDetailAdapter()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -68,43 +70,10 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalTo(navView.snp.bottom).offset(-60)
             m.left.right.bottom.equalToSuperview()
         }
-
-        addSub()
+        adapter.setup(containerView: containerView, tokenInfo: tokenInfo)
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
-    }
-
-    func addSub() {
-        let cardView = BalanceInfoViteChainCardView()
-        containerView.addSubview(cardView)
-        cardView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(188)
-        }
-
-        cardView.bind(tokenInfo: tokenInfo)
-
-        let operationView = BalanceInfoViteCoinOperationView()
-        containerView.addSubview(operationView)
-        operationView.snp.makeConstraints { (m) in
-            m.top.equalTo(cardView.snp.bottom).offset(16)
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(44)
-        }
-
-        let transactionsView = BalanceInfoViteChainTransactionsView()
-        containerView.addSubview(transactionsView)
-        transactionsView.snp.makeConstraints { (m) in
-            m.top.equalTo(operationView.snp.bottom).offset(14)
-            m.left.equalToSuperview()
-            m.right.equalToSuperview()
-            m.bottom.equalToSuperview()
-        }
-
     }
 }

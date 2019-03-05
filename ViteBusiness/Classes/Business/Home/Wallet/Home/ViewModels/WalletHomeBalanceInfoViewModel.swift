@@ -20,12 +20,18 @@ final class WalletHomeBalanceInfoViewModel {
     let balance: String
     let price: String
 
-    init(balanceInfo: WalletHomeBalanceInfo) {
+    init(balanceInfo: WalletHomeBalanceInfo, isHidePrice: Bool) {
         self.tokenInfo = balanceInfo.tokenInfo
         self.icon = URL(string: tokenInfo.icon)!
         self.symbol = tokenInfo.symbol
         self.coinFamily = tokenInfo.coinFamily
-        self.balance = balanceInfo.balance.amountShort(decimals: tokenInfo.decimals)
-        self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+        if isHidePrice {
+            self.balance = "****"
+            self.price = "****"
+        } else {
+            self.balance = balanceInfo.balance.amountShort(decimals: tokenInfo.decimals)
+            self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+        }
+
     }
 }

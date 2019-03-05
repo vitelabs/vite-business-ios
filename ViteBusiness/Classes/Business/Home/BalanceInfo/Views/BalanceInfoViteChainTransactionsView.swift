@@ -9,10 +9,11 @@ import UIKit
 
 class BalanceInfoViteChainTransactionsView: UIView {
 
-    private let vc = TransactionListViewController()
+    private let vc: TransactionListViewController
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(tokenInfo: TokenInfo) {
+        vc = TransactionListViewController(token: tokenInfo.toViteToken()!)
+        super.init(frame: CGRect.zero)
 
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
@@ -20,6 +21,7 @@ class BalanceInfoViteChainTransactionsView: UIView {
             $0.numberOfLines = 1
             $0.text = R.string.localizable.transactionListPageTitle()
         }
+
 
         let parentVC = self.ofViewController
         parentVC?.addChild(vc)

@@ -11,32 +11,35 @@ import UIKit
 class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     static var cellHeight: CGFloat {
-        return 130
+        return 86
     }
 
     fileprivate let colorView = UIImageView()
-    fileprivate let iconImageView = UIImageView()
+    fileprivate let iconImageView = TokenIconView()
 
     fileprivate let symbolLabel = UILabel().then {
-        $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = UIColor.black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.numberOfLines = 1
     }
 
     let coinFamilyLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x4B5461, alpha: 0.6)
+        $0.numberOfLines = 1
     }
 
     fileprivate let balanceLabel = UILabel().then {
-        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
         $0.numberOfLines = 1
+        $0.textAlignment = .right
     }
 
     fileprivate let priceLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = UIColor(netHex: 0x4B5461)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.numberOfLines = 1
+        $0.textAlignment = .right
     }
 
     fileprivate let highlightedMaskView = UIView().then {
@@ -56,19 +59,15 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             $0.layer.cornerRadius = 2
         }
 
-        let arrowView = UIImageView(image: R.image.icon_right_white())
-
         backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
         let shadowView = UIView.embedInShadowView(customView: whiteView, width: 0, height: 5, radius: 20)
         contentView.addSubview(shadowView)
         contentView.addSubview(highlightedMaskView)
+        contentView.addSubview(colorView)
 
-        colorView.addSubview(iconImageView)
-        colorView.addSubview(symbolLabel)
-        colorView.addSubview(arrowView)
-
-        whiteView.addSubview(colorView)
+        whiteView.addSubview(iconImageView)
+        whiteView.addSubview(symbolLabel)
         whiteView.addSubview(coinFamilyLabel)
         whiteView.addSubview(balanceLabel)
         whiteView.addSubview(priceLabel)
@@ -77,8 +76,8 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             m.top.equalTo(contentView)
             m.left.equalTo(contentView).offset(24)
             m.right.equalTo(contentView).offset(-24)
-            m.height.equalTo(110)
-            m.bottom.equalTo(contentView).offset(-20)
+            m.height.equalTo(70)
+            m.bottom.equalTo(contentView).offset(-16)
         }
 
         highlightedMaskView.snp.makeConstraints { (m) in
@@ -86,45 +85,45 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         }
 
         colorView.snp.makeConstraints { (m) in
-            m.top.left.right.equalTo(whiteView)
-            m.height.equalTo(56)
+            m.top.left.bottom.equalTo(whiteView)
+            m.width.equalTo(3)
         }
 
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
         iconImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         iconImageView.snp.makeConstraints { (m) in
-            m.centerY.equalTo(colorView)
-            m.left.equalTo(colorView).offset(16)
-            m.size.equalTo(CGSize(width: 32, height: 32))
+            m.centerY.equalToSuperview()
+            m.left.equalToSuperview().offset(16)
+            m.size.equalTo(CGSize(width: 40, height: 40))
         }
 
         symbolLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(colorView)
-            m.left.equalTo(iconImageView.snp.right).offset(10)
-        }
-
-        arrowView.setContentHuggingPriority(.required - 1, for: .horizontal)
-        arrowView.setContentCompressionResistancePriority(.required - 1, for: .horizontal)
-        arrowView.snp.makeConstraints { (m) in
-            m.centerY.equalTo(colorView)
-            m.left.equalTo(symbolLabel.snp.right).offset(10)
-            m.right.equalTo(colorView).offset(-10)
-        }
-
-        coinFamilyLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(colorView.snp.bottom).offset(17)
-            m.left.equalTo(whiteView).offset(16)
+            m.top.equalToSuperview().offset(14)
+            m.left.equalTo(iconImageView.snp.right).offset(13)
         }
 
         balanceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(colorView.snp.bottom).offset(8)
-            m.right.equalTo(whiteView).offset(-16)
+            m.centerY.equalTo(symbolLabel)
+            m.right.equalToSuperview().offset(-14)
+            m.left.equalTo(symbolLabel.snp.right).offset(10)
+        }
+
+        coinFamilyLabel.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview().offset(-14)
+            m.left.equalTo(symbolLabel)
         }
 
         priceLabel.snp.makeConstraints { (m) in
-            m.right.equalTo(whiteView).offset(-16)
-            m.bottom.equalTo(whiteView).offset(-8)
+            m.centerY.equalTo(coinFamilyLabel)
+            m.right.equalToSuperview().offset(-14)
+            m.left.equalTo(coinFamilyLabel.snp.right).offset(10)
         }
+
+        symbolLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        balanceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        coinFamilyLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        priceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -141,16 +140,16 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     func bind(viewModel: WalletHomeBalanceInfoViewModel) {
 
-        iconImageView.kf.cancelDownloadTask()
-        iconImageView.kf.setImage(with: viewModel.icon)
+        iconImageView.tokenInfo = viewModel.tokenInfo
 
         symbolLabel.text = viewModel.symbol
+        symbolLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = viewModel.coinFamily
         balanceLabel.text = viewModel.balance
         priceLabel.text = viewModel.price
 
         DispatchQueue.main.async {
-//            self.colorView.backgroundColor = UIColor.gradientColor(style: .left2right, frame: self.colorView.frame, colors: viewModel.token.backgroundColors)
+            self.colorView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: self.colorView.frame, colors: viewModel.tokenInfo.chainBackgroundGradientColors)
         }
     }
 }

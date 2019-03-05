@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 88 images.
+  /// This `R.image` struct is generated, and contains static references to 93 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -118,6 +118,10 @@ struct R: Rswift.Validatable {
     static let icon_nav_scan_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_scan_black")
     /// Image `icon_nav_share_black`.
     static let icon_nav_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_share_black")
+    /// Image `icon_price_hide_button`.
+    static let icon_price_hide_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_price_hide_button")
+    /// Image `icon_price_show_button`.
+    static let icon_price_show_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_price_show_button")
     /// Image `icon_quota`.
     static let icon_quota = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_quota")
     /// Image `icon_receive_logo`.
@@ -136,6 +140,10 @@ struct R: Rswift.Validatable {
     static let icon_tabbar_wallet_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet_select")
     /// Image `icon_tabbar_wallet`.
     static let icon_tabbar_wallet = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet")
+    /// Image `icon_token_info_add_button`.
+    static let icon_token_info_add_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_info_add_button")
+    /// Image `icon_token_info_frame`.
+    static let icon_token_info_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_info_frame")
     /// Image `icon_token_vite_white`.
     static let icon_token_vite_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_vite_white")
     /// Image `icon_token_vite`.
@@ -160,6 +168,8 @@ struct R: Rswift.Validatable {
     static let icon_voteaddress = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_voteaddress")
     /// Image `icon_votecount`.
     static let icon_votecount = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_votecount")
+    /// Image `icon_wallet_home_nav_bg`.
+    static let icon_wallet_home_nav_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_wallet_home_nav_bg")
     /// Image `intro_icon_0`.
     static let intro_icon_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_0")
     /// Image `intro_icon_1`.
@@ -445,6 +455,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_nav_share_black, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_price_hide_button", bundle: ..., traitCollection: ...)`
+    static func icon_price_hide_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_price_hide_button, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_price_show_button", bundle: ..., traitCollection: ...)`
+    static func icon_price_show_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_price_show_button, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_quota", bundle: ..., traitCollection: ...)`
     static func icon_quota(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_quota, compatibleWith: traitCollection)
@@ -488,6 +508,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_tabbar_wallet_select", bundle: ..., traitCollection: ...)`
     static func icon_tabbar_wallet_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_wallet_select, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_token_info_add_button", bundle: ..., traitCollection: ...)`
+    static func icon_token_info_add_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_token_info_add_button, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_token_info_frame", bundle: ..., traitCollection: ...)`
+    static func icon_token_info_frame(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_token_info_frame, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_token_vite", bundle: ..., traitCollection: ...)`
@@ -548,6 +578,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_votecount", bundle: ..., traitCollection: ...)`
     static func icon_votecount(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_votecount, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_wallet_home_nav_bg", bundle: ..., traitCollection: ...)`
+    static func icon_wallet_home_nav_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_wallet_home_nav_bg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "intro_icon_0", bundle: ..., traitCollection: ...)`
@@ -640,7 +675,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 260 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 261 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1142,10 +1177,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeDifference = Rswift.StringResource(key: "mnemonic.backup.page.error.type.difference", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please input 6 digits password
-      /// 
-      /// Locales: en, zh-Hans
-      static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please input account name or password
       /// 
       /// Locales: en, zh-Hans
@@ -1650,6 +1681,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageChangeWalletNameAlterTitle = Rswift.StringResource(key: "my.page.change.wallet.name.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全部资产
+      /// 
+      /// Locales: en, zh-Hans
+      static let walletHomeHeaderTitle = Rswift.StringResource(key: "wallet.home.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 关于我们
       /// 
       /// Locales: en, zh-Hans
@@ -1678,6 +1713,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageContactsCellTitle = Rswift.StringResource(key: "my.page.contacts.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入密码
+      /// 
+      /// Locales: en, zh-Hans
+      static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额 %@ UTPS
       /// 
       /// Locales: en, zh-Hans
@@ -2556,13 +2595,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageErrorTypeDifference(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.error.type.difference", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Please input 6 digits password
-      /// 
-      /// Locales: en, zh-Hans
-      static func createPagePwTitle(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.pw.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please input account name or password
@@ -3447,6 +3479,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.change.wallet.name.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 全部资产
+      /// 
+      /// Locales: en, zh-Hans
+      static func walletHomeHeaderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.header.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 关于我们
       /// 
       /// Locales: en, zh-Hans
@@ -3494,6 +3533,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func myPageContactsCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.contacts.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入密码
+      /// 
+      /// Locales: en, zh-Hans
+      static func createPagePwTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.pw.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额 %@ UTPS

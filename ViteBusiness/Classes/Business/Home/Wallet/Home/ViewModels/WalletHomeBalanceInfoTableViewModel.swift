@@ -25,21 +25,27 @@ extension BalanceInfo: WalletHomeBalanceInfo {
 extension ETHBalanceInfo: WalletHomeBalanceInfo {}
 
 final class WalletHomeBalanceInfoTableViewModel {
-    var  balanceInfosDriver: Driver<[WalletHomeBalanceInfo]>
+    var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
 
-    init() {
+    init(isHidePriceDriver: Driver<Bool>) {
         balanceInfosDriver = Driver.combineLatest(
+            isHidePriceDriver,
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver).map({ (_, viteMap, ethMap) -> [WalletHomeBalanceInfo] in
-                return MyTokenInfosService.instance.tokenInfos.map({ (tokenInfo) -> WalletHomeBalanceInfo in
-                    switch tokenInfo.coinType {
-                    case .vite:
-                        return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
-                    case .eth:
-                        return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
-                    }
-                })
+            ETHBalanceInfoManager.instance.balanceInfosDriver)
+            .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
+                let (isHidePrice, _, viteMap, ethMap) = arg
+                return MyTokenInfosService.instance.tokenInfos
+                    .map({ (tokenInfo) -> WalletHomeBalanceInfo in
+                        switch tokenInfo.coinType {
+                        case .vite:
+                            return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
+                        case .eth:
+                            return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
+                        }
+                    }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
+                        return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)
+                        })
             })
     }
 

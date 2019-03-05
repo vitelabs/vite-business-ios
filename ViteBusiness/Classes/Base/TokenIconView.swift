@@ -12,15 +12,21 @@ import Kingfisher
 class TokenIconView: UIView {
 
     let tokenIconImageView = UIImageView()
+    let tokenIconFrameImageView = UIImageView(image: R.image.icon_token_info_frame())
     let chainIconImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubview(tokenIconImageView)
+        addSubview(tokenIconFrameImageView)
         addSubview(chainIconImageView)
 
         tokenIconImageView.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+
+        tokenIconFrameImageView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
 
@@ -42,6 +48,16 @@ class TokenIconView: UIView {
             tokenIconImageView.kf.setImage(with: url)
             chainIconImageView.image = tokenInfo.chainIcon
             chainIconImageView.isHidden = tokenInfo.chainIcon == nil
+
+            DispatchQueue.main.async {
+                let view = self.tokenIconFrameImageView
+                let layer = CAShapeLayer()
+                layer.lineWidth = 1
+                layer.strokeColor = tokenInfo.strokeColor.cgColor
+                layer.fillColor = UIColor.clear.cgColor
+                layer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
+                view.layer.addSublayer(layer)
+            }
         }
     }
 }

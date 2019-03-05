@@ -99,6 +99,7 @@
 "wallet.home.toast.copy.address" = "Successfully copied!";
 "wallet.home.scan.url.alert.title" = "NOTICE";
 "wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"wallet.home.header.title" = "全部资产";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "Wallet Management";

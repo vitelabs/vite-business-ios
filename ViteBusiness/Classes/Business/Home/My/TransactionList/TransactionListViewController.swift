@@ -17,6 +17,15 @@ import MJRefresh
 class TransactionListViewController: BaseTableViewController {
 
     let address = HDWalletManager.instance.account?.address ?? Address()
+    let token: Token
+    init(token: Token) {
+        self.token = token
+        super.init(.plain)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TransactionViewModelType>>
 
@@ -42,6 +51,13 @@ class TransactionListViewController: BaseTableViewController {
         })
 
         tableView.mj_header = header
+
+        var safeAreaBottom: CGFloat = 0.0
+        if #available(iOS 11.0, *) {
+            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+        }
+
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0);
     }
 
     let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
@@ -53,7 +69,7 @@ class TransactionListViewController: BaseTableViewController {
     let footerView = GetMoreLoadingView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
 
     func bind() {
-        tableViewModel = TransactionListTableViewModel(address: address)
+        tableViewModel = TransactionListTableViewModel(address: address, token: token)
 
         tableViewModel.hasMore.asObservable().bind { [weak self] in
             self?.tableView.tableFooterView = $0 ? self?.footerView : nil

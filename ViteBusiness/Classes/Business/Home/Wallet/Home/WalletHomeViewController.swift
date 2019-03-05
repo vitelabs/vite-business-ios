@@ -36,27 +36,50 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     let walletDriver = HDWalletManager.instance.walletDriver
-    let addressView = WalletHomeAddressView()
-    var addressViewModel: WalletHomeAddressViewModel!
     var tableViewModel: WalletHomeBalanceInfoTableViewModel!
+    var navViewModel: WalletHomeNavViewModel!
+
+    let navView = WalletHomeNavView(frame: CGRect.zero)
+    let headerView = WalletHomeHeaderView()
+
+    lazy var isHidePriceDriver: Driver<Bool> = self.isHidePriceBehaviorRelay.asDriver()
+    var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     fileprivate func setupView() {
 
         statisticsPageName = Statistics.Page.WalletHome.name
-        let qrcodeItem = UIBarButtonItem(image: R.image.icon_nav_qrcode_black(), style: .plain, target: nil, action: nil)
-        let scanItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = qrcodeItem
-        navigationItem.rightBarButtonItem = scanItem
 
-        navigationTitleView = NavigationTitleView(title: nil)
-        customHeaderView = addressView
+        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
+        let scanItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = scanItem
+        scanItem.rx.tap.bind { [weak self] _ in self?.scan() }.disposed(by: rx.disposeBag)
+
+        view.addSubview(navView)
+        view.addSubview(headerView)
+
+        navView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(58)
+        }
+
+        headerView.snp.makeConstraints { (m) in
+            m.top.equalTo(navView.snp.bottom)
+            m.left.right.equalToSuperview()
+        }
+
+        tableView.snp.remakeConstraints { (m) in
+            m.top.equalTo(headerView.snp.bottom)
+            m.bottom.right.left.equalTo(view)
+        }
+
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
-            $0.backgroundColor = UIColor.clear
-        }
+//        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+//            $0.backgroundColor = UIColor.clear
+//        }
 
         if #available(iOS 11.0, *) {
 
@@ -64,29 +87,6 @@ class WalletHomeViewController: BaseTableViewController {
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
             tableView.scrollIndicatorInsets = tableView.contentInset
         }
-
-        let shadowView = UIView().then {
-            $0.backgroundColor = UIColor.white
-            $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-            $0.layer.shadowOpacity = 0.1
-            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-            $0.layer.shadowRadius = 20
-        }
-
-        view.insertSubview(shadowView, belowSubview: tableView)
-        shadowView.snp.makeConstraints { (m) in
-            m.left.right.equalTo(tableView)
-            m.bottom.equalTo(tableView.snp.top)
-            m.height.equalTo(10)
-        }
-
-        qrcodeItem.rx.tap.bind { [weak self] _ in
-            self?.navigationController?.pushViewController(ReceiveViewController(token: ViteWalletConst.viteToken), animated: true)
-        }.disposed(by: rx.disposeBag)
-
-        scanItem.rx.tap.bind { [unowned self] _ in
-            self.scan()
-        }.disposed(by: rx.disposeBag)
     }
 
     fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
@@ -97,19 +97,16 @@ class WalletHomeViewController: BaseTableViewController {
 
     fileprivate func bind() {
 
-        if let navigationTitleView = navigationTitleView as? NavigationTitleView {
-            walletDriver.filterNil().map({ $0.name }).drive(navigationTitleView.titleLabel.rx.text).disposed(by: rx.disposeBag)
-        }
+        tableViewModel = WalletHomeBalanceInfoTableViewModel(isHidePriceDriver: isHidePriceDriver)
+        navViewModel = WalletHomeNavViewModel(isHidePriceDriver: isHidePriceDriver, walletHomeBalanceInfoTableViewModel: tableViewModel)
+        navView.bind(viewModel: navViewModel)
 
-        addressViewModel = WalletHomeAddressViewModel()
-        tableViewModel = WalletHomeBalanceInfoTableViewModel()
-
-        addressView.bind(viewModel: addressViewModel)
+        navView.hideButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            self.isHidePriceBehaviorRelay.accept(!self.isHidePriceBehaviorRelay.value)
+            }.disposed(by: rx.disposeBag)
 
         tableViewModel.balanceInfosDriver.asObservable()
-            .map { balanceInfos in
-                balanceInfos.map { WalletHomeBalanceInfoViewModel(balanceInfo: $0) }
-            }
             .map { balanceInfoViewModels in
                 [SectionModel(model: "balanceInfo", items: balanceInfoViewModels)]
             }

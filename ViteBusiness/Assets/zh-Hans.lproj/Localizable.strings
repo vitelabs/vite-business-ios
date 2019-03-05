@@ -100,6 +100,7 @@
 "wallet.home.toast.copy.address" = "地址已复制";
 "wallet.home.scan.url.alert.title" = "警告";
 "wallet.home.scan.url.alert.message" = "即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。";
+"wallet.home.header.title" = "全部资产";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "管理钱包";
