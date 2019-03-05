@@ -67,3 +67,14 @@ public extension Dictionary where Key == String, Value == [String: String] {
         }
     }
 }
+
+extension ExchangeRateManager {
+     func calculateBalanceWithEthRate(_ balance: Balance) -> String? {
+        let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, name: "", symbol: "", decimals: 18, icon: "", id: "")
+
+        if self.rateMap[TokenCode.etherCoin] == nil{
+            return nil
+        }
+        return self.rateMap.priceString(for: ethTokenInfo, balance: balance)
+    }
+}

@@ -9,6 +9,7 @@ import SnapKit
 import ViteUtils
 import BigInt
 import web3swift
+import ViteWallet
 
 public class EthGasFeeSliderView: UIView {
     public var value : Float = 0.0 {
@@ -25,9 +26,12 @@ public class EthGasFeeSliderView: UIView {
             eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
 
             var rateFee = ""
-            if rate != 0.0 {
-                rateFee = String(format: "≈ %@%.2f",self.rateSymbol, rate * Float(eth))
-            }
+
+            //            TODO:::
+
+            let balance = Balance(value: BigInt(eth))
+            rateFee = ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) ?? ""
+
             if eth <= 0.0001 {
                 self.totalGasFeeLab.text = String(format: "%.5f ETH%@", eth,rateFee)
             } else {
@@ -84,14 +88,8 @@ public class EthGasFeeSliderView: UIView {
     }
 
     var gasLimit:Int
-    var rate:Float
-    var rateSymbol:String
-
-    init(gasLimit:Int = 10000,rate:Float=0.0,rateSymbol:String="￥") {
+    init(gasLimit:Int = 10000) {
         self.gasLimit = gasLimit
-        self.rate = rate
-        self.rateSymbol = rateSymbol
-
         super.init(frame: CGRect.zero)
 
         self.addSubview(totalGasFeeTitleLab)

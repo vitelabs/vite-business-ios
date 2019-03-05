@@ -36,18 +36,25 @@ class EthTokenInfoController: BaseViewController {
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
 
-    FetchBalanceInfoManager.instance.balanceInfoDriver(forETHContractAddress: self.tokenInfo.ethContractAddress)
+        ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
-                if let (balanceInfo, token) = ret {
-                    self.ethInfoCardView.balanceLab.text = balanceInfo.balance.amountFull(decimals: token.decimals)
-                    //TODO:::  汇率
+                if let balanceInfo = ret {
+                    self.ethInfoCardView.balanceLab.text = balanceInfo.balance.amountFull(decimals: self.tokenInfo.decimals)
                 } else {
                     // no balanceInfo, set 0.0
                     self.ethInfoCardView.balanceLab.text = "0.0"
-                    //TODO:::  汇率
                 }
             }).disposed(by: rx.disposeBag)
+
+        //balance loop
+        Driver<Any>.combineLatest(ExchangeRateManager.instance.rateMapDriver,ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode).filterNil()).map({
+            (map,balanceInfo) -> String in
+            map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+        }).drive(onNext: { [weak self] (ret) in
+               guard let `self` = self else { return }
+            self.ethInfoCardView.balanceLegalTenderLab.text = ret
+        }).disposed(by: rx.disposeBag)
     }
 
     private lazy var navView: BalanceInfoNavView = {

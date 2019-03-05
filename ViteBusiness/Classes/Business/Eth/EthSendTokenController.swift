@@ -175,17 +175,14 @@ class EthSendTokenController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
-        //balance loop
-        FetchBalanceInfoManager.instance.balanceInfoDriver(forETHContractAddress: self.tokenInfo.ethContractAddress)
+        ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
-                if let (balanceInfo, token) = ret {
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: token.decimals)
-                    //TODO:::  汇率
+                if let balanceInfo = ret {
+                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.tokenInfo.decimals)
                 } else {
                     // no balanceInfo, set 0.0
                     self.headerView.balanceLabel.text = "0.0"
-                    //TODO:::  汇率
                 }
             }).disposed(by: rx.disposeBag)
     }
