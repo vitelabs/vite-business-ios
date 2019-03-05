@@ -54,6 +54,7 @@ public extension Workflow {
                         info: toAddress.description,
                         token: token.symbol,
                         amount: amount,
+                        gasFee: Web3.Utils.parseToBigUInt(String(gasPrice), units: .gWei),
                         confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
                         completion: block,
                         confirmSuccess: sendBlock)

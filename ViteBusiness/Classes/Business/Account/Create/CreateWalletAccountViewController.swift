@@ -16,13 +16,13 @@ import Vite_HDWalletKit
 extension CreateWalletAccountViewController {
 
     private func _bindViewModel() {
-        self.createNameAndPwdVM = CreateNameAndPwdVM(input: (self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.passwordInputView.textField, self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField))
+        self.createNameAndPwdVM = CreateNameAndPwdVM(input: (self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.textField, self.createNameAndPwdView.passwordRepeateTF.textField))
         self.createNameAndPwdVM?.submitBtnEnable.drive(onNext: { [unowned self] (isEnabled) in
                 self.submitBtn.isEnabled = isEnabled
             }).disposed(by: rx.disposeBag)
 
         self.submitBtn.rx.tap.bind {[unowned self]  in
-          self.createNameAndPwdVM?.submitAction.execute((self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.passwordInputView.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text ?? "")).subscribe(onNext: { [unowned self](result) in
+          self.createNameAndPwdVM?.submitAction.execute((self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.textField.text ?? "")).subscribe(onNext: { [unowned self](result) in
                 switch result {
                 case .ok:
                     self.goNextVC()
@@ -106,7 +106,7 @@ extension CreateWalletAccountViewController {
 
     func goNextVC() {
         CreateWalletService.sharedInstance.name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
-        CreateWalletService.sharedInstance.password = self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text!
+        CreateWalletService.sharedInstance.password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
         let vc = CreateWalletTipViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

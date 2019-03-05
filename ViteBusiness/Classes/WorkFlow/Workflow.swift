@@ -12,6 +12,7 @@ import ViteWallet
 import Vite_HDWalletKit
 import PromiseKit
 import ViteUtils
+import BigInt
 import enum ViteWallet.Result
 
 extension ViteError {
@@ -33,6 +34,7 @@ public struct Workflow {
                                         info: String,
                                         token: String?,
                                         amount: String?,
+                                        gasFee: BigUInt? = nil,
                                         confirmTitle: String,
                                         completion: @escaping (Result<AccountBlock>) -> (),
                                         confirmSuccess: @escaping () -> Void) {

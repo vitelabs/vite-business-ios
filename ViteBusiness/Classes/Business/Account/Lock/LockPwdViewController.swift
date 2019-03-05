@@ -42,11 +42,12 @@ class LockPwdViewController: BaseViewController {
         return userNameLab
     }()
 
-    lazy var passwordTF: TitlePasswordInputView = {
-        let passwordTF = TitlePasswordInputView.init(title: R.string.localizable.createPagePwTitle())
+    lazy var passwordTF: TitleTextFieldView = {
+        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwTitle())
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
-        passwordTF.passwordInputView.delegate = self
+        passwordTF.textField.returnKeyType = .done
+        passwordTF.textField.delegate = self
         return passwordTF
     }()
 
@@ -153,7 +154,7 @@ extension LockPwdViewController {
     @objc func loginBtnAction() {
 
         self.view.displayLoading(text: R.string.localizable.loginPageLoadingTitle(), animated: true)
-        let password = self.passwordTF.passwordInputView.textField.text ?? ""
+        let password = self.passwordTF.textField.text ?? ""
         DispatchQueue.global().async {
             if let wallet = HDWalletManager.instance.wallet,
                 HDWalletManager.instance.loginCurrent(encryptKey: password.toEncryptKey(salt: wallet.uuid)) {
@@ -175,10 +176,12 @@ extension LockPwdViewController {
     }
 }
 
-extension LockPwdViewController: PasswordInputViewDelegate {
-    func inputFinish(passwordView: PasswordInputView, password: String) {
-        if passwordView ==  self.passwordTF.passwordInputView {
-            _ = self.passwordTF.passwordInputView.resignFirstResponder()
+extension LockPwdViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField ==  self.passwordTF.textField {
+            _ = self.passwordTF.textField.resignFirstResponder()
         }
+        return true
     }
 }

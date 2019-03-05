@@ -68,11 +68,12 @@ class LoginViewController: BaseViewController {
         return walletNameTF
     }()
 
-    lazy var passwordTF: TitlePasswordInputView = {
-        let passwordTF = TitlePasswordInputView.init(title: R.string.localizable.createPagePwTitle())
+    lazy var passwordTF: TitleTextFieldView = {
+        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwTitle())
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
-        passwordTF.passwordInputView.delegate = self
+        passwordTF.textField.returnKeyType = .done
+        passwordTF.textField.delegate = self
         return passwordTF
     }()
 
@@ -204,7 +205,7 @@ extension LoginViewController {
     }
 
     @objc func loginBtnAction() {
-        let encryptKey = (self.passwordTF.passwordInputView.textField.text ?? "").toEncryptKey(salt: self.viewModel.chooseUuid)
+        let encryptKey = (self.passwordTF.textField.text ?? "").toEncryptKey(salt: self.viewModel.chooseUuid)
         self.view.displayLoading(text: R.string.localizable.loginPageLoadingTitle(), animated: true)
         DispatchQueue.global().async {
             if HDWalletManager.instance.loginWithUuid(self.viewModel.chooseUuid, encryptKey: encryptKey) {
@@ -225,8 +226,13 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController: PasswordInputViewDelegate {
-    func inputFinish(passwordView: PasswordInputView, password: String) {
-        _ = passwordView.resignFirstResponder()
+extension LoginViewController : UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.passwordTF.textField {
+            self.passwordTF.textField.resignFirstResponder()
+        }
+        return true
     }
+
 }

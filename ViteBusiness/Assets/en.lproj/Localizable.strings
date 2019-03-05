@@ -36,7 +36,7 @@
 /* create */
 "create.page.title" = "Create Account";
 "create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input 6 digits password";
+"create.page.pw.title" = "请输入密码";
 "create.page.pw.repeate.title" = "Please input your password again";
 "create.page.submit.btn.title" = "Create";
 
