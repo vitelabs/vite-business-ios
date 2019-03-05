@@ -16,21 +16,37 @@ public extension Workflow {
         token: TokenInfo,
         amount: String,
         gasPrice: Float,
-        completion: @escaping (Result<AccountBlock>) -> ()) {
+        completion: @escaping (Result<String>) -> ()) {
         let sendBlock = {
+             HUD.show()
             if token.isEtherCoin {
-                do {
-                   _ = try EtherWallet.transaction.sendEtherSync(to:toAddress , amount: amount, password: "", gasPrice: gasPrice)
-                }catch {
-
-                }
+                   EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", completion: { (r ) in
+                        guard let result = r else{
+                            completion(Result(error: ViteError.authFailed))
+                            HUD.hide()
+                            return
+                        }
+                        completion(Result(value: result))
+                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                        HUD.hide()
+                    })
             }else {
-                do {
-                    _ = try EtherWallet.transaction.sendTokenSync(to: toAddress, contractAddress: token.ethContractAddress, amount:amount, password: "", decimal: 18 ,gasPrice: gasPrice)
-                }catch {
-
-                }
+                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amount, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (r) in
+                    guard let result = r else{
+                        completion(Result(error: ViteError.authFailed))
+                        HUD.hide()
+                        return
+                    }
+                    completion(Result(value: result))
+                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                    HUD.hide()
+                })
             }
+        }
+
+        //TODO::: no use block
+        let block = { (r:Result<AccountBlock>) in
+
         }
 
         confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
@@ -39,10 +55,7 @@ public extension Workflow {
                         token: token.symbol,
                         amount: amount,
                         confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
-                        completion: completion,
+                        completion: block,
                         confirmSuccess: sendBlock)
     }
 }
-
-
-
