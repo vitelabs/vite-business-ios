@@ -30,11 +30,6 @@ class ViteInputValidator: NSObject {
     }
 
     static func isValidWalletPassword(str: String) -> Bool {
-        let temp = str.trimmingCharacters(in: .whitespaces)
-        let pattern1 = "^[0-9]{6}"
-        let regex1 = try! NSRegularExpression(pattern: pattern1, options: NSRegularExpression.Options.caseInsensitive)
-        let matches = regex1.matches(in: temp, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSRange(location: 0, length: temp.count))
-
-        return !matches.isEmpty
+        return str.count < 8
     }
 }

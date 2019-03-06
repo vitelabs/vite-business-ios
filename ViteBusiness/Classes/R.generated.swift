@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 93 images.
+  /// This `R.image` struct is generated, and contains static references to 95 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -100,6 +100,8 @@ struct R: Rswift.Validatable {
     static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
     /// Image `icon_edit_name`.
     static let icon_edit_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_edit_name")
+    /// Image `icon_hide_pwd`.
+    static let icon_hide_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_hide_pwd")
     /// Image `icon_logo_chain_eth`.
     static let icon_logo_chain_eth = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo_chain_eth")
     /// Image `icon_logo`.
@@ -132,6 +134,8 @@ struct R: Rswift.Validatable {
     static let icon_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_search")
     /// Image `icon_setting`.
     static let icon_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_setting")
+    /// Image `icon_show_pwd`.
+    static let icon_show_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_show_pwd")
     /// Image `icon_tabbar_me_select`.
     static let icon_tabbar_me_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me_select")
     /// Image `icon_tabbar_me`.
@@ -410,6 +414,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_edit_name, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_hide_pwd", bundle: ..., traitCollection: ...)`
+    static func icon_hide_pwd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_hide_pwd, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_logo", bundle: ..., traitCollection: ...)`
     static func icon_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_logo, compatibleWith: traitCollection)
@@ -488,6 +497,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_setting", bundle: ..., traitCollection: ...)`
     static func icon_setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_setting, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_show_pwd", bundle: ..., traitCollection: ...)`
+    static func icon_show_pwd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_show_pwd, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_tabbar_me", bundle: ..., traitCollection: ...)`
@@ -675,7 +689,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 261 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 262 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -689,10 +703,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 6 digits numeric password
-      /// 
-      /// Locales: en, zh-Hans
-      static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -1693,6 +1703,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageMnemonicCellTitle = Rswift.StringResource(key: "my.page.mnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 密码至少包含8个字符
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageErrorTypePwdIllegal = Rswift.StringResource(key: "mnemonic.backup.page.error.type.pwd.illegal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 快
       /// 
       /// Locales: en, zh-Hans
@@ -1717,6 +1731,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入账户密码
+      /// 
+      /// Locales: en, zh-Hans
+      static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额 %@ UTPS
       /// 
       /// Locales: en, zh-Hans
@@ -1741,13 +1759,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
         return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 6 digits numeric password
-      /// 
-      /// Locales: en, zh-Hans
-      static func exportPageAlterTfPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
@@ -3500,6 +3511,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.mnemonic.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 密码至少包含8个字符
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageErrorTypePwdIllegal(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.error.type.pwd.illegal", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 快
       /// 
       /// Locales: en, zh-Hans
@@ -3540,6 +3558,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func createPagePwTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.pw.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入账户密码
+      /// 
+      /// Locales: en, zh-Hans
+      static func exportPageAlterTfPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额 %@ UTPS

@@ -75,6 +75,7 @@ class ConfirmTransactionView: UIView {
         $0.layer.cornerRadius = 2.0
     }
 
+    //TODO:::  替换
     let passwordView = PasswordInputView(type: .bordered).then {
         $0.secretType = .point
     }

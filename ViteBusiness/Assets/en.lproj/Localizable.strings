@@ -58,6 +58,7 @@
 "mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
 "mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.affirm.page.title" = "Confirm your seed phrase";
@@ -80,7 +81,7 @@
 /* export mnemonic */
 "export.page.title" = "Export Seed Phrase";
 "export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "6 digits numeric password";
+"export.page.alter.tf.placeholder" = "请输入账户密码";
 "export.page.alter.password.error" = "Wrong Password!";
 
 /* login */

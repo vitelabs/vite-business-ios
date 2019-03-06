@@ -18,24 +18,25 @@ class CreateNameAndPwdView: UIView {
         return walletNameTF
     }()
 
-    lazy var passwordTF: TitleTextFieldView = {
-        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwTitle())
-
+    lazy var passwordTF: TitlePasswordInputView = {
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwTitle())
+        passwordTF.textField.returnKeyType = .next
         passwordTF.textField.delegate = self
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
         passwordTF.textField.textColor = Colors.descGray
-        passwordTF.titleLabel.font = AppStyle.formHeader.font
+        passwordTF.textField.font = AppStyle.formHeader.font
         return passwordTF
     }()
 
-    lazy var passwordRepeateTF: TitleTextFieldView = {
-        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwRepeateTitle())
+    lazy var passwordRepeateTF: TitlePasswordInputView = {
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwRepeateTitle())
+        passwordTF.textField.returnKeyType = .done
         passwordTF.textField.delegate = self
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
         passwordTF.textField.textColor = Colors.descGray
-        passwordTF.titleLabel.font = AppStyle.formHeader.font
+        passwordTF.textField.font = AppStyle.formHeader.font
         return passwordTF
     }()
 

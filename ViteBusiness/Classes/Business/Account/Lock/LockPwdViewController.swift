@@ -42,8 +42,8 @@ class LockPwdViewController: BaseViewController {
         return userNameLab
     }()
 
-    lazy var passwordTF: TitleTextFieldView = {
-        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwTitle())
+    lazy var passwordTF: TitlePasswordInputView = {
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwTitle())
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
         passwordTF.textField.returnKeyType = .done

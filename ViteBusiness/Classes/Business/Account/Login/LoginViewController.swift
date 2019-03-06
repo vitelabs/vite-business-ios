@@ -34,7 +34,7 @@ class LoginViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(contentView)
+        kas_activateAutoScrollingForView(self.contentView)
         if navigationController?.viewControllers.first === self {
 
         } else {
@@ -42,7 +42,14 @@ class LoginViewController: BaseViewController {
         }
     }
 
-    let contentView = UIView()
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    lazy var contentView: UIView = {
+        let contentView = UIView()
+        return contentView
+    }()
 
     lazy var logoImgView: UIImageView = {
         let logoImgView = UIImageView()
@@ -68,8 +75,8 @@ class LoginViewController: BaseViewController {
         return walletNameTF
     }()
 
-    lazy var passwordTF: TitleTextFieldView = {
-        let passwordTF = TitleTextFieldView(title: R.string.localizable.createPagePwTitle())
+    lazy var passwordTF: TitlePasswordInputView = {
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwTitle())
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
         passwordTF.textField.returnKeyType = .done
@@ -109,10 +116,18 @@ extension LoginViewController {
     }
 
     private func _addViewConstraint() {
-        view.addSubview(contentView)
-        contentView.snp.makeConstraints { (m) in
-            m.edges.equalTo(view)
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.view)
         }
+
+        self.scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { (make) in
+            make.top.equalTo(scrollView)
+            make.left.right.bottom.equalTo(view)
+        }
+
         contentView.addSubview(self.logoImgView)
         self.logoImgView.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(contentView)
@@ -234,5 +249,4 @@ extension LoginViewController : UITextFieldDelegate {
         }
         return true
     }
-
 }

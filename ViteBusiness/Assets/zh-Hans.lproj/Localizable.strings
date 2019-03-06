@@ -60,6 +60,7 @@
 "mnemonic.backup.page.error.type.nameValid" = "账户名仅支持中英文字符及下划线";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "账户名仅支持32个字符";
 "mnemonic.backup.page.error.type.difference" = "两次输入密码不同";
+"mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
 "mnemonic.backup.page.switch.mode.title" = "切换%@个助记词";
 
 "mnemonic.affirm.page.title" = "确认输入助记词";
@@ -81,7 +82,7 @@
 /* export mnemonic */
 "export.page.title" = "导出助记词";
 "export.page.alter.title" = "请输入密码";
-"export.page.alter.tf.placeholder" = "6位数字密码";
+"export.page.alter.tf.placeholder" = "请输入账户密码";
 "export.page.alter.password.error" = "密码错误";
 
 /* login */
