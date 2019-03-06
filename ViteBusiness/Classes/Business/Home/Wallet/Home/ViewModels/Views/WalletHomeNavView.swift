@@ -23,6 +23,11 @@ class WalletHomeNavView: UIImageView {
         $0.numberOfLines = 1
     }
 
+    let scanButton = UIButton().then {
+        $0.setImage(R.image.icon_nav_scan_black(), for: .normal)
+        $0.setImage(R.image.icon_nav_scan_black()?.highlighted, for: .highlighted)
+    }
+
     let hideButton = UIButton().then {
         $0.setImage(R.image.icon_price_show_button(), for: .normal)
         $0.setImage(R.image.icon_price_show_button()?.highlighted, for: .highlighted)
@@ -37,12 +42,13 @@ class WalletHomeNavView: UIImageView {
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowRadius = 20
 
+        contentMode = .scaleToFill
         image = R.image.icon_wallet_home_nav_bg()
         isUserInteractionEnabled = true
-        contentMode = .scaleAspectFill
 
         addSubview(nameLabel)
         addSubview(priceLabel)
+        addSubview(scanButton)
         addSubview(hideButton)
 
         priceLabel.snp.makeConstraints { (m) in
@@ -58,9 +64,16 @@ class WalletHomeNavView: UIImageView {
         }
 
         nameLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(self.safeAreaLayoutGuideSnpTop).offset(-32)
             m.left.equalTo(priceLabel)
             m.right.equalToSuperview().offset(-76)
+            m.centerY.equalTo(scanButton)
+        }
+
+        scanButton.snp.makeConstraints { (m) in
+            m.right.equalToSuperview().offset(-24)
+            m.bottom.equalToSuperview().offset(-74)
+            m.size.equalTo(CGSize(width: 28, height: 28))
+            m.left.equalTo(nameLabel.snp.right).offset(10)
         }
     }
 
