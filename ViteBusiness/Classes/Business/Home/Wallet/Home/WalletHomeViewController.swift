@@ -35,6 +35,16 @@ class WalletHomeViewController: BaseTableViewController {
         tableViewModel.unregisterFetchAll()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
     let walletDriver = HDWalletManager.instance.walletDriver
     var tableViewModel: WalletHomeBalanceInfoTableViewModel!
     var navViewModel: WalletHomeNavViewModel!
@@ -49,10 +59,7 @@ class WalletHomeViewController: BaseTableViewController {
 
         statisticsPageName = Statistics.Page.WalletHome.name
 
-        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
-        let scanItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = scanItem
-        scanItem.rx.tap.bind { [weak self] _ in self?.scan() }.disposed(by: rx.disposeBag)
+        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.red)
 
         view.addSubview(navView)
         view.addSubview(headerView)
@@ -60,7 +67,7 @@ class WalletHomeViewController: BaseTableViewController {
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
             m.left.right.equalToSuperview()
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(58)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
         }
 
         headerView.snp.makeConstraints { (m) in
@@ -100,6 +107,10 @@ class WalletHomeViewController: BaseTableViewController {
         tableViewModel = WalletHomeBalanceInfoTableViewModel(isHidePriceDriver: isHidePriceDriver)
         navViewModel = WalletHomeNavViewModel(isHidePriceDriver: isHidePriceDriver, walletHomeBalanceInfoTableViewModel: tableViewModel)
         navView.bind(viewModel: navViewModel)
+
+        navView.scanButton.rx.tap.bind { [weak self] in
+            self?.scan()
+            }.disposed(by: rx.disposeBag)
 
         navView.hideButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
