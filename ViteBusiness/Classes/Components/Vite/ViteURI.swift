@@ -318,7 +318,7 @@ extension String {
         return ret
     }
 
-    fileprivate mutating func append(key: String, value: String) {
+    mutating func append(key: String, value: String) {
         self = "\(self)\(key)=\(value)&"
     }
 }

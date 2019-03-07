@@ -8,7 +8,7 @@
 import ViteWallet
 
 extension ReceiveViewController {
-    func share(walletName: String, token: Token, address: String, addressName: String?, uri: String, note: String?) {
+    func share(viewModel: ReceiveViewModelType) {
 
         let superView = UIView()
         let backView = UIView()
@@ -46,7 +46,7 @@ extension ReceiveViewController {
             m.edges.equalTo(contentView)
         }
 
-        let addressView = ReceiveShareAddressView(name: walletName, address: address, addressName: addressName)
+        let addressView = ReceiveShareAddressView(name: viewModel.walletName, address: viewModel.address, addressName: viewModel.addressName)
         let tokenView = UIView()
         let qrcodeView = UIView()
         let noteView = ReceiveShareNoteView(text: self.noteView.noteTitleTextFieldView.textField.text)
@@ -80,11 +80,43 @@ extension ReceiveViewController {
         stackView.addArrangedSubview(addressView)
         stackView.addArrangedSubview(tokenView)
         stackView.addArrangedSubview(qrcodeView)
-        stackView.addArrangedSubview(noteView)
+
+        if viewModel.isShowNoteView {
+            stackView.addArrangedSubview(noteView)
+        } else {
+            stackView.addPlaceholder(height: 20)
+        }
+
+        let layoutGuide = UILayoutGuide()
+        let iconImageView = UIImageView(image: R.image.icon_receive_logo())
+        let label = UILabel()
+        label.text = R.string.localizable.receivePageWalletName()
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+
+        backView.addLayoutGuide(layoutGuide)
+        backView.addSubview(iconImageView)
+        backView.addSubview(label)
+
+        layoutGuide.snp.makeConstraints { (m) in
+            m.top.equalTo(contentView.snp.bottom)
+            m.bottom.equalTo(backView)
+            m.centerX.equalTo(backView)
+        }
+
+        iconImageView.snp.makeConstraints { (m) in
+            m.centerY.left.equalTo(layoutGuide)
+        }
+
+        label.snp.makeConstraints { (m) in
+            m.right.equalTo(layoutGuide)
+            m.centerY.equalTo(iconImageView)
+            m.left.equalTo(iconImageView.snp.right).offset(10)
+        }
 
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
-//        backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: backView.frame, colors: token.backgroundColors)
+        backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: backView.frame, colors: tokenInfo.chainBackgroundGradientColors)
         guard let image = backView.screenshot else { return }
         Workflow.share(activityItems: [image])
     }
