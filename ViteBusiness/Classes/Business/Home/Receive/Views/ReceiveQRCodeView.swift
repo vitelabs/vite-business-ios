@@ -18,6 +18,7 @@ class ReceiveQRCodeView: UIView {
     }
 
     let imageView = UIImageView()
+    let iconView = TokenIconView()
 
     let amountButton = UIButton().then {
         $0.setTitle(R.string.localizable.receivePageTokenAmountButtonTitle(), for: .normal)
@@ -49,6 +50,14 @@ class ReceiveQRCodeView: UIView {
             m.top.equalTo(imageView.snp.bottom).offset(20)
             m.centerX.equalTo(self)
             m.bottom.equalTo(self)
+        }
+
+        imageView.addSubview(iconView)
+        iconView.layer.masksToBounds = true
+        iconView.layer.cornerRadius = 20
+        iconView.snp.makeConstraints { (m) in
+            m.center.equalToSuperview()
+            m.size.equalTo(CGSize(width: 40, height: 40))
         }
     }
 

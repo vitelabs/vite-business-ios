@@ -130,8 +130,8 @@ class EthTokenInfoController: BaseViewController {
 
         self.ethInfoCardView.receiveButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            //TODO:::  action
-
+            let vc = ReceiveViewController(tokenInfo: self.tokenInfo)
+            self.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 
         self.ethInfoCardView.sendButton.rx.tap.bind { [weak self] in

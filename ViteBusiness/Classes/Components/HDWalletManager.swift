@@ -59,7 +59,8 @@ public final class HDWalletManager {
 
     // ETH
     public lazy var ethAddressDriver: Driver<String?> = self.ethAddressBehaviorRelay.asDriver()
-    public var ethAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    private var ethAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    public var ethAddress: String? { return self.ethAddressBehaviorRelay.value }
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?

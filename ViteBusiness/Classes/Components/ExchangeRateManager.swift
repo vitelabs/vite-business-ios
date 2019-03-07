@@ -40,11 +40,60 @@ public final class ExchangeRateManager {
     public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
     public var rateMap: ExchangeRateMap { return rateMapBehaviorRelay.value }
     private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap>
+
+    public func start() {
+//        getRate()
+
+//        ExchangeProvider.instance.recommendTokenInfos { (ret) in
+//            switch ret {
+//            case .success(let body):
+//                print(body)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+
+//        ExchangeProvider.instance.searchTokenInfo(key: "Vite 1") { (ret) in
+//            switch ret {
+//            case .success(let body):
+//                print(body)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+    }
+
+    private func getRate() {
+        ExchangeProvider.instance.getRate(for: ["36"]) { [weak self] (ret) in
+            switch ret {
+            case .success(let map):
+                plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
+                self?.rateMapBehaviorRelay.accept(map)
+                self?.pri_save()
+            case .failure(let error):
+                plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
+            }
+            GCD.delay(5, task: { self?.getRate() })
+        }
+    }
+
+    func getRateImmediately() {
+        ExchangeProvider.instance.getRate(for: ["36"]) { [weak self] (ret) in
+            switch ret {
+            case .success(let map):
+                plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
+                self?.rateMapBehaviorRelay.accept(map)
+                self?.pri_save()
+            case .failure(let error):
+                plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
+            }
+        }
+    }
 }
 
 public enum CurrencyCode: String {
-    case USD
-    case CNY
+    case USD = "usd"
+    case CNY = "cny"
 
     var symbol: String {
         switch self {

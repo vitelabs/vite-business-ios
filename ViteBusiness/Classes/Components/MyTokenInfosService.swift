@@ -78,6 +78,7 @@ public final class MyTokenInfosService: NSObject {
         tokenInfos.append(tokenInfo)
         tokenInfosBehaviorRelay.accept(tokenInfos)
         pri_save()
+        ExchangeRateManager.instance.getRateImmediately()
     }
 
     public func removeToken(for tokenCode: TokenCode) {
@@ -125,14 +126,7 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(for: tokenCode) {
             completion(Result.success(tokenInfo))
         } else {
-            //            Provider.default.getToken(for: id)
-            //                .done { (token) in
-            //                    completion(Result.success(token))
-            //                }
-            //                .catch { (error) in
-            //                    completion(Result.failure(error))
-            //            }
-            //            append(tokenInfo: xxx)
+            ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode, completion: completion)
         }
     }
 
@@ -141,14 +135,7 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))
         } else {
-            //            Provider.default.getToken(for: id)
-            //                .done { (token) in
-            //                    completion(Result.success(token))
-            //                }
-            //                .catch { (error) in
-            //                    completion(Result.failure(error))
-            //            }
-            //            append(tokenInfo: xxx)
+            ExchangeProvider.instance.getTokenInfo(chain: "Vite", id: viteTokenId, completion: completion)
         }
     }
 
@@ -157,14 +144,17 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(forEthContractAddress: address) {
             completion(Result.success(tokenInfo))
         } else {
-            //            Provider.default.getToken(for: id)
-            //                .done { (token) in
-            //                    completion(Result.success(token))
-            //                }
-            //                .catch { (error) in
-            //                    completion(Result.failure(error))
-            //            }
-            //            append(tokenInfo: xxx)
+            ExchangeProvider.instance.getTokenInfo(chain: "ETH", id: address, completion: completion)
         }
+    }
+}
+
+extension TokenInfo {
+    var isDefault: Bool {
+        return MyTokenInfosService.instance.isDefaultTokenInfo(for: tokenCode)
+    }
+
+    var isContains: Bool {
+        return MyTokenInfosService.instance.containsTokenInfo(for: tokenCode)
     }
 }

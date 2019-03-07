@@ -281,7 +281,7 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
-            UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(token: token), animated: true)
+            UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
         sendButton.rx.tap.bind { [weak self] in

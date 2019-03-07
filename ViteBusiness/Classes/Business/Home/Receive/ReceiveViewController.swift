@@ -15,20 +15,11 @@ import BigInt
 
 class ReceiveViewController: BaseViewController {
 
-    let token: Token
-    let walletName: String
-    let address: String
-    let addressName: String
-
-    let amountBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let uriBehaviorRelay: BehaviorRelay<ViteURI>
-
-    init(token: Token) {
-        self.token = token
-        self.walletName = HDWalletManager.instance.wallet?.name ?? ""
-        self.address = HDWalletManager.instance.account?.address.description ?? ""
-        self.addressName = AddressManageService.instance.name(for: Address(string: self.address))
-        self.uriBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: Address(string: address), tokenId: token.id, amount: nil, note: nil))
+    let tokenInfo: TokenInfo
+    let viewModel: ReceiveViewModelType
+    init(tokenInfo: TokenInfo) {
+        self.tokenInfo = tokenInfo
+        self.viewModel = tokenInfo.createReceiveViewModel()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -61,14 +52,14 @@ class ReceiveViewController: BaseViewController {
         }
     }
 
-    lazy var addressView = ReceiveAddressView(name: self.walletName, address: self.address, addressName: self.addressName)
+    lazy var addressView = ReceiveAddressView(name: self.viewModel.walletName, address: self.viewModel.address, addressName: self.viewModel.addressName)
     let qrcodeView = ReceiveQRCodeView()
     let noteView = ReceiveNoteView()
 
     func setupView() {
         navigationBarStyle = .clear
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_share_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onShare))
-//        view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: token.backgroundColors)
+        view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: tokenInfo.chainBackgroundGradientColors)
 
         let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
             $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
@@ -94,7 +85,11 @@ class ReceiveViewController: BaseViewController {
 
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(qrcodeView)
-        scrollView.stackView.addArrangedSubview(noteView)
+        if viewModel.isShowNoteView {
+            scrollView.stackView.addArrangedSubview(noteView)
+        } else {
+            scrollView.stackView.addPlaceholder(height: 20)
+        }
 
         let layoutGuide = UILayoutGuide()
         let iconImageView = UIImageView(image: R.image.icon_receive_logo())
@@ -118,12 +113,15 @@ class ReceiveViewController: BaseViewController {
         }
 
         label.snp.makeConstraints { (m) in
-            m.right.bottom.equalTo(layoutGuide)
+            m.right.equalTo(layoutGuide)
+            m.centerY.equalTo(iconImageView)
             m.left.equalTo(iconImageView.snp.right).offset(10)
         }
     }
 
     func bind() {
+        qrcodeView.iconView.tokenInfo = tokenInfo
+        
         qrcodeView.amountButton.rx.tap
             .bind { [weak self] in
                 Alert.show(title: R.string.localizable.receivePageTokenAmountAlertTitle(),
@@ -131,55 +129,37 @@ class ReceiveViewController: BaseViewController {
                            actions: [(.cancel, nil),
                                      (.default(title: R.string.localizable.confirm()), {[weak self] alertController in
                                         guard let textField = alertController.textFields?.first else { fatalError() }
-                                        self?.amountBehaviorRelay.accept(textField.text)
+                                        self?.viewModel.amountStringBehaviorRelay.accept(textField.text)
                                      }),
                                      ], config: { alertController in
                                         alertController.addTextField(configurationHandler: { [weak self] in
                                             $0.keyboardType = .decimalPad
-                                            $0.text = self?.amountBehaviorRelay.value
+                                            $0.text = self?.viewModel.amountStringBehaviorRelay.value
                                             $0.delegate = self
                                         })
                 })
             }.disposed(by: rx.disposeBag)
 
-        amountBehaviorRelay.asDriver()
-            .map { [weak self] in
-                guard let `self` = self else { return "" }
-                if let amount = $0 {
-                    return "\(amount) \(self.token.symbol)"
-                } else {
-                    return R.string.localizable.receivePageTokenNameLabel(self.token.symbol)
-                }
-            }
-            .drive(qrcodeView.tokenSymbolLabel.rx.text).disposed(by: rx.disposeBag)
+        noteView.noteTitleTextFieldView.textField.rx.text.asObservable().bind(to: viewModel.noteStringBehaviorRelay).disposed(by: rx.disposeBag)
 
-        Observable.combineLatest(amountBehaviorRelay.asObservable(), noteView.noteTitleTextFieldView.textField.rx.text.asObservable())
-            .map { [weak self] in
-                let address = self?.address ?? ""
-                let id = self?.token.id ?? ""
-                return ViteURI.transferURI(address: Address(string: address), tokenId: id, amount: $0, note: $1)
+        viewModel.tipStringDriver.drive(qrcodeView.tokenSymbolLabel.rx.text).disposed(by: rx.disposeBag)
+
+        viewModel.uriStringDriver.drive(onNext: { [weak self] in
+            QRCodeHelper.createQRCode(string: $0) { [weak self] image in
+                self?.qrcodeView.imageView.image = image
             }
-            .bind(to: uriBehaviorRelay).disposed(by: rx.disposeBag)
-        uriBehaviorRelay.asObservable()
-            .map {
-                $0.string()
-            }
-            .bind { [weak self] in
-                QRCodeHelper.createQRCode(string: $0) { [weak self] image in
-                    self?.qrcodeView.imageView.image = image
-                }
-        }
+        })
     }
 
     @objc func onShare() {
-        share(walletName: self.walletName, token: self.token, address: self.address, addressName: self.addressName, uri: self.uriBehaviorRelay.value.string(), note: self.noteView.noteTitleTextFieldView.textField.text)
+        share(viewModel: viewModel)
     }
 }
 
 extension ReceiveViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, token.decimals))
+        let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, tokenInfo.decimals))
         textField.text = text
         return ret
     }
