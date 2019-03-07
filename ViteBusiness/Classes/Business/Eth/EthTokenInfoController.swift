@@ -34,8 +34,6 @@ class EthTokenInfoController: BaseViewController {
     }
 
     func bind() {
-        navView.bind(tokenInfo: tokenInfo)
-
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
@@ -57,33 +55,16 @@ class EthTokenInfoController: BaseViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    private lazy var navView: BalanceInfoNavView = {
-        let navView = BalanceInfoNavView()
-        return navView
-    }()
-
-    private lazy var ethInfoCardView: EthInfoCardView = {
-        let ethInfoCardView = EthInfoCardView(self.tokenInfo)
-        return ethInfoCardView
-    }()
-
-    fileprivate func setupView() {
+    private lazy var navView = BalanceInfoNavView().then { (navView) in
         view.addSubview(navView)
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
             m.left.right.equalToSuperview()
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(128)
         }
+    }
 
-        let imageView = UIImageView(image: R.image.empty())
-        let showTransactionsButton = UIButton.init(type: .system).then {
-            $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-            $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
-            $0.setTitle(R.string.localizable.balanceInfoDetailShowTransactionsButtonTitle(), for: .normal)
-        }
-        view.addSubview(imageView)
-        view.addSubview(showTransactionsButton)
+    private lazy var ethInfoCardView = EthInfoCardView(self.tokenInfo).then { (ethInfoCardView) in
         view.addSubview(ethInfoCardView)
         ethInfoCardView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(-60)
@@ -91,7 +72,11 @@ class EthTokenInfoController: BaseViewController {
             m.right.equalTo(view).offset(-24)
             m.height.equalTo(188)
         }
+    }
 
+    fileprivate func setupView() {
+        navView.bind(tokenInfo: tokenInfo)
+        
         let contentLayout = UILayoutGuide()
         let centerLayout = UILayoutGuide()
 
@@ -108,6 +93,16 @@ class EthTokenInfoController: BaseViewController {
             m.left.right.equalTo(contentLayout)
             m.centerY.equalTo(contentLayout)
         }
+
+        let imageView = UIImageView(image: R.image.empty())
+        let showTransactionsButton = UIButton.init(type: .system).then {
+            $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+            $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+            $0.setTitle(R.string.localizable.balanceInfoDetailShowTransactionsButtonTitle(), for: .normal)
+        }
+        view.addSubview(imageView)
+        view.addSubview(showTransactionsButton)
 
         imageView.snp.makeConstraints { (m) in
             m.top.equalTo(centerLayout)

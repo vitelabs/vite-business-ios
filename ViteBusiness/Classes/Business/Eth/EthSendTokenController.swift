@@ -22,7 +22,7 @@ class EthSendTokenController: BaseViewController {
     var address:  web3swift.Address? = nil
     var amount: Balance? = nil
 
-    var tokenInfo : TokenInfo
+    public var tokenInfo : TokenInfo
 
     init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
         self.tokenInfo = tokenInfo
@@ -49,19 +49,23 @@ class EthSendTokenController: BaseViewController {
     }
 
     // View
-    private lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
-        $0.layer.masksToBounds = false
+    private lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then { (scrollView) in
+        scrollView.layer.masksToBounds = false
         if #available(iOS 11.0, *) {
-            $0.contentInsetAdjustmentBehavior = .never
+            scrollView.contentInsetAdjustmentBehavior = .never
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
-    }
 
-    private lazy var logoImgView: UIImageView = {
-        let logoImgView = UIImageView()
-        return logoImgView
-    }()
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (m) in
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.left.right.equalTo(view)
+        }
+    }
+    lazy var logoImgView = TokenIconView().then {(imgView) in
+        imgView.tokenInfo =  tokenInfo
+    }
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
         let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer)
@@ -72,7 +76,17 @@ class EthSendTokenController: BaseViewController {
     private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress.address)
 
     private lazy var amountView = SendAmountView(amount: "", symbol: "")
-    private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle())
+    private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
+        view.addSubview(btn)
+
+        btn.snp.makeConstraints { (m) in
+            m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
+            m.left.equalTo(view).offset(24)
+            m.right.equalTo(view).offset(-24)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+            m.height.equalTo(50)
+        }
+    }
 
     private lazy var addressView: SendAddressViewType = {
         if self.address != nil {
@@ -95,21 +109,13 @@ class EthSendTokenController: BaseViewController {
 
         self.amountView.symbolLabel.text = self.tokenInfo.symbol
 
-        self.logoImgView.kf.setImage(with: URL(string: self.tokenInfo.icon))
-
         navigationTitleView!.addSubview(logoImgView)
         logoImgView.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview()
             m.right.equalToSuperview().offset(-24)
             m.width.height.equalTo(50)
         }
-        view.addSubview(scrollView)
-        view.addSubview(sendButton)
 
-        scrollView.snp.makeConstraints { (m) in
-            m.top.equalTo(navigationTitleView!.snp.bottom)
-            m.left.right.equalTo(view)
-        }
         scrollView.stackView.addArrangedSubview(headerView)
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
@@ -117,14 +123,6 @@ class EthSendTokenController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 1)
         scrollView.stackView.addArrangedSubview(gasSliderView)
         scrollView.stackView.addPlaceholder(height: 50)
-
-        sendButton.snp.makeConstraints { (m) in
-            m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
-            m.left.equalTo(view).offset(24)
-            m.right.equalTo(view).offset(-24)
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
-            m.height.equalTo(50)
-        }
 
         addressView.textView.keyboardType = .default
         amountView.textField.keyboardType = .decimalPad
