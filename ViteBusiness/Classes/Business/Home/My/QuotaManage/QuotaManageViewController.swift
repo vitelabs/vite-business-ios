@@ -74,7 +74,7 @@ class QuotaManageViewController: BaseViewController {
         $0.descLab.attributedText = attributedString
     }
 
-    lazy var addressView = AddressTextViewView(currentAddress: self.account.address.description, placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
+    lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
         $0.textView.keyboardType = .default
     }
@@ -211,6 +211,14 @@ extension QuotaManageViewController {
 
             }
             .disposed(by: rx.disposeBag)
+
+        addressView.addButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
+                [R.string.localizable.sendPageMyAddressTitle(),
+                 R.string.localizable.sendPageAddContactsButtonTitle(),
+                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+            }.disposed(by: rx.disposeBag)
     }
 
     func refreshDataBySuccess() {
@@ -219,20 +227,43 @@ extension QuotaManageViewController {
     }
 
     func initBinds() {
-        FetchBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
-            .drive(onNext: { [weak self] ret in
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
+            .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
-                if let (balanceInfo, token) = ret {
+                if let balanceInfo = balanceInfo {
                     self.balance = balanceInfo.balance
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: token.decimals)
+                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
                 } else {
                     // no balanceInfo, set 0.0
                     self.headerView.balanceLabel.text = "0.0"
                 }
             }).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.quotaDriver.drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
-        FetchQuotaService.instance.maxTxCountDriver.drive(headerView.maxTxCountLabel.rx.text).disposed(by: rx.disposeBag)
+    FetchQuotaService.instance.quotaDriver
+        .map({ R.string.localizable.sendPageQuotaContent($0) })
+        .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+    }
+}
+
+extension QuotaManageViewController: FloatButtonsViewDelegate {
+    func didClick(at index: Int) {
+        if index == 0 {
+
+        } else if index == 1 {
+
+        } else if index == 2 {
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressView.textView.text = uri.address.description
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
     }
 }
 

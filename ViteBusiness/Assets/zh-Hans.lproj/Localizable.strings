@@ -167,7 +167,8 @@
 "send.page.my.balance.title" = "我的账户余额";
 "send.page.my.quota.title" = "我的配额";
 "send.page.my.max.tx.count.title" = "最大交易笔数";
-"send.page.add.current.address.button.title" = "我的";
+"send.page.add.my.address.button.title" = "我的";
+"send.page.add.contacts.button.title" = "联系地址";
 "send.page.scan.address.button.title" = "扫码";
 "send.page.to.address.title" = "收款地址";
 "send.page.amount.title" = "金额";
@@ -186,6 +187,8 @@
 "send.page.confirm.biometryAuthFailed.back" = "返回";
 "send.page.confirm.passwordAuthFailed.retry" = "重试";
 "send.page.token.info.error" = "代币信息错误";
+"send.page.quota.content" = "%@ UTPS";
+
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "支付";

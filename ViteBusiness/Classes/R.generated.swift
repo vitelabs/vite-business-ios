@@ -689,12 +689,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 262 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 264 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailContent = Rswift.StringResource(key: "aboutUs.page.email.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageQuotaContent = Rswift.StringResource(key: "send.page.quota.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ unconfirmed
       /// 
       /// Locales: en, zh-Hans
@@ -1098,7 +1102,7 @@ struct R: Rswift.Validatable {
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageAddCurrentAddressButtonTitle = Rswift.StringResource(key: "send.page.add.current.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let sendPageAddMyAddressButtonTitle = Rswift.StringResource(key: "send.page.add.my.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
       /// 
       /// Locales: en, zh-Hans
@@ -1727,6 +1731,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageContactsCellTitle = Rswift.StringResource(key: "my.page.contacts.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageAddContactsButtonTitle = Rswift.StringResource(key: "send.page.add.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入密码
       /// 
       /// Locales: en, zh-Hans
@@ -1745,6 +1753,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func aboutUsPageEmailContent(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
         return String(format: NSLocalizedString("aboutUs.page.email.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
+      }
+      
+      /// en translation: %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageQuotaContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("send.page.quota.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ unconfirmed
@@ -2450,8 +2465,8 @@ struct R: Rswift.Validatable {
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageAddCurrentAddressButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.add.current.address.button.title", bundle: R.hostingBundle, comment: "")
+      static func sendPageAddMyAddressButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.add.my.address.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
@@ -3551,6 +3566,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func myPageContactsCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.contacts.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageAddContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.add.contacts.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入密码

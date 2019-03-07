@@ -78,7 +78,14 @@ class EthSendTokenController: BaseViewController {
         if self.address != nil {
             return AddressLabelView(address: address!.description)
         }else {
-            return  AddressTextViewView()
+            let view = AddressTextViewView()
+            view.addButton.rx.tap.bind { [weak self] in
+                guard let `self` = self else { return }
+                FloatButtonsView(targetView: view.addButton, delegate: self, titles:
+                    [R.string.localizable.sendPageAddContactsButtonTitle(),
+                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+                }.disposed(by: rx.disposeBag)
+            return  view
         }
     }()
 
@@ -185,6 +192,26 @@ class EthSendTokenController: BaseViewController {
                     self.headerView.balanceLabel.text = "0.0"
                 }
             }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension EthSendTokenController: FloatButtonsViewDelegate {
+    func didClick(at index: Int) {
+        if index == 0 {
+
+        } else if index == 1 {
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressView.textView.text = uri.address.description
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
     }
 }
 

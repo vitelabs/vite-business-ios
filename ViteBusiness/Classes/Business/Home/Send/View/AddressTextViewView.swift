@@ -15,14 +15,10 @@ import ViteUtils
 
 class AddressTextViewView: SendAddressViewType {
 
-    fileprivate let addAddressButton = UIButton()
-    fileprivate var floatView: AddAddressFloatView!
-
-    let currentAddress: String?
+    let addButton = UIButton()
     let placeholderStr: String?
 
-    init(currentAddress: String? = nil, placeholder: String = "") {
-        self.currentAddress = currentAddress
+    init(placeholder: String = "") {
         self.placeholderStr = placeholder
         super.init(frame: CGRect.zero)
 
@@ -35,26 +31,10 @@ class AddressTextViewView: SendAddressViewType {
         addSubview(titleLabel)
         addSubview(textView)
         addSubview(placeholderLab)
-        addSubview(addAddressButton)
+        addSubview(addButton)
 
-        if let _ = currentAddress {
-            addAddressButton.setImage(R.image.icon_button_address_add(), for: .normal)
-            addAddressButton.setImage(R.image.icon_button_address_add()?.highlighted, for: .highlighted)
-            addAddressButton.rx.tap.bind { [weak self] in
-                guard let `self` = self else { return }
-                if let old = self.floatView {
-                    old.removeFromSuperview()
-                }
-                self.floatView = AddAddressFloatView(targetView: self.addAddressButton, delegate: self)
-                self.floatView.show()
-            }.disposed(by: rx.disposeBag)
-        } else {
-            addAddressButton.setImage(R.image.icon_button_address_scan(), for: .normal)
-            addAddressButton.setImage(R.image.icon_button_address_scan()?.highlighted, for: .highlighted)
-            addAddressButton.rx.tap.bind { [weak self] in
-                self?.scanButtonDidClick()
-            }.disposed(by: rx.disposeBag)
-        }
+        addButton.setImage(R.image.icon_button_address_add(), for: .normal)
+        addButton.setImage(R.image.icon_button_address_add()?.highlighted, for: .highlighted)
 
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(self)
@@ -65,17 +45,17 @@ class AddressTextViewView: SendAddressViewType {
         textView.snp.makeConstraints { (m) in
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(titleLabel)
-            m.right.equalTo(addAddressButton.snp.left).offset(-16)
+            m.right.equalTo(addButton.snp.left).offset(-16)
             m.height.equalTo(55)
             m.bottom.equalTo(self)
         }
 
         placeholderLab.snp.makeConstraints { (m) in
             m.right.left.equalTo(textView)
-            m.centerY.equalTo(addAddressButton)
+            m.centerY.equalTo(addButton)
         }
 
-        addAddressButton.snp.makeConstraints { (m) in
+        addButton.snp.makeConstraints { (m) in
             m.right.equalTo(titleLabel)
             m.bottom.equalTo(self).offset(-10)
         }
@@ -91,6 +71,10 @@ class AddressTextViewView: SendAddressViewType {
             m.left.right.equalTo(titleLabel)
             m.bottom.equalTo(self)
         }
+
+        textView.rx.text.asObservable().bind { [weak self] string in
+            self?.placeholderLab.text = (string ?? "").isEmpty ? self?.placeholderStr : ""
+        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -99,39 +83,13 @@ class AddressTextViewView: SendAddressViewType {
 
 }
 
-extension AddressTextViewView: AddAddressFloatViewDelegate {
-
-    func currentAddressButtonDidClick() {
-        self.placeholderLab.text = ""
-        textView.text = currentAddress
-    }
-
-    func scanButtonDidClick() {
-        let scanViewController = ScanViewController()
-        scanViewController.reactor = ScanViewReactor()
-        _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-            if case .success(let uri) = ViteURI.parser(string: result) {
-                self?.textView.text = uri.address.description
-                scanViewController.navigationController?.popViewController(animated: true)
-            } else {
-                scanViewController.showAlertMessage(result)
-            }
-        }
-        self.ofViewController?.navigationController?.pushViewController(scanViewController, animated: true)
-    }
-}
-
 extension AddressTextViewView: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        self.placeholderLab.text = ""
+        self.placeholderLab.isHidden = true
         return true
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == nil || textView.text == "" {
-            self.placeholderLab.text = self.placeholderStr
-        } else {
-            self.placeholderLab.text = ""
-        }
+        self.placeholderLab.isHidden = false
     }
 }

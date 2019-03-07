@@ -53,8 +53,7 @@ class ReceiveQRCodeView: UIView {
         }
 
         imageView.addSubview(iconView)
-        iconView.layer.masksToBounds = true
-        iconView.layer.cornerRadius = 20
+        iconView.set(cornerRadius: 20)
         iconView.snp.makeConstraints { (m) in
             m.center.equalToSuperview()
             m.size.equalTo(CGSize(width: 40, height: 40))

@@ -42,7 +42,7 @@ public final class ExchangeRateManager {
     private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap>
 
     public func start() {
-//        getRate()
+        getRate()
 
 //        ExchangeProvider.instance.recommendTokenInfos { (ret) in
 //            switch ret {

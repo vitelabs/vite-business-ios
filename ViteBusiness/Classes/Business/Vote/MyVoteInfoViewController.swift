@@ -53,10 +53,10 @@ class MyVoteInfoViewController: BaseViewController, View {
 
     private func _bindView() {
         //home page vite balance
-        FetchBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
-            .drive(onNext: { [weak self] ret in
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
+            .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
-                if let (balanceInfo, token) = ret {
+                if let balanceInfo = balanceInfo {
                     self.balance = balanceInfo.balance
                 } else {
                     if self.viewInfoView.voteStatus == .voting {

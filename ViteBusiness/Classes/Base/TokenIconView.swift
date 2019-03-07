@@ -18,6 +18,7 @@ class TokenIconView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        tokenIconImageView.backgroundColor = UIColor.white
         addSubview(tokenIconImageView)
         addSubview(tokenIconFrameImageView)
         addSubview(chainIconImageView)
@@ -40,6 +41,12 @@ class TokenIconView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func set(cornerRadius: CGFloat) {
+        tokenIconImageView.layer.masksToBounds = true
+        tokenIconImageView.layer.cornerRadius = 20
+        tokenIconFrameImageView.removeFromSuperview()
+    }
+
     var tokenInfo: TokenInfo? {
         didSet {
             guard let tokenInfo = tokenInfo else { return }
@@ -50,13 +57,13 @@ class TokenIconView: UIView {
             chainIconImageView.isHidden = tokenInfo.chainIcon == nil
 
             DispatchQueue.main.async {
-                let view = self.tokenIconFrameImageView
+                let view = self.tokenIconImageView
                 let layer = CAShapeLayer()
                 layer.lineWidth = 1
                 layer.strokeColor = tokenInfo.strokeColor.cgColor
                 layer.fillColor = UIColor.clear.cgColor
                 layer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
-                view.layer.addSublayer(layer)
+                self.layer.addSublayer(layer)
             }
         }
     }
