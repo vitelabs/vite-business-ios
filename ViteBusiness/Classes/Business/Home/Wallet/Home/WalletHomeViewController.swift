@@ -82,9 +82,9 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-//        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
-//            $0.backgroundColor = UIColor.clear
-//        }
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+            $0.backgroundColor = UIColor.clear
+        }
 
         if #available(iOS 11.0, *) {
 

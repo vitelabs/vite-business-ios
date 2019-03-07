@@ -8,17 +8,25 @@
 
 import UIKit
 import SnapKit
+import ViteWallet
 
 class AddressManageAddressCell: BaseTableViewCell {
 
     static func cellHeight() -> CGFloat {
-        return 84
+        return 111
     }
 
     fileprivate let flagImageView = UIImageView()
 
+    fileprivate let nameButton = UIButton().then {
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.titleLabel?.lineBreakMode = .byTruncatingTail
+    }
+
     fileprivate let addressLabel = UILabel().then {
-        $0.font = UIFont.boldSystemFont(ofSize: 14)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
         $0.numberOfLines = 2
     }
@@ -32,6 +40,7 @@ class AddressManageAddressCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(flagImageView)
+        contentView.addSubview(nameButton)
         contentView.addSubview(addressLabel)
         contentView.addSubview(copyButton)
 
@@ -42,8 +51,13 @@ class AddressManageAddressCell: BaseTableViewCell {
             m.left.equalTo(contentView).offset(24)
         }
 
+        nameButton.snp.makeConstraints { (m) in
+            m.top.equalTo(contentView).offset(20)
+            m.left.equalTo(flagImageView.snp.right).offset(14)
+        }
+
         addressLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(contentView)
+            m.bottom.equalTo(contentView).offset(-20)
             m.left.equalTo(flagImageView.snp.right).offset(14)
         }
 
@@ -54,6 +68,7 @@ class AddressManageAddressCell: BaseTableViewCell {
         contentView.addSubview(vLine)
         vLine.snp.makeConstraints { (m) in
             m.width.equalTo(CGFloat.singleLineWidth)
+            m.left.greaterThanOrEqualTo(nameButton.snp.right).offset(13)
             m.left.equalTo(addressLabel.snp.right).offset(13)
             m.right.equalTo(contentView).offset(-57)
             m.top.bottom.equalTo(addressLabel)
@@ -82,9 +97,31 @@ class AddressManageAddressCell: BaseTableViewCell {
     }
 
     func bind(viewModel: AddressManageAddressViewModelType) {
+        var name = viewModel.name
+        if name.count < 5 {
+            name = name.appending("     ")
+        }
+        nameButton.setTitle(name, for: .normal)
         addressLabel.text = viewModel.address
         flagImageView.image = viewModel.isSelected ? R.image.icon_cell_select() : R.image.icon_cell_unselect()
         copyButton.rx.tap.bind { viewModel.copy() }.disposed(by: disposeBag)
+
+        nameButton.rx.tap.bind { [weak self] in
+            Alert.show(title: R.string.localizable.addressManageChangeNameAlertTitle(), message: viewModel.address, actions: [
+                (.cancel, nil),
+                (.default(title: R.string.localizable.confirm()), { [weak self] alert in
+                    guard let `self` = self else { return }
+                    let text = alert.textFields?.first?.text ?? ""
+                    AddressManageService.instance.updateName(for: Address(string: viewModel.address), name: text)
+                }),
+                ], config: { alert in
+                    alert.addTextField(configurationHandler: { (textField) in
+                        textField.clearButtonMode = .always
+                        textField.text = AddressManageService.instance.name(for: Address(string: viewModel.address), placeholder: "")
+                        textField.placeholder = R.string.localizable.addressManageChangeNameAlertPlaceholder()
+                    })
+            })
+        }.disposed(by: disposeBag)
     }
 
 }

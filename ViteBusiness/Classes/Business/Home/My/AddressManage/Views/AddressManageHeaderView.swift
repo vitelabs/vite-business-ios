@@ -12,12 +12,19 @@ class AddressManageHeaderView: UIView {
 
     let titleLabel = UILabel().then {
         $0.text = R.string.localizable.addressManageDefaultAddressCellTitle()
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor(netHex: 0x007AFF)
+    }
+
+    let titleBgImageView = UIImageView(image: R.image.icon_address_default_title_frame()?.resizable)
+
+    let nameLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59)
     }
 
     let addressLabel = UILabel().then {
-        $0.font = UIFont.boldSystemFont(ofSize: 14)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
         $0.numberOfLines = 2
     }
@@ -46,23 +53,44 @@ class AddressManageHeaderView: UIView {
         addSubview(addressListTitleLabel)
         addSubview(tipButton)
 
+        backView.addSubview(titleBgImageView)
         backView.addSubview(titleLabel)
+        backView.addSubview(nameLabel)
         backView.addSubview(addressLabel)
 
         backView.snp.makeConstraints { (m) in
             m.top.left.right.equalTo(self)
         }
 
+        nameLabel.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(16)
+            m.left.equalToSuperview().offset(24)
+        }
+
+        titleBgImageView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(16)
+            m.right.equalToSuperview().offset(-16)
+            m.height.equalTo(18)
+            m.left.equalTo(nameLabel.snp.right).offset(20)
+        }
+
+        nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+
+        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+
         titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(backView).offset(16)
-            m.left.equalTo(backView).offset(24)
-            m.right.equalTo(backView).offset(-24)
+            m.centerY.equalTo(titleBgImageView)
+            m.left.equalTo(titleBgImageView).offset(5)
+            m.right.equalTo(titleBgImageView).offset(-5)
         }
 
         addressLabel.snp.makeConstraints { (m) in
             m.top.equalTo(titleLabel.snp.bottom).offset(11)
-            m.left.right.equalTo(titleLabel)
-            m.bottom.equalTo(backView).offset(-13)
+            m.left.equalTo(nameLabel)
+            m.right.equalTo(titleBgImageView)
+            m.bottom.equalToSuperview().offset(-13)
         }
 
         addressListTitleLabel.snp.makeConstraints { (m) in

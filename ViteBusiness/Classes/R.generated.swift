@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 95 images.
+  /// This `R.image` struct is generated, and contains static references to 96 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,6 +48,8 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `icon_address_default_title_frame`.
+    static let icon_address_default_title_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_default_title_frame")
     /// Image `icon_address_name`.
     static let icon_address_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_name")
     /// Image `icon_background`.
@@ -282,6 +284,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "gift", bundle: ..., traitCollection: ...)`
     static func gift(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gift, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
+    static func icon_address_default_title_frame(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_address_default_title_frame, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_address_name", bundle: ..., traitCollection: ...)`
@@ -689,7 +696,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 264 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 266 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1691,6 +1698,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageSystemCellTitle = Rswift.StringResource(key: "my.page.system.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 修改地址名称
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageChangeNameAlertTitle = Rswift.StringResource(key: "address.manage.change.name.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 修改账户名
       /// 
       /// Locales: en, zh-Hans
@@ -1739,6 +1750,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入新的名称
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageChangeNameAlertPlaceholder = Rswift.StringResource(key: "address.manage.change.name.alert.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入账户密码
       /// 
       /// Locales: en, zh-Hans
@@ -3498,6 +3513,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.system.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 修改地址名称
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageChangeNameAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.change.name.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 修改账户名
       /// 
       /// Locales: en, zh-Hans
@@ -3580,6 +3602,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func createPagePwTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.pw.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入新的名称
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageChangeNameAlertPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.change.name.alert.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入账户密码

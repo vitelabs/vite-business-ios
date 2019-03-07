@@ -160,6 +160,8 @@
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
 "address.manage.default.address.name" = "我的地址";
+"address.manage.change.name.alert.title" = "修改地址名称";
+"address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
 /* Send Page */
 "send.page.title" = "转账";

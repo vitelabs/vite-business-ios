@@ -42,13 +42,17 @@ public final class AddressManageService {
     public lazy var myAddressNameMapDriver: Driver<[String: String]> = self.myAddressNameMap.asDriver()
     private var myAddressNameMap: BehaviorRelay<[String: String]>
 
-    func name(for myAddress: Address) -> String {
-        return myAddressNameMap.value[myAddress.description] ?? R.string.localizable.addressManageDefaultAddressName()
+    func name(for myAddress: Address, placeholder: String = R.string.localizable.addressManageDefaultAddressName()) -> String {
+        return myAddressNameMap.value[myAddress.description] ?? placeholder
     }
 
     func updateName(for myAddress: Address, name: String) {
         var map = myAddressNameMap.value
-        map[myAddress.description] = name
+        if name.isEmpty {
+            map[myAddress.description] = nil
+        } else {
+            map[myAddress.description] = name
+        }
         myAddressNameMap.accept(map)
         pri_save()
     }
