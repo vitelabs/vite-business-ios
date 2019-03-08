@@ -347,3 +347,18 @@
 "eth.page.gasFee.title" = "矿工费用";
 "eth.page.gasFee.slow.title" = "慢";
 "eth.page.gasFee.fast.title" = "快";
+
+// Contacts Home
+"contacts.home.page.title" = "联系地址";
+"contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
+"contacts.home.page.filter.all" = "全部";
+"contacts.home.page.add.button.title" = "添加";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "添加联系地址";
+"contacts.edit.page.edit.title" = "编辑联系地址";
+"contacts.edit.page.name.title" = "姓名";
+"contacts.edit.page.address.title" = "请输入地址";
+"contacts.edit.page.save.button.title" = "保存";
+"contacts.edit.page.save.success.tip" = "成功添加联系地址";
+"contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";

@@ -11,6 +11,17 @@ import ViteWallet
 public enum CoinType: String {
     case vite
     case eth
+
+    var name: String {
+        switch self {
+        case .vite:
+            return "VITE"
+        case .eth:
+            return "ETH"
+        }
+    }
+
+    static var allTypes: [CoinType] = [.vite, .eth]
 }
 
 public typealias TokenCode = String

@@ -117,6 +117,7 @@ Pod::Spec.new do |s|
   s.dependency 'Toast-Swift', '~> 4.0.1'
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
+  s.dependency 'DNSPageView'
 
   #table static form
   s.dependency 'Eureka', '~> 4.3.0'
