@@ -1,5 +1,5 @@
 //
-//  ReceiveViewModel.swift
+//  ReceiveViteViewModel.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/3/7.

@@ -160,6 +160,8 @@
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
 "address.manage.default.address.name" = "我的地址";
+"address.manage.change.name.alert.title" = "修改地址名称";
+"address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
 /* Send Page */
 "send.page.title" = "转账";
@@ -167,7 +169,8 @@
 "send.page.my.balance.title" = "我的账户余额";
 "send.page.my.quota.title" = "我的配额";
 "send.page.my.max.tx.count.title" = "最大交易笔数";
-"send.page.add.current.address.button.title" = "我的";
+"send.page.add.my.address.button.title" = "我的";
+"send.page.add.contacts.button.title" = "联系地址";
 "send.page.scan.address.button.title" = "扫码";
 "send.page.to.address.title" = "收款地址";
 "send.page.amount.title" = "金额";
@@ -186,6 +189,8 @@
 "send.page.confirm.biometryAuthFailed.back" = "返回";
 "send.page.confirm.passwordAuthFailed.retry" = "重试";
 "send.page.token.info.error" = "代币信息错误";
+"send.page.quota.content" = "%@ UTPS";
+
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "支付";
@@ -347,3 +352,18 @@
 "token.list.page.search.title" = "输入Token名称或合约地址";
 "token.list.page.section.vite.header" = "VITE网络代币";
 "token.list.page.section.eth.header" = "ETH网络代币";
+
+// Contacts Home
+"contacts.home.page.title" = "联系地址";
+"contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
+"contacts.home.page.filter.all" = "全部";
+"contacts.home.page.add.button.title" = "添加";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "添加联系地址";
+"contacts.edit.page.edit.title" = "编辑联系地址";
+"contacts.edit.page.name.title" = "姓名";
+"contacts.edit.page.address.title" = "请输入地址";
+"contacts.edit.page.save.button.title" = "保存";
+"contacts.edit.page.save.success.tip" = "成功添加联系地址";
+"contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";

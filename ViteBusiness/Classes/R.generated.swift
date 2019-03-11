@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 95 images.
+  /// This `R.image` struct is generated, and contains static references to 99 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,6 +48,8 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `icon_address_default_title_frame`.
+    static let icon_address_default_title_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_default_title_frame")
     /// Image `icon_address_name`.
     static let icon_address_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_name")
     /// Image `icon_background`.
@@ -96,6 +98,10 @@ struct R: Rswift.Validatable {
     static let icon_cell_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_select")
     /// Image `icon_cell_unselect`.
     static let icon_cell_unselect = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_unselect")
+    /// Image `icon_contacts_contact`.
+    static let icon_contacts_contact = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_contact")
+    /// Image `icon_contacts_empty`.
+    static let icon_contacts_empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_empty")
     /// Image `icon_contacts`.
     static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
     /// Image `icon_edit_name`.
@@ -108,6 +114,8 @@ struct R: Rswift.Validatable {
     static let icon_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo")
     /// Image `icon_mnemonic`.
     static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
+    /// Image `icon_nav_add`.
+    static let icon_nav_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_add")
     /// Image `icon_nav_back_black`.
     static let icon_nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black")
     /// Image `icon_nav_close_black`.
@@ -284,6 +292,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.gift, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
+    static func icon_address_default_title_frame(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_address_default_title_frame, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_address_name", bundle: ..., traitCollection: ...)`
     static func icon_address_name(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_address_name, compatibleWith: traitCollection)
@@ -409,6 +422,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_contacts, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_contacts_contact", bundle: ..., traitCollection: ...)`
+    static func icon_contacts_contact(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_contacts_contact, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_contacts_empty", bundle: ..., traitCollection: ...)`
+    static func icon_contacts_empty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_contacts_empty, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_edit_name", bundle: ..., traitCollection: ...)`
     static func icon_edit_name(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_edit_name, compatibleWith: traitCollection)
@@ -432,6 +455,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_mnemonic", bundle: ..., traitCollection: ...)`
     static func icon_mnemonic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_nav_add", bundle: ..., traitCollection: ...)`
+    static func icon_nav_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_add, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_back_black", bundle: ..., traitCollection: ...)`
@@ -689,12 +717,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 265 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 280 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailContent = Rswift.StringResource(key: "aboutUs.page.email.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageQuotaContent = Rswift.StringResource(key: "send.page.quota.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ unconfirmed
       /// 
       /// Locales: en, zh-Hans
@@ -1102,7 +1134,7 @@ struct R: Rswift.Validatable {
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageAddCurrentAddressButtonTitle = Rswift.StringResource(key: "send.page.add.current.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let sendPageAddMyAddressButtonTitle = Rswift.StringResource(key: "send.page.add.my.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
       /// 
       /// Locales: en, zh-Hans
@@ -1695,10 +1727,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageSystemCellTitle = Rswift.StringResource(key: "my.page.system.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 保存
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageSaveButtonTitle = Rswift.StringResource(key: "contacts.edit.page.save.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 修改地址名称
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageChangeNameAlertTitle = Rswift.StringResource(key: "address.manage.change.name.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 修改账户名
       /// 
       /// Locales: en, zh-Hans
       static let myPageChangeWalletNameAlterTitle = Rswift.StringResource(key: "my.page.change.wallet.name.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全部
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsHomePageFilterAll = Rswift.StringResource(key: "contacts.home.page.filter.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 全部资产
       /// 
       /// Locales: en, zh-Hans
@@ -1711,6 +1755,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageMnemonicCellTitle = Rswift.StringResource(key: "my.page.mnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 姓名
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageNameTitle = Rswift.StringResource(key: "contacts.edit.page.name.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 密码至少包含8个字符
       /// 
       /// Locales: en, zh-Hans
@@ -1723,22 +1771,62 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethPageGasFeeSlowTitle = Rswift.StringResource(key: "eth.page.gasFee.slow.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 成功添加联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageSaveSuccessTip = Rswift.StringResource(key: "contacts.edit.page.save.success.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsHomePageAddButtonTitle = Rswift.StringResource(key: "contacts.home.page.add.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加您的第一位联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsHomePageNoContactTip = Rswift.StringResource(key: "contacts.home.page.no.contact.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageAddTitle = Rswift.StringResource(key: "contacts.edit.page.add.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 矿工费用
       /// 
       /// Locales: en, zh-Hans
       static let ethPageGasFeeTitle = Rswift.StringResource(key: "eth.page.gasFee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认删除联系地址吗？
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageDeleteAlertTitle = Rswift.StringResource(key: "contacts.edit.page.delete.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 编辑联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageEditTitle = Rswift.StringResource(key: "contacts.edit.page.edit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 联系人
       /// 
       /// Locales: en, zh-Hans
       static let myPageContactsCellTitle = Rswift.StringResource(key: "my.page.contacts.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsHomePageTitle = Rswift.StringResource(key: "contacts.home.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageAddContactsButtonTitle = Rswift.StringResource(key: "send.page.add.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageAddressTitle = Rswift.StringResource(key: "contacts.edit.page.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入密码
       /// 
       /// Locales: en, zh-Hans
       static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入新的名称
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageChangeNameAlertPlaceholder = Rswift.StringResource(key: "address.manage.change.name.alert.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入账户密码
       /// 
       /// Locales: en, zh-Hans
@@ -1757,6 +1845,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func aboutUsPageEmailContent(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
         return String(format: NSLocalizedString("aboutUs.page.email.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
+      }
+      
+      /// en translation: %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageQuotaContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("send.page.quota.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ unconfirmed
@@ -2469,8 +2564,8 @@ struct R: Rswift.Validatable {
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageAddCurrentAddressButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.add.current.address.button.title", bundle: R.hostingBundle, comment: "")
+      static func sendPageAddMyAddressButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.add.my.address.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
@@ -3509,11 +3604,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.system.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 保存
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageSaveButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.save.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 修改地址名称
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageChangeNameAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.change.name.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 修改账户名
       /// 
       /// Locales: en, zh-Hans
       static func myPageChangeWalletNameAlterTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.change.wallet.name.alter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 全部
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsHomePageFilterAll(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.home.page.filter.all", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 全部资产
@@ -3537,6 +3653,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.mnemonic.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 姓名
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageNameTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.name.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 密码至少包含8个字符
       /// 
       /// Locales: en, zh-Hans
@@ -3558,11 +3681,39 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.slow.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 成功添加联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageSaveSuccessTip(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.save.success.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
       static func addressManageDefaultAddressName(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsHomePageAddButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.home.page.add.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加您的第一位联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsHomePageNoContactTip(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.home.page.no.contact.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageAddTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.add.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 矿工费用
@@ -3572,6 +3723,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 确认删除联系地址吗？
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageDeleteAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.delete.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 编辑联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageEditTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.edit.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 联系人
       /// 
       /// Locales: en, zh-Hans
@@ -3579,11 +3744,39 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.contacts.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsHomePageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.home.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageAddContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.add.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 请输入密码
       /// 
       /// Locales: en, zh-Hans
       static func createPagePwTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.pw.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入新的名称
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageChangeNameAlertPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.change.name.alert.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入账户密码

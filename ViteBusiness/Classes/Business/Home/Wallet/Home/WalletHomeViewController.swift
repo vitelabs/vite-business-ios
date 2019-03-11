@@ -59,8 +59,6 @@ class WalletHomeViewController: BaseTableViewController {
 
         statisticsPageName = Statistics.Page.WalletHome.name
 
-        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.red)
-
         view.addSubview(navView)
         view.addSubview(headerView)
 
@@ -84,9 +82,9 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-//        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
-//            $0.backgroundColor = UIColor.clear
-//        }
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+            $0.backgroundColor = UIColor.clear
+        }
 
         if #available(iOS 11.0, *) {
 
@@ -175,7 +173,7 @@ class WalletHomeViewController: BaseTableViewController {
                         let ret = String(bytes: data, encoding: .utf8) {
                         note = ret
                     }
-                    let sendViewController = SendViewController(token: token, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
+                    let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
                     guard var viewControllers = self.navigationController?.viewControllers else { return }
                     _ = viewControllers.popLast()
                     viewControllers.append(sendViewController)

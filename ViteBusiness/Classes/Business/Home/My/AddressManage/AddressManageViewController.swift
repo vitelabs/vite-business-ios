@@ -85,6 +85,7 @@ class AddressManageViewController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        tableViewModel.defaultAddressNameDriver.drive(headerView.nameLabel.rx.text).disposed(by: rx.disposeBag)
         tableViewModel.defaultAddressDriver.drive(headerView.addressLabel.rx.text).disposed(by: rx.disposeBag)
         generateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }

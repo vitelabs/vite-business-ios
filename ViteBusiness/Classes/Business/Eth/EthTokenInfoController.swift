@@ -33,6 +33,16 @@ class EthTokenInfoController: BaseViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+    }
+
     func bind() {
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in

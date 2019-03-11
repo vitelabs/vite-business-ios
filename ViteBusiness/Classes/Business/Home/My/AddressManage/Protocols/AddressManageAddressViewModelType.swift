@@ -10,6 +10,7 @@ import Foundation
 
 protocol AddressManageAddressViewModelType {
     var number: Int { get }
+    var name: String { get }
     var address: String { get }
     var isSelected: Bool { get }
     func copy()
