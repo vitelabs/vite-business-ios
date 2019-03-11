@@ -56,12 +56,13 @@ class EthTokenInfoController: BaseViewController {
     }
 
     private lazy var navView = BalanceInfoNavView().then { (navView) in
-        view.addSubview(navView)
+        view.insertSubview(navView, at: 0)
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
             m.left.right.equalToSuperview()
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(128)
         }
+        navView.bind(tokenInfo: tokenInfo)
     }
 
     private lazy var ethInfoCardView = EthInfoCardView(self.tokenInfo).then { (ethInfoCardView) in
@@ -75,8 +76,6 @@ class EthTokenInfoController: BaseViewController {
     }
 
     fileprivate func setupView() {
-        navView.bind(tokenInfo: tokenInfo)
-        
         let contentLayout = UILayoutGuide()
         let centerLayout = UILayoutGuide()
 

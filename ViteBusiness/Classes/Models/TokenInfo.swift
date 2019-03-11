@@ -9,16 +9,16 @@ import ObjectMapper
 import ViteWallet
 
 public enum CoinType: String {
-    case vite
-    case eth
+    case vite = "VITE"
+    case eth = "ETH"
 }
 
 public typealias TokenCode = String
 
 extension TokenCode {
-    public static let viteCoin = "viteCoin"
-    public static let etherCoin = "etherCoin"
-    public static let viteERC20 = "viteERC20"
+    public static let viteCoin = "1157"
+    public static let etherCoin = "1"
+    public static let viteERC20 = "39"
 }
 
 public struct TokenInfo: Mappable {
@@ -95,6 +95,15 @@ extension TokenInfo: Equatable {
     var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
     var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
     var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
+
+    func getCoinHeaderDisplay() -> String? {
+        if self.coinType == .vite {
+            return R.string.localizable.tokenListPageSectionViteHeader()
+        }else if self.coinType == .eth {
+            return R.string.localizable.tokenListPageSectionEthHeader()
+        }
+        return ""
+    }
 }
 
 extension TokenInfo {

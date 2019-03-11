@@ -689,7 +689,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 262 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 265 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -927,6 +927,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ETH网络代币
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSectionEthHeader = Rswift.StringResource(key: "token.list.page.section.eth.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Edit Wallet Name
       /// 
       /// Locales: en, zh-Hans
@@ -1539,6 +1543,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeValidWalletNameCount = Rswift.StringResource(key: "mnemonic.backup.page.error.type.validWalletNameCount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE网络代币
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSectionViteHeader = Rswift.StringResource(key: "token.list.page.section.vite.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -1735,6 +1743,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 输入Token名称或合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSearchTitle = Rswift.StringResource(key: "token.list.page.search.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额 %@ UTPS
       /// 
       /// Locales: en, zh-Hans
@@ -2151,6 +2163,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func peldgeDeadline(_: Void = ()) -> String {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ETH网络代币
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSectionEthHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.eth.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Edit Wallet Name
@@ -3224,6 +3243,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.validWalletNameCount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: VITE网络代币
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSectionViteHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.vite.header", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -3565,6 +3591,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func exportPageAlterTfPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 输入Token名称或合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSearchTitle(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.search.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额 %@ UTPS

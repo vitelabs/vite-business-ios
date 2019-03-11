@@ -67,11 +67,6 @@ final class ImportAccountVM {
             return Observable.just(false)
         }
 
-        if !ViteInputValidator.isValidWalletPassword(str: pwd) ||
-            !ViteInputValidator.isValidWalletPassword(str: rePwd) {
-            return Observable.just(false)
-        }
-
         return Observable.just(true)
     }
 }

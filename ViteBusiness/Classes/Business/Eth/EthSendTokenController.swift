@@ -97,9 +97,9 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice { (result) in
+        EtherWallet.transaction.fetchGasPrice {[weak self] (result) in
             guard let gas = result else { return }
-            self.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
+            self?.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
         }
     }
 
@@ -136,7 +136,6 @@ class EthSendTokenController: BaseViewController {
         toolbar.sizeToFit()
         done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
         amountView.textField.inputAccessoryView = toolbar
-
         addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
         amountView.textField.delegate = self
     }

@@ -15,193 +15,147 @@ import RxDataSources
 import ViteUtils
 
 class TokenListManageController: BaseViewController {
-    let reactor = VoteListReactor()
-    let tableView = UITableView()
-    let searchBar = SearchBar()
-    let emptyView =  UILabel().then {
-        $0.text = R.string.localizable.voteListSearchEmpty()
-        $0.textAlignment = .center
-    }
+    let viewModel = TokenListManageViewModel()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        bind()
-    }
-
-    func setupUI() {
-        view.addSubview(searchBar)
-        searchBar.placeholder = "输入Token名称或合约地址"
-        searchBar.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(24)
-            m.top.equalToSuperview()
-            m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(52)
-        }
-
+    fileprivate lazy var tableView = UITableView().then { (tableView) in
         view.addSubview(tableView)
         tableView.keyboardDismissMode = .onDrag
         tableView.rowHeight = 78
         tableView.snp.makeConstraints { (m) in
-            m.left.right.bottom.equalToSuperview()
-            m.top.equalTo(searchBar.snp.bottom).offset(10)
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+            m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
         }
         tableView.register(TokenListInfoCell.self, forCellReuseIdentifier: "TokenListInfoCell")
         tableView.tableFooterView = UIView()
-
-        tableView.addSubview(emptyView)
-        emptyView.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(10)
-            m.right.equalToSuperview().offset(-10)
-            m.center.equalTo(tableView)
-        }
-        emptyView.isHidden = true
+        tableView.separatorStyle = .none
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        bindData()
+        self.viewModel.refreshList()
     }
 
-    func bind() {
-        searchBar.rx.text
-            .bind(to: reactor.search)
-            .disposed(by: rx.disposeBag)
+    deinit {
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = nil
+        } else {
+            
+        }
+    }
 
-        let result = reactor.result()
+    fileprivate lazy var searchResultVC = TokenListSearchViewController()
 
-        self.view.displayLoading()
-        result
-            .filterNil()
-            .map { $0.isEmpty }
-            .filter { !$0 }
-            .take(1)
-            .bind { [weak self] _ in
-                self?.view.hideLoading()
-            }
-            .disposed(by: rx.disposeBag)
+    fileprivate lazy var searchVC = UISearchController(searchResultsController:self.searchResultVC).then { (searchVC) in
+        searchVC.searchResultsUpdater = self.searchResultVC
+        let placeholderAttributes = [NSAttributedString.Key.font: Fonts.Font13,
+                          NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x24272B, alpha: 0.31)]
 
-        result
-            .filterNil()
-            .bind { [weak self] in
-                let search = self?.searchBar.textField.text ?? ""
-                if $0.isEmpty && !search.isEmpty {
-                    self?.emptyView.isHidden = false
-                } else {
-                    self?.emptyView.isHidden = true
-                }
-            }
-            .disposed(by: rx.disposeBag)
 
-        typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Candidate>>
-        let dataSource = DataSource(configureCell: { [weak self] (_, tableView, indexPath, candidate) -> UITableViewCell in
-            let cell: CandidateCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.nodeNameLabel.text = candidate.name
-            cell.voteCountLabel.text = candidate.voteNum.amountShort(decimals: ViteWalletConst.viteToken.decimals)
-            cell.addressLabel.text = " " + candidate.nodeAddr.description
-            cell.updateRank(candidate.rank)
-            cell.disposeable?.dispose()
-            cell.disposeable = cell.voteButton.rx.tap
-                .bind {
-                    self?.vote(nodeName: candidate.name)
-            }
-            cell.disposeable?.disposed(by: cell.rx.disposeBag)
+        let attributedPlaceholder: NSAttributedString = NSAttributedString(string: R.string.localizable.tokenListPageSearchTitle(), attributes: placeholderAttributes)
+        let textFieldPlaceHolder = searchVC.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldPlaceHolder?.attributedPlaceholder = attributedPlaceholder
+
+
+        searchVC.searchBar.tintColor = UIColor.init(red:22, green:161, blue: 1)
+        searchVC.searchBar.barTintColor = UIColor.white
+        searchVC.searchBar.layer.borderColor = UIColor.white.cgColor
+        searchVC.searchBar.backgroundImage = R.image.icon_background()?.resizable
+        searchVC.dimsBackgroundDuringPresentation = true
+    }
+
+    func setupUI() {
+         self.definesPresentationContext = true
+//        if #available(iOS 11.0, *) {
+//            self.navigationItem.searchController = self.searchVC
+//        } else {
+            tableView.tableHeaderView = self.searchVC.searchBar
+//        }
+//        tableView.reloadData()
+//        tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+
+
+//        self.searchVC.delegate = self
+//
+//        self.searchVC.searchBar.delegate = self
+
+//         searchController.hidesNavigationBarDuringPresentation = true
+
+
+    }
+
+    var tokenListArray : TokenListArray = TokenListArray()
+
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
+
+    let dataSource = DataSource(
+        configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+            let cell: TokenListInfoCell = tableView.dequeueReusableCell(withIdentifier: "TokenListInfoCell") as! TokenListInfoCell
+            cell.tokenInfo = item
             return cell
+        } ,
+        titleForHeaderInSection: { dataSource, sectionIndex in
+            return dataSource[sectionIndex].model
         })
 
-        result
-            .filterNil()
-            .map { config -> [SectionModel<String, Candidate>] in
-                return [SectionModel(model: "item", items: config)]
-            }
-            .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.disposeBag)
-
-        self.tableView.rx.itemSelected
-            .bind { [weak self] indexPath in
-                guard let `self` = self else { fatalError() }
-                if let item = (try? dataSource.model(at: indexPath)) as? Candidate {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                    WebHandler.openSBPDetailPage(name: item.name)
+    func bindData() {
+        self.viewModel.tokenListRefreshDriver.asObservable().filterEmpty().map {[weak self](data) in
+                self?.tokenListArray = data
+                var sectionModels = Array<SectionModel<String,TokenInfo>>()
+                for item in data {
+                    sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                 }
-            }
+                return sectionModels
+            }.bind(to:tableView.rx.items(dataSource: self.dataSource)).disposed(by: rx.disposeBag)
+
+        self.viewModel.tokenListRefreshDriver.asObservable()
+        .filterEmpty().throttle(0.5, scheduler: MainScheduler.instance).subscribe(onNext: {[weak self]  _ in
+                self?.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }).disposed(by: rx.disposeBag)
+
+        tableView.rx
+            .setDelegate(self)
             .disposed(by: rx.disposeBag)
-
-
-
-        Observable.merge([
-            NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification),
-            NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
-            ])
-            .filter { [weak self] _  in self?.appear ?? false }
-            .subscribe(onNext: {[weak self] (notification) in
-                let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0.25
-                let height =  min((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height, 128+55)
-                UIView.animate(withDuration: duration, animations: {
-                    if notification.name == UIResponder.keyboardWillShowNotification && self?.searchBar.textField.isFirstResponder ?? false {
-                        self?.parent?.view.transform = CGAffineTransform(translationX: 0, y: -height)
-                    } else if notification.name == UIResponder.keyboardWillHideNotification {
-                        self?.parent?.view.transform = .identity
-                    }
-                })
-            }).disposed(by: rx.disposeBag)
-
-        self.reactor.fetchCandidateError.asObservable()
-            .filterNil()
-            .takeUntil(result)
-            .bind { [weak self] e in
-                self?.dataStatus = .networkError(e, { [weak self] in
-                    self?.dataStatus = .normal
-                    self?.reactor.fetchManually.onNext(Void())
-                })
-                self?.view.hideLoading()
-            }.disposed(by: rx.disposeBag)
-
-        self.reactor.fetchCandidateError.asObservable()
-            .filter { $0 == nil }
-            .skip(1)
-            .bind { [weak self] _ in
-                self?.view.hideLoading()
-                self?.dataStatus = .normal
-            }.disposed(by: rx.disposeBag)
-
     }
-
-    func vote(nodeName: String) {
-        if self.searchBar.textField.isFirstResponder {
-            self.searchBar.textField.resignFirstResponder()
-        }
-        let (status, info) = self.reactor.lastVoteInfo.value
-        let voted = status == .voteSuccess || status == .voting
-        if voted {
-            Alert.show(into: self,
-                       title: R.string.localizable.vote(),
-                       message: R.string.localizable.voteListAlertAlreadyVoted(info?.nodeName ?? ""),
-                       actions: [
-                        (.default(title:R.string.localizable.voteListConfirmRevote()), { [unowned self] _ in
-                            self.vote(to: nodeName)
-                        }),
-                        (.cancel, { [unowned self] _ in
-                            self.dismiss(animated: false, completion: nil)
-                        })])
-        } else {
-            self.vote(to: nodeName)
-        }
-    }
-
-    func vote(to nodeName: String) {
-        self.reactor.vote(nodeName: nodeName)
-    }
-
-    var appear = false
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        appear = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        appear = false
     }
-
 }
 
+extension TokenListManageController : UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView)  {
+
+    }
+}
+
+
+extension TokenListManageController : UITableViewDelegate {
+
+
+
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let contentView = UIView()
+        contentView.backgroundColor = .white
+         let lab = UILabel.init(frame: CGRect.init(x: 24, y: 10, width: 100, height: 20))
+        lab.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        lab.textColor = UIColor.init(netHex: 0x3E4A59)
+        lab.backgroundColor = .white
+        contentView.addSubview(lab)
+        
+        lab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
+        return contentView
+    }
+}
 extension TokenListManageController: ViewControllerDataStatusable {
 
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
@@ -210,5 +164,7 @@ extension TokenListManageController: ViewControllerDataStatusable {
             retry()
         }
     }
-
+    func emptyView() -> UIView {
+        return UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty())
+    }
 }
