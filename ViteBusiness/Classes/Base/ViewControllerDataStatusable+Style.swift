@@ -11,10 +11,10 @@ import RxSwift
 import ViteUtils
 
 extension UIView {
-    static func defaultPlaceholderView(text: String) -> UIView {
+    static func defaultPlaceholderView(text: String, image: UIImage? = nil) -> UIView {
         let view = UIView()
         let layoutGuide = UILayoutGuide()
-        let imageView = UIImageView(image: R.image.empty())
+        let imageView = UIImageView(image: image ?? R.image.empty())
         let button = UIButton(type: .system).then {
             $0.isUserInteractionEnabled = false
             $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -32,7 +32,7 @@ extension UIView {
         }
 
         imageView.snp.makeConstraints { (m) in
-            m.top.left.right.equalTo(layoutGuide)
+            m.top.centerX.equalTo(layoutGuide)
         }
 
         button.snp.makeConstraints { (m) in

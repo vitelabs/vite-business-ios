@@ -37,6 +37,7 @@ extension UIButton {
             setTitleColor(UIColor.white, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x006FEA)).resizable, for: .highlighted)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
         case .white:
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)

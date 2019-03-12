@@ -149,7 +149,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         priceLabel.text = viewModel.price
 
         DispatchQueue.main.async {
-            self.colorView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: self.colorView.frame, colors: viewModel.tokenInfo.chainBackgroundGradientColors)
+            self.colorView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: self.colorView.frame, colors: viewModel.tokenInfo.coinBackgroundGradientColors)
         }
     }
 }

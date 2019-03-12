@@ -14,7 +14,6 @@ import RxCocoa
 final class WalletHomeBalanceInfoViewModel {
 
     let tokenInfo: TokenInfo
-    let icon: URL
     let symbol: String
     let coinFamily: String
     let balance: String
@@ -22,7 +21,6 @@ final class WalletHomeBalanceInfoViewModel {
 
     init(balanceInfo: WalletHomeBalanceInfo, isHidePrice: Bool) {
         self.tokenInfo = balanceInfo.tokenInfo
-        self.icon = URL(string: tokenInfo.icon)!
         self.symbol = tokenInfo.symbol
         self.coinFamily = tokenInfo.coinFamily
         if isHidePrice {

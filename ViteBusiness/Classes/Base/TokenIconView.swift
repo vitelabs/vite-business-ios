@@ -18,7 +18,7 @@ class TokenIconView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        tokenIconImageView.backgroundColor = UIColor.white
+        tokenIconImageView.backgroundColor = UIColor(netHex: 0xF8F8F8)
         addSubview(tokenIconImageView)
         addSubview(tokenIconFrameImageView)
         addSubview(chainIconImageView)

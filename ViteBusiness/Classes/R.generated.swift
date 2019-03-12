@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 99 images.
+  /// This `R.image` struct is generated, and contains static references to 102 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -50,6 +50,8 @@ struct R: Rswift.Validatable {
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
     /// Image `icon_address_default_title_frame`.
     static let icon_address_default_title_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_default_title_frame")
+    /// Image `icon_address_name_blue`.
+    static let icon_address_name_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_name_blue")
     /// Image `icon_address_name`.
     static let icon_address_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_name")
     /// Image `icon_background`.
@@ -66,6 +68,8 @@ struct R: Rswift.Validatable {
     static let icon_button_address_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_add")
     /// Image `icon_button_address_scan`.
     static let icon_button_address_scan = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_scan")
+    /// Image `icon_button_address_type`.
+    static let icon_button_address_type = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_type")
     /// Image `icon_button_facebook`.
     static let icon_button_facebook = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_facebook")
     /// Image `icon_button_github`.
@@ -98,6 +102,8 @@ struct R: Rswift.Validatable {
     static let icon_cell_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_select")
     /// Image `icon_cell_unselect`.
     static let icon_cell_unselect = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_unselect")
+    /// Image `icon_contacts_contact_blue`.
+    static let icon_contacts_contact_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_contact_blue")
     /// Image `icon_contacts_contact`.
     static let icon_contacts_contact = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_contact")
     /// Image `icon_contacts_empty`.
@@ -302,6 +308,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_address_name, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_address_name_blue", bundle: ..., traitCollection: ...)`
+    static func icon_address_name_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_address_name_blue, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_background", bundle: ..., traitCollection: ...)`
     static func icon_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_background, compatibleWith: traitCollection)
@@ -335,6 +346,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_button_address_scan", bundle: ..., traitCollection: ...)`
     static func icon_button_address_scan(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_address_scan, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_button_address_type", bundle: ..., traitCollection: ...)`
+    static func icon_button_address_type(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_address_type, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_facebook", bundle: ..., traitCollection: ...)`
@@ -425,6 +441,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_contacts_contact", bundle: ..., traitCollection: ...)`
     static func icon_contacts_contact(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_contacts_contact, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_contacts_contact_blue", bundle: ..., traitCollection: ...)`
+    static func icon_contacts_contact_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_contacts_contact_blue, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_contacts_empty", bundle: ..., traitCollection: ...)`
@@ -717,7 +738,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 280 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 288 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -735,6 +756,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressListPageOtherTitle = Rswift.StringResource(key: "address.list.page.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -1731,6 +1756,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsEditPageSaveButtonTitle = Rswift.StringResource(key: "contacts.edit.page.save.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 保存成功
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageEditSuccessTip = Rswift.StringResource(key: "contacts.edit.page.edit.success.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 修改地址名称
       /// 
       /// Locales: en, zh-Hans
@@ -1751,6 +1780,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myPageAboutUsCellTitle = Rswift.StringResource(key: "my.page.aboutUs.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 删除联系人
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageDeleteButtonTitle = Rswift.StringResource(key: "contacts.edit.page.delete.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 助记词
       /// 
       /// Locales: en, zh-Hans
@@ -1778,7 +1811,19 @@ struct R: Rswift.Validatable {
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
+      static let addressListPageMyTitle = Rswift.StringResource(key: "address.list.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的地址
+      /// 
+      /// Locales: en, zh-Hans
       static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 暂无 %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressListPageNoAddressTip = Rswift.StringResource(key: "address.list.page.no.address.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 暂无 %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsHomePageSingleNoContactTip = Rswift.StringResource(key: "contacts.home.page.single.no.contact.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 添加
       /// 
       /// Locales: en, zh-Hans
@@ -1831,10 +1876,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 货币单位
+      /// 
+      /// Locales: en, zh-Hans
+      static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 输入Token名称或合约地址
       /// 
       /// Locales: en, zh-Hans
       static let tokenListPageSearchTitle = Rswift.StringResource(key: "token.list.page.search.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 选择地址所属网络
+      /// 
+      /// Locales: en, zh-Hans
+      static let contactsEditPageTypeSelectTitle = Rswift.StringResource(key: "contacts.edit.page.type.select.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额 %@ UTPS
       /// 
       /// Locales: en, zh-Hans
@@ -1866,6 +1919,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
         return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressListPageOtherTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("address.list.page.other.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
@@ -3611,6 +3671,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.edit.page.save.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 保存成功
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageEditSuccessTip(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.edit.success.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 修改地址名称
       /// 
       /// Locales: en, zh-Hans
@@ -3644,6 +3711,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func myPageAboutUsCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.aboutUs.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 删除联系人
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageDeleteButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.delete.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 助记词
@@ -3691,8 +3765,29 @@ struct R: Rswift.Validatable {
       /// en translation: 我的地址
       /// 
       /// Locales: en, zh-Hans
+      static func addressListPageMyTitle(_: Void = ()) -> String {
+        return NSLocalizedString("address.list.page.my.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我的地址
+      /// 
+      /// Locales: en, zh-Hans
       static func addressManageDefaultAddressName(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 暂无 %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressListPageNoAddressTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("address.list.page.no.address.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 暂无 %@ 联系地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsHomePageSingleNoContactTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("contacts.home.page.single.no.contact.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 添加
@@ -3786,11 +3881,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 货币单位
+      /// 
+      /// Locales: en, zh-Hans
+      static func systemPageCellChangeCurrency(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 输入Token名称或合约地址
       /// 
       /// Locales: en, zh-Hans
       static func tokenListPageSearchTitle(_: Void = ()) -> String {
         return NSLocalizedString("token.list.page.search.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 选择地址所属网络
+      /// 
+      /// Locales: en, zh-Hans
+      static func contactsEditPageTypeSelectTitle(_: Void = ()) -> String {
+        return NSLocalizedString("contacts.edit.page.type.select.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额 %@ UTPS

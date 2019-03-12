@@ -63,14 +63,14 @@ class ContactsHomeViewController: BaseViewController {
 
                 let titles = [
                     R.string.localizable.contactsHomePageFilterAll(),
-                    "VITE",
-                    "ETH"
+                    CoinType.vite.name,
+                    CoinType.eth.name
                 ]
 
                 let viewControllers = [
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver)),
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .vite))),
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .eth)))
+                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver), type: nil),
+                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .vite)), type: .vite),
+                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .eth)), type: .eth)
                 ]
 
                 let manager = DNSPageViewManager(style: pageStyle, titles: titles, childViewControllers: viewControllers)

@@ -22,6 +22,52 @@ public enum CoinType: String {
     }
 
     static var allTypes: [CoinType] = [.vite, .eth]
+
+
+    var backgroundGradientColors: [UIColor] {
+        switch self {
+        case .vite:
+            return [
+                UIColor(netHex: 0x0B30E4),
+                UIColor(netHex: 0x0D6CEF),
+                UIColor(netHex: 0x0998F3),
+                UIColor(netHex: 0x00C3FF),
+                UIColor(netHex: 0x00ECFF),
+            ]
+        case .eth:
+            return [
+                UIColor(netHex: 0x429321),
+                UIColor(netHex: 0xB4EC51),
+            ]
+        }
+    }
+
+    var mainColor: UIColor {
+        switch self {
+        case .vite:
+            return UIColor(netHex: 0x007AFF)
+        case .eth:
+            return UIColor(netHex: 0x5BC500)
+        }
+    }
+
+    var strokeColor: UIColor {
+        switch self {
+        case .vite:
+            return UIColor(netHex: 0x007AFF, alpha: 0.67)
+        case .eth:
+            return UIColor(netHex: 0x5BC500)
+        }
+    }
+
+    var shadowColor: UIColor {
+        switch self {
+        case .vite:
+            return UIColor(netHex: 0xF2F8FF)
+        case .eth:
+            return UIColor(netHex: 0xF8FFF2)
+        }
+    }
 }
 
 public typealias TokenCode = String
@@ -145,39 +191,19 @@ extension TokenInfo {
         }
     }
 
-    var chainBackgroundGradientColors: [UIColor] {
-        switch coinType {
-        case .vite:
-            return [
-                UIColor(netHex: 0x0B30E4),
-                UIColor(netHex: 0x0D6CEF),
-                UIColor(netHex: 0x0998F3),
-                UIColor(netHex: 0x00C3FF),
-                UIColor(netHex: 0x00ECFF),
-            ]
-        case .eth:
-            return [
-                UIColor(netHex: 0x429321),
-                UIColor(netHex: 0xB4EC51),
-            ]
-        }
+    var coinBackgroundGradientColors: [UIColor] {
+        return coinType.backgroundGradientColors
     }
 
     var mainColor: UIColor {
-        switch coinType {
-        case .vite:
-            return UIColor(netHex: 0x007AFF)
-        case .eth:
-            return UIColor(netHex: 0x5BC500)
-        }
+        return coinType.mainColor
     }
 
     var strokeColor: UIColor {
-        switch coinType {
-        case .vite:
-            return UIColor(netHex: 0x007AFF, alpha: 0.67)
-        case .eth:
-            return UIColor(netHex: 0x5BC500)
-        }
+        return coinType.strokeColor
+    }
+
+    var shadowColor: UIColor {
+        return coinType.shadowColor
     }
 }

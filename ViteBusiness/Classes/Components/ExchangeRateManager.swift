@@ -103,6 +103,19 @@ public enum CurrencyCode: String {
             return "¥"
         }
     }
+
+    var name: String {
+        switch self {
+        case .USD:
+            return "USD"
+        case .CNY:
+            return "CNY"
+        }
+    }
+
+    static var allValues: [CurrencyCode] {
+        return [.CNY, .USD]
+    }
 }
 
 public extension Dictionary where Key == String, Value == [String: String] {

@@ -221,6 +221,7 @@
 /* System */
 "system.page.logout.loading" = "退出中";
 "system.page.cell.change.language" = "语言选择";
+"system.page.cell.change.currency" = "货币单位";
 "system.page.cell.login.pwd" = "密码解锁";
 "system.page.cell.login.faceId" = "Face ID 解锁";
 "system.page.cell.login.touchId" = "Touch ID 解锁";
@@ -356,6 +357,7 @@
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
 "contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
+"contacts.home.page.single.no.contact.tip" = "暂无 %@ 联系地址";
 "contacts.home.page.filter.all" = "全部";
 "contacts.home.page.add.button.title" = "添加";
 
@@ -364,6 +366,14 @@
 "contacts.edit.page.edit.title" = "编辑联系地址";
 "contacts.edit.page.name.title" = "姓名";
 "contacts.edit.page.address.title" = "请输入地址";
+"contacts.edit.page.type.select.title" = "选择地址所属网络";
 "contacts.edit.page.save.button.title" = "保存";
 "contacts.edit.page.save.success.tip" = "成功添加联系地址";
+"contacts.edit.page.edit.success.tip" = "保存成功";
+"contacts.edit.page.delete.button.title" = "删除联系人";
 "contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
+
+// Address List
+"address.list.page.my.title" = "我的地址";
+"address.list.page.other.title" = "%@ 联系地址";
+"address.list.page.no.address.tip" = "暂无 %@ 联系地址";
