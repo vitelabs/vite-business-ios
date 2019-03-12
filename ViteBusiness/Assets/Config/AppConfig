@@ -20,13 +20,13 @@
             "tokenAddress":"tti_5649544520544f4b454e6e40"
         },
         {
-            "tokenCode":"vcpToken",
+            "tokenCode":"1158",
             "platform":"vite",
             "name":"Vite Community Point",
             "symbol":"VCP",
             "decimals":1,
             "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
-            "tokenAddress":"tti_6c69ef4506e1d440ee39f248"
+            "tokenAddress":"tti_c2695839043cf966f370ac84"
         },
         {
             "tokenCode":"etherCoin",

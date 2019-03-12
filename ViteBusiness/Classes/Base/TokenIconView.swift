@@ -36,6 +36,7 @@ class TokenIconView: UIView {
             m.width.height.equalToSuperview().multipliedBy(18.0/40.0)
         }
     }
+    let shapeLayer = CAShapeLayer()
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,13 +59,18 @@ class TokenIconView: UIView {
 
             DispatchQueue.main.async {
                 let view = self.tokenIconImageView
-                let layer = CAShapeLayer()
-                layer.lineWidth = 1
-                layer.strokeColor = tokenInfo.strokeColor.cgColor
-                layer.fillColor = UIColor.clear.cgColor
-                layer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
-                self.layer.addSublayer(layer)
+                self.shapeLayer.lineWidth = 1
+                self.shapeLayer.strokeColor = tokenInfo.strokeColor.cgColor
+                self.shapeLayer.fillColor = UIColor.clear.cgColor
+                self.shapeLayer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
+                self.layer.addSublayer(self.shapeLayer)
             }
         }
+    }
+
+    func reset() {
+        self.shapeLayer.removeFromSuperlayer()
+        self.chainIconImageView.image = nil
+        self.tokenIconImageView.image = nil
     }
 }

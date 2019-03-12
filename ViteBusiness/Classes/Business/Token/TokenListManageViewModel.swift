@@ -17,14 +17,51 @@ final class TokenListManageViewModel {
 
     func refreshList() {
         TokenListService.instance.fetchTokenListCacheData()
+        self.mergeData()
+    }
+
+    func mergeData() {
+        var localData = MyTokenInfosService.instance.tokenInfos
         let map = TokenListService.instance.tokenListMap
-        var list = Array<[TokenInfo]>()
-        if let vite = map["VITE"] {
-            list.append(vite)
+        var defaultList = [TokenInfo]()
+        //make map in a line list
+        for item in map {
+            defaultList.append(contentsOf: item.value)
         }
-        if let eth = map["ETH"] {
+
+        //remove
+        for server in defaultList {
+            for (index,local) in localData.enumerated() {
+                if local.tokenCode == server.tokenCode {
+                    localData.remove(at: index)
+                }
+            }
+        }
+
+        var localViteToken = [TokenInfo]()
+        var localEthToken = [TokenInfo]()
+        for item in localData {
+            if item.coinType == .vite {
+                localViteToken.append(item)
+            }else if item.coinType == .eth {
+                localEthToken.append(item)
+            }
+        }
+
+        var list = Array<[TokenInfo]>()
+        if var vite = map["VITE"] {
+            vite.append(contentsOf: localViteToken)
+            list.append(vite)
+        }else {
+            list.append(localViteToken)
+        }
+        if var eth = map["ETH"] {
+            eth.append(contentsOf: localEthToken)
             list.append(eth)
+        }else {
+            list.append(localEthToken)
         }
         tokenListRefreshRelay.accept(list)
     }
+
 }

@@ -43,7 +43,7 @@ class TokenListInfoCell: UITableViewCell {
         tokenNameLabel.snp.makeConstraints { (m) in
             m.left.equalTo(rightContentView)
             m.top.equalTo(self.symbolLabel.snp.bottom).offset(2)
-            m.width.equalTo(110)
+            m.width.equalTo(150)
             m.height.equalTo(15)
         }
     }
@@ -73,7 +73,7 @@ class TokenListInfoCell: UITableViewCell {
         }
     }
 
-    private lazy var tokenLogoImg = UIImageView().then { (tokenLogoImg) in
+    private lazy var tokenLogoImg = TokenIconView().then { (tokenLogoImg) in
         tokenLogoImg.isUserInteractionEnabled = true
 
         self.contentView.addSubview(tokenLogoImg)
@@ -89,11 +89,11 @@ class TokenListInfoCell: UITableViewCell {
         line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
     }
 
-    public var tokenInfo: TokenInfo? = nil {
-        didSet {
-            guard let token =  tokenInfo else {
-                return
-            }
+    private var tokenInfo: TokenInfo?
+
+    func reloadData(_ token:TokenInfo) {
+        self.tokenInfo = token
+
             self.symbolLabel.text = token.symbol
             self.tokenNameLabel.text = token.name
 
@@ -120,11 +120,11 @@ class TokenListInfoCell: UITableViewCell {
                     m.height.equalTo(0)
                 }
             }
-            self.tokenLogoImg.kf.setImage(with: URL(string: token.icon))
-
+            self.tokenLogoImg.reset()
+            self.tokenLogoImg.tokenInfo = token
             self.switchControl.isHidden = token.isDefault
             self.switchControl.setOn(token.isContains, animated: false)
-        }
+
     }
 
     @objc func switchChanged() {

@@ -38,52 +38,42 @@ class TokenListManageController: BaseViewController {
         self.viewModel.refreshList()
     }
 
-    deinit {
-        if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = nil
-        } else {
-            
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
 
     fileprivate lazy var searchResultVC = TokenListSearchViewController()
 
-    fileprivate lazy var searchVC = UISearchController(searchResultsController:self.searchResultVC).then { (searchVC) in
+    fileprivate lazy var placeholderAttributes = [NSAttributedString.Key.font: Fonts.Font13,
+                                 NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x24272B, alpha: 0.31)]
+
+    fileprivate lazy var attributedPlaceholder: NSAttributedString = NSAttributedString(string: R.string.localizable.tokenListPageSearchTitle(), attributes: self.placeholderAttributes)
+
+    fileprivate lazy var searchVC = ViteSearchController(searchResultsController:self.searchResultVC).then { (searchVC) in
         searchVC.searchResultsUpdater = self.searchResultVC
-        let placeholderAttributes = [NSAttributedString.Key.font: Fonts.Font13,
-                          NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x24272B, alpha: 0.31)]
 
+        let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
+        cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
+        cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
 
-        let attributedPlaceholder: NSAttributedString = NSAttributedString(string: R.string.localizable.tokenListPageSearchTitle(), attributes: placeholderAttributes)
         let textFieldPlaceHolder = searchVC.searchBar.value(forKey: "searchField") as? UITextField
         textFieldPlaceHolder?.attributedPlaceholder = attributedPlaceholder
 
-
-        searchVC.searchBar.tintColor = UIColor.init(red:22, green:161, blue: 1)
-        searchVC.searchBar.barTintColor = UIColor.white
+        searchVC.delegate = self
+        searchVC.searchBar.returnKeyType = .done
+        searchVC.searchBar.enablesReturnKeyAutomatically = false
+        searchVC.searchBar.delegate = self
+        searchVC.searchBar.tintColor = UIColor(netHex: 0x007AFF)
+        searchVC.searchBar.barTintColor = .white
         searchVC.searchBar.layer.borderColor = UIColor.white.cgColor
         searchVC.searchBar.backgroundImage = R.image.icon_background()?.resizable
-        searchVC.dimsBackgroundDuringPresentation = true
+        searchVC.dimsBackgroundDuringPresentation = false
     }
 
     func setupUI() {
          self.definesPresentationContext = true
-//        if #available(iOS 11.0, *) {
-//            self.navigationItem.searchController = self.searchVC
-//        } else {
-            tableView.tableHeaderView = self.searchVC.searchBar
-//        }
-//        tableView.reloadData()
-//        tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-
-
-//        self.searchVC.delegate = self
-//
-//        self.searchVC.searchBar.delegate = self
-
-//         searchController.hidesNavigationBarDuringPresentation = true
-
-
+        tableView.tableHeaderView = self.searchVC.searchBar
     }
 
     var tokenListArray : TokenListArray = TokenListArray()
@@ -93,7 +83,7 @@ class TokenListManageController: BaseViewController {
     let dataSource = DataSource(
         configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
             let cell: TokenListInfoCell = tableView.dequeueReusableCell(withIdentifier: "TokenListInfoCell") as! TokenListInfoCell
-            cell.tokenInfo = item
+            cell.reloadData(item)
             return cell
         } ,
         titleForHeaderInSection: { dataSource, sectionIndex in
@@ -110,11 +100,6 @@ class TokenListManageController: BaseViewController {
                 return sectionModels
             }.bind(to:tableView.rx.items(dataSource: self.dataSource)).disposed(by: rx.disposeBag)
 
-        self.viewModel.tokenListRefreshDriver.asObservable()
-        .filterEmpty().throttle(0.5, scheduler: MainScheduler.instance).subscribe(onNext: {[weak self]  _ in
-                self?.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }).disposed(by: rx.disposeBag)
-
         tableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
@@ -129,17 +114,30 @@ class TokenListManageController: BaseViewController {
     }
 }
 
-extension TokenListManageController : UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView)  {
+extension TokenListManageController : UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        self.searchVC.isActive = false
+    }
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.viewModel.refreshList()
+    }
 
+    func didPresentSearchController(_ searchController: UISearchController) {
+           self.searchVC.isActive = true
     }
 }
 
+extension TokenListManageController : UISearchBarDelegate {
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searchVC.isActive = false
+    }
 
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        searchBar.text = ""
+        self.searchVC.dismiss(animated: true, completion: nil)
+    }
+}
 extension TokenListManageController : UITableViewDelegate {
-
-
-
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }

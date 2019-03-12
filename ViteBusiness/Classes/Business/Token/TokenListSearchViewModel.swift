@@ -8,13 +8,22 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Action
+import Moya
 
 final class TokenListSearchViewModel {
     lazy var tokenListSearchDriver = self.tokenListSearchRelay.asDriver()
     fileprivate  var tokenListSearchRelay = BehaviorRelay<TokenListArray>(value: TokenListArray())
 
-    func search(_ key:String) {
-        ExchangeProvider.instance.searchTokenInfo(key: key) { [weak self](result) in
+    var searchCancellable:Cancellable?=nil
+
+    public lazy var searchAction: Action<String, Void> =
+        Action {
+        [weak self] (key) in
+            self?.searchCancellable?.cancel()
+            self?.searchCancellable =
+        ExchangeProvider.instance.searchTokenInfo(key: key) {
+            [weak self](result) in
             guard let `self` = self else { return }
             switch result {
             case .success(let map):
@@ -29,5 +38,6 @@ final class TokenListSearchViewModel {
             case .failure(let error): break
             }
         }
+        return Observable.empty()
     }
 }
