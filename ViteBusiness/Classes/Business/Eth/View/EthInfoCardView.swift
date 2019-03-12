@@ -58,7 +58,7 @@ class EthInfoCardView: UIView {
         super.init(frame: CGRect.zero)
 
         DispatchQueue.main.async {
-            self.bgImgView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: token.chainBackgroundGradientColors)
+            self.bgImgView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: token.coinBackgroundGradientColors)
         }
 
         self.addSubview(bgImgView)

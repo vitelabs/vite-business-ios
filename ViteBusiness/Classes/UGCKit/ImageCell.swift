@@ -21,6 +21,16 @@ public class ImageCell: Cell<Bool>, CellType {
         return titleLab
     }()
 
+    public lazy var rightLab: UILabel = {
+        let titleLab = UILabel()
+        titleLab.translatesAutoresizingMaskIntoConstraints = false
+        titleLab.textAlignment = .right
+        titleLab.textColor = UIColor(netHex: 0x8E8E93)
+        titleLab.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        titleLab.text = ""
+        return titleLab
+    }()
+
     public lazy var rightImageView: UIImageView = {
         let rightImageView = UIImageView()
         rightImageView.backgroundColor = .clear
@@ -32,12 +42,18 @@ public class ImageCell: Cell<Bool>, CellType {
     public override func setup() {
         super.setup()
         contentView.addSubview(titleLab)
+        contentView.addSubview(rightLab)
         contentView.addSubview(rightImageView)
 
         self.titleLab.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(24)
             make.centerY.equalTo(contentView)
         }
+
+        self.rightLab.snp.makeConstraints({ (make) in
+            make.right.equalTo(contentView).offset(-40)
+            make.centerY.equalTo(contentView)
+        })
 
         self.rightImageView.snp.makeConstraints { (make) in
             make.right.equalTo(contentView).offset(-20)

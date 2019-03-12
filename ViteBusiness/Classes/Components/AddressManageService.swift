@@ -74,6 +74,16 @@ public final class AddressManageService {
         pri_save()
     }
 
+    public func updateContact(_ contact: Contact) {
+        var array = contactsBehaviorRelay.value
+        for (index, c) in array.enumerated() where c.id == contact.id {
+            array.remove(at: index)
+            array.insert(contact, at: index)
+        }
+        contactsBehaviorRelay.accept(array)
+        pri_save()
+    }
+
     public func removeContact(forId id: String) {
         var array = contactsBehaviorRelay.value
         for (index, contact) in array.enumerated() where contact.id == id {

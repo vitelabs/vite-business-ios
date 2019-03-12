@@ -116,7 +116,7 @@ extension ReceiveViewController {
 
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
-        backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: backView.frame, colors: tokenInfo.chainBackgroundGradientColors)
+        backView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: backView.frame, colors: tokenInfo.coinBackgroundGradientColors)
         guard let image = backView.screenshot else { return }
         Workflow.share(activityItems: [image])
     }

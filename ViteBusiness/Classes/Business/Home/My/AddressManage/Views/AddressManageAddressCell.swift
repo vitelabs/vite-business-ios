@@ -71,7 +71,8 @@ class AddressManageAddressCell: BaseTableViewCell {
             m.left.greaterThanOrEqualTo(nameButton.snp.right).offset(13)
             m.left.equalTo(addressLabel.snp.right).offset(13)
             m.right.equalTo(contentView).offset(-57)
-            m.top.bottom.equalTo(addressLabel)
+            m.top.equalToSuperview().offset(20)
+            m.bottom.equalToSuperview().offset(-20)
         }
 
         copyButton.snp.makeConstraints { (m) in

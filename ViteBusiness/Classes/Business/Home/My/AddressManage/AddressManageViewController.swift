@@ -78,7 +78,6 @@ class AddressManageViewController: BaseTableViewController {
 
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
-                print("itemSelected fadsafsdafsdafsddfasdfasdfsadfsa")
                 guard let `self` = self else { fatalError() }
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 self.tableViewModel.setDefaultAddressIndex(indexPath.row)

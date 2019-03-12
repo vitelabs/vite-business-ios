@@ -22,7 +22,14 @@ class ContactAddressInputView: UIView {
     let typeButton = UIButton().then {
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_button_address_type(), for: .normal)
+        $0.setImage(R.image.icon_button_address_type()?.highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        $0.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
     }
 
     let scanButton = UIButton()
@@ -50,6 +57,7 @@ class ContactAddressInputView: UIView {
             m.top.equalTo(titleLabel.snp.bottom)
             m.left.equalTo(titleLabel)
             m.bottom.equalToSuperview()
+            m.width.equalTo(40)
         }
 
         textView.snp.makeConstraints { (m) in

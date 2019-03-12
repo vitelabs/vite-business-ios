@@ -92,8 +92,18 @@ public class ViteBalanceInfoManager {
                         return map
                     })
 
+                    let ret = self.tokenInfos.reduce(ViteBalanceInfoMap(), { (m, tokenInfo) -> ViteBalanceInfoMap in
+                        var ret = m
+                        if let balanceInfo = map[tokenInfo.viteTokenId] {
+                            ret[tokenInfo.viteTokenId] = balanceInfo
+                        } else {
+                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
+                        }
+                        return ret
+                    })
+
                     self.save(balanceInfos: balanceInfos)
-                    self.balanceInfos.accept(map)
+                    self.balanceInfos.accept(ret)
                 case .failure(let error):
                     plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
                 }
