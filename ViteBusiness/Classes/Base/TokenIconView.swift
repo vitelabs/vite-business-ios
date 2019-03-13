@@ -57,7 +57,10 @@ class TokenIconView: UIView {
             chainIconImageView.image = tokenInfo.chainIcon
             chainIconImageView.isHidden = tokenInfo.chainIcon == nil
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let `self` = self else {
+                    return
+                }
                 let view = self.tokenIconImageView
                 self.shapeLayer.lineWidth = 1
                 self.shapeLayer.strokeColor = tokenInfo.strokeColor.cgColor

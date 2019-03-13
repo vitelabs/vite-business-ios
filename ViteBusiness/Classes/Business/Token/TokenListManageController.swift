@@ -13,9 +13,16 @@ import SnapKit
 import NSObject_Rx
 import RxDataSources
 import ViteUtils
+import MLeaksFinder
+
+typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
 class TokenListManageController: BaseViewController {
     let viewModel = TokenListManageViewModel()
+
+    override func willDealloc() -> Bool {
+        return false
+    }
 
     fileprivate lazy var tableView = UITableView().then { (tableView) in
         view.addSubview(tableView)
@@ -30,7 +37,7 @@ class TokenListManageController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,9 +45,8 @@ class TokenListManageController: BaseViewController {
         self.viewModel.refreshList()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+    deinit {
+        print("======= TokenListManageController deinit")
     }
 
     fileprivate lazy var searchResultVC = TokenListSearchViewController()
@@ -50,15 +56,19 @@ class TokenListManageController: BaseViewController {
 
     fileprivate lazy var attributedPlaceholder: NSAttributedString = NSAttributedString(string: R.string.localizable.tokenListPageSearchTitle(), attributes: self.placeholderAttributes)
 
-    fileprivate lazy var searchVC = ViteSearchController(searchResultsController:self.searchResultVC).then { (searchVC) in
-        searchVC.searchResultsUpdater = self.searchResultVC
+    fileprivate lazy var searchVC : ViteSearchController? = {[weak self] in
+        let
+        searchVC = ViteSearchController(searchResultsController:self?.searchResultVC)
+        searchVC.searchResultsUpdater = self?.searchResultVC
 
         let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
         cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
         cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
 
-        let textFieldPlaceHolder = searchVC.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldPlaceHolder?.attributedPlaceholder = attributedPlaceholder
+        let searchField = searchVC.searchBar.value(forKey: "searchField") as? UITextField
+        searchField?.attributedPlaceholder = attributedPlaceholder
+        searchField?.background = nil
+        searchField?.backgroundColor = .clear
 
         searchVC.delegate = self
         searchVC.searchBar.returnKeyType = .done
@@ -69,72 +79,73 @@ class TokenListManageController: BaseViewController {
         searchVC.searchBar.layer.borderColor = UIColor.white.cgColor
         searchVC.searchBar.backgroundImage = R.image.icon_background()?.resizable
         searchVC.dimsBackgroundDuringPresentation = false
-    }
+        searchVC.definesPresentationContext = true
+
+        return searchVC
+    }()
 
     func setupUI() {
          self.definesPresentationContext = true
-        tableView.tableHeaderView = self.searchVC.searchBar
+        tableView.tableHeaderView = self.searchVC?.searchBar
     }
 
     var tokenListArray : TokenListArray = TokenListArray()
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
-
-    let dataSource = DataSource(
-        configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-            let cell: TokenListInfoCell = tableView.dequeueReusableCell(withIdentifier: "TokenListInfoCell") as! TokenListInfoCell
-            cell.reloadData(item)
-            return cell
-        } ,
-        titleForHeaderInSection: { dataSource, sectionIndex in
-            return dataSource[sectionIndex].model
-        })
-
     func bindData() {
-        self.viewModel.tokenListRefreshDriver.asObservable().filterEmpty().map {[weak self](data) in
+        let dataSource = DataSource(
+            configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+                let cell: TokenListInfoCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.reloadData(item)
+                return cell
+        } ,
+            titleForHeaderInSection: { dataSource, sectionIndex in
+                return dataSource[sectionIndex].model
+        })
+        self.viewModel.tokenListRefreshDriver.asObservable().filterEmpty().map {
+                [weak self](data) in
                 self?.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 for item in data {
                     sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                 }
                 return sectionModels
-            }.bind(to:tableView.rx.items(dataSource: self.dataSource)).disposed(by: rx.disposeBag)
+            }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
 
         tableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.searchVC?.searchResultsUpdater = nil
+        self.searchVC?.searchBar.delegate = nil
+        self.searchVC?.delegate = nil
+        self.searchVC = nil
     }
 }
 
 extension TokenListManageController : UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.searchVC.isActive = false
+        self.searchVC?.isActive = false
     }
     func willDismissSearchController(_ searchController: UISearchController) {
         self.viewModel.refreshList()
     }
 
     func didPresentSearchController(_ searchController: UISearchController) {
-           self.searchVC.isActive = true
+        self.searchVC?.isActive = true
     }
 }
 
 extension TokenListManageController : UISearchBarDelegate {
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
-        self.searchVC.isActive = false
+        self.searchVC?.isActive = false
     }
 
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         searchBar.text = ""
-        self.searchVC.dismiss(animated: true, completion: nil)
+        self.searchVC?.dismiss(animated: true, completion: nil)
     }
 }
 extension TokenListManageController : UITableViewDelegate {
@@ -152,17 +163,5 @@ extension TokenListManageController : UITableViewDelegate {
         
         lab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
         return contentView
-    }
-}
-extension TokenListManageController: ViewControllerDataStatusable {
-
-    func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
-        return UIView.defaultNetworkErrorView(error: error) { [weak self] in
-            self?.view.displayLoading()
-            retry()
-        }
-    }
-    func emptyView() -> UIView {
-        return UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty())
     }
 }

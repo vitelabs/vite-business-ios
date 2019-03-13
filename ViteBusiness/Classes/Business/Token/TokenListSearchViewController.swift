@@ -43,11 +43,6 @@ class TokenListSearchViewController: UIViewController {
 
     typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
-    let emptyDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, String>> (configureCell:{ (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "empty")
-        return cell
-    })
-
     let dataSource = DataSource(
         configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
             let cell: TokenListInfoCell = tableView.dequeueReusableCell(withIdentifier: "TokenListInfoCell") as! TokenListInfoCell
@@ -78,7 +73,7 @@ class TokenListSearchViewController: UIViewController {
     }
 
     func bindData() {
-        self.viewModel.tokenListSearchDriver.throttle(0.1, latest: true).map {
+        self.viewModel.tokenListSearchDriver.map {
                 [weak self] (data) in
                 self?.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()

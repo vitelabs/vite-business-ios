@@ -93,38 +93,36 @@ class TokenListInfoCell: UITableViewCell {
 
     func reloadData(_ token:TokenInfo) {
         self.tokenInfo = token
+        self.symbolLabel.text = token.symbol
+        self.tokenNameLabel.text = token.name
 
-            self.symbolLabel.text = token.symbol
+        if token.name != "" {
             self.tokenNameLabel.text = token.name
-
-            if token.name != "" {
-                self.tokenNameLabel.text = token.name
-                self.tokenNameLabel.snp.updateConstraints { (m) in
-                    m.height.equalTo(15)
-                }
-            }else {
-                self.tokenNameLabel.text = ""
-                self.tokenNameLabel.snp.updateConstraints { (m) in
-                    m.height.equalTo(0)
-                }
+            self.tokenNameLabel.snp.updateConstraints { (m) in
+                m.height.equalTo(15)
             }
-
-            if token.ethContractAddress != "" {
-                self.tokenAddressLabel.text = token.ethContractAddress
-                self.tokenAddressLabel.snp.updateConstraints { (m) in
-                    m.height.equalTo(15)
-                }
-            }else {
-                self.tokenAddressLabel.text = ""
-                self.tokenAddressLabel.snp.updateConstraints { (m) in
-                    m.height.equalTo(0)
-                }
+        }else {
+            self.tokenNameLabel.text = ""
+            self.tokenNameLabel.snp.updateConstraints { (m) in
+                m.height.equalTo(0)
             }
-            self.tokenLogoImg.reset()
-            self.tokenLogoImg.tokenInfo = token
-            self.switchControl.isHidden = token.isDefault
-            self.switchControl.setOn(token.isContains, animated: false)
+        }
 
+        if token.ethContractAddress != "" {
+            self.tokenAddressLabel.text = token.ethContractAddress
+            self.tokenAddressLabel.snp.updateConstraints { (m) in
+                m.height.equalTo(15)
+            }
+        }else {
+            self.tokenAddressLabel.text = ""
+            self.tokenAddressLabel.snp.updateConstraints { (m) in
+                m.height.equalTo(0)
+            }
+        }
+        self.tokenLogoImg.reset()
+        self.tokenLogoImg.tokenInfo = token
+        self.switchControl.isHidden = token.isDefault
+        self.switchControl.setOn(token.isContains, animated: false)
     }
 
     @objc func switchChanged() {
