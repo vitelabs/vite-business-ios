@@ -16,7 +16,8 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 102 images.
+  /// This `R.image` struct is generated, and contains static references to 108 images.
+
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,6 +49,22 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `grin_tx_file_finalize`.
+    static let grin_tx_file_finalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_finalize")
+    /// Image `grin_tx_file_init`.
+    static let grin_tx_file_init = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_init")
+    /// Image `grin_tx_file_receive`.
+    static let grin_tx_file_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_receive")
+    /// Image `grin_tx_http`.
+    static let grin_tx_http = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_http")
+    /// Image `grin_tx_receive`.
+    static let grin_tx_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_receive")
+    /// Image `grin_tx_send`.
+    static let grin_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_send")
+    /// Image `grin_tx_vite`.
+    static let grin_tx_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_vite")
+    /// Image `grin`.
+    static let grin = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin")
     /// Image `icon_address_default_title_frame`.
     static let icon_address_default_title_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_address_default_title_frame")
     /// Image `icon_address_name_blue`.
@@ -126,6 +143,8 @@ struct R: Rswift.Validatable {
     static let icon_nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black")
     /// Image `icon_nav_close_black`.
     static let icon_nav_close_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_close_black")
+    /// Image `icon_nav_more`.
+    static let icon_nav_more = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_more")
     /// Image `icon_nav_photo_black`.
     static let icon_nav_photo_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_photo_black")
     /// Image `icon_nav_qrcode_black`.
@@ -296,6 +315,46 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "gift", bundle: ..., traitCollection: ...)`
     static func gift(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gift, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin", bundle: ..., traitCollection: ...)`
+    static func grin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_file_finalize", bundle: ..., traitCollection: ...)`
+    static func grin_tx_file_finalize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_file_finalize, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_file_init", bundle: ..., traitCollection: ...)`
+    static func grin_tx_file_init(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_file_init, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_file_receive", bundle: ..., traitCollection: ...)`
+    static func grin_tx_file_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_file_receive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_http", bundle: ..., traitCollection: ...)`
+    static func grin_tx_http(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_http, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_receive", bundle: ..., traitCollection: ...)`
+    static func grin_tx_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_receive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_send", bundle: ..., traitCollection: ...)`
+    static func grin_tx_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_send, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_tx_vite", bundle: ..., traitCollection: ...)`
+    static func grin_tx_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_tx_vite, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
@@ -491,6 +550,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_nav_close_black", bundle: ..., traitCollection: ...)`
     static func icon_nav_close_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_close_black, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_nav_more", bundle: ..., traitCollection: ...)`
+    static func icon_nav_more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_more, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_photo_black", bundle: ..., traitCollection: ...)`

@@ -45,7 +45,16 @@
             "decimal":18,
             "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
             "tokenAddress":"0x54b716345c14ba851f1b51dcc1491abee6ba8f44"
-        }
+        },
+        {
+            "tokenCode":"Grin",
+            "platform":"Grin",
+            "name":"Grin",
+            "symbol":"Grin",
+            "decimals":9,
+            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
+            "tokenAddress":""
+        },
     ]
 }
 

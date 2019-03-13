@@ -33,11 +33,13 @@ Pod::Spec.new do |s|
 
   s.static_framework = true
   s.default_subspec = 'Default'
+
   s.subspec 'Default' do |c|
     c.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
     c.source_files = 'ViteBusiness/Classes/**/*'
+    c.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
     c.resource_bundles = {
-      'ViteBusiness' => ['ViteBusiness/Assets/*']
+      'ViteBusiness' => ['ViteBusiness/Assets/*','ViteBusiness/Classes/**/*.{storyboard,xib}']
     }
   end
 
@@ -47,6 +49,7 @@ Pod::Spec.new do |s|
       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL'
     }
+
   end
 
   s.subspec 'Test' do |c|
@@ -148,6 +151,8 @@ Pod::Spec.new do |s|
   s.dependency 'ViteUtils'
   s.dependency 'ViteWallet'
   s.dependency 'ViteEthereum'
+  s.dependency 'Vite_GrinWallet'
+
 
   # s.resource_bundles = {
   #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']

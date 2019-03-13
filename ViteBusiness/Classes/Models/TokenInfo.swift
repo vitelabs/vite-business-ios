@@ -11,6 +11,7 @@ import ViteWallet
 public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
+    case grin = "Grin"
 
     var name: String {
         switch self {
@@ -18,6 +19,8 @@ public enum CoinType: String {
             return "VITE"
         case .eth:
             return "ETH"
+        case .grin:
+            return "Grin"
         }
     }
 
@@ -48,6 +51,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF)
         case .eth:
             return UIColor(netHex: 0x5BC500)
+        default:
+            fatalError()
         }
     }
 
@@ -57,6 +62,10 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF, alpha: 0.67)
         case .eth:
             return UIColor(netHex: 0x5BC500)
+        case .grin:
+            return UIColor(netHex: 0xFF9C00)
+        default:
+            fatalError()
         }
     }
 
@@ -66,6 +75,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
+        default:
+            fatalError()
         }
     }
 }
@@ -76,6 +87,7 @@ extension TokenCode {
     public static let viteCoin = "1157"
     public static let etherCoin = "1"
     public static let viteERC20 = "39"
+    public static let grinCoin = "Grin"
 }
 
 public struct TokenInfo: Mappable {
@@ -102,6 +114,8 @@ public struct TokenInfo: Mappable {
             } else {
                 return "ERC20 Token"
             }
+        default:
+            fatalError()
         }
     }
 
@@ -197,6 +211,7 @@ extension TokenInfo {
         }
     }
 
+
     var coinBackgroundGradientColors: [UIColor] {
         return coinType.backgroundGradientColors
     }
@@ -212,4 +227,5 @@ extension TokenInfo {
     var shadowColor: UIColor {
         return coinType.shadowColor
     }
+
 }

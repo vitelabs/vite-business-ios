@@ -64,7 +64,7 @@ public final class HDWalletManager {
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
-    fileprivate var encryptedKey: String?
+    public fileprivate(set) var encryptedKey: String?
 
     public internal(set) var locked = false
 
