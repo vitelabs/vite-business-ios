@@ -195,10 +195,13 @@
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "支付";
 "confirm.transaction.address.title" = "收款地址";
+"confirm.transaction.amount.title" = "金额";
+"confirm.transaction.fee.title" = "手续费";
 "confirm.transaction.page.use.password" = "使用密码";
 "confirm.transaction.page.confirm.button" = "确认支付";
 "confirm.transaction.page.biometry.confirm.reason" = "验证信息";
 "confirm.transaction.page.use.password.title" = "请输入支付密码";
+"confirm.transaction.page.pw.title" = "请输入密码";
 "confirm.transaction.page.toast.password.error" = "密码错误";
 "confirm.transaction.page.node.name" = "节点名称";
 "confirm.transaction.page.vote" = "投票";

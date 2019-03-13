@@ -49,14 +49,10 @@ public extension Workflow {
 
         }
 
-        confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
-                        infoTitle: R.string.localizable.confirmTransactionAddressTitle(),
-                        info: toAddress.description,
-                        token: token.symbol,
-                        amount: amount,
-                        gasFee: Web3.Utils.parseToBigUInt(String(gasPrice), units: .gWei),
-                        confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
-                        completion: block,
-                        confirmSuccess: sendBlock)
+        let amountString = "\(amount) \(token.symbol)"
+        let feeString = Balance(value: BigInt(Web3.Utils.parseToBigUInt(String(gasPrice), units: .gWei) ?? BigUInt(0))).amountShort(decimals: Web3Units.eth.rawValue)
+
+        let viewModel = ConfirmEthTransactionViewModel(tokenInfo: token, addressString: toAddress, amountString: amountString, feeString: feeString)
+        confirmWorkflow(viewModel: viewModel, completion: block, confirmSuccess: sendBlock)
     }
 }
