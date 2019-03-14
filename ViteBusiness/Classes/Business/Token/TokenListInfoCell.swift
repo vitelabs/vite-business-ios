@@ -119,7 +119,7 @@ class TokenListInfoCell: UITableViewCell {
                 m.height.equalTo(0)
             }
         }
-        self.tokenLogoImg.reset()
+        
         self.tokenLogoImg.tokenInfo = token
         self.switchControl.isHidden = token.isDefault
         self.switchControl.setOn(token.isContains, animated: false)

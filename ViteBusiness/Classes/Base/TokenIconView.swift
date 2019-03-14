@@ -36,7 +36,6 @@ class TokenIconView: UIView {
             m.width.height.equalToSuperview().multipliedBy(18.0/40.0)
         }
     }
-    let shapeLayer = CAShapeLayer()
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,27 +52,31 @@ class TokenIconView: UIView {
             guard let tokenInfo = tokenInfo else { return }
             guard let url = URL(string: tokenInfo.icon) else { return }
             tokenIconImageView.kf.cancelDownloadTask()
+            tokenIconImageView.image = nil
             tokenIconImageView.kf.setImage(with: url)
             chainIconImageView.image = tokenInfo.chainIcon
             chainIconImageView.isHidden = tokenInfo.chainIcon == nil
-
-            DispatchQueue.main.async {[weak self] in
-                guard let `self` = self else {
-                    return
-                }
-                let view = self.tokenIconImageView
-                self.shapeLayer.lineWidth = 1
-                self.shapeLayer.strokeColor = tokenInfo.strokeColor.cgColor
-                self.shapeLayer.fillColor = UIColor.clear.cgColor
-                self.shapeLayer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
-                self.layer.addSublayer(self.shapeLayer)
-            }
+            updateLayer()
         }
     }
 
-    func reset() {
-        self.shapeLayer.removeFromSuperlayer()
-        self.chainIconImageView.image = nil
-        self.tokenIconImageView.image = nil
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateLayer()
+    }
+
+    var shapeLayer: CAShapeLayer! = nil
+    private func updateLayer() {
+
+        if self.shapeLayer == nil {
+            self.shapeLayer = CAShapeLayer()
+            self.shapeLayer.lineWidth = 1
+            self.shapeLayer.fillColor = UIColor.clear.cgColor
+            self.layer.addSublayer(self.shapeLayer)
+        }
+
+        let view = self.tokenIconImageView
+        self.shapeLayer.strokeColor = self.tokenInfo?.strokeColor.cgColor ?? UIColor.clear.cgColor
+        self.shapeLayer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
     }
 }
