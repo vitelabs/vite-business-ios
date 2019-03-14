@@ -46,6 +46,12 @@ class EthSendTokenController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView.stackView)
+        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
 
     // View

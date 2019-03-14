@@ -47,7 +47,7 @@ extension ExchangeProvider {
                         }
                     })
                 }
-                completion(Result.success(ExchangeRateMap()))
+                completion(Result.success(map))
             case .failure(let error):
                 completion(Result.failure(error))
             }

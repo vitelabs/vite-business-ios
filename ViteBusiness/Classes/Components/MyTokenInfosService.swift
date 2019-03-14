@@ -78,7 +78,7 @@ public final class MyTokenInfosService: NSObject {
         tokenInfos.append(tokenInfo)
         tokenInfosBehaviorRelay.accept(tokenInfos)
         pri_save()
-        ExchangeRateManager.instance.getRateImmediately()
+        ExchangeRateManager.instance.getRateImmediately(for: tokenInfo.tokenCode)
     }
 
     public func removeToken(for tokenCode: TokenCode) {

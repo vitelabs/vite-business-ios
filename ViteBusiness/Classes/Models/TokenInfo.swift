@@ -120,7 +120,7 @@ public struct TokenInfo: Mappable {
         coinType <- (map["platform"], coinTypeTransform)
         name <- map["name"]
         symbol <- map["symbol"]
-        decimals <- map["decimals"]
+        decimals <- map["decimal"]
         icon <- map["icon"]
         id <- map["tokenAddress"]
     }

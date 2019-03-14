@@ -62,7 +62,7 @@ class EthTokenInfoController: BaseViewController {
             map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
         }).drive(onNext: { [weak self] (ret) in
                guard let `self` = self else { return }
-            self.ethInfoCardView.balanceLegalTenderLab.text = ret
+            self.ethInfoCardView.balanceLegalTenderLab.text = "≈" + ret
         }).disposed(by: rx.disposeBag)
     }
 

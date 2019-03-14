@@ -16,7 +16,7 @@ public final class ExchangeRateManager {
     public static let instance = ExchangeRateManager()
 
 
-    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
     fileprivate static let saveKey = "ExchangeRate"
 
     private init() {
@@ -43,28 +43,11 @@ public final class ExchangeRateManager {
 
     public func start() {
         getRate()
-
-//        ExchangeProvider.instance.recommendTokenInfos { (ret) in
-//            switch ret {
-//            case .success(let body):
-//                print(body)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-
-//        ExchangeProvider.instance.searchTokenInfo(key: "Vite 1") { (ret) in
-//            switch ret {
-//            case .success(let body):
-//                print(body)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
 
     private func getRate() {
-        ExchangeProvider.instance.getRate(for: ["36"]) { [weak self] (ret) in
+        let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
+        ExchangeProvider.instance.getRate(for: tokenCodes) { [weak self] (ret) in
             switch ret {
             case .success(let map):
                 plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
@@ -77,13 +60,18 @@ public final class ExchangeRateManager {
         }
     }
 
-    func getRateImmediately() {
-        ExchangeProvider.instance.getRate(for: ["36"]) { [weak self] (ret) in
+    func getRateImmediately(for tokenCode: TokenCode) {
+        ExchangeProvider.instance.getRate(for: [tokenCode]) { [weak self] (ret) in
+            guard let `self` = self else { return }
             switch ret {
             case .success(let map):
                 plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
-                self?.rateMapBehaviorRelay.accept(map)
-                self?.pri_save()
+                if let rate = map[tokenCode] {
+                    var old = self.rateMapBehaviorRelay.value
+                    old[tokenCode] = rate
+                    self.rateMapBehaviorRelay.accept(map)
+                    self.pri_save()
+                }
             case .failure(let error):
                 plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
             }

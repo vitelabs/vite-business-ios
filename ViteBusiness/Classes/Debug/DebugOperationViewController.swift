@@ -10,6 +10,7 @@ import Eureka
 import Crashlytics
 import ViteWallet
 import ViteUtils
+import Kingfisher
 
 class DebugOperationViewController: FormViewController {
 
@@ -88,6 +89,13 @@ class DebugOperationViewController: FormViewController {
                 $0.title =  "test crash"
                 }.onCellSelection({_, _  in
                     Crashlytics.sharedInstance().throwException()
+                })
+            <<< LabelRow("Clear Image Cache") {
+                $0.title =  "Clear Image Cache"
+                }.onCellSelection({_, _  in
+                    KingfisherManager.shared.cache.clearMemoryCache()
+                    KingfisherManager.shared.cache.clearDiskCache()
+                    Toast.show("Operation complete")
                 })
     }
 }
