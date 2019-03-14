@@ -182,7 +182,7 @@ class SendViewController: BaseViewController {
                     return
                 }
 
-                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, token: self.token, amount: Balance(value: amount), note: self.noteView.textField.text, completion: { (r) in
+                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: Balance(value: amount), note: self.noteView.textField.text, completion: { (r) in
                     if case .success = r {
                         GCD.delay(1) { self.dismiss() }
                     }

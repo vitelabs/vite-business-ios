@@ -738,7 +738,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 288 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 291 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -820,6 +820,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressManageAddressHeaderTitle = Rswift.StringResource(key: "address.manage.address.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionAmountTitle = Rswift.StringResource(key: "confirm.transaction.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -1016,6 +1020,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip2Title = Rswift.StringResource(key: "introduction.page.tip2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionFeeTitle = Rswift.StringResource(key: "confirm.transaction.fee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Feedback
       /// 
       /// Locales: en, zh-Hans
@@ -1867,6 +1875,10 @@ struct R: Rswift.Validatable {
       /// en translation: 请输入密码
       /// 
       /// Locales: en, zh-Hans
+      static let confirmTransactionPagePwTitle = Rswift.StringResource(key: "confirm.transaction.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入密码
+      /// 
+      /// Locales: en, zh-Hans
       static let createPagePwTitle = Rswift.StringResource(key: "create.page.pw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入新的名称
       /// 
@@ -2031,6 +2043,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func addressManageAddressHeaderTitle(_: Void = ()) -> String {
         return NSLocalizedString("address.manage.address.header.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
@@ -2374,6 +2393,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip2Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionFeeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.fee.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Feedback
@@ -3858,6 +3884,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func contactsEditPageAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("contacts.edit.page.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入密码
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPagePwTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.pw.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入密码

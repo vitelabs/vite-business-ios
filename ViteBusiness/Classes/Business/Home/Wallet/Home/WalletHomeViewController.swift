@@ -161,8 +161,7 @@ class WalletHomeViewController: BaseTableViewController {
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let tokenInfo):
-                let token = tokenInfo.toViteToken()!
-                guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
+                guard let amount = uri.amountForSmallestUnit(decimals: tokenInfo.decimals) else {
                     scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
                     return
                 }
@@ -182,7 +181,7 @@ class WalletHomeViewController: BaseTableViewController {
                     self.navigationController?.popViewController(animated: true)
                     Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
                                                      toAddress: uri.address,
-                                                     token: token,
+                                                     tokenInfo: tokenInfo,
                                                      amount: Balance(value: amount),
                                                      data: uri.data?.toBase64(),
                                                      completion: { _ in })

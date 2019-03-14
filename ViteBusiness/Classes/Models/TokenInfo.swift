@@ -164,6 +164,12 @@ extension TokenInfo: Equatable {
 }
 
 extension TokenInfo {
+    static var viteCoin: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!
+    }
+}
+
+extension TokenInfo {
     func toViteToken() -> Token? {
         guard coinType == .vite else {
             return nil

@@ -118,8 +118,7 @@ public class ViteBusinessLanucher: NSObject {
                     HUD.hide()
                     switch r {
                     case .success(let tokenInfo):
-                        let token = tokenInfo.toViteToken()!
-                        Workflow.sendRawTx(by: uri, accountAddress: account.address, token: token, completion: { (r) in
+                        Workflow.sendRawTx(by: uri, accountAddress: account.address, tokenInfo: tokenInfo, completion: { (r) in
                             WKWebViewConfig.instance.isInvokingUri = false
                             switch r {
                             case .success(let accountBlock):

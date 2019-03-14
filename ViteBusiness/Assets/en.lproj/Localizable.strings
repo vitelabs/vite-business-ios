@@ -192,10 +192,13 @@
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "Payment";
 "confirm.transaction.address.title" = "Recipient";
+"confirm.transaction.amount.title" = "Amount";
+"confirm.transaction.fee.title" = "Fee";
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.confirm.button" = "Confirm";
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
 "confirm.transaction.page.use.password.title" = "Enter Password";
+"confirm.transaction.page.pw.title" = "请输入密码";
 "confirm.transaction.page.toast.password.error" = "Wrong password!";
 "confirm.transaction.page.node.name" = "Node Name";
 "confirm.transaction.page.vote" = "Vote";
