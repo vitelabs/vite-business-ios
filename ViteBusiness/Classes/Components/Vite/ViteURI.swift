@@ -12,8 +12,65 @@ import BigInt
 import Vite_HDWalletKit
 import enum Result.Result
 
+protocol URIType {
+    static func separate(_ string: String, by separator: String) -> (String, String?)?
+}
 
-public struct ViteURI {
+extension URIType {
+    static func separate(_ string: String, by separator: String) -> (String, String?)? {
+        let segments = string.components(separatedBy: separator)
+        let first = segments[0]
+        var second: String? = nil
+
+        if segments.count == 1 {
+            // do nothing
+        } else if segments.count == 2 {
+            second = segments[1]
+        } else {
+            return nil
+        }
+
+        return (first, second)
+    }
+
+    static func parser2Array(parameters: String) -> Result<[(key: String, value: String)], URIError> {
+
+        var array: [(String, String)] = []
+
+        for string in parameters.components(separatedBy: "&") {
+            guard let (key, v) = separate(string, by: "=") else {
+                return Result(error: URIError.InvalidFormat("="))
+            }
+
+            guard key.isEmpty == false else {
+                return Result(error: URIError.InvalidParameter)
+            }
+
+            guard let value = v else {
+                return Result(error: URIError.InvalidParameter)
+            }
+
+            array.append((key, value))
+        }
+
+        return Result(value: array)
+    }
+}
+
+public enum URIError: Error {
+    case InvalidFormat(String)
+    case scheme
+    case InvalidAddress
+    case InvalidFunctionName
+    case InvalidTokenId
+    case InvalidContractAddress
+    case InvalidAmount
+    case InvalidFee
+    case InvalidData
+    case InvalidParameter
+}
+
+public struct ViteURI: URIType {
 
     enum URIType {
         case transfer
@@ -60,17 +117,6 @@ public struct ViteURI {
         self.fee = fee
         self.data = data
         self.parameters = parameters
-    }
-
-    enum URIError: Error {
-        case InvalidFormat(String)
-        case scheme
-        case InvalidAddress
-        case InvalidTokenId
-        case InvalidAmount
-        case InvalidFee
-        case InvalidData
-        case InvalidParameter
     }
 
     func string() -> String {
@@ -217,21 +263,6 @@ public struct ViteURI {
 }
 
 extension ViteURI {
-    fileprivate static func separate(_ string: String, by separator: String) -> (String, String?)? {
-        let segments = string.components(separatedBy: separator)
-        let first = segments[0]
-        var second: String? = nil
-
-        if segments.count == 1 {
-            // do nothing
-        } else if segments.count == 2 {
-            second = segments[1]
-        } else {
-            return nil
-        }
-
-        return (first, second)
-    }
 
     fileprivate static func parser(parameters: String) -> Result<(tokenId: String?, amountString: String?, feeString: String?, dataString: String?, [(key: String, value: String)]), URIError> {
 
@@ -241,33 +272,26 @@ extension ViteURI {
         var dataString: String? = nil
         var array: [(String, String)] = []
 
-        for string in parameters.components(separatedBy: "&") {
-            guard let (key, v) = separate(string, by: "=") else {
-                return Result(error: URIError.InvalidFormat("="))
+        let ret = parser2Array(parameters: parameters)
+        switch ret {
+        case .success(let a):
+            for (key, value) in a {
+                if key == "tti" {
+                    tokenId = value
+                } else if key == "amount" {
+                    amountString = value
+                } else if key == "fee" {
+                    feeString = value
+                } else if key == "data" {
+                    dataString = value
+                } else {
+                    array.append((key, value))
+                }
             }
-
-            guard key.isEmpty == false else {
-                return Result(error: URIError.InvalidParameter)
-            }
-
-            guard let value = v else {
-                return Result(error: URIError.InvalidParameter)
-            }
-
-            if key == "tti" {
-                tokenId = value
-            } else if key == "amount" {
-                amountString = value
-            } else if key == "fee" {
-                feeString = value
-            } else if key == "data" {
-                dataString = value
-            } else {
-                array.append((key, value))
-            }
+            return Result(value: (tokenId, amountString, feeString, dataString, array))
+        case .failure(let error):
+            return Result(error: error as! URIError)
         }
-
-        return Result(value: (tokenId, amountString, feeString, dataString, array))
     }
 }
 

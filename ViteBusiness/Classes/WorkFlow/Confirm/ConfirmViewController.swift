@@ -30,7 +30,7 @@ class ConfirmViewController: UIViewController {
         self.viewModel = viewModel
         self.completion = completion
         self.contentView = ConfirmContentView(infoView: viewModel.createInfoView())
-        self.contentView.type = .biometry//HDWalletManager.instance.isTransferByBiometry ? .biometry : .password
+        self.contentView.type = HDWalletManager.instance.isTransferByBiometry ? .biometry : .password
         self.contentView.titleLabel.text = viewModel.confirmTitle
         self.contentView.biometryConfirmButton.setTitle(viewModel.biometryConfirmButtonTitle, for: .normal)
         super.init(nibName: nil, bundle: nil)
