@@ -14,6 +14,7 @@ import NSObject_Rx
 import ViteUtils
 import ViteEthereum
 import web3swift
+import BigInt
 
 class EthTokenInfoController: BaseViewController {
     var tokenInfo : TokenInfo
@@ -140,6 +141,7 @@ class EthTokenInfoController: BaseViewController {
 
         self.ethInfoCardView.sendButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
+
             let vc = EthSendTokenController(self.tokenInfo)
             self.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)

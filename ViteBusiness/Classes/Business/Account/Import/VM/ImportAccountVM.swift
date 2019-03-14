@@ -34,6 +34,9 @@ final class ImportAccountVM {
         if  pwd != rePwd {
             return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypeDifference()))
         }
+        if  ViteInputValidator.isValidWalletPassword(str: pwd) {
+            return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypePwdIllegal()))
+        }
 
         return Observable.just(.ok(message:""))
     }

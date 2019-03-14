@@ -75,7 +75,8 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress.address)
 
-    private lazy var amountView = SendAmountView(amount: "", symbol: "")
+    private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", symbol: self.tokenInfo.symbol)
+
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
 
         let bottomView = UIView()
@@ -122,8 +123,6 @@ class EthSendTokenController: BaseViewController {
     private func setupView() {
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.symbol))
-
-        self.amountView.symbolLabel.text = self.tokenInfo.symbol
 
         navigationTitleView!.addSubview(logoImgView)
         logoImgView.snp.makeConstraints { (m) in
@@ -202,7 +201,7 @@ class EthSendTokenController: BaseViewController {
         self.gasSliderView.tipButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             Alert.show(into: self, title: R.string.localizable.hint(),
-                       message: R.string.localizable.ethPageGasFeeSlowTitle(),
+                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
                        actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
             }.disposed(by: rx.disposeBag)
     }
