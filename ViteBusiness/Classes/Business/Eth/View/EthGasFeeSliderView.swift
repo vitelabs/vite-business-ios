@@ -28,7 +28,6 @@ public class EthGasFeeSliderView: UIView {
             var rateFee = ""
             let balance = Balance(value: BigInt(eth))
             rateFee = ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) ?? ""
-
             if eth <= 0.0001 {
                 self.totalGasFeeLab.text = String(format: "%.5f ETH%@", eth,rateFee)
             } else {
@@ -38,18 +37,43 @@ public class EthGasFeeSliderView: UIView {
         }
     }
 
-    let totalGasFeeTitleLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.text = R.string.localizable.ethPageGasFeeTitle()
+    lazy var totalGasFeeTitleLab = UILabel().then {(totalGasFeeTitleLab) in
+        totalGasFeeTitleLab.textColor = UIColor(netHex: 0x3E4A59)
+        totalGasFeeTitleLab.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        totalGasFeeTitleLab.text = R.string.localizable.ethPageGasFeeTitle()
+
+        self.addSubview(totalGasFeeTitleLab)
+        totalGasFeeTitleLab.snp.makeConstraints({ (m) in
+            m.top.left.equalToSuperview()
+            m.height.equalTo(20)
+        })
     }
 
-    let totalGasFeeLab = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x24272B)
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    lazy var tipButton = UIButton().then {(tipButton) in
+        tipButton.setImage(R.image.icon_button_infor(), for: .normal)
+        tipButton.setImage(R.image.icon_button_infor()?.highlighted, for: .highlighted)
+
+        self.addSubview(tipButton)
+        tipButton.snp.makeConstraints({ (m) in
+            m.centerY.equalTo(self.totalGasFeeTitleLab)
+            m.right.equalToSuperview()
+            m.height.width.equalTo(20)
+        })
     }
 
-    let feeSlider = GasFeeSliderView().then {
+    lazy var totalGasFeeLab = UILabel().then {(totalGasFeeLab) in
+        totalGasFeeLab.textColor = UIColor(netHex: 0x24272B)
+        totalGasFeeLab.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+
+        self.addSubview(totalGasFeeLab)
+        totalGasFeeLab.snp.makeConstraints({ (m) in
+            m.centerY.equalTo(self.totalGasFeeTitleLab)
+            m.right.equalTo(self.tipButton.snp.left).offset(-4)
+            m.height.equalTo(20)
+        })
+    }
+
+    lazy var feeSlider = GasFeeSliderView().then {
         $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
         $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .selected)
         $0.setMaximumTrackImage(UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
@@ -63,19 +87,19 @@ public class EthGasFeeSliderView: UIView {
         $0.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
     }
 
-    let slowLab = UILabel().then {
+    lazy var slowLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x5E6875)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.text = R.string.localizable.ethPageGasFeeSlowTitle()
     }
 
-    let fastLab = UILabel().then {
+    lazy var fastLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x5E6875)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.text = R.string.localizable.ethPageGasFeeFastTitle()
     }
 
-    let valueLab = UILabel().then {
+    lazy var valueLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha:0.6)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
@@ -88,19 +112,6 @@ public class EthGasFeeSliderView: UIView {
     init(gasLimit:Int) {
         self.gasLimit = gasLimit
         super.init(frame: CGRect.zero)
-
-        self.addSubview(totalGasFeeTitleLab)
-        totalGasFeeTitleLab.snp.makeConstraints({ (m) in
-            m.top.left.equalToSuperview()
-            m.height.equalTo(20)
-        })
-
-        self.addSubview(totalGasFeeLab)
-        totalGasFeeLab.snp.makeConstraints({ (m) in
-            m.centerY.equalTo(self.totalGasFeeTitleLab)
-             m.right.equalToSuperview()
-             m.height.equalTo(20)
-        })
 
         self.addSubview(feeSlider)
         feeSlider.snp.makeConstraints({ (m) in
@@ -180,6 +191,17 @@ extension Float {
     func roundTo(_ places:Int) -> Float {
         let divisor = pow(10.0, Float(places))
         return (self * divisor).rounded() / divisor
+    }
+
+    func ethGasFeeDisplay(_ gasLimit:Float) -> String {
+        var eth = (self * gasLimit * pow(10.0, -9))
+        eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
+
+        if eth <= 0.0001 {
+            return String(format: "%.5f ETH", eth)
+        } else {
+            return String(format: "%.4f ETH", eth)
+        }
     }
 }
 

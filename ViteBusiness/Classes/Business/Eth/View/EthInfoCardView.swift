@@ -157,5 +157,3 @@ class EthInfoCardView: UIView {
         Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
     }
 }
-
-

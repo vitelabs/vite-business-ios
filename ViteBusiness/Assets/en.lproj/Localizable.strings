@@ -347,6 +347,7 @@
 "eth.page.gasFee.title" = "矿工费用";
 "eth.page.gasFee.slow.title" = "慢";
 "eth.page.gasFee.fast.title" = "快";
+"eth.page.gasFee.notice.title" = "消耗不完的Gas会全部退还";
 
 //token
 "token.list.page.search.title" = "输入Token名称或合约地址";

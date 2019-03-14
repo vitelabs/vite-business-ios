@@ -77,13 +77,22 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var amountView = SendAmountView(amount: "", symbol: "")
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
-        view.addSubview(btn)
 
-        btn.snp.makeConstraints { (m) in
+        let bottomView = UIView()
+        bottomView.backgroundColor = .white
+        view.addSubview(bottomView)
+        bottomView.snp.makeConstraints { (m) in
             m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
-            m.left.equalTo(view).offset(24)
-            m.right.equalTo(view).offset(-24)
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+            m.left.right.equalTo(view)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+            m.height.equalTo(74)
+        }
+
+        bottomView.addSubview(btn)
+        btn.snp.makeConstraints { (m) in
+            m.top.equalTo(bottomView)
+            m.left.equalTo(bottomView).offset(24)
+            m.right.equalTo(bottomView).offset(-24)
             m.height.equalTo(50)
         }
     }
@@ -112,7 +121,7 @@ class EthSendTokenController: BaseViewController {
 
     private func setupView() {
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.tokenCode))
+        navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.symbol))
 
         self.amountView.symbolLabel.text = self.tokenInfo.symbol
 
@@ -189,6 +198,13 @@ class EthSendTokenController: BaseViewController {
                     self.headerView.balanceLabel.text = "0.0"
                 }
             }).disposed(by: rx.disposeBag)
+
+        self.gasSliderView.tipButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            Alert.show(into: self, title: R.string.localizable.hint(),
+                       message: R.string.localizable.ethPageGasFeeSlowTitle(),
+                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
+            }.disposed(by: rx.disposeBag)
     }
 }
 

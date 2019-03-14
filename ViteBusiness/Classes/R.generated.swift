@@ -738,7 +738,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 291 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 292 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1832,6 +1832,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsHomePageSingleNoContactTip = Rswift.StringResource(key: "contacts.home.page.single.no.contact.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 消耗不完的Gas会全部退还
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethPageGasFeeNoticeTitle = Rswift.StringResource(key: "eth.page.gasFee.notice.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 添加
       /// 
       /// Locales: en, zh-Hans
@@ -3814,6 +3818,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func contactsHomePageSingleNoContactTip(_ value1: String) -> String {
         return String(format: NSLocalizedString("contacts.home.page.single.no.contact.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 消耗不完的Gas会全部退还
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethPageGasFeeNoticeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.notice.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 添加

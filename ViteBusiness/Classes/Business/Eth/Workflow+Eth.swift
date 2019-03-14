@@ -20,16 +20,16 @@ public extension Workflow {
         let sendBlock = {
              HUD.show()
             if token.isEtherCoin {
-                   EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", completion: { (r ) in
-                        guard let result = r else{
-                            completion(Result(error: ViteError.authFailed))
-                            HUD.hide()
-                            return
-                        }
-                        completion(Result(value: result))
-                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", gasPrice: gasPrice, completion: { (r) in
+                    guard let result = r else{
+                        completion(Result(error: ViteError.authFailed))
                         HUD.hide()
-                    })
+                        return
+                    }
+                    completion(Result(value: result))
+                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                    HUD.hide()
+                })
             }else {
                 EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amount, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (r) in
                     guard let result = r else{
@@ -50,7 +50,9 @@ public extension Workflow {
         }
 
         let amountString = "\(amount) \(token.symbol)"
-        let feeString = Balance(value: BigInt(Web3.Utils.parseToBigUInt(String(gasPrice), units: .gWei) ?? BigUInt(0))).amountShort(decimals: Web3Units.eth.rawValue)
+
+        let gasLimit = token.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer
+        let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
 
         let viewModel = ConfirmEthTransactionViewModel(tokenInfo: token, addressString: toAddress, amountString: amountString, feeString: feeString)
         confirmWorkflow(viewModel: viewModel, completion: block, confirmSuccess: sendBlock)

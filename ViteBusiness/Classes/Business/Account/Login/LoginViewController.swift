@@ -128,19 +128,19 @@ extension LoginViewController {
             make.left.right.bottom.equalTo(view)
         }
 
-        contentView.addSubview(self.logoImgView)
-        self.logoImgView.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(contentView)
-            make.top.equalTo(contentView.safeAreaLayoutGuideSnpTop).offset(80)
-            make.width.height.equalTo(84)
-        }
-
         contentView.addSubview(self.userNameBtn)
         self.userNameBtn.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView)
+            make.centerY.equalTo(contentView).offset(-20)
             make.left.equalTo(contentView).offset(24)
             make.right.equalTo(contentView).offset(-24)
             make.height.equalTo(60)
+        }
+
+        contentView.addSubview(self.logoImgView)
+        self.logoImgView.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(self.userNameBtn.snp.top).offset(-80)
+            make.centerX.equalTo(contentView)
+            make.width.height.equalTo(84)
         }
 
         contentView.addSubview(self.passwordTF)
