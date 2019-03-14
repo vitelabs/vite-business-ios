@@ -28,7 +28,7 @@ class EthInfoCardView: UIView {
     let copyAddressBtn = UIButton().then {
         $0.setImage(R.image.icon_button_paste_white(), for: .normal)
         $0.setImage(R.image.icon_button_paste_white(), for: .highlighted)
-        $0.addTarget(self, action: #selector(copy), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(copyAction), for: .touchUpInside)
     }
 
     let balanceLab = UILabel().then {
@@ -152,7 +152,7 @@ class EthInfoCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func copy() {
+    @objc func copyAction() {
         UIPasteboard.general.string = EtherWallet.account.address
         Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
     }
