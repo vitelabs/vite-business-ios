@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import ViteWallet
+import web3swift
 
 class ReceiveEthViewModel: ReceiveViewModelType {
 
@@ -28,9 +29,13 @@ class ReceiveEthViewModel: ReceiveViewModelType {
 
     var uriStringDriver: Driver<String> {
         return self.amountStringBehaviorRelay.asDriver()
-            .map({ [weak self] amount -> String in
+            .map({ [weak self] a -> String in
                 guard let `self` = self else { return "" }
-                return ETHURI.transferURI(address: self.address, contractAddress: self.token.contractAddress, decimal: self.token.decimals, amount: amount).string()
+                var amount = Web3.Utils.parseToBigUInt(a ?? "", decimals: self.token.decimals)?.description
+                if amount == "0" {
+                    amount = nil
+                }
+                return ETHURI.transferURI(address: self.address, contractAddress: self.token.contractAddress, amount: amount).string()
             })
     }
 
@@ -50,7 +55,7 @@ class ReceiveEthViewModel: ReceiveViewModelType {
         self.addressName = nil
 
         self.tipStringBehaviorRelay = BehaviorRelay(value: R.string.localizable.receivePageTokenNameLabel(token.symbol))
-        self.uriStringBehaviorRelay = BehaviorRelay(value: ETHURI.transferURI(address: address, contractAddress: token.contractAddress, decimal: token.decimals, amount: nil).string())
+        self.uriStringBehaviorRelay = BehaviorRelay(value: ETHURI.transferURI(address: address, contractAddress: token.contractAddress, amount: nil).string())
     }
 
 }

@@ -14,6 +14,8 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteUtils
 import ViteWallet
+import BigInt
+import web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -146,6 +148,8 @@ class WalletHomeViewController: BaseTableViewController {
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
             if case .success(let uri) = ViteURI.parser(string: result) {
                 self.handleScanResult(with: uri, scanViewController: scanViewController)
+            } else if case .success(let uri) = ETHURI.parser(string: result) {
+                self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
             } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
             } else {
@@ -186,6 +190,30 @@ class WalletHomeViewController: BaseTableViewController {
                                                      data: uri.data?.toBase64(),
                                                      completion: { _ in })
                 }
+            case .failure(let error):
+                scanViewController?.showToast(string: error.viteErrorMessage)
+            }
+        }
+    }
+
+    func handleScanResultForETH(with uri: ETHURI, scanViewController: ScanViewController?) {
+        scanViewController?.view.displayLoading(text: "")
+        MyTokenInfosService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
+            scanViewController?.view.hideLoading()
+            switch result {
+            case .success(let tokenInfo):
+
+                var balance: Balance? = nil
+                if let amount = uri.amount,
+                    let b = BigInt(amount) {
+                    balance = Balance(value: b)
+                }
+
+                let sendViewController = EthSendTokenController(tokenInfo, toAddress: web3swift.Address(uri.address), amount: balance)
+                guard var viewControllers = self.navigationController?.viewControllers else { return }
+                _ = viewControllers.popLast()
+                viewControllers.append(sendViewController)
+                scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)
             }

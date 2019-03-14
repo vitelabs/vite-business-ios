@@ -190,7 +190,7 @@ extension TokenInfo {
 // UI Style
 extension TokenInfo {
     var chainIcon: UIImage? {
-        if isEtherCoin {
+        if case .eth = coinType, !isEtherCoin {
             return R.image.icon_logo_chain_eth()
         } else {
             return nil
