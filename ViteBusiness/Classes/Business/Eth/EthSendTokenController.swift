@@ -78,24 +78,23 @@ class EthSendTokenController: BaseViewController {
     private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", symbol: self.tokenInfo.symbol)
 
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
+            let bottomView = UIView()
+            bottomView.backgroundColor = .white
+            view.addSubview(bottomView)
+            bottomView.snp.makeConstraints { (m) in
+                m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
+                m.left.right.equalTo(view)
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+                m.height.equalTo(74)
+            }
 
-        let bottomView = UIView()
-        bottomView.backgroundColor = .white
-        view.addSubview(bottomView)
-        bottomView.snp.makeConstraints { (m) in
-            m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
-            m.left.right.equalTo(view)
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
-            m.height.equalTo(74)
-        }
-
-        bottomView.addSubview(btn)
-        btn.snp.makeConstraints { (m) in
-            m.top.equalTo(bottomView)
-            m.left.equalTo(bottomView).offset(24)
-            m.right.equalTo(bottomView).offset(-24)
-            m.height.equalTo(50)
-        }
+            bottomView.addSubview(btn)
+            btn.snp.makeConstraints { (m) in
+                m.top.equalTo(bottomView)
+                m.left.equalTo(bottomView).offset(24)
+                m.right.equalTo(bottomView).offset(-24)
+                m.height.equalTo(50)
+            }
     }
 
     private lazy var addressView: SendAddressViewType = {
@@ -155,6 +154,10 @@ class EthSendTokenController: BaseViewController {
         amountView.textField.delegate = self
     }
 
+    private func checkSendParameterLegal()->Bool {
+        return true
+    }
+
     private func bind() {
         self.headerView.balanceLabel.text = "0.0"
 
@@ -168,7 +171,7 @@ class EthSendTokenController: BaseViewController {
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: 18) else {
+                    let amount = amountString.toBigInt(decimals: self.tokenInfo.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
@@ -177,6 +180,7 @@ class EthSendTokenController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
+
                 Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
                     if case .success = r {
                         self?.dismiss()
@@ -207,6 +211,7 @@ class EthSendTokenController: BaseViewController {
     }
 }
 
+// MARK: FloatButtonsViewDelegate
 extension EthSendTokenController: FloatButtonsViewDelegate {
     func didClick(at index: Int) {
         if index == 0 {
@@ -229,7 +234,7 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
         }
     }
 }
-
+// MARK: UITextFieldDelegate
 extension EthSendTokenController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {

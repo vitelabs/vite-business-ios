@@ -16,36 +16,38 @@ public extension Workflow {
         token: TokenInfo,
         amount: String,
         gasPrice: Float,
-        completion: @escaping (Result<String>) -> ()) {
+        completion: @escaping (ViteWallet.Result<String>) -> ()) {
         let sendBlock = {
              HUD.show()
             if token.isEtherCoin {
-                EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", gasPrice: gasPrice, completion: { (r) in
-                    guard let result = r else{
-                        completion(Result(error: ViteError.authFailed))
-                        HUD.hide()
-                        return
-                    }
-                    completion(Result(value: result))
-                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", gasPrice: gasPrice, completion: { (result) in
                     HUD.hide()
+                    switch result {
+                    case .success(let txHash):
+                            completion(ViteWallet.Result(value: txHash))
+                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                    case .failure(let error):
+                        completion(ViteWallet.Result(error: error))
+                        break
+                    }
                 })
             }else {
-                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amount, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (r) in
-                    guard let result = r else{
-                        completion(Result(error: ViteError.authFailed))
-                        HUD.hide()
-                        return
-                    }
-                    completion(Result(value: result))
-                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amount, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (result) in
                     HUD.hide()
+                    switch result {
+                    case .success(let txHash):
+                        completion(ViteWallet.Result(value: txHash))
+                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                    case .failure(let error):
+                        completion(ViteWallet.Result(error: error))
+                        break
+                    }
                 })
             }
         }
 
         //TODO::: no use block
-        let block = { (r:Result<AccountBlock>) in
+        let block = { (r:ViteWallet.Result<AccountBlock>) in
 
         }
 

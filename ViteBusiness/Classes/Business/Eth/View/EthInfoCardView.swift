@@ -34,11 +34,13 @@ class EthInfoCardView: UIView {
     let balanceLab = UILabel().then {
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        $0.adjustsFontSizeToFitWidth = true
         $0.text = ""
     }
     let balanceLegalTenderLab = UILabel().then {
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.adjustsFontSizeToFitWidth = true
         $0.text = ""
     }
 
@@ -98,6 +100,7 @@ class EthInfoCardView: UIView {
         balanceLab.snp.makeConstraints({ (m) in
             m.top.equalToSuperview().offset(60)
             m.left.equalToSuperview().offset(14)
+            m.right.equalToSuperview()
             m.height.equalTo(20)
         })
 
@@ -105,6 +108,7 @@ class EthInfoCardView: UIView {
         balanceLegalTenderLab.snp.makeConstraints({ (m) in
             m.top.equalTo(self.balanceLab.snp.bottom).offset(14)
             m.left.equalToSuperview().offset(14)
+            m.right.equalToSuperview()
             m.height.equalTo(16)
         })
 
