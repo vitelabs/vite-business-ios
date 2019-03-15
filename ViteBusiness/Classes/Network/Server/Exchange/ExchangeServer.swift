@@ -11,12 +11,12 @@ public struct ExchangeServer {
     public static var baseURL: URL {
         #if DEBUG || TEST
         if DebugService.instance.config.rpcUseOnlineUrl {
-            return URL(string: "http://132.232.65.121:8080/test")!
+            return URL(string: "http://124.156.114.60:8080")!
         } else {
             return URL(string: "http://132.232.65.121:8080/test")!
         }
         #else
-        return URL(string: "http://132.232.65.121:8080/test")!
+        return URL(string: "http://124.156.114.60:8080")!
         #endif
     }
 }

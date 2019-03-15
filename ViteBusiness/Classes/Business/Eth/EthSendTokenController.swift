@@ -191,7 +191,14 @@ class EthSendTokenController: BaseViewController {
                     if case .success = r {
                         self?.dismiss()
                     } else if case .failure(let error) = r {
-                        Toast.show(error.viteErrorMessage)
+                        if let web3Error = error as? Web3Error {
+                            Toast.show(web3Error.localizedDescription)
+                        }else if let walletError = error as? WalletError{
+                            let viteError = ViteError.init(code: ViteErrorCode(type: .rpc, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
+                            Toast.show(viteError.viteErrorMessage)
+                        }else {
+                           Toast.show(error.viteErrorMessage)
+                        }
                     }
                 })
             }
