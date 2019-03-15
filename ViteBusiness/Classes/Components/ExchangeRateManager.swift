@@ -9,7 +9,6 @@ import RxSwift
 import RxCocoa
 import ViteUtils
 import ViteWallet
-import BigInt
 
 public typealias ExchangeRateMap = [String: [String: String]]
 
@@ -132,79 +131,4 @@ extension ExchangeRateManager {
         }
         return self.rateMap.priceString(for: ethTokenInfo, balance: balance)
     }
-}
-
-
-public struct Bigdecimal {
-
-    let symbol: Bool // true as +, false as -
-    let beforeDecPoint: String
-    let afterDecPoint: String
-    let number: BigInt
-    let digits: Int
-
-
-
-    // +0
-    // +0.1
-    // -0.23
-    // -1
-    // +123
-
-    // 目前输入不支持科学技术法
-    public init?(_ string: String = "0") {
-
-        let separators = CharacterSet(charactersIn: ".,")
-        let components = string.components(separatedBy: separators)
-        guard components.count == 1 || components.count == 2 else { return nil }
-
-        var s = true
-        var b = ""
-        var a = ""
-
-        if components[0].hasPrefix("+") {
-            b = String(components[0].dropFirst())
-        } else if components[0].hasPrefix("-") {
-            s = false
-            b = String(components[0].dropFirst())
-        } else {
-            b = components[0]
-        }
-
-        if b.isEmpty {
-            b = "0"
-        }
-
-        if components.count == 2 {
-            a = components[1]
-        }
-
-        if a.isEmpty {
-            a = "0"
-        }
-
-        if a == "0" && b == "0" {
-            s = true
-        }
-
-        guard b.trimmingCharacters(in: .decimalDigits).isEmpty else { return nil }
-        guard a.trimmingCharacters(in: .decimalDigits).isEmpty else { return nil }
-
-        symbol = s
-        beforeDecPoint = String((b + "#").trimmingCharacters(in: CharacterSet(charactersIn: "0")).dropLast())
-        afterDecPoint = String(("#" + a).trimmingCharacters(in: CharacterSet(charactersIn: "0")).dropFirst())
-
-        digits = afterDecPoint.count
-
-        let string = (symbol ? "" : "-") + beforeDecPoint + afterDecPoint
-        guard let n = BigInt(string) else { return nil }
-
-        st 
-    }
-
-
-    public static func + (left: Bigdecimal, right: Bigdecimal) -> Bigdecimal {
-        return Bigdecimal("")!
-    }
-
 }
