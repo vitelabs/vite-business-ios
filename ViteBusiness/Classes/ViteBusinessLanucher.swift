@@ -47,9 +47,9 @@ public class ViteBusinessLanucher: NSObject {
         goShowIntroViewPage()
 
         AppConfigService.instance.start()
+        MyTokenInfosService.instance.start()
         ExchangeRateManager.instance.start()
         TokenListService.instance.fetchTokenListServerData()
-        MyTokenInfosService.instance.start()
         AutoGatheringService.instance.start()
         ViteBalanceInfoManager.instance.start()
         ETHBalanceInfoManager.instance.start()

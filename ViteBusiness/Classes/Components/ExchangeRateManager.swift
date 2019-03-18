@@ -17,18 +17,13 @@ public final class ExchangeRateManager {
     public static let instance = ExchangeRateManager()
 
 
-    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+    fileprivate var fileHelper: FileHelper!
     fileprivate static let saveKey = "ExchangeRate"
 
-    private init() {
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-            let map = dic as? ExchangeRateMap {
-            rateMapBehaviorRelay = BehaviorRelay(value: map)
-        } else {
-            rateMapBehaviorRelay = BehaviorRelay(value: ExchangeRateMap())
-        }
-    }
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var service: ExchangeRateService?
+
+    private init() {}
 
     private func pri_save() {
         if let data = try? JSONSerialization.data(withJSONObject: rateMapBehaviorRelay.value, options: []) {
@@ -38,31 +33,59 @@ public final class ExchangeRateManager {
         }
     }
 
-    public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
-    public var rateMap: ExchangeRateMap { return rateMapBehaviorRelay.value }
-    private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap>
+    private func read() -> ExchangeRateMap {
 
-    public func start() {
-        getRate()
+        self.fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+        var map = ExchangeRateMap()
+
+        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+            let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+            let m = dic as? ExchangeRateMap {
+            map = m
+        } 
+
+        return map
     }
 
-    private func getRate() {
-        let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
-        ExchangeProvider.instance.getRate(for: tokenCodes) { [weak self] (ret) in
-            switch ret {
-            case .success(let map):
-                plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
-                self?.rateMapBehaviorRelay.accept(map)
-                self?.pri_save()
-            case .failure(let error):
-                plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
+    public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
+    public var rateMap: ExchangeRateMap { return rateMapBehaviorRelay.value }
+    private var rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap> = BehaviorRelay(value: ExchangeRateMap())
+
+    public func start() {
+
+        HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().drive(onNext: { [weak self] uuid in
+            guard let `self` = self else { return }
+            if let _ = uuid {
+                plog(level: .debug, log: "start fetch", tag: .exchange)
+                self.rateMapBehaviorRelay.accept(self.read())
+                let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
+                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5, completion: { [weak self] (r) in
+                    guard let `self` = self else { return }
+                    switch r {
+                    case .success(let map):
+                        plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
+                        self.rateMapBehaviorRelay.accept(map)
+                        self.pri_save()
+                    case .failure(let error):
+                        plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
+                    }
+                })
+                self.service?.stopPoll()
+                self.service = service
+                self.service?.startPoll()
+            } else {
+                plog(level: .debug, log: "stop fetch", tag: .exchange)
+                self.rateMapBehaviorRelay.accept(ExchangeRateMap())
+                self.service?.stopPoll()
+                self.service = nil
             }
-            GCD.delay(5, task: { self?.getRate() })
-        }
+        }).disposed(by: disposeBag)
     }
 
     func getRateImmediately(for tokenCode: TokenCode) {
-        ExchangeProvider.instance.getRate(for: [tokenCode]) { [weak self] (ret) in
+        guard let service = self.service else { return }
+
+        service.getRateImmediately(for: tokenCode) { [weak self] (ret) in
             guard let `self` = self else { return }
             switch ret {
             case .success(let map):
