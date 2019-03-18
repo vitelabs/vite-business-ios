@@ -15,7 +15,7 @@
             "platform":"vite",
             "name":"Vite Token",
             "symbol":"VITE",
-            "decimals":18,
+            "decimal":18,
             "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
             "tokenAddress":"tti_5649544520544f4b454e6e40"
         },
@@ -24,7 +24,7 @@
             "platform":"vite",
             "name":"Vite Community Point",
             "symbol":"VCP",
-            "decimals":1,
+            "decimal":0,
             "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
             "tokenAddress":"tti_c2695839043cf966f370ac84"
         },
@@ -33,7 +33,7 @@
             "platform":"eth",
             "name":"Ethereum",
             "symbol":"ETH",
-            "decimals":18,
+            "decimal":18,
             "icon":"https://www.cryptosaurus.cc/ctrl/wp-content/uploads/ETHEREUM.png",
             "tokenAddress":""
         },
@@ -42,7 +42,7 @@
             "platform":"eth",
             "name":"Vite ERC20",
             "symbol":"VITE",
-            "decimals":18,
+            "decimal":18,
             "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
             "tokenAddress":"0x54b716345c14ba851f1b51dcc1491abee6ba8f44"
         }

@@ -88,10 +88,12 @@ public struct BigDecimal {
     }
 
     public init(number: BigInt, digits: Int) {
-        guard digits >= 0 else { fatalError() }
 
         if number == 0 {
-            self.number = number
+            self.number = BigInt(0)
+            self.digits = 0
+        } else if digits < 0 {
+            self.number = number * BigInt(10).power(-digits)
             self.digits = 0
         } else if digits > 0 && number.description.hasSuffix("0") {
             var striped = String(("#" + number.description).trimmingCharacters(in: CharacterSet(charactersIn: "0")).dropFirst())
