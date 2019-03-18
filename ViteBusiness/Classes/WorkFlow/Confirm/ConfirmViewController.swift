@@ -103,11 +103,6 @@ class ConfirmViewController: UIViewController {
             }).disposed(by: rx.disposeBag)
     }
 
-    func inputFinish(passwordView: PasswordInputView, password: String) {
-        let result = HDWalletManager.instance.verifyPassword(password)
-        self.procese(result ? .success : .passwordAuthFailed)
-    }
-
     func procese(_ result: ConfirmTransactionResult) {
         self.dismiss(animated: false, completion: { [weak self] in
             self?.completion(result)

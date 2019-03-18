@@ -93,17 +93,21 @@ extension MyHomeViewController: MyHomeListHeaderViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     func mnemonicBtnAction() {
-        let vc = ManageWalletViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        self.verifyWalletPassword(callback: {
+            let vc = ExportMnemonicViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
     }
 
     @objc func titleBtnAction() {
-        self.showInputDialog(title: R.string.localizable.myPageChangeWalletNameAlterTitle(),
-                              actionTitle: R.string.localizable.confirm(),
-                              cancelTitle: R.string.localizable.cancel(),
-                              inputPlaceholder: HDWalletManager.instance.wallet?.name)
-        {[weak self]   (input:String?) in
+        DispatchQueue.main.async {
+            self.showInputDialog(title: R.string.localizable.myPageChangeWalletNameAlterTitle(),
+                                 actionTitle: R.string.localizable.confirm(),
+                                 cancelTitle: R.string.localizable.cancel(),
+                                 inputPlaceholder: HDWalletManager.instance.wallet?.name)
+            {[weak self]   (input:String?) in
                 self?.changeWalletName(name:input)
+            }
         }
     }
 }
