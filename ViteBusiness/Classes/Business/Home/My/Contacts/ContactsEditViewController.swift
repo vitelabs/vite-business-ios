@@ -131,6 +131,26 @@ class ContactsEditViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }.disposed(by: rx.disposeBag)
+
+        addressView.scanButton.rx.tap.bind { [weak self] in
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                guard let `self` = self else { return }
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self.addressView.textView.text = uri.address.description
+                    self.type.accept(.vite)
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else if case .success(let uri) = ETHURI.parser(string: result) {
+                    self.addressView.textView.text = uri.address.description
+                    self.type.accept(.eth)
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 
     func showDeleteButton() {

@@ -63,7 +63,7 @@ class ContactAddressInputView: UIView {
         textView.snp.makeConstraints { (m) in
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(typeButton.snp.right).offset(10)
-            m.right.equalTo(scanButton.snp.left).offset(-16)
+            m.right.equalTo(scanButton.snp.left).offset(-10)
             m.height.equalTo(55)
             m.bottom.equalTo(self)
         }

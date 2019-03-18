@@ -16,7 +16,6 @@ import MJRefresh
 
 class TransactionListViewController: BaseTableViewController {
 
-    let address = HDWalletManager.instance.account?.address ?? Address()
     let token: Token
     init(token: Token) {
         self.token = token
@@ -32,14 +31,15 @@ class TransactionListViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        bind()
+
+        HDWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
+            self?.bind(address: account.address)
+        }).disposed(by: rx.disposeBag)
     }
 
     var tableViewModel: TransactionListTableViewModel!
 
     fileprivate func setupView() {
-
-//        navigationTitleView = NavigationTitleView(title: R.string.localizable.transactionListPageTitle())
 
         tableView.separatorStyle = .none
         tableView.rowHeight = TransactionCell.cellHeight
@@ -68,48 +68,53 @@ class TransactionListViewController: BaseTableViewController {
 
     let footerView = GetMoreLoadingView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
 
-    func bind() {
-        tableViewModel = TransactionListTableViewModel(address: address, token: token)
+    func bind(address: Address) {
 
-        tableViewModel.hasMore.asObservable().bind { [weak self] in
-            self?.tableView.tableFooterView = $0 ? self?.footerView : nil
-        }.disposed(by: rx.disposeBag)
+        if tableViewModel == nil {
+            tableViewModel = TransactionListTableViewModel(address: address, token: token)
 
-        tableViewModel.transactionsDriver.asObservable()
-            .map { [SectionModel(model: "transaction", items: $0)] }
-            .bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+            tableViewModel.hasMore.asObservable().bind { [weak self] in
+                self?.tableView.tableFooterView = $0 ? self?.footerView : nil
+                }.disposed(by: rx.disposeBag)
 
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        tableView.rx.itemSelected
-            .bind { [weak self] indexPath in
-                guard let `self` = self else { return }
-                self.tableView.deselectRow(at: indexPath, animated: true)
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
-                    WebHandler.openTranscationDetailPage(hash: viewModel.hash)
+            tableViewModel.transactionsDriver.asObservable()
+                .map { [SectionModel(model: "transaction", items: $0)] }
+                .bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+
+            tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+            tableView.rx.itemSelected
+                .bind { [weak self] indexPath in
+                    guard let `self` = self else { return }
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
+                        WebHandler.openTranscationDetailPage(hash: viewModel.hash)
+                    }
                 }
-            }
-            .disposed(by: rx.disposeBag)
+                .disposed(by: rx.disposeBag)
 
-        let endScroll = Observable.merge(tableView.rx.didEndDragging.filter { !$0 }.map { _ in Swift.Void() }.asObservable(),
-                                         tableView.rx.didEndDecelerating.asObservable())
-        endScroll
-            .filter { [unowned self] in
-                guard let footerView = self.tableView.tableFooterView else { return false }
-                let triggerOffset = self.tableView.frame.height / 2
-                let frame = footerView.superview!.convert(footerView.frame, to: self.view)
-                return frame.origin.y < self.view.frame.height + triggerOffset
-            }
-            .bind { [unowned self] in
-                self.getMore()
-            }
-            .disposed(by: rx.disposeBag)
+            let endScroll = Observable.merge(tableView.rx.didEndDragging.filter { !$0 }.map { _ in Swift.Void() }.asObservable(),
+                                             tableView.rx.didEndDecelerating.asObservable())
+            endScroll
+                .filter { [unowned self] in
+                    guard let footerView = self.tableView.tableFooterView else { return false }
+                    let triggerOffset = self.tableView.frame.height / 2
+                    let frame = footerView.superview!.convert(footerView.frame, to: self.view)
+                    return frame.origin.y < self.view.frame.height + triggerOffset
+                }
+                .bind { [unowned self] in
+                    self.getMore()
+                }
+                .disposed(by: rx.disposeBag)
 
-        footerView.retry.throttle(0.5, scheduler: MainScheduler.instance)
-            .bind { [unowned self] in
-                self.getMore()
-                self.footerView.status = .loading
-            }
-            .disposed(by: rx.disposeBag)
+            footerView.retry.throttle(0.5, scheduler: MainScheduler.instance)
+                .bind { [unowned self] in
+                    self.getMore()
+                    self.footerView.status = .loading
+                }
+                .disposed(by: rx.disposeBag)
+        } else {
+            tableViewModel.update(address: address)
+        }
 
         dataStatus = .loading
         refreshList()
@@ -148,14 +153,19 @@ class TransactionListViewController: BaseTableViewController {
 
 extension TransactionListViewController: ViewControllerDataStatusable {
 
+    private var showImage: Bool {
+        return UIScreen.main.bounds.size != CGSize(width: 320, height: 568)
+    }
+
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
-        return UIView.defaultNetworkErrorView(error: error) { [weak self] in
+
+        return UIView.defaultNetworkErrorView(error: error, showImage: showImage) { [weak self] in
             self?.dataStatus = .loading
             retry()
         }
     }
 
     func emptyView() -> UIView {
-        return UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty())
+        return UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty(), showImage: showImage)
     }
 }

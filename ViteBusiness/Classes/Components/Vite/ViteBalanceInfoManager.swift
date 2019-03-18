@@ -92,7 +92,8 @@ public class ViteBalanceInfoManager {
                         return map
                     })
 
-                    let ret = self.tokenInfos.reduce(ViteBalanceInfoMap(), { (m, tokenInfo) -> ViteBalanceInfoMap in
+                    let tokenInfos = MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite })
+                    let ret = tokenInfos.reduce(ViteBalanceInfoMap(), { (m, tokenInfo) -> ViteBalanceInfoMap in
                         var ret = m
                         if let balanceInfo = map[tokenInfo.viteTokenId] {
                             ret[tokenInfo.viteTokenId] = balanceInfo
