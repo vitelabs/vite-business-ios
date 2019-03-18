@@ -145,7 +145,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         symbolLabel.text = viewModel.symbol
         symbolLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = viewModel.coinFamily
-        balanceLabel.text = viewModel.balance
+        balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
 
         DispatchQueue.main.async {

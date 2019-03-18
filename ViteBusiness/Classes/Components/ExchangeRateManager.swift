@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 import ViteUtils
 import ViteWallet
+import BigInt
 
 public typealias ExchangeRateMap = [String: [String: String]]
 
@@ -107,18 +108,32 @@ public enum CurrencyCode: String {
 }
 
 public extension Dictionary where Key == String, Value == [String: String] {
-    func priceString(for tokenInfo: TokenInfo, balance: Balance) -> String {
+
+    func price(for tokenInfo: TokenInfo, balance: Balance) -> BigDecimal {
+
         let currency = AppSettingsService.instance.currency
         if let dic = self[tokenInfo.tokenCode] as? [String: String],
-            let rate = dic[currency.rawValue] as? String {
-
-            let x = 1.23 as Decimal
-
-
-            return "\(currency.symbol)\(balance.amountFull(decimals: tokenInfo.decimals)) * \(rate)"
+            let rate = dic[currency.rawValue] as? String,
+            let price = balance.price(decimals: tokenInfo.decimals, rate: rate) {
+            return price
         } else {
-            return "\(currency.symbol)0.00"
+            return BigDecimal()
         }
+    }
+
+    func priceString(for tokenInfo: TokenInfo, balance: Balance) -> String {
+        let currency = AppSettingsService.instance.currency
+        let p = price(for: tokenInfo, balance: balance)
+        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding))"
+    }
+}
+
+public extension Balance {
+    public func price(decimals: Int, rate: String) -> BigDecimal? {
+        guard let r = BigDecimal(rate) else { return nil }
+        let v = BigDecimal(self.value)
+        let d = BigDecimal(BigInt(10).power(decimals))
+        return v * r / d
     }
 }
 

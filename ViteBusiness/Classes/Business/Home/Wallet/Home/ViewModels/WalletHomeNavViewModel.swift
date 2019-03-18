@@ -25,7 +25,13 @@ class WalletHomeNavViewModel {
                 if isHidePrice {
                     return "****"
                 } else {
-                    return "9.999999"
+                    var allPrice = BigDecimal()
+                    for balanceInfo in balanceInfos {
+                        let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+                        allPrice = allPrice + price
+                    }
+                    let currency = AppSettingsService.instance.currency
+                    return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding))"
                 }
             })
     }
