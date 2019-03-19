@@ -36,6 +36,7 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lockedCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var lineImageVIew: UIImageView!
     let walletInfoVM = GrinWalletInfoVM()
     
     required  init?(coder aDecoder: NSCoder) {
@@ -98,6 +99,8 @@ class GrinInfoViewController: BaseViewController {
             UIColor.gradientColor(style: .leftTop2rightBottom,
                                   frame: CGRect.init(x: 0, y: 0, width: kScreenW - 48, height: 201),
                                   colors: [UIColor(netHex: 0xFF5C00),UIColor(netHex: 0xFFC800)])
+        lineImageVIew.image =
+            R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile)
 
         let nib = UINib.init(nibName: "GrinTransactionCell", bundle: businessBundle())
         tableView.register(nib, forCellReuseIdentifier: "GrinTransactionCell")

@@ -15,12 +15,11 @@ class SendGrinViewController: UIViewController {
 
     @IBOutlet weak var titleView: GrinTransactionTitleView!
     @IBOutlet weak var spendableLabel: UILabel!
-
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var feeLabel: UILabel!
     @IBOutlet weak var amountConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var balanceBackground: UIImageView!
     @IBOutlet weak var transactButton: UIButton!
 
     var transferMethod = TransferMethod.file
@@ -66,6 +65,11 @@ class SendGrinViewController: UIViewController {
         titleView.symbolLabel.text = "Grin转账"
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
 
+        balanceBackground.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        balanceBackground.layer.shadowOpacity = 0.1
+        balanceBackground.layer.shadowOffset = CGSize(width: 0, height: 5)
+        balanceBackground.layer.shadowRadius = 20
+
         if self.transferMethod == .file {
             amountConstraint.constant = 10
             self.view.layoutIfNeeded()
@@ -73,14 +77,24 @@ class SendGrinViewController: UIViewController {
     }
 
     @IBAction func sendAction(_ sender: Any) {
-
-        if transferMethod == .file {
-            transferVM.action.onNext(.creatTxFile(amount: self.amountTextField.text))
-        } else if transferMethod == .httpURL {
-
-        } else if transferMethod == .viteAddress {
-
+        guard let text = self.amountTextField.text,
+        let fee = transferVM.txFee.value else {
+            return
         }
+        let confirmGrinTransactionViewModel = ConfirmGrinTransactionViewModel.init(amountString: text, feeString: fee)
+        Workflow.confirmWorkflow(viewModel: confirmGrinTransactionViewModel, completion: { (result) in
+
+        }) {
+            if self.transferMethod == .file {
+                self.transferVM.action.onNext(.creatTxFile(amount: self.amountTextField.text))
+            } else if self.transferMethod == .httpURL {
+
+            } else if self.transferMethod == .viteAddress {
+
+            }
+        }
+
+
         
     }
 

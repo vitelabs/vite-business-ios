@@ -118,6 +118,10 @@ class ContactsEditViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
+            case .grin:
+                fatalError()
+            default:
+                fatalError()
             }
 
             if let contact = self.contact {

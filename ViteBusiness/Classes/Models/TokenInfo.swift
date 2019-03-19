@@ -42,6 +42,13 @@ public enum CoinType: String {
                 UIColor(netHex: 0x429321),
                 UIColor(netHex: 0xB4EC51),
             ]
+        case .grin:
+            return [
+                UIColor(netHex: 0xFF5C00),
+                UIColor(netHex: 0xFFC800)
+            ]
+        default:
+            fatalError()
         }
     }
 
@@ -51,6 +58,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF)
         case .eth:
             return UIColor(netHex: 0x5BC500)
+        case .grin:
+            return UIColor(netHex: 0xFF9C00)
         default:
             fatalError()
         }
@@ -75,6 +84,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
+        case .grin:
+            return UIColor(netHex: 0xFF9C00)
         default:
             fatalError()
         }

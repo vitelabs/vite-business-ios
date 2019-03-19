@@ -21,6 +21,7 @@ class SlateViewController: UIViewController {
     @IBOutlet weak var titleView: GrinTransactionTitleView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var slateIdLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var operateButton: UIButton!
@@ -40,8 +41,19 @@ class SlateViewController: UIViewController {
     }
 
     func setUpView() {
-        titleView.symbolLabel.text = "Grin转账"
+
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
+        titleView.symbolLabel.text = [
+            "Grin转账",
+            "Receive GRIN",
+            "Confirm Transaction"
+            ][type.rawValue]
+
+        descriptionLabel.text = [
+            "Make sure to share the transaction file with the recipient and ask for a confirmation file",
+            "Make sure to share the transaction file with the recipient and ask for a confirmation file",
+            "Transaction has been received please finalize the transaction to complete it。",
+        ][type.rawValue]
 
         slateIdLabel.text = opendSlate?.id
         tableView.reloadData()
@@ -51,10 +63,17 @@ class SlateViewController: UIViewController {
                       "Finalize and Broadcast"][type.rawValue]
         operateButton.setTitle(title, for: .normal)
 
-        let icon = [R.image.grin_tx_file_init(),
-                    R.image.grin_tx_receive(),
-                    R.image.grin_tx_file_finalize()][type.rawValue]
-        statusImageView.image = icon
+        statusImageView.image = [
+            R.image.grin_tx_file_init(),
+            R.image.grin_tx_file_receive(),
+            R.image.grin_tx_file_finalize()
+            ][type.rawValue]
+
+        statusLabel.text = [
+            "Initialized",
+            "Sent",
+            "Received",
+        ][type.rawValue]
     }
 
     func bind() {

@@ -16,6 +16,7 @@
                 <outlet property="operateButton" destination="Y1w-qk-JQd" id="6fh-cr-i2a"/>
                 <outlet property="slateIdLabel" destination="4lg-Gs-UIf" id="Rer-dm-byJ"/>
                 <outlet property="statusImageView" destination="6La-Nb-Y8u" id="wF5-LL-VjB"/>
+                <outlet property="statusLabel" destination="mlu-z2-RYy" id="HIQ-ns-xDZ"/>
                 <outlet property="tableView" destination="2Ee-kG-2aj" id="2DX-PA-xfo"/>
                 <outlet property="titleView" destination="flS-Rg-Z40" id="v1K-Ir-y7V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -118,6 +119,19 @@
                         <action selector="handleSlate:" destination="-1" eventType="touchUpInside" id="JOC-Kj-h8D"/>
                     </connections>
                 </button>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsM-Sn-K50">
+                    <rect key="frame" x="28" y="87" width="6" height="6"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="2FN-OI-oNP"/>
+                        <constraint firstAttribute="width" constant="6" id="4aE-kk-7Sy"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.97647058823529409" green="0.9882352941176471" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -133,7 +147,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="87v-aq-uMf" secondAttribute="trailing" constant="22" id="d3N-UF-rZW"/>
                 <constraint firstItem="Pfh-24-Wt0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="egi-se-U5e"/>
                 <constraint firstItem="Y1w-qk-JQd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="kSZ-Q1-MtG"/>
+                <constraint firstItem="87v-aq-uMf" firstAttribute="top" secondItem="MsM-Sn-K50" secondAttribute="top" constant="-5" id="lB8-a3-Sad"/>
                 <constraint firstItem="87v-aq-uMf" firstAttribute="top" secondItem="flS-Rg-Z40" secondAttribute="bottom" constant="12" id="r88-yd-Olo"/>
+                <constraint firstItem="87v-aq-uMf" firstAttribute="leading" secondItem="MsM-Sn-K50" secondAttribute="trailing" constant="2" id="s8m-xm-nYn"/>
                 <constraint firstItem="6La-Nb-Y8u" firstAttribute="centerY" secondItem="Pfh-24-Wt0" secondAttribute="top" id="sbz-5i-9Fn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
