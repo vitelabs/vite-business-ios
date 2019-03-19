@@ -100,6 +100,7 @@ public class DebugService {
                 DispatchQueue.main.async {
                     AppUpdateService.checkUpdate()
                     AppConfigService.instance.start()
+                    MyTokenInfosService.instance.clear()
                 }
             }
         }

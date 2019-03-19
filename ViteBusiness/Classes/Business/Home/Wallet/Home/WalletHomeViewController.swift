@@ -129,6 +129,7 @@ class WalletHomeViewController: BaseTableViewController {
                 guard let `self` = self else { fatalError() }
                 if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
+                    MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)

@@ -59,7 +59,7 @@ public final class ExchangeRateManager {
                 plog(level: .debug, log: "start fetch", tag: .exchange)
                 self.rateMapBehaviorRelay.accept(self.read())
                 let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
-                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5, completion: { [weak self] (r) in
+                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5 * 60, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
                     switch r {
                     case .success(let map):
