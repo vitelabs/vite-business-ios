@@ -125,6 +125,11 @@ class EthSendTokenController: BaseViewController {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+
     private func setupView() {
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.symbol))
