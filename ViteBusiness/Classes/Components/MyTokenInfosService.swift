@@ -50,7 +50,7 @@ public final class MyTokenInfosService: NSObject {
                         let jsonString = String(data: data, encoding: .utf8),
                         let tokenInfos = [TokenInfo](JSONString: jsonString) {
                         let selected = tokenInfos.filter { !defaultTokenInfos.contains($0) }
-                        self.tokenInfosBehaviorRelay.accept(selected + defaultTokenInfos)
+                        self.tokenInfosBehaviorRelay.accept(defaultTokenInfos + selected)
                     } else {
                         self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
                     }
@@ -164,7 +164,7 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))
         } else {
-            ExchangeProvider.instance.getTokenInfo(chain: "Vite", id: viteTokenId, completion: completion)
+            ExchangeProvider.instance.getTokenInfo(chain: "VITE", id: viteTokenId, completion: completion)
         }
     }
 
@@ -189,10 +189,9 @@ extension TokenInfo {
 }
 
 extension MyTokenInfosService {
-    #if DEBUG || TEST
+    // for debug
     func clear() {
         tokenInfosBehaviorRelay.accept([])
         pri_save()
     }
-    #endif
 }

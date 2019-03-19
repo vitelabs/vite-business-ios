@@ -170,6 +170,11 @@ class WalletHomeViewController: BaseTableViewController {
                     scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
                     return
                 }
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
+                
                 switch uri.type {
                 case .transfer:
                     var note = ""
@@ -203,6 +208,10 @@ class WalletHomeViewController: BaseTableViewController {
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let tokenInfo):
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
 
                 var balance: Balance? = nil
                 if let amount = uri.amount,

@@ -99,15 +99,19 @@ extension ExchangeProvider {
         return sendRequest(api: .getTokenInfo(tokenCode), completion: { (ret) in
             switch ret {
             case .success(let json):
-                var map = [String: [TokenInfo]]()
-                if let json = json as? [String: Any] {
-                    json.forEach({ (key, value) in
-                        if let array = value as? [[String: Any]] {
-                            map[key] = [TokenInfo](JSONArray: array).compactMap { $0 }
-                        }
+                var map = [TokenCode: TokenInfo]()
+                if let json = json as? [[String: Any]] {
+                    let tokenInfos = [TokenInfo](JSONArray: json).compactMap { $0 }
+                    tokenInfos.forEach({ (tokenInfo) in
+                        map[tokenInfo.tokenCode] = tokenInfo
                     })
                 }
-            //                completion(Result.success(map))
+
+                if let tokenInfo = map[tokenCode] {
+                    completion(Result.success(tokenInfo))
+                } else {
+                    completion(Result.failure(ExchangeError.notFound))
+                }
             case .failure(let error):
                 completion(Result.failure(error))
             }
@@ -119,15 +123,18 @@ extension ExchangeProvider {
         return sendRequest(api: .getTokenInfoInChain(chain, id), completion: { (ret) in
             switch ret {
             case .success(let json):
-                var map = [String: [TokenInfo]]()
-                if let json = json as? [String: Any] {
-                    json.forEach({ (key, value) in
-                        if let array = value as? [[String: Any]] {
-                            map[key] = [TokenInfo](JSONArray: array).compactMap { $0 }
-                        }
+                var map = [String: TokenInfo]()
+                if let json = json as? [[String: Any]] {
+                    let tokenInfos = [TokenInfo](JSONArray: json).compactMap { $0 }
+                    tokenInfos.forEach({ (tokenInfo) in
+                        map[tokenInfo.id] = tokenInfo
                     })
                 }
-            //                completion(Result.success(map))
+                if let tokenInfo = map[id] {
+                    completion(Result.success(tokenInfo))
+                } else {
+                    completion(Result.failure(ExchangeError.notFound))
+                }
             case .failure(let error):
                 completion(Result.failure(error))
             }

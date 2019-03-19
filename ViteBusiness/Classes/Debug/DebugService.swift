@@ -101,6 +101,7 @@ public class DebugService {
                     AppUpdateService.checkUpdate()
                     AppConfigService.instance.start()
                     MyTokenInfosService.instance.clear()
+                    TokenListService.instance.fetchTokenListServerData()
                 }
             }
         }
