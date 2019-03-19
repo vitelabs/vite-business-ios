@@ -102,6 +102,10 @@ public final class HDWalletManager {
         return accountBehaviorRelay.value
     }
 
+    var accounts: [Wallet.Account] {
+        return accountsBehaviorRelay.value
+    }
+
     var selectBagIndex: Int {
         return walletBehaviorRelay.value?.addressIndex ?? 0
     }

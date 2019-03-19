@@ -33,30 +33,38 @@ final class GrinWalletInfoVM {
 
     private let bag = DisposeBag()
 
-    private var grinBridge = GrinManager.default
+    private var grinBridge: GrinManager {
+        return GrinManager.default
+    }
 
     init() {
 
-        grinBridge.creatWalletIfNeeded()
+        action.asObservable()
+            .subscribe(onNext: { [weak self] (action) in
+                switch action {
+                case .checkWallet:
+                    self?.checkWallet()
+                case .getBalance(let manually):
+                    self?.getBalance(manually)
+                case .getTxs(let manually):
+                    self?.getTxs(manually)
+                case .cancel(let tx):
+                    self?.cancel(tx)
+                case .repost(let tx):
+                    self?.repost(tx)
+                }
 
-        action.asObservable().subscribe(onNext: { [weak self] (action) in
-            switch action {
-            case .checkWallet:
-                self?.checkWallet()
-            case .getBalance(let manually):
-                self?.getBalance(manually)
-            case .getTxs(let manually):
-                self?.getTxs(manually)
-            case .cancel(let tx):
-                self?.cancel(tx)
-            case .repost(let tx):
-                self?.repost(tx)
-            }
         })
         .disposed(by: bag)
 
-         _ = Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
+         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .map { _ in Action.getBalance(manually: false) }
+            .bind(to: self.action)
+            .disposed(by: bag)
+        balance.asObservable()
+            .skip(1)
+            .distinctUntilChanged { $0.amountCurrentlySpendable == $1.amountCurrentlySpendable }
+            .map { _ in  Action.getTxs(manually: false) }
             .bind(to: self.action)
             .disposed(by: bag)
 
@@ -77,22 +85,23 @@ final class GrinWalletInfoVM {
 
     func getBalance(_ manually: Bool) {
         let result = self.grinBridge.walletInfo(refreshFromNode: true)
-        switch result {
-        case .success(let info):
-            self.balance.accept(GrinBalance(info))
-        case .failure(let error):
-            if manually { errorMessage.accept(error.message) }
+            switch result {
+            case .success(let info):
+                self.balance.accept(GrinBalance(info))
+            case .failure(let error):
+                if manually { self.errorMessage.accept(error.message) }
         }
+
     }
 
     func getTxs(_ manually: Bool) {
-        let result = self.grinBridge.txsGet(refreshFromNode: true)
-        switch result {
-        case .success((_, let txs)):
-            self.txs.accept(txs)
-        case .failure(let error):
-            if manually { errorMessage.accept(error.message) }
-        }
+        let result = self.grinBridge.txsGet(refreshFromNode: false)
+            switch result {
+            case .success((_, let txs)):
+                self.txs.accept(txs)
+            case .failure(let error):
+                if manually { self.errorMessage.accept(error.message) }
+            }
     }
 
     func cancel(_ tx: TxLogEntry) {
@@ -116,5 +125,5 @@ final class GrinWalletInfoVM {
             errorMessage.accept(error.message)
         }
     }
-
 }
+

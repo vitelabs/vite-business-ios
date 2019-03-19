@@ -7,39 +7,106 @@
 
 import UIKit
 import Vite_GrinWallet
+import ViteWallet
+import BigInt
 
 class SlateViewController: UIViewController {
 
+    enum OperateType: Int {
+        case sent
+        case receive
+        case finalize
+    }
+
+    @IBOutlet weak var titleView: GrinTransactionTitleView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
-
     @IBOutlet weak var slateIdLabel: UILabel!
-
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var operateButton: UIButton!
 
-    var slate: Slate?
+    var opendSlate: Slate?
+    var opendSlateUrl: URL?
 
-
+    var type = OperateType.sent
     var document: UIDocumentInteractionController!
+
+    let transferVM = GrinTransferVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
+        bind()
+    }
 
-        // Do any additional setup after loading the view.
+    func setUpView() {
+        titleView.symbolLabel.text = "Grin转账"
+        titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
+
+        slateIdLabel.text = opendSlate?.id
+        tableView.reloadData()
+
+        let title =  ["Share Transaction File",
+                      "Sign and share Transaction",
+                      "Finalize and Broadcast"][type.rawValue]
+        operateButton.setTitle(title, for: .normal)
+
+        let icon = [R.image.grin_tx_file_init(),
+                    R.image.grin_tx_receive(),
+                    R.image.grin_tx_file_finalize()][type.rawValue]
+        statusImageView.image = icon
+    }
+
+    func bind() {
+
+        transferVM.receiveTxCreated.asObserver()
+            .bind { [weak self] url in
+                self?.shareSlate(url: url)
+        }
+
+        transferVM.errorMessage.asObservable()
+            .bind { message in
+                Toast.show(message)
+        }
+
     }
 
     @IBAction func handleSlate(_ sender: Any) {
-//        guard let slate = slate else {
-//            return
-//        }
-
-        let url = GrinManager.default.getSlateUrl(slateId: "00117c3a-6c7c-44c3-8ae1-2080e4f5e02d", isResponse: false)
-        try? "123456".write(to: url, atomically: true, encoding: .utf8)
-        if !FileManager.default.fileExists(atPath: url.path) {
-           try? "123456".write(to: url, atomically: true, encoding: .utf8)
+        guard let slate = opendSlate ,let url = opendSlateUrl else { return }
+        if type == .sent {
+            shareSlate(url: url)
+        } else if type == .receive {
+            transferVM.action.onNext(.receiveTx(slateUrl: url))
+        } else if type == .finalize {
+            transferVM.action.onNext(.finalizeTx(slateUrl: url))
         }
-         document = UIDocumentInteractionController.init(url: url)
-        document.presentOpenInMenu(from: self.view.bounds, in: self.view, animated: true)
-
     }
 
+    func shareSlate(url: URL) {
+        document = UIDocumentInteractionController(url: url)
+        document.presentOpenInMenu(from: self.view.bounds, in: self.view, animated: true)
+    }
+
+}
+
+extension SlateViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
+        cell.textLabel?.textColor = UIColor(netHex: 0x3e4159)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
+        cell.detailTextLabel?.textColor = UIColor(netHex: 0x3e4159)
+        guard let slate = opendSlate else { fatalError() }
+        var arr = [
+            ("Amount", Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9) + " GRIN") ,
+            ("Fee", Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9) + " GRIN")
+        ]
+        cell.textLabel?.text = arr[indexPath.row].0
+        cell.detailTextLabel?.text = arr[indexPath.row].1
+        return cell
+    }
 }

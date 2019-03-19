@@ -132,27 +132,15 @@ class WalletHomeViewController: BaseTableViewController {
                 if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     var balanceInfoDetailViewController : UIViewController!
-                    let podBundle = Bundle(for: GrinInfoViewController.self)
-                    let url = podBundle.url(forResource: "ViteBusiness", withExtension: "bundle")
-                    let resourceBundle = Bundle.init(url: url!)
-                    let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
-
-                    GrinManager.set(getWalletUrl: {
-                        FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!.appendingPathComponent("grin/firstwallet")
-                    }, getPassWord: {
-                         ""
-                    }) {
-                         .usernet
+                    if viewModel.tokenInfo.coinType == .eth {
+                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
+                    } else if  viewModel.tokenInfo.coinType == .grin {
+                        let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: businessBundle())
+                        balanceInfoDetailViewController = storyboard
+                            .instantiateInitialViewController() as? UIViewController
+                    } else {
+                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
-                    
-                     balanceInfoDetailViewController = storyboard
-                        .instantiateInitialViewController() as? UIViewController
-//                    if viewModel.tokenInfo.coinType == .eth {
-//                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
-//                    } else {
-//                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
-//                    }
-//
 
                     self.navigationController?.pushViewController(balanceInfoDetailViewController!, animated: true)
                 }

@@ -114,6 +114,8 @@ public struct TokenInfo: Mappable {
             } else {
                 return "ERC20 Token"
             }
+        case .grin:
+             return "Grin Coin"
         default:
             fatalError()
         }
@@ -210,6 +212,7 @@ extension TokenInfo {
             return nil
         }
     }
+
 
 
     var coinBackgroundGradientColors: [UIColor] {

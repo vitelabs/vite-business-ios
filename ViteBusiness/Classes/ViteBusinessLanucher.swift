@@ -60,6 +60,7 @@ public class ViteBusinessLanucher: NSObject {
         self.handleWebAppBridgeConfig()
         self.handleWebWalletBridgeConfig()
     }
+
     func handleWebWalletBridgeConfig()  {
         WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
@@ -281,6 +282,11 @@ public class ViteBusinessLanucher: NSObject {
         let rootVC = HomeViewController()
         window.rootViewController = rootVC
         window.makeKeyAndVisible()
+    }
+
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        GrinManager.default.handle(url: url)
+        return true
     }
 
 }

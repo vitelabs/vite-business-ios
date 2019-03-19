@@ -26,15 +26,15 @@ class GrinTransactionTitleView: UIView {
         addSubview(symbolLabel)
         addSubview(tokenIconView)
 
-        backgroundColor = UIColor.white
-        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 20
+//        backgroundColor = UIColor.white
+//        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+//        layer.shadowOpacity = 0.1
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+//        layer.shadowRadius = 20
 
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)
-            m.bottom.equalToSuperview().offset(-72)
+            m.bottom.equalToSuperview()
             m.size.equalTo(CGSize(width: 50, height: 50))
         }
 
@@ -43,6 +43,7 @@ class GrinTransactionTitleView: UIView {
             m.right.equalTo(tokenIconView.snp.left).offset(-10)
             m.centerY.equalTo(tokenIconView)
         }
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +51,4 @@ class GrinTransactionTitleView: UIView {
         setUpSubVeiws()
     }
 
-    func bind(tokenInfo: TokenInfo) {
-        symbolLabel.text = tokenInfo.symbol
-        tokenIconView.tokenInfo = tokenInfo
-    }
 }

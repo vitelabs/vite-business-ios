@@ -40,10 +40,11 @@ final class WalletHomeBalanceInfoTableViewModel {
                         switch tokenInfo.coinType {
                         case .vite:
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
-                        case .eth:
+                        //TODO: - grin
+                        case .eth, .grin:
                             return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
                         default:
-                            fatalError()
+                            break
                         }
                     }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
                         return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)

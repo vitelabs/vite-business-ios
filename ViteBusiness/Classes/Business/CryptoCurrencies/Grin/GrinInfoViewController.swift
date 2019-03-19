@@ -43,6 +43,7 @@ class GrinInfoViewController: BaseViewController {
     }
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
         setupView()
         bind()
@@ -50,18 +51,19 @@ class GrinInfoViewController: BaseViewController {
 
     func bind() {
         walletInfoVM.balanceDriver
-            .drive(onNext:{ info in
-                self.spendableAcountLabel.text = info.amountCurrentlySpendable
-                self.awaitingCountLable.text = info.amountAwaitingConfirmation
-                self.lockedCountLabel.text = info.amountLocked
-                self.totalCountLabel.text = info.total
+            .drive(onNext:{ [weak self] info in
+                self?.spendableAcountLabel.text = info.amountCurrentlySpendable
+                self?.awaitingCountLable.text = info.amountAwaitingConfirmation
+                self?.lockedCountLabel.text = info.amountLocked
+                self?.totalCountLabel.text = info.total
+                self?.spendableExchangeLalbe.text = info.legalTenderWorthed
             })
             .disposed(by: rx.disposeBag)
 
         walletInfoVM.txsDriver
-            .drive(onNext:{ _ in
-                self.tableView.mj_header.endRefreshing()
-                self.tableView.reloadData()
+            .drive(onNext:{  [weak self] _ in
+                self?.tableView.mj_header.endRefreshing()
+                self?.tableView.reloadData()
             })
             .disposed(by: rx.disposeBag)
 
@@ -71,12 +73,12 @@ class GrinInfoViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
 
         navigationItem.rightBarButtonItem?.rx.tap.asObservable()
-            .bind {
+            .bind { [weak self] in
                 Alert.show(title: "Check",
                            message: "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version",
                            actions: [
                             (.cancel, nil),
-                            (.default(title: R.string.localizable.confirm()), { [weak self] _ in
+                            (.default(title: R.string.localizable.confirm()), { _ in
                                 self?.walletInfoVM.action.onNext(.checkWallet)
                             }),
                     ])
@@ -90,13 +92,7 @@ class GrinInfoViewController: BaseViewController {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem.init(image: R.image.icon_nav_more(), style: .plain, target: nil, action: nil)
 
-        MyTokenInfosService.instance.tokenInfo(for: "Grin") { [weak self] (reslut) in
-            if case .success (let info) = reslut {
-                self?.titleView.bind(tokenInfo: info)
-            }
-            let tokenInfo: TokenInfo = TokenInfo(tokenCode: "Grin", coinType: .grin, name: "Grin", symbol: "Grin", decimals: 9, icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png", id: "")
-            self?.titleView.bind(tokenInfo: tokenInfo)
-        }
+        self.titleView.bind(tokenInfo: GrinManager.tokenInfo)
 
         grinCardBgView.backgroundColor =
             UIColor.gradientColor(style: .leftTop2rightBottom,
@@ -113,20 +109,34 @@ class GrinInfoViewController: BaseViewController {
 
     @IBAction func sendAciton(_ sender: Any) {
         let a0 = UIAlertAction.init(title: "通过Vite地址", style: .default) { (_) in
+            let shouldTeach = false
+            if shouldTeach {
+            } else {
+                if GrinTransferVM().support(method: .viteAddress) {
 
+                } else {
+                    Toast.show("请切换到第一个地址")
+                }
+            }
         }
         let a1 = UIAlertAction.init(title: "通过Http地址", style: .default) { (_) in
+            let shouldTeach = false
+            if shouldTeach {
+            } else {
+                if GrinTransferVM().support(method: .httpURL) {
+
+                } else {
+                    Toast.show("请切换到第一个地址")
+                }
+            }
 
         }
         let a2 = UIAlertAction.init(title: "通过交易文件", style: .default) { (_) in
-            let podBundle = Bundle(for: GrinInfoViewController.self)
-            let url = podBundle.url(forResource: "ViteBusiness", withExtension: "bundle")
-            let resourceBundle = Bundle.init(url: url!)
+            let resourceBundle = businessBundle()
             let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
             let sendGrinViewController = storyboard
                 .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
             self.navigationController?.pushViewController(sendGrinViewController, animated: true)
-
         }
         let a3 = UIAlertAction.init(title: "取消", style: .cancel) { _ in }
 
@@ -158,35 +168,29 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        let tx = self.walletInfoVM.txs.value[indexPath.row]
-        if tx.txSlateId == nil {
-
-        }
         return true
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let tx = self.walletInfoVM.txs.value[indexPath.row]
         var action = [UITableViewRowAction]()
-        if tx.txSlateId != nil {
+        if let slateId = tx.txSlateId {
             let copyAction = UITableViewRowAction.init(style: .default, title: "复制ID") { (_, _) in
-                    Toast.show(tx.txSlateId ?? "复制ID")
+                    UIPasteboard.general.string = slateId
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0x479FFF)}
             action.append(copyAction)
         }
 
-        let canRespost = tx.txType == .txSent && !tx.confirmed
-        if  canRespost {
-            let reSendAction = UITableViewRowAction.init(style: .default, title: "重发") { (_, _) in
+        if tx.canRepost {
+            let repostAction = UITableViewRowAction.init(style: .default, title: "重发") { (_, _) in
                     self.walletInfoVM.action.onNext(.repost(tx))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xFFC900)}
-            action.append(reSendAction)
+            action.append(repostAction)
         }
 
-        let canCancle = (tx.txType == .txSent || tx.txType == .txReceived) && !tx.confirmed
-        if  canCancle {
+        if tx.canCancel {
             let cancleAction = UITableViewRowAction(style: .default, title: "取消") { (_, _) in
                     self.walletInfoVM.action.onNext(.cancel(tx))
                 }
