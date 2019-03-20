@@ -16,52 +16,39 @@ Pod::Spec.new do |s|
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = "Vite Business"
-
   s.homepage         = 'https://github.com/vitelabs/vite-business-ios'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'haoshenyang' => 'shenyang@vite.org' }
   s.source           = { :git => 'https://github.com/vitelabs/vite-business-ios.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
   s.ios.deployment_target = '10.0'
-  
-  #s.resources = 'ViteBusiness/Assets/ViteBusiness.bundle'
-
-
   s.static_framework = true
-  s.default_subspec = 'Default'
-  s.subspec 'Default' do |c|
-    c.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
-    c.source_files = 'ViteBusiness/Classes/**/*'
-    c.resource_bundles = {
+  s.source_files = 'ViteBusiness/Classes/**/*'
+  s.resource_bundles = {
       'ViteBusiness' => ['ViteBusiness/Assets/*']
-    }
-  end
+  }
 
   s.subspec 'Official' do |c|
-    c.dependency "ViteBusiness/Default"
     c.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL'
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL',
+      'SWIFT_VERSION' => '4.2'
     }
   end
 
   s.subspec 'Test' do |c|
-    c.dependency "ViteBusiness/Default"
-    c.pod_target_xcconfig = { 
+    c.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST'
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST',
+      'SWIFT_VERSION' => '4.2'
     }
   end
 
   s.subspec 'Enterprise' do |c|
-    c.dependency "ViteBusiness/Default"
-    c.pod_target_xcconfig = { 
+    c.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => 'ENTERPRISE=1',
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ENTERPRISE'
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ENTERPRISE',
+      'SWIFT_VERSION' => '4.2'
     }
   end
 
@@ -148,12 +135,4 @@ Pod::Spec.new do |s|
   s.dependency 'ViteUtils'
   s.dependency 'ViteWallet'
   s.dependency 'ViteEthereum'
-
-  # s.resource_bundles = {
-  #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
