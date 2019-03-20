@@ -140,12 +140,14 @@ extension TokenListManageController : UISearchControllerDelegate {
 
 extension TokenListManageController : UISearchBarDelegate {
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+//        searchBar.text = ""
         self.searchVC?.isActive = false
     }
 
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        searchBar.text = ""
-        self.searchVC?.dismiss(animated: true, completion: nil)
+        searchBar.resignFirstResponder()
+//        searchBar.text = ""
+//        self.searchVC?.dismiss(animated: true, completion: nil)
     }
 }
 extension TokenListManageController : UITableViewDelegate {
