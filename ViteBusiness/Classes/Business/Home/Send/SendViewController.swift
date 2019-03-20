@@ -78,7 +78,7 @@ class SendViewController: BaseViewController {
 
     // headerView
     var navView = SendNavView()
-    lazy var headerView = SendHeaderView(address: account.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
 
     var addressView: SendAddressViewType!
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", symbol: token.symbol)
@@ -206,7 +206,7 @@ class SendViewController: BaseViewController {
             }
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.quotaDriver
+        FetchQuotaService.instance.maxTxCountDriver
             .map({ R.string.localizable.sendPageQuotaContent($0) })
             .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }

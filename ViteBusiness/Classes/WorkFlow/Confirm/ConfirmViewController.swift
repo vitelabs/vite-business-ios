@@ -85,11 +85,11 @@ class ConfirmViewController: UIViewController {
             guard let `self` = self else { return }
             let result = HDWalletManager.instance.verifyPassword(textField.text ?? "")
             self.procese(result ? .success : .passwordAuthFailed)
-        }))
+        }), delegate: self)
 
         NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .filter { [weak self] _  in
-                return self?.contentView.type == .password && self?.contentView.transform == .identity
+                return self?.contentView.type == .password
             }
             .subscribe(onNext: {[weak self] (notification) in
                 let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0.25
@@ -107,5 +107,11 @@ class ConfirmViewController: UIViewController {
         self.dismiss(animated: false, completion: { [weak self] in
             self?.completion(result)
         })
+    }
+}
+
+extension ConfirmViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.dismiss(animated: false, completion: nil)
     }
 }

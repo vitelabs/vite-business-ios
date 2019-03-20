@@ -54,6 +54,7 @@ public class ViteBusinessLanucher: NSObject {
         ViteBalanceInfoManager.instance.start()
         ETHBalanceInfoManager.instance.start()
         FetchQuotaService.instance.start()
+        AddressManageService.instance.start()
 
         //web
         self.handleWebUIConfig()
