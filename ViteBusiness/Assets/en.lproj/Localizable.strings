@@ -25,22 +25,22 @@
 /* Login */
 "create.account" = "Create Account";
 "import.account" = "Import Account";
-"select.wallet.account" = "Select wallet account";
+"select.wallet.account" = "Select your account";
 
 /* Lock */
 "lock.page.pwd.btn.title" = "Login via password";
 "lock.page.fingerprint.btn.title" = "Arouse verify again";
 "lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch account";
+"lock.page.changeUser.btn.title" = "Switch Account";
 
 /* create */
 "create.page.title" = "Create Account";
 "create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "请输入密码";
+"create.page.pw.title" = "Please input password";
 "create.page.pw.repeate.title" = "Please input your password again";
 "create.page.submit.btn.title" = "Create";
 
-"create.page.tip.title" = "Back up Wallet Account";
+"create.page.tip.title" = "Backup Wallet Account";
 "create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
 "create.page.tip.nextBtn" = "Generate Seed Phrase";
 
@@ -58,7 +58,7 @@
 "mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
 "mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.affirm.page.title" = "Confirm your seed phrase";
@@ -344,36 +344,36 @@
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
 
 // eth
-"eth.page.gasFee.title" = "矿工费用";
-"eth.page.gasFee.slow.title" = "慢";
-"eth.page.gasFee.fast.title" = "快";
-"eth.page.gasFee.notice.title" = "消耗不完的Gas会全部退还";
+"eth.page.gasFee.title" = "Gas Fee";
+"eth.page.gasFee.slow.title" = "Slow";
+"eth.page.gasFee.fast.title" = "Fast";
+"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
 
 //token
-"token.list.page.search.title" = "输入Token名称或合约地址";
-"token.list.page.section.vite.header" = "VITE网络";
-"token.list.page.section.eth.header" = "ETH网络";
+"token.list.page.search.title" = "Please input token name or contract address";
+"token.list.page.section.vite.header" = "VITE";
+"token.list.page.section.eth.header" = "ETH";
 
 // Contacts Home
-"contacts.home.page.title" = "联系地址";
-"contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
-"contacts.home.page.single.no.contact.tip" = "暂无 %@ 联系地址";
-"contacts.home.page.filter.all" = "全部";
-"contacts.home.page.add.button.title" = "添加";
+"contacts.home.page.title" = "Contact Address";
+"contacts.home.page.no.contact.tip" = "Add your first address";
+"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
+"contacts.home.page.filter.all" = "All";
+"contacts.home.page.add.button.title" = "Add";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "添加联系地址";
-"contacts.edit.page.edit.title" = "编辑联系地址";
-"contacts.edit.page.name.title" = "姓名";
-"contacts.edit.page.address.title" = "请输入地址";
-"contacts.edit.page.type.select.title" = "选择地址所属网络";
-"contacts.edit.page.save.button.title" = "保存";
-"contacts.edit.page.save.success.tip" = "成功添加联系地址";
-"contacts.edit.page.edit.success.tip" = "保存成功";
-"contacts.edit.page.delete.button.title" = "删除联系人";
-"contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
+"contacts.edit.page.add.title" = "Add Contact Address";
+"contacts.edit.page.edit.title" = "Edit Contact Address";
+"contacts.edit.page.name.title" = "Name";
+"contacts.edit.page.address.title" = "Please input address";
+"contacts.edit.page.type.select.title" = "Select token type";
+"contacts.edit.page.save.button.title" = "Save";
+"contacts.edit.page.save.success.tip" = "Successfully added";
+"contacts.edit.page.edit.success.tip" = "Successfully saved";
+"contacts.edit.page.delete.button.title" = "Delete contact";
+"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "我的地址";
-"address.list.page.other.title" = "%@ 联系地址";
-"address.list.page.no.address.tip" = "暂无 %@ 联系地址";
+"address.list.page.my.title" = "My Address";
+"address.list.page.other.title" = "%@ contact address";
+"address.list.page.no.address.tip" = "No %@ address yet";

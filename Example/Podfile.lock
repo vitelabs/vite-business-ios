@@ -31,6 +31,7 @@ PODS:
   - CryptoSwift (0.12.0)
   - DACircularProgress (2.3.1)
   - Differentiator (3.1.0)
+  - DNSPageView (1.1.5)
   - Eureka (4.3.0)
   - Fabric (1.9.0)
   - FBRetainCycleDetector (0.1.4)
@@ -170,6 +171,7 @@ PODS:
     - Crashlytics
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
+    - DNSPageView
     - Eureka (~> 4.3.0)
     - Fabric
     - Firebase/Core
@@ -201,12 +203,14 @@ PODS:
     - Then
     - Toast-Swift (~> 4.0.1)
     - Vite_HDWalletKit
-    - ViteBusiness/Default (= 0.0.1)
+    - ViteBusiness/Enterprise (= 0.0.1)
+    - ViteBusiness/Official (= 0.0.1)
+    - ViteBusiness/Test (= 0.0.1)
     - ViteEthereum
     - ViteUtils
     - ViteWallet
     - XCGLogger (~> 6.1.0)
-  - ViteBusiness/Default (0.0.1):
+  - ViteBusiness/Enterprise (0.0.1):
     - Action
     - ActionSheetPicker-3.0
     - Alamofire
@@ -217,6 +221,101 @@ PODS:
     - Crashlytics
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
+    - DNSPageView
+    - Eureka (~> 4.3.0)
+    - Fabric
+    - Firebase/Core
+    - JSONRPCKit (~> 3.0.0)
+    - KeychainSwift
+    - Kingfisher (~> 4.0)
+    - KMNavigationBarTransition
+    - MBProgressHUD
+    - MJRefresh
+    - MLeaksFinder
+    - Moya
+    - "NSObject+Rx"
+    - NYXImagesKit (= 2.3)
+    - ObjectMapper
+    - pop (~> 1.0)
+    - PromiseKit (~> 6.0)
+    - R.swift (= 5.0.0.alpha.3)
+    - RazzleDazzle
+    - ReactorKit
+    - ReusableKit (~> 2.1.0)
+    - RxCocoa
+    - RxDataSources (~> 3.0)
+    - RxGesture
+    - RxOptional
+    - RxSwift (~> 4.0)
+    - SnapKit (~> 4.0.0)
+    - SwiftLint
+    - SwiftyJSON
+    - Then
+    - Toast-Swift (~> 4.0.1)
+    - Vite_HDWalletKit
+    - ViteEthereum
+    - ViteUtils
+    - ViteWallet
+    - XCGLogger (~> 6.1.0)
+  - ViteBusiness/Official (0.0.1):
+    - Action
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - APIKit
+    - BaiduMobStat
+    - BigInt (~> 3.0)
+    - CHIPageControl
+    - Crashlytics
+    - CryptoSwift
+    - DACircularProgress (= 2.3.1)
+    - DNSPageView
+    - Eureka (~> 4.3.0)
+    - Fabric
+    - Firebase/Core
+    - JSONRPCKit (~> 3.0.0)
+    - KeychainSwift
+    - Kingfisher (~> 4.0)
+    - KMNavigationBarTransition
+    - MBProgressHUD
+    - MJRefresh
+    - MLeaksFinder
+    - Moya
+    - "NSObject+Rx"
+    - NYXImagesKit (= 2.3)
+    - ObjectMapper
+    - pop (~> 1.0)
+    - PromiseKit (~> 6.0)
+    - R.swift (= 5.0.0.alpha.3)
+    - RazzleDazzle
+    - ReactorKit
+    - ReusableKit (~> 2.1.0)
+    - RxCocoa
+    - RxDataSources (~> 3.0)
+    - RxGesture
+    - RxOptional
+    - RxSwift (~> 4.0)
+    - SnapKit (~> 4.0.0)
+    - SwiftLint
+    - SwiftyJSON
+    - Then
+    - Toast-Swift (~> 4.0.1)
+    - Vite_HDWalletKit
+    - ViteEthereum
+    - ViteUtils
+    - ViteWallet
+    - XCGLogger (~> 6.1.0)
+  - ViteBusiness/Test (0.0.1):
+    - Action
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - APIKit
+    - BaiduMobStat
+    - BigInt (~> 3.0)
+    - CHIPageControl
+    - Crashlytics
+    - CryptoSwift
+    - DACircularProgress (= 2.3.1)
+    - DNSPageView
     - Eureka (~> 4.3.0)
     - Fabric
     - Firebase/Core
@@ -306,6 +405,7 @@ SPEC REPOS:
     - CryptoSwift
     - DACircularProgress
     - Differentiator
+    - DNSPageView
     - Eureka
     - Fabric
     - FBRetainCycleDetector
@@ -393,6 +493,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  DNSPageView: 005cbaf42be33eccc6d7547c591b0089a96ea33e
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
@@ -442,7 +543,7 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: bb71c75cf48209ec3c075c46becf4e669592883b
+  ViteBusiness: e753b133f6071a2348bd98f8ef5bd199ac1bcda0
   ViteEthereum: 1ec6e02ff0cd7c63a4379a0bdf3577fa5dcf1029
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
