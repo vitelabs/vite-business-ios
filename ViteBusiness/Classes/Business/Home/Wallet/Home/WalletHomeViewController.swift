@@ -91,8 +91,7 @@ class WalletHomeViewController: BaseTableViewController {
         if #available(iOS 11.0, *) {
 
         } else {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
-            tableView.scrollIndicatorInsets = tableView.contentInset
+            self.automaticallyAdjustsScrollViewInsets = false
         }
     }
 

@@ -180,7 +180,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendSuccess(),
+                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
                               type: .other,
                               completion: completion)
         }

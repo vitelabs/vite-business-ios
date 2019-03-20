@@ -60,7 +60,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
@@ -241,7 +241,7 @@ extension QuotaManageViewController {
                 }
             }).disposed(by: rx.disposeBag)
 
-    FetchQuotaService.instance.quotaDriver
+    FetchQuotaService.instance.maxTxCountDriver
         .map({ R.string.localizable.sendPageQuotaContent($0) })
         .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }

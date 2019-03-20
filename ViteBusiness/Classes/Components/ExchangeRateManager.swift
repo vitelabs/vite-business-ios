@@ -80,6 +80,10 @@ public final class ExchangeRateManager {
                 self.service = nil
             }
         }).disposed(by: disposeBag)
+
+        rateMapDriver.drive(onNext: { (map) in
+            print("sdfsdf \(map)")
+        }).disposed(by: disposeBag)
     }
 
     func getRateImmediately(for tokenCode: TokenCode) {
@@ -93,7 +97,7 @@ public final class ExchangeRateManager {
                 if let rate = map[tokenCode] {
                     var old = self.rateMapBehaviorRelay.value
                     old[tokenCode] = rate
-                    self.rateMapBehaviorRelay.accept(map)
+                    self.rateMapBehaviorRelay.accept(old)
                     self.pri_save()
                 }
             case .failure(let error):
