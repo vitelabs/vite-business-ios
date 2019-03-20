@@ -47,11 +47,14 @@ class EthSendTokenController: BaseViewController {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView.stackView)
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     // View
@@ -123,16 +126,6 @@ class EthSendTokenController: BaseViewController {
             guard let gas = result else { return }
             self?.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
 
     private func setupView() {

@@ -988,7 +988,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: ETH网络代币
+      /// en translation: ETH网络
       /// 
       /// Locales: en, zh-Hans
       static let tokenListPageSectionEthHeader = Rswift.StringResource(key: "token.list.page.section.eth.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1608,7 +1608,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeValidWalletNameCount = Rswift.StringResource(key: "mnemonic.backup.page.error.type.validWalletNameCount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: VITE网络代币
+      /// en translation: VITE网络
       /// 
       /// Locales: en, zh-Hans
       static let tokenListPageSectionViteHeader = Rswift.StringResource(key: "token.list.page.section.vite.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2343,7 +2343,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: ETH网络代币
+      /// en translation: ETH网络
       /// 
       /// Locales: en, zh-Hans
       static func tokenListPageSectionEthHeader(_: Void = ()) -> String {
@@ -3428,7 +3428,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.validWalletNameCount", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: VITE网络代币
+      /// en translation: VITE网络
       /// 
       /// Locales: en, zh-Hans
       static func tokenListPageSectionViteHeader(_: Void = ()) -> String {

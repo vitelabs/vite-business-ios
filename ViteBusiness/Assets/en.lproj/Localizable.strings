@@ -351,8 +351,8 @@
 
 //token
 "token.list.page.search.title" = "输入Token名称或合约地址";
-"token.list.page.section.vite.header" = "VITE网络代币";
-"token.list.page.section.eth.header" = "ETH网络代币";
+"token.list.page.section.vite.header" = "VITE网络";
+"token.list.page.section.eth.header" = "ETH网络";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
