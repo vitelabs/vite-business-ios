@@ -18,7 +18,7 @@ class WalletHomeNavView: UIImageView {
     }
 
     fileprivate let priceLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.numberOfLines = 1
     }
@@ -70,7 +70,7 @@ class WalletHomeNavView: UIImageView {
         }
 
         scanButton.snp.makeConstraints { (m) in
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-7)
             m.bottom.equalToSuperview().offset(-74)
             m.size.equalTo(CGSize(width: 28, height: 28))
             m.left.equalTo(nameLabel.snp.right).offset(10)

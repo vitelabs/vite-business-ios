@@ -150,7 +150,7 @@
 
 /* Address Manage Page */
 "address.manage.page.title" = "Address Management";
-"address.manage.default.address.cell.title" = "Default Receiving Address";
+"address.manage.default.address.cell.title" = "Default Address";
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
@@ -347,6 +347,8 @@
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
 
 // eth
+"eth.send.page.my.address.title" = "My ETH Address";
+"eth.receive.page.my.address.title" = "My ETH Address";
 "eth.page.gasFee.title" = "Gas Fee";
 "eth.page.gasFee.slow.title" = "Slow";
 "eth.page.gasFee.fast.title" = "Fast";

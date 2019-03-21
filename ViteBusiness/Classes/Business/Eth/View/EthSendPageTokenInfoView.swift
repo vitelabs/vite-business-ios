@@ -13,7 +13,7 @@ class EthSendPageTokenInfoView: UIView {
     let addressTitleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyAddressTitle()
+        $0.text = R.string.localizable.ethSendPageMyAddressTitle()
     }
 
     let addressLabel = UILabel().then {

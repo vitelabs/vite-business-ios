@@ -147,9 +147,6 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         coinFamilyLabel.text = viewModel.coinFamily
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
-
-        DispatchQueue.main.async {
-            self.colorView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: self.colorView.frame, colors: viewModel.tokenInfo.coinBackgroundGradientColors)
-        }
+        colorView.backgroundColor = viewModel.tokenInfo.mainColor
     }
 }

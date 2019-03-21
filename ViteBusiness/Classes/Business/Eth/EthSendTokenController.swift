@@ -45,7 +45,7 @@ class EthSendTokenController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
@@ -232,7 +232,7 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
         if index == 0 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let scanViewController = ScanViewController()
