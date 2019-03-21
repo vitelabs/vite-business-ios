@@ -46,12 +46,14 @@ class EthInfoCardView: UIView {
 
     let receiveButton = UIButton().then {
     $0.setTitle(R.string.localizable.balanceInfoDetailReveiceButtonTitle(), for: .normal)
+        $0.titleLabel?.font = Fonts.Font14_b
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(.white, for: .highlighted)
     }
 
     let sendButton = UIButton().then {
         $0.setTitle(R.string.localizable.balanceInfoDetailSendButtonTitle(), for: .normal)
+        $0.titleLabel?.font = Fonts.Font14_b
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(.white, for: .highlighted)
     }

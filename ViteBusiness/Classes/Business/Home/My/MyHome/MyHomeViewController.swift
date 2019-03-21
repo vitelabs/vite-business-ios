@@ -164,7 +164,7 @@ extension MyHomeViewController {
         view.addSubview(iconBtn)
         iconBtn.snp.makeConstraints { (m) in
             m.centerY.equalTo(self.titleBtn)
-            m.left.equalTo(self.titleBtn.snp.right).offset(6)
+            m.left.equalTo(self.titleBtn.snp.right).offset(4)
         }
         iconBtn.addTarget(self, action: #selector(titleBtnAction), for: .touchUpInside)
 

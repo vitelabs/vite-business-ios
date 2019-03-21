@@ -764,7 +764,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVote = Rswift.StringResource(key: "pop.page.tip.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipQuota = Rswift.StringResource(key: "pop.page.tip.quota", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -788,6 +788,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeNameValid = Rswift.StringResource(key: "mnemonic.backup.page.error.type.nameValid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Acquire Quota
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPagePledgeTitle = Rswift.StringResource(key: "confirm.transaction.page.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Acquire Quota
       /// 
       /// Locales: en, zh-Hans
@@ -1020,10 +1024,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsEditPageDeleteButtonTitle = Rswift.StringResource(key: "contacts.edit.page.delete.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Designed in asynchronous architecture, so smooth to make transactions.
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Done
       /// 
       /// Locales: en, zh-Hans
@@ -1032,10 +1032,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: ETH
-      /// 
-      /// Locales: en, zh-Hans
-      static let tokenListPageSectionEthHeader = Rswift.StringResource(key: "token.list.page.section.eth.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -1064,6 +1060,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let confirmTransactionPageUsePasswordTitle = Rswift.StringResource(key: "confirm.transaction.page.use.password.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Ethereum网络
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSectionEthHeader = Rswift.StringResource(key: "token.list.page.section.eth.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -1072,10 +1072,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let manageWalletPageImportMnemonicCellTitle = Rswift.StringResource(key: "manage.wallet.page.importMnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Extremely Fast Transactions
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip2Title = Rswift.StringResource(key: "introduction.page.tip2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Fast
       /// 
       /// Locales: en, zh-Hans
@@ -1088,10 +1084,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailTitle = Rswift.StringResource(key: "aboutUs.page.email.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Feeless Transactions
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip1Title = Rswift.StringResource(key: "introduction.page.tip1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
@@ -1108,10 +1100,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNamePledge = Rswift.StringResource(key: "transaction.list.transaction.type.name.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: HD Wallet Structure
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: I know
       /// 
       /// Locales: en, zh-Hans
@@ -1580,10 +1568,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaManagePageQuotaSnapshootHeightTitle = Rswift.StringResource(key: "quota.manage.page.quota.snapshoot.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Start VITE Journey
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageNextBtnTitle = Rswift.StringResource(key: "introduction.page.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Submit
       /// 
       /// Locales: en, zh-Hans
@@ -1620,10 +1604,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let voteListSendSuccess = Rswift.StringResource(key: "vote.list.send.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Support multiple tokens, easy to manage accounts.
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip3Desc = Rswift.StringResource(key: "introduction.page.tip3.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Switch Account
       /// 
       /// Locales: en, zh-Hans
@@ -1683,11 +1663,19 @@ struct R: Rswift.Validatable {
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
+      static let confirmTransactionPageTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
       static let sendPageTitle = Rswift.StringResource(key: "send.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameTransfer = Rswift.StringResource(key: "transaction.list.transaction.type.name.transfer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer Success
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageToastSendTransferSuccess = Rswift.StringResource(key: "send.page.toast.send.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -1728,10 +1716,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let systemPageCellTransferFaceId = Rswift.StringResource(key: "system.page.cell.transfer.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Use TPS quota for payment, get free TPS quota by running PoW.
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip1Desc = Rswift.StringResource(key: "introduction.page.tip1.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Use Touch ID For Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -1744,10 +1728,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeValidWalletNameCount = Rswift.StringResource(key: "mnemonic.backup.page.error.type.validWalletNameCount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: VITE
-      /// 
-      /// Locales: en, zh-Hans
-      static let tokenListPageSectionViteHeader = Rswift.StringResource(key: "token.list.page.section.vite.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -1780,6 +1760,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网络
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSectionViteHeader = Rswift.StringResource(key: "token.list.page.section.vite.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -1792,18 +1776,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let vote = Rswift.StringResource(key: "Vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Vote for official SBPs, acquire rewards of VITE.
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip4Desc = Rswift.StringResource(key: "introduction.page.tip4.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote revoking request is successfully sent
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteInfoCancelVoteToastTitle = Rswift.StringResource(key: "vote.page.voteInfo.cancel.vote.toast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Vote to collect rewards
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip4Title = Rswift.StringResource(key: "introduction.page.tip4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Votes
       /// 
       /// Locales: en, zh-Hans
@@ -1900,10 +1876,34 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypePwdIllegal = Rswift.StringResource(key: "mnemonic.backup.page.error.type.pwd.illegal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 获取配额
+      /// en translation: 交易消耗配额，运行PoW免费获取
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPagePledgeTitle = Rswift.StringResource(key: "confirm.transaction.page.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let introductionPageTip3Desc = Rswift.StringResource(key: "introduction.page.tip3.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易速度快
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip4Title = Rswift.StringResource(key: "introduction.page.tip4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 去中心化钱包
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip2Title = Rswift.StringResource(key: "introduction.page.tip2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开始体验
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageNextBtnTitle = Rswift.StringResource(key: "introduction.page.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 异步架构设计，交易畅通无阻
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip4Desc = Rswift.StringResource(key: "introduction.page.tip4.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 支持多种代币，方便资产管理
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip1Desc = Rswift.StringResource(key: "introduction.page.tip1.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 私钥本地保存，代码开源保证
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请转入 %@
       /// 
       /// Locales: en, zh-Hans
@@ -1912,14 +1912,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账
+      /// en translation: 跨链多币种
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账交易发送成功
+      static let introductionPageTip1Title = Rswift.StringResource(key: "introduction.page.tip1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转账零费用
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageToastSendTransferSuccess = Rswift.StringResource(key: "send.page.toast.send.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1963,7 +1963,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("pop.page.tip.vote", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
       /// 
       /// Locales: en, zh-Hans
       static func popPageTipQuota(_: Void = ()) -> String {
@@ -2003,6 +2003,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageErrorTypeNameValid(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.error.type.nameValid", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Acquire Quota
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPagePledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.pledge.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Acquire Quota
@@ -2411,13 +2418,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.edit.page.delete.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Designed in asynchronous architecture, so smooth to make transactions.
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip2Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Done
       /// 
       /// Locales: en, zh-Hans
@@ -2430,13 +2430,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func peldgeDeadline(_: Void = ()) -> String {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: ETH
-      /// 
-      /// Locales: en, zh-Hans
-      static func tokenListPageSectionEthHeader(_: Void = ()) -> String {
-        return NSLocalizedString("token.list.page.section.eth.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Edit Account Name
@@ -2488,6 +2481,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("confirm.transaction.page.use.password.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Ethereum网络
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSectionEthHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.eth.header", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -2500,13 +2500,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func manageWalletPageImportMnemonicCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("manage.wallet.page.importMnemonic.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Extremely Fast Transactions
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip2Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fast
@@ -2528,13 +2521,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func aboutUsPageEmailTitle(_: Void = ()) -> String {
         return NSLocalizedString("aboutUs.page.email.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Feeless Transactions
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip1Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gas Fee
@@ -2563,13 +2549,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNamePledge(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.pledge", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: HD Wallet Structure
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip3Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: I know
@@ -3391,13 +3370,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.quota.snapshoot.height.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Start VITE Journey
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.nextBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Submit
       /// 
       /// Locales: en, zh-Hans
@@ -3459,13 +3431,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func voteListSendSuccess(_: Void = ()) -> String {
         return NSLocalizedString("vote.list.send.success", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Support multiple tokens, easy to manage accounts.
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip3Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip3.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Switch Account
@@ -3569,6 +3534,13 @@ struct R: Rswift.Validatable {
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
+      static func confirmTransactionPageTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
       static func sendPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.title", bundle: R.hostingBundle, comment: "")
       }
@@ -3578,6 +3550,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameTransfer(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.transfer", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer Success
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageToastSendTransferSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.toast.send.transfer.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
@@ -3650,13 +3629,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("system.page.cell.transfer.faceId", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Use TPS quota for payment, get free TPS quota by running PoW.
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip1Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip1.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Use Touch ID For Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -3676,13 +3648,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageErrorTypeValidWalletNameCount(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.error.type.validWalletNameCount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: VITE
-      /// 
-      /// Locales: en, zh-Hans
-      static func tokenListPageSectionViteHeader(_: Void = ()) -> String {
-        return NSLocalizedString("token.list.page.section.vite.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Verify
@@ -3741,6 +3706,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Vite网络
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSectionViteHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.vite.header", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -3762,25 +3734,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Vote", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Vote for official SBPs, acquire rewards of VITE.
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip4Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip4.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Vote revoking request is successfully sent
       /// 
       /// Locales: en, zh-Hans
       static func votePageVoteInfoCancelVoteToastTitle(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteInfo.cancel.vote.toast.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vote to collect rewards
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip4Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip4.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Votes
@@ -3951,11 +3909,53 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.pwd.illegal", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 获取配额
+      /// en translation: 交易消耗配额，运行PoW免费获取
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPagePledgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.pledge.title", bundle: R.hostingBundle, comment: "")
+      static func introductionPageTip3Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip3.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易速度快
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip4Title(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip4.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 去中心化钱包
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip2Title(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 开始体验
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.nextBtn.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 异步架构设计，交易畅通无阻
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip4Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip4.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 支持多种代币，方便资产管理
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip1Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip1.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 私钥本地保存，代码开源保证
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip2Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请转入 %@
@@ -3972,18 +3972,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 转账
+      /// en translation: 跨链多币种
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageTransferTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.transfer.title", bundle: R.hostingBundle, comment: "")
+      static func introductionPageTip1Title(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip1.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 转账交易发送成功
+      /// en translation: 转账零费用
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageToastSendTransferSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.toast.send.transfer.success", bundle: R.hostingBundle, comment: "")
+      static func introductionPageTip3Title(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

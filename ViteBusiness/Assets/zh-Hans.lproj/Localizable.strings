@@ -317,14 +317,14 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "已经全部加载完毕";
 
 //Welcome
-"introduction.page.tip1.title" = "转账零费用";
-"introduction.page.tip2.title" = "交易速度快";
-"introduction.page.tip3.title" = "HD钱包结构";
-"introduction.page.tip4.title" = "投票赚奖励";
-"introduction.page.tip1.desc" = "交易消耗配额，运行PoW免费获取";
-"introduction.page.tip2.desc" = "异步架构设计，交易畅通无阻";
-"introduction.page.tip3.desc" = "支持多种代币，方便账号管理";
-"introduction.page.tip4.desc" = "投票官方节点，赚取VITE奖励";
+"introduction.page.tip1.title" = "跨链多币种";
+"introduction.page.tip2.title" = "去中心化钱包";
+"introduction.page.tip3.title" = "转账零费用";
+"introduction.page.tip4.title" = "交易速度快";
+"introduction.page.tip1.desc" = "支持多种代币，方便资产管理";
+"introduction.page.tip2.desc" = "私钥本地保存，代码开源保证";
+"introduction.page.tip3.desc" = "交易消耗配额，运行PoW免费获取";
+"introduction.page.tip4.desc" = "异步架构设计，交易畅通无阻";
 "introduction.page.nextBtn.title" = "开始体验";
 
 /* Error Message */
@@ -358,8 +358,8 @@
 
 //token
 "token.list.page.search.title" = "输入Token名称或合约地址";
-"token.list.page.section.vite.header" = "VITE网络";
-"token.list.page.section.eth.header" = "ETH网络";
+"token.list.page.section.vite.header" = "Vite网络";
+"token.list.page.section.eth.header" = "Ethereum网络";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
