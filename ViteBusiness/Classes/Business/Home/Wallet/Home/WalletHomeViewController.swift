@@ -62,7 +62,6 @@ class WalletHomeViewController: BaseTableViewController {
         statisticsPageName = Statistics.Page.WalletHome.name
 
         view.addSubview(navView)
-        view.addSubview(headerView)
 
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -70,13 +69,9 @@ class WalletHomeViewController: BaseTableViewController {
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
         }
 
-        headerView.snp.makeConstraints { (m) in
-            m.top.equalTo(navView.snp.bottom)
-            m.left.right.equalToSuperview()
-        }
 
         tableView.snp.remakeConstraints { (m) in
-            m.top.equalTo(headerView.snp.bottom)
+            m.top.equalTo(navView.snp.bottom)
             m.bottom.right.left.equalTo(view)
         }
 
@@ -84,8 +79,13 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 56)).then {
             $0.backgroundColor = UIColor.clear
+            $0.addSubview(headerView)
+            headerView.snp.makeConstraints { (m) in
+                m.top.equalToSuperview()
+                m.left.right.equalToSuperview()
+            }
         }
 
         if #available(iOS 11.0, *) {

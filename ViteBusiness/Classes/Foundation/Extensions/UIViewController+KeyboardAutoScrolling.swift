@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class KeyboardAutoScrollingObserver {
+fileprivate final class KeyboardAutoScrollingObserver {
 
     weak var viewController: UIViewController?
     var targetView: UIView?
@@ -63,7 +63,7 @@ final class KeyboardAutoScrollingObserver {
             self.keyboardTapGestureRecognizer = tapGesture
         }
 
-        let keyboardSize = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        var keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         var rect = CGRect.zero
 
         if let scrollView = self.targetView as? UIScrollView {
@@ -73,10 +73,29 @@ final class KeyboardAutoScrollingObserver {
             let targetViewRect = targetView.convert(targetView.bounds, to: UIApplication.shared.keyWindow)
             let dy = UIScreen.main.bounds.height - targetViewRect.origin.y - targetViewRect.height
 
-            let contentInset = UIEdgeInsets(top: self.contentInset.top, left: self.contentInset.left, bottom: max(keyboardSize.height - dy, self.contentInset.bottom), right: self.contentInset.right)
-            let scrollIndicatorInsets = UIEdgeInsets(top: self.scrollIndicatorInsets.top, left: self.scrollIndicatorInsets.left, bottom: max(keyboardSize.height - dy, self.scrollIndicatorInsets.bottom), right: self.scrollIndicatorInsets.right)
+            if #available(iOS 11.0, *) {
+                switch scrollView.contentInsetAdjustmentBehavior {
+                case .automatic, .scrollableAxes, .always:
+                    keyboardHeight = keyboardHeight - (viewController.view.safeAreaInsets.bottom)
+                default:
+                    break
+                }
+            }
 
-            scrollView.contentInset = contentInset
+            let contentBottomInset = max(keyboardHeight - dy, self.contentInset.bottom)
+            let scrollIndicatorBottomInset = max(keyboardHeight - dy, self.scrollIndicatorInsets.bottom)
+
+            let contentInsets = UIEdgeInsets(top: self.contentInset.top,
+                                             left: self.contentInset.left,
+                                             bottom: contentBottomInset,
+                                             right: self.contentInset.right)
+
+            let scrollIndicatorInsets = UIEdgeInsets(top: self.scrollIndicatorInsets.top,
+                                                     left: self.scrollIndicatorInsets.left,
+                                                     bottom: scrollIndicatorBottomInset,
+                                                     right: self.scrollIndicatorInsets.right)
+
+            scrollView.contentInset = contentInsets
             scrollView.scrollIndicatorInsets = scrollIndicatorInsets
 
             UIView.animate(withDuration: 0.25) {
@@ -86,11 +105,11 @@ final class KeyboardAutoScrollingObserver {
             rect = firstResponderView.convert(firstResponderView.bounds, to: UIApplication.shared.keyWindow)
             rect.size.height += viewController.bottomInset
 
-            let dy = rect.maxY - ( UIScreen.main.bounds.height - keyboardSize.height )
+            let dy = rect.maxY - ( UIScreen.main.bounds.height - keyboardHeight )
 
             if dy > 0 {
                 UIView.animate(withDuration: 0.25) {
-                    targetView.frame = targetView.frame.insetBy(dx: 0, dy: -dy)
+                    targetView.transform = CGAffineTransform(translationX: 0, y: -dy)
                 }
             }
         }
@@ -112,7 +131,7 @@ final class KeyboardAutoScrollingObserver {
         } else {
             if targetView.frame != self.frame {
                 UIView.animate(withDuration: 0.25) {
-                    targetView.frame = self.frame
+                    targetView.transform = .identity
                 }
             }
         }
@@ -148,7 +167,7 @@ private var kObserver: UInt8 = 0
 
 extension UIViewController {
 
-    func kas_activateAutoScrollingForView(_ view: UIView) {
+    public func kas_activateAutoScrollingForView(_ view: UIView) {
         self.keyboardAutoScrollingObserver.set(viewController: self, targetView: view)
     }
 

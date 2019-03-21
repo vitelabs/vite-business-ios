@@ -738,7 +738,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 295 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 297 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
       /// 
@@ -1012,7 +1012,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Default Receiving Address
+      /// en translation: Default Address
       /// 
       /// Locales: en, zh-Hans
       static let addressManageDefaultAddressCellTitle = Rswift.StringResource(key: "address.manage.default.address.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1244,6 +1244,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageMyAddressTitle = Rswift.StringResource(key: "send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethReceivePageMyAddressTitle = Rswift.StringResource(key: "eth.receive.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethSendPageMyAddressTitle = Rswift.StringResource(key: "eth.send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My QRCode
       /// 
       /// Locales: en, zh-Hans
@@ -2397,7 +2405,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Default Receiving Address
+      /// en translation: Default Address
       /// 
       /// Locales: en, zh-Hans
       static func addressManageDefaultAddressCellTitle(_: Void = ()) -> String {
@@ -2801,6 +2809,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageMyAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethReceivePageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.receive.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethSendPageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.send.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My QRCode

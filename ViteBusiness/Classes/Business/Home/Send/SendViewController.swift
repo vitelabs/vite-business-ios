@@ -57,7 +57,7 @@ class SendViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
         FetchQuotaService.instance.retainQuota()
     }
 
@@ -217,12 +217,12 @@ extension SendViewController: FloatButtonsViewDelegate {
         if index == 0 {
             let viewModel = AddressListViewModel.createMyAddressListViewModel()
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 2 {
             let scanViewController = ScanViewController()

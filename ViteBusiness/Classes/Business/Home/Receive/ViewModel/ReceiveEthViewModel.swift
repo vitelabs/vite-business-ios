@@ -52,7 +52,7 @@ class ReceiveEthViewModel: ReceiveViewModelType {
         self.token = tokenInfo.toETHToken()!
 
         self.address = HDWalletManager.instance.ethAddress ?? ""
-        self.addressName = nil
+        self.addressName = R.string.localizable.ethReceivePageMyAddressTitle()
 
         self.tipStringBehaviorRelay = BehaviorRelay(value: R.string.localizable.receivePageTokenNameLabel(token.symbol))
         self.uriStringBehaviorRelay = BehaviorRelay(value: ETHURI.transferURI(address: address, contractAddress: token.contractAddress, amount: nil).string())

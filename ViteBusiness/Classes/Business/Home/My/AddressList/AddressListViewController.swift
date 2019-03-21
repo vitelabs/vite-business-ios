@@ -21,7 +21,8 @@ class AddressListViewController: BaseTableViewController {
         super.init(.plain)
     }
 
-    let selectAddress: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    lazy var selectAddressDrive: Driver<String> = self.selectAddress.asDriver().filterNil()
+    private let selectAddress: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
