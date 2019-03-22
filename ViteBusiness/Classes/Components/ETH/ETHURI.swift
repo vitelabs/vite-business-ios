@@ -55,6 +55,11 @@ public struct ETHURI: URIType {
 
     static func parser(string: String) -> Result<ETHURI, URIError> {
 
+        // raw eth address
+        if web3swift.Address(string).isValid {
+            return Result(value: ETHURI(address: string, type: .transfer, contractAddress: nil, amount: nil))
+        }
+
         guard let (prefix, suffix) = separate(string, by: ":") else {
             return Result(error: URIError.InvalidFormat(":"))
         }

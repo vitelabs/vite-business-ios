@@ -19,12 +19,12 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     fileprivate let symbolLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.numberOfLines = 1
     }
 
     let coinFamilyLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x4B5461, alpha: 0.6)
         $0.numberOfLines = 1
     }
 
@@ -143,7 +143,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         iconImageView.tokenInfo = viewModel.tokenInfo
 
         symbolLabel.text = viewModel.symbol
-        symbolLabel.textColor = viewModel.tokenInfo.mainColor
+        coinFamilyLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = viewModel.coinFamily
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price

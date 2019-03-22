@@ -114,7 +114,7 @@ class EthSendTokenController: BaseViewController {
             view.addButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                    [R.string.localizable.sendPageAddContactsButtonTitle(),
+                    [R.string.localizable.ethSendPageEthContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             return  view

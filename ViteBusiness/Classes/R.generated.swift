@@ -738,9 +738,9 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 297 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 298 localization keys.
     struct localizable {
-      /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
+      /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailContent = Rswift.StringResource(key: "aboutUs.page.email.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -976,10 +976,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsHomePageTitle = Rswift.StringResource(key: "contacts.home.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Contact Address
-      /// 
-      /// Locales: en, zh-Hans
-      static let sendPageAddContactsButtonTitle = Rswift.StringResource(key: "send.page.add.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Contact Us
       /// 
       /// Locales: en, zh-Hans
@@ -1004,6 +1000,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPageTitle = Rswift.StringResource(key: "create.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Currency Unit
+      /// 
+      /// Locales: en, zh-Hans
+      static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Height
       /// 
       /// Locales: en, zh-Hans
@@ -1032,6 +1032,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ETH Contact Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethSendPageEthContactsButtonTitle = Rswift.StringResource(key: "eth.send.page.eth.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -1236,14 +1240,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressListPageMyTitle = Rswift.StringResource(key: "address.list.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My Address
-      /// 
-      /// Locales: en, zh-Hans
-      static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My Address
-      /// 
-      /// Locales: en, zh-Hans
-      static let sendPageMyAddressTitle = Rswift.StringResource(key: "send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -1264,6 +1260,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeTitle = Rswift.StringResource(key: "peldge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My VITE Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let addressManageDefaultAddressName = Rswift.StringResource(key: "address.manage.default.address.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My VITE Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageMyAddressTitle = Rswift.StringResource(key: "send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Votes
       /// 
       /// Locales: en, zh-Hans
@@ -1504,6 +1508,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageScanAddressButtonTitle = Rswift.StringResource(key: "send.page.scan.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Scan and transfer %@
+      /// 
+      /// Locales: en, zh-Hans
+      static let receivePageTokenNameLabel = Rswift.StringResource(key: "Receive.page.token.name.label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Search for name or address of candidate nodes
       /// 
       /// Locales: en, zh-Hans
@@ -1736,6 +1744,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypeValidWalletNameCount = Rswift.StringResource(key: "mnemonic.backup.page.error.type.validWalletNameCount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Contact Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageViteContactsButtonTitle = Rswift.StringResource(key: "send.page.vite.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -1912,14 +1924,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请转入 %@
-      /// 
-      /// Locales: en, zh-Hans
-      static let receivePageTokenNameLabel = Rswift.StringResource(key: "Receive.page.token.name.label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 货币单位
-      /// 
-      /// Locales: en, zh-Hans
-      static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 跨链多币种
       /// 
       /// Locales: en, zh-Hans
@@ -1929,7 +1933,7 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
-      /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version：%@ 4.Language:%@
+      /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
       static func aboutUsPageEmailContent(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
@@ -2342,13 +2346,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.home.page.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Contact Address
-      /// 
-      /// Locales: en, zh-Hans
-      static func sendPageAddContactsButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.add.contacts.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Contact Us
       /// 
       /// Locales: en, zh-Hans
@@ -2389,6 +2386,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func createPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Currency Unit
+      /// 
+      /// Locales: en, zh-Hans
+      static func systemPageCellChangeCurrency(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Current Height
@@ -2438,6 +2442,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func peldgeDeadline(_: Void = ()) -> String {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ETH Contact Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethSendPageEthContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.send.page.eth.contacts.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Edit Account Name
@@ -2797,20 +2808,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("address.list.page.my.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: My Address
-      /// 
-      /// Locales: en, zh-Hans
-      static func addressManageDefaultAddressName(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: My Address
-      /// 
-      /// Locales: en, zh-Hans
-      static func sendPageMyAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.address.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: My ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -2844,6 +2841,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func peldgeTitle(_: Void = ()) -> String {
         return NSLocalizedString("peldge.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My VITE Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func addressManageDefaultAddressName(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.default.address.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My VITE Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My Votes
@@ -3266,6 +3277,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.scan.address.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Scan and transfer %@
+      /// 
+      /// Locales: en, zh-Hans
+      static func receivePageTokenNameLabel(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Receive.page.token.name.label", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Search for name or address of candidate nodes
       /// 
       /// Locales: en, zh-Hans
@@ -3672,6 +3690,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.validWalletNameCount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: VITE Contact Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageViteContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.vite.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -3978,20 +4003,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip2Desc(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 请转入 %@
-      /// 
-      /// Locales: en, zh-Hans
-      static func receivePageTokenNameLabel(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Receive.page.token.name.label", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 货币单位
-      /// 
-      /// Locales: en, zh-Hans
-      static func systemPageCellChangeCurrency(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 跨链多币种

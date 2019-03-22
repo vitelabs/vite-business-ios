@@ -159,18 +159,18 @@
 "address.manage.address.generate.button.toast" = "最多只能添加10个地址";
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
-"address.manage.default.address.name" = "我的地址";
+"address.manage.default.address.name" = "我的VITE地址";
 "address.manage.change.name.alert.title" = "修改地址名称";
 "address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
 /* Send Page */
 "send.page.title" = "转账";
-"send.page.my.address.title" = "我的账户地址";
-"send.page.my.balance.title" = "我的账户余额";
-"send.page.my.quota.title" = "我的配额";
+"send.page.my.address.title" = "我的VITE地址";
+"send.page.my.balance.title" = "余额";
+"send.page.my.quota.title" = "配额";
 "send.page.my.max.tx.count.title" = "最大交易笔数";
 "send.page.add.my.address.button.title" = "我的";
-"send.page.add.contacts.button.title" = "联系地址";
+"send.page.vite.contacts.button.title" = "VITE联系地址";
 "send.page.scan.address.button.title" = "扫码";
 "send.page.to.address.title" = "收款地址";
 "send.page.amount.title" = "金额";
@@ -351,7 +351,8 @@
 "vite.uri.amount.format.error" = "转账金额格式错误";
 
 // eth
-"eth.send.page.my.address.title" = "我的ETH地址";
+"eth.send.page.my.address.title" = "ETH地址";
+"eth.send.page.eth.contacts.button.title" = "ETH联系地址";
 "eth.receive.page.my.address.title" = "我的ETH地址";
 "eth.page.gasFee.title" = "矿工费用";
 "eth.page.gasFee.slow.title" = "慢";
