@@ -110,7 +110,7 @@ public struct TokenInfo: Mappable {
             }
         case .eth:
             if isEtherCoin {
-                return "ETH Coin"
+                return "Ethereum Coin"
             } else {
                 return "ERC20 Token"
             }

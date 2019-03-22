@@ -50,7 +50,13 @@ public final class MyTokenInfosService: NSObject {
                         let jsonString = String(data: data, encoding: .utf8),
                         let tokenInfos = [TokenInfo](JSONString: jsonString) {
                         let selected = tokenInfos.filter { !defaultTokenInfos.contains($0) }
-                        self.tokenInfosBehaviorRelay.accept(defaultTokenInfos + selected)
+
+                        // update icon
+                        let def = defaultTokenInfos.map({ (old) -> TokenInfo in
+                            for tokenInfo in tokenInfos where tokenInfo.tokenCode == old.tokenCode { return tokenInfo }
+                            return old
+                        })
+                        self.tokenInfosBehaviorRelay.accept(def + selected)
                     } else {
                         self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
                     }

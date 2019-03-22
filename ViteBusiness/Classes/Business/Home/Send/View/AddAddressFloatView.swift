@@ -20,7 +20,7 @@ class FloatButtonsView: VisualEffectAnimationView {
 
     fileprivate func createButton(title: String) -> UIButton {
         return UIButton().then {
-            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
             $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             $0.setTitle(title, for: .normal)

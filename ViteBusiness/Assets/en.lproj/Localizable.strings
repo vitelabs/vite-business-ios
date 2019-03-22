@@ -210,7 +210,7 @@
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
 "Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "请转入 %@";
+"Receive.page.token.name.label" = "Scan and transfer %@";
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
@@ -224,7 +224,7 @@
 /* System */
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "货币单位";
+"system.page.cell.change.currency" = "Currency Unit";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
@@ -242,7 +242,7 @@
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.blog";
 "aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version：%@\n4.Language:%@";
+"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
 
 /* toast error */
 "toast.error.login" = "Login Error";
