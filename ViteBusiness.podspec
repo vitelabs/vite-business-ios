@@ -22,21 +22,21 @@ Pod::Spec.new do |s|
       'ViteBusiness' => ['ViteBusiness/Assets/*']
   }
 
-  # s.subspec 'Official' do |c|
-  #   c.pod_target_xcconfig = {
-  #     'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
-  #     'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL',
-  #     'SWIFT_VERSION' => '4.2'
-  #   }
-  # end
-
-  # s.subspec 'Test' do |c|
-  #   c.pod_target_xcconfig = {
-  #     'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
-  #     'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST',
-  #     'SWIFT_VERSION' => '4.2'
-  #   }
-  # end
+#   s.subspec 'Official' do |c|
+#     c.pod_target_xcconfig = {
+#       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
+#       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL',
+#       'SWIFT_VERSION' => '4.2'
+#     }
+#   end
+#
+#   s.subspec 'Test' do |c|
+#     c.pod_target_xcconfig = {
+#       'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
+#       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST',
+#       'SWIFT_VERSION' => '4.2'
+#     }
+#   end
 
   # s.subspec 'Enterprise' do |c|
   #   c.pod_target_xcconfig = {
