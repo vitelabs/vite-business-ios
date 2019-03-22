@@ -86,7 +86,21 @@ class EthTokenInfoController: BaseViewController {
         }
     }
 
+    let bottomTitleLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.numberOfLines = 1
+        $0.text = R.string.localizable.transactionListPageTitle()
+    }
+
     fileprivate func setupView() {
+        view.addSubview(bottomTitleLabel)
+        bottomTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(ethInfoCardView.snp.bottom).offset(14)
+            m.left.equalTo(24)
+            m.height.equalTo(20)
+        }
+
         let contentLayout = UILayoutGuide()
         let centerLayout = UILayoutGuide()
 
@@ -114,10 +128,18 @@ class EthTokenInfoController: BaseViewController {
         view.addSubview(imageView)
         view.addSubview(showTransactionsButton)
 
-        imageView.snp.makeConstraints { (m) in
-            m.top.equalTo(centerLayout)
-            m.width.height.equalTo(130)
-            m.centerX.equalTo(centerLayout)
+        if  UIScreen.main.bounds.size == CGSize(width: 320, height: 568) {
+            imageView.snp.makeConstraints { (m) in
+                m.top.equalTo(centerLayout)
+                m.width.height.equalTo(0)
+                m.centerX.equalTo(centerLayout)
+            }
+        }else {
+            imageView.snp.makeConstraints { (m) in
+                m.top.equalTo(centerLayout)
+                m.width.height.equalTo(130)
+                m.centerX.equalTo(centerLayout)
+            }
         }
 
         showTransactionsButton.snp.makeConstraints { (m) in
