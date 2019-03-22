@@ -12,6 +12,29 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
+
+func withInMainThread(_ a: @escaping () ->  ()) {
+    if Thread.isMainThread {
+        a()
+    } else {
+        DispatchQueue.main.async {
+            a()
+        }
+    }
+}
+
+func async<T>(_ a: @escaping ()-> T,
+              _ b: @escaping (T) -> (),
+              qa: DispatchQueue = DispatchQueue.global(),
+              qb: DispatchQueue = DispatchQueue.main) {
+    qa.async {
+        let v = a()
+        qb.async {
+            b(v)
+        }
+    }
+}
+
 private func grinFileHelper() -> FileHelper {
     return FileHelper(.library, appending: FileHelper.walletPathComponent + "/grin")
 }

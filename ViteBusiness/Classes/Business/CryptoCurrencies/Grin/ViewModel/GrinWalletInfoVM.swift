@@ -21,24 +21,19 @@ final class GrinWalletInfoVM {
         case repost(TxLogEntry)
     }
 
+    let grinManager = GrinManager.default
     let action = PublishSubject<GrinWalletInfoVM.Action>()
     
     lazy var txsDriver: Driver<[TxLogEntry]> = self.txs.asDriver()
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
-    lazy var errorMessageDriver: Driver<String?> = self.errorMessage.asDriver()
-
+    lazy var messageDriver: Driver<String?> = self.message.asDriver()
     let txs = BehaviorRelay<[TxLogEntry]>(value: [])
     let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
-    let errorMessage: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
     private let bag = DisposeBag()
 
-    private var grinBridge: GrinManager {
-        return GrinManager.default
-    }
-
     init() {
-
         action.asObservable()
             .subscribe(onNext: { [weak self] (action) in
                 switch action {
@@ -57,73 +52,85 @@ final class GrinWalletInfoVM {
         })
         .disposed(by: bag)
 
-         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
+        Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .map { _ in Action.getBalance(manually: false) }
             .bind(to: self.action)
             .disposed(by: bag)
+
         balance.asObservable()
             .skip(1)
             .distinctUntilChanged { $0.amountCurrentlySpendable == $1.amountCurrentlySpendable }
             .map { _ in  Action.getTxs(manually: false) }
             .bind(to: self.action)
             .disposed(by: bag)
-
-        self.action.onNext(.getBalance(manually: true))
-        self.action.onNext(.getTxs(manually: true))
     }
 
 
     func checkWallet() {
-        let result = self.grinBridge.walletCheck()
-        switch result {
-        case .success:
-            break
-        case .failure(let error):
-            errorMessage.accept(error.message)
-        }
+        async({ () in
+            self.grinManager.walletCheck()
+        },  { (result) in
+            switch result {
+            case .success:
+                self.action.onNext(.getBalance(manually: true))
+            case .failure(let error):
+                self.message.accept(error.message)
+            }
+        })
     }
 
     func getBalance(_ manually: Bool) {
-        let result = self.grinBridge.walletInfo(refreshFromNode: true)
+        async({ () in
+            self.grinManager.walletInfo(refreshFromNode: true)
+        },  { (result) in
             switch result {
             case .success(let info):
                 self.balance.accept(GrinBalance(info))
             case .failure(let error):
-                if manually { self.errorMessage.accept(error.message) }
-        }
-
+                if manually { self.message.accept(error.message) }
+            }
+        })
     }
 
     func getTxs(_ manually: Bool) {
-        let result = self.grinBridge.txsGet(refreshFromNode: false)
+        async({ () in
+            self.grinManager.txsGet(refreshFromNode: false)
+        },  { (result) in
             switch result {
             case .success((_, let txs)):
                 self.txs.accept(txs)
             case .failure(let error):
-                if manually { self.errorMessage.accept(error.message) }
+                if manually { self.message.accept(error.message) }
             }
+        })
     }
 
     func cancel(_ tx: TxLogEntry) {
-        let cancleResult = grinBridge.txCancel(id: UInt32(tx.id))
-        switch cancleResult {
-        case .success(_):
-            self.action.onNext(.getBalance(manually: false))
-            self.action.onNext(.getBalance(manually: false))
-        case .failure(let error):
-            errorMessage.accept(error.message)
-        }
+        async({ () in
+            self.grinManager.txCancel(id: UInt32(tx.id))
+        },  { (result) in
+            switch result {
+            case .success(_):
+                self.action.onNext(.getBalance(manually: false))
+                self.action.onNext(.getBalance(manually: false))
+            case .failure(let error):
+                self.message.accept(error.message)
+            }
+        })
     }
 
     func repost(_ tx: TxLogEntry) {
-        let repostResult = grinBridge.txRepost(txId: UInt32(tx.id))
-        switch repostResult {
-        case .success(_):
-            self.action.onNext(.getBalance(manually: false))
-            self.action.onNext(.getBalance(manually: false))
-        case .failure(let error):
-            errorMessage.accept(error.message)
-        }
+        async({ () in
+            self.grinManager.txRepost(txId: UInt32(tx.id))
+        },  { (result) in
+            switch result {
+            case .success(_):
+                self.action.onNext(.getBalance(manually: false))
+                self.action.onNext(.getBalance(manually: false))
+            case .failure(let error):
+                self.message.accept(error.message)
+            }
+        })
     }
 }
 

@@ -9,6 +9,7 @@ import UIKit
 import Vite_GrinWallet
 import RxSwift
 import RxCocoa
+import BigInt
 
 
 class SendGrinViewController: UIViewController {
@@ -23,9 +24,8 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var transactButton: UIButton!
 
     var transferMethod = TransferMethod.file
+    let transferVM = GrinTransactVM()
 
-    let transferVM = GrinTransferVM()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -39,25 +39,27 @@ class SendGrinViewController: UIViewController {
 
         amountTextField.rx.text
             .distinctUntilChanged()
-            .map { GrinTransferVM.Action.inputTx(amount: $0)}
+            .map { GrinTransactVM.Action.inputTx(amount: $0)}
             .bind(to: transferVM.action)
+            .disposed(by: rx.disposeBag)
 
         transferVM.txFee.asObservable()
             .bind(to: feeLabel.rx.text)
+            .disposed(by: rx.disposeBag)
 
-        transferVM.sendTxCreated.asObserver()
-            .filterNil()
-            .bind { [weak self] slate in
+        transferVM.sendSlateCreated.asObserver()
+            .bind { [weak self] (slate, url) in
                 let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
-                vc.opendSlate = slate
-                vc.opendSlateUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: false)
+                (vc.opendSlate, vc.opendSlateUrl) = (slate, url)
                 self?.navigationController?.pushViewController(vc, animated: true)
-        }
+            }
+            .disposed(by: rx.disposeBag)
 
-        transferVM.errorMessage.asObservable()
+        transferVM.message.asObservable()
             .bind { message in
                 Toast.show(message)
-        }
+            }
+            .disposed(by: rx.disposeBag)
 
     }
 
@@ -77,25 +79,21 @@ class SendGrinViewController: UIViewController {
     }
 
     @IBAction func sendAction(_ sender: Any) {
-        guard let text = self.amountTextField.text,
-        let fee = transferVM.txFee.value else {
-            return
-        }
-        let confirmGrinTransactionViewModel = ConfirmGrinTransactionViewModel.init(amountString: text, feeString: fee)
-        Workflow.confirmWorkflow(viewModel: confirmGrinTransactionViewModel, completion: { (result) in
+        guard let amountString = amountTextField.text else { return }
+       transferVM.txStrategies(amountString: self.amountTextField.text) { (fee) in
+            guard !fee.isEmpty else { return }
+            let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
+            Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
 
-        }) {
-            if self.transferMethod == .file {
-                self.transferVM.action.onNext(.creatTxFile(amount: self.amountTextField.text))
-            } else if self.transferMethod == .httpURL {
-
-            } else if self.transferMethod == .viteAddress {
-
+            }) {
+                let amountString = self.amountTextField.text
+                if self.transferMethod == .file {
+                    self.transferVM.action.onNext(.creatTxFile(amount: amountString))
+                } else if let destnation = self.addressTextField.text {
+                    self.transferVM.action.onNext(.sentTx(amountString: amountString, destnation: ""))
+                }
             }
         }
-
-
-        
     }
 
 }

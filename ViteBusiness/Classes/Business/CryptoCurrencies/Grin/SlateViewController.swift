@@ -32,7 +32,7 @@ class SlateViewController: UIViewController {
     var type = OperateType.sent
     var document: UIDocumentInteractionController!
 
-    let transferVM = GrinTransferVM()
+    let transferVM = GrinTransactVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +78,12 @@ class SlateViewController: UIViewController {
 
     func bind() {
 
-        transferVM.receiveTxCreated.asObserver()
-            .bind { [weak self] url in
+        transferVM.receiveSlateCreated.asObserver()
+            .bind { [weak self] (slate,url) in
                 self?.shareSlate(url: url)
         }
 
-        transferVM.errorMessage.asObservable()
+        transferVM.message.asObservable()
             .bind { message in
                 Toast.show(message)
         }

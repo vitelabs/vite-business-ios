@@ -48,6 +48,8 @@ class GrinInfoViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+        walletInfoVM.action.onNext(.getBalance(manually: true))
+        walletInfoVM.action.onNext(.getTxs(manually: true))
     }
 
     func bind() {
@@ -68,7 +70,7 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
-        walletInfoVM.errorMessageDriver
+        walletInfoVM.messageDriver
             .filterNil()
             .drive(onNext:{ Toast.show($0) })
             .disposed(by: rx.disposeBag)
@@ -83,7 +85,8 @@ class GrinInfoViewController: BaseViewController {
                                 self?.walletInfoVM.action.onNext(.checkWallet)
                             }),
                     ])
-                }
+            }
+            .disposed(by: rx.disposeBag)
     }
 
 
@@ -112,34 +115,13 @@ class GrinInfoViewController: BaseViewController {
 
     @IBAction func sendAciton(_ sender: Any) {
         let a0 = UIAlertAction.init(title: "通过Vite地址", style: .default) { (_) in
-            let shouldTeach = false
-            if shouldTeach {
-            } else {
-                if GrinTransferVM().support(method: .viteAddress) {
-
-                } else {
-                    Toast.show("请切换到第一个地址")
-                }
-            }
+          self.send(use: .viteAddress)
         }
         let a1 = UIAlertAction.init(title: "通过Http地址", style: .default) { (_) in
-            let shouldTeach = false
-            if shouldTeach {
-            } else {
-                if GrinTransferVM().support(method: .httpURL) {
-
-                } else {
-                    Toast.show("请切换到第一个地址")
-                }
-            }
-
+          self.send(use: .httpURL)
         }
         let a2 = UIAlertAction.init(title: "通过交易文件", style: .default) { (_) in
-            let resourceBundle = businessBundle()
-            let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
-            let sendGrinViewController = storyboard
-                .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
-            self.navigationController?.pushViewController(sendGrinViewController, animated: true)
+            self.send(use: .file)
         }
         let a3 = UIAlertAction.init(title: "取消", style: .cancel) { _ in }
 
@@ -149,6 +131,26 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a2)
         alert.addAction(a3)
         self.present(alert, animated: true, completion: nil)
+
+    }
+
+    func send(use method: TransferMethod) {
+        guard GrinTransactVM().support(method: method) else {
+            Toast.show("请切换到第一个地址")
+            return
+        }
+        let shouldTeach = false
+
+        if shouldTeach {
+
+        } else {
+            let resourceBundle = businessBundle()
+            let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
+            let sendGrinViewController = storyboard
+                .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
+            sendGrinViewController.transferMethod = method
+            self.navigationController?.pushViewController(sendGrinViewController, animated: true)
+        }
 
     }
 
