@@ -11,12 +11,12 @@ public struct ExchangeServer {
     public static var baseURL: URL {
         #if DEBUG || TEST
         if DebugService.instance.config.rpcUseOnlineUrl {
-            return URL(string: "http://124.156.114.60:8080")!
+            return URL(string: "https://vitex.vite.net")!
         } else {
-            return URL(string: "http://132.232.65.121:8080/test")!
+            return URL(string: "https://vitex.vite.net/test")!
         }
         #else
-        return URL(string: "http://124.156.114.60:8080")!
+        return URL(string: "https://vitex.vite.net")!
         #endif
     }
 }

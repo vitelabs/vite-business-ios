@@ -18,7 +18,7 @@ class TokenIconView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        tokenIconImageView.backgroundColor = UIColor(netHex: 0xF8F8F8)
+        tokenIconImageView.backgroundColor = UIColor.white
         addSubview(tokenIconImageView)
         addSubview(tokenIconFrameImageView)
         addSubview(chainIconImageView)
@@ -53,7 +53,7 @@ class TokenIconView: UIView {
             guard let url = URL(string: tokenInfo.icon) else { return }
             tokenIconImageView.kf.cancelDownloadTask()
             tokenIconImageView.image = nil
-            tokenIconImageView.kf.setImage(with: url)
+            tokenIconImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
             chainIconImageView.image = tokenInfo.chainIcon
             chainIconImageView.isHidden = tokenInfo.chainIcon == nil
             updateLayer()

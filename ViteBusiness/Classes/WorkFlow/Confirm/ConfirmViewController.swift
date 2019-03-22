@@ -26,11 +26,15 @@ class ConfirmViewController: UIViewController {
     let completion: (ConfirmTransactionResult) -> Void
     let contentView: ConfirmContentView
 
-    init(viewModel: ConfirmViewModelType, completion:@escaping ((ConfirmTransactionResult) -> Void)) {
+    init(viewModel: ConfirmViewModelType, isForceUsePassword: Bool = false, completion:@escaping ((ConfirmTransactionResult) -> Void)) {
         self.viewModel = viewModel
         self.completion = completion
         self.contentView = ConfirmContentView(infoView: viewModel.createInfoView())
-        self.contentView.type = HDWalletManager.instance.isTransferByBiometry ? .biometry : .password
+        if isForceUsePassword {
+            self.contentView.type = .password
+        } else {
+            self.contentView.type = HDWalletManager.instance.isTransferByBiometry ? .biometry : .password
+        }
         self.contentView.titleLabel.text = viewModel.confirmTitle
         self.contentView.biometryConfirmButton.setTitle(viewModel.biometryConfirmButtonTitle, for: .normal)
         super.init(nibName: nil, bundle: nil)

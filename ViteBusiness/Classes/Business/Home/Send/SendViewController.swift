@@ -96,7 +96,7 @@ class SendViewController: BaseViewController {
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
                     [R.string.localizable.sendPageMyAddressTitle(),
-                     R.string.localizable.sendPageAddContactsButtonTitle(),
+                     R.string.localizable.sendPageViteContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             addressView = view

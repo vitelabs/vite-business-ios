@@ -32,8 +32,8 @@ public struct Workflow {
     public static func confirmWorkflow(viewModel: ConfirmViewModelType,
                                        completion: @escaping (Result<AccountBlock>) -> (),
                                        confirmSuccess: @escaping () -> Void) {
-        func showConfirm() {
-            let vc = ConfirmViewController(viewModel: viewModel) { (r) in
+        func showConfirm(isForceUsePassword: Bool = false) {
+            let vc = ConfirmViewController(viewModel: viewModel, isForceUsePassword: isForceUsePassword) { (r) in
                 switch r {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
@@ -42,7 +42,7 @@ public struct Workflow {
                 case .passwordAuthFailed:
                     Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
                                titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
-                               handler: { _, _ in showConfirm() })
+                               handler: { _, _ in showConfirm(isForceUsePassword: true) })
                 case .cancelled:
                     plog(level: .info, log: "Confirm cancelled", tag: .transaction)
                     completion(Result(error: ViteError.cancel))

@@ -218,7 +218,7 @@ extension QuotaManageViewController {
             guard let `self` = self else { return }
             FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
                 [R.string.localizable.sendPageMyAddressTitle(),
-                 R.string.localizable.sendPageAddContactsButtonTitle(),
+                 R.string.localizable.sendPageViteContactsButtonTitle(),
                  R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
     }
