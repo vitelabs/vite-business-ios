@@ -313,15 +313,15 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.page.tip1.title" = "跨链多币种";
-"introduction.page.tip2.title" = "去中心化钱包";
-"introduction.page.tip3.title" = "转账零费用";
-"introduction.page.tip4.title" = "交易速度快";
-"introduction.page.tip1.desc" = "支持多种代币，方便资产管理";
-"introduction.page.tip2.desc" = "私钥本地保存，代码开源保证";
-"introduction.page.tip3.desc" = "交易消耗配额，运行PoW免费获取";
-"introduction.page.tip4.desc" = "异步架构设计，交易畅通无阻";
-"introduction.page.nextBtn.title" = "开始体验";
+"introduction.page.tip1.title" = "Cross-Chain Multiple Token Types";
+"introduction.page.tip2.title" = "Decentralized Wallet";
+"introduction.page.tip3.title" = "Zero Transaction Fees";
+"introduction.page.tip4.title" = "Fast Transactions";
+"introduction.page.tip1.desc" = "Multi-Token Support. Easy to Manage Assets";
+"introduction.page.tip2.desc" = "Local Storage of Private Key, Open Source Assurance";
+"introduction.page.tip3.desc" = "Transactions Consume Quota. Running PoW to Acquire Free Quota";
+"introduction.page.tip4.desc" = "Asynchronous Architecture. Trading smoothly";
+"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 
 /* Error Message */
 "vite.error.network.error" = "Something went wrong with network, please try again later";
@@ -356,8 +356,8 @@
 
 //token
 "token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite网络";
-"token.list.page.section.eth.header" = "Ethereum网络";
+"token.list.page.section.vite.header" = "Vite Network";
+"token.list.page.section.eth.header" = "Ethereum Network";
 
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";
