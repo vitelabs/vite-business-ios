@@ -21,7 +21,7 @@ class FloatButtonsView: VisualEffectAnimationView {
     fileprivate func createButton(title: String) -> UIButton {
         return UIButton().then {
             $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
             $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             $0.setTitle(title, for: .normal)
             $0.setBackgroundImage(R.image.background_address_add_button_white()?.resizable, for: .normal)
@@ -39,7 +39,7 @@ class FloatButtonsView: VisualEffectAnimationView {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
-        $0.spacing = 14
+        $0.spacing = 10
     }
 
     fileprivate weak var delegate: FloatButtonsViewDelegate?
