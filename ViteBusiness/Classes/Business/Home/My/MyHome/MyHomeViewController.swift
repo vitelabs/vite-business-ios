@@ -51,6 +51,7 @@ class MyHomeViewController: BaseTableViewController {
         let headerView = MyHomeListHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 116))
         headerView.delegate = self
         tableView.tableHeaderView = headerView
+        tableView.alwaysBounceVertical = false
 
         self.view.addSubview(self.logoutBtn)
         self.logoutBtn.snp.makeConstraints { (make) in

@@ -69,8 +69,8 @@ extension AboutUsViewController {
             make.height.equalTo(116)
         }
         self.tableView.tableHeaderView = headerView
-
-        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 270) )
+        self.tableView.alwaysBounceVertical = false
+        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 226) )
         self.tableView.tableFooterView = bottomView
 
         form +++
