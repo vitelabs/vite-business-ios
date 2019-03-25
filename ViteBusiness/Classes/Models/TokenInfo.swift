@@ -24,7 +24,7 @@ public enum CoinType: String {
         }
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth]
+    static var allTypes: [CoinType] = [.vite, .eth, .grin]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -85,7 +85,7 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFF9E1)
         default:
             fatalError()
         }

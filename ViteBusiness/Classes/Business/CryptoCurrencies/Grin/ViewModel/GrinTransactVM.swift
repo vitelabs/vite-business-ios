@@ -14,9 +14,9 @@ import ViteWallet
 import BigInt
 import SwiftyJSON
 
-enum TransferMethod {
-    case viteAddress
-    case httpURL
+enum TransferMethod: String {
+    case vite
+    case http
     case file
 }
 

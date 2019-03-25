@@ -134,14 +134,13 @@ class WalletHomeViewController: BaseTableViewController {
                     var balanceInfoDetailViewController : UIViewController!
                     if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
-                    } else if  viewModel.tokenInfo.coinType == .grin {
+                    } else if viewModel.tokenInfo.coinType == .grin {
                         let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: businessBundle())
                         balanceInfoDetailViewController = storyboard
                             .instantiateInitialViewController() as? UIViewController
                     } else {
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
-
                     self.navigationController?.pushViewController(balanceInfoDetailViewController!, animated: true)
                 }
             }

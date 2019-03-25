@@ -32,19 +32,21 @@ final class WalletHomeBalanceInfoTableViewModel {
             isHidePriceDriver,
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver)
+            ETHBalanceInfoManager.instance.balanceInfosDriver,
+            GrinManager.default.balanceDriver)
             .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
-                let (isHidePrice, _, viteMap, ethMap) = arg
+                let (isHidePrice, _, viteMap, ethMap, grinBalance) = arg
                 return MyTokenInfosService.instance.tokenInfos
                     .map({ (tokenInfo) -> WalletHomeBalanceInfo in
                         switch tokenInfo.coinType {
                         case .vite:
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
-                        //TODO: - grin
-                        case .eth, .grin:
+                        case .eth:
                             return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
+                        case .grin:
+                            return grinBalance
                         default:
-                            break
+                            fatalError()
                         }
                     }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
                         return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)

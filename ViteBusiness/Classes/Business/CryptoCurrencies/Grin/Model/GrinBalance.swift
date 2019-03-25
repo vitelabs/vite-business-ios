@@ -10,7 +10,12 @@ import Vite_GrinWallet
 import BigInt
 import ViteWallet
 
-class GrinBalance {
+class GrinBalance: WalletHomeBalanceInfo {
+
+    var tokenInfo: TokenInfo {
+        return GrinManager.tokenInfo
+    }
+    var balance: Balance = Balance()
 
     var total = "--"
     var amountAwaitingConfirmation = "--"
@@ -35,6 +40,8 @@ class GrinBalance {
         legalTenderWorthed =
             "≈" + ExchangeRateManager.instance.rateMap
                 .priceString(for: GrinManager.tokenInfo, balance: spendableBalance)
+
+        balance = spendableBalance
     }
 
 }

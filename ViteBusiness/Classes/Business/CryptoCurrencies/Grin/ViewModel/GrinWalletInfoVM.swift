@@ -80,29 +80,23 @@ final class GrinWalletInfoVM {
     }
 
     func getBalance(_ manually: Bool) {
-        async({ () in
-            self.grinManager.walletInfo(refreshFromNode: true)
-        },  { (result) in
-            switch result {
-            case .success(let info):
-                self.balance.accept(GrinBalance(info))
-            case .failure(let error):
-                if manually { self.message.accept(error.message) }
-            }
-        })
+        let result = self.grinManager.walletInfo(refreshFromNode: true)
+        switch result {
+        case .success(let info):
+            self.balance.accept(GrinBalance(info))
+        case .failure(let error):
+            if manually { self.message.accept(error.message) }
+        }
     }
 
     func getTxs(_ manually: Bool) {
-        async({ () in
-            self.grinManager.txsGet(refreshFromNode: false)
-        },  { (result) in
-            switch result {
-            case .success((_, let txs)):
-                self.txs.accept(txs)
-            case .failure(let error):
-                if manually { self.message.accept(error.message) }
-            }
-        })
+        let result = self.grinManager.txsGet(refreshFromNode: true)
+        switch result {
+        case .success((_, let txs)):
+            self.txs.accept(txs)
+        case .failure(let error):
+            if manually { self.message.accept(error.message) }
+        }
     }
 
     func cancel(_ tx: TxLogEntry) {

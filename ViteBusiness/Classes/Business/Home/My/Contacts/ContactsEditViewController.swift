@@ -119,7 +119,7 @@ class ContactsEditViewController: BaseViewController {
                     return
                 }
             case .grin:
-                fatalError()
+                break
             default:
                 fatalError()
             }

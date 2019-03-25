@@ -44,7 +44,6 @@ class GrinInfoViewController: BaseViewController {
     }
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
         setupView()
         bind()
@@ -115,10 +114,10 @@ class GrinInfoViewController: BaseViewController {
 
     @IBAction func sendAciton(_ sender: Any) {
         let a0 = UIAlertAction.init(title: "通过Vite地址", style: .default) { (_) in
-          self.send(use: .viteAddress)
+          self.send(use: .vite)
         }
         let a1 = UIAlertAction.init(title: "通过Http地址", style: .default) { (_) in
-          self.send(use: .httpURL)
+          self.send(use: .http)
         }
         let a2 = UIAlertAction.init(title: "通过交易文件", style: .default) { (_) in
             self.send(use: .file)
@@ -139,10 +138,11 @@ class GrinInfoViewController: BaseViewController {
             Toast.show("请切换到第一个地址")
             return
         }
-        let shouldTeach = false
+        let shouldTeach = method != .file && !UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
 
         if shouldTeach {
-
+            let vc = GrinTeachViewController.init(txType: .sent, channelType: method)
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             let resourceBundle = businessBundle()
             let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
@@ -151,10 +151,43 @@ class GrinInfoViewController: BaseViewController {
             sendGrinViewController.transferMethod = method
             self.navigationController?.pushViewController(sendGrinViewController, animated: true)
         }
-
     }
 
     @IBAction func receiveAction(_ sender: Any) {
+        let a0 = UIAlertAction(title: "通过Vite地址", style: .default) { (_) in
+            let shouldTeach = !UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
+            if shouldTeach {
+                let vc = GrinTeachViewController.init(txType: .receive, channelType: .vite)
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+                Toast.show("Copyed")
+            }
+        }
+
+        let a1 = UIAlertAction(title: "通过Http地址", style: .default) { (_) in
+            let shouldTeach = !UserDefaults.standard.bool(forKey: "grin_don't_show_http_teach")
+            if shouldTeach {
+                let vc = GrinTeachViewController.init(txType: .receive, channelType: .http)
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                GrinTxByViteService().getGateWay()
+                    .done({ (string)  in
+                        UIPasteboard.general.string = string
+                        Toast.show("Copyed")
+                    })
+                    .catch({ (error) in
+                        Toast.show(error.localizedDescription)
+                    })
+            }
+        }
+
+        let a2 = UIAlertAction.init(title: "取消", style: .cancel) { _ in }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(a0)
+        alert.addAction(a1)
+        alert.addAction(a2)
+        self.present(alert, animated: true, completion: nil)
 
     }
 }

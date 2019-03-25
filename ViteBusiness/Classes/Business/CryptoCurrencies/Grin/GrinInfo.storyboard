@@ -281,6 +281,9 @@
                                             <constraint firstAttribute="width" constant="28" id="rtJ-OO-R0o"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="icon_button_add"/>
+                                        <connections>
+                                            <action selector="selectAddress:" destination="DbC-i3-m12" eventType="touchUpInside" id="1Wr-u5-dun"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

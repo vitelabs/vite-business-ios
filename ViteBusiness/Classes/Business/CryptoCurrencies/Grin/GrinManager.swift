@@ -73,6 +73,7 @@ class GrinManager: GrinBridge {
             Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
                 .bind{ [weak self] _ in self?.getBalance()}
                 .disposed(by: self.bag)
+            getBalance()
 
             NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
                 .bind { [weak self] n in
@@ -102,7 +103,7 @@ class GrinManager: GrinBridge {
                   name: "Grin",
                   symbol: "Grin",
                   decimals: 9,
-                  icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
+                  icon: "https://static.aicoinstorge.com/attachment/article/20181206/1544125293262.jpg",
                   id: "Grin")
 
     }
