@@ -25,14 +25,19 @@ public class EthGasFeeSliderView: UIView {
             var eth = (value * Float(self.gasLimit) * pow(10.0, -9))
             eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
 
-            var rateFee = ""
-            let balance = Balance(value: BigInt(eth))
-            rateFee = ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) ?? ""
+            var ethStr : String
             if eth <= 0.0001 {
-                self.totalGasFeeLab.text = String(format: "%.5f ETH%@", eth,rateFee)
+                ethStr = String(format: "%.5f", eth)
             } else {
-                self.totalGasFeeLab.text = String(format: "%.4f ETH%@", eth,rateFee)
+                ethStr = String(format: "%.4f", eth)
             }
+            var rateFee = ""
+            let balance = Balance.init(value: ethStr.toBigInt(decimals: 18) ?? BigInt(0))
+
+            if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) {
+                rateFee = String(format: "≈%@",rateFeeStr)
+            }
+           self.totalGasFeeLab.text = String(format: "%@ ETH %@", ethStr,rateFee)
             self.feeSlider.value = Float(value)
         }
     }

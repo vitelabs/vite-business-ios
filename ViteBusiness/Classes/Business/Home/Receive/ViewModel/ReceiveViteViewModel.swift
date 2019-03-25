@@ -19,7 +19,7 @@ class ReceiveViteViewModel: ReceiveViewModelType {
         return self.amountStringBehaviorRelay.asDriver().map({ [weak self] (amountString) -> String in
             guard let `self` = self else { return "" }
             if let amountString = amountString {
-                return "\(amountString) \(self.token.symbol)"
+                return R.string.localizable.receivePageTokenNameLabel("\(amountString) \(self.token.symbol)")
             } else {
                 return R.string.localizable.receivePageTokenNameLabel(self.token.symbol)
             }

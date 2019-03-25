@@ -11,50 +11,40 @@
     },
     "default_tokenInfos":[
         {
-            "tokenCode":"viteCoin",
-            "platform":"vite",
+            "symbol":"VITE",
             "name":"Vite Token",
-            "symbol":"VITE",
-            "decimal":18,
-            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
-            "tokenAddress":"tti_5649544520544f4b454e6e40"
+            "tokenCode":"1171",
+            "platform":"VITE",
+            "tokenAddress":"tti_5649544520544f4b454e6e40",
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png",
+            "decimal":18
         },
         {
-            "tokenCode":"1158",
-            "platform":"vite",
-            "name":"Vite Community Point",
             "symbol":"VCP",
-            "decimal":0,
-            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
-            "tokenAddress":"tti_c2695839043cf966f370ac84"
+            "name":"Vite Community Point",
+            "tokenCode":"1172",
+            "platform":"VITE",
+            "tokenAddress":"tti_251a3e67a41b5ea2373936c8",
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/37f59a9ce1b87eebe32e70994df8851f.png",
+            "decimal":0
         },
         {
-            "tokenCode":"etherCoin",
-            "platform":"eth",
-            "name":"Ethereum",
             "symbol":"ETH",
-            "decimal":18,
-            "icon":"https://www.cryptosaurus.cc/ctrl/wp-content/uploads/ETHEREUM.png",
-            "tokenAddress":""
+            "name":"Ether",
+            "tokenCode":"1",
+            "platform":"ETH",
+            "tokenAddress":null,
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png",
+            "decimal":18
         },
         {
-            "tokenCode":"viteERC20",
-            "platform":"eth",
-            "name":"Vite ERC20",
             "symbol":"VITE",
-            "decimal":18,
-            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
-            "tokenAddress":"0x54b716345c14ba851f1b51dcc1491abee6ba8f44"
-        },
-        {
-            "tokenCode":"Grin",
-            "platform":"Grin",
-            "name":"Grin",
-            "symbol":"Grin",
-            "decimals":9,
-            "icon":"https://s2.coinmarketcap.com/static/img/coins/64x64/2937.png",
-            "tokenAddress":""
-        },
+            "name":"ViteToken",
+            "tokenCode":"41",
+            "platform":"ETH",
+            "tokenAddress":"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016",
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png",
+            "decimal":18
+        }
     ]
 }
-

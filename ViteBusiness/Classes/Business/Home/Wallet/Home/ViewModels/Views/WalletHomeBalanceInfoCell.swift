@@ -19,12 +19,12 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     fileprivate let symbolLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.numberOfLines = 1
     }
 
     let coinFamilyLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x4B5461, alpha: 0.6)
         $0.numberOfLines = 1
     }
 
@@ -61,16 +61,28 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
-        let shadowView = UIView.embedInShadowView(customView: whiteView, width: 0, height: 5, radius: 20)
+        let shadowView = UIView().then {
+            $0.backgroundColor = nil
+            $0.layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
+            $0.layer.shadowRadius = 20
+        }
+
+        shadowView.addSubview(whiteView)
+        whiteView.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+
         contentView.addSubview(shadowView)
-        contentView.addSubview(highlightedMaskView)
-        contentView.addSubview(colorView)
 
         whiteView.addSubview(iconImageView)
         whiteView.addSubview(symbolLabel)
         whiteView.addSubview(coinFamilyLabel)
         whiteView.addSubview(balanceLabel)
         whiteView.addSubview(priceLabel)
+        whiteView.addSubview(colorView)
+        whiteView.addSubview(highlightedMaskView)
 
         shadowView.snp.makeConstraints { (m) in
             m.top.equalTo(contentView)
@@ -143,13 +155,10 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         iconImageView.tokenInfo = viewModel.tokenInfo
 
         symbolLabel.text = viewModel.symbol
-        symbolLabel.textColor = viewModel.tokenInfo.mainColor
+        coinFamilyLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = viewModel.coinFamily
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
-
-        DispatchQueue.main.async {
-            self.colorView.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: self.colorView.frame, colors: viewModel.tokenInfo.coinBackgroundGradientColors)
-        }
+        colorView.backgroundColor = viewModel.tokenInfo.mainColor
     }
 }

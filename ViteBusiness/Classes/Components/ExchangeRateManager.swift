@@ -59,7 +59,7 @@ public final class ExchangeRateManager {
                 plog(level: .debug, log: "start fetch", tag: .exchange)
                 self.rateMapBehaviorRelay.accept(self.read())
                 let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
-                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5, completion: { [weak self] (r) in
+                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5 * 60, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
                     switch r {
                     case .success(let map):
@@ -80,6 +80,10 @@ public final class ExchangeRateManager {
                 self.service = nil
             }
         }).disposed(by: disposeBag)
+
+        rateMapDriver.drive(onNext: { (map) in
+            print("sdfsdf \(map)")
+        }).disposed(by: disposeBag)
     }
 
     func getRateImmediately(for tokenCode: TokenCode) {
@@ -93,7 +97,7 @@ public final class ExchangeRateManager {
                 if let rate = map[tokenCode] {
                     var old = self.rateMapBehaviorRelay.value
                     old[tokenCode] = rate
-                    self.rateMapBehaviorRelay.accept(map)
+                    self.rateMapBehaviorRelay.accept(old)
                     self.pri_save()
                 }
             case .failure(let error):

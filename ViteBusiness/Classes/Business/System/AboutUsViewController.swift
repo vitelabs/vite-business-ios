@@ -69,8 +69,8 @@ extension AboutUsViewController {
             make.height.equalTo(116)
         }
         self.tableView.tableHeaderView = headerView
-
-        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 270) )
+        self.tableView.alwaysBounceVertical = false
+        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 226) )
         self.tableView.tableFooterView = bottomView
 
         form +++
@@ -93,30 +93,30 @@ extension AboutUsViewController {
                 $0.cell.textLabel?.textColor = Colors.cellTitleGray
                 $0.cell.textLabel?.font = Fonts.light16
                 $0.title =  R.string.localizable.aboutUsPageCellVersion()
-                #if ENTERPRISE
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DE\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (E\(Bundle.main.buildNumber))"
-                #endif
+                #if INTERNAL
+                    #if DEBUG
+                    $0.value = "\(Bundle.main.versionNumber) (DE\(Bundle.main.buildNumber))"
+                    #else
+                    $0.value = "\(Bundle.main.versionNumber) (E\(Bundle.main.buildNumber))"
+                    #endif
                 #elseif TEST
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (T\(Bundle.main.buildNumber))"
-                #endif
+                    #if DEBUG
+                    $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
+                    #else
+                    $0.value = "\(Bundle.main.versionNumber) (T\(Bundle.main.buildNumber))"
+                    #endif
                 #elseif OFFICIAL
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DA\(Bundle.main.buildNumber))"
+                    #if DEBUG
+                    $0.value = "\(Bundle.main.versionNumber) (DA\(Bundle.main.buildNumber))"
+                    #else
+                    $0.value = "\(Bundle.main.versionNumber) (A\(Bundle.main.buildNumber))"
+                    #endif
                 #else
-                $0.value = "\(Bundle.main.versionNumber) (A\(Bundle.main.buildNumber))"
-                #endif
-                #else
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DD\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (D\(Bundle.main.buildNumber))"
-                #endif
+                    #if DEBUG
+                    $0.value = "\(Bundle.main.versionNumber) (DD\(Bundle.main.buildNumber))"
+                    #else
+                    $0.value = "\(Bundle.main.versionNumber) (D\(Bundle.main.buildNumber))"
+                    #endif
                 #endif
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
@@ -129,13 +129,6 @@ extension AboutUsViewController {
             }.onCellSelection({ [unowned self] _, _  in
                 self.sendUsEmail()
                 })
-
-//            <<< ImageRow("aboutUsPageCellShareUs") {
-//                $0.cell.titleLab.text =  R.string.localizable.aboutUsPageCellShareUs()
-//                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
-//            }.onCellSelection({ [unowned self] _, _  in
-//                //TODO:::  调面板，分享下载的url
-//            })
 
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuideSnpTop)

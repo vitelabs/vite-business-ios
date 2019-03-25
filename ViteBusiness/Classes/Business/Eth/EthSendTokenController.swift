@@ -45,13 +45,16 @@ class EthSendTokenController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     // View
@@ -111,7 +114,7 @@ class EthSendTokenController: BaseViewController {
             view.addButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                    [R.string.localizable.sendPageAddContactsButtonTitle(),
+                    [R.string.localizable.ethSendPageEthContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             return  view
@@ -125,14 +128,8 @@ class EthSendTokenController: BaseViewController {
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    }
-
     private func setupView() {
-    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        navigationTitleView = NavigationTitleView(title: String.init(format: "%@转账",self.tokenInfo.symbol))
+        navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.symbol))
 
         navigationTitleView!.addSubview(logoImgView)
         logoImgView.snp.makeConstraints { (m) in
@@ -235,7 +232,7 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
         if index == 0 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let scanViewController = ScanViewController()

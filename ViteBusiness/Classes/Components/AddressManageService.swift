@@ -15,21 +15,12 @@ import ViteWallet
 public final class AddressManageService {
     public static let instance = AddressManageService()
 
-    fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+    fileprivate var fileHelper: FileHelper!
     fileprivate static let saveKey = "AddressManage"
+    fileprivate let disposeBag = DisposeBag()
 
     //MARK: save to disk
-    private init() {
-        if let data = fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let jsonString = String(data: data, encoding: .utf8),
-            let manager = AddressManager(JSONString: jsonString) {
-            myAddressNameMap = BehaviorRelay(value: manager.myAddressNameMap)
-            contactsBehaviorRelay = BehaviorRelay(value: manager.contacts)
-        } else {
-            myAddressNameMap = BehaviorRelay(value: [:])
-            contactsBehaviorRelay = BehaviorRelay(value: [])
-        }
-    }
+    private init() { }
 
     private func pri_save() {
         let manager = AddressManager(myAddressNameMap: myAddressNameMap.value, contacts: contactsBehaviorRelay.value)
@@ -42,7 +33,29 @@ public final class AddressManageService {
 
     //MARK: my address name
     public lazy var myAddressNameMapDriver: Driver<[String: String]> = self.myAddressNameMap.asDriver()
-    private var myAddressNameMap: BehaviorRelay<[String: String]>
+    private var myAddressNameMap: BehaviorRelay<[String: String]>  = BehaviorRelay(value: [:])
+
+    public func start() {
+
+        HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().drive(onNext: { [weak self] uuid in
+            guard let `self` = self else { return }
+            if let _ = uuid {
+                self.fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+                if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+                    let jsonString = String(data: data, encoding: .utf8),
+                    let manager = AddressManager(JSONString: jsonString) {
+                    self.myAddressNameMap.accept(manager.myAddressNameMap)
+                    self.contactsBehaviorRelay.accept(manager.contacts)
+                } else {
+                    self.myAddressNameMap.accept([:])
+                    self.contactsBehaviorRelay.accept([])
+                }
+            } else {
+                self.myAddressNameMap.accept([:])
+                self.contactsBehaviorRelay.accept([])
+            }
+        }).disposed(by: disposeBag)
+    }
 
     func name(for myAddress: Address, placeholder: String = R.string.localizable.addressManageDefaultAddressName()) -> String {
         return myAddressNameMap.value[myAddress.description] ?? placeholder
@@ -61,7 +74,7 @@ public final class AddressManageService {
 
     //MARK: contacts
     public lazy var contactsDriver: Driver<[Contact]> = self.contactsBehaviorRelay.asDriver()
-    private var contactsBehaviorRelay: BehaviorRelay<[Contact]>
+    private var contactsBehaviorRelay: BehaviorRelay<[Contact]> = BehaviorRelay(value: [])
 
     public func contactsDriver(for coinType: CoinType) -> Driver<[Contact]> {
         return contactsDriver.map({ $0.filter({ $0.type == coinType }) })

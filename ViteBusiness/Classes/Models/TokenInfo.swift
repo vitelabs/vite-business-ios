@@ -95,9 +95,21 @@ public enum CoinType: String {
 public typealias TokenCode = String
 
 extension TokenCode {
-    public static let viteCoin = "1157"
+    #if DEBUG || TEST
+    public static var viteCoin: String {
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1171" : "1"
+    }
+    public static var etherCoin: String {
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1" : "7"
+    }
+    public static var viteERC20: String {
+        return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "6"
+    }
+    #else
+    public static let viteCoin = "1171"
     public static let etherCoin = "1"
-    public static let viteERC20 = "39"
+    public static let viteERC20 = "41"
+    #endif
     public static let grinCoin = "Grin"
 }
 
@@ -121,7 +133,7 @@ public struct TokenInfo: Mappable {
             }
         case .eth:
             if isEtherCoin {
-                return "ETH Coin"
+                return "Ethereum Coin"
             } else {
                 return "ERC20 Token"
             }

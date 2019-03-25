@@ -122,11 +122,10 @@ extension IntroductionViewController {
     private func configureViews() {
         var scaleFactor = Float(1.0)
         let desginHeight = CGFloat(667)
-        if !UIDevice.current.isIPhoneX() && !UIDevice.current.isIPhone6() && !UIDevice.current.isIPhone6Plus() {
-            scaleFactor = Float(kScreenH/desginHeight)
-            let divisor = Int(scaleFactor*10)
-            scaleFactor = Float(Float(divisor)/10.0)
-        }
+        let desginWidth = CGFloat(375)
+        scaleFactor = Float(kScreenW/desginWidth)
+        let divisor = Int(scaleFactor*10)
+        scaleFactor = Float(Float(divisor)/10.0)
         for (index, item) in self.iconsDict.enumerated() {
             let bundle = Bundle.podBundle(for: type(of: self), bundleName: "ViteBusiness")
             var iconImg = UIImage(named: item, in: bundle, compatibleWith: nil)
@@ -148,6 +147,7 @@ extension IntroductionViewController {
                 self.animator.addAnimation(iconAlphaAnimation)
 
                 let tipsTitleLab = self.createLab(Fonts.Font24, UIColor(netHex: 0x007AFF))
+                tipsTitleLab.numberOfLines = 2
                 tipsTitleLab.text = self.tipsTitleDict[index]
                 self.contentView.addSubview(tipsTitleLab)
 
@@ -157,14 +157,14 @@ extension IntroductionViewController {
                 self.animator.addAnimation(tipsTitleLabAlphaAnimation)
 
                 tipsTitleLab.snp.makeConstraints { (make) in
-                    make.top.equalTo(iconImgView.snp.bottom).offset(50*Float(kScreenH/desginHeight))
-                    make.width.equalTo(contentView).offset(-48)
+                    make.top.equalTo(iconImgView.snp.bottom).offset(50*Float(kScreenH/desginHeight) - 15)
+                    make.width.equalTo(self.view).offset(-48)
                 }
 
                 let tipsDescLab = self.createLab(Fonts.Font14, Colors.titleGray)
                 tipsDescLab.numberOfLines = 2
                 let paragraph = NSMutableParagraphStyle()
-                paragraph.lineSpacing = 5
+                paragraph.lineSpacing = 2
                 paragraph.alignment = .center
                 let attributes = [NSAttributedString.Key.font: Fonts.Font14,
                                   NSAttributedString.Key.foregroundColor: Colors.titleGray,

@@ -29,7 +29,7 @@ class KeychainService {
     }
 
     enum Key: String {
-        #if ENTERPRISE
+        #if INTERNAL
         case currentWallet = "currentWallet.ep"
         #else
         case currentWallet

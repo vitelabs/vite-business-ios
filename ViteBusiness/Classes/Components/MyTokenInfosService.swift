@@ -18,6 +18,7 @@ public final class MyTokenInfosService: NSObject {
 
     fileprivate var fileHelper: FileHelper! = nil
     fileprivate static let saveKey = "MyTokenInfos"
+    fileprivate var needUpdateTokenInfo: Set<TokenCode> = Set()
 
     private override init() {}
     private func pri_save() {
@@ -49,12 +50,20 @@ public final class MyTokenInfosService: NSObject {
                         let jsonString = String(data: data, encoding: .utf8),
                         let tokenInfos = [TokenInfo](JSONString: jsonString) {
                         let selected = tokenInfos.filter { !defaultTokenInfos.contains($0) }
-                        self.tokenInfosBehaviorRelay.accept(selected + defaultTokenInfos)
+
+                        // update icon
+                        let def = defaultTokenInfos.map({ (old) -> TokenInfo in
+                            for tokenInfo in tokenInfos where tokenInfo.tokenCode == old.tokenCode { return tokenInfo }
+                            return old
+                        })
+                        self.tokenInfosBehaviorRelay.accept(def + selected)
                     } else {
                         self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
                     }
+                    self.needUpdateTokenInfo = Set(self.tokenInfosBehaviorRelay.value.map({ $0.tokenCode }))
                 } else {
                     self.tokenInfosBehaviorRelay.accept([])
+                    self.needUpdateTokenInfo = Set()
                 }
         }.disposed(by: rx.disposeBag)
     }
@@ -63,6 +72,32 @@ public final class MyTokenInfosService: NSObject {
     public fileprivate(set) var defaultTokenInfos: [TokenInfo] = []
     public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
+
+    public func updateTokenInfoIfNeeded(for tokenCode: TokenCode) {
+        guard needUpdateTokenInfo.contains(tokenCode) else { return }
+
+        ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode) { (r) in
+            switch r {
+            case .success(let tokenInfo):
+                self.needUpdateTokenInfo.remove(tokenCode)
+                var tokenInfos = self.tokenInfosBehaviorRelay.value
+                var index: Int?
+                for (i, t) in tokenInfos.enumerated() where t.tokenCode == tokenInfo.tokenCode {
+                    index = i
+                }
+
+                if let index = index {
+                    tokenInfos.remove(at: index)
+                    tokenInfos.insert(tokenInfo, at: index)
+                    self.tokenInfosBehaviorRelay.accept(tokenInfos)
+                    self.pri_save()
+                }
+
+            case .failure(let error):
+                plog(level: .warning, log: "update tokenInfo error: \(error.localizedDescription)", tag: .exchange)
+            }
+        }
+    }
 
     public func tokenInfo(for tokenCode: TokenCode) -> TokenInfo? {
         for tokenInfo in tokenInfos where tokenInfo.tokenCode == tokenCode {
@@ -135,7 +170,7 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))
         } else {
-            ExchangeProvider.instance.getTokenInfo(chain: "Vite", id: viteTokenId, completion: completion)
+            ExchangeProvider.instance.getTokenInfo(chain: "VITE", id: viteTokenId, completion: completion)
         }
     }
 
@@ -156,5 +191,13 @@ extension TokenInfo {
 
     var isContains: Bool {
         return MyTokenInfosService.instance.containsTokenInfo(for: tokenCode)
+    }
+}
+
+extension MyTokenInfosService {
+    // for debug
+    func clear() {
+        tokenInfosBehaviorRelay.accept([])
+        pri_save()
     }
 }

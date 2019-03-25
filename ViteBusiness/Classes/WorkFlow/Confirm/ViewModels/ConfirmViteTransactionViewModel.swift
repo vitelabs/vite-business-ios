@@ -20,7 +20,7 @@ struct ConfirmViteTransactionViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageTitle()
+        return R.string.localizable.confirmTransactionPageTransferTitle()
     }
     var biometryConfirmButtonTitle: String {
         return R.string.localizable.confirmTransactionPageConfirmButton()

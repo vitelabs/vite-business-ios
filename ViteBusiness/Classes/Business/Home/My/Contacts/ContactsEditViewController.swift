@@ -25,7 +25,7 @@ class ContactsEditViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollableView.stackView)
+        kas_activateAutoScrollingForView(view)
     }
 
     required public init?(coder aDecoder: NSCoder) {

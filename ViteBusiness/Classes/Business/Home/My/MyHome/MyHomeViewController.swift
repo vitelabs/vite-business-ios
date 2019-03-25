@@ -51,6 +51,7 @@ class MyHomeViewController: BaseTableViewController {
         let headerView = MyHomeListHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 116))
         headerView.delegate = self
         tableView.tableHeaderView = headerView
+        tableView.alwaysBounceVertical = false
 
         self.view.addSubview(self.logoutBtn)
         self.logoutBtn.snp.makeConstraints { (make) in
@@ -164,7 +165,7 @@ extension MyHomeViewController {
         view.addSubview(iconBtn)
         iconBtn.snp.makeConstraints { (m) in
             m.centerY.equalTo(self.titleBtn)
-            m.left.equalTo(self.titleBtn.snp.right).offset(6)
+            m.left.equalTo(self.titleBtn.snp.right).offset(4)
         }
         iconBtn.addTarget(self, action: #selector(titleBtnAction), for: .touchUpInside)
 

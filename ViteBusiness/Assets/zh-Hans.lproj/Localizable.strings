@@ -153,30 +153,31 @@
 
 /* Address Manage Page */
 "address.manage.page.title" = "地址管理";
-"address.manage.default.address.cell.title" = "默认收款地址";
+"address.manage.default.address.cell.title" = "默认地址";
 "address.manage.address.header.title" = "地址列表";
 "address.manage.address.generate.button.title" = "添加地址";
 "address.manage.address.generate.button.toast" = "最多只能添加10个地址";
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
-"address.manage.default.address.name" = "我的地址";
+"address.manage.default.address.name" = "我的VITE地址";
 "address.manage.change.name.alert.title" = "修改地址名称";
 "address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
 /* Send Page */
 "send.page.title" = "转账";
-"send.page.my.address.title" = "我的账户地址";
-"send.page.my.balance.title" = "我的账户余额";
-"send.page.my.quota.title" = "我的配额";
+"send.page.my.address.title" = "我的VITE地址";
+"send.page.my.balance.title" = "余额";
+"send.page.my.quota.title" = "配额";
 "send.page.my.max.tx.count.title" = "最大交易笔数";
 "send.page.add.my.address.button.title" = "我的";
-"send.page.add.contacts.button.title" = "联系地址";
+"send.page.vite.contacts.button.title" = "VITE联系地址";
 "send.page.scan.address.button.title" = "扫码";
 "send.page.to.address.title" = "收款地址";
 "send.page.amount.title" = "金额";
 "send.page.remark.title" = "备注";
 "send.page.send.button.title" = "转账";
 "send.page.amount.toolbar.button.title" = "下一项";
+"send.page.toast.send.transfer.success" = "转账交易发送成功";
 "send.page.toast.send.success" = "支付成功";
 "send.page.toast.address.error" = "地址输入错误,请检查格式";
 "send.page.toast.amount.error" = "账户余额不足";
@@ -194,6 +195,8 @@
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "支付";
+"confirm.transaction.page.transfer.title" = "转账";
+"confirm.transaction.page.pledge.title" = "获取配额";
 "confirm.transaction.address.title" = "收款地址";
 "confirm.transaction.amount.title" = "金额";
 "confirm.transaction.fee.title" = "手续费";
@@ -210,7 +213,7 @@
 /* Receive Page */
 "Receive.page.token.title" = "收款";
 "Receive.page.mine.title" = "我的二维码";
-"Receive.page.token.name.label" = "扫二维码向我转入 %@";
+"Receive.page.token.name.label" = "请转入 %@";
 "Receive.page.token.amount.button.title" = "设置金额";
 "Receive.page.token.note.label" = "备注";
 "Receive.page.token.amount.alert.title" = "输入金额";
@@ -277,7 +280,7 @@
 "peldge.title" = "我的抵押列表";
 
 /* Vote */
-"vote.page.title" = "我的投票";
+"vote.page.title" = "投票";
 "vote.page.info.nodata.title" = "暂无投票";
 "vote.page.voteStatus.voteSuccess" = "投票成功";
 "vote.page.voteStatus.voting" = "正在投票中";
@@ -314,14 +317,14 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "已经全部加载完毕";
 
 //Welcome
-"introduction.page.tip1.title" = "转账零费用";
-"introduction.page.tip2.title" = "交易速度快";
-"introduction.page.tip3.title" = "HD钱包结构";
-"introduction.page.tip4.title" = "投票赚奖励";
-"introduction.page.tip1.desc" = "交易消耗配额，运行PoW免费获取";
-"introduction.page.tip2.desc" = "异步架构设计，交易畅通无阻";
-"introduction.page.tip3.desc" = "支持多种代币，方便账号管理";
-"introduction.page.tip4.desc" = "投票官方节点，赚取VITE奖励";
+"introduction.page.tip1.title" = "跨链多币种";
+"introduction.page.tip2.title" = "去中心化钱包";
+"introduction.page.tip3.title" = "转账零费用";
+"introduction.page.tip4.title" = "交易速度快";
+"introduction.page.tip1.desc" = "支持多种代币，方便资产管理";
+"introduction.page.tip2.desc" = "私钥本地保存，代码开源保证";
+"introduction.page.tip3.desc" = "交易消耗配额，运行PoW免费获取";
+"introduction.page.tip4.desc" = "异步架构设计，交易畅通无阻";
 "introduction.page.nextBtn.title" = "开始体验";
 
 /* Error Message */
@@ -340,7 +343,7 @@
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "快照块高度不合法，请您稍后再试";
 
 /* Tip String */
-"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是配额</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户不是通过支付手续费的方式来购买一次交易所需的燃料，而是通过一种基于配额的模型来获取计算资源，发送交易所需配额=基础配额(请求)+配额(附带的文本资料)，接受交易所需配额=基础配额(响应)。这个基于配额的资源配置协议允许用户通过两种方式来获取更高的资源配额：</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.抵押VITE获取配额</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.运行PoW</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是抵押</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户可以抵押VITE获取一定数量的配额，抵押最小值为1000VITE，没有最大抵押上限；同时支持A地址抵押一部分VITE并将获得的配额分配给B地址；用户申请抵押后，会将这笔VITE发送到智能合约地址而不是某一个用户，且只有申请抵押用户有权限支配抵押的金额；</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是PoW</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">工作量证明(Proof of Work，简称PoW)，简单理解就是一份证明，用来确认你做过一定量的工作，应对拒绝服务攻击和其他服务滥用的经济对策。它要求发起者进行一定量的运算，也就意味着需要消耗计算机一定的时间；在Vite系统中，用户可以通过运行PoW获得免费的配额，用户可以通过获得的配额进行一次不带任何备注信息的交易；</p>";
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是配额</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户不是通过支付手续费的方式来购买一次交易所需的燃料，而是通过一种基于配额的模型来获取计算资源，发送交易所需配额=基础配额(请求)+配额(附带的文本资料)，接受交易所需配额=基础配额(响应)。这个基于配额的资源配置协议允许用户通过两种方式来获取更高的资源配额：</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.抵押VITE获取配额</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.运行PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">配额单位：UTPS，Unit of Transaction per Second，每秒交易单位。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是抵押</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户可以抵押VITE获取一定数量的配额，抵押最小值为1000 VITE，没有最大抵押上限；同时支持A地址抵押一部分VITE并将获得的配额分配给B地址；用户申请抵押后，会将这笔VITE发送到智能合约地址而不是某一个用户，且只有申请抵押用户有权限支配抵押的金额。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是PoW</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">工作量证明(Proof of Work，简称PoW)，简单理解就是一份证明，用来确认你做过一定量的工作，应对拒绝服务攻击和其他服务滥用的经济对策。它要求发起者进行一定量的运算，也就意味着需要消耗计算机一定的时间；在Vite系统中，用户可以通过运行PoW获得免费的配额，用户可以通过获得的配额进行一次不带任何备注信息的交易。</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于投票</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">您可以参与投票选出共25个SBP（Snapshot Block Producer），每轮投票时间共75秒，您的投票数为投票地址所拥有的VITE数量，默认为您保持上一轮的投票意向；每轮得票量排名前25名的候选节点中随机23个及排名26-100名的候选节点中随机2个共25个节点将当选SBP。</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">您投票的%@已经取消注册，您可以重新投票或撤销投票；如果您不重新投票或撤销投票，%@ 恢复注册后，您原来的投票将恢复生效。</p>";
 
@@ -348,6 +351,9 @@
 "vite.uri.amount.format.error" = "转账金额格式错误";
 
 // eth
+"eth.send.page.my.address.title" = "ETH地址";
+"eth.send.page.eth.contacts.button.title" = "ETH联系地址";
+"eth.receive.page.my.address.title" = "我的ETH地址";
 "eth.page.gasFee.title" = "矿工费用";
 "eth.page.gasFee.slow.title" = "慢";
 "eth.page.gasFee.fast.title" = "快";
@@ -355,12 +361,12 @@
 
 //token
 "token.list.page.search.title" = "输入Token名称或合约地址";
-"token.list.page.section.vite.header" = "VITE网络代币";
-"token.list.page.section.eth.header" = "ETH网络代币";
+"token.list.page.section.vite.header" = "Vite网络";
+"token.list.page.section.eth.header" = "Ethereum网络";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
-"contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
+"contacts.home.page.no.contact.tip" = "添加您的第一个联系地址";
 "contacts.home.page.single.no.contact.tip" = "暂无 %@ 联系地址";
 "contacts.home.page.filter.all" = "全部";
 "contacts.home.page.add.button.title" = "添加";

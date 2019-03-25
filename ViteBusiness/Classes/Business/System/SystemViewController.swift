@@ -65,6 +65,7 @@ class SystemViewController: FormViewController {
     func setupTableView() {
         self.tableView.backgroundColor = .white
         self.tableView.separatorStyle = .none
+        self.tableView.alwaysBounceVertical = false
 
         ViteSwitchRow.defaultCellSetup = { cell, row in
             cell.preservesSuperviewLayoutMargins = false

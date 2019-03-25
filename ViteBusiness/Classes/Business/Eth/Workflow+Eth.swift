@@ -25,7 +25,7 @@ public extension Workflow {
                     switch result {
                     case .success(let txHash):
                             completion(ViteWallet.Result(value: txHash))
-                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendTransferSuccess())
                     case .failure(let error):
                         completion(ViteWallet.Result(error: error))
                         break
@@ -37,7 +37,7 @@ public extension Workflow {
                     switch result {
                     case .success(let txHash):
                         completion(ViteWallet.Result(value: txHash))
-                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendSuccess())
+                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendTransferSuccess())
                     case .failure(let error):
                         completion(ViteWallet.Result(error: error))
                         break

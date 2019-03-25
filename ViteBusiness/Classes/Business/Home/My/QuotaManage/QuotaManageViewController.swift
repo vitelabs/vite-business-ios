@@ -38,7 +38,7 @@ class QuotaManageViewController: BaseViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
         FetchQuotaService.instance.retainQuota()
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteCoin])
     }
@@ -60,7 +60,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
@@ -218,7 +218,7 @@ extension QuotaManageViewController {
             guard let `self` = self else { return }
             FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
                 [R.string.localizable.sendPageMyAddressTitle(),
-                 R.string.localizable.sendPageAddContactsButtonTitle(),
+                 R.string.localizable.sendPageViteContactsButtonTitle(),
                  R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
     }
@@ -241,7 +241,7 @@ extension QuotaManageViewController {
                 }
             }).disposed(by: rx.disposeBag)
 
-    FetchQuotaService.instance.quotaDriver
+    FetchQuotaService.instance.maxTxCountDriver
         .map({ R.string.localizable.sendPageQuotaContent($0) })
         .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }
@@ -252,12 +252,12 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
         if index == 0 {
             let viewModel = AddressListViewModel.createMyAddressListViewModel()
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
             let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddress.asObservable().bind(to: addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 2 {
             let scanViewController = ScanViewController()

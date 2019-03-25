@@ -99,7 +99,7 @@ class SendGrinViewController: UIViewController {
     @IBAction func selectAddress(_ sender: Any) {
         let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.grin)
         let vc = AddressListViewController(viewModel: viewModel)
-        vc.selectAddress.asObservable().bind(to: addressTextField.rx.text).disposed(by: rx.disposeBag)
+        vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 

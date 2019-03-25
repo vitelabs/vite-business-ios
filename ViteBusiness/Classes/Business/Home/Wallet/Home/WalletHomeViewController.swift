@@ -16,8 +16,6 @@ import ViteUtils
 import ViteWallet
 import BigInt
 import web3swift
-import Vite_GrinWallet
-
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -64,7 +62,6 @@ class WalletHomeViewController: BaseTableViewController {
         statisticsPageName = Statistics.Page.WalletHome.name
 
         view.addSubview(navView)
-        view.addSubview(headerView)
 
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -72,13 +69,9 @@ class WalletHomeViewController: BaseTableViewController {
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
         }
 
-        headerView.snp.makeConstraints { (m) in
-            m.top.equalTo(navView.snp.bottom)
-            m.left.right.equalToSuperview()
-        }
 
         tableView.snp.remakeConstraints { (m) in
-            m.top.equalTo(headerView.snp.bottom)
+            m.top.equalTo(navView.snp.bottom)
             m.bottom.right.left.equalTo(view)
         }
 
@@ -86,15 +79,19 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 56)).then {
             $0.backgroundColor = UIColor.clear
+            $0.addSubview(headerView)
+            headerView.snp.makeConstraints { (m) in
+                m.top.equalToSuperview()
+                m.left.right.equalToSuperview()
+            }
         }
 
         if #available(iOS 11.0, *) {
 
         } else {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
-            tableView.scrollIndicatorInsets = tableView.contentInset
+            self.automaticallyAdjustsScrollViewInsets = false
         }
     }
 
@@ -131,17 +128,18 @@ class WalletHomeViewController: BaseTableViewController {
                 guard let `self` = self else { fatalError() }
                 if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                    var balanceInfoDetailViewController : UIViewController!
+                    MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
+                    let balanceInfoDetailViewController : UIViewController
                     if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
                     } else if viewModel.tokenInfo.coinType == .grin {
-                        let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: businessBundle())
-                        balanceInfoDetailViewController = storyboard
-                            .instantiateInitialViewController() as? UIViewController
+                        let storyboard =
+                        balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
+                            .instantiateInitialViewController()!
                     } else {
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
-                    self.navigationController?.pushViewController(balanceInfoDetailViewController!, animated: true)
+                    self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
                 }
             }
             .disposed(by: rx.disposeBag)
@@ -174,6 +172,11 @@ class WalletHomeViewController: BaseTableViewController {
                     scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
                     return
                 }
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
+                
                 switch uri.type {
                 case .transfer:
                     var note = ""
@@ -207,6 +210,10 @@ class WalletHomeViewController: BaseTableViewController {
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let tokenInfo):
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
 
                 var balance: Balance? = nil
                 if let amount = uri.amount,

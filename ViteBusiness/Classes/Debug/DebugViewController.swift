@@ -33,7 +33,7 @@ class DebugViewController: FormViewController {
             }
             <<< LabelRow("appVersion") {
                 $0.title = "Version"
-                #if ENTERPRISE
+                #if INTERNAL
                 #if DEBUG
                 $0.value = "\(Bundle.main.versionNumber) (DE\(Bundle.main.buildNumber))"
                 #else

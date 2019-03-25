@@ -25,22 +25,22 @@
 /* Login */
 "create.account" = "Create Account";
 "import.account" = "Import Account";
-"select.wallet.account" = "Select wallet account";
+"select.wallet.account" = "Select your account";
 
 /* Lock */
 "lock.page.pwd.btn.title" = "Login via password";
 "lock.page.fingerprint.btn.title" = "Arouse verify again";
 "lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch account";
+"lock.page.changeUser.btn.title" = "Switch Account";
 
 /* create */
 "create.page.title" = "Create Account";
 "create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "请输入密码";
+"create.page.pw.title" = "Please input password";
 "create.page.pw.repeate.title" = "Please input your password again";
 "create.page.submit.btn.title" = "Create";
 
-"create.page.tip.title" = "Back up Wallet Account";
+"create.page.tip.title" = "Backup Wallet Account";
 "create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
 "create.page.tip.nextBtn" = "Generate Seed Phrase";
 
@@ -58,7 +58,7 @@
 "mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
 "mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.affirm.page.title" = "Confirm your seed phrase";
@@ -81,7 +81,7 @@
 /* export mnemonic */
 "export.page.title" = "Export Seed Phrase";
 "export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "请输入账户密码";
+"export.page.alter.tf.placeholder" = "Please input password";
 "export.page.alter.password.error" = "Wrong Password!";
 
 /* login */
@@ -100,7 +100,7 @@
 "wallet.home.toast.copy.address" = "Successfully copied!";
 "wallet.home.scan.url.alert.title" = "NOTICE";
 "wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "全部资产";
+"wallet.home.header.title" = "Assets";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "Wallet Management";
@@ -111,11 +111,11 @@
 "manage.wallet.page.changeName.loading" = "Editing";
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
-"my.page.contacts.cell.title" = "联系人";
-"my.page.mnemonic.cell.title" = "助记词";
-"my.page.system.cell.title" = "使用设置";
-"my.page.aboutUs.cell.title" = "关于我们";
-"my.page.change.wallet.name.alter.title" = "修改账户名";
+"my.page.contacts.cell.title" = "Contacts";
+"my.page.mnemonic.cell.title" = "Mnemonic Words";
+"my.page.system.cell.title" = "Settings";
+"my.page.aboutUs.cell.title" = "About Us";
+"my.page.change.wallet.name.alter.title" = "Edit Account Name";
 
 /* Transaction List */
 "transaction.list.page.title" = "Transaction History";
@@ -139,41 +139,42 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
-"balance.info.detail.unconfirmed.count.title" = "%@ unconfirmed";
+"balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
 "balance.info.detail.show.transactions.button.title" = "View Transaction History";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Quota";
-"balance.info.detail.pledge.count.content" = "配额 %@ UTPS";
-"balance.info.detail.onroad.amount.content" = "%@ 待确认";
+"balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
+"balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
 /* Address Manage Page */
 "address.manage.page.title" = "Address Management";
-"address.manage.default.address.cell.title" = "Default Receiving Address";
+"address.manage.default.address.cell.title" = "Default Address";
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
 "address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
 "address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "我的地址";
-"address.manage.change.name.alert.title" = "修改地址名称";
-"address.manage.change.name.alert.placeholder" = "请输入新的名称";
+"address.manage.default.address.name" = "My VITE Address";
+"address.manage.change.name.alert.title" = "Edit Address Alias";
+"address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
 "send.page.title" = "Transfer";
-"send.page.my.address.title" = "My Address";
+"send.page.my.address.title" = "VITE Address";
 "send.page.my.balance.title" = "Balance";
-"send.page.my.quota.title" = "My Quota";
+"send.page.my.quota.title" = "Quota";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
 "send.page.add.my.address.button.title" = "Mine";
-"send.page.add.contacts.button.title" = "联系地址";
+"send.page.vite.contacts.button.title" = "VITE Contact Address";
 "send.page.scan.address.button.title" = "Scan";
 "send.page.to.address.title" = "Recipient";
 "send.page.amount.title" = "Amount";
 "send.page.remark.title" = "Comment";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
+"send.page.toast.send.transfer.success" = "Transfer Success";
 "send.page.toast.send.success" = "Success";
 "send.page.toast.address.error" = "Wrong address, please check the format";
 "send.page.toast.amount.error" = "Insufficient Balance";
@@ -191,6 +192,8 @@
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.title" = "Payment";
+"confirm.transaction.page.transfer.title" = "Transfer";
+"confirm.transaction.page.pledge.title" = "Acquire Quota";
 "confirm.transaction.address.title" = "Recipient";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
@@ -198,7 +201,7 @@
 "confirm.transaction.page.confirm.button" = "Confirm";
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
 "confirm.transaction.page.use.password.title" = "Enter Password";
-"confirm.transaction.page.pw.title" = "请输入密码";
+"confirm.transaction.page.pw.title" = "Please input password";
 "confirm.transaction.page.toast.password.error" = "Wrong password!";
 "confirm.transaction.page.node.name" = "Node Name";
 "confirm.transaction.page.vote" = "Vote";
@@ -221,7 +224,7 @@
 /* System */
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "货币单位";
+"system.page.cell.change.currency" = "Currency Unit";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
@@ -239,7 +242,7 @@
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.blog";
 "aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version：%@\n4.Language:%@";
+"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
 
 /* toast error */
 "toast.error.login" = "Login Error";
@@ -273,7 +276,7 @@
 "peldge.title" = "My Staking List";
 
 /* Vote */
-"vote.page.title" = "My Voting";
+"vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";
 "vote.page.voteStatus.voteSuccess" = "Successful Vote";
 "vote.page.voteStatus.voting" = "Voting";
@@ -310,15 +313,15 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.page.tip1.title" = "Feeless Transactions";
-"introduction.page.tip2.title" = "Extremely Fast Transactions";
-"introduction.page.tip3.title" = "HD Wallet Structure";
-"introduction.page.tip4.title" = "Vote to collect rewards";
-"introduction.page.tip1.desc" = "Use TPS quota for payment, get free TPS quota by running PoW.";
-"introduction.page.tip2.desc" = "Designed in asynchronous architecture, so smooth to make transactions.";
-"introduction.page.tip3.desc" = "Support multiple tokens, easy to manage accounts.";
-"introduction.page.tip4.desc" = "Vote for official SBPs, acquire rewards of VITE.";
-"introduction.page.nextBtn.title" = "Start VITE Journey";
+"introduction.page.tip1.title" = "Cross-Chain Multiple Token Types";
+"introduction.page.tip2.title" = "Decentralized Wallet";
+"introduction.page.tip3.title" = "Zero Transaction Fees";
+"introduction.page.tip4.title" = "Fast Transactions";
+"introduction.page.tip1.desc" = "Multi-Token Support. Easy to Manage Assets";
+"introduction.page.tip2.desc" = "Local Storage of Private Key, Open Source Assurance";
+"introduction.page.tip3.desc" = "Transactions Consume Quota. Running PoW to Acquire Free Quota";
+"introduction.page.tip4.desc" = "Asynchronous Architecture. Trading smoothly";
+"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 
 /* Error Message */
 "vite.error.network.error" = "Something went wrong with network, please try again later";
@@ -336,7 +339,7 @@
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
 
 /* Tip String */
-"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
 
@@ -344,36 +347,39 @@
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
 
 // eth
-"eth.page.gasFee.title" = "矿工费用";
-"eth.page.gasFee.slow.title" = "慢";
-"eth.page.gasFee.fast.title" = "快";
-"eth.page.gasFee.notice.title" = "消耗不完的Gas会全部退还";
+"eth.send.page.my.address.title" = "ETH Address";
+"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
+"eth.receive.page.my.address.title" = "My ETH Address";
+"eth.page.gasFee.title" = "Gas Fee";
+"eth.page.gasFee.slow.title" = "Slow";
+"eth.page.gasFee.fast.title" = "Fast";
+"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
 
 //token
-"token.list.page.search.title" = "输入Token名称或合约地址";
-"token.list.page.section.vite.header" = "VITE网络代币";
-"token.list.page.section.eth.header" = "ETH网络代币";
+"token.list.page.search.title" = "Please input token name or contract address";
+"token.list.page.section.vite.header" = "Vite Network";
+"token.list.page.section.eth.header" = "Ethereum Network";
 
 // Contacts Home
-"contacts.home.page.title" = "联系地址";
-"contacts.home.page.no.contact.tip" = "添加您的第一位联系地址";
-"contacts.home.page.single.no.contact.tip" = "暂无 %@ 联系地址";
-"contacts.home.page.filter.all" = "全部";
-"contacts.home.page.add.button.title" = "添加";
+"contacts.home.page.title" = "Contact Address";
+"contacts.home.page.no.contact.tip" = "Add your first address";
+"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
+"contacts.home.page.filter.all" = "All";
+"contacts.home.page.add.button.title" = "Add";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "添加联系地址";
-"contacts.edit.page.edit.title" = "编辑联系地址";
-"contacts.edit.page.name.title" = "姓名";
-"contacts.edit.page.address.title" = "请输入地址";
-"contacts.edit.page.type.select.title" = "选择地址所属网络";
-"contacts.edit.page.save.button.title" = "保存";
-"contacts.edit.page.save.success.tip" = "成功添加联系地址";
-"contacts.edit.page.edit.success.tip" = "保存成功";
-"contacts.edit.page.delete.button.title" = "删除联系人";
-"contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
+"contacts.edit.page.add.title" = "Add Contact Address";
+"contacts.edit.page.edit.title" = "Edit Contact Address";
+"contacts.edit.page.name.title" = "Name";
+"contacts.edit.page.address.title" = "Please input address";
+"contacts.edit.page.type.select.title" = "Select token type";
+"contacts.edit.page.save.button.title" = "Save";
+"contacts.edit.page.save.success.tip" = "Successfully added";
+"contacts.edit.page.edit.success.tip" = "Successfully saved";
+"contacts.edit.page.delete.button.title" = "Delete contact";
+"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "我的地址";
-"address.list.page.other.title" = "%@ 联系地址";
-"address.list.page.no.address.tip" = "暂无 %@ 联系地址";
+"address.list.page.my.title" = "My Address";
+"address.list.page.other.title" = "%@ contact address";
+"address.list.page.no.address.tip" = "No %@ address yet";

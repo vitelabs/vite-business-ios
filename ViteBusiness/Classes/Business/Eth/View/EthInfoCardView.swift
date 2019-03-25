@@ -46,12 +46,14 @@ class EthInfoCardView: UIView {
 
     let receiveButton = UIButton().then {
     $0.setTitle(R.string.localizable.balanceInfoDetailReveiceButtonTitle(), for: .normal)
+        $0.titleLabel?.font = Fonts.Font14_b
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(.white, for: .highlighted)
     }
 
     let sendButton = UIButton().then {
         $0.setTitle(R.string.localizable.balanceInfoDetailSendButtonTitle(), for: .normal)
+        $0.titleLabel?.font = Fonts.Font14_b
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(.white, for: .highlighted)
     }
@@ -141,15 +143,16 @@ class EthInfoCardView: UIView {
             m.width.equalToSuperview().dividedBy(2)
         })
 
-        let lineView = UIView()
-        lineView.backgroundColor = .white
-        self.addSubview(lineView)
-        lineView.snp.makeConstraints({ (m) in
-            m.bottom.equalToSuperview().offset(-7)
+        let vLine = UIView().then {
+            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
+        }
+        self.addSubview(vLine)
+        vLine.snp.makeConstraints { (m) in
+            m.width.equalTo(CGFloat.singleLineWidth)
             m.left.centerY.equalTo(self.sendButton)
-            m.width.equalTo(1)
             m.height.equalTo(30)
-        })
+            m.bottom.equalToSuperview().offset(-7)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

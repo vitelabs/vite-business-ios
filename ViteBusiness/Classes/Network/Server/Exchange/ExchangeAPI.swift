@@ -34,7 +34,7 @@ extension ExchangeAPI: TargetType {
         case .getTokenInfo:
             return "/api/v1/cryptocurrency/info/assign"
         case .getTokenInfoInChain:
-            return "/api/v1/cryptocurrency/info/search"
+            return "/api/v1/cryptocurrency/info/query"
         }
     }
 
@@ -47,9 +47,9 @@ extension ExchangeAPI: TargetType {
         case .searchTokenInfo:
             return .get
         case .getTokenInfo:
-            return .get
+            return .post
         case .getTokenInfoInChain:
-            return .get
+            return .post
         }
     }
 
@@ -62,9 +62,9 @@ extension ExchangeAPI: TargetType {
         case .searchTokenInfo(let key):
             return .requestParameters(parameters: ["fuzzy": key], encoding: URLEncoding.queryString)
         case .getTokenInfo(let tokenCode):
-            return .requestParameters(parameters: ["token": tokenCode], encoding: URLEncoding.queryString)
+            return .requestJSONEncodable([tokenCode])
         case .getTokenInfoInChain(let chain, let id):
-            return .requestParameters(parameters: ["platformSymbol": chain, "tokenAddress": id], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["platformSymbol": chain, "tokenAddress": id], encoding: JSONEncoding.default)
         }
     }
 

@@ -20,7 +20,7 @@ public struct Constants {
     //baidu  statistics
     public static let baiduMobileStat = "e74c7f32c0"
     //app channel
-    #if ENTERPRISE
+    #if INTERNAL
     public static let appDownloadChannel = Channel.enterprise
     #else
     public static let appDownloadChannel = Channel.appstore
@@ -29,7 +29,7 @@ public struct Constants {
     public static let voteDefinitionURL = "https://app.vite.net/vote"
     public static let voteLoserURL = "https://app.vite.net/voteLoser"
     public static let voteOfficeURL = "https://www.vite.org/"
-    public static let IntroductionPageVersion = "1.0"
+    public static let IntroductionPageVersion = "2.0"
 
     public static let whiteList = ["vite.org",
                                    "vite.net",
