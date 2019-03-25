@@ -1288,10 +1288,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteInfoNodePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.nodePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My Voting
-      /// 
-      /// Locales: en, zh-Hans
-      static let votePageTitle = Rswift.StringResource(key: "vote.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: NOTICE
       /// 
       /// Locales: en, zh-Hans
@@ -1436,14 +1432,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Quota %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
       static let quotaManagePageInputAddressTitle = Rswift.StringResource(key: "quota.manage.page.input.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Quote %@ UTPS
-      /// 
-      /// Locales: en, zh-Hans
-      static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
@@ -1828,6 +1824,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let vote = Rswift.StringResource(key: "Vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
+      static let votePageTitle = Rswift.StringResource(key: "vote.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote revoking request is successfully sent
       /// 
       /// Locales: en, zh-Hans
@@ -2892,13 +2892,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.voteInfo.nodePolls.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: My Voting
-      /// 
-      /// Locales: en, zh-Hans
-      static func votePageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vote.page.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: NOTICE
       /// 
       /// Locales: en, zh-Hans
@@ -3151,18 +3144,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Quota %@ UTPS
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailPledgeCountContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
       static func quotaManagePageInputAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.manage.page.input.address.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Quote %@ UTPS
-      /// 
-      /// Locales: en, zh-Hans
-      static func balanceInfoDetailPledgeCountContent(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Receive
@@ -3835,6 +3828,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func vote(_: Void = ()) -> String {
         return NSLocalizedString("Vote", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
+      static func votePageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vote.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vote revoking request is successfully sent

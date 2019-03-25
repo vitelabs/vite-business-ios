@@ -61,16 +61,28 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
-        let shadowView = UIView.embedInShadowView(customView: whiteView, width: 0, height: 5, radius: 20)
+        let shadowView = UIView().then {
+            $0.backgroundColor = nil
+            $0.layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
+            $0.layer.shadowRadius = 20
+        }
+
+        shadowView.addSubview(whiteView)
+        whiteView.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+
         contentView.addSubview(shadowView)
-        contentView.addSubview(highlightedMaskView)
-        contentView.addSubview(colorView)
 
         whiteView.addSubview(iconImageView)
         whiteView.addSubview(symbolLabel)
         whiteView.addSubview(coinFamilyLabel)
         whiteView.addSubview(balanceLabel)
         whiteView.addSubview(priceLabel)
+        whiteView.addSubview(colorView)
+        whiteView.addSubview(highlightedMaskView)
 
         shadowView.snp.makeConstraints { (m) in
             m.top.equalTo(contentView)
