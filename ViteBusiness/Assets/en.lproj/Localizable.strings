@@ -145,7 +145,7 @@
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Quota";
-"balance.info.detail.pledge.count.content" = "Quote %@ UTPS";
+"balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
 "balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
 /* Address Manage Page */
@@ -276,7 +276,7 @@
 "peldge.title" = "My Staking List";
 
 /* Vote */
-"vote.page.title" = "My Voting";
+"vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";
 "vote.page.voteStatus.voteSuccess" = "Successful Vote";
 "vote.page.voteStatus.voting" = "Voting";
