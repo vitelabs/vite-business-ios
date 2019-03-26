@@ -20,9 +20,9 @@ class GrinTransactionCell: UITableViewCell {
     
     func bind(_ tx: TxLogEntry) {
         let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ")
-        self.creationTimeLabel.text = (creationTs ?? tx.creationTs) + " Initlallzed"
+        self.creationTimeLabel.text = (creationTs ?? tx.creationTs) + " \(R.string.localizable.grinTxFileInitStatus())"
 
-        self.feeLabel.text = "Fee \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
+        self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
 
         let amount = (tx.amountCredited ?? 0) - (tx.amountDebited ?? 0) + (tx.fee ?? 0)
         self.amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(abs(amount))).amount(decimals: 9, count: 2)
@@ -36,19 +36,19 @@ class GrinTransactionCell: UITableViewCell {
 
         var status = "Grin Transaction"
         if tx.txType == .confirmedCoinbase {
-            status = tx.txType.rawValue
+            status = R.string.localizable.grinTxTypeConfirmedCoinbase()
         } else if tx.confirmed {
-            status = "Confirmed"
+            status = R.string.localizable.grinTxTypeConfirmed()
         } else if tx.txType == .txSentCancelled ||  tx.txType == .txReceivedCancelled {
-            status = "Canceled"
+            status = R.string.localizable.grinTxCancele()
         } else if tx.txType == .txReceived {
-            status = "Received"
+            status = R.string.localizable.grinTxTypeReceived()
         } else if tx.txType == .txSent {
             if let slateId = tx.txSlateId,
                 GrinManager.default.finalizedTxs().contains(slateId) {
-                status = "Finalized"
+                status =  R.string.localizable.grinTxTypeFinalized()
             } else {
-                status = "Sent"
+                status =  R.string.localizable.grinTxTypeSent()
             }
         }
         self.statusLabel.text = status

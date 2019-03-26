@@ -124,7 +124,7 @@ class GrinTransactVM {
         },  { (result) in
             switch result {
             case .success:
-                self.message.onNext("Success")
+                self.message.onNext(R.string.localizable.grinFinalizedAlertDesc())
                 guard let data = JSON(FileManager.default.contents(atPath: slateUrl.path)).rawValue as? [String: Any],
                     let slate = Slate(JSON:data) else { return }
                 GrinManager.default.setFinalizedTx(slate.id)
@@ -159,6 +159,9 @@ class GrinTransactVM {
             case .success:
                 self.message.onNext("Success")
             case .failure(let error):
+                if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
+
+                }
                 self.message.onNext(error.message)
             }
         })
@@ -167,7 +170,7 @@ class GrinTransactVM {
     func sendTxByVite(anmout: UInt64, destnation: String)  {
         viteService.sentGrin(amount: anmout, to: destnation)
             .done {
-                self.message.onNext("success")
+                self.message.onNext(R.string.localizable.grinSentViteSuccess())
             }
             .catch { (error) in
                 self.message.onNext(error.localizedDescription)

@@ -34,10 +34,13 @@ class GrinTeachViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var infoView: UIView!
-
+    @IBOutlet weak var notSeeLabel: UILabel!
+    
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var noiceTitleLabel: UILabel!
 
+    @IBOutlet weak var copyBtn: UIButton!
     var txType: TxType = .sent
     var channelType: TransferMethod = .vite
 
@@ -46,23 +49,22 @@ class GrinTeachViewController: UIViewController {
         super.viewDidLoad()
 
         if channelType == .vite {
-            titleLabel.text = "Transfer through Vite Address Flow Graph"
+            titleLabel.text = R.string.localizable.grinTeachViteTitle()
             imageView.image = R.image.grin_tx_vite()
             if self.txType == .sent {
-                noiceDetailLabel.text = "Sending GRIN through Vite Address is sharing transaction file encrypted by Vite through Vite Address,which ensures only the real recipient can decrypt the file.Please note that only the first Vite Address in your Vite Address Book can be used to send or receive GRIN."
+                noiceDetailLabel.text =  R.string.localizable.grinSentUseViteDesc()
             } else if txType == .receive {
-                noiceDetailLabel.text = "Please share your first Vite address to the sender. Please note that only when you are online with the first Vite address can you receive GRIN tokens."
-                addressTitleLabel.text = "Vite Address"
+                noiceDetailLabel.text = R.string.localizable.grinReceiveByViteDesc()
                 addressLabel.text = HDWalletManager.instance.accounts.first?.address.description
+                addressTitleLabel.text = "Vite Address"
             }
-
         } else if channelType == .http {
-            titleLabel.text = "Transfer through Http Address Flow Graph"
+            titleLabel.text =  R.string.localizable.grinTeachHttpTitle()
             imageView.image = R.image.grin_tx_http()
             if self.txType == .sent {
-                noiceDetailLabel.text = "Please note there would be transaction fees in both steps above,the first one is payed by the sender and the second one is payed by the recipient."
+                noiceDetailLabel.text =  R.string.localizable.grinSentUseHttpDesc()
             } else if txType == .receive {
-                noiceDetailLabel.text = "Please share the http address on the bottom to the sender. Please note there would be transaction fee in both steps above(one is payed by the sender and the other one is payed by the recipient), and only when you are online with your first Vite address can you receive GRIN tokens."
+                noiceDetailLabel.text = R.string.localizable.grinReceiveByHttpDesc()
                 addressTitleLabel.text = "Http Address"
                 GrinTxByViteService().getGateWay().done { (string) in
                     self.addressLabel.text = string
@@ -79,6 +81,9 @@ class GrinTeachViewController: UIViewController {
             closeButton.isHidden = true
         }
 
+        noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
+        copyBtn.setTitle(R.string.localizable.grinTxCopyId(), for: .normal)
+        notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
         // Do any additional setup after loading the view.
     }
 
@@ -94,11 +99,11 @@ class GrinTeachViewController: UIViewController {
     @IBAction func copyAction(_ sender: Any) {
         if channelType == .vite {
             UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
-            Toast.show("Copyed")
+            Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
         } else if channelType == .http {
             GrinTxByViteService().getGateWay().done { (string) in
                 UIPasteboard.general.string = string
-                Toast.show("Copyed")
+                Toast.show(R.string.localizable.grinReceiveByHttpAddressCopyed())
                 }
                 .catch { (e) in
                     Toast.show(e.localizedDescription)
@@ -111,7 +116,7 @@ class GrinTeachViewController: UIViewController {
         if sender.isSelected {
             setting["grin_don't_show_\(channelType.rawValue)_teach"] = true
         } else {
-            setting["grin_don't_show_\(channelType.rawValue)_tehch"] = false
+            setting["grin_don't_show_\(channelType.rawValue)_teach"] = false
         }
     }
 

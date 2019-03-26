@@ -37,6 +37,11 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var lineImageVIew: UIImageView!
+
+
+    @IBOutlet weak var receiveBtn: UIButton!
+    @IBOutlet weak var sendBtn: UIButton!
+
     let walletInfoVM = GrinWalletInfoVM()
     
     required  init?(coder aDecoder: NSCoder) {
@@ -76,8 +81,8 @@ class GrinInfoViewController: BaseViewController {
 
         navigationItem.rightBarButtonItem?.rx.tap.asObservable()
             .bind { [weak self] in
-                Alert.show(title: "Check",
-                           message: "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version",
+                Alert.show(title: R.string.localizable.grinWalletCheck(),
+                           message: R.string.localizable.grinWalletCheckDesc(),
                            actions: [
                             (.cancel, nil),
                             (.default(title: R.string.localizable.confirm()), { _ in
@@ -110,19 +115,26 @@ class GrinInfoViewController: BaseViewController {
             self.walletInfoVM.action.onNext(.getBalance(manually: true))
             self.walletInfoVM.action.onNext(.getTxs(manually: true))
         })
+
+        spendableTitleLabel.text = R.string.localizable.grinBalanceSpendable()
+        lockedTitleLabel.text = R.string.localizable.grinBalanceLocked()
+        totalTitleLabel.text = R.string.localizable.grinBalanceTotal()
+        waitingTitleLabel.text = R.string.localizable.grinBalanceAwaiting()
+        sendBtn.setTitle(R.string.localizable.grinSentBtnTitle(), for: .normal)
+        receiveBtn.setTitle(R.string.localizable.grinReceiveBtnTitle(), for: .normal)
     }
 
     @IBAction func sendAciton(_ sender: Any) {
-        let a0 = UIAlertAction.init(title: "通过Vite地址", style: .default) { (_) in
+        let a0 = UIAlertAction.init(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
           self.send(use: .vite)
         }
-        let a1 = UIAlertAction.init(title: "通过Http地址", style: .default) { (_) in
+        let a1 = UIAlertAction.init(title: R.string.localizable.grinSentUseHttp(), style: .default) { (_) in
           self.send(use: .http)
         }
-        let a2 = UIAlertAction.init(title: "通过交易文件", style: .default) { (_) in
+        let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
             self.send(use: .file)
         }
-        let a3 = UIAlertAction.init(title: "取消", style: .cancel) { _ in }
+        let a3 = UIAlertAction.init(title: R.string.localizable.grinTxCancele(), style: .cancel) { _ in }
 
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
@@ -135,60 +147,58 @@ class GrinInfoViewController: BaseViewController {
 
     func send(use method: TransferMethod) {
         guard GrinTransactVM().support(method: method) else {
-            Toast.show("请切换到第一个地址")
+            Toast.show(R.string.localizable.grinUseFirstViteAddress())
             return
         }
-        let shouldTeach = method != .file && !UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
-
-        if shouldTeach {
-            let vc = GrinTeachViewController.init(txType: .sent, channelType: method)
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
+        let notTeach = method == .file || UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
+        if notTeach {
             let resourceBundle = businessBundle()
             let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
             let sendGrinViewController = storyboard
                 .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
             sendGrinViewController.transferMethod = method
             self.navigationController?.pushViewController(sendGrinViewController, animated: true)
+        } else {
+            let vc = GrinTeachViewController.init(txType: .sent, channelType: method)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 
     @IBAction func receiveAction(_ sender: Any) {
-        let a0 = UIAlertAction(title: "通过Vite地址", style: .default) { (_) in
-            let shouldTeach = !UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
-            if shouldTeach {
+        let a0 = UIAlertAction(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
+            let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
+            if notTeach {
+                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+                Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
+            } else {
                 let vc = GrinTeachViewController.init(txType: .receive, channelType: .vite)
                 self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
-                Toast.show("Copyed")
             }
         }
 
-        let a1 = UIAlertAction(title: "通过Http地址", style: .default) { (_) in
-            let shouldTeach = !UserDefaults.standard.bool(forKey: "grin_don't_show_http_teach")
-            if shouldTeach {
-                let vc = GrinTeachViewController.init(txType: .receive, channelType: .http)
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
+        let a1 = UIAlertAction(title: R.string.localizable.grinSentUseHttp(), style: .default) { (_) in
+            let notTeach =  UserDefaults.standard.bool(forKey: "grin_don't_show_http_teach")
+            if notTeach {
                 GrinTxByViteService().getGateWay()
                     .done({ (string)  in
                         UIPasteboard.general.string = string
-                        Toast.show("Copyed")
+                        Toast.show(R.string.localizable.grinReceiveByHttpAddressCopyed())
                     })
                     .catch({ (error) in
                         Toast.show(error.localizedDescription)
                     })
+            } else {
+                let vc = GrinTeachViewController.init(txType: .receive, channelType: .http)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
 
-        let a2 = UIAlertAction.init(title: "取消", style: .cancel) { _ in }
+        let a2 = UIAlertAction.init(title:  R.string.localizable.grinTxCancele(), style: .cancel) { _ in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
         alert.addAction(a1)
         alert.addAction(a2)
         self.present(alert, animated: true, completion: nil)
-
     }
 }
 
@@ -213,7 +223,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         let tx = self.walletInfoVM.txs.value[indexPath.row]
         var action = [UITableViewRowAction]()
         if let slateId = tx.txSlateId {
-            let copyAction = UITableViewRowAction.init(style: .default, title: "复制ID") { (_, _) in
+            let copyAction = UITableViewRowAction.init(style: .default, title:  R.string.localizable.grinTxCopyId()) { (_, _) in
                     UIPasteboard.general.string = slateId
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0x479FFF)}
@@ -221,7 +231,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if tx.canRepost {
-            let repostAction = UITableViewRowAction.init(style: .default, title: "重发") { (_, _) in
+            let repostAction = UITableViewRowAction.init(style: .default, title: R.string.localizable.grinTxRepost()) { (_, _) in
                     self.walletInfoVM.action.onNext(.repost(tx))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xFFC900)}
@@ -229,7 +239,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if tx.canCancel {
-            let cancleAction = UITableViewRowAction(style: .default, title: "取消") { (_, _) in
+            let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.grinTxCancele()) { (_, _) in
                     self.walletInfoVM.action.onNext(.cancel(tx))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xDEDFE0)}

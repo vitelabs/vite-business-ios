@@ -387,3 +387,86 @@
 "address.list.page.my.title" = "我的地址";
 "address.list.page.other.title" = "%@ 联系地址";
 "address.list.page.no.address.tip" = "暂无 %@ 联系地址";
+
+
+// Grin
+
+"grin.balance.total" = "全部";
+"grin.balance.spendable" = "可用余额";
+"grin.balance.awaiting" = "待确认";
+"grin.balance.locked" = "交易锁定";
+
+"grin.wallet.check" = "刷新";
+"grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。";
+
+"grin.wallet.check" = "刷新";
+
+"grin.txType.sent" = "已发送";
+"grin.txType.received" = "已签收";
+"grin.txType.finalized" = "已敲定";
+"grin.txType.confirmed" = "已确认";
+"grin.txType.confirmedCoinbase" = "已确认挖矿";
+"grin.txType.Canceled" = "已取消";
+
+"grin.tx.Cancele" = "取消";
+"grin.tx.Repost" = "重发";
+"grin.tx.copyId" = "复制";
+
+"grin.useFirstViteAddress" = "To send GRIN through Vite Address or Http Address, please switch to the first Vite Address in your Vite Address Book";
+"grin.tx.useVite" = "通过Vite地址";
+"grin.useVite.desc" = "通过Vite地址发送GRIN即通过Vite地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意您的Vite地址簿中第一个Vite地址可以用来进行GRIN转账和收款。";
+"grin.sent.useHttp" = "通过Http地址";
+"grin.sent.useHttp.desc" = "请注意在以上两个步骤中都会产生交易费，第一笔交易费由转账人支付，第二笔由收款人支付。";
+"grin.sent.useFile" = "通过交易文件";
+"grin.know" = "我知道了";
+"grin.notSeeAgain" = "不再提示";
+
+"grin.sent.title" = "GRIN转账";
+"grin.sent.amount" = "金额";
+"grin.sent.fee" = "交易费";
+"grin.sent.creatFile" = "生成交易文件";
+//
+"grin.shareFile.desc" = "请确保将交易文件分享给收款人并要求返回一个确认收款文件";
+"grin.txFile.init.status" = "初始化";
+"grin.txFile.id" = "交易ID";
+"grin.shareFile" = "分享交易文件";
+
+"grin.finalize.title" = "确认转账";
+"grin.finalize.desc" = "Transaction has been signed, please finalize the transaction to complete it.";
+"grin.txFile.received.status" = "已确认收款";
+"grin.finalize" = "确认转账并广播";
+
+"grin.finalized.alertTitle" = "交易已确认";
+"grin.finalized.alertDesc" = "转账交易已被确认并开始在链上广播，几分钟后可以在交易记录中查看。";
+
+"grin.sent.next" = "下一步";
+"grin.sent.suggest.useVite.title" = "提示";
+"grin.sent.suggest.useVite.desc" = "若您想给Vite钱包用户发送GRIN，我们建议您使用Vite地址转账因为通过Vite地址转账更安全，交易费更少";
+"grin.sent.switch" = "切换模式";
+"grin.sent.stillUseHttp" = "仍使用Http模式";
+"grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
+"grin.sent.vite.success" = "您的转账交易已发送，请注意只有使用当前地址您才能继续完成GRIN转账。";
+
+"grin.receiveByVite.addressCopyed" = "您的GRIN收款Vite地址已复制至剪贴板";
+"grin.receiveByVite.desc" = "请将您的第一个Vite地址分享给转账人。请注意只有当使用第一个Vite地址时才能收到GRIN。";
+"grin.iknow" = "我知道了";
+"grin.thisIsFirstViteAddress" = "这是您Vite地址簿中的第一个Vite地址。";
+
+"grin.receiveByHttp.addressCopyed" = "您的GRIN收款Http地址已复制至剪贴板";
+"grin.receiveByHttp.desc" = "请将http地址分享给转账人。请注意：在以上两个步骤中都将产生交易费（一笔由转账人支付，另外一笔由收款人支付），并且只有当您使用您的第一个Vite地址时才能收到GRIN。";
+
+"grin.receive.title" = "GRIN收款";
+"grin.receive.sented" = "已传送";
+"grin.creatTime" = "生成时间";
+"grin.signAndShare" = "签收并分享文件";
+
+"grin.sent.btnTitle" = "转账";
+"grin.receive.BtnTitle" = "收款";
+
+"grin.notice.title" = "Notice";
+
+"grin.teach.vite.title" = "Transfer through Vite Address Flow Graph";
+"grin.teach.http.title" = "Transfer through Http Address Flow Graph";
+
+"grin.txid.title" = "Tx id";
+

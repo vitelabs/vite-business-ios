@@ -52,40 +52,47 @@ class GrinManager: GrinBridge {
     private var receivedSlateUrl: URL?
 
     private convenience init() {
-        self.init(chainType: .usernet, walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
+        self.init(chainType: GrinManager.getChainType(), walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
 
-        let a = self.txStrategies(amount: 1)
-        print(a)
+        HDWalletManager.instance.walletDriver
+            .filterNil()
+            .map { $0.uuid }
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] (_) in
+                self?.password =  GrinManager.getPassword()
+                self?.walletUrl =  GrinManager.getWalletUrl()
+                self?.creatWalletIfNeeded()
+                self?.getBalance()
+            })
+            .disposed(by: self.bag)
 
+        Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
+            .bind{ [weak self] _ in self?.getBalance()}
+            .disposed(by: self.bag)
+        getBalance()
 
-            HDWalletManager.instance.walletDriver
-                .filterNil()
-                .map { $0.uuid }
-                .distinctUntilChanged()
-                .drive(onNext: { [weak self] (_) in
-                    self?.password =  GrinManager.getPassword()
-                    self?.walletUrl =  GrinManager.getWalletUrl()
-                    self?.creatWalletIfNeeded()
-                    self?.getBalance()
-                })
-                .disposed(by: self.bag)
+        NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
+            .bind { [weak self] n in
+                self?.gotoSlateVCIfNeed()
+            }
+            .disposed(by: self.bag)
+    }
 
-            Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
-                .bind{ [weak self] _ in self?.getBalance()}
-                .disposed(by: self.bag)
-            getBalance()
-
-            NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
-                .bind { [weak self] n in
-                    self?.gotoSlateVCIfNeed()
-                }
-                .disposed(by: self.bag)
-
+    static func getChainType() -> GrinChainType {
+        #if DEBUG
+            return .usernet
+        #elseif TEST
+            return .floonet
+        #else
+            return .usernet
+        #endif
     }
 
     static func getWalletUrl() -> URL {
+        let chainType = self.getChainType()
         let fileHelper = grinFileHelper()
-        let url = URL.init(fileURLWithPath: fileHelper.rootPath)
+        var url = URL.init(fileURLWithPath: fileHelper.rootPath)
+        url.appendPathComponent(chainType.rawValue)
         return url
     }
 
@@ -110,8 +117,8 @@ class GrinManager: GrinBridge {
 
     func creatWalletIfNeeded()  {
         if !self.walletExists() {
-//            let mnemonic = HDWalletManager.instance.mnemonic
-            let mnemonic = "whip swim spike cousin dinosaur vacuum save few boring monster crush ocean brown suspect swamp zone bounce hard sadness bulk reform crack crack accuse"
+            guard let mnemonic = HDWalletManager.instance.mnemonic else { return } 
+//            let mnemonic = "whip swim spike cousin dinosaur vacuum save few boring monster crush ocean brown suspect swamp zone bounce hard sadness bulk reform crack crack accuse"
             let result = self.walletRecovery(mnemonic)
             switch result {
             case .success(_):
@@ -155,7 +162,6 @@ class GrinManager: GrinBridge {
     func handle(url: URL) {
         self.receivedSlateUrl = url
         gotoSlateVCIfNeed()
-        let a = "file:///private/var/mobile/Containers/Data/Application/42A9AC2E-02F4-443B-8D56-6F14CF23AA11/tmp/net.vite.wallet.ep-Inbox/00117c3a-6c7c-44c3-8ae1-2080e4f5e02d.grinslate"
     }
 
 

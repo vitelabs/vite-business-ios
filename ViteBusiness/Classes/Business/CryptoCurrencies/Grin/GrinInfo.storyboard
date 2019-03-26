@@ -195,6 +195,8 @@
                         <outlet property="lineImageVIew" destination="V3w-lm-wW4" id="vH2-mJ-z3U"/>
                         <outlet property="lockedCountLabel" destination="FIR-Wa-Bai" id="f1T-7S-sOI"/>
                         <outlet property="lockedTitleLabel" destination="CMr-Qa-D2T" id="fKQ-UH-DtE"/>
+                        <outlet property="receiveBtn" destination="gha-QF-rWc" id="o1M-HT-HoC"/>
+                        <outlet property="sendBtn" destination="avc-Ax-cnF" id="Fbu-yQ-94c"/>
                         <outlet property="spendableAcountLabel" destination="7a7-bK-pCP" id="xQO-3a-vG7"/>
                         <outlet property="spendableExchangeLalbe" destination="SjU-06-T11" id="R07-Lc-cKk"/>
                         <outlet property="spendableTitleLabel" destination="YDR-WM-f0Y" id="B7d-6H-xBx"/>
@@ -238,6 +240,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.2901960784" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value=""/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="750000000.07" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-LU-wil">
                                 <rect key="frame" x="43" y="130" width="90" height="16"/>
@@ -436,11 +441,15 @@
                     </view>
                     <connections>
                         <outlet property="addressTextField" destination="yY1-dT-H6R" id="IlQ-gl-Jt4"/>
+                        <outlet property="addressTitleLabel" destination="j3g-NH-DdB" id="Qto-3e-lYV"/>
                         <outlet property="amountConstraint" destination="GQ4-UV-cJ8" id="Maz-av-AHi"/>
                         <outlet property="amountTextField" destination="MAh-6c-1Sa" id="oP7-6A-s4f"/>
+                        <outlet property="amountTitleLabel" destination="0do-Aq-4L2" id="gVi-rL-tvt"/>
                         <outlet property="balanceBackground" destination="N0q-Xq-IAF" id="vny-kz-Yre"/>
                         <outlet property="feeLabel" destination="Hay-0o-J1E" id="cLc-JV-yKK"/>
+                        <outlet property="feeTitleLable" destination="1Rc-xz-LB1" id="kmK-BA-Pew"/>
                         <outlet property="spendableLabel" destination="FNI-LU-wil" id="Kfb-9j-vMQ"/>
+                        <outlet property="spendableTitleLabel" destination="Cvv-74-G0V" id="EsL-0u-aCw"/>
                         <outlet property="titleView" destination="ICx-r9-Cqy" id="BYj-Ft-h44"/>
                         <outlet property="transactButton" destination="sjl-2a-pMP" id="U3d-t9-9Dp"/>
                     </connections>

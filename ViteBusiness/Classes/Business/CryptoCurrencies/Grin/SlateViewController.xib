@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="87v-aq-uMf" id="R4l-7V-IJo"/>
                 <outlet property="operateButton" destination="Y1w-qk-JQd" id="6fh-cr-i2a"/>
+                <outlet property="slateIDLabel" destination="foe-el-pJC" id="sI4-Jt-A8Y"/>
                 <outlet property="slateIdLabel" destination="4lg-Gs-UIf" id="Rer-dm-byJ"/>
                 <outlet property="statusImageView" destination="6La-Nb-Y8u" id="wF5-LL-VjB"/>
                 <outlet property="statusLabel" destination="mlu-z2-RYy" id="HIQ-ns-xDZ"/>

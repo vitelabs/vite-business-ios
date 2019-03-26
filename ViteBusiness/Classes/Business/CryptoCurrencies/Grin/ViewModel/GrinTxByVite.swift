@@ -16,6 +16,7 @@ import Vite_GrinWallet
 import PromiseKit
 import Result
 
+
 class GrinTxByViteService {
 
     static let instance = GrinTxByViteService()
@@ -48,7 +49,19 @@ class GrinTxByViteService {
 
             }
             .then { (fname) ->  Promise<Void> in
-                return self.sentViteTx(toAddress: toAddress, data: fname)
+                return self.sentViteTx(toAddress: toAddress, fileName: fname)
+        }
+    }
+
+    func handle(viteData: Data, fromAddress: String)  -> Promise<Void>? {
+        guard let fileName = (try? JSON(data: viteData))?.rawString() else {
+            return nil
+        }
+        let isResponse = fileName.components(separatedBy: ".").last == "response"
+        if isResponse {
+            return self.handle(receiveFile: fileName, fromAddress: fromAddress)
+        } else {
+            return self.handle(sentFile: fileName, fromAddress: fromAddress)
         }
     }
 
@@ -68,7 +81,7 @@ class GrinTxByViteService {
                 return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: receivedSlate , type: .response)
             }
             .then { fname -> Promise<Void> in
-                return self.sentViteTx(toAddress: fromAddress, data: fname)
+                return self.sentViteTx(toAddress: fromAddress, fileName: fname)
         }
     }
 
@@ -313,11 +326,37 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func sentViteTx(toAddress: String, data: String) -> Promise<Void> {
-        testFname = data
-        return Promise { seal in
-            seal.fulfill(())
+    fileprivate func sentViteTx(toAddress: String, fileName: String) -> Promise<Void> {
+        testFname = fileName
+        guard let dataHeader = try? JSON(0x8001).rawData(),
+            let data = fileName.data(using: .utf8),
+            let account = HDWalletManager.instance.account else {
+            return Promise(error: grinError)
         }
+        let dataString = (dataHeader + data).base64EncodedString()
+        let tokenId = ViteWalletConst.viteToken.id
+        let amount = Balance()
+        return Provider.default.sendRawTxWithoutPow(account: account,
+                                                    toAddress: Address(string: toAddress),
+                                                    tokenId: tokenId,
+                                                    amount: amount,
+                                                    data: dataString)
+            .map { _ in return Void() }
+            .recover({ (e) -> Promise<Void> in
+                if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
+                    return Provider.default.getPowForSendRawTx(account: account,
+                                                               toAddress: Address(string: toAddress),
+                                                               tokenId: tokenId,
+                                                               amount: amount,
+                                                               data: dataString)
+                        .then({ (context) -> Promise<Void> in
+                            return Provider.default.sendRawTxWithContext(context)
+                             .map { _ in return Void() }
+                        })
+                } else {
+                    return Promise(error: e)
+                }
+            })
     }
 
     func test()  {

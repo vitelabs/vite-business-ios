@@ -15,10 +15,13 @@
                 <outlet property="addressLabel" destination="Vk3-Lw-Lnc" id="2Ea-YO-LND"/>
                 <outlet property="addressTitleLabel" destination="o6G-c0-TfG" id="K5g-5B-xV2"/>
                 <outlet property="closeButton" destination="cIK-vF-Eft" id="8Gz-6J-D5x"/>
+                <outlet property="copyBtn" destination="ujh-FU-49L" id="X0b-MX-bw6"/>
                 <outlet property="copyButton" destination="ujh-FU-49L" id="7Qb-6O-YfG"/>
                 <outlet property="imageView" destination="ybb-yV-Hnh" id="IVw-Su-w2y"/>
                 <outlet property="infoView" destination="dz4-UC-bLN" id="HBq-H4-M1P"/>
                 <outlet property="noiceDetailLabel" destination="fy1-TY-lNl" id="1gm-OW-5k6"/>
+                <outlet property="noiceTitleLabel" destination="Hpq-hD-EPO" id="Vx5-Uj-d6U"/>
+                <outlet property="notSeeLabel" destination="Q7w-yq-fXe" id="l6d-A1-QWi"/>
                 <outlet property="settingButton" destination="nlr-25-Ef7" id="tIt-Uu-gT9"/>
                 <outlet property="titleLabel" destination="zSJ-q4-nDe" id="thI-MZ-qCp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -80,7 +83,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vite_xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk3-Lw-Lnc">
-                            <rect key="frame" x="24" y="34" width="123" height="17"/>
+                            <rect key="frame" x="24" y="34" width="247" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -91,6 +94,7 @@
                         <constraint firstItem="Vk3-Lw-Lnc" firstAttribute="top" secondItem="o6G-c0-TfG" secondAttribute="bottom" constant="6" id="68k-SN-Sex"/>
                         <constraint firstItem="Vk3-Lw-Lnc" firstAttribute="leading" secondItem="dz4-UC-bLN" secondAttribute="leading" constant="24" id="GFa-Hu-fa2"/>
                         <constraint firstItem="o6G-c0-TfG" firstAttribute="top" secondItem="dz4-UC-bLN" secondAttribute="top" constant="13" id="KkO-mr-JCE"/>
+                        <constraint firstItem="ujh-FU-49L" firstAttribute="leading" secondItem="Vk3-Lw-Lnc" secondAttribute="trailing" constant="10" id="Odb-Kz-BEt"/>
                         <constraint firstItem="o6G-c0-TfG" firstAttribute="leading" secondItem="dz4-UC-bLN" secondAttribute="leading" constant="24" id="Vzv-vu-dLd"/>
                         <constraint firstAttribute="trailing" secondItem="ujh-FU-49L" secondAttribute="trailing" constant="24" id="eAK-80-ucF"/>
                         <constraint firstAttribute="height" constant="68" id="lbl-N0-QWW"/>
@@ -129,8 +133,12 @@
                         <constraint firstAttribute="width" constant="20" id="3BH-eQ-Atr"/>
                         <constraint firstAttribute="height" constant="20" id="RnP-Rc-UKp"/>
                     </constraints>
-                    <state key="normal" title="□"/>
-                    <state key="selected" title="√"/>
+                    <state key="normal" title="□">
+                        <color key="titleColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="√">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="settingAction:" destination="-1" eventType="touchUpInside" id="3E0-Mz-5LK"/>
                     </connections>

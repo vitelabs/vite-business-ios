@@ -25,6 +25,7 @@ class SlateViewController: UIViewController {
     @IBOutlet weak var slateIdLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var operateButton: UIButton!
+    @IBOutlet weak var slateIDLabel: UILabel!
 
     var opendSlate: Slate?
     var opendSlateUrl: URL?
@@ -44,23 +45,23 @@ class SlateViewController: UIViewController {
 
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
         titleView.symbolLabel.text = [
-            "Grin转账",
-            "Receive GRIN",
-            "Confirm Transaction"
+            R.string.localizable.grinSentTitle(),
+            R.string.localizable.grinReceiveTitle(),
+            R.string.localizable.grinFinalizeTitle()
             ][type.rawValue]
 
         descriptionLabel.text = [
-            "Make sure to share the transaction file with the recipient and ask for a confirmation file",
-            "Make sure to share the transaction file with the recipient and ask for a confirmation file",
-            "Transaction has been received please finalize the transaction to complete it。",
+            R.string.localizable.grinShareFileDesc(),
+            R.string.localizable.grinShareFileDesc(),
+            R.string.localizable.grinFinalizeDesc(),
         ][type.rawValue]
 
         slateIdLabel.text = opendSlate?.id
         tableView.reloadData()
 
-        let title =  ["Share Transaction File",
-                      "Sign and share Transaction",
-                      "Finalize and Broadcast"][type.rawValue]
+        let title =  [R.string.localizable.grinShareFile(),
+                      R.string.localizable.grinSignAndShare(),
+                      R.string.localizable.grinFinalize()][type.rawValue]
         operateButton.setTitle(title, for: .normal)
 
         statusImageView.image = [
@@ -70,10 +71,12 @@ class SlateViewController: UIViewController {
             ][type.rawValue]
 
         statusLabel.text = [
-            "Initialized",
-            "Sent",
-            "Received",
+            R.string.localizable.grinTxFileInitStatus(),
+            R.string.localizable.grinTxTypeSent(),
+            R.string.localizable.grinTxTypeReceived(),
         ][type.rawValue]
+
+        slateIDLabel.text = R.string.localizable.grinTxidTitle()
     }
 
     func bind() {
@@ -121,8 +124,8 @@ extension SlateViewController : UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.textColor = UIColor(netHex: 0x3e4159)
         guard let slate = opendSlate else { fatalError() }
         var arr = [
-            ("Amount", Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9) + " GRIN") ,
-            ("Fee", Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9) + " GRIN")
+            (R.string.localizable.grinSentAmount(), Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9) + " GRIN") ,
+            (R.string.localizable.grinSentFee(), Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9) + " GRIN")
         ]
         cell.textLabel?.text = arr[indexPath.row].0
         cell.detailTextLabel?.text = arr[indexPath.row].1
