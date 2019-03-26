@@ -435,7 +435,7 @@
 
 "grin.sent.next" = "Next";
 "grin.sent.suggest.useVite.title" = "Notice";
-"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended for it is safer and cheaper.";
+"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended as it is safer and cheaper.";
 "grin.sent.switch" = "Switch Mode";
 "grin.sent.stillUseHttp" = "Stay on Http Mode";
 "grin.sent.http.success" = "You have successfully sent GRIN transfer request";
@@ -444,12 +444,12 @@
 "grin.receiveByVite.addressCopyed" = "Your Vite Address for receiving GRIN is copied to the clipboard.";
 "grin.receiveByVite.desc" = "Please share your first Vite address to the sender. Please note that only when you are online with the first Vite address can you receive GRIN tokens.";
 "grin.iknow" = "I know";
-"grin.thisIsFirstViteAddress" = "This is the first Vite address in your address book.";
+"grin.thisIsFirstViteAddress" = "This is the first Vite address in your Vite address book.";
 
 "grin.receiveByHttp.addressCopyed" = "Your Http Address for receiving GRIN is copied to the clipboard";
-"grin.receiveByHttp.desc" = "Please share the http address on the bottom to the sender. Please note there would be transaction fee in both steps above(one is payed by the sender and the other one is payed by the recipient), and only when you are online with your first Vite address can you receive GRIN tokens.";
+"grin.receiveByHttp.desc" = "Please share the Http address on the bottom to the sender. Please note there would be transaction fees in both steps above(one is paid by the sender and the other one is paid by the recipient), and only when you are online with your first Vite address can you receive GRIN tokens.";
 
-"grin.receive.title" = "GRIN Receiver";
+"grin.receive.title" = "Receiving GRIN";
 "grin.receive.sented" = "Sent";
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Signed and share file";
@@ -462,4 +462,4 @@
 "grin.teach.vite.title" = "Transfer through Vite Address Flow Graph";
 "grin.teach.http.title" = "Transfer through Http Address Flow Graph";
 
-"grin.txid.title" = "Tx id";
+"grin.txid.title" = "Tx ID";
