@@ -9,7 +9,6 @@ import UIKit
 import Eureka
 import Crashlytics
 import ViteWallet
-import ViteUtils
 import Kingfisher
 
 class DebugOperationViewController: FormViewController {

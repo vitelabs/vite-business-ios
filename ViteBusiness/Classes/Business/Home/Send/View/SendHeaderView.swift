@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import ViteUtils
 
 class SendHeaderView: UIView {
 

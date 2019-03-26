@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import ViteUtils
 import ViteEthereum
 
 class EthInfoCardView: UIView {

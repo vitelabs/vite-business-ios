@@ -11,7 +11,6 @@ import Fabric
 import Crashlytics
 import NSObject_Rx
 import Vite_HDWalletKit
-import ViteUtils
 import ViteWallet
 import BigInt
 import web3swift

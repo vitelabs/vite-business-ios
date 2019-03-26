@@ -11,7 +11,6 @@ import UIKit
 import ViteWallet
 import Vite_HDWalletKit
 import PromiseKit
-import ViteUtils
 import BigInt
 import enum ViteWallet.Result
 

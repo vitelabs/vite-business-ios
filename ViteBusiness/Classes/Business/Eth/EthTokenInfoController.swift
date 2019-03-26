@@ -11,7 +11,6 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import ViteUtils
 import ViteEthereum
 import web3swift
 import BigInt

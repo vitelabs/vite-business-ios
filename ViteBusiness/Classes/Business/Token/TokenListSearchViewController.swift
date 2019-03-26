@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 import RxDataSources
-import ViteUtils
 
 class TokenListSearchViewController: UIViewController {
     let viewModel = TokenListSearchViewModel()

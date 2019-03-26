@@ -13,7 +13,6 @@ import Alamofire
 import Moya
 import SwiftyJSON
 import ObjectMapper
-import ViteUtils
 import enum Alamofire.Result
 
 class COSProvider: MoyaProvider<COSAPI> {

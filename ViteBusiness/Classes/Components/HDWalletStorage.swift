@@ -10,7 +10,6 @@ import Foundation
 import Vite_HDWalletKit
 import ObjectMapper
 import CryptoSwift
-import ViteUtils
 import ViteWallet
 
 public final class HDWalletStorage: Mappable {

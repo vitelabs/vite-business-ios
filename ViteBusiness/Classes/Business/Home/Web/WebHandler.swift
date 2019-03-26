@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ViteUtils
 
 public struct WebHandler {
     #if DEBUG || TEST
