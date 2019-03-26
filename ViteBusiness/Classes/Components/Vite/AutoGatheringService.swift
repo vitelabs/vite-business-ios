@@ -11,7 +11,6 @@ import ViteWallet
 import PromiseKit
 import RxSwift
 import RxCocoa
-import ViteUtils
 
 final class AutoGatheringService {
     static let instance = AutoGatheringService()

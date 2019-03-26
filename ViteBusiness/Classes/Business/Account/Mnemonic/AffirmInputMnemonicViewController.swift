@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import RxDataSources
 import Vite_HDWalletKit
-import ViteUtils
 
 class AffirmInputMnemonicViewController: BaseViewController, MnemonicCollectionViewDelegate {
     fileprivate var viewModel: AffirmInputMnemonicVM

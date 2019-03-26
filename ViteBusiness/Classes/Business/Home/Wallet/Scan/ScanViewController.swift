@@ -14,7 +14,6 @@ import SnapKit
 import ReactorKit
 import RxSwift
 import RxCocoa
-import ViteUtils
 
 extension Reactive where Base: ScanViewController {
     var result: Observable<String> {

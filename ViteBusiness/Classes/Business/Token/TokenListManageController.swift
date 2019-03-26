@@ -12,7 +12,6 @@ import RxSwift
 import SnapKit
 import NSObject_Rx
 import RxDataSources
-import ViteUtils
 import MLeaksFinder
 
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>

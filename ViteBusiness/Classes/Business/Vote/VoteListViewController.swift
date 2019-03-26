@@ -13,7 +13,6 @@ import RxSwift
 import SnapKit
 import NSObject_Rx
 import RxDataSources
-import ViteUtils
 
 class VoteListViewController: BaseViewController {
 

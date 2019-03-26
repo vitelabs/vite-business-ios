@@ -12,7 +12,6 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 import Vite_HDWalletKit
-import ViteUtils
 import ViteWallet
 import BigInt
 import web3swift

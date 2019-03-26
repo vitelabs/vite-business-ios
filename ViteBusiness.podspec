@@ -128,7 +128,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'MLeaksFinder'
 
-  s.dependency 'ViteUtils'
   s.dependency 'ViteWallet'
   s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
