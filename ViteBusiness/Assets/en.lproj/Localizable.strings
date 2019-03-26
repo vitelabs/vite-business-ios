@@ -387,7 +387,7 @@
 
 // Grin
 
-"grin.balance.total" = "Tota";
+"grin.balance.total" = "Total";
 "grin.balance.spendable" = "Spendable";
 "grin.balance.awaiting" = "Awaiting Confirmation";
 "grin.balance.locked" = "Locked by Previous Transaction";
@@ -407,52 +407,52 @@
 "grin.tx.copyId" = "Copy";
 
 "grin.useFirstViteAddress" = "To send GRIN through Vite Address or Http Address, please switch to the first Vite Address in your Vite Address Book";
-"grin.tx.useVite" = "通过Vite地址";
+"grin.tx.useVite" = "Use Vite Address";
 "grin.sent.useVite.desc" = "Sending GRIN through Vite Address is sharing transaction file encrypted by Vite through Vite Address, which ensures only the real recipient can decrypt the file. Please note that only the first Vite Address in your Vite Address Book can be used to send or receive GRIN.";
-"grin.sent.useHttp" = "通过Http地址";
+"grin.sent.useHttp" = "Use Http Address";
 "grin.sent.useHttp.desc" = "Please note there would be transaction fees in both steps above, the first one is payed by the sender and the second one is payed by the recipient";
-"grin.sent.useFile" = "通过交易文件";
+"grin.sent.useFile" = "Use File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't see again";
 
-"grin.sent.title" = "GRIN转账";
-"grin.sent.amount" = "金额";
-"grin.sent.fee" = "交易费";
-"grin.sent.creatFile" = "生成交易文件";
+"grin.sent.title" = "Transfer by GRIN";
+"grin.sent.amount" = "Amount";
+"grin.sent.fee" = "Transaction Fees";
+"grin.sent.creatFile" = "Generate Transaction File";
 
 "grin.shareFile.desc" = "Make sure to share the transaction file with the recipient and ask for a confirmation file.";
-"grin.txFile.init.status" = "初始化";
-"grin.txFile.id" = "交易ID";
-"grin.shareFile" = "分享交易文件";
+"grin.txFile.init.status" = "Initializing";
+"grin.txFile.id" = "Transaction ID";
+"grin.shareFile" = "Share Transaction File";
 
-"grin.finalize.title" = "确认转账";
+"grin.finalize.title" = "Confirm to Transfer";
 "grin.finalize.desc" = "Transaction has been signed, please finalize the transaction to complete it.";
-"grin.txFile.received.status" = "已确认收款";
-"grin.finalize" = "确认转账并广播";
+"grin.txFile.received.status" = "Finalized Receipt";
+"grin.finalize" = "Finalize the transaction and broadcast";
 
 "grin.finalized.alertTitle" = "Transaction Finalized";
 "grin.finalized.alertDesc" = "Transaction is finalized now and will now be processed by the blockchain and will show up in your wallet within a few minutes.";
 
-"grin.sent.next" = "下一步";
-"grin.sent.suggest.useVite.title" = "提示";
+"grin.sent.next" = "Next";
+"grin.sent.suggest.useVite.title" = "Notice";
 "grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended for it is safer and cheaper.";
-"grin.sent.switch" = "切换模式";
-"grin.sent.stillUseHttp" = "仍使用Http模式";
-"grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
-"grin.sent.vite.success" = "您的转账交易已发送，请注意只有使用当前地址您才能继续完成GRIN转账。";
+"grin.sent.switch" = "Switch Mode";
+"grin.sent.stillUseHttp" = "Stay on Http Mode";
+"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
+"grin.sent.vite.success" = "Your transaction have sent, please be aware that you can go through your GRIN transaction only if you use current address.";
 
 "grin.receiveByVite.addressCopyed" = "Your Vite Address for receiving GRIN is copied to the clipboard.";
 "grin.receiveByVite.desc" = "Please share your first Vite address to the sender. Please note that only when you are online with the first Vite address can you receive GRIN tokens.";
 "grin.iknow" = "I know";
-"grin.thisIsFirstViteAddress" = "这是您Vite地址簿中的第一个Vite地址。";
+"grin.thisIsFirstViteAddress" = "This is the first Vite address in your address book.";
 
 "grin.receiveByHttp.addressCopyed" = "Your Http Address for receiving GRIN is copied to the clipboard";
 "grin.receiveByHttp.desc" = "Please share the http address on the bottom to the sender. Please note there would be transaction fee in both steps above(one is payed by the sender and the other one is payed by the recipient), and only when you are online with your first Vite address can you receive GRIN tokens.";
 
-"grin.receive.title" = "GRIN收款";
-"grin.receive.sented" = "已传送";
-"grin.creatTime" = "生成时间";
-"grin.signAndShare" = "签收并分享文件";
+"grin.receive.title" = "GRIN Receiver";
+"grin.receive.sented" = "Sent";
+"grin.creatTime" = "Creation Time";
+"grin.signAndShare" = "Signed and share file";
 
 "grin.sent.btnTitle" = "Receive";
 "grin.receive.BtnTitle" = "Sent";
