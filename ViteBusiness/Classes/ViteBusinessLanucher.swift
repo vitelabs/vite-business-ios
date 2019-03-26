@@ -14,6 +14,8 @@ import Vite_HDWalletKit
 import ViteUtils
 import ViteWallet
 import BigInt
+import web3swift
+import ViteEthereum
 
 public class ViteBusinessLanucher: NSObject {
 
@@ -38,7 +40,8 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
-
+        //config 
+    EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
@@ -60,6 +63,8 @@ public class ViteBusinessLanucher: NSObject {
         self.handleWebUIConfig()
         self.handleWebAppBridgeConfig()
         self.handleWebWalletBridgeConfig()
+
+
     }
     func handleWebWalletBridgeConfig()  {
         WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
