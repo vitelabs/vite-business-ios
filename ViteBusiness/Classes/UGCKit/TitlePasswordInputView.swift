@@ -12,26 +12,46 @@ import SnapKit
 class TitlePasswordInputView: UIView {
 
     let titleLabel = UILabel().then {
-        $0.textColor = UIColor.blue
-        $0.font = UIFont.systemFont(ofSize: 17)
+        $0.textColor = Colors.titleGray
+        $0.font = AppStyle.formHeader.font
     }
 
-    let passwordInputView = PasswordInputView()
+    let textField = PasswordTextFieldView().then {
+        $0.textColor = Colors.cellTitleGray
+        $0.font = AppStyle.descWord.font
+    }
 
-    init(title: String) {
+    let separatorLine = UIView().then {
+        $0.backgroundColor = Colors.lineGray
+    }
+
+    init(title: String, placeholder: String = "", text: String = "") {
         super.init(frame: CGRect.zero)
 
+        let attributedString = NSMutableAttributedString(string: placeholder)
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.green,
+                                        NSAttributedString.Key.font: textField.font!, ], range: NSRange(location: 0, length: placeholder.count))
+
         titleLabel.text = title
+        textField.text = text
+        textField.attributedPlaceholder = attributedString
 
         addSubview(titleLabel)
-        addSubview(passwordInputView)
+        addSubview(textField)
+        addSubview(separatorLine)
 
         titleLabel.snp.makeConstraints { (m) in
             m.top.left.right.equalTo(self)
         }
 
-        passwordInputView.snp.makeConstraints { (m) in
-            m.top.equalTo(titleLabel.snp.bottom)
+        textField.snp.makeConstraints { (m) in
+            m.top.equalTo(titleLabel.snp.bottom).offset(10)
+            m.left.right.equalTo(self)
+        }
+
+        separatorLine.snp.makeConstraints { (m) in
+            m.top.equalTo(textField.snp.bottom).offset(10)
+            m.height.equalTo(CGFloat.singleLineWidth)
             m.left.right.bottom.equalTo(self)
         }
     }

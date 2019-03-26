@@ -28,6 +28,9 @@ final class CreateNameAndPwdVM {
             return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypeDifference()))
         }
 
+        if  ViteInputValidator.isValidWalletPassword(str: pwd) {
+            return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypePwdIllegal()))
+        }
         return Observable.just(.ok(message:""))
     }
 
@@ -56,11 +59,6 @@ final class CreateNameAndPwdVM {
 
     static func handleLoginBtnEnable(_ name: String, pwd: String, rePwd: String) -> Observable<Bool> {
         if name.isEmpty || pwd.isEmpty || rePwd.isEmpty {
-            return Observable.just(false)
-        }
-
-        if !ViteInputValidator.isValidWalletPassword(str: pwd) ||
-            !ViteInputValidator.isValidWalletPassword(str: rePwd) {
             return Observable.just(false)
         }
 

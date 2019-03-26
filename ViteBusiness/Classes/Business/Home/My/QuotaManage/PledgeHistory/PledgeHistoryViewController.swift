@@ -11,6 +11,7 @@ import RxDataSources
 import RxSwift
 import ReactorKit
 import MJRefresh
+import ViteWallet
 
 class PledgeHistoryViewController: BaseViewController, View {
 
@@ -67,7 +68,7 @@ class PledgeHistoryViewController: BaseViewController, View {
                 let cell = cell as! PledgeHistoryCell
                 cell.hashLabel.text = pledge.beneficialAddress.description
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
-                cell.balanceLabel.text =  pledge.amount.amountShort(decimals: TokenCacheService.instance.viteToken.decimals)
+                cell.balanceLabel.text =  pledge.amount.amountShort(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"
             }
             .disposed(by: disposeBag)

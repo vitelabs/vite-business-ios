@@ -10,18 +10,30 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Vite_HDWalletKit
+import ViteWallet
 
 class AddressManagerTableViewModel: AddressManagerTableViewModelType {
 
     lazy var defaultAddressDriver: Driver<String> = HDWalletManager.instance.accountDriver.map { $0?.address.description ?? ""}
+    lazy var defaultAddressNameDriver: Driver<String> =
+        Driver.combineLatest(
+            self.defaultAddressDriver,
+            AddressManageService.instance.myAddressNameMapDriver).map { (address, _) -> String in
+                return AddressManageService.instance.name(for: Address(string: address))
+    }
+    
     lazy var addressesDriver: Driver<[AddressManageAddressViewModelType]> =
-        Driver.combineLatest(HDWalletManager.instance.accountsDriver, HDWalletManager.instance.accountDriver)
-            .map { (accounts, _) -> [AddressManageAddressViewModelType] in
+        Driver.combineLatest(
+            HDWalletManager.instance.accountsDriver,
+            HDWalletManager.instance.accountDriver,
+            AddressManageService.instance.myAddressNameMapDriver)
+            .map { (accounts, _, _) -> [AddressManageAddressViewModelType] in
                 var number = 0
                 return accounts.map { account -> AddressManageAddressViewModelType in
                     let isSelected = number == HDWalletManager.instance.selectBagIndex
                     number += 1
-                    return AddressManageAddressViewModel(number: number, address: account.address.description, isSelected: isSelected)
+                    let name = AddressManageService.instance.name(for: account.address)
+                    return AddressManageAddressViewModel(number: number, name: name, address: account.address.description, isSelected: isSelected)
                 }
             }
 

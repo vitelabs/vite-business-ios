@@ -10,6 +10,8 @@ import ViteWallet
 import Foundation
 import ObjectMapper
 import ViteUtils
+import ViteEthereum
+import web3swift
 
 public class DebugService {
     public static let instance = DebugService()
@@ -82,6 +84,7 @@ public class DebugService {
         case .custom:
             break
         }
+        updateETHServer()
     }
 
     public var config: Config {
@@ -96,7 +99,9 @@ public class DebugService {
             if config.configEnvironment != oldValue.configEnvironment {
                 DispatchQueue.main.async {
                     AppUpdateService.checkUpdate()
-                    AppSettingsService.instance.start()
+                    AppConfigService.instance.start()
+                    MyTokenInfosService.instance.clear()
+                    TokenListService.instance.fetchTokenListServerData()
                 }
             }
         }
@@ -104,7 +109,6 @@ public class DebugService {
 
     public struct Config: Mappable, Equatable {
 
-        var useBigDifficulty = true
         var rpcUseOnlineUrl = false
         var rpcCustomUrl = ""
         var browserUseOnlineUrl = false
@@ -115,8 +119,7 @@ public class DebugService {
         var urls: [String] = []
         var ignoreCheckUpdate = true
 
-        init(useBigDifficulty: Bool,
-             rpcUseOnlineUrl: Bool,
+        init(rpcUseOnlineUrl: Bool,
              rpcCustomUrl: String?,
              browserUseOnlineUrl: Bool,
              browserCustomUrl: String?,
@@ -126,7 +129,6 @@ public class DebugService {
              urls: [String]?,
              ignoreCheckUpdate: Bool?) {
 
-            self.useBigDifficulty = useBigDifficulty
             self.rpcUseOnlineUrl = rpcUseOnlineUrl
             if let rpcCustomUrl = rpcCustomUrl {
                 self.rpcCustomUrl = rpcCustomUrl
@@ -152,8 +154,7 @@ public class DebugService {
         }
 
         static var test: Config {
-            return Config(useBigDifficulty: true,
-                          rpcUseOnlineUrl: false,
+            return Config(rpcUseOnlineUrl: false,
                           rpcCustomUrl: "",
                           browserUseOnlineUrl: false,
                           browserCustomUrl: "",
@@ -165,8 +166,7 @@ public class DebugService {
         }
 
         static var stage: Config {
-            return Config(useBigDifficulty: true,
-                          rpcUseOnlineUrl: true,
+            return Config(rpcUseOnlineUrl: true,
                           rpcCustomUrl: nil,
                           browserUseOnlineUrl: true,
                           browserCustomUrl: nil,
@@ -178,8 +178,7 @@ public class DebugService {
         }
 
         static var online: Config {
-            return Config(useBigDifficulty: true,
-                          rpcUseOnlineUrl: true,
+            return Config(rpcUseOnlineUrl: true,
                           rpcCustomUrl: nil,
                           browserUseOnlineUrl: true,
                           browserCustomUrl: nil,
@@ -196,20 +195,17 @@ public class DebugService {
                 let stage = Config.stage
                 let online = Config.online
 
-                if useBigDifficulty == test.useBigDifficulty &&
-                    rpcUseOnlineUrl == test.rpcUseOnlineUrl &&
+                if rpcUseOnlineUrl == test.rpcUseOnlineUrl &&
                     browserUseOnlineUrl == test.browserUseOnlineUrl &&
                     configEnvironment == test.configEnvironment &&
                     rpcCustomUrl == test.rpcCustomUrl &&
                     browserCustomUrl == test.browserCustomUrl {
                     return .test
-                } else if useBigDifficulty == stage.useBigDifficulty &&
-                    rpcUseOnlineUrl == stage.rpcUseOnlineUrl &&
+                } else if rpcUseOnlineUrl == stage.rpcUseOnlineUrl &&
                     browserUseOnlineUrl == stage.browserUseOnlineUrl &&
                     configEnvironment == stage.configEnvironment {
                     return .stage
-                } else if useBigDifficulty == online.useBigDifficulty &&
-                    rpcUseOnlineUrl == online.rpcUseOnlineUrl &&
+                } else if rpcUseOnlineUrl == online.rpcUseOnlineUrl &&
                     browserUseOnlineUrl == online.browserUseOnlineUrl &&
                     configEnvironment == online.configEnvironment {
                     return .online
@@ -222,7 +218,6 @@ public class DebugService {
         public init?(map: Map) { }
 
         mutating public func mapping(map: Map) {
-            useBigDifficulty <- map["useBigDifficulty"]
             rpcUseOnlineUrl <- map["rpcUseOnlineUrl"]
             rpcCustomUrl <- map["rpcCustomUrl"]
             browserUseOnlineUrl <- map["browserUseOnlineUrl"]
@@ -247,6 +242,19 @@ public class DebugService {
         }
     }
 
+    private func updateETHServer() {
+        switch config.appEnvironment {
+        case .test:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
+        case .stage:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        case .online:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        case .custom:
+            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
+        }
+    }
+
     private init() {
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
@@ -258,6 +266,7 @@ public class DebugService {
         }
 
         updateRPCServerProvider()
+        updateETHServer()
     }
 
     fileprivate func pri_save() {

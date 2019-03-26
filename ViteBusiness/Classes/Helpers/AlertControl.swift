@@ -79,6 +79,19 @@ public class AlertControl: UIViewController {
         self.textFields?.append(textField)
     }
 
+    public func addPwdTextField(configurationHandler: ((UITextField) -> Void)? = nil) {
+        let textField = PasswordTextFieldView()
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.init(netHex: 0x8E8E93).cgColor
+        textField.font = UIFont.systemFont(ofSize: 13)
+        textField.leftView = UIView().then {
+            $0.frame = CGRect.init(x: 0, y: 0, width: 5, height: 20)
+        }
+        textField.leftViewMode = .always
+        configurationHandler?(textField)
+        self.textFields?.append(textField)
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

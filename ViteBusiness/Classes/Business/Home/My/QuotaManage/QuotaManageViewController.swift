@@ -38,13 +38,15 @@ class QuotaManageViewController: BaseViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView.stackView)
+        kas_activateAutoScrollingForView(scrollView)
         FetchQuotaService.instance.retainQuota()
+        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaService.instance.releaseQuota()
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
     // View
@@ -58,10 +60,10 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address.description)
+    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
 
     // money
-    lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: TokenCacheService.instance.viteToken.symbol).then {
+    lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
         $0.textField.keyboardType = .decimalPad
     }
 
@@ -74,7 +76,7 @@ class QuotaManageViewController: BaseViewController {
         $0.descLab.attributedText = attributedString
     }
 
-    lazy var addressView = AddressTextViewView(currentAddress: self.account.address.description, placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
+    lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
         $0.textView.keyboardType = .default
     }
@@ -182,7 +184,7 @@ extension QuotaManageViewController {
 
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: TokenCacheService.instance.viteToken.decimals) else {
+                    let amount = amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
@@ -197,7 +199,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount >= "1000".toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)! else {
+                guard amount >= "1000".toBigInt(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
@@ -211,6 +213,14 @@ extension QuotaManageViewController {
 
             }
             .disposed(by: rx.disposeBag)
+
+        addressView.addButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
+                [R.string.localizable.sendPageMyAddressTitle(),
+                 R.string.localizable.sendPageViteContactsButtonTitle(),
+                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+            }.disposed(by: rx.disposeBag)
     }
 
     func refreshDataBySuccess() {
@@ -219,26 +229,56 @@ extension QuotaManageViewController {
     }
 
     func initBinds() {
-        FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
-            guard let `self` = self else { return }
-            for balanceInfo in balanceInfos where TokenCacheService.instance.viteToken.id == balanceInfo.token.id {
-                self.balance = balanceInfo.balance
-                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: balanceInfo.token.decimals)
-                return
-            }
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
+            .drive(onNext: { [weak self] balanceInfo in
+                guard let `self` = self else { return }
+                if let balanceInfo = balanceInfo {
+                    self.balance = balanceInfo.balance
+                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
+                } else {
+                    // no balanceInfo, set 0.0
+                    self.headerView.balanceLabel.text = "0.0"
+                }
+            }).disposed(by: rx.disposeBag)
 
-            // no balanceInfo, set 0.0
-            self.headerView.balanceLabel.text = "0.0"
-        }).disposed(by: rx.disposeBag)
-        FetchQuotaService.instance.quotaDriver.drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
-        FetchQuotaService.instance.maxTxCountDriver.drive(headerView.maxTxCountLabel.rx.text).disposed(by: rx.disposeBag)
+    FetchQuotaService.instance.maxTxCountDriver
+        .map({ R.string.localizable.sendPageQuotaContent($0) })
+        .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+    }
+}
+
+extension QuotaManageViewController: FloatButtonsViewDelegate {
+    func didClick(at index: Int) {
+        if index == 0 {
+            let viewModel = AddressListViewModel.createMyAddressListViewModel()
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 1 {
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 2 {
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressView.textView.text = uri.address.description
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
     }
 }
 
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
     func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        let amount = Balance(value: amountString.toBigInt(decimals: TokenCacheService.instance.viteToken.decimals)!)
+        let amount = Balance(value: amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals)!)
         Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
             if case .success = r {
                 self.refreshDataBySuccess()
@@ -250,7 +290,7 @@ extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
 extension QuotaManageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, TokenCacheService.instance.viteToken.decimals))
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, ViteWalletConst.viteToken.decimals))
             textField.text = text
             return ret
         } else {

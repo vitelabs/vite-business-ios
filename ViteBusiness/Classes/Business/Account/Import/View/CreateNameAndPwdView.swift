@@ -19,19 +19,25 @@ class CreateNameAndPwdView: UIView {
     }()
 
     lazy var passwordTF: TitlePasswordInputView = {
-        let passwordTF = TitlePasswordInputView.init(title: R.string.localizable.createPagePwTitle())
-        passwordTF.passwordInputView.delegate = self
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwTitle())
+        passwordTF.textField.returnKeyType = .next
+        passwordTF.textField.delegate = self
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
+        passwordTF.textField.textColor = Colors.descGray
+        passwordTF.textField.font = AppStyle.formHeader.font
         return passwordTF
     }()
 
     lazy var passwordRepeateTF: TitlePasswordInputView = {
-        let passwordRepeateTF = TitlePasswordInputView.init(title: R.string.localizable.createPagePwRepeateTitle())
-        passwordRepeateTF.passwordInputView.delegate = self
-        passwordRepeateTF.titleLabel.textColor = Colors.titleGray
-        passwordRepeateTF.titleLabel.font = AppStyle.formHeader.font
-        return passwordRepeateTF
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwRepeateTitle())
+        passwordTF.textField.returnKeyType = .done
+        passwordTF.textField.delegate = self
+        passwordTF.titleLabel.textColor = Colors.titleGray
+        passwordTF.titleLabel.font = AppStyle.formHeader.font
+        passwordTF.textField.textColor = Colors.descGray
+        passwordTF.textField.font = AppStyle.formHeader.font
+        return passwordTF
     }()
 
     override init(frame: CGRect) {
@@ -70,15 +76,16 @@ class CreateNameAndPwdView: UIView {
     }
 }
 
-extension CreateNameAndPwdView: PasswordInputViewDelegate {
-    func inputFinish(passwordView: PasswordInputView, password: String) {
-        if passwordView ==  self.passwordTF.passwordInputView {
-            _ = self.passwordTF.passwordInputView.resignFirstResponder()
-            _ = self.passwordRepeateTF.passwordInputView.becomeFirstResponder()
+extension CreateNameAndPwdView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField ==  self.passwordTF.textField {
+            _ = self.passwordTF.textField.resignFirstResponder()
+            _ = self.passwordRepeateTF.textField.becomeFirstResponder()
         }
-        if passwordView ==  self.passwordRepeateTF.passwordInputView {
-            _ = self.passwordTF.passwordInputView.resignFirstResponder()
-            _ = self.passwordRepeateTF.passwordInputView.resignFirstResponder()
+        if textField ==  self.passwordRepeateTF.textField {
+            _ = self.passwordTF.textField.resignFirstResponder()
+            _ = self.passwordRepeateTF.textField.resignFirstResponder()
         }
+        return true
     }
 }

@@ -10,6 +10,7 @@ import Eureka
 import Crashlytics
 import ViteWallet
 import ViteUtils
+import Kingfisher
 
 class DebugOperationViewController: FormViewController {
 
@@ -48,7 +49,7 @@ class DebugOperationViewController: FormViewController {
             <<< LabelRow("reloadConfig") {
                 $0.title =  "Reload Config"
                 }.onCellSelection({ _, _  in
-                    AppSettingsService.instance.start()
+                    AppConfigService.instance.start()
                     Toast.show("Operation complete")
                 })
             <<< LabelRow("checkUpdate") {
@@ -76,12 +77,6 @@ class DebugOperationViewController: FormViewController {
                     HDWalletManager.instance.resetBagCount()
                     Toast.show("Operation complete")
                 })
-            <<< LabelRow("deleteTokenCache") {
-                $0.title =  "Delete Token Cache"
-                }.onCellSelection({ _, _  in
-                    TokenCacheService.instance.deleteCache()
-                    Toast.show("Operation complete")
-                })
             <<< LabelRow("exportLogFile") {
                 $0.title =  "Export Log File"
                 }.onCellSelection({ _, _  in
@@ -94,6 +89,13 @@ class DebugOperationViewController: FormViewController {
                 $0.title =  "test crash"
                 }.onCellSelection({_, _  in
                     Crashlytics.sharedInstance().throwException()
+                })
+            <<< LabelRow("Clear Image Cache") {
+                $0.title =  "Clear Image Cache"
+                }.onCellSelection({_, _  in
+                    KingfisherManager.shared.cache.clearMemoryCache()
+                    KingfisherManager.shared.cache.clearDiskCache()
+                    Toast.show("Operation complete")
                 })
     }
 }

@@ -34,7 +34,7 @@ class LoginViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(contentView)
+        kas_activateAutoScrollingForView(self.contentView)
         if navigationController?.viewControllers.first === self {
 
         } else {
@@ -42,7 +42,14 @@ class LoginViewController: BaseViewController {
         }
     }
 
-    let contentView = UIView()
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    lazy var contentView: UIView = {
+        let contentView = UIView()
+        return contentView
+    }()
 
     lazy var logoImgView: UIImageView = {
         let logoImgView = UIImageView()
@@ -69,10 +76,11 @@ class LoginViewController: BaseViewController {
     }()
 
     lazy var passwordTF: TitlePasswordInputView = {
-        let passwordTF = TitlePasswordInputView.init(title: R.string.localizable.createPagePwTitle())
+        let passwordTF = TitlePasswordInputView(title: R.string.localizable.createPagePwTitle())
         passwordTF.titleLabel.textColor = Colors.titleGray
         passwordTF.titleLabel.font = AppStyle.formHeader.font
-        passwordTF.passwordInputView.delegate = self
+        passwordTF.textField.returnKeyType = .done
+        passwordTF.textField.delegate = self
         return passwordTF
     }()
 
@@ -108,23 +116,31 @@ extension LoginViewController {
     }
 
     private func _addViewConstraint() {
-        view.addSubview(contentView)
-        contentView.snp.makeConstraints { (m) in
-            m.edges.equalTo(view)
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.view)
         }
-        contentView.addSubview(self.logoImgView)
-        self.logoImgView.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(contentView)
-            make.top.equalTo(contentView.safeAreaLayoutGuideSnpTop).offset(80)
-            make.width.height.equalTo(84)
+
+        self.scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { (make) in
+            make.top.equalTo(scrollView)
+            make.left.right.bottom.equalTo(view)
         }
 
         contentView.addSubview(self.userNameBtn)
         self.userNameBtn.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView)
+            make.centerY.equalTo(contentView).offset(-20)
             make.left.equalTo(contentView).offset(24)
             make.right.equalTo(contentView).offset(-24)
             make.height.equalTo(60)
+        }
+
+        contentView.addSubview(self.logoImgView)
+        self.logoImgView.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(self.userNameBtn.snp.top).offset(-80)
+            make.centerX.equalTo(contentView)
+            make.width.height.equalTo(84)
         }
 
         contentView.addSubview(self.passwordTF)
@@ -204,7 +220,7 @@ extension LoginViewController {
     }
 
     @objc func loginBtnAction() {
-        let encryptKey = (self.passwordTF.passwordInputView.textField.text ?? "").toEncryptKey(salt: self.viewModel.chooseUuid)
+        let encryptKey = (self.passwordTF.textField.text ?? "").toEncryptKey(salt: self.viewModel.chooseUuid)
         self.view.displayLoading(text: R.string.localizable.loginPageLoadingTitle(), animated: true)
         DispatchQueue.global().async {
             if HDWalletManager.instance.loginWithUuid(self.viewModel.chooseUuid, encryptKey: encryptKey) {
@@ -225,8 +241,12 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController: PasswordInputViewDelegate {
-    func inputFinish(passwordView: PasswordInputView, password: String) {
-        _ = passwordView.resignFirstResponder()
+extension LoginViewController : UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.passwordTF.textField {
+            self.passwordTF.textField.resignFirstResponder()
+        }
+        return true
     }
 }

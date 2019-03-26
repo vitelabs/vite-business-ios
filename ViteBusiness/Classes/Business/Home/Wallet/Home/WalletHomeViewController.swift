@@ -14,10 +14,12 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteUtils
 import ViteWallet
+import BigInt
+import web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModelType>>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,59 +27,72 @@ class WalletHomeViewController: BaseTableViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableViewModel.registerFetchAll()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableViewModel.unregisterFetchAll()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
     let walletDriver = HDWalletManager.instance.walletDriver
-    let addressView = WalletHomeAddressView()
-    var addressViewModel: WalletHomeAddressViewModel!
     var tableViewModel: WalletHomeBalanceInfoTableViewModel!
-    weak var balanceInfoDetailViewController: BalanceInfoDetailViewController?
+    var navViewModel: WalletHomeNavViewModel!
+
+    let navView = WalletHomeNavView(frame: CGRect.zero)
+    let headerView = WalletHomeHeaderView()
+
+    lazy var isHidePriceDriver: Driver<Bool> = self.isHidePriceBehaviorRelay.asDriver()
+    var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     fileprivate func setupView() {
 
         statisticsPageName = Statistics.Page.WalletHome.name
-        let qrcodeItem = UIBarButtonItem(image: R.image.icon_nav_qrcode_black(), style: .plain, target: nil, action: nil)
-        let scanItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = qrcodeItem
-        navigationItem.rightBarButtonItem = scanItem
 
-        navigationTitleView = NavigationTitleView(title: nil)
-        customHeaderView = addressView
+        view.addSubview(navView)
+
+        navView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
+        }
+
+
+        tableView.snp.remakeConstraints { (m) in
+            m.top.equalTo(navView.snp.bottom)
+            m.bottom.right.left.equalTo(view)
+        }
+
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 18)).then {
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 56)).then {
             $0.backgroundColor = UIColor.clear
+            $0.addSubview(headerView)
+            headerView.snp.makeConstraints { (m) in
+                m.top.equalToSuperview()
+                m.left.right.equalToSuperview()
+            }
         }
 
         if #available(iOS 11.0, *) {
 
         } else {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
-            tableView.scrollIndicatorInsets = tableView.contentInset
+            self.automaticallyAdjustsScrollViewInsets = false
         }
-
-        let shadowView = UIView().then {
-            $0.backgroundColor = UIColor.white
-            $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-            $0.layer.shadowOpacity = 0.1
-            $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-            $0.layer.shadowRadius = 20
-        }
-
-        view.insertSubview(shadowView, belowSubview: tableView)
-        shadowView.snp.makeConstraints { (m) in
-            m.left.right.equalTo(tableView)
-            m.bottom.equalTo(tableView.snp.top)
-            m.height.equalTo(10)
-        }
-
-        qrcodeItem.rx.tap.bind { [weak self] _ in
-            self?.navigationController?.pushViewController(ReceiveViewController(token: TokenCacheService.instance.viteToken, style: .default), animated: true)
-        }.disposed(by: rx.disposeBag)
-
-        scanItem.rx.tap.bind { [unowned self] _ in
-            self.scan()
-        }.disposed(by: rx.disposeBag)
     }
 
     fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
@@ -88,14 +103,18 @@ class WalletHomeViewController: BaseTableViewController {
 
     fileprivate func bind() {
 
-        if let navigationTitleView = navigationTitleView as? NavigationTitleView {
-            walletDriver.map({ $0.name }).drive(navigationTitleView.titleLabel.rx.text).disposed(by: rx.disposeBag)
-        }
+        tableViewModel = WalletHomeBalanceInfoTableViewModel(isHidePriceDriver: isHidePriceDriver)
+        navViewModel = WalletHomeNavViewModel(isHidePriceDriver: isHidePriceDriver, walletHomeBalanceInfoTableViewModel: tableViewModel)
+        navView.bind(viewModel: navViewModel)
 
-        addressViewModel = WalletHomeAddressViewModel()
-        tableViewModel = WalletHomeBalanceInfoTableViewModel()
+        navView.scanButton.rx.tap.bind { [weak self] in
+            self?.scan()
+            }.disposed(by: rx.disposeBag)
 
-        addressView.bind(viewModel: addressViewModel)
+        navView.hideButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            self.isHidePriceBehaviorRelay.accept(!self.isHidePriceBehaviorRelay.value)
+            }.disposed(by: rx.disposeBag)
 
         tableViewModel.balanceInfosDriver.asObservable()
             .map { balanceInfoViewModels in
@@ -107,23 +126,20 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let `self` = self else { fatalError() }
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModelType {
+                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                    let balanceInfoDetailViewController = BalanceInfoDetailViewController(viewModel: viewModel)
+                    MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
+                    let balanceInfoDetailViewController : UIViewController
+                    if viewModel.tokenInfo.coinType == .eth {
+                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
+                    } else {
+                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
+                    }
+
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
-                    self.balanceInfoDetailViewController = balanceInfoDetailViewController
                 }
             }
             .disposed(by: rx.disposeBag)
-
-        tableViewModel.balanceInfosDriver.asObservable().bind { [weak self] in
-            if let viewModelBehaviorRelay = self?.balanceInfoDetailViewController?.viewModelBehaviorRelay {
-                for viewModel in $0 where viewModelBehaviorRelay.value.token.id == viewModel.token.id {
-                    viewModelBehaviorRelay.accept(viewModel)
-                    break
-                }
-            }
-        }.disposed(by: rx.disposeBag)
     }
 
     func scan() {
@@ -132,6 +148,8 @@ class WalletHomeViewController: BaseTableViewController {
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
             if case .success(let uri) = ViteURI.parser(string: result) {
                 self.handleScanResult(with: uri, scanViewController: scanViewController)
+            } else if case .success(let uri) = ETHURI.parser(string: result) {
+                self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
             } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
             } else {
@@ -143,14 +161,19 @@ class WalletHomeViewController: BaseTableViewController {
 
     func handleScanResult(with uri: ViteURI, scanViewController: ScanViewController?) {
         scanViewController?.view.displayLoading(text: "")
-        TokenCacheService.instance.tokenForId(uri.tokenId) {[weak scanViewController] (result) in
+        MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId) {[weak scanViewController] (result) in
             scanViewController?.view.hideLoading()
             switch result {
-            case .success(let token):
-                guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
+            case .success(let tokenInfo):
+                guard let amount = uri.amountForSmallestUnit(decimals: tokenInfo.decimals) else {
                     scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
                     return
                 }
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
+                
                 switch uri.type {
                 case .transfer:
                     var note = ""
@@ -158,7 +181,7 @@ class WalletHomeViewController: BaseTableViewController {
                         let ret = String(bytes: data, encoding: .utf8) {
                         note = ret
                     }
-                    let sendViewController = SendViewController(token: token, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
+                    let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
                     guard var viewControllers = self.navigationController?.viewControllers else { return }
                     _ = viewControllers.popLast()
                     viewControllers.append(sendViewController)
@@ -167,11 +190,39 @@ class WalletHomeViewController: BaseTableViewController {
                     self.navigationController?.popViewController(animated: true)
                     Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
                                                      toAddress: uri.address,
-                                                     token: token,
+                                                     tokenInfo: tokenInfo,
                                                      amount: Balance(value: amount),
                                                      data: uri.data?.toBase64(),
                                                      completion: { _ in })
                 }
+            case .failure(let error):
+                scanViewController?.showToast(string: error.viteErrorMessage)
+            }
+        }
+    }
+
+    func handleScanResultForETH(with uri: ETHURI, scanViewController: ScanViewController?) {
+        scanViewController?.view.displayLoading(text: "")
+        MyTokenInfosService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
+            scanViewController?.view.hideLoading()
+            switch result {
+            case .success(let tokenInfo):
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
+
+                var balance: Balance? = nil
+                if let amount = uri.amount,
+                    let b = BigInt(amount) {
+                    balance = Balance(value: b)
+                }
+
+                let sendViewController = EthSendTokenController(tokenInfo, toAddress: web3swift.Address(uri.address), amount: balance)
+                guard var viewControllers = self.navigationController?.viewControllers else { return }
+                _ = viewControllers.popLast()
+                viewControllers.append(sendViewController)
+                scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)
             }
@@ -213,8 +264,5 @@ class WalletHomeViewController: BaseTableViewController {
         } else {
             goWeb()
         }
-
-
-
     }
 }

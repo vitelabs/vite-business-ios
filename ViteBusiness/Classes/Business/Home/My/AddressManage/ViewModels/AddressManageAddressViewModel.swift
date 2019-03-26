@@ -11,11 +11,13 @@ import UIKit
 class AddressManageAddressViewModel: AddressManageAddressViewModelType {
 
     let number: Int
+    let name: String
     let address: String
     let isSelected: Bool
 
-    init(number: Int, address: String, isSelected: Bool) {
+    init(number: Int, name: String, address: String, isSelected: Bool) {
         self.number = number
+        self.name = name
         self.address = address
         self.isSelected = isSelected
     }

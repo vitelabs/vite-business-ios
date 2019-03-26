@@ -16,14 +16,14 @@ import ViteUtils
 
 extension ImportAccountViewController {
     private func _bindViewModel() {
-        self.importAccountVM = ImportAccountVM.init(input: (self.contentTextView.contentTextView, self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.passwordInputView.textField, self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField))
+        self.importAccountVM = ImportAccountVM.init(input: (self.contentTextView.contentTextView, self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.textField, self.createNameAndPwdView.passwordRepeateTF.textField))
 
         self.importAccountVM?.submitBtnEnable.drive(onNext: { [unowned self](isEnabled) in
                 self.confirmBtn.isEnabled = isEnabled
         }).disposed(by: rx.disposeBag)
 
         self.confirmBtn.rx.tap.bind {[unowned self] in
-            self.importAccountVM?.submitAction.execute((self.contentTextView.text, self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.passwordInputView.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text ?? "")).subscribe(onNext: {[unowned self] (result) in
+            self.importAccountVM?.submitAction.execute((self.contentTextView.text, self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.textField.text ?? "")).subscribe(onNext: {[unowned self] (result) in
                 switch result {
                 case .ok:
                     self.goNextVC()
@@ -130,7 +130,7 @@ extension ImportAccountViewController {
     func goNextVC() {
         let uuid = UUID().uuidString
         let name  = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
-        let password = self.createNameAndPwdView.passwordRepeateTF.passwordInputView.textField.text ?? ""
+        let password = self.createNameAndPwdView.passwordRepeateTF.textField.text ?? ""
         let encryptKey = password.toEncryptKey(salt: uuid)
         let mnemonic = ViteInputValidator.handleMnemonicStrSpacing(self.contentTextView.text)
 

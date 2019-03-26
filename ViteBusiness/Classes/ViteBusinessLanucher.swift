@@ -14,6 +14,8 @@ import Vite_HDWalletKit
 import ViteUtils
 import ViteWallet
 import BigInt
+import web3swift
+import ViteEthereum
 
 public class ViteBusinessLanucher: NSObject {
 
@@ -38,7 +40,8 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
-
+        //config 
+    EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
@@ -46,16 +49,22 @@ public class ViteBusinessLanucher: NSObject {
 
         goShowIntroViewPage()
 
-        AppSettingsService.instance.start()
-        TokenCacheService.instance.start()
+        AppConfigService.instance.start()
+        MyTokenInfosService.instance.start()
+        ExchangeRateManager.instance.start()
+        TokenListService.instance.fetchTokenListServerData()
         AutoGatheringService.instance.start()
-        FetchBalanceInfoService.instance.start()
+        ViteBalanceInfoManager.instance.start()
+        ETHBalanceInfoManager.instance.start()
         FetchQuotaService.instance.start()
+        AddressManageService.instance.start()
 
         //web
         self.handleWebUIConfig()
         self.handleWebAppBridgeConfig()
         self.handleWebWalletBridgeConfig()
+
+
     }
     func handleWebWalletBridgeConfig()  {
         WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
@@ -111,11 +120,11 @@ public class ViteBusinessLanucher: NSObject {
             switch ViteURI.parser(string: uriString) {
             case .success(let uri):
                 HUD.show()
-                TokenCacheService.instance.tokenForId(uri.tokenId, completion: { (r) in
+                MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
                     switch r {
-                    case .success(let token):
-                        Workflow.sendRawTx(by: uri, accountAddress: account.address, token: token, completion: { (r) in
+                    case .success(let tokenInfo):
+                        Workflow.sendRawTx(by: uri, accountAddress: account.address, tokenInfo: tokenInfo, completion: { (r) in
                             WKWebViewConfig.instance.isInvokingUri = false
                             switch r {
                             case .success(let accountBlock):

@@ -36,7 +36,11 @@ public enum NavigationBarStyle {
         case .custom(let tintColor, let backgroundColor):
             navigationBar.tintColor = tintColor
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor]
-            navigationBar.setBackgroundImage(UIImage.color(backgroundColor), for: .default)
+            if backgroundColor == UIColor.clear {
+                navigationBar.setBackgroundImage(UIImage(), for: .default)
+            } else {
+                navigationBar.setBackgroundImage(UIImage.color(backgroundColor), for: .default)
+            }
         }
     }
 }

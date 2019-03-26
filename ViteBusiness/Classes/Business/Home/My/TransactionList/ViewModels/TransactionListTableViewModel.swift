@@ -23,7 +23,8 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     let hasMore: BehaviorRelay<Bool>
 
     fileprivate let transactions: BehaviorRelay<[TransactionViewModelType]>
-    fileprivate let address: Address
+    fileprivate var address: Address
+    fileprivate let token: Token
     fileprivate let disposeBag = DisposeBag()
 
     fileprivate let viewModels = NSMutableArray()
@@ -31,10 +32,21 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     fileprivate var hash: String?
     fileprivate var loadingStatus = LoadingStatus.no
 
-    init(address: Address) {
+    init(address: Address, token: Token) {
         self.address = address
+        self.token = token
         transactions = BehaviorRelay<[TransactionViewModelType]>(value: viewModels as! [TransactionViewModelType])
         hasMore = BehaviorRelay<Bool>(value: false)
+    }
+
+    func update(address: Address) {
+        self.address = address
+        viewModels.removeAllObjects()
+        transactions.accept(viewModels as! [TransactionViewModelType])
+        hasMore.accept(false)
+        index = 0
+        hash = nil
+        loadingStatus = .no
     }
 
     func refreshList(_ completion: @escaping (Error?) -> Void) {
@@ -55,9 +67,12 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
 
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
-        Provider.default.getTransactions(address: address, hash: hash, count: 10)
+        let address = self.address
+        Provider.default.getTokenTransactions(address: address, hash: hash, tokenId: token.id, count: 10)
             .done { [weak self] (transactions, nextHash) in
                 guard let `self` = self else { return }
+                guard address.description == self.address.description else { return }
+
                 self.hash = nextHash
                 self.viewModels.addObjects(from: transactions.map {
                     TransactionViewModel(transaction: $0)

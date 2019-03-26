@@ -12,6 +12,7 @@ import SnapKit
 extension UIButton {
 
     enum Style {
+        case lightBlue
         case blue
         case white
         case whiteWithoutShadow
@@ -26,10 +27,17 @@ extension UIButton {
         snp.makeConstraints { $0.height.equalTo(50) }
 
         switch style {
+        case .lightBlue:
+            setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x007AFF,alpha:0.06)).resizable, for: .normal)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x007AFF,alpha:0.06)).resizable, for: .highlighted)
+                self.layer.shadowRadius = 3
+                self.layer.cornerRadius = 2
         case .blue:
             setTitleColor(UIColor.white, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x006FEA)).resizable, for: .highlighted)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
         case .white:
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)

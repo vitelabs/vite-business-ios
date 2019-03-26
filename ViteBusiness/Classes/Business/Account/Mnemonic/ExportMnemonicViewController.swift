@@ -23,8 +23,8 @@ extension UIViewController {
                 self.view.showToast(str: R.string.localizable.exportPageAlterPasswordError())
             }
         }
-        controller.addTextField { (textfield) in
-            textfield.keyboardType = .numberPad
+        controller.addPwdTextField { (textfield) in
+            textfield.keyboardType = .asciiCapable
             textfield.isSecureTextEntry = true
             textfield.placeholder = R.string.localizable.exportPageAlterTfPlaceholder()
         }

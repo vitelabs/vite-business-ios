@@ -15,7 +15,6 @@ class SendHeaderView: UIView {
     let addressTitleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyAddressTitle()
     }
 
     let addressLabel = UILabel().then {
@@ -46,20 +45,10 @@ class SendHeaderView: UIView {
         $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
     }
 
-    let maxTxCountTitleLabel = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.sendPageMyMaxTxCountTitle()
-    }
-
-    let maxTxCountLabel = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-    }
-
-    init(address: String) {
+    init(address: String, name: String) {
         super.init(frame: CGRect.zero)
         addressLabel.text = address
+        addressTitleLabel.text = name
 
         let contentView = createContentViewAndSetShadow(width: 0, height: 5, radius: 9)
         contentView.layer.masksToBounds = true
@@ -74,8 +63,6 @@ class SendHeaderView: UIView {
         contentView.addSubview(balanceLabel)
         contentView.addSubview(quotaTitleLabel)
         contentView.addSubview(quotaLabel)
-        contentView.addSubview(maxTxCountTitleLabel)
-        contentView.addSubview(maxTxCountLabel)
 
         line.snp.makeConstraints({ (m) in
             m.top.bottom.left.equalTo(contentView)
@@ -111,19 +98,8 @@ class SendHeaderView: UIView {
         quotaLabel.snp.makeConstraints { (m) in
             m.top.equalTo(quotaTitleLabel.snp.bottom).offset(8)
             m.left.right.equalTo(addressTitleLabel)
-        }
-
-        maxTxCountTitleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(quotaLabel.snp.bottom).offset(16)
-            m.left.right.equalTo(addressTitleLabel)
-        }
-
-        maxTxCountLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(maxTxCountTitleLabel.snp.bottom).offset(8)
-            m.left.equalTo(addressTitleLabel)
             m.bottom.equalTo(contentView).offset(-16)
         }
-
     }
 
     required init?(coder aDecoder: NSCoder) {

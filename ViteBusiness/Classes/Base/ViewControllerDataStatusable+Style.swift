@@ -11,10 +11,10 @@ import RxSwift
 import ViteUtils
 
 extension UIView {
-    static func defaultPlaceholderView(text: String) -> UIView {
+    static func defaultPlaceholderView(text: String, image: UIImage? = nil, showImage: Bool = true) -> UIView {
         let view = UIView()
         let layoutGuide = UILayoutGuide()
-        let imageView = UIImageView(image: R.image.empty())
+        let imageView = UIImageView(image: image ?? R.image.empty())
         let button = UIButton(type: .system).then {
             $0.isUserInteractionEnabled = false
             $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -31,19 +31,26 @@ extension UIView {
             m.center.equalTo(view)
         }
 
-        imageView.snp.makeConstraints { (m) in
-            m.top.left.right.equalTo(layoutGuide)
-        }
-
-        button.snp.makeConstraints { (m) in
-            m.top.equalTo(imageView.snp.bottom).offset(20)
-            m.left.right.bottom.equalTo(layoutGuide)
+        if showImage {
+            imageView.snp.makeConstraints { (m) in
+                m.top.centerX.equalTo(layoutGuide)
+                m.size.equalTo(CGSize(width: 130, height: 130))
+            }
+            button.snp.makeConstraints { (m) in
+                m.top.equalTo(imageView.snp.bottom).offset(20)
+                m.left.right.bottom.equalTo(layoutGuide)
+            }
+        } else {
+            imageView.isHidden = true
+            button.snp.makeConstraints { (m) in
+                m.top.left.right.bottom.equalTo(layoutGuide)
+            }
         }
 
         return view
     }
 
-    open static func  defaultNetworkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
+    open static func  defaultNetworkErrorView(error: Error, showImage: Bool = true, retry: @escaping () -> Void) -> UIView {
 
         let view = UIView()
         let layoutGuide = UILayoutGuide()
@@ -74,18 +81,31 @@ extension UIView {
             m.right.equalTo(view).offset(-24)
         }
 
-        imageView.snp.makeConstraints { (m) in
-            m.top.centerX.equalTo(layoutGuide)
-        }
+        if showImage {
+            imageView.snp.makeConstraints { (m) in
+                m.top.centerX.equalTo(layoutGuide)
+                m.size.equalTo(CGSize(width: 130, height: 130))
+            }
 
-        label.snp.makeConstraints { (m) in
-            m.top.equalTo(imageView.snp.bottom).offset(20)
-            m.left.right.equalTo(layoutGuide)
-        }
+            label.snp.makeConstraints { (m) in
+                m.top.equalTo(imageView.snp.bottom).offset(20)
+                m.left.right.equalTo(layoutGuide)
+            }
 
-        button.snp.makeConstraints { (m) in
-            m.top.equalTo(label.snp.bottom).offset(20)
-            m.left.right.bottom.equalTo(layoutGuide)
+            button.snp.makeConstraints { (m) in
+                m.top.equalTo(label.snp.bottom).offset(20)
+                m.left.right.bottom.equalTo(layoutGuide)
+            }
+        } else {
+            imageView.isHidden = true
+            label.snp.makeConstraints { (m) in
+                m.top.left.right.equalTo(layoutGuide)
+            }
+
+            button.snp.makeConstraints { (m) in
+                m.top.equalTo(label.snp.bottom).offset(20)
+                m.left.right.bottom.equalTo(layoutGuide)
+            }
         }
 
         button.rx.tap.bind {

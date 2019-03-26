@@ -10,6 +10,9 @@ import UIKit
 import Eureka
 import Vite_HDWalletKit
 import LocalAuthentication
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class SystemViewController: FormViewController {
     fileprivate var viewModel: SystemViewModel
@@ -51,35 +54,20 @@ class SystemViewController: FormViewController {
         self._setupView()
     }
 
-    lazy var logoutBtn: UIButton = {
-        let logoutBtn = UIButton.init(style: .white)
-        logoutBtn.setTitle(R.string.localizable.systemPageCellLogoutTitle(), for: .normal)
-        logoutBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
-        logoutBtn.addTarget(self, action: #selector(logoutBtnAction), for: .touchUpInside)
-        return logoutBtn
-    }()
-
     private func _setupView() {
         navigationTitleView = NavigationTitleView(title: R.string.localizable.myPageSystemCellTitle())
         self.view.backgroundColor = .white
         self.automaticallyAdjustsScrollViewInsets = false
 
         self.setupTableView()
-
-        self.view.addSubview(self.logoutBtn)
-        self.logoutBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
     }
 
     func setupTableView() {
         self.tableView.backgroundColor = .white
         self.tableView.separatorStyle = .none
+        self.tableView.alwaysBounceVertical = false
 
-        SwitchRow.defaultCellSetup = { cell, row in
+        ViteSwitchRow.defaultCellSetup = { cell, row in
             cell.preservesSuperviewLayoutMargins = false
             cell.layoutMargins.left = 24
             cell.layoutMargins.right = 24
@@ -100,11 +88,27 @@ class SystemViewController: FormViewController {
                 $0.cell.titleLab.text = R.string.localizable.systemPageCellChangeLanguage()
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
                 $0.cell.bottomSeparatorLine.isHidden = false
+                $0.cell.rightLab.text = LocalizationService.sharedInstance.currentLanguage.name
             }.onCellSelection({ [unowned self] _, _  in
                 self.showChangeLanguageList(isSettingPage: true)
             })
 
-            <<< SwitchRow("systemPageCellLoginPwd") {[unowned self] in 
+            <<< ImageRow("systemPageCellChangeCurrency") {
+                $0.cell.titleLab.text = R.string.localizable.systemPageCellChangeCurrency()
+                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
+                $0.cell.bottomSeparatorLine.isHidden = false
+                $0.cell.rightLab.text = AppSettingsService.instance.currency.name
+                }.onCellSelection({ [unowned self] _, _  in
+                    guard let cell = self.form.rowBy(tag: "systemPageCellChangeCurrency") as? ImageRow else { return }
+                    let vc = CurrencyViewController()
+                    vc.selectCurrency.filterNil().asObservable().bind {
+                        cell.cell.rightLab.text = $0.name
+                        cell.updateCell()
+                        }.disposed(by: self.rx.disposeBag)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+
+            <<< ViteSwitchRow("systemPageCellLoginPwd") {[unowned self] in
                 $0.title = R.string.localizable.systemPageCellLoginPwd()
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
@@ -117,7 +121,7 @@ class SystemViewController: FormViewController {
                     HDWalletManager.instance.setIsRequireAuthentication(enabled)
             }
 
-            <<< SwitchRow("systemPageCellLoginFaceId") {[unowned self] in
+            <<< ViteSwitchRow("systemPageCellLoginFaceId") {[unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellLoginFaceId() : R.string.localizable.systemPageCellLoginTouchId()
                 $0.title = title
@@ -133,7 +137,7 @@ class SystemViewController: FormViewController {
                     self.showBiometricAuth("systemPageCellLoginFaceId", value: enabled)
             }
 
-            <<< SwitchRow("systemPageCellTransferFaceId") { [unowned self] in
+            <<< ViteSwitchRow("systemPageCellTransferFaceId") { [unowned self] in
                 let authType = BiometryAuthenticationType.current
                 let title = authType == .faceID ? R.string.localizable.systemPageCellTransferFaceId() : R.string.localizable.systemPageCellTransferTouchId()
                 $0.title = title
@@ -179,22 +183,10 @@ extension SystemViewController {
     }
 
     func changeSwitchRowValue (_ tag: String, value: Bool) {
-        let row = self.form.rowBy(tag: tag) as! SwitchRow
+        let row = self.form.rowBy(tag: tag) as! ViteSwitchRow
         row.value = value
         row.updateCell()
     }
 }
 
-extension SystemViewController {
-    @objc func logoutBtnAction() {
-        self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
-        DispatchQueue.global().async {
-            HDWalletManager.instance.logout()
-            KeychainService.instance.clearCurrentWallet()
-            DispatchQueue.main.async {
-                self.view.hideLoading()
-                NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
-            }
-        }
-    }
-}
+

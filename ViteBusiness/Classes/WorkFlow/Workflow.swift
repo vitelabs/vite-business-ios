@@ -12,6 +12,7 @@ import ViteWallet
 import Vite_HDWalletKit
 import PromiseKit
 import ViteUtils
+import BigInt
 import enum ViteWallet.Result
 
 extension ViteError {
@@ -28,34 +29,26 @@ public struct Workflow {
         case vote
     }
 
-    private static func confirmWorkflow(title: String,
-                                        infoTitle: String,
-                                        info: String,
-                                        token: String?,
-                                        amount: String?,
-                                        confirmTitle: String,
-                                        completion: @escaping (Result<AccountBlock>) -> (),
-                                        confirmSuccess: @escaping () -> Void) {
-        func showConfirm() {
-            let biometryAuthConfig = HDWalletManager.instance.isTransferByBiometry
-            let confirmType: ConfirmTransactionViewController.ConfirmTransactionType =  biometryAuthConfig ? .biometry : .password
-            let vc = ConfirmViewController(confirmType: confirmType, title: title, infoTitle: infoTitle, info: info,
-                                           token: token, amount: amount, confirmTitle: confirmTitle) { r in
-                                            switch r {
-                                            case .biometryAuthFailed:
-                                                Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
-                                                           titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
-                                                completion(Result(error: ViteError.authFailed))
-                                            case .passwordAuthFailed:
-                                                Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
-                                                           titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
-                                                           handler: { _, _ in showConfirm() })
-                                            case .cancelled:
-                                                plog(level: .info, log: "Confirm cancelled", tag: .transaction)
-                                                completion(Result(error: ViteError.cancel))
-                                            case .success:
-                                                confirmSuccess()
-                                            }
+    public static func confirmWorkflow(viewModel: ConfirmViewModelType,
+                                       completion: @escaping (Result<AccountBlock>) -> (),
+                                       confirmSuccess: @escaping () -> Void) {
+        func showConfirm(isForceUsePassword: Bool = false) {
+            let vc = ConfirmViewController(viewModel: viewModel, isForceUsePassword: isForceUsePassword) { (r) in
+                switch r {
+                case .biometryAuthFailed:
+                    Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
+                               titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
+                    completion(Result(error: ViteError.authFailed))
+                case .passwordAuthFailed:
+                    Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
+                               titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
+                               handler: { _, _ in showConfirm(isForceUsePassword: true) })
+                case .cancelled:
+                    plog(level: .info, log: "Confirm cancelled", tag: .transaction)
+                    completion(Result(error: ViteError.cancel))
+                case .success:
+                    confirmSuccess()
+                }
             }
             UIViewController.current?.present(vc, animated: false, completion: nil)
         }
@@ -167,32 +160,34 @@ public struct Workflow {
 public extension Workflow {
     static func sendTransactionWithConfirm(account: Wallet.Account,
                                            toAddress: Address,
-                                           token: Token,
+                                           tokenInfo: TokenInfo,
                                            amount: Balance,
                                            note: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
-            let withoutPowPromise = provider.sendTransactionWithoutPow(account: account, toAddress: toAddress,
-                                                                                          tokenId: token.id, amount: amount, note: note)
-            let getPowPromise = provider.getPowForSendTransaction(account: account, toAddress: toAddress, tokenId: token.id,
-                                                                                     amount: amount, note: note)
+            let withoutPowPromise = provider.sendTransactionWithoutPow(account: account,
+                                                                       toAddress: toAddress,
+                                                                       tokenId: tokenInfo.viteTokenId,
+                                                                       amount: amount,
+                                                                       note: note)
+
+            let getPowPromise = provider.getPowForSendTransaction(account: account,
+                                                                  toAddress: toAddress,
+                                                                  tokenId: tokenInfo.viteTokenId,
+                                                                  amount: amount,
+                                                                  note: note)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendSuccess(),
+                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
                               type: .other,
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
-                        infoTitle: R.string.localizable.confirmTransactionAddressTitle(),
-                        info: toAddress.description,
-                        token: token.symbol,
-                        amount: amount.amountFull(decimals: token.decimals),
-                        confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
-                        completion: completion,
-                        confirmSuccess: sendBlock)
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
     static func pledgeWithConfirm(account: Wallet.Account,
@@ -212,14 +207,11 @@ public extension Workflow {
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
-                        infoTitle: R.string.localizable.quotaManagePageInputAddressTitle(),
-                        info: beneficialAddress.description,
-                        token: TokenCacheService.instance.viteToken.symbol,
-                        amount: amount.amountFull(decimals: TokenCacheService.instance.viteToken.decimals),
-                        confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
-                        completion: completion,
-                        confirmSuccess: sendBlock)
+
+        let tokenInfo = TokenInfo.viteCoin
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress.description, amountString: amountString)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
     static func voteWithConfirm(account: Wallet.Account,
@@ -238,14 +230,9 @@ public extension Workflow {
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.vote(),
-                        infoTitle: R.string.localizable.confirmTransactionPageNodeName(),
-                        info: name,
-                        token: nil,
-                        amount: nil,
-                        confirmTitle: R.string.localizable.voteListConfirmButtonTitle(),
-                        completion: completion,
-                        confirmSuccess: sendBlock)
+        let tokenInfo = TokenInfo.viteCoin
+        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
     static func cancelVoteWithConfirm(account: Wallet.Account,
@@ -264,26 +251,29 @@ public extension Workflow {
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.votePageVoteInfoCancelVoteTitle(),
-                        infoTitle: R.string.localizable.confirmTransactionPageNodeName(),
-                        info: name,
-                        token: nil,
-                        amount: nil,
-                        confirmTitle: R.string.localizable.voteListConfirmButtonTitle(),
-                        completion: completion,
-                        confirmSuccess: sendBlock)
+        let tokenInfo = TokenInfo.viteCoin
+        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
     static func callContractWithConfirm(account: Wallet.Account,
                                         toAddress: Address,
-                                        token: Token,
+                                        tokenInfo: TokenInfo,
                                         amount: Balance,
                                         data: String?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
-            let withoutPowPromise = provider.sendRawTxWithoutPow(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data)
-            let getPowPromise = provider.getPowForSendRawTx(account: account, toAddress: toAddress, tokenId: token.id, amount: amount, data: data)
+            let withoutPowPromise = provider.sendRawTxWithoutPow(account: account,
+                                                                 toAddress: toAddress,
+                                                                 tokenId: tokenInfo.viteTokenId,
+                                                                 amount: amount,
+                                                                 data: data)
+            let getPowPromise = provider.getPowForSendRawTx(account: account,
+                                                            toAddress: toAddress,
+                                                            tokenId: tokenInfo.viteTokenId,
+                                                            amount: amount,
+                                                            data: data)
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -292,17 +282,12 @@ public extension Workflow {
                               completion: completion)
         }
 
-        confirmWorkflow(title: R.string.localizable.confirmTransactionPageTitle(),
-                        infoTitle: R.string.localizable.contractConfirmInfo(),
-                        info: toAddress.description,
-                        token: token.symbol,
-                        amount: amount.amountFull(decimals: token.decimals),
-                        confirmTitle: R.string.localizable.confirmTransactionPageConfirmButton(),
-                        completion: completion,
-                        confirmSuccess: sendBlock)
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
-    static func sendRawTx(by uri: ViteURI, accountAddress: Address, token: Token, completion: @escaping (Result<AccountBlock>) -> ()) {
+    static func sendRawTx(by uri: ViteURI, accountAddress: Address, tokenInfo: TokenInfo, completion: @escaping (Result<AccountBlock>) -> ()) {
         guard let account = HDWalletManager.instance.account else {
             completion(Result(error: WorkflowError.notLogin))
             return
@@ -312,7 +297,7 @@ public extension Workflow {
             return
         }
 
-        guard let amount = uri.amountForSmallestUnit(decimals: token.decimals) else {
+        guard let amount = uri.amountForSmallestUnit(decimals: tokenInfo.decimals) else {
             completion(Result(error: WorkflowError.amountInvalid))
             return
         }
@@ -324,9 +309,9 @@ public extension Workflow {
                 let ret = String(bytes: data, encoding: .utf8) {
                 note = ret
             }
-            sendTransactionWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: amount), note: note, completion: completion)
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), note: note, completion: completion)
         case .contract:
-            callContractWithConfirm(account: account, toAddress: uri.address, token: token, amount: Balance(value: amount), data: uri.data?.toBase64(), completion: completion)
+            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), data: uri.data?.toBase64(), completion: completion)
         }
     }
 
@@ -360,5 +345,4 @@ public extension Workflow {
         current.present(activityViewController, animated: true)
     }
 }
-
 

@@ -11,19 +11,28 @@ import ViteWallet
 import RxSwift
 import RxCocoa
 
-final class WalletHomeBalanceInfoViewModel: WalletHomeBalanceInfoViewModelType {
+final class WalletHomeBalanceInfoViewModel {
 
-    let token: Token
+    let tokenInfo: TokenInfo
     let symbol: String
+    let coinFamily: String
+    let balanceString: String
+    let price: String
     let balance: Balance
-    let unconfirmed: Balance
-    let unconfirmedCount: UInt64
 
-    init(balanceInfo: BalanceInfo) {
-        self.token = balanceInfo.token
-        self.symbol = balanceInfo.token.symbol
+    init(balanceInfo: WalletHomeBalanceInfo, isHidePrice: Bool) {
+        self.tokenInfo = balanceInfo.tokenInfo
+
+        self.symbol = tokenInfo.symbol
+        self.coinFamily = tokenInfo.coinFamily
         self.balance = balanceInfo.balance
-        self.unconfirmed = balanceInfo.unconfirmedBalance
-        self.unconfirmedCount = balanceInfo.unconfirmedCount
+        if isHidePrice {
+            self.balanceString = "****"
+            self.price = "****"
+        } else {
+            self.balanceString = balanceInfo.balance.amountShort(decimals: tokenInfo.decimals)
+            self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+        }
+
     }
 }

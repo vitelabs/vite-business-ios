@@ -47,7 +47,7 @@ class QuotaSubmitPopViewController: BaseViewController {
         $0.font = Fonts.Font14_b
         $0.textAlignment = .left
         $0.numberOfLines = 2
-        $0.text = R.string.localizable.quotaSubmitPopDesc(String.init(format: "%@ %@ ", self.money, TokenCacheService.instance.viteToken.symbol))
+        $0.text = R.string.localizable.quotaSubmitPopDesc(String.init(format: "%@ %@ ", self.money, ViteWalletConst.viteToken.symbol))
     }
 
     lazy var submitBtn = UIButton(style: .blue, title: R.string.localizable.quotaSubmitPopSubmitBtnTitle())

@@ -14,6 +14,7 @@ import RxSwift
 import RxCocoa
 import CryptoSwift
 import ViteUtils
+import ViteEthereum
 
 public final class HDWalletManager {
     public static let instance = HDWalletManager()
@@ -25,8 +26,10 @@ public final class HDWalletManager {
             guard let `self` = self else { return }
             if let wallet = w {
                 let accounts = (0..<wallet.addressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
+                guard self.accountsBehaviorRelay.value.count != accounts.count else { return }
                 self.accountsBehaviorRelay.accept(accounts)
             } else {
+                guard self.accountsBehaviorRelay.value.count != 0 else { return }
                 self.accountsBehaviorRelay.accept([Wallet.Account]())
             }
         }).disposed(by: disposeBag)
@@ -36,20 +39,28 @@ public final class HDWalletManager {
         }.drive(onNext: { [weak self] addressIndex in
             guard let `self` = self else { return }
             if let index = addressIndex {
-                self.accountBehaviorRelay.accept(self.accountsBehaviorRelay.value[index])
+                let account = self.accountsBehaviorRelay.value[index]
+                guard self.accountBehaviorRelay.value?.address.description != account.address.description else { return }
+                self.accountBehaviorRelay.accept(account)
             } else {
+                guard self.accountBehaviorRelay.value != nil else { return }
                 self.accountBehaviorRelay.accept(nil)
             }
         }).disposed(by: disposeBag)
     }
 
-    public lazy var walletDriver: Driver<HDWalletStorage.Wallet> = self.walletBehaviorRelay.asDriver().filterNil()
+    public lazy var walletDriver: Driver<HDWalletStorage.Wallet?> = self.walletBehaviorRelay.asDriver()
     public lazy var accountsDriver: Driver<[Wallet.Account]> = self.accountsBehaviorRelay.asDriver()
     public lazy var accountDriver: Driver<Wallet.Account?> = self.accountBehaviorRelay.asDriver()
 
     public var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
     public var accountsBehaviorRelay = BehaviorRelay(value: [Wallet.Account]())
     public var accountBehaviorRelay: BehaviorRelay<Wallet.Account?> = BehaviorRelay(value: nil)
+
+    // ETH
+    public lazy var ethAddressDriver: Driver<String?> = self.ethAddressBehaviorRelay.asDriver()
+    private var ethAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    public var ethAddress: String? { return self.ethAddressBehaviorRelay.value }
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
@@ -148,6 +159,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
     }
 
     func importAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
@@ -156,6 +168,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
     }
 
     func loginWithUuid(_ uuid: String, encryptKey: String) -> Bool {
@@ -163,6 +176,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
         return true
     }
 
@@ -171,6 +185,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+        pri_LoginEthWallet()
         return true
     }
 
@@ -179,6 +194,8 @@ extension HDWalletManager {
         mnemonic = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
+
+        pri_LogoutEthWallet()
     }
 
     func verifyPassword(_ password: String) -> Bool {
@@ -206,6 +223,17 @@ extension HDWalletManager {
     fileprivate func pri_updateWallet(_ wallet: HDWalletStorage.Wallet) {
         walletBehaviorRelay.accept(wallet)
         pri_recoverAddressesIfNeeded(wallet.uuid)
+    }
+
+    fileprivate func pri_LoginEthWallet() {
+        guard let mnemonic = self.mnemonic  else {
+            return
+        }
+        _ = try? EtherWallet.account.importAccount(mnemonics: mnemonic, password: "")
+        self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
+    }
+    fileprivate func pri_LogoutEthWallet() {
+        _ = try? EtherWallet.account.logout()
     }
 
     fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
@@ -258,7 +286,7 @@ extension HDWalletManager {
 
 extension FileHelper {
     static var appPathComponent = "app"
-    static var accountPathComponent: String {
+    static var walletPathComponent: String {
         return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
     }
 }

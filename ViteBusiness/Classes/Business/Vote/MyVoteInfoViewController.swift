@@ -53,17 +53,18 @@ class MyVoteInfoViewController: BaseViewController, View {
 
     private func _bindView() {
         //home page vite balance
-        FetchBalanceInfoService.instance.balanceInfosDriver.drive(onNext: { [weak self] balanceInfos in
-            guard let `self` = self else { return }
-            for balanceInfo in balanceInfos where TokenCacheService.instance.viteToken.id == balanceInfo.token.id {
-                self.balance = balanceInfo.balance
-                return
-            }
-            if self.viewInfoView.voteStatus == .voting {
-                // no balanceInfo, set 0.0
-                self.viewInfoView.nodePollsLab.text = "0.0"
-            }
-        }).disposed(by: rx.disposeBag)
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
+            .drive(onNext: { [weak self] balanceInfo in
+                guard let `self` = self else { return }
+                if let balanceInfo = balanceInfo {
+                    self.balance = balanceInfo.balance
+                } else {
+                    if self.viewInfoView.voteStatus == .voting {
+                        // no balanceInfo, set 0.0
+                        self.viewInfoView.nodePollsLab.text = "0.0"
+                    }
+                }
+            }).disposed(by: rx.disposeBag)
 
         //change address
         HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] _ in
