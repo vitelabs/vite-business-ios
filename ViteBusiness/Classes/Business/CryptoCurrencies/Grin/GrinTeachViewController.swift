@@ -99,7 +99,7 @@ class GrinTeachViewController: UIViewController {
     @IBAction func copyAction(_ sender: Any) {
         if channelType == .vite {
             UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
-            Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
+            Toast.show(R.string.localizable.grinThisIsFirstViteAddress())
         } else if channelType == .http {
             GrinTxByViteService().getGateWay().done { (string) in
                 UIPasteboard.general.string = string

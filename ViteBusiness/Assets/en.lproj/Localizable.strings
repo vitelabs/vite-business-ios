@@ -463,3 +463,5 @@
 "grin.teach.http.title" = "Transfer through Http Address Flow Graph";
 
 "grin.txid.title" = "Tx ID";
+
+"grin.switchAddress" = "Switch Address";
