@@ -1618,7 +1618,7 @@ struct R: Rswift.Validatable {
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
-      static let grinSentBtnTitle = Rswift.StringResource(key: "grin.sent.btnTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let grinReceiveBtnTitle = Rswift.StringResource(key: "grin.receive.BtnTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
@@ -1746,11 +1746,11 @@ struct R: Rswift.Validatable {
       /// en translation: Sent
       /// 
       /// Locales: en, zh-Hans
-      static let grinReceiveBtnTitle = Rswift.StringResource(key: "grin.receive.BtnTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let grinReceiveSented = Rswift.StringResource(key: "grin.receive.sented", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Sent
       /// 
       /// Locales: en, zh-Hans
-      static let grinReceiveSented = Rswift.StringResource(key: "grin.receive.sented", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let grinSentBtnTitle = Rswift.StringResource(key: "grin.sent.btnTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Sent
       /// 
       /// Locales: en, zh-Hans
@@ -3664,8 +3664,8 @@ struct R: Rswift.Validatable {
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
-      static func grinSentBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("grin.sent.btnTitle", bundle: R.hostingBundle, comment: "")
+      static func grinReceiveBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.BtnTitle", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Receive
@@ -3888,15 +3888,15 @@ struct R: Rswift.Validatable {
       /// en translation: Sent
       /// 
       /// Locales: en, zh-Hans
-      static func grinReceiveBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("grin.receive.BtnTitle", bundle: R.hostingBundle, comment: "")
+      static func grinReceiveSented(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.sented", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Sent
       /// 
       /// Locales: en, zh-Hans
-      static func grinReceiveSented(_: Void = ()) -> String {
-        return NSLocalizedString("grin.receive.sented", bundle: R.hostingBundle, comment: "")
+      static func grinSentBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.sent.btnTitle", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Sent

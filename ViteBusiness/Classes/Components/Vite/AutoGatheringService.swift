@@ -11,6 +11,7 @@ import ViteWallet
 import PromiseKit
 import RxSwift
 import RxCocoa
+import Vite_HDWalletKit
 
 final class AutoGatheringService {
     static let instance = AutoGatheringService()
@@ -26,9 +27,16 @@ final class AutoGatheringService {
                 plog(level: .debug, log: account.address.description + ": " + "start receive", tag: .transaction)
                 let service = ReceiveTransactionService(account: account, interval: 2) { r in
                     switch r {
-                    case .success(let a):
-                        if let accountBlock = a {
-                            plog(level: .debug, log: account.address.description + ": " + "receive block hash: \(accountBlock.hash!)", tag: .transaction)
+                    case .success(let tuple):
+                        if let (receive, send) = tuple {
+                            if let data = receive.data {
+                                let bytes = Bytes(data)
+                                if Bytes(bytes[0...1]) == Bytes(arrayLiteral: 0x80, 0x01) {
+                                    GrinTxByViteService.init().handle(viteData: Data(bytes.dropFirst(2)), fromAddress: receive.fromAddress?.description ?? "").done {}
+                                }
+                            }
+
+                            plog(level: .debug, log: account.address.description + ": " + "receive block hash: \(receive.hash!)", tag: .transaction)
                         } else {
                             plog(level: .debug, log: account.address.description + ": " + "no need to receive", tag: .transaction)
                         }

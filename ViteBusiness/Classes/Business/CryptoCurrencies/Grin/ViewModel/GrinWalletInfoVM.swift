@@ -106,7 +106,8 @@ final class GrinWalletInfoVM {
             switch result {
             case .success(_):
                 self.action.onNext(.getBalance(manually: false))
-                self.action.onNext(.getBalance(manually: false))
+                GrinTxByViteService().reportFinalization(slateId: tx.txSlateId ?? "")
+                    .done { }
             case .failure(let error):
                 self.message.accept(error.message)
             }

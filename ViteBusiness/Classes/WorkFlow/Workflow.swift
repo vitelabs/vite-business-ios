@@ -259,7 +259,7 @@ public extension Workflow {
                                         toAddress: Address,
                                         tokenInfo: TokenInfo,
                                         amount: Balance,
-                                        data: String?,
+                                        data: Data?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
@@ -310,7 +310,7 @@ public extension Workflow {
             }
             sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), note: note, completion: completion)
         case .contract:
-            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), data: uri.data?.toBase64(), completion: completion)
+            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), data: uri.data, completion: completion)
         }
     }
 
