@@ -12,7 +12,6 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 import NSObject_Rx
-import ViteUtils
 
 final class MyVoteInfoViewReactor: Reactor {
     let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: Address(string: ""))

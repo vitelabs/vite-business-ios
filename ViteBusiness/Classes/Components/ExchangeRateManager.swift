@@ -7,7 +7,6 @@
 
 import RxSwift
 import RxCocoa
-import ViteUtils
 import ViteWallet
 import BigInt
 

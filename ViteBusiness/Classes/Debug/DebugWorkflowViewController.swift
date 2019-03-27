@@ -7,7 +7,6 @@
 #if DEBUG || TEST
 import UIKit
 import Eureka
-import ViteUtils
 import ViteWallet
 import BigInt
 

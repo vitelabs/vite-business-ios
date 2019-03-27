@@ -7,7 +7,6 @@
 
 import UIKit
 import Vite_GrinWallet
-import ViteUtils
 import SwiftyJSON
 import RxSwift
 import RxCocoa

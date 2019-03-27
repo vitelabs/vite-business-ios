@@ -11,7 +11,6 @@ import ViteWallet
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import ViteUtils
 
 class AddressTextViewView: SendAddressViewType {
 

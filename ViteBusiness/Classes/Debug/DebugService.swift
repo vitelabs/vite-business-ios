@@ -9,7 +9,6 @@
 import ViteWallet
 import Foundation
 import ObjectMapper
-import ViteUtils
 import ViteEthereum
 import web3swift
 
