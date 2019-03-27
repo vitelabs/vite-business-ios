@@ -194,7 +194,7 @@ class WalletHomeViewController: BaseTableViewController {
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
                                                      amount: Balance(value: amount),
-                                                     data: uri.data?.toBase64(),
+                                                     data: uri.data,
                                                      completion: { _ in })
                 }
             case .failure(let error):

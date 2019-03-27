@@ -86,7 +86,7 @@ public struct ViteURI: URIType {
     let tokenId: String
     let amount: String?
     let fee: String?
-    let data: Bytes?
+    let data: Data?
 
     func amountForSmallestUnit(decimals: Int) -> BigInt? {
         guard let amount = amount else { return BigInt(0) }
@@ -101,12 +101,12 @@ public struct ViteURI: URIType {
     var parameters: [(String, String)]?
 
     static func transferURI(address: Address, tokenId: String?, amount: String?, note: String?) -> ViteURI {
-        let data = note?.data(using: .utf8)?.toHexString().hex2Bytes
+        let data = note?.data(using: .utf8)
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
     init(address: Address, chainId: String?, type: URIType, functionName: String?,
-         tokenId: String?, amount: String?, fee: String?, data: Bytes?,
+         tokenId: String?, amount: String?, fee: String?, data: Data?,
          parameters: [(String, String)]?) {
         self.address = address
         self.chainId = chainId
@@ -208,7 +208,7 @@ public struct ViteURI: URIType {
         var tokenId: String? = nil
         var amount: String? = nil
         var fee: String? = nil
-        var data: Bytes? = nil
+        var data: Data? = nil
         var parameters: [(String, String)]? = nil
 
         if let string = parametersString {
@@ -237,7 +237,7 @@ public struct ViteURI: URIType {
                 }
 
                 if let d = d {
-                    guard let ret =  Data(base64EncodedWithURLSafe: d)?.toHexString().hex2Bytes else {
+                    guard let ret =  Data(base64EncodedWithURLSafe: d) else {
                         return Result(error: URIError.InvalidData)
                     }
                     data = ret
