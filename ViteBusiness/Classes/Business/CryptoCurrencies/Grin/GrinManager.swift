@@ -74,15 +74,17 @@ class GrinManager: GrinBridge {
                 self?.gotoSlateVCIfNeed()
             }
             .disposed(by: self.bag)
+
+        GrinTxByViteService().reportViteAddress().done {_ in}
     }
 
     static func getChainType() -> GrinChainType {
         #if DEBUG
             return .usernet
         #elseif TEST
-            return .floonet
-        #else
             return .usernet
+        #else
+            return .mainnet
         #endif
     }
 
