@@ -59,7 +59,8 @@ public class WKWebViewJSBridge: NSObject {
                 }
 
                 guard let resultStr = result as? String else { return }
-                self.base.flush(messageQueueString: resultStr)
+
+                self.base.flush(messageQueueString: resultStr, url:self.webView?.url?.absoluteString ?? "")
             }
         }
     }
@@ -82,6 +83,28 @@ extension WKWebViewJSBridge: WKWebViewJSBridgeEngineDelegate {
 
     func changeWebVCTitle(title: String) {
         self.vc?.title = title
+    }
+
+    func changeWebRRBtn(itemTitle: String?,itemImg:UIImage?){
+        let btn = UIButton(type: .custom)
+        btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.titleLabel?.textAlignment = .right
+        btn.sizeToFit()
+        if let title = itemTitle {
+             btn.setTitle(title, for: .normal)
+            btn.frame = CGRect.init(x: 0, y: 0, width: 70, height: 40)
+        }
+        if let img = itemImg {
+            btn.setImage(img, for: .normal)
+        }
+        btn.rx.tap.asObservable().bind { [weak self] in
+            self?.publish.setRRBtnAction()
+        }
+        let btnView = UIView(frame: btn.bounds)
+        btnView.addSubview(btn)
+        let item =  UIBarButtonItem(customView: btnView)
+        self.vc?.navigationItem.rightBarButtonItem = item
     }
 }
 
