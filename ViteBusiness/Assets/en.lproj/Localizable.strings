@@ -413,7 +413,7 @@
 "grin.sent.useHttp.desc" = "Please note there would be transaction fees in both steps above, the first one is payed by the sender and the second one is payed by the recipient";
 "grin.sent.useFile" = "Use File";
 "grin.know" = "I know";
-"grin.notSeeAgain" = "Don't see again";
+"grin.notSeeAgain" = "Don't show this again";
 
 "grin.sent.title" = "Transfer by GRIN";
 "grin.sent.amount" = "Amount";
@@ -427,7 +427,7 @@
 
 "grin.finalize.title" = "Confirm to Transfer";
 "grin.finalize.desc" = "Transaction has been signed, please finalize the transaction to complete it.";
-"grin.txFile.received.status" = "Finalized Receipt";
+"grin.txFile.received.status" = "Confirmed Receipt";
 "grin.finalize" = "Finalize the transaction and broadcast";
 
 "grin.finalized.alertTitle" = "Transaction Finalized";
