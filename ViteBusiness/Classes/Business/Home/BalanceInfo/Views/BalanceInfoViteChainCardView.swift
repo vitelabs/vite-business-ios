@@ -10,7 +10,6 @@ import NSObject_Rx
 import RxSwift
 import RxCocoa
 import ViteWallet
-import ViteUtils
 
 class BalanceInfoViteChainCardView: UIView {
 

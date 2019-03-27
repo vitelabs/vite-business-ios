@@ -37,6 +37,11 @@ class SendGrinViewController: UIViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        kas_activateAutoScrollingForView(view)
+    }
+
     func bind() {
         GrinManager.default.balanceDriver.drive(onNext: { [weak self] (balance) in
             self?.spendableLabel.text = balance.amountCurrentlySpendable

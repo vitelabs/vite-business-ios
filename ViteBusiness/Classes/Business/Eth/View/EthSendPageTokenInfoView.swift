@@ -6,7 +6,6 @@
 //
 import UIKit
 import SnapKit
-import ViteUtils
 
 class EthSendPageTokenInfoView: UIView {
 

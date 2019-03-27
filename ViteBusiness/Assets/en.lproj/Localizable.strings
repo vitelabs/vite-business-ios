@@ -313,14 +313,14 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.page.tip1.title" = "Cross-Chain Multiple Token Types";
-"introduction.page.tip2.title" = "Decentralized Wallet";
-"introduction.page.tip3.title" = "Zero Transaction Fees";
-"introduction.page.tip4.title" = "Fast Transactions";
-"introduction.page.tip1.desc" = "Multi-Token Support. Easy to Manage Assets";
-"introduction.page.tip2.desc" = "Local Storage of Private Key, Open Source Assurance";
-"introduction.page.tip3.desc" = "Transactions Consume Quota. Running PoW to Acquire Free Quota";
-"introduction.page.tip4.desc" = "Asynchronous Architecture. Trading smoothly";
+"introduction.page.tip1.title" = "Cross-chain multiple token types";
+"introduction.page.tip2.title" = "Decentralized wallet";
+"introduction.page.tip3.title" = "Zero transaction fees";
+"introduction.page.tip4.title" = "Fast transactions";
+"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
 "introduction.page.nextBtn.title" = "Start Your Vite Journey";
 
 /* Error Message */
@@ -454,8 +454,8 @@
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Signed and share file";
 
-"grin.sent.btnTitle" = "Receive";
-"grin.receive.BtnTitle" = "Sent";
+"grin.sent.btnTitle" = "Sent";
+"grin.receive.BtnTitle" = "Receive";
 
 "grin.notice.title" = "Notice";
 
@@ -463,3 +463,5 @@
 "grin.teach.http.title" = "Transfer through Http Address Flow Graph";
 
 "grin.txid.title" = "Tx ID";
+
+"grin.switchAddress" = "Switch Address";

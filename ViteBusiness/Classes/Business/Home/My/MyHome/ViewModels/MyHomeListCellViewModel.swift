@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectMapper
-import ViteUtils
 
 class MyHomeListCellViewModel: Mappable {
 

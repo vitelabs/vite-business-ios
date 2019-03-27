@@ -414,7 +414,7 @@
 
 "grin.useFirstViteAddress" = "为了使用Vite地址或Http地址发送GRIN，请切换到Vite地址簿里第一个Vite地址。";
 "grin.tx.useVite" = "通过Vite地址";
-"grin.useVite.desc" = "通过Vite地址发送GRIN即通过Vite地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意您的Vite地址簿中第一个Vite地址可以用来进行GRIN转账和收款。";
+"grin.sent.useVite.desc" = "通过Vite地址发送GRIN即通过Vite地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意您的Vite地址簿中第一个Vite地址可以用来进行GRIN转账和收款。";
 "grin.sent.useHttp" = "通过Http地址";
 "grin.sent.useHttp.desc" = "请注意在以上两个步骤中都会产生交易费，第一笔交易费由转账人支付，第二笔由收款人支付。";
 "grin.sent.useFile" = "通过交易文件";
@@ -469,4 +469,6 @@
 "grin.teach.http.title" = "使用Http地址流程图转账";
 
 "grin.txid.title" = "交易ID";
+
+"grin.switchAddress" = "去切换地址";
 

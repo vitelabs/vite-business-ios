@@ -6,7 +6,6 @@
 //
 import UIKit
 import SnapKit
-import ViteUtils
 import BigInt
 import web3swift
 import ViteWallet

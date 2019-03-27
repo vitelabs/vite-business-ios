@@ -9,7 +9,6 @@
 import UIKit
 import Eureka
 import Crashlytics
-import ViteUtils
 import ViteWallet
 import BigInt
 

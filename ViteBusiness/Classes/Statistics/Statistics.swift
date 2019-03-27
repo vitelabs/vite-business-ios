@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import ViteUtils
 import FirebaseAnalytics
 
 public class Statistics: NSObject {

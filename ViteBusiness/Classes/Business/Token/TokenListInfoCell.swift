@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import ViteUtils
 
 class TokenListInfoCell: UITableViewCell {
     lazy var rightContentView = UIView().then{ (rightContentView) in

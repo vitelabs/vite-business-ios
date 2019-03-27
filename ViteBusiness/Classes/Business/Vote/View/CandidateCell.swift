@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import ViteUtils
 
 class CandidateCell: UITableViewCell {
 

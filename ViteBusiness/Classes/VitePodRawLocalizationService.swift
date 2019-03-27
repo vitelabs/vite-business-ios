@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ViteUtils
 
 class VitePodRawLocalizationService: VitePodLocalizationService {
     static let  sharedInstance = VitePodRawLocalizationService()

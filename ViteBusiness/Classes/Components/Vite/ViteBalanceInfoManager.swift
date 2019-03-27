@@ -10,7 +10,6 @@ import PromiseKit
 import ViteEthereum
 import BigInt
 import enum ViteWallet.Result
-import ViteUtils
 import RxSwift
 import RxCocoa
 

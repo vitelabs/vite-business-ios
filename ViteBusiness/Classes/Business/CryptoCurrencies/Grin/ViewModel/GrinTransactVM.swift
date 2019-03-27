@@ -157,7 +157,7 @@ class GrinTransactVM {
         },  { (result) in
             switch result {
             case .success:
-                self.message.onNext("Success")
+                self.message.onNext(R.string.localizable.grinSentHttpSuccess())
             case .failure(let error):
                 if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
 

@@ -31,15 +31,16 @@ public struct ETHURI: URIType {
         var string = ""
         string.append(ETHURI.scheme)
         string.append(":")
-        string.append(address)
 
         if let contractAddress = contractAddress, !contractAddress.isEmpty {
+            string.append(contractAddress)
             string.append("/transfer?")
-            string.append(key: "address", value: contractAddress)
+            string.append(key: "address", value: address)
             if let amount = amount {
                 string.append(key: "uint256", value: amount)
             }
         } else {
+            string.append(address)
             string.append("?")
             if let amount = amount {
                 string.append(key: "value", value: amount)
@@ -90,7 +91,7 @@ public struct ETHURI: URIType {
             return Result(error: URIError.InvalidFormat("@"))
         }
 
-        let address = addressString
+        var address = addressString
 
         guard web3swift.Address(address).isValid else {
             return Result(error: URIError.InvalidAddress)
@@ -115,7 +116,9 @@ public struct ETHURI: URIType {
                     guard web3swift.Address(a).isValid else {
                         return Result(error: URIError.InvalidContractAddress)
                     }
-                    contractAddress = a
+
+                    contractAddress = address
+                    address = a
 
                     guard functionName == "transfer" else {
                         return Result(error: URIError.InvalidFunctionName)

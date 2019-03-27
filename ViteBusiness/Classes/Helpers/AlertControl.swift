@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import Then
 import NSObject_Rx
-import ViteUtils
 
 public class AlertAction: NSObject {
 
