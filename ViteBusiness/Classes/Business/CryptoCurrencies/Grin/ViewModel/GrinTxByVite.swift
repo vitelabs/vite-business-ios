@@ -46,7 +46,6 @@ class GrinTxByViteService {
             }
             .then { (sentSlate, url) ->  Promise<String> in
                 return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent)
-
             }
             .then { (fname) ->  Promise<Void> in
                 return self.sentViteTx(toAddress: toAddress, fileName: fname)
@@ -149,7 +148,7 @@ extension GrinTxByViteService {
                     seal.reject(grinError)
                     return
             }
-            let encryptedData = slateData.toHexString()
+            let encryptedData = slateData.base64EncodedString()
             var fileName = encryptedData.digest(using: .sha256)
             if type == .sent {
                 fileName = fileName + ".encrypted.grinslate"
@@ -188,8 +187,9 @@ extension GrinTxByViteService {
                     do {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
-                            let hexString = JSON(response.data)["data"]["data"].string {
-                            seal.fulfill(Data(hex: hexString))
+                            let base64String = JSON(response.data)["data"]["data"].string,
+                            let data = Data(base64Encoded: base64String, options: []) {
+                            seal.fulfill(data)
                         } else {
                             seal.reject(grinError)
                         }
@@ -302,7 +302,7 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func reportFinalization(slateId: String) ->  Promise<Void> {
+     func reportFinalization(slateId: String) ->  Promise<Void> {
         return Promise { seal in
             guard let fromAddress = HDWalletManager.instance.account?.address.description,
                 let sAddress = fromAddress.components(separatedBy: "_").last,
@@ -314,7 +314,7 @@ extension GrinTxByViteService {
                 .request(.reportFinalization(from: fromAddress, s: signature, id: slateId), completion: { (result) in
                     do {
                         let response = try result.dematerialize()
-                        if JSON(response.data)["code"].int == 0{
+                        if JSON(response.data)["code"].int == 0 {
                             seal.fulfill(())
                         } else {
                             seal.reject(grinError)

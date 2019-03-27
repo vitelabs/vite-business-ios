@@ -62,11 +62,10 @@ class GrinManager: GrinBridge {
                 self?.password =  GrinManager.getPassword()
                 self?.walletUrl =  GrinManager.getWalletUrl()
                 self?.creatWalletIfNeeded()
-                self?.getBalance()
             })
             .disposed(by: self.bag)
 
-        Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
+        Observable<Int>.interval(45, scheduler: MainScheduler.asyncInstance)
             .bind{ [weak self] _ in self?.getBalance()}
             .disposed(by: self.bag)
         getBalance()
@@ -112,20 +111,22 @@ class GrinManager: GrinBridge {
                   decimals: 9,
                   icon: "https://static.aicoinstorge.com/attachment/article/20181206/1544125293262.jpg",
                   id: "Grin")
-
     }
 
     func creatWalletIfNeeded()  {
         if !self.walletExists() {
-            guard let mnemonic = HDWalletManager.instance.mnemonic else { return } 
-//            let mnemonic = "whip swim spike cousin dinosaur vacuum save few boring monster crush ocean brown suspect swamp zone bounce hard sadness bulk reform crack crack accuse"
-            let result = self.walletRecovery(mnemonic)
-            switch result {
-            case .success(_):
-                checkDirectories()
-                checkApiSecret()
-            case .failure(let error):
-                break
+            DispatchQueue.main.async {
+                guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+                let result = self.walletRecovery(mnemonic)
+                switch result {
+                case .success(_):
+                    self.checkDirectories()
+                    self.checkApiSecret()
+                case .failure(let error):
+                    plog(level: .error, log: "grin:" + error.message)
+                    //Toast.show("grin:" + error.message)
+                    break
+                }
             }
         }
     }

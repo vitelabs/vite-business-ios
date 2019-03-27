@@ -64,13 +64,13 @@ extension GrinTransaction: TargetType {
                                         "fileName": fileName,
                                         "signature": signature,
                 ])
-        case let .uploadSlate(fromAddress, toAddress, fileName, data, salteId, type, signature):
+        case let .uploadSlate(fromAddress, toAddress, fileName, data, slateId, type, signature):
             var parameters: [String : Any] = [
                 "fromAddress": fromAddress,
                 "toAddress": toAddress,
                 "fileName": fileName,
                 "data": data,
-                "salteId": salteId,
+                "slateId": slateId,
                 "type": type,
                 "signature": signature
             ]

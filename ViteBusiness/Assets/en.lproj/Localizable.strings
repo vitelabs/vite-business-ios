@@ -454,8 +454,8 @@
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Signed and share file";
 
-"grin.sent.btnTitle" = "Receive";
-"grin.receive.BtnTitle" = "Sent";
+"grin.sent.btnTitle" = "Sent";
+"grin.receive.BtnTitle" = "Receive";
 
 "grin.notice.title" = "Notice";
 
