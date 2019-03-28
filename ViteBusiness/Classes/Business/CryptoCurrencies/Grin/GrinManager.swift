@@ -61,6 +61,7 @@ class GrinManager: GrinBridge {
                 self?.password =  GrinManager.getPassword()
                 self?.walletUrl =  GrinManager.getWalletUrl()
                 self?.creatWalletIfNeeded()
+                GrinTxByViteService().reportViteAddress().done {_ in}
             })
             .disposed(by: self.bag)
 
@@ -75,7 +76,6 @@ class GrinManager: GrinBridge {
             }
             .disposed(by: self.bag)
 
-        GrinTxByViteService().reportViteAddress().done {_ in}
     }
 
     static func getChainType() -> GrinChainType {
@@ -107,11 +107,11 @@ class GrinManager: GrinBridge {
         return MyTokenInfosService.instance.tokenInfo(for: .grinCoin) ??
         TokenInfo(tokenCode: .grinCoin,
                   coinType: .grin,
-                  name: "Grin",
-                  symbol: "Grin",
+                  name: "GRIN",
+                  symbol: "GRIN",
                   decimals: 9,
-                  icon: "https://static.aicoinstorge.com/attachment/article/20181206/1544125293262.jpg",
-                  id: "Grin")
+                  icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
+                  id: "GRIN")
     }
 
     func creatWalletIfNeeded()  {

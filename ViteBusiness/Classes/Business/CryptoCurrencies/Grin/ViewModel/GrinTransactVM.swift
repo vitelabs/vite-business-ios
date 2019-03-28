@@ -139,10 +139,10 @@ class GrinTransactVM {
             return
         }
         if let destnation = destnation {
-            if let url = URL(string: destnation) {
-                self.sendTxByHttp(anmout: amount, destnation: destnation)
-            } else if Address.isValid(string: destnation) {
+           if Address.isValid(string: destnation) {
                 self.sendTxByVite(anmout: amount, destnation: destnation)
+            } else if let url = URL(string: destnation) {
+                self.sendTxByHttp(anmout: amount, destnation: destnation)
             } else {
                 self.message.onNext("Wrong Address")
             }

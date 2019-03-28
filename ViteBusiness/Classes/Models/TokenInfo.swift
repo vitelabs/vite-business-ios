@@ -11,7 +11,7 @@ import ViteWallet
 public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
-    case grin = "Grin"
+    case grin = "GRIN"
 
     var name: String {
         switch self {
@@ -20,7 +20,7 @@ public enum CoinType: String {
         case .eth:
             return "ETH"
         case .grin:
-            return "Grin"
+            return "GRIN"
         }
     }
 
@@ -105,12 +105,15 @@ extension TokenCode {
     public static var viteERC20: String {
         return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "6"
     }
+    public static var grinCoin: String {
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1174" : "10"
+    }
     #else
     public static let viteCoin = "1171"
     public static let etherCoin = "1"
     public static let viteERC20 = "41"
+    public static let grinCoin = "1174"
     #endif
-    public static let grinCoin = "Grin"
 }
 
 public struct TokenInfo: Mappable {

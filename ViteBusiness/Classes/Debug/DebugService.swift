@@ -17,7 +17,8 @@ public class DebugService {
     fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "DebugService"
 
-    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
+//    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
+    let rpcDefaultTestEnvironmentUrl = URL(string: "http://132.232.1.165:48132")!
     let browserDefaultTestEnvironmentUrl = URL(string: "http://132.232.134.168:8080")!
 
     public enum AppEnvironment: Int {

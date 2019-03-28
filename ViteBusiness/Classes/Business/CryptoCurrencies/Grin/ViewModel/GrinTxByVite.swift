@@ -54,7 +54,7 @@ class GrinTxByViteService {
     }
 
     func handle(viteData: Data, fromAddress: String)  -> Promise<Void> {
-        guard let fileName = (try? JSON(data: viteData))?.rawString() else {
+        guard let fileName = String.init(data: viteData, encoding: .utf8) else {
             return Promise(error: grinError)
         }
         let isResponse = fileName.components(separatedBy: ".").last == "response"
@@ -189,7 +189,7 @@ extension GrinTxByViteService {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
                             let base64String = JSON(response.data)["data"]["data"].string,
-                            let data = Data(base64Encoded: base64String, options: []) {
+                            let data = Data(base64Encoded: base64String) {
                             seal.fulfill(data)
                         } else {
                             seal.reject(grinError)
@@ -218,10 +218,11 @@ extension GrinTxByViteService {
 
     fileprivate func cryptoAesCTRXOR(peerAddress:String, data: Data?) -> Promise< Data> {
         return getPK(address: peerAddress)
-            .map { (pkHex)  in
+            .map { (peerPK)  in
                 guard let data = data,
-                    let skHex = HDWalletManager.instance.account?.secretKey,
-                    let xkey = CryptoComputeSecret(Data(hex: skHex),Data(hex: pkHex),nil),
+                    let sk = HDWalletManager.instance.account?.secretKey,
+                    let pk = HDWalletManager.instance.account?.publicKey,
+                    let xkey = CryptoComputeSecret(CryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),CryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
                     let aes = CryptoAesCTRXOR(xkey, data, iv, nil) else {
                         throw grinError
                 }
@@ -261,7 +262,7 @@ extension GrinTxByViteService {
 
     fileprivate func receiveSentSlate(with url: URL) -> Promise<Slate> {
         return Promise { seal in
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 let result = GrinManager.default.txReceive(slatePath: url.path, message: "Received")
                 do {
                     let slate = try result.dematerialize()

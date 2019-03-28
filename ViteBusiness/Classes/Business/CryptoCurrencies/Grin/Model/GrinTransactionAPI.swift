@@ -20,6 +20,7 @@ public enum GrinTransaction {
 extension GrinTransaction: TargetType {
 
     public var baseURL: URL {
+        return URL.init(string: "http://192.168.31.146:8080/dev")!
         #if DEBUG || TEST
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
