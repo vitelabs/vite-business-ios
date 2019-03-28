@@ -88,6 +88,15 @@ class DebugViewController: FormViewController {
                     guard let ret = row.value else { return }
                     DebugService.instance.config.ignoreCheckUpdate = ret
             }
+            <<< SwitchRow("ignoreWhiteList") {
+                $0.title = "Ignore White List"
+                $0.value = DebugService.instance.config.ignoreWhiteList
+                }.onChange { [weak self] row in
+                    guard let `self` = self else { return }
+                    guard let ret = row.value else { return }
+                    DebugService.instance.config.ignoreWhiteList = ret
+                    exit(0)
+            }
             +++
             MultivaluedSection(multivaluedOptions: [],
                                header: "Web",

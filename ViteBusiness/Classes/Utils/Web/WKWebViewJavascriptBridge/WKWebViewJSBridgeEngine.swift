@@ -207,14 +207,10 @@ extension WKWebViewJSBridgeEngine {
 
 extension WKWebViewJSBridgeEngine {
     func checkUrlHasJurisdiction(url:String,jurisdictions:[String])->Bool {
-        #if DEBUG 
-        return true
-        #else
         if jurisdictions.count == 0 {
             return true
         }else {
             return  jurisdictions.contains(url)
         }
-        #endif
     }
 }
