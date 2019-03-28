@@ -14,6 +14,7 @@ public enum ResponseCode {
     case notLogin
     case addressDoesNotMatch
     case noAccess
+    case noJurisdiction
     case other(code: Int)
 
     var value: Int {
@@ -32,9 +33,16 @@ public enum ResponseCode {
             return 5
         case .noAccess:
             return 6
+        case .noJurisdiction:
+            return 7
         case .other(let code):
             return code
         }
+    }
+
+    static func noJurisdictionResult(msg: String) -> String? {
+        return
+            WKWebViewJSBridgeEngine.parseOutputParameters(Response(code:.noJurisdiction,msg: msg,data: nil))
     }
 }
 
@@ -109,5 +117,4 @@ public struct Response : Mappable {
             print(data)
         }
     }
-
 }

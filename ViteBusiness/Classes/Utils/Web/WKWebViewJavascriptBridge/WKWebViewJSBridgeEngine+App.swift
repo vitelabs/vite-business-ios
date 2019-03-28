@@ -54,4 +54,30 @@ public extension  WKWebViewJSBridgeEngine {
             self.sendResponds(message)
         }
     }
+    //setRRButton
+    @objc func jsapi_setRRButton(parameters: [String: String], callbackID: String) {
+        if let title = parameters["title"] as? String {
+            self.delegate?.changeWebRRBtn(itemTitle: title, itemImg: nil)
+        }
+        
+        if var imgBase64Str = parameters["img"] as? String {
+            if imgBase64Str.hasPrefix("data:image") {
+                guard let newBase64String = imgBase64Str.components(separatedBy: ",").last else {
+                    return
+                }
+                imgBase64Str = newBase64String
+            }
+            guard let imgNSData = Data(base64Encoded: imgBase64Str) else {
+                return
+            }
+            guard let codeImage = UIImage(data: imgNSData) else {
+                return
+            }
+            self.delegate?.changeWebRRBtn(itemTitle: nil, itemImg: codeImage)
+        }
+
+        let responseData = WKWebViewJSBridgeEngine.parseOutputParameters(Response(code:.success,msg: "ok",data: parameters))
+        let message = ["responseID": callbackID, "responseData": responseData]
+        self.sendResponds(message)
+    }
 }

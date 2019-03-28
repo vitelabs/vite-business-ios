@@ -155,7 +155,11 @@ public struct TokenInfo: Mappable {
         return id
     }
 
-    public init?(map: Map) {}
+    public init?(map: Map) {
+        guard let type = map.JSON["platform"] as? String, let _ = CoinType(rawValue: type) else {
+            return nil
+        }
+    }
 
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]

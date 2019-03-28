@@ -11,21 +11,24 @@ import Foundation
 protocol WKWebViewJSBridgeEngineDelegate: AnyObject {
     func evaluateJavascript(javascript: String)
     func changeWebVCTitle(title: String)
+    func changeWebRRBtn(itemTitle: String?,itemImg:UIImage?)
 }
 
 @available(iOS 9.0, *)
 public class WKWebViewJSBridgeEngine: NSObject {
     public typealias Callback = (_ responseData: Any?) -> Void
     public typealias Handler = (_ parameters: [String: Any]?, _ callback: Callback?) -> Void
+    public typealias FuncJurisdiction = (String, [String])
     public typealias Message = [String: Any]
-    public static var keys : [String:String] = [
-        "bridge.version":"bridgeVersion",
-        "app.info":"fetchAppInfo",
-        "app.language":"fetchLanguage",
-        "app.setWebTitle":"setWebTitle",
-        "app.share":"goToshare",
-        "wallet.currentAddress":"fetchViteAddress",
-        "wallet.sendTxByURI":"invokeUri"
+    public static var keys : [String : FuncJurisdiction] = [
+    "bridge.version":("bridgeVersion",[]),
+    "app.info":("fetchAppInfo",[]),
+    "app.language":("fetchLanguage",[]),
+    "app.setWebTitle":("setWebTitle",[]),
+    "app.share":("goToshare",[]),
+    "app.setRRButton":("setRRButton",[]),
+    "wallet.currentAddress":("fetchViteAddress",[]),
+    "wallet.sendTxByURI":("invokeUri",[])
     ]
 
     weak var delegate: WKWebViewJSBridgeEngineDelegate?
@@ -62,7 +65,7 @@ public class WKWebViewJSBridgeEngine: NSObject {
         self.queue(message: message)
     }
 
-    func flush(messageQueueString: String) {
+    func flush(messageQueueString: String, url: String) {
         guard let messages = deserialize(messageJSON: messageQueueString) else {
             print(messageQueueString)
             return
@@ -91,7 +94,17 @@ public class WKWebViewJSBridgeEngine: NSObject {
 
                 guard let key = message["handlerName"] as? String else { return }
 
-                guard let handlerName = self.mapFunName(key) as? String else { return }
+                guard let handlerFuncJurisdiction = self.mapFunName(key) as? FuncJurisdiction else {
+                    self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no func"))
+                    return
+                }
+                let handlerName = handlerFuncJurisdiction.0
+                let jurisdiction = handlerFuncJurisdiction.1
+                //check url has this func jurisdiction
+                if !self.checkUrlHasJurisdiction(url: url,jurisdictions: jurisdiction) {
+                    self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no jurisdiction"))
+                    return
+                }
 
                 let aSel: Selector = NSSelectorFromString("jsapi_" + handlerName+("WithParameters:callbackID:"))//
                 let isResponds = self.responds(to: aSel)
@@ -104,7 +117,7 @@ public class WKWebViewJSBridgeEngine: NSObject {
                     self.perform(aSel, with: input, with: message["callbackID"])
                 } else {
                     guard let handler = messageHandlers[handlerName] else {
-                        print("NoHandlerException, No handler for message from JS: \(message)")
+                        self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no handler"))
                         return
                     }
                     handler(message["data"] as? [String: Any], callback)
@@ -113,9 +126,8 @@ public class WKWebViewJSBridgeEngine: NSObject {
         }
     }
 
-    func mapFunName(_ key:String) -> String? {
-        let funcName = WKWebViewJSBridgeEngine.keys[key]
-        return funcName
+    func mapFunName(_ key:String) -> FuncJurisdiction? {
+        return WKWebViewJSBridgeEngine.keys[key]
     }
 
     func injectJavascriptFile() {
@@ -183,5 +195,22 @@ extension WKWebViewJSBridgeEngine {
     class func parseOutputParameters(_ response:Response?) -> String?{
         response
         return response?.toJSONString(prettyPrint: true)
+    }
+}
+
+extension WKWebViewJSBridgeEngine {
+    func sendErrorRequest(responseID:Any?,responseData:String?) {
+        let message = ["responseID": responseID, "responseData": responseData]
+        self.sendResponds(message)
+    }
+}
+
+extension WKWebViewJSBridgeEngine {
+    func checkUrlHasJurisdiction(url:String,jurisdictions:[String])->Bool {
+        if jurisdictions.count == 0 {
+            return true
+        }else {
+            return  jurisdictions.contains(url)
+        }
     }
 }

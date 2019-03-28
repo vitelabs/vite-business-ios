@@ -31,6 +31,7 @@ PODS:
   - CryptoSwift (0.12.0)
   - DACircularProgress (2.3.1)
   - Differentiator (3.1.0)
+  - DNSPageView (1.1.5)
   - Eureka (4.3.0)
   - Fabric (1.9.0)
   - FBRetainCycleDetector (0.1.4)
@@ -155,6 +156,10 @@ PODS:
   - Then (2.4.0)
   - Toast-Swift (4.0.1)
   - TrezorCryptoEd25519WithBlake2b (0.0.1)
+  - Vite_GrinWallet (0.1.0):
+    - ObjectMapper
+    - Result
+    - SwiftyJSON
   - Vite_HDWalletKit (1.2.0):
     - BigInt (~> 3.0)
     - CryptoSwift (~> 0.12.0)
@@ -170,6 +175,7 @@ PODS:
     - Crashlytics
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
+    - DNSPageView
     - Eureka (~> 4.3.0)
     - Fabric
     - Firebase/Core
@@ -200,56 +206,9 @@ PODS:
     - SwiftyJSON
     - Then
     - Toast-Swift (~> 4.0.1)
-    - Vite_HDWalletKit
-    - ViteBusiness/Default (= 0.0.1)
-    - ViteEthereum
-    - ViteUtils
-    - ViteWallet
-    - XCGLogger (~> 6.1.0)
-  - ViteBusiness/Default (0.0.1):
-    - Action
-    - ActionSheetPicker-3.0
-    - Alamofire
-    - APIKit
-    - BaiduMobStat
-    - BigInt (~> 3.0)
-    - CHIPageControl
-    - Crashlytics
-    - CryptoSwift
-    - DACircularProgress (= 2.3.1)
-    - Eureka (~> 4.3.0)
-    - Fabric
-    - Firebase/Core
-    - JSONRPCKit (~> 3.0.0)
-    - KeychainSwift
-    - Kingfisher (~> 4.0)
-    - KMNavigationBarTransition
-    - MBProgressHUD
-    - MJRefresh
-    - MLeaksFinder
-    - Moya
-    - "NSObject+Rx"
-    - NYXImagesKit (= 2.3)
-    - ObjectMapper
-    - pop (~> 1.0)
-    - PromiseKit (~> 6.0)
-    - R.swift (= 5.0.0.alpha.3)
-    - RazzleDazzle
-    - ReactorKit
-    - ReusableKit (~> 2.1.0)
-    - RxCocoa
-    - RxDataSources (~> 3.0)
-    - RxGesture
-    - RxOptional
-    - RxSwift (~> 4.0)
-    - SnapKit (~> 4.0.0)
-    - SwiftLint
-    - SwiftyJSON
-    - Then
-    - Toast-Swift (~> 4.0.1)
+    - Vite_GrinWallet
     - Vite_HDWalletKit
     - ViteEthereum
-    - ViteUtils
     - ViteWallet
     - XCGLogger (~> 6.1.0)
   - ViteEthereum (0.0.1):
@@ -288,6 +247,7 @@ PODS:
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
   - R.swift (= 5.0.0.alpha.3)
+  - Vite_GrinWallet (from `https://github.com/vitelabs/Vite_GrinWallet.git`, commit `b5adab3114a69269dc60e4f35f20d2376eb67cf6`)
   - ViteBusiness (from `../`)
   - ViteEthereum (from `https://github.com/vitelabs/vite-ethereum-ios.git`)
   - ViteUtils (from `https://github.com/vitelabs/vite-utils-ios.git`, commit `62af5410efd9368709b8fe6e4cfbf15616474ef5`)
@@ -306,6 +266,7 @@ SPEC REPOS:
     - CryptoSwift
     - DACircularProgress
     - Differentiator
+    - DNSPageView
     - Eureka
     - Fabric
     - FBRetainCycleDetector
@@ -359,6 +320,9 @@ SPEC REPOS:
     - XCGLogger
 
 EXTERNAL SOURCES:
+  Vite_GrinWallet:
+    :commit: b5adab3114a69269dc60e4f35f20d2376eb67cf6
+    :git: https://github.com/vitelabs/Vite_GrinWallet.git
   ViteBusiness:
     :path: "../"
   ViteEthereum:
@@ -371,6 +335,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 CHECKOUT OPTIONS:
+  Vite_GrinWallet:
+    :commit: b5adab3114a69269dc60e4f35f20d2376eb67cf6
+    :git: https://github.com/vitelabs/Vite_GrinWallet.git
   ViteEthereum:
     :commit: 64f97d7287ef6cd8ff69adac912bbca4ce076b31
     :git: https://github.com/vitelabs/vite-ethereum-ios.git
@@ -393,6 +360,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  DNSPageView: 005cbaf42be33eccc6d7547c591b0089a96ea33e
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
@@ -441,14 +409,15 @@ SPEC CHECKSUMS:
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
+  Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: bb71c75cf48209ec3c075c46becf4e669592883b
+  ViteBusiness: ff139b56bed9c286cacb9aaeeea004d1617f9517
   ViteEthereum: 1ec6e02ff0cd7c63a4379a0bdf3577fa5dcf1029
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3swift.pod: 6e1bb8f68c6896db180725e34cc55fab60e282c8
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: c9968c2fc5dd90b1732dc00f8e0b8d3a8265cf09
+PODFILE CHECKSUM: 27bfe328feb99ea9f233f936d91641de67a03f50
 
 COCOAPODS: 1.5.3

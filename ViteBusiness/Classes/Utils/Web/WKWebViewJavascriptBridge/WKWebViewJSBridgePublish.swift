@@ -22,6 +22,11 @@ public class WKWebViewJSBridgePublish {
         }
     }
 
+    public func setRRBtnAction() {
+        self.bridge?.call(handlerName: "nav.RRBtnClick", data: "") {  (_) in
+        }
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(observerShakeGesture!)
     }
