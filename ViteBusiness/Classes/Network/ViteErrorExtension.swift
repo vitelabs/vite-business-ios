@@ -21,10 +21,12 @@ extension ViteError {
         ViteErrorCode.rpcRefrenceSameSnapshootBlock: R.string.localizable.viteErrorRpcErrorCodeRefrenceSameSnapshootBlock(),
         ViteErrorCode.rpcContractMethodNotExist: R.string.localizable.viteErrorRpcErrorCodeContractMethodNotExist(),
         ViteErrorCode.rpcNoTransactionBefore: R.string.localizable.viteErrorRpcErrorCodeNoTransactionBefore(),
-        ViteErrorCode.rpcHashVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeHashVerifyFailure(),
-        ViteErrorCode.rpcSignatureVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeSignatureVerifyFailure(),
-        ViteErrorCode.rpcPowNonceVerifyFailure: R.string.localizable.viteErrorRpcErrorCodePowNonceVerifyFailure(),
+        ViteErrorCode.rpcHashVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeVerifyFailure(String(ViteErrorCode.rpcHashVerifyFailure.id)),
+        ViteErrorCode.rpcSignatureVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeVerifyFailure(String(ViteErrorCode.rpcSignatureVerifyFailure.id)),
+        ViteErrorCode.rpcPowNonceVerifyFailure: R.string.localizable.viteErrorRpcErrorCodeVerifyFailure(String(ViteErrorCode.rpcPowNonceVerifyFailure.id)),
         ViteErrorCode.rpcRefrenceSnapshootBlockIllegal: R.string.localizable.viteErrorRpcErrorCodeRefrenceSnapshootBlockIllegal(),
+        ViteErrorCode.rpcRefrencePrevBlockFailed: R.string.localizable.viteErrorRpcErrorCodeVerifyFailure(String(ViteErrorCode.rpcRefrencePrevBlockFailed.id)),
+        ViteErrorCode.rpcRefrenceBlockIsPending: R.string.localizable.viteErrorRpcErrorCodeVerifyFailure(String(ViteErrorCode.rpcRefrenceBlockIsPending.id)),
         ]
 
     public var localizedDescription: String {

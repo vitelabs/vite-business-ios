@@ -801,7 +801,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 359 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 357 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -939,7 +939,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let walletHomeHeaderTitle = Rswift.StringResource(key: "wallet.home.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Asynchronous Architecture. Trading smoothly
+      /// en translation: Asynchronous architecture, smooth trade
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip4Desc = Rswift.StringResource(key: "introduction.page.tip4.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1107,7 +1107,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinCreatTime = Rswift.StringResource(key: "grin.creatTime", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Cross-Chain Multiple Token Types
+      /// en translation: Cross-chain multiple token types
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip1Title = Rswift.StringResource(key: "introduction.page.tip1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1123,7 +1123,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Decentralized Wallet
+      /// en translation: Decentralized wallet
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip2Title = Rswift.StringResource(key: "introduction.page.tip2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1203,7 +1203,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethPageGasFeeFastTitle = Rswift.StringResource(key: "eth.page.gasFee.fast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fast Transactions
+      /// en translation: Fast transactions
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip4Title = Rswift.StringResource(key: "introduction.page.tip4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1347,10 +1347,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let viteRefreshBackFooterRefreshingText = Rswift.StringResource(key: "Vite.RefreshBackFooter.RefreshingText", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Local Storage of Private Key, Open Source Assurance
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Locked by Previous Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -1407,7 +1403,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Multi-Token Support. Easy to Manage Assets
+      /// en translation: Multi-token support, easy assets management
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip1Desc = Rswift.StringResource(key: "introduction.page.tip1.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1575,6 +1571,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveByViteDesc = Rswift.StringResource(key: "grin.receiveByVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Private key locally stored, open-sourced assurance
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Processing
       /// 
       /// Locales: en, zh-Hans
@@ -1875,18 +1875,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageSwitchModeTitle = Rswift.StringResource(key: "mnemonic.backup.page.switch.mode.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: System verify failed, please try again later (-35002)
+      /// en translation: System verify failed, please try again later (%@)
       /// 
       /// Locales: en, zh-Hans
-      static let viteErrorRpcErrorCodeHashVerifyFailure = Rswift.StringResource(key: "vite.error.rpc.error.code.hash.verify.failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: System verify failed, please try again later (-35003)
-      /// 
-      /// Locales: en, zh-Hans
-      static let viteErrorRpcErrorCodeSignatureVerifyFailure = Rswift.StringResource(key: "vite.error.rpc.error.code.signature.verify.failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: System verify failed, please try again later (-35004)
-      /// 
-      /// Locales: en, zh-Hans
-      static let viteErrorRpcErrorCodePowNonceVerifyFailure = Rswift.StringResource(key: "vite.error.rpc.error.code.pow.nonce.verify.failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let viteErrorRpcErrorCodeVerifyFailure = Rswift.StringResource(key: "vite.error.rpc.error.code.verify.failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The amount has to be positive
       /// 
       /// Locales: en, zh-Hans
@@ -1947,14 +1939,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinFinalizedAlertDesc = Rswift.StringResource(key: "grin.finalized.alertDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transactions Consume Quota. Running PoW to Acquire Free Quota
-      /// 
-      /// Locales: en, zh-Hans
-      static let introductionPageTip3Desc = Rswift.StringResource(key: "introduction.page.tip3.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transactions are sent too frequent, please try again later
       /// 
       /// Locales: en, zh-Hans
       static let viteErrorRpcErrorCodeRefrenceSameSnapshootBlock = Rswift.StringResource(key: "vite.error.rpc.error.code.refrence.same.snapshoot.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transactions consume quota, PoW running acquires free quota
+      /// 
+      /// Locales: en, zh-Hans
+      static let introductionPageTip3Desc = Rswift.StringResource(key: "introduction.page.tip3.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -2235,7 +2227,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentViteSuccess = Rswift.StringResource(key: "grin.sent.vite.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Zero Transaction Fees
+      /// en translation: Zero transaction fees
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2478,7 +2470,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("wallet.home.header.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Asynchronous Architecture. Trading smoothly
+      /// en translation: Asynchronous architecture, smooth trade
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip4Desc(_: Void = ()) -> String {
@@ -2772,7 +2764,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.creatTime", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Cross-Chain Multiple Token Types
+      /// en translation: Cross-chain multiple token types
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip1Title(_: Void = ()) -> String {
@@ -2800,7 +2792,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Decentralized Wallet
+      /// en translation: Decentralized wallet
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip2Title(_: Void = ()) -> String {
@@ -2940,7 +2932,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.fast.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Fast Transactions
+      /// en translation: Fast transactions
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip4Title(_: Void = ()) -> String {
@@ -3192,13 +3184,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Vite.RefreshBackFooter.RefreshingText", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Local Storage of Private Key, Open Source Assurance
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip2Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Locked by Previous Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -3297,7 +3282,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Multi-Token Support. Easy to Manage Assets
+      /// en translation: Multi-token support, easy assets management
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip1Desc(_: Void = ()) -> String {
@@ -3589,6 +3574,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinReceiveByViteDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.receiveByVite.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Private key locally stored, open-sourced assurance
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip2Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Processing
@@ -4116,25 +4108,11 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("mnemonic.backup.page.switch.mode.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: System verify failed, please try again later (-35002)
+      /// en translation: System verify failed, please try again later (%@)
       /// 
       /// Locales: en, zh-Hans
-      static func viteErrorRpcErrorCodeHashVerifyFailure(_: Void = ()) -> String {
-        return NSLocalizedString("vite.error.rpc.error.code.hash.verify.failure", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: System verify failed, please try again later (-35003)
-      /// 
-      /// Locales: en, zh-Hans
-      static func viteErrorRpcErrorCodeSignatureVerifyFailure(_: Void = ()) -> String {
-        return NSLocalizedString("vite.error.rpc.error.code.signature.verify.failure", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: System verify failed, please try again later (-35004)
-      /// 
-      /// Locales: en, zh-Hans
-      static func viteErrorRpcErrorCodePowNonceVerifyFailure(_: Void = ()) -> String {
-        return NSLocalizedString("vite.error.rpc.error.code.pow.nonce.verify.failure", bundle: R.hostingBundle, comment: "")
+      static func viteErrorRpcErrorCodeVerifyFailure(_ value1: String) -> String {
+        return String(format: NSLocalizedString("vite.error.rpc.error.code.verify.failure", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: The amount has to be positive
@@ -4242,18 +4220,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.finalized.alertDesc", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Transactions Consume Quota. Running PoW to Acquire Free Quota
-      /// 
-      /// Locales: en, zh-Hans
-      static func introductionPageTip3Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip3.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Transactions are sent too frequent, please try again later
       /// 
       /// Locales: en, zh-Hans
       static func viteErrorRpcErrorCodeRefrenceSameSnapshootBlock(_: Void = ()) -> String {
         return NSLocalizedString("vite.error.rpc.error.code.refrence.same.snapshoot.block", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transactions consume quota, PoW running acquires free quota
+      /// 
+      /// Locales: en, zh-Hans
+      static func introductionPageTip3Desc(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.page.tip3.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer
@@ -4746,7 +4724,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.sent.vite.success", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Zero Transaction Fees
+      /// en translation: Zero transaction fees
       /// 
       /// Locales: en, zh-Hans
       static func introductionPageTip3Title(_: Void = ()) -> String {

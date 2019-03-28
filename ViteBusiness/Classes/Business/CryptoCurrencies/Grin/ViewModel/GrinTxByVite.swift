@@ -336,8 +336,18 @@ extension GrinTxByViteService {
 
         let dataHeader = Data(Bytes(arrayLiteral: 0x80, 0x01))
         let data = (dataHeader + payload)
+        return sendRawTx(toAddress: toAddress, data: data)
+    }
+
+    fileprivate func sendRawTx(toAddress: String, data: Data?) -> Promise<Void> {
+
+        guard let account = HDWalletManager.instance.account else {
+            return Promise(error: grinError)
+        }
+
         let tokenId = ViteWalletConst.viteToken.id
         let amount = Balance()
+        
         return Provider.default.sendRawTxWithoutPow(account: account,
                                                     toAddress: Address(string: toAddress),
                                                     tokenId: tokenId,
@@ -345,15 +355,24 @@ extension GrinTxByViteService {
                                                     data: data)
             .map { _ in return Void() }
             .recover({ (e) -> Promise<Void> in
-                if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
+                let code = ViteError.conversion(from: e).code
+                if code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal ||
+                    code == ViteErrorCode.rpcRefrencePrevBlockFailed ||
+                    code == ViteErrorCode.rpcRefrenceBlockIsPending ||
+                    code.type == .st_con ||
+                    code.type == .st_req ||
+                    code.type == .st_res {
+                    return after(seconds: 5).then({ (Void) -> Promise<Void> in
+                        return self.sendRawTx(toAddress: toAddress, data: data)
+                    })
+                } else if code == ViteErrorCode.rpcNotEnoughQuota {
                     return Provider.default.getPowForSendRawTx(account: account,
                                                                toAddress: Address(string: toAddress),
                                                                tokenId: tokenId,
                                                                amount: amount,
                                                                data: data)
                         .then({ (context) -> Promise<Void> in
-                            return Provider.default.sendRawTxWithContext(context)
-                             .map { _ in return Void() }
+                            return Provider.default.sendRawTxWithContext(context).map { _ in return Void() }
                         })
                 } else {
                     return Promise(error: e)
