@@ -79,10 +79,6 @@ public final class ExchangeRateManager {
                 self.service = nil
             }
         }).disposed(by: disposeBag)
-
-        rateMapDriver.drive(onNext: { (map) in
-            print("sdfsdf \(map)")
-        }).disposed(by: disposeBag)
     }
 
     func getRateImmediately(for tokenCode: TokenCode) {
