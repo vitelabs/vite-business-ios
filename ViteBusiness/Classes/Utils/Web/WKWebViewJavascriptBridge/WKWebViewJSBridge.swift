@@ -60,6 +60,9 @@ public class WKWebViewJSBridge: NSObject {
 
                 guard let resultStr = result as? String else { return }
 
+                                   print("======= resultStr ",resultStr)
+
+
                 self.base.flush(messageQueueString: resultStr, url:self.webView?.url?.absoluteString ?? "")
             }
         }
