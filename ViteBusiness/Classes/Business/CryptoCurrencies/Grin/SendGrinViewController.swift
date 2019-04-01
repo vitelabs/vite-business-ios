@@ -86,6 +86,8 @@ class SendGrinViewController: UIViewController {
         balanceBackground.layer.shadowOffset = CGSize(width: 0, height: 5)
         balanceBackground.layer.shadowRadius = 20
 
+        amountTextField.delegate = self
+
         if self.transferMethod == .file {
             amountConstraint.constant = 10
             self.view.layoutIfNeeded()
@@ -143,3 +145,17 @@ class SendGrinViewController: UIViewController {
     }
 
 }
+
+extension SendGrinViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == amountTextField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: 9)
+            textField.text = text
+            return ret
+        } else {
+            return true
+        }
+    }
+}
+
