@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.static_framework = true
   s.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
-  s.source_files = 'ViteBusiness/Classes/**/*'
+  s.source_files = 'ViteBusiness/Classes/**/*.{h,m,swift,c}'
   s.resource_bundles = {
       'ViteBusiness' => ['ViteBusiness/Assets/*','ViteBusiness/Classes/**/*.{storyboard,xib}']
   }
