@@ -67,12 +67,12 @@ public class WKWebViewJSBridgeEngine: NSObject {
 
     func flush(messageQueueString: String, url: String) {
         guard let messages = deserialize(messageJSON: messageQueueString) else {
-            print(messageQueueString)
+            print("=========", messageQueueString)
             return
         }
 
-        for message in messages {
-            print(message)
+        for (index,message) in messages.enumerated() {
+            print("=========", message)
 
             if let responseID = message["responseID"] as? String {
                 guard let callback = responseCallbacks[responseID] else { continue }

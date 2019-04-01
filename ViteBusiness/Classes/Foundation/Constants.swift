@@ -20,7 +20,7 @@ public struct Constants {
     //baidu  statistics
     public static let baiduMobileStat = "e74c7f32c0"
     //app channel
-    #if INTERNAL
+    #if ENTERPRISE
     public static let appDownloadChannel = Channel.enterprise
     #else
     public static let appDownloadChannel = Channel.appstore

@@ -11,6 +11,7 @@ import Foundation
 let InjectJSBridgeJS = """
 ;(function() {
     if (window.WKWebViewJavascriptBridge) {
+    console.log("WKWebViewJavascriptBridge has existed");
     return;
 }
 
@@ -56,7 +57,7 @@ sendMessageQueue.push(message);
 
 function _fetchQueue() {
     var messageQueueString = JSON.stringify(sendMessageQueue);
-    sendMessageQueue = [];
+    sendMessageQueue.shift();
     return messageQueueString;
 }
 
