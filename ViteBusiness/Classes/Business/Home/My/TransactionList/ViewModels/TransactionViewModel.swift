@@ -72,8 +72,10 @@ extension Transaction.TransactionType {
             return R.image.icon_tx_pledge()
         case .coin, .cancelCoin:
             return R.image.icon_tx_coin()
-        case .send, .receive:
-            return R.image.icon_tx_transfer()
+        case .send:
+            return R.image.icon_tx_send()
+        case .receive:
+            return R.image.icon_tx_receive()
         }
     }
 }
