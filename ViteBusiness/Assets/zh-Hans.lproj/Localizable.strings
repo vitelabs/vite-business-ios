@@ -113,7 +113,7 @@
 "manage.wallet.page.error.type.name" = "账户名不能为空";
 
 /* my */
-"my.page.contacts.cell.title" = "联系人";
+"my.page.contacts.cell.title" = "联系地址";
 "my.page.mnemonic.cell.title" = "助记词";
 "my.page.system.cell.title" = "使用设置";
 "my.page.aboutUs.cell.title" = "关于我们";
@@ -143,7 +143,7 @@
 "balance.info.detail.balance.title" = "账户余额";
 "balance.info.detail.unconfirmed.title" = "待接收";
 "balance.info.detail.unconfirmed.count.title" = "%@笔待确认";
-"balance.info.detail.show.transactions.button.title" = "查看交易记录";
+"balance.info.detail.show.transactions.button.title" = "到以太坊浏览器查看交易记录";
 "balance.info.detail.reveice.button.title" = "收款";
 "balance.info.detail.send.button.title" = "转账";
 "balance.info.detail.vote" = "投票";
@@ -152,14 +152,14 @@
 "balance.info.detail.onroad.amount.content" = "%@ 待确认";
 
 /* Address Manage Page */
-"address.manage.page.title" = "地址管理";
+"address.manage.page.title" = "我的VITE地址";
 "address.manage.default.address.cell.title" = "默认地址";
 "address.manage.address.header.title" = "地址列表";
 "address.manage.address.generate.button.title" = "添加地址";
 "address.manage.address.generate.button.toast" = "最多只能添加10个地址";
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
-"address.manage.default.address.name" = "我的VITE地址";
+"address.manage.default.address.name" = "未命名";
 "address.manage.change.name.alert.title" = "修改地址名称";
 "address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
@@ -372,17 +372,17 @@
 // Contacts Edit
 "contacts.edit.page.add.title" = "添加联系地址";
 "contacts.edit.page.edit.title" = "编辑联系地址";
-"contacts.edit.page.name.title" = "姓名";
+"contacts.edit.page.name.title" = "名称";
 "contacts.edit.page.address.title" = "请输入地址";
 "contacts.edit.page.type.select.title" = "选择地址所属网络";
 "contacts.edit.page.save.button.title" = "保存";
 "contacts.edit.page.save.success.tip" = "成功添加联系地址";
 "contacts.edit.page.edit.success.tip" = "保存成功";
-"contacts.edit.page.delete.button.title" = "删除联系人";
+"contacts.edit.page.delete.button.title" = "删除联系地址";
 "contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
 
 // Address List
-"address.list.page.my.title" = "我的地址";
+"address.list.page.my.title" = "我的VITE地址";
 "address.list.page.other.title" = "%@ 联系地址";
 "address.list.page.no.address.tip" = "暂无 %@ 联系地址";
 

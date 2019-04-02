@@ -120,6 +120,8 @@ class EthTokenInfoController: BaseViewController {
         let imageView = UIImageView(image: R.image.empty())
         let showTransactionsButton = UIButton.init(type: .system).then {
             $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            $0.titleLabel?.numberOfLines = 0
+            $0.titleLabel?.textAlignment = .center
             $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
             $0.setTitle(R.string.localizable.balanceInfoDetailShowTransactionsButtonTitle(), for: .normal)
@@ -144,7 +146,8 @@ class EthTokenInfoController: BaseViewController {
         showTransactionsButton.snp.makeConstraints { (m) in
             m.top.equalTo(imageView.snp.bottom).offset(20)
             m.bottom.equalTo(centerLayout)
-            m.centerX.equalTo(centerLayout)
+            m.left.equalTo(centerLayout).offset(24)
+            m.right.equalTo(centerLayout).offset(-24)
         }
 
         showTransactionsButton.rx.tap.bind { [weak self] in

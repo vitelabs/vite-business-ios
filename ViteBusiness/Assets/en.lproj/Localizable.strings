@@ -111,7 +111,7 @@
 "manage.wallet.page.changeName.loading" = "Editing";
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
-"my.page.contacts.cell.title" = "Contacts";
+"my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
 "my.page.aboutUs.cell.title" = "About Us";
@@ -140,7 +140,7 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
-"balance.info.detail.show.transactions.button.title" = "View Transaction History";
+"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
@@ -149,20 +149,20 @@
 "balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
 /* Address Manage Page */
-"address.manage.page.title" = "Address Management";
+"address.manage.page.title" = "My VITE Address";
 "address.manage.default.address.cell.title" = "Default Address";
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
 "address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
 "address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "My VITE Address";
+"address.manage.default.address.name" = "Untitled";
 "address.manage.change.name.alert.title" = "Edit Address Alias";
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
 "send.page.title" = "Transfer";
-"send.page.my.address.title" = "VITE Address";
+"send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
 "send.page.my.quota.title" = "Quota";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
@@ -374,11 +374,11 @@
 "contacts.edit.page.save.button.title" = "Save";
 "contacts.edit.page.save.success.tip" = "Successfully added";
 "contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete contact";
+"contacts.edit.page.delete.button.title" = "Delete";
 "contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "My Address";
+"address.list.page.my.title" = "My VITE Address";
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
 
