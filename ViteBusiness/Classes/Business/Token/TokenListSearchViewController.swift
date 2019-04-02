@@ -115,7 +115,12 @@ extension TokenListSearchViewController : UITableViewDelegate {
         lab.textColor = UIColor.init(netHex: 0x3E4A59)
         lab.backgroundColor = .white
         contentView.addSubview(lab)
-
+        lab.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(10)
+            m.left.equalToSuperview().offset(18)
+            m.right.equalToSuperview().offset(-18)
+        }
+        
         lab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
         return contentView
     }
