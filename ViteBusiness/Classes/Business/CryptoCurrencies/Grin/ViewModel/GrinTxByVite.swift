@@ -7,7 +7,7 @@
 
 import Foundation
 import ViteWallet
-import Crypto
+import Ioscrypto
 import CryptoSwift
 import Moya
 import SwiftyJSON
@@ -222,8 +222,8 @@ extension GrinTxByViteService {
                 guard let data = data,
                     let sk = HDWalletManager.instance.account?.secretKey,
                     let pk = HDWalletManager.instance.account?.publicKey,
-                    let xkey = CryptoComputeSecret(CryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),CryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
-                    let aes = CryptoAesCTRXOR(xkey, data, iv, nil) else {
+                    let xkey = IoscryptoX25519ComputeSecret(IoscryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),IoscryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
+                    let aes = IoscryptoAesCTRXOR(xkey, data, iv, nil) else {
                         throw grinError
                 }
                 return aes
