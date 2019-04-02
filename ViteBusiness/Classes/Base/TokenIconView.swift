@@ -49,14 +49,14 @@ class TokenIconView: UIView {
 
     var tokenInfo: TokenInfo? {
         didSet {
+            tokenIconImageView.kf.cancelDownloadTask()
+            tokenIconImageView.image = UIImage.color(UIColor(netHex: 0xF8F8F8))
+            chainIconImageView.image = tokenInfo?.chainIcon
+            chainIconImageView.isHidden = tokenInfo?.chainIcon == nil
+            updateLayer()
             guard let tokenInfo = tokenInfo else { return }
             guard let url = URL(string: tokenInfo.icon) else { return }
-            tokenIconImageView.kf.cancelDownloadTask()
-            tokenIconImageView.image = nil
             tokenIconImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
-            chainIconImageView.image = tokenInfo.chainIcon
-            chainIconImageView.isHidden = tokenInfo.chainIcon == nil
-            updateLayer()
         }
     }
 
