@@ -463,3 +463,6 @@
 "grin.txid.title" = "Tx ID";
 
 "grin.switchAddress" = "Switch Address";
+
+"grin.http.address" = "Http Address";
+"grin.vite.address" = "Vite Address";

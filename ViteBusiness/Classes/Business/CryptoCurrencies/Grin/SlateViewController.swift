@@ -85,11 +85,14 @@ class SlateViewController: UIViewController {
             .bind { [weak self] (slate,url) in
                 self?.shareSlate(url: url)
         }
+        .disposed(by: rx.disposeBag)
 
         transferVM.message.asObservable()
             .bind { message in
                 Toast.show(message)
         }
+        .disposed(by: rx.disposeBag)
+
 
     }
 

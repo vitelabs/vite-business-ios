@@ -23,6 +23,7 @@ func businessBundle() -> Bundle {
 
 class GrinInfoViewController: BaseViewController {
 
+    @IBOutlet weak var transcationTiTleLabel: UILabel!
     @IBOutlet weak var titleView: BalanceInfoNavView!
     @IBOutlet weak var grinCardBgView: UIImageView!
     @IBOutlet weak var spendableTitleLabel: UILabel!
@@ -35,8 +36,28 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var totalCountLabel: UILabel!
     @IBOutlet weak var lockedCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var lineImageVIew: UIImageView!
+
+    lazy var emptyView: UIView = {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 170))
+        let imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 130))
+        imageView.image = R.image.empty()
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+        label.text = R.string.localizable.transactionListPageEmpty()
+        view.addSubview(imageView)
+        view.addSubview(label)
+        imageView.snp.makeConstraints({ (m) in
+            m.top.equalToSuperview()
+            m.centerX.equalToSuperview()
+            m.width.height.equalTo(130)
+        })
+        label.snp.makeConstraints({ (m) in
+            m.centerX.equalToSuperview()
+            m.top.equalTo(imageView.snp.bottom).offset(20)
+        })
+        return view
+    }()
 
 
     @IBOutlet weak var receiveBtn: UIButton!
@@ -68,9 +89,14 @@ class GrinInfoViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
 
         walletInfoVM.txsDriver
-            .drive(onNext:{  [weak self] _ in
+            .drive(onNext:{  [weak self] txs in
                 self?.tableView.mj_header.endRefreshing()
                 self?.tableView.reloadData()
+                if txs.isEmpty {
+                    self?.emptyView.isHidden = false
+                } else  {
+                    self?.emptyView.isHidden = true
+                }
             })
             .disposed(by: rx.disposeBag)
 
@@ -122,6 +148,16 @@ class GrinInfoViewController: BaseViewController {
         waitingTitleLabel.text = R.string.localizable.grinBalanceAwaiting()
         sendBtn.setTitle(R.string.localizable.grinSentBtnTitle(), for: .normal)
         receiveBtn.setTitle(R.string.localizable.grinReceiveBtnTitle(), for: .normal)
+        transcationTiTleLabel.text = R.string.localizable.transactionListPageTitle()
+        tableView.tableFooterView = UIView()
+
+        tableView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { (m) in
+            m.centerX.equalToSuperview()
+            m.width.equalTo(130)
+            m.height.equalTo(170)
+            m.top.equalToSuperview().offset(47)
+        }
     }
 
     @IBAction func sendAciton(_ sender: Any) {
@@ -185,7 +221,7 @@ class GrinInfoViewController: BaseViewController {
         }
 
         let a1 = UIAlertAction(title: R.string.localizable.grinSentUseHttp(), style: .default) { (_) in
-            let notTeach =  UserDefaults.standard.bool(forKey: "grin_don't_show_http_teach")
+            let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_http_teach")
             if notTeach {
                 GrinTxByViteService().getGateWay()
                     .done({ (string)  in

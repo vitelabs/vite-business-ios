@@ -470,3 +470,6 @@
 
 "grin.switchAddress" = "去切换地址";
 
+"grin.http.address" = "Http 地址";
+"grin.vite.address" = "Vite 地址";
+

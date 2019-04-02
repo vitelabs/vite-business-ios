@@ -93,7 +93,7 @@ final class GrinWalletInfoVM {
         let result = self.grinManager.txsGet(refreshFromNode: true)
         switch result {
         case .success((_, let txs)):
-            self.txs.accept(txs)
+            self.txs.accept(txs.reversed())
         case .failure(let error):
             if manually { self.message.accept(error.message) }
         }

@@ -116,6 +116,11 @@
                     <state key="normal" title="Sign and share Transaction">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="handleSlate:" destination="-1" eventType="touchUpInside" id="JOC-Kj-h8D"/>
                     </connections>

@@ -39,33 +39,67 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grin_tx_vite" translatesAutoresizingMaskIntoConstraints="NO" id="ybb-yV-Hnh">
-                    <rect key="frame" x="24" y="70" width="327" height="212"/>
+                    <rect key="frame" x="24" y="70" width="327" height="248"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpq-hD-EPO">
-                    <rect key="frame" x="36" y="296" width="43" height="17"/>
+                    <rect key="frame" x="36" y="332" width="43" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-TY-lNl">
-                    <rect key="frame" x="24" y="323" width="327" height="86"/>
-                    <string key="text">Please share the http address on the bottom to the sender. Please note there would be transaction fee in both steps above(one is payed by the sender and the other one is payed by the recipient), and only when you are online with your first Vite address can you receive GRIN tokens.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-TY-lNl">
+                    <rect key="frame" x="24" y="359" width="327" height="86"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Please share the http address on the bottom to the sender. Please note there would be transaction fee in both steps above">
+                            <attributes>
+                                <color key="NSColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" metaFont="cellTitle"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="(">
+                            <attributes>
+                                <color key="NSColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="one is payed by the sender and the other one is payed by the recipient">
+                            <attributes>
+                                <color key="NSColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" metaFont="cellTitle"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="),">
+                            <attributes>
+                                <color key="NSColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" and only when you are online with your first Vite address can you receive GRIN tokens.">
+                            <attributes>
+                                <color key="NSColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" metaFont="cellTitle"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't see again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7w-yq-fXe">
-                    <rect key="frame" x="47" y="417" width="100" height="17"/>
+                    <rect key="frame" x="47" y="454.5" width="100" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dz4-UC-bLN">
-                    <rect key="frame" x="0.0" y="599" width="375" height="68"/>
+                    <rect key="frame" x="0.0" y="599" width="375" height="108"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6G-c0-TfG">
-                            <rect key="frame" x="24" y="13" width="47" height="15"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="24" y="13" width="50" height="15"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -78,15 +112,26 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="   Copy   "/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="copyAction:" destination="-1" eventType="touchUpInside" id="xd6-g2-PEv"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vite_xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk3-Lw-Lnc">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" vite_xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk3-Lw-Lnc">
                             <rect key="frame" x="24" y="34" width="247" height="17"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,7 +142,7 @@
                         <constraint firstItem="ujh-FU-49L" firstAttribute="leading" secondItem="Vk3-Lw-Lnc" secondAttribute="trailing" constant="10" id="Odb-Kz-BEt"/>
                         <constraint firstItem="o6G-c0-TfG" firstAttribute="leading" secondItem="dz4-UC-bLN" secondAttribute="leading" constant="24" id="Vzv-vu-dLd"/>
                         <constraint firstAttribute="trailing" secondItem="ujh-FU-49L" secondAttribute="trailing" constant="24" id="eAK-80-ucF"/>
-                        <constraint firstAttribute="height" constant="68" id="lbl-N0-QWW"/>
+                        <constraint firstAttribute="height" constant="108" id="lbl-N0-QWW"/>
                         <constraint firstItem="ujh-FU-49L" firstAttribute="top" secondItem="dz4-UC-bLN" secondAttribute="top" constant="18" id="wc7-P5-8zY"/>
                     </constraints>
                 </view>
@@ -115,7 +160,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbt-iZ-DYC">
-                    <rect key="frame" x="21" y="301.5" width="6" height="6"/>
+                    <rect key="frame" x="21" y="337.5" width="6" height="6"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="6" id="L2a-5Z-qKn"/>
@@ -127,31 +172,36 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlr-25-Ef7">
-                    <rect key="frame" x="24" y="417" width="20" height="20"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlr-25-Ef7">
+                    <rect key="frame" x="24" y="453" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="3BH-eQ-Atr"/>
                         <constraint firstAttribute="height" constant="20" id="RnP-Rc-UKp"/>
                     </constraints>
-                    <state key="normal" title="□">
+                    <state key="normal" image="unselected">
                         <color key="titleColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="selected" title="√">
-                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="selected" image="selected">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="settingAction:" destination="-1" eventType="touchUpInside" id="3E0-Mz-5LK"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIK-vF-Eft">
-                    <rect key="frame" x="0.0" y="525" width="375" height="60"/>
+                    <rect key="frame" x="24" y="541" width="327" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="6hS-Mc-GtM"/>
+                        <constraint firstAttribute="height" constant="50" id="6hS-Mc-GtM"/>
                     </constraints>
                     <state key="normal" title="I know">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="u7H-BU-wcz"/>
                     </connections>
@@ -160,11 +210,11 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fy1-TY-lNl" secondAttribute="trailing" constant="24" id="1dY-TT-NQI"/>
-                <constraint firstItem="Q7w-yq-fXe" firstAttribute="top" secondItem="fy1-TY-lNl" secondAttribute="bottom" constant="8" id="1oN-nI-gyp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zSJ-q4-nDe" secondAttribute="trailing" constant="36" id="1q0-ja-bHA"/>
+                <constraint firstItem="Q7w-yq-fXe" firstAttribute="centerY" secondItem="nlr-25-Ef7" secondAttribute="centerY" id="1xn-hK-xGY"/>
                 <constraint firstItem="Hpq-hD-EPO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="36" id="2Os-ro-bOz"/>
                 <constraint firstItem="Sbt-iZ-DYC" firstAttribute="centerY" secondItem="Hpq-hD-EPO" secondAttribute="centerY" id="2lu-Oq-dmR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cIK-vF-Eft" secondAttribute="trailing" id="5Fc-dX-Gou"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cIK-vF-Eft" secondAttribute="trailing" constant="24" id="5Fc-dX-Gou"/>
                 <constraint firstItem="7qi-lF-cto" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="7JN-hJ-ctB"/>
                 <constraint firstItem="7qi-lF-cto" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="A4t-UG-lyK"/>
                 <constraint firstItem="Sbt-iZ-DYC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="HKL-Do-CEs"/>
@@ -173,10 +223,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cIK-vF-Eft" secondAttribute="bottom" id="K6P-C5-TXH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ybb-yV-Hnh" secondAttribute="trailing" constant="24" id="KlN-fv-RzN"/>
                 <constraint firstItem="ybb-yV-Hnh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="Pfy-vU-YKc"/>
-                <constraint firstItem="cIK-vF-Eft" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TE5-Vh-dWi"/>
+                <constraint firstItem="cIK-vF-Eft" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="TE5-Vh-dWi"/>
                 <constraint firstItem="zSJ-q4-nDe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="36" id="Ugq-YO-x9x"/>
                 <constraint firstItem="nlr-25-Ef7" firstAttribute="top" secondItem="fy1-TY-lNl" secondAttribute="bottom" constant="8" id="X6a-Rq-R34"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dz4-UC-bLN" secondAttribute="bottom" id="b0p-dt-NCe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dz4-UC-bLN" secondAttribute="bottom" constant="-40" id="b0p-dt-NCe"/>
                 <constraint firstItem="ybb-yV-Hnh" firstAttribute="top" secondItem="zSJ-q4-nDe" secondAttribute="bottom" constant="21" id="dpx-4H-nxM"/>
                 <constraint firstItem="dz4-UC-bLN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jDC-FH-LqU"/>
                 <constraint firstItem="nlr-25-Ef7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="jhK-3R-89y"/>
@@ -190,6 +240,8 @@
         </view>
     </objects>
     <resources>
-        <image name="grin_tx_vite" width="240" height="212"/>
+        <image name="grin_tx_vite" width="327" height="248"/>
+        <image name="selected" width="12" height="12"/>
+        <image name="unselected" width="12" height="12"/>
     </resources>
 </document>

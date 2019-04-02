@@ -48,32 +48,38 @@ class GrinTeachViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var desc = ""
+
         if channelType == .vite {
             titleLabel.text = R.string.localizable.grinTeachViteTitle()
             imageView.image = R.image.grin_tx_vite()
             if self.txType == .sent {
-                noiceDetailLabel.text =  R.string.localizable.grinSentUseViteDesc()
+                desc =  R.string.localizable.grinSentUseViteDesc()
             } else if txType == .receive {
-                noiceDetailLabel.text = R.string.localizable.grinReceiveByViteDesc()
-                addressLabel.text = HDWalletManager.instance.accounts.first?.address.description
-                addressTitleLabel.text = "Vite Address"
+                desc = R.string.localizable.grinReceiveByViteDesc()
+                addressLabel.text = "  \(HDWalletManager.instance.accounts.first?.address.description ?? "")  "
+                addressTitleLabel.text = R.string.localizable.grinViteAddress()
             }
         } else if channelType == .http {
             titleLabel.text =  R.string.localizable.grinTeachHttpTitle()
             imageView.image = R.image.grin_tx_http()
             if self.txType == .sent {
-                noiceDetailLabel.text =  R.string.localizable.grinSentUseHttpDesc()
+                desc =  R.string.localizable.grinSentUseHttpDesc()
             } else if txType == .receive {
-                noiceDetailLabel.text = R.string.localizable.grinReceiveByHttpDesc()
-                addressTitleLabel.text = "Http Address"
+                desc = R.string.localizable.grinReceiveByHttpDesc()
+                addressTitleLabel.text = R.string.localizable.grinHttpAddress()
                 GrinTxByViteService().getGateWay().done { (string) in
-                    self.addressLabel.text = string
+                    self.addressLabel.text = "  \(string)  "
                 }
                     .catch { (e) in
                         Toast.show(e.localizedDescription)
                 }
             }
         }
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 8
+        noiceDetailLabel.attributedText = NSAttributedString.init(string: desc, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
 
         if self.txType == .sent {
             infoView.isHidden = true

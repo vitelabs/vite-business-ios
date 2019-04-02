@@ -35,7 +35,7 @@ class GrinTransactionTitleView: UIView {
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)
             m.bottom.equalToSuperview()
-            m.size.equalTo(CGSize(width: 50, height: 50))
+            m.size.equalTo(CGSize(width: 49, height: 49))
         }
 
         symbolLabel.snp.makeConstraints { (m) in

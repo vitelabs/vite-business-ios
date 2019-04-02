@@ -81,10 +81,12 @@ class SendGrinViewController: UIViewController {
         amountTitleLabel.text = R.string.localizable.grinSentAmount()
         feeTitleLable.text = R.string.localizable.grinSentFee()
 
+        view.backgroundColor = UIColor.init(netHex: 0xffffff)
+        balanceBackground.backgroundColor = UIColor.init(netHex: 0xffffff)
         balanceBackground.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
         balanceBackground.layer.shadowOpacity = 0.1
         balanceBackground.layer.shadowOffset = CGSize(width: 0, height: 5)
-        balanceBackground.layer.shadowRadius = 20
+        balanceBackground.layer.shadowRadius = 5
 
         amountTextField.delegate = self
 
