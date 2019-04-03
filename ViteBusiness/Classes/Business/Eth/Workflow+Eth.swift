@@ -19,8 +19,9 @@ public extension Workflow {
         completion: @escaping (ViteWallet.Result<String>) -> ()) {
         let sendBlock = {
              HUD.show()
+            let amountString = amount.replacingOccurrences(of: ",", with: ".")
             if token.isEtherCoin {
-                EtherWallet.transaction.sendEther(to: toAddress, amount: amount, password: "", gasPrice: gasPrice, completion: { (result) in
+                EtherWallet.transaction.sendEther(to: toAddress, amount: amountString, password: "", gasPrice: gasPrice, completion: { (result) in
                     HUD.hide()
                     switch result {
                     case .success(let txHash):
@@ -32,7 +33,7 @@ public extension Workflow {
                     }
                 })
             }else {
-                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amount, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (result) in
+                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amountString, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (result) in
                     HUD.hide()
                     switch result {
                     case .success(let txHash):
