@@ -51,6 +51,7 @@ class SendGrinViewController: UIViewController {
 
         amountTextField.rx.text
             .distinctUntilChanged()
+            .throttle(1.5, scheduler: MainScheduler.instance)
             .map { GrinTransactVM.Action.inputTx(amount: $0)}
             .bind(to: transferVM.action)
             .disposed(by: rx.disposeBag)

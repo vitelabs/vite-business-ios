@@ -73,6 +73,8 @@ class GrinInfoViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+        walletInfoVM.action.onNext(.getBalance(manually: true))
+        walletInfoVM.action.onNext(.getTxs(manually: true))
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 114 images.
+  /// This `R.image` struct is generated, and contains static references to 120 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -62,6 +62,18 @@ struct R: Rswift.Validatable {
     static let grin_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_send")
     /// Image `grin_tx_vite`.
     static let grin_tx_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_vite")
+    /// Image `grin_txlist_cancled`.
+    static let grin_txlist_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_cancled")
+    /// Image `grin_txlist_confirmd`.
+    static let grin_txlist_confirmd = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmd")
+    /// Image `grin_txlist_confirmdconbase`.
+    static let grin_txlist_confirmdconbase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmdconbase")
+    /// Image `grin_txlist_finalized`.
+    static let grin_txlist_finalized = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_finalized")
+    /// Image `grin_txlist_send`.
+    static let grin_txlist_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send")
+    /// Image `grin_txlist_singe`.
+    static let grin_txlist_singe = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_singe")
     /// Image `grin`.
     static let grin = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin")
     /// Image `icon_address_default_title_frame`.
@@ -360,6 +372,36 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin_tx_vite", bundle: ..., traitCollection: ...)`
     static func grin_tx_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_tx_vite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_cancled", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_cancled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_cancled, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_confirmd", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmd, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_confirmdconbase", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmdconbase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmdconbase, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_finalized", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_finalized(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_finalized, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_singe", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_singe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_singe, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
@@ -1003,10 +1045,6 @@ struct R: Rswift.Validatable {
       /// en translation: Cancel
       /// 
       /// Locales: en, zh-Hans
-      static let grinTxCancele = Rswift.StringResource(key: "grin.tx.Cancele", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Cancel
-      /// 
-      /// Locales: en, zh-Hans
       static let importPageAlertExistCancel = Rswift.StringResource(key: "import.page.alert.exist.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Cancel
       /// 
@@ -1020,6 +1058,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let submitCancel = Rswift.StringResource(key: "Submit.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Canceled
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxCancele = Rswift.StringResource(key: "grin.tx.Cancele", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Canceled
       /// 
       /// Locales: en, zh-Hans
@@ -2572,13 +2614,6 @@ struct R: Rswift.Validatable {
       /// en translation: Cancel
       /// 
       /// Locales: en, zh-Hans
-      static func grinTxCancele(_: Void = ()) -> String {
-        return NSLocalizedString("grin.tx.Cancele", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Cancel
-      /// 
-      /// Locales: en, zh-Hans
       static func importPageAlertExistCancel(_: Void = ()) -> String {
         return NSLocalizedString("import.page.alert.exist.cancel", bundle: R.hostingBundle, comment: "")
       }
@@ -2602,6 +2637,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func submitCancel(_: Void = ()) -> String {
         return NSLocalizedString("Submit.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Canceled
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxCancele(_: Void = ()) -> String {
+        return NSLocalizedString("grin.tx.Cancele", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Canceled

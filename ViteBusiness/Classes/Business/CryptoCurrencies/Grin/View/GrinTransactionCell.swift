@@ -46,23 +46,32 @@ class GrinTransactionCell: UITableViewCell {
         }
 
         var status = "Grin Transaction"
+        var image: UIImage? = R.image.grin_tx_send()
         if tx.txType == .confirmedCoinbase {
             status = R.string.localizable.grinTxTypeConfirmedCoinbase()
+            image = R.image.grin_txlist_confirmdconbase()
         } else if tx.confirmed {
             status = R.string.localizable.grinTxTypeConfirmed()
+            image = R.image.grin_txlist_confirmd()
         } else if tx.txType == .txSentCancelled ||  tx.txType == .txReceivedCancelled {
             status = R.string.localizable.grinTxCancele()
+            image = R.image.grin_txlist_cancled()
         } else if tx.txType == .txReceived {
             status = R.string.localizable.grinTxTypeReceived()
+            image = R.image.grin_txlist_singe()
         } else if tx.txType == .txSent {
             if let slateId = tx.txSlateId,
                 GrinManager.default.finalizedTxs().contains(slateId) {
                 status =  R.string.localizable.grinTxTypeFinalized()
+                image = R.image.grin_txlist_finalized()
             } else {
                 status =  R.string.localizable.grinTxTypeSent()
+                image = R.image.grin_txlist_send()
             }
         }
         self.statusLabel.text = status
+        icon.image = image
+
     }
     
     override func awakeFromNib() {

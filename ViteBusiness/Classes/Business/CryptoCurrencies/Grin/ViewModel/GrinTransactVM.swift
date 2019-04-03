@@ -35,6 +35,7 @@ class GrinTransactVM {
     let txFee: BehaviorRelay<String> = BehaviorRelay(value: "")
     let sendSlateCreated: PublishSubject<(Slate, URL)> = PublishSubject()
     let receiveSlateCreated: PublishSubject<(Slate, URL)> = PublishSubject()
+    let finalizeTxSuccess: PublishSubject<Void> = PublishSubject()
     let sendTxSuccess: PublishSubject<Void> = PublishSubject()
     let message: PublishSubject<String> = PublishSubject()
 
@@ -126,6 +127,7 @@ class GrinTransactVM {
             switch result {
             case .success:
                 self.message.onNext(R.string.localizable.grinFinalizedAlertDesc())
+                self.finalizeTxSuccess.onNext(Void())
                 guard let data = JSON(FileManager.default.contents(atPath: slateUrl.path)).rawValue as? [String: Any],
                     let slate = Slate(JSON:data) else { return }
                 GrinManager.default.setFinalizedTx(slate.id)

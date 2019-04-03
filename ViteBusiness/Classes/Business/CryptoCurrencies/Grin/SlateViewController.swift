@@ -9,6 +9,8 @@ import UIKit
 import Vite_GrinWallet
 import ViteWallet
 import BigInt
+import RxSwift
+import RxCocoa
 
 class SlateViewController: UIViewController {
 
@@ -80,7 +82,6 @@ class SlateViewController: UIViewController {
     }
 
     func bind() {
-
         transferVM.receiveSlateCreated.asObserver()
             .bind { [weak self] (slate,url) in
                 self?.shareSlate(url: url)
@@ -93,7 +94,12 @@ class SlateViewController: UIViewController {
         }
         .disposed(by: rx.disposeBag)
 
-
+        transferVM.finalizeTxSuccess.asObserver()
+            .delay(1.5, scheduler: MainScheduler.instance)
+            .bind {
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: rx.disposeBag)
     }
 
     @IBAction func handleSlate(_ sender: Any) {
@@ -101,7 +107,13 @@ class SlateViewController: UIViewController {
         if type == .sent {
             shareSlate(url: url)
         } else if type == .receive {
-            transferVM.action.onNext(.receiveTx(slateUrl: url))
+            var slateId = url.lastPathComponent.components(separatedBy: ".").first ?? ""
+            let receivedUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true)
+            if FileManager.default.fileExists(atPath: receivedUrl.path) {
+                self.shareSlate(url: receivedUrl)
+            } else {
+                transferVM.action.onNext(.receiveTx(slateUrl: url))
+            }
         } else if type == .finalize {
             let fee = Balance(value: BigInt(slate.fee)).amountFull(decimals: 9)
             let amount = Balance(value: BigInt(slate.amount)).amountFull(decimals: 9)
