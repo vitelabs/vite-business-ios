@@ -40,7 +40,7 @@ public class ViteBusinessLanucher: NSObject {
     public func start(with window: UIWindow) {
         self.window = window
         //config 
-    EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
