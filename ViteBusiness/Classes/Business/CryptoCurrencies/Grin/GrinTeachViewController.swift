@@ -99,7 +99,12 @@ class GrinTeachViewController: UIViewController {
         let sendGrinViewController = storyboard
             .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
         sendGrinViewController.transferMethod = self.channelType == .vite ? .vite : .http
-        self.navigationController?.pushViewController(sendGrinViewController, animated: true)
+        var viewControllers = self.navigationController?.viewControllers
+        viewControllers?.popLast()
+        viewControllers?.append(sendGrinViewController)
+        if let viewControllers = viewControllers {
+            self.navigationController?.setViewControllers(viewControllers, animated: true)
+        }
     }
 
     @IBAction func copyAction(_ sender: Any) {

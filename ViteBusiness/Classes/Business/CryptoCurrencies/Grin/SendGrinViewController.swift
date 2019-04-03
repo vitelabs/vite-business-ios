@@ -47,6 +47,7 @@ class SendGrinViewController: UIViewController {
             self?.spendableLabel.text = balance.amountCurrentlySpendable
         })
         .disposed(by: rx.disposeBag)
+        GrinManager.default.getBalance()
 
         amountTextField.rx.text
             .distinctUntilChanged()
@@ -62,13 +63,26 @@ class SendGrinViewController: UIViewController {
             .bind { [weak self] (slate, url) in
                 let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
                 (vc.opendSlate, vc.opendSlateUrl) = (slate, url)
-                self?.navigationController?.pushViewController(vc, animated: true)
+                var viewControllers = self?.navigationController?.viewControllers
+                viewControllers?.popLast()
+                viewControllers?.append(vc)
+                if let viewControllers = viewControllers {
+                    self?.navigationController?.setViewControllers(viewControllers, animated: true)
+                }
             }
             .disposed(by: rx.disposeBag)
 
         transferVM.message.asObservable()
             .bind { message in
                 Toast.show(message)
+            }
+            .disposed(by: rx.disposeBag)
+
+
+        transferVM.sendTxSuccess.asObserver()
+            .delay(2, scheduler: MainScheduler.instance)
+            .bind {
+                self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
     }
@@ -104,17 +118,17 @@ class SendGrinViewController: UIViewController {
         guard (transferMethod == .file || !(addressTextField.text?.isEmpty ?? true)) else { return }
         var send = {
             self.view.displayLoading()
-            self.transferVM.txStrategies(amountString: self.amountTextField.text) { (fee) in
-                self.view.hideLoading()
+            self.transferVM.txStrategies(amountString: self.amountTextField.text) { [weak self] (fee) in
+                self?.view.hideLoading()
                 guard !fee.isEmpty else { return }
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
                 Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
                 }) {
-                    let amountString = self.amountTextField.text
-                    if self.transferMethod == .file {
-                        self.transferVM.action.onNext(.creatTxFile(amount: amountString))
-                    } else if let destnation = self.addressTextField.text {
-                        self.transferVM.action.onNext(.sentTx(amountString: amountString, destnation: destnation))
+                    let amountString = self?.amountTextField.text
+                    if self?.transferMethod == .file {
+                        self?.transferVM.action.onNext(.creatTxFile(amount: amountString))
+                    } else if let destnation = self?.addressTextField.text {
+                        self?.transferVM.action.onNext(.sentTx(amountString: amountString, destnation: destnation))
                     }
                 }
             }

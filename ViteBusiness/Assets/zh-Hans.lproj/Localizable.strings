@@ -406,7 +406,7 @@
 "grin.txType.confirmedCoinbase" = "已确认挖矿";
 "grin.txType.Canceled" = "已取消";
 
-"grin.tx.Cancele" = "取消";
+"grin.tx.Cancele" = "已取消";
 "grin.tx.Repost" = "重发";
 "grin.tx.copyId" = "复制";
 

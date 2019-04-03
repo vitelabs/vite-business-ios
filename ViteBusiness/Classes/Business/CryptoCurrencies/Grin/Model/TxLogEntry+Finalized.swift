@@ -20,7 +20,9 @@ extension TxLogEntry {
     }
 
     var canCancel: Bool {
-        return !confirmed && (txType == .txReceived || !txSentFinalized)
+        let isCancled = self.txType == .txReceivedCancelled || self.txType == .txSentCancelled
+        if isCancled { return false }
+        return  !confirmed && (txType == .txReceived || !txSentFinalized)
     }
 
     var canRepost: Bool {

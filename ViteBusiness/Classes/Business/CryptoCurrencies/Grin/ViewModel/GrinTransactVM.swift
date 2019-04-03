@@ -35,6 +35,7 @@ class GrinTransactVM {
     let txFee: BehaviorRelay<String> = BehaviorRelay(value: "")
     let sendSlateCreated: PublishSubject<(Slate, URL)> = PublishSubject()
     let receiveSlateCreated: PublishSubject<(Slate, URL)> = PublishSubject()
+    let sendTxSuccess: PublishSubject<Void> = PublishSubject()
     let message: PublishSubject<String> = PublishSubject()
 
     lazy var viteService = GrinTxByViteService()
@@ -158,6 +159,7 @@ class GrinTransactVM {
             switch result {
             case .success:
                 self.message.onNext(R.string.localizable.grinSentHttpSuccess())
+                self.sendTxSuccess.onNext(Void())
             case .failure(let error):
                 if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
 
@@ -171,6 +173,7 @@ class GrinTransactVM {
         viteService.sentGrin(amount: anmout, to: destnation)
             .done {
                 self.message.onNext(R.string.localizable.grinSentViteSuccess())
+                self.sendTxSuccess.onNext(Void())
             }
             .catch { (error) in
                 self.message.onNext(error.localizedDescription)

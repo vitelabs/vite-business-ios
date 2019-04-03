@@ -73,6 +73,9 @@ class GrinInfoViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
     }
@@ -283,7 +286,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if tx.canCancel {
-            let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.grinTxCancele()) { (_, _) in
+            let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.cancel()) { (_, _) in
                     self.walletInfoVM.action.onNext(.cancel(tx))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xDEDFE0)}

@@ -19,8 +19,19 @@ class GrinTransactionCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     func bind(_ tx: TxLogEntry) {
-        let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ")
-        self.creationTimeLabel.text = (creationTs ?? tx.creationTs) + " \(R.string.localizable.grinTxFileInitStatus())"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
+        var timeString = tx.creationTs
+        if let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ") {
+            timeString = creationTs
+            if let date = dateFormatter.date(from: creationTs) {
+                dateFormatter.timeZone = TimeZone.current
+                timeString = dateFormatter.string(from: date)
+            }
+        }
+        self.creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
 
         self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
 

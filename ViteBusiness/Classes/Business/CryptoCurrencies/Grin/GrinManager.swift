@@ -81,24 +81,24 @@ class GrinManager: GrinBridge {
     }
 
     func creatWalletIfNeeded()  {
+        self.checkDirectories()
+        self.checkApiSecret()
+        defer { self.getBalance() }
         if !self.walletExists() {
-            DispatchQueue.main.async {
-                guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
-                let result = self.walletRecovery(mnemonic)
-                switch result {
-                case .success(_):
-                    self.checkDirectories()
-                    self.checkApiSecret()
-                case .failure(let error):
-                    plog(level: .error, log: "grin:" + error.message)
-                    //Toast.show("grin:" + error.message)
-                    break
-                }
+            guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+            let result = self.walletRecovery(mnemonic)
+            switch result {
+            case .success(_):
+                break
+            case .failure(let error):
+                plog(level: .error, log: "grin:" + error.message)
+                //Toast.show("grin:" + error.message)
+                break
             }
         }
     }
 
-    private func getBalance() {
+    func getBalance() {
         let result = self.walletInfo(refreshFromNode: true)
         switch result {
         case .success(let info):

@@ -400,7 +400,7 @@
 "grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
 "grin.txType.Canceled" = "Canceled";
 
-"grin.tx.Cancele" = "Cancel";
+"grin.tx.Cancele" = "Canceled";
 "grin.tx.Repost" = "Repost";
 "grin.tx.copyId" = "Copy";
 
