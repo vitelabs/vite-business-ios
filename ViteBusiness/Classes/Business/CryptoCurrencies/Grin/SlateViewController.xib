@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlateViewController" customModule="ViteBusiness">
             <connections>
+                <outlet property="backgroundView" destination="Pfh-24-Wt0" id="UZf-Yn-Ngt"/>
                 <outlet property="descriptionLabel" destination="87v-aq-uMf" id="R4l-7V-IJo"/>
                 <outlet property="operateButton" destination="Y1w-qk-JQd" id="6fh-cr-i2a"/>
                 <outlet property="slateIDLabel" destination="foe-el-pJC" id="sI4-Jt-A8Y"/>

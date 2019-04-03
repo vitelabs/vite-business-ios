@@ -20,6 +20,7 @@ class SlateViewController: UIViewController {
         case finalize
     }
 
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var titleView: GrinTransactionTitleView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
@@ -79,6 +80,13 @@ class SlateViewController: UIViewController {
         ][type.rawValue]
 
         slateIDLabel.text = R.string.localizable.grinTxidTitle()
+
+        view.backgroundColor = UIColor.init(netHex: 0xF9FCFF)
+        backgroundView.backgroundColor = UIColor.init(netHex: 0xffffff)
+        backgroundView.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        backgroundView.layer.shadowOpacity = 0.1
+        backgroundView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        backgroundView.layer.shadowRadius = 5
     }
 
     func bind() {
