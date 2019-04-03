@@ -1,0 +1,8 @@
+framework module "Ioscrypto" {
+	header "ref.h"
+    header "Ioscrypto.objc.h"
+    header "universe.objc.h"
+    header "Ioscrypto.h"
+
+    export *
+}
