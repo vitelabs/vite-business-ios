@@ -53,10 +53,7 @@ class GrinTxByViteService {
         }
     }
 
-    func handle(viteData: Data, fromAddress: String)  -> Promise<Void> {
-        guard let fileName = String.init(data: viteData, encoding: .utf8) else {
-            return Promise(error: grinError)
-        }
+    func handle(fileName: String, fromAddress: String)  -> Promise<Void> {
         let isResponse = fileName.components(separatedBy: ".").last == "response"
         if isResponse {
             return self.handle(receiveFile: fileName, fromAddress: fromAddress)

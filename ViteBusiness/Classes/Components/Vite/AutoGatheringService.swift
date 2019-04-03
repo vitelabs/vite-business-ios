@@ -32,7 +32,7 @@ final class AutoGatheringService {
                             if let data = receive.data {
                                 let bytes = Bytes(data)
                                 if Bytes(bytes[0...1]) == Bytes(arrayLiteral: 0x80, 0x01) {
-                                    GrinTxByViteService.init().handle(viteData: Data(bytes.dropFirst(2)), fromAddress: receive.fromAddress?.description ?? "").done {}
+                                    GrinManager.default.handle(viteData: Data(bytes.dropFirst(2)), fromAddress: receive.fromAddress?.description ?? "")
                                 }
                             }
 
