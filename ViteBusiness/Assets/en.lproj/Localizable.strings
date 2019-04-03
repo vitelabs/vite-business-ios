@@ -466,3 +466,4 @@
 
 "grin.http.address" = "Http Address";
 "grin.vite.address" = "Vite Address";
+"grin.sendPageViteContactsButtonTitle" = "Grin Address";

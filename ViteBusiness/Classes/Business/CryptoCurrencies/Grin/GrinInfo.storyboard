@@ -459,6 +459,7 @@
                         <viewLayoutGuide key="safeArea" id="Sde-Z2-wCd"/>
                     </view>
                     <connections>
+                        <outlet property="addressButton" destination="56e-ei-D1q" id="1OG-6X-BSF"/>
                         <outlet property="addressTextField" destination="yY1-dT-H6R" id="IlQ-gl-Jt4"/>
                         <outlet property="addressTitleLabel" destination="j3g-NH-DdB" id="Qto-3e-lYV"/>
                         <outlet property="amountConstraint" destination="GQ4-UV-cJ8" id="Maz-av-AHi"/>

@@ -23,7 +23,7 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var amountConstraint: NSLayoutConstraint!
     @IBOutlet weak var balanceBackground: UIImageView!
     @IBOutlet weak var transactButton: UIButton!
-
+    @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var spendableTitleLabel: UILabel!
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var amountTitleLabel: UILabel!
@@ -155,12 +155,40 @@ class SendGrinViewController: UIViewController {
     }
 
     @IBAction func selectAddress(_ sender: Any) {
-        let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.grin)
-        let vc = AddressListViewController(viewModel: viewModel)
-        vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        FloatButtonsView(targetView: self.addressButton, delegate: self, titles:
+            [R.string.localizable.sendPageViteContactsButtonTitle(),
+             R.string.localizable.grinSendPageViteContactsButtonTitle(),
+             R.string.localizable.sendPageScanAddressButtonTitle()]).show()
     }
+}
 
+extension SendGrinViewController: FloatButtonsViewDelegate {
+
+    func didClick(at index: Int) {
+        if index == 0 {
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 1 {
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.grin)
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 2 {
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressTextField.text = uri.address.description
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
+    }
 }
 
 extension SendGrinViewController: UITextFieldDelegate {

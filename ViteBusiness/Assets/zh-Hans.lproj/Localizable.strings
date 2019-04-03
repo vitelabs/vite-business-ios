@@ -473,3 +473,4 @@
 "grin.http.address" = "Http 地址";
 "grin.vite.address" = "Vite 地址";
 
+"grin.sendPageViteContactsButtonTitle" = "Grin 地址";

@@ -864,7 +864,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 359 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 360 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1310,6 +1310,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNamePledge = Rswift.StringResource(key: "transaction.list.transaction.type.name.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Grin Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSendPageViteContactsButtonTitle = Rswift.StringResource(key: "grin.sendPageViteContactsButtonTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Http Address
       /// 
       /// Locales: en, zh-Hans
@@ -3078,6 +3082,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNamePledge(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.pledge", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Grin Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSendPageViteContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.sendPageViteContactsButtonTitle", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Http Address
