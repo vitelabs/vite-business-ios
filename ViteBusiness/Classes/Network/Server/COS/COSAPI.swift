@@ -33,12 +33,12 @@ extension COSAPI: TargetType {
         case .checkUpdate:
             switch Constants.appDownloadChannel {
             case .appstore:
-                return "/AppStoreCheckUpdate"
+                return "/AppStoreCheckUpdate.json"
             case .enterprise:
-                return "/EnterpriseCheckUpdate"
+                return "/EnterpriseCheckUpdate.json"
             }
         }
-    }
+    }   
 
     var method: Moya.Method {
         return .get
