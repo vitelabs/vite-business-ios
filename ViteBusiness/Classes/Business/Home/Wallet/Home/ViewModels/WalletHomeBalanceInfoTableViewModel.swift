@@ -57,6 +57,7 @@ final class WalletHomeBalanceInfoTableViewModel {
     func registerFetchAll() {
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite }))
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
+        GrinManager.default.getBalance()
     }
 
     func unregisterFetchAll() {

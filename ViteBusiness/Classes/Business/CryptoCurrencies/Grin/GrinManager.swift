@@ -59,6 +59,8 @@ class GrinManager: GrinBridge {
                 self?.getBalance()
             }
             .disposed(by: self.bag)
+
+
     }
 
 
@@ -99,10 +101,10 @@ class GrinManager: GrinBridge {
             let result = self.walletRecovery(mnemonic)
             switch result {
             case .success(_):
-                break
+                Toast.show("creat grin creat wallet success")
             case .failure(let error):
                 plog(level: .error, log: "grin:" + error.message)
-                break
+                Toast.show("creat grin wallet failed, please reimport the mnemonic. error: \(error.message)")
             }
         }
     }
@@ -250,9 +252,9 @@ extension GrinManager {
         #if DEBUG || TEST
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
-            return .usernet
-        case .test, .custom:
             return .mainnet
+        case .test, .custom:
+            return .usernet
         }
         #else
         return .mainnet
@@ -295,6 +297,8 @@ func withInMainThread(_ a: @escaping () ->  ()) {
         }
     }
 }
+
+
 
 func async<T>(_ a: @escaping ()-> T,
               _ b: @escaping (T) -> (),

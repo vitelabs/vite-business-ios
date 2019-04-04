@@ -179,12 +179,8 @@ extension SendGrinViewController: FloatButtonsViewDelegate {
             let scanViewController = ScanViewController()
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressTextField.text = uri.address.description
-                    scanViewController.navigationController?.popViewController(animated: true)
-                } else {
-                    scanViewController.showAlertMessage(result)
-                }
+                self?.addressTextField.text = result
+                scanViewController.navigationController?.popViewController(animated: true)
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
         }
