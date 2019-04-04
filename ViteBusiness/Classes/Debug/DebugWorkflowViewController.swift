@@ -34,6 +34,17 @@ class DebugWorkflowViewController: FormViewController {
                         Toast.show("Login firstly")
                     }
                 })
+            <<< LabelRow("Vote") {
+                $0.title =  "Vote"
+                }.onCellSelection({ _, _  in
+                    if let account = HDWalletManager.instance.account {
+                        Workflow.voteWithConfirm(account: account, name: "s1") { (r) in
+                            print(r)
+                        }
+                    } else {
+                        Toast.show("Login firstly")
+                    }
+                })
     }
 }
 #endif

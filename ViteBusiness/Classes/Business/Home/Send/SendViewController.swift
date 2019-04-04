@@ -205,8 +205,8 @@ class SendViewController: BaseViewController {
             }
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.maxTxCountDriver
-            .map({ R.string.localizable.sendPageQuotaContent($0) })
+        FetchQuotaService.instance.quotaDriver
+            .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
             .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }

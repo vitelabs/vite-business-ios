@@ -18,10 +18,8 @@ final class FetchQuotaService {
     static let instance = FetchQuotaService()
     private init() {}
 
-    lazy var  quotaDriver: Driver<String> = self.quotaBehaviorRelay.asDriver()
-    lazy var  maxTxCountDriver: Driver<String> = self.maxTxCountBehaviorRelay.asDriver()
-    fileprivate var quotaBehaviorRelay: BehaviorRelay<String> = BehaviorRelay(value: "0")
-    fileprivate var maxTxCountBehaviorRelay: BehaviorRelay<String> = BehaviorRelay(value: "0")
+    lazy var  quotaDriver: Driver<Quota> = self.quotaBehaviorRelay.asDriver()
+    fileprivate var quotaBehaviorRelay: BehaviorRelay<Quota> = BehaviorRelay(value: Quota())
 
     fileprivate let disposeBag = DisposeBag()
     fileprivate var fileHelper: FileHelper! = nil
@@ -42,11 +40,9 @@ final class FetchQuotaService {
             if let account = a {
                 self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(account.address.description)")
                 if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
-                    let dic = try? JSONSerialization.jsonObject(with: data) as? [String: String],
-                    let quota = dic?[Key.quota.rawValue],
-                    let maxTxCount = dic?[Key.maxTxCount.rawValue] {
+                    let jsonString = String(data: data, encoding: .utf8),
+                    let quota = Quota(JSONString: jsonString) {
                     self.quotaBehaviorRelay.accept(quota)
-                    self.maxTxCountBehaviorRelay.accept(maxTxCount)
                 }
 
                 let address = account.address
@@ -54,14 +50,11 @@ final class FetchQuotaService {
                     guard let `self` = self else { return }
 
                     switch r {
-                    case .success(let (quota, maxTxCount)):
-                        plog(level: .debug, log: address.description + ": " + "quota \(String(quota)) \(String(maxTxCount))", tag: .transaction)
+                    case .success(let quota):
+                        plog(level: .debug, log: address.description + ": " + "utps \(String(quota.utps))", tag: .transaction)
 
-                        self.quotaBehaviorRelay.accept(String(quota))
-                        self.maxTxCountBehaviorRelay.accept(String(maxTxCount))
-
-                        let dic = [Key.quota.rawValue: String(quota), Key.maxTxCount.rawValue: String(maxTxCount)]
-                        if let data = try? JSONSerialization.data(withJSONObject: dic) {
+                        self.quotaBehaviorRelay.accept(quota)
+                        if let data = quota.toJSONString()?.data(using: .utf8) {
                             if let error = self.fileHelper.writeData(data, relativePath: Key.fileName.rawValue) {
                                 assert(false, error.localizedDescription)
                             }
