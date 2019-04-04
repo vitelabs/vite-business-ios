@@ -143,11 +143,9 @@ class ContactsEditViewController: BaseViewController {
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {
                     self.addressView.textView.text = uri.address.description
-                    self.type.accept(.vite)
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
                     self.addressView.textView.text = uri.address.description
-                    self.type.accept(.eth)
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)
