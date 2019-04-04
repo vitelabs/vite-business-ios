@@ -11,28 +11,6 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
-func withInMainThread(_ a: @escaping () ->  ()) {
-    if Thread.isMainThread {
-        a()
-    } else {
-        DispatchQueue.main.async {
-            a()
-        }
-    }
-}
-
-func async<T>(_ a: @escaping ()-> T,
-              _ b: @escaping (T) -> (),
-              qa: DispatchQueue = DispatchQueue.global(),
-              qb: DispatchQueue = DispatchQueue.main) {
-    qa.async {
-        let v = a()
-        qb.async {
-            b(v)
-        }
-    }
-}
-
 private func grinFileHelper() -> FileHelper {
     return FileHelper(.library, appending: FileHelper.walletPathComponent + "/grin" + GrinManager.getChainType().rawValue)
 }
@@ -59,25 +37,57 @@ class GrinManager: GrinBridge {
             .map { $0.uuid }
             .distinctUntilChanged()
             .drive(onNext: { [weak self] (_) in
-                self?.fileHelper = grinFileHelper()
-                self?.password =  GrinManager.getPassword()
-                self?.walletUrl =  GrinManager.getWalletUrl()
-                self?.balance.accept(GrinBalance())
-                self?.creatWalletIfNeeded()
-                GrinTxByViteService().reportViteAddress().done {_ in}
-                self?.handleSavedTx()
+                self?.configGrinWallet()
             })
             .disposed(by: self.bag)
 
-        Observable<Int>.interval(45, scheduler: MainScheduler.asyncInstance)
+        #if DEBUG || TEST
+        NotificationCenter.default.rx.notification(.appEnvironmentDidChange)
+            .bind { [weak self] (n) in
+                self?.configGrinWallet()
+            }
+            .disposed(by: self.bag)
+        #endif
+
+        Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .bind{ [weak self] _ in self?.getBalance()}
             .disposed(by: self.bag)
 
         NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
             .bind { [weak self] n in
                 self?.gotoSlateVCIfNeed()
+                self?.getBalance()
             }
             .disposed(by: self.bag)
+    }
+
+
+    func configGrinWallet() {
+        self.fileHelper = grinFileHelper()
+        self.password =  GrinManager.getPassword()
+        self.walletUrl = GrinManager.getWalletUrl()
+        #if DEBUG || TEST
+        switch DebugService.instance.config.appEnvironment {
+        case .online, .stage:
+            self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
+            self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
+            self.chainType = GrinChainType.mainnet.rawValue
+            break
+        case .test, .custom:
+            self.checkNodeApiHttpAddr = "http://45.40.197.46:23413"
+            self.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
+            self.chainType = GrinChainType.usernet.rawValue
+        }
+        #else
+        self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
+        self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
+        self.chainType = GrinChainType.mainnet.rawValue
+        #endif
+        self.creatWalletIfNeeded()
+        GrinTxByViteService().reportViteAddress().done {_ in}
+        self.balance.accept(GrinBalance())
+        self.getBalance()
+        self.handleSavedTx()
     }
 
     func creatWalletIfNeeded()  {
@@ -92,7 +102,6 @@ class GrinManager: GrinBridge {
                 break
             case .failure(let error):
                 plog(level: .error, log: "grin:" + error.message)
-                //Toast.show("grin:" + error.message)
                 break
             }
         }
@@ -107,7 +116,6 @@ class GrinManager: GrinBridge {
             break
         }
     }
-
 }
 
 extension GrinManager {
@@ -167,7 +175,6 @@ extension GrinManager {
         } catch {
 
         }
-
         handleSavedTx()
     }
 
@@ -240,10 +247,13 @@ extension GrinManager {
 
 extension GrinManager {
     static func getChainType() -> GrinChainType {
-        #if DEBUG
-        return .usernet
-        #elseif TEST
-        return .usernet
+        #if DEBUG || TEST
+        switch DebugService.instance.config.appEnvironment {
+        case .online, .stage:
+            return .usernet
+        case .test, .custom:
+            return .mainnet
+        }
         #else
         return .mainnet
         #endif
@@ -272,5 +282,28 @@ extension GrinManager {
             return ""
         }
         return encryptedKey
+    }
+}
+
+
+func withInMainThread(_ a: @escaping () ->  ()) {
+    if Thread.isMainThread {
+        a()
+    } else {
+        DispatchQueue.main.async {
+            a()
+        }
+    }
+}
+
+func async<T>(_ a: @escaping ()-> T,
+              _ b: @escaping (T) -> (),
+              qa: DispatchQueue = DispatchQueue.global(),
+              qb: DispatchQueue = DispatchQueue.main) {
+    qa.async {
+        let v = a()
+        qb.async {
+            b(v)
+        }
     }
 }

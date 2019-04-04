@@ -12,6 +12,13 @@ import ObjectMapper
 import ViteEthereum
 import web3swift
 
+#if DEBUG || TEST
+extension Notification.Name {
+    public static let appEnvironmentDidChange = NSNotification.Name(rawValue: "Vite_appEnvironmentDidChange")
+}
+#endif
+
+
 public class DebugService {
     public static let instance = DebugService()
     fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
@@ -84,6 +91,9 @@ public class DebugService {
         case .custom:
             break
         }
+        #if DEBUG || TEST
+        NotificationCenter.default.post(name: NSNotification.Name.appEnvironmentDidChange, object: nil)
+        #endif
         updateETHServer()
     }
 
