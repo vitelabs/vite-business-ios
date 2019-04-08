@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 120 images.
+  /// This `R.image` struct is generated, and contains static references to 121 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -220,6 +220,8 @@ struct R: Rswift.Validatable {
     static let icon_votecount = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_votecount")
     /// Image `icon_wallet_home_nav_bg`.
     static let icon_wallet_home_nav_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_wallet_home_nav_bg")
+    /// Image `infor_white`.
+    static let infor_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "infor_white")
     /// Image `intro_icon_0`.
     static let intro_icon_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_0")
     /// Image `intro_icon_1`.
@@ -762,6 +764,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_wallet_home_nav_bg", bundle: ..., traitCollection: ...)`
     static func icon_wallet_home_nav_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_wallet_home_nav_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "infor_white", bundle: ..., traitCollection: ...)`
+    static func infor_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.infor_white, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "intro_icon_0", bundle: ..., traitCollection: ...)`

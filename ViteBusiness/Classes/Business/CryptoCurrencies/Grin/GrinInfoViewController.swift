@@ -161,7 +161,7 @@ class GrinInfoViewController: BaseViewController {
             m.centerX.equalToSuperview()
             m.width.equalTo(130)
             m.height.equalTo(170)
-            m.top.equalToSuperview().offset(47)
+            m.centerY.equalToSuperview().offset(-5)
         }
     }
 

@@ -26,15 +26,9 @@ class GrinTransactionTitleView: UIView {
         addSubview(symbolLabel)
         addSubview(tokenIconView)
 
-//        backgroundColor = UIColor.white
-//        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-//        layer.shadowOpacity = 0.1
-//        layer.shadowOffset = CGSize(width: 0, height: 5)
-//        layer.shadowRadius = 20
-
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)
-            m.bottom.equalToSuperview()
+            m.top.equalToSuperview().offset(1)
             m.size.equalTo(CGSize(width: 49, height: 49))
         }
 

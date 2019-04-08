@@ -148,16 +148,24 @@ extension SlateViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
-        cell.textLabel?.textColor = UIColor(netHex: 0x3e4159)
+        cell.textLabel?.textColor = UIColor(netHex: 0x3e4159, alpha:0.7)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         cell.detailTextLabel?.textColor = UIColor(netHex: 0x3e4159)
         guard let slate = opendSlate else { fatalError() }
         var arr = [
-            (R.string.localizable.grinSentAmount(), Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9) + " GRIN") ,
-            (R.string.localizable.grinSentFee(), Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9) + " GRIN")
+            (R.string.localizable.grinSentAmount(), Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9)),
+            (R.string.localizable.grinSentFee(), Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9))
         ]
+        let attributeStr =
+            NSMutableAttributedString(string: arr[indexPath.row].1,
+                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4159, alpha:0.7),
+                                                NSAttributedString.Key.font :UIFont.boldSystemFont(ofSize: 13)
+                ])
+        attributeStr.append(NSAttributedString(string: " GRIN",
+                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4159, alpha:0.6)
+            ]))
+        cell.detailTextLabel?.attributedText = attributeStr
         cell.textLabel?.text = arr[indexPath.row].0
-        cell.detailTextLabel?.text = arr[indexPath.row].1
         return cell
     }
 }

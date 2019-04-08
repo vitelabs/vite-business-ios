@@ -40,6 +40,7 @@ class GrinTeachViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var noiceTitleLabel: UILabel!
 
+    @IBOutlet weak var viteInfoButton: UIButton!
     @IBOutlet weak var copyBtn: UIButton!
     var txType: TxType = .sent
     var channelType: TransferMethod = .vite
@@ -61,6 +62,7 @@ class GrinTeachViewController: UIViewController {
                 addressTitleLabel.text = R.string.localizable.grinViteAddress()
             }
         } else if channelType == .http {
+            viteInfoButton.isHidden = true
             titleLabel.text =  R.string.localizable.grinTeachHttpTitle()
             imageView.image = R.image.grin_tx_http()
             if self.txType == .sent {
@@ -136,6 +138,13 @@ class GrinTeachViewController: UIViewController {
         for (key, value) in setting {
             UserDefaults.standard.set(value, forKey: key)
         }
+    }
+
+    @IBAction func didClickedViteInfoButton(_ sender: Any) {
+        Alert.show(into: self, title: R.string.localizable.grinThisIsFirstViteAddress(), message:nil , actions: [
+            (.default(title: R.string.localizable.confirm()), { alertController in
+
+            })])
     }
     /*
     // MARK: - Navigation

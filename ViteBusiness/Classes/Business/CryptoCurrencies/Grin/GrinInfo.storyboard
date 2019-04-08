@@ -90,7 +90,7 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kmr-eG-9Nr">
                                         <rect key="frame" x="0.0" y="157" width="327" height="44"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.059999999999999998" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="1Un-hj-8eO"/>
                                         </constraints>
@@ -168,20 +168,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXH-Fp-qNb">
+                                <rect key="frame" x="24" y="305" width="351" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YlC-RQ-Ksf">
-                                <rect key="frame" x="0.0" y="314" width="375" height="353"/>
+                                <rect key="frame" x="0.0" y="326" width="375" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="EfW-ft-biG" id="7vb-fu-MuH"/>
                                     <outlet property="delegate" destination="EfW-ft-biG" id="N8L-rs-3OX"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXH-Fp-qNb">
-                                <rect key="frame" x="24" y="297" width="351" height="13"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" red="0.24313725490196078" green="0.29019607843137252" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -191,9 +191,8 @@
                             <constraint firstItem="61v-Z3-PAx" firstAttribute="trailing" secondItem="YlC-RQ-Ksf" secondAttribute="trailing" id="DnX-3T-yXm"/>
                             <constraint firstItem="61v-Z3-PAx" firstAttribute="trailing" secondItem="cXH-Fp-qNb" secondAttribute="trailing" id="LUb-39-8eR"/>
                             <constraint firstItem="61v-Z3-PAx" firstAttribute="bottom" secondItem="YlC-RQ-Ksf" secondAttribute="bottom" id="MUV-aj-9ij"/>
-                            <constraint firstItem="cXH-Fp-qNb" firstAttribute="top" secondItem="jJb-g3-lQ7" secondAttribute="bottom" constant="8" id="Nv2-xr-aeE"/>
+                            <constraint firstItem="cXH-Fp-qNb" firstAttribute="top" secondItem="jJb-g3-lQ7" secondAttribute="bottom" constant="16" id="Nv2-xr-aeE"/>
                             <constraint firstItem="V6b-4M-YNf" firstAttribute="leading" secondItem="61v-Z3-PAx" secondAttribute="leading" id="OZy-aH-cpK"/>
-                            <constraint firstItem="YlC-RQ-Ksf" firstAttribute="top" secondItem="jJb-g3-lQ7" secondAttribute="bottom" constant="25" id="PHi-18-IBC"/>
                             <constraint firstItem="YlC-RQ-Ksf" firstAttribute="leading" secondItem="61v-Z3-PAx" secondAttribute="leading" id="ZDs-6l-vSS"/>
                             <constraint firstItem="YlC-RQ-Ksf" firstAttribute="top" secondItem="cXH-Fp-qNb" secondAttribute="bottom" constant="4" id="eLx-Sw-3hT"/>
                             <constraint firstItem="61v-Z3-PAx" firstAttribute="top" secondItem="V6b-4M-YNf" secondAttribute="top" id="eyu-Do-Z0T"/>
@@ -299,7 +298,7 @@
                                             <constraint firstAttribute="height" constant="22" id="6P6-lO-lHo"/>
                                             <constraint firstAttribute="width" constant="28" id="rtJ-OO-R0o"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="icon_button_add"/>
+                                        <state key="normal" title="Button" image="icon_button_address_add"/>
                                         <connections>
                                             <action selector="selectAddress:" destination="DbC-i3-m12" eventType="touchUpInside" id="1Wr-u5-dun"/>
                                         </connections>
@@ -480,6 +479,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_button_add" width="14" height="14"/>
+        <image name="icon_button_address_add" width="28" height="28"/>
     </resources>
 </document>
