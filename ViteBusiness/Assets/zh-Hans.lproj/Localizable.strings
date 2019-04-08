@@ -361,6 +361,7 @@
 "token.list.page.search.title" = "输入Token名称或合约地址";
 "token.list.page.section.vite.header" = "Vite网络";
 "token.list.page.section.eth.header" = "Ethereum网络";
+"token.list.page.section.grin.header" = "GRIN网络";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";

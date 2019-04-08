@@ -864,7 +864,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 360 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 361 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1290,6 +1290,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: GRIN Network
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageSectionGrinHeader = Rswift.StringResource(key: "token.list.page.section.grin.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
@@ -3047,6 +3051,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinTxTypeFinalized(_: Void = ()) -> String {
         return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: GRIN Network
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageSectionGrinHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.grin.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gas Fee

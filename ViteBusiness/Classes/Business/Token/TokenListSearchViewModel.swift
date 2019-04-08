@@ -34,6 +34,9 @@ final class TokenListSearchViewModel {
                 if let eth = map["ETH"] {
                     list.append(eth)
                 }
+                if let grin = map["GRIN"] {
+                    list.append(grin)
+                }
                 self.tokenListSearchRelay.accept(list)
             case .failure(let error): break
             }

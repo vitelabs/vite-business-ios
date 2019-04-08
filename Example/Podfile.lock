@@ -411,7 +411,7 @@ SPEC CHECKSUMS:
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: ff139b56bed9c286cacb9aaeeea004d1617f9517
+  ViteBusiness: 06f9f4818b4c399d70ea5f35c4a22d2dbf38934c
   ViteEthereum: 1ec6e02ff0cd7c63a4379a0bdf3577fa5dcf1029
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
