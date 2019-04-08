@@ -204,6 +204,8 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionViteHeader()
         }else if self.coinType == .eth {
             return R.string.localizable.tokenListPageSectionEthHeader()
+        }else if self.coinType == .grin {
+            return R.string.localizable.tokenListPageSectionGrinHeader()
         }
         return ""
     }

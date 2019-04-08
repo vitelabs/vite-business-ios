@@ -357,6 +357,7 @@
 "token.list.page.search.title" = "Please input token name or contract address";
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
+"token.list.page.section.grin.header" = "GRIN Network";
 
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";

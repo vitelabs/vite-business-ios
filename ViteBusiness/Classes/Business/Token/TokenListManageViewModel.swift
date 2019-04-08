@@ -40,11 +40,14 @@ final class TokenListManageViewModel {
 
         var localViteToken = [TokenInfo]()
         var localEthToken = [TokenInfo]()
+        var localGrinToken = [TokenInfo]()
         for item in localData {
             if item.coinType == .vite {
                 localViteToken.append(item)
             }else if item.coinType == .eth {
                 localEthToken.append(item)
+            } else if item.coinType == .grin {
+                localGrinToken.append(item)
             }
         }
 
@@ -60,6 +63,12 @@ final class TokenListManageViewModel {
             list.append(eth)
         }else {
             list.append(localEthToken)
+        }
+        if var grin = map["GRIN"] {
+            grin.append(contentsOf: localGrinToken)
+            list.append(grin)
+        }else {
+            list.append(localGrinToken)
         }
         tokenListRefreshRelay.accept(list)
     }
