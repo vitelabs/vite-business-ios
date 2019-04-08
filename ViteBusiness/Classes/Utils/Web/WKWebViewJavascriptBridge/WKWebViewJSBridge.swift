@@ -60,7 +60,7 @@ public class WKWebViewJSBridge: NSObject {
 
                 guard let resultStr = result as? String else { return }
 
-                                   print("======= resultStr ",resultStr)
+                print("======= resultStr ",resultStr)
 
 
                 self.base.flush(messageQueueString: resultStr, url:self.webView?.url?.absoluteString ?? "")
@@ -90,16 +90,19 @@ extension WKWebViewJSBridge: WKWebViewJSBridgeEngineDelegate {
 
     func changeWebRRBtn(itemTitle: String?,itemImg:UIImage?){
         let btn = UIButton(type: .custom)
-        btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.titleLabel?.textAlignment = .right
-        btn.sizeToFit()
         if let title = itemTitle {
-             btn.setTitle(title, for: .normal)
+            btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            btn.titleLabel?.textAlignment = .right
+            btn.sizeToFit()
+            btn.setTitle(title, for: .normal)
+            btn.setTitle(title, for: .highlighted)
             btn.frame = CGRect.init(x: 0, y: 0, width: 70, height: 40)
         }
         if let img = itemImg {
             btn.setImage(img, for: .normal)
+            btn.setImage(img, for: .highlighted)
+            btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         }
         btn.rx.tap.asObservable().bind { [weak self] in
             self?.publish.setRRBtnAction()
