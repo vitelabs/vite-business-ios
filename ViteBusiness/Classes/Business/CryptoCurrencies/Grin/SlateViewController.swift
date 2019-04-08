@@ -75,7 +75,7 @@ class SlateViewController: UIViewController {
 
         statusLabel.text = [
             R.string.localizable.grinTxFileInitStatus(),
-            R.string.localizable.grinTxTypeSent(),
+            R.string.localizable.grinTxTypeWaitToSign(),
             R.string.localizable.grinTxTypeReceived(),
         ][type.rawValue]
 
