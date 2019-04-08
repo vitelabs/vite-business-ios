@@ -38,6 +38,7 @@ class GrinTransactVM {
     let finalizeTxSuccess: PublishSubject<Void> = PublishSubject()
     let sendTxSuccess: PublishSubject<Void> = PublishSubject()
     let message: PublishSubject<String> = PublishSubject()
+    let sendButtonEnabled: BehaviorRelay<Bool> = BehaviorRelay(value: true)
 
     lazy var viteService = GrinTxByViteService()
 
@@ -63,7 +64,7 @@ class GrinTransactVM {
         return HDWalletManager.instance.account?.address == HDWalletManager.instance.accounts.first?.address
     }
 
-    func txStrategies(amountString: String?, completion: ((String) -> Void)? = nil) {
+    func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
         DispatchQueue.global().async {
             guard let amount = self.amountFrom(string: amountString) else {
                 self.txFee.accept("")
@@ -78,6 +79,7 @@ class GrinTransactVM {
                     completion?(fee)
                 case .failure(let error):
                     self.txFee.accept("")
+                    completion?(nil)
                     self.message.onNext(error.message)
                 }
             }
@@ -143,8 +145,10 @@ class GrinTransactVM {
         }
         if let destnation = destnation {
            if Address.isValid(string: destnation) {
+                self.sendButtonEnabled.accept(false)
                 self.sendTxByVite(anmout: amount, destnation: destnation)
             } else if let url = URL(string: destnation) {
+                self.sendButtonEnabled.accept(false)
                 self.sendTxByHttp(anmout: amount, destnation: destnation)
             } else {
                 self.message.onNext("Wrong Address")
@@ -166,6 +170,7 @@ class GrinTransactVM {
                 if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
 
                 }
+                self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.message)
             }
         })
@@ -178,6 +183,7 @@ class GrinTransactVM {
                 self.sendTxSuccess.onNext(Void())
             }
             .catch { (error) in
+                self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.localizedDescription)
         }
     }

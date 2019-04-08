@@ -395,6 +395,7 @@
 
 "grin.txType.sent" = "Sent";
 "grin.txType.waitToSign" = "待签收";
+"grin.txType.waitToReceive" = "待敲定";
 "grin.txType.received" = "Received";
 "grin.txType.finalized" = "Finalized";
 "grin.txType.confirmed" = "Confirmed";
@@ -425,12 +426,12 @@
 "grin.shareFile" = "Share Transaction File";
 
 "grin.finalize.title" = "Confirm to Transfer";
-"grin.finalize.desc" = "Transaction has been signed, please finalize the transaction to complete it.";
+"grin.finalize.desc" = "收款人已经签收交易，请敲定并广播交易";
 "grin.txFile.received.status" = "Confirmed Receipt";
-"grin.finalize" = "Finalize the transaction and broadcast";
+"grin.finalize" = "敲定并广播";
 
 "grin.finalized.alertTitle" = "Transaction Finalized";
-"grin.finalized.alertDesc" = "Transaction is finalized now and will now be processed by the blockchain and will show up in your wallet within a few minutes.";
+"grin.finalized.alertDesc" = "您的GRIN转账交易已经开始广播";
 
 "grin.sent.next" = "Next";
 "grin.sent.suggest.useVite.title" = "Notice";
@@ -466,9 +467,11 @@
 "grin.switchAddress" = "Switch Address";
 
 "grin.http.address" = "Http Address";
-"grin.vite.address" = "Vite Address";
+"grin.vite.address" = "VITE Address";
 "grin.sendPageViteContactsButtonTitle" = "Grin Address";
 
 
 "grin.canceled" = "已取消";
+"grin.makeSureToShare" = "请确保将交易文件分享给转账人";
+
 

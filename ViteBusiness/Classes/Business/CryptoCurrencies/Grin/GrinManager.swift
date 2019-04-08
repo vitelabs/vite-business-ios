@@ -59,8 +59,6 @@ class GrinManager: GrinBridge {
                 self?.getBalance()
             }
             .disposed(by: self.bag)
-
-
     }
 
 
@@ -143,9 +141,11 @@ extension GrinManager {
             } else {
                 vc.type = .receive
             }
-            let topVC = Route.getTopVC()
+            var topVC = Route.getTopVC()
             if let nav = topVC?.navigationController {
                 nav.pushViewController(vc, animated: true)
+            } else if let rootnav = (topVC?.presentingViewController as? UITabBarController)?.selectedViewController as? UINavigationController {
+                rootnav.pushViewController(vc, animated: true)
             } else {
                 topVC?.present(vc, animated: true, completion: nil)
             }

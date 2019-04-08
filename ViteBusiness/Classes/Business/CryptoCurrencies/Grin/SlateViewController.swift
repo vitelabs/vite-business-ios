@@ -92,6 +92,9 @@ class SlateViewController: UIViewController {
     func bind() {
         transferVM.receiveSlateCreated.asObserver()
             .bind { [weak self] (slate,url) in
+                self?.operateButton.setTitle(R.string.localizable.grinShareFile(), for: .normal)
+                self?.statusLabel.text = R.string.localizable.grinTxTypeReceived()
+                self?.descriptionLabel.text = R.string.localizable.grinMakeSureToShare()
                 self?.shareSlate(url: url)
         }
         .disposed(by: rx.disposeBag)
@@ -104,8 +107,8 @@ class SlateViewController: UIViewController {
 
         transferVM.finalizeTxSuccess.asObserver()
             .delay(1.5, scheduler: MainScheduler.instance)
-            .bind {
-                self.navigationController?.popViewController(animated: true)
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
     }

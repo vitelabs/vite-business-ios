@@ -103,11 +103,9 @@ class GrinTxByViteService {
 
     func reportViteAddress() -> Promise<String> {
         return Promise { seal in
-            guard let fromAddress = HDWalletManager.instance.account?.address.description,
-                let firstAddress = HDWalletManager.instance.accounts.first?.address.description,
-                fromAddress == firstAddress,
+            guard let fromAddress = HDWalletManager.instance.accounts.first?.address.description,
                 let sAddress = fromAddress.components(separatedBy: "_").last,
-                let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+                let signature = HDWalletManager.instance.accounts.first?.sign(hash: sAddress.hex2Bytes).toHexString() else {
                     seal.reject(grinError)
                     return
             }

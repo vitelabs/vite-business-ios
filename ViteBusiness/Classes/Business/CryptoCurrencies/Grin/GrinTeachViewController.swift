@@ -83,6 +83,8 @@ class GrinTeachViewController: UIViewController {
         paragraphStyle.lineSpacing = 8
         noiceDetailLabel.attributedText = NSAttributedString.init(string: desc, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
 
+        closeButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
+
         if self.txType == .sent {
             infoView.isHidden = true
         } else if txType == .receive {

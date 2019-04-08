@@ -74,7 +74,8 @@ class SendGrinViewController: UIViewController {
             .disposed(by: rx.disposeBag)
 
         transferVM.message.asObservable()
-            .bind { message in
+            .bind { [weak self] message in
+                self?.transactButton.isEnabled = true
                 Toast.show(message)
             }
             .disposed(by: rx.disposeBag)
@@ -82,10 +83,17 @@ class SendGrinViewController: UIViewController {
 
         transferVM.sendTxSuccess.asObserver()
             .delay(2, scheduler: MainScheduler.instance)
-            .bind {
-                self.navigationController?.popViewController(animated: true)
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
+
+        transferVM.sendButtonEnabled.asObservable()
+            .bind { [weak self] in
+                self?.transactButton.isEnabled = $0
+            }
+            .disposed(by: rx.disposeBag)
+
     }
 
     func setUpView()  {
@@ -121,7 +129,8 @@ class SendGrinViewController: UIViewController {
             self.view.displayLoading()
             self.transferVM.txStrategies(amountString: self.amountTextField.text) { [weak self] (fee) in
                 self?.view.hideLoading()
-                guard !fee.isEmpty else { return }
+                guard let fee = fee,
+                    !fee.isEmpty else { return }
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
                 Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
                 }) {

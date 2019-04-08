@@ -67,16 +67,13 @@ final class GrinWalletInfoVM {
 
 
     func checkWallet() {
-        async({ () in
-            self.grinManager.walletCheck()
-        },  { (result) in
-            switch result {
-            case .success:
-                self.action.onNext(.getBalance(manually: true))
-            case .failure(let error):
-                self.message.accept(error.message)
-            }
-        })
+        let result = self.grinManager.walletCheck()
+        switch result {
+        case .success:
+            self.action.onNext(.getBalance(manually: true))
+        case .failure(let error):
+            self.message.accept(error.message)
+        }
     }
 
     func getBalance(_ manually: Bool) {
@@ -101,7 +98,7 @@ final class GrinWalletInfoVM {
 
     func cancel(_ tx: TxLogEntry) {
         async({ () in
-            self.grinManager.txCancel(id: UInt32(tx.id))
+            return self.grinManager.txCancel(id: UInt32(tx.id))
         },  { (result) in
             switch result {
             case .success(_):

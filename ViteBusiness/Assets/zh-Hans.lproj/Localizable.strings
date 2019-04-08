@@ -401,6 +401,7 @@
 
 "grin.txType.sent" = "已发送";
 "grin.txType.waitToSign" = "待签收";
+"grin.txType.waitToReceive" = "待敲定";
 "grin.txType.received" = "已签收";
 "grin.txType.finalized" = "已敲定";
 "grin.txType.confirmed" = "已确认";
@@ -431,12 +432,12 @@
 "grin.shareFile" = "分享交易文件";
 
 "grin.finalize.title" = "确认转账";
-"grin.finalize.desc" = "交易已经签名，请完成交易流程。";
+"grin.finalize.desc" = "收款人已经签收交易，请敲定并广播交易";
 "grin.txFile.received.status" = "已确认收款";
-"grin.finalize" = "确认转账并广播";
+"grin.finalize" = "敲定并广播";
 
 "grin.finalized.alertTitle" = "交易已确认";
-"grin.finalized.alertDesc" = "转账交易已被确认并开始在链上广播，几分钟后可以在交易记录中查看。";
+"grin.finalized.alertDesc" = "您的GRIN转账交易已经开始广播";
 
 "grin.sent.next" = "下一步";
 "grin.sent.suggest.useVite.title" = "提示";
@@ -472,8 +473,10 @@
 "grin.switchAddress" = "去切换地址";
 
 "grin.http.address" = "Http 地址";
-"grin.vite.address" = "Vite 地址";
+"grin.vite.address" = "VITE 地址";
 
 "grin.sendPageViteContactsButtonTitle" = "GRIN 地址";
 
 "grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "请确保将交易文件分享给转账人";
+
