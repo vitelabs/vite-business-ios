@@ -44,6 +44,12 @@ class SlateViewController: UIViewController {
         bind()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var navigationBarStyle = NavigationBarStyle.custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.init(netHex: 0xF9FCFF))
+        NavigationBarStyle.configStyle(navigationBarStyle, viewController: self)
+    }
+
     func setUpView() {
 
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo

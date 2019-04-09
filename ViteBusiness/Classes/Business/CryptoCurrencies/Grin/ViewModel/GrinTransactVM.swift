@@ -65,7 +65,7 @@ class GrinTransactVM {
     }
 
     func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
-        DispatchQueue.global().async {
+        GrinManager.queue.async {
             guard let amount = self.amountFrom(string: amountString) else {
                 self.txFee.accept("")
                 return
@@ -87,7 +87,7 @@ class GrinTransactVM {
     }
 
     func creatTxFile(_ amount: UInt64) {
-        async({ () in
+        grin_async({ () in
             GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "")
         },  { (result) in
             switch result {
@@ -105,7 +105,7 @@ class GrinTransactVM {
     }
 
     func receiveTx(slateUrl: URL) {
-        async({ () in
+        grin_async({ () in
             GrinManager.default.txReceive(slatePath: slateUrl.path, message: "Received")
         },  { (result) in
             switch result {
@@ -123,7 +123,7 @@ class GrinTransactVM {
     }
 
     func finalizeTx(slateUrl: URL) {
-        async({ () in
+        grin_async({ () in
            GrinManager.default.txFinalize(slatePath: slateUrl.path)
         },  { (result) in
             switch result {
@@ -159,7 +159,7 @@ class GrinTransactVM {
     }
 
     func sendTxByHttp(anmout: UInt64, destnation: String) {
-        async({ () in
+        grin_async({ () in
             GrinManager.default.txSend(amount: anmout, selectionStrategyIsUseAll: false, message: "Sent", dest: destnation)
         },  { (result) in
             switch result {

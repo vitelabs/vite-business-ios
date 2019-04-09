@@ -20,6 +20,7 @@ class GrinManager: GrinBridge {
     static let `default` = GrinManager()
     private let bag = DisposeBag()
     fileprivate var fileHelper = grinFileHelper()
+    static let queue = DispatchQueue(label: "net.vite.grin")
 
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     private let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
@@ -300,9 +301,9 @@ func withInMainThread(_ a: @escaping () ->  ()) {
 
 
 
-func async<T>(_ a: @escaping ()-> T,
+func grin_async<T>(_ a: @escaping ()-> T,
               _ b: @escaping (T) -> (),
-              qa: DispatchQueue = DispatchQueue.global(),
+              qa: DispatchQueue = GrinManager.queue,
               qb: DispatchQueue = DispatchQueue.main) {
     qa.async {
         let v = a()

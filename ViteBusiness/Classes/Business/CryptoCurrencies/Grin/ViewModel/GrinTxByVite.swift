@@ -408,7 +408,7 @@ extension Int {
     fileprivate static let response = 1
 }
 
-private let grinError = NSError(domain: "Grin", code: 1, userInfo: [NSLocalizedDescriptionKey: "grin tx error"])
+private let grinError = NSError(domain: "Grin", code: 1, userInfo: [NSLocalizedDescriptionKey: "grin  error"])
 private let iv = "(grin)tx?iv@vite".data(using: .utf8)
 private var pkMap = [String: String]()
 private var gateWayMap = [String: String]()

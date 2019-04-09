@@ -147,7 +147,7 @@ class GrinInfoViewController: BaseViewController {
             self.walletInfoVM.action.onNext(.getTxs(manually: true))
         })
 
-        spendableTitleLabel.text = R.string.localizable.grinBalanceSpendable()
+        spendableTitleLabel.text = " " + R.string.localizable.grinBalanceSpendable() + " "
         lockedTitleLabel.text = R.string.localizable.grinBalanceLocked()
         totalTitleLabel.text = R.string.localizable.grinBalanceTotal()
         waitingTitleLabel.text = R.string.localizable.grinBalanceAwaiting()

@@ -108,9 +108,26 @@ class SendGrinViewController: UIViewController {
         balanceBackground.backgroundColor = UIColor.init(netHex: 0xffffff)
         balanceBackground.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
         balanceBackground.layer.shadowOpacity = 0.1
-        balanceBackground.layer.shadowOffset = CGSize(width: 0, height: 5)
-        balanceBackground.layer.shadowRadius = 5
+        balanceBackground.layer.shadowOffset = CGSize(width: 0, height: 0)
+        balanceBackground.layer.shadowRadius = 4
 
+        let leftView = UIView()
+        leftView.layer.cornerRadius = 2
+        leftView.layer.masksToBounds = true
+        leftView.backgroundColor = UIColor.init(netHex: 0x759BFA)
+        balanceBackground.addSubview(leftView)
+        leftView.snp.makeConstraints { (m) in
+            m.top.left.bottom.equalToSuperview()
+            m.width.equalTo(6)
+        }
+
+        let rightView = UIView()
+        rightView.backgroundColor = UIColor.init(netHex: 0xffffff)
+        leftView.addSubview(rightView)
+        rightView.snp.makeConstraints { (m) in
+            m.top.right.bottom.equalToSuperview()
+            m.width.equalTo(3)
+        }
         amountTextField.delegate = self
 
         if self.transferMethod == .file {
@@ -188,7 +205,11 @@ extension SendGrinViewController: FloatButtonsViewDelegate {
             let scanViewController = ScanViewController()
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                self?.addressTextField.text = result
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressTextField.text = uri.address.description
+                } else {
+                    self?.addressTextField.text = result
+                }
                 scanViewController.navigationController?.popViewController(animated: true)
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)

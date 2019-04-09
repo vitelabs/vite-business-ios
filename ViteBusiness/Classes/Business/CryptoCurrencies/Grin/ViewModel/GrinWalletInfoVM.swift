@@ -67,37 +67,46 @@ final class GrinWalletInfoVM {
 
 
     func checkWallet() {
-        let result = self.grinManager.walletCheck()
-        switch result {
-        case .success:
-            self.action.onNext(.getBalance(manually: true))
-        case .failure(let error):
-            self.message.accept(error.message)
-        }
+        grin_async({ () in
+            self.grinManager.walletCheck()
+        },  { (result) in
+            switch result {
+            case .success:
+                self.action.onNext(.getBalance(manually: true))
+            case .failure(let error):
+                self.message.accept(error.message)
+            }
+        })
     }
 
     func getBalance(_ manually: Bool) {
-        let result = self.grinManager.walletInfo(refreshFromNode: true)
-        switch result {
-        case .success(let info):
-            self.balance.accept(GrinBalance(info))
-        case .failure(let error):
-            if manually { self.message.accept(error.message) }
-        }
+        grin_async({ () in
+            self.grinManager.walletInfo(refreshFromNode: true)
+        },  { (result) in
+            switch result {
+            case .success(let info):
+                self.balance.accept(GrinBalance(info))
+            case .failure(let error):
+                if manually { self.message.accept(error.message) }
+            }
+        })
     }
 
     func getTxs(_ manually: Bool) {
-        let result = self.grinManager.txsGet(refreshFromNode: true)
-        switch result {
-        case .success((_, let txs)):
-            self.txs.accept(txs.reversed())
-        case .failure(let error):
-            if manually { self.message.accept(error.message) }
-        }
+        grin_async({ () in
+            self.grinManager.txsGet(refreshFromNode: true)
+        },  { (result) in
+            switch result {
+            case .success((_, let txs)):
+                self.txs.accept(txs.reversed())
+            case .failure(let error):
+                if manually { self.message.accept(error.message) }
+            }
+        })
     }
 
     func cancel(_ tx: TxLogEntry) {
-        async({ () in
+        grin_async({ () in
             return self.grinManager.txCancel(id: UInt32(tx.id))
         },  { (result) in
             switch result {
@@ -112,7 +121,7 @@ final class GrinWalletInfoVM {
     }
 
     func repost(_ tx: TxLogEntry) {
-        async({ () in
+        grin_async({ () in
             self.grinManager.txRepost(txId: UInt32(tx.id))
         },  { (result) in
             switch result {

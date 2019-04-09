@@ -456,7 +456,7 @@
 "grin.signAndShare" = "Sign and Share Transaction File";
 
 "grin.sent.btnTitle" = "Sent";
-"grin.receive.BtnTitle" = "Received";
+"grin.receive.BtnTitle" = "Receive";
 
 "grin.notice.title" = "Notice";
 
