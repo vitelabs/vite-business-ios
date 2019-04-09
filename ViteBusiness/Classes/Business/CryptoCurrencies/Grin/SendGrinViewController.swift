@@ -181,8 +181,7 @@ class SendGrinViewController: UIViewController {
 
     @IBAction func selectAddress(_ sender: Any) {
         FloatButtonsView(targetView: self.addressButton, delegate: self, titles:
-            [R.string.localizable.sendPageViteContactsButtonTitle(),
-             R.string.localizable.grinSendPageViteContactsButtonTitle(),
+            [R.string.localizable.grinSendPageViteContactsButtonTitle(),
              R.string.localizable.sendPageScanAddressButtonTitle()]).show()
     }
 }
@@ -191,16 +190,11 @@ extension SendGrinViewController: FloatButtonsViewDelegate {
 
     func didClick(at index: Int) {
         if index == 0 {
-            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
-            let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        } else if index == 1 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.grin)
             let vc = AddressListViewController(viewModel: viewModel)
             vc.selectAddressDrive.drive(addressTextField.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        } else if index == 2 {
+        } else if index == 1 {
             let scanViewController = ScanViewController()
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in

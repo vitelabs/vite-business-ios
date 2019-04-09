@@ -52,6 +52,8 @@ class SlateViewController: UIViewController {
 
     func setUpView() {
 
+        let isResponse = opendSlateUrl?.path.contains("isResponse") ?? false
+
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
         titleView.symbolLabel.text = [
             R.string.localizable.grinSentTitle(),
@@ -60,9 +62,9 @@ class SlateViewController: UIViewController {
             ][type.rawValue]
 
         descriptionLabel.text = [
-            R.string.localizable.grinShareFileDesc(),
-            R.string.localizable.grinShareFileDesc(),
-            R.string.localizable.grinFinalizeDesc(),
+            R.string.localizable.grinTxbyfileShareSentFileDesc(),
+            R.string.localizable.grinTxbyfileReceiveSentFileDesc(),
+            R.string.localizable.grinTxbyfileFinalizeReceiveFileDesc(),
         ][type.rawValue]
 
         slateIdLabel.text = opendSlate?.id
@@ -80,9 +82,9 @@ class SlateViewController: UIViewController {
             ][type.rawValue]
 
         statusLabel.text = [
-            R.string.localizable.grinTxFileInitStatus(),
-            R.string.localizable.grinTxTypeWaitToSign(),
-            R.string.localizable.grinTxTypeReceived(),
+            R.string.localizable.grinTxbyfileInitStatusSender(),
+            R.string.localizable.grinTxbyfileInitStatusReceiver(),
+            R.string.localizable.grinTxbyfileReceivedStatusSender(),
         ][type.rawValue]
 
         slateIDLabel.text = R.string.localizable.grinTxidTitle()
@@ -99,7 +101,7 @@ class SlateViewController: UIViewController {
         transferVM.receiveSlateCreated.asObserver()
             .bind { [weak self] (slate,url) in
                 self?.operateButton.setTitle(R.string.localizable.grinShareFile(), for: .normal)
-                self?.statusLabel.text = R.string.localizable.grinTxTypeReceived()
+                self?.statusLabel.text = R.string.localizable.grinTxbyfileReceivedStatusReceiver()
                 self?.descriptionLabel.text = R.string.localizable.grinMakeSureToShare()
                 self?.shareSlate(url: url)
         }

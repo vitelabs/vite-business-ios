@@ -288,7 +288,7 @@ extension GrinManager {
         return MyTokenInfosService.instance.tokenInfo(for: .grinCoin) ??
             TokenInfo(tokenCode: .grinCoin,
                       coinType: .grin,
-                      name: "GRIN",
+                      name: "grin",
                       symbol: "GRIN",
                       decimals: 9,
                       icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
