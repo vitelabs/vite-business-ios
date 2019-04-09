@@ -168,7 +168,6 @@ class GrinTransactVM {
                 self.sendTxSuccess.onNext(Void())
             case .failure(let error):
                 if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
-
                 }
                 self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.message)

@@ -75,7 +75,6 @@ class SendGrinViewController: UIViewController {
 
         transferVM.message.asObservable()
             .bind { [weak self] message in
-                self?.transactButton.isEnabled = true
                 Toast.show(message)
             }
             .disposed(by: rx.disposeBag)

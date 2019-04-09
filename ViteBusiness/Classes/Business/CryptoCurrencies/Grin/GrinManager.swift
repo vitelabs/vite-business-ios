@@ -64,7 +64,7 @@ class GrinManager: GrinBridge {
 
 
     func configGrinWallet() {
-        self.fileHelper = grinFileHelper()
+         self.fileHelper = grinFileHelper()
         self.password =  GrinManager.getPassword()
         self.walletUrl = GrinManager.getWalletUrl()
         #if DEBUG || TEST
@@ -109,13 +109,16 @@ class GrinManager: GrinBridge {
     }
 
     func getBalance() {
-        let result = self.walletInfo(refreshFromNode: true)
-        switch result {
-        case .success(let info):
-            self.balance.accept(GrinBalance(info))
-        case .failure(let error):
-            break
-        }
+        grin_async({ () in
+            self.walletInfo(refreshFromNode: true)
+        },  { (result) in
+            switch result {
+            case .success(let info):
+                self.balance.accept(GrinBalance(info))
+            case .failure(let error):
+                break
+            }
+        })
     }
 }
 
@@ -137,7 +140,7 @@ extension GrinManager {
             let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
             vc.opendSlateUrl = url
             vc.opendSlate = slate
-            if url.path.components(separatedBy: ".").last == "response" {
+            if  url.path.contains("response") || url.path.components(separatedBy: ".").last == "response" {
                 vc.type = .finalize
             } else {
                 vc.type = .receive
@@ -162,6 +165,7 @@ extension GrinManager {
         guard let fileName = String.init(data: viteData, encoding: .utf8) else {
             return
         }
+        plog(level: .info, log: "grin-1-receiveFname.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
         let record = "\(fileName),\(fromAddress)"
         var records = [String]()
         if let data = fileHelper.contentsAtRelativePath(relativePath),
@@ -170,11 +174,15 @@ extension GrinManager {
             while records.count >= 10 {
                 records.removeFirst()
             }
+            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+
         }
         records.append(record)
         do {
             let data = try JSON(records).rawData()
             self.fileHelper.writeData(data, relativePath: self.relativePath)
+            plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+
         } catch {
 
         }
@@ -184,6 +192,7 @@ extension GrinManager {
     func handleSavedTx() {
         if isHandleingSavedTx { return }
         isHandleingSavedTx = true
+        plog(level: .info, log: "grin-4-starthandleSavedTx", tag: .grin)
 
         guard let data = fileHelper.contentsAtRelativePath(relativePath),
             let savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String] else {
@@ -203,8 +212,11 @@ extension GrinManager {
                 return
         }
 
+        plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+
         GrinTxByViteService.init().handle(fileName: fileName, fromAddress: address)
             .done {
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceSuccess.fname:\(fileName),fromAddress:\(address)", tag: .grin)
                 guard let data = self.fileHelper.contentsAtRelativePath(self.relativePath),
                     var savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String],
                     let index = savedRecords.lastIndex(of: last) else {
@@ -218,12 +230,15 @@ extension GrinManager {
 
                 }
             }
-            .catch { _ in
+            .catch { error in
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
                 self.failed.append(last)
             }
             .finally {
                 self.isHandleingSavedTx = false
                 self.handleSavedTx()
+                plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+
         }
     }
 }

@@ -30,6 +30,8 @@ final class GrinWalletInfoVM {
     let txs = BehaviorRelay<[TxLogEntry]>(value: [])
     let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
     let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+
 
     private let bag = DisposeBag()
 
@@ -67,9 +69,11 @@ final class GrinWalletInfoVM {
 
 
     func checkWallet() {
+        self.showLoading.accept(true)
         grin_async({ () in
             self.grinManager.walletCheck()
         },  { (result) in
+            self.showLoading.accept(false)
             switch result {
             case .success:
                 self.action.onNext(.getBalance(manually: true))

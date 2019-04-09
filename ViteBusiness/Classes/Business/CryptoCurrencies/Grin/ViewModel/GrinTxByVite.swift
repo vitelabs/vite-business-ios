@@ -54,7 +54,8 @@ class GrinTxByViteService {
     }
 
     func handle(fileName: String, fromAddress: String)  -> Promise<Void> {
-        let isResponse = fileName.components(separatedBy: ".").last == "response"
+        let last = fileName.components(separatedBy: ".").last
+        let isResponse = fileName.contains("response") || (last == "response") || (last == "grinslateresponse")
         if isResponse {
             return self.handle(receiveFile: fileName, fromAddress: fromAddress)
         } else {
@@ -63,40 +64,51 @@ class GrinTxByViteService {
     }
 
     func handle(sentFile fileName: String, fromAddress: String) -> Promise<Void> {
-        let isResponse = fileName.components(separatedBy: ".").last == "response"
+        plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+        let isResponse = false
         return downlodEncryptedSlateData(fileName: fileName)
             .then { (data) -> Promise<Data> in
+                plog(level: .info, log: "grin-5-handleSentFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data)
             }
             .then { (data) -> Promise<(Slate, URL)> in
+                plog(level: .info, log: "grin-6-handleSentFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
             .then { (sentSlate, url) -> Promise<Slate> in
+                plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.receiveSentSlate(with: url)
             }
             .then { (receivedSlate) -> Promise<String> in
+                plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: receivedSlate , type: .response)
             }
             .then { fname -> Promise<Void> in
+                plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.sentViteTx(toAddress: fromAddress, fileName: fname)
         }
     }
 
     func handle(receiveFile fileName: String, fromAddress: String) -> Promise<Void> {
-        let isResponse = fileName.components(separatedBy: ".").last == "response"
+        plog(level: .info, log: "grin-4-handleReceiveFileStart.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+        let isResponse = true
         var slateId: String!
         return downlodEncryptedSlateData(fileName: fileName)
             .then { (data) -> Promise<Data> in
+                plog(level: .info, log: "grin-5-handleReceiveFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data)
             }
             .then { (data) -> Promise<(Slate, URL)> in
+                plog(level: .info, log: "grin-6-handleReceiveFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
             .then { (responseSlate, url) ->  Promise<Void> in
+                plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 slateId = responseSlate.id
                 return self.finalizeResponseSlate(with: url)
             }
             .then { () -> Promise<Void> in
+                plog(level: .info, log: "grin-8-handleReceiveFile-finalizeResponseSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
                 return self.reportFinalization(slateId: slateId)
         }
     }

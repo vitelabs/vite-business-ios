@@ -110,6 +110,17 @@ class GrinInfoViewController: BaseViewController {
             .drive(onNext:{ Toast.show($0) })
             .disposed(by: rx.disposeBag)
 
+        walletInfoVM.showLoading.asObservable()
+            .bind { [weak self] showLoading in
+                if showLoading {
+                    self?.view.displayLoading()
+                } else {
+                    self?.view.hideLoading()
+                }
+            }
+            .disposed(by: rx.disposeBag)
+
+
         navigationItem.rightBarButtonItem?.rx.tap.asObservable()
             .bind { [weak self] in
                 Alert.show(title: R.string.localizable.grinWalletCheck(),
@@ -118,6 +129,7 @@ class GrinInfoViewController: BaseViewController {
                             (.cancel, nil),
                             (.default(title: R.string.localizable.confirm()), { _ in
                                 self?.walletInfoVM.action.onNext(.checkWallet)
+                                
                             }),
                     ])
             }
@@ -183,7 +195,6 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a2)
         alert.addAction(a3)
         self.present(alert, animated: true, completion: nil)
-
     }
 
     func send(use method: TransferMethod) {
@@ -296,6 +307,5 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return action
     }
-
 
 }

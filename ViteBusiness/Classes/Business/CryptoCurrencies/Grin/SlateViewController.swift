@@ -143,10 +143,25 @@ class SlateViewController: UIViewController {
     }
 
     func shareSlate(url: URL) {
-        document = UIDocumentInteractionController(url: url)
+        var finalUrl = url
+        if #available(iOS 11.0, *) {
+
+        } else if #available(iOS 10.0, *) {
+            if url.path.contains("grinslate.response") {
+               let finalPath = url.path.replacingOccurrences(of: ".grinslate.response", with: ".response.grinslate")
+                finalUrl = URL.init(fileURLWithPath: finalPath) ?? url
+                do {
+                   try  FileManager.default.moveItem(at: url, to: finalUrl)
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+
+        }
+        document = UIDocumentInteractionController(url: finalUrl)
         document.presentOpenInMenu(from: self.view.bounds, in: self.view, animated: true)
     }
-
 }
 
 extension SlateViewController : UITableViewDataSource, UITableViewDelegate {
