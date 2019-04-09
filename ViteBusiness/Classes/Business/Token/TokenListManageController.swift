@@ -105,7 +105,9 @@ class TokenListManageController: BaseViewController {
                 self?.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 for item in data {
-                    sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    if !item.isEmpty {
+                        sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    }
                 }
                 return sectionModels
             }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
