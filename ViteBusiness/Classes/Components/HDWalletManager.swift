@@ -254,7 +254,7 @@ extension HDWalletManager {
         let accounts = (0..<type(of: self).maxAddressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
         let addresses = accounts.map { $0.address }
         guard addresses.count == type(of: self).maxAddressCount else { return }
-        Provider.default.recoverAddresses(addresses)
+        ViteNode.utils.recoverAddresses(addresses)
             .done { [weak self] (count) in
                 guard let `self` = self else { return }
                 guard let wallet = self.walletBehaviorRelay.value else { return }

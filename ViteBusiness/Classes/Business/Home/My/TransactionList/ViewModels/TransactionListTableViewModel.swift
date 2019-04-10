@@ -68,14 +68,14 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
         let address = self.address
-        Provider.default.getTokenTransactions(address: address, hash: hash, tokenId: token.id, count: 10)
-            .done { [weak self] (transactions, nextHash) in
+        ViteNode.ledger.getAccountBlocks(address: address, tokenId: token.id, hash: hash, count: 10)
+            .done { [weak self] (accountBlocks, nextHash) in
                 guard let `self` = self else { return }
                 guard address.description == self.address.description else { return }
 
                 self.hash = nextHash
-                self.viewModels.addObjects(from: transactions.map {
-                    TransactionViewModel(transaction: $0)
+                self.viewModels.addObjects(from: accountBlocks.map {
+                    TransactionViewModel(accountBlock: $0)
                 })
                 self.transactions.accept(self.viewModels as! [TransactionViewModelType])
                 self.hasMore.accept(nextHash != nil)

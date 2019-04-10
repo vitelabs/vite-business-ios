@@ -226,9 +226,9 @@ extension GrinTxByViteService {
         if let pk = pkMap[address] {
             return Promise { $0.fulfill(pk) }
         } else {
-            return Provider.default.getTransactions(address: Address(string: address), hash: nil, count: 1)
-                .map{ (transactions, nextHash)  in
-                    guard let pk = transactions.first?.publicKey else {
+            return ViteNode.ledger.getAccountBlocks(address: Address(string: address), hash: nil, count: 1)
+                .map{ (accountBlocks, nextHash)  in
+                    guard let pk = accountBlocks.first?.publicKey else {
                         throw grinError("get peer Key failed")
                     }
                     pkMap[address] = pk
@@ -360,12 +360,11 @@ extension GrinTxByViteService {
     fileprivate func sendRawTx(toAddress: String, data: Data?, account: Wallet.Account) -> Promise<Void> {
         let tokenId = ViteWalletConst.viteToken.id
         let amount = Balance()
-        
-        return Provider.default.sendRawTxWithoutPow(account: account,
-                                                    toAddress: Address(string: toAddress),
-                                                    tokenId: tokenId,
-                                                    amount: amount,
-                                                    data: data)
+        return ViteNode.rawTx.send.withoutPow(account: account,
+                                              toAddress: Address(string: toAddress),
+                                              tokenId: tokenId,
+                                              amount: amount,
+                                              data: data)
             .map { _ in return Void() }
             .recover({ (e) -> Promise<Void> in
                 let code = ViteError.conversion(from: e).code
@@ -380,13 +379,13 @@ extension GrinTxByViteService {
                         return self.sendRawTx(toAddress: toAddress, data: data, account: account)
                     })
                 } else if code == ViteErrorCode.rpcNotEnoughQuota {
-                    return Provider.default.getPowForSendRawTx(account: account,
-                                                               toAddress: Address(string: toAddress),
-                                                               tokenId: tokenId,
-                                                               amount: amount,
-                                                               data: data)
+                    return ViteNode.rawTx.send.getPow(account: account,
+                                                      toAddress: Address(string: toAddress),
+                                                      tokenId: tokenId,
+                                                      amount: amount,
+                                                      data: data)
                         .then({ (context) -> Promise<Void> in
-                            return Provider.default.sendRawTxWithContext(context).map { _ in return Void() }
+                            return ViteNode.rawTx.send.context(context).map { _ in return Void() }
                         })
                 } else {
                     return Promise(error: e)

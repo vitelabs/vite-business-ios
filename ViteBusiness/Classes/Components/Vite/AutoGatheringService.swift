@@ -114,12 +114,12 @@ extension AutoGatheringService {
         }
 
         static func receive(onroadBlock: AccountBlock, account: Wallet.Account) -> Promise<(AccountBlock, AccountBlock, Wallet.Account)> {
-            return Provider.default.receiveTransactionWithoutPow(account: account, onroadBlock: onroadBlock)
+            return ViteNode.rawTx.receive.withoutPow(account: account, onroadBlock: onroadBlock)
                 .recover({ (e) -> Promise<AccountBlock> in
                     if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                        return Provider.default.getPowForReceiveTransaction(account: account, onroadBlock: onroadBlock)
+                        return ViteNode.rawTx.receive.getPow(account: account, onroadBlock: onroadBlock)
                         .then({ context -> Promise<AccountBlock> in
-                            return Provider.default.sendRawTxWithContext(context)
+                            return ViteNode.rawTx.receive.context(context)
                         })
                     } else {
                         return Promise(error: e)

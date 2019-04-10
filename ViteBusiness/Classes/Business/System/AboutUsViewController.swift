@@ -134,7 +134,7 @@ extension AboutUsViewController {
     }
 
     func getSnapshotChainHeight() {
-        Provider.default.getSnapshotChainHeight()
+        GetSnapshotChainHeightRequest().defaultProviderPromise
             .done { [weak self] (height) in
                 guard let `self` = self else { return }
                 guard let cell = self.form.rowBy(tag: "aboutUsPageCellBlockHeight") as? LabelRow else { return }

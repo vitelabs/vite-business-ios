@@ -84,7 +84,7 @@ final class MyVoteInfoViewReactor: Reactor {
 
     func fetchVoteInfo(_ address: String) -> Observable<(VoteInfo?, Error? )> {
         return Observable<(VoteInfo?, Error?)>.create({ (observer) -> Disposable in
-            Provider.default.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: Address(string: address))
+            ViteNode.vote.info.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: Address(string: address))
                 .done { (voteInfo) in
                     plog(level: .debug, log: String.init(format: "fetchVoteInfo  success address=%@, voteInfo.nodeName = %@", address, voteInfo?.nodeName ?? ""), tag: .vote)
                     observer.onNext((voteInfo, nil))

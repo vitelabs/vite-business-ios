@@ -92,10 +92,10 @@ final class PledgeHistoryViewReactor: Reactor {
         if refresh { index = 0 }
 
         return Observable<([Pledge]?, String?)>.create({ (observer) -> Disposable in
-            Provider.default.getPledges(address: self.address, index: self.index, count: 50)
-                .done { [weak self] (pledges) in
+            ViteNode.pledge.info.getPledgeDetail(address: self.address, index: self.index, count: 50)
+                .done { [weak self] (pledgeDetail) in
                     self?.index += 1
-                    observer.onNext((pledges, nil))
+                    observer.onNext((pledgeDetail.list, nil))
                     observer.onCompleted()
                 }
                 .catch { (error) in
