@@ -52,22 +52,24 @@ class GrinTeachViewController: UIViewController {
         var desc = ""
 
         if channelType == .vite {
-            titleLabel.text = R.string.localizable.grinTeachViteTitle()
             imageView.image = R.image.grin_tx_vite()
             if self.txType == .sent {
+                titleLabel.text = R.string.localizable.grinTeachViteSentTitle()
                 desc =  R.string.localizable.grinSentUseViteDesc()
             } else if txType == .receive {
+                titleLabel.text = R.string.localizable.grinTeachViteReceiveTitle()
                 desc = R.string.localizable.grinReceiveByViteDesc()
                 addressLabel.text = "  \(HDWalletManager.instance.accounts.first?.address.description ?? "")  "
                 addressTitleLabel.text = R.string.localizable.grinViteAddress()
             }
         } else if channelType == .http {
             viteInfoButton.isHidden = true
-            titleLabel.text =  R.string.localizable.grinTeachHttpTitle()
             imageView.image = R.image.grin_tx_http()
             if self.txType == .sent {
+                titleLabel.text = R.string.localizable.grinTeachHttpSentTitle()
                 desc =  R.string.localizable.grinSentUseHttpDesc()
             } else if txType == .receive {
+                titleLabel.text = R.string.localizable.grinTeachHttpReceiveTitle()
                 desc = R.string.localizable.grinReceiveByHttpDesc()
                 addressTitleLabel.text = R.string.localizable.grinHttpAddress()
                 GrinTxByViteService().getGateWay().done { (string) in

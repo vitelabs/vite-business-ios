@@ -71,7 +71,7 @@ final class GrinWalletInfoVM {
     func checkWallet() {
         self.showLoading.accept(true)
         grin_async({ () in
-            self.grinManager.walletCheck()
+            self.grinManager.walletRestore()
         },  { (result) in
             self.showLoading.accept(false)
             switch result {

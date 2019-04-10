@@ -55,6 +55,8 @@ class SlateViewController: UIViewController {
         let isResponse = opendSlateUrl?.path.contains("isResponse") ?? false
 
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
+        titleView.tokenIconView.set(cornerRadius: 25)
+
         titleView.symbolLabel.text = [
             R.string.localizable.grinSentTitle(),
             R.string.localizable.grinReceiveTitle(),
