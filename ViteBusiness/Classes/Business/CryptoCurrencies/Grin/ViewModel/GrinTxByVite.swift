@@ -20,8 +20,6 @@ import Vite_HDWalletKit
 
 class GrinTxByViteService {
 
-    static let instance = GrinTxByViteService()
-
     fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
 
     func getGateWay() -> Promise<String> {
@@ -38,6 +36,7 @@ class GrinTxByViteService {
     func sentGrin(amount: UInt64, to toAddress: String) -> Promise<Void> {
         return creatSentSlate(amount: amount)
             .map { (slate) -> (Slate, URL) in
+                plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
                 do {
                     let url = try self.save(slate: slate, isResponse: false)
                     return (slate, url)
@@ -46,16 +45,17 @@ class GrinTxByViteService {
                 }
             }
             .then { (sentSlate, url) ->  Promise<String> in
+                plog(level: .info, log: "grin-1-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
                 return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent)
             }
             .then { (fname) ->  Promise<Void> in
+                plog(level: .info, log: "grin-2-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
                 return self.sentViteTx(toAddress: toAddress, fileName: fname)
         }
     }
 
     func handle(fileName: String, fromAddress: String)  -> Promise<Void> {
-        let last = fileName.components(separatedBy: ".").last
-        let isResponse = fileName.contains("response") || (last == "response") || (last == "grinslateresponse")
+        let isResponse = fileName.contains("response")
         if isResponse {
             return self.handle(receiveFile: fileName, fromAddress: fromAddress)
         } else {
@@ -255,43 +255,46 @@ extension GrinTxByViteService {
                     seal.reject(grinError)
                     return
             }
-            DispatchQueue.global().async {
-                let result = GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "Sent")
+            grin_async({ () in
+                GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "Sent")
+            }, { (result) in
                 do {
                     let slate = try result.dematerialize()
                     seal.fulfill(slate)
                 } catch {
                     seal.reject(error)
                 }
-            }
+            })
         }
     }
 
     fileprivate func receiveSentSlate(with url: URL) -> Promise<Slate> {
         return Promise { seal in
-            DispatchQueue.main.async {
-                let result = GrinManager.default.txReceive(slatePath: url.path, message: "Received")
+            grin_async({ () in
+                GrinManager.default.txReceive(slatePath: url.path, message: "Received")
+            }, { (result) in
                 do {
                     let slate = try result.dematerialize()
                     seal.fulfill(slate)
                 } catch {
                     seal.reject(error)
                 }
-            }
+            })
         }
     }
 
     fileprivate func finalizeResponseSlate(with url: URL) -> Promise<Void> {
         return Promise { seal in
-            DispatchQueue.global().async {
-                let result = GrinManager.default.txFinalize(slatePath: url.path)
+            grin_async({ () in
+                GrinManager.default.txFinalize(slatePath: url.path)
+            }, { (result) in
                 do {
                     let slate = try result.dematerialize()
                     seal.fulfill(())
                 } catch {
                     seal.reject(error)
                 }
-            }
+            })
         }
     }
 
@@ -336,19 +339,16 @@ extension GrinTxByViteService {
     }
 
     fileprivate func sentViteTx(toAddress: String, fileName: String) -> Promise<Void> {
-        testFname = fileName
         guard let payload = fileName.data(using: .utf8),
             let account = HDWalletManager.instance.account else {
                 return Promise(error: grinError)
         }
-
         let dataHeader = Data(Bytes(arrayLiteral: 0x80, 0x01))
         let data = (dataHeader + payload)
         return sendRawTx(toAddress: toAddress, data: data)
     }
 
     fileprivate func sendRawTx(toAddress: String, data: Data?) -> Promise<Void> {
-
         guard let account = HDWalletManager.instance.account else {
             return Promise(error: grinError)
         }
@@ -388,31 +388,6 @@ extension GrinTxByViteService {
             })
     }
 
-    func test()  {
-        reportViteAddress()
-            .done { _ in
-                print("done")
-            }
-            .catch { (error) in
-                print(error.localizedDescription)
-        }
-
-        let address = HDWalletManager.instance.account!.address.description
-        sentGrin(amount: 1, to: address)
-            .then {
-                self.handle(sentFile: testFname, fromAddress: address)
-            }
-            .then {
-                self.handle(receiveFile: testFname, fromAddress: address)
-            }
-            .done {
-                print("done")
-            }
-            .catch { (error) in
-                print(error.localizedDescription)
-        }
-    }
-
 }
 
 extension Int {
@@ -420,9 +395,8 @@ extension Int {
     fileprivate static let response = 1
 }
 
-private let grinError = NSError(domain: "Grin", code: 1, userInfo: [NSLocalizedDescriptionKey: "grin  error"])
+private let grinError = NSError(domain: "Grin", code: 1, userInfo: [NSLocalizedDescriptionKey: "grin error"])
 private let iv = "(grin)tx?iv@vite".data(using: .utf8)
 private var pkMap = [String: String]()
 private var gateWayMap = [String: String]()
-private var testFname: String!
 

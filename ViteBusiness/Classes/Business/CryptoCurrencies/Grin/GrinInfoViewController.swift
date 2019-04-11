@@ -23,6 +23,7 @@ func businessBundle() -> Bundle {
 
 class GrinInfoViewController: BaseViewController {
 
+
     @IBOutlet weak var transcationTiTleLabel: UILabel!
     @IBOutlet weak var titleView: BalanceInfoNavView!
     @IBOutlet weak var grinCardBgView: UIImageView!
@@ -37,6 +38,8 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lockedCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lineImageVIew: UIImageView!
+    @IBOutlet weak var receiveBtn: UIButton!
+    @IBOutlet weak var sendBtn: UIButton!
 
     lazy var emptyView: UIView = {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 170))
@@ -58,10 +61,6 @@ class GrinInfoViewController: BaseViewController {
         })
         return view
     }()
-
-
-    @IBOutlet weak var receiveBtn: UIButton!
-    @IBOutlet weak var sendBtn: UIButton!
 
     let walletInfoVM = GrinWalletInfoVM()
     
@@ -110,16 +109,15 @@ class GrinInfoViewController: BaseViewController {
             .drive(onNext:{ Toast.show($0) })
             .disposed(by: rx.disposeBag)
 
-        walletInfoVM.showLoading.asObservable()
-            .bind { [weak self] showLoading in
+        walletInfoVM.showLoadingDriver
+            .drive(onNext:{ [weak self] showLoading in
                 if showLoading {
                     self?.view.displayLoading()
                 } else {
                     self?.view.hideLoading()
                 }
-            }
+            })
             .disposed(by: rx.disposeBag)
-
 
         navigationItem.rightBarButtonItem?.rx.tap.asObservable()
             .bind { [weak self] in
@@ -188,7 +186,6 @@ class GrinInfoViewController: BaseViewController {
             self.send(use: .file)
         }
         let a3 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
         alert.addAction(a1)
@@ -253,12 +250,30 @@ class GrinInfoViewController: BaseViewController {
             }
         }
 
-        let a2 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }
+        let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
+            let webvc = WKWebViewController(url: URL.init(string: "http://www.baidu.com")!)
+            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+        }
+        let a3 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
         alert.addAction(a1)
         alert.addAction(a2)
+        alert.addAction(a3)
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private var tapCount = 0
+    @IBAction func uploadLog(_ sender: Any) {
+        if tapCount <= 2 {
+            tapCount += 1
+            return
+        }
+        tapCount = 0
+        let cachePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        let logURL = cachePath.appendingPathComponent("logger.log")
+        let activityViewController = UIActivityViewController(activityItems: [logURL], applicationActivities: nil)
+        UIViewController.current?.present(activityViewController, animated: true)
     }
 }
 

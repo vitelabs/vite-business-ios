@@ -40,11 +40,15 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a7-bK-pCP">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a7-bK-pCP">
                                         <rect key="frame" x="302" y="14" width="11" height="28"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="aOi-gz-G0x" appends="YES" id="Q3Q-z2-0Tu"/>
+                                        </connections>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="≈-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjU-06-T11">
                                         <rect key="frame" x="297.5" y="48" width="15.5" height="17"/>
@@ -149,6 +153,7 @@
                                     <constraint firstItem="5wp-QR-z2e" firstAttribute="top" secondItem="dQO-kL-GJJ" secondAttribute="bottom" constant="8" id="RMB-0m-va6"/>
                                     <constraint firstItem="Foe-va-PhD" firstAttribute="top" secondItem="Kmr-eG-9Nr" secondAttribute="top" constant="7" id="VVk-kl-nGS"/>
                                     <constraint firstItem="Foe-va-PhD" firstAttribute="centerX" secondItem="Kmr-eG-9Nr" secondAttribute="centerX" id="Wlc-ck-orl"/>
+                                    <constraint firstItem="7a7-bK-pCP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YDR-WM-f0Y" secondAttribute="trailing" constant="10" id="Y2w-yP-9Ea"/>
                                     <constraint firstItem="avc-Ax-cnF" firstAttribute="bottom" secondItem="Kmr-eG-9Nr" secondAttribute="bottom" id="bMl-2w-hhk"/>
                                     <constraint firstAttribute="trailing" secondItem="wR4-iR-AxT" secondAttribute="trailing" constant="14" id="cId-Hc-48L"/>
                                     <constraint firstAttribute="trailing" secondItem="7a7-bK-pCP" secondAttribute="trailing" constant="14" id="eNQ-Y0-Say"/>
@@ -227,6 +232,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCR-8L-rfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="4" id="aOi-gz-G0x">
+                    <connections>
+                        <action selector="uploadLog:" destination="EfW-ft-biG" id="y2X-N4-Czd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-191.19999999999999" y="-509.59520239880067"/>
         </scene>

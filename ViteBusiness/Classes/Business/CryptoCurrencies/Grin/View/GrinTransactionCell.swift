@@ -19,7 +19,6 @@ class GrinTransactionCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     func bind(_ tx: TxLogEntry) {
-
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)

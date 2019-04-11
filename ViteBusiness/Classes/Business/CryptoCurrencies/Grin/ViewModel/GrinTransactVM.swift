@@ -146,7 +146,7 @@ class GrinTransactVM {
         if let destnation = destnation {
            if Address.isValid(string: destnation) {
                 self.sendButtonEnabled.accept(false)
-                self.sendTxByVite(anmout: amount, destnation: destnation)
+                self.sendTxByVite(amount: amount, destnation: destnation)
             } else if let url = URL(string: destnation) {
                 self.sendButtonEnabled.accept(false)
                 self.sendTxByHttp(anmout: amount, destnation: destnation)
@@ -175,13 +175,15 @@ class GrinTransactVM {
         })
     }
 
-    func sendTxByVite(anmout: UInt64, destnation: String)  {
-        viteService.sentGrin(amount: anmout, to: destnation)
+    func sendTxByVite(amount: UInt64, destnation: String)  {
+        viteService.sentGrin(amount: amount, to: destnation)
             .done {
+                plog(level: .info, log: "grin-3-sendGrin-sendGrinSuccess.amount:\(amount),destnation:\(destnation)", tag: .grin)
                 self.message.onNext(R.string.localizable.grinSentViteSuccess())
                 self.sendTxSuccess.onNext(Void())
             }
             .catch { (error) in
+                plog(level: .info, log: "grin-3-sendGrin-sendGrinFailed.amount:\(amount),destnation:\(destnation)", tag: .grin)
                 self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.localizedDescription)
         }

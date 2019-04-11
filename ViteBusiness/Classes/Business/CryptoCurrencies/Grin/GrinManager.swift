@@ -26,7 +26,6 @@ class GrinManager: GrinBridge {
     private let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
 
     private var receivedSlateUrl: URL?
-
     var failed = [String]()
     var isHandleingSavedTx = false
 
@@ -64,7 +63,7 @@ class GrinManager: GrinBridge {
 
 
     func configGrinWallet() {
-         self.fileHelper = grinFileHelper()
+        self.fileHelper = grinFileHelper()
         self.password =  GrinManager.getPassword()
         self.walletUrl = GrinManager.getWalletUrl()
         #if DEBUG || TEST
@@ -140,7 +139,7 @@ extension GrinManager {
             let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
             vc.opendSlateUrl = url
             vc.opendSlate = slate
-            if  url.path.contains("response") || url.path.components(separatedBy: ".").last == "response" {
+            if  url.path.contains("response") {
                 vc.type = .finalize
             } else {
                 vc.type = .receive
@@ -309,7 +308,6 @@ extension GrinManager {
     }
 }
 
-
 func withInMainThread(_ a: @escaping () ->  ()) {
     if Thread.isMainThread {
         a()
@@ -319,8 +317,6 @@ func withInMainThread(_ a: @escaping () ->  ()) {
         }
     }
 }
-
-
 
 func grin_async<T>(_ a: @escaping ()-> T,
               _ b: @escaping (T) -> (),

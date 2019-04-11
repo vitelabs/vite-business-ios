@@ -25,8 +25,6 @@ class GrinTeachViewController: UIViewController {
         case receive
     }
 
-    var setting: [String: Bool] = [:]
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noiceDetailLabel: UILabel!
@@ -35,22 +33,20 @@ class GrinTeachViewController: UIViewController {
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var notSeeLabel: UILabel!
-    
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var noiceTitleLabel: UILabel!
-
     @IBOutlet weak var viteInfoButton: UIButton!
     @IBOutlet weak var copyBtn: UIButton!
+
+    var setting: [String: Bool] = [:]
     var txType: TxType = .sent
     var channelType: TransferMethod = .vite
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         var desc = ""
-
         if channelType == .vite {
             imageView.image = R.image.grin_tx_vite()
             if self.txType == .sent {
@@ -96,7 +92,6 @@ class GrinTeachViewController: UIViewController {
         noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
         copyBtn.setTitle(R.string.localizable.grinTxCopyId(), for: .normal)
         notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func closeAction(_ sender: Any) {

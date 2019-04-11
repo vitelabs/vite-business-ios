@@ -21,17 +21,17 @@ final class GrinWalletInfoVM {
         case repost(TxLogEntry)
     }
 
-    let grinManager = GrinManager.default
+    var grinManager:GrinManager { return GrinManager.default }
     let action = PublishSubject<GrinWalletInfoVM.Action>()
     
     lazy var txsDriver: Driver<[TxLogEntry]> = self.txs.asDriver()
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     lazy var messageDriver: Driver<String?> = self.message.asDriver()
+    lazy var showLoadingDriver: Driver<Bool> = self.showLoading.asDriver()
     let txs = BehaviorRelay<[TxLogEntry]>(value: [])
     let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
     let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
 
     private let bag = DisposeBag()
 
@@ -54,16 +54,16 @@ final class GrinWalletInfoVM {
         })
         .disposed(by: bag)
 
-        Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
-            .map { _ in Action.getBalance(manually: false) }
-            .bind(to: self.action)
-            .disposed(by: bag)
-
         balance.asObservable()
             .skip(1)
             .distinctUntilChanged { $0.amountCurrentlySpendable == $1.amountCurrentlySpendable }
             .map { _ in  Action.getTxs(manually: false) }
             .bind(to: self.action)
+            .disposed(by: bag)
+
+
+        GrinManager.default.balanceDriver.asObservable()
+            .bind(to: self.balance)
             .disposed(by: bag)
     }
 

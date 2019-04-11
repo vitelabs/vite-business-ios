@@ -52,7 +52,7 @@ class SlateViewController: UIViewController {
 
     func setUpView() {
 
-        let isResponse = opendSlateUrl?.path.contains("isResponse") ?? false
+        let isResponse = opendSlateUrl?.path.contains("response") ?? false
 
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
         titleView.tokenIconView.set(cornerRadius: 25)
