@@ -187,7 +187,7 @@ class GrinInfoViewController: BaseViewController {
         let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
             self.send(use: .file)
         }
-        let a3 = UIAlertAction.init(title: R.string.localizable.grinTxCancele(), style: .cancel) { _ in }
+        let a3 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
 
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
@@ -253,7 +253,7 @@ class GrinInfoViewController: BaseViewController {
             }
         }
 
-        let a2 = UIAlertAction.init(title:  R.string.localizable.grinTxCancele(), style: .cancel) { _ in }
+        let a2 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(a0)
         alert.addAction(a1)

@@ -29,7 +29,7 @@
                                 <rect key="frame" x="24" y="88" width="327" height="201"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spendable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDR-WM-f0Y">
-                                        <rect key="frame" x="16" y="16" width="61" height="15"/>
+                                        <rect key="frame" x="16" y="20.5" width="61" height="15"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.070000000000000007" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="0.69606164383561642" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,7 +155,6 @@
                                     <constraint firstItem="CMr-Qa-D2T" firstAttribute="leading" secondItem="jJb-g3-lQ7" secondAttribute="leading" constant="14" id="f65-NT-aBd"/>
                                     <constraint firstAttribute="trailing" secondItem="KLz-YT-7vq" secondAttribute="trailing" constant="14" id="fBW-5B-LvA"/>
                                     <constraint firstItem="5wp-QR-z2e" firstAttribute="leading" secondItem="jJb-g3-lQ7" secondAttribute="leading" constant="14" id="iTh-hS-rwt"/>
-                                    <constraint firstItem="YDR-WM-f0Y" firstAttribute="top" secondItem="jJb-g3-lQ7" secondAttribute="top" constant="16" id="iec-TR-27r"/>
                                     <constraint firstItem="avc-Ax-cnF" firstAttribute="leading" secondItem="Foe-va-PhD" secondAttribute="trailing" id="lQy-TS-XLR"/>
                                     <constraint firstItem="gha-QF-rWc" firstAttribute="bottom" secondItem="Kmr-eG-9Nr" secondAttribute="bottom" id="mhF-5m-4Ff"/>
                                     <constraint firstAttribute="trailing" secondItem="FIR-Wa-Bai" secondAttribute="trailing" constant="14" id="ooh-0A-e9c"/>
@@ -167,6 +166,7 @@
                                     <constraint firstAttribute="height" constant="201" id="tWu-S0-WfR"/>
                                     <constraint firstItem="FIR-Wa-Bai" firstAttribute="top" secondItem="CMr-Qa-D2T" secondAttribute="top" id="uqh-OE-860"/>
                                     <constraint firstItem="7a7-bK-pCP" firstAttribute="top" secondItem="jJb-g3-lQ7" secondAttribute="top" constant="14" id="wxc-df-OaB"/>
+                                    <constraint firstItem="YDR-WM-f0Y" firstAttribute="centerY" secondItem="7a7-bK-pCP" secondAttribute="centerY" id="x1g-49-4Lv"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

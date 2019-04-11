@@ -162,7 +162,9 @@ extension GrinManager {
     var relativePath: String { return "viteTxData" }
 
     func handle(viteData: Data, fromAddress: String)  {
+        plog(level: .info, log: "grin-0-handle(viteData,fromAddress:\(fromAddress)", tag: .grin)
         guard let fileName = String.init(data: viteData, encoding: .utf8) else {
+            plog(level: .info, log: "grin-1-receiveFname.fname:failed", tag: .grin)
             return
         }
         plog(level: .info, log: "grin-1-receiveFname.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
@@ -175,28 +177,30 @@ extension GrinManager {
                 records.removeFirst()
             }
             plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-
         }
         records.append(record)
         do {
             let data = try JSON(records).rawData()
             self.fileHelper.writeData(data, relativePath: self.relativePath)
             plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-
         } catch {
-
+            plog(level: .info, log: "grin-3-saveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
         }
         handleSavedTx()
     }
 
     func handleSavedTx() {
-        if isHandleingSavedTx { return }
+        if isHandleingSavedTx {
+            plog(level: .info, log: "grin-4-starthandleSavedTx-isHandleingSavedTx", tag: .grin)
+            return
+        }
         isHandleingSavedTx = true
         plog(level: .info, log: "grin-4-starthandleSavedTx", tag: .grin)
 
         guard let data = fileHelper.contentsAtRelativePath(relativePath),
             let savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String] else {
                 isHandleingSavedTx = false
+                plog(level: .info, log: "grin-4-readSaveTxsFailed.", tag: .grin)
                 return
         }
 
@@ -209,10 +213,11 @@ extension GrinManager {
             let fileName = last.components(separatedBy: ",").first,
             let address = last.components(separatedBy: ",").last else {
                 isHandleingSavedTx = false
+                plog(level: .info, log: "grin-4-paresSavedTxsFailed", tag: .grin)
                 return
         }
 
-        plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+        plog(level: .info, log: "grin-4-GrinTxByViteServiceHandle.fname:\(fileName),fromAddress:\(address)", tag: .grin)
 
         GrinTxByViteService.init().handle(fileName: fileName, fromAddress: address)
             .done {
@@ -220,6 +225,7 @@ extension GrinManager {
                 guard let data = self.fileHelper.contentsAtRelativePath(self.relativePath),
                     var savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String],
                     let index = savedRecords.lastIndex(of: last) else {
+                        plog(level: .info, log: "grin-10-readSaveTxsFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
                         return
                 }
                 savedRecords.remove(at: index)
@@ -227,7 +233,7 @@ extension GrinManager {
                     let newData = try JSON(savedRecords).rawData()
                     self.fileHelper.writeData(newData, relativePath: self.relativePath)
                 } catch {
-
+                    plog(level: .info, log: "grin-10-SaveTxsFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
                 }
             }
             .catch { error in
