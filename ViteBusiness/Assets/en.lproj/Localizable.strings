@@ -464,3 +464,7 @@
 "grin.txbyfile.initStatus.receiver" = "Unreceived";
 "grin.txbyfile.receivedStatus.receiver" = "Received";
 "grin.txbyfile.receivedStatus.sender" = "Awaiting Finalize";
+
+"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
+"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
+

@@ -871,7 +871,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 375 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 377 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1177,6 +1177,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxCopyId = Rswift.StringResource(key: "grin.tx.copyId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Creat and sync, 3 mins estimated
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinCreatSyncronizing = Rswift.StringResource(key: "grin.creat.syncronizing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Create
       /// 
       /// Locales: en, zh-Hans
@@ -1769,6 +1773,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageToAddressTitle = Rswift.StringResource(key: "send.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recover and sync, 3 mins estimated
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinRecoverSyncronizing = Rswift.StringResource(key: "grin.recover.syncronizing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, zh-Hans
@@ -2906,6 +2914,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.tx.copyId", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Creat and sync, 3 mins estimated
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinCreatSyncronizing(_: Void = ()) -> String {
+        return NSLocalizedString("grin.creat.syncronizing", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Create
       /// 
       /// Locales: en, zh-Hans
@@ -3940,6 +3955,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageToAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recover and sync, 3 mins estimated
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinRecoverSyncronizing(_: Void = ()) -> String {
+        return NSLocalizedString("grin.recover.syncronizing", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Refresh
