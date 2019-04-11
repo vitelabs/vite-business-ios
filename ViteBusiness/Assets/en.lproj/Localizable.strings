@@ -393,7 +393,7 @@
 "grin.wallet.check" = "Check";
 "grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.";
 "grin.txType.sent" = "Sent";
-"grin.txType.waitToSign" = "Unsigned";
+"grin.txType.waitToSign" = "Unreceived";
 "grin.txType.received" = "Received";
 "grin.txType.waitToFinalize" = "Unfinalized";
 "grin.txType.finalized" = "Finalized";
@@ -407,7 +407,7 @@
 "grin.tx.useVite" = "Use VITE Address";
 "grin.sent.useVite.desc" = "Transfer GRIN through VITE Address is sharing transaction file encrypted by Vite through VITE Address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE Address can be used to send or receive GRIN.";
 "grin.sent.useHttp" = "Use Http Address";
-"grin.sent.useHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a "Confirmed" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN.\nThe transfer amount should be no less than 0.1 GRIN.";
+"grin.sent.useHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a \"Confirmed\" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN.\nThe transfer amount should be no less than 0.1 GRIN.";
 "grin.sent.useFile" = "Use Transaction File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
@@ -445,8 +445,10 @@
 "grin.sent.btnTitle" = "Transfer";
 "grin.receive.BtnTitle" = "Receive";
 "grin.notice.title" = "Notice";
-"grin.teach.vite.title" = "Receive GRIN through VITE Address";
-"grin.teach.http.title" = "Receive GRIN though Http Address";
+"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
+"grin.teach.http.receive.title" = "Receive GRIN though Http Address";
+"grin.teach.vite.sent.title" = "Transfer GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Transfer GRIN though Http Address";
 "grin.txid.title" = "Transaction ID";
 "grin.switchAddress" = "Switch Address";
 "grin.http.address" = "Http Address";

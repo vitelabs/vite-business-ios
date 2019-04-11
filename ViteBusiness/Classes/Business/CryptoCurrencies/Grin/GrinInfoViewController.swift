@@ -251,7 +251,13 @@ class GrinInfoViewController: BaseViewController {
         }
 
         let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
-            let webvc = WKWebViewController(url: URL.init(string: "http://www.baidu.com")!)
+            var url: URL!
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                url = URL(string: "https://forum.vite.net/topic/1335/%E5%9C%A8vite%E9%92%B1%E5%8C%85%E4%B8%8A%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86grin%E4%BA%A4%E6%98%93%E6%96%87%E4%BB%B6")
+            } else {
+                url = URL(string: "https://forum.vite.net/topic/1334/how-to-use-vite-wallet-to-receive-a-grin-via-files")
+            }
+            let webvc = WKWebViewController(url: url)
             UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
         }
         let a3 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }

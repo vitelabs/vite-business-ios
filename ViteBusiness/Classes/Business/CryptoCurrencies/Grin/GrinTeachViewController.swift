@@ -87,6 +87,8 @@ class GrinTeachViewController: UIViewController {
             infoView.isHidden = true
         } else if txType == .receive {
             closeButton.isHidden = true
+            settingButton.isHidden = true
+            notSeeLabel.isHidden = true
         }
 
         noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
@@ -111,7 +113,7 @@ class GrinTeachViewController: UIViewController {
     @IBAction func copyAction(_ sender: Any) {
         if channelType == .vite {
             UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
-            Toast.show(R.string.localizable.grinThisIsFirstViteAddress())
+            Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
         } else if channelType == .http {
             GrinTxByViteService().getGateWay().done { (string) in
                 UIPasteboard.general.string = string
