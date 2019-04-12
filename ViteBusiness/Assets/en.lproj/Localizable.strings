@@ -403,7 +403,7 @@
 "grin.tx.Cancele" = "Canceled";
 "grin.tx.Repost" = "Repost";
 "grin.tx.copyId" = "Copy";
-"grin.useFirstViteAddress" = "To transfer GRIN through VITE Address or Http Address, please switch to the first VITE Address in your VITE Address Book";
+"grin.useFirstViteAddress" = "To transfer GRIN through VITE address or Http address, please switch to the first VITE address.";
 "grin.tx.useVite" = "Use VITE Address";
 "grin.sent.useVite.desc" = "Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE address can be used to transfer or receive GRIN.";
 "grin.sent.useHttp" = "Use Http Address";
@@ -427,7 +427,7 @@
 "grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
 "grin.sent.next" = "Next";
 "grin.sent.suggest.useVite.title" = "Notice";
-"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended for it is safer and cheaper.";
+"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.";
 "grin.sent.switch" = "VITE Address";
 "grin.sent.stillUseHttp" = "Http Address";
 "grin.sent.http.success" = "You have successfully sent GRIN transfer request";
