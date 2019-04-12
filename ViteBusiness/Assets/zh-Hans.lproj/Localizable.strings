@@ -443,7 +443,7 @@
 "grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
 "grin.receiveByHttp.addressCopyed" = "您的GRIN收款Http地址已复制至剪贴板";
 "grin.receiveByHttp.desc" = "通过Http地址收转GRIN，如上图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。另外请注意只有当您使用您的第一个VITE地址时才能收到GRIN。";
-"grin.receive.title" = "GRIN收款";
+"grin.receive.title" = "GRIN转账";
 "grin.receive.sented" = "已传送";
 "grin.creatTime" = "生成时间";
 "grin.signAndShare" = "签收并分享";
