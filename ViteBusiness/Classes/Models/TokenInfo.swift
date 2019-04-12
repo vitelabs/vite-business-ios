@@ -11,6 +11,7 @@ import ViteWallet
 public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
+    case grin = "GRIN"
 
     var name: String {
         switch self {
@@ -18,10 +19,12 @@ public enum CoinType: String {
             return "VITE"
         case .eth:
             return "ETH"
+        case .grin:
+            return "GRIN"
         }
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth]
+    static var allTypes: [CoinType] = [.vite, .eth, .grin]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -39,6 +42,13 @@ public enum CoinType: String {
                 UIColor(netHex: 0x429321),
                 UIColor(netHex: 0xB4EC51),
             ]
+        case .grin:
+            return [
+                UIColor(netHex: 0xFF5C00),
+                UIColor(netHex: 0xFFC800)
+            ]
+        default:
+            fatalError()
         }
     }
 
@@ -48,6 +58,10 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF)
         case .eth:
             return UIColor(netHex: 0x5BC500)
+        case .grin:
+            return UIColor(netHex: 0xFF9C00)
+        default:
+            fatalError()
         }
     }
 
@@ -57,6 +71,10 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF, alpha: 0.67)
         case .eth:
             return UIColor(netHex: 0x5BC500)
+        case .grin:
+            return UIColor(netHex: 0xFF9C00)
+        default:
+            fatalError()
         }
     }
 
@@ -66,6 +84,10 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
+        case .grin:
+            return UIColor(netHex: 0xFFF9E1)
+        default:
+            fatalError()
         }
     }
 }
@@ -83,10 +105,14 @@ extension TokenCode {
     public static var viteERC20: String {
         return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "6"
     }
+    public static var grinCoin: String {
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1174" : "10"
+    }
     #else
     public static let viteCoin = "1171"
     public static let etherCoin = "1"
     public static let viteERC20 = "41"
+    public static let grinCoin = "1174"
     #endif
 }
 
@@ -114,6 +140,10 @@ public struct TokenInfo: Mappable {
             } else {
                 return "ERC20 Token"
             }
+        case .grin:
+             return "Grin Coin"
+        default:
+            fatalError()
         }
     }
 
@@ -125,7 +155,11 @@ public struct TokenInfo: Mappable {
         return id
     }
 
-    public init?(map: Map) {}
+    public init?(map: Map) {
+        guard let type = map.JSON["platform"] as? String, let _ = CoinType(rawValue: type) else {
+            return nil
+        }
+    }
 
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
@@ -170,6 +204,8 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionViteHeader()
         }else if self.coinType == .eth {
             return R.string.localizable.tokenListPageSectionEthHeader()
+        }else if self.coinType == .grin {
+            return R.string.localizable.tokenListPageSectionGrinHeader()
         }
         return ""
     }
@@ -209,6 +245,8 @@ extension TokenInfo {
         }
     }
 
+
+
     var coinBackgroundGradientColors: [UIColor] {
         return coinType.backgroundGradientColors
     }
@@ -224,4 +262,5 @@ extension TokenInfo {
     var shadowColor: UIColor {
         return coinType.shadowColor
     }
+
 }

@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import ViteUtils
 import ObjectMapper
 
 public class AppSettingsService {

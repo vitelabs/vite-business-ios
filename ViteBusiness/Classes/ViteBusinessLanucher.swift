@@ -11,7 +11,6 @@ import Fabric
 import Crashlytics
 import NSObject_Rx
 import Vite_HDWalletKit
-import ViteUtils
 import ViteWallet
 import BigInt
 import web3swift
@@ -41,7 +40,7 @@ public class ViteBusinessLanucher: NSObject {
     public func start(with window: UIWindow) {
         self.window = window
         //config 
-    EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
@@ -66,6 +65,7 @@ public class ViteBusinessLanucher: NSObject {
 
 
     }
+
     func handleWebWalletBridgeConfig()  {
         WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
@@ -287,6 +287,11 @@ public class ViteBusinessLanucher: NSObject {
         let rootVC = HomeViewController()
         window.rootViewController = rootVC
         window.makeKeyAndVisible()
+    }
+
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        GrinManager.default.handle(url: url)
+        return true
     }
 
 }

@@ -13,7 +13,6 @@ import ObjectMapper
 import RxSwift
 import RxCocoa
 import CryptoSwift
-import ViteUtils
 import ViteEthereum
 
 public final class HDWalletManager {
@@ -64,7 +63,7 @@ public final class HDWalletManager {
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
-    fileprivate var encryptedKey: String?
+    public fileprivate(set) var encryptedKey: String?
 
     public internal(set) var locked = false
 
@@ -100,6 +99,10 @@ public final class HDWalletManager {
 
     var account: Wallet.Account? {
         return accountBehaviorRelay.value
+    }
+
+    var accounts: [Wallet.Account] {
+        return accountsBehaviorRelay.value
     }
 
     var selectBagIndex: Int {

@@ -111,7 +111,7 @@
 "manage.wallet.page.changeName.loading" = "Editing";
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
-"my.page.contacts.cell.title" = "Contacts";
+"my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
 "my.page.aboutUs.cell.title" = "About Us";
@@ -140,7 +140,7 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
-"balance.info.detail.show.transactions.button.title" = "View Transaction History";
+"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
@@ -149,20 +149,20 @@
 "balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
 /* Address Manage Page */
-"address.manage.page.title" = "Address Management";
+"address.manage.page.title" = "My VITE Address";
 "address.manage.default.address.cell.title" = "Default Address";
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
 "address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
 "address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
 "address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "My VITE Address";
+"address.manage.default.address.name" = "Untitled";
 "address.manage.change.name.alert.title" = "Edit Address Alias";
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
 "send.page.title" = "Transfer";
-"send.page.my.address.title" = "VITE Address";
+"send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
 "send.page.my.quota.title" = "Quota";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
@@ -333,10 +333,8 @@
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
-"vite.error.rpc.error.code.hash.verify.failure" = "System verify failed, please try again later (-35002)";
-"vite.error.rpc.error.code.signature.verify.failure" = "System verify failed, please try again later (-35003)";
-"vite.error.rpc.error.code.pow.nonce.verify.failure" = "System verify failed, please try again later (-35004)";
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
+"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
@@ -359,6 +357,7 @@
 "token.list.page.search.title" = "Please input token name or contract address";
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
+"token.list.page.section.grin.header" = "GRIN Network";
 
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";
@@ -376,10 +375,96 @@
 "contacts.edit.page.save.button.title" = "Save";
 "contacts.edit.page.save.success.tip" = "Successfully added";
 "contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete contact";
+"contacts.edit.page.delete.button.title" = "Delete";
 "contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "My Address";
+"address.list.page.my.title" = "My VITE Address";
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
+
+
+// Grin
+
+"grin.balance.total" = "Total";
+"grin.balance.spendable" = "Spendable";
+"grin.balance.awaiting" = "Awaiting Confirmation";
+"grin.balance.locked" = "Locked by Previous Transaction";
+"grin.wallet.check" = "Check";
+"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.";
+"grin.txType.sent" = "Sent";
+"grin.txType.waitToSign" = "Unreceived";
+"grin.txType.received" = "Received";
+"grin.txType.waitToFinalize" = "Unfinalized";
+"grin.txType.finalized" = "Finalized";
+"grin.txType.confirmed" = "Confirmed";
+"grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
+"grin.txType.Canceled" = "Canceled";
+"grin.tx.Cancele" = "Canceled";
+"grin.tx.Repost" = "Repost";
+"grin.tx.copyId" = "Copy";
+"grin.useFirstViteAddress" = "To transfer GRIN through VITE address or Http address, please switch to the first VITE address.";
+"grin.tx.useVite" = "Use VITE Address";
+"grin.sent.useVite.desc" = "Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE address can be used to transfer or receive GRIN.";
+"grin.sent.useHttp" = "Use Http Address";
+"grin.sent.useHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a \"Confirmed\" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN.\nThe transfer amount should be no less than 0.1 GRIN.";
+"grin.sent.useFile" = "Use Transaction File";
+"grin.know" = "I know";
+"grin.notSeeAgain" = "Don't show me again";
+"grin.sent.title" = "Transfer GRIN";
+"grin.sent.amount" = "Amount";
+"grin.sent.fee" = "Fees";
+"grin.sent.creatFile" = "Generate Transaction File";
+"grin.shareFile.desc" = "Please sign for the transaction";
+"grin.txFile.init.status" = "Created";
+"grin.txFile.id" = "Transaction ID";
+"grin.shareFile" = "Share Transaction File";
+"grin.finalize.title" = "GRIN Transfer";
+"grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
+"grin.txFile.received.status" = "The receipt has been confirmed";
+"grin.finalize" = "Finalize and Broadcast";
+"grin.finalized.alertTitle" = "Transaction Finalized";
+"grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
+"grin.sent.next" = "Next";
+"grin.sent.suggest.useVite.title" = "Notice";
+"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.";
+"grin.sent.switch" = "VITE Address";
+"grin.sent.stillUseHttp" = "Http Address";
+"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
+"grin.sent.vite.success" = "Your transaction has sent, please be aware that you can go through your GRIN transaction only if you use current address.";
+"grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
+"grin.receiveByVite.desc" = "Please share your first VITE address(Find it at the bottom) with the sender, please note that only when the recipient using his first VITE address can he receive GRIN.";
+"grin.iknow" = "I know";
+"grin.thisIsFirstViteAddress" = "This is your first VITE address";
+"grin.receiveByHttp.addressCopyed" = "Your Http address for receiving GRIN has been copied to the clipboard";
+"grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. Please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. And only when you use your first VITE address can you receive GRIN.";
+"grin.receive.title" = "GRIN Transfer";
+"grin.receive.sented" = "Sent";
+"grin.creatTime" = "Creation Time";
+"grin.signAndShare" = "Receive and Share";
+"grin.sent.btnTitle" = "Transfer";
+"grin.receive.BtnTitle" = "Receive";
+"grin.notice.title" = "Notice";
+"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
+"grin.teach.http.receive.title" = "Receive GRIN though Http Address";
+"grin.teach.vite.sent.title" = "Transfer GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Transfer GRIN though Http Address";
+"grin.txid.title" = "Transaction ID";
+"grin.switchAddress" = "Switch Address";
+"grin.http.address" = "Http Address";
+"grin.vite.address" = "VITE Address";
+"grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
+"grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
+"grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
+"grin.txbyfile.shareReceiveFileDesc" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
+"grin.txbyfile.initStatus.sender" = "Created";
+"grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
+"grin.txbyfile.receivedStatus.receiver" = "Received";
+"grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
+
+"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
+"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
+

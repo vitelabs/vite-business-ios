@@ -32,9 +32,10 @@ final class WalletHomeBalanceInfoTableViewModel {
             isHidePriceDriver,
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver)
+            ETHBalanceInfoManager.instance.balanceInfosDriver,
+            GrinManager.default.balanceDriver)
             .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
-                let (isHidePrice, _, viteMap, ethMap) = arg
+                let (isHidePrice, _, viteMap, ethMap, grinBalance) = arg
                 return MyTokenInfosService.instance.tokenInfos
                     .map({ (tokenInfo) -> WalletHomeBalanceInfo in
                         switch tokenInfo.coinType {
@@ -42,6 +43,10 @@ final class WalletHomeBalanceInfoTableViewModel {
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
                         case .eth:
                             return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
+                        case .grin:
+                            return grinBalance
+                        default:
+                            fatalError()
                         }
                     }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
                         return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)
@@ -52,6 +57,7 @@ final class WalletHomeBalanceInfoTableViewModel {
     func registerFetchAll() {
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite }))
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
+        GrinManager.default.getBalance()
     }
 
     func unregisterFetchAll() {

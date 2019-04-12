@@ -25,6 +25,7 @@ class ContactAddressInputView: UIView {
         $0.setImage(R.image.icon_button_address_type(), for: .normal)
         $0.setImage(R.image.icon_button_address_type()?.highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        $0.titleLabel?.adjustsFontSizeToFitWidth = true
         $0.transform = CGAffineTransform(scaleX: -1, y: 1)
         $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
         $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)

@@ -113,7 +113,7 @@
 "manage.wallet.page.error.type.name" = "账户名不能为空";
 
 /* my */
-"my.page.contacts.cell.title" = "联系人";
+"my.page.contacts.cell.title" = "联系地址";
 "my.page.mnemonic.cell.title" = "助记词";
 "my.page.system.cell.title" = "使用设置";
 "my.page.aboutUs.cell.title" = "关于我们";
@@ -143,7 +143,7 @@
 "balance.info.detail.balance.title" = "账户余额";
 "balance.info.detail.unconfirmed.title" = "待接收";
 "balance.info.detail.unconfirmed.count.title" = "%@笔待确认";
-"balance.info.detail.show.transactions.button.title" = "查看交易记录";
+"balance.info.detail.show.transactions.button.title" = "到以太坊浏览器查看交易记录";
 "balance.info.detail.reveice.button.title" = "收款";
 "balance.info.detail.send.button.title" = "转账";
 "balance.info.detail.vote" = "投票";
@@ -152,14 +152,14 @@
 "balance.info.detail.onroad.amount.content" = "%@ 待确认";
 
 /* Address Manage Page */
-"address.manage.page.title" = "地址管理";
+"address.manage.page.title" = "我的VITE地址";
 "address.manage.default.address.cell.title" = "默认地址";
 "address.manage.address.header.title" = "地址列表";
 "address.manage.address.generate.button.title" = "添加地址";
 "address.manage.address.generate.button.toast" = "最多只能添加10个地址";
 "address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
 "address.manage.tip.alert.ok" = "我知道了";
-"address.manage.default.address.name" = "我的VITE地址";
+"address.manage.default.address.name" = "未命名";
 "address.manage.change.name.alert.title" = "修改地址名称";
 "address.manage.change.name.alert.placeholder" = "请输入新的名称";
 
@@ -337,10 +337,8 @@
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "交易发送频繁，请您稍后再次尝试";
 "vite.error.rpc.error.code.contract.method.not.exist" = "内置合约发生错误，请稍后重试(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "您需要接收一笔交易之后才可发起转账";
-"vite.error.rpc.error.code.hash.verify.failure" = "系统校验不通过，请稍后重试(-35002)";
-"vite.error.rpc.error.code.signature.verify.failure" = "系统校验不通过，请稍后重试(-35003)";
-"vite.error.rpc.error.code.pow.nonce.verify.failure" = "系统校验不通过，请稍后重试(-35004)";
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "快照块高度不合法，请您稍后再试";
+"vite.error.rpc.error.code.verify.failure" = "系统校验不通过，请稍后重试(%@)";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是配额</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户不是通过支付手续费的方式来购买一次交易所需的燃料，而是通过一种基于配额的模型来获取计算资源，发送交易所需配额=基础配额(请求)+配额(附带的文本资料)，接受交易所需配额=基础配额(响应)。这个基于配额的资源配置协议允许用户通过两种方式来获取更高的资源配额：</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.抵押VITE获取配额</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.运行PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">配额单位：UTPS，Unit of Transaction per Second，每秒交易单位。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是抵押</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户可以抵押VITE获取一定数量的配额，抵押最小值为1000 VITE，没有最大抵押上限；同时支持A地址抵押一部分VITE并将获得的配额分配给B地址；用户申请抵押后，会将这笔VITE发送到智能合约地址而不是某一个用户，且只有申请抵押用户有权限支配抵押的金额。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是PoW</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">工作量证明(Proof of Work，简称PoW)，简单理解就是一份证明，用来确认你做过一定量的工作，应对拒绝服务攻击和其他服务滥用的经济对策。它要求发起者进行一定量的运算，也就意味着需要消耗计算机一定的时间；在Vite系统中，用户可以通过运行PoW获得免费的配额，用户可以通过获得的配额进行一次不带任何备注信息的交易。</p>";
@@ -363,6 +361,7 @@
 "token.list.page.search.title" = "输入Token名称或合约地址";
 "token.list.page.section.vite.header" = "Vite网络";
 "token.list.page.section.eth.header" = "Ethereum网络";
+"token.list.page.section.grin.header" = "GRIN网络";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
@@ -374,16 +373,103 @@
 // Contacts Edit
 "contacts.edit.page.add.title" = "添加联系地址";
 "contacts.edit.page.edit.title" = "编辑联系地址";
-"contacts.edit.page.name.title" = "姓名";
+"contacts.edit.page.name.title" = "名称";
 "contacts.edit.page.address.title" = "请输入地址";
 "contacts.edit.page.type.select.title" = "选择地址所属网络";
 "contacts.edit.page.save.button.title" = "保存";
 "contacts.edit.page.save.success.tip" = "成功添加联系地址";
 "contacts.edit.page.edit.success.tip" = "保存成功";
-"contacts.edit.page.delete.button.title" = "删除联系人";
+"contacts.edit.page.delete.button.title" = "删除联系地址";
 "contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
 
 // Address List
-"address.list.page.my.title" = "我的地址";
+"address.list.page.my.title" = "我的VITE地址";
 "address.list.page.other.title" = "%@ 联系地址";
 "address.list.page.no.address.tip" = "暂无 %@ 联系地址";
+
+
+// Grin
+
+"grin.balance.total" = "全部";
+"grin.balance.spendable" = "可用余额";
+"grin.balance.awaiting" = "待确认";
+"grin.balance.locked" = "交易锁定";
+"grin.wallet.check" = "刷新";
+"grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。";
+"grin.wallet.check" = "刷新";
+"grin.txType.sent" = "已发送";
+"grin.txType.waitToSign" = "待签收";
+"grin.txType.received" = "已签收";
+"grin.txType.waitToFinalize" = "待敲定";
+"grin.txType.finalized" = "已敲定";
+"grin.txType.confirmed" = "已确认";
+"grin.txType.confirmedCoinbase" = "已确认挖矿";
+"grin.txType.Canceled" = "已取消";
+"grin.tx.Cancele" = "已取消";
+"grin.tx.Repost" = "重发";
+"grin.tx.copyId" = "复制";
+"grin.useFirstViteAddress" = "为了使用VITE地址或Http地址发送GRIN，请切换到VITE地址簿里第一个VITE地址。";
+"grin.tx.useVite" = "通过VITE地址";
+"grin.sent.useVite.desc" = "通过VITE地址发送GRIN即通过VITE地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意只有您的第一个VITE地址可以用来进行GRIN转账和收款。";
+"grin.sent.useHttp" = "通过Http地址";
+"grin.sent.useHttp.desc" = "通过Http地址收转GRIN，如图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。另外请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。例如：转账人的“已确认”状态只表示转账人转给Vite的交易已确认，并不代表收款人已经收到您的转账。\n转账金额需大于等于0.1 GRIN。";
+"grin.sent.useFile" = "通过交易文件";
+"grin.know" = "我知道了";
+"grin.notSeeAgain" = "不再提示";
+"grin.sent.title" = "GRIN转账";
+"grin.sent.amount" = "金额";
+"grin.sent.fee" = "交易费";
+"grin.sent.creatFile" = "生成交易文件";
+"grin.shareFile.desc" = "请签收交易";
+"grin.txFile.init.status" = "创建";
+"grin.txFile.id" = "交易ID";
+"grin.shareFile" = "分享交易文件";
+"grin.finalize.title" = "GRIN转账";
+"grin.finalize.desc" = "收款人已经签收交易，请敲定并广播交易";
+"grin.txFile.received.status" = "已确认收款";
+"grin.finalize" = "敲定并广播";
+"grin.finalized.alertTitle" = "交易已确认";
+"grin.finalized.alertDesc" = "您的GRIN转账交易已经开始广播";
+"grin.sent.next" = "下一步";
+"grin.sent.suggest.useVite.title" = "提示";
+"grin.sent.suggest.useVite.desc" = "若您想给Vite钱包用户转账GRIN，我们建议您使用VITE地址转账；因为通过VITE地址转账更安全，交易费更少";
+"grin.sent.switch" = "使用VITE地址";
+"grin.sent.stillUseHttp" = "使用Http地址";
+"grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
+"grin.sent.vite.success" = "您的转账交易已发送，请注意只有使用当前地址您才能继续完成GRIN转账。";
+"grin.receiveByVite.addressCopyed" = "您的GRIN收款VITE地址已复制至剪贴板";
+"grin.receiveByVite.desc" = "请将您的第一个VITE地址（底部复制）分享给转账人，请注意收款人只有使用其第一个VITE地址才能收到GRIN";
+"grin.iknow" = "我知道了";
+"grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
+"grin.receiveByHttp.addressCopyed" = "您的GRIN收款Http地址已复制至剪贴板";
+"grin.receiveByHttp.desc" = "通过Http地址收转GRIN，如上图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。另外请注意只有当您使用您的第一个VITE地址时才能收到GRIN。";
+"grin.receive.title" = "GRIN转账";
+"grin.receive.sented" = "已传送";
+"grin.creatTime" = "生成时间";
+"grin.signAndShare" = "签收并分享";
+"grin.sent.btnTitle" = "转账";
+"grin.receive.BtnTitle" = "收款";
+"grin.notice.title" = "提示";
+"grin.teach.vite.receive.title" = "使用VITE地址接收GRIN";
+"grin.teach.http.receive.title" = "使用Http地址接收GRIN";
+"grin.teach.vite.sent.title" = "使用VITE地址转账GRIN";
+"grin.teach.http.sent.title" = "通过Http地址转账GRIN";
+"grin.txid.title" = "交易ID";
+"grin.switchAddress" = "去切换地址";
+"grin.http.address" = "Http 地址";
+"grin.vite.address" = "VITE 地址";
+"grin.sendPageViteContactsButtonTitle" = "GRIN联系地址";
+"grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "请确保将交易文件分享给转账人";
+"grin.txbyfile.shareSentFileDesc" = "请确保将交易文件分享给收款人并要求返回一个确认收款文件";
+"grin.txbyfile.receiveSentFileDesc" = "请签收交易";
+"grin.txbyfile.shareReceiveFileDesc" = "请确保将交易文件分享给转账人";
+"grin.txbyfile.finalizeReceiveFileDesc" = "收款人已经签收交易，请敲定并广播交易";
+"grin.txbyfile.initStatus.sender" = "已创建";
+"grin.txbyfile.initStatus.receiver" = "待签收";
+"grin.txbyfile.receivedStatus.receiver" = "已签收";
+"grin.txbyfile.receivedStatus.sender" = "待敲定";
+"grin.creat.syncronizing" = "账户创建、同步Grin数据中，预计3分钟";
+"grin.recover.syncronizing" = "账户恢复、同步Grin数据中，预计3分钟";
+
+

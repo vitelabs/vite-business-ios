@@ -8,7 +8,6 @@
 
 import Foundation
 import ObjectMapper
-import ViteUtils
 
 class AppUpdateService: NSObject {
 

@@ -17,9 +17,10 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/vitelabs/vite-business-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target = '10.0'
   s.static_framework = true
-  s.source_files = 'ViteBusiness/Classes/**/*'
+  s.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
+  s.source_files = 'ViteBusiness/Classes/**/*.{h,m,swift,c}'
   s.resource_bundles = {
-      'ViteBusiness' => ['ViteBusiness/Assets/*']
+      'ViteBusiness' => ['ViteBusiness/Assets/*','ViteBusiness/Classes/**/*.{storyboard,xib}']
   }
 
 #   s.subspec 'Official' do |c|
@@ -45,6 +46,7 @@ Pod::Spec.new do |s|
   #     'SWIFT_VERSION' => '4.2'
   #   }
   # end
+
 
   s.dependency 'R.swift'
   s.dependency 'RxSwift'
@@ -126,7 +128,17 @@ Pod::Spec.new do |s|
 
   s.dependency 'MLeaksFinder'
 
-  s.dependency 'ViteUtils'
   s.dependency 'ViteWallet'
   s.dependency 'ViteEthereum'
+  s.dependency 'Vite_GrinWallet'
+
+
+  # s.resource_bundles = {
+  #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']
+  # }
+
+  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.frameworks = 'UIKit', 'MapKit'
+  # s.dependency 'AFNetworking', '~> 2.3'
+
 end

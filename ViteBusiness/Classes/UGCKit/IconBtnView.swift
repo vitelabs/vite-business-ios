@@ -27,17 +27,27 @@ class IconBtnView: UIImageView {
     init(iconImg: UIImage, text: String = "") {
         super.init(frame: CGRect.init(x: 1, y: 1, width: 1, height: 1))
         self.isUserInteractionEnabled = true
-        self.backgroundColor = .white
         self.setupShadow(CGSize(width: 0, height: 5))
 
         iconView.image =  iconImg
         titleLabel.text = text
 
+        let whiteView = UIView().then {
+            $0.backgroundColor = UIColor.white
+            $0.layer.masksToBounds = true
+            $0.layer.cornerRadius = 2
+        }
+
+        addSubview(whiteView)
         addSubview(iconView)
         addSubview(titleLabel)
         addSubview(btn)
 
         let scale = kScreenW < 375 ? (kScreenW / 375.0) : 1
+
+        whiteView.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
 
         iconView.snp.makeConstraints { (m) in
             m.centerX.equalTo(self)

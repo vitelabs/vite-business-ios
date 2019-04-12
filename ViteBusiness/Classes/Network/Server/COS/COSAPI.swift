@@ -25,20 +25,20 @@ extension COSAPI: TargetType {
     var path: String {
         switch self {
         case .getConfigHash:
-            return "/ConfigHash"
+            return "/ConfigHash.json"
         case .getAppConfig:
-            return "/AppConfig"
+            return "/AppConfig.json"
         case .getLocalizable(let language):
             return "/Localization/\(language)"
         case .checkUpdate:
             switch Constants.appDownloadChannel {
             case .appstore:
-                return "/AppStoreCheckUpdate"
+                return "/AppStoreCheckUpdate.json"
             case .enterprise:
-                return "/EnterpriseCheckUpdate"
+                return "/EnterpriseCheckUpdate.json"
             }
         }
-    }
+    }   
 
     var method: Moya.Method {
         return .get

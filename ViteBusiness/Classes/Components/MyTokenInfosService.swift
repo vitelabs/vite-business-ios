@@ -9,7 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import ViteUtils
 import Alamofire
 
 
@@ -30,6 +29,26 @@ public final class MyTokenInfosService: NSObject {
     }
 
     private var tokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
+
+    private func sortTokenInfos(tokenInfos: [TokenInfo]) -> [TokenInfo] {
+
+        var viteTokenInfos: NSMutableArray = NSMutableArray()
+        var ethTokenInfos: NSMutableArray = NSMutableArray()
+        var grinTokenInfos: NSMutableArray = NSMutableArray()
+
+        tokenInfos.forEach { (tokenInfo) in
+            switch tokenInfo.coinType {
+            case .vite:
+                viteTokenInfos.add(tokenInfo)
+            case .eth:
+                ethTokenInfos.add(tokenInfo)
+            case .grin:
+                grinTokenInfos.add(tokenInfo)
+            }
+        }
+
+        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+    }
 
     //MARK: Launch
     func start() {
@@ -56,7 +75,7 @@ public final class MyTokenInfosService: NSObject {
                             for tokenInfo in tokenInfos where tokenInfo.tokenCode == old.tokenCode { return tokenInfo }
                             return old
                         })
-                        self.tokenInfosBehaviorRelay.accept(def + selected)
+                        self.tokenInfosBehaviorRelay.accept(self.sortTokenInfos(tokenInfos: def + selected))
                     } else {
                         self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
                     }
@@ -111,7 +130,7 @@ public final class MyTokenInfosService: NSObject {
 
         var tokenInfos = tokenInfosBehaviorRelay.value
         tokenInfos.append(tokenInfo)
-        tokenInfosBehaviorRelay.accept(tokenInfos)
+        tokenInfosBehaviorRelay.accept(sortTokenInfos(tokenInfos: tokenInfos))
         pri_save()
         ExchangeRateManager.instance.getRateImmediately(for: tokenInfo.tokenCode)
     }

@@ -25,7 +25,10 @@ class BalanceInfoNavView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUpSubVeiws()
+    }
 
+    func setUpSubVeiws()  {
         addSubview(symbolLabel)
         addSubview(nameLabel)
         addSubview(tokenIconView)
@@ -50,13 +53,15 @@ class BalanceInfoNavView: UIView {
 
         symbolLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
+
             m.right.equalTo(tokenIconView.snp.left).offset(-10)
             m.bottom.equalTo(nameLabel.snp.top).offset(-6)
         }
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        setUpSubVeiws()
     }
 
     func bind(tokenInfo: TokenInfo) {

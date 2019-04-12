@@ -12,7 +12,6 @@ import PromiseKit
 import RxSwift
 import RxCocoa
 import RxOptional
-import ViteUtils
 
 final class FetchQuotaService {
 

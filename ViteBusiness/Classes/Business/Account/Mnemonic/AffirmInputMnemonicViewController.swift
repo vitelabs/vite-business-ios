@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import RxDataSources
 import Vite_HDWalletKit
-import ViteUtils
 
 class AffirmInputMnemonicViewController: BaseViewController, MnemonicCollectionViewDelegate {
     fileprivate var viewModel: AffirmInputMnemonicVM
@@ -144,7 +143,7 @@ extension AffirmInputMnemonicViewController {
                 (.default(title: R.string.localizable.confirm()), nil),
                 ])
         } else {
-            self.view.displayLoading(text: R.string.localizable.mnemonicAffirmPageAddLoading(), animated: true)
+            self.view.displayLoading(text: R.string.localizable.grinCreatSyncronizing(), animated: true)
             DispatchQueue.global().async {
                 let uuid = UUID().uuidString
                 let encryptKey = CreateWalletService.sharedInstance.password.toEncryptKey(salt: uuid)

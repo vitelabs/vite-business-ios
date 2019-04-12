@@ -12,7 +12,6 @@ import RxSwift
 import SnapKit
 import NSObject_Rx
 import RxDataSources
-import ViteUtils
 import MLeaksFinder
 
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
@@ -106,7 +105,9 @@ class TokenListManageController: BaseViewController {
                 self?.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 for item in data {
-                    sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    if !item.isEmpty {
+                        sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    }
                 }
                 return sectionModels
             }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
@@ -154,11 +155,16 @@ extension TokenListManageController : UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let contentView = UIView()
         contentView.backgroundColor = .white
-         let lab = UILabel.init(frame: CGRect.init(x: 18, y: 10, width: 100, height: 20))
+        let lab = UILabel.init(frame: CGRect.init(x: 18, y: 10, width: 100, height: 20))
         lab.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         lab.textColor = UIColor.init(netHex: 0x3E4A59)
         lab.backgroundColor = .white
         contentView.addSubview(lab)
+        lab.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(10)
+            m.left.equalToSuperview().offset(18)
+            m.right.equalToSuperview().offset(-18)
+        }
         
         lab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
         return contentView

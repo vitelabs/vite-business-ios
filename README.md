@@ -17,7 +17,7 @@ ViteBusiness is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ViteBusiness'
+pod 'ViteBusiness' , :git => 'https://github.com/vitelabs/vite-business-ios.git'
 ```
 
 ## Author

@@ -12,7 +12,6 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 import Vite_HDWalletKit
-import ViteUtils
 import ViteWallet
 import BigInt
 import web3swift
@@ -132,10 +131,13 @@ class WalletHomeViewController: BaseTableViewController {
                     let balanceInfoDetailViewController : UIViewController
                     if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
+                    } else if viewModel.tokenInfo.coinType == .grin {
+                        let storyboard =
+                        balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
+                            .instantiateInitialViewController()!
                     } else {
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
-
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
                 }
             }
@@ -192,7 +194,7 @@ class WalletHomeViewController: BaseTableViewController {
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
                                                      amount: Balance(value: amount),
-                                                     data: uri.data?.toBase64(),
+                                                     data: uri.data,
                                                      completion: { _ in })
                 }
             case .failure(let error):

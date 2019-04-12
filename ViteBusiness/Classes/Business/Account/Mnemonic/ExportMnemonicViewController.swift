@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Vite_HDWalletKit
-import ViteUtils
 
 extension UIViewController {
     func verifyWalletPassword(callback: @escaping () -> Void) {

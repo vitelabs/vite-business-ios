@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ViteUtils
 import PromiseKit
 
 struct DebugActionSheet {

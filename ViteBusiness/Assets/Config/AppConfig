@@ -45,6 +45,15 @@
             "tokenAddress":"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016",
             "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png",
             "decimal":18
+        },
+        {
+            "symbol": "GRIN",
+            "name": "GRIN",
+            "tokenCode": "1174",
+            "platform": "GRIN",
+            "tokenAddress": null,
+            "icon": "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
+            "decimal": 9
         }
     ]
 }

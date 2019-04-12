@@ -12,7 +12,6 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
-import ViteUtils
 
 extension ImportAccountViewController {
     private func _bindViewModel() {
@@ -148,14 +147,14 @@ extension ImportAccountViewController {
             }
         }
 
-        HUD.show(R.string.localizable.importPageSubmitLoading())
+        HUD.show(R.string.localizable.grinRecoverSyncronizing())
         DispatchQueue.global().async {
             if let name = HDWalletManager.instance.isExist(mnemonic: mnemonic) {
                 DispatchQueue.main.async {
                     HUD.hide()
                     Alert.show(into: self, title: R.string.localizable.importPageAlertExistTitle(name), message: nil, actions: [
                         (.default(title: R.string.localizable.importPageAlertExistOk()), { alertController in
-                            HUD.show(R.string.localizable.importPageSubmitLoading())
+                            HUD.show(R.string.localizable.grinRecoverSyncronizing())
                             importBlock()
                         }),
                         (.default(title: R.string.localizable.importPageAlertExistCancel()), nil)])

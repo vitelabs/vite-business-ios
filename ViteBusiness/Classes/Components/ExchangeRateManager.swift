@@ -7,7 +7,6 @@
 
 import RxSwift
 import RxCocoa
-import ViteUtils
 import ViteWallet
 import BigInt
 
@@ -79,10 +78,6 @@ public final class ExchangeRateManager {
                 self.service?.stopPoll()
                 self.service = nil
             }
-        }).disposed(by: disposeBag)
-
-        rateMapDriver.drive(onNext: { (map) in
-            print("sdfsdf \(map)")
         }).disposed(by: disposeBag)
     }
 

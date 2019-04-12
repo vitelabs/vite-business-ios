@@ -13,7 +13,6 @@ import RxSwift
 import Vite_HDWalletKit
 import Toast_Swift
 import ActionSheetPicker_3_0
-import ViteUtils
 
 class LoginViewController: BaseViewController {
     fileprivate var viewModel: LoginViewModel

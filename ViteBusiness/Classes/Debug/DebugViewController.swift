@@ -9,7 +9,6 @@
 import UIKit
 import Eureka
 import Crashlytics
-import ViteUtils
 import ViteWallet
 import BigInt
 
@@ -33,13 +32,7 @@ class DebugViewController: FormViewController {
             }
             <<< LabelRow("appVersion") {
                 $0.title = "Version"
-                #if INTERNAL
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DE\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (E\(Bundle.main.buildNumber))"
-                #endif
-                #elseif TEST
+                #if TEST
                 #if DEBUG
                 $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
                 #else
@@ -88,6 +81,15 @@ class DebugViewController: FormViewController {
                     guard let `self` = self else { return }
                     guard let ret = row.value else { return }
                     DebugService.instance.config.ignoreCheckUpdate = ret
+            }
+            <<< SwitchRow("ignoreWhiteList") {
+                $0.title = "Ignore White List"
+                $0.value = DebugService.instance.config.ignoreWhiteList
+                }.onChange { [weak self] row in
+                    guard let `self` = self else { return }
+                    guard let ret = row.value else { return }
+                    DebugService.instance.config.ignoreWhiteList = ret
+                    exit(0)
             }
             +++
             MultivaluedSection(multivaluedOptions: [],

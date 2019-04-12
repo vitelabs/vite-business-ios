@@ -9,16 +9,23 @@
 import ViteWallet
 import Foundation
 import ObjectMapper
-import ViteUtils
 import ViteEthereum
 import web3swift
+
+#if DEBUG || TEST
+extension Notification.Name {
+    public static let appEnvironmentDidChange = NSNotification.Name(rawValue: "Vite_appEnvironmentDidChange")
+}
+#endif
+
 
 public class DebugService {
     public static let instance = DebugService()
     fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
     fileprivate static let saveKey = "DebugService"
 
-    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
+//    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
+    let rpcDefaultTestEnvironmentUrl = URL(string: "http://132.232.1.165:48132")!
     let browserDefaultTestEnvironmentUrl = URL(string: "http://132.232.134.168:8080")!
 
     public enum AppEnvironment: Int {
@@ -84,6 +91,9 @@ public class DebugService {
         case .custom:
             break
         }
+        #if DEBUG || TEST
+        NotificationCenter.default.post(name: NSNotification.Name.appEnvironmentDidChange, object: nil)
+        #endif
         updateETHServer()
     }
 
@@ -118,6 +128,7 @@ public class DebugService {
         var reportEventInDebug = false
         var urls: [String] = []
         var ignoreCheckUpdate = true
+        public var ignoreWhiteList = true
 
         init(rpcUseOnlineUrl: Bool,
              rpcCustomUrl: String?,
@@ -127,7 +138,8 @@ public class DebugService {
              showStatisticsToast: Bool?,
              reportEventInDebug: Bool?,
              urls: [String]?,
-             ignoreCheckUpdate: Bool?) {
+             ignoreCheckUpdate: Bool?,
+             ignoreWhiteList: Bool?) {
 
             self.rpcUseOnlineUrl = rpcUseOnlineUrl
             if let rpcCustomUrl = rpcCustomUrl {
@@ -150,6 +162,9 @@ public class DebugService {
             if let ignoreCheckUpdate = ignoreCheckUpdate {
                 self.ignoreCheckUpdate = ignoreCheckUpdate
             }
+            if let ignoreWhiteList = ignoreWhiteList {
+                self.ignoreWhiteList = ignoreWhiteList
+            }
 
         }
 
@@ -162,7 +177,8 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls: nil,
-                          ignoreCheckUpdate: nil)
+                          ignoreCheckUpdate: nil,
+                          ignoreWhiteList: nil)
         }
 
         static var stage: Config {
@@ -174,7 +190,8 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls:nil,
-                          ignoreCheckUpdate: nil)
+                          ignoreCheckUpdate: nil,
+                          ignoreWhiteList: nil)
         }
 
         static var online: Config {
@@ -186,7 +203,8 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls:nil,
-                          ignoreCheckUpdate: nil)
+                          ignoreCheckUpdate: nil,
+                          ignoreWhiteList: nil)
         }
 
         public var appEnvironment: AppEnvironment {
@@ -227,6 +245,7 @@ public class DebugService {
             reportEventInDebug <- map["reportEventInDebug"]
             urls <- map["urls"]
             ignoreCheckUpdate <- map["ignoreCheckUpdate"]
+            ignoreWhiteList <- map["ignoreWhiteList"]
         }
     }
 

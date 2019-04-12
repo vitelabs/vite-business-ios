@@ -93,13 +93,7 @@ extension AboutUsViewController {
                 $0.cell.textLabel?.textColor = Colors.cellTitleGray
                 $0.cell.textLabel?.font = Fonts.light16
                 $0.title =  R.string.localizable.aboutUsPageCellVersion()
-                #if INTERNAL
-                    #if DEBUG
-                    $0.value = "\(Bundle.main.versionNumber) (DE\(Bundle.main.buildNumber))"
-                    #else
-                    $0.value = "\(Bundle.main.versionNumber) (E\(Bundle.main.buildNumber))"
-                    #endif
-                #elseif TEST
+                #if TEST
                     #if DEBUG
                     $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
                     #else
