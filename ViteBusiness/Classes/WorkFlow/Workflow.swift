@@ -54,13 +54,13 @@ public struct Workflow {
         showConfirm()
     }
 
-    private static func sendRawTxWorkflow(withoutPowPromise: Promise<AccountBlock>,
-                                          getPowPromise: Promise<SendBlockContext>,
+    private static func sendRawTxWorkflow(withoutPowPromise: @escaping () -> Promise<AccountBlock>,
+                                          getPowPromise: @escaping () -> Promise<SendBlockContext>,
                                           successToast: String,
                                           type: workflowType,
                                           completion: @escaping (Result<AccountBlock>) -> ()) {
         HUD.show()
-        withoutPowPromise
+        withoutPowPromise()
             .always {
                 HUD.hide()
             }
@@ -128,20 +128,24 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWithPowWorkflow(getPowPromise: Promise<SendBlockContext>) -> Promise<AccountBlock> {
+    private static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
         var cancelPow = false
         let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
             cancelPow = true
         }
         getPowFloatView.show()
-        return getPowPromise
+        return getPowPromise()
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()
                 return Promise(error: e)
             }
             .then { context -> Promise<SendBlockContext> in
-                return Promise<SendBlockContext> { seal in
-                    getPowFloatView.finish { seal.fulfill(context) }
+                if cancelPow {
+                    return Promise(error: ViteError.cancel)
+                } else {
+                    return Promise<SendBlockContext> { seal in
+                        getPowFloatView.finish { seal.fulfill(context) }
+                    }
                 }
             }
             .always {
@@ -164,17 +168,22 @@ public extension Workflow {
                                            note: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            let withoutPowPromise = ViteNode.transaction.withoutPow(account: account,
-                                                                    toAddress: toAddress,
-                                                                    tokenId: tokenInfo.viteTokenId,
-                                                                    amount: amount,
-                                                                    note: note)
+            let withoutPowPromise = {
+                return ViteNode.transaction.withoutPow(account: account,
+                                                       toAddress: toAddress,
+                                                       tokenId: tokenInfo.viteTokenId,
+                                                       amount: amount,
+                                                       note: note)
+            }
 
-            let getPowPromise = ViteNode.transaction.getPow(account: account,
-                                                            toAddress: toAddress,
-                                                            tokenId: tokenInfo.viteTokenId,
-                                                            amount: amount,
-                                                            note: note)
+            let getPowPromise = {
+                return ViteNode.transaction.getPow(account: account,
+                                                   toAddress: toAddress,
+                                                   tokenId: tokenInfo.viteTokenId,
+                                                   amount: amount,
+                                                   note: note)
+            }
+
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -194,8 +203,16 @@ public extension Workflow {
                                   completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
-            let withoutPowPromise = ViteNode.pledge.perform.withoutPow(account: account, beneficialAddress: beneficialAddress, amount: amount)
-            let getPowPromise = ViteNode.pledge.perform.getPow(account: account, beneficialAddress: beneficialAddress, amount: amount)
+            let withoutPowPromise = {
+                return ViteNode.pledge.perform.withoutPow(account: account,
+                                                          beneficialAddress: beneficialAddress,
+                                                          amount: amount)
+            }
+            let getPowPromise = {
+                return ViteNode.pledge.perform.getPow(account: account,
+                                                      beneficialAddress: beneficialAddress,
+                                                      amount: amount)
+            }
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -217,8 +234,16 @@ public extension Workflow {
 
         let sendBlock = {
             let provider = Provider.default
-            let withoutPowPromise = ViteNode.vote.perform.withoutPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name)
-            let getPowPromise = ViteNode.vote.perform.getPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name)
+            let withoutPowPromise =  {
+                return ViteNode.vote.perform.withoutPow(account: account,
+                                                        gid: ViteWalletConst.ConsensusGroup.snapshot.id,
+                                                        name: name)
+            }
+            let getPowPromise =  {
+                    return ViteNode.vote.perform.getPow(account: account,
+                                                        gid: ViteWalletConst.ConsensusGroup.snapshot.id,
+                                                        name: name)
+            }
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -238,8 +263,14 @@ public extension Workflow {
 
         let sendBlock = {
             let provider = Provider.default
-            let withoutPowPromise = ViteNode.vote.cancel.withoutPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id)
-            let getPowPromise = ViteNode.vote.cancel.getPow(account: account, gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+            let withoutPowPromise =  {
+                return ViteNode.vote.cancel.withoutPow(account: account,
+                                                       gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+            }
+            let getPowPromise =  {
+                return ViteNode.vote.cancel.getPow(account: account,
+                                                   gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+            }
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
@@ -261,16 +292,20 @@ public extension Workflow {
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             let provider = Provider.default
-            let withoutPowPromise = ViteNode.rawTx.send.withoutPow(account: account,
-                                                                   toAddress: toAddress,
-                                                                   tokenId: tokenInfo.viteTokenId,
-                                                                   amount: amount,
-                                                                   data: data)
-            let getPowPromise = ViteNode.rawTx.send.getPow(account: account,
-                                                           toAddress: toAddress,
-                                                           tokenId: tokenInfo.viteTokenId,
-                                                           amount: amount,
-                                                           data: data)
+            let withoutPowPromise =  {
+                return ViteNode.rawTx.send.withoutPow(account: account,
+                                                      toAddress: toAddress,
+                                                      tokenId: tokenInfo.viteTokenId,
+                                                      amount: amount,
+                                                      data: data)
+            }
+            let getPowPromise =  {
+                return ViteNode.rawTx.send.getPow(account: account,
+                                                  toAddress: toAddress,
+                                                  tokenId: tokenInfo.viteTokenId,
+                                                  amount: amount,
+                                                  data: data)
+            }
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
