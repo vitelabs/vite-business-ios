@@ -57,12 +57,14 @@ class SendViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
+        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
         FetchQuotaService.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaService.instance.releaseQuota()
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
 
     // View
