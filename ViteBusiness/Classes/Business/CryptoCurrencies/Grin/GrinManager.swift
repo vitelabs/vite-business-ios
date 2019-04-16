@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ViteWallet
 import Vite_GrinWallet
 import SwiftyJSON
 import RxSwift
@@ -160,7 +161,7 @@ extension GrinManager {
 extension GrinManager {
     var relativePath: String { return "viteTxData" }
 
-    func handle(viteData: Data, fromAddress: String)  {
+    func handle(viteData: Data, fromAddress: String, account: Wallet.Account)  {
         plog(level: .info, log: "grin-0-handle(viteData,fromAddress:\(fromAddress)", tag: .grin)
         guard let fileName = String.init(data: viteData, encoding: .utf8) else {
             plog(level: .info, log: "grin-1-receiveFname.fname:failed", tag: .grin)
