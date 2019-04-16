@@ -23,8 +23,8 @@ class GrinTxByViteService {
     fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
 
     func getGateWay() -> Promise<String> {
-        guard let address = HDWalletManager.instance.accounts.first?.address.description else {
-            return Promise(error: grinError("get first address failed"))
+        guard let address = HDWalletManager.instance.account?.address.description else {
+            return Promise(error: grinError("get address failed"))
         }
         if let gateWay = gateWayMap[address] {
             return Promise { seal in seal.fulfill(gateWay) }
@@ -34,9 +34,12 @@ class GrinTxByViteService {
     }
 
     func sendGrin(amount: UInt64, to toAddress: String) -> Promise<Void> {
+        guard let account = HDWalletManager.instance.account else {
+            return Promise(error: grinError("get account failed"))
+        }
         return creatSentSlate(amount: amount)
             .map { (slate) -> (Slate, URL) in
-                plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
+                plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address.description)", tag: .grin)
                 do {
                     let url = try self.save(slate: slate, isResponse: false)
                     return (slate, url)
@@ -45,85 +48,87 @@ class GrinTxByViteService {
                 }
             }
             .then { (sentSlate, url) ->  Promise<String> in
-                plog(level: .info, log: "grin-1-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
-                return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent)
+                plog(level: .info, log: "grin-1-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent, account: account)
             }
             .then { (fname) ->  Promise<Void> in
-                plog(level: .info, log: "grin-2-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
-                return self.sentViteTx(toAddress: toAddress, fileName: fname)
+                plog(level: .info, log: "grin-2-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.sentViteTx(toAddress: toAddress, fileName: fname,account: account)
         }
     }
 
-    func handle(fileName: String, fromAddress: String)  -> Promise<Void> {
+    func handle(fileName: String, fromAddress: String, account: Wallet.Account)  -> Promise<Void> {
         let isResponse = fileName.contains("response")
         if isResponse {
-            return self.handle(receiveFile: fileName, fromAddress: fromAddress)
+            return self.handle(receiveFile: fileName, fromAddress: fromAddress, account: account)
         } else {
-            return self.handle(sentFile: fileName, fromAddress: fromAddress)
+            return self.handle(sentFile: fileName, fromAddress: fromAddress, account: account )
         }
     }
 
-    func handle(sentFile fileName: String, fromAddress: String) -> Promise<Void> {
-        plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+    func handle(sentFile fileName: String, fromAddress: String, account: Wallet.Account) -> Promise<Void> {
+        plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
         let isResponse = false
-        return downlodEncryptedSlateData(fileName: fileName)
+        return downlodEncryptedSlateData(fileName: fileName, account: account)
             .then { (data) -> Promise<Data> in
-                plog(level: .info, log: "grin-5-handleSentFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-                return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data)
+                plog(level: .info, log: "grin-5-handleSentFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data, account: account)
             }
             .then { (data) -> Promise<(Slate, URL)> in
-                plog(level: .info, log: "grin-6-handleSentFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+                plog(level: .info, log: "grin-6-handleSentFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
             .then { (sentSlate, url) -> Promise<Slate> in
-                plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+                plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
                 return self.receiveSentSlate(with: url)
             }
             .then { (receivedSlate) -> Promise<String> in
-                plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: receivedSlate , type: .response)
+                plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: receivedSlate , type: .response, account:
+                 account)
             }
             .then { fname -> Promise<Void> in
-                plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-                return self.sentViteTx(toAddress: fromAddress, fileName: fname)
+                plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account)
         }
     }
 
-    func handle(receiveFile fileName: String, fromAddress: String) -> Promise<Void> {
-        plog(level: .info, log: "grin-4-handleReceiveFileStart.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+    func handle(receiveFile fileName: String, fromAddress: String, account: Wallet.Account) -> Promise<Void> {
+        plog(level: .info, log: "grin-4-handleReceiveFileStart.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
         let isResponse = true
         var slateId: String!
-        return downlodEncryptedSlateData(fileName: fileName)
+        return downlodEncryptedSlateData(fileName: fileName, account: account)
             .then { (data) -> Promise<Data> in
-                plog(level: .info, log: "grin-5-handleReceiveFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-                return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data)
+                plog(level: .info, log: "grin-5-handleReceiveFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data, account: account)
             }
             .then { (data) -> Promise<(Slate, URL)> in
-                plog(level: .info, log: "grin-6-handleReceiveFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+                plog(level: .info, log: "grin-6-handleReceiveFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
             .then { (responseSlate, url) ->  Promise<Void> in
-                plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+                plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
                 slateId = responseSlate.id
                 return self.finalizeResponseSlate(with: url)
             }
             .then { () -> Promise<Void> in
-                plog(level: .info, log: "grin-8-handleReceiveFile-finalizeResponseSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-                return self.reportFinalization(slateId: slateId)
+                plog(level: .info, log: "grin-8-handleReceiveFile-finalizeResponseSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+                return self.reportFinalization(slateId: slateId,account: account)
         }
     }
 
     func reportViteAddress() -> Promise<String> {
         return Promise { seal in
-            guard let fromAddress = HDWalletManager.instance.accounts.first?.address.description else {
-                seal.reject(grinError("get first address error"))
+            let account = HDWalletManager.instance.account
+            guard let fromAddress = account?.address.description else {
+                seal.reject(grinError("get address error"))
                 return
             }
             guard let sAddress = fromAddress.components(separatedBy: "_").last else {
                 seal.reject(grinError("get s address error"))
                 return
             }
-            guard let signature = HDWalletManager.instance.accounts.first?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+            guard let signature = account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
                     seal.reject(grinError("get signature error"))
                     return
             }
@@ -148,27 +153,23 @@ class GrinTxByViteService {
 }
 
 extension GrinTxByViteService {
-    fileprivate func encrypteAndUploadSlate(toAddress:String, slate: Slate, type: Int) -> Promise<String> {
-        return cryptoAesCTRXOR(peerAddress: toAddress, data: slate.toJSONString()?.data(using: .utf8))
+    fileprivate func encrypteAndUploadSlate(toAddress:String, slate: Slate, type: Int, account: Wallet.Account) -> Promise<String> {
+        return cryptoAesCTRXOR(peerAddress: toAddress, data: slate.toJSONString()?.data(using: .utf8), account: account)
             .then({ (d) -> Promise<String> in
-                return self.uploadSlateData(d, slateId: slate.id, toAddress: toAddress, type: type)
+                return self.uploadSlateData(d, slateId: slate.id, toAddress: toAddress, type: type, account: account)
             })
     }
 
-    fileprivate func uploadSlateData(_ slateData: Data, slateId: String, toAddress:String, type: Int) -> Promise<String> {
+    fileprivate func uploadSlateData(_ slateData: Data, slateId: String, toAddress:String, type: Int, account: Wallet.Account) -> Promise<String> {
         return Promise {seal in
-            guard let fromAddress = HDWalletManager.instance.account?.address.description else {
-                seal.reject(grinError("get current address error"))
-                return
-            }
+            let fromAddress = account.address.description
+
             guard let sAddress = fromAddress.components(separatedBy: "_").last else {
                 seal.reject(grinError("get s address error"))
                 return
             }
-            guard let s = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                seal.reject(grinError("get signature error"))
-                return
-            }
+            let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
+
             let encryptedData = slateData.base64EncodedString()
             var fileName = encryptedData.digest(using: .sha256)
             if type == .sent {
@@ -194,20 +195,14 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func downlodEncryptedSlateData(fileName:String) -> Promise<Data> {
+    fileprivate func downlodEncryptedSlateData(fileName:String, account: Wallet.Account) -> Promise<Data> {
         return Promise { seal in
-            guard let toAddress = HDWalletManager.instance.account?.address.description else {
-                seal.reject(grinError("get current address error"))
-                return
-            }
+            let toAddress = account.address.description
             guard let sAddress = toAddress.components(separatedBy: "_").last else {
                 seal.reject(grinError("get sAddress error"))
                 return
             }
-            guard let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                seal.reject(grinError("get signature error"))
-                return
-            }
+            let signature = account.sign(hash: sAddress.hex2Bytes).toHexString()
             transactionProvider
                 .request(.getSlate(to: toAddress, s: signature, fname: fileName))
                 { (result) in
@@ -242,16 +237,14 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func cryptoAesCTRXOR(peerAddress:String, data: Data?) -> Promise< Data> {
+    fileprivate func cryptoAesCTRXOR(peerAddress:String, data: Data?, account: Wallet.Account) -> Promise< Data> {
         return getPK(address: peerAddress)
             .map { (peerPK)  in
                 guard let data = data else {
                     throw grinError("wrong  data")
                 }
-                guard let sk = HDWalletManager.instance.account?.secretKey,
-                    let pk = HDWalletManager.instance.account?.publicKey else {
-                        throw grinError("get sk pk failed")
-                }
+                let sk = account.secretKey
+                let pk = account.publicKey
                  guard let xkey = IoscryptoX25519ComputeSecret(IoscryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),IoscryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
                     let aes = IoscryptoAesCTRXOR(xkey, data, iv, nil) else {
                         throw grinError("cryptoAesCTRXOR failed")
@@ -331,20 +324,14 @@ extension GrinTxByViteService {
         }
     }
 
-     func reportFinalization(slateId: String) ->  Promise<Void> {
+    func reportFinalization(slateId: String,account: Wallet.Account) ->  Promise<Void> {
         return Promise { seal in
-            guard let fromAddress = HDWalletManager.instance.account?.address.description else {
-                seal.reject(grinError("get current address failed"))
-                return
-            }
+            let fromAddress = account.address.description
             guard let sAddress = fromAddress.components(separatedBy: "_").last else {
                 seal.reject(grinError("get s address failed"))
                 return
             }
-            guard let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                seal.reject(grinError("get signature failed"))
-                return
-            }
+            let signature = account.sign(hash: sAddress.hex2Bytes).toHexString()
             self.transactionProvider
                 .request(.reportFinalization(from: fromAddress, s: signature, id: slateId), completion: { (result) in
                     do {
@@ -361,23 +348,16 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func sentViteTx(toAddress: String, fileName: String) -> Promise<Void> {
+    fileprivate func sentViteTx(toAddress: String, fileName: String, account: Wallet.Account) -> Promise<Void> {
         guard let payload = fileName.data(using: .utf8) else {
             return Promise(error: grinError("creat payload failed. fileName:\(fileName)"))
         }
-        guard let account = HDWalletManager.instance.account else {
-            return Promise(error: grinError("get current account failed"))
-        }
         let dataHeader = Data(Bytes(arrayLiteral: 0x80, 0x01))
         let data = (dataHeader + payload)
-        return sendRawTx(toAddress: toAddress, data: data)
+        return sendRawTx(toAddress: toAddress, data: data,account: account )
     }
 
-    fileprivate func sendRawTx(toAddress: String, data: Data?) -> Promise<Void> {
-        guard let account = HDWalletManager.instance.account else {
-            return Promise(error: grinError("get current account failed"))
-        }
-
+    fileprivate func sendRawTx(toAddress: String, data: Data?, account: Wallet.Account) -> Promise<Void> {
         let tokenId = ViteWalletConst.viteToken.id
         let amount = Balance()
         
@@ -389,7 +369,7 @@ extension GrinTxByViteService {
             .map { _ in return Void() }
             .recover({ (e) -> Promise<Void> in
                 let code = ViteError.conversion(from: e).code
-                plog(level: .info, log: "grin-10-sendRawTx-recovertoAddress:\(toAddress),error:\(e),ecode:\(code)", tag: .grin)
+                plog(level: .info, log: "grin-10-sendRawTx-recovertoAddress:\(toAddress),,accountAddress:\(account.address.description),error:\(e),ecode:\(code)", tag: .grin)
                 if code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal ||
                     code == ViteErrorCode.rpcRefrencePrevBlockFailed ||
                     code == ViteErrorCode.rpcRefrenceBlockIsPending ||
@@ -397,7 +377,7 @@ extension GrinTxByViteService {
                     code.type == .st_req ||
                     code.type == .st_res {
                     return after(seconds: 5).then({ (Void) -> Promise<Void> in
-                        return self.sendRawTx(toAddress: toAddress, data: data)
+                        return self.sendRawTx(toAddress: toAddress, data: data, account: account)
                     })
                 } else if code == ViteErrorCode.rpcNotEnoughQuota {
                     return Provider.default.getPowForSendRawTx(account: account,
