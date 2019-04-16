@@ -246,7 +246,7 @@ extension GrinManager {
                 }
             }
             .catch { error in
-                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(address),error:\(error)", tag: .grin)
                 self.failed.append(last)
             }
             .finally {

@@ -176,14 +176,14 @@ class GrinTransactVM {
     }
 
     func sendTxByVite(amount: UInt64, destnation: String)  {
-        viteService.sentGrin(amount: amount, to: destnation)
+        viteService.sendGrin(amount: amount, to: destnation)
             .done {
                 plog(level: .info, log: "grin-3-sendGrin-sendGrinSuccess.amount:\(amount),destnation:\(destnation)", tag: .grin)
                 self.message.onNext(R.string.localizable.grinSentViteSuccess())
                 self.sendTxSuccess.onNext(Void())
             }
             .catch { (error) in
-                plog(level: .info, log: "grin-3-sendGrin-sendGrinFailed.amount:\(amount),destnation:\(destnation)", tag: .grin)
+                plog(level: .info, log: "grin-3-sendGrin-sendGrinFailed.amount:\(amount),destnation:\(destnation),error:\(error)", tag: .grin)
                 self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.localizedDescription)
         }

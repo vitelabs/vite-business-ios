@@ -24,7 +24,7 @@ class GrinTxByViteService {
 
     func getGateWay() -> Promise<String> {
         guard let address = HDWalletManager.instance.accounts.first?.address.description else {
-            fatalError()
+            return Promise(error: grinError("get first address failed"))
         }
         if let gateWay = gateWayMap[address] {
             return Promise { seal in seal.fulfill(gateWay) }
@@ -33,7 +33,7 @@ class GrinTxByViteService {
         }
     }
 
-    func sentGrin(amount: UInt64, to toAddress: String) -> Promise<Void> {
+    func sendGrin(amount: UInt64, to toAddress: String) -> Promise<Void> {
         return creatSentSlate(amount: amount)
             .map { (slate) -> (Slate, URL) in
                 plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress)", tag: .grin)
@@ -115,12 +115,19 @@ class GrinTxByViteService {
 
     func reportViteAddress() -> Promise<String> {
         return Promise { seal in
-            guard let fromAddress = HDWalletManager.instance.accounts.first?.address.description,
-                let sAddress = fromAddress.components(separatedBy: "_").last,
-                let signature = HDWalletManager.instance.accounts.first?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                    seal.reject(grinError)
+            guard let fromAddress = HDWalletManager.instance.accounts.first?.address.description else {
+                seal.reject(grinError("get first address error"))
+                return
+            }
+            guard let sAddress = fromAddress.components(separatedBy: "_").last else {
+                seal.reject(grinError("get s address error"))
+                return
+            }
+            guard let signature = HDWalletManager.instance.accounts.first?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+                    seal.reject(grinError("get signature error"))
                     return
             }
+
             self.transactionProvider
                 .request(.reportViteAddress(address: fromAddress, signature: signature), completion: { (result) in
                     do {
@@ -130,7 +137,7 @@ class GrinTxByViteService {
                             gateWayMap[fromAddress] = value
                             seal.fulfill((value))
                         } else {
-                            seal.reject(grinError)
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "reportViteAddress failed"))
                         }
                     } catch {
                         seal.reject(error)
@@ -150,11 +157,17 @@ extension GrinTxByViteService {
 
     fileprivate func uploadSlateData(_ slateData: Data, slateId: String, toAddress:String, type: Int) -> Promise<String> {
         return Promise {seal in
-            guard let fromAddress = HDWalletManager.instance.account?.address.description,
-                let sAddress = fromAddress.components(separatedBy: "_").last,
-                let s = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                    seal.reject(grinError)
-                    return
+            guard let fromAddress = HDWalletManager.instance.account?.address.description else {
+                seal.reject(grinError("get current address error"))
+                return
+            }
+            guard let sAddress = fromAddress.components(separatedBy: "_").last else {
+                seal.reject(grinError("get s address error"))
+                return
+            }
+            guard let s = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+                seal.reject(grinError("get signature error"))
+                return
             }
             let encryptedData = slateData.base64EncodedString()
             var fileName = encryptedData.digest(using: .sha256)
@@ -172,7 +185,7 @@ extension GrinTxByViteService {
                         if JSON(response.data)["code"].int == 0 {
                             seal.fulfill(fileName)
                         } else {
-                            seal.reject(grinError)
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "uploadSlate failed"))
                         }
                     } catch {
                         seal.reject(error)
@@ -183,11 +196,17 @@ extension GrinTxByViteService {
 
     fileprivate func downlodEncryptedSlateData(fileName:String) -> Promise<Data> {
         return Promise { seal in
-            guard let toAddress = HDWalletManager.instance.account?.address.description,
-                let sAddress = toAddress.components(separatedBy: "_").last,
-                let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                    seal.reject(grinError)
-                    return
+            guard let toAddress = HDWalletManager.instance.account?.address.description else {
+                seal.reject(grinError("get current address error"))
+                return
+            }
+            guard let sAddress = toAddress.components(separatedBy: "_").last else {
+                seal.reject(grinError("get sAddress error"))
+                return
+            }
+            guard let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+                seal.reject(grinError("get signature error"))
+                return
             }
             transactionProvider
                 .request(.getSlate(to: toAddress, s: signature, fname: fileName))
@@ -199,7 +218,7 @@ extension GrinTxByViteService {
                             let data = Data(base64Encoded: base64String) {
                             seal.fulfill(data)
                         } else {
-                            seal.reject(grinError)
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "downlodEncryptedSlateData failed"))
                         }
                     } catch {
                         seal.reject(error)
@@ -215,7 +234,7 @@ extension GrinTxByViteService {
             return Provider.default.getTransactions(address: Address(string: address), hash: nil, count: 1)
                 .map{ (transactions, nextHash)  in
                     guard let pk = transactions.first?.publicKey else {
-                        throw grinError
+                        throw grinError("get peer Key failed")
                     }
                     pkMap[address] = pk
                     return pk
@@ -226,12 +245,16 @@ extension GrinTxByViteService {
     fileprivate func cryptoAesCTRXOR(peerAddress:String, data: Data?) -> Promise< Data> {
         return getPK(address: peerAddress)
             .map { (peerPK)  in
-                guard let data = data,
-                    let sk = HDWalletManager.instance.account?.secretKey,
-                    let pk = HDWalletManager.instance.account?.publicKey,
-                    let xkey = IoscryptoX25519ComputeSecret(IoscryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),IoscryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
+                guard let data = data else {
+                    throw grinError("wrong  data")
+                }
+                guard let sk = HDWalletManager.instance.account?.secretKey,
+                    let pk = HDWalletManager.instance.account?.publicKey else {
+                        throw grinError("get sk pk failed")
+                }
+                 guard let xkey = IoscryptoX25519ComputeSecret(IoscryptoEd25519PrivToCurve25519(Data(hex: sk+pk)),IoscryptoEd25519PubToCurve25519(Data(hex: peerPK)),nil),
                     let aes = IoscryptoAesCTRXOR(xkey, data, iv, nil) else {
-                        throw grinError
+                        throw grinError("cryptoAesCTRXOR failed")
                 }
                 return aes
         }
@@ -249,12 +272,6 @@ extension GrinTxByViteService {
 
     fileprivate func creatSentSlate(amount: UInt64) -> Promise<Slate> {
         return Promise { seal in
-            guard let currentAddress = HDWalletManager.instance.account?.address,
-                let firstAddress = HDWalletManager.instance.accounts.first?.address,
-                currentAddress == firstAddress else {
-                    seal.reject(grinError)
-                    return
-            }
             grin_async({ () in
                 GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "Sent")
             }, { (result) in
@@ -302,7 +319,7 @@ extension GrinTxByViteService {
         return Promise { seal in
             guard let slateString = String.init(data: data, encoding: .utf8),
                 let slate = Slate(JSONString: slateString) else {
-                    seal.reject(grinError)
+                    seal.reject(grinError("transform Slate Failed"))
                     return
             }
             do {
@@ -316,11 +333,17 @@ extension GrinTxByViteService {
 
      func reportFinalization(slateId: String) ->  Promise<Void> {
         return Promise { seal in
-            guard let fromAddress = HDWalletManager.instance.account?.address.description,
-                let sAddress = fromAddress.components(separatedBy: "_").last,
-                let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
-                    seal.reject(grinError)
-                    return
+            guard let fromAddress = HDWalletManager.instance.account?.address.description else {
+                seal.reject(grinError("get current address failed"))
+                return
+            }
+            guard let sAddress = fromAddress.components(separatedBy: "_").last else {
+                seal.reject(grinError("get s address failed"))
+                return
+            }
+            guard let signature = HDWalletManager.instance.account?.sign(hash: sAddress.hex2Bytes).toHexString() else {
+                seal.reject(grinError("get signature failed"))
+                return
             }
             self.transactionProvider
                 .request(.reportFinalization(from: fromAddress, s: signature, id: slateId), completion: { (result) in
@@ -329,7 +352,7 @@ extension GrinTxByViteService {
                         if JSON(response.data)["code"].int == 0 {
                             seal.fulfill(())
                         } else {
-                            seal.reject(grinError)
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "reportFinalization failed"))
                         }
                     } catch {
                         seal.reject(error)
@@ -339,9 +362,11 @@ extension GrinTxByViteService {
     }
 
     fileprivate func sentViteTx(toAddress: String, fileName: String) -> Promise<Void> {
-        guard let payload = fileName.data(using: .utf8),
-            let account = HDWalletManager.instance.account else {
-                return Promise(error: grinError)
+        guard let payload = fileName.data(using: .utf8) else {
+            return Promise(error: grinError("creat payload failed. fileName:\(fileName)"))
+        }
+        guard let account = HDWalletManager.instance.account else {
+            return Promise(error: grinError("get current account failed"))
         }
         let dataHeader = Data(Bytes(arrayLiteral: 0x80, 0x01))
         let data = (dataHeader + payload)
@@ -350,7 +375,7 @@ extension GrinTxByViteService {
 
     fileprivate func sendRawTx(toAddress: String, data: Data?) -> Promise<Void> {
         guard let account = HDWalletManager.instance.account else {
-            return Promise(error: grinError)
+            return Promise(error: grinError("get current account failed"))
         }
 
         let tokenId = ViteWalletConst.viteToken.id
@@ -364,6 +389,7 @@ extension GrinTxByViteService {
             .map { _ in return Void() }
             .recover({ (e) -> Promise<Void> in
                 let code = ViteError.conversion(from: e).code
+                plog(level: .info, log: "grin-10-sendRawTx-recovertoAddress:\(toAddress),error:\(e),ecode:\(code)", tag: .grin)
                 if code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal ||
                     code == ViteErrorCode.rpcRefrencePrevBlockFailed ||
                     code == ViteErrorCode.rpcRefrenceBlockIsPending ||
@@ -395,7 +421,11 @@ extension Int {
     fileprivate static let response = 1
 }
 
-private let grinError = NSError(domain: "Grin", code: 1, userInfo: [NSLocalizedDescriptionKey: "grin error"])
+func grinError(_ message: String = "", code: Int = 1, line: Int = #line, function: String = #function ) -> NSError {
+    let description = "line:\(line),function:\(function),message:\(message),code:\(code)"
+    return  NSError(domain: "Grin", code: code, userInfo: [NSLocalizedDescriptionKey: description])
+}
+
 private let iv = "(grin)tx?iv@vite".data(using: .utf8)
 private var pkMap = [String: String]()
 private var gateWayMap = [String: String]()
