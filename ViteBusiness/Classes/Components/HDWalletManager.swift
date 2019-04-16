@@ -72,12 +72,14 @@ public final class HDWalletManager {
     func updateName(name: String) {
         guard let wallet = storage.updateCurrentWalletName(name) else { return }
         walletBehaviorRelay.accept(wallet)
+        plog(level: .info, log: "wallet change name to \(name)", tag: .wallet)
     }
 
     func generateNextAccount() -> Bool {
         guard let wallet = walletBehaviorRelay.value else { return false }
         guard wallet.addressCount < type(of: self).maxAddressCount else { return false }
         pri_update(addressIndex: wallet.addressIndex, addressCount: wallet.addressCount + 1)
+        plog(level: .info, log: "generate next address \(self.accounts.last?.address.description ?? ""), total: \(self.accounts.count)", tag: .wallet)
         return true
     }
 
@@ -86,6 +88,7 @@ public final class HDWalletManager {
         guard index < wallet.addressCount else { return false }
         guard index != wallet.addressIndex else { return true }
         pri_update(addressIndex: index, addressCount: wallet.addressCount)
+        plog(level: .info, log: "select \(self.account?.address.description ?? ""), index: \(index)", tag: .wallet)
         return true
     }
 
@@ -163,6 +166,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
         pri_LoginEthWallet()
+        plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
     func importAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
@@ -172,6 +176,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
         pri_LoginEthWallet()
+        plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
     func loginWithUuid(_ uuid: String, encryptKey: String) -> Bool {
@@ -180,6 +185,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
         pri_LoginEthWallet()
+        plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
 
@@ -189,6 +195,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
         pri_LoginEthWallet()
+        plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
 
@@ -199,6 +206,7 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(nil)
 
         pri_LogoutEthWallet()
+        plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 
     func verifyPassword(_ password: String) -> Bool {
