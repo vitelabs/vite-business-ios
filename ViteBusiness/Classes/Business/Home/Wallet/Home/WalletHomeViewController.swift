@@ -132,9 +132,14 @@ class WalletHomeViewController: BaseTableViewController {
                     if viewModel.tokenInfo.coinType == .eth {
                         balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
                     } else if viewModel.tokenInfo.coinType == .grin {
-                        let storyboard =
-                        balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
-                            .instantiateInitialViewController()!
+                        if !GrinManager.default.walletCreated.value {
+                            Toast.show("Grin wallet initializing, please wait a moment.")
+                            return
+                        } else {
+                            let storyboard =
+                                balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
+                                    .instantiateInitialViewController()!
+                        }
                     } else {
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }

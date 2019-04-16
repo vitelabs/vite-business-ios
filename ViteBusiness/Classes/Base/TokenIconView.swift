@@ -15,6 +15,11 @@ class TokenIconView: UIView {
     let tokenIconFrameImageView = UIImageView(image: R.image.icon_token_info_frame())
     let chainIconImageView = UIImageView()
 
+    func set(tokenIconImage: UIImage?) {
+        tokenIconImageView.kf.cancelDownloadTask()
+        tokenIconImageView.image = tokenIconImage
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -66,7 +71,7 @@ class TokenIconView: UIView {
     }
 
     var shapeLayer: CAShapeLayer! = nil
-    private func updateLayer() {
+    func updateLayer(_ color: UIColor? = nil) {
 
         if self.shapeLayer == nil {
             self.shapeLayer = CAShapeLayer()
@@ -76,7 +81,7 @@ class TokenIconView: UIView {
         }
 
         let view = self.tokenIconImageView
-        self.shapeLayer.strokeColor = self.tokenInfo?.strokeColor.cgColor ?? UIColor.clear.cgColor
+        self.shapeLayer.strokeColor = color?.cgColor ?? self.tokenInfo?.strokeColor.cgColor ?? UIColor.clear.cgColor
         self.shapeLayer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
     }
 }

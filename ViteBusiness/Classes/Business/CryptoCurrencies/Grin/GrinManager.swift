@@ -25,9 +25,11 @@ class GrinManager: GrinBridge {
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     private let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
 
+    let walletCreated = BehaviorRelay<Bool>(value: false)
+
     private var receivedSlateUrl: URL?
     var failed = [String]()
-    var isHandleingSavedTx = false
+    var isHandlingSavedTx = false
 
     private convenience init() {
         self.init(chainType: GrinManager.getChainType(), walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
@@ -86,28 +88,36 @@ class GrinManager: GrinBridge {
         self.creatWalletIfNeeded()
         GrinTxByViteService().reportViteAddress().done {_ in}
         self.balance.accept(GrinBalance())
-        self.getBalance()
         self.handleSavedTx()
     }
 
     func creatWalletIfNeeded()  {
         self.checkDirectories()
         self.checkApiSecret()
-        defer { self.getBalance() }
-        if !self.walletExists() {
-            guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
-            let result = self.walletRecovery(mnemonic)
+        guard !self.walletExists() else {
+            self.walletCreated.accept(true)
+            return
+        }
+        self.walletCreated.accept(false)
+        guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+        grin_async({ ()  in
+            self.walletRecovery(mnemonic)
+        },  { (result) in
             switch result {
             case .success(_):
-                Toast.show("creat grin creat wallet success")
+                self.getBalance()
             case .failure(let error):
+                Toast.show("error: \(error.message)")
                 plog(level: .error, log: "grin:" + error.message)
-                Toast.show("creat grin wallet failed, please reimport the mnemonic. error: \(error.message)")
             }
-        }
+            if self.walletExists() {
+                self.walletCreated.accept(true)
+            }
+        })
     }
 
     func getBalance() {
+        guard self.walletCreated.value else { return }
         grin_async({ () in
             self.walletInfo(refreshFromNode: true)
         },  { (result) in
@@ -189,16 +199,16 @@ extension GrinManager {
     }
 
     func handleSavedTx() {
-        if isHandleingSavedTx {
+        if isHandlingSavedTx {
             plog(level: .info, log: "grin-4-starthandleSavedTx-isHandleingSavedTx", tag: .grin)
             return
         }
-        isHandleingSavedTx = true
+        isHandlingSavedTx = true
         plog(level: .info, log: "grin-4-starthandleSavedTx", tag: .grin)
 
         guard let data = fileHelper.contentsAtRelativePath(relativePath),
             let savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String] else {
-                isHandleingSavedTx = false
+                isHandlingSavedTx = false
                 plog(level: .info, log: "grin-4-readSaveTxsFailed.", tag: .grin)
                 return
         }
@@ -211,7 +221,7 @@ extension GrinManager {
         guard let last = lastItem,
             let fileName = last.components(separatedBy: ",").first,
             let address = last.components(separatedBy: ",").last else {
-                isHandleingSavedTx = false
+                isHandlingSavedTx = false
                 plog(level: .info, log: "grin-4-paresSavedTxsFailed", tag: .grin)
                 return
         }
@@ -240,7 +250,7 @@ extension GrinManager {
                 self.failed.append(last)
             }
             .finally {
-                self.isHandleingSavedTx = false
+                self.isHandlingSavedTx = false
                 self.handleSavedTx()
                 plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(address)", tag: .grin)
 
