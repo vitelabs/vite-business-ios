@@ -17,7 +17,7 @@ public class AppConfigService {
 
     lazy var configDriver: Driver<AppConfig> = self.configBehaviorRelay.asDriver()
     fileprivate let configBehaviorRelay: BehaviorRelay<AppConfig>
-    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate let fileHelper = FileHelper.createForApp()
     fileprivate static let saveKey = "AppConfig"
 
     fileprivate var appConfigHash: String?

@@ -14,7 +14,7 @@ import ViteWallet
 
 public final class HDWalletStorage: Mappable {
 
-    fileprivate var fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate var fileHelper = FileHelper.createForApp()
     fileprivate static let saveKey = "HDWallet"
     fileprivate(set) var wallets = [Wallet]()
     fileprivate var currentWalletUuid: String?

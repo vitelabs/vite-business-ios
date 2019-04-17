@@ -39,7 +39,7 @@ public final class AddressManageService {
         HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().drive(onNext: { [weak self] uuid in
             guard let `self` = self else { return }
             if let _ = uuid {
-                self.fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+                self.fileHelper = FileHelper.createForWallet()
                 if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
                     let jsonString = String(data: data, encoding: .utf8),
                     let manager = AddressManager(JSONString: jsonString) {

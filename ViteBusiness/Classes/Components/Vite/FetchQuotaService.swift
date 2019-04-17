@@ -38,7 +38,7 @@ final class FetchQuotaService {
             guard let `self` = self else { return }
 
             if let account = a {
-                self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(account.address.description)")
+                self.fileHelper = FileHelper.createForWallet(appending: account.address.description)
                 if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
                     let jsonString = String(data: data, encoding: .utf8),
                     let quota = Quota(JSONString: jsonString) {

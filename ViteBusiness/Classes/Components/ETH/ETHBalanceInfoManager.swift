@@ -122,7 +122,7 @@ public class ETHBalanceInfoManager {
 
     private func read(address: String) -> ETHBalanceInfoMap {
 
-        self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(address)")
+        self.fileHelper = FileHelper.createForWallet(appending: address)
         var map = ETHBalanceInfoMap()
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),

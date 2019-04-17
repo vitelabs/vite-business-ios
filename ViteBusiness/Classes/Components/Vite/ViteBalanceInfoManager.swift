@@ -120,7 +120,7 @@ public class ViteBalanceInfoManager {
 
     private func read(address: Address) -> ViteBalanceInfoMap {
 
-        self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(address.description)")
+        self.fileHelper = FileHelper.createForWallet(appending: address.description)
         var map = ViteBalanceInfoMap()
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),

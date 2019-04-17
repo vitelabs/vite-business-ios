@@ -63,7 +63,7 @@ public final class MyTokenInfosService: NSObject {
                     let defaultTokenInfos = [TokenInfo](JSONArray: array).compactMap { $0 }
                     self.defaultTokenInfos = defaultTokenInfos
 
-                    self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)")
+                    self.fileHelper = FileHelper.createForWallet()
 
                     if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
                         let jsonString = String(data: data, encoding: .utf8),

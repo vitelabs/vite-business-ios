@@ -26,7 +26,7 @@ class TokenListService {
     var tokenListMap: TokenListMap{
         return tokenListRefreshBehaviorRelay.value
     }
-    fileprivate let fileHelper = FileHelper(.caches, appending: "tokenInfoListData")
+    fileprivate let fileHelper = FileHelper.createForApp()
     fileprivate static let saveKey = "tokenInfoListData"
 
     public func fetchTokenListCacheData() {

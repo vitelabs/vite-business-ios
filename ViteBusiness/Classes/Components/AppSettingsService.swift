@@ -15,7 +15,7 @@ public class AppSettingsService {
 
     lazy var currencyDriver: Driver<CurrencyCode> = self.currencyBehaviorRelay.asDriver()
     fileprivate let currencyBehaviorRelay: BehaviorRelay<CurrencyCode>
-    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate let fileHelper = FileHelper.createForApp()
     fileprivate static let saveKey = "AppSettings"
 
     private init() {

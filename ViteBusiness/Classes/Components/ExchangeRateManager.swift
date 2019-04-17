@@ -34,7 +34,7 @@ public final class ExchangeRateManager {
 
     private func read() -> ExchangeRateMap {
 
-        self.fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
+        self.fileHelper = FileHelper.createForWallet()
         var map = ExchangeRateMap()
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),

@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 private func grinFileHelper() -> FileHelper {
-    return FileHelper(.library, appending: FileHelper.walletPathComponent + "/grin" + GrinManager.getChainType().rawValue)
+    return FileHelper.createForWallet(appending: "/grin" + GrinManager.getChainType().rawValue)
 }
 
 class GrinManager: GrinBridge {

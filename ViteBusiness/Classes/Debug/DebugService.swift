@@ -21,7 +21,7 @@ extension Notification.Name {
 
 public class DebugService {
     public static let instance = DebugService()
-    fileprivate let fileHelper = FileHelper(.library, appending: FileHelper.appPathComponent)
+    fileprivate let fileHelper = FileHelper(.library)
     fileprivate static let saveKey = "DebugService"
 
 //    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
@@ -95,6 +95,8 @@ public class DebugService {
         NotificationCenter.default.post(name: NSNotification.Name.appEnvironmentDidChange, object: nil)
         #endif
         updateETHServer()
+        // change environment need exit
+        exit(0)
     }
 
     public var config: Config {
