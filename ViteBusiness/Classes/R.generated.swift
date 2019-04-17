@@ -878,7 +878,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 377 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 378 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1368,6 +1368,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNamePledge = Rswift.StringResource(key: "transaction.list.transaction.type.name.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Grin wallet initializing, please wait a moment.
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinCreating = Rswift.StringResource(key: "grin.creating", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Http Address
       /// 
       /// Locales: en, zh-Hans
@@ -3241,6 +3245,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNamePledge(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.pledge", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Grin wallet initializing, please wait a moment.
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinCreating(_: Void = ()) -> String {
+        return NSLocalizedString("grin.creating", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Http Address

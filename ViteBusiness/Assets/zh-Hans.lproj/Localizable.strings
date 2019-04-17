@@ -471,5 +471,6 @@
 "grin.txbyfile.receivedStatus.sender" = "待敲定";
 "grin.creat.syncronizing" = "账户创建、同步Grin数据中，预计3分钟";
 "grin.recover.syncronizing" = "账户恢复、同步Grin数据中，预计3分钟";
+"grin.creating" = "Grin钱包正在初始化，请稍候";
 
 

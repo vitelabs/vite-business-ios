@@ -244,7 +244,7 @@ extension GrinManager {
             handleSavedTx()
             return
         }
-        guard let address = detail.last else {
+        guard let fromAddress = detail.last else {
             isHandlingSavedTx = false
             plog(level: .info, log: "grin-4-paresSavedTxsFailed-getFromAddressFailed,lastItem:\(last)", tag: .grin)
             failed.append(last)
@@ -258,11 +258,13 @@ extension GrinManager {
              account = HDWalletManager.instance.accounts.filter { (a) -> Bool in
                 a.address.description == accountAddress
             }.first
-            if account == nil {
-                plog(level: .info, log: "grin-4-getAccountFailed,lastItem:\(last)", tag: .grin)
-                account = HDWalletManager.instance.accounts.first
-            }
         }
+
+        if account == nil {
+            plog(level: .info, log: "grin-4-getAccountFailed,lastItem:\(last)", tag: .grin)
+            account = HDWalletManager.instance.accounts.first
+        }
+        
         guard let a = account else {
             plog(level: .info, log: "grin-4-getFirstAccountFailed,lastItem:\(last)", tag: .grin)
             failed.append(last)
@@ -270,36 +272,36 @@ extension GrinManager {
             return
         }
 
-        plog(level: .info, log: "grin-4-GrinTxByViteServiceHandle.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+        plog(level: .info, log: "grin-4-GrinTxByViteServiceHandle.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
 
-        GrinTxByViteService.init().handle(fileName: fileName, fromAddress: address, account: a)
+        GrinTxByViteService.init().handle(fileName: fileName, fromAddress: fromAddress, account: a)
             .done {
-                plog(level: .info, log: "grin-10-GrinTxByViteServiceSuccess.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 guard let data = self.fileHelper.contentsAtRelativePath(self.relativePath),
                     var savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String]else {
-                        plog(level: .info, log: "grin-10-readSaveTxsFailed.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                        plog(level: .info, log: "grin-10-readSaveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                         return
                 }
 
                 if let index = savedRecords.lastIndex(of: last) {
                     savedRecords.remove(at: index)
-                    plog(level: .info, log: "grin-10-removeHandledInfo:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                    plog(level: .info, log: "grin-10-removeHandledInfo:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 }
 
                 do {
                     let newData = try JSON(savedRecords).rawData()
                     self.fileHelper.writeData(newData, relativePath: self.relativePath)
-                    plog(level: .info, log: "grin-10-SaveTxsSuccess.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                    plog(level: .info, log: "grin-10-SaveTxsSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 } catch {
-                    plog(level: .info, log: "grin-10-SaveTxsFailed.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                    plog(level: .info, log: "grin-10-SaveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 }
             }
             .catch { error in
-                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(address),error:\(error),accountAddress:\(a.address.description)", tag: .grin)
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(fromAddress),error:\(error),accountAddress:\(a.address.description)", tag: .grin)
                 self.failed.append(last)
             }
             .finally {
-                plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(address),accountAddress:\(a.address.description)", tag: .grin)
+                plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 self.isHandlingSavedTx = false
                 self.handleSavedTx()
         }
