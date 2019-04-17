@@ -19,23 +19,43 @@ final class TransactionViewModel: TransactionViewModelType {
     let balanceColor: UIColor
     let symbolString: String
     let hash: String
+    let isGenesis: Bool
 
     init(accountBlock: AccountBlock) {
-        self.typeImage = accountBlock.transactionType.icon
-        self.typeName = accountBlock.transactionType.name
-        self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress?.description : accountBlock.toAddress?.description) ?? ""
-        self.timeString = {
-            if let t = accountBlock.timestamp {
-                return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
-            } else {
-                return ""
-            }
-        }()
-        let symbol = (accountBlock.amount?.value ?? BigInt(0)) == 0 ? "" : (accountBlock.transactionType == .receive ? "+" : "-")
-        self.balanceString = "\(symbol)\(accountBlock.amount!.amountShort(decimals: accountBlock.token!.decimals))"
-        self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
-        self.symbolString = accountBlock.token?.symbol ?? ""
-        self.hash = accountBlock.hash ?? ""
+        if accountBlock.type == .genesisReceive {
+            self.isGenesis = true
+            self.typeImage = accountBlock.transactionType.icon
+            self.typeName = R.string.localizable.transactionListPageGenesisCellName()
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress?.description : accountBlock.toAddress?.description) ?? ""
+            self.timeString = {
+                if let t = accountBlock.timestamp {
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                } else {
+                    return ""
+                }
+            }()
+            self.balanceString = ""
+            self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            self.symbolString = accountBlock.token?.symbol ?? ""
+            self.hash = accountBlock.hash ?? ""
+        } else {
+            self.isGenesis = false
+            self.typeImage = accountBlock.transactionType.icon
+            self.typeName = accountBlock.transactionType.name
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress?.description : accountBlock.toAddress?.description) ?? ""
+            self.timeString = {
+                if let t = accountBlock.timestamp {
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                } else {
+                    return ""
+                }
+            }()
+            let symbol = (accountBlock.amount?.value ?? BigInt(0)) == 0 ? "" : (accountBlock.transactionType == .receive ? "+" : "-")
+            self.balanceString = "\(symbol)\(accountBlock.amount!.amountShort(decimals: accountBlock.token!.decimals))"
+            self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            self.symbolString = accountBlock.token?.symbol ?? ""
+            self.hash = accountBlock.hash ?? ""
+        }
     }
 }
 

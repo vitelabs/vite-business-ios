@@ -37,6 +37,13 @@ public struct WebHandler {
         open(url)
     }
 
+    static func openTranscationGenesisPage(hash: String) {
+        let host = appendLanguagePath(urlString: browserUrlString)
+        guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+        guard let url = URL(string: "\(host)/transaction/\(string)") else { return }
+        open(url)
+    }
+
     static func openSBPDetailPage(name: String) {
         let host = appendLanguagePath(urlString: browserUrlString)
         guard let string = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }

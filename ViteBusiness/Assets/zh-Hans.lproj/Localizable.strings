@@ -124,6 +124,7 @@
 "transaction.list.page.title" = "交易记录";
 "transaction.list.page.empty" = "无记录";
 "transaction.list.page.network.error" = "刷新页面";
+"transaction.list.page.genesis.cell.name" = "创世块";
 "transaction.list.page.header.refresh.idle" = "下拉刷新";
 "transaction.list.page.header.refresh.pulling" = "松开立即刷新";
 "transaction.list.page.header.refresh.refreshing" = "正在刷新中...";

@@ -121,6 +121,7 @@
 "transaction.list.page.title" = "Transaction History";
 "transaction.list.page.empty" = "Empty";
 "transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.genesis.cell.name" = "Genesis Block";
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
 "transaction.list.page.header.refresh.refreshing" = "Loading...";

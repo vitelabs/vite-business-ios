@@ -61,9 +61,15 @@ class TransactionListViewController: BaseTableViewController {
     }
 
     let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell: TransactionCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(viewModel: item, index: indexPath.row)
-        return cell
+        if item.isGenesis {
+            let cell: TransactionGenesisCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.bind(viewModel: item, index: indexPath.row)
+            return cell
+        } else {
+            let cell: TransactionCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.bind(viewModel: item, index: indexPath.row)
+            return cell
+        }
     })
 
     let footerView = GetMoreLoadingView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
@@ -87,7 +93,11 @@ class TransactionListViewController: BaseTableViewController {
                     guard let `self` = self else { return }
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
-                        WebHandler.openTranscationDetailPage(hash: viewModel.hash)
+                        if viewModel.isGenesis {
+                            WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
+                        } else {
+                            WebHandler.openTranscationDetailPage(hash: viewModel.hash)
+                        }
                     }
                 }
                 .disposed(by: rx.disposeBag)
