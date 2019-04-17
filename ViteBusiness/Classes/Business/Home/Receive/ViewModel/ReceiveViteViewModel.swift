@@ -32,7 +32,7 @@ class ReceiveViteViewModel: ReceiveViewModelType {
             self.noteStringBehaviorRelay.asDriver())
             .map({ [weak self] (amount, note) -> String in
                 guard let `self` = self else { return "" }
-                return ViteURI.transferURI(address: Address(string: self.address),
+                return ViteURI.transferURI(address: self.address,
                                            tokenId: self.token.id, amount: amount, note: note).string()
             })
     }
@@ -49,11 +49,11 @@ class ReceiveViteViewModel: ReceiveViewModelType {
     init(tokenInfo: TokenInfo) {
         self.token = tokenInfo.toViteToken()!
 
-        self.address = HDWalletManager.instance.account?.address.description ?? ""
-        self.addressName = AddressManageService.instance.name(for: Address(string: self.address))
+        self.address = HDWalletManager.instance.account?.address ?? ""
+        self.addressName = AddressManageService.instance.name(for: self.address)
 
         self.tipStringBehaviorRelay = BehaviorRelay(value: R.string.localizable.receivePageTokenNameLabel(token.symbol))
-        self.uriStringBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: Address(string: address), tokenId: token.id, amount: nil, note: nil).string())
+        self.uriStringBehaviorRelay = BehaviorRelay(value: ViteURI.transferURI(address: address, tokenId: token.id, amount: nil, note: nil).string())
     }
 
 }

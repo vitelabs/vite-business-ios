@@ -78,7 +78,7 @@ public struct ViteURI: URIType {
     }
 
     static let scheme: String = "vite"
-    let address: Address
+    let address: ViteAddress
     let chainId: String?
     let type: URIType
     let functionName: String?
@@ -100,12 +100,12 @@ public struct ViteURI: URIType {
 
     var parameters: [(String, String)]?
 
-    static func transferURI(address: Address, tokenId: String?, amount: String?, note: String?) -> ViteURI {
+    static func transferURI(address: ViteAddress, tokenId: String?, amount: String?, note: String?) -> ViteURI {
         let data = note?.data(using: .utf8)
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
-    init(address: Address, chainId: String?, type: URIType, functionName: String?,
+    init(address: ViteAddress, chainId: String?, type: URIType, functionName: String?,
          tokenId: String?, amount: String?, fee: String?, data: Data?,
          parameters: [(String, String)]?) {
         self.address = address
@@ -124,7 +124,7 @@ public struct ViteURI: URIType {
 
         string.append(ViteURI.scheme)
         string.append(":")
-        string.append(address.description)
+        string.append(address)
 
         if let chainId = chainId {
             string.append("@")
@@ -199,9 +199,9 @@ public struct ViteURI: URIType {
             return Result(error: URIError.InvalidFormat("@"))
         }
 
-        let address = Address(string: addressString)
+        let address = addressString
 
-        guard address.isValid else {
+        guard address.isViteAddress else {
             return Result(error: URIError.InvalidAddress)
         }
 

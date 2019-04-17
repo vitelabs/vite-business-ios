@@ -39,7 +39,7 @@ public final class HDWalletManager {
             guard let `self` = self else { return }
             if let index = addressIndex {
                 let account = self.accountsBehaviorRelay.value[index]
-                guard self.accountBehaviorRelay.value?.address.description != account.address.description else { return }
+                guard self.accountBehaviorRelay.value?.address != account.address else { return }
                 self.accountBehaviorRelay.accept(account)
             } else {
                 guard self.accountBehaviorRelay.value != nil else { return }
@@ -79,7 +79,7 @@ public final class HDWalletManager {
         guard let wallet = walletBehaviorRelay.value else { return false }
         guard wallet.addressCount < type(of: self).maxAddressCount else { return false }
         pri_update(addressIndex: wallet.addressIndex, addressCount: wallet.addressCount + 1)
-        plog(level: .info, log: "generate next address \(self.accounts.last?.address.description ?? ""), total: \(self.accounts.count)", tag: .wallet)
+        plog(level: .info, log: "generate next address \(self.accounts.last?.address ?? ""), total: \(self.accounts.count)", tag: .wallet)
         return true
     }
 
@@ -88,7 +88,7 @@ public final class HDWalletManager {
         guard index < wallet.addressCount else { return false }
         guard index != wallet.addressIndex else { return true }
         pri_update(addressIndex: index, addressCount: wallet.addressCount)
-        plog(level: .info, log: "select \(self.account?.address.description ?? ""), index: \(index)", tag: .wallet)
+        plog(level: .info, log: "select \(self.account?.address ?? ""), index: \(index)", tag: .wallet)
         return true
     }
 

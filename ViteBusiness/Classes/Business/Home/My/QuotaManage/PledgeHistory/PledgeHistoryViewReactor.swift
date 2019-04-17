@@ -84,7 +84,7 @@ final class PledgeHistoryViewReactor: Reactor {
         return newState
     }
 
-    let address = HDWalletManager.instance.account?.address ?? Address()
+    let address = HDWalletManager.instance.account?.address ?? ""
     var index = 0
 
     func load(refresh: Bool) -> Observable<([Pledge]?, String? )> {

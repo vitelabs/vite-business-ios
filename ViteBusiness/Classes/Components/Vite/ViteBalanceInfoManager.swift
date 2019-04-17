@@ -28,7 +28,7 @@ public class ViteBalanceInfoManager {
 
     fileprivate var service: FetchBalanceInfoService?
 
-    fileprivate var address: Address?
+    fileprivate var address: ViteAddress?
     fileprivate var tokenInfos: [TokenInfo] = []
 
     func registerFetch(tokenInfos: [TokenInfo]) {
@@ -74,16 +74,16 @@ public class ViteBalanceInfoManager {
         if let address = self.address,
             !tokenInfos.isEmpty {
 
-            guard address.description != self.service?.address.description else { return }
+            guard address != self.service?.address else { return }
 
-            plog(level: .debug, log: address.description + ": " + "start fetch balanceInfo", tag: .transaction)
+            plog(level: .debug, log: address + ": " + "start fetch balanceInfo", tag: .transaction)
             let service = FetchBalanceInfoService(address: address, interval: 5, completion: { [weak self] (r) in
                 guard let `self` = self else { return }
 
                 switch r {
                 case .success(let balanceInfos):
 
-                    plog(level: .debug, log: address.description + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.value.description }))", tag: .transaction)
+                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.value.description }))", tag: .transaction)
 
                     let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
                         var map = m
@@ -105,7 +105,7 @@ public class ViteBalanceInfoManager {
                     self.save(balanceInfos: balanceInfos)
                     self.balanceInfos.accept(ret)
                 case .failure(let error):
-                    plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
+                    plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
                 }
             })
             self.service?.stopPoll()
@@ -118,9 +118,9 @@ public class ViteBalanceInfoManager {
         }
     }
 
-    private func read(address: Address) -> ViteBalanceInfoMap {
+    private func read(address: ViteAddress) -> ViteBalanceInfoMap {
 
-        self.fileHelper = FileHelper.createForWallet(appending: address.description)
+        self.fileHelper = FileHelper.createForWallet(appending: address)
         var map = ViteBalanceInfoMap()
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),

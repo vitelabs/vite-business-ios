@@ -38,7 +38,7 @@ final class FetchQuotaService {
             guard let `self` = self else { return }
 
             if let account = a {
-                self.fileHelper = FileHelper.createForWallet(appending: account.address.description)
+                self.fileHelper = FileHelper.createForWallet(appending: account.address)
                 if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
                     let jsonString = String(data: data, encoding: .utf8),
                     let quota = Quota(JSONString: jsonString) {
@@ -51,7 +51,7 @@ final class FetchQuotaService {
 
                     switch r {
                     case .success(let quota):
-                        plog(level: .debug, log: address.description + ": " + "utps \(String(quota.utps))", tag: .transaction)
+                        plog(level: .debug, log: address + ": " + "utps \(String(quota.utps))", tag: .transaction)
 
                         self.quotaBehaviorRelay.accept(quota)
                         if let data = quota.toJSONString()?.data(using: .utf8) {
@@ -60,7 +60,7 @@ final class FetchQuotaService {
                             }
                         }
                     case .failure(let error):
-                        plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
+                        plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
                     }
                 })
 

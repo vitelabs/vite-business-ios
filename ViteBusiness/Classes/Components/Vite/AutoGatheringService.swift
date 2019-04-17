@@ -84,7 +84,7 @@ extension AutoGatheringService {
                     var ret: [(AccountBlock, Wallet.Account)] = []
                     let array = accountBlocks.compactMap { $0 }
                     for accountBlock in array {
-                        for account in accounts where accountBlock.toAddress?.description == account.address.description {
+                        for account in accounts where accountBlock.toAddress?.description == account.address {
                             ret.append((accountBlock, account))
                         }
                     }
@@ -97,7 +97,7 @@ extension AutoGatheringService {
                             })
                             // ignore error, and return nil
                             .recover({ (error) -> Promise<(AccountBlock, AccountBlock, Wallet.Account)?> in
-                                plog(level: .warning, log: ret.1.address.description + " receive error: " + error.viteErrorMessage, tag: .transaction)
+                                plog(level: .warning, log: ret.1.address + " receive error: " + error.viteErrorMessage, tag: .transaction)
                                 return .value(nil)
                             })
                     }
@@ -129,7 +129,7 @@ extension AutoGatheringService {
         }
 
         static func getFirstOnroadIfHas(for accounts: [Wallet.Account]) -> Promise<[AccountBlock?]> {
-            let requests = accounts.map { GetOnroadBlocksRequest(address: $0.address.description, index: 0, count: 1) }
+            let requests = accounts.map { GetOnroadBlocksRequest(address: $0.address, index: 0, count: 1) }
             return RPCRequest(for: Provider.default.server, batch: BatchFactory().create(requests)).promise
                 .map { accountBlocksArray -> [AccountBlock?] in
                     return accountBlocksArray.map { $0.first }

@@ -162,7 +162,7 @@ public struct Workflow {
 //MARK: Public
 public extension Workflow {
     static func sendTransactionWithConfirm(account: Wallet.Account,
-                                           toAddress: Address,
+                                           toAddress: ViteAddress,
                                            tokenInfo: TokenInfo,
                                            amount: Balance,
                                            note: String?,
@@ -193,12 +193,12 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
+        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
     static func pledgeWithConfirm(account: Wallet.Account,
-                                  beneficialAddress: Address,
+                                  beneficialAddress: ViteAddress,
                                   amount: Balance,
                                   completion: @escaping (Result<AccountBlock>) -> ()) {
 
@@ -224,7 +224,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress.description, amountString: amountString)
+        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
@@ -285,7 +285,7 @@ public extension Workflow {
     }
 
     static func callContractWithConfirm(account: Wallet.Account,
-                                        toAddress: Address,
+                                        toAddress: ViteAddress,
                                         tokenInfo: TokenInfo,
                                         amount: Balance,
                                         data: Data?,
@@ -315,16 +315,16 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
+        let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
     }
 
-    static func sendRawTx(by uri: ViteURI, accountAddress: Address, tokenInfo: TokenInfo, completion: @escaping (Result<AccountBlock>) -> ()) {
+    static func sendRawTx(by uri: ViteURI, accountAddress: ViteAddress, tokenInfo: TokenInfo, completion: @escaping (Result<AccountBlock>) -> ()) {
         guard let account = HDWalletManager.instance.account else {
             completion(Result(error: WorkflowError.notLogin))
             return
         }
-        guard account.address.description == accountAddress.description else {
+        guard account.address == accountAddress else {
             completion(Result(error: WorkflowError.accountAddressInconformity))
             return
         }

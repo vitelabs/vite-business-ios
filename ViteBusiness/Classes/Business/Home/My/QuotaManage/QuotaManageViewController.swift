@@ -18,7 +18,7 @@ class QuotaManageViewController: BaseViewController {
     // FIXME: Optional
     let account = HDWalletManager.instance.account!
 
-    var address: Address?
+    var address: ViteAddress?
     var balance: Balance
 
     init() {
@@ -59,7 +59,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
@@ -174,9 +174,9 @@ extension QuotaManageViewController {
             .bind { [weak self] in
                 Statistics.log(eventId: Statistics.Page.WalletQuota.submit.rawValue)
                 guard let `self` = self else { return }
-                let address = Address(string: self.addressView.textView.text ?? "")
+                let address = self.addressView.textView.text ?? ""
 
-                guard address.isValid else {
+                guard address.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
@@ -263,7 +263,7 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address.description
+                    self?.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)
@@ -275,7 +275,7 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
 }
 
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
-    func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt) {
+    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: BigInt) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
         let amount = Balance(value: amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals)!)
         Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in

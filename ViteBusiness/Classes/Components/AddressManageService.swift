@@ -56,16 +56,16 @@ public final class AddressManageService {
         }).disposed(by: disposeBag)
     }
 
-    func name(for myAddress: Address, placeholder: String = R.string.localizable.addressManageDefaultAddressName()) -> String {
-        return myAddressNameMap.value[myAddress.description] ?? placeholder
+    func name(for myAddress: ViteAddress, placeholder: String = R.string.localizable.addressManageDefaultAddressName()) -> String {
+        return myAddressNameMap.value[myAddress] ?? placeholder
     }
 
-    func updateName(for myAddress: Address, name: String) {
+    func updateName(for myAddress: ViteAddress, name: String) {
         var map = myAddressNameMap.value
         if name.isEmpty {
-            map[myAddress.description] = nil
+            map[myAddress] = nil
         } else {
-            map[myAddress.description] = name
+            map[myAddress] = name
         }
         myAddressNameMap.accept(map)
         pri_save()

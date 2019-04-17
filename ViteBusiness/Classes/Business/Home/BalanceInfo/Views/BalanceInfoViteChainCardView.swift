@@ -119,7 +119,7 @@ class BalanceInfoViteChainCardView: UIView {
             AddressManageService.instance.myAddressNameMapDriver.asObservable())
             .bind { (account, _) in
                 nameLabel.text = AddressManageService.instance.name(for: account.address)
-                addressLabel.text = account.address.description
+                addressLabel.text = account.address
             }.disposed(by: rx.disposeBag)
     }
 

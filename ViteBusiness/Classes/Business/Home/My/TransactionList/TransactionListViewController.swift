@@ -74,7 +74,7 @@ class TransactionListViewController: BaseTableViewController {
 
     let footerView = GetMoreLoadingView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
 
-    func bind(address: Address) {
+    func bind(address: ViteAddress) {
 
         if tableViewModel == nil {
             tableViewModel = TransactionListTableViewModel(address: address, token: token)

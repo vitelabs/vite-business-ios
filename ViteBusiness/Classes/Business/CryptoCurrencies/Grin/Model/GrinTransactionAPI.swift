@@ -9,9 +9,10 @@ import Foundation
 import Moya
 import ViteBusiness
 import CryptoSwift
+import ViteWallet
 
 public enum GrinTransaction {
-    case reportViteAddress(address: String, signature: String)
+    case reportViteAddress(address: ViteAddress, signature: String)
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)

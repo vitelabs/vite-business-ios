@@ -163,8 +163,7 @@ class SendGrinViewController: UIViewController {
         if transferMethod != .file,
             let destination = self.addressTextField.text,
             destination.hasPrefix("http"),
-            let viteAddress = destination.components(separatedBy: "/").last,
-            Address.isValid(string: viteAddress) {
+            let viteAddress = destination.components(separatedBy: "/").last, viteAddress.isViteAddress {
             Alert.show(into: self, title: R.string.localizable.grinSentSuggestUseViteTitle(), message: R.string.localizable.grinSentSuggestUseViteDesc(), actions: [
                 (.default(title: R.string.localizable.grinSentStillUseHttp()), { _ in
                     send()
@@ -199,7 +198,7 @@ extension SendGrinViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressTextField.text = uri.address.description
+                    self?.addressTextField.text = uri.address
                 } else {
                     self?.addressTextField.text = result
                 }

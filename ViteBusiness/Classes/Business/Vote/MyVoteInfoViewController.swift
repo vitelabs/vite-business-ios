@@ -46,7 +46,7 @@ class MyVoteInfoViewController: BaseViewController, View {
     }
 
     private func _pollingInfoData () {
-        self.reactor?.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
+        self.reactor?.action.onNext(.refreshData(HDWalletManager.instance.account?.address ?? ""))
 
     }
 

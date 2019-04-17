@@ -15,16 +15,16 @@ import NSObject_Rx
 import BigInt
 
 protocol  QuotaSubmitPopViewControllerDelegate: class {
-    func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt)
+    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: BigInt)
 }
 
 class QuotaSubmitPopViewController: BaseViewController {
     let money: String
-    let beneficialAddress: Address
+    let beneficialAddress: ViteAddress
     let amount: BigInt
     weak var delegate: QuotaSubmitPopViewControllerDelegate?
 
-    init(money: String, beneficialAddress: Address, amount: BigInt) {
+    init(money: String, beneficialAddress: ViteAddress, amount: BigInt) {
         self.money = money
         self.beneficialAddress = beneficialAddress
         self.amount = amount

@@ -23,13 +23,13 @@ class SendViewController: BaseViewController {
     var token: Token
     var balance: Balance
 
-    let address: Address?
+    let address: ViteAddress?
     let amount: Balance?
     let note: String?
 
     let noteCanEdit: Bool
 
-    init(tokenInfo: TokenInfo, address: Address?, amount: BigInt?, note: String?, noteCanEdit: Bool = true) {
+    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: BigInt?, note: String?, noteCanEdit: Bool = true) {
         self.tokenInfo = tokenInfo
         self.token = tokenInfo.toViteToken()!
         self.address = address
@@ -79,7 +79,7 @@ class SendViewController: BaseViewController {
 
     // headerView
     var navView = SendNavView()
-    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
 
     var addressView: SendAddressViewType!
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", symbol: token.symbol)
@@ -90,7 +90,7 @@ class SendViewController: BaseViewController {
         navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
 
         if let address = address {
-            addressView = AddressLabelView(address: address.description)
+            addressView = AddressLabelView(address: address)
         } else {
             let view = AddressTextViewView()
             view.addButton.rx.tap.bind { [weak self] in
@@ -160,9 +160,9 @@ class SendViewController: BaseViewController {
 
         sendButton.rx.tap
             .bind { [weak self] in
-                let address = Address(string: self?.addressView.textView.text ?? "")
+                let address = self?.addressView.textView.text ?? ""
                 guard let `self` = self else { return }
-                guard address.isValid else {
+                guard address.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
@@ -230,7 +230,7 @@ extension SendViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address.description
+                    self?.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)

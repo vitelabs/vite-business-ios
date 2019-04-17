@@ -109,7 +109,7 @@ class ContactsEditViewController: BaseViewController {
 
             switch self.type.value {
             case .vite:
-                guard Address.isValid(string: self.addressView.textView.text) else {
+                guard self.addressView.textView.text.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
@@ -142,10 +142,10 @@ class ContactsEditViewController: BaseViewController {
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address.description
+                    self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address.description
+                    self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)

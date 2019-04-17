@@ -28,9 +28,9 @@ class DebugOperationViewController: FormViewController {
                 $0.title =  "Get Test Token"
                 }.onCellSelection({ _, _  in
                     if let address = HDWalletManager.instance.account?.address {
-                        GetTestTokenRequest(address: address.description).defaultProviderPromise
+                        GetTestTokenRequest(address: address).defaultProviderPromise
                             .done { (ret) in
-                                Toast.show("\(address.description) get test token complete")
+                                Toast.show("\(address) get test token complete")
                             }
                             .catch { (error) in
                                 Toast.show(error.viteErrorMessage)

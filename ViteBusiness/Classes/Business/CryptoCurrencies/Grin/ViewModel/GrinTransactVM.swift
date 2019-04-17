@@ -144,7 +144,7 @@ class GrinTransactVM {
             return
         }
         if let destnation = destnation {
-           if Address.isValid(string: destnation) {
+           if destnation.isViteAddress {
                 self.sendButtonEnabled.accept(false)
                 self.sendTxByVite(amount: amount, destnation: destnation)
             } else if let url = URL(string: destnation) {
