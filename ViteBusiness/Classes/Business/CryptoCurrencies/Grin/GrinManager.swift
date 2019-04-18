@@ -99,7 +99,9 @@ class GrinManager: GrinBridge {
         #endif
         self.creatWalletIfNeeded()
         self.balance.accept(GrinBalance())
-        self.handleSavedTx()
+        DispatchQueue.main.async {
+            self.handleSavedTx()
+        }
     }
 
     func creatWalletIfNeeded()  {
@@ -288,6 +290,11 @@ extension GrinManager {
                     plog(level: .info, log: "grin-10-removeHandledInfo:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 }
 
+                let isResponse = fileName.contains("response")
+                if !isResponse {
+                    GrinManager.default.remove_handleSendFileSuccess_createdResponeseFilePath(fileName: fileName)
+                }
+
                 do {
                     let newData = try JSON(savedRecords).rawData()
                     self.fileHelper.writeData(newData, relativePath: self.relativePath)
@@ -324,6 +331,49 @@ extension GrinManager {
         finalizedTxs.append(slateId)
         if let data = try? JSON(finalizedTxs).rawData() {
             fileHelper.writeData(data, relativePath: finalizedTxsPath)
+        }
+    }
+
+}
+
+extension GrinManager {
+
+    var handleSendFileSuccess_createdResponeseFile_Path: String {
+        return "handleSendFileSuccessCreatedResponeseFile/handleSendFileSuccessCreatedResponeseFile"
+    }
+
+    func handleSendFileSuccess_createdResponeseFilePathInfos() -> [String: String] {
+        if let data = fileHelper.contentsAtRelativePath(handleSendFileSuccess_createdResponeseFile_Path),
+            let json = try? JSON.init(data: data),
+            let dict = json.dictionaryObject as? [String: String] {
+            return dict
+        } else {
+            return [String: String]()
+        }
+    }
+
+    func get_handleSendFileSuccess_createdResponeseFilePath(fileName: String) -> String? {
+        let infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        if let slateId = infos[fileName] {
+            let url = getSlateUrl(slateId: slateId, isResponse: true)
+            return url.path
+        }
+        return nil
+    }
+
+    func set_handleSendFileSuccess_createdResponeseFile(fileName: String, slateId: String) {
+        var infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        infos[fileName] = slateId
+        if let data = try? JSON(infos).rawData() {
+            fileHelper.writeData(data, relativePath: handleSendFileSuccess_createdResponeseFile_Path)
+        }
+    }
+
+    func remove_handleSendFileSuccess_createdResponeseFilePath(fileName: String) {
+        var infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        infos[fileName] = nil
+        if let data = try? JSON(infos).rawData() {
+            fileHelper.writeData(data, relativePath: handleSendFileSuccess_createdResponeseFile_Path)
         }
     }
 }
