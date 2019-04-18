@@ -83,7 +83,7 @@ public struct ViteURI: URIType {
     let type: URIType
     let functionName: String?
 
-    let tokenId: String
+    let tokenId: ViteTokenId
     let amount: String?
     let fee: String?
     let data: Data?
@@ -100,13 +100,13 @@ public struct ViteURI: URIType {
 
     var parameters: [(String, String)]?
 
-    static func transferURI(address: ViteAddress, tokenId: String?, amount: String?, note: String?) -> ViteURI {
+    static func transferURI(address: ViteAddress, tokenId: ViteTokenId?, amount: String?, note: String?) -> ViteURI {
         let data = note?.data(using: .utf8)
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
     init(address: ViteAddress, chainId: String?, type: URIType, functionName: String?,
-         tokenId: String?, amount: String?, fee: String?, data: Data?,
+         tokenId: ViteTokenId?, amount: String?, fee: String?, data: Data?,
          parameters: [(String, String)]?) {
         self.address = address
         self.chainId = chainId
@@ -205,7 +205,7 @@ public struct ViteURI: URIType {
             return Result(error: URIError.InvalidAddress)
         }
 
-        var tokenId: String? = nil
+        var tokenId: ViteTokenId? = nil
         var amount: String? = nil
         var fee: String? = nil
         var data: Data? = nil
@@ -216,7 +216,7 @@ public struct ViteURI: URIType {
             case .success(let (t, a, f, d, p)):
 
                 if let t = t {
-                    guard Token.isValid(string: t) else {
+                    guard t.isViteTokenId else {
                         return Result(error: URIError.InvalidTokenId)
                     }
                     tokenId = t
@@ -264,9 +264,9 @@ public struct ViteURI: URIType {
 
 extension ViteURI {
 
-    fileprivate static func parser(parameters: String) -> Result<(tokenId: String?, amountString: String?, feeString: String?, dataString: String?, [(key: String, value: String)]), URIError> {
+    fileprivate static func parser(parameters: String) -> Result<(tokenId: ViteTokenId?, amountString: String?, feeString: String?, dataString: String?, [(key: String, value: String)]), URIError> {
 
-        var tokenId: String? = nil
+        var tokenId: ViteTokenId? = nil
         var amountString: String? = nil
         var feeString: String? = nil
         var dataString: String? = nil

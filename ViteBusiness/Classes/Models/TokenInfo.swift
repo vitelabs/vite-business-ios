@@ -147,7 +147,7 @@ public struct TokenInfo: Mappable {
         }
     }
 
-    public var viteTokenId: String {
+    public var viteTokenId: ViteTokenId {
         return id
     }
 

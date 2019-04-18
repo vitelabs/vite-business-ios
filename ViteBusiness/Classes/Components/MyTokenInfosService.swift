@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import Alamofire
+import ViteWallet
 
 
 public final class MyTokenInfosService: NSObject {
@@ -161,7 +162,7 @@ public final class MyTokenInfosService: NSObject {
 
 extension MyTokenInfosService {
 
-    public func tokenInfo(forViteTokenId viteTokenId: String) -> TokenInfo? {
+    public func tokenInfo(forViteTokenId viteTokenId: ViteTokenId) -> TokenInfo? {
         for tokenInfo in tokenInfos where tokenInfo.coinType == .vite && tokenInfo.viteTokenId == viteTokenId {
             return tokenInfo
         }
@@ -184,7 +185,7 @@ extension MyTokenInfosService {
         }
     }
 
-    func tokenInfo(forViteTokenId viteTokenId: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
+    func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))
