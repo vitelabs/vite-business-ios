@@ -15,7 +15,7 @@ class GrinBalance: WalletHomeBalanceInfo {
     var tokenInfo: TokenInfo {
         return GrinManager.tokenInfo
     }
-    var balance: Balance = Balance()
+    var balance: Amount = Amount()
 
     var total = "--"
     var amountAwaitingConfirmation = "--"
@@ -26,16 +26,16 @@ class GrinBalance: WalletHomeBalanceInfo {
     init() { }
 
     init(_ info: Vite_GrinWallet.WalletInfo) {
-        let spendableBalance = Balance(value: BigInt(info.amountCurrentlySpendable))
+        let spendableBalance = Amount(info.amountCurrentlySpendable)
         amountCurrentlySpendable = spendableBalance.amount(decimals: 9, count: 9)
         amountAwaitingConfirmation =
-            Balance(value: BigInt(info.amountAwaitingConfirmation + info.amountImmature))
+            Amount(info.amountAwaitingConfirmation + info.amountImmature)
             .amount(decimals: 9, count: 9)
         amountLocked =
-            Balance(value: BigInt(info.amountLocked))
+            Amount(info.amountLocked)
             .amount(decimals: 9, count: 9)
         total =
-            Balance(value: BigInt(info.total))
+            Amount(info.total)
             .amount(decimals: 9, count: 9)
         legalTenderWorthed =
             "≈" + ExchangeRateManager.instance.rateMap

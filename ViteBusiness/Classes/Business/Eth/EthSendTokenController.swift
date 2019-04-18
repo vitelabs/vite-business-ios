@@ -20,11 +20,11 @@ class EthSendTokenController: BaseViewController {
     let fromAddress : EthereumAddress = EtherWallet.shared.ethereumAddress!
 
     var address:  web3swift.Address? = nil
-    var amount: Balance? = nil
+    var amount: Amount? = nil
 
     public var tokenInfo : TokenInfo
 
-    init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
+    init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Amount? = nil) {
         self.tokenInfo = tokenInfo
 
         self.address = toAddress
@@ -179,12 +179,12 @@ class EthSendTokenController: BaseViewController {
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: self.tokenInfo.decimals) else {
+                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }

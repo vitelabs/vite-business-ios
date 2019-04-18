@@ -13,7 +13,7 @@ import ViteWallet
 
 protocol WalletHomeBalanceInfo {
     var tokenInfo: TokenInfo { get }
-    var balance: Balance { get }
+    var balance: Amount { get }
 }
 
 extension BalanceInfo: WalletHomeBalanceInfo {
@@ -40,9 +40,9 @@ final class WalletHomeBalanceInfoTableViewModel {
                     .map({ (tokenInfo) -> WalletHomeBalanceInfo in
                         switch tokenInfo.coinType {
                         case .vite:
-                            return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
+                            return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
                         case .eth:
-                            return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance())
+                            return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
                         case .grin:
                             return grinBalance
                         default:

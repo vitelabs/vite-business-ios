@@ -58,7 +58,7 @@ extension EtherWallet {
                 do {
                     let balance = try self.etherBalanceSync()
                     DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: Balance(value: balance)))
+                        seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: balance))
                     }
                 } catch let error {
                     DispatchQueue.main.async {
@@ -76,7 +76,7 @@ extension EtherWallet {
                 do {
                     let balance = try self.tokenBalanceSync(contractAddress: token.contractAddress)
                     DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance(value: balance)))
+                        seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: balance))
                     }
                 } catch let error {
                     DispatchQueue.main.async {

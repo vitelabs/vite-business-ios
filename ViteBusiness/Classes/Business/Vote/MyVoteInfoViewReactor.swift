@@ -20,7 +20,7 @@ final class MyVoteInfoViewReactor: Reactor {
 
     enum Action {
         case refreshData(String)
-        case voting(String, Balance?)
+        case voting(String, Amount?)
         case cancelVote()
     }
 
@@ -72,7 +72,7 @@ final class MyVoteInfoViewReactor: Reactor {
         return newState
     }
 
-    func createLocalVoteInfo(_ nodeName: String, _ balance: Balance?, _ isCancel: Bool)-> Observable<(VoteInfo, VoteStatus)> {
+    func createLocalVoteInfo(_ nodeName: String, _ balance: Amount?, _ isCancel: Bool)-> Observable<(VoteInfo, VoteStatus)> {
         return Observable<(VoteInfo, VoteStatus)>.create({ (observer) ->
             Disposable in
             let voteInfo = VoteInfo(nodeName, .valid, balance)

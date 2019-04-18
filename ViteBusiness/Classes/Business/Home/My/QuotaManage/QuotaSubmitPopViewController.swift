@@ -14,17 +14,17 @@ import RxCocoa
 import NSObject_Rx
 import BigInt
 
-protocol  QuotaSubmitPopViewControllerDelegate: class {
-    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: BigInt)
+protocol QuotaSubmitPopViewControllerDelegate: class {
+    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: Amount)
 }
 
 class QuotaSubmitPopViewController: BaseViewController {
     let money: String
     let beneficialAddress: ViteAddress
-    let amount: BigInt
+    let amount: Amount
     weak var delegate: QuotaSubmitPopViewControllerDelegate?
 
-    init(money: String, beneficialAddress: ViteAddress, amount: BigInt) {
+    init(money: String, beneficialAddress: ViteAddress, amount: Amount) {
         self.money = money
         self.beneficialAddress = beneficialAddress
         self.amount = amount

@@ -272,7 +272,7 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.unconfirmedBalance.value == 0 })
+            .map({ $0.unconfirmedBalance == 0 })
             .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
 
         FetchQuotaService.instance.quotaDriver

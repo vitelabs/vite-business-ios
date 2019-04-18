@@ -359,7 +359,7 @@ extension GrinTxByViteService {
 
     fileprivate func sendRawTx(toAddress: ViteAddress, data: Data?, account: Wallet.Account) -> Promise<Void> {
         let tokenId = ViteWalletConst.viteToken.id
-        let amount = Balance()
+        let amount = Amount()
         return ViteNode.rawTx.send.withoutPow(account: account,
                                               toAddress: toAddress,
                                               tokenId: tokenId,

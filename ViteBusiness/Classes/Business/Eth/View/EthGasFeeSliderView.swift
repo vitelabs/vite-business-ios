@@ -31,7 +31,7 @@ public class EthGasFeeSliderView: UIView {
                 ethStr = String(format: "%.4f", eth)
             }
             var rateFee = ""
-            let balance = Balance.init(value: ethStr.toBigInt(decimals: 18) ?? BigInt(0))
+            let balance = ethStr.toAmount(decimals: 18) ?? Amount(0)
 
             if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) {
                 rateFee = String(format: "≈%@",rateFeeStr)

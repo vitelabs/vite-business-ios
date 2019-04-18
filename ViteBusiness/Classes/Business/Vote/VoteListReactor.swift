@@ -115,7 +115,7 @@ final class VoteListReactor {
             return nil
         }
         var result = candidates.sorted(by: {
-            return $0.voteNum.value > $1.voteNum.value
+            return $0.voteNum > $1.voteNum
         })
 
         for (index, candidate) in result.enumerated() {

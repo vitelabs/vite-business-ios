@@ -164,7 +164,7 @@ public extension Workflow {
     static func sendTransactionWithConfirm(account: Wallet.Account,
                                            toAddress: ViteAddress,
                                            tokenInfo: TokenInfo,
-                                           amount: Balance,
+                                           amount: Amount,
                                            note: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
@@ -199,7 +199,7 @@ public extension Workflow {
 
     static func pledgeWithConfirm(account: Wallet.Account,
                                   beneficialAddress: ViteAddress,
-                                  amount: Balance,
+                                  amount: Amount,
                                   completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
@@ -287,7 +287,7 @@ public extension Workflow {
     static func callContractWithConfirm(account: Wallet.Account,
                                         toAddress: ViteAddress,
                                         tokenInfo: TokenInfo,
-                                        amount: Balance,
+                                        amount: Amount,
                                         data: Data?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
@@ -341,9 +341,9 @@ public extension Workflow {
                 let ret = String(bytes: data, encoding: .utf8) {
                 note = ret
             }
-            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), note: note, completion: completion)
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, note: note, completion: completion)
         case .contract:
-            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: Balance(value: amount), data: uri.data, completion: completion)
+            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
         }
     }
 

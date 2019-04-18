@@ -21,21 +21,21 @@ class SendViewController: BaseViewController {
 
     let tokenInfo: TokenInfo
     var token: Token
-    var balance: Balance
+    var balance: Amount
 
     let address: ViteAddress?
-    let amount: Balance?
+    let amount: Amount?
     let note: String?
 
     let noteCanEdit: Bool
 
-    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: BigInt?, note: String?, noteCanEdit: Bool = true) {
+    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: Amount?, note: String?, noteCanEdit: Bool = true) {
         self.tokenInfo = tokenInfo
         self.token = tokenInfo.toViteToken()!
         self.address = address
-        self.balance = Balance(value: BigInt(0))
+        self.balance = Amount(0)
         if let amount = amount {
-            self.amount = Balance(value: amount)
+            self.amount = amount
         } else {
             self.amount = nil
         }
@@ -168,22 +168,22 @@ class SendViewController: BaseViewController {
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: self.token.decimals) else {
+                    let amount = amountString.toAmount(decimals: self.token.decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                     return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                guard amount <= self.balance.value else {
+                guard amount <= self.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
 
-                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: Balance(value: amount), note: self.noteView.textField.text, completion: { (r) in
+                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
                     if case .success = r {
                         GCD.delay(1) { self.dismiss() }
                     }

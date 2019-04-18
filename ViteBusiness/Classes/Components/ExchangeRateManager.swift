@@ -131,7 +131,7 @@ public enum CurrencyCode: String {
 
 public extension Dictionary where Key == String, Value == [String: String] {
 
-    func price(for tokenInfo: TokenInfo, balance: Balance) -> BigDecimal {
+    func price(for tokenInfo: TokenInfo, balance: Amount) -> BigDecimal {
 
         let currency = AppSettingsService.instance.currency
         if let dic = self[tokenInfo.tokenCode] as? [String: String],
@@ -143,24 +143,24 @@ public extension Dictionary where Key == String, Value == [String: String] {
         }
     }
 
-    func priceString(for tokenInfo: TokenInfo, balance: Balance) -> String {
+    func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.currency
         let p = price(for: tokenInfo, balance: balance)
         return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding))"
     }
 }
 
-public extension Balance {
+public extension Amount {
     public func price(decimals: Int, rate: String) -> BigDecimal? {
         guard let r = BigDecimal(rate) else { return nil }
-        let v = BigDecimal(self.value)
+        let v = BigDecimal(self)
         let d = BigDecimal(BigInt(10).power(decimals))
         return v * r / d
     }
 }
 
 extension ExchangeRateManager {
-     func calculateBalanceWithEthRate(_ balance: Balance) -> String? {
+     func calculateBalanceWithEthRate(_ balance: Amount) -> String? {
         let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, name: "", symbol: "", decimals: 18, icon: "", id: "")
 
         if self.rateMap[TokenCode.etherCoin] == nil{

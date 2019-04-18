@@ -8,7 +8,7 @@
 import ViteWallet
 import BigInt
 
-extension Balance {
+extension Amount {
 
     public func amountShort(decimals: Int) -> String {
         return amount(decimals: decimals, count: 4)
@@ -19,8 +19,8 @@ extension Balance {
     }
 
     public func amount(decimals: Int, count: Int) -> String {
-        let bigDecimal = BigDecimal(number: value, digits: decimals)
-        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(min(count, decimals)), padding: .padding)
+        let bigDecimal = BigDecimal(number: (self as BigInt), digits: decimals)
+        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(Swift.min(decimals, count)), padding: .padding)
     }
 }
 

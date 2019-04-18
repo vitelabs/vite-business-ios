@@ -74,7 +74,7 @@ class GrinTransactVM {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let strategies):
-                    let fee = Balance(value: BigInt(strategies.smallest.fee)).amountFull(decimals: 9)
+                    let fee = Amount(strategies.smallest.fee).amountFull(decimals: 9)
                     self.txFee.accept(fee)
                     completion?(fee)
                 case .failure(let error):

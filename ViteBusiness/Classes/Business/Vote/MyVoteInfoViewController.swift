@@ -17,7 +17,7 @@ class MyVoteInfoViewController: BaseViewController, View {
     // FIXME: Optional
     let account = HDWalletManager.instance.account!
     var disposeBag = DisposeBag()
-    var balance: Balance?
+    var balance: Amount?
     var oldVoteInfo: VoteInfo?
 
     init() {

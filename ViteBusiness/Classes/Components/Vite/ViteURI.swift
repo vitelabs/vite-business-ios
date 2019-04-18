@@ -88,13 +88,13 @@ public struct ViteURI: URIType {
     let fee: String?
     let data: Data?
 
-    func amountForSmallestUnit(decimals: Int) -> BigInt? {
-        guard let amount = amount else { return BigInt(0) }
+    func amountForSmallestUnit(decimals: Int) -> Amount? {
+        guard let amount = amount else { return Amount(0) }
         return amount.uriNumberTypeStringToBigint(decimals: decimals)
     }
 
-    func feeForSmallestUnit(decimals: Int) -> BigInt? {
-        guard let fee = fee else { return BigInt(0) }
+    func feeForSmallestUnit(decimals: Int) -> Amount? {
+        guard let fee = fee else { return Amount(0) }
         return fee.uriNumberTypeStringToBigint(decimals: decimals)
     }
 

@@ -19,10 +19,10 @@ class QuotaManageViewController: BaseViewController {
     let account = HDWalletManager.instance.account!
 
     var address: ViteAddress?
-    var balance: Balance
+    var balance: Amount
 
     init() {
-        self.balance = Balance(value: BigInt(0))
+        self.balance = Amount(0)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -183,22 +183,22 @@ extension QuotaManageViewController {
 
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals) else {
+                    let amount = amountString.toAmount(decimals: ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                guard amount <= self.balance.value else {
+                guard amount <= self.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
 
-                guard amount >= "1000".toBigInt(decimals: ViteWalletConst.viteToken.decimals)! else {
+                guard amount >= "1000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
@@ -275,9 +275,9 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
 }
 
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
-    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: BigInt) {
+    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: Amount) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        let amount = Balance(value: amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals)!)
+        let amount = amountString.toAmount(decimals: ViteWalletConst.viteToken.decimals)!
         Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
             if case .success = r {
                 self.refreshDataBySuccess()

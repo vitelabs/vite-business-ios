@@ -83,7 +83,7 @@ public class ViteBalanceInfoManager {
                 switch r {
                 case .success(let balanceInfos):
 
-                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.value.description }))", tag: .transaction)
+                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.description }))", tag: .transaction)
 
                     let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
                         var map = m
@@ -97,7 +97,7 @@ public class ViteBalanceInfoManager {
                         if let balanceInfo = map[tokenInfo.viteTokenId] {
                             ret[tokenInfo.viteTokenId] = balanceInfo
                         } else {
-                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
+                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
                         }
                         return ret
                     })

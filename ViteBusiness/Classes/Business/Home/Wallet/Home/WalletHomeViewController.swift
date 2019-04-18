@@ -198,7 +198,7 @@ class WalletHomeViewController: BaseTableViewController {
                     Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
-                                                     amount: Balance(value: amount),
+                                                     amount: amount,
                                                      data: uri.data,
                                                      completion: { _ in })
                 }
@@ -219,10 +219,10 @@ class WalletHomeViewController: BaseTableViewController {
                     MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
                 }
 
-                var balance: Balance? = nil
+                var balance: Amount? = nil
                 if let amount = uri.amount,
-                    let b = BigInt(amount) {
-                    balance = Balance(value: b)
+                    let b = Amount(amount) {
+                    balance = b
                 }
 
                 let sendViewController = EthSendTokenController(tokenInfo, toAddress: web3swift.Address(uri.address), amount: balance)
