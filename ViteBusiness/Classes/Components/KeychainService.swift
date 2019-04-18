@@ -13,7 +13,19 @@ import ObjectMapper
 class KeychainService {
     static let instance = KeychainService()
 
+    #if DEBUG || TEST
+    private let keychain: KeychainSwift = {
+        var keyPrefix = "vite"
+        if DebugService.instance.config.appEnvironment != .online {
+            keyPrefix = "\(keyPrefix)_\(DebugService.instance.config.appEnvironment.name)"
+        }
+        return KeychainSwift.init(keyPrefix: keyPrefix)
+    }()
+    #else
     private let keychain = KeychainSwift.init(keyPrefix: "vite")
+    #endif
+
+
     private init() {
         if let jsonString = keychain.get(Key.currentWallet.rawValue) {
             currentWallet = Wallet(JSONString: jsonString)
