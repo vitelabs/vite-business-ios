@@ -169,12 +169,19 @@ extension WKWebViewController {
 }
 
 extension WKWebViewController {
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("webViewDidStartLoad: \(String(describing: webView.url?.absoluteString))")
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("webViewDidFinishLoad: \(String(describing: webView.url?.absoluteString))")
+    }
+
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        decisionHandler(.allow)
     }
 }
 
