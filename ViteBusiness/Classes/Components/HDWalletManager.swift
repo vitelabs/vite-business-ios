@@ -294,39 +294,3 @@ extension HDWalletManager {
     }
 }
 #endif
-
-public extension FileHelper {
-
-    #if DEBUG || TEST
-    static func path() -> String {
-        return (DebugService.instance.config.appEnvironment == .online) ? "" : DebugService.instance.config.appEnvironment.name + "/"
-    }
-    static var appPathComponent: String {
-        return path() + "app"
-    }
-    static var walletPathComponent: String {
-        return path() + (HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid")
-    }
-    #else
-    static var appPathComponent = "app"
-    static var walletPathComponent: String {
-        return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
-    }
-    #endif
-
-    static func createForApp(appending: String? = nil) -> FileHelper {
-        var path = FileHelper.appPathComponent
-        if let appending = appending {
-            path = path + "/" + appending
-        }
-        return FileHelper(.library, appending: path)
-    }
-
-    static func createForWallet(appending: String? = nil) -> FileHelper {
-        var path = FileHelper.walletPathComponent
-        if let appending = appending {
-            path = path + "/" + appending
-        }
-        return FileHelper(.library, appending: path)
-    }
-}

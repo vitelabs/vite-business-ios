@@ -12,6 +12,15 @@ import RxCocoa
 import RxOptional
 import ObjectMapper
 
+extension AppConfigService: Storageable {
+
+    public typealias Storage = AppConfig
+
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "AppConfig", path: .app)
+    }
+}
+
 public class AppConfigService {
     static let instance = AppConfigService()
 
