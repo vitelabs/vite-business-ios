@@ -13,21 +13,14 @@ import ViteWallet
 
 public final class AddressManageService {
     public static let instance = AddressManageService()
-
-    fileprivate var fileHelper: FileHelper!
-    fileprivate static let saveKey = "AddressManage"
     fileprivate let disposeBag = DisposeBag()
 
     //MARK: save to disk
     private init() { }
 
     private func pri_save() {
-        let manager = AddressManager(myAddressNameMap: myAddressNameMap.value, contacts: contactsBehaviorRelay.value)
-        if let data = manager.toJSONString()?.data(using: .utf8) {
-            if let error = fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
-        }
+        let storage = Storage(myAddressNameMap: myAddressNameMap.value, contacts: contactsBehaviorRelay.value)
+        save(mappable: storage)
     }
 
     //MARK: my address name
@@ -39,12 +32,9 @@ public final class AddressManageService {
         HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().drive(onNext: { [weak self] uuid in
             guard let `self` = self else { return }
             if let _ = uuid {
-                self.fileHelper = FileHelper.createForWallet()
-                if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-                    let jsonString = String(data: data, encoding: .utf8),
-                    let manager = AddressManager(JSONString: jsonString) {
-                    self.myAddressNameMap.accept(manager.myAddressNameMap)
-                    self.contactsBehaviorRelay.accept(manager.contacts)
+                if let storage: Storage = self.readMappable() {
+                    self.myAddressNameMap.accept(storage.myAddressNameMap)
+                    self.contactsBehaviorRelay.accept(storage.contacts)
                 } else {
                     self.myAddressNameMap.accept([:])
                     self.contactsBehaviorRelay.accept([])
@@ -131,7 +121,7 @@ public struct Contact: Mappable {
 
 extension AddressManageService {
 
-    struct AddressManager: Mappable {
+    struct Storage: Mappable {
         var myAddressNameMap: [String: String] = [:]
         var contacts: [Contact] = []
 
@@ -149,3 +139,8 @@ extension AddressManageService {
     }
 }
 
+extension AddressManageService: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "AddressManage", path: .wallet)
+    }
+}

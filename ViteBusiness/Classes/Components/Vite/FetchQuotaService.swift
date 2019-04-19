@@ -13,6 +13,12 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
+extension FetchQuotaService: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "PledgeQuota", path: .wallet, appending: self.appending)
+    }
+}
+
 final class FetchQuotaService {
 
     static let instance = FetchQuotaService()
@@ -22,26 +28,18 @@ final class FetchQuotaService {
     fileprivate var quotaBehaviorRelay: BehaviorRelay<Quota> = BehaviorRelay(value: Quota())
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var fileHelper: FileHelper! = nil
+    fileprivate var appending = "noAddress"
 
     fileprivate var service: ViteWallet.FetchPledgeQuotaService?
     fileprivate var retainCount = 0
-
-    fileprivate enum Key: String {
-        case fileName = "PledgeQuota"
-        case quota
-        case maxTxCount
-    }
 
     func start() {
         HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
             if let account = a {
-                self.fileHelper = FileHelper.createForWallet(appending: account.address)
-                if let data = self.fileHelper.contentsAtRelativePath(Key.fileName.rawValue),
-                    let jsonString = String(data: data, encoding: .utf8),
-                    let quota = Quota(JSONString: jsonString) {
+                self.appending = account.address
+                if let quota: Quota = self.readMappable() {
                     self.quotaBehaviorRelay.accept(quota)
                 }
 
@@ -54,11 +52,7 @@ final class FetchQuotaService {
                         plog(level: .debug, log: address + ": " + "utps \(String(quota.utps))", tag: .transaction)
 
                         self.quotaBehaviorRelay.accept(quota)
-                        if let data = quota.toJSONString()?.data(using: .utf8) {
-                            if let error = self.fileHelper.writeData(data, relativePath: Key.fileName.rawValue) {
-                                assert(false, error.localizedDescription)
-                            }
-                        }
+                        self.save(mappable: quota)
                     case .failure(let error):
                         plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
                     }

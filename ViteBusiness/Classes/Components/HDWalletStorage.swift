@@ -12,18 +12,19 @@ import ObjectMapper
 import CryptoSwift
 import ViteWallet
 
-public final class HDWalletStorage: Mappable {
+extension HDWalletStorage: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "HDWallet", path: .app)
+    }
+}
 
-    fileprivate var fileHelper = FileHelper.createForApp()
-    fileprivate static let saveKey = "HDWallet"
+public final class HDWalletStorage: Mappable {
     fileprivate(set) var wallets = [Wallet]()
     fileprivate var currentWalletUuid: String?
     fileprivate var isLogin: Bool = false
 
     init() {
-        if let data = fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let jsonString = String(data: data, encoding: .utf8),
-            let storage = HDWalletStorage(JSONString: jsonString) {
+        if let storage: HDWalletStorage = readMappable() {
             self.wallets = storage.wallets
             self.currentWalletUuid = storage.currentWalletUuid
             self.isLogin = storage.isLogin
@@ -162,11 +163,7 @@ extension HDWalletStorage {
     }
 
     fileprivate func pri_save() {
-        if let data = self.toJSONString()?.data(using: .utf8) {
-            if let error = fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
-        }
+        save(mappable: self)
     }
 }
 

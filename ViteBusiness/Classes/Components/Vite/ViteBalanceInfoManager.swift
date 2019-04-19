@@ -15,13 +15,18 @@ import RxCocoa
 
 public typealias ViteBalanceInfoMap = [String: BalanceInfo]
 
+extension ViteBalanceInfoManager: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "ViteBalanceInfos", path: .wallet, appending: self.appending)
+    }
+}
+
 public class ViteBalanceInfoManager {
     static let instance = ViteBalanceInfoManager()
     private init() {}
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var fileHelper: FileHelper! = nil
-    fileprivate static let saveKey = "ViteBalanceInfos"
+    fileprivate var appending = "noAddress"
 
     lazy var  balanceInfosDriver: Driver<ViteBalanceInfoMap> = self.balanceInfos.asDriver()
     fileprivate var balanceInfos: BehaviorRelay<ViteBalanceInfoMap>! = nil
@@ -102,7 +107,7 @@ public class ViteBalanceInfoManager {
                         return ret
                     })
 
-                    self.save(balanceInfos: balanceInfos)
+                    self.save(mappable: balanceInfos)
                     self.balanceInfos.accept(ret)
                 case .failure(let error):
                     plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
@@ -120,24 +125,15 @@ public class ViteBalanceInfoManager {
 
     private func read(address: ViteAddress) -> ViteBalanceInfoMap {
 
-        self.fileHelper = FileHelper.createForWallet(appending: address)
+        self.appending = address
         var map = ViteBalanceInfoMap()
 
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let jsonString = String(data: data, encoding: .utf8),
+        if let jsonString = self.readString(),
             let balanceInfos = [BalanceInfo](JSONString: jsonString) {
             balanceInfos.forEach { balanceInfo in map[balanceInfo.token.id] = balanceInfo }
         }
 
         return map
-    }
-
-    private func save(balanceInfos: [BalanceInfo]) {
-        if let data = balanceInfos.toJSONString()?.data(using: .utf8) {
-            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
-        }
     }
 }
 

@@ -15,10 +15,6 @@ public typealias ExchangeRateMap = [String: [String: String]]
 public final class ExchangeRateManager {
     public static let instance = ExchangeRateManager()
 
-
-    fileprivate var fileHelper: FileHelper!
-    fileprivate static let saveKey = "ExchangeRate"
-
     fileprivate let disposeBag = DisposeBag()
     fileprivate var service: ExchangeRateService?
 
@@ -26,24 +22,18 @@ public final class ExchangeRateManager {
 
     private func pri_save() {
         if let data = try? JSONSerialization.data(withJSONObject: rateMapBehaviorRelay.value, options: []) {
-            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
+            self.save(data: data)
         }
     }
 
     private func read() -> ExchangeRateMap {
-
-        self.fileHelper = FileHelper.createForWallet()
-        var map = ExchangeRateMap()
-
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+        if let data = readData(),
             let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-            let m = dic as? ExchangeRateMap {
-            map = m
-        } 
-
-        return map
+            let map = dic as? ExchangeRateMap {
+            return map
+        } else {
+            return ExchangeRateMap()
+        }
     }
 
     public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
@@ -167,5 +157,11 @@ extension ExchangeRateManager {
             return nil
         }
         return self.rateMap.priceString(for: ethTokenInfo, balance: balance)
+    }
+}
+
+extension ExchangeRateManager: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "ExchangeRate", path: .wallet)
     }
 }

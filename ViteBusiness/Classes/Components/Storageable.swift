@@ -36,49 +36,74 @@ public struct StorageConfig {
 }
 
 public protocol Storageable {
-    associatedtype Storage: Mappable
     func getStorageConfig() -> StorageConfig
 }
 
 public extension Storageable {
 
-    func save(storage: Storage) {
+    func save(data: Data) {
         let config = getStorageConfig()
         let fileHelper = config.createFileHelper()
-
-        guard let data = storage.toJSONString()?.data(using: .utf8) else {
-            assert(false)
-            plog(level: .error, log: "\(type(of: storage)) toJSONString failed", tag: .base)
-            return
-        }
 
         if let error = fileHelper.writeData(data, relativePath: config.name) {
             assert(false, error.localizedDescription)
-            plog(level: .error, log: "\(type(of: storage)) writeData error: \(error.localizedDescription)", tag: .base)
+            plog(level: .error, log: "\(fileHelper.rootPath)/\(config.name) writeData error: \(error.localizedDescription)", tag: .base)
         }
     }
 
-    func readAndGetHash() -> (Storage, String)? {
+    func save(string: String) {
+        guard let data = string.data(using: .utf8) else {
+            assert(false)
+            plog(level: .error, log: "\(type(of: self)) convert to data failed", tag: .base)
+            return
+        }
+        save(data: data)
+    }
+
+    func save(mappable: BaseMappable) {
+        guard let string = mappable.toJSONString() else {
+            assert(false)
+            plog(level: .error, log: "\(type(of: mappable)) toJSONString failed", tag: .base)
+            return
+        }
+        save(string: string)
+    }
+
+    func save<E: BaseMappable>(mappable: Array<E>) {
+        guard let string = mappable.toJSONString() else {
+            assert(false)
+            plog(level: .error, log: "\(type(of: mappable)) toJSONString failed", tag: .base)
+            return
+        }
+        save(string: string)
+    }
+
+    func readData() -> Data? {
         let config = getStorageConfig()
         let fileHelper = config.createFileHelper()
+        return fileHelper.contentsAtRelativePath(config.name)
+    }
 
-        guard let data = fileHelper.contentsAtRelativePath(config.name) else { return nil }
-        guard let JSONString = String(data: data, encoding: .utf8) else {
+    func readString() -> String? {
+        guard let data = readData() else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+
+
+
+    func readMappableAndHash<M: BaseMappable>() -> (M, String)? {
+        guard let JSONString = readString() else { return nil }
+        guard let ret = M(JSONString: JSONString) else {
             assert(false)
-            plog(level: .error, log: "\(fileHelper.rootPath)/\(config.name) is not UTF-8 String", tag: .base)
-            return nil
-        }
-        guard let ret = Storage(JSONString: JSONString) else {
-            assert(false)
-            plog(level: .error, log: "serialize \(Storage.self) failed", tag: .base)
+            plog(level: .error, log: "\(M.self) serialize  failed", tag: .base)
             return nil
         }
 
         return (ret, JSONString.md5())
     }
 
-    func read() -> Storage? {
-        return readAndGetHash().map { $0.0 }
+    func readMappable<M: BaseMappable>() -> M? {
+        return readMappableAndHash().map { $0.0 }
     }
 }
 

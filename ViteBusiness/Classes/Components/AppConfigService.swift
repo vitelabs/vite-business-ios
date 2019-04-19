@@ -12,33 +12,19 @@ import RxCocoa
 import RxOptional
 import ObjectMapper
 
-extension AppConfigService: Storageable {
-
-    public typealias Storage = AppConfig
-
-    public func getStorageConfig() -> StorageConfig {
-        return StorageConfig(name: "AppConfig", path: .app)
-    }
-}
-
 public class AppConfigService {
     static let instance = AppConfigService()
 
     lazy var configDriver: Driver<AppConfig> = self.configBehaviorRelay.asDriver()
-    fileprivate let configBehaviorRelay: BehaviorRelay<AppConfig>
-    fileprivate let fileHelper = FileHelper.createForApp()
-    fileprivate static let saveKey = "AppConfig"
-
+    fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
 
     private init() {
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let jsonString = String(data: data, encoding: .utf8),
-            let config = AppConfig(JSONString: jsonString) {
-            appConfigHash = jsonString.md5()
+        if let (config, hash): (AppConfig, String) = readMappableAndHash() {
+            appConfigHash = hash
             configBehaviorRelay = BehaviorRelay(value: config)
         } else if let bundle = Bundle.podBundle(for: type(of: self).self, bundleName: "ViteBusiness"),
-            let config: AppConfig = bundle.getObject(forResource: type(of: self).saveKey, withExtension: nil, subdirectory: "Config") {
+            let config: AppConfig = bundle.getObject(forResource: getStorageConfig().name, withExtension: nil, subdirectory: "Config") {
             appConfigHash = nil
             configBehaviorRelay = BehaviorRelay(value: config)
         } else {
@@ -78,14 +64,10 @@ public class AppConfigService {
                 guard let string = jsonString else { return }
                 self.appConfigHash = string.md5()
                 plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
-                if let data = string.data(using: .utf8) {
-                    if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                        assert(false, error.localizedDescription)
-                    }
-                }
-
                 if let config = AppConfig(JSONString: string) {
                     self.configBehaviorRelay.accept(config)
+                    // make sure md5 not change
+                    self.save(string: string)
                 }
 
             case .failure(let error):
@@ -120,5 +102,11 @@ extension AppConfigService {
             appConfig <- map["AppConfig"]
             localization <- map["Localization"]
         }
+    }
+}
+
+extension AppConfigService: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "AppConfig", path: .app)
     }
 }
