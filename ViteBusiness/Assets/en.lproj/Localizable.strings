@@ -412,7 +412,7 @@
 "grin.sent.useFile" = "Use Transaction File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "Transfer GRIN";
+"grin.sent.title" = "GRIN Transfer";
 "grin.sent.amount" = "Amount";
 "grin.sent.fee" = "Fees";
 "grin.sent.creatFile" = "Generate Transaction File";

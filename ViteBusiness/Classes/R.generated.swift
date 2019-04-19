@@ -1348,6 +1348,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveTitle = Rswift.StringResource(key: "grin.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: GRIN Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSentTitle = Rswift.StringResource(key: "grin.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
@@ -2112,10 +2116,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameTransfer = Rswift.StringResource(key: "transaction.list.transaction.type.name.transfer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transfer GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinSentTitle = Rswift.StringResource(key: "grin.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer GRIN though Http Address
       /// 
       /// Locales: en, zh-Hans
@@ -3214,6 +3214,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinReceiveTitle(_: Void = ()) -> String {
         return NSLocalizedString("grin.receive.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: GRIN Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSentTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.sent.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gas Fee
@@ -4551,13 +4558,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameTransfer(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.transfer", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transfer GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinSentTitle(_: Void = ()) -> String {
-        return NSLocalizedString("grin.sent.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer GRIN though Http Address

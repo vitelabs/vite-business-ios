@@ -83,6 +83,8 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         } else {
               self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem]
         }
+
+        self.navigationItem.rightBarButtonItem = self.shareItem
     }
 
     lazy var webProgressView: UIProgressView = {
@@ -99,6 +101,18 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: NSKeyValueObservingOptions.new, context: nil)
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: NSKeyValueObservingOptions.new, context: nil)
         return webView
+    }()
+
+    lazy var shareItem: UIBarButtonItem = {
+        let btn = UIButton(type: .custom)
+        btn.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
+        btn.setImage(WKWebViewConfig.instance.shareImg, for: .normal)
+        btn.addTarget(self, action: #selector(shareWebView), for: .touchUpInside)
+
+        let btnView = UIView(frame: btn.bounds)
+        btnView.addSubview(btn)
+        let backItem =  UIBarButtonItem(customView: btnView)
+        return backItem
     }()
 
     lazy var backItem: UIBarButtonItem = {

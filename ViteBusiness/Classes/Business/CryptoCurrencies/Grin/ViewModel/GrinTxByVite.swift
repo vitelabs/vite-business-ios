@@ -18,6 +18,8 @@ import Result
 import Vite_HDWalletKit
 
 
+var handelSendFileSuccess_createdResponeseFile = [String: String]()
+
 class GrinTxByViteService {
 
     fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
@@ -67,8 +69,23 @@ class GrinTxByViteService {
     }
 
     func handle(sentFile fileName: String, fromAddress: ViteAddress, account: Wallet.Account) -> Promise<Void> {
-        plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
         let isResponse = false
+        var path =  GrinManager.default.get_handleSendFileSuccess_createdResponeseFilePath(fileName:fileName)
+        if let path = path,
+            let data =  FileManager.default.contents(atPath: path),
+            let string = String.init(data: data, encoding: .utf8),
+            let slate = Slate.init(JSONString: string) {
+            plog(level: .info, log: "grin-4-handleSentFileStart-fromSavedResponseSlate.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+            return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: slate , type: .response, account:
+                    account)
+                    .then { fname -> Promise<Void> in
+                        plog(level: .info, log: "grin-9-handleSentFile-fromSavedResponseSlate-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+                        return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account)
+            }
+        }
+
+        plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+
         return downlodEncryptedSlateData(fileName: fileName, account: account)
             .then { (data) -> Promise<Data> in
                 plog(level: .info, log: "grin-5-handleSentFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
@@ -82,10 +99,18 @@ class GrinTxByViteService {
                 plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.receiveSentSlate(with: url)
             }
-            .then { (receivedSlate) -> Promise<String> in
+            .then { (responseSlate) -> Promise<String> in
+                do {
+                    let url = try self.save(slate: responseSlate, isResponse: true)
+                    GrinManager.default.set_handleSendFileSuccess_createdResponeseFile(fileName: fileName, slateId: responseSlate.id)
+                    plog(level: .info, log: "grin-8-handleSentFile-createdResponeseFileSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address),url:\(responseSlate.id)", tag: .grin)
+
+                } catch {
+                    plog(level: .info, log: "grin-8-handleSentFile-createdResponeseFileFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+                }
+
                 plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
-                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: receivedSlate , type: .response, account:
-                 account)
+                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: responseSlate , type: .response, account: account)
             }
             .then { fname -> Promise<Void> in
                 plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
