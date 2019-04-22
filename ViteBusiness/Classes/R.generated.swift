@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 121 images.
+  /// This `R.image` struct is generated, and contains static references to 122 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,6 +48,8 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `grin_gray`.
+    static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
     /// Image `grin_tx_file_finalize`.
     static let grin_tx_file_finalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_finalize")
     /// Image `grin_tx_file_init`.
@@ -339,6 +341,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin", bundle: ..., traitCollection: ...)`
     static func grin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_gray", bundle: ..., traitCollection: ...)`
+    static func grin_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_gray, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_tx_file_finalize", bundle: ..., traitCollection: ...)`
@@ -871,7 +878,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 377 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 378 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1341,6 +1348,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveTitle = Rswift.StringResource(key: "grin.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: GRIN Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSentTitle = Rswift.StringResource(key: "grin.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
@@ -1361,6 +1372,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNamePledge = Rswift.StringResource(key: "transaction.list.transaction.type.name.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Grin wallet initializing, please wait a moment.
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinCreating = Rswift.StringResource(key: "grin.creating", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Http Address
       /// 
       /// Locales: en, zh-Hans
@@ -1385,7 +1400,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended for it is safer and cheaper.
+      /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
       /// 
       /// Locales: en, zh-Hans
       static let grinSentSuggestUseViteDesc = Rswift.StringResource(key: "grin.sent.suggest.useVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2029,7 +2044,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinThisIsFirstViteAddress = Rswift.StringResource(key: "grin.thisIsFirstViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: To transfer GRIN through VITE Address or Http Address, please switch to the first VITE Address in your VITE Address Book
+      /// en translation: To transfer GRIN through VITE address or Http address, please switch to the first VITE address.
       /// 
       /// Locales: en, zh-Hans
       static let grinUseFirstViteAddress = Rswift.StringResource(key: "grin.useFirstViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2097,10 +2112,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameTransfer = Rswift.StringResource(key: "transaction.list.transaction.type.name.transfer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transfer GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinSentTitle = Rswift.StringResource(key: "grin.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer GRIN though Http Address
       /// 
       /// Locales: en, zh-Hans
@@ -3201,6 +3212,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.receive.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: GRIN Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSentTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.sent.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
@@ -3234,6 +3252,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNamePledge(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.pledge", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Grin wallet initializing, please wait a moment.
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinCreating(_: Void = ()) -> String {
+        return NSLocalizedString("grin.creating", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Http Address
@@ -3278,7 +3303,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: If you want to send GRIN to a Vite Wallet user, sending through Vite Address is recommended for it is safer and cheaper.
+      /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
       /// 
       /// Locales: en, zh-Hans
       static func grinSentSuggestUseViteDesc(_: Void = ()) -> String {
@@ -4405,7 +4430,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.thisIsFirstViteAddress", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: To transfer GRIN through VITE Address or Http Address, please switch to the first VITE Address in your VITE Address Book
+      /// en translation: To transfer GRIN through VITE address or Http address, please switch to the first VITE address.
       /// 
       /// Locales: en, zh-Hans
       static func grinUseFirstViteAddress(_: Void = ()) -> String {
@@ -4522,13 +4547,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameTransfer(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.transfer", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transfer GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinSentTitle(_: Void = ()) -> String {
-        return NSLocalizedString("grin.sent.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer GRIN though Http Address

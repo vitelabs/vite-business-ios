@@ -411,7 +411,7 @@
 "grin.sent.useFile" = "Use Transaction File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "Transfer GRIN";
+"grin.sent.title" = "GRIN Transfer";
 "grin.sent.amount" = "Amount";
 "grin.sent.fee" = "Fees";
 "grin.sent.creatFile" = "Generate Transaction File";
@@ -464,7 +464,7 @@
 "grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
 "grin.txbyfile.receivedStatus.receiver" = "Received";
 "grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
-
 "grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
 "grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
+"grin.creating" = "Grin wallet initializing, please wait a moment.";
 

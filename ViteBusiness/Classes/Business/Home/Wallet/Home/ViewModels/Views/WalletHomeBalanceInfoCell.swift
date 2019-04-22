@@ -155,10 +155,24 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         iconImageView.tokenInfo = viewModel.tokenInfo
 
         symbolLabel.text = viewModel.symbol
+        symbolLabel.textColor = UIColor.init(netHex: 0x24272B)
         coinFamilyLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = viewModel.coinFamily
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
         colorView.backgroundColor = viewModel.tokenInfo.mainColor
+
+        if viewModel.tokenInfo.coinType == .grin {
+            if !GrinManager.default.walletCreated.value {
+                iconImageView.tokenInfo = viewModel.tokenInfo
+                iconImageView.set(tokenIconImage: R.image.grin_gray())
+                iconImageView.updateLayer(UIColor.init(netHex: 0x000000, alpha: 0.1))
+                coinFamilyLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
+                symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
+                balanceLabel.text = ""
+                priceLabel.text = ""
+                colorView.backgroundColor = UIColor.init(netHex: 0x000000, alpha: 0.1)
+            }
+        }
     }
 }

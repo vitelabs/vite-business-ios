@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ViteWallet
 import Vite_GrinWallet
 import SwiftyJSON
 import RxSwift
@@ -25,9 +26,11 @@ class GrinManager: GrinBridge {
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     private let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
 
+    let walletCreated = BehaviorRelay<Bool>(value: false)
+
     private var receivedSlateUrl: URL?
     var failed = [String]()
-    var isHandleingSavedTx = false
+    var isHandlingSavedTx = false
 
     private convenience init() {
         self.init(chainType: GrinManager.getChainType(), walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
@@ -40,6 +43,17 @@ class GrinManager: GrinBridge {
                 self?.configGrinWallet()
             })
             .disposed(by: self.bag)
+
+        HDWalletManager.instance.accountDriver
+            .filterNil()
+            .distinctUntilChanged({ (a0, a1) -> Bool in
+                a0.address.description == a1.address.description
+            })
+            .drive(onNext: { _ in
+                GrinTxByViteService().reportViteAddress().done {_ in}
+            })
+            .disposed(by: self.bag)
+
 
         #if DEBUG || TEST
         NotificationCenter.default.rx.notification(.appEnvironmentDidChange)
@@ -84,30 +98,39 @@ class GrinManager: GrinBridge {
         self.chainType = GrinChainType.mainnet.rawValue
         #endif
         self.creatWalletIfNeeded()
-        GrinTxByViteService().reportViteAddress().done {_ in}
         self.balance.accept(GrinBalance())
-        self.getBalance()
-        self.handleSavedTx()
+        DispatchQueue.main.async {
+            self.handleSavedTx()
+        }
     }
 
     func creatWalletIfNeeded()  {
         self.checkDirectories()
         self.checkApiSecret()
-        defer { self.getBalance() }
-        if !self.walletExists() {
-            guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
-            let result = self.walletRecovery(mnemonic)
+        guard !self.walletExists() else {
+            self.walletCreated.accept(true)
+            return
+        }
+        self.walletCreated.accept(false)
+        guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+        grin_async({ ()  in
+            self.walletRecovery(mnemonic)
+        },  { (result) in
             switch result {
             case .success(_):
-                Toast.show("creat grin creat wallet success")
+                self.getBalance()
             case .failure(let error):
-                plog(level: .error, log: "grin:" + error.message)
-                Toast.show("creat grin wallet failed, please reimport the mnemonic. error: \(error.message)")
+                Toast.show("error: \(error.message)")
+                plog(level: .info, log: "wallet recover failed:" + error.message, tag: .grin)
             }
-        }
+            if self.walletExists() {
+                self.walletCreated.accept(true)
+            }
+        })
     }
 
     func getBalance() {
+        guard self.walletCreated.value else { return }
         grin_async({ () in
             self.walletInfo(refreshFromNode: true)
         },  { (result) in
@@ -160,14 +183,15 @@ extension GrinManager {
 extension GrinManager {
     var relativePath: String { return "viteTxData" }
 
-    func handle(viteData: Data, fromAddress: String)  {
-        plog(level: .info, log: "grin-0-handle(viteData,fromAddress:\(fromAddress)", tag: .grin)
+    func handle(viteData: Data, fromAddress: String, account: Wallet.Account)  {
+        plog(level: .info, log: "grin-0-handleviteData-fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
         guard let fileName = String.init(data: viteData, encoding: .utf8) else {
-            plog(level: .info, log: "grin-1-receiveFname.fname:failed", tag: .grin)
+            plog(level: .info, log: "grin-1-paresreceiveFnamefnamefailed-fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
             return
         }
-        plog(level: .info, log: "grin-1-receiveFname.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
-        let record = "\(fileName),\(fromAddress)"
+        plog(level: .info, log: "grin-1-receiveFname.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address.description)", tag: .grin)
+        let accountAddress = account.address.description
+        let record = fileName + "," + accountAddress + "," + fromAddress
         var records = [String]()
         if let data = fileHelper.contentsAtRelativePath(relativePath),
             let savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String] {
@@ -175,30 +199,30 @@ extension GrinManager {
             while records.count >= 10 {
                 records.removeFirst()
             }
-            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(accountAddress)", tag: .grin)
         }
         records.append(record)
         do {
             let data = try JSON(records).rawData()
             self.fileHelper.writeData(data, relativePath: self.relativePath)
-            plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+            plog(level: .info, log: "grin-3-saveTxs.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(accountAddress),", tag: .grin)
         } catch {
-            plog(level: .info, log: "grin-3-saveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress)", tag: .grin)
+            plog(level: .info, log: "grin-3-saveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(accountAddress),", tag: .grin)
         }
         handleSavedTx()
     }
 
     func handleSavedTx() {
-        if isHandleingSavedTx {
+        if isHandlingSavedTx {
             plog(level: .info, log: "grin-4-starthandleSavedTx-isHandleingSavedTx", tag: .grin)
             return
         }
-        isHandleingSavedTx = true
+        isHandlingSavedTx = true
         plog(level: .info, log: "grin-4-starthandleSavedTx", tag: .grin)
 
         guard let data = fileHelper.contentsAtRelativePath(relativePath),
             let savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String] else {
-                isHandleingSavedTx = false
+                isHandlingSavedTx = false
                 plog(level: .info, log: "grin-4-readSaveTxsFailed.", tag: .grin)
                 return
         }
@@ -208,42 +232,85 @@ extension GrinManager {
             lastItem = item
             break
         }
-        guard let last = lastItem,
-            let fileName = last.components(separatedBy: ",").first,
-            let address = last.components(separatedBy: ",").last else {
-                isHandleingSavedTx = false
-                plog(level: .info, log: "grin-4-paresSavedTxsFailed", tag: .grin)
-                return
+        guard let last = lastItem else {
+            isHandlingSavedTx = false
+            plog(level: .info, log: "grin-4-paresSavedTxs-no last item", tag: .grin)
+            return
         }
 
-        plog(level: .info, log: "grin-4-GrinTxByViteServiceHandle.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+        let detail = last.components(separatedBy: ",")
+        guard let fileName = detail.first else {
+            isHandlingSavedTx = false
+            plog(level: .info, log: "grin-4-paresSavedTxs-getfnameFailed,lastItem:\(last)", tag: .grin)
+            failed.append(last)
+            handleSavedTx()
+            return
+        }
+        guard let fromAddress = detail.last else {
+            isHandlingSavedTx = false
+            plog(level: .info, log: "grin-4-paresSavedTxsFailed-getFromAddressFailed,lastItem:\(last)", tag: .grin)
+            failed.append(last)
+            handleSavedTx()
+            return
+        }
 
-        GrinTxByViteService.init().handle(fileName: fileName, fromAddress: address)
+        var account: Wallet.Account?
+        if detail.count == 3 {
+            let accountAddress = detail[1]
+             account = HDWalletManager.instance.accounts.filter { (a) -> Bool in
+                a.address.description == accountAddress
+            }.first
+        }
+
+        if account == nil {
+            plog(level: .info, log: "grin-4-getAccountFailed,lastItem:\(last)", tag: .grin)
+            account = HDWalletManager.instance.accounts.first
+        }
+        
+        guard let a = account else {
+            plog(level: .info, log: "grin-4-getFirstAccountFailed,lastItem:\(last)", tag: .grin)
+            failed.append(last)
+            handleSavedTx()
+            return
+        }
+
+        plog(level: .info, log: "grin-4-GrinTxByViteServiceHandle.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
+
+        GrinTxByViteService.init().handle(fileName: fileName, fromAddress: fromAddress, account: a)
             .done {
-                plog(level: .info, log: "grin-10-GrinTxByViteServiceSuccess.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 guard let data = self.fileHelper.contentsAtRelativePath(self.relativePath),
-                    var savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String],
-                    let index = savedRecords.lastIndex(of: last) else {
-                        plog(level: .info, log: "grin-10-readSaveTxsFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+                    var savedRecords = (try? JSON.init(data: data))?.arrayObject as? [String]else {
+                        plog(level: .info, log: "grin-10-readSaveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                         return
                 }
-                savedRecords.remove(at: index)
+
+                if let index = savedRecords.lastIndex(of: last) {
+                    savedRecords.remove(at: index)
+                    plog(level: .info, log: "grin-10-removeHandledInfo:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
+                }
+
+                let isResponse = fileName.contains("response")
+                if !isResponse {
+                    GrinManager.default.remove_handleSendFileSuccess_createdResponeseFilePath(fileName: fileName)
+                }
+
                 do {
                     let newData = try JSON(savedRecords).rawData()
                     self.fileHelper.writeData(newData, relativePath: self.relativePath)
+                    plog(level: .info, log: "grin-10-SaveTxsSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 } catch {
-                    plog(level: .info, log: "grin-10-SaveTxsFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+                    plog(level: .info, log: "grin-10-SaveTxsFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
                 }
             }
             .catch { error in
-                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(address)", tag: .grin)
+                plog(level: .info, log: "grin-10-GrinTxByViteServiceFailed.fname:\(fileName),fromAddress:\(fromAddress),error:\(error),accountAddress:\(a.address.description)", tag: .grin)
                 self.failed.append(last)
             }
             .finally {
-                self.isHandleingSavedTx = false
+                plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(a.address.description)", tag: .grin)
+                self.isHandlingSavedTx = false
                 self.handleSavedTx()
-                plog(level: .info, log: "grin-11-GrinTxByViteServiceFinally.fname:\(fileName),fromAddress:\(address)", tag: .grin)
-
         }
     }
 }
@@ -264,6 +331,49 @@ extension GrinManager {
         finalizedTxs.append(slateId)
         if let data = try? JSON(finalizedTxs).rawData() {
             fileHelper.writeData(data, relativePath: finalizedTxsPath)
+        }
+    }
+
+}
+
+extension GrinManager {
+
+    var handleSendFileSuccess_createdResponeseFile_Path: String {
+        return "handleSendFileSuccessCreatedResponeseFile/handleSendFileSuccessCreatedResponeseFile"
+    }
+
+    func handleSendFileSuccess_createdResponeseFilePathInfos() -> [String: String] {
+        if let data = fileHelper.contentsAtRelativePath(handleSendFileSuccess_createdResponeseFile_Path),
+            let json = try? JSON.init(data: data),
+            let dict = json.dictionaryObject as? [String: String] {
+            return dict
+        } else {
+            return [String: String]()
+        }
+    }
+
+    func get_handleSendFileSuccess_createdResponeseFilePath(fileName: String) -> String? {
+        let infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        if let slateId = infos[fileName] {
+            let url = getSlateUrl(slateId: slateId, isResponse: true)
+            return url.path
+        }
+        return nil
+    }
+
+    func set_handleSendFileSuccess_createdResponeseFile(fileName: String, slateId: String) {
+        var infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        infos[fileName] = slateId
+        if let data = try? JSON(infos).rawData() {
+            fileHelper.writeData(data, relativePath: handleSendFileSuccess_createdResponeseFile_Path)
+        }
+    }
+
+    func remove_handleSendFileSuccess_createdResponeseFilePath(fileName: String) {
+        var infos = handleSendFileSuccess_createdResponeseFilePathInfos()
+        infos[fileName] = nil
+        if let data = try? JSON(infos).rawData() {
+            fileHelper.writeData(data, relativePath: handleSendFileSuccess_createdResponeseFile_Path)
         }
     }
 }
