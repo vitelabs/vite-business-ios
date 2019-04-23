@@ -130,7 +130,7 @@ public class DebugService {
         var reportEventInDebug = false
         var urls: [String] = []
         var ignoreCheckUpdate = true
-        public var ignoreWhiteList = true
+        public var ignoreWhiteList = false
 
         init(rpcUseOnlineUrl: Bool,
              rpcCustomUrl: String?,

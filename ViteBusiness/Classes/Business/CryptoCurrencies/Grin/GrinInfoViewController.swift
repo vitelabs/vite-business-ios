@@ -191,6 +191,11 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a1)
         alert.addAction(a2)
         alert.addAction(a3)
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.sendBtn;
+            popover.sourceRect = self.sendBtn.bounds;
+            popover.permittedArrowDirections = .any;
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -266,6 +271,11 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a1)
         alert.addAction(a2)
         alert.addAction(a3)
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.receiveBtn;
+            popover.sourceRect = self.receiveBtn.bounds;
+            popover.permittedArrowDirections = .any;
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
