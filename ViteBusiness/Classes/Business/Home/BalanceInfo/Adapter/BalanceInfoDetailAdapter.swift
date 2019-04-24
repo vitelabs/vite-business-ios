@@ -8,15 +8,30 @@
 import Foundation
 
 protocol BalanceInfoDetailAdapter {
-    func setup(containerView: UIView, tokenInfo: TokenInfo)
+    var tokenInfo: TokenInfo { get }
+    init(tokenInfo: TokenInfo)
+    func viewDidAppear()
+    func viewDidDisappear()
+    func setup(containerView: UIView)
 }
 
 extension TokenInfo {
     func createBalanceInfoDetailAdapter() -> BalanceInfoDetailAdapter {
-        if isViteCoin {
-            return BalanceInfoDetailViteCoinAdapter()
-        } else {
-            return BalanceInfoDetailViteTokenAdapter()
+        switch coinType {
+        case .vite:
+            if isViteCoin {
+                return BalanceInfoDetailViteCoinAdapter(tokenInfo: self)
+            } else {
+                return BalanceInfoDetailViteTokenAdapter(tokenInfo: self)
+            }
+        case .eth:
+            if isViteERC20 {
+                return BalanceInfoDetailEthErc20ViteAdapter(tokenInfo: self)
+            } else {
+                return BalanceInfoDetailEthChainAdapter(tokenInfo: self)
+            }
+        case .grin:
+            fatalError()
         }
     }
 }

@@ -44,14 +44,12 @@ class BalanceInfoDetailViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.retainQuota()
+        adapter.viewDidAppear()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.releaseQuota()
+        adapter.viewDidDisappear()
     }
 
     func setupView() {
@@ -70,7 +68,7 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalTo(navView.snp.bottom).offset(-60)
             m.left.right.bottom.equalToSuperview()
         }
-        adapter.setup(containerView: containerView, tokenInfo: tokenInfo)
+        adapter.setup(containerView: containerView)
     }
 
     func bind() {

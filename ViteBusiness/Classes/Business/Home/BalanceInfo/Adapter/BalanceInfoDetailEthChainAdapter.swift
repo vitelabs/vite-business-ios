@@ -1,5 +1,5 @@
 //
-//  BalanceInfoDetailViteTokenAdapter.swift
+//  BalanceInfoDetailEthChainAdapter.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/3/5.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
+class BalanceInfoDetailEthChainAdapter: BalanceInfoDetailAdapter {
 
     let tokenInfo: TokenInfo
 
@@ -16,18 +16,16 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.retainQuota()
+        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
     }
 
     func viewDidDisappear() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.releaseQuota()
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
-    
+
     func setup(containerView: UIView) {
 
-        let cardView = BalanceInfoViteChainCardView()
+        let cardView = BalanceInfoEthChainCardView()
         containerView.addSubview(cardView)
         cardView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -38,7 +36,7 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
 
         cardView.bind(tokenInfo: tokenInfo)
 
-        let transactionsView = BalanceInfoViteChainTransactionsView(tokenInfo: tokenInfo)
+        let transactionsView = BalanceInfoEthChainTransactionsView(tokenInfo: tokenInfo)
         containerView.addSubview(transactionsView)
         transactionsView.snp.makeConstraints { (m) in
             m.top.equalTo(cardView.snp.bottom).offset(14)

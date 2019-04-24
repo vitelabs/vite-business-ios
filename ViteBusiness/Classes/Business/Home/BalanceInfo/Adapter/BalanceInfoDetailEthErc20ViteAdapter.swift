@@ -1,5 +1,5 @@
 //
-//  BalanceInfoDetailViteTokenAdapter.swift
+//  BalanceInfoDetailEthErc20ViteAdapter.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/3/5.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
+class BalanceInfoDetailEthErc20ViteAdapter: BalanceInfoDetailAdapter {
 
     let tokenInfo: TokenInfo
 
@@ -16,18 +16,16 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.retainQuota()
+        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
     }
 
     func viewDidDisappear() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.releaseQuota()
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
-    
+
     func setup(containerView: UIView) {
 
-        let cardView = BalanceInfoViteChainCardView()
+        let cardView = BalanceInfoEthChainCardView()
         containerView.addSubview(cardView)
         cardView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -38,10 +36,19 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
 
         cardView.bind(tokenInfo: tokenInfo)
 
-        let transactionsView = BalanceInfoViteChainTransactionsView(tokenInfo: tokenInfo)
+        let operationView = BalanceInfoEthErc20ViteOperationView()
+        containerView.addSubview(operationView)
+        operationView.snp.makeConstraints { (m) in
+            m.top.equalTo(cardView.snp.bottom).offset(16)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+            m.height.equalTo(44)
+        }
+
+        let transactionsView = BalanceInfoEthChainTransactionsView(tokenInfo: tokenInfo)
         containerView.addSubview(transactionsView)
         transactionsView.snp.makeConstraints { (m) in
-            m.top.equalTo(cardView.snp.bottom).offset(14)
+            m.top.equalTo(operationView.snp.bottom).offset(14)
             m.left.equalToSuperview()
             m.right.equalToSuperview()
             m.bottom.equalToSuperview()
