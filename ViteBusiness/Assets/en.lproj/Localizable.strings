@@ -1,0 +1,470 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Stone on 2018/12/5.
+  
+*/
+
+/* App */
+"Cancel" = "Cancel";
+"Finish" = "Done";
+"Delete" = "Delete";
+"Hint" = "Prompt";
+"Yes" = "Yes";
+"No" = "No";
+"Loading" = "Loading";
+"Confirm" = "Confirm";
+"Submit" = "Submit";
+"Close" = "I understand";
+"Update.app" = "Update App";
+"Submit.success" = "Submit Successful";
+"Submit.cancel" = "Cancel";
+"Close" = "Close";
+
+/* Login */
+"create.account" = "Create Account";
+"import.account" = "Import Account";
+"select.wallet.account" = "Select your account";
+
+/* Lock */
+"lock.page.pwd.btn.title" = "Login via password";
+"lock.page.fingerprint.btn.title" = "Arouse verify again";
+"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
+"lock.page.changeUser.btn.title" = "Switch Account";
+
+/* create */
+"create.page.title" = "Create Account";
+"create.page.tf.title" = "Account Name";
+"create.page.pw.title" = "Please input password";
+"create.page.pw.repeate.title" = "Please input your password again";
+"create.page.submit.btn.title" = "Create";
+
+"create.page.tip.title" = "Backup Wallet Account";
+"create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
+"create.page.tip.nextBtn" = "Generate Seed Phrase";
+
+/* mnemonic */
+"mnemonic.backup.page.title" = "Generate Seed Phrase";
+"mnemonic.backup.page.tip.title" = "Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.";
+"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
+"mnemonic.backup.page.tip.anewBtn.title" = "I want a different seed phrase";
+"mnemonic.backup.page.tip.nextBtn.title" = "Yes, I have written down my seed phrase";
+"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
+"mnemonic.backup.page.alter.cancel" = "No";
+"mnemonic.backup.page.alter.confirm" = "Yes";
+"mnemonic.backup.page.error.type.name" = "Please input account name or password";
+"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
+"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
+"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+
+"mnemonic.affirm.page.title" = "Confirm your seed phrase";
+"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
+"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
+"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
+"mnemonic.affirm.page.add.loading" = "Adding...";
+
+/* import mnemonic*/
+"import.page.title" = "Please input your seed phrase";
+"import.page.submit.btn" = "Restore Account";
+"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
+"import.page.submit.loading" = "Import...";
+"import.page.submit.success" = "Import success";
+"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
+"import.page.alert.exist.ok" = "Confirm";
+"import.page.alert.exist.cancel" = "Cancel";
+
+
+/* export mnemonic */
+"export.page.title" = "Export Seed Phrase";
+"export.page.alter.title" = "Please Input Password";
+"export.page.alter.tf.placeholder" = "Please input password";
+"export.page.alter.password.error" = "Wrong Password!";
+
+/* login */
+"login.page.btn.chooseName" = "Select Accounts";
+"login.page.btn.login" = "Login";
+"login.page.loading.title" = "Processing";
+"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+
+/* Home */
+"tabbar.item.title.wallet" = "Wallet";
+"tabbar.item.title.my" = "Me";
+
+/* Wallet Home */
+"wallet.home.balance.title" = "Balance";
+"wallet.home.unconfirmed.title" = "Unreceived %@";
+"wallet.home.toast.copy.address" = "Successfully copied!";
+"wallet.home.scan.url.alert.title" = "NOTICE";
+"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"wallet.home.header.title" = "Assets";
+
+/* Manage Wallet */
+"manage.wallet.page.title" = "Wallet Management";
+"manage.wallet.page.name.cell.title" = "Account Name";
+"manage.wallet.page.addressManage.cell.title" = "Address Management";
+"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
+"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
+"manage.wallet.page.changeName.loading" = "Editing";
+"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+
+"my.page.contacts.cell.title" = "Contact Address";
+"my.page.mnemonic.cell.title" = "Mnemonic Words";
+"my.page.system.cell.title" = "Settings";
+"my.page.aboutUs.cell.title" = "About Us";
+"my.page.change.wallet.name.alter.title" = "Edit Account Name";
+
+/* Transaction List */
+"transaction.list.page.title" = "Transaction History";
+"transaction.list.page.empty" = "Empty";
+"transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
+"transaction.list.page.header.refresh.pulling" = "Release to refresh";
+"transaction.list.page.header.refresh.refreshing" = "Loading...";
+"transaction.list.transaction.type.name.register" = "Registration";
+"transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
+"transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
+"transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
+"transaction.list.transaction.type.name.vote" = "Voting";
+"transaction.list.transaction.type.name.cancelVote" = "Revoke Voting";
+"transaction.list.transaction.type.name.pledge" = "Get TPS quota";
+"transaction.list.transaction.type.name.cancelPledge" = "Withdrawal of staking quota";
+"transaction.list.transaction.type.name.coin" = "Token Issuance";
+"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
+"transaction.list.transaction.type.name.transfer" = "Transfer";
+
+/* BalanceInfo */
+"balance.info.detail.balance.title" = "Balance";
+"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
+"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
+"balance.info.detail.reveice.button.title" = "Receive";
+"balance.info.detail.send.button.title" = "Transfer";
+"balance.info.detail.vote" = "Vote";
+"balance.info.detail.pledge" = "Quota";
+"balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
+"balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
+
+/* Address Manage Page */
+"address.manage.page.title" = "My VITE Address";
+"address.manage.default.address.cell.title" = "Default Address";
+"address.manage.address.header.title" = "Addresses";
+"address.manage.address.generate.button.title" = "Add Address";
+"address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
+"address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
+"address.manage.tip.alert.ok" = "I know";
+"address.manage.default.address.name" = "Untitled";
+"address.manage.change.name.alert.title" = "Edit Address Alias";
+"address.manage.change.name.alert.placeholder" = "Please input new alias";
+
+/* Send Page */
+"send.page.title" = "Transfer";
+"send.page.my.address.title" = "My VITE Address";
+"send.page.my.balance.title" = "Balance";
+"send.page.my.quota.title" = "Quota";
+"send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
+"send.page.add.my.address.button.title" = "Mine";
+"send.page.vite.contacts.button.title" = "VITE Contact Address";
+"send.page.scan.address.button.title" = "Scan";
+"send.page.to.address.title" = "Recipient";
+"send.page.amount.title" = "Amount";
+"send.page.remark.title" = "Comment";
+"send.page.send.button.title" = "Send";
+"send.page.amount.toolbar.button.title" = "Next";
+"send.page.toast.send.transfer.success" = "Transfer Success";
+"send.page.toast.send.success" = "Success";
+"send.page.toast.address.error" = "Wrong address, please check the format";
+"send.page.toast.amount.error" = "Insufficient Balance";
+"send.page.toast.amount.empty" = "Please input balance";
+"send.page.toast.amount.zero" = "The amount has to be positive";
+"send.page.toast.note.too.long" = "The length of notes has reached limitations";
+"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
+"send.page.not.enough.balance.alert.button" = "Cancel";
+"send.page.confirm.biometryAuthFailed.title" = "Cannot be identified";
+"send.page.confirm.biometryAuthFailed.back" = "Back";
+"send.page.confirm.passwordAuthFailed.retry" = "Retry";
+"send.page.token.info.error" = "Token Info Error";
+"send.page.quota.content" = "%@ UTPS";
+
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.title" = "Payment";
+"confirm.transaction.page.transfer.title" = "Transfer";
+"confirm.transaction.page.pledge.title" = "Acquire Quota";
+"confirm.transaction.address.title" = "Recipient";
+"confirm.transaction.amount.title" = "Amount";
+"confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.page.use.password" = "Use password";
+"confirm.transaction.page.confirm.button" = "Confirm";
+"confirm.transaction.page.biometry.confirm.reason" = "Verify";
+"confirm.transaction.page.use.password.title" = "Enter Password";
+"confirm.transaction.page.pw.title" = "Please input password";
+"confirm.transaction.page.toast.password.error" = "Wrong password!";
+"confirm.transaction.page.node.name" = "Node Name";
+"confirm.transaction.page.vote" = "Vote";
+"confirm.transaction.page.cancel.vote" = "Revoke Vote";
+
+/* Receive Page */
+"Receive.page.token.title" = "Receive";
+"Receive.page.mine.title" = "My QRCode";
+"Receive.page.token.name.label" = "Scan and transfer %@";
+"Receive.page.token.amount.button.title" = "Input Amount";
+"Receive.page.token.note.label" = "Comment";
+"Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.wallet.name" = "Vite Wallet";
+
+/* Scan Page */
+"Scan.page.title" = "Scan";
+"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
+"Scan.page.qccode.not.found" = "No QR code found";
+
+/* System */
+"system.page.logout.loading" = "Logout";
+"system.page.cell.change.language" = "Language";
+"system.page.cell.change.currency" = "Currency Unit";
+"system.page.cell.login.pwd" = "Unlock By Password";
+"system.page.cell.login.faceId" = "Unlock By Face ID";
+"system.page.cell.login.touchId" = "Unlock By Touch ID";
+"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
+"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
+"system.page.cell.logout.title" = "Logout/switch wallet";
+
+/* about us */
+"aboutUs.page.cell.blockHeight" = "Current Height";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
+"aboutUs.page.cell.version" = "Version";
+"aboutUs.page.cell.contact" = "Contact Us";
+"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.official.website" = "Vite.org";
+"aboutUs.page.cell.portal.website" = "Vite.net";
+"aboutUs.page.cell.blog.website" = "Vite.blog";
+"aboutUs.page.email.title" = "Feedback";
+"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+
+/* toast error */
+"toast.error.login" = "Login Error";
+
+/* quota manage */
+"quota.manage.page.title" = "Acquire Quota";
+"quota.manage.page.input.address.title" = "Quota Beneficiary";
+"quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 1000 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
+"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
+"quota.manage.page.submit.btn.title" = "Submit Staking";
+"quota.manage.page.check.quotaList.btn.title" = "Staking List";
+"quota.manage.page.toast.money.error" = "Staking amount should not be less than 1000";
+"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
+"quota.submit.pop.submit.btn.title" = "Confirm";
+"quota.submit.pop.cancel.btn.title" = "Cancel";
+"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+
+/* quota alert */
+"quota.alert.title" = "Insufficient Quota";
+"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
+"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
+"quota.alert.pow.button.title" = "Run PoW";
+"quota.alert.quota.button.title" = "Stake VITE";
+"quota.float.view.title" = "Run PoW";
+
+/* Peldge History */
+"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
+"peldge.deadline" = "Due Date";
+"peldge.title" = "My Staking List";
+
+/* Vote */
+"vote.page.title" = "Vote";
+"vote.page.info.nodata.title" = "No Vote";
+"vote.page.voteStatus.voteSuccess" = "Successful Vote";
+"vote.page.voteStatus.voting" = "Voting";
+"vote.page.voteStatus.cancelVoting" = "Revoking";
+"vote.page.voteStatus.voteInvalid" = "Invalid Voting";
+"vote.page.voteInfo.nodePolls.title" = "My Votes";
+"vote.page.nodeStatus.valid.title" = "Active";
+"vote.page.nodeStatus.invalid.title" = "Inactive";
+"vote.page.voteInfo.cancel.vote.title" = "Revoke Voting";
+"vote.page.voteInfo.cancel.vote.toast.title" = "Vote revoking request is successfully sent";
+"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+
+/* Vote List*/
+"Vote" = "Vote";
+"vote.list.title" = "Candidate Nodes";
+"vote.list.search" = "Search for name or address of candidate nodes";
+"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
+"vote.list.confirm.revote" = "Confirm";
+"vote.list.confirm.button.title" = "Confirm";
+"vote.list.count" = "Votes";
+"vote.list.address" = "Address";
+"vote.list.send.success" = "Successfully send vote request";
+"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
+"vote.list.search.empty" = "No result, please try another input";
+"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+
+// Contract
+"contract.confirm.info" = "Contract Address";
+
+//RefreshFooter
+"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
+"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
+"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+
+//Welcome
+"introduction.page.tip1.title" = "Cross-chain multiple token types";
+"introduction.page.tip2.title" = "Decentralized wallet";
+"introduction.page.tip3.title" = "Zero transaction fees";
+"introduction.page.tip4.title" = "Fast transactions";
+"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+
+/* Error Message */
+"vite.error.network.error" = "Something went wrong with network, please try again later";
+"vite.error.operation.failure" = "Operation failed";
+"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
+"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
+"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
+"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
+
+/* Tip String */
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+
+// eth
+"eth.send.page.my.address.title" = "ETH Address";
+"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
+"eth.receive.page.my.address.title" = "My ETH Address";
+"eth.page.gasFee.title" = "Gas Fee";
+"eth.page.gasFee.slow.title" = "Slow";
+"eth.page.gasFee.fast.title" = "Fast";
+"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+
+//token
+"token.list.page.search.title" = "Please input token name or contract address";
+"token.list.page.section.vite.header" = "Vite Network";
+"token.list.page.section.eth.header" = "Ethereum Network";
+"token.list.page.section.grin.header" = "GRIN Network";
+
+// Contacts Home
+"contacts.home.page.title" = "Contact Address";
+"contacts.home.page.no.contact.tip" = "Add your first address";
+"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
+"contacts.home.page.filter.all" = "All";
+"contacts.home.page.add.button.title" = "Add";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "Add Contact Address";
+"contacts.edit.page.edit.title" = "Edit Contact Address";
+"contacts.edit.page.name.title" = "Name";
+"contacts.edit.page.address.title" = "Please input address";
+"contacts.edit.page.type.select.title" = "Select token type";
+"contacts.edit.page.save.button.title" = "Save";
+"contacts.edit.page.save.success.tip" = "Successfully added";
+"contacts.edit.page.edit.success.tip" = "Successfully saved";
+"contacts.edit.page.delete.button.title" = "Delete";
+"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+
+// Address List
+"address.list.page.my.title" = "My VITE Address";
+"address.list.page.other.title" = "%@ contact address";
+"address.list.page.no.address.tip" = "No %@ address yet";
+
+
+// Grin
+
+"grin.balance.total" = "Total";
+"grin.balance.spendable" = "Spendable";
+"grin.balance.awaiting" = "Awaiting Confirmation";
+"grin.balance.locked" = "Locked by Previous Transaction";
+"grin.wallet.check" = "Check";
+"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.";
+"grin.txType.sent" = "Sent";
+"grin.txType.waitToSign" = "Unreceived";
+"grin.txType.received" = "Received";
+"grin.txType.waitToFinalize" = "Unfinalized";
+"grin.txType.finalized" = "Finalized";
+"grin.txType.confirmed" = "Confirmed";
+"grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
+"grin.txType.Canceled" = "Canceled";
+"grin.tx.Cancele" = "Canceled";
+"grin.tx.Repost" = "Repost";
+"grin.tx.copyId" = "Copy";
+"grin.useFirstViteAddress" = "To transfer GRIN through VITE address or Http address, please switch to the first VITE address.";
+"grin.tx.useVite" = "Use VITE Address";
+"grin.sent.useVite.desc" = "Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE address can be used to transfer or receive GRIN.";
+"grin.sent.useHttp" = "Use Http Address";
+"grin.sent.useHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a \"Confirmed\" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN.\nThe transfer amount should be no less than 0.1 GRIN.";
+"grin.sent.useFile" = "Use Transaction File";
+"grin.know" = "I know";
+"grin.notSeeAgain" = "Don't show me again";
+"grin.sent.title" = "GRIN Transfer";
+"grin.sent.amount" = "Amount";
+"grin.sent.fee" = "Fees";
+"grin.sent.creatFile" = "Generate Transaction File";
+"grin.shareFile.desc" = "Please sign for the transaction";
+"grin.txFile.init.status" = "Created";
+"grin.txFile.id" = "Transaction ID";
+"grin.shareFile" = "Share Transaction File";
+"grin.finalize.title" = "GRIN Transfer";
+"grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
+"grin.txFile.received.status" = "The receipt has been confirmed";
+"grin.finalize" = "Finalize and Broadcast";
+"grin.finalized.alertTitle" = "Transaction Finalized";
+"grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
+"grin.sent.next" = "Next";
+"grin.sent.suggest.useVite.title" = "Notice";
+"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.";
+"grin.sent.switch" = "VITE Address";
+"grin.sent.stillUseHttp" = "Http Address";
+"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
+"grin.sent.vite.success" = "Your transaction has sent, please be aware that you can go through your GRIN transaction only if you use current address.";
+"grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
+"grin.receiveByVite.desc" = "Please share your first VITE address(Find it at the bottom) with the sender, please note that only when the recipient using his first VITE address can he receive GRIN.";
+"grin.iknow" = "I know";
+"grin.thisIsFirstViteAddress" = "This is your first VITE address";
+"grin.receiveByHttp.addressCopyed" = "Your Http address for receiving GRIN has been copied to the clipboard";
+"grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. Please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. And only when you use your first VITE address can you receive GRIN.";
+"grin.receive.title" = "GRIN Transfer";
+"grin.receive.sented" = "Sent";
+"grin.creatTime" = "Creation Time";
+"grin.signAndShare" = "Receive and Share";
+"grin.sent.btnTitle" = "Transfer";
+"grin.receive.BtnTitle" = "Receive";
+"grin.notice.title" = "Notice";
+"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
+"grin.teach.http.receive.title" = "Receive GRIN though Http Address";
+"grin.teach.vite.sent.title" = "Transfer GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Transfer GRIN though Http Address";
+"grin.txid.title" = "Transaction ID";
+"grin.switchAddress" = "Switch Address";
+"grin.http.address" = "Http Address";
+"grin.vite.address" = "VITE Address";
+"grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
+"grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
+"grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
+"grin.txbyfile.shareReceiveFileDesc" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
+"grin.txbyfile.initStatus.sender" = "Created";
+"grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
+"grin.txbyfile.receivedStatus.receiver" = "Received";
+"grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
+"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
+"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
+"grin.creating" = "Grin wallet initializing, please wait a moment.";
+

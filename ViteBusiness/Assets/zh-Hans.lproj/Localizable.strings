@@ -1,0 +1,476 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Stone on 2018/12/5.
+  
+*/
+
+/* App */
+"Cancel" = "取消";
+"Finish" = "完成";
+"Delete" = "删除";
+"Hint" = "提示";
+"Yes" = "是";
+"No" = "否";
+"Loading" = "加载中";
+"Confirm" = "确定";
+"Submit" = "提交";
+"Close" = "我知道了";
+"Update.app" = "更新 App";
+"Submit.success" = "提交成功";
+"Submit.cancel" = "撤销";
+"Close"="关闭";
+
+
+
+/* Login */
+"create.account" = "创建账户";
+"import.account" = "恢复账户";
+"select.wallet.account" = "选择钱包账户";
+
+/* Lock */
+"lock.page.pwd.btn.title" = "使用密码登录";
+"lock.page.fingerprint.btn.title" = "再次唤起验证";
+"lock.page.fingerprint.alter.title" = "请验证指纹，开启 Touch ID";
+"lock.page.changeUser.btn.title" = "切换账户";
+
+/* create */
+"create.page.title" = "创建钱包账户";
+"create.page.tf.title" = "账户名";
+"create.page.pw.title" = "请输入密码";
+"create.page.pw.repeate.title" = "重复输入密码";
+"create.page.submit.btn.title" = "创建";
+
+"create.page.tip.title" = "备份钱包账户";
+"create.page.tip.content" = "请备份助记词，没有妥善备份就无法保障您的资产安全。更换手机或删除 App 后，您需要通过备份助记词来恢复钱包。";
+"create.page.tip.nextBtn" = "备份助记词";
+
+/* mnemonic */
+"mnemonic.backup.page.title" = "备份助记词";
+"mnemonic.backup.page.tip.title" = "您只有通过助记词来恢复您的账户，如助记词丢失，您的数字资产将无法找回。";
+"mnemonic.backup.page.tip.lab.title" = "助记词";
+"mnemonic.backup.page.tip.anewBtn.title" = "重新生成助记词";
+"mnemonic.backup.page.tip.nextBtn.title" = "助记词已备份";
+"mnemonic.backup.page.alter.title" = "截图保存助记词是不安全的方式，建议您用纸笔记录并存放在安全的地方";
+"mnemonic.backup.page.alter.message" = "是否重新生成助记词？";
+"mnemonic.backup.page.alter.cancel" = "不了";
+"mnemonic.backup.page.alter.confirm" = "好的";
+"mnemonic.backup.page.error.type.name" = "请输入账户名或密码";
+"mnemonic.backup.page.error.type.nameValid" = "账户名仅支持中英文字符及下划线";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "账户名仅支持32个字符";
+"mnemonic.backup.page.error.type.difference" = "两次输入密码不同";
+"mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
+"mnemonic.backup.page.switch.mode.title" = "切换%@个助记词";
+
+"mnemonic.affirm.page.title" = "确认输入助记词";
+"mnemonic.affirm.page.tip.title" = "按顺序选择助记词输入";
+"mnemonic.affirm.alter.title" = "返回会重新生成助记词，是否返回";
+"mnemonic.affirm.alter.check.title" = "助记词输入错误";
+"mnemonic.affirm.page.add.loading" = "添加中...";
+
+/* import mnemonic*/
+"import.page.title" = "输入您的助记词";
+"import.page.submit.btn" = "恢复账户";
+"import.page.submit.invalid.mnemonic" = "助记词输入有误，请重新输入。";
+"import.page.submit.loading" = "账户恢复中...";
+"import.page.submit.success" = "恢复成功";
+"import.page.alert.exist.title" = "您输入的助记词在当前设备的账户名为%@，确认是否使用新账户覆盖原有账户";
+"import.page.alert.exist.ok" = "确认";
+"import.page.alert.exist.cancel" = "取消";
+
+/* export mnemonic */
+"export.page.title" = "导出助记词";
+"export.page.alter.title" = "请输入密码";
+"export.page.alter.tf.placeholder" = "请输入账户密码";
+"export.page.alter.password.error" = "密码错误";
+
+/* login */
+"login.page.btn.chooseName" = "选择钱包账户";
+"login.page.btn.login" = "登录";
+"login.page.loading.title" = "登录中";
+"login.page.error.toast.title" = "密码错误，知道助记词可以导入";
+
+/* Home */
+"tabbar.item.title.wallet" = "钱包";
+"tabbar.item.title.my" = "我";
+
+/* Wallet Home */
+"wallet.home.balance.title" = "账户余额";
+"wallet.home.unconfirmed.title" = "待接收 %@";
+"wallet.home.toast.copy.address" = "地址已复制";
+"wallet.home.scan.url.alert.title" = "警告";
+"wallet.home.scan.url.alert.message" = "即将跳转至第三方页面，您在第三方页面上的使用行为将适用该第三方应用的用户协议和隐私政策，VITE官方将不承担责任。";
+"wallet.home.header.title" = "全部资产";
+
+/* Manage Wallet */
+"manage.wallet.page.title" = "管理钱包";
+"manage.wallet.page.name.cell.title" = "账户名";
+"manage.wallet.page.addressManage.cell.title" = "地址管理";
+"manage.wallet.page.importMnemonic.cell.title" = "导出助记词";
+"manage.wallet.page.alter.changeName" = "修改钱包名";
+"manage.wallet.page.changeName.loading" = "修改中";
+"manage.wallet.page.error.type.name" = "账户名不能为空";
+
+/* my */
+"my.page.contacts.cell.title" = "联系地址";
+"my.page.mnemonic.cell.title" = "助记词";
+"my.page.system.cell.title" = "使用设置";
+"my.page.aboutUs.cell.title" = "关于我们";
+"my.page.change.wallet.name.alter.title" = "修改账户名";
+
+
+/* Transaction List */
+"transaction.list.page.title" = "交易记录";
+"transaction.list.page.empty" = "无记录";
+"transaction.list.page.network.error" = "刷新页面";
+"transaction.list.page.header.refresh.idle" = "下拉刷新";
+"transaction.list.page.header.refresh.pulling" = "松开立即刷新";
+"transaction.list.page.header.refresh.refreshing" = "正在刷新中...";
+"transaction.list.transaction.type.name.register" = "注册";
+"transaction.list.transaction.type.name.registerUpdate" = "更新注册";
+"transaction.list.transaction.type.name.cancelRegister" = "撤销注册";
+"transaction.list.transaction.type.name.extractReward" = "提取奖励";
+"transaction.list.transaction.type.name.vote" = "投票";
+"transaction.list.transaction.type.name.cancelVote" = "撤销投票";
+"transaction.list.transaction.type.name.pledge" = "获取配额";
+"transaction.list.transaction.type.name.cancelPledge" = "取回配额抵押";
+"transaction.list.transaction.type.name.coin" = "铸币";
+"transaction.list.transaction.type.name.cancelCoin" = "取回铸币抵押";
+"transaction.list.transaction.type.name.transfer" = "转账";
+
+/* BalanceInfo */
+"balance.info.detail.balance.title" = "账户余额";
+"balance.info.detail.unconfirmed.title" = "待接收";
+"balance.info.detail.unconfirmed.count.title" = "%@笔待确认";
+"balance.info.detail.show.transactions.button.title" = "到以太坊浏览器查看交易记录";
+"balance.info.detail.reveice.button.title" = "收款";
+"balance.info.detail.send.button.title" = "转账";
+"balance.info.detail.vote" = "投票";
+"balance.info.detail.pledge" = "获取配额";
+"balance.info.detail.pledge.count.content" = "配额 %@ UTPS";
+"balance.info.detail.onroad.amount.content" = "%@ 待确认";
+
+/* Address Manage Page */
+"address.manage.page.title" = "我的VITE地址";
+"address.manage.default.address.cell.title" = "默认地址";
+"address.manage.address.header.title" = "地址列表";
+"address.manage.address.generate.button.title" = "添加地址";
+"address.manage.address.generate.button.toast" = "最多只能添加10个地址";
+"address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
+"address.manage.tip.alert.ok" = "我知道了";
+"address.manage.default.address.name" = "未命名";
+"address.manage.change.name.alert.title" = "修改地址名称";
+"address.manage.change.name.alert.placeholder" = "请输入新的名称";
+
+/* Send Page */
+"send.page.title" = "转账";
+"send.page.my.address.title" = "我的VITE地址";
+"send.page.my.balance.title" = "余额";
+"send.page.my.quota.title" = "配额";
+"send.page.my.max.tx.count.title" = "最大交易笔数";
+"send.page.add.my.address.button.title" = "我的";
+"send.page.vite.contacts.button.title" = "VITE联系地址";
+"send.page.scan.address.button.title" = "扫码";
+"send.page.to.address.title" = "收款地址";
+"send.page.amount.title" = "金额";
+"send.page.remark.title" = "备注";
+"send.page.send.button.title" = "转账";
+"send.page.amount.toolbar.button.title" = "下一项";
+"send.page.toast.send.transfer.success" = "转账交易发送成功";
+"send.page.toast.send.success" = "支付成功";
+"send.page.toast.address.error" = "地址输入错误,请检查格式";
+"send.page.toast.amount.error" = "账户余额不足";
+"send.page.toast.amount.empty" = "请填写金额";
+"send.page.toast.amount.zero" = "转账金额不能为0";
+"send.page.toast.note.too.long" = "备注已达上限";
+"send.page.not.enough.balance.alert.title" = "账户余额不足";
+"send.page.not.enough.balance.alert.button" = "取消交易";
+"send.page.confirm.biometryAuthFailed.title" = "无法识别";
+"send.page.confirm.biometryAuthFailed.back" = "返回";
+"send.page.confirm.passwordAuthFailed.retry" = "重试";
+"send.page.token.info.error" = "代币信息错误";
+"send.page.quota.content" = "%@ UTPS";
+
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.title" = "支付";
+"confirm.transaction.page.transfer.title" = "转账";
+"confirm.transaction.page.pledge.title" = "获取配额";
+"confirm.transaction.address.title" = "收款地址";
+"confirm.transaction.amount.title" = "金额";
+"confirm.transaction.fee.title" = "手续费";
+"confirm.transaction.page.use.password" = "使用密码";
+"confirm.transaction.page.confirm.button" = "确认支付";
+"confirm.transaction.page.biometry.confirm.reason" = "验证信息";
+"confirm.transaction.page.use.password.title" = "请输入支付密码";
+"confirm.transaction.page.pw.title" = "请输入密码";
+"confirm.transaction.page.toast.password.error" = "密码错误";
+"confirm.transaction.page.node.name" = "节点名称";
+"confirm.transaction.page.vote" = "投票";
+"confirm.transaction.page.cancel.vote" = "取消投票";
+
+/* Receive Page */
+"Receive.page.token.title" = "收款";
+"Receive.page.mine.title" = "我的二维码";
+"Receive.page.token.name.label" = "请转入 %@";
+"Receive.page.token.amount.button.title" = "设置金额";
+"Receive.page.token.note.label" = "备注";
+"Receive.page.token.amount.alert.title" = "输入金额";
+"Receive.page.wallet.name" = "Vite Wallet";
+
+/* Scan Page */
+"Scan.page.title" = "扫一扫";
+"Scan.page.qccode.not.identifiable" = "二维码不可识别";
+"Scan.page.qccode.not.found" = "未发现二维码";
+
+/* System */
+"system.page.logout.loading" = "退出中";
+"system.page.cell.change.language" = "语言选择";
+"system.page.cell.change.currency" = "货币单位";
+"system.page.cell.login.pwd" = "密码解锁";
+"system.page.cell.login.faceId" = "Face ID 解锁";
+"system.page.cell.login.touchId" = "Touch ID 解锁";
+"system.page.cell.transfer.faceId" = "使用 Face ID 转账";
+"system.page.cell.transfer.touchId" = "使用 Touch ID 转账";
+"system.page.cell.logout.title" = "退出并切换钱包";
+
+/* about us */
+"aboutUs.page.cell.blockHeight" = "当前区块高度";
+"aboutUs.page.cell.blockHeight.loading.tip" = "获取中";
+"aboutUs.page.cell.version" = "版本";
+"aboutUs.page.cell.contact" = "联系我们";
+"aboutUs.page.cell.shareUs" = "分享 Vite APP";
+"aboutUs.page.cell.official.website" = "Vite 官网";
+"aboutUs.page.cell.portal.website" = "Vite 门户网站";
+"aboutUs.page.cell.blog.website" = "Vite.blog";
+"aboutUs.page.email.title" = "意见反馈";
+"aboutUs.page.email.content" = "\n\n\n\n\n意见来自以下使用环境：\n1.设备系统：%@\n2.系统版本:%@\n3.APP 版本：%@\n4.语言环境：%@";
+
+/* toast error */
+"toast.error.login" = "解锁失败";
+
+/* quota manage */
+"quota.manage.page.title" = "获取配额";
+"quota.manage.page.input.address.title" = "配额受益地址";
+"quota.manage.page.quota.money.title" = "抵押金额";
+"quota.manage.page.quota.money.placeholder" = "请输入抵押金额，最小1000 vite";
+"quota.manage.page.quota.snapshoot.height.title" = "抵押锁定时长";
+"quota.manage.page.quota.snapshoot.height.desc" = "约 %@ 天";
+"quota.manage.page.submit.btn.title" = "提交抵押";
+"quota.manage.page.check.quotaList.btn.title" = "抵押列表";
+"quota.manage.page.toast.money.error" = "抵押金额必须大于1000 vite";
+"quota.submit.pop.desc" = "确认是否抵押%@以获取配额，抵押生效3天之后才可取回抵押金额";
+"quota.submit.pop.submit.btn.title" = "确认抵押";
+"quota.submit.pop.cancel.btn.title" = "暂不抵押";
+"quota.submit.page.quota.address.placeholder" = "请输入获取配额地址";
+
+
+/* quota alert */
+"quota.alert.title" = "配额不足";
+"quota.alert.pow.and.quota.message" = "配额不足，建议您点击运行 PoW 获取配额或抵押 VITE 获取配额";
+"quota.alert.need.quota.message" = "PoW 获取的配额不足，建议您进行抵押 VITE 获取配额";
+"quota.alert.pow.button.title" = "运行 PoW";
+"quota.alert.quota.button.title" = "抵押 VITE";
+"quota.float.view.title" = "运行 PoW";
+
+/* Peldge History */
+"peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";
+"peldge.deadline" = "到期";
+"peldge.title" = "我的抵押列表";
+
+/* Vote */
+"vote.page.title" = "投票";
+"vote.page.info.nodata.title" = "暂无投票";
+"vote.page.voteStatus.voteSuccess" = "投票成功";
+"vote.page.voteStatus.voting" = "正在投票中";
+"vote.page.voteStatus.cancelVoting" = "正在撤销中";
+"vote.page.voteStatus.voteInvalid" = "投票作废";
+"vote.page.voteInfo.nodePolls.title" = "我的投票数";
+"vote.page.nodeStatus.valid.title" = "正在候选";
+"vote.page.nodeStatus.invalid.title" = "停止候选";
+"vote.page.voteInfo.cancel.vote.title" = "撤销投票";
+"vote.page.voteInfo.cancel.vote.toast.title" = "撤销投票请求发送成功";
+"vote.page.voteInfo.alert.quota" = "无法撤销投票，您需运行PoW 或抵押VITE 获取配额才可以撤销投票";
+
+/* Vote List*/
+"Vote" = "投票";
+"vote.list.title" = "候选节点列表";
+"vote.list.search" = "搜索候选节点名称或出块地址";
+"vote.list.alert.already.voted" = "您已经投票给%@，请确认是否覆盖当前投票";
+"vote.list.confirm.revote" = "确认";
+"vote.list.confirm.button.title" = "确认";
+"vote.list.count" = "得票数";
+"vote.list.address" = "出块地址";
+"vote.list.send.success" = "投票请求发送成功";
+"vote.list.alert.quota" = "无法投票，您需运行PoW 或抵押VITE 获取配额才可以投票";
+"vote.list.search.empty" = "无结果，换个输入试试";
+"vote.list.search.no.transaction.before" = "您的地址未发生过交易，暂不能投票";
+
+// Contract
+"contract.confirm.info" = "合约地址";
+
+//RefreshFooter
+"vite.RefreshBackFooter.IdleText" = "上拉可以加载更多";
+"Vite.RefreshBackFooter.PullingText" = "松开立即加载更多";
+"Vite.RefreshBackFooter.RefreshingText" = "正在加载更多的数据...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "已经全部加载完毕";
+
+//Welcome
+"introduction.page.tip1.title" = "跨链多币种";
+"introduction.page.tip2.title" = "去中心化钱包";
+"introduction.page.tip3.title" = "转账零费用";
+"introduction.page.tip4.title" = "交易速度快";
+"introduction.page.tip1.desc" = "支持多种代币，方便资产管理";
+"introduction.page.tip2.desc" = "私钥本地保存，代码开源保证";
+"introduction.page.tip3.desc" = "交易消耗配额，运行PoW免费获取";
+"introduction.page.tip4.desc" = "异步架构设计，交易畅通无阻";
+"introduction.page.nextBtn.title" = "开始体验";
+
+/* Error Message */
+"vite.error.network.error" = "网络异常，请稍后重试";
+"vite.error.operation.failure" = "操作失败";
+"vite.error.rpc.error.code.not.enough.balance" = "账户余额不足";
+"vite.error.rpc.error.code.not.enough.quota" = "配额不足";
+"vite.error.rpc.error.code.id.conflict" = "ID 发生冲突，请您稍后重新提交";
+"vite.error.rpc.error.code.contract.data.illegal" = "内置合约发生错误，请稍后重试(-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "交易发送频繁，请您稍后再次尝试";
+"vite.error.rpc.error.code.contract.method.not.exist" = "内置合约发生错误，请稍后重试(-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "您需要接收一笔交易之后才可发起转账";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "快照块高度不合法，请您稍后再试";
+"vite.error.rpc.error.code.verify.failure" = "系统校验不通过，请稍后重试(%@)";
+
+/* Tip String */
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是配额</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户不是通过支付手续费的方式来购买一次交易所需的燃料，而是通过一种基于配额的模型来获取计算资源，发送交易所需配额=基础配额(请求)+配额(附带的文本资料)，接受交易所需配额=基础配额(响应)。这个基于配额的资源配置协议允许用户通过两种方式来获取更高的资源配额：</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.抵押VITE获取配额</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.运行PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">配额单位：UTPS，Unit of Transaction per Second，每秒交易单位。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是抵押</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">在Vite系统中，用户可以抵押VITE获取一定数量的配额，抵押最小值为1000 VITE，没有最大抵押上限；同时支持A地址抵押一部分VITE并将获得的配额分配给B地址；用户申请抵押后，会将这笔VITE发送到智能合约地址而不是某一个用户，且只有申请抵押用户有权限支配抵押的金额。</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">什么是PoW</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">工作量证明(Proof of Work，简称PoW)，简单理解就是一份证明，用来确认你做过一定量的工作，应对拒绝服务攻击和其他服务滥用的经济对策。它要求发起者进行一定量的运算，也就意味着需要消耗计算机一定的时间；在Vite系统中，用户可以通过运行PoW获得免费的配额，用户可以通过获得的配额进行一次不带任何备注信息的交易。</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于投票</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">您可以参与投票选出共25个SBP（Snapshot Block Producer），每轮投票时间共75秒，您的投票数为投票地址所拥有的VITE数量，默认为您保持上一轮的投票意向；每轮得票量排名前25名的候选节点中随机23个及排名26-100名的候选节点中随机2个共25个节点将当选SBP。</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">您投票的%@已经取消注册，您可以重新投票或撤销投票；如果您不重新投票或撤销投票，%@ 恢复注册后，您原来的投票将恢复生效。</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "转账金额格式错误";
+
+// eth
+"eth.send.page.my.address.title" = "ETH地址";
+"eth.send.page.eth.contacts.button.title" = "ETH联系地址";
+"eth.receive.page.my.address.title" = "我的ETH地址";
+"eth.page.gasFee.title" = "矿工费用";
+"eth.page.gasFee.slow.title" = "慢";
+"eth.page.gasFee.fast.title" = "快";
+"eth.page.gasFee.notice.title" = "消耗不完的Gas会全部退还";
+
+//token
+"token.list.page.search.title" = "输入Token名称或合约地址";
+"token.list.page.section.vite.header" = "Vite网络";
+"token.list.page.section.eth.header" = "Ethereum网络";
+"token.list.page.section.grin.header" = "GRIN网络";
+
+// Contacts Home
+"contacts.home.page.title" = "联系地址";
+"contacts.home.page.no.contact.tip" = "添加您的第一个联系地址";
+"contacts.home.page.single.no.contact.tip" = "暂无 %@ 联系地址";
+"contacts.home.page.filter.all" = "全部";
+"contacts.home.page.add.button.title" = "添加";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "添加联系地址";
+"contacts.edit.page.edit.title" = "编辑联系地址";
+"contacts.edit.page.name.title" = "名称";
+"contacts.edit.page.address.title" = "请输入地址";
+"contacts.edit.page.type.select.title" = "选择地址所属网络";
+"contacts.edit.page.save.button.title" = "保存";
+"contacts.edit.page.save.success.tip" = "成功添加联系地址";
+"contacts.edit.page.edit.success.tip" = "保存成功";
+"contacts.edit.page.delete.button.title" = "删除联系地址";
+"contacts.edit.page.delete.alert.title" = "确认删除联系地址吗？";
+
+// Address List
+"address.list.page.my.title" = "我的VITE地址";
+"address.list.page.other.title" = "%@ 联系地址";
+"address.list.page.no.address.tip" = "暂无 %@ 联系地址";
+
+
+// Grin
+
+"grin.balance.total" = "全部";
+"grin.balance.spendable" = "可用余额";
+"grin.balance.awaiting" = "待确认";
+"grin.balance.locked" = "交易锁定";
+"grin.wallet.check" = "刷新";
+"grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。";
+"grin.wallet.check" = "刷新";
+"grin.txType.sent" = "已发送";
+"grin.txType.waitToSign" = "待签收";
+"grin.txType.received" = "已签收";
+"grin.txType.waitToFinalize" = "待敲定";
+"grin.txType.finalized" = "已敲定";
+"grin.txType.confirmed" = "已确认";
+"grin.txType.confirmedCoinbase" = "已确认挖矿";
+"grin.txType.Canceled" = "已取消";
+"grin.tx.Cancele" = "已取消";
+"grin.tx.Repost" = "重发";
+"grin.tx.copyId" = "复制";
+"grin.useFirstViteAddress" = "为了使用VITE地址或Http地址发送GRIN，请切换到VITE地址簿里第一个VITE地址。";
+"grin.tx.useVite" = "通过VITE地址";
+"grin.sent.useVite.desc" = "通过VITE地址发送GRIN即通过VITE地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意只有您的第一个VITE地址可以用来进行GRIN转账和收款。";
+"grin.sent.useHttp" = "通过Http地址";
+"grin.sent.useHttp.desc" = "通过Http地址收转GRIN，如图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。另外请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。例如：转账人的“已确认”状态只表示转账人转给Vite的交易已确认，并不代表收款人已经收到您的转账。\n转账金额需大于等于0.1 GRIN。";
+"grin.sent.useFile" = "通过交易文件";
+"grin.know" = "我知道了";
+"grin.notSeeAgain" = "不再提示";
+"grin.sent.title" = "GRIN转账";
+"grin.sent.amount" = "金额";
+"grin.sent.fee" = "交易费";
+"grin.sent.creatFile" = "生成交易文件";
+"grin.shareFile.desc" = "请签收交易";
+"grin.txFile.init.status" = "创建";
+"grin.txFile.id" = "交易ID";
+"grin.shareFile" = "分享交易文件";
+"grin.finalize.title" = "GRIN转账";
+"grin.finalize.desc" = "收款人已经签收交易，请敲定并广播交易";
+"grin.txFile.received.status" = "已确认收款";
+"grin.finalize" = "敲定并广播";
+"grin.finalized.alertTitle" = "交易已确认";
+"grin.finalized.alertDesc" = "您的GRIN转账交易已经开始广播";
+"grin.sent.next" = "下一步";
+"grin.sent.suggest.useVite.title" = "提示";
+"grin.sent.suggest.useVite.desc" = "若您想给Vite钱包用户转账GRIN，我们建议您使用VITE地址转账；因为通过VITE地址转账更安全，交易费更少";
+"grin.sent.switch" = "使用VITE地址";
+"grin.sent.stillUseHttp" = "使用Http地址";
+"grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
+"grin.sent.vite.success" = "您的转账交易已发送，请注意只有使用当前地址您才能继续完成GRIN转账。";
+"grin.receiveByVite.addressCopyed" = "您的GRIN收款VITE地址已复制至剪贴板";
+"grin.receiveByVite.desc" = "请将您的第一个VITE地址（底部复制）分享给转账人，请注意收款人只有使用其第一个VITE地址才能收到GRIN";
+"grin.iknow" = "我知道了";
+"grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
+"grin.receiveByHttp.addressCopyed" = "您的GRIN收款Http地址已复制至剪贴板";
+"grin.receiveByHttp.desc" = "通过Http地址收转GRIN，如上图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。另外请注意只有当您使用您的第一个VITE地址时才能收到GRIN。";
+"grin.receive.title" = "GRIN转账";
+"grin.receive.sented" = "已传送";
+"grin.creatTime" = "生成时间";
+"grin.signAndShare" = "签收并分享";
+"grin.sent.btnTitle" = "转账";
+"grin.receive.BtnTitle" = "收款";
+"grin.notice.title" = "提示";
+"grin.teach.vite.receive.title" = "使用VITE地址接收GRIN";
+"grin.teach.http.receive.title" = "使用Http地址接收GRIN";
+"grin.teach.vite.sent.title" = "使用VITE地址转账GRIN";
+"grin.teach.http.sent.title" = "通过Http地址转账GRIN";
+"grin.txid.title" = "交易ID";
+"grin.switchAddress" = "去切换地址";
+"grin.http.address" = "Http 地址";
+"grin.vite.address" = "VITE 地址";
+"grin.sendPageViteContactsButtonTitle" = "GRIN联系地址";
+"grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "请确保将交易文件分享给转账人";
+"grin.txbyfile.shareSentFileDesc" = "请确保将交易文件分享给收款人并要求返回一个确认收款文件";
+"grin.txbyfile.receiveSentFileDesc" = "请签收交易";
+"grin.txbyfile.shareReceiveFileDesc" = "请确保将交易文件分享给转账人";
+"grin.txbyfile.finalizeReceiveFileDesc" = "收款人已经签收交易，请敲定并广播交易";
+"grin.txbyfile.initStatus.sender" = "已创建";
+"grin.txbyfile.initStatus.receiver" = "待签收";
+"grin.txbyfile.receivedStatus.receiver" = "已签收";
+"grin.txbyfile.receivedStatus.sender" = "待敲定";
+"grin.creat.syncronizing" = "账户创建、同步Grin数据中，预计3分钟";
+"grin.recover.syncronizing" = "账户恢复、同步Grin数据中，预计3分钟";
+"grin.creating" = "Grin钱包正在初始化，请稍候";
+
+
