@@ -209,8 +209,16 @@ extension WKWebViewJSBridgeEngine {
     func checkUrlHasJurisdiction(url:String,jurisdictions:[String])->Bool {
         if jurisdictions.count == 0 {
             return true
-        }else {
-            return  jurisdictions.contains(url)
+        } else {
+            guard let u = URL(string: url) else { return false }
+            var ret = false
+            for string in jurisdictions {
+                if u.host?.lowercased() == string || (u.host?.lowercased() ?? "").hasSuffix("." + string) {
+                    ret = true
+                    break
+                }
+            }
+            return  ret
         }
     }
 }
