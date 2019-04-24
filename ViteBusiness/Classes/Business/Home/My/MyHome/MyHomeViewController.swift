@@ -71,7 +71,8 @@ class MyHomeViewController: BaseTableViewController {
     fileprivate func bind() {
         AppConfigService.instance.configDriver.asObservable().map { config -> [SectionModel<String, MyHomeListCellViewModel>] in
             let configViewModel = MyHomeConfigViewModel(JSON: config.myPage)!
-            return [SectionModel(model: "item", items: configViewModel.items)]
+            let items = configViewModel.items.filter({ $0.isValid })
+            return [SectionModel(model: "item", items: items)]
         }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
         tableView.separatorStyle = .none
         tableView.rowHeight = MyHomeListCell.cellHeight
