@@ -191,22 +191,15 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a1)
         alert.addAction(a2)
         alert.addAction(a3)
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.sendBtn;
+            popover.sourceRect = self.sendBtn.bounds;
+            popover.permittedArrowDirections = .any;
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
     func send(use method: TransferMethod) {
-        guard GrinTransactVM().support(method: method) else {
-            Alert.show(title: "", message: R.string.localizable.grinUseFirstViteAddress(), actions: [
-                (.default(title:R.string.localizable.grinSwitchAddress()), { _ in
-                    UIViewController.current?.navigationController?.pushViewController(AddressManageViewController(), animated: true)
-                }),
-                (.default(title: R.string.localizable.grinSentUseFile()), { _ in
-                    self.send(use: .file)
-                }),
-                ])
-            return
-        }
-        
         let notTeach = method == .file || UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
         if notTeach {
             let resourceBundle = businessBundle()
@@ -266,6 +259,11 @@ class GrinInfoViewController: BaseViewController {
         alert.addAction(a1)
         alert.addAction(a2)
         alert.addAction(a3)
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.receiveBtn;
+            popover.sourceRect = self.receiveBtn.bounds;
+            popover.permittedArrowDirections = .any;
+        }
         self.present(alert, animated: true, completion: nil)
     }
 

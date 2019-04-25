@@ -141,12 +141,6 @@ class GrinTeachViewController: UIViewController {
         }
     }
 
-    @IBAction func didClickedViteInfoButton(_ sender: Any) {
-        Alert.show(into: self, title: R.string.localizable.grinNoticeTitle() , message:R.string.localizable.grinThisIsFirstViteAddress() , actions: [
-            (.default(title: R.string.localizable.confirm()), { alertController in
-
-            })])
-    }
     /*
     // MARK: - Navigation
 

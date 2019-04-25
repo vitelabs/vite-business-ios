@@ -12,6 +12,7 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
+
 private func grinFileHelper() -> FileHelper {
     return FileHelper(.library, appending: FileHelper.walletPathComponent + "/grin" + GrinManager.getChainType().rawValue)
 }
@@ -73,6 +74,9 @@ class GrinManager: GrinBridge {
                 self?.getBalance()
             }
             .disposed(by: self.bag)
+
+        FMDatabase()
+
     }
 
 

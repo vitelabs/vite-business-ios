@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,6 @@
                 <outlet property="settingButton" destination="nlr-25-Ef7" id="tIt-Uu-gT9"/>
                 <outlet property="titleLabel" destination="zSJ-q4-nDe" id="thI-MZ-qCp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viteInfoButton" destination="pgl-Iz-sxa" id="CvK-ND-LqB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -137,27 +136,14 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgl-Iz-sxa">
-                            <rect key="frame" x="78" y="12.5" width="16" height="16"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="16" id="QkB-qT-Xca"/>
-                                <constraint firstAttribute="width" constant="16" id="WoY-9q-ASc"/>
-                            </constraints>
-                            <state key="normal" image="infor_white"/>
-                            <connections>
-                                <action selector="didClickedViteInfoButton:" destination="-1" eventType="touchUpInside" id="NiI-7L-OCg"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="pgl-Iz-sxa" firstAttribute="leading" secondItem="o6G-c0-TfG" secondAttribute="trailing" constant="4" id="0f1-xy-k0j"/>
                         <constraint firstItem="Vk3-Lw-Lnc" firstAttribute="top" secondItem="o6G-c0-TfG" secondAttribute="bottom" constant="6" id="68k-SN-Sex"/>
                         <constraint firstItem="Vk3-Lw-Lnc" firstAttribute="leading" secondItem="dz4-UC-bLN" secondAttribute="leading" constant="24" id="GFa-Hu-fa2"/>
                         <constraint firstItem="o6G-c0-TfG" firstAttribute="top" secondItem="dz4-UC-bLN" secondAttribute="top" constant="13" id="KkO-mr-JCE"/>
                         <constraint firstItem="ujh-FU-49L" firstAttribute="leading" secondItem="Vk3-Lw-Lnc" secondAttribute="trailing" constant="10" id="Odb-Kz-BEt"/>
                         <constraint firstItem="o6G-c0-TfG" firstAttribute="leading" secondItem="dz4-UC-bLN" secondAttribute="leading" constant="24" id="Vzv-vu-dLd"/>
-                        <constraint firstItem="pgl-Iz-sxa" firstAttribute="centerY" secondItem="o6G-c0-TfG" secondAttribute="centerY" id="aQT-5W-pL6"/>
                         <constraint firstAttribute="trailing" secondItem="ujh-FU-49L" secondAttribute="trailing" constant="24" id="eAK-80-ucF"/>
                         <constraint firstAttribute="height" constant="108" id="lbl-N0-QWW"/>
                         <constraint firstItem="ujh-FU-49L" firstAttribute="top" secondItem="dz4-UC-bLN" secondAttribute="top" constant="18" id="wc7-P5-8zY"/>
@@ -259,7 +245,6 @@
     </objects>
     <resources>
         <image name="grin_tx_vite" width="327" height="248"/>
-        <image name="infor_white" width="16" height="16"/>
         <image name="selected" width="12" height="12"/>
         <image name="unselected" width="12" height="12"/>
     </resources>

@@ -59,11 +59,6 @@ class GrinTransactVM {
         })
     }
 
-    func support(method: TransferMethod) -> Bool {
-        if method == .file { return true }
-        return HDWalletManager.instance.account?.address == HDWalletManager.instance.accounts.first?.address
-    }
-
     func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
         GrinManager.queue.async {
             guard let amount = self.amountFrom(string: amountString) else {

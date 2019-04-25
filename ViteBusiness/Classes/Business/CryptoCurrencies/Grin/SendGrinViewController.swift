@@ -147,7 +147,7 @@ class SendGrinViewController: UIViewController {
                 self?.view.hideLoading()
                 guard let fee = fee,
                     !fee.isEmpty else { return }
-                let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
+                let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee, confirmTitle: R.string.localizable.grinPayTitleCreat())
                 Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
                 }) {
                     let amountString = self?.amountTextField.text

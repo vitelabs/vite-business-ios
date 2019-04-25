@@ -88,6 +88,7 @@ Pod::Spec.new do |s|
   s.dependency 'Kingfisher', '~> 4.0'
   s.dependency 'NYXImagesKit', '2.3'
 
+
   #request
   s.dependency 'SwiftyJSON'
 

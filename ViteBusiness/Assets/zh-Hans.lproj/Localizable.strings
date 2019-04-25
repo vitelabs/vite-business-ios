@@ -397,22 +397,21 @@
 "grin.wallet.check" = "刷新";
 "grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。";
 "grin.wallet.check" = "刷新";
-"grin.txType.sent" = "已发送";
+"grin.txType.sent" = "已创建";
 "grin.txType.waitToSign" = "待签收";
 "grin.txType.received" = "已签收";
 "grin.txType.waitToFinalize" = "待敲定";
-"grin.txType.finalized" = "已敲定";
+"grin.txType.finalized" = "广播中";
 "grin.txType.confirmed" = "已确认";
-"grin.txType.confirmedCoinbase" = "已确认挖矿";
+"grin.txType.confirmedCoinbase" = "挖矿已确认";
 "grin.txType.Canceled" = "已取消";
 "grin.tx.Cancele" = "已取消";
 "grin.tx.Repost" = "重发";
 "grin.tx.copyId" = "复制";
-"grin.useFirstViteAddress" = "为了使用VITE地址或Http地址发送GRIN，请切换到VITE地址簿里第一个VITE地址。";
 "grin.tx.useVite" = "通过VITE地址";
-"grin.sent.useVite.desc" = "通过VITE地址发送GRIN即通过VITE地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。请注意只有您的第一个VITE地址可以用来进行GRIN转账和收款。";
-"grin.sent.useHttp" = "通过Http地址";
-"grin.sent.useHttp.desc" = "通过Http地址收转GRIN，如图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。另外请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。例如：转账人的“已确认”状态只表示转账人转给Vite的交易已确认，并不代表收款人已经收到您的转账。\n转账金额需大于等于0.1 GRIN。";
+"grin.sent.useVite.desc" = "通过VITE地址发送GRIN即通过VITE地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。";
+"grin.sent.useHttp" = "通过HTTP地址";
+"grin.sent.useHttp.desc" = "您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用Http地址。";
 "grin.sent.useFile" = "通过交易文件";
 "grin.know" = "我知道了";
 "grin.notSeeAgain" = "不再提示";
@@ -434,15 +433,15 @@
 "grin.sent.suggest.useVite.title" = "提示";
 "grin.sent.suggest.useVite.desc" = "若您想给Vite钱包用户转账GRIN，我们建议您使用VITE地址转账；因为通过VITE地址转账更安全，交易费更少";
 "grin.sent.switch" = "使用VITE地址";
-"grin.sent.stillUseHttp" = "使用Http地址";
+"grin.sent.stillUseHttp" = "使用HTTP地址";
 "grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
-"grin.sent.vite.success" = "您的转账交易已发送，请注意只有使用当前地址您才能继续完成GRIN转账。";
+"grin.sent.vite.success" = "您的转账交易已发送。";
 "grin.receiveByVite.addressCopyed" = "您的GRIN收款VITE地址已复制至剪贴板";
-"grin.receiveByVite.desc" = "请将您的第一个VITE地址（底部复制）分享给转账人，请注意收款人只有使用其第一个VITE地址才能收到GRIN";
+"grin.receiveByVite.desc" = "请将您的VITE地址（底部复制）分享给转账人";
 "grin.iknow" = "我知道了";
 "grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
-"grin.receiveByHttp.addressCopyed" = "您的GRIN收款Http地址已复制至剪贴板";
-"grin.receiveByHttp.desc" = "通过Http地址收转GRIN，如上图所示，Vite将为您代收代转。以上两次转账过程均会产生交易费，第一笔由转账人支付，第二笔由收款人支付。请注意，转账人的交易记录只记录转账人和Vite之间的交易状态；收款人的交易记录只记录Vite和收款人之间的交易状态。另外请注意只有当您使用您的第一个VITE地址时才能收到GRIN。";
+"grin.receiveByHttp.addressCopyed" = "您的GRIN收款HTTP地址已复制至剪贴板";
+"grin.receiveByHttp.desc" = "通过HTTP地址收转GRIN，如上图所示，Vite将为您代收代转，以上两次转账过程均会产生交易费。";
 "grin.receive.title" = "GRIN转账";
 "grin.receive.sented" = "已传送";
 "grin.creatTime" = "生成时间";
@@ -451,12 +450,12 @@
 "grin.receive.BtnTitle" = "收款";
 "grin.notice.title" = "提示";
 "grin.teach.vite.receive.title" = "使用VITE地址接收GRIN";
-"grin.teach.http.receive.title" = "使用Http地址接收GRIN";
+"grin.teach.http.receive.title" = "使用HTTP地址接收GRIN";
 "grin.teach.vite.sent.title" = "使用VITE地址转账GRIN";
-"grin.teach.http.sent.title" = "通过Http地址转账GRIN";
+"grin.teach.http.sent.title" = "通过HTTP地址转账GRIN";
 "grin.txid.title" = "交易ID";
 "grin.switchAddress" = "去切换地址";
-"grin.http.address" = "Http 地址";
+"grin.http.address" = "HTTP 地址";
 "grin.vite.address" = "VITE 地址";
 "grin.sendPageViteContactsButtonTitle" = "GRIN联系地址";
 "grin.canceled" = "Canceled";
@@ -472,5 +471,8 @@
 "grin.creat.syncronizing" = "账户创建、同步Grin数据中，预计3分钟";
 "grin.recover.syncronizing" = "账户恢复、同步Grin数据中，预计3分钟";
 "grin.creating" = "Grin钱包正在初始化，请稍候";
+"grin.pay.title.creat" = "创建交易";
+"grin.pay.title.finalize" = "敲定交易";
+
 
 

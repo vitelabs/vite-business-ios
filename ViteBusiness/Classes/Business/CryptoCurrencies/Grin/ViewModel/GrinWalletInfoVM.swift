@@ -23,6 +23,7 @@ final class GrinWalletInfoVM {
 
     var grinManager:GrinManager { return GrinManager.default }
     let action = PublishSubject<GrinWalletInfoVM.Action>()
+
     
     lazy var txsDriver: Driver<[TxLogEntry]> = self.txs.asDriver()
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
