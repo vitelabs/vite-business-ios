@@ -26,7 +26,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.isGenesis = true
             self.typeImage = accountBlock.transactionType.icon
             self.typeName = R.string.localizable.transactionListPageGenesisCellName()
-            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress?.description : accountBlock.toAddress?.description) ?? ""
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
                 if let t = accountBlock.timestamp {
                     return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
@@ -42,7 +42,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.isGenesis = false
             self.typeImage = accountBlock.transactionType.icon
             self.typeName = accountBlock.transactionType.name
-            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress?.description : accountBlock.toAddress?.description) ?? ""
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
                 if let t = accountBlock.timestamp {
                     return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")

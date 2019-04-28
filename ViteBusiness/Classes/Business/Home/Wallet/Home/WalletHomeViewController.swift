@@ -185,7 +185,9 @@ class WalletHomeViewController: BaseTableViewController {
                 case .transfer:
                     var note = ""
                     if let data = uri.data,
-                        let ret = String(bytes: data, encoding: .utf8) {
+                        data.contentType == .utf8string,
+                        let contentData = data.rawContent,
+                        let ret = String(bytes: contentData, encoding: .utf8) {
                         note = ret
                     }
                     let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)

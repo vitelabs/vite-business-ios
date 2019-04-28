@@ -1,5 +1,5 @@
 //
-//  BalanceExtension.swift
+//  AmountExtension.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/3/18.

@@ -37,14 +37,12 @@ final class AutoGatheringService {
                     switch r {
                     case .success(let ret):
                         for (send, _, account) in ret {
-                            if let data = send.data {
-                                let bytes = Bytes(data)
-                                if bytes.count >= 2 && Bytes(bytes[0...1]) == Bytes(arrayLiteral: 0x80, 0x01) {
-                                    let viteData = Data(bytes.dropFirst(2))
-                                    GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress?.description ?? "", account: account)
-                                    let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
-                                    plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
-                                }
+                            if let data = send.data,
+                                data.contentTypeInUInt16 == 0x8001,
+                                let viteData = data.rawContent {
+                                GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
+                                let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
+                                plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
                             }
                         }
                         plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
@@ -84,7 +82,7 @@ extension AutoGatheringService {
                     var ret: [(AccountBlock, Wallet.Account)] = []
                     let array = accountBlocks.compactMap { $0 }
                     for accountBlock in array {
-                        for account in accounts where accountBlock.toAddress?.description == account.address {
+                        for account in accounts where accountBlock.toAddress == account.address {
                             ret.append((accountBlock, account))
                         }
                     }

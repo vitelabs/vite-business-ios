@@ -101,7 +101,11 @@ public struct ViteURI: URIType {
     var parameters: [(String, String)]?
 
     static func transferURI(address: ViteAddress, tokenId: ViteTokenId?, amount: String?, note: String?) -> ViteURI {
-        let data = note?.data(using: .utf8)
+//        let data: Data?
+//        if let note = note {
+//            data = AccountBlockDataFactory.generateUTF8StringData(string: note)
+//        }
+        let data = note.flatMap { AccountBlockDataFactory.generateUTF8StringData(string: $0) }
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 

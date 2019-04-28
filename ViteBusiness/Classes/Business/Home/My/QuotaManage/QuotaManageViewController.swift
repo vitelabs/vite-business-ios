@@ -198,7 +198,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount >= "1000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
+                guard amount >= "134".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
