@@ -10,7 +10,7 @@ import ViteWallet
 import Foundation
 import ObjectMapper
 import ViteEthereum
-import web3swift
+import Web3swift
 
 #if DEBUG || TEST
 extension Notification.Name {

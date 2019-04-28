@@ -14,7 +14,7 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
+import Web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -225,7 +225,7 @@ class WalletHomeViewController: BaseTableViewController {
                     balance = Balance(value: b)
                 }
 
-                let sendViewController = EthSendTokenController(tokenInfo, toAddress: web3swift.Address(uri.address), amount: balance)
+                let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
                 guard var viewControllers = self.navigationController?.viewControllers else { return }
                 _ = viewControllers.popLast()
                 viewControllers.append(sendViewController)
