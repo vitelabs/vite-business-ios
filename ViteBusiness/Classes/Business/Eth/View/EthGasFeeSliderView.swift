@@ -7,7 +7,7 @@
 import UIKit
 import SnapKit
 import BigInt
-import web3swift
+import Web3swift
 import ViteWallet
 
 public class EthGasFeeSliderView: UIView {

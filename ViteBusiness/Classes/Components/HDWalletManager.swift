@@ -165,7 +165,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -175,7 +175,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -184,7 +184,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -194,7 +194,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -236,17 +236,6 @@ extension HDWalletManager {
         pri_recoverAddressesIfNeeded(wallet.uuid)
     }
 
-    fileprivate func pri_LoginEthWallet() {
-        guard let mnemonic = self.mnemonic  else {
-            return
-        }
-        _ = try? EtherWallet.account.importAccount(mnemonics: mnemonic, password: "")
-        self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
-    }
-    fileprivate func pri_LogoutEthWallet() {
-        _ = try? EtherWallet.account.logout()
-    }
-
     fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
         guard let wallet = self.walletBehaviorRelay.value else { return }
         guard uuid == wallet.uuid else { return }
@@ -275,6 +264,20 @@ extension HDWalletManager {
                                                        addressCount: addressCount,
                                                        needRecoverAddresses: needRecoverAddresses) else { return }
         walletBehaviorRelay.accept(wallet)
+    }
+
+    // ETH
+    fileprivate func pri_LoginEthWallet(mnemonic: String, encryptKey: String) {
+        do {
+            try EtherWallet.account.importAccount(mnemonics: mnemonic, password: encryptKey)
+            self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
+        } catch let error {
+            plog(level: .severe, log: "\(error)", tag: .wallet)
+        }
+    }
+    
+    fileprivate func pri_LogoutEthWallet() {
+        EtherWallet.account.logout()
     }
 }
 

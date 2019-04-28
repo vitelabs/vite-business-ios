@@ -11,7 +11,7 @@ import Ioscrypto
 import CryptoSwift
 import Moya
 import SwiftyJSON
-import web3swift
+import Web3swift
 import Vite_GrinWallet
 import PromiseKit
 import Result
@@ -196,7 +196,7 @@ extension GrinTxByViteService {
             let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
 
             let encryptedData = slateData.base64EncodedString()
-            var fileName = encryptedData.digest(using: .sha256)
+            var fileName = encryptedData.sha256()
             if type == .sent {
                 fileName = fileName + ".encrypted.grinslate"
             } else if type == .response {

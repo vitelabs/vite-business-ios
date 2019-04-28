@@ -54,16 +54,12 @@ extension EtherWallet {
 
     func getEtherBalanceInfo() -> Promise<ETHBalanceInfo> {
         return Promise<ETHBalanceInfo> { seal in
-            DispatchQueue.global().async {
-                do {
-                    let balance = try self.etherBalanceSync()
-                    DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: balance))
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
-                        seal.reject(error)
-                    }
+            self.etherBalance {
+                switch $0 {
+                case .success(let balance):
+                    seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: balance))
+                case .failure(let error):
+                    seal.reject(error)
                 }
             }
         }
@@ -72,16 +68,12 @@ extension EtherWallet {
     func getETHTokenBalanceInfo(tokenInfo: TokenInfo) -> Promise<ETHBalanceInfo> {
         guard let token = tokenInfo.toETHToken() else { fatalError() }
         return Promise<ETHBalanceInfo> { seal in
-            DispatchQueue.global().async {
-                do {
-                    let balance = try self.tokenBalanceSync(contractAddress: token.contractAddress)
-                    DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: balance))
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
-                        seal.reject(error)
-                    }
+            self.tokenBalance(contractAddress: token.contractAddress) {
+                switch $0 {
+                case .success(let balance):
+                    seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: balance))
+                case .failure(let error):
+                    seal.reject(error)
                 }
             }
         }

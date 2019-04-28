@@ -13,7 +13,7 @@ import NSObject_Rx
 import RxDataSources
 import ActionSheetPicker_3_0
 import ViteWallet
-import web3swift
+import Web3swift
 
 class ContactsEditViewController: BaseViewController {
 
@@ -114,7 +114,7 @@ class ContactsEditViewController: BaseViewController {
                     return
                 }
             case .eth:
-                guard web3swift.Address(self.addressView.textView.text).isValid else {
+                guard let address = EthereumAddress(self.addressView.textView.text), address.isValid else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }

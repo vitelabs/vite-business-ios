@@ -6,34 +6,34 @@
 //
 
 import ViteEthereum
-import web3swift
+import Web3swift
 import ViteWallet
 import BigInt
 
 public extension Workflow {
-    static func sendEthTransactionWithConfirm(
-        toAddress: String,
-        token: TokenInfo,
-        amount: String,
-        gasPrice: Float,
-        completion: @escaping (ViteWallet.Result<String>) -> ()) {
+    static func sendEthTransactionWithConfirm(toAddress: String,
+                                              tokenInfo: TokenInfo,
+                                              amount: BigInt,
+                                              gasPrice: Float,
+                                              completion: @escaping (ViteWallet.Result<String>) -> ()) {
         let sendBlock = {
-             HUD.show()
-            let amountString = amount.replacingOccurrences(of: ",", with: ".")
-            if token.isEtherCoin {
-                EtherWallet.transaction.sendEther(to: toAddress, amount: amountString, password: "", gasPrice: gasPrice, completion: { (result) in
+            HUD.show()
+            let g = BigInt(Web3.Utils.parseToBigUInt(String(gasPrice), units: .Gwei)!)
+            if tokenInfo.isEtherCoin {
+                EtherWallet.transaction.sendEther(to: toAddress, amount: amount, gasPrice: g, completion: { (result) in
                     HUD.hide()
                     switch result {
                     case .success(let txHash):
-                            completion(ViteWallet.Result(value: txHash))
-                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendTransferSuccess())
+                        completion(ViteWallet.Result(value: txHash))
+                        AlertControl.showCompletion(R.string.localizable.sendPageToastSendTransferSuccess())
                     case .failure(let error):
                         completion(ViteWallet.Result(error: error))
                         break
                     }
                 })
-            }else {
-                EtherWallet.transaction.sendToken(to: toAddress, contractAddress: token.ethContractAddress, amount: amountString, password: "", decimal: token.decimals, gasPrice: gasPrice, completion: { (result) in
+
+            } else {
+                EtherWallet.transaction.sendToken(to: toAddress, amount: amount, gasPrice: g, contractAddress: tokenInfo.ethContractAddress, completion: { (result) in
                     HUD.hide()
                     switch result {
                     case .success(let txHash):
@@ -48,16 +48,15 @@ public extension Workflow {
         }
 
         //TODO::: no use block
-        let block = { (r:ViteWallet.Result<AccountBlock>) in
+        let block: (ViteWallet.Result<AccountBlock>) -> () = { _ in
 
         }
 
-        let amountString = "\(amount) \(token.symbol)"
-
-        let gasLimit = token.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let gasLimit = tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
 
-        let viewModel = ConfirmEthTransactionViewModel(tokenInfo: token, addressString: toAddress, amountString: amountString, feeString: feeString)
+        let viewModel = ConfirmEthTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, feeString: feeString)
         confirmWorkflow(viewModel: viewModel, completion: block, confirmSuccess: sendBlock)
     }
 }
