@@ -1,5 +1,5 @@
 //
-//  FetchQuotaService.swift
+//  FetchQuotaManager.swift
 //  Vite
 //
 //  Created by Stone on 2018/10/26.
@@ -13,15 +13,15 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
-extension FetchQuotaService: Storageable {
+extension FetchQuotaManager: Storageable {
     public func getStorageConfig() -> StorageConfig {
         return StorageConfig(name: "PledgeQuota", path: .wallet, appending: self.appending)
     }
 }
 
-final class FetchQuotaService {
+final class FetchQuotaManager {
 
-    static let instance = FetchQuotaService()
+    static let instance = FetchQuotaManager()
     private init() {}
 
     lazy var  quotaDriver: Driver<Quota> = self.quotaBehaviorRelay.asDriver()
@@ -30,7 +30,7 @@ final class FetchQuotaService {
     fileprivate let disposeBag = DisposeBag()
     fileprivate var appending = "noAddress"
 
-    fileprivate var service: ViteWallet.FetchPledgeQuotaService?
+    fileprivate var service: FetchPledgeQuotaService?
     fileprivate var retainCount = 0
 
     func start() {
@@ -44,7 +44,7 @@ final class FetchQuotaService {
                 }
 
                 let address = account.address
-                let service = ViteWallet.FetchPledgeQuotaService(address: address, interval: 5, completion: { [weak self] (r) in
+                let service = FetchPledgeQuotaService(address: address, interval: 5, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {

@@ -9,7 +9,7 @@ import ViteWallet
 import PromiseKit
 import ViteEthereum
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
 public class ETHBalanceInfoService: PollService {
 
@@ -42,9 +42,9 @@ public class ETHBalanceInfoService: PollService {
 
         promise
             .done { (ret) in
-                completion(Result(value: ret))
+                completion(Result.success(ret))
             }.catch { (e) in
-                completion(Result(error: e))
+                completion(Result.failure(e))
         }
     }
 }

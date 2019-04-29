@@ -38,13 +38,13 @@ class QuotaManageViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        FetchQuotaService.instance.retainQuota()
+        FetchQuotaManager.instance.retainQuota()
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        FetchQuotaService.instance.releaseQuota()
+        FetchQuotaManager.instance.releaseQuota()
         ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
@@ -240,7 +240,7 @@ extension QuotaManageViewController {
                 }
             }).disposed(by: rx.disposeBag)
 
-    FetchQuotaService.instance.quotaDriver
+    FetchQuotaManager.instance.quotaDriver
         .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
         .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }

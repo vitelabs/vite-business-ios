@@ -9,7 +9,7 @@ import ViteWallet
 import PromiseKit
 import ViteEthereum
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 import RxSwift
 import RxCocoa
 

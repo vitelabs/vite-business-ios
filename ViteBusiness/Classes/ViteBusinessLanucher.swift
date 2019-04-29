@@ -52,10 +52,10 @@ public class ViteBusinessLanucher: NSObject {
         MyTokenInfosService.instance.start()
         ExchangeRateManager.instance.start()
         TokenListService.instance.fetchTokenListServerData()
-        AutoGatheringService.instance.start()
+        AutoGatheringManager.instance.start()
         ViteBalanceInfoManager.instance.start()
         ETHBalanceInfoManager.instance.start()
-        FetchQuotaService.instance.start()
+        FetchQuotaManager.instance.start()
         AddressManageService.instance.start()
 
         //web

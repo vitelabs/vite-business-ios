@@ -1,5 +1,5 @@
 //
-//  AutoGatheringService.swift
+//  AutoGatheringManager.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/14.
@@ -14,16 +14,14 @@ import RxCocoa
 import Vite_HDWalletKit
 import JSONRPCKit
 
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
-final class AutoGatheringService {
-    static let instance = AutoGatheringService()
+final class AutoGatheringManager {
+    static let instance = AutoGatheringManager()
     private init() {}
 
     fileprivate let disposeBag = DisposeBag()
     fileprivate var service: ReceiveAllTransactionService?
-
-    fileprivate var services: [ReceiveTransactionService] = []
 
     func start() {
         HDWalletManager.instance.accountsDriver.drive(onNext: { (accounts) in
@@ -57,7 +55,7 @@ final class AutoGatheringService {
     }
 }
 
-extension AutoGatheringService {
+extension AutoGatheringManager {
 
     class ReceiveAllTransactionService: PollService {
         typealias Ret = Result<[(AccountBlock, AccountBlock, Wallet.Account)]>
@@ -105,9 +103,9 @@ extension AutoGatheringService {
                             return ret.compactMap { $0 }
                         })
                 }).done({ (ret) in
-                    completion(Result(value: ret))
+                    completion(Result.success(ret))
                 }).catch({ (error) in
-                    completion(Result(error: error))
+                    completion(Result.failure(error))
                 })
         }
 

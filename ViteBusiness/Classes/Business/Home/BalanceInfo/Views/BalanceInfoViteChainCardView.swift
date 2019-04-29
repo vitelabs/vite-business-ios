@@ -275,7 +275,7 @@ class BalanceInfoViteChainCardView: UIView {
             .map({ $0.unconfirmedBalance == 0 })
             .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.quotaDriver
+        FetchQuotaManager.instance.quotaDriver
             .map({ R.string.localizable.balanceInfoDetailPledgeCountContent(String($0.utps)) })
             .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
 

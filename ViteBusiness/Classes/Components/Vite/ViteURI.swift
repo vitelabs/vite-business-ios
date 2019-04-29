@@ -53,7 +53,7 @@ extension URIType {
             array.append((key, value))
         }
 
-        return Result(value: array)
+        return Result.success(array)
     }
 }
 
@@ -255,7 +255,7 @@ public struct ViteURI: URIType {
             }
         }
 
-        return Result(value: ViteURI(address: address,
+        return Result.success(ViteURI(address: address,
                                      chainId: chainId,
                                      type: type,
                                      functionName: functionName,
@@ -292,7 +292,7 @@ extension ViteURI {
                     array.append((key, value))
                 }
             }
-            return Result(value: (tokenId, amountString, feeString, dataString, array))
+            return Result.success((tokenId, amountString, feeString, dataString, array))
         case .failure(let error):
             return Result(error: error as! URIError)
         }

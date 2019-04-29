@@ -58,12 +58,12 @@ class SendViewController: BaseViewController {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.retainQuota()
+        FetchQuotaManager.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        FetchQuotaService.instance.releaseQuota()
+        FetchQuotaManager.instance.releaseQuota()
         ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
 
@@ -207,7 +207,7 @@ class SendViewController: BaseViewController {
             }
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.quotaDriver
+        FetchQuotaManager.instance.quotaDriver
             .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
             .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }

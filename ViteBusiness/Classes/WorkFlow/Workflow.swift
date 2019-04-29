@@ -12,7 +12,7 @@ import ViteWallet
 import Vite_HDWalletKit
 import PromiseKit
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
 extension ViteError {
     public static var authFailed: ViteError { return ViteError(code: ViteErrorCode(type: .custom, id: 10000), rawMessage: "Auth Failed", rawError: nil) }
@@ -37,14 +37,14 @@ public struct Workflow {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
                                titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
-                    completion(Result(error: ViteError.authFailed))
+                    completion(Result.failure(ViteError.authFailed))
                 case .passwordAuthFailed:
                     Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
                                titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
                                handler: { _, _ in showConfirm(isForceUsePassword: true) })
                 case .cancelled:
                     plog(level: .info, log: "Confirm cancelled", tag: .transaction)
-                    completion(Result(error: ViteError.cancel))
+                    completion(Result.failure(ViteError.cancel))
                 case .success:
                     confirmSuccess()
                 }
@@ -93,7 +93,7 @@ public struct Workflow {
             }
             .done {
                 AlertControl.showCompletion(successToast)
-                completion(Result(value: $0))
+                completion(Result.success($0))
             }
             .catch { e in
                 let error = ViteError.conversion(from: e)
@@ -124,7 +124,7 @@ public struct Workflow {
                         Toast.show(error.viteErrorMessage)
                     }
                 }
-                completion(Result(error: error))
+                completion(Result.failure(error))
         }
     }
 
@@ -321,16 +321,16 @@ public extension Workflow {
 
     static func sendRawTx(by uri: ViteURI, accountAddress: ViteAddress, tokenInfo: TokenInfo, completion: @escaping (Result<AccountBlock>) -> ()) {
         guard let account = HDWalletManager.instance.account else {
-            completion(Result(error: WorkflowError.notLogin))
+            completion(Result.failure(WorkflowError.notLogin))
             return
         }
         guard account.address == accountAddress else {
-            completion(Result(error: WorkflowError.accountAddressInconformity))
+            completion(Result.failure(WorkflowError.accountAddressInconformity))
             return
         }
 
         guard let amount = uri.amountForSmallestUnit(decimals: tokenInfo.decimals) else {
-            completion(Result(error: WorkflowError.amountInvalid))
+            completion(Result.failure(WorkflowError.amountInvalid))
             return
         }
 
@@ -362,11 +362,11 @@ public extension Workflow {
         if let completion = completion {
             activityViewController.completionWithItemsHandler = { (_, completed, _, error) in
                 if let error = error {
-                    completion(Result(error: error))
+                    completion(Result.failure(error))
                 } else if completed {
-                    completion(Result(value: ()))
+                    completion(Result.success(()))
                 } else {
-                    completion(Result(error: ViteError.cancel))
+                    completion(Result.failure(ViteError.cancel))
                 }
             }
         }

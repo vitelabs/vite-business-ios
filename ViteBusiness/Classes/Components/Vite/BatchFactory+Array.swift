@@ -6,7 +6,7 @@
 //
 
 import JSONRPCKit
-import Result
+import enum Result.Result
 
 private var ke_semaphore: UInt8 = 0
 

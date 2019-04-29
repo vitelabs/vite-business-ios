@@ -8,7 +8,7 @@
 import ViteWallet
 import PromiseKit
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
 
 
@@ -36,9 +36,9 @@ public class ExchangeRateService: PollService {
         ExchangeProvider.instance.getRate(for: tokenCodes) { [weak self] (ret) in
             switch ret {
             case .success(let map):
-                completion(Result(value: map))
+                completion(Result.success(map))
             case .failure(let error):
-                completion(Result(error: error))
+                completion(Result.failure(error))
             }
         }
     }
@@ -51,9 +51,9 @@ public class ExchangeRateService: PollService {
             guard taskId == self.taskId else { return }
             switch ret {
             case .success(let map):
-                completion(Result(value: map))
+                completion(Result.success(map))
             case .failure(let error):
-                completion(Result(error: error))
+                completion(Result.failure(error))
             }
         }
     }

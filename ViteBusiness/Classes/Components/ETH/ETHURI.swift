@@ -58,7 +58,7 @@ public struct ETHURI: URIType {
 
         // raw eth address
         if let address = EthereumAddress(string), address.isValid {
-            return Result(value: ETHURI(address: string, type: .transfer, contractAddress: nil, amount: nil))
+            return Result.success(ETHURI(address: string, type: .transfer, contractAddress: nil, amount: nil))
         }
 
         guard let (prefix, suffix) = separate(string, by: ":") else {
@@ -163,7 +163,7 @@ public struct ETHURI: URIType {
             }
         }
 
-        return Result(value: ETHURI(address: address, type: type, contractAddress: contractAddress, amount: amount))
+        return Result.success(ETHURI(address: address, type: type, contractAddress: contractAddress, amount: amount))
 
     }
 }
