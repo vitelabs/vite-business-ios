@@ -10,6 +10,12 @@ import RxSwift
 import RxCocoa
 import Vite_GrinWallet
 import ReactorKit
+import PromiseKit
+import Moya
+import SwiftyJSON
+import ObjectMapper
+
+
 
 final class GrinWalletInfoVM {
 
@@ -25,16 +31,18 @@ final class GrinWalletInfoVM {
     let action = PublishSubject<GrinWalletInfoVM.Action>()
 
     
-    lazy var txsDriver: Driver<[TxLogEntry]> = self.txs.asDriver()
+    lazy var txsDriver: Driver<[GrinFullTxInfo]> = self.txs.asDriver()
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     lazy var messageDriver: Driver<String?> = self.message.asDriver()
     lazy var showLoadingDriver: Driver<Bool> = self.showLoading.asDriver()
-    let txs = BehaviorRelay<[TxLogEntry]>(value: [])
+    let txs = BehaviorRelay<[GrinFullTxInfo]>(value: [])
     let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
     let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     private let bag = DisposeBag()
+
+    fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
 
     init() {
         action.asObservable()
@@ -97,17 +105,76 @@ final class GrinWalletInfoVM {
         })
     }
 
+
     func getTxs(_ manually: Bool) {
-        grin_async({ () in
-            self.grinManager.txsGet(refreshFromNode: true)
-        },  { (result) in
-            switch result {
-            case .success((_, let txs)):
-                self.txs.accept(txs.reversed())
-            case .failure(let error):
-                if manually { self.message.accept(error.message) }
+
+        let grinTxs = Promise<[TxLogEntry]> { seal in
+            grin_async({ () in
+                self.grinManager.txsGet(refreshFromNode: true)
+            },  { (result) in
+                switch result {
+                case .success((_, let txs)):
+                    seal.fulfill(txs.reversed())
+//                    self.txs.accept(txs.reversed())
+                case .failure(let error):
+                    seal.reject(error)
+//                    if manually { self.message.accept(error.message) }
+                }
+            })
+        }
+
+        let gateWayInfos =  Promise<[GrinGatewayInfo]> { seal in
+            let addresses = HDWalletManager.instance.accounts
+                .map({ (account) in
+                    account.address.description
+                })
+            transactionProvider
+                .request(.gatewayTransactionList(addresses: addresses), completion: { (result) in
+                    do {
+                        let response = try result.dematerialize()
+                        if JSON(response.data)["code"].int == 0,
+                            let arr = JSON(response.data)["data"].arrayObject,
+                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
+                            seal.fulfill(gatewayInfos)
+                        } else {
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "gatewayTransactionList failed"))
+                        }
+                    } catch {
+                        seal.reject(error)
+                    }
+                })
+        }
+
+        let localInfos =  Promise<[GrinLocalInfo]> { seal in
+            seal.fulfill([GrinLocalInfo()])
+        }
+
+        when(fulfilled: grinTxs, gateWayInfos,localInfos)
+            .done { (arg0) in
+                let (grinTxs, gateWayInfos, localInfos) = arg0
+                let fullTxInfo = grinTxs.map({ (tx) -> GrinFullTxInfo in
+                    var gatewayInfo: GrinGatewayInfo?
+                    var localInfo: GrinLocalInfo?
+
+                    if tx.txType == .txReceived || tx.txType == .txReceivedCancelled {
+                        for gateWay in gateWayInfos where gateWay.slatedId == tx.txSlateId {
+                            gateWay.slatedId == tx.txSlateId
+                            break
+                        }
+                    }
+
+                    for localInfo in localInfos {
+
+                    }
+                    return GrinFullTxInfo(txLogEntry: tx, gatewayInfo: gatewayInfo, localInfo: localInfo)
+                })
+
+                self.txs.accept(fullTxInfo)
             }
-        })
+            .catch { (error) in
+                self.message.accept(error.localizedDescription)
+        }
+
     }
 
     func cancel(_ tx: TxLogEntry) {

@@ -62,6 +62,7 @@ class GrinManager: GrinBridge {
                 self?.configGrinWallet()
             }
             .disposed(by: self.bag)
+
         #endif
 
         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
@@ -85,6 +86,7 @@ class GrinManager: GrinBridge {
         self.password =  GrinManager.getPassword()
         self.walletUrl = GrinManager.getWalletUrl()
         #if DEBUG || TEST
+        print("grinwalletpath:\(self.walletUrl.path)")
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
             self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
@@ -104,6 +106,7 @@ class GrinManager: GrinBridge {
         self.creatWalletIfNeeded()
         self.balance.accept(GrinBalance())
         DispatchQueue.main.async {
+            GrinLocalInfoService.share.creatDBIfNeeded()
             self.handleSavedTx()
         }
     }

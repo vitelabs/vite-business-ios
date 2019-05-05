@@ -15,6 +15,7 @@ public enum GrinTransaction {
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)
+    case gatewayTransactionList(addresses:[String])
 }
 
 extension GrinTransaction: TargetType {
@@ -42,12 +43,14 @@ extension GrinTransaction: TargetType {
             return "/api/grin/getUploadFile"
         case .reportFinalization:
             return "/api/grin/finishTrx"
+        case .gatewayTransactionList:
+            return "/api/gringateway/getTransactionList"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .getSlate, .reportViteAddress:
+        case .getSlate, .reportViteAddress, .gatewayTransactionList:
             return .get
         case .uploadSlate, .reportFinalization:
             return .post
@@ -89,6 +92,12 @@ extension GrinTransaction: TargetType {
                 "signature": signature,
                 ]
             return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
+        case let .gatewayTransactionList(addresses):
+            var parameters: [String : Any] = [
+                "address": addresses,
+            ]
+            return .requestCompositeData(bodyData: Data(),
+                                         urlParameters: parameters)
         }
     }
 

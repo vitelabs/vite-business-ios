@@ -74,6 +74,28 @@ class GrinInfoViewController: BaseViewController {
         bind()
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
+
+        
+let height = GrinManager.default.height()
+            print(height)
+
+        let result = GrinManager.default.outputsGet(refreshFromNode: true)
+        switch result {
+        case .success((let f, let d)):
+            break
+        default:
+            break
+        }
+
+
+        let result2 = GrinManager.default.outputGet(refreshFromNode: true,txId:0)
+        switch result2 {
+        case .success((let f, let d)):
+            break
+        default:
+            break
+        }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -200,7 +222,7 @@ class GrinInfoViewController: BaseViewController {
     }
 
     func send(use method: TransferMethod) {
-        let notTeach = method == .file || UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
+        let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
         if notTeach {
             let resourceBundle = businessBundle()
             let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
@@ -244,14 +266,8 @@ class GrinInfoViewController: BaseViewController {
         }
 
         let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
-            var url: URL!
-            if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                url = URL(string: "https://forum.vite.net/topic/1335/%E5%9C%A8vite%E9%92%B1%E5%8C%85%E4%B8%8A%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86grin%E4%BA%A4%E6%98%93%E6%96%87%E4%BB%B6")
-            } else {
-                url = URL(string: "https://forum.vite.net/topic/1334/how-to-use-vite-wallet-to-receive-a-grin-via-files")
-            }
-            let webvc = WKWebViewController(url: url)
-            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+            let vc = GrinTeachViewController.init(txType: .receive, channelType: .file)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let a3 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -265,6 +281,7 @@ class GrinInfoViewController: BaseViewController {
             popover.permittedArrowDirections = .any;
         }
         self.present(alert, animated: true, completion: nil)
+
     }
 
     private var tapCount = 0
@@ -290,7 +307,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GrinTransactionCell", for: indexPath) as! GrinTransactionCell
         let tx = self.walletInfoVM.txs.value[indexPath.row]
-        cell.bind(tx)
+        cell.bind(tx.txLogEntry)
         return cell
     }
 
@@ -301,7 +318,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let tx = self.walletInfoVM.txs.value[indexPath.row]
         var action = [UITableViewRowAction]()
-        if let slateId = tx.txSlateId {
+        if let slateId = tx.txLogEntry.txSlateId {
             let copyAction = UITableViewRowAction.init(style: .default, title:  R.string.localizable.grinTxCopyId()) { (_, _) in
                     UIPasteboard.general.string = slateId
                 }
@@ -309,17 +326,17 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
             action.append(copyAction)
         }
 
-        if tx.canRepost {
+        if tx.txLogEntry.canRepost {
             let repostAction = UITableViewRowAction.init(style: .default, title: R.string.localizable.grinTxRepost()) { (_, _) in
-                    self.walletInfoVM.action.onNext(.repost(tx))
+                    self.walletInfoVM.action.onNext(.repost(tx.txLogEntry))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xFFC900)}
             action.append(repostAction)
         }
 
-        if tx.canCancel {
+        if tx.txLogEntry.canCancel {
             let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.cancel()) { (_, _) in
-                    self.walletInfoVM.action.onNext(.cancel(tx))
+                    self.walletInfoVM.action.onNext(.cancel(tx.txLogEntry))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xDEDFE0)}
             action.append(cancleAction)

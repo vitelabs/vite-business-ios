@@ -29,51 +29,73 @@ class GrinTeachViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noiceDetailLabel: UILabel!
     @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var notSeeLabel: UILabel!
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var noiceTitleLabel: UILabel!
-    @IBOutlet weak var viteInfoButton: UIButton!
-    @IBOutlet weak var copyBtn: UIButton!
-
+    @IBOutlet weak var addressLabelLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var qrCodeImageView: UIImageView!
     var setting: [String: Bool] = [:]
     var txType: TxType = .sent
     var channelType: TransferMethod = .vite
 
+    @IBOutlet weak var actionButton: UIButton!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         var desc = ""
         if channelType == .vite {
-            imageView.image = R.image.grin_tx_vite()
+            imageView.image = R.image.grin_teach_vite()
             if self.txType == .sent {
                 titleLabel.text = R.string.localizable.grinTeachViteSentTitle()
                 desc =  R.string.localizable.grinSentUseViteDesc()
+                actionButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
             } else if txType == .receive {
+                actionButton.setTitle(R.string.localizable.grinTeachViteReceiveCopyViteAddress(), for: .normal)
                 titleLabel.text = R.string.localizable.grinTeachViteReceiveTitle()
                 desc = R.string.localizable.grinReceiveByViteDesc()
-                addressLabel.text = "  \(HDWalletManager.instance.accounts.first?.address.description ?? "")  "
+                let viteAddress = HDWalletManager.instance.account?.address.description ?? ""
+                addressLabel.text = viteAddress
                 addressTitleLabel.text = R.string.localizable.grinViteAddress()
+                QRCodeHelper.createQRCode(string: viteAddress) { [weak qrCodeImageView](image) in
+                    qrCodeImageView?.image = image
+                }
+
             }
         } else if channelType == .http {
-            viteInfoButton.isHidden = true
-            imageView.image = R.image.grin_tx_http()
             if self.txType == .sent {
+                imageView.image = R.image.grin_teach_http_send()
                 titleLabel.text = R.string.localizable.grinTeachHttpSentTitle()
                 desc =  R.string.localizable.grinSentUseHttpDesc()
+                actionButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
             } else if txType == .receive {
+                imageView.image = R.image.grin_teach_http_receive()
                 titleLabel.text = R.string.localizable.grinTeachHttpReceiveTitle()
                 desc = R.string.localizable.grinReceiveByHttpDesc()
                 addressTitleLabel.text = R.string.localizable.grinHttpAddress()
+                addressLabelLeftConstraint.constant = -70
+                view.layoutIfNeeded()
+                actionButton.setTitle(R.string.localizable.grinTeachHttpReceiveCopyHttpAddress(), for: .normal)
                 GrinTxByViteService().getGateWay().done { (string) in
-                    self.addressLabel.text = "  \(string)  "
+                    self.addressLabel.text = string
                 }
                     .catch { (e) in
                         Toast.show(e.localizedDescription)
                 }
+            }
+        } else if channelType == .file {
+            imageView.image = R.image.grin_teach_vite()
+            if self.txType == .sent {
+                actionButton.setTitle(R.string.localizable.grinTeachViteSendStartSend(), for: .normal)
+                titleLabel.text = R.string.localizable.grinTeachFileSendTitle()
+                desc = R.string.localizable.grinTeachFileSendDesc()
+            } else if txType == .receive {
+                actionButton.isHidden = true
+                titleLabel.text = R.string.localizable.grinTeachFileReceiveTitle()
+                desc = R.string.localizable.grinTeachFileReceiveDesc()
             }
         }
 
@@ -81,46 +103,43 @@ class GrinTeachViewController: UIViewController {
         paragraphStyle.lineSpacing = 8
         noiceDetailLabel.attributedText = NSAttributedString.init(string: desc, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
 
-        closeButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
-
-        if self.txType == .sent {
-            infoView.isHidden = true
-        } else if txType == .receive {
-            closeButton.isHidden = true
+        if txType == .receive {
             settingButton.isHidden = true
             notSeeLabel.isHidden = true
         }
+        if self.txType == .sent || self.channelType == .file {
+            infoView.isHidden = true
+        }
 
         noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
-        copyBtn.setTitle(R.string.localizable.grinTxCopyId(), for: .normal)
         notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
     }
 
-    @IBAction func closeAction(_ sender: Any) {
-        let resourceBundle = businessBundle()
-        let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
-        let sendGrinViewController = storyboard
-            .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
-        sendGrinViewController.transferMethod = self.channelType == .vite ? .vite : .http
-        var viewControllers = self.navigationController?.viewControllers
-        viewControllers?.popLast()
-        viewControllers?.append(sendGrinViewController)
-        if let viewControllers = viewControllers {
-            self.navigationController?.setViewControllers(viewControllers, animated: true)
-        }
-    }
-
-    @IBAction func copyAction(_ sender: Any) {
-        if channelType == .vite {
-            UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
-            Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
-        } else if channelType == .http {
-            GrinTxByViteService().getGateWay().done { (string) in
-                UIPasteboard.general.string = string
-                Toast.show(R.string.localizable.grinReceiveByHttpAddressCopyed())
+    @IBAction func actionButtonDidClick(_ sender: Any) {
+        if self.txType == .sent {
+            let resourceBundle = businessBundle()
+            let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
+            let sendGrinViewController = storyboard
+                .instantiateViewController(withIdentifier: "SendGrinViewController") as! SendGrinViewController
+            sendGrinViewController.transferMethod = self.channelType
+            var viewControllers = self.navigationController?.viewControllers
+            viewControllers?.popLast()
+            viewControllers?.append(sendGrinViewController)
+            if let viewControllers = viewControllers {
+                self.navigationController?.setViewControllers(viewControllers, animated: true)
+            }
+        } else if self.txType == .receive {
+            if channelType == .vite {
+                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+                Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
+            } else if channelType == .http {
+                GrinTxByViteService().getGateWay().done { (string) in
+                    UIPasteboard.general.string = string
+                    Toast.show(R.string.localizable.grinReceiveByHttpAddressCopyed())
+                    }
+                    .catch { (e) in
+                        Toast.show(e.localizedDescription)
                 }
-                .catch { (e) in
-                    Toast.show(e.localizedDescription)
             }
         }
     }

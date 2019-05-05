@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 122 images.
+  /// This `R.image` struct is generated, and contains static references to 124 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -50,20 +50,24 @@ struct R: Rswift.Validatable {
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
     /// Image `grin_gray`.
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
+    /// Image `grin_teach_file`.
+    static let grin_teach_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file")
+    /// Image `grin_teach_http_receive`.
+    static let grin_teach_http_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_receive")
+    /// Image `grin_teach_http_send`.
+    static let grin_teach_http_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_send")
+    /// Image `grin_teach_vite`.
+    static let grin_teach_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_vite")
     /// Image `grin_tx_file_finalize`.
     static let grin_tx_file_finalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_finalize")
     /// Image `grin_tx_file_init`.
     static let grin_tx_file_init = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_init")
     /// Image `grin_tx_file_receive`.
     static let grin_tx_file_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_receive")
-    /// Image `grin_tx_http`.
-    static let grin_tx_http = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_http")
     /// Image `grin_tx_receive`.
     static let grin_tx_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_receive")
     /// Image `grin_tx_send`.
     static let grin_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_send")
-    /// Image `grin_tx_vite`.
-    static let grin_tx_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_vite")
     /// Image `grin_txlist_cancled`.
     static let grin_txlist_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_cancled")
     /// Image `grin_txlist_confirmd`.
@@ -348,6 +352,26 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_gray, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "grin_teach_file", bundle: ..., traitCollection: ...)`
+    static func grin_teach_file(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_file, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_receive", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_receive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_send", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_send, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_vite", bundle: ..., traitCollection: ...)`
+    static func grin_teach_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_vite, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "grin_tx_file_finalize", bundle: ..., traitCollection: ...)`
     static func grin_tx_file_finalize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_tx_file_finalize, compatibleWith: traitCollection)
@@ -363,11 +387,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_tx_file_receive, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_tx_http", bundle: ..., traitCollection: ...)`
-    static func grin_tx_http(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_tx_http, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "grin_tx_receive", bundle: ..., traitCollection: ...)`
     static func grin_tx_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_tx_receive, compatibleWith: traitCollection)
@@ -376,11 +395,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin_tx_send", bundle: ..., traitCollection: ...)`
     static func grin_tx_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_tx_send, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "grin_tx_vite", bundle: ..., traitCollection: ...)`
-    static func grin_tx_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_tx_vite, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_txlist_cancled", bundle: ..., traitCollection: ...)`
@@ -878,7 +892,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 379 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 386 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2384,10 +2398,38 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileReceiveDesc = Rswift.StringResource(key: "grin.teach.file.receive.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileSendDesc = Rswift.StringResource(key: "grin.teach.file.send.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用交易文件接收GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileReceiveTitle = Rswift.StringResource(key: "grin.teach.file.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用交易文件转账GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileSendTitle = Rswift.StringResource(key: "grin.teach.file.send.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 创建交易
       /// 
       /// Locales: en, zh-Hans
       static let grinPayTitleCreat = Rswift.StringResource(key: "grin.pay.title.creat", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 复制HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachHttpReceiveCopyHttpAddress = Rswift.StringResource(key: "grin.teach.http.receive.copyHttpAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 复制VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachViteReceiveCopyViteAddress = Rswift.StringResource(key: "grin.teach.vite.receive.copyViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开始转账
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachViteSendStartSend = Rswift.StringResource(key: "grin.teach.vite.send.startSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用Http地址。
       /// 
       /// Locales: en, zh-Hans
@@ -5029,11 +5071,60 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileReceiveDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.receive.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileSendDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.send.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用交易文件接收GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileReceiveTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.receive.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用交易文件转账GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileSendTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.send.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 创建交易
       /// 
       /// Locales: en, zh-Hans
       static func grinPayTitleCreat(_: Void = ()) -> String {
         return NSLocalizedString("grin.pay.title.creat", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 复制HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachHttpReceiveCopyHttpAddress(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.http.receive.copyHttpAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 复制VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachViteReceiveCopyViteAddress(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.vite.receive.copyViteAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 开始转账
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachViteSendStartSend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.vite.send.startSend", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用Http地址。
