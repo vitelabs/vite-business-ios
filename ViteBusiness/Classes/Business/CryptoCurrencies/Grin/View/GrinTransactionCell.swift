@@ -43,7 +43,7 @@ class GrinTransactionCell: UITableViewCell {
             methodLabel.isHidden = true
         }
 
-        self.creationTimeLabel.text = ""
+        creationTimeLabel.text = ""
 
         if let gatewayInfo = fullInfo.gatewayInfo {
             if gatewayInfo.confirmInfo?.confirm == true {
@@ -53,30 +53,32 @@ class GrinTransactionCell: UITableViewCell {
                 icon.image = R.image.grin_txlist_receive_gatewayReceived()
                 statusLabel.text = R.string.localizable.grinTxTypeReceived()
             }
-            self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(0)).amountShort(decimals:9))"
+            feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(0)).amountShort(decimals:9))"
             let amount = (Int(gatewayInfo.toAmount) ?? 0)
-            self.amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(amount)).amount(decimals: 9, count: 4)
-            if amount >= 0 {
-                amountLabel.textColor = UIColor.init(netHex: 0x5BC500)
-            } else {
-                amountLabel.textColor = UIColor.init(netHex: 0xFF0008)
-            }
+            amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(amount)).amount(decimals: 9, count: 4)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
             let date = Date.init(timeIntervalSince1970: TimeInterval(gatewayInfo.createTime/1000))
             let timeString = dateFormatter.string(from: date)
-            self.creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
+            creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
         }
 
-        if let localInfo = fullInfo.localInfo, fullInfo.txLogEntry == nil {
-            if localInfo.type == "Receive"
-                && localInfo.getSendFileTime != nil
-                && localInfo.receiveTime == nil {
-                icon.image = R.image.grin_txlist_receive_gatewayConfirmed()
+        if let localInfo = fullInfo.localInfo,
+            fullInfo.txLogEntry == nil,
+            localInfo.type == "Receive",
+            localInfo.getSendFileTime != nil,
+            localInfo.receiveTime == nil,
+            let data =  FileManager.default.contents(atPath:  GrinManager.default.getSlateUrl(slateId: localInfo.slateId ?? "", isResponse: false).path),
+            let slateString = String.init(data: data, encoding: .utf8),
+            let slate = Slate(JSONString: slateString) {
+                icon.image = R.image.grin_txlist_receive_waitToReceive()
                 statusLabel.text = R.string.localizable.grinTxTypeWaitToSign()
-            }
+            let amount = slate.amount
+            amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(amount)).amount(decimals: 9, count: 4)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(0)).amountShort(decimals:9))"
         }
 
         guard let tx = fullInfo.txLogEntry else { return }
-
         var timeString = tx.creationTs
         if let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ") {
             timeString = creationTs
@@ -85,15 +87,11 @@ class GrinTransactionCell: UITableViewCell {
                 timeString = dateFormatter.string(from: date)
             }
         }
-        self.creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
-        self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
+        creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
+        feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
         let amount = (tx.amountCredited ?? 0) - (tx.amountDebited ?? 0) + (tx.fee ?? 0)
-        self.amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(abs(amount))).amount(decimals: 9, count: 4)
-        if amount > 0 {
-            amountLabel.textColor = UIColor.init(netHex: 0x5BC500)
-        } else {
-            amountLabel.textColor = UIColor.init(netHex: 0xFF0008)
-        }
+        amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(abs(amount))).amount(decimals: 9, count: 4)
+        amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
 
         var status = "Grin Transaction"
         var image: UIImage? = R.image.grin_tx_send()
