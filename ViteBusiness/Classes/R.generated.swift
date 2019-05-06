@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 124 images.
+  /// This `R.image` struct is generated, and contains static references to 129 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -50,6 +50,8 @@ struct R: Rswift.Validatable {
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
     /// Image `grin_gray`.
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
+    /// Image `grin_help`.
+    static let grin_help = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_help")
     /// Image `grin_teach_file`.
     static let grin_teach_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file")
     /// Image `grin_teach_http_receive`.
@@ -70,16 +72,24 @@ struct R: Rswift.Validatable {
     static let grin_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_send")
     /// Image `grin_txlist_cancled`.
     static let grin_txlist_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_cancled")
-    /// Image `grin_txlist_confirmd`.
-    static let grin_txlist_confirmd = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmd")
-    /// Image `grin_txlist_confirmdconbase`.
-    static let grin_txlist_confirmdconbase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmdconbase")
-    /// Image `grin_txlist_finalized`.
-    static let grin_txlist_finalized = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_finalized")
-    /// Image `grin_txlist_send`.
-    static let grin_txlist_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send")
-    /// Image `grin_txlist_singe`.
-    static let grin_txlist_singe = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_singe")
+    /// Image `grin_txlist_confirmedConebase`.
+    static let grin_txlist_confirmedConebase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmedConebase")
+    /// Image `grin_txlist_confirmed`.
+    static let grin_txlist_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmed")
+    /// Image `grin_txlist_receive_gatewayConfirmed`.
+    static let grin_txlist_receive_gatewayConfirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_gatewayConfirmed")
+    /// Image `grin_txlist_receive_gatewayReceived`.
+    static let grin_txlist_receive_gatewayReceived = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_gatewayReceived")
+    /// Image `grin_txlist_receive_received`.
+    static let grin_txlist_receive_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_received")
+    /// Image `grin_txlist_receive_waitToReceive`.
+    static let grin_txlist_receive_waitToReceive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_waitToReceive")
+    /// Image `grin_txlist_send_created`.
+    static let grin_txlist_send_created = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_created")
+    /// Image `grin_txlist_send_posting`.
+    static let grin_txlist_send_posting = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_posting")
+    /// Image `grin_txlist_send_waitToFinalize`.
+    static let grin_txlist_send_waitToFinalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_waitToFinalize")
     /// Image `grin`.
     static let grin = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin")
     /// Image `icon_address_default_title_frame`.
@@ -352,6 +362,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_gray, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "grin_help", bundle: ..., traitCollection: ...)`
+    static func grin_help(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_help, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "grin_teach_file", bundle: ..., traitCollection: ...)`
     static func grin_teach_file(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_teach_file, compatibleWith: traitCollection)
@@ -402,29 +417,49 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_txlist_cancled, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_confirmd", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_confirmd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_confirmd, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmed, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_confirmdconbase", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_confirmdconbase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_confirmdconbase, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_confirmedConebase", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmedConebase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmedConebase, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_finalized", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_finalized(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_finalized, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_gatewayConfirmed", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_gatewayConfirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_gatewayConfirmed, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_send", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_send, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_gatewayReceived", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_gatewayReceived(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_gatewayReceived, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_singe", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_singe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_singe, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_received", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_receive_waitToReceive", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_waitToReceive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_waitToReceive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_created", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_created(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_created, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_posting", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_posting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_posting, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_waitToFinalize", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_waitToFinalize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_waitToFinalize, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
@@ -892,7 +927,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 386 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 389 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1402,6 +1437,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentStillUseHttp = Rswift.StringResource(key: "grin.sent.stillUseHttp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodHttp = Rswift.StringResource(key: "grin.txMethod.http", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: I know
       /// 
       /// Locales: en, zh-Hans
@@ -2222,6 +2261,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageViteContactsButtonTitle = Rswift.StringResource(key: "send.page.vite.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VVITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodVite = Rswift.StringResource(key: "grin.txMethod.vite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -2438,6 +2481,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinPayTitleFinalize = Rswift.StringResource(key: "grin.pay.title.finalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 文件交易
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodFile = Rswift.StringResource(key: "grin.txMethod.file", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -3326,6 +3373,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinSentStillUseHttp(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.stillUseHttp", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodHttp(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.http", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: I know
@@ -4763,6 +4817,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.vite.contacts.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: VVITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodVite(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.vite", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -5139,6 +5200,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinPayTitleFinalize(_: Void = ()) -> String {
         return NSLocalizedString("grin.pay.title.finalize", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 文件交易
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodFile(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.file", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

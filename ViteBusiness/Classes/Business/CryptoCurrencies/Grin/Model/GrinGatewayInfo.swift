@@ -9,15 +9,15 @@ import Foundation
 import ObjectMapper
 import Vite_GrinWallet
 
-struct GrinGatewayInfo: Mappable {
+class GrinGatewayInfo: Mappable {
 
     var address: String = ""
     var slatedId: String  = ""
     var toSlatedId: String  = ""
-    var fromAmount: UInt64 = 0
-    var fromFee: UInt64 = 0
-    var toAmount: UInt64 = 0
-    var toFee: UInt64 = 0
+    var fromAmount: String  = ""
+    var fromFee: String  = ""
+    var toAmount: String  = ""
+    var toFee: String  = ""
     var status: Int = 0
     var confirmInfo: GrinGatewayConfirmInfo?
     var pushViteHash: String = ""
@@ -28,14 +28,17 @@ struct GrinGatewayInfo: Mappable {
     var ctimeFormat: String = ""
     var mtimeFormat: String = ""
 
-    public init?(map: Map) { }
+    required public init?(map: Map) { }
 
-    public mutating func mapping(map: Map) {
+    public func mapping(map: Map) {
         address <- map["address"]
         slatedId <- map["slatedId"]
-        toSlatedId <- map["toSlatedId"]
+        toSlatedId <-  map["toSlatedId"]
         fromAmount <- map["fromAmount"]
+        fromFee <- map["fromAmount"]
         toAmount <- map["toAmount"]
+        toFee <- map["toFee"]
+        status <- map["status"]
         confirmInfo <- map["confirmInfo"]
         pushViteHash <- map["pushViteHash"]
         pollViteHash <- map["pollViteHash"]
@@ -47,16 +50,16 @@ struct GrinGatewayInfo: Mappable {
     }
 }
 
-struct GrinGatewayConfirmInfo: Mappable {
+class GrinGatewayConfirmInfo: Mappable {
     var confirm: Bool = false
     var message: String = ""
     var confirmType: String = ""
     var curHeight: Int = 0
     var beginHeight: Int = 0
 
-    public init?(map: Map) { }
+    required public init?(map: Map) { }
 
-    public mutating func mapping(map: Map) {
+    public func mapping(map: Map) {
         confirm <- map["confirm"]
         message <- map["message"]
         confirmType <- map["confirmType"]
@@ -66,7 +69,46 @@ struct GrinGatewayConfirmInfo: Mappable {
 }
 
 struct GrinFullTxInfo {
-    let txLogEntry: TxLogEntry
-    let gatewayInfo: GrinGatewayInfo?
-    let localInfo: GrinLocalInfo?
+    var txLogEntry: TxLogEntry?
+    var gatewayInfo: GrinGatewayInfo?
+    var localInfo: GrinLocalInfo?
+
+}
+
+extension GrinFullTxInfo {
+
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
+        return dateFormatter
+    }()
+    
+    var isHttpTx: Bool {
+        return gatewayInfo != nil || localInfo?.method == "Http"
+    }
+
+    var isViteTx: Bool {
+        return localInfo?.method == "Vite"
+    }
+
+    var isFileTx: Bool {
+        return localInfo?.method == "File"
+    }
+
+    var unkonwMethd: Bool{
+        return !(isHttpTx || isFileTx || isViteTx)
+    }
+
+    var timeStamp: TimeInterval {
+        if let timeString = self.txLogEntry?.creationTs,
+            let creationTs = timeString.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " "),
+            let date = GrinFullTxInfo.dateFormatter.date(from: creationTs) {
+            return date.timeIntervalSince1970
+        }
+        if let gatewayCreatTime = self.gatewayInfo?.createTime {
+            return TimeInterval(gatewayCreatTime/1000)
+        }
+        return Date().timeIntervalSince1970
+    }
 }

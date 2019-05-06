@@ -106,7 +106,7 @@ class GrinManager: GrinBridge {
         self.creatWalletIfNeeded()
         self.balance.accept(GrinBalance())
         DispatchQueue.main.async {
-            GrinLocalInfoService.share.creatDBIfNeeded()
+            GrinLocalInfoService.shared.creatDBIfNeeded()
             self.handleSavedTx()
         }
     }
