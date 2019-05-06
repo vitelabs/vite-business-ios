@@ -97,13 +97,13 @@ public typealias TokenCode = String
 extension TokenCode {
     #if DEBUG || TEST
     public static var viteCoin: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "1171" : "1"
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1171" : "7"
     }
     public static var etherCoin: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "1" : "7"
+        return DebugService.instance.config.rpcUseOnlineUrl ? "1" : "11"
     }
     public static var viteERC20: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "6"
+        return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "14"
     }
     public static var grinCoin: String {
         return DebugService.instance.config.rpcUseOnlineUrl ? "1174" : "10"
