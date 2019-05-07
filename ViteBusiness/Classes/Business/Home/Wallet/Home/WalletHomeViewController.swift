@@ -183,18 +183,19 @@ class WalletHomeViewController: BaseTableViewController {
                 
                 switch uri.type {
                 case .transfer:
-                    var note = ""
                     if let data = uri.data,
                         data.contentType == .utf8string,
                         let contentData = data.rawContent,
-                        let ret = String(bytes: contentData, encoding: .utf8) {
-                        note = ret
+                        let note = String(bytes: contentData, encoding: .utf8) {
+                        let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
+                        guard var viewControllers = self.navigationController?.viewControllers else { return }
+                        _ = viewControllers.popLast()
+                        viewControllers.append(sendViewController)
+                        scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                        Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: { _ in })
                     }
-                    let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
-                    guard var viewControllers = self.navigationController?.viewControllers else { return }
-                    _ = viewControllers.popLast()
-                    viewControllers.append(sendViewController)
-                    scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
                 case .contract:
                     self.navigationController?.popViewController(animated: true)
                     Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,

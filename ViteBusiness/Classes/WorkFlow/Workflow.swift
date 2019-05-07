@@ -165,6 +165,42 @@ public extension Workflow {
                                            toAddress: ViteAddress,
                                            tokenInfo: TokenInfo,
                                            amount: Amount,
+                                           data: Data?,
+                                           completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            let withoutPowPromise = {
+                return ViteNode.rawTx.send.withoutPow(account: account,
+                                                      toAddress: toAddress,
+                                                      tokenId: tokenInfo.viteTokenId,
+                                                      amount: amount,
+                                                      data: data)
+            }
+
+            let getPowPromise = {
+                return ViteNode.rawTx.send.getPow(account: account,
+                                                  toAddress: toAddress,
+                                                  tokenId: tokenInfo.viteTokenId,
+                                                  amount: amount,
+                                                  data: data)
+            }
+
+
+            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
+                              getPowPromise: getPowPromise,
+                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
+                              type: .other,
+                              completion: completion)
+        }
+
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
+        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+    }
+
+    static func sendTransactionWithConfirm(account: Wallet.Account,
+                                           toAddress: ViteAddress,
+                                           tokenInfo: TokenInfo,
+                                           amount: Amount,
                                            note: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
@@ -336,12 +372,7 @@ public extension Workflow {
 
         switch uri.type {
         case .transfer:
-            var note: String?
-            if let data = uri.data,
-                let ret = String(bytes: data, encoding: .utf8) {
-                note = ret
-            }
-            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, note: note, completion: completion)
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
         case .contract:
             callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
         }
