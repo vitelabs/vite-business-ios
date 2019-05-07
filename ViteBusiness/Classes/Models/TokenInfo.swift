@@ -199,6 +199,14 @@ extension TokenInfo: Equatable {
     var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
     var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
 
+    static var viteERC20ContractAddress: String {
+        #if DEBUG || TEST
+        return DebugService.instance.config.rpcUseOnlineUrl ? "0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016" : "0x54b716345c14ba851f1b51dcc1491abee6ba8f44"
+        #else
+        return "0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016"
+        #endif
+    }
+
     func getCoinHeaderDisplay() -> String? {
         if self.coinType == .vite {
             return R.string.localizable.tokenListPageSectionViteHeader()
