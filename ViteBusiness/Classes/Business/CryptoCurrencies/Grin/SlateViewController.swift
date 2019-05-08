@@ -139,10 +139,9 @@ class SlateViewController: UIViewController {
             let fee = Balance(value: BigInt(slate.fee)).amountFull(decimals: 9)
             let amount = Balance(value: BigInt(slate.amount)).amountFull(decimals: 9)
             let confirmType = ConfirmGrinTransactionViewModel(amountString: amount, feeString: fee)
-            Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
-            }) {
+            Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                 self.transferVM.action.onNext(.finalizeTx(slateUrl: url))
-            }
+            })
         }
     }
 

@@ -148,15 +148,14 @@ class SendGrinViewController: UIViewController {
                 guard let fee = fee,
                     !fee.isEmpty else { return }
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
-                Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
-                }) {
+                Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                     let amountString = self?.amountTextField.text
                     if self?.transferMethod == .file {
                         self?.transferVM.action.onNext(.creatTxFile(amount: amountString))
                     } else if let destnation = self?.addressTextField.text {
                         self?.transferVM.action.onNext(.sentTx(amountString: amountString, destnation: destnation))
                     }
-                }
+                })
             }
         }
 

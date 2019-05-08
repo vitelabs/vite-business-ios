@@ -60,6 +60,11 @@ class BalanceInfoViteCoinOperationView: UIView {
 
 class OperationButton: UIView {
 
+    enum Style {
+        case multiple
+        case single
+    }
+
     let button = UIButton().then {
         $0.setBackgroundImage(nil, for: .normal)
         $0.setBackgroundImage(UIImage.color(UIColor.white.withAlphaComponent(0.2)), for: .highlighted)
@@ -74,7 +79,7 @@ class OperationButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(icon: UIImage?, title: String) {
+    init(icon: UIImage?, title: String, style: Style = .multiple) {
         super.init(frame: CGRect.zero)
         setShadow(width: 0, height: 2, radius: 10)
 
@@ -95,31 +100,57 @@ class OperationButton: UIView {
         titleLabel.text = title
 
         addSubview(imageView)
-        addSubview(vLine)
         addSubview(titleLabel)
         addSubview(button)
 
-        imageView.snp.makeConstraints { (m) in
-            m.centerY.equalToSuperview()
-            m.left.equalToSuperview().offset(20)
-            m.size.equalTo(CGSize(width: 20, height: 20))
-        }
-
-        vLine.snp.makeConstraints { (m) in
-            m.width.equalTo(CGFloat.singleLineWidth)
-            m.left.equalTo(imageView.snp.right).offset(20)
-            m.top.equalToSuperview().offset(10)
-            m.bottom.equalToSuperview().offset(-10)
-        }
-
-        titleLabel.snp.makeConstraints { (m) in
-            m.centerY.equalToSuperview()
-            m.left.equalTo(vLine.snp.right)
-            m.right.equalToSuperview()
-        }
-
         button.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
+        }
+
+        switch style {
+        case .multiple:
+
+            addSubview(vLine)
+
+            imageView.snp.makeConstraints { (m) in
+                m.centerY.equalToSuperview()
+                m.left.equalToSuperview().offset(20)
+                m.size.equalTo(CGSize(width: 20, height: 20))
+            }
+
+            vLine.snp.makeConstraints { (m) in
+                m.width.equalTo(CGFloat.singleLineWidth)
+                m.left.equalTo(imageView.snp.right).offset(20)
+                m.top.equalToSuperview().offset(10)
+                m.bottom.equalToSuperview().offset(-10)
+            }
+
+            titleLabel.snp.makeConstraints { (m) in
+                m.centerY.equalToSuperview()
+                m.left.equalTo(vLine.snp.right)
+                m.right.equalToSuperview()
+            }
+
+        case .single:
+
+            let guide = UILayoutGuide()
+            addLayoutGuide(guide)
+
+            guide.snp.makeConstraints { (m) in
+                m.center.equalTo(self)
+            }
+
+            imageView.snp.makeConstraints { (m) in
+                m.centerY.equalToSuperview()
+                m.size.equalTo(CGSize(width: 20, height: 20))
+                m.left.equalTo(guide)
+            }
+
+            titleLabel.snp.makeConstraints { (m) in
+                m.centerY.equalToSuperview()
+                m.left.equalTo(imageView.snp.right).offset(16)
+                m.right.equalTo(guide)
+            }
         }
     }
 }

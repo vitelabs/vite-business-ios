@@ -33,23 +33,17 @@ extension GatewayProvider {
         return Promise { seal in
             request(.bind(context), completion: { (ret) in
                 switch ret {
-                case .success(let json):
-                    seal.fulfill(())
-                    //                var map = ExchangeRateMap()
-                    //                if let json = json as? [[String: Any]] {
-                    //                    json.forEach({
-                    //                        if let tokenCode = $0["tokenCode"] as? String,
-                    //                            let usd = $0["usd"] as? String,
-                    //                            let cny = $0["cny"] as? String {
-                    //                            map[tokenCode] = [
-                    //                                "usd": usd,
-                    //                                "cny": cny
-                    //                            ]
-                    //                        }
-                    //                    })
-                    //                }
-
-                //                completion(Result.success(map))
+                case .success(let response):
+                    if let string = try? response.mapString(),
+                        let body = ResponseBody(JSONString: string) {
+                        if body.code == 200 {
+                            seal.fulfill(())
+                        } else {
+                            seal.reject(GatewayError.response(body.code, body.message))
+                        }
+                    } else {
+                        seal.reject(GatewayError.format)
+                    }
                 case .failure(let error):
                     seal.reject(error)
                 }
@@ -57,23 +51,23 @@ extension GatewayProvider {
         }
     }
 
-//    enum ExchangeError: Error {
-//        case format
-//        case response(Int, String)
-//        case notFound
-//    }
-//
-//    struct ResponseBody: Mappable {
-//        var code: Int = -1
-//        var message: String = ""
-//        var json: Any = String()
-//
-//        init?(map: Map) { }
-//
-//        mutating func mapping(map: Map) {
-//            code <- map["code"]
-//            message <- map["msg"]
-//            json <- map["data"]
-//        }
-//    }
+    enum GatewayError: Error {
+        case format
+        case response(Int, String)
+        case notFound
+    }
+
+    struct ResponseBody: Mappable {
+        var code: Int = -1
+        var message: String = ""
+        var json: Any = String()
+
+        init?(map: Map) { }
+
+        mutating func mapping(map: Map) {
+            code <- map["code"]
+            message <- map["msg"]
+            json <- map["data"]
+        }
+    }
 }

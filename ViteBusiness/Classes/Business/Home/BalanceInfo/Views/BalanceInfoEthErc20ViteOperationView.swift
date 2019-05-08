@@ -16,7 +16,7 @@ class BalanceInfoEthErc20ViteOperationView: UIView {
         return CGSize(width: 0, height: 44)
     }
 
-    let exchangeButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote())
+    let exchangeButton = OperationButton(icon: R.image.icon_balance_detail_exchange(), title: R.string.localizable.balanceInfoDetailExchangeVite(), style: .single)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

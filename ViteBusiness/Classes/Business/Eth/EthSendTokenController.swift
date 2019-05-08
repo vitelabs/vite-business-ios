@@ -40,7 +40,6 @@ class EthSendTokenController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-        fetchGasPrice()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -120,19 +119,6 @@ class EthSendTokenController: BaseViewController {
             return  view
         }
     }()
-
-    private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice {
-            switch $0 {
-            case .success(let price):
-                // Gwei = 9
-                let b = BigDecimal(number: price, digits: 9)
-                self.gasSliderView.value = Float(b.description) ?? 1.0
-            case .failure:
-                break
-            }
-        }
-    }
 
     private func setupView() {
         navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.symbol))
@@ -223,13 +209,6 @@ class EthSendTokenController: BaseViewController {
                     self.headerView.balanceLabel.text = "0.0"
                 }
             }).disposed(by: rx.disposeBag)
-
-        self.gasSliderView.tipButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            Alert.show(into: self, title: R.string.localizable.hint(),
-                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
-                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
-            }.disposed(by: rx.disposeBag)
     }
 }
 

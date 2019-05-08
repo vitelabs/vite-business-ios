@@ -29,22 +29,22 @@ public struct Workflow {
     }
 
     public static func confirmWorkflow(viewModel: ConfirmViewModelType,
-                                       completion: @escaping (Result<AccountBlock>) -> (),
-                                       confirmSuccess: @escaping () -> Void) {
+                                       confirmSuccess: @escaping () -> (),
+                                       confirmFailure: @escaping (Error) -> () = { _ in }) {
         func showConfirm(isForceUsePassword: Bool = false) {
             let vc = ConfirmViewController(viewModel: viewModel, isForceUsePassword: isForceUsePassword) { (r) in
                 switch r {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
                                titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
-                    completion(Result(error: ViteError.authFailed))
+                    confirmFailure(ViteError.authFailed)
                 case .passwordAuthFailed:
                     Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
                                titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
                                handler: { _, _ in showConfirm(isForceUsePassword: true) })
                 case .cancelled:
                     plog(level: .info, log: "Confirm cancelled", tag: .transaction)
-                    completion(Result(error: ViteError.cancel))
+                    confirmFailure(ViteError.cancel)
                 case .success:
                     confirmSuccess()
                 }
@@ -186,7 +186,7 @@ public extension Workflow {
 
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
-        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result(error: $0)) })
     }
 
     static func pledgeWithConfirm(account: Wallet.Account,
@@ -210,7 +210,7 @@ public extension Workflow {
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress.description, amountString: amountString)
-        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result(error: $0)) })
     }
 
     static func voteWithConfirm(account: Wallet.Account,
@@ -231,7 +231,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.viteCoin
         let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name)
-        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result(error: $0)) })
     }
 
     static func cancelVoteWithConfirm(account: Wallet.Account,
@@ -252,7 +252,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.viteCoin
         let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name)
-        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result(error: $0)) })
     }
 
     static func callContractWithConfirm(account: Wallet.Account,
@@ -283,7 +283,7 @@ public extension Workflow {
 
         let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress.description, amountString: amountString)
-        confirmWorkflow(viewModel: viewModel, completion: completion, confirmSuccess: sendBlock)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result(error: $0)) })
     }
 
     static func sendRawTx(by uri: ViteURI, accountAddress: Address, tokenInfo: TokenInfo, completion: @escaping (Result<AccountBlock>) -> ()) {

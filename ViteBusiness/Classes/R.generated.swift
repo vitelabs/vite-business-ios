@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 122 images.
+  /// This `R.image` struct is generated, and contains static references to 125 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -30,6 +30,8 @@ struct R: Rswift.Validatable {
     static let background_button_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_button_white")
     /// Image `beifen`.
     static let beifen = Rswift.ImageResource(bundle: R.hostingBundle, name: "beifen")
+    /// Image `blue_dotted_line`.
+    static let blue_dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "blue_dotted_line")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
     /// Image `dotted_line`.
@@ -88,6 +90,8 @@ struct R: Rswift.Validatable {
     static let icon_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_background")
     /// Image `icon_balance_detail_arrows`.
     static let icon_balance_detail_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_arrows")
+    /// Image `icon_balance_detail_exchange`.
+    static let icon_balance_detail_exchange = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_exchange")
     /// Image `icon_balance_detail_pledge`.
     static let icon_balance_detail_pledge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_pledge")
     /// Image `icon_balance_detail_vote`.
@@ -212,6 +216,8 @@ struct R: Rswift.Validatable {
     static let icon_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_send")
     /// Image `icon_tx_vote`.
     static let icon_tx_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_vote")
+    /// Image `icon_vite_exchange`.
+    static let icon_vite_exchange = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_exchange")
     /// Image `icon_vite_logo`.
     static let icon_vite_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_logo")
     /// Image `icon_vote_rank`.
@@ -291,6 +297,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "beifen", bundle: ..., traitCollection: ...)`
     static func beifen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.beifen, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "blue_dotted_line", bundle: ..., traitCollection: ...)`
+    static func blue_dotted_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.blue_dotted_line, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "btn_path_bg", bundle: ..., traitCollection: ...)`
@@ -436,6 +447,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_balance_detail_arrows", bundle: ..., traitCollection: ...)`
     static func icon_balance_detail_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_balance_detail_arrows, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_balance_detail_exchange", bundle: ..., traitCollection: ...)`
+    static func icon_balance_detail_exchange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_detail_exchange, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_balance_detail_pledge", bundle: ..., traitCollection: ...)`
@@ -748,6 +764,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tx_vote, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_vite_exchange", bundle: ..., traitCollection: ...)`
+    static func icon_vite_exchange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_vite_exchange, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_vite_logo", bundle: ..., traitCollection: ...)`
     static func icon_vite_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_vite_logo, compatibleWith: traitCollection)
@@ -878,7 +899,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 378 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 390 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -908,6 +929,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipQuota = Rswift.StringResource(key: "pop.page.tip.quota", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE，Vite网络VITE可以投票官方超级节点赚取VITE奖励，年化收益率达20%。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let popPageTipEthViteExchange = Rswift.StringResource(key: "pop.page.tip.ethViteExchange", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -2392,6 +2417,50 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 余额
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageMyBalanceTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全部置换
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageExchangeAllButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.exchange.all.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 切换
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAddressChangeButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.address.change.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 接收Vite网络VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageToAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 最多置换%@VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAmountPlaceholder = Rswift.StringResource(key: "eth.vite.exchange.page.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 置换
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageSendButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.send.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 置换VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageTitle = Rswift.StringResource(key: "eth.vite.exchange.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 置换Vite
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailExchangeVite = Rswift.StringResource(key: "balance.info.detail.exchange.vite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 置换记录
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageExchangeHistoryButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.exchange.history.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 置换金额
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAmountTitle = Rswift.StringResource(key: "eth.vite.exchange.page.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转出ERC20 VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2440,6 +2509,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func popPageTipQuota(_: Void = ()) -> String {
         return NSLocalizedString("pop.page.tip.quota", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE，Vite网络VITE可以投票官方超级节点赚取VITE奖励，年化收益率达20%。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static func popPageTipEthViteExchange(_: Void = ()) -> String {
+        return NSLocalizedString("pop.page.tip.ethViteExchange", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>
@@ -5037,6 +5113,83 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip3Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 余额
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageMyBalanceTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.my.balance.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 全部置换
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageExchangeAllButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.exchange.all.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 切换
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAddressChangeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.address.change.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 接收Vite网络VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageToAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最多置换%@VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAmountPlaceholder(_ value1: String) -> String {
+        return String(format: NSLocalizedString("eth.vite.exchange.page.amount.placeholder", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 置换
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageSendButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.send.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 置换VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 置换Vite
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailExchangeVite(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.exchange.vite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 置换记录
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageExchangeHistoryButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.exchange.history.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 置换金额
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 转出ERC20 VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

@@ -9,6 +9,7 @@ import SnapKit
 import BigInt
 import Web3swift
 import ViteWallet
+import ViteEthereum
 
 public class EthGasFeeSliderView: UIView {
     public var value : Float = 0.0 {
@@ -145,6 +146,19 @@ public class EthGasFeeSliderView: UIView {
             m.centerX.equalToSuperview()
             m.height.equalTo(16)
         })
+
+        tipButton.rx.tap.bind {
+            Alert.show(title: R.string.localizable.hint(),
+                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
+                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
+            }.disposed(by: rx.disposeBag)
+
+        EtherWallet.transaction.fetchGasPrice()
+            .done({ price in
+                // Gwei = 9
+                let b = BigDecimal(number: price, digits: 9)
+                self.value = Float(b.description) ?? 1.0
+            })
     }
 
     required init?(coder aDecoder: NSCoder) {
