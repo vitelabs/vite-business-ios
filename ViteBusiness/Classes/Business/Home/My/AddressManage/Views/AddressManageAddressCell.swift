@@ -31,6 +31,13 @@ class AddressManageAddressCell: BaseTableViewCell {
         $0.numberOfLines = 2
     }
 
+    fileprivate let numberButton = UIButton().then {
+        $0.isUserInteractionEnabled = false
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0xEFF0F4), cornerRadius: 2).resizable, for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x3E4A59, alpha: 0.45), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+    }
+
     fileprivate let copyButton = UIButton().then {
         $0.setImage(R.image.icon_button_paste_light_gray(), for: .normal)
         $0.setImage(R.image.icon_button_paste_light_gray()?.highlighted, for: .highlighted)
@@ -39,9 +46,13 @@ class AddressManageAddressCell: BaseTableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+
+
+
         contentView.addSubview(flagImageView)
         contentView.addSubview(nameButton)
         contentView.addSubview(addressLabel)
+        contentView.addSubview(numberButton)
         contentView.addSubview(copyButton)
 
         flagImageView.setContentHuggingPriority(.required, for: .horizontal)
@@ -59,6 +70,12 @@ class AddressManageAddressCell: BaseTableViewCell {
         addressLabel.snp.makeConstraints { (m) in
             m.bottom.equalTo(contentView).offset(-20)
             m.left.equalTo(flagImageView.snp.right).offset(14)
+        }
+
+        numberButton.snp.makeConstraints { (m) in
+            m.left.equalTo(addressLabel)
+            m.top.equalTo(addressLabel).offset(2)
+            m.size.equalTo(CGSize(width: 24, height: 14))
         }
 
         let vLine = UIView().then {
@@ -103,7 +120,12 @@ class AddressManageAddressCell: BaseTableViewCell {
             name = name.appending("     ")
         }
         nameButton.setTitle(name, for: .normal)
-        addressLabel.text = viewModel.address
+        numberButton.setTitle("#\(viewModel.number)", for: .normal)
+        let style = NSMutableParagraphStyle()
+        style.firstLineHeadIndent = 30
+        let attributes = [NSAttributedString.Key.paragraphStyle: style]
+        addressLabel.attributedText = NSAttributedString(string: viewModel.address, attributes: attributes)
+
         flagImageView.image = viewModel.isSelected ? R.image.icon_cell_select() : R.image.icon_cell_unselect()
         copyButton.rx.tap.bind { viewModel.copy() }.disposed(by: disposeBag)
 
