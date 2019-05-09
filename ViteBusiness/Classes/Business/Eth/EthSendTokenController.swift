@@ -159,7 +159,6 @@ class EthSendTokenController: BaseViewController {
     }
 
     private func bind() {
-        self.headerView.balanceLabel.text = "0.0"
 
         self.sendButton.rx.tap
             .bind { [weak self] in
@@ -202,12 +201,8 @@ class EthSendTokenController: BaseViewController {
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
-                if let balanceInfo = ret {
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.tokenInfo.decimals)
-                } else {
-                    // no balanceInfo, set 0.0
-                    self.headerView.balanceLabel.text = "0.0"
-                }
+                let balance = ret?.balance ?? Balance()
+                self.headerView.balanceLabel.text = balance.amountFull(decimals: self.tokenInfo.decimals)
             }).disposed(by: rx.disposeBag)
     }
 }

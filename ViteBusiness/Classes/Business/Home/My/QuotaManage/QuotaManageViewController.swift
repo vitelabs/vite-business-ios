@@ -231,13 +231,8 @@ extension QuotaManageViewController {
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
-                if let balanceInfo = balanceInfo {
-                    self.balance = balanceInfo.balance
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
-                } else {
-                    // no balanceInfo, set 0.0
-                    self.headerView.balanceLabel.text = "0.0"
-                }
+                self.balance = balanceInfo?.balance ?? self.balance
+                self.headerView.balanceLabel.text = self.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
             }).disposed(by: rx.disposeBag)
 
     FetchQuotaService.instance.maxTxCountDriver

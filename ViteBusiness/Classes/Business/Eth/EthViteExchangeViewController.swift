@@ -171,7 +171,7 @@ class EthViteExchangeViewController: BaseViewController {
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: TokenInfo.viteERC20.tokenCode)
             .drive(onNext: { ret in
 
-                self.balance = ret?.balance ?? Balance()
+                self.balance = ret?.balance ?? self.balance
                 let text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
                 self.headerView.balanceLabel.text = text
                 self.amountView.textField.placeholder = R.string.localizable.ethViteExchangePageAmountPlaceholder(text)

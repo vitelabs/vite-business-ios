@@ -195,14 +195,9 @@ class SendViewController: BaseViewController {
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
             .drive(onNext: { [weak self] balanceInfo in
-            guard let `self` = self else { return }
-            if let balanceInfo = balanceInfo {
-                self.balance = balanceInfo.balance
-                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.token.decimals)
-            } else {
-                // no balanceInfo, set 0.0
-                self.headerView.balanceLabel.text = "0.0"
-            }
+                guard let `self` = self else { return }
+                self.balance = balanceInfo?.balance ?? self.balance
+                self.headerView.balanceLabel.text = self.balance.amountFull(decimals: self.token.decimals)
         }).disposed(by: rx.disposeBag)
 
         FetchQuotaService.instance.maxTxCountDriver
