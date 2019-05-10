@@ -899,7 +899,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 390 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 394 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -937,6 +937,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: A different seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: About Us
       /// 
       /// Locales: en, zh-Hans
@@ -1421,10 +1425,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinKnow = Rswift.StringResource(key: "grin.know", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I want a different seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
       /// 
       /// Locales: en, zh-Hans
@@ -1553,10 +1553,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPageTipContent = Rswift.StringResource(key: "create.page.tip.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Multi-token support, easy assets management
       /// 
       /// Locales: en, zh-Hans
@@ -1909,6 +1905,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipLabTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Seed phrase backed up
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Select Accounts
       /// 
       /// Locales: en, zh-Hans
@@ -2369,10 +2369,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let yes = Rswift.StringResource(key: "Yes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Yes, I have written down my seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
       /// 
       /// Locales: en, zh-Hans
@@ -2421,6 +2417,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageMyBalanceTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用条款
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageClauseButtonTitle = Rswift.StringResource(key: "mnemonic.backup.page.clause.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 全部置换
       /// 
       /// Locales: en, zh-Hans
@@ -2429,6 +2429,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageAddressChangeButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.address.change.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 助记词是您恢复账户的唯一收款，请谨慎记录，以防丢失。
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我已阅读，理解并同意%@
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我理解如果我丢失了助记词，我将永远无法找回我的资产
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageCheckButton1Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageCheckButton2Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 接收Vite网络VITE地址
       /// 
       /// Locales: en, zh-Hans
@@ -2523,6 +2539,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func popPageTipVoteLoser(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("pop.page.tip.vote.loser", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: A different seed phrase
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: About Us
@@ -3372,13 +3395,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.know", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I want a different seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
       /// 
       /// Locales: en, zh-Hans
@@ -3601,13 +3617,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func createPageTipContent(_: Void = ()) -> String {
         return NSLocalizedString("create.page.tip.content", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Multi-token support, easy assets management
@@ -4224,6 +4233,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageTipLabTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.tip.lab.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Seed phrase backed up
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Select Accounts
@@ -5031,13 +5047,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Yes", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Yes, I have written down my seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
       /// 
       /// Locales: en, zh-Hans
@@ -5122,6 +5131,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.vite.exchange.page.my.balance.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 使用条款
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageClauseButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.clause.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 全部置换
       /// 
       /// Locales: en, zh-Hans
@@ -5134,6 +5150,34 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func ethViteExchangePageAddressChangeButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.vite.exchange.page.address.change.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 助记词是您恢复账户的唯一收款，请谨慎记录，以防丢失。
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我已阅读，理解并同意%@
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageCheckButton3Title(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mnemonic.backup.page.check.button3.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 我理解如果我丢失了助记词，我将永远无法找回我的资产
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageCheckButton1Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageCheckButton2Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 接收Vite网络VITE地址

@@ -46,10 +46,14 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.";
+"mnemonic.backup.page.tip.title" = "助记词是您恢复账户的唯一手段，请谨慎记录，以防丢失。";
+"mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
+"mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";
+"mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意%@";
+"mnemonic.backup.page.clause.button.title" = "使用条款";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "I want a different seed phrase";
-"mnemonic.backup.page.tip.nextBtn.title" = "Yes, I have written down my seed phrase";
+"mnemonic.backup.page.tip.anewBtn.title" = "A different seed phrase";
+"mnemonic.backup.page.tip.nextBtn.title" = "Seed phrase backed up";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";

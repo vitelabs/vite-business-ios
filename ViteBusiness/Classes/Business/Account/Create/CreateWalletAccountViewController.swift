@@ -50,6 +50,11 @@ class CreateWalletAccountViewController: BaseViewController {
         super.viewDidLoad()
 
         self._setupView()
+        #if DEBUG
+        self.createNameAndPwdView.walletNameTF.textField.text = "Debug"
+        self.createNameAndPwdView.passwordTF.textField.text = "qqqqqqqq"
+        self.createNameAndPwdView.passwordRepeateTF.textField.text = "qqqqqqqq"
+        #endif
         self._bindViewModel()
     }
 
