@@ -18,46 +18,46 @@ public extension Workflow {
                                            amount: Amount,
                                            gasPrice: Float,
                                            completion: @escaping (Result<String>) -> ()) {
-//        let tokenInfo = TokenInfo.viteERC20
-//        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-//        let gasLimit = EtherWallet.defaultGasLimitForTokenTransfer
-//        let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
-//
-//        let viewModel = ConfirmEthViteExchangeViewModel(tokenInfo: tokenInfo, addressString: viteAddress, amountString: amountString, feeString: feeString)
-//        confirmWorkflow(viewModel: viewModel, confirmSuccess: {
-//
-//            let blackHoleAddress = "0x1111111111111111111111111111111111111111"
-//            firstly(execute: { () -> Promise<WriteTransaction> in
-//                HUD.show()
-//                return EtherWallet.transaction.getSendTokenTransaction(to: blackHoleAddress, amount: amount, gasPrice: nil,
-//                                                                       contractAddress: TokenInfo.viteERC20ContractAddress)
-//            }).then({ (wt) -> Promise<(WriteTransaction, String)> in
-//                EtherWallet.transaction.getTransactionHash(wt).map { (wt, $0) }
-//            }).then({ (wt, hash) -> Promise<(WriteTransaction)> in
-//                guard let key = EtherWallet.account.privateKey,
-//                    let ethAddress = EtherWallet.account.address,
-//                    let viteAddress = HDWalletManager.instance.account?.address.description,
-//                    let context = GatewayBindContext(ethPrivateKey: key,
-//                                                     ethTxHash: hash,
-//                                                     ethAddress: ethAddress,
-//                                                     viteAddress: viteAddress,
-//                                                     value: amount) else {
-//                                                        throw WalletError.unexpectedResult
-//                }
-//                return GatewayProvider.instance.bind(context).map { _ in wt }
-//            }).then({ (wt) -> Promise<TransactionSendingResult> in
-//                EtherWallet.transaction.sendTransaction(wt)
-//            }).done({ (ret) in
-//                completion(Result.success(ret.hash))
-//            }).catch({ (error) in
-//                plog(level: .warning, log: error.viteErrorMessage, tag: .exchange)
-//                completion(Result(error: error))
-//            }).finally {
-//                HUD.hide()
-//            }
-//        }, confirmFailure: {
-//            completion(Result(error: $0))
-//        })
+        let tokenInfo = TokenInfo.viteERC20
+        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let gasLimit = EtherWallet.defaultGasLimitForTokenTransfer
+        let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
+
+        let viewModel = ConfirmEthViteExchangeViewModel(tokenInfo: tokenInfo, addressString: viteAddress, amountString: amountString, feeString: feeString)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: {
+
+            let blackHoleAddress = "0x1111111111111111111111111111111111111111"
+            firstly(execute: { () -> Promise<WriteTransaction> in
+                HUD.show()
+                return EtherWallet.transaction.getSendTokenTransaction(to: blackHoleAddress, amount: amount, gasPrice: nil,
+                                                                       contractAddress: TokenInfo.viteERC20ContractAddress)
+            }).then({ (wt) -> Promise<(WriteTransaction, String)> in
+                EtherWallet.transaction.getTransactionHash(wt).map { (wt, $0) }
+            }).then({ (wt, hash) -> Promise<(WriteTransaction)> in
+                guard let key = EtherWallet.account.privateKey,
+                    let ethAddress = EtherWallet.account.address,
+                    let viteAddress = HDWalletManager.instance.account?.address,
+                    let context = GatewayBindContext(ethPrivateKey: key,
+                                                     ethTxHash: hash,
+                                                     ethAddress: ethAddress,
+                                                     viteAddress: viteAddress,
+                                                     value: amount) else {
+                                                        throw WalletError.unexpectedResult
+                }
+                return GatewayProvider.instance.bind(context).map { _ in wt }
+            }).then({ (wt) -> Promise<TransactionSendingResult> in
+                EtherWallet.transaction.sendTransaction(wt)
+            }).done({ (ret) in
+                completion(Result.success(ret.hash))
+            }).catch({ (error) in
+                plog(level: .warning, log: error.viteErrorMessage, tag: .exchange)
+                completion(Result.failure(error))
+            }).finally {
+                HUD.hide()
+            }
+        }, confirmFailure: {
+            completion(Result.failure($0))
+        })
     }
 
 

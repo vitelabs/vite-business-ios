@@ -40,7 +40,6 @@ class EthSendTokenController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-        fetchGasPrice()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -121,15 +120,6 @@ class EthSendTokenController: BaseViewController {
         }
     }()
 
-    private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice()
-            .done({ price in
-                // Gwei = 9
-                let b = BigDecimal(number: price, digits: 9)
-                self.gasSliderView.value = Float(b.description) ?? 1.0
-            })
-    }
-
     private func setupView() {
         navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.symbol))
 
@@ -169,7 +159,6 @@ class EthSendTokenController: BaseViewController {
     }
 
     private func bind() {
-        self.headerView.balanceLabel.text = "0.0"
 
         self.sendButton.rx.tap
             .bind { [weak self] in
@@ -212,20 +201,9 @@ class EthSendTokenController: BaseViewController {
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
-                if let balanceInfo = ret {
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.tokenInfo.decimals)
-                } else {
-                    // no balanceInfo, set 0.0
-                    self.headerView.balanceLabel.text = "0.0"
-                }
+                let balance = ret?.balance ?? Amount()
+                self.headerView.balanceLabel.text = balance.amountFull(decimals: self.tokenInfo.decimals)
             }).disposed(by: rx.disposeBag)
-
-        self.gasSliderView.tipButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            Alert.show(into: self, title: R.string.localizable.hint(),
-                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
-                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
-            }.disposed(by: rx.disposeBag)
     }
 }
 

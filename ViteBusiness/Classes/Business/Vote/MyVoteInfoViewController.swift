@@ -60,7 +60,7 @@ class MyVoteInfoViewController: BaseViewController, View {
                 } else {
                     if self.viewInfoView.voteStatus == .voting {
                         // no balanceInfo, set 0.0
-                        self.viewInfoView.nodePollsLab.text = "0.0"
+                        self.viewInfoView.nodePollsLab.text = Amount().amountFull(decimals: ViteWalletConst.viteToken.decimals)
                     }
                 }
             }).disposed(by: rx.disposeBag)

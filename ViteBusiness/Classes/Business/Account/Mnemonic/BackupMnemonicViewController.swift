@@ -9,6 +9,9 @@
 import UIKit
 import SnapKit
 import Vite_HDWalletKit
+import ActiveLabel
+import RxSwift
+import RxCocoa
 
 class BackupMnemonicViewController: BaseViewController {
     fileprivate var viewModel: BackupMnemonicVM
@@ -51,6 +54,7 @@ class BackupMnemonicViewController: BaseViewController {
         let switchTipView = LabelTipView(R.string.localizable.mnemonicBackupPageSwitchModeTitle("12"))
         switchTipView.titleLab.font = Fonts.Font12
         switchTipView.titleLab.textColor = UIColor(netHex: 0x007AFF)
+        switchTipView.titleLab.textAlignment = .right
         switchTipView.tipButton.setImage(R.image.switch_mode_icon(), for: .normal)
         switchTipView.tipButton.setImage(R.image.switch_mode_icon(), for: .highlighted)
         switchTipView.rx.tap.bind {[unowned self] in
@@ -87,6 +91,15 @@ class BackupMnemonicViewController: BaseViewController {
         let contentView = UIView()
         return contentView
     }()
+
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 4, left: 24, bottom: 10, right: 24)).then {
+        $0.stackView.spacing = 0
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+    }
 }
 
 extension BackupMnemonicViewController {
@@ -107,7 +120,7 @@ extension BackupMnemonicViewController {
             }
 
             UIView.animate(withDuration: 0.3, animations: {
-                self.contentView.layoutIfNeeded()
+                self.scrollView.layoutIfNeeded()
             })
 
             self.mnemonicCollectionView.dataList = (self.viewModel.mnemonicWordsList.value)
@@ -134,49 +147,87 @@ extension BackupMnemonicViewController {
         self._addViewConstraint()
     }
     private func _addViewConstraint() {
-        self.view.addSubview(self.tipTitleLab)
+
+        view.addSubview(scrollView)
+        view.addSubview(nextMnemonicBtn)
+        view.addSubview(afreshMnemonicBtn)
+
+        scrollView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.top.equalTo((self.navigationTitleView?.snp.bottom)!)
+        }
+
+        nextMnemonicBtn.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(scrollView.snp.bottom)
+            make.left.equalTo(view).offset(24)
+            make.height.equalTo(50)
+            make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+        }
+
+        afreshMnemonicBtn.snp.makeConstraints { (make) -> Void in
+            make.top.bottom.width.height.equalTo(self.nextMnemonicBtn)
+            make.left.equalTo(nextMnemonicBtn.snp.right).offset(23)
+            make.right.equalTo(view).offset(-24)
+        }
+
+        scrollView.stackView.addArrangedSubview(tipTitleLab)
+        scrollView.stackView.addPlaceholder(height: 6)
+        scrollView.stackView.addArrangedSubview(switchTipView)
+        scrollView.stackView.addPlaceholder(height: 6)
+        scrollView.stackView.addArrangedSubview(mnemonicCollectionView)
+
+
+        let checkButton1 = ConfirmView()
+        checkButton1.label.text = R.string.localizable.mnemonicBackupPageCheckButton1Title()
+
+        let checkButton2 = ConfirmView()
+        checkButton2.label.text = R.string.localizable.mnemonicBackupPageCheckButton2Title()
+
+        let checkButton3 = ConfirmView()
+        checkButton3.label.text = R.string.localizable.mnemonicBackupPageCheckButton3Title(R.string.localizable.mnemonicBackupPageClauseButtonTitle())
+        let customType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageClauseButtonTitle())
+        checkButton3.label.enabledTypes = [customType]
+        checkButton3.label.customize { label in
+            label.customColor[customType] = UIColor(netHex: 0x007AFF)
+            label.customSelectedColor[customType] = UIColor(netHex: 0x007AFF).highlighted
+            label.handleCustomTap(for: customType) { element in
+                print("Custom type tapped: \(element)")
+            }
+        }
+
+
+        Driver.combineLatest(
+            checkButton1.checkButton.rx.observe(Bool.self, #keyPath(UIButton.isSelected)).asDriver(onErrorJustReturn: false),
+            checkButton2.checkButton.rx.observe(Bool.self, #keyPath(UIButton.isSelected)).asDriver(onErrorJustReturn: false),
+            checkButton3.checkButton.rx.observe(Bool.self, #keyPath(UIButton.isSelected)).asDriver(onErrorJustReturn: false))
+            .map({ (r1, r2, r3) -> Bool in
+                if let r1 = r1, let r2 = r2, let r3 = r3 {
+                    return r1 && r2 && r3
+                } else {
+                    return false
+                }
+            })
+            .drive(onNext: { [unowned self] (r) in
+                self.nextMnemonicBtn.isEnabled = r
+            }).disposed(by: rx.disposeBag)
+
+        scrollView.stackView.addPlaceholder(height: 22)
+        scrollView.stackView.addArrangedSubview(checkButton1)
+        scrollView.stackView.addPlaceholder(height: 6)
+        scrollView.stackView.addArrangedSubview(checkButton2)
+        scrollView.stackView.addPlaceholder(height: 6)
+        scrollView.stackView.addArrangedSubview(checkButton3)
+
         self.tipTitleLab.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(24+32)
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
             make.height.equalTo(48)
         }
-        self.view.addSubview(self.afreshMnemonicBtn)
-        self.afreshMnemonicBtn.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
 
-        self.view.addSubview(self.nextMnemonicBtn)
-        self.nextMnemonicBtn.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.afreshMnemonicBtn.snp.top).offset(-24)
-        }
-
-        self.view.addSubview(contentView)
-        contentView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.top.equalTo(self.tipTitleLab.snp.bottom)
-            make.bottom.equalTo(self.nextMnemonicBtn.snp.top)
-        }
-
-        contentView.addSubview(self.mnemonicCollectionView)
-        self.mnemonicCollectionView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view).offset(24)
-            make.right.equalTo(self.view).offset(-24)
-            make.centerY.equalTo(contentView)
-            make.height.equalTo(kScreenH * (186.0/667.0))
-        }
-        contentView.addSubview(self.switchTipView)
         self.switchTipView.snp.makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.mnemonicCollectionView.snp.top).offset(-10)
-            make.right.equalTo(self.mnemonicCollectionView)
             make.height.equalTo(20)
+        }
+
+        self.mnemonicCollectionView.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(kScreenH * (186.0/667.0))
         }
     }
 
@@ -184,5 +235,47 @@ extension BackupMnemonicViewController {
         CreateWalletService.sharedInstance.mnemonic = self.viewModel.mnemonicWordsStr.value
         let vc = AffirmInputMnemonicViewController.init(mnemonicWordsStr: self.viewModel.mnemonicWordsStr.value)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension BackupMnemonicViewController {
+    fileprivate class ConfirmView: UIView {
+
+        let checkButton = UIButton()
+        let label = ActiveLabel()
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            checkButton.setImage(R.image.unselected(), for: .normal)
+            checkButton.setImage(R.image.selected(), for: .selected)
+
+            checkButton.rx.tap.bind { [weak self] in
+                guard let `self` = self else { return }
+                self.checkButton.isSelected = !self.checkButton.isSelected
+            }.disposed(by: rx.disposeBag)
+
+            label.numberOfLines = 0
+            label.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+            label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+
+            addSubview(checkButton)
+            addSubview(label)
+            checkButton.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(2)
+                m.left.equalToSuperview()
+                m.size.equalTo(CGSize(width: 12, height: 12))
+            }
+            label.snp.makeConstraints { (m) in
+                m.top.right.bottom.equalToSuperview()
+                m.left.equalTo(checkButton.snp.right).offset(6)
+            }
+
+
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     }
 }
