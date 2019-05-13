@@ -35,12 +35,12 @@ public struct Workflow {
             let vc = ConfirmViewController(viewModel: viewModel, isForceUsePassword: isForceUsePassword) { (r) in
                 switch r {
                 case .biometryAuthFailed:
-                    Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
-                               titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
+                    Alert.show(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedTitle(), message: nil,
+                               titles: [.default(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedBack())])
                     confirmFailure(ViteError.authFailed)
                 case .passwordAuthFailed:
-                    Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
-                               titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
+                    Alert.show(title: R.string.localizable.workflowConfirmPageToastPasswordError(), message: nil,
+                               titles: [.default(title: R.string.localizable.workflowConfirmPagePasswordAuthFailedRetry())],
                                handler: { _, _ in showConfirm(isForceUsePassword: true) })
                 case .cancelled:
                     plog(level: .info, log: "Confirm cancelled", tag: .transaction)
@@ -187,7 +187,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
+                              successToast: R.string.localizable.workflowToastTransferSuccess(),
                               type: .other,
                               completion: completion)
         }
@@ -223,7 +223,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
+                              successToast: R.string.localizable.workflowToastTransferSuccess(),
                               type: .other,
                               completion: completion)
         }
@@ -252,7 +252,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.submitSuccess(),
+                              successToast: R.string.localizable.workflowToastSubmitSuccess(),
                               type: .pledge,
                               completion: completion)
         }
@@ -283,7 +283,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.voteListSendSuccess(),
+                              successToast: R.string.localizable.workflowToastVoteSuccess(),
                               type: .vote,
                               completion: completion)
         }
@@ -310,7 +310,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.votePageVoteInfoCancelVoteToastTitle(),
+                              successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
                               type: .other,
                               completion: completion)
         }
@@ -345,7 +345,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendSuccess(),
+                              successToast: R.string.localizable.workflowToastContractSuccess(),
                               type: .other,
                               completion: completion)
         }

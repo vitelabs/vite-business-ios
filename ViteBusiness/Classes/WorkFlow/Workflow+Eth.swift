@@ -82,7 +82,7 @@ public extension Workflow {
                 }
                 .done({ txHash in
                     completion(Result.success(txHash))
-                    AlertControl.showCompletion(R.string.localizable.sendPageToastSendTransferSuccess())
+                    AlertControl.showCompletion(R.string.localizable.workflowToastTransferSuccess())
                 })
                 .catch({ error in
                     completion(Result.failure(error))

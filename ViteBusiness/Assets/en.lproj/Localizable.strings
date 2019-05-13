@@ -14,11 +14,11 @@
 "Yes" = "Yes";
 "No" = "No";
 "Loading" = "Loading";
+"Retry" = "Retry";
 "Confirm" = "Confirm";
 "Submit" = "Submit";
 "Close" = "I understand";
 "Update.app" = "Update App";
-"Submit.success" = "Submit Successful";
 "Submit.cancel" = "Cancel";
 "Close" = "Close";
 
@@ -180,8 +180,6 @@
 "send.page.remark.title" = "Comment";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
-"send.page.toast.send.transfer.success" = "Transfer Success";
-"send.page.toast.send.success" = "Success";
 "send.page.toast.address.error" = "Wrong address, please check the format";
 "send.page.toast.amount.error" = "Insufficient Balance";
 "send.page.toast.amount.empty" = "Please input balance";
@@ -189,9 +187,6 @@
 "send.page.toast.note.too.long" = "The length of notes has reached limitations";
 "send.page.not.enough.balance.alert.title" = "Insufficient Balance";
 "send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.confirm.biometryAuthFailed.title" = "Cannot be identified";
-"send.page.confirm.biometryAuthFailed.back" = "Back";
-"send.page.confirm.passwordAuthFailed.retry" = "Retry";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
 
@@ -206,23 +201,6 @@
 "eth.vite.exchange.page.address.change.button.title" = "切换";
 "eth.vite.exchange.page.exchange.all.button.title" = "全部置换";
 "eth.vite.exchange.page.exchange.history.button.title" = "置换记录";
-
-/* Confirm Transaction Page */
-"confirm.transaction.page.title" = "Payment";
-"confirm.transaction.page.transfer.title" = "Transfer";
-"confirm.transaction.page.pledge.title" = "Acquire Quota";
-"confirm.transaction.address.title" = "Recipient";
-"confirm.transaction.amount.title" = "Amount";
-"confirm.transaction.fee.title" = "Fee";
-"confirm.transaction.page.use.password" = "Use password";
-"confirm.transaction.page.confirm.button" = "Confirm";
-"confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.page.use.password.title" = "Enter Password";
-"confirm.transaction.page.pw.title" = "Please input password";
-"confirm.transaction.page.toast.password.error" = "Wrong password!";
-"confirm.transaction.page.node.name" = "Node Name";
-"confirm.transaction.page.vote" = "Vote";
-"confirm.transaction.page.cancel.vote" = "Revoke Vote";
 
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
@@ -302,20 +280,16 @@
 "vote.page.voteInfo.nodePolls.title" = "My Votes";
 "vote.page.nodeStatus.valid.title" = "Active";
 "vote.page.nodeStatus.invalid.title" = "Inactive";
-"vote.page.voteInfo.cancel.vote.title" = "Revoke Voting";
-"vote.page.voteInfo.cancel.vote.toast.title" = "Vote revoking request is successfully sent";
 "vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
 
 /* Vote List*/
-"Vote" = "Vote";
+"vote" = "Vote";
 "vote.list.title" = "Candidate Nodes";
 "vote.list.search" = "Search for name or address of candidate nodes";
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
 "vote.list.confirm.revote" = "Confirm";
-"vote.list.confirm.button.title" = "Confirm";
 "vote.list.count" = "Votes";
 "vote.list.address" = "Address";
-"vote.list.send.success" = "Successfully send vote request";
 "vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
 "vote.list.search.empty" = "No result, please try another input";
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
@@ -401,9 +375,51 @@
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
 
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
+"workflow.confirm.page.biometryAuthFailed.back" = "Back";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
+"workflow.confirm.page.toast.password.error" = "Wrong password!";
+
+"workflow.toast.transfer.success" = "Transfer Success";
+"workflow.toast.submit.success" = "Submit Successful";
+"workflow.toast.vote.success" = "Successfully send vote request";
+"workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
+"workflow.toast.contract.success" = "Success";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "Verify";
+"confirm.transaction.address.title" = "Recipient";
+"confirm.transaction.amount.title" = "Amount";
+"confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.page.use.password" = "Use password";
+"confirm.transaction.page.pw.title" = "Please input password";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "Transfer";
+"confirm.transaction.page.vite.confirm.button" = "Confirm";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "Acquire Quota";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
+"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.vote.node.name" = "Node Name";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
+// vote call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "Transfer";
+"confirm.transaction.page.eth.confirm.button" = "Confirm";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "Transfer";
+"confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
-
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Spendable";
 "grin.balance.awaiting" = "Awaiting Confirmation";

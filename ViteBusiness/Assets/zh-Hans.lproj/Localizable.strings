@@ -14,11 +14,11 @@
 "Yes" = "是";
 "No" = "否";
 "Loading" = "加载中";
+"Retry" = "重试";
 "Confirm" = "确定";
 "Submit" = "提交";
 "Close" = "我知道了";
 "Update.app" = "更新 App";
-"Submit.success" = "提交成功";
 "Submit.cancel" = "撤销";
 "Close"="关闭";
 
@@ -183,8 +183,6 @@
 "send.page.remark.title" = "备注";
 "send.page.send.button.title" = "转账";
 "send.page.amount.toolbar.button.title" = "下一项";
-"send.page.toast.send.transfer.success" = "转账交易发送成功";
-"send.page.toast.send.success" = "支付成功";
 "send.page.toast.address.error" = "地址输入错误,请检查格式";
 "send.page.toast.amount.error" = "账户余额不足";
 "send.page.toast.amount.empty" = "请填写金额";
@@ -192,9 +190,6 @@
 "send.page.toast.note.too.long" = "备注已达上限";
 "send.page.not.enough.balance.alert.title" = "账户余额不足";
 "send.page.not.enough.balance.alert.button" = "取消交易";
-"send.page.confirm.biometryAuthFailed.title" = "无法识别";
-"send.page.confirm.biometryAuthFailed.back" = "返回";
-"send.page.confirm.passwordAuthFailed.retry" = "重试";
 "send.page.token.info.error" = "代币信息错误";
 "send.page.quota.content" = "%@ UTPS";
 
@@ -209,23 +204,6 @@
 "eth.vite.exchange.page.address.change.button.title" = "切换";
 "eth.vite.exchange.page.exchange.all.button.title" = "全部置换";
 "eth.vite.exchange.page.exchange.history.button.title" = "置换记录";
-
-/* Confirm Transaction Page */
-"confirm.transaction.page.title" = "支付";
-"confirm.transaction.page.transfer.title" = "转账";
-"confirm.transaction.page.pledge.title" = "获取配额";
-"confirm.transaction.address.title" = "收款地址";
-"confirm.transaction.amount.title" = "金额";
-"confirm.transaction.fee.title" = "手续费";
-"confirm.transaction.page.use.password" = "使用密码";
-"confirm.transaction.page.confirm.button" = "确认支付";
-"confirm.transaction.page.biometry.confirm.reason" = "验证信息";
-"confirm.transaction.page.use.password.title" = "请输入支付密码";
-"confirm.transaction.page.pw.title" = "请输入密码";
-"confirm.transaction.page.toast.password.error" = "密码错误";
-"confirm.transaction.page.node.name" = "节点名称";
-"confirm.transaction.page.vote" = "投票";
-"confirm.transaction.page.cancel.vote" = "取消投票";
 
 /* Receive Page */
 "Receive.page.token.title" = "收款";
@@ -306,20 +284,16 @@
 "vote.page.voteInfo.nodePolls.title" = "我的投票数";
 "vote.page.nodeStatus.valid.title" = "正在候选";
 "vote.page.nodeStatus.invalid.title" = "停止候选";
-"vote.page.voteInfo.cancel.vote.title" = "撤销投票";
-"vote.page.voteInfo.cancel.vote.toast.title" = "撤销投票请求发送成功";
 "vote.page.voteInfo.alert.quota" = "无法撤销投票，您需运行PoW 或抵押VITE 获取配额才可以撤销投票";
 
 /* Vote List*/
-"Vote" = "投票";
+"vote" = "投票";
 "vote.list.title" = "候选节点列表";
 "vote.list.search" = "搜索候选节点名称或出块地址";
 "vote.list.alert.already.voted" = "您已经投票给%@，请确认是否覆盖当前投票";
 "vote.list.confirm.revote" = "确认";
-"vote.list.confirm.button.title" = "确认";
 "vote.list.count" = "得票数";
 "vote.list.address" = "出块地址";
-"vote.list.send.success" = "投票请求发送成功";
 "vote.list.alert.quota" = "无法投票，您需运行PoW 或抵押VITE 获取配额才可以投票";
 "vote.list.search.empty" = "无结果，换个输入试试";
 "vote.list.search.no.transaction.before" = "您的地址未发生过交易，暂不能投票";
@@ -405,9 +379,51 @@
 "address.list.page.other.title" = "%@ 联系地址";
 "address.list.page.no.address.tip" = "暂无 %@ 联系地址";
 
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "无法识别";
+"workflow.confirm.page.biometryAuthFailed.back" = "返回";
+"workflow.confirm.page.passwordAuthFailed.retry" = "重试";
+"workflow.confirm.page.toast.password.error" = "密码错误";
+
+"workflow.toast.transfer.success" = "转账交易发送成功";
+"workflow.toast.submit.success" = "提交成功";
+"workflow.toast.vote.success" = "投票请求发送成功";
+"workflow.toast.cancel.vote.success" = "撤销投票请求发送成功";
+"workflow.toast.contract.success" = "支付成功";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "验证信息";
+"confirm.transaction.address.title" = "收款地址";
+"confirm.transaction.amount.title" = "金额";
+"confirm.transaction.fee.title" = "手续费";
+"confirm.transaction.page.use.password" = "使用密码";
+"confirm.transaction.page.pw.title" = "请输入密码";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "转账";
+"confirm.transaction.page.vite.confirm.button" = "确认支付";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "获取配额";
+"confirm.transaction.page.vite.pledge.confirm.button" = "确认";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "投票";
+"confirm.transaction.page.vite.vote.confirm.button" = "确认";
+"confirm.transaction.page.vite.vote.node.name" = "节点名称";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "撤销投票";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "确认";
+// vote call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "支付";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "确认支付";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "转账";
+"confirm.transaction.page.eth.confirm.button" = "确认支付";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "置换";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "置换";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "转账";
+"confirm.transaction.page.grin.confirm.button" = "确认支付";
 
 // Grin
-
 "grin.balance.total" = "全部";
 "grin.balance.spendable" = "可用余额";
 "grin.balance.awaiting" = "待确认";

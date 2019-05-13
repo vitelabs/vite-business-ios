@@ -154,7 +154,7 @@ class EthViteExchangeViewController: BaseViewController {
             Workflow.ethViteExchangeWithConfirm(viteAddress: address, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: { [weak self] (r) in
                 guard let `self` = self else { return }
                 if case .success = r {
-                    AlertControl.showCompletion(R.string.localizable.submitSuccess())
+                    AlertControl.showCompletion(R.string.localizable.workflowToastSubmitSuccess())
                     GCD.delay(1) { self.dismiss() }
                 } else if case .failure(let error) = r {
                     if let web3Error = error as? Web3Error {

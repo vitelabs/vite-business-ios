@@ -20,10 +20,10 @@ struct ConfirmViteTransactionViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageTransferTitle()
+        return R.string.localizable.confirmTransactionPageViteTransferTitle()
     }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.confirmTransactionPageConfirmButton()
+        return R.string.localizable.confirmTransactionPageViteConfirmButton()
     }
 
     func createInfoView() -> UIView {

@@ -22,10 +22,10 @@ struct ConfirmEthViteExchangeViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageTransferTitle()
+        return R.string.localizable.confirmTransactionPageEthViteExchangeTitle()
     }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.confirmTransactionPageConfirmButton()
+        return R.string.localizable.confirmTransactionPageEthViteExchangeConfirmButton()
     }
 
     func createInfoView() -> UIView {

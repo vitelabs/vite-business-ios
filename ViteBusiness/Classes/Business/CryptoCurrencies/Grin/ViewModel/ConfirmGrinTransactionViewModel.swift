@@ -18,10 +18,10 @@ class ConfirmGrinTransactionViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageTitle()
+        return R.string.localizable.confirmTransactionPageGrinTransferTitle()
     }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.confirmTransactionPageConfirmButton()
+        return R.string.localizable.confirmTransactionPageGrinConfirmButton()
     }
 
     func createInfoView() -> UIView {
