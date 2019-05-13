@@ -215,6 +215,11 @@ extension TokenInfo {
     static var viteCoin: TokenInfo {
         return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!
     }
+
+
+    static var viteERC20: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20)!
+    }
 }
 
 extension TokenInfo {

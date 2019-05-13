@@ -122,16 +122,12 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice {
-            switch $0 {
-            case .success(let price):
+        EtherWallet.transaction.fetchGasPrice()
+            .done({ price in
                 // Gwei = 9
                 let b = BigDecimal(number: price, digits: 9)
                 self.gasSliderView.value = Float(b.description) ?? 1.0
-            case .failure:
-                break
-            }
-        }
+            })
     }
 
     private func setupView() {

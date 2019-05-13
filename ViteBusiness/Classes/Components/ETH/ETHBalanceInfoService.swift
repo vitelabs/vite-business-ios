@@ -33,11 +33,17 @@ public class ETHBalanceInfoService: PollService {
 
     public func handle(completion: @escaping (Ret) -> ()) {
 
-        var promise: Promise<ETHBalanceInfo>!
+        let promise: Promise<ETHBalanceInfo>
+        let tokenCode = tokenInfo.tokenCode
         if tokenInfo.isEtherCoin {
-            promise = EtherWallet.shared.getEtherBalanceInfo()
+            promise = EtherWallet.balance.etherBalance().map {
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+            }
         } else {
-            promise = EtherWallet.shared.getETHTokenBalanceInfo(tokenInfo: tokenInfo)
+            guard let token = tokenInfo.toETHToken() else { fatalError() }
+            promise = EtherWallet.balance.tokenBalance(contractAddress: token.contractAddress).map {
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+            }
         }
 
         promise
@@ -45,37 +51,6 @@ public class ETHBalanceInfoService: PollService {
                 completion(Result.success(ret))
             }.catch { (e) in
                 completion(Result.failure(e))
-        }
-    }
-}
-
-
-extension EtherWallet {
-
-    func getEtherBalanceInfo() -> Promise<ETHBalanceInfo> {
-        return Promise<ETHBalanceInfo> { seal in
-            self.etherBalance {
-                switch $0 {
-                case .success(let balance):
-                    seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: balance))
-                case .failure(let error):
-                    seal.reject(error)
-                }
-            }
-        }
-    }
-
-    func getETHTokenBalanceInfo(tokenInfo: TokenInfo) -> Promise<ETHBalanceInfo> {
-        guard let token = tokenInfo.toETHToken() else { fatalError() }
-        return Promise<ETHBalanceInfo> { seal in
-            self.tokenBalance(contractAddress: token.contractAddress) {
-                switch $0 {
-                case .success(let balance):
-                    seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: balance))
-                case .failure(let error):
-                    seal.reject(error)
-                }
-            }
         }
     }
 }
