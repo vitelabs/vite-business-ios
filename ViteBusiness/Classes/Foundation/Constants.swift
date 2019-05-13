@@ -25,10 +25,6 @@ public struct Constants {
     #else
     public static let appDownloadChannel = Channel.appstore
     #endif
-    public static let quotaDefinitionURL = "https://app.vite.net/quotaDefinition"
-    public static let voteDefinitionURL = "https://app.vite.net/vote"
-    public static let voteLoserURL = "https://app.vite.net/voteLoser"
-    public static let voteOfficeURL = "https://www.vite.org/"
     public static let IntroductionPageVersion = "3.0"
 
     public static let whiteList = ["vite.org",
