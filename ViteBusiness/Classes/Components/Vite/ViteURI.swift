@@ -63,6 +63,7 @@ public enum URIError: Error {
     case InvalidAddress
     case InvalidFunctionName
     case InvalidTokenId
+    case InvalidUserAddress
     case InvalidContractAddress
     case InvalidAmount
     case InvalidFee
@@ -101,11 +102,12 @@ public struct ViteURI: URIType {
     var parameters: [(String, String)]?
 
     static func transferURI(address: ViteAddress, tokenId: ViteTokenId?, amount: String?, note: String?) -> ViteURI {
-//        let data: Data?
-//        if let note = note {
-//            data = AccountBlockDataFactory.generateUTF8StringData(string: note)
-//        }
-        let data = note.flatMap { AccountBlockDataFactory.generateUTF8StringData(string: $0) }
+        let data: Data?
+        if let note = note, !note.isEmpty {
+            data = AccountBlockDataFactory.generateUTF8StringData(string: note)
+        } else {
+            data = nil
+        }
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
@@ -194,10 +196,7 @@ public struct ViteURI: URIType {
             return Result(error: URIError.InvalidFormat("/"))
         }
 
-        var type = URIType.transfer
-        if functionName != nil {
-            type = URIType.contract
-        }
+        let type: URIType = (functionName == nil) ? .transfer : .contract
 
         guard let (addressString, chainId) = separate(address_chainId, by: "@") else {
             return Result(error: URIError.InvalidFormat("@"))
@@ -207,6 +206,17 @@ public struct ViteURI: URIType {
 
         guard address.isViteAddress else {
             return Result(error: URIError.InvalidAddress)
+        }
+
+        switch type {
+        case .transfer:
+            guard address.viteAddressType == .user else {
+                return Result(error: URIError.InvalidUserAddress)
+            }
+        case .contract:
+            guard address.viteAddressType == .contract else {
+                return Result(error: URIError.InvalidContractAddress)
+            }
         }
 
         var tokenId: ViteTokenId? = nil
