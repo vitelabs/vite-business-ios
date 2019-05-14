@@ -155,6 +155,9 @@ extension GrinManager {
     func handle(url: URL) {
         self.receivedSlateUrl = url
         gotoSlateVCIfNeed()
+        guard let data = JSON(FileManager.default.contents(atPath: url.path)).rawValue as? [String: Any],
+            let slate = Slate(JSON:data) else { return }
+        GrinLocalInfoService.shared.addReceiveInfo(slateId: slate.id, method: "File", getSendFileTime: Int(Date().timeIntervalSince1970))
     }
 
     func gotoSlateVCIfNeed() {
@@ -165,15 +168,41 @@ extension GrinManager {
             let slate = Slate(JSON:data) else {
                 return
         }
+
+        var fullInfo = GrinFullTxInfo()
+
+        var txs: [TxLogEntry] = []
+        do {
+            let (_ ,logeEntrys) = try  GrinManager.default.txsGet(refreshFromNode: false).dematerialize()
+            txs = logeEntrys
+        } catch {
+
+        }
+
+        if  url.path.contains("response") {
+            GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
+            let saveUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: true)
+            try? FileManager.default.copyItem(at: url, to: saveUrl)
+            let localInfo = GrinLocalInfoService.shared.getSendInfo(slateId: slate.id)
+            fullInfo.localInfo = localInfo
+            fullInfo.txLogEntry = txs.filter({ (tx) -> Bool in
+                tx.txSlateId == slate.id && ( tx.txType == .txSent || tx.txType == .txSentCancelled)
+            }).last
+        } else {
+            GrinLocalInfoService.shared.addReceiveInfo(slateId: slate.id, method: "File", getSendFileTime: Int(Date().timeIntervalSince1970))
+            let saveUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: false)
+            try? FileManager.default.copyItem(at: url, to: saveUrl)
+            let localInfo = GrinLocalInfoService.shared.getReceiveInfo(slateId: slate.id)
+            fullInfo.localInfo = localInfo
+            fullInfo.txLogEntry = txs.filter({ (tx) -> Bool in
+                tx.txSlateId == slate.id && ( tx.txType == .txReceived || tx.txType == .txReceivedCancelled)
+            }).last
+        }
+        fullInfo.openedSalteUrl = url
+
         DispatchQueue.main.async {
-            let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
-            vc.opendSlateUrl = url
-            vc.opendSlate = slate
-            if  url.path.contains("response") {
-                vc.type = .finalize
-            } else {
-                vc.type = .receive
-            }
+            let vc = GrinTxDetailViewController()
+            vc.fullInfo = fullInfo
             var topVC = Route.getTopVC()
             if let nav = topVC?.navigationController {
                 nav.pushViewController(vc, animated: true)
@@ -206,7 +235,7 @@ extension GrinManager {
             while records.count >= 10 {
                 records.removeFirst()
             }
-            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(accountAddress)", tag: .grin)
+            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),:\(fromAddress),accountAddress:\(accountAddress)", tag: .grin)
         }
         records.append(record)
         do {
@@ -446,3 +475,20 @@ func grin_async<T>(_ a: @escaping ()-> T,
         }
     }
 }
+
+class GrinDateFormatter {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+        return dateFormatter
+    }()
+
+    static let dateFormatterForZeroTimeZone: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
+        return dateFormatter
+    }()
+}
+

@@ -54,7 +54,7 @@ class GrinTransactionCell: UITableViewCell {
                 statusLabel.text = R.string.localizable.grinTxTypeReceived()
             }
             feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(0)).amountShort(decimals:9))"
-            let amount = (Int(gatewayInfo.toAmount) ?? 0)
+            let amount = (Int(gatewayInfo.toAmount ?? "") ?? 0)
             amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(amount)).amount(decimals: 9, count: 4)
             amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
             let date = Date.init(timeIntervalSince1970: TimeInterval(gatewayInfo.createTime/1000))
@@ -108,10 +108,10 @@ class GrinTransactionCell: UITableViewCell {
             status = R.string.localizable.grinTxTypeReceived()
             image = R.image.grin_txlist_receive_received()
         } else if tx.txType == .txSent {
-            if  fullInfo.localInfo?.finalizeTime != nil {
+            if let time = fullInfo.localInfo?.finalizeTime, time > 0 {
                 status =  R.string.localizable.grinTxTypeFinalized()
                 image = R.image.grin_txlist_send_posting()
-            } else if fullInfo.localInfo?.getResponseFileTime != nil {
+            } else if let time = fullInfo.localInfo?.getResponseFileTime, time > 0 {
                 status =  R.string.localizable.grinTxTypeWaitToFinalize()
                 image = R.image.grin_txlist_send_waitToFinalize()
             } else {

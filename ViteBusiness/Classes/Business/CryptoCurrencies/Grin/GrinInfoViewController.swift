@@ -80,6 +80,8 @@ class GrinInfoViewController: BaseViewController {
         bind()
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
+
+       
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -313,7 +315,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -343,6 +345,14 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
             action.append(cancleAction)
         }
         return action
+    }
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detail = GrinTxDetailViewController()
+        let tx = self.walletInfoVM.txs.value[indexPath.row]
+        detail.fullInfo = tx
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 
 }

@@ -14,10 +14,10 @@ class GrinGatewayInfo: Mappable {
     var address: String = ""
     var slatedId: String  = ""
     var toSlatedId: String  = ""
-    var fromAmount: String  = ""
-    var fromFee: String  = ""
-    var toAmount: String  = ""
-    var toFee: String  = ""
+    var fromAmount: String?  = nil
+    var fromFee: String?  = nil
+    var toAmount: String?  = nil
+    var toFee: String?  = nil
     var status: Int = 0
     var confirmInfo: GrinGatewayConfirmInfo?
     var pushViteHash: String = ""
@@ -27,6 +27,10 @@ class GrinGatewayInfo: Mappable {
     var redoCount: String = ""
     var ctimeFormat: String = ""
     var mtimeFormat: String = ""
+
+    var stepDetailList: [Int: Int] = [0: 1557813789000,
+                                      1 :1557813828000,
+                                      2: 1557813830000]
 
     required public init?(map: Map) { }
 
@@ -68,10 +72,31 @@ class GrinGatewayConfirmInfo: Mappable {
     }
 }
 
-struct GrinFullTxInfo {
+class GrinFullTxInfo {
+
+    init() {
+        
+    }
+
+
+    init(txLogEntry: TxLogEntry?, gatewayInfo: GrinGatewayInfo?, localInfo: GrinLocalInfo?, openedSalte: Slate?,openedSalteUrl: URL?, openedSalteFlieName: String?)
+    {
+         self.txLogEntry =  txLogEntry
+         self.gatewayInfo =  gatewayInfo
+         self.localInfo =  localInfo
+         self.openedSalte =  openedSalte
+         self.openedSalteUrl =  openedSalteUrl
+         self.openedSalteFlieName =  openedSalteFlieName
+    }
+
+
     var txLogEntry: TxLogEntry?
     var gatewayInfo: GrinGatewayInfo?
     var localInfo: GrinLocalInfo?
+
+    var openedSalte: Slate? = nil
+    var openedSalteUrl: URL? = nil
+    var openedSalteFlieName: String? = nil
 
 }
 
@@ -83,9 +108,13 @@ extension GrinFullTxInfo {
         dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
         return dateFormatter
     }()
+
+    var isGatewayTx: Bool {
+         return gatewayInfo != nil
+    }
     
     var isHttpTx: Bool {
-        return gatewayInfo != nil || localInfo?.method == "Http"
+        return isGatewayTx || localInfo?.method == "Http"
     }
 
     var isViteTx: Bool {
@@ -93,11 +122,36 @@ extension GrinFullTxInfo {
     }
 
     var isFileTx: Bool {
-        return localInfo?.method == "File"
+        return localInfo?.method == "File" 
     }
 
     var unkonwMethd: Bool{
         return !(isHttpTx || isFileTx || isViteTx)
+    }
+
+    var isSend: Bool {
+        return txLogEntry?.txType == .txSent
+            || txLogEntry?.txType == .txSentCancelled
+            || localInfo?.type == "Send"
+    }
+
+    var isReceive: Bool {
+        return txLogEntry?.txType == .txReceived
+            || txLogEntry?.txType == .txReceivedCancelled
+            || gatewayInfo != nil
+            || localInfo?.type == "Receive"
+    }
+
+    var isSentCancelled: Bool {
+        return txLogEntry?.txType == .txSentCancelled
+    }
+
+    var isReceivedCancelled: Bool {
+        return txLogEntry?.txType == .txReceivedCancelled
+    }
+
+    var isCancelled: Bool {
+        return isSentCancelled || isReceivedCancelled
     }
 
     var timeStamp: TimeInterval {

@@ -62,8 +62,24 @@ class SendGrinViewController: UIViewController {
 
         transferVM.sendSlateCreated.asObserver()
             .bind { [weak self] (slate, url) in
-                let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
-                (vc.opendSlate, vc.opendSlateUrl) = (slate, url)
+                var fullInfo = GrinFullTxInfo()
+                var txs: [TxLogEntry] = []
+                do {
+                    let (_ ,logeEntrys) = try GrinManager.default.txsGet(refreshFromNode: false).dematerialize()
+                    txs = logeEntrys
+                } catch {
+
+                }
+                let localInfo = GrinLocalInfoService.shared.getSendInfo(slateId: slate.id)
+                fullInfo.localInfo = localInfo
+                fullInfo.txLogEntry = txs.filter({ (tx) -> Bool in
+                    tx.txSlateId == slate.id && ( tx.txType == .txSent || tx.txType == .txSentCancelled)
+                }).last
+
+                fullInfo.openedSalteUrl = url
+                let vc = GrinTxDetailViewController()
+                vc.fullInfo = fullInfo
+
                 var viewControllers = self?.navigationController?.viewControllers
                 viewControllers?.popLast()
                 viewControllers?.append(vc)

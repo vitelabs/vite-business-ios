@@ -29,4 +29,17 @@ extension TxLogEntry {
         return !confirmed && txType == .txSent && txSentFinalized
     }
 
+    var timeString: String {
+        let tx = self
+        var timeString = tx.creationTs
+        let dateFormatter = GrinDateFormatter.dateFormatter
+        if let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ") {
+            timeString = creationTs
+            if let date = GrinDateFormatter.dateFormatterForZeroTimeZone.date(from: creationTs) {
+                timeString = dateFormatter.string(from: date)
+            }
+        }
+        return timeString
+    }
+
 }

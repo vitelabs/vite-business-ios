@@ -104,6 +104,27 @@ final class GrinWalletInfoVM {
         })
     }
 
+    var deleted = false
+    func deleteHistoryFile(_ grinTxs: [TxLogEntry])  {
+        guard deleted == true else { return }
+        deleted = true
+
+        for tx in grinTxs {
+            let canDelet = (tx.confirmed == true || tx.txType == .txReceivedCancelled || tx.txType == .txSentCancelled)
+            guard canDelet == true ,
+                let slateId = tx.txSlateId else {
+                    continue
+            }
+
+            let receiveFileUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true)
+            let sendFileUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false)
+            for url in [receiveFileUrl, sendFileUrl] {
+                if FileManager.default.fileExists(atPath: url.path) {
+                    try? FileManager.default.removeItem(at: url)
+                }
+            }
+        }
+    }
 
     func getTxs(_ manually: Bool) {
         let grinTxs = Promise<[TxLogEntry]> { seal in
@@ -112,6 +133,7 @@ final class GrinWalletInfoVM {
             },  { (result) in
                 switch result {
                 case .success((_, let txs)):
+                    self.deleteHistoryFile(txs)
                     seal.fulfill(txs.reversed())
                 case .failure(let error):
                     seal.reject(error)
@@ -175,7 +197,7 @@ final class GrinWalletInfoVM {
                 guard let slateId = localInfo.slateId,
                     let type = localInfo.type else { continue }
                 if FileManager.default.fileExists(atPath: GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false).path) || FileManager.default.fileExists(atPath: GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true).path) {
-                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: nil, localInfo: localInfo)
+                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: nil, localInfo: localInfo, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
                     fullTxInfos.append(fullInfo)
                 }
             }
@@ -193,10 +215,10 @@ final class GrinWalletInfoVM {
                 }
             }
             if let matchedLocalInfo = matchedLocalInfo {
-                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: matchedLocalInfo)
+                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: matchedLocalInfo, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
                 fullTxInfos.append(fullInfo)
             } else {
-                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil)
+                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil, openedSalteUrl: nil,openedSalteFlieName: nil)
                 fullTxInfos.append(fullInfo)
             }
         }
@@ -210,14 +232,16 @@ final class GrinWalletInfoVM {
                 if  (gateWayInfo.toSlatedId == fullInfo.txLogEntry?.txSlateId || gateWayInfo.toSlatedId == fullInfo.localInfo?.slateId) {
                     fullTxInfos[index].gatewayInfo = gateWayInfo
                 } else {
-                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: gateWayInfo, localInfo: nil)
+                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: gateWayInfo, localInfo: nil, openedSalte: nil, openedSalteUrl: nil,openedSalteFlieName: nil)
                     fullTxInfos.append(fullInfo)
                 }
             }
         }
 
         let sorted = fullTxInfos.sorted { $0.timeStamp > $1.timeStamp }
-        return sorted
+        return sorted.filter({ (fullinfo) -> Bool in
+            fullinfo.txLogEntry != nil || fullinfo.gatewayInfo != nil
+        })
 
 //        for gateWayInfo in gateWayInfos  {
 //            var grinTxInfo: TxLogEntry?
@@ -261,6 +285,8 @@ final class GrinWalletInfoVM {
         },  { (result) in
             switch result {
             case .success(_):
+                GrinLocalInfoService.shared.set(cancleSendTime: Int(Date().timeIntervalSince1970), with: tx.txSlateId ?? "")
+                GrinLocalInfoService.shared.set(cancleReceiveTime: Int(Date().timeIntervalSince1970), with: tx.txSlateId ?? "")
                 self.action.onNext(.getBalance(manually: false))
                 GrinTxByViteService().reportFinalization(slateId: tx.txSlateId ?? "", account:  HDWalletManager.instance.account!)
                     .done { }

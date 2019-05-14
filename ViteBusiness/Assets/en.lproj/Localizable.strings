@@ -477,5 +477,5 @@
 "grin.teach.vite.receive.copyViteAddress" = "复制VITE地址";
 "grin.teach.vite.send.startSend" = "开始转账";
 "grin.txMethod.http" = "HTTP地址";
-"grin.txMethod.vite" = "VVITE地址";
+"grin.txMethod.vite" = "VITE地址";
 "grin.txMethod.file" = "文件交易";

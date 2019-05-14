@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 129 images.
+  /// This `R.image` struct is generated, and contains static references to 153 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -48,6 +48,54 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `grin_detail_cancled_gray`.
+    static let grin_detail_cancled_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_cancled_gray")
+    /// Image `grin_detail_cancled`.
+    static let grin_detail_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_cancled")
+    /// Image `grin_detail_confirmed_gray`.
+    static let grin_detail_confirmed_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmed_gray")
+    /// Image `grin_detail_confirmed`.
+    static let grin_detail_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmed")
+    /// Image `grin_detail_confirmedconbase`.
+    static let grin_detail_confirmedconbase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmedconbase")
+    /// Image `grin_detail_created_gray`.
+    static let grin_detail_created_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_created_gray")
+    /// Image `grin_detail_created`.
+    static let grin_detail_created = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_created")
+    /// Image `grin_detail_gateway_confirmed_gray`.
+    static let grin_detail_gateway_confirmed_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_confirmed_gray")
+    /// Image `grin_detail_gateway_confirmed`.
+    static let grin_detail_gateway_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_confirmed")
+    /// Image `grin_detail_gateway_received_gray`.
+    static let grin_detail_gateway_received_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_received_gray")
+    /// Image `grin_detail_gateway_received`.
+    static let grin_detail_gateway_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_received")
+    /// Image `grin_detail_gateway`.
+    static let grin_detail_gateway = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway")
+    /// Image `grin_detail_line_blue`.
+    static let grin_detail_line_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_line_blue")
+    /// Image `grin_detail_line_gray`.
+    static let grin_detail_line_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_line_gray")
+    /// Image `grin_detail_normal`.
+    static let grin_detail_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_normal")
+    /// Image `grin_detail_poasting_gray`.
+    static let grin_detail_poasting_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_poasting_gray")
+    /// Image `grin_detail_poasting`.
+    static let grin_detail_poasting = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_poasting")
+    /// Image `grin_detail_received_gray`.
+    static let grin_detail_received_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_received_gray")
+    /// Image `grin_detail_received`.
+    static let grin_detail_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_received")
+    /// Image `grin_detail_vite`.
+    static let grin_detail_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_vite")
+    /// Image `grin_detail_waitToFinzlize_gray`.
+    static let grin_detail_waitToFinzlize_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToFinzlize_gray")
+    /// Image `grin_detail_waitToFinzlize`.
+    static let grin_detail_waitToFinzlize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToFinzlize")
+    /// Image `grin_detail_waitToSign_gray`.
+    static let grin_detail_waitToSign_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToSign_gray")
+    /// Image `grin_detail_waitToSign`.
+    static let grin_detail_waitToSign = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToSign")
     /// Image `grin_gray`.
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
     /// Image `grin_help`.
@@ -355,6 +403,126 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin", bundle: ..., traitCollection: ...)`
     static func grin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_cancled", bundle: ..., traitCollection: ...)`
+    static func grin_detail_cancled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_cancled, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_cancled_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_cancled_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_cancled_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmed_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmed_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmed_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmedconbase", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmedconbase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmedconbase, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_created", bundle: ..., traitCollection: ...)`
+    static func grin_detail_created(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_created, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_created_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_created_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_created_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_confirmed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_confirmed_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_confirmed_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_confirmed_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_received", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_received_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_received_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_received_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_line_blue", bundle: ..., traitCollection: ...)`
+    static func grin_detail_line_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_line_blue, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_line_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_line_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_line_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_normal", bundle: ..., traitCollection: ...)`
+    static func grin_detail_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_normal, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_poasting", bundle: ..., traitCollection: ...)`
+    static func grin_detail_poasting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_poasting, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_poasting_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_poasting_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_poasting_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_received", bundle: ..., traitCollection: ...)`
+    static func grin_detail_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_received_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_received_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_received_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_vite", bundle: ..., traitCollection: ...)`
+    static func grin_detail_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_vite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToFinzlize", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToFinzlize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToFinzlize, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToFinzlize_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToFinzlize_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToFinzlize_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToSign", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToSign(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToSign, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToSign_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToSign_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToSign_gray, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_gray", bundle: ..., traitCollection: ...)`

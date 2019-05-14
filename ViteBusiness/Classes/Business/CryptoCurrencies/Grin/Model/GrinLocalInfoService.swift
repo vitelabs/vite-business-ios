@@ -140,6 +140,53 @@ class GrinLocalInfoService {
             }
             while b.next() {
                 var info = GrinLocalInfo()
+                info.slateId = b.string(forColumn: "slateid")
+                info.method = b.string(forColumn: "method")
+                info.type = "Receive"
+
+                info.getSendFileTime = Double(b.longLongInt(forColumn: "getsendfiletime"))
+                info.receiveTime = Double(b.longLongInt(forColumn: "receivetime"))
+                info.shareResponseFileTime = Double(b.longLongInt(forColumn: "shareresponsefiletime"))
+                info.cancleReceiveTime = Double(b.longLongInt(forColumn: "canclereceivetime"))
+                result.append(info)
+            }
+        } catch {
+
+        }
+        return result
+    }
+
+    func getSendInfo(slateId: String) -> GrinLocalInfo? {
+        var result = [GrinLocalInfo]()
+        do {
+            let a = try db.executeQuery("select * from tx_send where slateid = ?" ,values: [slateId])
+            while a.next() {
+                var info = GrinLocalInfo()
+                info.slateId = a.string(forColumn: "slateid")
+                info.method = a.string(forColumn: "method")
+                info.type = "Send"
+
+                info.creatTime = Double(a.longLongInt(forColumn: "creattime"))
+                info.shareSendFileTime = Double(a.longLongInt(forColumn: "sharesendfiletime"))
+                info.getResponseFileTime = Double(a.longLongInt(forColumn: "getresponsefiletime"))
+                info.finalizeTime = Double(a.longLongInt(forColumn: "finalizetime"))
+                info.cancleSendTime = Double(a.longLongInt(forColumn: "canclesendtime"))
+                result.append(info)
+            }
+        } catch {
+
+        }
+
+        return result.first
+
+    }
+
+    func getReceiveInfo(slateId: String) -> GrinLocalInfo? {
+        var result = [GrinLocalInfo]()
+        do {
+            let a = try db.executeQuery("select * from tx_receive where slateid = ?" ,values: [slateId])
+            while a.next() {
+                var info = GrinLocalInfo()
                 info.slateId = a.string(forColumn: "slateid")
                 info.method = a.string(forColumn: "method")
                 info.type = "Receive"
@@ -153,9 +200,8 @@ class GrinLocalInfoService {
         } catch {
 
         }
-        return result
+        return result.first
     }
-
 
 }
 
