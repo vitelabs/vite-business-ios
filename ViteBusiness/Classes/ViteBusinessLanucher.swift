@@ -39,8 +39,9 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
-        //config 
-//        EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        //config
+        Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
+        EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()

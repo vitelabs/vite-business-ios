@@ -80,23 +80,9 @@ class GrinManager: GrinBridge {
         self.fileHelper = grinFileHelper()
         self.password =  GrinManager.getPassword()
         self.walletUrl = GrinManager.getWalletUrl()
-        #if DEBUG || TEST
-        switch DebugService.instance.config.appEnvironment {
-        case .online, .stage:
-            self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
-            self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
-            self.chainType = GrinChainType.mainnet.rawValue
-            break
-        case .test, .custom:
-            self.checkNodeApiHttpAddr = "http://45.40.197.46:23413"
-            self.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
-            self.chainType = GrinChainType.usernet.rawValue
-        }
-        #else
-        self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
-        self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
-        self.chainType = GrinChainType.mainnet.rawValue
-        #endif
+        self.checkNodeApiHttpAddr = ViteConst.instance.grin.nodeHttp
+        self.apiSecret = ViteConst.instance.grin.apiSecret
+        self.chainType = ViteConst.instance.grin.chainType
         self.creatWalletIfNeeded()
         self.balance.accept(GrinBalance())
         DispatchQueue.main.async {

@@ -21,16 +21,7 @@ public enum GrinTransaction {
 extension GrinTransaction: TargetType {
 
     public var baseURL: URL {
-        #if DEBUG || TEST
-        switch DebugService.instance.config.appEnvironment {
-        case .online, .stage:
-            return URL(string: "https://grinx.vite.net")!
-        case .test, .custom:
-            return URL(string: "http://132.232.138.139:8081/test")!
-        }
-        #else
-        return URL(string: "https://grinx.vite.net")!
-        #endif
+        return URL(string: ViteConst.instance.grin.x)!
     }
 
     public var path: String {
