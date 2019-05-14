@@ -94,7 +94,8 @@ class TransactionListViewController: BaseTableViewController {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
                         if viewModel.isGenesis {
-                            WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
+                            // do nothing
+//                            WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
                         } else {
                             WebHandler.openTranscationDetailPage(hash: viewModel.hash)
                         }
