@@ -38,7 +38,20 @@ class TransactionGenesisCell: BaseTableViewCell {
 
         contentView.addSubview(button)
         button.snp.makeConstraints { (m) in
-            m.center.equalToSuperview()
+            m.left.equalToSuperview().offset(24)
+            m.centerY.equalToSuperview()
+        }
+
+        let line = UIView().then {
+            $0.backgroundColor = Colors.lineGray
+        }
+
+        contentView.addSubview(line)
+        line.snp.makeConstraints { (m) in
+            m.height.equalTo(CGFloat.singleLineWidth)
+            m.left.equalTo(contentView).offset(24)
+            m.right.equalTo(contentView).offset(-24)
+            m.bottom.equalTo(contentView)
         }
     }
 

@@ -1119,7 +1119,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinWalletCheck = Rswift.StringResource(key: "grin.wallet.check", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Check creation block records
+      /// en translation: Check Genesis Block Records
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageGenesisCellName = Rswift.StringResource(key: "transaction.list.page.genesis.cell.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2814,7 +2814,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.wallet.check", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Check creation block records
+      /// en translation: Check Genesis Block Records
       /// 
       /// Locales: en, zh-Hans
       static func transactionListPageGenesisCellName(_: Void = ()) -> String {
