@@ -24,10 +24,6 @@ public class DebugService {
     fileprivate let fileHelper = FileHelper(.library)
     fileprivate static let saveKey = "DebugService"
 
-//    let rpcDefaultTestEnvironmentUrl = URL(string: "http://45.40.197.46:48132")!
-    let rpcDefaultTestEnvironmentUrl = URL(string: "http://148.70.30.139:48132")!
-    let browserDefaultTestEnvironmentUrl = URL(string: "http://132.232.134.168:8080")!
-
     public enum AppEnvironment: Int {
         case test = 0
         case stage = 1
@@ -71,11 +67,11 @@ public class DebugService {
         var url: URL {
             switch self {
             case .test:
-                return URL(string: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com")!
+                return URL(string: ViteConst.Env.testEnv.cos.config)!
             case .stage:
-                return URL(string: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com")!
+                return URL(string: ViteConst.Env.stageEnv.cos.config)!
             case .online:
-                return URL(string: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com")!
+                return URL(string: ViteConst.Env.premainnet.cos.config)!
             }
         }
     }
@@ -94,7 +90,6 @@ public class DebugService {
         #if DEBUG || TEST
         NotificationCenter.default.post(name: NSNotification.Name.appEnvironmentDidChange, object: nil)
         #endif
-        updateETHServer()
         // change environment need exit
         exit(0)
     }
@@ -103,10 +98,6 @@ public class DebugService {
         didSet {
             guard config != oldValue else { return }
             pri_save()
-
-            if config.rpcUseOnlineUrl != oldValue.rpcUseOnlineUrl || config.rpcCustomUrl != oldValue.rpcCustomUrl {
-                updateRPCServerProvider()
-            }
 
             if config.configEnvironment != oldValue.configEnvironment {
                 DispatchQueue.main.async {
@@ -251,31 +242,6 @@ public class DebugService {
         }
     }
 
-    private func updateRPCServerProvider() {
-        if config.rpcUseOnlineUrl {
-            Provider.default.update(server: ViteWallet.RPCServer.shared)
-        } else {
-            if let url = URL(string: config.rpcCustomUrl) {
-                Provider.default.update(server: ViteWallet.RPCServer(url: url))
-            } else {
-                Provider.default.update(server: ViteWallet.RPCServer(url: rpcDefaultTestEnvironmentUrl))
-            }
-        }
-    }
-
-    private func updateETHServer() {
-        switch config.appEnvironment {
-        case .test:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
-        case .stage:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
-        case .online:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
-        case .custom:
-            EtherWallet.network.changeHost(Web3.Vite_InfuraRopstenWeb3())
-        }
-    }
-
     private init() {
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
@@ -285,9 +251,6 @@ public class DebugService {
         } else {
             self.config = Config.test
         }
-
-        updateRPCServerProvider()
-        updateETHServer()
     }
 
     fileprivate func pri_save() {

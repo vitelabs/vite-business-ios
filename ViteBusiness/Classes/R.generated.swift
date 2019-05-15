@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 125 images.
+  /// This `R.image` struct is generated, and contains static references to 126 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -146,6 +146,8 @@ struct R: Rswift.Validatable {
     static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
     /// Image `icon_edit_name`.
     static let icon_edit_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_edit_name")
+    /// Image `icon_genesis_button`.
+    static let icon_genesis_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_genesis_button")
     /// Image `icon_hide_pwd`.
     static let icon_hide_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_hide_pwd")
     /// Image `icon_logo_chain_eth`.
@@ -589,6 +591,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_edit_name, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_genesis_button", bundle: ..., traitCollection: ...)`
+    static func icon_genesis_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_genesis_button, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_hide_pwd", bundle: ..., traitCollection: ...)`
     static func icon_hide_pwd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_hide_pwd, compatibleWith: traitCollection)
@@ -901,10 +908,6 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 404 localization keys.
     struct localizable {
-      /// en translation: 
-      /// 
-      /// Locales: en, zh-Hans
-      static let workflow = Rswift.StringResource(key: "workflow.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
@@ -1145,6 +1148,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinWalletCheck = Rswift.StringResource(key: "grin.wallet.check", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Check Genesis Block Records
+      /// 
+      /// Locales: en, zh-Hans
+      static let transactionListPageGenesisCellName = Rswift.StringResource(key: "transaction.list.page.genesis.cell.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Check transaction history in Ethereum Explorer
       /// 
       /// Locales: en, zh-Hans
@@ -1169,10 +1176,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let confirmTransactionPageEthConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.eth.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Confirm
-      /// 
-      /// Locales: en, zh-Hans
-      static let confirmTransactionPageEthViteExchangeConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
@@ -1237,6 +1240,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageEthViteExchangeConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Copy
       /// 
       /// Locales: en, zh-Hans
@@ -1421,10 +1428,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentCreatFile = Rswift.StringResource(key: "grin.sent.creatFile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Genesis Block
-      /// 
-      /// Locales: en, zh-Hans
-      static let transactionListPageGenesisCellName = Rswift.StringResource(key: "transaction.list.page.genesis.cell.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
@@ -2077,6 +2080,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageToastAmountZero = Rswift.StringResource(key: "send.page.toast.amount.zero", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters
+      /// 
+      /// Locales: en, zh-Hans
+      static let sendPageToastContractAddressSupportHex = Rswift.StringResource(key: "send.page.toast.contract.address.support.hex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The length of notes has reached limitations
       /// 
       /// Locales: en, zh-Hans
@@ -2153,10 +2160,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let confirmTransactionPageEthTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.eth.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transfer
-      /// 
-      /// Locales: en, zh-Hans
-      static let confirmTransactionPageEthViteExchangeTitle = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -2281,6 +2284,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageViteContactsButtonTitle = Rswift.StringResource(key: "send.page.vite.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageEthViteExchangeTitle = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -2517,13 +2524,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      
-      /// en translation: 
-      /// 
-      /// Locales: en, zh-Hans
-      static func workflow(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.", bundle: R.hostingBundle, comment: "")
-      }
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2945,6 +2945,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.wallet.check", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Check Genesis Block Records
+      /// 
+      /// Locales: en, zh-Hans
+      static func transactionListPageGenesisCellName(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.page.genesis.cell.name", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Check transaction history in Ethereum Explorer
       /// 
       /// Locales: en, zh-Hans
@@ -2985,13 +2992,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func confirmTransactionPageEthConfirmButton(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.eth.confirm.button", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Confirm
-      /// 
-      /// Locales: en, zh-Hans
-      static func confirmTransactionPageEthViteExchangeConfirmButton(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirm
@@ -3104,6 +3104,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func contractConfirmInfo(_: Void = ()) -> String {
         return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageEthViteExchangeConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Copy
@@ -3426,13 +3433,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinSentCreatFile(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.creatFile", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Genesis Block
-      /// 
-      /// Locales: en, zh-Hans
-      static func transactionListPageGenesisCellName(_: Void = ()) -> String {
-        return NSLocalizedString("transaction.list.page.genesis.cell.name", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Get TPS quota
@@ -4576,6 +4576,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.toast.amount.zero", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters
+      /// 
+      /// Locales: en, zh-Hans
+      static func sendPageToastContractAddressSupportHex(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.toast.contract.address.support.hex", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: The length of notes has reached limitations
       /// 
       /// Locales: en, zh-Hans
@@ -4707,13 +4714,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func confirmTransactionPageEthTransferTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.eth.transfer.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transfer
-      /// 
-      /// Locales: en, zh-Hans
-      static func confirmTransactionPageEthViteExchangeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer
@@ -4931,6 +4931,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageViteContactsButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.vite.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageEthViteExchangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Verify

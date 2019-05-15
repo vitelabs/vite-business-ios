@@ -128,7 +128,7 @@
 "transaction.list.page.title" = "交易记录";
 "transaction.list.page.empty" = "无记录";
 "transaction.list.page.network.error" = "刷新页面";
-"transaction.list.page.genesis.cell.name" = "创世块";
+"transaction.list.page.genesis.cell.name" = "查看创世块记录";
 "transaction.list.page.header.refresh.idle" = "下拉刷新";
 "transaction.list.page.header.refresh.pulling" = "松开立即刷新";
 "transaction.list.page.header.refresh.refreshing" = "正在刷新中...";
@@ -188,6 +188,7 @@
 "send.page.toast.amount.empty" = "请填写金额";
 "send.page.toast.amount.zero" = "转账金额不能为0";
 "send.page.toast.note.too.long" = "备注已达上限";
+"send.page.toast.contract.address.support.hex" = "您转账的目标地址是一个合约，备注必须是合法的十六进制字符";
 "send.page.not.enough.balance.alert.title" = "账户余额不足";
 "send.page.not.enough.balance.alert.button" = "取消交易";
 "send.page.token.info.error" = "代币信息错误";

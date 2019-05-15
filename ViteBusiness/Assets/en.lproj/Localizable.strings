@@ -125,7 +125,7 @@
 "transaction.list.page.title" = "Transaction History";
 "transaction.list.page.empty" = "Empty";
 "transaction.list.page.network.error" = "Refresh";
-"transaction.list.page.genesis.cell.name" = "Genesis Block";
+"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
 "transaction.list.page.header.refresh.refreshing" = "Loading...";
@@ -185,6 +185,7 @@
 "send.page.toast.amount.empty" = "Please input balance";
 "send.page.toast.amount.zero" = "The amount has to be positive";
 "send.page.toast.note.too.long" = "The length of notes has reached limitations";
+"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
 "send.page.not.enough.balance.alert.title" = "Insufficient Balance";
 "send.page.not.enough.balance.alert.button" = "Cancel";
 "send.page.token.info.error" = "Token Info Error";

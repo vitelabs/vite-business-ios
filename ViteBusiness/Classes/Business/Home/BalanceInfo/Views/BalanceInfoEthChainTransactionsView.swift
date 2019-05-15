@@ -35,7 +35,7 @@ class BalanceInfoEthChainTransactionsView: UIView {
 
             button.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
-                var infoUrl = String.init(format: "%@%@",EtherWallet.network.getEtherInfoH5Url(), HDWalletManager.instance.ethAddress ?? "")
+                var infoUrl = String.init(format: "%@/%@",ViteConst.instance.eth.explorer, HDWalletManager.instance.ethAddress ?? "")
                 guard let url = URL(string: infoUrl) else { return }
                 let vc = WKWebViewController.init(url: url)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)

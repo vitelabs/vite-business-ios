@@ -9,21 +9,8 @@
 import UIKit
 
 public struct WebHandler {
-    #if DEBUG || TEST
-    fileprivate static var browserUrlString: String {
-        if DebugService.instance.config.browserUseOnlineUrl {
-            return "https://explorer.vite.net"
-        } else {
-            if let url = URL(string: DebugService.instance.config.browserCustomUrl) {
-                return url.absoluteString
-            } else {
-                return DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-            }
-        }
-    }
-    #else
-    fileprivate static let browserUrlString = "https://explorer.vite.net"
-    #endif
+
+    fileprivate static let browserUrlString = ViteConst.instance.vite.explorer
 
     static func open(_ url: URL) {
         let webvc = WKWebViewController(url: url)
@@ -37,10 +24,9 @@ public struct WebHandler {
         open(url)
     }
 
-    static func openTranscationGenesisPage(hash: String) {
-        let host = appendLanguagePath(urlString: browserUrlString)
-        guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
-        guard let url = URL(string: "\(host)/transaction/\(string)") else { return }
+    static func openTranscationGenesisPage(address: String) {
+        let urlString = NSString(format: ViteConst.instance.vite.genesisPageUrl as NSString, address)
+        guard let url = URL(string: urlString as String) else { return }
         open(url)
     }
 

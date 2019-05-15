@@ -17,18 +17,29 @@ class TransactionGenesisCell: BaseTableViewCell {
         return 72
     }
 
-    fileprivate let typeNameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x77808A)
+    fileprivate let button = UIButton().then {
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 6)
+        $0.setImage(R.image.icon_genesis_button(), for: .normal)
+        $0.setImage(R.image.icon_genesis_button()?.highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
     }
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(typeNameLabel)
-        typeNameLabel.snp.makeConstraints { (m) in
-            m.center.equalToSuperview()
+
+        selectionStyle = .none
+
+        contentView.addSubview(button)
+        button.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(24)
+            m.centerY.equalToSuperview()
         }
 
         let line = UIView().then {
@@ -49,7 +60,11 @@ class TransactionGenesisCell: BaseTableViewCell {
     }
 
     func bind(viewModel: TransactionViewModelType, index: Int) {
-        typeNameLabel.text = viewModel.typeName
+        button.setTitle(viewModel.typeName, for: .normal)
+
+        button.rx.tap.bind {
+            WebHandler.openTranscationGenesisPage(address: HDWalletManager.instance.account?.address ?? "")
+            }.disposed(by: disposeBag)
     }
 
 }

@@ -183,11 +183,34 @@ class SendViewController: BaseViewController {
                     return
                 }
 
-                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
-                    if case .success = r {
-                        GCD.delay(1) { self.dismiss() }
+                switch address.viteAddressType! {
+                case .user:
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
+                        if case .success = r {
+                            GCD.delay(1) { self.dismiss() }
+                        }
+                    })
+                case .contract:
+                    let data: Data?
+                    if let note = self.noteView.textField.text, !note.isEmpty {
+                        let bytes = note.hex2Bytes
+                        guard !bytes.isEmpty else {
+                            Toast.show(R.string.localizable.sendPageToastContractAddressSupportHex())
+                            return
+                        }
+                        data = Data(bytes)
+                    } else {
+                        data = nil
                     }
-                })
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, completion: { (r) in
+                        if case .success = r {
+                            GCD.delay(1) { self.dismiss() }
+                        }
+                    })
+
+                }
+
+
             }
             .disposed(by: rx.disposeBag)
     }
