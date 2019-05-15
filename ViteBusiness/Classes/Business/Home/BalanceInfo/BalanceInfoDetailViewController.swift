@@ -42,9 +42,17 @@ class BalanceInfoDetailViewController: BaseViewController {
         bind()
     }
 
+    var firstViewDidAppear = true
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         adapter.viewDidAppear()
+
+        if firstViewDidAppear {
+            firstViewDidAppear = false
+            if allowJumpTokenDetailPage {
+                navView.tokenIconView.beat()
+            }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -69,9 +77,33 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.left.right.bottom.equalToSuperview()
         }
         adapter.setup(containerView: containerView)
+
+
+        if allowJumpTokenDetailPage {
+            let tapGestureRecognizer = UITapGestureRecognizer()
+            navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+            tapGestureRecognizer.rx.event.subscribe(onNext: { [weak self] (r) in
+                guard let url = self?.tokenInfo.infoURL else { return }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: rx.disposeBag)
+        }
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
+    }
+}
+
+extension BalanceInfoDetailViewController {
+    var allowJumpTokenDetailPage: Bool {
+        switch tokenInfo.coinType {
+        case .vite:
+            return true
+        case .eth:
+            return !tokenInfo.isEtherCoin
+        case .grin:
+            return false
+        }
     }
 }

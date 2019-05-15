@@ -2480,7 +2480,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 我已阅读，理解并同意%@
+      /// en translation: 我已阅读，理解并同意
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5276,11 +5276,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 我已阅读，理解并同意%@
+      /// en translation: 我已阅读，理解并同意
       /// 
       /// Locales: en, zh-Hans
-      static func mnemonicBackupPageCheckButton3Title(_ value1: String) -> String {
-        return String(format: NSLocalizedString("mnemonic.backup.page.check.button3.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      static func mnemonicBackupPageCheckButton3Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 我理解如果我丢失了助记词，我将永远无法找回我的资产

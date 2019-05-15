@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import pop
 
 class TokenIconView: UIView {
 
@@ -50,6 +51,14 @@ class TokenIconView: UIView {
         tokenIconImageView.layer.masksToBounds = true
         tokenIconImageView.layer.cornerRadius = 20
         tokenIconFrameImageView.removeFromSuperview()
+    }
+
+    func beat() {
+        let animation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)!
+        animation.fromValue = NSValue(cgSize: CGSize(width: 0.8, height: 0.8))
+        animation.toValue = NSValue(cgSize: CGSize(width: 1, height: 1))
+        animation.springBounciness = 10
+        self.layer.pop_add(animation, forKey: "layerScaleSmallSpringAnimation")
     }
 
     var tokenInfo: TokenInfo? {

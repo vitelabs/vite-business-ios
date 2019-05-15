@@ -72,7 +72,7 @@ class BackupMnemonicViewController: BaseViewController {
     }()
 
     lazy var afreshMnemonicBtn: UIButton = {
-        let afreshMnemonicBtn = UIButton.init(style: .white)
+        let afreshMnemonicBtn = UIButton.init(style: .whiteWithShadow)
     afreshMnemonicBtn.setTitle(R.string.localizable.mnemonicBackupPageTipAnewBtnTitle(), for: .normal)
         afreshMnemonicBtn.rx.tap.bind {[unowned self] in
                     self.viewModel.fetchNewMnemonicWordsAction?.execute(())
@@ -81,7 +81,7 @@ class BackupMnemonicViewController: BaseViewController {
     }()
 
     lazy var nextMnemonicBtn: UIButton = {
-        let nextMnemonicBtn = UIButton.init(style: .blue)
+        let nextMnemonicBtn = UIButton.init(style: .blueWithShadow)
         nextMnemonicBtn.setTitle(R.string.localizable.mnemonicBackupPageTipNextBtnTitle(), for: .normal)
         nextMnemonicBtn.addTarget(self, action: #selector(nextMnemonicBtnAction), for: .touchUpInside)
         return nextMnemonicBtn
@@ -157,16 +157,16 @@ extension BackupMnemonicViewController {
             m.top.equalTo((self.navigationTitleView?.snp.bottom)!)
         }
 
-        nextMnemonicBtn.snp.makeConstraints { (make) -> Void in
+        afreshMnemonicBtn.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(scrollView.snp.bottom)
             make.left.equalTo(view).offset(24)
             make.height.equalTo(50)
             make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
 
-        afreshMnemonicBtn.snp.makeConstraints { (make) -> Void in
-            make.top.bottom.width.height.equalTo(self.nextMnemonicBtn)
-            make.left.equalTo(nextMnemonicBtn.snp.right).offset(23)
+        nextMnemonicBtn.snp.makeConstraints { (make) -> Void in
+            make.top.bottom.width.height.equalTo(self.afreshMnemonicBtn)
+            make.left.equalTo(afreshMnemonicBtn.snp.right).offset(23)
             make.right.equalTo(view).offset(-24)
         }
 
@@ -177,24 +177,57 @@ extension BackupMnemonicViewController {
         scrollView.stackView.addArrangedSubview(mnemonicCollectionView)
 
 
-        let checkButton1 = ConfirmView()
-        checkButton1.label.text = R.string.localizable.mnemonicBackupPageCheckButton1Title()
-
-        let checkButton2 = ConfirmView()
-        checkButton2.label.text = R.string.localizable.mnemonicBackupPageCheckButton2Title()
-
-        let checkButton3 = ConfirmView()
-        checkButton3.label.text = R.string.localizable.mnemonicBackupPageCheckButton3Title(R.string.localizable.mnemonicBackupPageClauseButtonTitle())
-        let customType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageClauseButtonTitle())
-        checkButton3.label.enabledTypes = [customType]
-        checkButton3.label.customize { label in
-            label.customColor[customType] = UIColor(netHex: 0x007AFF)
-            label.customSelectedColor[customType] = UIColor(netHex: 0x007AFF).highlighted
-            label.handleCustomTap(for: customType) { element in
-                print("Custom type tapped: \(element)")
+        let checkButton1 = ConfirmView().then { view in
+            view.label.text = R.string.localizable.mnemonicBackupPageCheckButton1Title()
+            let customType = ActiveType.custom(pattern: view.label.text!)
+            view.label.enabledTypes = [customType]
+            view.label.customize { [weak view] label in
+                label.customColor[customType] = view?.label.textColor
+                label.customSelectedColor[customType] = view?.label.textColor
+                label.handleCustomTap(for: customType) { [weak view] element in
+                    view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
+                }
             }
         }
 
+
+        let checkButton2 = ConfirmView().then { view in
+            view.label.text = R.string.localizable.mnemonicBackupPageCheckButton2Title()
+            let customType = ActiveType.custom(pattern: view.label.text!)
+            view.label.enabledTypes = [customType]
+            view.label.customize { [weak view] label in
+                label.customColor[customType] = view?.label.textColor
+                label.customSelectedColor[customType] = view?.label.textColor
+                label.handleCustomTap(for: customType) { [weak view] element in
+                    view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
+                }
+            }
+        }
+        
+
+        let checkButton3 = ConfirmView().then { view in
+            view.label.text = R.string.localizable.mnemonicBackupPageCheckButton3Title() + R.string.localizable.mnemonicBackupPageClauseButtonTitle()
+            let customType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageCheckButton3Title())
+            let termType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageClauseButtonTitle())
+            view.label.enabledTypes = [termType, customType]
+            view.label.customize { [weak view] label in
+                label.customColor[customType] = view?.label.textColor
+                label.customSelectedColor[customType] = view?.label.textColor
+                label.handleCustomTap(for: customType) { [weak view] element in
+                    view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
+                }
+            }
+
+            view.label.customize { label in
+                label.customColor[termType] = UIColor(netHex: 0x007AFF)
+                label.customSelectedColor[termType] = UIColor(netHex: 0x007AFF).highlighted
+                label.handleCustomTap(for: termType) { element in
+                    guard let url = URL(string: "https://growth.vite.net/term") else { return }
+                    let vc = WKWebViewController.init(url: url)
+                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
 
         Driver.combineLatest(
             checkButton1.checkButton.rx.observe(Bool.self, #keyPath(UIButton.isSelected)).asDriver(onErrorJustReturn: false),

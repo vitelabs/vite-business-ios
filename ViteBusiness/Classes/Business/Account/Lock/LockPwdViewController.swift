@@ -59,7 +59,7 @@ class LockPwdViewController: BaseViewController {
     }()
 
     lazy var changeUserBtn: UIButton = {
-        let changeUserBtn = UIButton.init(style: .whiteWithoutShadow)
+        let changeUserBtn = UIButton.init(style: .white)
         changeUserBtn.setTitle(R.string.localizable.lockPageChangeUserBtnTitle(), for: .normal)
         changeUserBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
         changeUserBtn.addTarget(self, action: #selector(changeUserBtnAction), for: .touchUpInside)
@@ -67,7 +67,7 @@ class LockPwdViewController: BaseViewController {
     }()
 
     lazy var importUserBtn: UIButton = {
-        let importUserBtn = UIButton.init(style: .whiteWithoutShadow)
+        let importUserBtn = UIButton.init(style: .white)
         importUserBtn.setTitle(R.string.localizable.importPageSubmitBtn(), for: .normal)
         importUserBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
         importUserBtn.addTarget(self, action: #selector(importUserBtnAction), for: .touchUpInside)

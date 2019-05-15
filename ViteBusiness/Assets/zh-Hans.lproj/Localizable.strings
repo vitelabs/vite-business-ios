@@ -51,7 +51,7 @@
 "mnemonic.backup.page.tip.title" = "助记词是您恢复账户的唯一手段，请谨慎记录，以防丢失。";
 "mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
 "mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";
-"mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意%@";
+"mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意";
 "mnemonic.backup.page.clause.button.title" = "使用条款";
 "mnemonic.backup.page.tip.lab.title" = "助记词";
 "mnemonic.backup.page.tip.anewBtn.title" = "重新生成";

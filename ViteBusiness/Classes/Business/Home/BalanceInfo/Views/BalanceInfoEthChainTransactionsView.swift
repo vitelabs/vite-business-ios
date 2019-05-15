@@ -35,7 +35,7 @@ class BalanceInfoEthChainTransactionsView: UIView {
 
             button.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
-                var infoUrl = String.init(format: "%@/%@",ViteConst.instance.eth.explorer, HDWalletManager.instance.ethAddress ?? "")
+                var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(HDWalletManager.instance.ethAddress ?? "")"
                 guard let url = URL(string: infoUrl) else { return }
                 let vc = WKWebViewController.init(url: url)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
@@ -80,7 +80,8 @@ class BalanceInfoEthChainTransactionsView: UIView {
         }
 
         placeholderView.snp.makeConstraints { (m) in
-            m.left.right.bottom.equalToSuperview()
+            m.left.bottom.equalToSuperview().offset(24)
+            m.right.bottom.equalToSuperview().offset(-24)
             m.top.equalTo(titleLabel.snp.bottom)
         }
 

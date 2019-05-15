@@ -57,7 +57,7 @@ class PopViewController: BaseViewController {
         $0.numberOfLines = 0
     }
 
-    lazy var cancelBtn = UIButton(style: .white, title: R.string.localizable.close())
+    lazy var cancelBtn = UIButton(style: .whiteWithShadow, title: R.string.localizable.close())
 
     func setupView() {
         self.navigationController?.view.backgroundColor = .clear

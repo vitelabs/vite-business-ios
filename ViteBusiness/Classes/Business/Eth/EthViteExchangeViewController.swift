@@ -110,7 +110,7 @@ class EthViteExchangeViewController: BaseViewController {
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
         self.navigationItem.rightBarButtonItem = rightItem
         self.navigationItem.rightBarButtonItem?.rx.tap.bind {
-            var infoUrl = String.init(format: "%@/%@", ViteConst.instance.eth.explorer, HDWalletManager.instance.ethAddress ?? "")
+            var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(HDWalletManager.instance.ethAddress ?? "")"
             guard let url = URL(string: infoUrl) else { return }
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
@@ -170,8 +170,8 @@ class EthViteExchangeViewController: BaseViewController {
             }.disposed(by: rx.disposeBag)
 
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: TokenInfo.viteERC20.tokenCode)
-            .drive(onNext: { ret in
-
+            .drive(onNext: { [weak self] ret in
+                guard let `self` = self else { return }
                 self.balance = ret?.balance ?? self.balance
                 let text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
                 self.headerView.balanceLabel.text = text
