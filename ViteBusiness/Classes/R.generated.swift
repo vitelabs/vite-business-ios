@@ -1119,6 +1119,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinWalletCheck = Rswift.StringResource(key: "grin.wallet.check", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Check creation block records
+      /// 
+      /// Locales: en, zh-Hans
+      static let transactionListPageGenesisCellName = Rswift.StringResource(key: "transaction.list.page.genesis.cell.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Check transaction history in Ethereum Explorer
       /// 
       /// Locales: en, zh-Hans
@@ -1375,10 +1379,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentCreatFile = Rswift.StringResource(key: "grin.sent.creatFile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Genesis Block
-      /// 
-      /// Locales: en, zh-Hans
-      static let transactionListPageGenesisCellName = Rswift.StringResource(key: "transaction.list.page.genesis.cell.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get TPS quota
       /// 
       /// Locales: en, zh-Hans
@@ -2814,6 +2814,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.wallet.check", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Check creation block records
+      /// 
+      /// Locales: en, zh-Hans
+      static func transactionListPageGenesisCellName(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.page.genesis.cell.name", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Check transaction history in Ethereum Explorer
       /// 
       /// Locales: en, zh-Hans
@@ -3260,13 +3267,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinSentCreatFile(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.creatFile", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Genesis Block
-      /// 
-      /// Locales: en, zh-Hans
-      static func transactionListPageGenesisCellName(_: Void = ()) -> String {
-        return NSLocalizedString("transaction.list.page.genesis.cell.name", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Get TPS quota
