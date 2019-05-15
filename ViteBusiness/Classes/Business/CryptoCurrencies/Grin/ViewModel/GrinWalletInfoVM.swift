@@ -39,6 +39,7 @@ final class GrinWalletInfoVM {
     let balance = BehaviorRelay<GrinBalance>(value: GrinBalance())
     let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let txCancelled = PublishSubject<TxLogEntry>()
 
     private let bag = DisposeBag()
 
@@ -142,9 +143,21 @@ final class GrinWalletInfoVM {
         }
 
         let gateWayInfos =  Promise<[GrinGatewayInfo]> { seal in
-            let addresses = HDWalletManager.instance.accounts.map { $0.address.description }
+
+            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
+                let addressString = account.address.description
+                if let sAddress = addressString.components(separatedBy: "_").last {
+                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
+                    return [
+                            "address": addressString,
+                            "signature": s
+                    ]
+                }
+                return [String:String]()
+            }
+            
             transactionProvider
-                .request(.gatewayTransactionList(addresses: addresses), completion: { (result) in
+                .request(.gatewayTransactionList(addresses: addresses, slateID: nil), completion: { (result) in
                     do {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
@@ -290,6 +303,16 @@ final class GrinWalletInfoVM {
                 self.action.onNext(.getBalance(manually: false))
                 GrinTxByViteService().reportFinalization(slateId: tx.txSlateId ?? "", account:  HDWalletManager.instance.account!)
                     .done { }
+                grin_async({
+                    return self.grinManager.txGet(refreshFromNode: false, txId: tx.id)
+                }, { (result) in
+                    switch result {
+                    case .success(let tx):
+                        self.txCancelled.onNext(tx.txLogEntry)
+                    default:
+                        break
+                    }
+                })
             case .failure(let error):
                 self.message.accept(error.message)
             }

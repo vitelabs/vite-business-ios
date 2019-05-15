@@ -10,11 +10,44 @@ import Vite_GrinWallet
 import BigInt
 import ViteWallet
 import SwiftyJSON
+import RxSwift
+import RxCocoa
 
-class GrinTxDetailVM {
+class GrinTxDetailVM: NSObject {
 
     let txVM = GrinTransactVM()
     let infoVM = GrinWalletInfoVM()
+
+    override init() {
+        super.init()
+        txVM.finalizeTxSuccess.asObserver()
+            .bind { [weak self] _ in
+                self?.updatePageInfo()
+            }
+            .disposed(by: rx.disposeBag)
+
+        txVM.receiveSlateCreated.asObserver()
+            .bind { [weak self] _ in
+                self?.updatePageInfo()
+            }
+            .disposed(by: rx.disposeBag)
+
+
+        infoVM.txCancelled.asObserver()
+            .bind { [weak self] _ in
+                self?.updatePageInfo()
+            }
+            .disposed(by: rx.disposeBag)
+    }
+
+    var fullInfo: GrinFullTxInfo = GrinFullTxInfo() {
+        didSet {
+            let pageInfo = self.creatGrinDetailPageInfo(fullInfo: fullInfo)
+            self.pageInfo.accept(pageInfo)
+        }
+    }
+
+    let pageInfo: BehaviorRelay<GrinDetailPageInfo> = BehaviorRelay(value: GrinDetailPageInfo())
 
     var blueLineImage: UIImage? {
         return R.image.grin_detail_line_blue()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile)
@@ -64,8 +97,8 @@ class GrinTxDetailVM {
 
     func creatSendGrinByViteDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "VITE地址"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinTxMethodVite()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         guard let localInfo = fullInfo.localInfo else { return pageInfo }
@@ -75,16 +108,16 @@ class GrinTxDetailVM {
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "Vite代转", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_created()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "已创建", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeSent(), attributes: nil)
         cellInfo1.timeStr = txInfo.timeString
-        pageInfo.desc = "请等待收款人打开Vite钱包接收交易。"
+        pageInfo.desc = R.string.localizable.grinDetailWaitHerOpenViteWalletToReceive()
         pageInfo.cellInfo.append(cellInfo1)
 
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
@@ -94,20 +127,20 @@ class GrinTxDetailVM {
 
         let cancleInfo = GrinDetailCellInfo()
         cancleInfo.statusImage = R.image.grin_detail_cancled_gray()
-        cancleInfo.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+        cancleInfo.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
         cancleInfo.timeStr = cancleTime.grinTimeString()
 
         if txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime < getResponseFileTime {
-            pageInfo.desc = "交易已取消。"
+            pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             cellInfo1.lineImage = grayLineImage
             pageInfo.cellInfo.append(cancleInfo)
             return pageInfo
         }
 
         let cellInfo2 = GrinDetailCellInfo()
-        cellInfo2.statusAttributeStr = NSAttributedString.init(string: "待敲定", attributes: nil)
+        cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToFinalize(), attributes: nil)
         if let getResponseFileTime = localInfo.getResponseFileTime, getResponseFileTime > 0 {
-            pageInfo.desc = "请敲定广播。"
+            pageInfo.desc = R.string.localizable.grinDetailPleaseFinalize2()
             cellInfo1.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_waitToSign()
             cellInfo2.timeStr = getResponseFileTime.grinTimeString()
@@ -118,16 +151,16 @@ class GrinTxDetailVM {
         pageInfo.cellInfo.append(cellInfo2)
 
         if txInfo.confirmed != true && txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime < finalizeTime {
-            pageInfo.desc = "交易已取消。"
+            pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             pageInfo.cellInfo.append(cancleInfo)
             cellInfo2.lineImage = grayLineImage
             return pageInfo
         }
 
         let cellInfo3 = GrinDetailCellInfo()
-        cellInfo3.statusAttributeStr = NSAttributedString.init(string: "广播中", attributes: nil)
+        cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToFinalize(), attributes: nil)
         if let finalizeTime = localInfo.finalizeTime, finalizeTime > 0 {
-            pageInfo.desc = "交易正在广播中，请等待确认。"
+            pageInfo.desc = R.string.localizable.grinDetailTxisPostingPlsWait()
             cellInfo2.lineImage = blueLineImage
             cellInfo3.statusImage = R.image.grin_detail_poasting()
             cellInfo3.timeStr = localInfo.finalizeTime?.grinTimeString()
@@ -139,14 +172,14 @@ class GrinTxDetailVM {
 
         let cellInfo4 = GrinDetailCellInfo()
         if fullInfo.txLogEntry?.confirmed == true {
-            pageInfo.desc = "交易已完成。"
+            pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo4.statusImage = R.image.grin_detail_confirmed()
             cellInfo3.lineImage = blueLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
         } else if  txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime > finalizeTime {
-                pageInfo.desc = "交易已取消。"
+                pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
                 let cancleInfo = GrinDetailCellInfo()
-                cancleInfo.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+                cancleInfo.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
                 cancleInfo.statusImage = R.image.grin_detail_cancled_gray()
                 cellInfo3.lineImage = grayLineImage
                 cancleInfo.timeStr = (cancleTime.grinTimeString())
@@ -154,15 +187,17 @@ class GrinTxDetailVM {
         }  else {
             cellInfo4.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo3.lineImage = grayLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
         }
         pageInfo.cellInfo.append(cellInfo4)
 
         if txInfo.confirmed != true && txInfo.txType != .txSentCancelled && cancleTime == 0  {
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txInfo))
+                //self.updatePageInfo()
             }
-            pageInfo.actions.append(("cancelAction", cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+
         }
         return pageInfo
     }
@@ -171,10 +206,10 @@ class GrinTxDetailVM {
 
     func creatSendGrinByHttpDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         let pageInfo = self.creatSendGrinByFileDetailPageInfo(fullInfo: fullInfo)
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "HTTP地址"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinTxMethodHttp()
         if fullInfo.txLogEntry?.confirmed == false && fullInfo.txLogEntry?.txType != .txSentCancelled {
-            pageInfo.desc = "交易已敲定并开始广播。"
+            pageInfo.desc = R.string.localizable.grinDetailTxFinaziledAndPosting()
         }
         return pageInfo
     }
@@ -183,8 +218,8 @@ class GrinTxDetailVM {
 
     func creatSendGrinByFileDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "交易文件"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinDetailTxFile()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         guard let localInfo = fullInfo.localInfo else { return pageInfo }
@@ -198,16 +233,16 @@ class GrinTxDetailVM {
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_created()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "已创建", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeSent(), attributes: nil)
         cellInfo1.timeStr = txInfo.timeString
-        pageInfo.desc = "交易文件已创建，请确保将交易文件分享给收款人（您可以选择任何您喜欢的分享方式）并要求返回一个签收交易文件。"
+        pageInfo.desc = R.string.localizable.grinDetailTxFileCreatedAndCanShare()
         pageInfo.cellInfo.append(cellInfo1)
 
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
@@ -215,40 +250,42 @@ class GrinTxDetailVM {
         let getResponseFileTime = localInfo.getResponseFileTime ?? 0
         let finalizeTime = localInfo.finalizeTime ?? 0
 
-//////////////
+
         let cancelAction = {
             self.infoVM.action.onNext(.cancel(txInfo))
+            //self.updatePageInfo()
         }
 
         let cancleInfo = GrinDetailCellInfo()
         cancleInfo.statusImage = R.image.grin_detail_cancled_gray()
-        cancleInfo.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+        cancleInfo.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
         cancleInfo.timeStr = cancleTime.grinTimeString()
 
-        if txInfo.txType == .txSentCancelled && cancleTime < getResponseFileTime {
+        if txInfo.txType == .txSentCancelled && ((getResponseFileTime > 0 && cancleTime < getResponseFileTime) || (getResponseFileTime == 0 && cancleTime > getResponseFileTime)) {
             cellInfo1.lineImage = grayLineImage
-            pageInfo.desc = "交易已取消。"
+            pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             pageInfo.cellInfo.append(cancleInfo)
             return pageInfo
         }
 
         let cellInfo2 = GrinDetailCellInfo()
-        cellInfo2.statusAttributeStr = NSAttributedString.init(string: "待敲定", attributes: nil)
+        cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToFinalize(), attributes: nil)
         if let getResponseFileTime = localInfo.getResponseFileTime, getResponseFileTime > 0 {
-            pageInfo.desc = "请敲定交易。"
+            pageInfo.desc = R.string.localizable.grinDetailPleaseFinalize()
             cellInfo1.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_waitToSign()
             cellInfo2.timeStr = (getResponseFileTime.grinTimeString())
-            pageInfo.actions.append(("cancelAction", cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             let finalezeAction = {
                 self.txVM.action.onNext(.finalizeTx(slateUrl: openedSalteUrl ?? responseFileUrl))
+                //self.updatePageInfo()
             }
-            pageInfo.actions.append(("finalezeAction", finalezeAction))
+            pageInfo.actions.append((R.string.localizable.grinFinalize(), finalezeAction))
 
             if txInfo.txType == .txSentCancelled && cancleTime >= getResponseFileTime {
                 pageInfo.cellInfo.append(cellInfo2)
                 cellInfo2.lineImage = grayLineImage
-                pageInfo.desc = "交易已取消。"
+                pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
                 pageInfo.cellInfo.append(cancleInfo)
                 pageInfo.actions.removeAll()
                 return pageInfo
@@ -256,26 +293,26 @@ class GrinTxDetailVM {
         } else {
             cellInfo1.lineImage = grayLineImage
             cellInfo2.statusImage = R.image.grin_detail_waitToSign_gray()
-            pageInfo.actions.append(("cancelAction", cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             let shareAction = {
                 self.shareSlate(url: openedSalteUrl ?? sendFileUrl)
             }
-            pageInfo.actions.append(("shareAction", shareAction))
+            pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction))
         }
         pageInfo.cellInfo.append(cellInfo2)
 
-        if txInfo.confirmed != true && txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime < finalizeTime {
+        if txInfo.confirmed != true && txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && (finalizeTime == 0 || (finalizeTime > 0 && cancleTime < finalizeTime)) {
             cellInfo2.lineImage = grayLineImage
-            pageInfo.desc = "交易已取消。"
+            pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             pageInfo.cellInfo.append(cancleInfo)
             pageInfo.actions.removeAll()
             return pageInfo
         }
 
         let cellInfo3 = GrinDetailCellInfo()
-        cellInfo3.statusAttributeStr = NSAttributedString.init(string: "广播中", attributes: nil)
+        cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeFinalized(), attributes: nil)
         if let finalizeTime = localInfo.finalizeTime, finalizeTime > 0 {
-            pageInfo.desc = "交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。"
+            pageInfo.desc = R.string.localizable.grinDetailTxpostingAndCanRepost()
             cellInfo2.lineImage = blueLineImage
             cellInfo3.statusImage = R.image.grin_detail_poasting()
             cellInfo3.timeStr = localInfo.finalizeTime?.grinTimeString()
@@ -283,7 +320,7 @@ class GrinTxDetailVM {
             let repostAction = {
                 self.infoVM.action.onNext(.repost(txInfo))
             }
-            pageInfo.actions.append(("repostAction", repostAction))
+            pageInfo.actions.append((R.string.localizable.grinDetailRepoat(), repostAction))
         } else {
             cellInfo2.lineImage = grayLineImage
             cellInfo3.statusImage = R.image.grin_detail_poasting_gray()
@@ -292,15 +329,15 @@ class GrinTxDetailVM {
 
         let cellInfo4 = GrinDetailCellInfo()
         if fullInfo.txLogEntry?.confirmed == true {
-            pageInfo.desc = "交易已完成。"
+            pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo4.statusImage = R.image.grin_detail_confirmed()
             cellInfo3.lineImage = blueLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             pageInfo.actions.removeAll()
         } else if txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime > finalizeTime {
-            pageInfo.desc = "交易已取消。"
+            pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             let cancleInfo = GrinDetailCellInfo()
-            cancleInfo.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+            cancleInfo.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
             cancleInfo.statusImage = R.image.grin_detail_cancled_gray()
             cellInfo3.lineImage = grayLineImage
             cancleInfo.timeStr = (cancleTime.grinTimeString())
@@ -309,7 +346,7 @@ class GrinTxDetailVM {
         }  else {
             cellInfo4.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo3.lineImage = grayLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
         }
         pageInfo.cellInfo.append(cellInfo4)
         return pageInfo
@@ -318,43 +355,44 @@ class GrinTxDetailVM {
     //MARK: - Done
     func creatSendGrinDetailPageInfoWithoutLocalInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "GRIN转账"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinSentTitle()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_created()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "已创建", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeSent(), attributes: nil)
         cellInfo1.timeStr = fullInfo.txLogEntry?.timeString
         pageInfo.cellInfo.append(cellInfo1)
 
         let cellInfo2 = GrinDetailCellInfo()
 
         if fullInfo.txLogEntry?.confirmed == true {
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.statusImage = R.image.grin_detail_confirmed()
             cellInfo1.lineImage = blueLineImage
         } else if fullInfo.isSentCancelled {
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
             cellInfo2.statusImage = R.image.grin_detail_cancled_gray()
             cellInfo1.lineImage = grayLineImage
         } else {
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo1.lineImage = grayLineImage
             if let txLogEntry = fullInfo.txLogEntry {
                 let cancelAction = {
                     self.infoVM.action.onNext(.cancel(txLogEntry))
+                    //self.updatePageInfo()
                 }
-                pageInfo.actions.append(("cancelAction", cancelAction))
+                pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             }
         }
         pageInfo.cellInfo.append(cellInfo2)
@@ -364,13 +402,13 @@ class GrinTxDetailVM {
     //MARK: - Done
     func creatReceiveGrinByViteDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         let pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
+        pageInfo.title = R.string.localizable.grinSentTitle()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         guard let localInfo = fullInfo.localInfo, localInfo.type == "Receive", localInfo.method == "Vite" else { return pageInfo }
 
-        pageInfo.methodString = "Vite地址"
-        pageInfo.desc = "待签收"
+        pageInfo.methodString = R.string.localizable.grinTxMethodVite()
+        pageInfo.desc = R.string.localizable.grinTxTypeWaitToSign()
 
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
         let getSendFileTime = localInfo.getSendFileTime ?? 0
@@ -380,19 +418,19 @@ class GrinTxDetailVM {
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_waitToSign()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "待签收", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToSign(), attributes: nil)
         cellInfo1.timeStr = (localInfo.getSendFileTime?.grinTimeString() )
         pageInfo.cellInfo.append(cellInfo1)
 
         let cellInfo2 = GrinDetailCellInfo()
-        cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已签收", attributes: nil)
+        cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
         cellInfo2.timeStr = (localInfo.receiveTime?.grinTimeString() )
 
         pageInfo.cellInfo.append(cellInfo2)
@@ -415,24 +453,24 @@ class GrinTxDetailVM {
         let cellInfo3 = GrinDetailCellInfo()
 
         if fullInfo.txLogEntry?.confirmed == true {
-            pageInfo.desc = "交易已完成。"
+            pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo3.statusImage = R.image.grin_detail_confirmed()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
             cellInfo1.statusImage = R.image.grin_detail_waitToSign()
         } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
-            pageInfo.desc = "交易已签收"
+            pageInfo.desc = R.string.localizable.grinDetailTxReceived()
             cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.lineImage = grayLineImage
         } else {
             cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
             cellInfo3.timeStr = localInfo.cancleReceiveTime?.grinTimeString()
             cellInfo2.lineImage = grayLineImage
-            pageInfo.desc = "已取消"
+            pageInfo.desc = R.string.localizable.grinTxTypeCanceled()
             pageInfo.actions.removeAll()
         }
         pageInfo.cellInfo.append(cellInfo3)
@@ -442,24 +480,24 @@ class GrinTxDetailVM {
     //MARK: -
     func creatReceiveGrinByHttpDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "HTTP地址"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinTxMethodHttp()
 
         guard let gatewayInfo = fullInfo.gatewayInfo else {  return pageInfo }
 
-        pageInfo.desc = "Vite网关已经签收交易，网关确认数达到10个后将向您转账。"
+        pageInfo.desc = R.string.localizable.grinDetailGatewayReceived()
         pageInfo.amount = gatewayInfo.fromAmount ?? gatewayInfo.toAmount ?? ""
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_gateway()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "Vite网关代收", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailGateway(), attributes: nil)
         cellInfo0.slateId = gatewayInfo.slatedId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "已签收", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
         cellInfo1.statusImage = R.image.grin_detail_gateway_received()
         cellInfo1.timeStr = (gatewayInfo.createTime.grinTimeString())
         if let timestamp = gatewayInfo.stepDetailList[0] {
@@ -472,7 +510,7 @@ class GrinTxDetailVM {
         if let timestamp = gatewayInfo.stepDetailList[1] {
             cellInfo2.timeStr = (timestamp/1000).grinTimeString()
         }
-        cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+        cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
 
         let curHeight = gatewayInfo.confirmInfo?.curHeight ?? 0
         let beginHeight = gatewayInfo.confirmInfo?.beginHeight ?? 0
@@ -483,14 +521,14 @@ class GrinTxDetailVM {
             if confirmCount == 0 {
                 cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed()
                 cellInfo1.lineImage = blueLineImage
-                pageInfo.desc = "Vite网关确认数达到10个，若长时间未进入待签收状态，请点击请求网关重发。"
+                pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntBiggerThanTen()
                 let action = {
                     //gateway resend
                 }
                 pageInfo.actions.append(("resend",action))
             } else {
-                pageInfo.desc = "交易已确认，确认数达到10个后，实收金额会进入可用余额。"
-                cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已确认\(confirmCount)", attributes: nil)
+                pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntLessThanTen()
+                cellInfo2.statusAttributeStr = NSAttributedString.init(string: "\(R.string.localizable.grinTxTypeConfirmed())\(confirmCount)", attributes: nil)
 
                 cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed_gray()
                 cellInfo1.lineImage = grayLineImage
@@ -523,7 +561,7 @@ class GrinTxDetailVM {
 
             guard let localInfo = fullInfo.localInfo, localInfo.type == "Receive", localInfo.method == "Vite" else { return pageInfo }
 
-            pageInfo.desc = "若长时间未进入已签收状态，请点击请求网关重发。"
+            pageInfo.desc = R.string.localizable.grinDetailTxNotReceivedAndCanAskGatewaytoSend()
 
             let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
             let getSendFileTime = localInfo.getSendFileTime ?? 0
@@ -532,19 +570,19 @@ class GrinTxDetailVM {
             let cellInfo0 = GrinDetailCellInfo()
             cellInfo0.isTitle = true
             cellInfo0.statusImage = R.image.grin_detail_vite()
-            cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+            cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailGatewaysend(), attributes: nil)
             cellInfo0.slateId = localInfo.slateId
             cellInfo0.lineImage = blueLineImage
             pageInfo.cellInfo.append(cellInfo0)
 
             let cellInfo1 = GrinDetailCellInfo()
             cellInfo1.statusImage = R.image.grin_detail_waitToSign()
-            cellInfo1.statusAttributeStr = NSAttributedString.init(string: "待签收", attributes: nil)
+            cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToSign(), attributes: nil)
             cellInfo1.timeStr = (localInfo.getSendFileTime?.grinTimeString() )
             pageInfo.cellInfo.append(cellInfo1)
 
             let cellInfo2 = GrinDetailCellInfo()
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已签收", attributes: nil)
+            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
             cellInfo2.timeStr = (localInfo.receiveTime?.grinTimeString() )
 
             pageInfo.cellInfo.append(cellInfo2)
@@ -552,7 +590,7 @@ class GrinTxDetailVM {
             if let txLogEntry = fullInfo.txLogEntry,
                 txLogEntry.txType != .txReceivedCancelled,
                 txLogEntry.confirmed != true {
-                pageInfo.desc = "您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。"
+                pageInfo.desc =  R.string.localizable.grinDetailTxReceivedAndCanAskGatewaytoSend()
                 cellInfo2.statusImage = R.image.grin_detail_received()
                 cellInfo1.lineImage = blueLineImage
             }
@@ -561,7 +599,7 @@ class GrinTxDetailVM {
                 cellInfo2.statusImage = R.image.grin_detail_received_gray()
                 cellInfo1.lineImage = grayLineImage
             } else {
-                pageInfo.desc = "您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。"
+                pageInfo.desc = R.string.localizable.grinDetailTxReceivedAndCanAskGatewaytoSend()
                 cellInfo2.statusImage = R.image.grin_detail_received()
                 cellInfo1.lineImage = blueLineImage
             }
@@ -570,29 +608,28 @@ class GrinTxDetailVM {
 
             if fullInfo.txLogEntry?.confirmed == true {
                 pageInfo.actions.removeAll()
-                pageInfo.desc = "交易已完成。"
+                pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
                 cellInfo3.statusImage = R.image.grin_detail_confirmed()
-                cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+                cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
                 cellInfo2.lineImage = blueLineImage
                 cellInfo2.statusImage = R.image.grin_detail_received()
                 cellInfo1.lineImage = blueLineImage
                 cellInfo1.statusImage = R.image.grin_detail_waitToSign()
             } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
-                pageInfo.desc = "交易已签收"
+                pageInfo.desc = R.string.localizable.grinDetailTxReceived()
                 cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-                cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+                cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
                 cellInfo2.lineImage = grayLineImage
             } else {
                 cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
-                cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+                cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
                 cellInfo3.timeStr = localInfo.cancleReceiveTime?.grinTimeString()
                 cellInfo2.lineImage = grayLineImage
-                pageInfo.desc = "已取消"
+                pageInfo.desc = R.string.localizable.grinTxTypeCanceled()
                 pageInfo.actions.removeAll()
             }
             pageInfo.cellInfo.append(cellInfo3)
         }
-
         return pageInfo
     }
 
@@ -600,13 +637,13 @@ class GrinTxDetailVM {
 
     func creatReceiveGrinByFileDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
-        pageInfo.methodString = "文件交易"
+        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.methodString = R.string.localizable.grinTxMethodFile()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         guard let localInfo = fullInfo.localInfo else { return pageInfo }
 
-        pageInfo.desc = "请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。"
+        pageInfo.desc = R.string.localizable.grinDetailPleaseReciveAndShare()
 
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
         let getSendFileTime = localInfo.getSendFileTime ?? 0
@@ -615,14 +652,14 @@ class GrinTxDetailVM {
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_waitToSign()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "待签收", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToSign(), attributes: nil)
         cellInfo1.timeStr = (localInfo.getSendFileTime?.grinTimeString() )
         pageInfo.cellInfo.append(cellInfo1)
 
@@ -630,30 +667,37 @@ class GrinTxDetailVM {
             {
             let receiveAction = {
                 self.txVM.action.onNext(.receiveTx(slateUrl: url))
+                //self.updatePageInfo()
             }
-            pageInfo.actions.append(("receiveAction", receiveAction))
+            pageInfo.actions.append((R.string.localizable.grinSignAndShare(), receiveAction))
         }
 
         let cellInfo2 = GrinDetailCellInfo()
-        cellInfo2.statusAttributeStr = NSAttributedString.init(string: "已签收", attributes: nil)
-        cellInfo2.timeStr = (localInfo.receiveTime?.grinTimeString() )
+        cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
+        if let receiveTime = localInfo.receiveTime, receiveTime > 0 {
+            cellInfo2.timeStr = receiveTime.grinTimeString()
+        }
 
         pageInfo.cellInfo.append(cellInfo2)
 
         if let txLogEntry = fullInfo.txLogEntry,
             txLogEntry.txType != .txReceivedCancelled,
             txLogEntry.confirmed != true {
+            pageInfo.actions.removeAll()
+
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
+                //self.updatePageInfo()
             }
-            pageInfo.actions.append(("cancelAction", cancelAction))
+
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
 
             let url = GrinManager.default.getSlateUrl(slateId: txLogEntry.txSlateId ?? "", isResponse: true)
             if FileManager.default.fileExists(atPath: url.path) {
                 let shareAction = {
                     self.shareSlate(url: url)
                 }
-                pageInfo.actions.append(("shareAction", shareAction))
+                pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction))
             }
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
@@ -665,30 +709,29 @@ class GrinTxDetailVM {
         } else {
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
+            pageInfo.desc = R.string.localizable.grinDetailTxFileReecivedAndCanShare()
         }
 
         let cellInfo3 = GrinDetailCellInfo()
 
         if fullInfo.txLogEntry?.confirmed == true {
-            pageInfo.desc = "交易已完成。"
+            pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo3.statusImage = R.image.grin_detail_confirmed()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
             cellInfo1.statusImage = R.image.grin_detail_waitToSign()
         } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
-            pageInfo.desc = "交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。"
             cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
             cellInfo2.lineImage = grayLineImage
-
         } else {
             cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: "已取消", attributes: nil)
+            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
             cellInfo3.timeStr = localInfo.cancleReceiveTime?.grinTimeString()
             cellInfo2.lineImage = grayLineImage
-            pageInfo.desc = "已取消"
+            pageInfo.desc = R.string.localizable.grinTxTypeCanceled()
             pageInfo.actions.removeAll()
         }
         pageInfo.cellInfo.append(cellInfo3)
@@ -698,18 +741,18 @@ class GrinTxDetailVM {
     //MARK: - Done
     func creatReceiveGrinDetailPageInfoWithoutAnyInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "GRIN转账"
+        pageInfo.title = R.string.localizable.grinSentTitle()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "已确认", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
         pageInfo.cellInfo.append(cellInfo1)
 
         guard let txLogEntry =  fullInfo.txLogEntry else {
@@ -719,15 +762,16 @@ class GrinTxDetailVM {
         if txLogEntry.confirmed == true {
             cellInfo0.lineImage = blueLineImage
             cellInfo1.statusImage = R.image.grin_detail_confirmed()
-            pageInfo.desc = "交易已完成。"
+            pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
         } else {
             cellInfo0.lineImage = grayLineImage
             cellInfo1.statusImage = R.image.grin_detail_confirmed_gray()
-            pageInfo.desc = "已签收"
+            pageInfo.desc = R.string.localizable.grinTxTypeReceived()
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
+                //self.updatePageInfo()
             }
-            pageInfo.actions.append(("cancelAction", cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
         }
         return pageInfo
     }
@@ -735,20 +779,20 @@ class GrinTxDetailVM {
     //MARK: - Done
     func creatConfirmedCoinbaseDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = "挖矿所得"
-        pageInfo.desc = "挖矿已确认"
+        pageInfo.title = R.string.localizable.grinDetailFromMine()
+        pageInfo.desc = R.string.localizable.grinTxTypeConfirmedCoinbase()
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
-        cellInfo0.statusAttributeStr = NSAttributedString.init(string: "交易状态", attributes: nil)
+        cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         cellInfo0.lineImage = blueLineImage
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_confirmedconbase()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: "挖矿已确认", attributes: nil)
+        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmedCoinbase(), attributes: nil)
         pageInfo.cellInfo.append(cellInfo1)
 
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
@@ -801,6 +845,40 @@ class GrinTxDetailVM {
         document = UIDocumentInteractionController(url: finalUrl)
         document.presentOpenInMenu(from: vc.view.bounds, in: vc.view, animated: true)
     }
+
+    func updatePageInfo() {
+        GCD.delay(0) {
+            let fullInfo = self.fullInfo
+            if let oldLogEntry = fullInfo.txLogEntry {
+                do {
+                    let (_, txLogEntry) = try GrinManager.default.txGet(refreshFromNode: false, txId: oldLogEntry.id).dematerialize()
+                    fullInfo.txLogEntry = txLogEntry
+                } catch {
+
+                }
+            } else {
+                do {
+                    let (_, txLogEntries) = try GrinManager.default.txsGet(refreshFromNode: false).dematerialize()
+                    if let last = txLogEntries.last, last.txSlateId == fullInfo.localInfo?.slateId {
+                        fullInfo.txLogEntry = last
+                    }
+                } catch {
+
+                }
+            }
+            if let localSlateId = fullInfo.localInfo?.slateId {
+                if fullInfo.isSend {
+                    let localInfo = GrinLocalInfoService.shared.getSendInfo(slateId: localSlateId)
+                    fullInfo.localInfo = localInfo
+                } else if fullInfo.isReceive {
+                    let localInfo = GrinLocalInfoService.shared.getReceiveInfo(slateId: localSlateId)
+                    fullInfo.localInfo = localInfo
+                }
+            }
+            self.fullInfo = fullInfo
+        }
+    }
+    
 
 }
 

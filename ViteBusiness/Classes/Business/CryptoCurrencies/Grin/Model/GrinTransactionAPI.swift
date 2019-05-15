@@ -15,7 +15,7 @@ public enum GrinTransaction {
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)
-    case gatewayTransactionList(addresses:[String])
+    case gatewayTransactionList(addresses:[[String: String]], slateID: String?)
 }
 
 extension GrinTransaction: TargetType {
@@ -92,10 +92,13 @@ extension GrinTransaction: TargetType {
                 "signature": signature,
                 ]
             return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
-        case let .gatewayTransactionList(addresses):
+        case let .gatewayTransactionList(addresses, slateId):
             var parameters: [String : Any] = [
-                "address": addresses,
+                "address": addresses.map {$0["address"]!},
             ]
+            if let slateId = slateId {
+                parameters["id"] = slateId
+            }
             return .requestCompositeData(bodyData: Data(),
                                          urlParameters: parameters)
         }

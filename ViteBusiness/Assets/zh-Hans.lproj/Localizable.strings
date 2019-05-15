@@ -411,7 +411,7 @@
 "grin.tx.useVite" = "通过VITE地址";
 "grin.sent.useVite.desc" = "通过VITE地址发送GRIN即通过VITE地址分享经Vite加密的交易文件，这种方式可以确保只有真正的收款人可以解密文件。";
 "grin.sent.useHttp" = "通过HTTP地址";
-"grin.sent.useHttp.desc" = "您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用Http地址。";
+"grin.sent.useHttp.desc" = "您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用HTTP地址。";
 "grin.sent.useFile" = "通过交易文件";
 "grin.know" = "我知道了";
 "grin.notSeeAgain" = "不再提示";
@@ -484,6 +484,44 @@
 "grin.txMethod.http" = "HTTP地址";
 "grin.txMethod.vite" = "VITE地址";
 "grin.txMethod.file" = "文件交易";
+
+"grin.detail.fromMine" = "挖矿所得";
+"grin.detail.txStatus" = "交易状态";
+"grin.detail.txCompleted" = "交易已完成。";
+"grin.detail.txCancelled" = "交易已取消。";
+"grin.detail.txFileReecivedAndCanShare" = "交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。";
+"grin.detail.txReceived" = "交易已签收";
+"grin.detail.txReceivedAndCanAskGatewaytoSend" = "您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。";
+"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "若长时间未进入已签收状态，请点击请求网关重发。";
+"grin.detail.gateway.confirmConntLessThanTen" = "交易已确认，确认数达到10个后，实收金额会进入可用余额。";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Vite网关确认数达到10个，若长时间未进入待签收状态，请点击请求网关重发。";
+"grin.detail.gateway" = "Vite网关代收";
+"grin.detail.gatewayReceived" = "Vite网关已经签收交易，网关确认数达到10个后将向您转账。";
+"grin.detail.txpostingAndCanRepost" = "交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。";
+"grin.detail.pleaseFinalize" = "请敲定交易。";
+"grin.detail.pleaseFinalize2" = "请敲定广播。";
+"grin.detail.txFileCreatedAndCanShare" = "交易文件已创建，请确保将交易文件分享给收款人（您可以选择任何您喜欢的分享方式）并要求返回一个签收交易文件。";
+"grin.detail.txFile" = "交易文件";
+"grin.detail.txFinaziledAndPosting" = "交易已敲定并开始广播。";
+"grin.detail.txisPostingPlsWait" = "交易正在广播中，请等待确认。";
+"grin.detail.waitHerOpenViteWalletToReceive" = "请等待收款人打开Vite钱包接收交易。";
+"grin.detail.pleaseReciveAndShare" = "请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。";
+"grin.detail.gatewaysend" = "Vite代转";
+"grin.detail.repoat" = "重新广播";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

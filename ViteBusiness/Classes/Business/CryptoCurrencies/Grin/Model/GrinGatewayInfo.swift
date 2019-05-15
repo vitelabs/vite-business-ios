@@ -12,7 +12,7 @@ import Vite_GrinWallet
 class GrinGatewayInfo: Mappable {
 
     var address: String = ""
-    var slatedId: String  = ""
+    var slatedId: String?
     var toSlatedId: String  = ""
     var fromAmount: String?  = nil
     var fromFee: String?  = nil

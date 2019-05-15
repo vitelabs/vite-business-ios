@@ -157,6 +157,18 @@ class SendGrinViewController: UIViewController {
     @IBAction func sendAction(_ sender: Any) {
         guard let amountString = amountTextField.text else { return }
         guard (transferMethod == .file || !(addressTextField.text?.isEmpty ?? true)) else { return }
+
+
+        if transferMethod == .http {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_2", attributes: ["uuid": UUID.stored])
+        } else if transferMethod == .vite {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_2", attributes: ["uuid": UUID.stored])
+
+        } else if transferMethod == .file {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_2", attributes: ["uuid": UUID.stored])
+        }
+
+
         var send = {
             self.view.displayLoading()
             self.transferVM.txStrategies(amountString: self.amountTextField.text) { [weak self] (fee) in
@@ -166,6 +178,15 @@ class SendGrinViewController: UIViewController {
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee, confirmTitle: R.string.localizable.grinPayTitleCreat())
                 Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
                 }) {
+
+                    if self?.transferMethod == .http {
+                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_3", attributes: ["uuid": UUID.stored])
+                    } else if self?.transferMethod == .vite {
+                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_3", attributes: ["uuid": UUID.stored])
+                    } else if self?.transferMethod == .file {
+                        
+                    }
+
                     let amountString = self?.amountTextField.text
                     if self?.transferMethod == .file {
                         self?.transferVM.action.onNext(.creatTxFile(amount: amountString))

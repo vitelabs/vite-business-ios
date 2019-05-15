@@ -20,26 +20,27 @@ class GrinTxDetailViewController: UIViewController {
     let descLabel = UILabel()
     let amountInfoView = UIView()
     let infoview = EthSendPageTokenInfoView.init(address: "")
-
     let txInfoTableView = UITableView()
     var bottomView = UIView()
+    lazy var button0 = UIButton()
+    lazy var button1 = UIButton()
+
+    let txDetailVM = GrinTxDetailVM()
 
     var fullInfo: GrinFullTxInfo? {
         didSet {
-            guard let fullInfo = fullInfo else {
-                return
-            }
-            self.pageInfo = GrinTxDetailVM().creatGrinDetailPageInfo(fullInfo: fullInfo )
+            guard let fullInfo = fullInfo else { return }
+            self.txDetailVM.fullInfo = fullInfo
         }
     }
 
-    var pageInfo: GrinDetailPageInfo =  GrinDetailPageInfo()
+    var pageInfo: GrinDetailPageInfo {
+        return self.txDetailVM.pageInfo.value
+    }
 
     override func viewDidLoad() {
-
-
         setUpViews()
-        self.bindDetailInfo()
+        self.bind()
     }
 
     func setUpViews()  {
@@ -52,7 +53,6 @@ class GrinTxDetailViewController: UIViewController {
         }
         titleView.tokenIconView.tokenInfo = GrinManager.tokenInfo
         titleView.tokenIconView.set(cornerRadius: 25)
-        titleView.symbolLabel.text = "GRIN交易"
 
         view.addSubview(txMethodLabel)
         txMethodLabel.snp.makeConstraints { (m) in
@@ -77,7 +77,6 @@ class GrinTxDetailViewController: UIViewController {
         view.addSubview(descLabel)
         descLabel.numberOfLines = 0
         descLabel.font = UIFont.systemFont(ofSize: 12)
-        descLabel.text = "GRIN交易"
         descLabel.snp.makeConstraints { (m) in
             m.left.equalTo(pointView.snp.right).offset(5)
             m.top.equalTo(txMethodLabel.snp.bottom).offset(16)
@@ -114,7 +113,7 @@ class GrinTxDetailViewController: UIViewController {
         txInfoTableView.register(GrinTxInfoCell.self, forCellReuseIdentifier: "GrinTxInfoCell")
     }
 
-    func bindDetailInfo() {
+    func bindDetailPageInfo(_ pageInfo: GrinDetailPageInfo) {
         titleView.symbolLabel.text = pageInfo.title
         txMethodLabel.text = pageInfo.methodString
         if let desc = pageInfo.desc, desc.count > 0 {
@@ -126,12 +125,12 @@ class GrinTxDetailViewController: UIViewController {
 
         if let amount = pageInfo.amount {
             if let fee = pageInfo.fee {
-                infoview.addressTitleLabel.text = "Amount"
+                infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
-                infoview.balanceTitleLabel.text = "Fee"
+                infoview.balanceTitleLabel.text = R.string.localizable.grinSentFee()
                 infoview.balanceLabel.text = pageInfo.fee
             } else {
-                infoview.addressTitleLabel.text = "Amount"
+                infoview.addressTitleLabel.text = R.string.localizable.grinSentFee()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = nil
                 infoview.balanceLabel.text = nil
@@ -142,68 +141,110 @@ class GrinTxDetailViewController: UIViewController {
 
         if pageInfo.actions.count == 0 {
             self.bottomView.isHidden = true
-//            self.txInfoTableView.snp_remakeConstraints { (m
-//                ) in
-//                m.left.right.bottom.equalToSuperview()
-//                m.top.equalTo(self.infoview.snp.bottom)
-//            }
         } else {
             self.bottomView.isHidden = false
-//            self.txInfoTableView.snp_remakeConstraints { (m
-//                ) in
-//                m.left.right.equalToSuperview()
-//                m.bottom.equalTo(bottomView.snp.top)
-//                m.top.equalTo(self.infoview.snp.bottom)
-//            }
-
             if pageInfo.actions.count == 1 {
-                let button = UIButton()
-                button.backgroundColor = UIColor.init(netHex: 0x007aff)
-                button.layer.cornerRadius = 2
-                button.setTitle(pageInfo.actions.first?.0, for: .normal)
-                bottomView.addSubview(button)
-                button.snp.makeConstraints { (m) in
-                    m.left.equalToSuperview().offset(24)
-                    m.right.equalToSuperview().offset(-24)
-                    m.height.equalTo(50)
-                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                button0.layer.cornerRadius = 2
+                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+                if button0.superview == nil {
+                    bottomView.addSubview(button0)
+                    button0.snp.makeConstraints { (m) in
+                        m.left.equalToSuperview().offset(24)
+                        m.right.equalToSuperview().offset(-24)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
+                } else {
+                    button0.snp.remakeConstraints { (m) in
+                        m.left.equalToSuperview().offset(24)
+                        m.right.equalToSuperview().offset(-24)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
                 }
-                button.rx.tap.bind {[weak self] _ in
+                button0.setTitle(pageInfo.actions.first?.0, for: .normal)
+                bottomView.addSubview(button0)
+                button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
-
             } else if pageInfo.actions.count == 2 {
-                let button0 = UIButton()
+                if button0.superview == nil {
+                    bottomView.addSubview(button0)
+                    button0.snp.makeConstraints { (m) in
+                        m.left.equalToSuperview().offset(24)
+                        m.width.equalTo(kScreenW/2-36)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
+                } else {
+                    button0.snp.remakeConstraints { (m) in
+                        m.left.equalToSuperview().offset(24)
+                        m.width.equalTo(kScreenW/2-36)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
+                }
                 button0.layer.cornerRadius = 2
                 button0.backgroundColor = UIColor.init(netHex: 0x007aff)
                 button0.setTitle(pageInfo.actions.first?.0, for: .normal)
                 bottomView.addSubview(button0)
-                button0.snp.makeConstraints { (m) in
-                    m.left.equalToSuperview().offset(24)
-                    m.width.equalTo(kScreenW/2-36)
-                    m.height.equalTo(50)
-                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                }
+
                 button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
 
-                let button1 = UIButton()
                 button1.backgroundColor = UIColor.init(netHex: 0x007aff)
                 button1.layer.cornerRadius = 2
                 button1.setTitle(pageInfo.actions.last?.0, for: .normal)
-                bottomView.addSubview(button1)
-                button1.snp.makeConstraints { (m) in
-                    m.right.equalToSuperview().offset(-24)
-                    m.width.equalTo(kScreenW/2-36)
-                    m.height.equalTo(50)
-                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                if button1.superview == nil {
+                    bottomView.addSubview(button1)
+                    button1.snp.makeConstraints { (m) in
+                        m.right.equalToSuperview().offset(-24)
+                        m.width.equalTo(kScreenW/2-36)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
+                } else {
+                    button1.snp.remakeConstraints { (m) in
+                        m.right.equalToSuperview().offset(-24)
+                        m.width.equalTo(kScreenW/2-36)
+                        m.height.equalTo(50)
+                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                    }
                 }
                 button1.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.last?.1()
                 }.disposed(by:rx.disposeBag)
             }
         }
+    }
+
+    func bind() {
+        self.txDetailVM.pageInfo.asObservable()
+            .bind { [weak self] pageInfo in
+                self?.bindDetailPageInfo(pageInfo)
+            }
+            .disposed(by: rx.disposeBag)
+
+        let transferVM = self.txDetailVM.txVM
+        transferVM.receiveSlateCreated.asObserver()
+            .bind { [weak self] (slate,url) in
+
+            }
+            .disposed(by: rx.disposeBag)
+
+        transferVM.message.asObservable()
+            .bind { message in
+                Toast.show(message)
+            }
+            .disposed(by: rx.disposeBag)
+
+        transferVM.finalizeTxSuccess.asObserver()
+            .delay(1.5, scheduler: MainScheduler.instance)
+            .bind { [weak self] in
+                
+            }
+            .disposed(by: rx.disposeBag)
     }
 
 }

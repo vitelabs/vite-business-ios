@@ -14,6 +14,9 @@ import NSObject_Rx
 import Vite_GrinWallet
 import RxDataSources
 import BigInt
+import Moya
+import SwiftyJSON
+import ObjectMapper
 
 func businessBundle() -> Bundle {
     let podBundle = Bundle(for: GrinInfoViewController.self)
@@ -69,6 +72,8 @@ class GrinInfoViewController: BaseViewController {
     }()
 
     let walletInfoVM = GrinWalletInfoVM()
+
+    fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
     
     required  init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -238,6 +243,15 @@ class GrinInfoViewController: BaseViewController {
             let vc = GrinTeachViewController.init(txType: .sent, channelType: method)
             self.navigationController?.pushViewController(vc, animated: true)
         }
+
+        if method == .http {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_1", attributes: ["uuid": UUID.stored])
+        } else if method == .vite {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_1", attributes: ["uuid": UUID.stored])
+
+        } else if method == .file {
+            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_1", attributes: ["uuid": UUID.stored])
+        }
     }
 
     @IBAction func receiveAction(_ sender: Any) {
@@ -349,10 +363,45 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = GrinTxDetailViewController()
-        let tx = self.walletInfoVM.txs.value[indexPath.row]
-        detail.fullInfo = tx
-        self.navigationController?.pushViewController(detail, animated: true)
+        let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
+
+        if let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId {
+            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
+                let addressString = account.address.description
+                if let sAddress = addressString.components(separatedBy: "_").last {
+                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
+                    return [
+                        "address": addressString,
+                        "signature": s
+                    ]
+                }
+                return [String:String]()
+            }
+            view.displayLoading()
+            transactionProvider
+                .request(.gatewayTransactionList(addresses: addresses, slateID: slatedId), completion: { (result) in
+                    self.view.hideLoading()
+                    do {
+                        let response = try result.dematerialize()
+                        if JSON(response.data)["code"].int == 0,
+                            let arr = JSON(response.data)["data"].arrayObject,
+                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
+                            fullInfo.gatewayInfo = gatewayInfos.first
+                            let detail = GrinTxDetailViewController()
+                            detail.fullInfo = fullInfo
+                            self.navigationController?.pushViewController(detail, animated: true)
+                        } else {
+
+                        }
+                    } catch {
+
+                    }
+                })
+        } else {
+            let detail = GrinTxDetailViewController()
+            detail.fullInfo = fullInfo
+            self.navigationController?.pushViewController(detail, animated: true)
+        }
     }
 
 }
