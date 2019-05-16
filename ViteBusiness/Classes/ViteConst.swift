@@ -109,7 +109,7 @@ public extension ViteConst {
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"))
-        #if DEBUG || TEST
+
         public static let testEnv =
             Env(tokenCode: TokenCode(viteCoin: "7",
                                      etherCoin: "11",
@@ -151,6 +151,5 @@ public extension ViteConst {
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"))
-        #endif
     }
 }
