@@ -164,7 +164,7 @@ extension ViteConst.Env {
 
         let map: [String: String] = [
             "https://explorer.vite.net": "http://132.232.134.168:8080",
-            "https://grinx.vite.net": "129.28.98.62:8080",
+            "https://grinx.vite.net": "http://129.28.98.62:8080",
             "https://vitex.vite.net": "http://132.232.1.165:8080",
         ]
 
