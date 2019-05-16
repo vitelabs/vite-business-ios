@@ -66,27 +66,28 @@ public struct Workflow {
             }
             .recover { (e) -> Promise<AccountBlock> in
                 if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                    switch type {
-                    case .other, .vote:
-                        return AlertSheet.show(title: R.string.localizable.quotaAlertTitle(),
-                                               message: R.string.localizable.quotaAlertPowAndQuotaMessage(),
-                                               titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
-                                                        .default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
-                                                        .cancel], config: { $0.preferredAction = $0.actions[0] })
-                            .then({ (_, index) -> Promise<AccountBlock> in
-                                if index == 0 {
-                                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                                } else if index == 1 {
-                                    let vc = QuotaManageViewController()
-                                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                                    return Promise(error: ViteError.cancel)
-                                } else {
-                                    return Promise(error: ViteError.cancel)
-                                }
-                            })
-                    case .pledge:
-                        return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                    }
+                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
+//                    switch type {
+//                    case .other, .vote:
+//                        return AlertSheet.show(title: R.string.localizable.quotaAlertTitle(),
+//                                               message: R.string.localizable.quotaAlertPowAndQuotaMessage(),
+//                                               titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
+//                                                        .default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
+//                                                        .cancel], config: { $0.preferredAction = $0.actions[0] })
+//                            .then({ (_, index) -> Promise<AccountBlock> in
+//                                if index == 0 {
+//                                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
+//                                } else if index == 1 {
+//                                    let vc = QuotaManageViewController()
+//                                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                                    return Promise(error: ViteError.cancel)
+//                                } else {
+//                                    return Promise(error: ViteError.cancel)
+//                                }
+//                            })
+//                    case .pledge:
+//                        return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
+//                    }
                 } else {
                     return Promise(error: e)
                 }
@@ -134,10 +135,16 @@ public struct Workflow {
             cancelPow = true
         }
         getPowFloatView.show()
+        let waitAtLeast = after(seconds: 15)
         return getPowPromise()
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()
                 return Promise(error: e)
+            }
+            .then { context -> Promise<SendBlockContext> in
+                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+                    return .value(context)
+                })
             }
             .then { context -> Promise<SendBlockContext> in
                 if cancelPow {
