@@ -18,8 +18,17 @@ import Web3swift
 class ContactsEditViewController: BaseViewController {
 
     let contact: Contact?
-    init(contact: Contact?) {
+    var type: BehaviorRelay<CoinType>
+
+    init(contact: Contact) {
         self.contact = contact
+        self.type = BehaviorRelay(value: contact.type)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(type: CoinType?) {
+        self.contact = nil
+        self.type = BehaviorRelay(value: type ?? CoinType.vite)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,13 +55,10 @@ class ContactsEditViewController: BaseViewController {
     let addressView = ContactAddressInputView()
     let saveButton = UIButton(style: .blue, title: R.string.localizable.contactsEditPageSaveButtonTitle())
 
-    var type: BehaviorRelay<CoinType> = BehaviorRelay(value: CoinType.vite)
-
     fileprivate func setupView() {
 
         if let contact = contact  {
             navigationTitleView = NavigationTitleView(title: R.string.localizable.contactsEditPageAddTitle())
-            type.accept(contact.type)
             nameView.textField.text = contact.name
             addressView.textView.text = contact.address
         } else {
@@ -182,7 +188,7 @@ class ContactsEditViewController: BaseViewController {
 
         scrollableView.stackView.addArrangedSubview(view)
 
-        deleteButton.rx.tap.bind {
+        deleteButton.rx.tap.bind { [weak self] in
             Alert.show(title: R.string.localizable.contactsEditPageDeleteAlertTitle(), message: nil, actions: [
                 (.cancel, nil),
                 (.default(title: R.string.localizable.confirm()), { [weak self] alert in
