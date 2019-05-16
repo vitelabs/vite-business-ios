@@ -21,7 +21,7 @@
 "Update.app" = "更新 App";
 "Submit.cancel" = "撤销";
 "Close"="关闭";
-
+"web.page.host.tip"="本网页由 %@ 提供";
 
 
 /* Login */
@@ -268,7 +268,8 @@
 "quota.alert.need.quota.message" = "PoW 获取的配额不足，建议您进行抵押 VITE 获取配额";
 "quota.alert.pow.button.title" = "运行 PoW";
 "quota.alert.quota.button.title" = "抵押 VITE";
-"quota.float.view.title" = "运行 PoW";
+"quota.float.view.title" = "正在运行PoW获取配额";
+"quota.float.view.tip" = "如果您不想运行PoW，您可抵押VITE跳过此步骤";
 
 /* Peldge History */
 "peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";

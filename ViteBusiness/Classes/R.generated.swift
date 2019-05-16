@@ -906,7 +906,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 404 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 406 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1908,10 +1908,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaAlertPowButtonTitle = Rswift.StringResource(key: "quota.alert.pow.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Run PoW
-      /// 
-      /// Locales: en, zh-Hans
-      static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -2480,6 +2476,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 如果您不想运行PoW，您可抵押VITE跳过此步骤
+      /// 
+      /// Locales: en, zh-Hans
+      static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我已阅读，理解并同意
       /// 
       /// Locales: en, zh-Hans
@@ -2500,6 +2500,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageAmountPlaceholder = Rswift.StringResource(key: "eth.vite.exchange.page.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 本网页由 %@ 提供
+      /// 
+      /// Locales: en, zh-Hans
+      static let webPageHostTip = Rswift.StringResource(key: "web.page.host.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 正在运行PoW获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 置换
       /// 
       /// Locales: en, zh-Hans
@@ -4275,13 +4283,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Run PoW
-      /// 
-      /// Locales: en, zh-Hans
-      static func quotaFloatViewTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -5276,6 +5277,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 如果您不想运行PoW，您可抵押VITE跳过此步骤
+      /// 
+      /// Locales: en, zh-Hans
+      static func quotaFloatViewTip(_: Void = ()) -> String {
+        return NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我已阅读，理解并同意
       /// 
       /// Locales: en, zh-Hans
@@ -5309,6 +5317,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func ethViteExchangePageAmountPlaceholder(_ value1: String) -> String {
         return String(format: NSLocalizedString("eth.vite.exchange.page.amount.placeholder", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 本网页由 %@ 提供
+      /// 
+      /// Locales: en, zh-Hans
+      static func webPageHostTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("web.page.host.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 正在运行PoW获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      static func quotaFloatViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 置换

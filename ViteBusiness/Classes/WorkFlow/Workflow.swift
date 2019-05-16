@@ -135,7 +135,7 @@ public struct Workflow {
             cancelPow = true
         }
         getPowFloatView.show()
-        let waitAtLeast = after(seconds: 15)
+        let waitAtLeast = after(seconds: 1.5)
         return getPowPromise()
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()

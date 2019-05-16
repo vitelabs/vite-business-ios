@@ -21,6 +21,7 @@
 "Update.app" = "Update App";
 "Submit.cancel" = "Cancel";
 "Close" = "Close";
+"web.page.host.tip"="本网页由 %@ 提供";
 
 /* Login */
 "create.account" = "Create Account";
@@ -264,7 +265,8 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Run PoW";
+"quota.float.view.title" = "正在运行PoW获取配额";
+"quota.float.view.tip" = "如果您不想运行PoW，您可抵押VITE跳过此步骤";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";

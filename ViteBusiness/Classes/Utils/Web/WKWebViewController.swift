@@ -39,6 +39,19 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         view.addSubview(webView)
         view.addSubview(webProgressView)
 
+        tipLabel.text = url.host.map { R.string.localizable.webPageHostTip($0) }
+        webView.scrollView.insertSubview(tipLabel, at: 0)
+        webView.scrollView.insertSubview(bgView, at: 0)
+        tipLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(webView).offset(24)
+            m.left.equalTo(webView).offset(16)
+            m.right.equalTo(webView).offset(-16)
+        }
+
+        bgView.snp.makeConstraints { (m) in
+            m.edges.equalTo(webView)
+        }
+
         webProgressView.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(2)
             make.left.right.equalTo(view)
@@ -60,6 +73,10 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tipLabel.isHidden = false
     }
 
     fileprivate func handleNavBar() {
@@ -95,8 +112,22 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         return webProgressView
     }()
 
+    let tipLabel = UILabel().then {
+        $0.isHidden = true
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textAlignment = .center
+    }
+
+    let bgView = UIView().then {
+        $0.backgroundColor = UIColor(netHex: 0xF8F8F8)
+    }
+
     lazy var webView: WKWebView = {
         let webView =  WKWebView(frame: CGRect(), configuration: WKWebViewConfiguration())
+        webView.isOpaque = false
+        webView.backgroundColor = .white
+        webView.scrollView.backgroundColor = .clear
         webView.navigationDelegate = self as WKNavigationDelegate
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: NSKeyValueObservingOptions.new, context: nil)
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: NSKeyValueObservingOptions.new, context: nil)
@@ -189,6 +220,7 @@ extension WKWebViewController {
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("webViewDidFinishLoad: \(String(describing: webView.url?.absoluteString))")
+        self.tipLabel.text = webView.url?.host.map { R.string.localizable.webPageHostTip($0) }
     }
 
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
