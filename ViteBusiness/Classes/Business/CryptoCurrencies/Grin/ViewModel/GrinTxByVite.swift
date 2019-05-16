@@ -377,7 +377,7 @@ extension GrinTxByViteService {
         guard let payload = fileName.data(using: .utf8) else {
             return Promise(error: grinError("creat payload failed. fileName:\(fileName)"))
         }
-        let data = AccountBlockDataFactory.generateCustomData(header: Data(0x8001.toBytes), data: payload)
+        let data = AccountBlockDataFactory.generateCustomData(header: 0x8001, data: payload)
         return sendRawTx(toAddress: toAddress, data: data,account: account )
     }
 
