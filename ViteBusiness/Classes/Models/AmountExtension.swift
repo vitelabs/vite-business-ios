@@ -20,7 +20,7 @@ extension Amount {
 
     public func amount(decimals: Int, count: Int) -> String {
         let bigDecimal = BigDecimal(number: (self as BigInt), digits: decimals)
-        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(Swift.min(decimals, count)), padding: .padding)
+        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(Swift.min(decimals, count)), padding: .padding, options: [.groupSeparator])
     }
 }
 
