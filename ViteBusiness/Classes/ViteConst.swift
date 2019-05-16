@@ -29,12 +29,14 @@ public struct ViteConst {
         case .stage:
             currentEnv = Env.stageEnv
         case .online:
-            currentEnv = Env.premainnet
+//            currentEnv = Env.premainnet
+            currentEnv = Env.transform(Env.premainnet)
         case .custom:
             currentEnv = Env.testEnv
         }
         #else
-        let currentEnv = Env.premainnet
+//        let currentEnv = Env.premainnet
+        let currentEnv = Env.transform(Env.premainnet)
         #endif
 
         // set
@@ -151,5 +153,37 @@ public extension ViteConst {
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"))
+    }
+}
+
+
+extension ViteConst.Env {
+
+    static func transform(_ env: ViteConst.Env) -> ViteConst.Env {
+
+
+        let map: [String: String] = [
+            "https://explorer.vite.net": "http://132.232.134.168:8080",
+            "https://grinx.vite.net": "129.28.98.62:8080",
+            "https://vitex.vite.net": "http://132.232.1.165:8080",
+        ]
+
+        let viteExplorer = map[env.vite.explorer] ?? env.vite.explorer
+        let grinX = map[env.grin.x] ?? env.grin.x
+        let viteX = map[env.vite.x] ?? env.vite.x
+
+        return ViteConst.Env(tokenCode: env.tokenCode,
+                             cos: env.cos,
+                             vite: ViteConst.Vite(nodeHttp: env.vite.nodeHttp,
+                                                  explorer: viteExplorer,
+                                                  growth: env.vite.growth,
+                                                  x: viteX,
+                                                  genesisPageUrl: env.vite.genesisPageUrl,
+                                                  gateway: env.vite.gateway),
+                             eth: env.eth,
+                             grin: ViteConst.Grin(nodeHttp: env.grin.nodeHttp,
+                                                  apiSecret: env.grin.apiSecret,
+                                                  chainType: env.grin.chainType,
+                                                  x: grinX))
     }
 }
