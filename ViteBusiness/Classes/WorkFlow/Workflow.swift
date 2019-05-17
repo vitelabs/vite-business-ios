@@ -67,27 +67,6 @@ public struct Workflow {
             .recover { (e) -> Promise<AccountBlock> in
                 if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
                     return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-//                    switch type {
-//                    case .other, .vote:
-//                        return AlertSheet.show(title: R.string.localizable.quotaAlertTitle(),
-//                                               message: R.string.localizable.quotaAlertPowAndQuotaMessage(),
-//                                               titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
-//                                                        .default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
-//                                                        .cancel], config: { $0.preferredAction = $0.actions[0] })
-//                            .then({ (_, index) -> Promise<AccountBlock> in
-//                                if index == 0 {
-//                                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-//                                } else if index == 1 {
-//                                    let vc = QuotaManageViewController()
-//                                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-//                                    return Promise(error: ViteError.cancel)
-//                                } else {
-//                                    return Promise(error: ViteError.cancel)
-//                                }
-//                            })
-//                    case .pledge:
-//                        return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-//                    }
                 } else {
                     return Promise(error: e)
                 }
@@ -199,7 +178,7 @@ public extension Workflow {
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -235,7 +214,7 @@ public extension Workflow {
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -266,7 +245,7 @@ public extension Workflow {
 
 
         let tokenInfo = TokenInfo.viteCoin
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -357,7 +336,7 @@ public extension Workflow {
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }

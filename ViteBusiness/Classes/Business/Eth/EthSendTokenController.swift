@@ -185,13 +185,16 @@ class EthSendTokenController: BaseViewController {
                     if case .success = r {
                         self?.dismiss()
                     } else if case .failure(let error) = r {
+                        let e = ViteError.conversion(from: error)
                         if let web3Error = error as? Web3Error {
                             Toast.show(web3Error.localizedDescription)
-                        }else if let walletError = error as? WalletError{
-                            let viteError = ViteError.init(code: ViteErrorCode(type: .rpc, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
+                        } else if let walletError = error as? WalletError{
+                            let viteError = ViteError.init(code: ViteErrorCode(type: .custom, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
                             Toast.show(viteError.viteErrorMessage)
-                        }else {
-                           Toast.show(error.viteErrorMessage)
+                        } else {
+                            if e != ViteError.cancel {
+                                Toast.show(e.viteErrorMessage)
+                            }
                         }
                     }
                 })
@@ -202,7 +205,7 @@ class EthSendTokenController: BaseViewController {
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
                 let balance = ret?.balance ?? Amount()
-                self.headerView.balanceLabel.text = balance.amountFull(decimals: self.tokenInfo.decimals)
+                self.headerView.balanceLabel.text = balance.amountFullWithGroupSeparator(decimals: self.tokenInfo.decimals)
             }).disposed(by: rx.disposeBag)
     }
 }

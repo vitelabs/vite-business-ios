@@ -944,10 +944,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: A different seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: About Us
       /// 
       /// Locales: en, zh-Hans
@@ -1080,6 +1076,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let workflowConfirmPageBiometryAuthFailedBack = Rswift.StringResource(key: "workflow.confirm.page.biometryAuthFailed.back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Backed Up
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Backup Wallet Account
       /// 
       /// Locales: en, zh-Hans
@@ -1624,6 +1624,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsEditPageNameTitle = Rswift.StringResource(key: "contacts.edit.page.name.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: New One
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -1932,10 +1936,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipLabTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Seed phrase backed up
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Select Accounts
       /// 
       /// Locales: en, zh-Hans
@@ -2596,13 +2596,6 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("pop.page.tip.vote.loser", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
-      /// en translation: A different seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: About Us
       /// 
       /// Locales: en, zh-Hans
@@ -2832,6 +2825,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func workflowConfirmPageBiometryAuthFailedBack(_: Void = ()) -> String {
         return NSLocalizedString("workflow.confirm.page.biometryAuthFailed.back", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Backed Up
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Backup Wallet Account
@@ -3786,6 +3786,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.edit.page.name.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: New One
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -4323,13 +4330,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageTipLabTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.tip.lab.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Seed phrase backed up
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Select Accounts

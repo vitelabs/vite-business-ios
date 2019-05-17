@@ -232,7 +232,7 @@ extension QuotaManageViewController {
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
                 self.balance = balanceInfo?.balance ?? self.balance
-                self.headerView.balanceLabel.text = self.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
+                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
             }).disposed(by: rx.disposeBag)
 
     FetchQuotaManager.instance.quotaDriver

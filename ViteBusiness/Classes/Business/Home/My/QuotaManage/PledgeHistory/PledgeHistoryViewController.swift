@@ -68,7 +68,7 @@ class PledgeHistoryViewController: BaseViewController, View {
                 let cell = cell as! PledgeHistoryCell
                 cell.hashLabel.text = pledge.beneficialAddress
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
-                cell.balanceLabel.text =  pledge.amount.amountShort(decimals: ViteWalletConst.viteToken.decimals)
+                cell.balanceLabel.text =  pledge.amount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"
             }
             .disposed(by: disposeBag)

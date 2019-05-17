@@ -157,13 +157,16 @@ class EthViteExchangeViewController: BaseViewController {
                     AlertControl.showCompletion(R.string.localizable.workflowToastSubmitSuccess())
                     GCD.delay(1) { self.dismiss() }
                 } else if case .failure(let error) = r {
+                    let e = ViteError.conversion(from: error)
                     if let web3Error = error as? Web3Error {
                         Toast.show(web3Error.localizedDescription)
-                    }else if let walletError = error as? WalletError {
-                        let viteError = ViteError.init(code: ViteErrorCode(type: .rpc, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
+                    } else if let walletError = error as? WalletError {
+                        let viteError = ViteError.init(code: ViteErrorCode(type: .custom, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
                         Toast.show(viteError.viteErrorMessage)
-                    }else {
-                        Toast.show(error.viteErrorMessage)
+                    } else {
+                        if e != ViteError.cancel {
+                            Toast.show(e.viteErrorMessage)
+                        }
                     }
                 }
             })
@@ -173,7 +176,7 @@ class EthViteExchangeViewController: BaseViewController {
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
                 self.balance = ret?.balance ?? self.balance
-                let text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
+                let text = self.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteERC20.decimals)
                 self.headerView.balanceLabel.text = text
                 self.amountView.textField.placeholder = R.string.localizable.ethViteExchangePageAmountPlaceholder(text)
 

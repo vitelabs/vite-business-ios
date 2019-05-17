@@ -53,8 +53,8 @@
 "mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意";
 "mnemonic.backup.page.clause.button.title" = "使用条款";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "A different seed phrase";
-"mnemonic.backup.page.tip.nextBtn.title" = "Seed phrase backed up";
+"mnemonic.backup.page.tip.anewBtn.title" = "New One";
+"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";

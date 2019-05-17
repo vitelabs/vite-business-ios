@@ -19,7 +19,7 @@ public extension Workflow {
                                            gasPrice: Float,
                                            completion: @escaping (Result<String>) -> ()) {
         let tokenInfo = TokenInfo.viteERC20
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let gasLimit = EtherWallet.defaultGasLimitForTokenTransfer
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
 
@@ -89,7 +89,7 @@ public extension Workflow {
                 })
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let gasLimit = tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
 

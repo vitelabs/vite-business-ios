@@ -207,7 +207,7 @@ class BalanceInfoEthChainCardView: UIView {
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()
-            .map({ $0.balance.amountFull(decimals: token.decimals) })
+            .map({ $0.balance.amountFullWithGroupSeparator(decimals: token.decimals) })
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in

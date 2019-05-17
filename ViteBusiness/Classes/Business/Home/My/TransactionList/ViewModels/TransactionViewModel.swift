@@ -51,7 +51,7 @@ final class TransactionViewModel: TransactionViewModelType {
                 }
             }()
             let symbol = (accountBlock.amount ?? 0) == 0 ? "" : (accountBlock.transactionType == .receive ? "+" : "-")
-            self.balanceString = "\(symbol)\(accountBlock.amount!.amountShort(decimals: accountBlock.token!.decimals))"
+            self.balanceString = "\(symbol)\(accountBlock.amount!.amountShortWithGroupSeparator(decimals: accountBlock.token!.decimals))"
             self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
             self.symbolString = accountBlock.token?.symbol ?? ""
             self.hash = accountBlock.hash ?? ""
