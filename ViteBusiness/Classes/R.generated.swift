@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 153 images.
+  /// This `R.image` struct is generated, and contains static references to 156 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -100,6 +100,12 @@ struct R: Rswift.Validatable {
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
     /// Image `grin_help`.
     static let grin_help = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_help")
+    /// Image `grin_node_edit`.
+    static let grin_node_edit = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_edit")
+    /// Image `grin_node_selected`.
+    static let grin_node_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_selected")
+    /// Image `grin_node_unselected`.
+    static let grin_node_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_unselected")
     /// Image `grin_teach_file`.
     static let grin_teach_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file")
     /// Image `grin_teach_http_receive`.
@@ -533,6 +539,21 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin_help", bundle: ..., traitCollection: ...)`
     static func grin_help(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_help, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_edit", bundle: ..., traitCollection: ...)`
+    static func grin_node_edit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_edit, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_selected", bundle: ..., traitCollection: ...)`
+    static func grin_node_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_unselected", bundle: ..., traitCollection: ...)`
+    static func grin_node_unselected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_unselected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_teach_file", bundle: ..., traitCollection: ...)`
@@ -2648,10 +2669,6 @@ struct R: Rswift.Validatable {
       /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
       /// 
       /// Locales: en, zh-Hans
-      static let grinDetailPleaseReciveAndShare = Rswift.StringResource(key: "grin.detail.pleaseReciveAndShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
-      /// 
-      /// Locales: en, zh-Hans
       static let grinDetailTxFileReecivedAndCanShare = Rswift.StringResource(key: "grin.detail.txFileReecivedAndCanShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。
       /// 
@@ -2741,6 +2758,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailWaitHerOpenViteWalletToReceive = Rswift.StringResource(key: "grin.detail.waitHerOpenViteWalletToReceive", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailPleaseReciveAndShare = Rswift.StringResource(key: "grin.detail.pleaseReciveAndShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 重新广播
       /// 
       /// Locales: en, zh-Hans
@@ -5458,13 +5479,6 @@ struct R: Rswift.Validatable {
       /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
       /// 
       /// Locales: en, zh-Hans
-      static func grinDetailPleaseReciveAndShare(_: Void = ()) -> String {
-        return NSLocalizedString("grin.detail.pleaseReciveAndShare", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
-      /// 
-      /// Locales: en, zh-Hans
       static func grinDetailTxFileReecivedAndCanShare(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.txFileReecivedAndCanShare", bundle: R.hostingBundle, comment: "")
       }
@@ -5621,6 +5635,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinDetailWaitHerOpenViteWalletToReceive(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.waitHerOpenViteWalletToReceive", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailPleaseReciveAndShare(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.pleaseReciveAndShare", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 重新广播

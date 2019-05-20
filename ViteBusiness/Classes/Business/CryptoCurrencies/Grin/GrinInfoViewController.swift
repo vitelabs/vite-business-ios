@@ -43,6 +43,7 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lineImageVIew: UIImageView!
     @IBOutlet weak var receiveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
+    let leftBatItemCustombutton = UIButton()
 
     let helpButton: UIButton = {
         let button = UIButton()
@@ -85,8 +86,6 @@ class GrinInfoViewController: BaseViewController {
         bind()
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
-
-       
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -132,16 +131,16 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
-        navigationItem.rightBarButtonItem?.rx.tap.asObservable()
+        leftBatItemCustombutton.rx.tap.asObservable()
             .bind { [weak self] in
-                Alert.show(title: R.string.localizable.grinWalletCheck(),
-                           message: R.string.localizable.grinWalletCheckDesc(),
-                           actions: [
-                            (.cancel, nil),
-                            (.default(title: R.string.localizable.confirm()), { _ in
-                                self?.walletInfoVM.action.onNext(.checkWallet)
-                            }),
-                    ])
+                guard let `self` = self,
+                    let customView = self.navigationItem.rightBarButtonItem?.customView,
+                    let spendableAcountLabel = self.spendableAcountLabel else {
+                    return
+                }
+                FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles:
+                    ["配置全节点",
+                     R.string.localizable.grinWalletCheck()]).show()
             }
             .disposed(by: rx.disposeBag)
 
@@ -161,11 +160,10 @@ class GrinInfoViewController: BaseViewController {
     func setupView() {
         navigationBarStyle = .default
 
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem.init(image: R.image.icon_nav_more(), style: .plain, target: nil, action: nil)
+        leftBatItemCustombutton.setImage(R.image.icon_nav_more(), for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: leftBatItemCustombutton)
 
         self.titleView.bind(tokenInfo: GrinManager.tokenInfo)
-
 
         self.titleView.addSubview(helpButton)
         helpButton.snp.makeConstraints { (m) in
@@ -405,3 +403,23 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+
+extension GrinInfoViewController: FloatButtonsViewDelegate {
+
+    func didClick(at index: Int) {
+        if index == 0 {
+            let selectVC = SelectGrinNodeViewController()
+            self.navigationController?.pushViewController(selectVC, animated: true)
+        } else if index == 1 {
+            Alert.show(title: R.string.localizable.grinWalletCheck(),
+                       message: R.string.localizable.grinWalletCheckDesc(),
+                       actions: [
+                        (.cancel, nil),
+                        (.default(title: R.string.localizable.confirm()), {[weak self] _ in
+                            self?.walletInfoVM.action.onNext(.checkWallet)
+                        }),
+                ])
+        }
+    }
+}
+

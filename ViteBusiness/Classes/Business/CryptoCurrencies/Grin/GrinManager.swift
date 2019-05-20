@@ -89,24 +89,22 @@ class GrinManager: GrinBridge {
         print("grinwalletpath:\(self.walletUrl.path)")
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
-            self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
-            self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
             self.chainType = GrinChainType.mainnet.rawValue
             break
         case .test, .custom:
-            self.checkNodeApiHttpAddr = "http://45.40.197.46:23413"
-            self.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
             self.chainType = GrinChainType.usernet.rawValue
         }
+        self.checkNodeApiHttpAddr = self.currentNode.address
+        self.apiSecret = self.currentNode.apiSecret
         #else
-        self.checkNodeApiHttpAddr = "https://grin.vite.net/fullnode"
-        self.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
+        self.checkNodeApiHttpAddr = self.node.address
+        self.apiSecret = self.node.apiSecret
         self.chainType = GrinChainType.mainnet.rawValue
         #endif
         self.creatWalletIfNeeded()
+        self.resetApiSecret()
         self.balance.accept(GrinBalance())
         DispatchQueue.main.async {
-            GrinLocalInfoService.shared.creatDBIfNeeded()
             self.handleSavedTx()
         }
     }
@@ -134,6 +132,16 @@ class GrinManager: GrinBridge {
                 self.walletCreated.accept(true)
             }
         })
+    }
+
+    func resetApiSecret() {
+        let url =  walletUrl.appendingPathComponent(".api_secret")
+        do {
+            try currentNode.apiSecret.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            plog(level: .error, log: "grin-resetApiSecretError:\(error)", tag: .grin)
+
+        }
     }
 
     func getBalance() {
@@ -451,6 +459,31 @@ extension GrinManager {
             return ""
         }
         return encryptedKey
+    }
+
+    var currentNode: GrinNode {
+        if let selectedNode = GrinLocalInfoService.shared.getSelectedNode() {
+            return selectedNode
+        } else {
+            return viteGrinNode
+        }
+    }
+
+    var viteGrinNode: GrinNode {
+        let viteNode = GrinNode()
+        #if DEBUG || TEST
+        switch DebugService.instance.config.appEnvironment {
+        case .test, .custom:
+            viteNode.address = "http://45.40.197.46:23413"
+            viteNode.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
+            return viteNode
+        default:
+            break
+        }
+        #endif
+        viteNode.address = "https://grin.vite.net/fullnode"
+        viteNode.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
+        return viteNode
     }
 }
 

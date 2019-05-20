@@ -215,6 +215,8 @@ class GrinTxDetailViewController: UIViewController {
                 button1.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.last?.1()
                 }.disposed(by:rx.disposeBag)
+            } else {
+                fatalError()
             }
         }
     }

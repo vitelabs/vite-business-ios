@@ -878,7 +878,6 @@ class GrinTxDetailVM: NSObject {
             self.fullInfo = fullInfo
         }
     }
-    
 
 }
 

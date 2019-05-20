@@ -11,23 +11,27 @@ class GrinLocalInfoService {
 
     static let shared = GrinLocalInfoService()
 
-    var db: FMDatabase!
+    lazy var db: FMDatabase = {
+        let url = GrinManager.getWalletUrl().appendingPathComponent("grin_tx_local_info.db")
+        let db = FMDatabase.init(url: url)
+        db.open()
+        do {
+            try  db.executeUpdate("create table if not exists tx_send(slateid text primary key,method text, type text, status interger,creattime integer,sharesendfiletime integer,getresponsefiletime integer,finalizetime integer, canclesendtime integer);", values: nil)
+            try  db.executeUpdate("create table if not exists tx_receive(slateid text primary key,method text,type text, status interger,getsendfiletime integer,receivetime integer,shareresponsefiletime integer, canclereceivetime integer);", values: nil)
+            try  db.executeUpdate("create table if not exists grin_node(id integer primary key autoincrement, address text, secret text, seletcted integer default 0);", values: nil)
+        } catch {
+            print(error)
+        }
+        return db
+    }()
 
     func creatDBIfNeeded() {
-
-        let url = GrinManager.getWalletUrl().appendingPathComponent("grin_tx_local_info.db")
-        db = FMDatabase.init(url: url)
 
         guard db.open() else {
             return
         }
 
-        do {
-            try  db.executeUpdate("create table if not exists tx_send(slateid text primary key,method text, type text, status interger,creattime integer,sharesendfiletime integer,getresponsefiletime integer,finalizetime integer, canclesendtime integer);", values: nil)
-            try  db.executeUpdate("create table if not exists tx_receive(slateid text primary key,method text,type text, status interger,getsendfiletime integer,receivetime integer,shareresponsefiletime integer, canclereceivetime integer);", values: nil)
-        } catch {
-            print(error)
-        }
+
 
         getAllInfo()
     }
@@ -220,4 +224,91 @@ class GrinLocalInfo {
     var receiveTime: TimeInterval?
     var shareResponseFileTime: TimeInterval?
     var cancleReceiveTime: TimeInterval?
+}
+
+
+extension GrinLocalInfoService {
+    func getNodeAddress() -> [GrinNode] {
+        var result = [GrinNode]()
+        do {
+            let a = try db.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
+            while a.next() {
+                var info = GrinNode()
+                info.id = a.long(forColumn: "id")
+                info.address = a.string(forColumn: "address") ?? ""
+                info.apiSecret = a.string(forColumn: "secret") ?? ""
+                info.id = a.long(forColumn: "id") ?? 0
+                info.seleted = (a.int(forColumn: "selected") == 1)
+                result.append(info)
+            }
+        } catch {
+
+        }
+
+        return result
+    }
+
+    func getSelectedNode() -> GrinNode? {
+        var result = [GrinNode]()
+        do {
+            let a = try db.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
+            while a.next() {
+                var info = GrinNode()
+                info.id = a.long(forColumn: "id")
+                info.address = a.string(forColumn: "address") ?? ""
+                info.apiSecret = a.string(forColumn: "secret") ?? ""
+                info.id = a.long(forColumn: "id") ?? 0
+                info.seleted = (a.long(forColumn: "selected") == 1)
+                result.append(info)
+            }
+        } catch {
+
+        }
+
+        return result.first
+    }
+
+
+
+
+    func add(node:GrinNode ) {
+        do {
+            let a = try db.executeUpdate("insert into grin_node(address, secret) values (?,?)", values: [node.address, node.apiSecret])
+        } catch {
+
+        }
+    }
+
+    func update(node:GrinNode ) {
+        do {
+            try  db.executeUpdate("update grin_node set address = ?, secret = ? where id = ? ", values: [node.address,node.apiSecret, node.id])
+        } catch {
+
+        }
+    }
+
+    func remove(node:GrinNode ) {
+        do {
+            try  db.executeUpdate("delete from grin_node where id = ? ", values: [node.id])
+        } catch {
+
+        }
+    }
+
+    func select(node:GrinNode ) {
+        do {
+            try  db.executeUpdate("update grin_node set selected = 1 where id = ? ", values: [node.id])
+            try  db.executeUpdate("update grin_node set selected = 0 where id != ? ", values: [node.id])
+        } catch {
+
+        }
+    }
+
+    func deSelect() {
+        do {
+            try  db.executeUpdate("update grin_node set selected = 0 where 1 = 1 ", values: nil)
+        } catch {
+
+        }
+    }
 }

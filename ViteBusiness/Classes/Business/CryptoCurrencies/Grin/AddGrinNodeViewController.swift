@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddGrinNodeViewControllerViewController: UIViewController {
+class AddGrinNodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

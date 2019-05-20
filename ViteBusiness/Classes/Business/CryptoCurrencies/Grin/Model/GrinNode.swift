@@ -7,6 +7,9 @@
 
 import UIKit
 
-class GrinNode: NSObject {
-
+class GrinNode {
+    var address: String = ""
+    var apiSecret: String  = ""
+    var seleted = false
+    var id = 0
 }
