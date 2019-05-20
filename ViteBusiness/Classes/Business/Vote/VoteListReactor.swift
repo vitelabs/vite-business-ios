@@ -34,7 +34,7 @@ final class VoteListReactor {
     func result() -> Observable<[Candidate]?> {
         let polling = Observable.concat([
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                    ViteNode.vote.info.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
                         .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
@@ -49,7 +49,7 @@ final class VoteListReactor {
                 Observable<Int>.interval(30, scheduler: MainScheduler.instance)
                 .flatMap { [weak self] _ in
                     Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                        Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                        ViteNode.vote.info.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
                             .done { [weak self] (candidates) in
                                 self?.fetchCandidateError.value = nil
                                 observer.onNext(candidates)
@@ -74,7 +74,7 @@ final class VoteListReactor {
         let fetchWhenStatusChange = statusChanged
             .flatMapLatest({ (_, _)  in
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                    ViteNode.vote.info.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
                         .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
@@ -89,7 +89,7 @@ final class VoteListReactor {
         let fetchManually = self.fetchManually
             .flatMap({ [weak self] (_)  in
                 Observable<[Candidate]?>.create({ (observer) -> Disposable in
-                    Provider.default.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
+                    ViteNode.vote.info.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
                         .done { (candidates) in
                             observer.onNext(candidates)
                             observer.onCompleted()
@@ -115,7 +115,7 @@ final class VoteListReactor {
             return nil
         }
         var result = candidates.sorted(by: {
-            return $0.voteNum.value > $1.voteNum.value
+            return $0.voteNum > $1.voteNum
         })
 
         for (index, candidate) in result.enumerated() {

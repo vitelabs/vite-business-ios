@@ -145,7 +145,7 @@ final class GrinWalletInfoVM {
         let gateWayInfos =  Promise<[GrinGatewayInfo]> { seal in
 
             let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
-                let addressString = account.address.description
+                let addressString = account.address
                 if let sAddress = addressString.components(separatedBy: "_").last {
                     let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
                     return [

@@ -13,18 +13,18 @@ import RxCocoa
 import NSObject_Rx
 import BigInt
 import ViteEthereum
-import web3swift
+import Web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
     let fromAddress : EthereumAddress = EtherWallet.shared.ethereumAddress!
 
-    var address:  web3swift.Address? = nil
-    var amount: Balance? = nil
+    var address:  EthereumAddress? = nil
+    var amount: Amount? = nil
 
     public var tokenInfo : TokenInfo
 
-    init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
+    init(_ tokenInfo: TokenInfo, toAddress: EthereumAddress? = nil,amount:Amount? = nil) {
         self.tokenInfo = tokenInfo
 
         self.address = toAddress
@@ -40,7 +40,6 @@ class EthSendTokenController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-        fetchGasPrice()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +76,7 @@ class EthSendTokenController: BaseViewController {
     }
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
-        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer)
+        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer)
         gasSliderView.value = 1.0
         return gasSliderView
     }()
@@ -108,7 +107,7 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var addressView: SendAddressViewType = {
         if self.address != nil {
-            return AddressLabelView(address: address!.description)
+            return AddressLabelView(address: address!.address)
         }else {
             let view = AddressTextViewView()
             view.addButton.rx.tap.bind { [weak self] in
@@ -120,13 +119,6 @@ class EthSendTokenController: BaseViewController {
             return  view
         }
     }()
-
-    private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice {[weak self] (result) in
-            guard let gas = result else { return }
-            self?.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
-        }
-    }
 
     private func setupView() {
         navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.symbol))
@@ -167,39 +159,42 @@ class EthSendTokenController: BaseViewController {
     }
 
     private func bind() {
-        self.headerView.balanceLabel.text = "0.0"
 
         self.sendButton.rx.tap
             .bind { [weak self] in
                guard let `self` = self else { return }
-                let toAddress = Address(self.addressView.textView.text ?? "")
-                guard toAddress.isValid else {
+
+                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
+                    toAddress.isValid else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: self.tokenInfo.decimals) else {
+                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, tokenInfo: self.tokenInfo, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
                     if case .success = r {
                         self?.dismiss()
                     } else if case .failure(let error) = r {
+                        let e = ViteError.conversion(from: error)
                         if let web3Error = error as? Web3Error {
                             Toast.show(web3Error.localizedDescription)
-                        }else if let walletError = error as? WalletError{
-                            let viteError = ViteError.init(code: ViteErrorCode(type: .rpc, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
+                        } else if let walletError = error as? WalletError{
+                            let viteError = ViteError.init(code: ViteErrorCode(type: .custom, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
                             Toast.show(viteError.viteErrorMessage)
-                        }else {
-                           Toast.show(error.viteErrorMessage)
+                        } else {
+                            if e != ViteError.cancel {
+                                Toast.show(e.viteErrorMessage)
+                            }
                         }
                     }
                 })
@@ -209,20 +204,9 @@ class EthSendTokenController: BaseViewController {
         ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
             .drive(onNext: { [weak self] ret in
                 guard let `self` = self else { return }
-                if let balanceInfo = ret {
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.tokenInfo.decimals)
-                } else {
-                    // no balanceInfo, set 0.0
-                    self.headerView.balanceLabel.text = "0.0"
-                }
+                let balance = ret?.balance ?? Amount()
+                self.headerView.balanceLabel.text = balance.amountFullWithGroupSeparator(decimals: self.tokenInfo.decimals)
             }).disposed(by: rx.disposeBag)
-
-        self.gasSliderView.tipButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            Alert.show(into: self, title: R.string.localizable.hint(),
-                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
-                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
-            }.disposed(by: rx.disposeBag)
     }
 }
 

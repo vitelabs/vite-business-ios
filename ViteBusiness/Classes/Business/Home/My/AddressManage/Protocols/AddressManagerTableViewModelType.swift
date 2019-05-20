@@ -11,6 +11,6 @@ import RxSwift
 import RxCocoa
 
 protocol AddressManagerTableViewModelType {
-    var defaultAddressDriver: Driver <String> { get }
+    var defaultAddressDriver: Driver <(String, String)> { get }
     var addressesDriver: Driver<[AddressManageAddressViewModelType]> { get }
 }

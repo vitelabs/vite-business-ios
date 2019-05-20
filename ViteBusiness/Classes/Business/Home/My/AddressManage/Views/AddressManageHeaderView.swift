@@ -29,6 +29,14 @@ class AddressManageHeaderView: UIView {
         $0.numberOfLines = 2
     }
 
+    let numberButton = UIButton().then {
+        $0.isUserInteractionEnabled = false
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0xDFEEFF), cornerRadius: 2).resizable, for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x3E4A59, alpha: 0.45), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+    }
+
+
     let addressListTitleLabel = UILabel().then {
         $0.text = R.string.localizable.addressManageAddressHeaderTitle()
         $0.font = UIFont.systemFont(ofSize: 14)
@@ -57,6 +65,7 @@ class AddressManageHeaderView: UIView {
         backView.addSubview(titleLabel)
         backView.addSubview(nameLabel)
         backView.addSubview(addressLabel)
+        backView.addSubview(numberButton)
 
         backView.snp.makeConstraints { (m) in
             m.top.left.right.equalTo(self)
@@ -91,6 +100,12 @@ class AddressManageHeaderView: UIView {
             m.left.equalTo(nameLabel)
             m.right.equalTo(titleBgImageView)
             m.bottom.equalToSuperview().offset(-13)
+        }
+
+        numberButton.snp.makeConstraints { (m) in
+            m.left.equalTo(addressLabel)
+            m.top.equalTo(addressLabel).offset(2)
+            m.size.equalTo(CGSize(width: 24, height: 14))
         }
 
         addressListTitleLabel.snp.makeConstraints { (m) in

@@ -8,6 +8,7 @@
 
 import Foundation
 import ViteWallet
+import BigInt
 
 final class TransactionViewModel: TransactionViewModelType {
     let typeImage: UIImage
@@ -18,21 +19,47 @@ final class TransactionViewModel: TransactionViewModelType {
     let balanceColor: UIColor
     let symbolString: String
     let hash: String
+    let isGenesis: Bool
 
-    init(transaction: Transaction) {
-        self.typeImage = transaction.type.icon
-        self.typeName = transaction.type.name
-        self.address = transaction.type == .receive ? transaction.fromAddress.description : transaction.toAddress.description
-        self.timeString = transaction.timestamp.format("yyyy.MM.dd")
-        let symbol = transaction.amount.value == 0 ? "" : (transaction.type == .receive ? "+" : "-")
-        self.balanceString = "\(symbol)\(transaction.amount.amountShort(decimals: transaction.token.decimals))"
-        self.balanceColor = transaction.type == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
-        self.symbolString = transaction.token.symbol
-        self.hash = transaction.hash
+    init(accountBlock: AccountBlock) {
+        if accountBlock.type == .genesisReceive {
+            self.isGenesis = true
+            self.typeImage = accountBlock.transactionType.icon
+            self.typeName = R.string.localizable.transactionListPageGenesisCellName()
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
+            self.timeString = {
+                if let t = accountBlock.timestamp {
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                } else {
+                    return ""
+                }
+            }()
+            self.balanceString = ""
+            self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            self.symbolString = accountBlock.token?.symbol ?? ""
+            self.hash = accountBlock.hash ?? ""
+        } else {
+            self.isGenesis = false
+            self.typeImage = accountBlock.transactionType.icon
+            self.typeName = accountBlock.transactionType.name
+            self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
+            self.timeString = {
+                if let t = accountBlock.timestamp {
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                } else {
+                    return ""
+                }
+            }()
+            let symbol = (accountBlock.amount ?? 0) == 0 ? "" : (accountBlock.transactionType == .receive ? "+" : "-")
+            self.balanceString = "\(symbol)\(accountBlock.amount!.amountShortWithGroupSeparator(decimals: accountBlock.token!.decimals))"
+            self.balanceColor = accountBlock.transactionType == .receive ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            self.symbolString = accountBlock.token?.symbol ?? ""
+            self.hash = accountBlock.hash ?? ""
+        }
     }
 }
 
-extension Transaction.TransactionType {
+extension AccountBlock.TransactionType {
     var name: String {
         switch self {
         case .register:

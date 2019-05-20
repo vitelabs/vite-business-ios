@@ -809,12 +809,12 @@ class GrinTxDetailVM: NSObject {
         if let opendSlateUrl = fullInfo.openedSalteUrl {
             guard let data = JSON(FileManager.default.contents(atPath: opendSlateUrl.path)).rawValue as? [String: Any],
                 let slate = Slate(JSON:data) else { return (amountString, feeString) }
-             amountString = Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9)
-             feeString =  Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9)
+             amountString = Amount(slate.amount).amount(decimals: 9, count: 9)
+             feeString =  Amount(slate.fee).amount(decimals: 9, count: 9)
         } else if let txInfo = fullInfo.txLogEntry {
-             feeString = "\(Balance(value: BigInt(txInfo.fee ?? 0)).amountShort(decimals:9))"
+             feeString = "\(Amount(txInfo.fee ?? 0).amountShort(decimals:9))"
             let amount = (txInfo.amountCredited ?? 0) - (txInfo.amountDebited ?? 0) + (txInfo.fee ?? 0)
-             amountString =  Balance(value: BigInt(abs(amount))).amount(decimals: 9, count: 9)
+             amountString =  Amount(abs(amount)).amount(decimals: 9, count: 9)
         }
         if fullInfo.isReceive {
             feeString = nil

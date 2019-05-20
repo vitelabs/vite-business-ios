@@ -9,7 +9,7 @@ import ViteWallet
 import BigInt
 import Vite_HDWalletKit
 import enum Result.Result
-import web3swift
+import Web3swift
 
 public struct ETHURI: URIType {
 
@@ -57,8 +57,8 @@ public struct ETHURI: URIType {
     static func parser(string: String) -> Result<ETHURI, URIError> {
 
         // raw eth address
-        if web3swift.Address(string).isValid {
-            return Result(value: ETHURI(address: string, type: .transfer, contractAddress: nil, amount: nil))
+        if let address = EthereumAddress(string), address.isValid {
+            return Result.success(ETHURI(address: string, type: .transfer, contractAddress: nil, amount: nil))
         }
 
         guard let (prefix, suffix) = separate(string, by: ":") else {
@@ -93,7 +93,7 @@ public struct ETHURI: URIType {
 
         var address = addressString
 
-        guard web3swift.Address(address).isValid else {
+        guard let ethereumAddress = EthereumAddress(address), ethereumAddress.isValid else {
             return Result(error: URIError.InvalidAddress)
         }
 
@@ -113,7 +113,7 @@ public struct ETHURI: URIType {
                 }
 
                 if let a = map["address"] { // Official ERC20
-                    guard web3swift.Address(a).isValid else {
+                    guard let ethereumAddress = EthereumAddress(a), ethereumAddress.isValid else {
                         return Result(error: URIError.InvalidContractAddress)
                     }
 
@@ -131,7 +131,7 @@ public struct ETHURI: URIType {
                         amount = a
                     }
                 } else if let a = map["contractAddress"] { // imToken ERC20
-                    guard web3swift.Address(a).isValid else {
+                    guard let ethereumAddress = EthereumAddress(a), ethereumAddress.isValid else {
                         return Result(error: URIError.InvalidContractAddress)
                     }
                     contractAddress = a
@@ -163,7 +163,7 @@ public struct ETHURI: URIType {
             }
         }
 
-        return Result(value: ETHURI(address: address, type: type, contractAddress: contractAddress, amount: amount))
+        return Result.success(ETHURI(address: address, type: type, contractAddress: contractAddress, amount: amount))
 
     }
 }

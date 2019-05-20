@@ -134,7 +134,7 @@ class VoteInfoView: UIView {
         nodeNameLab.text = voteInfo.nodeName
         nodeStatusLab.titleLab.text = voteInfo.nodeStatus?.display
 
-        nodePollsLab.text =  voteInfo.balance?.amountShort(decimals: ViteWalletConst.viteToken.decimals)
+        nodePollsLab.text =  voteInfo.balance?.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
         voteStatusLab.titleLab.text = voteStatus?.display
 
         if  voteInfo.nodeStatus == .valid {

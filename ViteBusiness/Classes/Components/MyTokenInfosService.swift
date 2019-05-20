@@ -10,22 +10,21 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import Alamofire
+import ViteWallet
 
+extension MyTokenInfosService: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "MyTokenInfos", path: .wallet)
+    }
+}
 
 public final class MyTokenInfosService: NSObject {
     public static let instance = MyTokenInfosService()
-
-    fileprivate var fileHelper: FileHelper! = nil
-    fileprivate static let saveKey = "MyTokenInfos"
     fileprivate var needUpdateTokenInfo: Set<TokenCode> = Set()
 
     private override init() {}
     private func pri_save() {
-        if let data = self.tokenInfosBehaviorRelay.value.toJSONString()?.data(using: .utf8) {
-            if let error = fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
-        }
+        save(mappable: tokenInfosBehaviorRelay.value)
     }
 
     private var tokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
@@ -63,10 +62,7 @@ public final class MyTokenInfosService: NSObject {
                     let defaultTokenInfos = [TokenInfo](JSONArray: array).compactMap { $0 }
                     self.defaultTokenInfos = defaultTokenInfos
 
-                    self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)")
-
-                    if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-                        let jsonString = String(data: data, encoding: .utf8),
+                    if let jsonString = self.readString(),
                         let tokenInfos = [TokenInfo](JSONString: jsonString) {
                         let selected = tokenInfos.filter { !defaultTokenInfos.contains($0) }
 
@@ -161,7 +157,7 @@ public final class MyTokenInfosService: NSObject {
 
 extension MyTokenInfosService {
 
-    public func tokenInfo(forViteTokenId viteTokenId: String) -> TokenInfo? {
+    public func tokenInfo(forViteTokenId viteTokenId: ViteTokenId) -> TokenInfo? {
         for tokenInfo in tokenInfos where tokenInfo.coinType == .vite && tokenInfo.viteTokenId == viteTokenId {
             return tokenInfo
         }
@@ -169,7 +165,7 @@ extension MyTokenInfosService {
     }
 
     public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress == address {
+        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress.lowercased() == address.lowercased() {
             return tokenInfo
         }
         return nil
@@ -184,7 +180,7 @@ extension MyTokenInfosService {
         }
     }
 
-    func tokenInfo(forViteTokenId viteTokenId: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
+    func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))

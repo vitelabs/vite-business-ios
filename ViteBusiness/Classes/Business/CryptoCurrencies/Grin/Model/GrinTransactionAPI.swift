@@ -9,9 +9,10 @@ import Foundation
 import Moya
 import ViteBusiness
 import CryptoSwift
+import ViteWallet
 
 public enum GrinTransaction {
-    case reportViteAddress(address: String, signature: String)
+    case reportViteAddress(address: ViteAddress, signature: String)
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)
@@ -21,16 +22,7 @@ public enum GrinTransaction {
 extension GrinTransaction: TargetType {
 
     public var baseURL: URL {
-        #if DEBUG || TEST
-        switch DebugService.instance.config.appEnvironment {
-        case .online, .stage:
-            return URL(string: "https://grinx.vite.net")!
-        case .test, .custom:
-            return URL(string: "http://132.232.138.139:8081/test")!
-        }
-        #else
-        return URL(string: "https://grinx.vite.net")!
-        #endif
+        return URL(string: ViteConst.instance.grin.x)!
     }
 
     public var path: String {

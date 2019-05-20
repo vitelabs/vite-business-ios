@@ -61,6 +61,8 @@ class AppUpdateService: NSObject {
                     let current = Int(Bundle.main.buildNumber) {
                     if current < info.build {
                         showUpdate(info: info, current: current)
+                    } else {
+                        getNotice()
                     }
                 }
             case .failure(let error):
@@ -102,16 +104,25 @@ class AppUpdateService: NSObject {
             if let num = UserDefaultsService.instance.objectForKey(Key.ignoreBuild.rawValue, inCollection: Key.collection.rawValue) as? Int {
                 ignoreBuild = num
             }
-            guard ignoreBuild != info.build else { return }
+            guard ignoreBuild != info.build else {
+                getNotice()
+                return
+            }
 
             Alert.show(title: info.title.string, message: info.message.string, actions: [
                 (.cancel, { _ in
                     UserDefaultsService.instance.setObject(info.build, forKey: Key.ignoreBuild.rawValue, inCollection: Key.collection.rawValue)
+                    getNotice()
                 }),
                 (.default(title: info.okTitle?.string ?? R.string.localizable.updateApp()), { _ in
                     UIApplication.shared.open(info.url, options: [:], completionHandler: nil)
+                    getNotice()
                 }),
                 ])
         }
+    }
+
+    static func getNotice() {
+        AppNoticeService.getNotice()
     }
 }

@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import ViteWallet
-import web3swift
+import Web3swift
 
 class ReceiveEthViewModel: ReceiveViewModelType {
 

@@ -23,31 +23,6 @@ Pod::Spec.new do |s|
       'ViteBusiness' => ['ViteBusiness/Assets/*','ViteBusiness/Classes/**/*.{storyboard,xib}']
   }
 
-#   s.subspec 'Official' do |c|
-#     c.pod_target_xcconfig = {
-#       'GCC_PREPROCESSOR_DEFINITIONS' => 'OFFICIAL=1',
-#       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'OFFICIAL',
-#       'SWIFT_VERSION' => '4.2'
-#     }
-#   end
-#
-#   s.subspec 'Test' do |c|
-#     c.pod_target_xcconfig = {
-#       'GCC_PREPROCESSOR_DEFINITIONS' => 'TEST=1',
-#       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'TEST',
-#       'SWIFT_VERSION' => '4.2'
-#     }
-#   end
-
-  # s.subspec 'Enterprise' do |c|
-  #   c.pod_target_xcconfig = {
-  #     'GCC_PREPROCESSOR_DEFINITIONS' => 'ENTERPRISE=1',
-  #     'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ENTERPRISE',
-  #     'SWIFT_VERSION' => '4.2'
-  #   }
-  # end
-
-
   s.dependency 'R.swift'
   s.dependency 'RxSwift'
   s.dependency 'SnapKit'
@@ -102,6 +77,7 @@ Pod::Spec.new do |s|
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
   s.dependency 'DNSPageView'
+  s.dependency 'ActiveLabel', '1.0.1'
 
   #table static form
   s.dependency 'Eureka', '~> 4.3.0'

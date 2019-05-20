@@ -256,7 +256,7 @@ class GrinInfoViewController: BaseViewController {
         let a0 = UIAlertAction(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
             let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
             if notTeach {
-                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address
                 Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
             } else {
                 let vc = GrinTeachViewController.init(txType: .receive, channelType: .vite)
@@ -365,7 +365,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
         if let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId {
             let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
-                let addressString = account.address.description
+                let addressString = account.address
                 if let sAddress = addressString.components(separatedBy: "_").last {
                     let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
                     return [

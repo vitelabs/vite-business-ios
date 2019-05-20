@@ -85,7 +85,16 @@ class AddressManageViewController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
 
         tableViewModel.defaultAddressNameDriver.drive(headerView.nameLabel.rx.text).disposed(by: rx.disposeBag)
-        tableViewModel.defaultAddressDriver.drive(headerView.addressLabel.rx.text).disposed(by: rx.disposeBag)
+        tableViewModel.defaultAddressDriver.drive(onNext: { [weak self] (index,address) in
+            guard let `self` = self else { return }
+            self.headerView.numberButton.setTitle("#\(index)", for: .normal)
+            let style = NSMutableParagraphStyle()
+            style.firstLineHeadIndent = 30
+            let attributes = [NSAttributedString.Key.paragraphStyle: style]
+            self.headerView.addressLabel.attributedText = NSAttributedString(string: address, attributes: attributes)
+
+        }).disposed(by: rx.disposeBag)
+
         generateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             if self.tableViewModel.canGenerateAddress {

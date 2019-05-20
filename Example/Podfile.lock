@@ -3,6 +3,7 @@ PODS:
     - RxCocoa (~> 4.3)
     - RxSwift (~> 4.3)
   - ActionSheetPicker-3.0 (2.3.0)
+  - ActiveLabel (1.0.1)
   - Alamofire (4.8.0)
   - APIKit (3.2.1):
     - Result (~> 3.0)
@@ -167,6 +168,7 @@ PODS:
   - ViteBusiness (0.0.1):
     - Action
     - ActionSheetPicker-3.0
+    - ActiveLabel (= 1.0.1)
     - Alamofire
     - APIKit
     - BaiduMobStat
@@ -257,6 +259,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Action
     - ActionSheetPicker-3.0
+    - ActiveLabel
     - Alamofire
     - APIKit
     - BaiduMobStat
@@ -351,6 +354,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Action: 2f461c203c480b17aa99b3bb166e4329ecff6908
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  ActiveLabel: b8b2396fe25308d563601437d6605bf691c3b5db
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   APIKit: a39ff72ac44efc15513fd1b98800f63c525be61b
   BaiduMobStat: e2dbfd44f1535adf3c0001cbd3212eb61c4fe639
@@ -411,7 +415,7 @@ SPEC CHECKSUMS:
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 8d3f78883b58def92610e44704a93db7b566656c
-  ViteBusiness: 06f9f4818b4c399d70ea5f35c4a22d2dbf38934c
+  ViteBusiness: 35ab7dab8b196ab39258f6de0b68a51cbe993146
   ViteEthereum: 1ec6e02ff0cd7c63a4379a0bdf3577fa5dcf1029
   ViteUtils: 0f801d38c70e82233b34fc6603afc0d29a54d265
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a

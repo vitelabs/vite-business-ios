@@ -42,16 +42,22 @@ class BalanceInfoDetailViewController: BaseViewController {
         bind()
     }
 
+    var firstViewDidAppear = true
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.retainQuota()
+        adapter.viewDidAppear()
+
+        if firstViewDidAppear {
+            firstViewDidAppear = false
+            if allowJumpTokenDetailPage {
+                navView.tokenIconView.beat()
+            }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
-        FetchQuotaService.instance.releaseQuota()
+        adapter.viewDidDisappear()
     }
 
     func setupView() {
@@ -70,10 +76,34 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalTo(navView.snp.bottom).offset(-60)
             m.left.right.bottom.equalToSuperview()
         }
-        adapter.setup(containerView: containerView, tokenInfo: tokenInfo)
+        adapter.setup(containerView: containerView)
+
+
+        if allowJumpTokenDetailPage {
+            let tapGestureRecognizer = UITapGestureRecognizer()
+            navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+            tapGestureRecognizer.rx.event.subscribe(onNext: { [weak self] (r) in
+                guard let url = self?.tokenInfo.infoURL else { return }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: rx.disposeBag)
+        }
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
+    }
+}
+
+extension BalanceInfoDetailViewController {
+    var allowJumpTokenDetailPage: Bool {
+        switch tokenInfo.coinType {
+        case .vite:
+            return true
+        case .eth:
+            return !tokenInfo.isEtherCoin
+        case .grin:
+            return false
+        }
     }
 }

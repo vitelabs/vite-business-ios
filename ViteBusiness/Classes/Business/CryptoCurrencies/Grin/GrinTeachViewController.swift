@@ -130,7 +130,7 @@ class GrinTeachViewController: UIViewController {
             }
         } else if self.txType == .receive {
             if channelType == .vite {
-                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+                UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address
                 Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
             } else if channelType == .http {
                 GrinTxByViteService().getGateWay().done { (string) in

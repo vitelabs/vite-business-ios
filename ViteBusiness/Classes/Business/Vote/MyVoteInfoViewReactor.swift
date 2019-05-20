@@ -14,13 +14,13 @@ import RxSwift
 import NSObject_Rx
 
 final class MyVoteInfoViewReactor: Reactor {
-    let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: Address(string: ""))
+    let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: "")
     var disposeBag = DisposeBag()
     var pollingVoteInfoTask: GCD.Task?
 
     enum Action {
         case refreshData(String)
-        case voting(String, Balance?)
+        case voting(String, Amount?)
         case cancelVote()
     }
 
@@ -39,7 +39,7 @@ final class MyVoteInfoViewReactor: Reactor {
     init() {
         self.initialState = State.init(voteInfo: nil, voteStatus: nil, error: nil)
         self.pollingVoteInfoTask = {cancel in
-            self.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
+            self.action.onNext(.refreshData(HDWalletManager.instance.account?.address ?? ""))
         }
     }
 
@@ -72,7 +72,7 @@ final class MyVoteInfoViewReactor: Reactor {
         return newState
     }
 
-    func createLocalVoteInfo(_ nodeName: String, _ balance: Balance?, _ isCancel: Bool)-> Observable<(VoteInfo, VoteStatus)> {
+    func createLocalVoteInfo(_ nodeName: String, _ balance: Amount?, _ isCancel: Bool)-> Observable<(VoteInfo, VoteStatus)> {
         return Observable<(VoteInfo, VoteStatus)>.create({ (observer) ->
             Disposable in
             let voteInfo = VoteInfo(nodeName, .valid, balance)
@@ -82,9 +82,9 @@ final class MyVoteInfoViewReactor: Reactor {
         })
     }
 
-    func fetchVoteInfo(_ address: String) -> Observable<(VoteInfo?, Error? )> {
+    func fetchVoteInfo(_ address: ViteAddress) -> Observable<(VoteInfo?, Error? )> {
         return Observable<(VoteInfo?, Error?)>.create({ (observer) -> Disposable in
-            Provider.default.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: Address(string: address))
+            ViteNode.vote.info.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: address)
                 .done { (voteInfo) in
                     plog(level: .debug, log: String.init(format: "fetchVoteInfo  success address=%@, voteInfo.nodeName = %@", address, voteInfo?.nodeName ?? ""), tag: .vote)
                     observer.onNext((voteInfo, nil))
@@ -96,7 +96,7 @@ final class MyVoteInfoViewReactor: Reactor {
                     observer.onCompleted()
                 }.finally { [weak self] in
                     self?.pollingVoteInfoTask =  GCD.delay(3, task: {
-                        self?.action.onNext(.refreshData(HDWalletManager.instance.account?.address.description ?? ""))
+                        self?.action.onNext(.refreshData(HDWalletManager.instance.account?.address ?? ""))
                     })
             }
             return Disposables.create()

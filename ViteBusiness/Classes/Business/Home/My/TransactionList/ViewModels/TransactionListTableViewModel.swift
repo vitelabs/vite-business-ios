@@ -23,7 +23,7 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     let hasMore: BehaviorRelay<Bool>
 
     fileprivate let transactions: BehaviorRelay<[TransactionViewModelType]>
-    fileprivate var address: Address
+    fileprivate var address: ViteAddress
     fileprivate let token: Token
     fileprivate let disposeBag = DisposeBag()
 
@@ -32,14 +32,14 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     fileprivate var hash: String?
     fileprivate var loadingStatus = LoadingStatus.no
 
-    init(address: Address, token: Token) {
+    init(address: ViteAddress, token: Token) {
         self.address = address
         self.token = token
         transactions = BehaviorRelay<[TransactionViewModelType]>(value: viewModels as! [TransactionViewModelType])
         hasMore = BehaviorRelay<Bool>(value: false)
     }
 
-    func update(address: Address) {
+    func update(address: ViteAddress) {
         self.address = address
         viewModels.removeAllObjects()
         transactions.accept(viewModels as! [TransactionViewModelType])
@@ -68,14 +68,14 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
         let address = self.address
-        Provider.default.getTokenTransactions(address: address, hash: hash, tokenId: token.id, count: 10)
-            .done { [weak self] (transactions, nextHash) in
+        ViteNode.ledger.getAccountBlocks(address: address, tokenId: token.id, hash: hash, count: 10)
+            .done { [weak self] (accountBlocks, nextHash) in
                 guard let `self` = self else { return }
-                guard address.description == self.address.description else { return }
+                guard address == self.address else { return }
 
                 self.hash = nextHash
-                self.viewModels.addObjects(from: transactions.map {
-                    TransactionViewModel(transaction: $0)
+                self.viewModels.addObjects(from: accountBlocks.map {
+                    TransactionViewModel(accountBlock: $0)
                 })
                 self.transactions.accept(self.viewModels as! [TransactionViewModelType])
                 self.hasMore.accept(nextHash != nil)

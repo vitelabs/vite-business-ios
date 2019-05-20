@@ -16,6 +16,8 @@ import DNSPageView
 
 class ContactsHomeViewController: BaseViewController {
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -24,13 +26,24 @@ class ContactsHomeViewController: BaseViewController {
 
     private var contentView: UIView?
     private var emptyView: UIView?
+    private var manager: DNSPageViewManager?
+
+    // nil means all types
+    private let supportCoinTypes: [CoinType?] = [nil] + CoinType.allTypes
 
     fileprivate func setupView() {
         navigationTitleView = NavigationTitleView(title: R.string.localizable.contactsHomePageTitle())
         let item = UIBarButtonItem(image: R.image.icon_nav_add(), style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = item
         item.rx.tap.bind { [weak self] in
-            self?.navigationController?.pushViewController(ContactsEditViewController(contact: nil), animated: true)
+            let type: CoinType?
+            if let index = self?.manager?.contentView.currentIndex,
+                let t = self?.supportCoinTypes[index] {
+                type = t
+            } else {
+                type = nil
+            }
+            self?.navigationController?.pushViewController(ContactsEditViewController(type: type), animated: true)
         }.disposed(by: rx.disposeBag)
     }
 
@@ -61,21 +74,25 @@ class ContactsHomeViewController: BaseViewController {
                 pageStyle.bottomLineColor = Colors.blueBg
                 pageStyle.bottomLineHeight = 3
 
-                let titles = [
-                    R.string.localizable.contactsHomePageFilterAll(),
-                    CoinType.vite.name,
-                    CoinType.eth.name,
-                    CoinType.grin.name
-                ]
+                let titles = supportCoinTypes.map { t -> String in
+                    if let type = t {
+                        return type.name
+                    } else {
+                        return R.string.localizable.contactsHomePageFilterAll()
+                    }
+                }
 
-                let viewControllers = [
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver), type: nil),
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .vite)), type: .vite),
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .eth)), type: .eth),
-                    ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: .grin)), type: .grin)
-                ]
+                let viewControllers = supportCoinTypes.map { t -> ContactsListViewController in
+                    if let type = t {
+                        return ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver(for: type)), type: type)
+                    } else {
+                        return ContactsListViewController(viewModel:ContactsListViewModel(contactsDriver: AddressManageService.instance.contactsDriver), type: nil)
+                    }
+                }
+
 
                 let manager = DNSPageViewManager(style: pageStyle, titles: titles, childViewControllers: viewControllers)
+                self.manager = manager
 
                 let shadowView = UIView().then {
                     $0.backgroundColor = UIColor.white
@@ -154,7 +171,7 @@ class ContactsHomeViewController: BaseViewController {
                 })
 
                 button.rx.tap.bind { [weak self] in
-                    self?.navigationController?.pushViewController(ContactsEditViewController(contact: nil), animated: true)
+                    self?.navigationController?.pushViewController(ContactsEditViewController(type: nil), animated: true)
 
                     }.disposed(by: rx.disposeBag)
                 emptyView = view

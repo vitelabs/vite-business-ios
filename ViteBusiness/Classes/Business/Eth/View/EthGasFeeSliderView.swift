@@ -7,8 +7,9 @@
 import UIKit
 import SnapKit
 import BigInt
-import web3swift
+import Web3swift
 import ViteWallet
+import ViteEthereum
 
 public class EthGasFeeSliderView: UIView {
     public var value : Float = 0.0 {
@@ -31,7 +32,7 @@ public class EthGasFeeSliderView: UIView {
                 ethStr = String(format: "%.4f", eth)
             }
             var rateFee = ""
-            let balance = Balance.init(value: ethStr.toBigInt(decimals: 18) ?? BigInt(0))
+            let balance = ethStr.toAmount(decimals: 18) ?? Amount(0)
 
             if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) {
                 rateFee = String(format: "≈%@",rateFeeStr)
@@ -145,6 +146,19 @@ public class EthGasFeeSliderView: UIView {
             m.centerX.equalToSuperview()
             m.height.equalTo(16)
         })
+
+        tipButton.rx.tap.bind {
+            Alert.show(title: R.string.localizable.hint(),
+                       message: R.string.localizable.ethPageGasFeeNoticeTitle(),
+                       actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
+            }.disposed(by: rx.disposeBag)
+
+        EtherWallet.transaction.fetchGasPrice()
+            .done({ price in
+                // Gwei = 9
+                let b = BigDecimal(number: price, digits: 9)
+                self.value = Float(b.description) ?? 1.0
+            })
     }
 
     required init?(coder aDecoder: NSCoder) {

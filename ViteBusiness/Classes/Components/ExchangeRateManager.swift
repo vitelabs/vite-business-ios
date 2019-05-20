@@ -15,10 +15,6 @@ public typealias ExchangeRateMap = [String: [String: String]]
 public final class ExchangeRateManager {
     public static let instance = ExchangeRateManager()
 
-
-    fileprivate var fileHelper: FileHelper!
-    fileprivate static let saveKey = "ExchangeRate"
-
     fileprivate let disposeBag = DisposeBag()
     fileprivate var service: ExchangeRateService?
 
@@ -26,24 +22,18 @@ public final class ExchangeRateManager {
 
     private func pri_save() {
         if let data = try? JSONSerialization.data(withJSONObject: rateMapBehaviorRelay.value, options: []) {
-            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
+            self.save(data: data)
         }
     }
 
     private func read() -> ExchangeRateMap {
-
-        self.fileHelper = FileHelper(.library, appending: FileHelper.walletPathComponent)
-        var map = ExchangeRateMap()
-
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+        if let data = readData(),
             let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-            let m = dic as? ExchangeRateMap {
-            map = m
-        } 
-
-        return map
+            let map = dic as? ExchangeRateMap {
+            return map
+        } else {
+            return ExchangeRateMap()
+        }
     }
 
     public lazy var rateMapDriver: Driver<ExchangeRateMap> = self.rateMapBehaviorRelay.asDriver()
@@ -131,7 +121,7 @@ public enum CurrencyCode: String {
 
 public extension Dictionary where Key == String, Value == [String: String] {
 
-    func price(for tokenInfo: TokenInfo, balance: Balance) -> BigDecimal {
+    func price(for tokenInfo: TokenInfo, balance: Amount) -> BigDecimal {
 
         let currency = AppSettingsService.instance.currency
         if let dic = self[tokenInfo.tokenCode] as? [String: String],
@@ -143,29 +133,35 @@ public extension Dictionary where Key == String, Value == [String: String] {
         }
     }
 
-    func priceString(for tokenInfo: TokenInfo, balance: Balance) -> String {
+    func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.currency
         let p = price(for: tokenInfo, balance: balance)
-        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding))"
+        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
     }
 }
 
-public extension Balance {
+public extension Amount {
     public func price(decimals: Int, rate: String) -> BigDecimal? {
         guard let r = BigDecimal(rate) else { return nil }
-        let v = BigDecimal(self.value)
+        let v = BigDecimal(self)
         let d = BigDecimal(BigInt(10).power(decimals))
         return v * r / d
     }
 }
 
 extension ExchangeRateManager {
-     func calculateBalanceWithEthRate(_ balance: Balance) -> String? {
+     func calculateBalanceWithEthRate(_ balance: Amount) -> String? {
         let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, name: "", symbol: "", decimals: 18, icon: "", id: "")
 
         if self.rateMap[TokenCode.etherCoin] == nil{
             return nil
         }
         return self.rateMap.priceString(for: ethTokenInfo, balance: balance)
+    }
+}
+
+extension ExchangeRateManager: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "ExchangeRate", path: .wallet)
     }
 }

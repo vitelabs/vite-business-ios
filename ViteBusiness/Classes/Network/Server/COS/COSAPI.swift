@@ -14,6 +14,7 @@ enum COSAPI {
     case getAppConfig
     case getLocalizable(String)
     case checkUpdate
+    case getAppNotice
 }
 
 extension COSAPI: TargetType {
@@ -37,6 +38,8 @@ extension COSAPI: TargetType {
             case .enterprise:
                 return "/EnterpriseCheckUpdate.json"
             }
+        case .getAppNotice:
+            return "/AppNotice.json"
         }
     }   
 

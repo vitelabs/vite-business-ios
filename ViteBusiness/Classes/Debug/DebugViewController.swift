@@ -32,25 +32,17 @@ class DebugViewController: FormViewController {
             }
             <<< LabelRow("appVersion") {
                 $0.title = "Version"
+                var prefix = ""
+                #if DEBUG
+                prefix = prefix + "D"
+                #endif
                 #if TEST
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (T\(Bundle.main.buildNumber))"
+                prefix = prefix + "T"
                 #endif
-                #elseif OFFICIAL
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DA\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (A\(Bundle.main.buildNumber))"
+                #if OFFICIAL
+                prefix = prefix + "A"
                 #endif
-                #else
-                #if DEBUG
-                $0.value = "\(Bundle.main.versionNumber) (DD\(Bundle.main.buildNumber))"
-                #else
-                $0.value = "\(Bundle.main.versionNumber) (D\(Bundle.main.buildNumber))"
-                #endif
-                #endif
+                $0.value = "\(Bundle.main.versionNumber) (\(prefix)\(Bundle.main.buildNumber))"
             }.onCellSelection { _, _ in
             }
             <<< LabelRow("appEnvironment") {

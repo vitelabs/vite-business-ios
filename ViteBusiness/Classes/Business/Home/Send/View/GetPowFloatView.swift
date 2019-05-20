@@ -21,33 +21,39 @@ class GetPowFloatView: VisualEffectAnimationView {
     }
 
     fileprivate let titleLabel = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x007AFF)
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x242728)
+        $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.text = R.string.localizable.quotaFloatViewTitle()
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
     }
 
     fileprivate let progressView = DACircularProgressView().then {
         $0.trackTintColor = UIColor(netHex: 0xefefef)
         $0.progressTintColor = UIColor(netHex: 0x007AFF)
-        $0.thicknessRatio = 0.04
+        $0.thicknessRatio = 0.1
         $0.roundedCorners = 1
     }
 
     fileprivate let progressLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x007AFF)
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.text = "0%"
+    }
+
+    fileprivate let tipLabel = UILabel().then {
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.text = R.string.localizable.quotaFloatViewTip()
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
     }
 
     let cancelButton = UIButton().then {
         $0.setTitle(R.string.localizable.cancel(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
-        $0.layer.cornerRadius = 4
-        $0.layer.masksToBounds = true
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor(netHex: 0x007AFF).cgColor
-        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
 
     init(superview: UIView, cancelClick: @escaping () -> Void) {
@@ -59,32 +65,51 @@ class GetPowFloatView: VisualEffectAnimationView {
         containerView.addSubview(titleLabel)
         containerView.addSubview(progressView)
         containerView.addSubview(progressLabel)
+        containerView.addSubview(tipLabel)
         containerView.addSubview(cancelButton)
 
         containerView.snp.makeConstraints { (m) in
             m.center.equalTo(contentView)
-            m.size.equalTo(CGSize(width: 240, height: 250))
+            m.width.equalTo(288)
         }
 
         titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(containerView).offset(18)
-            m.centerX.equalTo(containerView)
+            m.top.equalTo(containerView).offset(24)
+            m.left.equalToSuperview().offset(16)
+            m.right.equalToSuperview().offset(-16)
         }
 
         progressView.snp.makeConstraints { (m) in
-            m.top.equalTo(titleLabel.snp.bottom).offset(18)
+            m.top.equalTo(titleLabel.snp.bottom).offset(20)
             m.centerX.equalTo(containerView)
-            m.size.equalTo(CGSize(width: 112, height: 112))
+            m.size.equalTo(CGSize(width: 100, height: 100))
         }
 
         progressLabel.snp.makeConstraints { (m) in
             m.center.equalTo(progressView)
         }
 
+        tipLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(progressView.snp.bottom).offset(16)
+            m.left.equalToSuperview().offset(16)
+            m.right.equalToSuperview().offset(-16)
+        }
+
         cancelButton.snp.makeConstraints { (m) in
-            m.bottom.equalTo(containerView).offset(-15)
-            m.centerX.equalTo(containerView)
-            m.height.equalTo(40)
+            m.top.equalTo(tipLabel.snp.bottom).offset(12)
+            m.height.equalTo(49)
+            m.left.right.bottom.equalToSuperview()
+        }
+
+        let line = UIView().then {
+            $0.backgroundColor = Colors.lineGray
+        }
+
+        containerView.addSubview(line)
+        line.snp.makeConstraints { (m) in
+            m.height.equalTo(CGFloat.singleLineWidth)
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(cancelButton.snp.top)
         }
 
         cancelButton.rx.tap.bind { [weak self] in

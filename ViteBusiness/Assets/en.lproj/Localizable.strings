@@ -14,13 +14,14 @@
 "Yes" = "Yes";
 "No" = "No";
 "Loading" = "Loading";
+"Retry" = "Retry";
 "Confirm" = "Confirm";
 "Submit" = "Submit";
 "Close" = "I understand";
 "Update.app" = "Update App";
-"Submit.success" = "Submit Successful";
 "Submit.cancel" = "Cancel";
 "Close" = "Close";
+"web.page.host.tip"="本网页由 %@ 提供";
 
 /* Login */
 "create.account" = "Create Account";
@@ -46,10 +47,14 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.";
+"mnemonic.backup.page.tip.title" = "助记词是您恢复账户的唯一手段，请谨慎记录，以防丢失。";
+"mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
+"mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";
+"mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意";
+"mnemonic.backup.page.clause.button.title" = "使用条款";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "I want a different seed phrase";
-"mnemonic.backup.page.tip.nextBtn.title" = "Yes, I have written down my seed phrase";
+"mnemonic.backup.page.tip.anewBtn.title" = "New One";
+"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";
@@ -121,6 +126,7 @@
 "transaction.list.page.title" = "Transaction History";
 "transaction.list.page.empty" = "Empty";
 "transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
 "transaction.list.page.header.refresh.refreshing" = "Loading...";
@@ -145,6 +151,7 @@
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Quota";
+"balance.info.detail.exchange.vite" = "置换Vite";
 "balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
 "balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
@@ -174,38 +181,28 @@
 "send.page.remark.title" = "Comment";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
-"send.page.toast.send.transfer.success" = "Transfer Success";
-"send.page.toast.send.success" = "Success";
 "send.page.toast.address.error" = "Wrong address, please check the format";
 "send.page.toast.amount.error" = "Insufficient Balance";
 "send.page.toast.amount.empty" = "Please input balance";
 "send.page.toast.amount.zero" = "The amount has to be positive";
 "send.page.toast.note.too.long" = "The length of notes has reached limitations";
+"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
 "send.page.not.enough.balance.alert.title" = "Insufficient Balance";
 "send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.confirm.biometryAuthFailed.title" = "Cannot be identified";
-"send.page.confirm.biometryAuthFailed.back" = "Back";
-"send.page.confirm.passwordAuthFailed.retry" = "Retry";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
 
-
-/* Confirm Transaction Page */
-"confirm.transaction.page.title" = "Payment";
-"confirm.transaction.page.transfer.title" = "Transfer";
-"confirm.transaction.page.pledge.title" = "Acquire Quota";
-"confirm.transaction.address.title" = "Recipient";
-"confirm.transaction.amount.title" = "Amount";
-"confirm.transaction.fee.title" = "Fee";
-"confirm.transaction.page.use.password" = "Use password";
-"confirm.transaction.page.confirm.button" = "Confirm";
-"confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.page.use.password.title" = "Enter Password";
-"confirm.transaction.page.pw.title" = "Please input password";
-"confirm.transaction.page.toast.password.error" = "Wrong password!";
-"confirm.transaction.page.node.name" = "Node Name";
-"confirm.transaction.page.vote" = "Vote";
-"confirm.transaction.page.cancel.vote" = "Revoke Vote";
+/* eth vite exchange */
+"eth.vite.exchange.page.title" = "置换VITE";
+"eth.vite.exchange.page.my.address.title" = "转出ERC20 VITE地址";
+"eth.vite.exchange.page.my.balance.title" = "余额";
+"eth.vite.exchange.page.to.address.title" = "接收Vite网络VITE地址";
+"eth.vite.exchange.page.amount.title" = "置换金额";
+"eth.vite.exchange.page.amount.placeholder" = "最多置换%@VITE";
+"eth.vite.exchange.page.send.button.title" = "置换";
+"eth.vite.exchange.page.address.change.button.title" = "切换";
+"eth.vite.exchange.page.exchange.all.button.title" = "全部置换";
+"eth.vite.exchange.page.exchange.history.button.title" = "置换记录";
 
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
@@ -251,12 +248,12 @@
 "quota.manage.page.title" = "Acquire Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 1000 VITE";
+"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 1000";
+"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
 "quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
 "quota.submit.pop.submit.btn.title" = "Confirm";
 "quota.submit.pop.cancel.btn.title" = "Cancel";
@@ -268,7 +265,8 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Run PoW";
+"quota.float.view.title" = "正在运行PoW获取配额";
+"quota.float.view.tip" = "如果您不想运行PoW，您可抵押VITE跳过此步骤";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
@@ -285,20 +283,16 @@
 "vote.page.voteInfo.nodePolls.title" = "My Votes";
 "vote.page.nodeStatus.valid.title" = "Active";
 "vote.page.nodeStatus.invalid.title" = "Inactive";
-"vote.page.voteInfo.cancel.vote.title" = "Revoke Voting";
-"vote.page.voteInfo.cancel.vote.toast.title" = "Vote revoking request is successfully sent";
 "vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
 
 /* Vote List*/
-"Vote" = "Vote";
+"vote" = "Vote";
 "vote.list.title" = "Candidate Nodes";
 "vote.list.search" = "Search for name or address of candidate nodes";
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
 "vote.list.confirm.revote" = "Confirm";
-"vote.list.confirm.button.title" = "Confirm";
 "vote.list.count" = "Votes";
 "vote.list.address" = "Address";
-"vote.list.send.success" = "Successfully send vote request";
 "vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
 "vote.list.search.empty" = "No result, please try another input";
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
@@ -337,9 +331,10 @@
 "vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
 
 /* Tip String */
-"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 1000 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">快速理解置换VITE</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE，Vite网络VITE可以投票官方超级节点赚取VITE奖励，年化收益率达20%。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。</p>";
 
 // ViteURI
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
@@ -383,9 +378,51 @@
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
 
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
+"workflow.confirm.page.biometryAuthFailed.back" = "Back";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
+"workflow.confirm.page.toast.password.error" = "Wrong password!";
+
+"workflow.toast.transfer.success" = "Transfer Success";
+"workflow.toast.submit.success" = "Submit Successful";
+"workflow.toast.vote.success" = "Successfully send vote request";
+"workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
+"workflow.toast.contract.success" = "Success";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "Verify";
+"confirm.transaction.address.title" = "Recipient";
+"confirm.transaction.amount.title" = "Amount";
+"confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.page.use.password" = "Use password";
+"confirm.transaction.page.pw.title" = "Please input password";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "Transfer";
+"confirm.transaction.page.vite.confirm.button" = "Confirm";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "Acquire Quota";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
+"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.vote.node.name" = "Node Name";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
+// vote call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "Transfer";
+"confirm.transaction.page.eth.confirm.button" = "Confirm";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "Transfer";
+"confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
-
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Spendable";
 "grin.balance.awaiting" = "Awaiting Confirmation";

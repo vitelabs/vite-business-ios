@@ -18,11 +18,11 @@ class QuotaManageViewController: BaseViewController {
     // FIXME: Optional
     let account = HDWalletManager.instance.account!
 
-    var address: Address?
-    var balance: Balance
+    var address: ViteAddress?
+    var balance: Amount
 
     init() {
-        self.balance = Balance(value: BigInt(0))
+        self.balance = Amount(0)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,13 +38,13 @@ class QuotaManageViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        FetchQuotaService.instance.retainQuota()
+        FetchQuotaManager.instance.retainQuota()
         ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        FetchQuotaService.instance.releaseQuota()
+        FetchQuotaManager.instance.releaseQuota()
         ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.viteCoin])
     }
 
@@ -59,7 +59,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
@@ -174,31 +174,31 @@ extension QuotaManageViewController {
             .bind { [weak self] in
                 Statistics.log(eventId: Statistics.Page.WalletQuota.submit.rawValue)
                 guard let `self` = self else { return }
-                let address = Address(string: self.addressView.textView.text ?? "")
+                let address = self.addressView.textView.text ?? ""
 
-                guard address.isValid else {
+                guard address.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
 
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals) else {
+                    let amount = amountString.toAmount(decimals: ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                guard amount <= self.balance.value else {
+                guard amount <= self.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
 
-                guard amount >= "1000".toBigInt(decimals: ViteWalletConst.viteToken.decimals)! else {
+                guard amount >= "134".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.quotaManagePageToastMoneyError())
                     return
                 }
@@ -231,17 +231,12 @@ extension QuotaManageViewController {
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
-                if let balanceInfo = balanceInfo {
-                    self.balance = balanceInfo.balance
-                    self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: ViteWalletConst.viteToken.decimals)
-                } else {
-                    // no balanceInfo, set 0.0
-                    self.headerView.balanceLabel.text = "0.0"
-                }
+                self.balance = balanceInfo?.balance ?? self.balance
+                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
             }).disposed(by: rx.disposeBag)
 
-    FetchQuotaService.instance.maxTxCountDriver
-        .map({ R.string.localizable.sendPageQuotaContent($0) })
+    FetchQuotaManager.instance.quotaDriver
+        .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
         .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }
@@ -263,7 +258,7 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address.description
+                    self?.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)
@@ -275,9 +270,9 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
 }
 
 extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
-    func confirmAction(beneficialAddress: Address, amountString: String, amount: BigInt) {
+    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: Amount) {
         Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        let amount = Balance(value: amountString.toBigInt(decimals: ViteWalletConst.viteToken.decimals)!)
+        let amount = amountString.toAmount(decimals: ViteWalletConst.viteToken.decimals)!
         Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
             if case .success = r {
                 self.refreshDataBySuccess()

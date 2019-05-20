@@ -14,7 +14,7 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
+import Web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -129,9 +129,10 @@ class WalletHomeViewController: BaseTableViewController {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
-                    if viewModel.tokenInfo.coinType == .eth {
-                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
-                    } else if viewModel.tokenInfo.coinType == .grin {
+                    switch viewModel.tokenInfo.coinType {
+                    case .eth, .vite:
+                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
+                    case .grin:
                         if !GrinManager.default.walletCreated.value {
                             Toast.show(R.string.localizable.grinCreating())
                             return
@@ -140,8 +141,6 @@ class WalletHomeViewController: BaseTableViewController {
                                 balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
-                    } else {
-                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
                 }
@@ -183,22 +182,33 @@ class WalletHomeViewController: BaseTableViewController {
                 
                 switch uri.type {
                 case .transfer:
-                    var note = ""
-                    if let data = uri.data,
-                        let ret = String(bytes: data, encoding: .utf8) {
-                        note = ret
+                    if let data = uri.data {
+                        if data.contentType == .utf8string,
+                            let contentData = data.rawContent,
+                            let note = String(bytes: contentData, encoding: .utf8) {
+
+                            let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
+                            guard var viewControllers = self.navigationController?.viewControllers else { return }
+                            _ = viewControllers.popLast()
+                            viewControllers.append(sendViewController)
+                            scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+                        } else {
+                            self.navigationController?.popViewController(animated: true)
+                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: { _ in })
+                        }
+                    } else {
+                        let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: nil)
+                        guard var viewControllers = self.navigationController?.viewControllers else { return }
+                        _ = viewControllers.popLast()
+                        viewControllers.append(sendViewController)
+                        scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
                     }
-                    let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
-                    guard var viewControllers = self.navigationController?.viewControllers else { return }
-                    _ = viewControllers.popLast()
-                    viewControllers.append(sendViewController)
-                    scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
                 case .contract:
                     self.navigationController?.popViewController(animated: true)
                     Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
-                                                     amount: Balance(value: amount),
+                                                     amount: amount,
                                                      data: uri.data,
                                                      completion: { _ in })
                 }
@@ -219,13 +229,13 @@ class WalletHomeViewController: BaseTableViewController {
                     MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
                 }
 
-                var balance: Balance? = nil
+                var balance: Amount? = nil
                 if let amount = uri.amount,
-                    let b = BigInt(amount) {
-                    balance = Balance(value: b)
+                    let b = Amount(amount) {
+                    balance = b
                 }
 
-                let sendViewController = EthSendTokenController(tokenInfo, toAddress: web3swift.Address(uri.address), amount: balance)
+                let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
                 guard var viewControllers = self.navigationController?.viewControllers else { return }
                 _ = viewControllers.popLast()
                 viewControllers.append(sendViewController)

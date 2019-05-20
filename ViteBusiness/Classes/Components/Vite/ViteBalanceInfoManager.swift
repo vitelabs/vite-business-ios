@@ -9,26 +9,31 @@ import ViteWallet
 import PromiseKit
 import ViteEthereum
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 import RxSwift
 import RxCocoa
 
 public typealias ViteBalanceInfoMap = [String: BalanceInfo]
+
+extension ViteBalanceInfoManager: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "ViteBalanceInfos", path: .wallet, appending: self.appending)
+    }
+}
 
 public class ViteBalanceInfoManager {
     static let instance = ViteBalanceInfoManager()
     private init() {}
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var fileHelper: FileHelper! = nil
-    fileprivate static let saveKey = "ViteBalanceInfos"
+    fileprivate var appending = "noAddress"
 
     lazy var  balanceInfosDriver: Driver<ViteBalanceInfoMap> = self.balanceInfos.asDriver()
     fileprivate var balanceInfos: BehaviorRelay<ViteBalanceInfoMap>! = nil
 
     fileprivate var service: FetchBalanceInfoService?
 
-    fileprivate var address: Address?
+    fileprivate var address: ViteAddress?
     fileprivate var tokenInfos: [TokenInfo] = []
 
     func registerFetch(tokenInfos: [TokenInfo]) {
@@ -74,16 +79,16 @@ public class ViteBalanceInfoManager {
         if let address = self.address,
             !tokenInfos.isEmpty {
 
-            guard address.description != self.service?.address.description else { return }
+            guard address != self.service?.address else { return }
 
-            plog(level: .debug, log: address.description + ": " + "start fetch balanceInfo", tag: .transaction)
+            plog(level: .debug, log: address + ": " + "start fetch balanceInfo", tag: .transaction)
             let service = FetchBalanceInfoService(address: address, interval: 5, completion: { [weak self] (r) in
                 guard let `self` = self else { return }
 
                 switch r {
                 case .success(let balanceInfos):
 
-                    plog(level: .debug, log: address.description + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.value.description }))", tag: .transaction)
+                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.description }))", tag: .transaction)
 
                     let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
                         var map = m
@@ -97,15 +102,15 @@ public class ViteBalanceInfoManager {
                         if let balanceInfo = map[tokenInfo.viteTokenId] {
                             ret[tokenInfo.viteTokenId] = balanceInfo
                         } else {
-                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Balance(), unconfirmedBalance: Balance(), unconfirmedCount: 0)
+                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
                         }
                         return ret
                     })
 
-                    self.save(balanceInfos: balanceInfos)
+                    self.save(mappable: balanceInfos)
                     self.balanceInfos.accept(ret)
                 case .failure(let error):
-                    plog(level: .warning, log: address.description + ": " + error.viteErrorMessage, tag: .transaction)
+                    plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
                 }
             })
             self.service?.stopPoll()
@@ -118,26 +123,17 @@ public class ViteBalanceInfoManager {
         }
     }
 
-    private func read(address: Address) -> ViteBalanceInfoMap {
+    private func read(address: ViteAddress) -> ViteBalanceInfoMap {
 
-        self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(address.description)")
+        self.appending = address
         var map = ViteBalanceInfoMap()
 
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
-            let jsonString = String(data: data, encoding: .utf8),
+        if let jsonString = self.readString(),
             let balanceInfos = [BalanceInfo](JSONString: jsonString) {
             balanceInfos.forEach { balanceInfo in map[balanceInfo.token.id] = balanceInfo }
         }
 
         return map
-    }
-
-    private func save(balanceInfos: [BalanceInfo]) {
-        if let data = balanceInfos.toJSONString()?.data(using: .utf8) {
-            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
-                assert(false, error.localizedDescription)
-            }
-        }
     }
 }
 

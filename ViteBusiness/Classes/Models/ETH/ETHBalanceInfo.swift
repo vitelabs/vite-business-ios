@@ -13,7 +13,7 @@ import ViteWallet
 public struct ETHBalanceInfo: Mappable {
 
     public fileprivate(set) var tokenCode = ""
-    public fileprivate(set) var balance = Balance()
+    public fileprivate(set) var balance = Amount()
 
     public var tokenInfo: TokenInfo {
         guard let tokenInfo = MyTokenInfosService.instance.tokenInfo(for: tokenCode) else { fatalError() }
@@ -24,7 +24,7 @@ public struct ETHBalanceInfo: Mappable {
 
     }
 
-    public init(tokenCode: String, balance: Balance) {
+    public init(tokenCode: String, balance: Amount) {
         self.tokenCode = tokenCode
         self.balance = balance
     }

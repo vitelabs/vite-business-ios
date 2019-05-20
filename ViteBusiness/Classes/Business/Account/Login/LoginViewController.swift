@@ -84,7 +84,7 @@ class LoginViewController: BaseViewController {
     }()
 
     lazy var createAccountBtn: UIButton = {
-        let createAccountBtn = UIButton.init(style: .whiteWithoutShadow)
+        let createAccountBtn = UIButton.init(style: .white)
         createAccountBtn.setTitle(R.string.localizable.createAccount(), for: .normal)
         createAccountBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
         createAccountBtn.addTarget(self, action: #selector(createAccountBtnAction), for: .touchUpInside)
@@ -92,7 +92,7 @@ class LoginViewController: BaseViewController {
     }()
 
     lazy var importAccountBtn: UIButton = {
-        let importAccountBtn = UIButton.init(style: .whiteWithoutShadow)
+        let importAccountBtn = UIButton.init(style: .white)
         importAccountBtn.setTitle(R.string.localizable.importAccount(), for: .normal)
         importAccountBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
         importAccountBtn.addTarget(self, action: #selector(importAccountBtnAction), for: .touchUpInside)

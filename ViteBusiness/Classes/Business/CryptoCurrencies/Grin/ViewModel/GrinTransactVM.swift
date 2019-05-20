@@ -69,7 +69,7 @@ class GrinTransactVM {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let strategies):
-                    let fee = Balance(value: BigInt(strategies.smallest.fee)).amountFull(decimals: 9)
+                    let fee = Amount(strategies.smallest.fee).amountFull(decimals: 9)
                     self.txFee.accept(fee)
                     completion?(fee)
                 case .failure(let error):
@@ -143,7 +143,7 @@ class GrinTransactVM {
             return
         }
         if let destnation = destnation {
-           if Address.isValid(string: destnation) {
+           if destnation.isViteAddress {
                 self.sendButtonEnabled.accept(false)
                 self.sendTxByVite(amount: amount, destnation: destnation)
             } else if let url = URL(string: destnation) {

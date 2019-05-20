@@ -13,13 +13,22 @@ import NSObject_Rx
 import RxDataSources
 import ActionSheetPicker_3_0
 import ViteWallet
-import web3swift
+import Web3swift
 
 class ContactsEditViewController: BaseViewController {
 
     let contact: Contact?
-    init(contact: Contact?) {
+    var type: BehaviorRelay<CoinType>
+
+    init(contact: Contact) {
         self.contact = contact
+        self.type = BehaviorRelay(value: contact.type)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(type: CoinType?) {
+        self.contact = nil
+        self.type = BehaviorRelay(value: type ?? CoinType.vite)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,13 +55,10 @@ class ContactsEditViewController: BaseViewController {
     let addressView = ContactAddressInputView()
     let saveButton = UIButton(style: .blue, title: R.string.localizable.contactsEditPageSaveButtonTitle())
 
-    var type: BehaviorRelay<CoinType> = BehaviorRelay(value: CoinType.vite)
-
     fileprivate func setupView() {
 
         if let contact = contact  {
             navigationTitleView = NavigationTitleView(title: R.string.localizable.contactsEditPageAddTitle())
-            type.accept(contact.type)
             nameView.textField.text = contact.name
             addressView.textView.text = contact.address
         } else {
@@ -109,12 +115,12 @@ class ContactsEditViewController: BaseViewController {
 
             switch self.type.value {
             case .vite:
-                guard Address.isValid(string: self.addressView.textView.text) else {
+                guard self.addressView.textView.text.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
             case .eth:
-                guard web3swift.Address(self.addressView.textView.text).isValid else {
+                guard let address = EthereumAddress(self.addressView.textView.text), address.isValid else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
@@ -142,10 +148,10 @@ class ContactsEditViewController: BaseViewController {
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address.description
+                    self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address.description
+                    self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)
@@ -182,7 +188,7 @@ class ContactsEditViewController: BaseViewController {
 
         scrollableView.stackView.addArrangedSubview(view)
 
-        deleteButton.rx.tap.bind {
+        deleteButton.rx.tap.bind { [weak self] in
             Alert.show(title: R.string.localizable.contactsEditPageDeleteAlertTitle(), message: nil, actions: [
                 (.cancel, nil),
                 (.default(title: R.string.localizable.confirm()), { [weak self] alert in
