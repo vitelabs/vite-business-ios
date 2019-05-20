@@ -111,10 +111,10 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"))
 
         public static let testEnv =
-            Env(tokenCode: TokenCode(viteCoin: "7",
-                                     etherCoin: "11",
-                                     viteERC20: "14",
-                                     grinCoin: "10"),
+            Env(tokenCode: TokenCode(viteCoin: "1171",
+                                     etherCoin: "1",
+                                     viteERC20: "41",
+                                     grinCoin: "1174"),
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
                          discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
