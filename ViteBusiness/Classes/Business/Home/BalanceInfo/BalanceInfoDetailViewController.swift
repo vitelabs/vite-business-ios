@@ -42,17 +42,9 @@ class BalanceInfoDetailViewController: BaseViewController {
         bind()
     }
 
-    var firstViewDidAppear = true
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         adapter.viewDidAppear()
-
-        if firstViewDidAppear {
-            firstViewDidAppear = false
-            if allowJumpTokenDetailPage {
-                navView.tokenIconView.beat()
-            }
-        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -92,6 +84,14 @@ class BalanceInfoDetailViewController: BaseViewController {
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
+
+        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
+            .first().subscribe { [weak self] _ in
+                guard let `self` = self else { return }
+                if self.allowJumpTokenDetailPage {
+                    self.navView.tokenIconView.beat()
+                }
+            }.disposed(by: rx.disposeBag)
     }
 }
 
