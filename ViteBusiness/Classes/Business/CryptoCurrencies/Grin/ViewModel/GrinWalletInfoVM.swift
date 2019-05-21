@@ -25,6 +25,8 @@ final class GrinWalletInfoVM {
         case checkWallet
         case cancel(TxLogEntry)
         case repost(TxLogEntry)
+        case getFullInfoDetail(GrinFullTxInfo)
+
     }
 
     var grinManager:GrinManager { return GrinManager.default }
@@ -40,6 +42,7 @@ final class GrinWalletInfoVM {
     let message: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let txCancelled = PublishSubject<TxLogEntry>()
+    let fullInfoDetail = PublishSubject<GrinFullTxInfo>()
 
     private let bag = DisposeBag()
 
@@ -59,8 +62,9 @@ final class GrinWalletInfoVM {
                     self?.cancel(tx)
                 case .repost(let tx):
                     self?.repost(tx)
+                case .getFullInfoDetail(let fullInfo):
+                    self?.getFullInfoDetail(fullInfo: fullInfo)
                 }
-
         })
         .disposed(by: bag)
 
@@ -255,41 +259,102 @@ final class GrinWalletInfoVM {
         return sorted.filter({ (fullinfo) -> Bool in
             fullinfo.txLogEntry != nil || fullinfo.gatewayInfo != nil
         })
+    }
 
-//        for gateWayInfo in gateWayInfos  {
-//            var grinTxInfo: TxLogEntry?
-//            var localInfo: GrinLocalInfo?
-//
-//            for t in grinTxs where (gateWayInfo.toSlatedId == t.txSlateId && (t.txType == .txReceived || t.txType == .txReceivedCancelled)){
-//                grinTxInfo = t
-//                break
-//            }
-//            for l in localInfos where (gateWayInfo.toSlatedId == l.slateId && l.type == "Receive") {
-//                localInfo = l; break
-//            }
-//
-//            let fullTxInfo = GrinFullTxInfo(txLogEntry: grinTxInfo, gatewayInfo: gateWayInfo, localInfo: localInfo)
-//            fullTxInfos.append(fullTxInfo)
-//        }
-//
-//        let grinTxsWithOutGetWay = grinTxs.filter({ (t) -> Bool in
-//            return !fullTxInfos.contains(where: { (fullInfo) -> Bool in
-//                fullInfo.txLogEntry?.txSlateId == t.txSlateId
-//            })
-//        })
-//
-//        for t in grinTxsWithOutGetWay {
-//            var localInfo: GrinLocalInfo?
-//            for l in localInfos where t.txSlateId == l.slateId {
-//                let matchSend = (t.txType == .txSent || t.txType == .txSentCancelled) && l.type?.contains("Send") ?? false
-//                let matchReceive = (t.txType == .txReceived || t.txType == .txReceivedCancelled) && l.type?.contains("Receive") ?? false
-//                if  matchSend || matchReceive {
-//                    localInfo = l
-//                }
-//            }
-//            let fullTxInfo = GrinFullTxInfo(txLogEntry: t, gatewayInfo: nil, localInfo: localInfo)
-//            fullTxInfos.append(fullTxInfo)
-//        }
+    func getFullInfoDetail(fullInfo:GrinFullTxInfo) {
+
+        self.showLoading.accept(true)
+        let gateWay = self.getGateWayDetail(fullInfo: fullInfo)
+        let confirm = self.getConfirmInfo(fullInfo: fullInfo)
+
+        when(fulfilled: gateWay, confirm)
+            .done { (arg0) in
+                let (gateWayInfo, confirm) = arg0
+                fullInfo.gatewayInfo = gateWayInfo
+                fullInfo.confirmInfo = confirm
+                self.fullInfoDetail.onNext(fullInfo)
+            }
+            .catch { (error) in
+                self.message.accept(error.localizedDescription)
+            }
+            .finally {
+                self.showLoading.accept(false)
+        }
+
+        
+    }
+
+    func getGateWayDetail(fullInfo:GrinFullTxInfo) -> Promise<GrinGatewayInfo?> {
+
+        guard let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId else {
+            return Promise { seal in
+                seal.fulfill(fullInfo.gatewayInfo)
+            }
+        }
+
+        return Promise { seal in
+            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
+                let addressString = account.address
+                if let sAddress = addressString.components(separatedBy: "_").last {
+                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
+                    return [
+                        "address": addressString,
+                        "signature": s
+                    ]
+                }
+                return [String:String]()
+            }
+            self.showLoading.accept(true)
+            transactionProvider
+                .request(.gatewayTransactionList(addresses: addresses, slateID: slatedId), completion: { (result) in
+                    self.showLoading.accept(false)
+                    do {
+                        let response = try result.dematerialize()
+                        if JSON(response.data)["code"].int == 0,
+                            let arr = JSON(response.data)["data"].arrayObject,
+                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
+                            seal.fulfill(gatewayInfos.first)
+                        } else {
+                            seal.reject(grinError(JSON(response.data)["message"].string ?? "getGateWayInfo Failed"))
+                        }
+                    } catch {
+                        seal.reject(error)
+                    }
+                })
+        }
+    }
+
+    func getConfirmInfo(fullInfo:GrinFullTxInfo) -> Promise<GrinHeightInfo?> {
+        if let txLogEntry = fullInfo.txLogEntry {
+            return Promise<GrinHeightInfo?> { seal in
+                let heightInfo = GrinHeightInfo()
+                let outputResult =  GrinManager.default.outputGet(refreshFromNode: true, txId: txLogEntry.id)
+                switch outputResult {
+                case .success((let refreshed, let outputs)):
+                    let h = outputs.sorted(by: { (arg0, arg1) -> Bool in
+                        let (outputData0, arr0) = arg0
+                        let (outputData1, arr1) = arg1
+                        return outputData0.height > outputData1.height
+                    })
+                    heightInfo.beginHeight = Int(h.first?.0.height ?? 0)
+                case .failure(let error):
+                    seal.reject(error)
+                }
+
+                let walletInfoResult = self.grinManager.walletInfo(refreshFromNode: true)
+                switch walletInfoResult {
+                case .success(let info):
+                    heightInfo.lastConfirmedHeight = info.lastConfirmedHeight
+                case .failure(let error):
+                    seal.reject(error)
+                }
+                seal.fulfill(heightInfo)
+            }
+        } else {
+            return Promise<GrinHeightInfo?> { (seal) in
+                seal.fulfill(nil)
+            }
+        }
     }
 
     func cancel(_ tx: TxLogEntry) {

@@ -14,8 +14,13 @@ class SelectGrinNodeCell: UITableViewCell {
     let seperator = UIView()
     let editButton = UIButton()
 
+    var editNodeAction: (() -> ())?
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        self.selectionStyle = .none
+
         self.contentView.addSubview(statusImageView)
         self.contentView.addSubview(addressLabel)
         self.contentView.addSubview(seperator)
@@ -53,6 +58,11 @@ class SelectGrinNodeCell: UITableViewCell {
             m.centerY.equalToSuperview()
         }
 
+        editButton.rx.tap.bind { [weak self] _ in
+            self?.editNodeAction?()
+            }.disposed(by: rx.disposeBag)
+
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +94,28 @@ class ViteGrinNodeCell: SelectGrinNodeCell {
         self.seperator.removeFromSuperview()
         self.editButton.removeFromSuperview()
         statusImageView.image = R.image.grin_node_selected()
+
+
+        let tagBackgroundView = UIView()
+        tagBackgroundView.backgroundColor = UIColor.init(netHex: 0xDFEEFF)
+        contentView.addSubview(tagBackgroundView)
+        tagBackgroundView.snp.makeConstraints { (m) in
+            m.centerY.equalToSuperview()
+            m.right.equalToSuperview().offset(-24)
+            m.width.equalTo(36)
+            m.height.equalTo(22)
+        }
+
+        let tagLabel = UILabel()
+        tagLabel.font = UIFont.systemFont(ofSize: 12)
+        tagLabel.textColor = UIColor.init(netHex: 0x007AFF)
+        tagLabel.text = "VITE"
+        tagBackgroundView.addSubview(tagLabel)
+        tagLabel.snp.makeConstraints { (m) in
+            m.center.equalToSuperview()
+        }
+
+        contentView.backgroundColor = UIColor.init(netHex: 0x007AFF, alpha: 0.06)
     }
 
     required init?(coder aDecoder: NSCoder) {

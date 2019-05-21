@@ -42,6 +42,7 @@ class GrinTeachViewController: UIViewController {
 
     @IBOutlet weak var actionButton: UIButton!
 
+    var fromSendVC = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,6 +114,12 @@ class GrinTeachViewController: UIViewController {
 
         noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
         notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
+
+        if fromSendVC {
+            settingButton.isHidden = true
+            notSeeLabel.isHidden = true
+            actionButton.isHidden = true
+        }
     }
 
     @IBAction func actionButtonDidClick(_ sender: Any) {

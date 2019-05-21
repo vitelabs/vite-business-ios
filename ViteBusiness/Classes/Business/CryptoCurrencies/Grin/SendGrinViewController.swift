@@ -29,6 +29,12 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var amountTitleLabel: UILabel!
     @IBOutlet weak var feeTitleLable: UILabel!
 
+    let helpButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.grin_help(), for: .normal)
+        return button
+    }()
+
     var transferMethod = TransferMethod.file
     let transferVM = GrinTransactVM()
     override func viewDidLoad() {
@@ -109,6 +115,12 @@ class SendGrinViewController: UIViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        helpButton.rx.tap.bind { [weak self] _ in
+            let vc = GrinTeachViewController.init(txType: .sent, channelType: self?.transferMethod ?? .file)
+            vc.fromSendVC = true
+            self?.navigationController?.pushViewController(vc, animated: true)
+            }.disposed(by: rx.disposeBag)
+
     }
 
     func setUpView()  {
@@ -152,6 +164,14 @@ class SendGrinViewController: UIViewController {
         } else {
             transactButton.setTitle(R.string.localizable.grinSentNext(), for: .normal)
         }
+
+        self.titleView.addSubview(helpButton)
+        helpButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(16)
+            m.centerY.equalTo(self.titleView.symbolLabel)
+            m.left.equalTo(self.titleView.symbolLabel.snp.right).offset(10)
+        }
+
     }
 
     @IBAction func sendAction(_ sender: Any) {

@@ -12,11 +12,14 @@ import ViteWallet
 import SwiftyJSON
 import RxSwift
 import RxCocoa
+import Moya
 
 class GrinTxDetailVM: NSObject {
 
     let txVM = GrinTransactVM()
     let infoVM = GrinWalletInfoVM()
+
+    fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
 
     override init() {
         super.init()
@@ -31,7 +34,6 @@ class GrinTxDetailVM: NSObject {
                 self?.updatePageInfo()
             }
             .disposed(by: rx.disposeBag)
-
 
         infoVM.txCancelled.asObserver()
             .bind { [weak self] _ in
@@ -93,8 +95,6 @@ class GrinTxDetailVM: NSObject {
         }
     }
 
-    //MARK: - Done
-
     func creatSendGrinByViteDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinSentTitle()
@@ -123,7 +123,6 @@ class GrinTxDetailVM: NSObject {
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
         let getResponseFileTime = localInfo.getResponseFileTime ?? 0
         let finalizeTime = localInfo.finalizeTime ?? 0
-
 
         let cancleInfo = GrinDetailCellInfo()
         cancleInfo.statusImage = R.image.grin_detail_cancled_gray()
@@ -175,7 +174,7 @@ class GrinTxDetailVM: NSObject {
             pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo4.statusImage = R.image.grin_detail_confirmed()
             cellInfo3.lineImage = blueLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo4.statusAttributeStr = confirmAttributedString()
         } else if  txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime > finalizeTime {
                 pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
                 let cancleInfo = GrinDetailCellInfo()
@@ -187,14 +186,13 @@ class GrinTxDetailVM: NSObject {
         }  else {
             cellInfo4.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo3.lineImage = grayLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo4.statusAttributeStr = confirmAttributedString()
         }
         pageInfo.cellInfo.append(cellInfo4)
 
         if txInfo.confirmed != true && txInfo.txType != .txSentCancelled && cancleTime == 0  {
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txInfo))
-                //self.updatePageInfo()
             }
             pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
 
@@ -202,7 +200,6 @@ class GrinTxDetailVM: NSObject {
         return pageInfo
     }
 
-    //MARK: - Done
 
     func creatSendGrinByHttpDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         let pageInfo = self.creatSendGrinByFileDetailPageInfo(fullInfo: fullInfo)
@@ -213,8 +210,6 @@ class GrinTxDetailVM: NSObject {
         }
         return pageInfo
     }
-
-    //MARK: - Done
 
     func creatSendGrinByFileDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
@@ -229,7 +224,6 @@ class GrinTxDetailVM: NSObject {
         var sendFileUrl = GrinManager.default.getSlateUrl(slateId: localInfo.slateId!, isResponse: false)
         var responseFileUrl = GrinManager.default.getSlateUrl(slateId: localInfo.slateId!, isResponse: true)
 
-        //Details
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
         cellInfo0.statusImage = R.image.grin_detail_vite()
@@ -250,10 +244,8 @@ class GrinTxDetailVM: NSObject {
         let getResponseFileTime = localInfo.getResponseFileTime ?? 0
         let finalizeTime = localInfo.finalizeTime ?? 0
 
-
         let cancelAction = {
             self.infoVM.action.onNext(.cancel(txInfo))
-            //self.updatePageInfo()
         }
 
         let cancleInfo = GrinDetailCellInfo()
@@ -278,7 +270,6 @@ class GrinTxDetailVM: NSObject {
             pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             let finalezeAction = {
                 self.txVM.action.onNext(.finalizeTx(slateUrl: openedSalteUrl ?? responseFileUrl))
-                //self.updatePageInfo()
             }
             pageInfo.actions.append((R.string.localizable.grinFinalize(), finalezeAction))
 
@@ -332,7 +323,7 @@ class GrinTxDetailVM: NSObject {
             pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo4.statusImage = R.image.grin_detail_confirmed()
             cellInfo3.lineImage = blueLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo4.statusAttributeStr = confirmAttributedString()
             pageInfo.actions.removeAll()
         } else if txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime > getResponseFileTime && cancleTime > finalizeTime {
             pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
@@ -346,13 +337,12 @@ class GrinTxDetailVM: NSObject {
         }  else {
             cellInfo4.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo3.lineImage = grayLineImage
-            cellInfo4.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo4.statusAttributeStr = confirmAttributedString()
         }
         pageInfo.cellInfo.append(cellInfo4)
         return pageInfo
     }
 
-    //MARK: - Done
     func creatSendGrinDetailPageInfoWithoutLocalInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinSentTitle()
@@ -376,7 +366,7 @@ class GrinTxDetailVM: NSObject {
         let cellInfo2 = GrinDetailCellInfo()
 
         if fullInfo.txLogEntry?.confirmed == true {
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo2.statusAttributeStr = confirmAttributedString()
             cellInfo2.statusImage = R.image.grin_detail_confirmed()
             cellInfo1.lineImage = blueLineImage
         } else if fullInfo.isSentCancelled {
@@ -384,13 +374,12 @@ class GrinTxDetailVM: NSObject {
             cellInfo2.statusImage = R.image.grin_detail_cancled_gray()
             cellInfo1.lineImage = grayLineImage
         } else {
-            cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo2.statusAttributeStr = confirmAttributedString()
             cellInfo2.statusImage = R.image.grin_detail_confirmed_gray()
             cellInfo1.lineImage = grayLineImage
             if let txLogEntry = fullInfo.txLogEntry {
                 let cancelAction = {
                     self.infoVM.action.onNext(.cancel(txLogEntry))
-                    //self.updatePageInfo()
                 }
                 pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             }
@@ -399,7 +388,6 @@ class GrinTxDetailVM: NSObject {
         return pageInfo
     }
 
-    //MARK: - Done
     func creatReceiveGrinByViteDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         let pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinSentTitle()
@@ -413,7 +401,6 @@ class GrinTxDetailVM: NSObject {
         let cancleTime = fullInfo.localInfo?.cancleSendTime ?? 0
         let getSendFileTime = localInfo.getSendFileTime ?? 0
         let receiveTime = localInfo.receiveTime ?? 0
-
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
@@ -455,7 +442,7 @@ class GrinTxDetailVM: NSObject {
         if fullInfo.txLogEntry?.confirmed == true {
             pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo3.statusImage = R.image.grin_detail_confirmed()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo3.statusAttributeStr = confirmAttributedString()
             cellInfo2.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
@@ -463,7 +450,7 @@ class GrinTxDetailVM: NSObject {
         } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
             pageInfo.desc = R.string.localizable.grinDetailTxReceived()
             cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo3.statusAttributeStr = confirmAttributedString()
             cellInfo2.lineImage = grayLineImage
         } else {
             cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
@@ -477,7 +464,6 @@ class GrinTxDetailVM: NSObject {
         return pageInfo
     }
 
-    //MARK: -
     func creatReceiveGrinByHttpDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinSentTitle()
@@ -499,7 +485,6 @@ class GrinTxDetailVM: NSObject {
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
         cellInfo1.statusImage = R.image.grin_detail_gateway_received()
-        cellInfo1.timeStr = (gatewayInfo.createTime.grinTimeString())
         if let timestamp = gatewayInfo.stepDetailList[0] {
             cellInfo1.timeStr = (timestamp/1000).grinTimeString()
         }
@@ -523,7 +508,9 @@ class GrinTxDetailVM: NSObject {
                 cellInfo1.lineImage = blueLineImage
                 pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntBiggerThanTen()
                 let action = {
-                    //gateway resend
+                    let slateID = gatewayInfo.toSlatedId
+                    let address = gatewayInfo.address
+                    self.reSend(address: address, salteID: slateID)
                 }
                 pageInfo.actions.append(("resend",action))
             } else {
@@ -572,14 +559,20 @@ class GrinTxDetailVM: NSObject {
             cellInfo0.statusImage = R.image.grin_detail_vite()
             cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailGatewaysend(), attributes: nil)
             cellInfo0.slateId = localInfo.slateId
-            cellInfo0.lineImage = blueLineImage
             pageInfo.cellInfo.append(cellInfo0)
 
             let cellInfo1 = GrinDetailCellInfo()
-            cellInfo1.statusImage = R.image.grin_detail_waitToSign()
             cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToSign(), attributes: nil)
             cellInfo1.timeStr = (localInfo.getSendFileTime?.grinTimeString() )
             pageInfo.cellInfo.append(cellInfo1)
+
+            if getSendFileTime > 0 {
+                cellInfo1.statusImage = R.image.grin_detail_waitToSign()
+                cellInfo0.lineImage = blueLineImage
+            } else {
+                cellInfo1.statusImage = R.image.grin_detail_waitToSign_gray()
+                cellInfo0.lineImage = grayLineImage
+            }
 
             let cellInfo2 = GrinDetailCellInfo()
             cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
@@ -610,7 +603,7 @@ class GrinTxDetailVM: NSObject {
                 pageInfo.actions.removeAll()
                 pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
                 cellInfo3.statusImage = R.image.grin_detail_confirmed()
-                cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+                cellInfo3.statusAttributeStr = confirmAttributedString()
                 cellInfo2.lineImage = blueLineImage
                 cellInfo2.statusImage = R.image.grin_detail_received()
                 cellInfo1.lineImage = blueLineImage
@@ -618,7 +611,7 @@ class GrinTxDetailVM: NSObject {
             } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
                 pageInfo.desc = R.string.localizable.grinDetailTxReceived()
                 cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-                cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+                cellInfo3.statusAttributeStr = confirmAttributedString()
                 cellInfo2.lineImage = grayLineImage
             } else {
                 cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
@@ -632,8 +625,6 @@ class GrinTxDetailVM: NSObject {
         }
         return pageInfo
     }
-
-    //MARK: - Done
 
     func creatReceiveGrinByFileDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
@@ -667,7 +658,6 @@ class GrinTxDetailVM: NSObject {
             {
             let receiveAction = {
                 self.txVM.action.onNext(.receiveTx(slateUrl: url))
-                //self.updatePageInfo()
             }
             pageInfo.actions.append((R.string.localizable.grinSignAndShare(), receiveAction))
         }
@@ -687,7 +677,6 @@ class GrinTxDetailVM: NSObject {
 
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
-                //self.updatePageInfo()
             }
 
             pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
@@ -717,14 +706,14 @@ class GrinTxDetailVM: NSObject {
         if fullInfo.txLogEntry?.confirmed == true {
             pageInfo.desc = R.string.localizable.grinDetailTxCompleted()
             cellInfo3.statusImage = R.image.grin_detail_confirmed()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo3.statusAttributeStr = confirmAttributedString()
             cellInfo2.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
             cellInfo1.statusImage = R.image.grin_detail_waitToSign()
         } else if fullInfo.txLogEntry?.txType != .txReceivedCancelled {
             cellInfo3.statusImage = R.image.grin_detail_confirmed_gray()
-            cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+            cellInfo3.statusAttributeStr = confirmAttributedString()
             cellInfo2.lineImage = grayLineImage
         } else {
             cellInfo3.statusImage = R.image.grin_detail_cancled_gray()
@@ -738,7 +727,6 @@ class GrinTxDetailVM: NSObject {
         return pageInfo
     }
 
-    //MARK: - Done
     func creatReceiveGrinDetailPageInfoWithoutAnyInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinSentTitle()
@@ -752,7 +740,7 @@ class GrinTxDetailVM: NSObject {
         pageInfo.cellInfo.append(cellInfo0)
 
         let cellInfo1 = GrinDetailCellInfo()
-        cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
+        cellInfo1.statusAttributeStr = confirmAttributedString()
         pageInfo.cellInfo.append(cellInfo1)
 
         guard let txLogEntry =  fullInfo.txLogEntry else {
@@ -769,18 +757,17 @@ class GrinTxDetailVM: NSObject {
             pageInfo.desc = R.string.localizable.grinTxTypeReceived()
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
-                //self.updatePageInfo()
             }
             pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
         }
         return pageInfo
     }
 
-    //MARK: - Done
     func creatConfirmedCoinbaseDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
         pageInfo.title = R.string.localizable.grinDetailFromMine()
         pageInfo.desc = R.string.localizable.grinTxTypeConfirmedCoinbase()
+        (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
@@ -793,17 +780,13 @@ class GrinTxDetailVM: NSObject {
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusImage = R.image.grin_detail_confirmedconbase()
         cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmedCoinbase(), attributes: nil)
+        cellInfo1.timeStr = fullInfo.txLogEntry?.timeString
         pageInfo.cellInfo.append(cellInfo1)
 
-        (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
-
-        cellInfo1.timeStr = fullInfo.txLogEntry?.timeString
         return pageInfo
     }
 
-    //MARK: -
     func getAmountAndFee(fullInfo: GrinFullTxInfo) -> (String?, String?) {
-        //Amount and Fee
         var amountString: String?
         var feeString: String?
         if let opendSlateUrl = fullInfo.openedSalteUrl {
@@ -827,7 +810,6 @@ class GrinTxDetailVM: NSObject {
     func shareSlate(url: URL) {
         var finalUrl = url
         if #available(iOS 11.0, *) {
-
         } else if #available(iOS 10.0, *) {
             if url.path.contains("grinslate.response") {
                 let finalPath = url.path.replacingOccurrences(of: ".grinslate.response", with: ".response.grinslate")
@@ -839,7 +821,6 @@ class GrinTxDetailVM: NSObject {
                 }
             }
         } else {
-
         }
         guard let vc = Route.getTopVC() else { return }
         document = UIDocumentInteractionController(url: finalUrl)
@@ -877,6 +858,40 @@ class GrinTxDetailVM: NSObject {
             }
             self.fullInfo = fullInfo
         }
+    }
+
+    func reSend(address: String?, salteID: String) {
+        let account = HDWalletManager.instance.account!
+        let addressString = account.address
+        let sAddress = addressString.components(separatedBy: "_").last
+        let s = account.sign(hash: sAddress!.hex2Bytes).toHexString()
+
+        let addresses = [
+            "address": addressString,
+            "signature": s
+        ]
+
+        let slatedId = ""
+        transactionProvider
+            .request(.gatewayTransactionList(addresses: [addresses], slateID: slatedId), completion: { (result) in
+
+            })
+
+    }
+
+    func confirmAttributedString() -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+                                                                                                             NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
+
+        if let confirmInfo = self.fullInfo.confirmInfo,
+            confirmInfo.lastConfirmedHeight > 0,
+            confirmInfo.beginHeight > 0 {
+            var count = confirmInfo.lastConfirmedHeight - confirmInfo.beginHeight
+            if count > 10 { count = 10 }
+            attributedString.append(NSAttributedString(string: "(\(count)/10)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
+        }
+        return attributedString
     }
 
 }

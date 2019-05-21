@@ -98,6 +98,8 @@ class GrinFullTxInfo {
     var openedSalteUrl: URL? = nil
     var openedSalteFlieName: String? = nil
 
+    var confirmInfo: GrinHeightInfo?
+
 }
 
 extension GrinFullTxInfo {
