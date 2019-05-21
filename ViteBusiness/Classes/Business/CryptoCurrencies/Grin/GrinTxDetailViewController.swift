@@ -63,7 +63,6 @@ class GrinTxDetailViewController: UIViewController {
         txMethodLabel.font = UIFont.systemFont(ofSize: 12)
         txMethodLabel.textColor = UIColor.init(netHex: 0x007aff)
 
-
         pointView.backgroundColor = UIColor.init(netHex: 0x007aff)
         view.addSubview(pointView)
         pointView.layer.cornerRadius = 3
@@ -84,7 +83,6 @@ class GrinTxDetailViewController: UIViewController {
         }
 
         view.addSubview(infoview)
-
         infoview.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
@@ -108,7 +106,6 @@ class GrinTxDetailViewController: UIViewController {
         txInfoTableView.delegate = self
         txInfoTableView.dataSource = self
         txInfoTableView.separatorStyle = .none
-
         txInfoTableView.register(GrinTxInfoTitleCell.self, forCellReuseIdentifier: "GrinTxInfoTitleCell")
         txInfoTableView.register(GrinTxInfoCell.self, forCellReuseIdentifier: "GrinTxInfoCell")
     }
@@ -247,10 +244,16 @@ class GrinTxDetailViewController: UIViewController {
                 
             }
             .disposed(by: rx.disposeBag)
+
+        let infoVM = self.txDetailVM.infoVM
+
+        infoVM.messageDriver
+            .filterNil()
+            .drive(onNext:{ Toast.show($0) })
+            .disposed(by: rx.disposeBag)
     }
 
 }
-
 
 extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -263,16 +266,18 @@ extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: "GrinTxInfoTitleCell") as! GrinTxInfoTitleCell
             cell.statusImageView.image = cellInfo.statusImage
             cell.lineImageView.image = cellInfo.lineImage
-            if let slateId = cellInfo.slateId {
+            if let slateId = cellInfo.slateId, !slateId.isEmpty {
                 cell.slateContainerView.isHidden = false
+                cell.copyButton.isHidden = false
                 cell.slateLabel.text = "Slate ID：\(slateId)"
             } else {
                 cell.slateContainerView.isHidden = true
+                cell.copyButton.isHidden = true
             }
             cell.statusLabel.attributedText = cellInfo.statusAttributeStr
             cell.copyAction = {
                 UIPasteboard.general.string = cellInfo.slateId
-                Toast.show("已复制Slate ID")
+                Toast.show(R.string.localizable.grinDetailSlateCopied())
             }
             return cell
         } else {

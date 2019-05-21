@@ -137,10 +137,12 @@ class GrinManager: GrinBridge {
     func resetApiSecret() {
         let url =  walletUrl.appendingPathComponent(".api_secret")
         do {
+            if FileManager.default.fileExists(atPath: url.path) {
+                try FileManager.default.removeItem(at: url)
+            }
             try currentNode.apiSecret.write(to: url, atomically: true, encoding: .utf8)
         } catch {
             plog(level: .error, log: "grin-resetApiSecretError:\(error)", tag: .grin)
-
         }
     }
 

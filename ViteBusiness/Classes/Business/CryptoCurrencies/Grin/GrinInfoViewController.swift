@@ -26,7 +26,6 @@ func businessBundle() -> Bundle {
 
 class GrinInfoViewController: BaseViewController {
 
-
     @IBOutlet weak var transcationTiTleLabel: UILabel!
     @IBOutlet weak var titleView: BalanceInfoNavView!
     @IBOutlet weak var grinCardBgView: UIImageView!
@@ -76,7 +75,7 @@ class GrinInfoViewController: BaseViewController {
 
     fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
     
-    required  init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -131,6 +130,15 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
+        walletInfoVM.fullInfoDetail
+            .bind { [weak self] fullInfo in
+                let detail = GrinTxDetailViewController()
+                detail.fullInfo = fullInfo
+                self?.navigationController?.pushViewController(detail, animated: true)
+            }
+            .disposed(by: rx.disposeBag)
+
+
         leftBatItemCustombutton.rx.tap.asObservable()
             .bind { [weak self] in
                 guard let `self` = self,
@@ -153,7 +161,9 @@ class GrinInfoViewController: BaseViewController {
             }
             let webvc = WKWebViewController(url: url)
             UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
-        }
+            }
+            .disposed(by: rx.disposeBag)
+
     }
 
 
@@ -359,49 +369,10 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         return action
     }
 
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
-
-        if let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId {
-            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
-                let addressString = account.address
-                if let sAddress = addressString.components(separatedBy: "_").last {
-                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
-                    return [
-                        "address": addressString,
-                        "signature": s
-                    ]
-                }
-                return [String:String]()
-            }
-            view.displayLoading()
-            transactionProvider
-                .request(.gatewayTransactionList(addresses: addresses, slateID: slatedId), completion: { (result) in
-                    self.view.hideLoading()
-                    do {
-                        let response = try result.dematerialize()
-                        if JSON(response.data)["code"].int == 0,
-                            let arr = JSON(response.data)["data"].arrayObject,
-                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
-                            fullInfo.gatewayInfo = gatewayInfos.first
-                            let detail = GrinTxDetailViewController()
-                            detail.fullInfo = fullInfo
-                            self.navigationController?.pushViewController(detail, animated: true)
-                        } else {
-
-                        }
-                    } catch {
-
-                    }
-                })
-        } else {
-            let detail = GrinTxDetailViewController()
-            detail.fullInfo = fullInfo
-            self.navigationController?.pushViewController(detail, animated: true)
-        }
+        self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
     }
-
 }
 
 extension GrinInfoViewController: FloatButtonsViewDelegate {

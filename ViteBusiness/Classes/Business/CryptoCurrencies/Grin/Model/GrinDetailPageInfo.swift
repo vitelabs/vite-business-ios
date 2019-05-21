@@ -31,3 +31,9 @@ class GrinDetailCellInfo {
     var timeStr: String?
 }
 
+
+class GrinHeightInfo {
+    var beginHeight = 0
+    var lastConfirmedHeight = 0
+}
+

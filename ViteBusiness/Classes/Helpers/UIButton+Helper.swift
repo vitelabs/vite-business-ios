@@ -17,6 +17,7 @@ extension UIButton {
         case blueWithShadow
         case white
         case whiteWithShadow
+        case add
     }
 
     convenience init(style: Style, title: String? = nil) {
@@ -62,6 +63,19 @@ extension UIButton {
             layer.shadowOpacity = 1
             layer.shadowOffset = CGSize(width: 0, height: 0)
             layer.shadowRadius = 20
+        case .add:
+            setImage(R.image.icon_button_add(), for: .normal)
+            setImage(R.image.icon_button_add(), for: .highlighted)
+            setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+            titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            setBackgroundImage(R.image.background_add_button_white()?.resizable, for: .normal)
+            setBackgroundImage(R.image.background_add_button_white()?.tintColor(UIColor(netHex: 0xefefef)).resizable, for: .highlighted)
+            contentEdgeInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25 + 10)
+            titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -10)
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOpacity = 0.1
+            layer.shadowRadius = 3
+            layer.shadowOffset = CGSize(width: 0, height: 0)
         }
     }
 

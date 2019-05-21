@@ -52,7 +52,6 @@ class GrinTxInfoTitleCell: UITableViewCell {
             m.centerY.equalTo(statusImageView)
         }
 
-        statusLabel.text = "已签收"
 
         slateContainerView.snp.makeConstraints { (m) in
             m.top.equalTo(statusLabel.snp.bottom).offset(8)
@@ -69,8 +68,6 @@ class GrinTxInfoTitleCell: UITableViewCell {
             m.right.equalTo(slateContainerView).offset(-35)
             m.centerY.equalTo(slateContainerView)
         }
-
-        slateLabel.text = "2019/4/22 12:30:23"
 
         lineImageView.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview()

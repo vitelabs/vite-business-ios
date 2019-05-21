@@ -37,7 +37,6 @@ class AddressManageViewController: BaseTableViewController {
         $0.layer.shadowOpacity = 0.1
         $0.layer.shadowRadius = 3
         $0.layer.shadowOffset = CGSize(width: 0, height: 0)
-        $0.layer.cornerRadius = 2
     }
 
     fileprivate func setupView() {

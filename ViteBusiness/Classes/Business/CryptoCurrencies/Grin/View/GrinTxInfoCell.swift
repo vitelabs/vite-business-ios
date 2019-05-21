@@ -42,14 +42,12 @@ class GrinTxInfoCell: UITableViewCell {
             m.centerY.equalTo(statusImageView)
         }
 
-        statusLabel.text = "已签收"
 
         timeLabel.snp.makeConstraints { (m) in
             m.left.equalTo(statusLabel)
             m.top.equalTo(statusLabel.snp.bottom).offset(3)
         }
 
-        timeLabel.text = "2019/4/22 12:30:23"
 
         lineImageView.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview()

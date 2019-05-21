@@ -511,7 +511,7 @@
 "grin.pay.title.finalize" = "敲定交易";
 
 "grin.teach.file.send.desc" = "使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。";
-"grin.teach.file.receive.desc" = "使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开";
+"grin.teach.file.receive.desc" = "使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开。";
 "grin.teach.file.send.title" = "使用交易文件转账GRIN";
 "grin.teach.file.receive.title" = "使用交易文件接收GRIN";
 "grin.teach.http.receive.copyHttpAddress" = "复制HTTP地址";
@@ -544,7 +544,11 @@
 "grin.detail.pleaseReciveAndShare" = "请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。";
 "grin.detail.gatewaysend" = "Vite代转";
 "grin.detail.repoat" = "重新广播";
-
+"grin.node.configNode" = "配置全节点";
+"grin.node.edit.nodeAddressTitle" = "全节点地址";
+"grin.node.edit.apiSecretTitle" = "秘钥";
+"grin.node.select.canNotConnect" = "未能连接到全节点";
+"grin.detail.slateCopied" = "已复制Slate ID";
 
 
 

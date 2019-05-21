@@ -23,6 +23,8 @@ class GrinBalance: WalletHomeBalanceInfo {
     var amountLocked = "--"
     var legalTenderWorthed = "≈--"
 
+    var lastConfirmedHeight = 0
+
     init() { }
 
     init(_ info: Vite_GrinWallet.WalletInfo) {
@@ -40,8 +42,8 @@ class GrinBalance: WalletHomeBalanceInfo {
         legalTenderWorthed =
             "≈" + ExchangeRateManager.instance.rateMap
                 .priceString(for: GrinManager.tokenInfo, balance: spendableBalance)
-
         balance = spendableBalance
+        lastConfirmedHeight = info.lastConfirmedHeight
     }
 
 }
