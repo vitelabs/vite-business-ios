@@ -120,7 +120,7 @@ class GrinTransactVM {
     }
 
     func finalizeTx(slateUrl: URL) {
-        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_3", attributes: ["uuid": UUID.stored])
+//        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_3", attributes: ["uuid": UUID.stored])
         grin_async({ () in
            GrinManager.default.txFinalize(slatePath: slateUrl.path)
         },  { (result) in

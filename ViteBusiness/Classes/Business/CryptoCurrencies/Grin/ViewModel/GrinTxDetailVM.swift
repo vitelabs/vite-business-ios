@@ -269,6 +269,7 @@ class GrinTxDetailVM: NSObject {
             cellInfo2.timeStr = (getResponseFileTime.grinTimeString())
             pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
             let finalezeAction = {
+                Statistics.log(eventId: "grin_tx_finalizeButtonClicked_File", attributes: ["uuid": UUID.stored])
                 self.txVM.action.onNext(.finalizeTx(slateUrl: openedSalteUrl ?? responseFileUrl))
             }
             pageInfo.actions.append((R.string.localizable.grinFinalize(), finalezeAction))
@@ -657,6 +658,7 @@ class GrinTxDetailVM: NSObject {
         if let url = fullInfo.openedSalteUrl
             {
             let receiveAction = {
+                Statistics.log(eventId: "grin_tx_receiveButtonClicked_File", attributes: ["uuid": UUID.stored])
                 self.txVM.action.onNext(.receiveTx(slateUrl: url))
             }
             pageInfo.actions.append((R.string.localizable.grinSignAndShare(), receiveAction))

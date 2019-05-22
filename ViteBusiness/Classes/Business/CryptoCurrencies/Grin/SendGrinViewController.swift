@@ -180,12 +180,12 @@ class SendGrinViewController: UIViewController {
 
 
         if transferMethod == .http {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_Http", attributes: ["uuid": UUID.stored])
         } else if transferMethod == .vite {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_Vite", attributes: ["uuid": UUID.stored])
 
         } else if transferMethod == .file {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_File", attributes: ["uuid": UUID.stored])
         }
 
 
@@ -198,11 +198,11 @@ class SendGrinViewController: UIViewController {
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee, confirmTitle: R.string.localizable.grinPayTitleCreat())
                 Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                     if self?.transferMethod == .http {
-                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_3", attributes: ["uuid": UUID.stored])
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_Http", attributes: ["uuid": UUID.stored])
                     } else if self?.transferMethod == .vite {
-                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_3", attributes: ["uuid": UUID.stored])
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_Vite", attributes: ["uuid": UUID.stored])
                     } else if self?.transferMethod == .file {
-                        
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_File", attributes: ["uuid": UUID.stored])
                     }
 
                     let amountString = self?.amountTextField.text

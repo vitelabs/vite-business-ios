@@ -253,12 +253,12 @@ class GrinInfoViewController: BaseViewController {
         }
 
         if method == .http {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Http", attributes: ["uuid": UUID.stored])
         } else if method == .vite {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Vite", attributes: ["uuid": UUID.stored])
 
         } else if method == .file {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_File", attributes: ["uuid": UUID.stored])
         }
     }
 
