@@ -13,18 +13,18 @@ import RxCocoa
 import NSObject_Rx
 import BigInt
 import ViteEthereum
-import web3swift
+import Web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
     let fromAddress : EthereumAddress = EtherWallet.shared.ethereumAddress!
 
-    var address:  web3swift.Address? = nil
-    var amount: Balance? = nil
+    var address:  EthereumAddress? = nil
+    var amount: Amount? = nil
 
     public var tokenInfo : TokenInfo
 
-    init(_ tokenInfo: TokenInfo, toAddress: web3swift.Address? = nil,amount:Balance? = nil) {
+    init(_ tokenInfo: TokenInfo, toAddress: EthereumAddress? = nil,amount:Amount? = nil) {
         self.tokenInfo = tokenInfo
 
         self.address = toAddress
@@ -77,7 +77,7 @@ class EthSendTokenController: BaseViewController {
     }
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
-        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.shared.defaultGasLimitForEthTransfer: EtherWallet.shared.defaultGasLimitForTokenTransfer)
+        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer)
         gasSliderView.value = 1.0
         return gasSliderView
     }()
@@ -108,7 +108,7 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var addressView: SendAddressViewType = {
         if self.address != nil {
-            return AddressLabelView(address: address!.description)
+            return AddressLabelView(address: address!.address)
         }else {
             let view = AddressTextViewView()
             view.addButton.rx.tap.bind { [weak self] in
@@ -122,10 +122,12 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private func fetchGasPrice() {
-        EtherWallet.transaction.fetchGasPrice {[weak self] (result) in
-            guard let gas = result else { return }
-            self?.gasSliderView.value = Float(gas.string(units:.gWei)) ?? 1.0
-        }
+        EtherWallet.transaction.fetchGasPrice()
+            .done({ price in
+                // Gwei = 9
+                let b = BigDecimal(number: price, digits: 9)
+                self.gasSliderView.value = Float(b.description) ?? 1.0
+            })
     }
 
     private func setupView() {
@@ -172,24 +174,25 @@ class EthSendTokenController: BaseViewController {
         self.sendButton.rx.tap
             .bind { [weak self] in
                guard let `self` = self else { return }
-                let toAddress = Address(self.addressView.textView.text ?? "")
-                guard toAddress.isValid else {
+
+                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
+                    toAddress.isValid else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: self.tokenInfo.decimals) else {
+                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, token: self.tokenInfo, amount: amountString, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, tokenInfo: self.tokenInfo, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
                     if case .success = r {
                         self?.dismiss()
                     } else if case .failure(let error) = r {

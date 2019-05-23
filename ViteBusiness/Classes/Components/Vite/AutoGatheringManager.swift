@@ -1,5 +1,5 @@
 //
-//  AutoGatheringService.swift
+//  AutoGatheringManager.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/14.
@@ -14,16 +14,14 @@ import RxCocoa
 import Vite_HDWalletKit
 import JSONRPCKit
 
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
-final class AutoGatheringService {
-    static let instance = AutoGatheringService()
+final class AutoGatheringManager {
+    static let instance = AutoGatheringManager()
     private init() {}
 
     fileprivate let disposeBag = DisposeBag()
     fileprivate var service: ReceiveAllTransactionService?
-
-    fileprivate var services: [ReceiveTransactionService] = []
 
     func start() {
         HDWalletManager.instance.accountsDriver.drive(onNext: { (accounts) in
@@ -37,14 +35,12 @@ final class AutoGatheringService {
                     switch r {
                     case .success(let ret):
                         for (send, _, account) in ret {
-                            if let data = send.data {
-                                let bytes = Bytes(data)
-                                if bytes.count >= 2 && Bytes(bytes[0...1]) == Bytes(arrayLiteral: 0x80, 0x01) {
-                                    let viteData = Data(bytes.dropFirst(2))
-                                    GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress?.description ?? "", account: account)
-                                    let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
-                                    plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
-                                }
+                            if let data = send.data,
+                                data.contentTypeInUInt16 == 0x8001,
+                                let viteData = data.rawContent {
+                                GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
+                                let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
+                                plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
                             }
                         }
                         plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
@@ -59,7 +55,7 @@ final class AutoGatheringService {
     }
 }
 
-extension AutoGatheringService {
+extension AutoGatheringManager {
 
     class ReceiveAllTransactionService: PollService {
         typealias Ret = Result<[(AccountBlock, AccountBlock, Wallet.Account)]>
@@ -84,7 +80,7 @@ extension AutoGatheringService {
                     var ret: [(AccountBlock, Wallet.Account)] = []
                     let array = accountBlocks.compactMap { $0 }
                     for accountBlock in array {
-                        for account in accounts where accountBlock.toAddress?.description == account.address.description {
+                        for account in accounts where accountBlock.toAddress == account.address {
                             ret.append((accountBlock, account))
                         }
                     }
@@ -97,7 +93,7 @@ extension AutoGatheringService {
                             })
                             // ignore error, and return nil
                             .recover({ (error) -> Promise<(AccountBlock, AccountBlock, Wallet.Account)?> in
-                                plog(level: .warning, log: ret.1.address.description + " receive error: " + error.viteErrorMessage, tag: .transaction)
+                                plog(level: .warning, log: ret.1.address + " receive error: " + error.viteErrorMessage, tag: .transaction)
                                 return .value(nil)
                             })
                     }
@@ -107,19 +103,19 @@ extension AutoGatheringService {
                             return ret.compactMap { $0 }
                         })
                 }).done({ (ret) in
-                    completion(Result(value: ret))
+                    completion(Result.success(ret))
                 }).catch({ (error) in
-                    completion(Result(error: error))
+                    completion(Result.failure(error))
                 })
         }
 
         static func receive(onroadBlock: AccountBlock, account: Wallet.Account) -> Promise<(AccountBlock, AccountBlock, Wallet.Account)> {
-            return Provider.default.receiveTransactionWithoutPow(account: account, onroadBlock: onroadBlock)
+            return ViteNode.rawTx.receive.withoutPow(account: account, onroadBlock: onroadBlock)
                 .recover({ (e) -> Promise<AccountBlock> in
                     if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                        return Provider.default.getPowForReceiveTransaction(account: account, onroadBlock: onroadBlock)
+                        return ViteNode.rawTx.receive.getPow(account: account, onroadBlock: onroadBlock)
                         .then({ context -> Promise<AccountBlock> in
-                            return Provider.default.sendRawTxWithContext(context)
+                            return ViteNode.rawTx.receive.context(context)
                         })
                     } else {
                         return Promise(error: e)
@@ -129,7 +125,7 @@ extension AutoGatheringService {
         }
 
         static func getFirstOnroadIfHas(for accounts: [Wallet.Account]) -> Promise<[AccountBlock?]> {
-            let requests = accounts.map { GetOnroadBlocksRequest(address: $0.address.description, index: 0, count: 1) }
+            let requests = accounts.map { GetOnroadBlocksRequest(address: $0.address, index: 0, count: 1) }
             return RPCRequest(for: Provider.default.server, batch: BatchFactory().create(requests)).promise
                 .map { accountBlocksArray -> [AccountBlock?] in
                     return accountBlocksArray.map { $0.first }

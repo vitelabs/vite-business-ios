@@ -53,7 +53,7 @@ extension URIType {
             array.append((key, value))
         }
 
-        return Result(value: array)
+        return Result.success(array)
     }
 }
 
@@ -63,6 +63,7 @@ public enum URIError: Error {
     case InvalidAddress
     case InvalidFunctionName
     case InvalidTokenId
+    case InvalidUserAddress
     case InvalidContractAddress
     case InvalidAmount
     case InvalidFee
@@ -78,35 +79,40 @@ public struct ViteURI: URIType {
     }
 
     static let scheme: String = "vite"
-    let address: Address
+    let address: ViteAddress
     let chainId: String?
     let type: URIType
     let functionName: String?
 
-    let tokenId: String
+    let tokenId: ViteTokenId
     let amount: String?
     let fee: String?
     let data: Data?
 
-    func amountForSmallestUnit(decimals: Int) -> BigInt? {
-        guard let amount = amount else { return BigInt(0) }
+    func amountForSmallestUnit(decimals: Int) -> Amount? {
+        guard let amount = amount else { return Amount(0) }
         return amount.uriNumberTypeStringToBigint(decimals: decimals)
     }
 
-    func feeForSmallestUnit(decimals: Int) -> BigInt? {
-        guard let fee = fee else { return BigInt(0) }
+    func feeForSmallestUnit(decimals: Int) -> Amount? {
+        guard let fee = fee else { return Amount(0) }
         return fee.uriNumberTypeStringToBigint(decimals: decimals)
     }
 
     var parameters: [(String, String)]?
 
-    static func transferURI(address: Address, tokenId: String?, amount: String?, note: String?) -> ViteURI {
-        let data = note?.data(using: .utf8)
+    static func transferURI(address: ViteAddress, tokenId: ViteTokenId?, amount: String?, note: String?) -> ViteURI {
+        let data: Data?
+        if let note = note, !note.isEmpty {
+            data = AccountBlockDataFactory.generateUTF8StringData(string: note)
+        } else {
+            data = nil
+        }
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
-    init(address: Address, chainId: String?, type: URIType, functionName: String?,
-         tokenId: String?, amount: String?, fee: String?, data: Data?,
+    init(address: ViteAddress, chainId: String?, type: URIType, functionName: String?,
+         tokenId: ViteTokenId?, amount: String?, fee: String?, data: Data?,
          parameters: [(String, String)]?) {
         self.address = address
         self.chainId = chainId
@@ -124,7 +130,7 @@ public struct ViteURI: URIType {
 
         string.append(ViteURI.scheme)
         string.append(":")
-        string.append(address.description)
+        string.append(address)
 
         if let chainId = chainId {
             string.append("@")
@@ -190,22 +196,30 @@ public struct ViteURI: URIType {
             return Result(error: URIError.InvalidFormat("/"))
         }
 
-        var type = URIType.transfer
-        if functionName != nil {
-            type = URIType.contract
-        }
+        let type: URIType = (functionName == nil) ? .transfer : .contract
 
         guard let (addressString, chainId) = separate(address_chainId, by: "@") else {
             return Result(error: URIError.InvalidFormat("@"))
         }
 
-        let address = Address(string: addressString)
+        let address = addressString
 
-        guard address.isValid else {
+        guard address.isViteAddress else {
             return Result(error: URIError.InvalidAddress)
         }
 
-        var tokenId: String? = nil
+        switch type {
+        case .transfer:
+            guard address.viteAddressType == .user else {
+                return Result(error: URIError.InvalidUserAddress)
+            }
+        case .contract:
+            guard address.viteAddressType == .contract else {
+                return Result(error: URIError.InvalidContractAddress)
+            }
+        }
+
+        var tokenId: ViteTokenId? = nil
         var amount: String? = nil
         var fee: String? = nil
         var data: Data? = nil
@@ -216,7 +230,7 @@ public struct ViteURI: URIType {
             case .success(let (t, a, f, d, p)):
 
                 if let t = t {
-                    guard Token.isValid(string: t) else {
+                    guard t.isViteTokenId else {
                         return Result(error: URIError.InvalidTokenId)
                     }
                     tokenId = t
@@ -251,7 +265,7 @@ public struct ViteURI: URIType {
             }
         }
 
-        return Result(value: ViteURI(address: address,
+        return Result.success(ViteURI(address: address,
                                      chainId: chainId,
                                      type: type,
                                      functionName: functionName,
@@ -264,9 +278,9 @@ public struct ViteURI: URIType {
 
 extension ViteURI {
 
-    fileprivate static func parser(parameters: String) -> Result<(tokenId: String?, amountString: String?, feeString: String?, dataString: String?, [(key: String, value: String)]), URIError> {
+    fileprivate static func parser(parameters: String) -> Result<(tokenId: ViteTokenId?, amountString: String?, feeString: String?, dataString: String?, [(key: String, value: String)]), URIError> {
 
-        var tokenId: String? = nil
+        var tokenId: ViteTokenId? = nil
         var amountString: String? = nil
         var feeString: String? = nil
         var dataString: String? = nil
@@ -288,7 +302,7 @@ extension ViteURI {
                     array.append((key, value))
                 }
             }
-            return Result(value: (tokenId, amountString, feeString, dataString, array))
+            return Result.success((tokenId, amountString, feeString, dataString, array))
         case .failure(let error):
             return Result(error: error as! URIError)
         }

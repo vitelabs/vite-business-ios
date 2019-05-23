@@ -9,21 +9,8 @@
 import UIKit
 
 public struct WebHandler {
-    #if DEBUG || TEST
-    fileprivate static var browserUrlString: String {
-        if DebugService.instance.config.browserUseOnlineUrl {
-            return "https://explorer.vite.net"
-        } else {
-            if let url = URL(string: DebugService.instance.config.browserCustomUrl) {
-                return url.absoluteString
-            } else {
-                return DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
-            }
-        }
-    }
-    #else
-    fileprivate static let browserUrlString = "https://explorer.vite.net"
-    #endif
+
+    fileprivate static let browserUrlString = ViteConst.instance.vite.explorer
 
     static func open(_ url: URL) {
         let webvc = WKWebViewController(url: url)
@@ -34,6 +21,12 @@ public struct WebHandler {
         let host = appendLanguagePath(urlString: browserUrlString)
         guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
         guard let url = URL(string: "\(host)/transaction/\(string)") else { return }
+        open(url)
+    }
+
+    static func openTranscationGenesisPage(address: String) {
+        let urlString = NSString(format: ViteConst.instance.vite.genesisPageUrl as NSString, address)
+        guard let url = URL(string: urlString as String) else { return }
         open(url)
     }
 
@@ -55,7 +48,7 @@ public struct WebHandler {
     fileprivate static func appendQuery(urlString: String) -> String {
         let querys = ["version": Bundle.main.versionNumber,
                       "channel": Constants.appDownloadChannel.rawValue,
-                      "address": HDWalletManager.instance.account?.address.description ?? "",
+                      "address": HDWalletManager.instance.account?.address ?? "",
                       "language": LocalizationService.sharedInstance.currentLanguage.rawValue]
 
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4

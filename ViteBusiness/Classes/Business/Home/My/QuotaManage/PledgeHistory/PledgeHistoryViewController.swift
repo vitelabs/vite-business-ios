@@ -66,7 +66,7 @@ class PledgeHistoryViewController: BaseViewController, View {
             .map { $0.pledges }
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { _, pledge, cell in
                 let cell = cell as! PledgeHistoryCell
-                cell.hashLabel.text = pledge.beneficialAddress.description
+                cell.hashLabel.text = pledge.beneficialAddress
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
                 cell.balanceLabel.text =  pledge.amount.amountShort(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"

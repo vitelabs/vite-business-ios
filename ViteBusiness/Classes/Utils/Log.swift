@@ -11,6 +11,7 @@ import XCGLogger
 
 public enum Tag: String {
     case life
+    case base
     case wallet
     case transaction
     case server

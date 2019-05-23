@@ -24,7 +24,7 @@ class AddressListViewModel {
         return AddressListViewModel(driver: HDWalletManager.instance.accountsDriver.map({ (accounts) -> [AddressViewModel] in
             return accounts.map({ (account) -> AddressViewModel in
                 let name = AddressManageService.instance.name(for: account.address)
-                return AddressViewModel(name: name, nameImage: R.image.icon_address_name_blue(), type: CoinType.vite.name, typeTextColor:  CoinType.vite.mainColor, typeBgColor:  CoinType.vite.shadowColor, address: account.address.description)
+                return AddressViewModel(name: name, nameImage: R.image.icon_address_name_blue(), type: CoinType.vite.name, typeTextColor:  CoinType.vite.mainColor, typeBgColor:  CoinType.vite.shadowColor, address: account.address)
             })
         }), title: R.string.localizable.addressListPageMyTitle(), emptyTip: "")
     }

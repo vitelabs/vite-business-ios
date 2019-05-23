@@ -21,9 +21,19 @@ class MyHomeListCellViewModel: Mappable {
     fileprivate var title: StringWrapper = StringWrapper(string: "")
     fileprivate var icon: String = ""
     fileprivate var url: String = ""
+    fileprivate var build: Int?
 
     fileprivate(set) var name: StringWrapper = StringWrapper(string: "")
     fileprivate(set) var image: ImageWrapper?
+
+    var isValid: Bool {
+        if let current = Int(Bundle.main.buildNumber),
+            let build = build {
+            return current >= build
+        } else {
+            return true
+        }
+    }
 
     required init?(map: Map) {
         guard let type = map.JSON["type"] as? String, let _ = ViewModelType(rawValue: type) else {
@@ -36,6 +46,7 @@ class MyHomeListCellViewModel: Mappable {
         title <- map["title"]
         icon <- map["icon"]
         url <- map["url"]
+        build <- map["build"]
 
         switch type {
         case .settings:

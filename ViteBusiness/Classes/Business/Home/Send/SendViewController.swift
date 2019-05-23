@@ -21,21 +21,21 @@ class SendViewController: BaseViewController {
 
     let tokenInfo: TokenInfo
     var token: Token
-    var balance: Balance
+    var balance: Amount
 
-    let address: Address?
-    let amount: Balance?
+    let address: ViteAddress?
+    let amount: Amount?
     let note: String?
 
     let noteCanEdit: Bool
 
-    init(tokenInfo: TokenInfo, address: Address?, amount: BigInt?, note: String?, noteCanEdit: Bool = true) {
+    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: Amount?, note: String?, noteCanEdit: Bool = true) {
         self.tokenInfo = tokenInfo
         self.token = tokenInfo.toViteToken()!
         self.address = address
-        self.balance = Balance(value: BigInt(0))
+        self.balance = Amount(0)
         if let amount = amount {
-            self.amount = Balance(value: amount)
+            self.amount = amount
         } else {
             self.amount = nil
         }
@@ -57,12 +57,14 @@ class SendViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        FetchQuotaService.instance.retainQuota()
+        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        FetchQuotaManager.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        FetchQuotaService.instance.releaseQuota()
+        FetchQuotaManager.instance.releaseQuota()
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
     }
 
     // View
@@ -77,7 +79,7 @@ class SendViewController: BaseViewController {
 
     // headerView
     var navView = SendNavView()
-    lazy var headerView = SendHeaderView(address: account.address.description, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
 
     var addressView: SendAddressViewType!
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", symbol: token.symbol)
@@ -88,7 +90,7 @@ class SendViewController: BaseViewController {
         navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
 
         if let address = address {
-            addressView = AddressLabelView(address: address.description)
+            addressView = AddressLabelView(address: address)
         } else {
             let view = AddressTextViewView()
             view.addButton.rx.tap.bind { [weak self] in
@@ -158,34 +160,57 @@ class SendViewController: BaseViewController {
 
         sendButton.rx.tap
             .bind { [weak self] in
-                let address = Address(string: self?.addressView.textView.text ?? "")
+                let address = self?.addressView.textView.text ?? ""
                 guard let `self` = self else { return }
-                guard address.isValid else {
+                guard address.isViteAddress else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
-                    let amount = amountString.toBigInt(decimals: self.token.decimals) else {
+                    let amount = amountString.toAmount(decimals: self.token.decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                     return
                 }
 
-                guard amount > BigInt(0) else {
+                guard amount > 0 else {
                     Toast.show(R.string.localizable.sendPageToastAmountZero())
                     return
                 }
 
-                guard amount <= self.balance.value else {
+                guard amount <= self.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
 
-                Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: Balance(value: amount), note: self.noteView.textField.text, completion: { (r) in
-                    if case .success = r {
-                        GCD.delay(1) { self.dismiss() }
+                switch address.viteAddressType! {
+                case .user:
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
+                        if case .success = r {
+                            GCD.delay(1) { self.dismiss() }
+                        }
+                    })
+                case .contract:
+                    let data: Data?
+                    if let note = self.noteView.textField.text, !note.isEmpty {
+                        let bytes = note.hex2Bytes
+                        guard !bytes.isEmpty else {
+                            Toast.show(R.string.localizable.sendPageToastContractAddressSupportHex())
+                            return
+                        }
+                        data = Data(bytes)
+                    } else {
+                        data = nil
                     }
-                })
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, completion: { (r) in
+                        if case .success = r {
+                            GCD.delay(1) { self.dismiss() }
+                        }
+                    })
+
+                }
+
+
             }
             .disposed(by: rx.disposeBag)
     }
@@ -205,8 +230,8 @@ class SendViewController: BaseViewController {
             }
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.maxTxCountDriver
-            .map({ R.string.localizable.sendPageQuotaContent($0) })
+        FetchQuotaManager.instance.quotaDriver
+            .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
             .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }
@@ -228,7 +253,7 @@ extension SendViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address.description
+                    self?.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
                     scanViewController.showAlertMessage(result)

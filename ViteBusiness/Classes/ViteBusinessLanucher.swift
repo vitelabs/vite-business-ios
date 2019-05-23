@@ -13,7 +13,7 @@ import NSObject_Rx
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
+import Web3swift
 import ViteEthereum
 
 public class ViteBusinessLanucher: NSObject {
@@ -39,8 +39,9 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
-        //config 
-        EtherWallet.network.changeHost(Web3.Vite_InfuraMainnetWeb3())
+        //config
+        Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
+        EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
@@ -52,10 +53,10 @@ public class ViteBusinessLanucher: NSObject {
         MyTokenInfosService.instance.start()
         ExchangeRateManager.instance.start()
         TokenListService.instance.fetchTokenListServerData()
-        AutoGatheringService.instance.start()
+        AutoGatheringManager.instance.start()
         ViteBalanceInfoManager.instance.start()
         ETHBalanceInfoManager.instance.start()
-        FetchQuotaService.instance.start()
+        FetchQuotaManager.instance.start()
         AddressManageService.instance.start()
 
         //web
@@ -74,7 +75,7 @@ public class ViteBusinessLanucher: NSObject {
                 return
             }
 
-            callback(Response(code:.success,msg: "",data: account.address.description),callbackId)
+            callback(Response(code:.success,msg: "",data: account.address),callbackId)
         }
 
         WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
@@ -91,7 +92,7 @@ public class ViteBusinessLanucher: NSObject {
                 return
             }
 
-            guard let addressString = data["address"], Address.isValid(string: addressString) else {
+            guard let addressString = data["address"], addressString.isViteAddress else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: address", data: nil), callbackId)
                 return
             }
@@ -106,7 +107,7 @@ public class ViteBusinessLanucher: NSObject {
                 return
             }
 
-            guard addressString == account.address.description else {
+            guard addressString == account.address else {
                 callback(Response(code: .addressDoesNotMatch, msg: "address does not match", data: nil), callbackId)
                 return
             }

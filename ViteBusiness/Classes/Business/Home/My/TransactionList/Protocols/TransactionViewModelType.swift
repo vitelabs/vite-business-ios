@@ -18,4 +18,5 @@ protocol TransactionViewModelType {
     var balanceColor: UIColor { get }
     var symbolString: String { get }
     var hash: String { get }
+    var isGenesis: Bool { get }
 }

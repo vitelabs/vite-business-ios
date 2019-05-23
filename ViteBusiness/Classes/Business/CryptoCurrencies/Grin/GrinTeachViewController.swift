@@ -55,7 +55,7 @@ class GrinTeachViewController: UIViewController {
             } else if txType == .receive {
                 titleLabel.text = R.string.localizable.grinTeachViteReceiveTitle()
                 desc = R.string.localizable.grinReceiveByViteDesc()
-                addressLabel.text = "  \(HDWalletManager.instance.accounts.first?.address.description ?? "")  "
+                addressLabel.text = "  \(HDWalletManager.instance.accounts.first?.address ?? "")  "
                 addressTitleLabel.text = R.string.localizable.grinViteAddress()
             }
         } else if channelType == .http {
@@ -112,7 +112,7 @@ class GrinTeachViewController: UIViewController {
 
     @IBAction func copyAction(_ sender: Any) {
         if channelType == .vite {
-            UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address.description
+            UIPasteboard.general.string = HDWalletManager.instance.accounts.first?.address
             Toast.show(R.string.localizable.grinReceiveByViteAddressCopyed())
         } else if channelType == .http {
             GrinTxByViteService().getGateWay().done { (string) in

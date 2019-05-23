@@ -9,7 +9,7 @@ import ViteWallet
 import PromiseKit
 import ViteEthereum
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 
 public class ETHBalanceInfoService: PollService {
 
@@ -33,57 +33,24 @@ public class ETHBalanceInfoService: PollService {
 
     public func handle(completion: @escaping (Ret) -> ()) {
 
-        var promise: Promise<ETHBalanceInfo>!
+        let promise: Promise<ETHBalanceInfo>
+        let tokenCode = tokenInfo.tokenCode
         if tokenInfo.isEtherCoin {
-            promise = EtherWallet.shared.getEtherBalanceInfo()
+            promise = EtherWallet.balance.etherBalance().map {
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+            }
         } else {
-            promise = EtherWallet.shared.getETHTokenBalanceInfo(tokenInfo: tokenInfo)
+            guard let token = tokenInfo.toETHToken() else { fatalError() }
+            promise = EtherWallet.balance.tokenBalance(contractAddress: token.contractAddress).map {
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+            }
         }
 
         promise
             .done { (ret) in
-                completion(Result(value: ret))
+                completion(Result.success(ret))
             }.catch { (e) in
-                completion(Result(error: e))
-        }
-    }
-}
-
-
-extension EtherWallet {
-
-    func getEtherBalanceInfo() -> Promise<ETHBalanceInfo> {
-        return Promise<ETHBalanceInfo> { seal in
-            DispatchQueue.global().async {
-                do {
-                    let balance = try self.etherBalanceSync()
-                    DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: TokenCode.etherCoin, balance: Balance(value: balance)))
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
-                        seal.reject(error)
-                    }
-                }
-            }
-        }
-    }
-
-    func getETHTokenBalanceInfo(tokenInfo: TokenInfo) -> Promise<ETHBalanceInfo> {
-        guard let token = tokenInfo.toETHToken() else { fatalError() }
-        return Promise<ETHBalanceInfo> { seal in
-            DispatchQueue.global().async {
-                do {
-                    let balance = try self.tokenBalanceSync(contractAddress: token.contractAddress)
-                    DispatchQueue.main.async {
-                        seal.fulfill(ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Balance(value: balance)))
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
-                        seal.reject(error)
-                    }
-                }
-            }
+                completion(Result.failure(e))
         }
     }
 }

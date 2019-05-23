@@ -119,7 +119,7 @@ class BalanceInfoViteChainCardView: UIView {
             AddressManageService.instance.myAddressNameMapDriver.asObservable())
             .bind { (account, _) in
                 nameLabel.text = AddressManageService.instance.name(for: account.address)
-                addressLabel.text = account.address.description
+                addressLabel.text = account.address
             }.disposed(by: rx.disposeBag)
     }
 
@@ -272,11 +272,11 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.unconfirmedBalance.value == 0 })
+            .map({ $0.unconfirmedBalance == 0 })
             .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
 
-        FetchQuotaService.instance.maxTxCountDriver
-            .map({ R.string.localizable.balanceInfoDetailPledgeCountContent($0) })
+        FetchQuotaManager.instance.quotaDriver
+            .map({ R.string.localizable.balanceInfoDetailPledgeCountContent(String($0.utps)) })
             .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
