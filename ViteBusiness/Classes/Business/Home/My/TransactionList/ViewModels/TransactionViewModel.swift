@@ -28,7 +28,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.typeName = R.string.localizable.transactionListPageGenesisCellName()
             self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
-                if let t = accountBlock.timestamp {
+                if let t = accountBlock.timestamp, t > 0 {
                     return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
                 } else {
                     return ""
@@ -44,7 +44,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.typeName = accountBlock.transactionType.name
             self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
-                if let t = accountBlock.timestamp {
+                if let t = accountBlock.timestamp, t > 0 {
                     return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
                 } else {
                     return ""

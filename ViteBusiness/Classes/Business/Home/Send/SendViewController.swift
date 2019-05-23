@@ -104,14 +104,9 @@ class SendViewController: BaseViewController {
 
             #if DEBUG
             view.textView.text = HDWalletManager.instance.account!.address
+            amountView.textField.text = "0.1"
             #endif
         }
-
-        #if DEBUG
-        if (amountView.textField.text ?? "").isEmpty {
-            amountView.textField.text = "0.1"
-        }
-        #endif
 
         let sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle())
 
