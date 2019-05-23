@@ -14,12 +14,12 @@ import ViteWallet
 
 class AddressManagerTableViewModel: AddressManagerTableViewModelType {
 
-    lazy var defaultAddressDriver: Driver<String> = HDWalletManager.instance.accountDriver.map { $0?.address.description ?? ""}
+    lazy var defaultAddressDriver: Driver<String> = HDWalletManager.instance.accountDriver.map { $0?.address ?? ""}
     lazy var defaultAddressNameDriver: Driver<String> =
         Driver.combineLatest(
             self.defaultAddressDriver,
             AddressManageService.instance.myAddressNameMapDriver).map { (address, _) -> String in
-                return AddressManageService.instance.name(for: Address(string: address))
+                return AddressManageService.instance.name(for: address)
     }
     
     lazy var addressesDriver: Driver<[AddressManageAddressViewModelType]> =
@@ -33,7 +33,7 @@ class AddressManagerTableViewModel: AddressManagerTableViewModelType {
                     let isSelected = number == HDWalletManager.instance.selectBagIndex
                     number += 1
                     let name = AddressManageService.instance.name(for: account.address)
-                    return AddressManageAddressViewModel(number: number, name: name, address: account.address.description, isSelected: isSelected)
+                    return AddressManageAddressViewModel(number: number, name: name, address: account.address, isSelected: isSelected)
                 }
             }
 

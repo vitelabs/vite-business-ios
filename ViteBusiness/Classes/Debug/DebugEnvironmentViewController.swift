@@ -43,7 +43,7 @@ class DebugEnvironmentViewController: FormViewController {
                     $0.value = DebugService.instance.config.rpcCustomUrl
                 } else {
                     $0.title = "Test URL"
-                    $0.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
+                    $0.value = ViteConst.Env.testEnv.vite.nodeHttp
                 }
                 }.onCellSelection({ [weak self] _, _  in
                     Alert.show(into: self, title: "RPC Custom URL", message: nil, actions: [
@@ -59,7 +59,7 @@ class DebugEnvironmentViewController: FormViewController {
                             } else if let text = alert.textFields?.first?.text, text.isEmpty {
                                 DebugService.instance.config.rpcCustomUrl = ""
                                 cell.title = "Test"
-                                cell.value = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
+                                cell.value = ViteConst.Env.testEnv.vite.nodeHttp
                                 cell.updateCell()
                             } else {
                                 Toast.show("Error Format")
@@ -70,7 +70,7 @@ class DebugEnvironmentViewController: FormViewController {
                             alert.addTextField(configurationHandler: { (textField) in
                                 textField.clearButtonMode = .always
                                 textField.text = DebugService.instance.config.rpcCustomUrl
-                                textField.placeholder = DebugService.instance.rpcDefaultTestEnvironmentUrl.absoluteString
+                                textField.placeholder = ViteConst.Env.testEnv.vite.nodeHttp
                             })
                     })
                 })
@@ -94,7 +94,7 @@ class DebugEnvironmentViewController: FormViewController {
                     $0.value = DebugService.instance.config.browserCustomUrl
                 } else {
                     $0.title = "Test URL"
-                    $0.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
+                    $0.value = ViteConst.Env.testEnv.vite.nodeHttp
                 }
                 }.onCellSelection({ [weak self] _, _  in
                     Alert.show(into: self, title: "Browser Custom URL", message: nil, actions: [
@@ -110,7 +110,7 @@ class DebugEnvironmentViewController: FormViewController {
                             } else if let text = alert.textFields?.first?.text, text.isEmpty {
                                 DebugService.instance.config.browserCustomUrl = ""
                                 cell.title = "Test"
-                                cell.value = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
+                                cell.value = ViteConst.Env.testEnv.vite.nodeHttp
                                 cell.updateCell()
                             } else {
                                 Toast.show("Error Format")
@@ -121,7 +121,7 @@ class DebugEnvironmentViewController: FormViewController {
                             alert.addTextField(configurationHandler: { (textField) in
                                 textField.clearButtonMode = .always
                                 textField.text = DebugService.instance.config.browserCustomUrl
-                                textField.placeholder = DebugService.instance.browserDefaultTestEnvironmentUrl.absoluteString
+                                textField.placeholder = ViteConst.Env.testEnv.vite.nodeHttp
                             })
                     })
                 })

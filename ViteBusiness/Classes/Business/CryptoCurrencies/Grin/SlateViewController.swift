@@ -136,13 +136,12 @@ class SlateViewController: UIViewController {
                 transferVM.action.onNext(.receiveTx(slateUrl: url))
             }
         } else if type == .finalize {
-            let fee = Balance(value: BigInt(slate.fee)).amountFull(decimals: 9)
-            let amount = Balance(value: BigInt(slate.amount)).amountFull(decimals: 9)
+            let fee = Amount(slate.fee).amountFull(decimals: 9)
+            let amount = Amount(slate.amount).amountFull(decimals: 9)
             let confirmType = ConfirmGrinTransactionViewModel(amountString: amount, feeString: fee)
-            Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
-            }) {
+            Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                 self.transferVM.action.onNext(.finalizeTx(slateUrl: url))
-            }
+            })
         }
     }
 
@@ -181,8 +180,8 @@ extension SlateViewController : UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.textColor = UIColor(netHex: 0x3e4159)
         guard let slate = opendSlate else { fatalError() }
         var arr = [
-            (R.string.localizable.grinSentAmount(), Balance(value: BigInt(slate.amount)).amount(decimals: 9, count: 9)),
-            (R.string.localizable.grinSentFee(), Balance(value: BigInt(slate.fee)).amount(decimals: 9, count: 9))
+            (R.string.localizable.grinSentAmount(), Amount(slate.amount).amount(decimals: 9, count: 9)),
+            (R.string.localizable.grinSentFee(), Amount(slate.fee).amount(decimals: 9, count: 9))
         ]
         let attributeStr =
             NSMutableAttributedString(string: arr[indexPath.row].1,

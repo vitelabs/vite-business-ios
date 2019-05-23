@@ -44,6 +44,10 @@ extension COSProvider {
         sendRequest(api: .checkUpdate, completion: completion)
     }
 
+    func getAppNotice(completion: @escaping (Result<String?>) -> Void) {
+        sendRequest(api: .getAppNotice, completion: completion)
+    }
+
     fileprivate func sendRequest(api: COSAPI, completion: @escaping (Result<String?>) -> Void) {
         request(api) { (result) in
             switch result {

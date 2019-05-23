@@ -93,25 +93,17 @@ extension AboutUsViewController {
                 $0.cell.textLabel?.textColor = Colors.cellTitleGray
                 $0.cell.textLabel?.font = Fonts.light16
                 $0.title =  R.string.localizable.aboutUsPageCellVersion()
-                #if TEST
-                    #if DEBUG
-                    $0.value = "\(Bundle.main.versionNumber) (DT\(Bundle.main.buildNumber))"
-                    #else
-                    $0.value = "\(Bundle.main.versionNumber) (T\(Bundle.main.buildNumber))"
-                    #endif
-                #elseif OFFICIAL
-                    #if DEBUG
-                    $0.value = "\(Bundle.main.versionNumber) (DA\(Bundle.main.buildNumber))"
-                    #else
-                    $0.value = "\(Bundle.main.versionNumber) (A\(Bundle.main.buildNumber))"
-                    #endif
-                #else
-                    #if DEBUG
-                    $0.value = "\(Bundle.main.versionNumber) (DD\(Bundle.main.buildNumber))"
-                    #else
-                    $0.value = "\(Bundle.main.versionNumber) (D\(Bundle.main.buildNumber))"
-                    #endif
+                var prefix = ""
+                #if DEBUG
+                prefix = prefix + "D"
                 #endif
+                #if TEST
+                prefix = prefix + "T"
+                #endif
+                #if OFFICIAL
+                prefix = prefix + "A"
+                #endif
+                $0.value = "\(Bundle.main.versionNumber) (\(prefix)\(Bundle.main.buildNumber))"
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
             }.onCellSelection({ _, _  in
@@ -134,7 +126,7 @@ extension AboutUsViewController {
     }
 
     func getSnapshotChainHeight() {
-        Provider.default.getSnapshotChainHeight()
+        GetSnapshotChainHeightRequest().defaultProviderPromise
             .done { [weak self] (height) in
                 guard let `self` = self else { return }
                 guard let cell = self.form.rowBy(tag: "aboutUsPageCellBlockHeight") as? LabelRow else { return }

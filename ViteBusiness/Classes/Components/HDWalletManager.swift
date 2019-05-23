@@ -39,7 +39,7 @@ public final class HDWalletManager {
             guard let `self` = self else { return }
             if let index = addressIndex {
                 let account = self.accountsBehaviorRelay.value[index]
-                guard self.accountBehaviorRelay.value?.address.description != account.address.description else { return }
+                guard self.accountBehaviorRelay.value?.address != account.address else { return }
                 self.accountBehaviorRelay.accept(account)
             } else {
                 guard self.accountBehaviorRelay.value != nil else { return }
@@ -79,7 +79,7 @@ public final class HDWalletManager {
         guard let wallet = walletBehaviorRelay.value else { return false }
         guard wallet.addressCount < type(of: self).maxAddressCount else { return false }
         pri_update(addressIndex: wallet.addressIndex, addressCount: wallet.addressCount + 1)
-        plog(level: .info, log: "generate next address \(self.accounts.last?.address.description ?? ""), total: \(self.accounts.count)", tag: .wallet)
+        plog(level: .info, log: "generate next address \(self.accounts.last?.address ?? ""), total: \(self.accounts.count)", tag: .wallet)
         return true
     }
 
@@ -88,7 +88,7 @@ public final class HDWalletManager {
         guard index < wallet.addressCount else { return false }
         guard index != wallet.addressIndex else { return true }
         pri_update(addressIndex: index, addressCount: wallet.addressCount)
-        plog(level: .info, log: "select \(self.account?.address.description ?? ""), index: \(index)", tag: .wallet)
+        plog(level: .info, log: "select \(self.account?.address ?? ""), index: \(index)", tag: .wallet)
         return true
     }
 
@@ -165,7 +165,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -175,7 +175,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -184,7 +184,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -194,7 +194,7 @@ extension HDWalletManager {
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet()
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -236,17 +236,6 @@ extension HDWalletManager {
         pri_recoverAddressesIfNeeded(wallet.uuid)
     }
 
-    fileprivate func pri_LoginEthWallet() {
-        guard let mnemonic = self.mnemonic  else {
-            return
-        }
-        _ = try? EtherWallet.account.importAccount(mnemonics: mnemonic, password: "")
-        self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
-    }
-    fileprivate func pri_LogoutEthWallet() {
-        _ = try? EtherWallet.account.logout()
-    }
-
     fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
         guard let wallet = self.walletBehaviorRelay.value else { return }
         guard uuid == wallet.uuid else { return }
@@ -254,7 +243,7 @@ extension HDWalletManager {
         let accounts = (0..<type(of: self).maxAddressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
         let addresses = accounts.map { $0.address }
         guard addresses.count == type(of: self).maxAddressCount else { return }
-        Provider.default.recoverAddresses(addresses)
+        ViteNode.utils.recoverAddresses(addresses)
             .done { [weak self] (count) in
                 guard let `self` = self else { return }
                 guard let wallet = self.walletBehaviorRelay.value else { return }
@@ -276,6 +265,20 @@ extension HDWalletManager {
                                                        needRecoverAddresses: needRecoverAddresses) else { return }
         walletBehaviorRelay.accept(wallet)
     }
+
+    // ETH
+    fileprivate func pri_LoginEthWallet(mnemonic: String, encryptKey: String) {
+        do {
+            try EtherWallet.account.importAccount(mnemonics: mnemonic, password: encryptKey)
+            self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
+        } catch let error {
+            plog(level: .severe, log: "\(error)", tag: .wallet)
+        }
+    }
+    
+    fileprivate func pri_LogoutEthWallet() {
+        EtherWallet.account.logout()
+    }
 }
 
 // MARK: - DEBUG function
@@ -294,10 +297,3 @@ extension HDWalletManager {
     }
 }
 #endif
-
-extension FileHelper {
-    static var appPathComponent = "app"
-    static var walletPathComponent: String {
-        return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
-    }
-}

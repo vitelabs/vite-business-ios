@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import ViteEthereum
-import web3swift
+import Web3swift
 import BigInt
 
 class EthTokenInfoController: BaseViewController {
@@ -151,7 +151,7 @@ class EthTokenInfoController: BaseViewController {
         }
 
         showTransactionsButton.rx.tap.bind { [weak self] in
-            var infoUrl = String.init(format: "%@%@",EtherWallet.network.getEtherInfoH5Url(), EtherWallet.account.address ?? "")
+            var infoUrl = String.init(format: "%@/%@",ViteConst.instance.eth.explorer, EtherWallet.account.address ?? "")
             guard let url = URL(string: infoUrl) else { return }
             let vc = WKWebViewController.init(url: url)
             self?.navigationController?.pushViewController(vc, animated: true)

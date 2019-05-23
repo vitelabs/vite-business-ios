@@ -9,7 +9,7 @@ import ViteWallet
 import PromiseKit
 import ViteEthereum
 import BigInt
-import enum ViteWallet.Result
+import enum Alamofire.Result
 import RxSwift
 import RxCocoa
 
@@ -92,7 +92,7 @@ public class ETHBalanceInfoManager {
                     switch r {
                     case .success(let balanceInfo):
 
-                        plog(level: .debug, log: "\(address) \(tokenInfo.symbol): \(balanceInfo.balance.value.description)", tag: .transaction)
+                        plog(level: .debug, log: "\(address) \(tokenInfo.symbol): \(balanceInfo.balance.description)", tag: .transaction)
                         
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
@@ -122,7 +122,7 @@ public class ETHBalanceInfoManager {
 
     private func read(address: String) -> ETHBalanceInfoMap {
 
-        self.fileHelper = FileHelper(.library, appending: "\(FileHelper.walletPathComponent)/\(address)")
+        self.fileHelper = FileHelper.createForWallet(appending: address)
         var map = ETHBalanceInfoMap()
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),

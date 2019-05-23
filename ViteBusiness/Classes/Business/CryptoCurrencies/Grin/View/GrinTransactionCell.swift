@@ -32,10 +32,10 @@ class GrinTransactionCell: UITableViewCell {
         }
         self.creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
 
-        self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Balance(value: BigInt(tx.fee ?? 0)).amountShort(decimals:9))"
+        self.feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(tx.fee ?? 0).amountShort(decimals:9))"
 
         let amount = (tx.amountCredited ?? 0) - (tx.amountDebited ?? 0) + (tx.fee ?? 0)
-        self.amountLabel.text =  (amount < 0 ? "-" : "") + Balance(value: BigInt(abs(amount))).amount(decimals: 9, count: 4)
+        self.amountLabel.text =  (amount < 0 ? "-" : "") + Amount(abs(amount)).amount(decimals: 9, count: 4)
         if amount > 0 {
             amountLabel.textColor = UIColor.init(netHex: 0x5BC500)
             icon.image = R.image.grin_tx_receive()

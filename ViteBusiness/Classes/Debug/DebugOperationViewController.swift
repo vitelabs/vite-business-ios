@@ -10,6 +10,7 @@ import Eureka
 import Crashlytics
 import ViteWallet
 import Kingfisher
+import PromiseKit
 
 class DebugOperationViewController: FormViewController {
 
@@ -28,13 +29,23 @@ class DebugOperationViewController: FormViewController {
                 $0.title =  "Get Test Token"
                 }.onCellSelection({ _, _  in
                     if let address = HDWalletManager.instance.account?.address {
-                        Provider.default.getTestToken(address: address)
-                            .done { (ret) in
-                                Toast.show("\(address.description) get test token complete")
-                            }
-                            .catch { (error) in
+
+                        let genesisWallet: Wallet = {
+                            let name = "genesis"
+                            let mnemonic = "alarm canal scheme actor left length bracket slush tuna garage prepare scout school pizza invest rose fork scorpion make enact false kidney mixed vast"
+                            let wallet = Wallet(uuid: name, name: name, mnemonic: mnemonic, language: .english, encryptedKey: "123456")
+                            return wallet
+                        }()
+                        let account = try! genesisWallet.account(at: 1, encryptedKey: "123456")
+                        let amount = Amount("1000000000000000000")! * Amount("10000")!
+                        ViteNode.transaction.getPow(account: account, toAddress: address, tokenId: ViteWalletConst.viteToken.id, amount: amount, note: nil)
+                            .then { context -> Promise<AccountBlock> in
+                                return ViteNode.rawTx.send.context(context)
+                            }.done { (ret) in
+                                Toast.show("\(address) get test token complete")
+                            }.catch { (error) in
                                 Toast.show(error.viteErrorMessage)
-                        }
+                            }
                     } else {
                         Toast.show("Login firstly")
                     }

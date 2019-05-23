@@ -148,23 +148,21 @@ class SendGrinViewController: UIViewController {
                 guard let fee = fee,
                     !fee.isEmpty else { return }
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee)
-                Workflow.confirmWorkflow(viewModel: confirmType, completion: { (result) in
-                }) {
+                Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                     let amountString = self?.amountTextField.text
                     if self?.transferMethod == .file {
                         self?.transferVM.action.onNext(.creatTxFile(amount: amountString))
                     } else if let destnation = self?.addressTextField.text {
                         self?.transferVM.action.onNext(.sentTx(amountString: amountString, destnation: destnation))
                     }
-                }
+                })
             }
         }
 
         if transferMethod != .file,
             let destination = self.addressTextField.text,
             destination.hasPrefix("http"),
-            let viteAddress = destination.components(separatedBy: "/").last,
-            Address.isValid(string: viteAddress) {
+            let viteAddress = destination.components(separatedBy: "/").last, viteAddress.isViteAddress {
             Alert.show(into: self, title: R.string.localizable.grinSentSuggestUseViteTitle(), message: R.string.localizable.grinSentSuggestUseViteDesc(), actions: [
                 (.default(title: R.string.localizable.grinSentStillUseHttp()), { _ in
                     send()
@@ -199,7 +197,7 @@ extension SendGrinViewController: FloatButtonsViewDelegate {
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressTextField.text = uri.address.description
+                    self?.addressTextField.text = uri.address
                 } else {
                     self?.addressTextField.text = result
                 }

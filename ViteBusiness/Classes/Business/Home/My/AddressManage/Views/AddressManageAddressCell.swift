@@ -113,12 +113,12 @@ class AddressManageAddressCell: BaseTableViewCell {
                 (.default(title: R.string.localizable.confirm()), { [weak self] alert in
                     guard let `self` = self else { return }
                     let text = alert.textFields?.first?.text ?? ""
-                    AddressManageService.instance.updateName(for: Address(string: viewModel.address), name: text)
+                    AddressManageService.instance.updateName(for: viewModel.address, name: text)
                 }),
                 ], config: { alert in
                     alert.addTextField(configurationHandler: { (textField) in
                         textField.clearButtonMode = .always
-                        textField.text = AddressManageService.instance.name(for: Address(string: viewModel.address), placeholder: "")
+                        textField.text = AddressManageService.instance.name(for: viewModel.address, placeholder: "")
                         textField.placeholder = R.string.localizable.addressManageChangeNameAlertPlaceholder()
                     })
             })

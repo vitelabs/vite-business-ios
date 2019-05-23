@@ -95,25 +95,10 @@ public enum CoinType: String {
 public typealias TokenCode = String
 
 extension TokenCode {
-    #if DEBUG || TEST
-    public static var viteCoin: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "1171" : "1"
-    }
-    public static var etherCoin: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "1" : "7"
-    }
-    public static var viteERC20: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "41" : "6"
-    }
-    public static var grinCoin: String {
-        return DebugService.instance.config.rpcUseOnlineUrl ? "1174" : "10"
-    }
-    #else
-    public static let viteCoin = "1171"
-    public static let etherCoin = "1"
-    public static let viteERC20 = "41"
-    public static let grinCoin = "1174"
-    #endif
+    public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
+    public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
+    public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
+    public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
 }
 
 public struct TokenInfo: Mappable {
@@ -147,7 +132,7 @@ public struct TokenInfo: Mappable {
         }
     }
 
-    public var viteTokenId: String {
+    public var viteTokenId: ViteTokenId {
         return id
     }
 
@@ -214,6 +199,11 @@ extension TokenInfo: Equatable {
 extension TokenInfo {
     static var viteCoin: TokenInfo {
         return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!
+    }
+
+
+    static var viteERC20: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20)!
     }
 }
 

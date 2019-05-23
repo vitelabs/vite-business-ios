@@ -18,7 +18,7 @@ final class WalletHomeBalanceInfoViewModel {
     let coinFamily: String
     let balanceString: String
     let price: String
-    let balance: Balance
+    let balance: Amount
 
     init(balanceInfo: WalletHomeBalanceInfo, isHidePrice: Bool) {
         self.tokenInfo = balanceInfo.tokenInfo
