@@ -172,6 +172,7 @@ class SendGrinViewController: UIViewController {
             m.left.equalTo(self.titleView.symbolLabel.snp.right).offset(10)
         }
 
+
     }
 
     @IBAction func sendAction(_ sender: Any) {
@@ -275,5 +276,22 @@ extension SendGrinViewController: UITextFieldDelegate {
             return true
         }
     }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let text = textField.attributedText, text.string == R.string.localizable.grinSendIllegalAmmount() {
+            textField.attributedText = nil
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == amountTextField {
+            if let text = textField.text, !text.isEmpty {
+
+            } else {
+                textField.attributedText = NSAttributedString.init(string: R.string.localizable.grinSendIllegalAmmount(),attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+        }
+    }
+
 }
 

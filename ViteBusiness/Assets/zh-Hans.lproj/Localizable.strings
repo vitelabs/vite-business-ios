@@ -549,6 +549,7 @@
 "grin.node.edit.apiSecretTitle" = "秘钥";
 "grin.node.select.canNotConnect" = "未能连接到全节点";
 "grin.detail.slateCopied" = "已复制Slate ID";
+"grin.send.illegalAmmount" = "转账金额不合法";
 
 
 

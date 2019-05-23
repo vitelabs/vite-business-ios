@@ -1144,7 +1144,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 445 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 446 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2918,6 +2918,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSendIllegalAmmount = Rswift.StringResource(key: "grin.send.illegalAmmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配置全节点
       /// 
       /// Locales: en, zh-Hans
@@ -6026,6 +6030,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSendIllegalAmmount(_: Void = ()) -> String {
+        return NSLocalizedString("grin.send.illegalAmmount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配置全节点

@@ -206,12 +206,12 @@ class GrinTransactVM {
             return nil
         }
         guard let decimal = BigDecimal(string) else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         let nanoDecimal = decimal * BigDecimal(BigInt(10).power(9))
         guard nanoDecimal.digits == 0 else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         guard nanoDecimal.number <= BigInt(UInt64.max) else {
