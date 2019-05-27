@@ -1144,7 +1144,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 446 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 447 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2906,6 +2906,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailPleaseFinalize2 = Rswift.StringResource(key: "grin.detail.pleaseFinalize2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayResend = Rswift.StringResource(key: "grin.detail.gatewayResend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请等待收款人打开Vite钱包接收交易。
       /// 
       /// Locales: en, zh-Hans
@@ -6009,6 +6013,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinDetailPleaseFinalize2(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.pleaseFinalize2", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayResend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gatewayResend", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请等待收款人打开Vite钱包接收交易。

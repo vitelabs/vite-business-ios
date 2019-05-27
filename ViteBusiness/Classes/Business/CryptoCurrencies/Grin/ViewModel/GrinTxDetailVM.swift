@@ -473,7 +473,10 @@ class GrinTxDetailVM: NSObject {
         guard let gatewayInfo = fullInfo.gatewayInfo else {  return pageInfo }
 
         pageInfo.desc = R.string.localizable.grinDetailGatewayReceived()
-        pageInfo.amount = gatewayInfo.fromAmount ?? gatewayInfo.toAmount ?? ""
+        let amount = Int(gatewayInfo.toAmount ?? gatewayInfo.fromAmount ?? "") ?? 0
+        let amountString =  Amount(abs(amount)).amount(decimals: 9, count: 9)
+        pageInfo.amount = amountString
+        pageInfo.fee = nil
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
@@ -486,14 +489,14 @@ class GrinTxDetailVM: NSObject {
         let cellInfo1 = GrinDetailCellInfo()
         cellInfo1.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeReceived(), attributes: nil)
         cellInfo1.statusImage = R.image.grin_detail_gateway_received()
-        if let timestamp = gatewayInfo.stepDetailList[0] {
+        if let timestamp = JSON(gatewayInfo.stepDetail)["0"]["timestamp"].int {
             cellInfo1.timeStr = (timestamp/1000).grinTimeString()
         }
 
         pageInfo.cellInfo.append(cellInfo1)
 
         let cellInfo2 = GrinDetailCellInfo()
-        if let timestamp = gatewayInfo.stepDetailList[1] {
+        if let timestamp = JSON(gatewayInfo.stepDetail)["1"]["timestamp"].int {
             cellInfo2.timeStr = (timestamp/1000).grinTimeString()
         }
         cellInfo2.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeConfirmed(), attributes: nil)
@@ -503,30 +506,30 @@ class GrinTxDetailVM: NSObject {
         let confirmCount = curHeight - beginHeight
         let gatewayConfirmed = gatewayInfo.confirmInfo?.confirm == true && confirmCount == 0
 
-        if gatewayInfo.confirmInfo?.confirm == true {
-            if confirmCount == 0 {
-                cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed()
-                cellInfo1.lineImage = blueLineImage
-                pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntBiggerThanTen()
-                let action = {
-                    let slateID = gatewayInfo.toSlatedId
-                    let address = gatewayInfo.address
-                    self.reSend(address: address, salteID: slateID)
-                }
-                pageInfo.actions.append(("resend",action))
-            } else {
-                pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntLessThanTen()
-                cellInfo2.statusAttributeStr = NSAttributedString.init(string: "\(R.string.localizable.grinTxTypeConfirmed())\(confirmCount)", attributes: nil)
-
-                cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed_gray()
-                cellInfo1.lineImage = grayLineImage
-            }
+        if gatewayInfo.status >= 2 {
+            cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed()
+            cellInfo1.lineImage = blueLineImage
+            pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntBiggerThanTen()
         } else {
+            pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntLessThanTen()
+
+            let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
+                                                                                                                              NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
+
+            attributedString.append(NSAttributedString(string: "（\(confirmCount)/10）", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
+            cellInfo2.statusAttributeStr = attributedString
             cellInfo2.statusImage = R.image.grin_detail_gateway_confirmed_gray()
             cellInfo1.lineImage = grayLineImage
         }
         pageInfo.cellInfo.append(cellInfo2)
 
+        if gatewayInfo.status >= 2 && self.fullInfo.txLogEntry?.confirmed != true {
+            let action = {
+                self.gatewayResend(address: gatewayInfo.address, slateID: gatewayInfo.slatedId)
+            }
+            pageInfo.actions.append((R.string.localizable.grinDetailGatewayResend(),action))
+        }
 
         if !gatewayInfo.toSlatedId.isEmpty {
             cellInfo2.lineImage = blueLineImage
@@ -624,6 +627,7 @@ class GrinTxDetailVM: NSObject {
             }
             pageInfo.cellInfo.append(cellInfo3)
         }
+
         return pageInfo
     }
 
@@ -791,6 +795,9 @@ class GrinTxDetailVM: NSObject {
     func getAmountAndFee(fullInfo: GrinFullTxInfo) -> (String?, String?) {
         var amountString: String?
         var feeString: String?
+        if fullInfo.openedSalteUrl == nil && fullInfo.isHistoryReceivedSendSlate {
+            fullInfo.openedSalteUrl = fullInfo.historyReceivedSendSlateUrl
+        }
         if let opendSlateUrl = fullInfo.openedSalteUrl {
             guard let data = JSON(FileManager.default.contents(atPath: opendSlateUrl.path)).rawValue as? [String: Any],
                 let slate = Slate(JSON:data) else { return (amountString, feeString) }
@@ -862,37 +869,49 @@ class GrinTxDetailVM: NSObject {
         }
     }
 
-    func reSend(address: String?, salteID: String) {
-        let account = HDWalletManager.instance.account!
-        let addressString = account.address
-        let sAddress = addressString.components(separatedBy: "_").last
-        let s = account.sign(hash: sAddress!.hex2Bytes).toHexString()
+    func gatewayResend(address: String?, slateID: String?) {
+        guard let address = address,
+            let account = HDWalletManager.instance.accounts.filter({ (account) -> Bool in
+            account.address == address
+        }).first else {
+            self.txVM.message.onNext("address not found")
+            return
+        }
+        guard let slateID = slateID else {
+                self.txVM.message.onNext("no slate id")
+            return
+        }
 
-        let addresses = [
-            "address": addressString,
-            "signature": s
-        ]
+        let signature = account.sign(hash: slateID.data(using: .utf8)!.bytes).toHexString()
 
-        let slatedId = ""
         transactionProvider
-            .request(.gatewayTransactionList(addresses: [addresses], slateID: slatedId), completion: { (result) in
-
+            .request(.gateWayReSend(address: address, id: slateID, signature: signature), completion: { (result) in
+                do {
+                    let response = try result.dematerialize()
+                    if JSON(response.data)["code"].int == 0 {
+                        self.txVM.message.onNext("Success")
+                    } else {
+                        self.txVM.message.onNext(JSON(response.data)["message"].string ?? "request gateWayReSend failed")
+                    }
+                } catch {
+                    self.txVM.message.onNext(error.localizedDescription)
+                }
             })
-
     }
 
     func confirmAttributedString() -> NSAttributedString {
-        let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+        let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
                                                                                                              NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
 
-        if let confirmInfo = self.fullInfo.confirmInfo,
-            confirmInfo.lastConfirmedHeight > 0,
-            confirmInfo.beginHeight > 0 {
-            var count = confirmInfo.lastConfirmedHeight - confirmInfo.beginHeight
-            if count > 10 { count = 10 }
-            attributedString.append(NSAttributedString(string: "(\(count)/10)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
-        }
+//        if self.fullInfo.txLogEntry?.confirmed == false,
+//            let confirmInfo = self.fullInfo.confirmInfo,
+//            confirmInfo.lastConfirmedHeight > 0,
+//            confirmInfo.beginHeight > 0 {
+//            var count = confirmInfo.lastConfirmedHeight - confirmInfo.beginHeight
+//            if count > 10 { count = 10 }
+//            attributedString.append(NSAttributedString(string: "(\(count)/10)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+//                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
+//        }
         return attributedString
     }
 

@@ -148,7 +148,7 @@ final class GrinWalletInfoVM {
 
         let gateWayInfos =  Promise<[GrinGatewayInfo]> { seal in
 
-            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
+            let addressesAndSignature = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
                 let addressString = account.address
                 if let sAddress = addressString.components(separatedBy: "_").last {
                     let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
@@ -161,16 +161,16 @@ final class GrinWalletInfoVM {
             }
             
             transactionProvider
-                .request(.gatewayTransactionList(addresses: addresses, slateID: nil), completion: { (result) in
+                .request(.gatewayTransactionList(addressesAndSignature: addressesAndSignature), completion: { (result) in
                     do {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
                             let arr = JSON(response.data)["data"].arrayObject,
                             let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
-                            let filtered = gatewayInfos.filter({ (info) -> Bool in
-                                info.toFee != nil && info.toAmount != nil && info.toSlatedId != nil
-                            })
-                            seal.fulfill(filtered)
+//                            let filtered = gatewayInfos.filter({ (info) -> Bool in
+//                                info.toFee != nil && info.toAmount != nil && info.toSlatedId != nil
+//                            })
+                            seal.fulfill(gatewayInfos)
                         } else {
                             seal.reject(grinError(JSON(response.data)["message"].string ?? "gatewayTransactionList failed"))
                         }
@@ -198,67 +198,68 @@ final class GrinWalletInfoVM {
 
     func mergeTxInfos(grinTxs: [TxLogEntry], gateWayInfos: [GrinGatewayInfo], localInfos: [GrinLocalInfo]) -> [GrinFullTxInfo] {
         var fullTxInfos = [GrinFullTxInfo]()
-        var localInfoWithGrinTx = [GrinLocalInfo]()
+
+        var sendIndexMap = [String: Int]()
+        var receiveIndexMap = [String: Int]()
 
         for localInfo in localInfos {
-            let contain = grinTxs.contains(where: { (tx) -> Bool in
-                let matchSlateId = (tx.txSlateId != nil && tx.txSlateId == localInfo.slateId)
-                let matchSend = ((tx.txType == .txSent || tx.txType == .txSentCancelled) && localInfo.type == "Send")
-                let matchReceive = ((tx.txType == .txReceived || tx.txType == .txReceivedCancelled) && localInfo.type == "Receive")
-                return matchSlateId && (matchSend || matchReceive)
-            })
+            guard let slateId = localInfo.slateId else { continue }
+            let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: nil, localInfo: localInfo, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
+            if localInfo.type == "Send" {
+                fullTxInfos.append(fullInfo)
+                sendIndexMap[slateId] = fullTxInfos.count - 1
+            } else if localInfo.type == "Receive" {
+                receiveIndexMap[slateId] = fullTxInfos.count - 1
+            }
+        }
 
-            if contain {
-                localInfoWithGrinTx.append(localInfo)
+        for gateWayInfo in gateWayInfos {
+            var slateIDKey = ""
+            if !gateWayInfo.toSlatedId.isEmpty {
+                slateIDKey = gateWayInfo.toSlatedId
+            } else if !gateWayInfo.slatedId.isEmpty {
+                slateIDKey = gateWayInfo.slatedId
+            }
+            guard !slateIDKey.isEmpty else { continue }
+
+            if let index = receiveIndexMap[slateIDKey] {
+                fullTxInfos[index].gatewayInfo = gateWayInfo
             } else {
-                guard let slateId = localInfo.slateId,
-                    let type = localInfo.type else { continue }
-                if FileManager.default.fileExists(atPath: GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false).path) || FileManager.default.fileExists(atPath: GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true).path) {
-                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: nil, localInfo: localInfo, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
-                    fullTxInfos.append(fullInfo)
-                }
+                let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: gateWayInfo, localInfo: nil, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
+                fullTxInfos.append(fullInfo)
+                receiveIndexMap[slateIDKey] = fullTxInfos.count - 1
             }
         }
 
         for tx in grinTxs {
-            var matchedLocalInfo: GrinLocalInfo?
-            localInfoWithGrinTxLoop: for localInfo in localInfoWithGrinTx  {
-                let matchSlateId = (tx.txSlateId != nil && tx.txSlateId == localInfo.slateId)
-                let matchSend = ((tx.txType == .txSent || tx.txType == .txSentCancelled) && localInfo.type == "Send")
-                let matchReceive = ((tx.txType == .txReceived || tx.txType == .txReceivedCancelled) && localInfo.type == "Receive")
-                if matchSlateId && (matchSend || matchReceive) {
-                    matchedLocalInfo = localInfo
-                    break localInfoWithGrinTxLoop
-                }
-            }
-            if let matchedLocalInfo = matchedLocalInfo {
-                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: matchedLocalInfo, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
-                fullTxInfos.append(fullInfo)
-            } else {
-                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil, openedSalteUrl: nil,openedSalteFlieName: nil)
-                fullTxInfos.append(fullInfo)
-            }
-        }
-
-        let mirror = fullTxInfos
-        for (index, fullInfo) in mirror.enumerated() {
-            guard (fullInfo.txLogEntry?.txType == .txReceived || fullInfo.txLogEntry?.txType == .txReceivedCancelled || fullInfo.localInfo?.type == "Receive") else {
-                continue
-            }
-            for gateWayInfo in gateWayInfos {
-                if  (gateWayInfo.toSlatedId == fullInfo.txLogEntry?.txSlateId || gateWayInfo.toSlatedId == fullInfo.localInfo?.slateId) {
-                    fullTxInfos[index].gatewayInfo = gateWayInfo
+            guard let slateID = tx.txSlateId else { continue }
+            if (tx.txType == .txSent || tx.txType == .txSentCancelled) {
+                if let index = sendIndexMap[slateID] {
+                    fullTxInfos[index].txLogEntry = tx
                 } else {
-                    let fullInfo = GrinFullTxInfo.init(txLogEntry: nil, gatewayInfo: gateWayInfo, localInfo: nil, openedSalte: nil, openedSalteUrl: nil,openedSalteFlieName: nil)
+                    let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
                     fullTxInfos.append(fullInfo)
+                    sendIndexMap[slateID] = fullTxInfos.count - 1
                 }
+            } else if (tx.txType == .txReceived || tx.txType == .txReceivedCancelled) {
+                if let index = receiveIndexMap[slateID] {
+                    fullTxInfos[index].txLogEntry = tx
+                } else {
+                    let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
+                    fullTxInfos.append(fullInfo)
+                    receiveIndexMap[slateID] = fullTxInfos.count - 1
+                }
+            } else {
+                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
+                fullTxInfos.append(fullInfo)
             }
         }
 
         let sorted = fullTxInfos.sorted { $0.timeStamp > $1.timeStamp }
-        return sorted.filter({ (fullinfo) -> Bool in
-            fullinfo.txLogEntry != nil || fullinfo.gatewayInfo != nil
-        })
+        return sorted
+            .filter({ (fullinfo) -> Bool in
+                (fullinfo.txLogEntry != nil || fullinfo.gatewayInfo != nil) || fullinfo.localInfo?.type == "Receive"
+            })
     }
 
     func getFullInfoDetail(fullInfo:GrinFullTxInfo) {
@@ -280,40 +281,27 @@ final class GrinWalletInfoVM {
             .finally {
                 self.showLoading.accept(false)
         }
-
-        
     }
 
     func getGateWayDetail(fullInfo:GrinFullTxInfo) -> Promise<GrinGatewayInfo?> {
-
-        guard let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId else {
+        guard let gatewayInfo = fullInfo.gatewayInfo else {
             return Promise { seal in
                 seal.fulfill(fullInfo.gatewayInfo)
             }
         }
 
+        let slatedId = gatewayInfo.slatedId
         return Promise { seal in
-            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
-                let addressString = account.address
-                if let sAddress = addressString.components(separatedBy: "_").last {
-                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
-                    return [
-                        "address": addressString,
-                        "signature": s
-                    ]
-                }
-                return [String:String]()
-            }
             self.showLoading.accept(true)
             transactionProvider
-                .request(.gatewayTransactionList(addresses: addresses, slateID: slatedId), completion: { (result) in
+                .request(.gatewayTransactionById(slateID: slatedId), completion: { (result) in
                     self.showLoading.accept(false)
                     do {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
-                            let arr = JSON(response.data)["data"].arrayObject,
-                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
-                            seal.fulfill(gatewayInfos.first)
+                            let dict = JSON(response.data)["data"].dictionaryObject,
+                            let gatewayInfo = Mapper<GrinGatewayInfo>().map(JSON: dict) {
+                            seal.fulfill(gatewayInfo)
                         } else {
                             seal.reject(grinError(JSON(response.data)["message"].string ?? "getGateWayInfo Failed"))
                         }

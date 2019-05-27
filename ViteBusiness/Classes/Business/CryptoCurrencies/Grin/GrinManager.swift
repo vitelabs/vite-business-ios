@@ -87,13 +87,14 @@ class GrinManager: GrinBridge {
         self.walletUrl = GrinManager.getWalletUrl()
         #if DEBUG || TEST
         print("grinwalletpath:\(self.walletUrl.path)")
-        switch DebugService.instance.config.appEnvironment {
-        case .online, .stage:
-            self.chainType = GrinChainType.mainnet.rawValue
-            break
-        case .test, .custom:
-            self.chainType = GrinChainType.usernet.rawValue
-        }
+//        switch DebugService.instance.config.appEnvironment {
+//        case .online, .stage:
+//            self.chainType = GrinChainType.mainnet.rawValue
+//            break
+//        case .test, .custom:
+//            self.chainType = GrinChainType.usernet.rawValue
+//        }
+        self.chainType = GrinChainType.mainnet.rawValue
         self.checkNodeApiHttpAddr = self.currentNode.address
         self.apiSecret = self.currentNode.apiSecret
         #else
@@ -165,9 +166,6 @@ extension GrinManager {
     func handle(url: URL) {
         self.receivedSlateUrl = url
         gotoSlateVCIfNeed()
-        guard let data = JSON(FileManager.default.contents(atPath: url.path)).rawValue as? [String: Any],
-            let slate = Slate(JSON:data) else { return }
-        GrinLocalInfoService.shared.addReceiveInfo(slateId: slate.id, method: "File", getSendFileTime: Int(Date().timeIntervalSince1970))
     }
 
     func gotoSlateVCIfNeed() {
@@ -426,6 +424,7 @@ extension GrinManager {
 
 extension GrinManager {
     static func getChainType() -> GrinChainType {
+        return .mainnet
         #if DEBUG || TEST
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
@@ -439,7 +438,6 @@ extension GrinManager {
     }
 
     static func getWalletUrl() -> URL {
-        let chainType = self.getChainType()
         let fileHelper = grinFileHelper()
         var url = URL.init(fileURLWithPath: fileHelper.rootPath)
         return url
@@ -515,7 +513,6 @@ class GrinDateFormatter {
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
         return dateFormatter
     }()
 

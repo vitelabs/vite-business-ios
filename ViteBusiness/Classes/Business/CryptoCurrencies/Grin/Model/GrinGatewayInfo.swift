@@ -8,11 +8,12 @@
 import Foundation
 import ObjectMapper
 import Vite_GrinWallet
+import SwiftyJSON
 
-class GrinGatewayInfo: Mappable {
+class GrinGatewayInfo: NSObject, Mappable {
 
     var address: String = ""
-    var slatedId: String?
+    var slatedId: String = ""
     var toSlatedId: String  = ""
     var fromAmount: String?  = nil
     var fromFee: String?  = nil
@@ -28,9 +29,7 @@ class GrinGatewayInfo: Mappable {
     var ctimeFormat: String = ""
     var mtimeFormat: String = ""
 
-    var stepDetailList: [Int: Int] = [0: 1557813789000,
-                                      1 :1557813828000,
-                                      2: 1557813830000]
+    var stepDetail = [AnyHashable: Any]()
 
     required public init?(map: Map) { }
 
@@ -51,6 +50,7 @@ class GrinGatewayInfo: Mappable {
         redoCount <- map["redoCount"]
         ctimeFormat <- map["ctimeFormat"]
         mtimeFormat <- map["mtimeFormat"]
+        stepDetail <- map["stepDetail"]
     }
 }
 
@@ -99,6 +99,24 @@ class GrinFullTxInfo {
     var openedSalteFlieName: String? = nil
 
     var confirmInfo: GrinHeightInfo?
+
+
+    func historyReceivedSendSlate() -> Slate? {
+
+        guard self.gatewayInfo == nil && self.txLogEntry == nil else {
+            return nil
+        }
+        guard let localInfo = self.localInfo, let slateId = localInfo.slateId, localInfo.type == "Receive" else {
+            return nil
+        }
+        let url = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false)
+
+        guard let data = JSON(FileManager.default.contents(atPath: url.path)).rawValue as? [String: Any],
+            let slate = Slate(JSON:data) else { return nil }
+        return slate
+        return nil
+    }
+
 
 }
 
@@ -165,6 +183,31 @@ extension GrinFullTxInfo {
         if let gatewayCreatTime = self.gatewayInfo?.createTime {
             return TimeInterval(gatewayCreatTime/1000)
         }
+        if let slateId = self.localInfo?.slateId, let type = self.localInfo?.type {
+            if type == "Send" {
+                let url = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false)
+            } else if type == "Receive" {
+                let url = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true)
+            }
+        }
         return Date().timeIntervalSince1970
+    }
+
+    var isHistoryReceivedSendSlate: Bool {
+        guard self.gatewayInfo == nil && self.txLogEntry == nil else {
+            return false
+        }
+        guard let localInfo = self.localInfo, let slateId = localInfo.slateId, localInfo.type == "Receive" else {
+            return false
+        }
+        return true
+    }
+
+    var historyReceivedSendSlateUrl: URL? {
+        if isHistoryReceivedSendSlate {
+            return GrinManager.default.getSlateUrl(slateId: self.localInfo!.slateId!, isResponse: false)
+        } else {
+            return nil
+        }
     }
 }

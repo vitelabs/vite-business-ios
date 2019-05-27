@@ -22,8 +22,8 @@ class GrinTxDetailViewController: UIViewController {
     let infoview = EthSendPageTokenInfoView.init(address: "")
     let txInfoTableView = UITableView()
     var bottomView = UIView()
-    lazy var button0 = UIButton()
-    lazy var button1 = UIButton()
+    lazy var button0 = UIButton.init(style: .blueWithShadow)
+    lazy var button1 = UIButton.init(style: .whiteWithShadow)
 
     let txDetailVM = GrinTxDetailVM()
 
@@ -103,6 +103,9 @@ class GrinTxDetailViewController: UIViewController {
             m.top.equalTo(infoview.snp.bottom).offset(5)
         }
 
+        infoview.addressTitleLabel.text = ""
+        infoview.balanceTitleLabel.text = ""
+
         txInfoTableView.delegate = self
         txInfoTableView.dataSource = self
         txInfoTableView.separatorStyle = .none
@@ -121,13 +124,13 @@ class GrinTxDetailViewController: UIViewController {
         }
 
         if let amount = pageInfo.amount {
-            if let fee = pageInfo.fee {
+            if let fee = pageInfo.fee, !fee.isEmpty {
                 infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = R.string.localizable.grinSentFee()
                 infoview.balanceLabel.text = pageInfo.fee
             } else {
-                infoview.addressTitleLabel.text = R.string.localizable.grinSentFee()
+                infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = nil
                 infoview.balanceLabel.text = nil
@@ -141,8 +144,8 @@ class GrinTxDetailViewController: UIViewController {
         } else {
             self.bottomView.isHidden = false
             if pageInfo.actions.count == 1 {
-                button0.layer.cornerRadius = 2
-                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+//                button0.layer.cornerRadius = 2
+//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
                 if button0.superview == nil {
                     bottomView.addSubview(button0)
                     button0.snp.makeConstraints { (m) in
@@ -181,17 +184,17 @@ class GrinTxDetailViewController: UIViewController {
                         m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
                     }
                 }
-                button0.layer.cornerRadius = 2
-                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+//                button0.layer.cornerRadius = 2
+//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
                 button0.setTitle(pageInfo.actions.first?.0, for: .normal)
                 bottomView.addSubview(button0)
 
                 button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
-
-                button1.backgroundColor = UIColor.init(netHex: 0x007aff)
-                button1.layer.cornerRadius = 2
+//                button1.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
+//                button1.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
+//                button1.layer.cornerRadius = 2
                 button1.setTitle(pageInfo.actions.last?.0, for: .normal)
                 if button1.superview == nil {
                     bottomView.addSubview(button1)
