@@ -26,7 +26,6 @@ func businessBundle() -> Bundle {
 
 class GrinInfoViewController: BaseViewController {
 
-
     @IBOutlet weak var transcationTiTleLabel: UILabel!
     @IBOutlet weak var titleView: BalanceInfoNavView!
     @IBOutlet weak var grinCardBgView: UIImageView!
@@ -76,7 +75,7 @@ class GrinInfoViewController: BaseViewController {
 
     fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
     
-    required  init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -131,6 +130,15 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
+        walletInfoVM.fullInfoDetail
+            .bind { [weak self] fullInfo in
+                let detail = GrinTxDetailViewController()
+                detail.fullInfo = fullInfo
+                self?.navigationController?.pushViewController(detail, animated: true)
+            }
+            .disposed(by: rx.disposeBag)
+
+
         leftBatItemCustombutton.rx.tap.asObservable()
             .bind { [weak self] in
                 guard let `self` = self,
@@ -147,13 +155,15 @@ class GrinInfoViewController: BaseViewController {
         helpButton.rx.tap.bind { _ in
             var url: URL!
             if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                url = URL(string: "https://forum.vite.net/topic/1335/%E5%9C%A8vite%E9%92%B1%E5%8C%85%E4%B8%8A%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86grin%E4%BA%A4%E6%98%93%E6%96%87%E4%BB%B6")
+                url = URL(string: "https://forum.vite.net/topic/1335/grin%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8vite%E9%92%B1%E5%8C%85%E6%94%B6%E8%BD%AC%E8%B4%A6%E6%95%99%E7%A8%8B")
             } else {
-                url = URL(string: "https://forum.vite.net/topic/1334/how-to-use-vite-wallet-to-receive-a-grin-via-files")
+                url = URL(string: "https://forum.vite.net/topic/1334/a-tutorial-about-how-to-send-receive-a-grin-on-vite-mobile-wallet")
             }
             let webvc = WKWebViewController(url: url)
             UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
-        }
+            }
+            .disposed(by: rx.disposeBag)
+
     }
 
 
@@ -243,12 +253,12 @@ class GrinInfoViewController: BaseViewController {
         }
 
         if method == .http {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Http", attributes: ["uuid": UUID.stored])
         } else if method == .vite {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Vite", attributes: ["uuid": UUID.stored])
 
         } else if method == .file {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_1", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_gotoSendPage_File", attributes: ["uuid": UUID.stored])
         }
     }
 
@@ -359,49 +369,10 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         return action
     }
 
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
-
-        if let gatewayInfo = fullInfo.gatewayInfo, let slatedId = gatewayInfo.slatedId {
-            let addresses = HDWalletManager.instance.accounts.map { (account) -> [String : String] in
-                let addressString = account.address
-                if let sAddress = addressString.components(separatedBy: "_").last {
-                    let s = account.sign(hash: sAddress.hex2Bytes).toHexString()
-                    return [
-                        "address": addressString,
-                        "signature": s
-                    ]
-                }
-                return [String:String]()
-            }
-            view.displayLoading()
-            transactionProvider
-                .request(.gatewayTransactionList(addresses: addresses, slateID: slatedId), completion: { (result) in
-                    self.view.hideLoading()
-                    do {
-                        let response = try result.dematerialize()
-                        if JSON(response.data)["code"].int == 0,
-                            let arr = JSON(response.data)["data"].arrayObject,
-                            let gatewayInfos = Mapper<GrinGatewayInfo>().mapArray(JSONObject: arr) {
-                            fullInfo.gatewayInfo = gatewayInfos.first
-                            let detail = GrinTxDetailViewController()
-                            detail.fullInfo = fullInfo
-                            self.navigationController?.pushViewController(detail, animated: true)
-                        } else {
-
-                        }
-                    } catch {
-
-                    }
-                })
-        } else {
-            let detail = GrinTxDetailViewController()
-            detail.fullInfo = fullInfo
-            self.navigationController?.pushViewController(detail, animated: true)
-        }
+        self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
     }
-
 }
 
 extension GrinInfoViewController: FloatButtonsViewDelegate {

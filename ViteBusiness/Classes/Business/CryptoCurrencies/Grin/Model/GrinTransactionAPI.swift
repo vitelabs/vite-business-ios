@@ -16,12 +16,15 @@ public enum GrinTransaction {
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)
-    case gatewayTransactionList(addresses:[[String: String]], slateID: String?)
+    case gatewayTransactionList(addressesAndSignature:[[String: String]])
+    case gatewayTransactionById(slateID: String)
+    case gateWayReSend(address:String, id: String,signature: String)
 }
 
 extension GrinTransaction: TargetType {
 
     public var baseURL: URL {
+        return URL(string:"http://129.28.98.62:8080")!
         return URL(string: ViteConst.instance.grin.x)!
     }
 
@@ -36,15 +39,19 @@ extension GrinTransaction: TargetType {
         case .reportFinalization:
             return "/api/grin/finishTrx"
         case .gatewayTransactionList:
-            return "/api/gringateway/getTransactionList"
+            return "/api/gringateway/getTxList"
+        case .gatewayTransactionById:
+            return "/api/gringateway/getTxById"
+        case .gateWayReSend:
+            return "/api/gringateway/resend"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .getSlate, .reportViteAddress, .gatewayTransactionList:
+        case .getSlate, .reportViteAddress,.gatewayTransactionById:
             return .get
-        case .uploadSlate, .reportFinalization:
+        case .uploadSlate, .reportFinalization, .gateWayReSend, .gatewayTransactionList:
             return .post
         }
     }
@@ -84,13 +91,23 @@ extension GrinTransaction: TargetType {
                 "signature": signature,
                 ]
             return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
-        case let .gatewayTransactionList(addresses, slateId):
+        case let .gatewayTransactionList(addressesAndSignature):
             var parameters: [String : Any] = [
-                "address": addresses.map {$0["address"]!},
+                "addressList": addressesAndSignature,
             ]
-            if let slateId = slateId {
-                parameters["id"] = slateId
-            }
+            return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
+        case let .gatewayTransactionById(slateID):
+            var parameters: [String : Any] = [
+                "id": slateID,
+            ]
+            return .requestCompositeData(bodyData: Data(),
+                                         urlParameters: parameters)
+        case let .gateWayReSend(address, id, signature):
+            var parameters: [String : Any] = [
+                "address": address,
+                "id": id,
+                "signature": signature
+            ]
             return .requestCompositeData(bodyData: Data(),
                                          urlParameters: parameters)
         }

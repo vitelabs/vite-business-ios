@@ -540,3 +540,15 @@
 "grin.detail.pleaseReciveAndShare" = "请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。";
 "grin.detail.gatewaysend" = "Vite代转";
 "grin.detail.repoat" = "重新广播";
+"grin.node.configNode" = "配置全节点";
+"grin.node.edit.nodeAddressTitle" = "全节点地址";
+"grin.node.edit.apiSecretTitle" = "秘钥";
+"grin.node.select.canNotConnect" = "未能连接到全节点";
+"grin.detail.slateCopied" = "已复制Slate ID";
+"grin.send.illegalAmmount" = "转账金额不合法";
+"grin.detail.gatewayResend" = "请求网管重发";
+
+
+
+
+

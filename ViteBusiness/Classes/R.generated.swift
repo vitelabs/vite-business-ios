@@ -1144,7 +1144,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 440 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 447 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2778,6 +2778,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageClauseButtonTitle = Rswift.StringResource(key: "mnemonic.backup.page.clause.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全节点地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeEditNodeAddressTitle = Rswift.StringResource(key: "grin.node.edit.nodeAddressTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 全部置换
       /// 
       /// Locales: en, zh-Hans
@@ -2806,6 +2810,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已复制Slate ID
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailSlateCopied = Rswift.StringResource(key: "grin.detail.slateCopied", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 开始转账
       /// 
       /// Locales: en, zh-Hans
@@ -2850,6 +2858,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageAmountPlaceholder = Rswift.StringResource(key: "eth.vite.exchange.page.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 未能连接到全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeSelectCanNotConnect = Rswift.StringResource(key: "grin.node.select.canNotConnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 本网页由 %@ 提供
       /// 
       /// Locales: en, zh-Hans
@@ -2858,6 +2870,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 秘钥
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeEditApiSecretTitle = Rswift.StringResource(key: "grin.node.edit.apiSecretTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 置换
       /// 
       /// Locales: en, zh-Hans
@@ -2890,6 +2906,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailPleaseFinalize2 = Rswift.StringResource(key: "grin.detail.pleaseFinalize2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayResend = Rswift.StringResource(key: "grin.detail.gatewayResend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请等待收款人打开Vite钱包接收交易。
       /// 
       /// Locales: en, zh-Hans
@@ -2902,6 +2922,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSendIllegalAmmount = Rswift.StringResource(key: "grin.send.illegalAmmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配置全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeConfigNode = Rswift.StringResource(key: "grin.node.configNode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 重新广播
       /// 
       /// Locales: en, zh-Hans
@@ -5763,6 +5791,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.clause.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 全节点地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeEditNodeAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.edit.nodeAddressTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 全部置换
       /// 
       /// Locales: en, zh-Hans
@@ -5810,6 +5845,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaFloatViewTip(_: Void = ()) -> String {
         return NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 已复制Slate ID
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailSlateCopied(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.slateCopied", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 开始转账
@@ -5889,6 +5931,13 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("eth.vite.exchange.page.amount.placeholder", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: 未能连接到全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeSelectCanNotConnect(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.select.canNotConnect", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 本网页由 %@ 提供
       /// 
       /// Locales: en, zh-Hans
@@ -5901,6 +5950,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaFloatViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 秘钥
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeEditApiSecretTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.edit.apiSecretTitle", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 置换
@@ -5959,6 +6015,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.detail.pleaseFinalize2", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayResend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gatewayResend", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 请等待收款人打开Vite钱包接收交易。
       /// 
       /// Locales: en, zh-Hans
@@ -5978,6 +6041,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSendIllegalAmmount(_: Void = ()) -> String {
+        return NSLocalizedString("grin.send.illegalAmmount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 配置全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeConfigNode(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.configNode", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 重新广播

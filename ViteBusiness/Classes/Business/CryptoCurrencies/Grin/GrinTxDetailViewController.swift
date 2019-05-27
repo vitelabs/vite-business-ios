@@ -22,8 +22,8 @@ class GrinTxDetailViewController: UIViewController {
     let infoview = EthSendPageTokenInfoView.init(address: "")
     let txInfoTableView = UITableView()
     var bottomView = UIView()
-    lazy var button0 = UIButton()
-    lazy var button1 = UIButton()
+    lazy var button0 = UIButton.init(style: .blueWithShadow)
+    lazy var button1 = UIButton.init(style: .whiteWithShadow)
 
     let txDetailVM = GrinTxDetailVM()
 
@@ -63,7 +63,6 @@ class GrinTxDetailViewController: UIViewController {
         txMethodLabel.font = UIFont.systemFont(ofSize: 12)
         txMethodLabel.textColor = UIColor.init(netHex: 0x007aff)
 
-
         pointView.backgroundColor = UIColor.init(netHex: 0x007aff)
         view.addSubview(pointView)
         pointView.layer.cornerRadius = 3
@@ -84,7 +83,6 @@ class GrinTxDetailViewController: UIViewController {
         }
 
         view.addSubview(infoview)
-
         infoview.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
@@ -105,10 +103,12 @@ class GrinTxDetailViewController: UIViewController {
             m.top.equalTo(infoview.snp.bottom).offset(5)
         }
 
+        infoview.addressTitleLabel.text = ""
+        infoview.balanceTitleLabel.text = ""
+
         txInfoTableView.delegate = self
         txInfoTableView.dataSource = self
         txInfoTableView.separatorStyle = .none
-
         txInfoTableView.register(GrinTxInfoTitleCell.self, forCellReuseIdentifier: "GrinTxInfoTitleCell")
         txInfoTableView.register(GrinTxInfoCell.self, forCellReuseIdentifier: "GrinTxInfoCell")
     }
@@ -124,13 +124,13 @@ class GrinTxDetailViewController: UIViewController {
         }
 
         if let amount = pageInfo.amount {
-            if let fee = pageInfo.fee {
+            if let fee = pageInfo.fee, !fee.isEmpty {
                 infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = R.string.localizable.grinSentFee()
                 infoview.balanceLabel.text = pageInfo.fee
             } else {
-                infoview.addressTitleLabel.text = R.string.localizable.grinSentFee()
+                infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = nil
                 infoview.balanceLabel.text = nil
@@ -144,8 +144,8 @@ class GrinTxDetailViewController: UIViewController {
         } else {
             self.bottomView.isHidden = false
             if pageInfo.actions.count == 1 {
-                button0.layer.cornerRadius = 2
-                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+//                button0.layer.cornerRadius = 2
+//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
                 if button0.superview == nil {
                     bottomView.addSubview(button0)
                     button0.snp.makeConstraints { (m) in
@@ -184,17 +184,17 @@ class GrinTxDetailViewController: UIViewController {
                         m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
                     }
                 }
-                button0.layer.cornerRadius = 2
-                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+//                button0.layer.cornerRadius = 2
+//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
                 button0.setTitle(pageInfo.actions.first?.0, for: .normal)
                 bottomView.addSubview(button0)
 
                 button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
-
-                button1.backgroundColor = UIColor.init(netHex: 0x007aff)
-                button1.layer.cornerRadius = 2
+//                button1.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
+//                button1.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
+//                button1.layer.cornerRadius = 2
                 button1.setTitle(pageInfo.actions.last?.0, for: .normal)
                 if button1.superview == nil {
                     bottomView.addSubview(button1)
@@ -247,10 +247,16 @@ class GrinTxDetailViewController: UIViewController {
                 
             }
             .disposed(by: rx.disposeBag)
+
+        let infoVM = self.txDetailVM.infoVM
+
+        infoVM.messageDriver
+            .filterNil()
+            .drive(onNext:{ Toast.show($0) })
+            .disposed(by: rx.disposeBag)
     }
 
 }
-
 
 extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -263,16 +269,18 @@ extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: "GrinTxInfoTitleCell") as! GrinTxInfoTitleCell
             cell.statusImageView.image = cellInfo.statusImage
             cell.lineImageView.image = cellInfo.lineImage
-            if let slateId = cellInfo.slateId {
+            if let slateId = cellInfo.slateId, !slateId.isEmpty {
                 cell.slateContainerView.isHidden = false
+                cell.copyButton.isHidden = false
                 cell.slateLabel.text = "Slate ID：\(slateId)"
             } else {
                 cell.slateContainerView.isHidden = true
+                cell.copyButton.isHidden = true
             }
             cell.statusLabel.attributedText = cellInfo.statusAttributeStr
             cell.copyAction = {
                 UIPasteboard.general.string = cellInfo.slateId
-                Toast.show("已复制Slate ID")
+                Toast.show(R.string.localizable.grinDetailSlateCopied())
             }
             return cell
         } else {

@@ -45,6 +45,16 @@ class GrinTransactionCell: UITableViewCell {
 
         creationTimeLabel.text = ""
 
+        if let slate = fullInfo.historyReceivedSendSlate() {
+            icon.image = R.image.grin_txlist_receive_waitToReceive()
+            statusLabel.text = R.string.localizable.grinTxTypeWaitToSign()
+            let amount = slate.amount
+            amountLabel.text =  (amount < 0 ? "-" : "") + Amount(amount).amount(decimals: 9, count: 4)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(0).amountShort(decimals:9))"
+            return
+        }
+
         if let gatewayInfo = fullInfo.gatewayInfo {
             if gatewayInfo.confirmInfo?.confirm == true {
                 icon.image = R.image.grin_txlist_receive_gatewayConfirmed()
@@ -54,7 +64,7 @@ class GrinTransactionCell: UITableViewCell {
                 statusLabel.text = R.string.localizable.grinTxTypeReceived()
             }
             feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(0).amountShort(decimals:9))"
-            let amount = (Int(gatewayInfo.toAmount ?? "") ?? 0)
+            let amount = (Int(gatewayInfo.toAmount ?? gatewayInfo.fromAmount ?? "") ?? 0)
             amountLabel.text =  (amount < 0 ? "-" : "") + Amount(amount).amount(decimals: 9, count: 4)
             amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
             let date = Date.init(timeIntervalSince1970: TimeInterval(gatewayInfo.createTime/1000))
@@ -82,6 +92,7 @@ class GrinTransactionCell: UITableViewCell {
         var timeString = tx.creationTs
         if let creationTs = tx.creationTs.components(separatedBy: ".").first?.replacingOccurrences(of: "-", with: "/").replacingOccurrences(of: "T", with: " ") {
             timeString = creationTs
+            dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
             if let date = dateFormatter.date(from: creationTs) {
                 dateFormatter.timeZone = TimeZone.current
                 timeString = dateFormatter.string(from: date)
@@ -122,6 +133,7 @@ class GrinTransactionCell: UITableViewCell {
         }
         statusLabel.text = status
         icon.image = image
+
     }
     
     override func awakeFromNib() {

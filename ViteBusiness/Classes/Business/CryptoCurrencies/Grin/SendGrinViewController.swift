@@ -29,6 +29,12 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var amountTitleLabel: UILabel!
     @IBOutlet weak var feeTitleLable: UILabel!
 
+    let helpButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.grin_help(), for: .normal)
+        return button
+    }()
+
     var transferMethod = TransferMethod.file
     let transferVM = GrinTransactVM()
     override func viewDidLoad() {
@@ -109,6 +115,12 @@ class SendGrinViewController: UIViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        helpButton.rx.tap.bind { [weak self] _ in
+            let vc = GrinTeachViewController.init(txType: .sent, channelType: self?.transferMethod ?? .file)
+            vc.fromSendVC = true
+            self?.navigationController?.pushViewController(vc, animated: true)
+            }.disposed(by: rx.disposeBag)
+
     }
 
     func setUpView()  {
@@ -152,6 +164,15 @@ class SendGrinViewController: UIViewController {
         } else {
             transactButton.setTitle(R.string.localizable.grinSentNext(), for: .normal)
         }
+
+        self.titleView.addSubview(helpButton)
+        helpButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(16)
+            m.centerY.equalTo(self.titleView.symbolLabel)
+            m.left.equalTo(self.titleView.symbolLabel.snp.right).offset(10)
+        }
+
+
     }
 
     @IBAction func sendAction(_ sender: Any) {
@@ -160,12 +181,12 @@ class SendGrinViewController: UIViewController {
 
 
         if transferMethod == .http {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_Http", attributes: ["uuid": UUID.stored])
         } else if transferMethod == .vite {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_Vite", attributes: ["uuid": UUID.stored])
 
         } else if transferMethod == .file {
-            Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_2", attributes: ["uuid": UUID.stored])
+            Statistics.log(eventId: "grin_tx_SendButtonClicked_File", attributes: ["uuid": UUID.stored])
         }
 
 
@@ -178,11 +199,11 @@ class SendGrinViewController: UIViewController {
                 let confirmType = ConfirmGrinTransactionViewModel(amountString: amountString, feeString: fee, confirmTitle: R.string.localizable.grinPayTitleCreat())
                 Workflow.confirmWorkflow(viewModel: confirmType, confirmSuccess: {
                     if self?.transferMethod == .http {
-                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_HTTP_3", attributes: ["uuid": UUID.stored])
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_Http", attributes: ["uuid": UUID.stored])
                     } else if self?.transferMethod == .vite {
-                        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_VITE_3", attributes: ["uuid": UUID.stored])
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_Vite", attributes: ["uuid": UUID.stored])
                     } else if self?.transferMethod == .file {
-                        
+                        Statistics.log(eventId: "grin_tx_confirmSendButtonClicked_File", attributes: ["uuid": UUID.stored])
                     }
 
                     let amountString = self?.amountTextField.text
@@ -255,5 +276,22 @@ extension SendGrinViewController: UITextFieldDelegate {
             return true
         }
     }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let text = textField.attributedText, text.string == R.string.localizable.grinSendIllegalAmmount() {
+            textField.attributedText = nil
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == amountTextField {
+            if let text = textField.text, !text.isEmpty {
+
+            } else {
+                textField.attributedText = NSAttributedString.init(string: R.string.localizable.grinSendIllegalAmmount(),attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+        }
+    }
+
 }
 

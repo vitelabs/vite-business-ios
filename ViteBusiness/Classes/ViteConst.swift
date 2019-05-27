@@ -126,10 +126,10 @@ public extension ViteConst {
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/test/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
-                grin: Grin(nodeHttp: "http://45.40.197.46:23413",
-                           apiSecret: "Hpd670q3Bar0h8V1f2Z6",
+                grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
+                           apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.usernet.rawValue,
-                           x: "http://132.232.138.139:8081/test"))
+                           x: "http://129.28.98.62:8080"))
 
         public static let stageEnv =
             Env(tokenCode: TokenCode(viteCoin: "1171",

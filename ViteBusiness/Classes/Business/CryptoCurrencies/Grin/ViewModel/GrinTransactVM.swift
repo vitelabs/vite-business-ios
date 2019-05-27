@@ -120,7 +120,7 @@ class GrinTransactVM {
     }
 
     func finalizeTx(slateUrl: URL) {
-        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_3", attributes: ["uuid": UUID.stored])
+//        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_3", attributes: ["uuid": UUID.stored])
         grin_async({ () in
            GrinManager.default.txFinalize(slatePath: slateUrl.path)
         },  { (result) in
@@ -206,12 +206,12 @@ class GrinTransactVM {
             return nil
         }
         guard let decimal = BigDecimal(string) else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         let nanoDecimal = decimal * BigDecimal(BigInt(10).power(9))
         guard nanoDecimal.digits == 0 else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         guard nanoDecimal.number <= BigInt(UInt64.max) else {

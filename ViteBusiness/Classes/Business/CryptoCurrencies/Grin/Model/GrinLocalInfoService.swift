@@ -18,23 +18,12 @@ class GrinLocalInfoService {
         do {
             try  db.executeUpdate("create table if not exists tx_send(slateid text primary key,method text, type text, status interger,creattime integer,sharesendfiletime integer,getresponsefiletime integer,finalizetime integer, canclesendtime integer);", values: nil)
             try  db.executeUpdate("create table if not exists tx_receive(slateid text primary key,method text,type text, status interger,getsendfiletime integer,receivetime integer,shareresponsefiletime integer, canclereceivetime integer);", values: nil)
-            try  db.executeUpdate("create table if not exists grin_node(id integer primary key autoincrement, address text, secret text, seletcted integer default 0);", values: nil)
+            try  db.executeUpdate("create table if not exists grin_node(id integer primary key autoincrement, address text, secret text, selected integer default 0);", values: nil)
         } catch {
             print(error)
         }
         return db
     }()
-
-    func creatDBIfNeeded() {
-
-        guard db.open() else {
-            return
-        }
-
-
-
-        getAllInfo()
-    }
 
     func addSendInfo(slateId: String, method: String, creatTime: Int) {
         do {
@@ -42,7 +31,6 @@ class GrinLocalInfoService {
         } catch {
 
         }
-
     }
 
     func addReceiveInfo(slateId: String, method: String, getSendFileTime: Int)  {
@@ -100,7 +88,6 @@ class GrinLocalInfoService {
         } catch {
 
         }
-
     }
 
     func set(shareResponseFileTime: Int,with slateId: String )  {
@@ -118,8 +105,6 @@ class GrinLocalInfoService {
 
         }
     }
-
-
 
     func getAllInfo() -> [GrinLocalInfo] {
         var result = [GrinLocalInfo]()
@@ -209,24 +194,7 @@ class GrinLocalInfoService {
 
 }
 
-class GrinLocalInfo {
-    var slateId: String?
-    var method: String?
-    var type:  String?
-
-    var creatTime: TimeInterval?
-    var shareSendFileTime: TimeInterval?
-    var getResponseFileTime: TimeInterval?
-    var finalizeTime: TimeInterval?
-    var cancleSendTime: TimeInterval?
-
-    var getSendFileTime: TimeInterval?
-    var receiveTime: TimeInterval?
-    var shareResponseFileTime: TimeInterval?
-    var cancleReceiveTime: TimeInterval?
-}
-
-
+//MARK: - Node
 extension GrinLocalInfoService {
     func getNodeAddress() -> [GrinNode] {
         var result = [GrinNode]()
@@ -244,14 +212,13 @@ extension GrinLocalInfoService {
         } catch {
 
         }
-
         return result
     }
 
     func getSelectedNode() -> GrinNode? {
         var result = [GrinNode]()
         do {
-            let a = try db.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
+            let a = try db.executeQuery("select * from grin_node where selected = 1" ,values: nil)
             while a.next() {
                 var info = GrinNode()
                 info.id = a.long(forColumn: "id")
@@ -264,12 +231,8 @@ extension GrinLocalInfoService {
         } catch {
 
         }
-
         return result.first
     }
-
-
-
 
     func add(node:GrinNode ) {
         do {
@@ -297,8 +260,10 @@ extension GrinLocalInfoService {
 
     func select(node:GrinNode ) {
         do {
+            db.beginTransaction()
             try  db.executeUpdate("update grin_node set selected = 1 where id = ? ", values: [node.id])
             try  db.executeUpdate("update grin_node set selected = 0 where id != ? ", values: [node.id])
+            db.commit()
         } catch {
 
         }
@@ -312,3 +277,21 @@ extension GrinLocalInfoService {
         }
     }
 }
+
+class GrinLocalInfo {
+    var slateId: String?
+    var method: String?
+    var type:  String?
+
+    var creatTime: TimeInterval?
+    var shareSendFileTime: TimeInterval?
+    var getResponseFileTime: TimeInterval?
+    var finalizeTime: TimeInterval?
+    var cancleSendTime: TimeInterval?
+
+    var getSendFileTime: TimeInterval?
+    var receiveTime: TimeInterval?
+    var shareResponseFileTime: TimeInterval?
+    var cancleReceiveTime: TimeInterval?
+}
+
