@@ -24,7 +24,6 @@ public enum GrinTransaction {
 extension GrinTransaction: TargetType {
 
     public var baseURL: URL {
-        return URL(string:"http://129.28.98.62:8080")!
         return URL(string: ViteConst.instance.grin.x)!
     }
 
