@@ -211,6 +211,7 @@ final class GrinWalletInfoVM {
                 fullTxInfos.append(fullInfo)
                 sendIndexMap[slateId] = fullTxInfos.count - 1
             } else if localInfo.type == "Receive" {
+                fullTxInfos.append(fullInfo)
                 receiveIndexMap[slateId] = fullTxInfos.count - 1
             }
         }
