@@ -172,7 +172,9 @@ final class GrinWalletInfoVM {
 //                            })
                             seal.fulfill(gatewayInfos)
                         } else {
-                            seal.reject(grinError(JSON(response.data)["message"].string ?? "gatewayTransactionList failed"))
+                            seal.fulfill([])
+                            self.message.accept(JSON(response.data)["message"].string ?? "gatewayTransactionList failed")
+//                            seal.reject(grinError(JSON(response.data)["message"].string ?? "gatewayTransactionList failed"))
                         }
                     } catch {
                         seal.reject(error)
