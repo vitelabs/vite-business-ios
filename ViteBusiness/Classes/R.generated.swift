@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 160 images.
+  /// This `R.image` struct is generated, and contains static references to 161 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -102,6 +102,8 @@ struct R: Rswift.Validatable {
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
     /// Image `grin_help`.
     static let grin_help = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_help")
+    /// Image `grin_methd_bg`.
+    static let grin_methd_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_methd_bg")
     /// Image `grin_node_edit`.
     static let grin_node_edit = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_edit")
     /// Image `grin_node_selected`.
@@ -552,6 +554,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "grin_help", bundle: ..., traitCollection: ...)`
     static func grin_help(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_help, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_methd_bg", bundle: ..., traitCollection: ...)`
+    static func grin_methd_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_methd_bg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_node_edit", bundle: ..., traitCollection: ...)`
@@ -1630,10 +1637,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinFinalize = Rswift.StringResource(key: "grin.finalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Finalized
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: GRIN Contact Address
       /// 
       /// Locales: en, zh-Hans
@@ -2018,6 +2021,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxbyfileShareReceiveFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareReceiveFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Posting
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Private key locally stored, open-sourced assurance
       /// 
       /// Locales: en, zh-Hans
@@ -3782,13 +3789,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.finalize", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Finalized
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinTxTypeFinalized(_: Void = ()) -> String {
-        return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: GRIN Contact Address
       /// 
       /// Locales: en, zh-Hans
@@ -4459,6 +4459,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinTxbyfileShareReceiveFileDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.txbyfile.shareReceiveFileDesc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Posting
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxTypeFinalized(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Private key locally stored, open-sourced assurance

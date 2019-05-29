@@ -77,7 +77,7 @@ class GrinTeachViewController: UIViewController {
                 titleLabel.text = R.string.localizable.grinTeachHttpReceiveTitle()
                 desc = R.string.localizable.grinReceiveByHttpDesc()
                 addressTitleLabel.text = R.string.localizable.grinHttpAddress()
-                addressLabelLeftConstraint.constant = -70
+                addressLabelLeftConstraint.constant = -62
                 view.layoutIfNeeded()
                 actionButton.setTitle(R.string.localizable.grinTeachHttpReceiveCopyHttpAddress(), for: .normal)
                 GrinTxByViteService().getGateWay().done { (string) in
@@ -88,7 +88,7 @@ class GrinTeachViewController: UIViewController {
                 }
             }
         } else if channelType == .file {
-            imageView.image = R.image.grin_teach_vite()
+            imageView.image = R.image.grin_teach_file()
             if self.txType == .sent {
                 actionButton.setTitle(R.string.localizable.grinTeachViteSendStartSend(), for: .normal)
                 titleLabel.text = R.string.localizable.grinTeachFileSendTitle()

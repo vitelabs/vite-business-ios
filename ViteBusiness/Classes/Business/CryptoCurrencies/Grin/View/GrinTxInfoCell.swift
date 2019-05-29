@@ -25,10 +25,10 @@ class GrinTxInfoCell: UITableViewCell {
         contentView.addSubview(timeLabel)
 
         statusLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        statusLabel.textColor = UIColor.init(netHex: 0x3e4a59)
+        statusLabel.textColor = UIColor.init(netHex: 0x3e4a59,alpha: 0.7)
 
         timeLabel.font = UIFont.systemFont(ofSize: 12)
-        statusLabel.textColor = UIColor.init(netHex: 0x3e4a59)
+        timeLabel.textColor = UIColor.init(netHex: 0x3e4a59,alpha: 0.5)
 
 
         statusImageView.snp.makeConstraints { m in
@@ -52,7 +52,7 @@ class GrinTxInfoCell: UITableViewCell {
         lineImageView.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview()
             m.top.equalTo(statusImageView.snp.bottom)
-            m.width.equalTo(1)
+            m.width.equalTo(2)
             m.centerX.equalTo(statusImageView)
         }
 

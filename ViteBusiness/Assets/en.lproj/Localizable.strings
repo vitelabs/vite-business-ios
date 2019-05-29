@@ -433,7 +433,7 @@
 "grin.txType.waitToSign" = "Unreceived";
 "grin.txType.received" = "Received";
 "grin.txType.waitToFinalize" = "Unfinalized";
-"grin.txType.finalized" = "Finalized";
+"grin.txType.finalized" = "Posting";
 "grin.txType.confirmed" = "Confirmed";
 "grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
 "grin.txType.Canceled" = "Canceled";

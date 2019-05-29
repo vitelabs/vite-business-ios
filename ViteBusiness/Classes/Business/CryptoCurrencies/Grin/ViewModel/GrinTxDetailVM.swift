@@ -107,7 +107,7 @@ class GrinTxDetailVM: NSObject {
         //Details
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
@@ -226,7 +226,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
@@ -352,7 +352,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         cellInfo0.lineImage = blueLineImage
@@ -405,7 +405,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
@@ -514,7 +514,7 @@ class GrinTxDetailVM: NSObject {
             pageInfo.desc = R.string.localizable.grinDetailGatewayConfirmConntLessThanTen()
 
             let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
-                                                                                                                              NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
+                                                                                                                              NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59, alpha: 0.7)])
 
             attributedString.append(NSAttributedString(string: "（\(confirmCount)/10）", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
                                                                                                  NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
@@ -647,7 +647,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = localInfo.slateId
         cellInfo0.lineImage = blueLineImage
@@ -740,7 +740,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         pageInfo.cellInfo.append(cellInfo0)
@@ -777,7 +777,7 @@ class GrinTxDetailVM: NSObject {
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
-        cellInfo0.statusImage = R.image.grin_detail_vite()
+        cellInfo0.statusImage = R.image.grin_detail_normal()
         cellInfo0.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinDetailTxStatus(), attributes: nil)
         cellInfo0.slateId = fullInfo.txLogEntry?.txSlateId
         cellInfo0.lineImage = blueLineImage
@@ -901,7 +901,7 @@ class GrinTxDetailVM: NSObject {
 
     func confirmAttributedString() -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
-                                                                                                             NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
+                                                                                                             NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59,alpha: 0.7 )])
 
         if let confirmInfo = self.fullInfo.confirmInfo,
             confirmInfo.lastConfirmedHeight > 0,

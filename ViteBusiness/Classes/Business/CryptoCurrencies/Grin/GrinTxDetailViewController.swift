@@ -15,7 +15,11 @@ import RxCocoa
 class GrinTxDetailViewController: UIViewController {
 
     let titleView = GrinTransactionTitleView()
-    let txMethodLabel = UILabel()
+    let txMethodLabel = LabelBgView()
+
+//    let methodView = ()
+
+
     let pointView = UIView()
     let descLabel = UILabel()
     let amountInfoView = UIView()
@@ -59,10 +63,11 @@ class GrinTxDetailViewController: UIViewController {
             m.top.equalTo(titleView.snp.bottom)
             m.left.equalToSuperview().offset(26)
         }
-        txMethodLabel.backgroundColor = UIColor.init(netHex: 0xDFEEFF,alpha: 0.61)
-        txMethodLabel.font = UIFont.systemFont(ofSize: 12)
-        txMethodLabel.textColor = UIColor.init(netHex: 0x007aff)
-
+//        txMethodLabel.backgroundColor = UIColor.init(netHex: 0xDFEEFF,alpha: 0.61)
+        txMethodLabel.titleLab.font = UIFont.systemFont(ofSize: 12)
+        txMethodLabel.titleLab.textColor = UIColor.init(netHex: 0x007aff)
+        txMethodLabel.bgImg.image = R.image.grin_methd_bg()
+        
         pointView.backgroundColor = UIColor.init(netHex: 0x007aff)
         view.addSubview(pointView)
         pointView.layer.cornerRadius = 3
@@ -100,7 +105,7 @@ class GrinTxDetailViewController: UIViewController {
         txInfoTableView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview()
             m.bottom.equalTo(bottomView.snp.top)
-            m.top.equalTo(infoview.snp.bottom).offset(5)
+            m.top.equalTo(infoview.snp.bottom).offset(20)
         }
 
         infoview.addressTitleLabel.text = ""
@@ -115,7 +120,7 @@ class GrinTxDetailViewController: UIViewController {
 
     func bindDetailPageInfo(_ pageInfo: GrinDetailPageInfo) {
         titleView.symbolLabel.text = pageInfo.title
-        txMethodLabel.text = pageInfo.methodString
+        txMethodLabel.titleLab.text = pageInfo.methodString
         if let desc = pageInfo.desc, desc.count > 0 {
             descLabel.text = pageInfo.desc
             pointView.isHidden = false
@@ -294,7 +299,7 @@ extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 60
     }
 
 }

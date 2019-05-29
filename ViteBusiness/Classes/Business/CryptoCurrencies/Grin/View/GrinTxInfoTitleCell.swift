@@ -37,9 +37,8 @@ class GrinTxInfoTitleCell: UITableViewCell {
         statusLabel.font = UIFont.boldSystemFont(ofSize: 14)
         statusLabel.textColor = UIColor.init(netHex: 0x3e4a59)
 
-        slateLabel.font = UIFont.systemFont(ofSize: 12)
-        statusLabel.textColor = UIColor.init(netHex: 0x3e4a59)
-
+        slateLabel.font = UIFont.boldSystemFont(ofSize: 11)
+        slateLabel.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.45)
 
         statusImageView.snp.makeConstraints { m in
             m.top.equalToSuperview()
@@ -72,7 +71,7 @@ class GrinTxInfoTitleCell: UITableViewCell {
         lineImageView.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview()
             m.top.equalTo(statusImageView.snp.bottom)
-            m.width.equalTo(1)
+            m.width.equalTo(2)
             m.centerX.equalTo(statusImageView)
         }
 
@@ -83,6 +82,16 @@ class GrinTxInfoTitleCell: UITableViewCell {
             m.centerY.equalTo(slateContainerView)
             m.width.height.equalTo(16)
             m.right.equalTo(slateContainerView).offset(-4)
+        }
+
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
+        slateContainerView.addSubview(view)
+        view.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(4)
+            m.bottom.equalToSuperview().offset(-4)
+            m.right.equalTo(copyButton.snp.left).offset(-5)
+            m.width.equalTo(1)
         }
 
         copyButton.setImage(R.image.icon_button_paste_gray(), for: .normal)
