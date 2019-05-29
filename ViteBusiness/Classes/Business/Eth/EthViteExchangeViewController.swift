@@ -30,6 +30,17 @@ class EthViteExchangeViewController: BaseViewController {
         ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteERC20])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
+        let key = "tipShowed"
+        let collection = "EthViewExchange"
+        if let hasShowTip = UserDefaultsService.instance.objectForKey(key, inCollection: collection) as? Bool,
+            hasShowTip {
+            // do nothing
+        } else {
+            UserDefaultsService.instance.setObject(true, forKey: key, inCollection: collection)
+            DispatchQueue.main.async {
+                self.showTip()
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +70,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
     let amountView = EthViteExchangeAmountView().then {
         $0.symbolLabel.text = TokenInfo.viteERC20.symbol
+        $0.textField.keyboardType = .decimalPad
     }
 
     let gasSliderView = EthGasFeeSliderView(gasLimit: EtherWallet.defaultGasLimitForTokenTransfer).then {
@@ -188,16 +200,16 @@ class EthViteExchangeViewController: BaseViewController {
 
         addressView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let viewModel = AddressListViewModel.createMyAddressListViewModel()
-            let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddressDrive.drive(self.addressView.textLabel.rx.text).disposed(by: self.rx.disposeBag)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            FloatButtonsView(targetView: self.addressView.button, delegate: self, titles:
+                [R.string.localizable.sendPageMyAddressTitle(),
+                 R.string.localizable.sendPageViteContactsButtonTitle(),
+                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
 
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.exchangeAll = true
-            self.amountView.textField.text = self.headerView.balanceLabel.text
+            self.amountView.textField.text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
             }.disposed(by: rx.disposeBag)
     }
 
@@ -233,14 +245,46 @@ class EthViteExchangeViewController: BaseViewController {
         }
 
         titleLabel.tipButton.rx.tap.bind { [weak self] in
-            let htmlString = R.string.localizable.popPageTipEthViteExchange()
-            let vc = PopViewController(htmlString: htmlString)
-            vc.modalPresentationStyle = .overCurrentContext
-            let delegate =  StyleActionSheetTranstionDelegate()
-            vc.transitioningDelegate = delegate
-            self?.present(vc, animated: true, completion: nil)
+            self?.showTip()
             }.disposed(by: rx.disposeBag)
         return view
+    }
+
+    func showTip() {
+        let htmlString = R.string.localizable.popPageTipEthViteExchange()
+        let vc = PopViewController(htmlString: htmlString)
+        vc.modalPresentationStyle = .overCurrentContext
+        let delegate =  StyleActionSheetTranstionDelegate()
+        vc.transitioningDelegate = delegate
+        present(vc, animated: true, completion: nil)
+    }
+}
+
+extension EthViteExchangeViewController: FloatButtonsViewDelegate {
+    func didClick(at index: Int) {
+        if index == 0 {
+            let viewModel = AddressListViewModel.createMyAddressListViewModel()
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressView.textLabel.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 1 {
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.vite)
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressView.textLabel.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 2 {
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.addressView.textLabel.text = uri.address
+                    scanViewController.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
     }
 }
 
