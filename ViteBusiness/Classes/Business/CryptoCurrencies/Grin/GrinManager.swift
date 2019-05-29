@@ -98,9 +98,9 @@ class GrinManager: GrinBridge {
         self.checkNodeApiHttpAddr = self.currentNode.address
         self.apiSecret = self.currentNode.apiSecret
         #else
-        self.checkNodeApiHttpAddr = self.node.address
-        self.apiSecret = self.node.apiSecret
         self.chainType = GrinChainType.mainnet.rawValue
+        self.checkNodeApiHttpAddr = self.currentNode.address
+        self.apiSecret = self.currentNode.apiSecret
         #endif
         self.creatWalletIfNeeded()
         self.resetApiSecret()

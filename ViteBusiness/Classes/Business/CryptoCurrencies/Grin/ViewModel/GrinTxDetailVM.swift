@@ -129,7 +129,7 @@ class GrinTxDetailVM: NSObject {
         cancleInfo.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeCanceled(), attributes: nil)
         cancleInfo.timeStr = cancleTime.grinTimeString()
 
-        if txInfo.txType == .txSentCancelled && cancleTime > 0 && cancleTime < getResponseFileTime {
+        if txInfo.txType == .txSentCancelled && cancleTime > 0 && (cancleTime < getResponseFileTime || getResponseFileTime <= 0){
             pageInfo.desc =  R.string.localizable.grinDetailTxCancelled()
             cellInfo1.lineImage = grayLineImage
             pageInfo.cellInfo.append(cancleInfo)
@@ -157,7 +157,7 @@ class GrinTxDetailVM: NSObject {
         }
 
         let cellInfo3 = GrinDetailCellInfo()
-        cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeWaitToFinalize(), attributes: nil)
+        cellInfo3.statusAttributeStr = NSAttributedString.init(string: R.string.localizable.grinTxTypeFinalized(), attributes: nil)
         if let finalizeTime = localInfo.finalizeTime, finalizeTime > 0 {
             pageInfo.desc = R.string.localizable.grinDetailTxisPostingPlsWait()
             cellInfo2.lineImage = blueLineImage
@@ -524,7 +524,7 @@ class GrinTxDetailVM: NSObject {
         }
         pageInfo.cellInfo.append(cellInfo2)
 
-        if gatewayInfo.status >= 2 && self.fullInfo.txLogEntry?.confirmed != true {
+        if gatewayInfo.status == 2 && self.fullInfo.txLogEntry?.confirmed != true {
             let action = {
                 self.gatewayResend(address: gatewayInfo.address, slateID: gatewayInfo.slatedId)
             }
@@ -903,15 +903,14 @@ class GrinTxDetailVM: NSObject {
         let attributedString = NSMutableAttributedString(string: R.string.localizable.grinTxTypeConfirmed(), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
                                                                                                              NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3e4a59)])
 
-//        if self.fullInfo.txLogEntry?.confirmed == false,
-//            let confirmInfo = self.fullInfo.confirmInfo,
-//            confirmInfo.lastConfirmedHeight > 0,
-//            confirmInfo.beginHeight > 0 {
-//            var count = confirmInfo.lastConfirmedHeight - confirmInfo.beginHeight
-//            if count > 10 { count = 10 }
-//            attributedString.append(NSAttributedString(string: "(\(count)/10)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-//                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
-//        }
+        if let confirmInfo = self.fullInfo.confirmInfo,
+            confirmInfo.lastConfirmedHeight > 0,
+            confirmInfo.beginHeight > 0 {
+            var count = confirmInfo.lastConfirmedHeight - confirmInfo.beginHeight
+            if count >= 10 { return attributedString }
+            attributedString.append(NSAttributedString(string: "（\(count)/10）", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+                                                                                                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF)]))
+        }
         return attributedString
     }
 
