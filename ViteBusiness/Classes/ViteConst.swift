@@ -120,7 +120,7 @@ public extension ViteConst {
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
-                           x: "http://132.232.1.165:8080",
+                           x: "http://132.232.65.121:8080/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001"),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/test/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
