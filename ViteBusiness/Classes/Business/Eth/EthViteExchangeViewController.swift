@@ -169,16 +169,11 @@ class EthViteExchangeViewController: BaseViewController {
                     AlertControl.showCompletion(R.string.localizable.workflowToastSubmitSuccess())
                     GCD.delay(1) { self.dismiss() }
                 } else if case .failure(let error) = r {
-                    let e = ViteError.conversion(from: error)
-                    if let web3Error = error as? Web3Error {
-                        Toast.show(web3Error.localizedDescription)
-                    } else if let walletError = error as? WalletError {
-                        let viteError = ViteError.init(code: ViteErrorCode(type: .custom, id: walletError.id), rawMessage: walletError.rawValue, rawError: walletError)
-                        Toast.show(viteError.viteErrorMessage)
+                    guard ViteError.conversion(from: error) != ViteError.cancel else { return }
+                    if let e = error as? DisplayableError {
+                        Toast.show(e.errorMessage)
                     } else {
-                        if e != ViteError.cancel {
-                            Toast.show(e.viteErrorMessage)
-                        }
+                        Toast.show((error as NSError).localizedDescription)
                     }
                 }
             })

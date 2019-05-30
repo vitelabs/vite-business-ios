@@ -123,7 +123,7 @@ public extension ViteConst {
                            x: "http://132.232.65.121:8080/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001"),
-                eth: Eth(nodeHttp: "https://api.vitewallet.com/test/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
+                eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
