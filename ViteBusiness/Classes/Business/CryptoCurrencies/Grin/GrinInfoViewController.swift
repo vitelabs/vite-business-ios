@@ -85,6 +85,8 @@ class GrinInfoViewController: BaseViewController {
         bind()
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
+        GrinManager.default.handleSavedTx()
+        GrinTxByViteService().reportViteAddress().done {_ in}
     }
 
     override func viewDidAppear(_ animated: Bool) {

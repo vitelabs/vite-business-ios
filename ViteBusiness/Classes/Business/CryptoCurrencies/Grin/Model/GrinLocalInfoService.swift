@@ -11,7 +11,14 @@ class GrinLocalInfoService {
 
     static let shared = GrinLocalInfoService()
 
-    lazy var db: FMDatabase = {
+    init() {
+        HDWalletManager.instance.walletDriver
+            .drive(onNext: { [weak self] (w) in
+                self?.db = GrinLocalInfoService.creatDB()
+            })
+    }
+
+    static func creatDB() -> FMDatabase {
         let url = GrinManager.getWalletUrl().appendingPathComponent("grin_tx_local_info.db")
         let db = FMDatabase.init(url: url)
         db.open()
@@ -23,7 +30,9 @@ class GrinLocalInfoService {
             print(error)
         }
         return db
-    }()
+    }
+
+    lazy var db: FMDatabase = GrinLocalInfoService.creatDB()
 
     func addSendInfo(slateId: String, method: String, creatTime: Int) {
         do {

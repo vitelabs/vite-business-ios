@@ -45,15 +45,15 @@ class GrinManager: GrinBridge {
             })
             .disposed(by: self.bag)
 
-        HDWalletManager.instance.accountDriver
-            .filterNil()
-            .distinctUntilChanged({ (a0, a1) -> Bool in
-                a0.address == a1.address
-            })
-            .drive(onNext: { _ in
-                GrinTxByViteService().reportViteAddress().done {_ in}
-            })
-            .disposed(by: self.bag)
+//        HDWalletManager.instance.accountDriver
+//            .filterNil()
+//            .distinctUntilChanged({ (a0, a1) -> Bool in
+//                a0.address == a1.address
+//            })
+//            .drive(onNext: { _ in
+//                //GrinTxByViteService().reportViteAddress().done {_ in}
+//            })
+//            .disposed(by: self.bag)
 
 
         #if DEBUG || TEST

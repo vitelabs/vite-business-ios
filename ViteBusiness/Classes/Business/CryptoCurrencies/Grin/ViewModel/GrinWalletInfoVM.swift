@@ -326,6 +326,8 @@ final class GrinWalletInfoVM {
                         let (outputData0, arr0) = arg0
                         let (outputData1, arr1) = arg1
                         return outputData0.height > outputData1.height
+                    }).filter({ (out,_) -> Bool in
+                        out.status == .unspent
                     })
                     heightInfo.beginHeight = Int(h.first?.0.height ?? 0)
                 case .failure(let error):
