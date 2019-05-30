@@ -116,6 +116,7 @@ class GrinTxDetailViewController: UIViewController {
         txInfoTableView.separatorStyle = .none
         txInfoTableView.register(GrinTxInfoTitleCell.self, forCellReuseIdentifier: "GrinTxInfoTitleCell")
         txInfoTableView.register(GrinTxInfoCell.self, forCellReuseIdentifier: "GrinTxInfoCell")
+
     }
 
     func bindDetailPageInfo(_ pageInfo: GrinDetailPageInfo) {
@@ -259,6 +260,19 @@ class GrinTxDetailViewController: UIViewController {
             .filterNil()
             .drive(onNext:{ Toast.show($0) })
             .disposed(by: rx.disposeBag)
+
+
+        txInfoTableView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
+            guard let fullInfo = self?.fullInfo else {  return }
+            self?.txDetailVM.infoVM.action.onNext(GrinWalletInfoVM.Action.getFullInfoDetail(fullInfo))
+        })
+
+        infoVM.fullInfoDetail.bind { [weak self] detail in
+            self?.txInfoTableView.mj_header.endRefreshing()
+            self?.fullInfo = detail
+        }
+            .disposed(by: rx.disposeBag)
+
     }
 
 }
