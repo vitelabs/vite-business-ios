@@ -1151,7 +1151,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 447 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 449 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1181,7 +1181,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipQuota = Rswift.StringResource(key: "pop.page.tip.quota", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE，Vite网络VITE可以投票官方超级节点赚取VITE奖励，年化收益率达20%。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。</p>
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。提交置换后请您耐心等待，置换VITE到账需要等以太交易被确认30个块，以太交易可以在置换记录中查看。</p>
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipEthViteExchange = Rswift.StringResource(key: "pop.page.tip.ethViteExchange", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1577,6 +1577,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethSendPageEthContactsButtonTitle = Rswift.StringResource(key: "eth.send.page.eth.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ETH地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -1749,6 +1753,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaAlertTitle = Rswift.StringResource(key: "quota.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Insufficient balance
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethErrorRpcErrorCodeNotEnoughBalance = Rswift.StringResource(key: "eth.error.rpc.error.code.not.enough.balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Insufficient balance
       /// 
       /// Locales: en, zh-Hans
@@ -2528,6 +2536,10 @@ struct R: Rswift.Validatable {
       /// en translation: VITE地址
       /// 
       /// Locales: en, zh-Hans
+      static let ethViteExchangePageToAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE地址
+      /// 
+      /// Locales: en, zh-Hans
       static let grinTxMethodVite = Rswift.StringResource(key: "grin.txMethod.vite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
@@ -2845,14 +2857,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton2Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 手续费不足
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethErrorRpcErrorCodeNotEnoughFee = Rswift.StringResource(key: "eth.error.rpc.error.code.not.enough.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 挖矿所得
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailFromMine = Rswift.StringResource(key: "grin.detail.fromMine", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 接收Vite网络VITE地址
-      /// 
-      /// Locales: en, zh-Hans
-      static let ethViteExchangePageToAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 敲定交易
       /// 
       /// Locales: en, zh-Hans
@@ -2925,10 +2937,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailPleaseReciveAndShare = Rswift.StringResource(key: "grin.detail.pleaseReciveAndShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转出ERC20 VITE地址
-      /// 
-      /// Locales: en, zh-Hans
-      static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 转账金额不合法
       /// 
       /// Locales: en, zh-Hans
@@ -2991,7 +2999,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("pop.page.tip.quota", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE，Vite网络VITE可以投票官方超级节点赚取VITE奖励，年化收益率达20%。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。</p>
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">快速理解置换VITE</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。提交置换后请您耐心等待，置换VITE到账需要等以太交易被确认30个块，以太交易可以在置换记录中查看。</p>
       /// 
       /// Locales: en, zh-Hans
       static func popPageTipEthViteExchange(_: Void = ()) -> String {
@@ -3684,6 +3692,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.send.page.eth.contacts.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: ETH地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -3983,6 +3998,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Insufficient balance
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethErrorRpcErrorCodeNotEnoughBalance(_: Void = ()) -> String {
+        return NSLocalizedString("eth.error.rpc.error.code.not.enough.balance", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Insufficient balance
@@ -5346,6 +5368,13 @@ struct R: Rswift.Validatable {
       /// en translation: VITE地址
       /// 
       /// Locales: en, zh-Hans
+      static func ethViteExchangePageToAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE地址
+      /// 
+      /// Locales: en, zh-Hans
       static func grinTxMethodVite(_: Void = ()) -> String {
         return NSLocalizedString("grin.txMethod.vite", bundle: R.hostingBundle, comment: "")
       }
@@ -5903,18 +5932,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.check.button2.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 手续费不足
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethErrorRpcErrorCodeNotEnoughFee(_: Void = ()) -> String {
+        return NSLocalizedString("eth.error.rpc.error.code.not.enough.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 挖矿所得
       /// 
       /// Locales: en, zh-Hans
       static func grinDetailFromMine(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.fromMine", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 接收Vite网络VITE地址
-      /// 
-      /// Locales: en, zh-Hans
-      static func ethViteExchangePageToAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eth.vite.exchange.page.to.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 敲定交易
@@ -6041,13 +6070,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinDetailPleaseReciveAndShare(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.pleaseReciveAndShare", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转出ERC20 VITE地址
-      /// 
-      /// Locales: en, zh-Hans
-      static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 转账金额不合法
