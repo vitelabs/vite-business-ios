@@ -94,18 +94,19 @@ class GrinTxDetailViewController: UIViewController {
             m.top.equalTo(descLabel.snp.bottom).offset(10)
         }
 
+
+        view.addSubview(txInfoTableView)
+        txInfoTableView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+            m.top.equalTo(infoview.snp.bottom).offset(20)
+        }
+
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview()
             m.height.equalTo(50)
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
-
-        view.addSubview(txInfoTableView)
-        txInfoTableView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview()
-            m.bottom.equalTo(bottomView.snp.top)
-            m.top.equalTo(infoview.snp.bottom).offset(20)
         }
 
         infoview.addressTitleLabel.text = ""
@@ -130,16 +131,46 @@ class GrinTxDetailViewController: UIViewController {
         }
 
         if let amount = pageInfo.amount {
+            if infoview.balanceTitleLabel
+                .superview == nil {
+                infoview.addressTitleLabel.superview?.addSubview(infoview.balanceTitleLabel)
+                infoview.addressTitleLabel.superview?.addSubview(infoview.balanceLabel)
+                infoview.balanceTitleLabel.snp.makeConstraints({ (m) in
+                    m.top.equalTo(infoview.addressLabel.snp.bottom).offset(16)
+                    m.left.right.equalTo(infoview.addressTitleLabel)
+                })
+
+                infoview.balanceLabel.snp.makeConstraints({ (m) in
+                    m.top.equalTo(infoview.balanceTitleLabel.snp.bottom).offset(8)
+                    m.left.right.equalTo(infoview.addressTitleLabel)
+                    m.bottom.equalToSuperview().offset(-16)
+                })
+            }
             if let fee = pageInfo.fee, !fee.isEmpty {
                 infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = R.string.localizable.grinSentFee()
                 infoview.balanceLabel.text = pageInfo.fee
+            } else if let tureAmount = pageInfo.trueAmount, !tureAmount.isEmpty {
+                infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
+                infoview.addressLabel.text = pageInfo.amount
+                infoview.balanceTitleLabel.text = R.string.localizable.grinReceiveTureAmount()
+                infoview.balanceLabel.text = tureAmount
             } else {
                 infoview.addressTitleLabel.text = R.string.localizable.grinSentAmount()
                 infoview.addressLabel.text = pageInfo.amount
                 infoview.balanceTitleLabel.text = nil
                 infoview.balanceLabel.text = nil
+                infoview.balanceLabel.removeFromSuperview()
+                infoview.balanceTitleLabel.removeFromSuperview()
+
+                infoview.snp.remakeConstraints { (m) in
+                    m.left.equalToSuperview().offset(20)
+                    m.right.equalToSuperview().offset(-20)
+                    m.top.equalTo(descLabel.snp.bottom).offset(10)
+                    m.height.equalTo(80)
+                }
+
             }
         }
 
@@ -148,6 +179,11 @@ class GrinTxDetailViewController: UIViewController {
         if pageInfo.actions.count == 0 {
             self.bottomView.isHidden = true
         } else {
+            txInfoTableView.snp.remakeConstraints { (m) in
+                m.left.right.equalToSuperview()
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-74)
+                m.top.equalTo(infoview.snp.bottom).offset(20)
+            }
             self.bottomView.isHidden = false
             if pageInfo.actions.count == 1 {
 //                button0.layer.cornerRadius = 2
@@ -313,7 +349,7 @@ extension GrinTxDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 62
     }
 
 }

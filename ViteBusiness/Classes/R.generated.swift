@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 161 images.
+  /// This `R.image` struct is generated, and contains static references to 165 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -110,12 +110,20 @@ struct R: Rswift.Validatable {
     static let grin_node_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_selected")
     /// Image `grin_node_unselected`.
     static let grin_node_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_unselected")
+    /// Image `grin_teach_file_cn`.
+    static let grin_teach_file_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file_cn")
     /// Image `grin_teach_file`.
     static let grin_teach_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file")
+    /// Image `grin_teach_http_receive_cn`.
+    static let grin_teach_http_receive_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_receive_cn")
     /// Image `grin_teach_http_receive`.
     static let grin_teach_http_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_receive")
+    /// Image `grin_teach_http_send_cn`.
+    static let grin_teach_http_send_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_send_cn")
     /// Image `grin_teach_http_send`.
     static let grin_teach_http_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_send")
+    /// Image `grin_teach_vite_cn`.
+    static let grin_teach_vite_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_vite_cn")
     /// Image `grin_teach_vite`.
     static let grin_teach_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_vite")
     /// Image `grin_tx_file_finalize`.
@@ -581,9 +589,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_teach_file, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "grin_teach_file_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_file_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_file_cn, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "grin_teach_http_receive", bundle: ..., traitCollection: ...)`
     static func grin_teach_http_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_teach_http_receive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_receive_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_receive_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_receive_cn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_teach_http_send", bundle: ..., traitCollection: ...)`
@@ -591,9 +609,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_teach_http_send, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "grin_teach_http_send_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_send_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_send_cn, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "grin_teach_vite", bundle: ..., traitCollection: ...)`
     static func grin_teach_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_teach_vite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_vite_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_vite_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_vite_cn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_tx_file_finalize", bundle: ..., traitCollection: ...)`
@@ -1151,7 +1179,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 449 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 451 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2829,6 +2857,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 实收金额
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinReceiveTureAmount = Rswift.StringResource(key: "grin.receive.ture.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已复制Slate ID
       /// 
       /// Locales: en, zh-Hans
@@ -2889,6 +2921,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeAddNode = Rswift.StringResource(key: "grin.node.addNode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 秘钥
       /// 
       /// Locales: en, zh-Hans
@@ -5883,6 +5919,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 实收金额
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinReceiveTureAmount(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.ture.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 已复制Slate ID
       /// 
       /// Locales: en, zh-Hans
@@ -5986,6 +6029,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaFloatViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeAddNode(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.addNode", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 秘钥

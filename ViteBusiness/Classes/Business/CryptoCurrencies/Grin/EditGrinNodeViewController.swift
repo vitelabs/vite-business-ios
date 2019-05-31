@@ -9,6 +9,8 @@ import UIKit
 
 class EditGrinNodeViewController: UIViewController {
 
+    var isAddNode = false
+
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = R.string.localizable.grinNodeConfigNode()
@@ -66,8 +68,6 @@ class EditGrinNodeViewController: UIViewController {
         view.addSubview(grinNodeTextField)
         view.addSubview(apiSecretTitleLabel)
         view.addSubview(apiSecretTextField)
-        view.addSubview(deletButton)
-        view.addSubview(confirmButton)
         view.addSubview(seperator0)
         view.addSubview(seperator1)
 
@@ -119,21 +119,37 @@ class EditGrinNodeViewController: UIViewController {
             m.left.equalToSuperview().offset(24)
         }
 
-        let buttonWidth = (kScreenW - 24*3) / 2
+        if !isAddNode {
 
-        deletButton.snp.makeConstraints { (m) in
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
-            m.width.equalTo(buttonWidth)
-            m.height.equalTo(50)
-            m.left.equalToSuperview().offset(24)
+            view.addSubview(deletButton)
+            view.addSubview(confirmButton)
+
+            let buttonWidth = (kScreenW - 24*3) / 2
+
+            deletButton.snp.makeConstraints { (m) in
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+                m.width.equalTo(buttonWidth)
+                m.height.equalTo(50)
+                m.left.equalToSuperview().offset(24)
+            }
+
+            confirmButton.snp.makeConstraints { (m) in
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+                m.width.equalTo(buttonWidth)
+                m.height.equalTo(50)
+                m.right.equalToSuperview().offset(-24)
+            }
+        } else {
+            titleLabel.text = R.string.localizable.grinNodeAddNode()
+            view.addSubview(confirmButton)
+            confirmButton.snp.makeConstraints { (m) in
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+                m.width.equalTo(kScreenW - 48)
+                m.height.equalTo(50)
+                m.right.equalToSuperview().offset(-24)
+            }
         }
 
-        confirmButton.snp.makeConstraints { (m) in
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
-            m.width.equalTo(buttonWidth)
-            m.height.equalTo(50)
-            m.right.equalToSuperview().offset(-24)
-        }
 
         apiSecretTextField.delegate = self
         grinNodeTextField.delegate = self

@@ -28,6 +28,8 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var amountTitleLabel: UILabel!
     @IBOutlet weak var feeTitleLable: UILabel!
+    let txMethodLabel = LabelBgView()
+
 
     let helpButton: UIButton = {
         let button = UIButton()
@@ -170,6 +172,24 @@ class SendGrinViewController: UIViewController {
             m.width.height.equalTo(16)
             m.centerY.equalTo(self.titleView.symbolLabel)
             m.left.equalTo(self.titleView.symbolLabel.snp.right).offset(10)
+        }
+
+        view.addSubview(txMethodLabel)
+        txMethodLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(titleView.snp.bottom)
+            m.left.equalToSuperview().offset(26)
+        }
+        txMethodLabel.titleLab.font = UIFont.systemFont(ofSize: 12)
+        txMethodLabel.titleLab.textColor = UIColor.init(netHex: 0x007aff)
+        txMethodLabel.bgImg.image = R.image.grin_methd_bg()
+
+
+        if self.transferMethod == .file {
+            txMethodLabel.titleLab.text = R.string.localizable.grinTxMethodFile()
+        } else if self.transferMethod == .vite {
+            txMethodLabel.titleLab.text = R.string.localizable.grinTxMethodVite()
+        }   else if self.transferMethod == .http {
+            txMethodLabel.titleLab.text = R.string.localizable.grinTxMethodHttp()
         }
 
 

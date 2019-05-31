@@ -28,19 +28,20 @@ class GrinTransactionCell: UITableViewCell {
     @IBOutlet weak var creationTimeLabel: UILabel!
     @IBOutlet weak var feeLabel: UILabel!
     @IBOutlet weak var icon: UIImageView!
-    
-    @IBOutlet weak var methodLabel: UILabel!
-    func bind(_ fullInfo: GrinFullTxInfo) {
 
-        methodLabel.isHidden = false
+    let txMethodLabel = LabelBgView()
+
+
+    func bind(_ fullInfo: GrinFullTxInfo) {
+        txMethodLabel.isHidden = false
         if fullInfo.isHttpTx {
-            methodLabel.text = " \(R.string.localizable.grinTxMethodHttp()) "
+            txMethodLabel.titleLab.text = " \(R.string.localizable.grinTxMethodHttp()) "
         } else if fullInfo.isViteTx {
-            methodLabel.text = " \(R.string.localizable.grinTxMethodVite()) "
+            txMethodLabel.titleLab.text = " \(R.string.localizable.grinTxMethodVite()) "
         } else if fullInfo.isFileTx {
-            methodLabel.text = " \(R.string.localizable.grinTxMethodFile()) "
+            txMethodLabel.titleLab.text = " \(R.string.localizable.grinTxMethodFile()) "
         } else {
-            methodLabel.isHidden = true
+            txMethodLabel.isHidden = true
         }
 
         creationTimeLabel.text = ""
@@ -139,6 +140,22 @@ class GrinTransactionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        contentView.addSubview(txMethodLabel)
+        txMethodLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(statusLabel.snp.right).offset(8)
+            m.centerY.equalTo(statusLabel)
+        }
+
+        txMethodLabel.titleLab.snp.remakeConstraints { (m) in
+            m.top.bottom.equalTo(txMethodLabel)
+            m.left.equalTo(txMethodLabel).offset(0)
+            m.right.equalTo(txMethodLabel).offset(-3)
+        }
+        //        txMethodLabel.backgroundColor = UIColor.init(netHex: 0xDFEEFF,alpha: 0.61)
+        txMethodLabel.titleLab.font = UIFont.systemFont(ofSize: 12)
+        txMethodLabel.titleLab.textColor = UIColor.init(netHex: 0x007aff)
+        txMethodLabel.bgImg.image = R.image.grin_methd_bg()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

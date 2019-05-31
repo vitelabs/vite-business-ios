@@ -18,6 +18,7 @@
                 <outlet property="addressTitleLabel" destination="o6G-c0-TfG" id="K5g-5B-xV2"/>
                 <outlet property="imageView" destination="ybb-yV-Hnh" id="IVw-Su-w2y"/>
                 <outlet property="infoView" destination="dz4-UC-bLN" id="HBq-H4-M1P"/>
+                <outlet property="infoViewTopConstraint" destination="leN-d6-gew" id="bMM-0h-T4s"/>
                 <outlet property="noiceDetailLabel" destination="fy1-TY-lNl" id="1gm-OW-5k6"/>
                 <outlet property="noiceTitleLabel" destination="Hpq-hD-EPO" id="Vx5-Uj-d6U"/>
                 <outlet property="notSeeLabel" destination="Q7w-yq-fXe" id="l6d-A1-QWi"/>

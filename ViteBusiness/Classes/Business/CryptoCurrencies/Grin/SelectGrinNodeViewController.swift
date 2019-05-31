@@ -58,7 +58,7 @@ class SelectGrinNodeViewController: UIViewController {
 
         tableView.snp.makeConstraints { (m) in
             m.bottom.left.right.equalToSuperview()
-            m.top.equalTo(titleLabel.snp.bottom)
+            m.top.equalTo(titleLabel.snp.bottom).offset(20)
         }
 
         tableView.delegate = self
@@ -71,15 +71,18 @@ class SelectGrinNodeViewController: UIViewController {
         }
 
         addNodeButton.rx.tap.bind {[weak self] _ in
-            self?.gotoEditVC(node: nil)
+            self?.gotoEditVC(node: nil, addNewNode: true)
             }.disposed(by: rx.disposeBag)
 
         tableView.tableFooterView = UIView()
 
     }
 
-    func gotoEditVC(node: GrinNode?) {
+    func gotoEditVC(node: GrinNode?, addNewNode: Bool) {
         let vc = EditGrinNodeViewController()
+        if addNewNode {
+            vc.isAddNode = true
+        }
         vc.node = node
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -114,7 +117,7 @@ extension SelectGrinNodeViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             node = nodes.1[indexPath.row]
             cell.editNodeAction = { [weak self] in
-                self?.gotoEditVC(node: node)
+                self?.gotoEditVC(node: node, addNewNode: false)
             }
         }
         cell.addressLabel.text = node.address

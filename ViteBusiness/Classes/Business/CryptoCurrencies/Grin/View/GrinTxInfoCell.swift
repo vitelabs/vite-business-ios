@@ -47,12 +47,13 @@ class GrinTxInfoCell: UITableViewCell {
             m.left.equalTo(statusLabel)
             m.top.equalTo(statusLabel.snp.bottom).offset(3)
         }
+        timeLabel.numberOfLines = 2
 
 
         lineImageView.snp.makeConstraints { (m) in
-            m.bottom.equalToSuperview()
+            m.bottom.equalToSuperview().offset(-2)
             m.top.equalTo(statusImageView.snp.bottom)
-            m.width.equalTo(2)
+            m.width.equalTo(1)
             m.centerX.equalTo(statusImageView)
         }
 

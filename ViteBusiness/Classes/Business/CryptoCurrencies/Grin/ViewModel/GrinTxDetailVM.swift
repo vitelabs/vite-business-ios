@@ -393,7 +393,7 @@ class GrinTxDetailVM: NSObject {
 
 
         let pageInfo = GrinDetailPageInfo()
-        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.title = R.string.localizable.grinReceiveTitle()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         guard let localInfo = fullInfo.localInfo, localInfo.type == "Receive", localInfo.method == "Vite" else { return pageInfo }
@@ -476,16 +476,22 @@ class GrinTxDetailVM: NSObject {
 
     func creatReceiveGrinByHttpDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.title = R.string.localizable.grinReceiveTitle()
         pageInfo.methodString = R.string.localizable.grinTxMethodHttp()
 
         guard let gatewayInfo = fullInfo.gatewayInfo else {  return pageInfo }
 
         pageInfo.desc = R.string.localizable.grinDetailGatewayReceived()
-        let amount = Int(gatewayInfo.toAmount ?? gatewayInfo.fromAmount ?? "") ?? 0
-        let amountString =  Amount(abs(amount)).amount(decimals: 9, count: 9)
-        pageInfo.amount = amountString
+
+        let fromAmount = Int(gatewayInfo.fromAmount ?? "") ?? 0
+        let toAmount = Int(gatewayInfo.toAmount ?? "") ?? 0
+
+        let fromAmountStr = Amount(abs(fromAmount)).amount(decimals: 9, count: 9)
+        let toAmountStr = Amount(abs(toAmount)).amount(decimals: 9, count: 9)
+
+        pageInfo.amount = fromAmountStr
         pageInfo.fee = nil
+        pageInfo.trueAmount = toAmountStr
 
         let cellInfo0 = GrinDetailCellInfo()
         cellInfo0.isTitle = true
@@ -584,6 +590,12 @@ class GrinTxDetailVM: NSObject {
             if getSendFileTime > 0 {
                 cellInfo1.statusImage = R.image.grin_detail_waitToSign()
                 cellInfo0.lineImage = blueLineImage
+                if let tofee = fullInfo.gatewayInfo?.toFee {
+                    let tofeeCount = Int(tofee) ?? 0
+                    let tofeeStr = Amount(abs(tofeeCount)).amount(decimals: 9, count: 9)
+                    let str = "\(R.string.localizable.grinTxTypeWaitToSign())\n\(R.string.localizable.grinSentFee()): \(tofeeStr)"
+                    cellInfo1.timeStr = str
+                }
             } else {
                 cellInfo1.statusImage = R.image.grin_detail_waitToSign_gray()
                 cellInfo0.lineImage = grayLineImage
@@ -647,7 +659,7 @@ class GrinTxDetailVM: NSObject {
 
     func creatReceiveGrinByFileDetailPageInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.title = R.string.localizable.grinReceiveTitle()
         pageInfo.methodString = R.string.localizable.grinTxMethodFile()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
@@ -749,7 +761,7 @@ class GrinTxDetailVM: NSObject {
 
     func creatReceiveGrinDetailPageInfoWithoutAnyInfo(fullInfo: GrinFullTxInfo) -> GrinDetailPageInfo {
         var pageInfo = GrinDetailPageInfo()
-        pageInfo.title = R.string.localizable.grinSentTitle()
+        pageInfo.title = R.string.localizable.grinReceiveTitle()
         (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
 
         let cellInfo0 = GrinDetailCellInfo()

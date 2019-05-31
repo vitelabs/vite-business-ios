@@ -36,6 +36,7 @@ class GrinTeachViewController: UIViewController {
     @IBOutlet weak var noiceTitleLabel: UILabel!
     @IBOutlet weak var addressLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var qrCodeImageView: UIImageView!
+    @IBOutlet weak var infoViewTopConstraint: NSLayoutConstraint!
     var setting: [String: Bool] = [:]
     var txType: TxType = .sent
     var channelType: TransferMethod = .vite
@@ -49,7 +50,7 @@ class GrinTeachViewController: UIViewController {
 
         var desc = ""
         if channelType == .vite {
-            imageView.image = R.image.grin_teach_vite()
+            imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_vite_cn() :R.image.grin_teach_vite()
             if self.txType == .sent {
                 titleLabel.text = R.string.localizable.grinTeachViteSentTitle()
                 desc =  R.string.localizable.grinSentUseViteDesc()
@@ -68,12 +69,12 @@ class GrinTeachViewController: UIViewController {
             }
         } else if channelType == .http {
             if self.txType == .sent {
-                imageView.image = R.image.grin_teach_http_send()
+                imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_http_send_cn() : R.image.grin_teach_http_send()
                 titleLabel.text = R.string.localizable.grinTeachHttpSentTitle()
                 desc =  R.string.localizable.grinSentUseHttpDesc()
                 actionButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
             } else if txType == .receive {
-                imageView.image = R.image.grin_teach_http_receive()
+                imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_http_receive_cn() :R.image.grin_teach_http_receive()
                 titleLabel.text = R.string.localizable.grinTeachHttpReceiveTitle()
                 desc = R.string.localizable.grinReceiveByHttpDesc()
                 addressTitleLabel.text = R.string.localizable.grinHttpAddress()
@@ -88,7 +89,7 @@ class GrinTeachViewController: UIViewController {
                 }
             }
         } else if channelType == .file {
-            imageView.image = R.image.grin_teach_file()
+            imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_file_cn() : R.image.grin_teach_file()
             if self.txType == .sent {
                 actionButton.setTitle(R.string.localizable.grinTeachViteSendStartSend(), for: .normal)
                 titleLabel.text = R.string.localizable.grinTeachFileSendTitle()
@@ -108,18 +109,24 @@ class GrinTeachViewController: UIViewController {
             settingButton.isHidden = true
             notSeeLabel.isHidden = true
         }
-        if self.txType == .sent || self.channelType == .file {
-            infoView.isHidden = true
-        }
-
-        noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
-        notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
-
         if fromSendVC {
             settingButton.isHidden = true
             notSeeLabel.isHidden = true
             actionButton.isHidden = true
         }
+
+        if self.txType == .sent || self.channelType == .file {
+            infoView.isHidden = true
+        } else {
+            if notSeeLabel.isHidden == true {
+                infoViewTopConstraint.constant = -10
+                view.layoutIfNeeded()
+            }
+        }
+
+        noiceTitleLabel.text = R.string.localizable.grinNoticeTitle()
+        notSeeLabel.text = R.string.localizable.grinNotSeeAgain()
+
     }
 
     @IBAction func actionButtonDidClick(_ sender: Any) {

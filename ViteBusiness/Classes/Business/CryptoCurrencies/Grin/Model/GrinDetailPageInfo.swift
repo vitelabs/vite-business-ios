@@ -9,12 +9,12 @@ import Foundation
 
 class GrinDetailPageInfo {
 
-
     var title: String = ""
     var methodString: String? = nil
     var desc: String? = nil
     var amount: String? = nil
     var fee: String? = nil
+    var trueAmount: String? = nil
 
     var cellInfo:[GrinDetailCellInfo] = []
 
