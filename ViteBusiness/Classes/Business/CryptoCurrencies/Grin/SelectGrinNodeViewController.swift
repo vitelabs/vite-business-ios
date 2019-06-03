@@ -50,6 +50,9 @@ class SelectGrinNodeViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(addNodeButton)
 
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: 24)
+        tableView.separatorColor = UIColor.init(netHex: 0xD3DFEF)
+
         titleLabel.snp.makeConstraints { (m) in
             m.right.top.equalToSuperview()
             m.height.equalTo(28)

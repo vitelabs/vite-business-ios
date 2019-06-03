@@ -33,6 +33,8 @@ class SelectGrinNodeCell: UITableViewCell {
 
         editButton.setImage(R.image.grin_node_edit(), for: .normal)
 
+        seperator.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
+
         statusImageView.snp.makeConstraints { (m) in
             m.width.height.equalTo(20)
             m.centerY.equalToSuperview()
@@ -47,7 +49,7 @@ class SelectGrinNodeCell: UITableViewCell {
 
         seperator.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-58)
-            m.width.equalTo(2)
+            m.width.equalTo(1)
             m.top.equalToSuperview().offset(19)
             m.bottom.equalToSuperview().offset(-14)
         }
@@ -116,6 +118,23 @@ class ViteGrinNodeCell: SelectGrinNodeCell {
         }
 
         contentView.backgroundColor = UIColor.init(netHex: 0x007AFF, alpha: 0.06)
+
+        let topLine = UIView()
+        let bottomLine = UIView()
+        topLine.backgroundColor = UIColor.init(netHex: 0x007AFF, alpha: 0.12)
+        bottomLine.backgroundColor = UIColor.init(netHex: 0x007AFF, alpha: 0.12)
+
+        contentView.addSubview(topLine)
+        contentView.addSubview(bottomLine)
+        topLine.snp.makeConstraints { (m) in
+            m.left.right.top.equalToSuperview()
+            m.height.equalTo(1)
+        }
+        bottomLine.snp.makeConstraints { (m) in
+            m.left.right.bottom.equalToSuperview()
+            m.height.equalTo(1)
+        }
+
     }
 
     required init?(coder aDecoder: NSCoder) {
