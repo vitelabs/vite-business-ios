@@ -54,7 +54,7 @@ class GrinTeachViewController: UIViewController {
             if self.txType == .sent {
                 titleLabel.text = R.string.localizable.grinTeachViteSentTitle()
                 desc =  R.string.localizable.grinSentUseViteDesc()
-                actionButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
+                actionButton.setTitle(R.string.localizable.grinTeachViteSendStartSend(), for: .normal)
             } else if txType == .receive {
                 actionButton.setTitle(R.string.localizable.grinTeachViteReceiveCopyViteAddress(), for: .normal)
                 titleLabel.text = R.string.localizable.grinTeachViteReceiveTitle()
@@ -72,7 +72,7 @@ class GrinTeachViewController: UIViewController {
                 imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_http_send_cn() : R.image.grin_teach_http_send()
                 titleLabel.text = R.string.localizable.grinTeachHttpSentTitle()
                 desc =  R.string.localizable.grinSentUseHttpDesc()
-                actionButton.setTitle(R.string.localizable.grinIknow(), for: .normal)
+                actionButton.setTitle(R.string.localizable.grinTeachViteSendStartSend(), for: .normal)
             } else if txType == .receive {
                 imageView.image = LocalizationService.sharedInstance.currentLanguage == .chinese ? R.image.grin_teach_http_receive_cn() :R.image.grin_teach_http_receive()
                 titleLabel.text = R.string.localizable.grinTeachHttpReceiveTitle()
