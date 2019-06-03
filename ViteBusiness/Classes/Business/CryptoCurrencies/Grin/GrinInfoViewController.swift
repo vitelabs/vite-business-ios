@@ -42,7 +42,7 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lineImageVIew: UIImageView!
     @IBOutlet weak var receiveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
-    let leftBatItemCustombutton = UIButton()
+    let rightBatItemCustombutton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
 
     let helpButton: UIButton = {
         let button = UIButton()
@@ -141,7 +141,7 @@ class GrinInfoViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
 
 
-        leftBatItemCustombutton.rx.tap.asObservable()
+        rightBatItemCustombutton.rx.tap.asObservable()
             .bind { [weak self] in
                 guard let `self` = self,
                     let customView = self.navigationItem.rightBarButtonItem?.customView,
@@ -149,7 +149,7 @@ class GrinInfoViewController: BaseViewController {
                     return
                 }
                 FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles:
-                    ["配置全节点",
+                    [R.string.localizable.grinNodeConfigNode(),
                      R.string.localizable.grinWalletCheck()]).show()
             }
             .disposed(by: rx.disposeBag)
@@ -172,8 +172,8 @@ class GrinInfoViewController: BaseViewController {
     func setupView() {
         navigationBarStyle = .default
 
-        leftBatItemCustombutton.setImage(R.image.icon_nav_more(), for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: leftBatItemCustombutton)
+        rightBatItemCustombutton.setImage(R.image.icon_nav_more(), for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBatItemCustombutton)
 
         self.titleView.bind(tokenInfo: GrinManager.tokenInfo)
 
