@@ -21,7 +21,7 @@
 "Update.app" = "Update App";
 "Submit.cancel" = "Cancel";
 "Close" = "Close";
-"web.page.host.tip"="本网页由 %@ 提供";
+"web.page.host.tip"="This page is provided by %@";
 
 /* Login */
 "create.account" = "Create Account";
@@ -47,11 +47,11 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "助记词是您恢复账户的唯一手段，请谨慎记录，以防丢失。";
-"mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
-"mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";
-"mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意";
-"mnemonic.backup.page.clause.button.title" = "使用条款";
+"mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
+"mnemonic.backup.page.check.button1.title" = "I understand that if I lose the mnemonic words, I would never find back my assets";
+"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
+"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to ";
+"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
 "mnemonic.backup.page.tip.anewBtn.title" = "New One";
 "mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
@@ -151,7 +151,7 @@
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Quota";
-"balance.info.detail.exchange.vite" = "置换Vite";
+"balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
 "balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
 
@@ -193,16 +193,16 @@
 "send.page.quota.content" = "%@ UTPS";
 
 /* eth vite exchange */
-"eth.vite.exchange.page.title" = "置换VITE";
-"eth.vite.exchange.page.my.address.title" = "ETH地址";
-"eth.vite.exchange.page.my.balance.title" = "余额";
-"eth.vite.exchange.page.to.address.title" = "VITE地址";
-"eth.vite.exchange.page.amount.title" = "置换金额";
-"eth.vite.exchange.page.amount.placeholder" = "最多置换%@VITE";
-"eth.vite.exchange.page.send.button.title" = "置换";
-"eth.vite.exchange.page.address.change.button.title" = "切换";
-"eth.vite.exchange.page.exchange.all.button.title" = "全部置换";
-"eth.vite.exchange.page.exchange.history.button.title" = "置换记录";
+"eth.vite.exchange.page.title" = "VITE Conversion";
+"eth.vite.exchange.page.my.address.title" = "ETH Address";
+"eth.vite.exchange.page.my.balance.title" = "Balance";
+"eth.vite.exchange.page.to.address.title" = "VITE Address";
+"eth.vite.exchange.page.amount.title" = "Conversion Amount";
+"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
+"eth.vite.exchange.page.send.button.title" = "Convert";
+"eth.vite.exchange.page.address.change.button.title" = "Switch";
+"eth.vite.exchange.page.exchange.all.button.title" = "All";
+"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
 
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
@@ -265,8 +265,8 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "正在运行PoW获取配额";
-"quota.float.view.tip" = "如果您不想运行PoW，您可抵押VITE跳过此步骤";
+"quota.float.view.title" = "Running PoW for Quota";
+"quota.float.view.tip" = "You can stake VITE to skip the process of running PoW";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
@@ -331,13 +331,13 @@
 "vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"eth.error.rpc.error.code.not.enough.fee" = "手续费不足";
+"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
-"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">快速理解置换VITE</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">VITE置换功能可以将以太网络上的ERC20 VITE代币置换到Vite网络上的VITE。在置换过程中，您的ERC20 VITE会被转入以太黑洞地址：0x1111111111111111111111111111111111111111，该转账交易被确认后，置换系统将发放等值的Vite网络VITE至您的VITE地址中。在置换过程中，向以太黑洞地址转入ERC20 VITE所需矿工费用会从您的当前ETH地址扣取。提交置换后请您耐心等待，置换VITE到账需要等以太交易被确认30个块，以太交易可以在置换记录中查看。</p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
 
 // ViteURI
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
