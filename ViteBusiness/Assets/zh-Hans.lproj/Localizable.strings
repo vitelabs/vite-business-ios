@@ -540,7 +540,7 @@
 "grin.detail.gatewayReceived" = "Vite网关已经签收交易，网关确认数达到10个后将向您转账。";
 "grin.detail.txpostingAndCanRepost" = "交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。";
 "grin.detail.pleaseFinalize" = "请敲定交易。";
-"grin.detail.pleaseFinalize2" = "请敲定广播。";
+"grin.detail.pleaseFinalize2" = "请等待交易广播。";
 "grin.detail.txFileCreatedAndCanShare" = "交易文件已创建，请确保将交易文件分享给收款人（您可以选择任何您喜欢的分享方式）并要求返回一个签收交易文件。";
 "grin.detail.txFile" = "交易文件";
 "grin.detail.txFinaziledAndPosting" = "交易已敲定并开始广播。";
@@ -556,7 +556,7 @@
 "grin.node.select.canNotConnect" = "未能连接到全节点";
 "grin.detail.slateCopied" = "已复制Slate ID";
 "grin.send.illegalAmmount" = "转账金额不合法";
-"grin.detail.gatewayResend" = "请求网管重发";
+"grin.detail.gatewayResend" = "请求网关重发";
 
 
 
