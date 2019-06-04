@@ -1179,7 +1179,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 451 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 452 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2673,6 +2673,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网关交易已确认，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayConfirmConntLessThanTen = Rswift.StringResource(key: "grin.detail.gateway.confirmConntLessThanTen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite网关代收
       /// 
       /// Locales: en, zh-Hans
@@ -2844,7 +2848,7 @@ struct R: Rswift.Validatable {
       /// en translation: 交易已确认，确认数达到10个后，实收金额会进入可用余额。
       /// 
       /// Locales: en, zh-Hans
-      static let grinDetailGatewayConfirmConntLessThanTen = Rswift.StringResource(key: "grin.detail.gateway.confirmConntLessThanTen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let grinDetailConfirmLessThanThen = Rswift.StringResource(key: "grin.detail.confirmLessThanThen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易已签收
       /// 
       /// Locales: en, zh-Hans
@@ -5597,6 +5601,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Vite网关交易已确认，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayConfirmConntLessThanTen(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gateway.confirmConntLessThanTen", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vite网关代收
       /// 
       /// Locales: en, zh-Hans
@@ -5894,8 +5905,8 @@ struct R: Rswift.Validatable {
       /// en translation: 交易已确认，确认数达到10个后，实收金额会进入可用余额。
       /// 
       /// Locales: en, zh-Hans
-      static func grinDetailGatewayConfirmConntLessThanTen(_: Void = ()) -> String {
-        return NSLocalizedString("grin.detail.gateway.confirmConntLessThanTen", bundle: R.hostingBundle, comment: "")
+      static func grinDetailConfirmLessThanThen(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.confirmLessThanThen", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 交易已签收

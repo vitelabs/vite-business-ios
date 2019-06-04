@@ -558,9 +558,7 @@ class GrinTxDetailVM: NSObject {
             localInfo.type = "Receive"
             localInfo.slateId = gatewayInfo.toSlatedId
             fullInfo.localInfo = localInfo
-        } else {
-            (pageInfo.amount, pageInfo.fee) = self.getAmountAndFee(fullInfo: fullInfo)
-        }
+        } 
 
 
         if let localInfo = fullInfo.localInfo, localInfo.type == "Receive", localInfo.method == "Vite" {

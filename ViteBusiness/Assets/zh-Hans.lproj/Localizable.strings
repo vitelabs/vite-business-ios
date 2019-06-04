@@ -533,8 +533,9 @@
 "grin.detail.txReceived" = "交易已签收";
 "grin.detail.txReceivedAndCanAskGatewaytoSend" = "您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。";
 "grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "若长时间未进入已签收状态，请点击请求网关重发。";
-"grin.detail.gateway.confirmConntLessThanTen" = "交易已确认，确认数达到10个后，实收金额会进入可用余额。";
+"grin.detail.gateway.confirmConntLessThanTen" = "Vite网关交易已确认，网关确认数达到10个后将向您转账。";
 "grin.detail.gateway.confirmConntBiggerThanTen" = "Vite网关确认数达到10个，若长时间未进入待签收状态，请点击请求网关重发。";
+"grin.detail.confirmLessThanThen" = "交易已确认，确认数达到10个后，实收金额会进入可用余额。";
 "grin.detail.gateway" = "Vite网关代收";
 "grin.detail.gatewayReceived" = "Vite网关已经签收交易，网关确认数达到10个后将向您转账。";
 "grin.detail.txpostingAndCanRepost" = "交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。";
