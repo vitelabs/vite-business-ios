@@ -48,12 +48,12 @@
 /* mnemonic */
 "mnemonic.backup.page.title" = "Generate Seed Phrase";
 "mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
-"mnemonic.backup.page.check.button1.title" = "I understand that if I lose the mnemonic words, I would never find back my assets";
+"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to ";
+"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "New One";
+"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
 "mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
@@ -153,7 +153,7 @@
 "balance.info.detail.pledge" = "Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
-"balance.info.detail.onroad.amount.content" = "%@ Unconfirmed";
+"balance.info.detail.onroad.amount.content" = "%@ On Road";
 
 /* Address Manage Page */
 "address.manage.page.title" = "My VITE Address";

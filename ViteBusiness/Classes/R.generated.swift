@@ -1185,14 +1185,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailContent = Rswift.StringResource(key: "aboutUs.page.email.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ On Road
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       static let sendPageQuotaContent = Rswift.StringResource(key: "send.page.quota.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ Unconfirmed
       /// 
       /// Locales: en, zh-Hans
@@ -1749,7 +1749,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxMethodHttp = Rswift.StringResource(key: "grin.txMethod.http", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I have already read, understood and I agree to 
+      /// en translation: I have already read, understood and I agree to our
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1769,7 +1769,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton2Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I understand that if I lose the mnemonic words, I would never find back my assets
+      /// en translation: I understand if I lose the mnemonic words, I would never find back my assets
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton1Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1949,10 +1949,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsEditPageNameTitle = Rswift.StringResource(key: "contacts.edit.page.name.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: New One
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -2193,6 +2189,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageNetworkError = Rswift.StringResource(key: "transaction.list.page.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Regenerate
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Registration
       /// 
       /// Locales: en, zh-Hans
@@ -2997,18 +2997,18 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("aboutUs.page.email.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
       }
       
+      /// en translation: %@ On Road
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       static func sendPageQuotaContent(_ value1: String) -> String {
         return String(format: NSLocalizedString("send.page.quota.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ Unconfirmed
@@ -3984,7 +3984,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txMethod.http", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I have already read, understood and I agree to 
+      /// en translation: I have already read, understood and I agree to our
       /// 
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageCheckButton3Title(_: Void = ()) -> String {
@@ -4019,7 +4019,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.check.button2.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I understand that if I lose the mnemonic words, I would never find back my assets
+      /// en translation: I understand if I lose the mnemonic words, I would never find back my assets
       /// 
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageCheckButton1Title(_: Void = ()) -> String {
@@ -4332,13 +4332,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func contactsEditPageNameTitle(_: Void = ()) -> String {
         return NSLocalizedString("contacts.edit.page.name.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: New One
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Next
@@ -4759,6 +4752,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListPageNetworkError(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.page.network.error", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Regenerate
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Registration
