@@ -22,7 +22,6 @@ class MnemonicTextView: UIView {
         contentTextView.isScrollEnabled = true
         contentTextView.autocorrectionType = .no
         contentTextView.autocapitalizationType = .none
-        contentTextView.inputAccessoryView = self.tipView
         contentTextView.delegate = self
         return contentTextView
     }()
@@ -38,6 +37,9 @@ class MnemonicTextView: UIView {
 
         addSubview(contentTextView)
         contentTextView.isEditable = isEditable
+        if isEditable {
+            contentTextView.inputAccessoryView = self.tipView
+        }
 
         contentTextView.snp.makeConstraints { (m) in
             m.top.left.equalTo(self).offset(10)
