@@ -34,7 +34,6 @@ class GrinTransactionTitleView: UIView {
 
         symbolLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
-            m.right.equalTo(tokenIconView.snp.left).offset(-10)
             m.centerY.equalTo(tokenIconView)
         }
 

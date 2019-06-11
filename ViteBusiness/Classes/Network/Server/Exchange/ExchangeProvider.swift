@@ -126,10 +126,10 @@ extension ExchangeProvider {
                 if let json = json as? [[String: Any]] {
                     let tokenInfos = [TokenInfo](JSONArray: json).compactMap { $0 }
                     tokenInfos.forEach({ (tokenInfo) in
-                        map[tokenInfo.id] = tokenInfo
+                        map[tokenInfo.id.lowercased()] = tokenInfo
                     })
                 }
-                if let tokenInfo = map[id] {
+                if let tokenInfo = map[id.lowercased()] {
                     completion(Result.success(tokenInfo))
                 } else {
                     completion(Result.failure(ExchangeError.notFound))

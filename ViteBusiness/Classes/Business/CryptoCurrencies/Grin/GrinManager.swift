@@ -12,6 +12,7 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
+
 private func grinFileHelper() -> FileHelper {
     return FileHelper.createForWallet(appending: "/grin" + GrinManager.getChainType().rawValue)
 }
@@ -44,15 +45,15 @@ class GrinManager: GrinBridge {
             })
             .disposed(by: self.bag)
 
-        HDWalletManager.instance.accountDriver
-            .filterNil()
-            .distinctUntilChanged({ (a0, a1) -> Bool in
-                a0.address == a1.address
-            })
-            .drive(onNext: { _ in
-                GrinTxByViteService().reportViteAddress().done {_ in}
-            })
-            .disposed(by: self.bag)
+//        HDWalletManager.instance.accountDriver
+//            .filterNil()
+//            .distinctUntilChanged({ (a0, a1) -> Bool in
+//                a0.address == a1.address
+//            })
+//            .drive(onNext: { _ in
+//                //GrinTxByViteService().reportViteAddress().done {_ in}
+//            })
+//            .disposed(by: self.bag)
 
 
         #if DEBUG || TEST
@@ -61,6 +62,7 @@ class GrinManager: GrinBridge {
                 self?.configGrinWallet()
             }
             .disposed(by: self.bag)
+
         #endif
 
         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
@@ -73,6 +75,9 @@ class GrinManager: GrinBridge {
                 self?.getBalance()
             }
             .disposed(by: self.bag)
+
+        FMDatabase()
+
     }
 
 
@@ -80,10 +85,25 @@ class GrinManager: GrinBridge {
         self.fileHelper = grinFileHelper()
         self.password =  GrinManager.getPassword()
         self.walletUrl = GrinManager.getWalletUrl()
-        self.checkNodeApiHttpAddr = ViteConst.instance.grin.nodeHttp
-        self.apiSecret = ViteConst.instance.grin.apiSecret
-        self.chainType = ViteConst.instance.grin.chainType
+        #if DEBUG || TEST
+        print("grinwalletpath:\(self.walletUrl.path)")
+//        switch DebugService.instance.config.appEnvironment {
+//        case .online, .stage:
+//            self.chainType = GrinChainType.mainnet.rawValue
+//            break
+//        case .test, .custom:
+//            self.chainType = GrinChainType.usernet.rawValue
+//        }
+        self.chainType = GrinChainType.mainnet.rawValue
+        self.checkNodeApiHttpAddr = self.currentNode.address
+        self.apiSecret = self.currentNode.apiSecret
+        #else
+        self.chainType = GrinChainType.mainnet.rawValue
+        self.checkNodeApiHttpAddr = self.currentNode.address
+        self.apiSecret = self.currentNode.apiSecret
+        #endif
         self.creatWalletIfNeeded()
+        self.resetApiSecret()
         self.balance.accept(GrinBalance())
         DispatchQueue.main.async {
             self.handleSavedTx()
@@ -115,6 +135,18 @@ class GrinManager: GrinBridge {
         })
     }
 
+    func resetApiSecret() {
+        let url =  walletUrl.appendingPathComponent(".api_secret")
+        do {
+            if FileManager.default.fileExists(atPath: url.path) {
+                try FileManager.default.removeItem(at: url)
+            }
+            try currentNode.apiSecret.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            plog(level: .error, log: "grin-resetApiSecretError:\(error)", tag: .grin)
+        }
+    }
+
     func getBalance() {
         guard self.walletCreated.value else { return }
         grin_async({ () in
@@ -144,15 +176,41 @@ extension GrinManager {
             let slate = Slate(JSON:data) else {
                 return
         }
+
+        var fullInfo = GrinFullTxInfo()
+
+        var txs: [TxLogEntry] = []
+        do {
+            let (_ ,logeEntrys) = try  GrinManager.default.txsGet(refreshFromNode: false).dematerialize()
+            txs = logeEntrys
+        } catch {
+
+        }
+
+        if  url.path.contains("response") {
+            GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
+            let saveUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: true)
+            try? FileManager.default.copyItem(at: url, to: saveUrl)
+            let localInfo = GrinLocalInfoService.shared.getSendInfo(slateId: slate.id)
+            fullInfo.localInfo = localInfo
+            fullInfo.txLogEntry = txs.filter({ (tx) -> Bool in
+                tx.txSlateId == slate.id && ( tx.txType == .txSent || tx.txType == .txSentCancelled)
+            }).last
+        } else {
+            GrinLocalInfoService.shared.addReceiveInfo(slateId: slate.id, method: "File", getSendFileTime: Int(Date().timeIntervalSince1970))
+            let saveUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: false)
+            try? FileManager.default.copyItem(at: url, to: saveUrl)
+            let localInfo = GrinLocalInfoService.shared.getReceiveInfo(slateId: slate.id)
+            fullInfo.localInfo = localInfo
+            fullInfo.txLogEntry = txs.filter({ (tx) -> Bool in
+                tx.txSlateId == slate.id && ( tx.txType == .txReceived || tx.txType == .txReceivedCancelled)
+            }).last
+        }
+        fullInfo.openedSalteUrl = url
+
         DispatchQueue.main.async {
-            let vc = SlateViewController(nibName: "SlateViewController", bundle: businessBundle())
-            vc.opendSlateUrl = url
-            vc.opendSlate = slate
-            if  url.path.contains("response") {
-                vc.type = .finalize
-            } else {
-                vc.type = .receive
-            }
+            let vc = GrinTxDetailViewController()
+            vc.fullInfo = fullInfo
             var topVC = Route.getTopVC()
             if let nav = topVC?.navigationController {
                 nav.pushViewController(vc, animated: true)
@@ -185,7 +243,7 @@ extension GrinManager {
             while records.count >= 10 {
                 records.removeFirst()
             }
-            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(accountAddress)", tag: .grin)
+            plog(level: .info, log: "grin-2-readTxs.fname:\(fileName),:\(fromAddress),accountAddress:\(accountAddress)", tag: .grin)
         }
         records.append(record)
         do {
@@ -366,6 +424,7 @@ extension GrinManager {
 
 extension GrinManager {
     static func getChainType() -> GrinChainType {
+        return .mainnet
         #if DEBUG || TEST
         switch DebugService.instance.config.appEnvironment {
         case .online, .stage:
@@ -379,7 +438,6 @@ extension GrinManager {
     }
 
     static func getWalletUrl() -> URL {
-        let chainType = self.getChainType()
         let fileHelper = grinFileHelper()
         var url = URL.init(fileURLWithPath: fileHelper.rootPath)
         return url
@@ -401,6 +459,31 @@ extension GrinManager {
             return ""
         }
         return encryptedKey
+    }
+
+    var currentNode: GrinNode {
+        if let selectedNode = GrinLocalInfoService.shared.getSelectedNode() {
+            return selectedNode
+        } else {
+            return viteGrinNode
+        }
+    }
+
+    var viteGrinNode: GrinNode {
+        let viteNode = GrinNode()
+//        #if DEBUG || TEST
+//        switch DebugService.instance.config.appEnvironment {
+//        case .test, .custom:
+//            viteNode.address = "http://45.40.197.46:23413"
+//            viteNode.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
+//            return viteNode
+//        default:
+//            break
+//        }
+//        #endif
+        viteNode.address = "https://grin.vite.net/fullnode"
+        viteNode.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
+        return viteNode
     }
 }
 
@@ -425,3 +508,19 @@ func grin_async<T>(_ a: @escaping ()-> T,
         }
     }
 }
+
+class GrinDateFormatter {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return dateFormatter
+    }()
+
+    static let dateFormatterForZeroTimeZone: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
+        return dateFormatter
+    }()
+}
+

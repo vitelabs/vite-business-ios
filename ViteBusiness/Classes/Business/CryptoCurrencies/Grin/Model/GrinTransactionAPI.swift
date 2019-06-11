@@ -16,6 +16,9 @@ public enum GrinTransaction {
     case uploadSlate(from: String, to: String, fname: String, data: String, id: String, type: Int, s: String )
     case getSlate(to: String, s: String, fname:String)
     case reportFinalization(from: String, s: String, id: String)
+    case gatewayTransactionList(addressesAndSignature:[[String: String]])
+    case gatewayTransactionById(slateID: String)
+    case gateWayReSend(address:String, id: String,signature: String)
 }
 
 extension GrinTransaction: TargetType {
@@ -34,14 +37,20 @@ extension GrinTransaction: TargetType {
             return "/api/grin/getUploadFile"
         case .reportFinalization:
             return "/api/grin/finishTrx"
+        case .gatewayTransactionList:
+            return "/api/gringateway/getTxList"
+        case .gatewayTransactionById:
+            return "/api/gringateway/getTxById"
+        case .gateWayReSend:
+            return "/api/gringateway/resend"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .getSlate, .reportViteAddress:
+        case .getSlate, .reportViteAddress,.gatewayTransactionById:
             return .get
-        case .uploadSlate, .reportFinalization:
+        case .uploadSlate, .reportFinalization, .gateWayReSend, .gatewayTransactionList:
             return .post
         }
     }
@@ -81,6 +90,25 @@ extension GrinTransaction: TargetType {
                 "signature": signature,
                 ]
             return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
+        case let .gatewayTransactionList(addressesAndSignature):
+            var parameters: [String : Any] = [
+                "addressList": addressesAndSignature,
+            ]
+            return .requestParameters(parameters: parameters, encoding: Moya.JSONEncoding() as! ParameterEncoding)
+        case let .gatewayTransactionById(slateID):
+            var parameters: [String : Any] = [
+                "id": slateID,
+            ]
+            return .requestCompositeData(bodyData: Data(),
+                                         urlParameters: parameters)
+        case let .gateWayReSend(address, id, signature):
+            var parameters: [String : Any] = [
+                "address": address,
+                "id": id,
+                "signature": signature
+            ]
+            return .requestCompositeData(bodyData: Data(),
+                                         urlParameters: parameters)
         }
     }
 

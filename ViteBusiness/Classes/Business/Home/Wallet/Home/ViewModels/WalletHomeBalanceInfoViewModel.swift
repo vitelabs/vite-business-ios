@@ -30,7 +30,7 @@ final class WalletHomeBalanceInfoViewModel {
             self.balanceString = "****"
             self.price = "****"
         } else {
-            self.balanceString = balanceInfo.balance.amountShort(decimals: tokenInfo.decimals)
+            self.balanceString = balanceInfo.balance.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)
             self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
         }
 

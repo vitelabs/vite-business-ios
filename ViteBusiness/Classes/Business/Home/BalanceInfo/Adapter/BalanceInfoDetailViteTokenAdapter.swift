@@ -9,7 +9,23 @@ import Foundation
 
 class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
 
-    func setup(containerView: UIView, tokenInfo: TokenInfo) {
+    let tokenInfo: TokenInfo
+
+    required init(tokenInfo: TokenInfo) {
+        self.tokenInfo = tokenInfo
+    }
+
+    func viewDidAppear() {
+        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        FetchQuotaManager.instance.retainQuota()
+    }
+
+    func viewDidDisappear() {
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        FetchQuotaManager.instance.releaseQuota()
+    }
+    
+    func setup(containerView: UIView) {
 
         let cardView = BalanceInfoViteChainCardView()
         containerView.addSubview(cardView)

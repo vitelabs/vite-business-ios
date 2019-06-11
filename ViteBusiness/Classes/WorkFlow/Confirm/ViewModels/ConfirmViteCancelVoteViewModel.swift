@@ -18,15 +18,15 @@ struct ConfirmViteCancelVoteViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.votePageVoteInfoCancelVoteTitle()
+        return R.string.localizable.confirmTransactionPageViteCancelVoteTransferTitle()
     }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.voteListConfirmButtonTitle()
+        return R.string.localizable.confirmTransactionPageViteCancelVoteConfirmButton()
     }
 
     func createInfoView() -> UIView {
         let infoView = ConfirmVotetInfoView()
-        infoView.set(title: R.string.localizable.confirmTransactionPageNodeName(), detail: name, tokenInfo: tokenInfo)
+        infoView.set(title: R.string.localizable.confirmTransactionPageViteVoteNodeName(), detail: name, tokenInfo: tokenInfo)
         return infoView
     }
 }

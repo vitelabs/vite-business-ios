@@ -11,17 +11,17 @@ class ConfirmGrinTransactionViewModel: ConfirmViewModelType {
 
     private let feeString: String
     private let amountString: String
+    let confirmTitle: String
 
-    init(amountString: String, feeString: String) {
+
+    init(amountString: String, feeString: String, confirmTitle: String) {
         self.amountString = amountString
         self.feeString = feeString
+        self.confirmTitle = confirmTitle
     }
 
-    var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageTitle()
-    }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.confirmTransactionPageConfirmButton()
+        return R.string.localizable.confirmTransactionPageGrinConfirmButton()
     }
 
     func createInfoView() -> UIView {

@@ -129,9 +129,10 @@ class WalletHomeViewController: BaseTableViewController {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
-                    if viewModel.tokenInfo.coinType == .eth {
-                        balanceInfoDetailViewController = EthTokenInfoController(viewModel.tokenInfo)
-                    } else if viewModel.tokenInfo.coinType == .grin {
+                    switch viewModel.tokenInfo.coinType {
+                    case .eth, .vite:
+                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
+                    case .grin:
                         if !GrinManager.default.walletCreated.value {
                             Toast.show(R.string.localizable.grinCreating())
                             return
@@ -140,8 +141,6 @@ class WalletHomeViewController: BaseTableViewController {
                                 balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
-                    } else {
-                        balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
                 }

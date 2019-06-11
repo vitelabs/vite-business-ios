@@ -35,12 +35,12 @@ public struct Workflow {
             let vc = ConfirmViewController(viewModel: viewModel, isForceUsePassword: isForceUsePassword) { (r) in
                 switch r {
                 case .biometryAuthFailed:
-                    Alert.show(title: R.string.localizable.sendPageConfirmBiometryAuthFailedTitle(), message: nil,
-                               titles: [.default(title: R.string.localizable.sendPageConfirmBiometryAuthFailedBack())])
+                    Alert.show(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedTitle(), message: nil,
+                               titles: [.default(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedBack())])
                     confirmFailure(ViteError.authFailed)
                 case .passwordAuthFailed:
-                    Alert.show(title: R.string.localizable.confirmTransactionPageToastPasswordError(), message: nil,
-                               titles: [.default(title: R.string.localizable.sendPageConfirmPasswordAuthFailedRetry())],
+                    Alert.show(title: R.string.localizable.workflowConfirmPageToastPasswordError(), message: nil,
+                               titles: [.default(title: R.string.localizable.workflowConfirmPagePasswordAuthFailedRetry())],
                                handler: { _, _ in showConfirm(isForceUsePassword: true) })
                 case .cancelled:
                     plog(level: .info, log: "Confirm cancelled", tag: .transaction)
@@ -66,27 +66,7 @@ public struct Workflow {
             }
             .recover { (e) -> Promise<AccountBlock> in
                 if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                    switch type {
-                    case .other, .vote:
-                        return AlertSheet.show(title: R.string.localizable.quotaAlertTitle(),
-                                               message: R.string.localizable.quotaAlertPowAndQuotaMessage(),
-                                               titles: [.default(title: R.string.localizable.quotaAlertPowButtonTitle()),
-                                                        .default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
-                                                        .cancel], config: { $0.preferredAction = $0.actions[0] })
-                            .then({ (_, index) -> Promise<AccountBlock> in
-                                if index == 0 {
-                                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                                } else if index == 1 {
-                                    let vc = QuotaManageViewController()
-                                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                                    return Promise(error: ViteError.cancel)
-                                } else {
-                                    return Promise(error: ViteError.cancel)
-                                }
-                            })
-                    case .pledge:
-                        return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                    }
+                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
                 } else {
                     return Promise(error: e)
                 }
@@ -134,10 +114,16 @@ public struct Workflow {
             cancelPow = true
         }
         getPowFloatView.show()
+        let waitAtLeast = after(seconds: 1.5)
         return getPowPromise()
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()
                 return Promise(error: e)
+            }
+            .then { context -> Promise<SendBlockContext> in
+                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+                    return .value(context)
+                })
             }
             .then { context -> Promise<SendBlockContext> in
                 if cancelPow {
@@ -187,12 +173,12 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
+                              successToast: R.string.localizable.workflowToastTransferSuccess(),
                               type: .other,
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -223,12 +209,12 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendTransferSuccess(),
+                              successToast: R.string.localizable.workflowToastTransferSuccess(),
                               type: .other,
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -252,14 +238,14 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.submitSuccess(),
+                              successToast: R.string.localizable.workflowToastSubmitSuccess(),
                               type: .pledge,
                               completion: completion)
         }
 
 
         let tokenInfo = TokenInfo.viteCoin
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -283,7 +269,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.voteListSendSuccess(),
+                              successToast: R.string.localizable.workflowToastVoteSuccess(),
                               type: .vote,
                               completion: completion)
         }
@@ -310,7 +296,7 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.votePageVoteInfoCancelVoteToastTitle(),
+                              successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
                               type: .other,
                               completion: completion)
         }
@@ -345,12 +331,12 @@ public extension Workflow {
 
             sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
                               getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.sendPageToastSendSuccess(),
+                              successToast: R.string.localizable.workflowToastContractSuccess(),
                               type: .other,
                               completion: completion)
         }
 
-        let amountString = "\(amount.amountFull(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }

@@ -263,11 +263,11 @@ class BalanceInfoViteChainCardView: UIView {
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.balance.amountFull(decimals: token.decimals) })
+            .map({ $0.balance.amountFullWithGroupSeparator(decimals: token.decimals) })
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.unconfirmedBalance.amountFull(decimals: token.decimals) })
+            .map({ $0.unconfirmedBalance.amountFullWithGroupSeparator(decimals: token.decimals) })
             .map({ R.string.localizable.balanceInfoDetailOnroadAmountContent($0) })
             .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
 

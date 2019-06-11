@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 123 images.
+  /// This `R.image` struct is generated, and contains static references to 165 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -30,6 +30,8 @@ struct R: Rswift.Validatable {
     static let background_button_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_button_white")
     /// Image `beifen`.
     static let beifen = Rswift.ImageResource(bundle: R.hostingBundle, name: "beifen")
+    /// Image `blue_dotted_line`.
+    static let blue_dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "blue_dotted_line")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
     /// Image `dotted_line`.
@@ -48,34 +50,112 @@ struct R: Rswift.Validatable {
     static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
     /// Image `gift`.
     static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
+    /// Image `grin_detail_cancled_gray`.
+    static let grin_detail_cancled_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_cancled_gray")
+    /// Image `grin_detail_cancled`.
+    static let grin_detail_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_cancled")
+    /// Image `grin_detail_confirmed_gray`.
+    static let grin_detail_confirmed_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmed_gray")
+    /// Image `grin_detail_confirmed`.
+    static let grin_detail_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmed")
+    /// Image `grin_detail_confirmedconbase`.
+    static let grin_detail_confirmedconbase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_confirmedconbase")
+    /// Image `grin_detail_created_gray`.
+    static let grin_detail_created_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_created_gray")
+    /// Image `grin_detail_created`.
+    static let grin_detail_created = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_created")
+    /// Image `grin_detail_gateway_confirmed_gray`.
+    static let grin_detail_gateway_confirmed_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_confirmed_gray")
+    /// Image `grin_detail_gateway_confirmed`.
+    static let grin_detail_gateway_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_confirmed")
+    /// Image `grin_detail_gateway_received_gray`.
+    static let grin_detail_gateway_received_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_received_gray")
+    /// Image `grin_detail_gateway_received`.
+    static let grin_detail_gateway_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway_received")
+    /// Image `grin_detail_gateway`.
+    static let grin_detail_gateway = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_gateway")
+    /// Image `grin_detail_line_blue`.
+    static let grin_detail_line_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_line_blue")
+    /// Image `grin_detail_line_gray`.
+    static let grin_detail_line_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_line_gray")
+    /// Image `grin_detail_normal`.
+    static let grin_detail_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_normal")
+    /// Image `grin_detail_poasting_gray`.
+    static let grin_detail_poasting_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_poasting_gray")
+    /// Image `grin_detail_poasting`.
+    static let grin_detail_poasting = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_poasting")
+    /// Image `grin_detail_received_gray`.
+    static let grin_detail_received_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_received_gray")
+    /// Image `grin_detail_received`.
+    static let grin_detail_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_received")
+    /// Image `grin_detail_vite`.
+    static let grin_detail_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_vite")
+    /// Image `grin_detail_waitToFinzlize_gray`.
+    static let grin_detail_waitToFinzlize_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToFinzlize_gray")
+    /// Image `grin_detail_waitToFinzlize`.
+    static let grin_detail_waitToFinzlize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToFinzlize")
+    /// Image `grin_detail_waitToSign_gray`.
+    static let grin_detail_waitToSign_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToSign_gray")
+    /// Image `grin_detail_waitToSign`.
+    static let grin_detail_waitToSign = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_detail_waitToSign")
     /// Image `grin_gray`.
     static let grin_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_gray")
+    /// Image `grin_help`.
+    static let grin_help = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_help")
+    /// Image `grin_methd_bg`.
+    static let grin_methd_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_methd_bg")
+    /// Image `grin_node_edit`.
+    static let grin_node_edit = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_edit")
+    /// Image `grin_node_selected`.
+    static let grin_node_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_selected")
+    /// Image `grin_node_unselected`.
+    static let grin_node_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_node_unselected")
+    /// Image `grin_teach_file_cn`.
+    static let grin_teach_file_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file_cn")
+    /// Image `grin_teach_file`.
+    static let grin_teach_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_file")
+    /// Image `grin_teach_http_receive_cn`.
+    static let grin_teach_http_receive_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_receive_cn")
+    /// Image `grin_teach_http_receive`.
+    static let grin_teach_http_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_receive")
+    /// Image `grin_teach_http_send_cn`.
+    static let grin_teach_http_send_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_send_cn")
+    /// Image `grin_teach_http_send`.
+    static let grin_teach_http_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_http_send")
+    /// Image `grin_teach_vite_cn`.
+    static let grin_teach_vite_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_vite_cn")
+    /// Image `grin_teach_vite`.
+    static let grin_teach_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_teach_vite")
     /// Image `grin_tx_file_finalize`.
     static let grin_tx_file_finalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_finalize")
     /// Image `grin_tx_file_init`.
     static let grin_tx_file_init = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_init")
     /// Image `grin_tx_file_receive`.
     static let grin_tx_file_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_file_receive")
-    /// Image `grin_tx_http`.
-    static let grin_tx_http = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_http")
     /// Image `grin_tx_receive`.
     static let grin_tx_receive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_receive")
     /// Image `grin_tx_send`.
     static let grin_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_send")
-    /// Image `grin_tx_vite`.
-    static let grin_tx_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_tx_vite")
     /// Image `grin_txlist_cancled`.
     static let grin_txlist_cancled = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_cancled")
-    /// Image `grin_txlist_confirmd`.
-    static let grin_txlist_confirmd = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmd")
-    /// Image `grin_txlist_confirmdconbase`.
-    static let grin_txlist_confirmdconbase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmdconbase")
-    /// Image `grin_txlist_finalized`.
-    static let grin_txlist_finalized = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_finalized")
-    /// Image `grin_txlist_send`.
-    static let grin_txlist_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send")
-    /// Image `grin_txlist_singe`.
-    static let grin_txlist_singe = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_singe")
+    /// Image `grin_txlist_confirmedConebase`.
+    static let grin_txlist_confirmedConebase = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmedConebase")
+    /// Image `grin_txlist_confirmed`.
+    static let grin_txlist_confirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_confirmed")
+    /// Image `grin_txlist_receive_gatewayConfirmed`.
+    static let grin_txlist_receive_gatewayConfirmed = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_gatewayConfirmed")
+    /// Image `grin_txlist_receive_gatewayReceived`.
+    static let grin_txlist_receive_gatewayReceived = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_gatewayReceived")
+    /// Image `grin_txlist_receive_received`.
+    static let grin_txlist_receive_received = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_received")
+    /// Image `grin_txlist_receive_waitToReceive`.
+    static let grin_txlist_receive_waitToReceive = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_receive_waitToReceive")
+    /// Image `grin_txlist_send_created`.
+    static let grin_txlist_send_created = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_created")
+    /// Image `grin_txlist_send_posting`.
+    static let grin_txlist_send_posting = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_posting")
+    /// Image `grin_txlist_send_waitToFinalize`.
+    static let grin_txlist_send_waitToFinalize = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin_txlist_send_waitToFinalize")
     /// Image `grin`.
     static let grin = Rswift.ImageResource(bundle: R.hostingBundle, name: "grin")
     /// Image `icon_address_default_title_frame`.
@@ -88,6 +168,8 @@ struct R: Rswift.Validatable {
     static let icon_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_background")
     /// Image `icon_balance_detail_arrows`.
     static let icon_balance_detail_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_arrows")
+    /// Image `icon_balance_detail_exchange`.
+    static let icon_balance_detail_exchange = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_exchange")
     /// Image `icon_balance_detail_pledge`.
     static let icon_balance_detail_pledge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_pledge")
     /// Image `icon_balance_detail_vote`.
@@ -214,6 +296,8 @@ struct R: Rswift.Validatable {
     static let icon_tx_send = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_send")
     /// Image `icon_tx_vote`.
     static let icon_tx_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_vote")
+    /// Image `icon_vite_exchange`.
+    static let icon_vite_exchange = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_exchange")
     /// Image `icon_vite_logo`.
     static let icon_vite_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_logo")
     /// Image `icon_vote_rank`.
@@ -295,6 +379,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.beifen, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "blue_dotted_line", bundle: ..., traitCollection: ...)`
+    static func blue_dotted_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.blue_dotted_line, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "btn_path_bg", bundle: ..., traitCollection: ...)`
     static func btn_path_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.btn_path_bg, compatibleWith: traitCollection)
@@ -345,9 +434,194 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "grin_detail_cancled", bundle: ..., traitCollection: ...)`
+    static func grin_detail_cancled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_cancled, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_cancled_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_cancled_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_cancled_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmed_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmed_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmed_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_confirmedconbase", bundle: ..., traitCollection: ...)`
+    static func grin_detail_confirmedconbase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_confirmedconbase, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_created", bundle: ..., traitCollection: ...)`
+    static func grin_detail_created(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_created, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_created_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_created_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_created_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_confirmed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_confirmed_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_confirmed_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_confirmed_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_received", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_gateway_received_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_gateway_received_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_gateway_received_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_line_blue", bundle: ..., traitCollection: ...)`
+    static func grin_detail_line_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_line_blue, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_line_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_line_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_line_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_normal", bundle: ..., traitCollection: ...)`
+    static func grin_detail_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_normal, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_poasting", bundle: ..., traitCollection: ...)`
+    static func grin_detail_poasting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_poasting, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_poasting_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_poasting_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_poasting_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_received", bundle: ..., traitCollection: ...)`
+    static func grin_detail_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_received_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_received_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_received_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_vite", bundle: ..., traitCollection: ...)`
+    static func grin_detail_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_vite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToFinzlize", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToFinzlize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToFinzlize, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToFinzlize_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToFinzlize_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToFinzlize_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToSign", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToSign(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToSign, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_detail_waitToSign_gray", bundle: ..., traitCollection: ...)`
+    static func grin_detail_waitToSign_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_detail_waitToSign_gray, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "grin_gray", bundle: ..., traitCollection: ...)`
     static func grin_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_help", bundle: ..., traitCollection: ...)`
+    static func grin_help(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_help, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_methd_bg", bundle: ..., traitCollection: ...)`
+    static func grin_methd_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_methd_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_edit", bundle: ..., traitCollection: ...)`
+    static func grin_node_edit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_edit, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_selected", bundle: ..., traitCollection: ...)`
+    static func grin_node_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_node_unselected", bundle: ..., traitCollection: ...)`
+    static func grin_node_unselected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_node_unselected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_file", bundle: ..., traitCollection: ...)`
+    static func grin_teach_file(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_file, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_file_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_file_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_file_cn, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_receive", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_receive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_receive_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_receive_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_receive_cn, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_send", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_send, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_http_send_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_http_send_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_http_send_cn, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_vite", bundle: ..., traitCollection: ...)`
+    static func grin_teach_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_vite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_teach_vite_cn", bundle: ..., traitCollection: ...)`
+    static func grin_teach_vite_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_teach_vite_cn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "grin_tx_file_finalize", bundle: ..., traitCollection: ...)`
@@ -365,11 +639,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_tx_file_receive, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_tx_http", bundle: ..., traitCollection: ...)`
-    static func grin_tx_http(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_tx_http, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "grin_tx_receive", bundle: ..., traitCollection: ...)`
     static func grin_tx_receive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_tx_receive, compatibleWith: traitCollection)
@@ -380,39 +649,54 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.grin_tx_send, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_tx_vite", bundle: ..., traitCollection: ...)`
-    static func grin_tx_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_tx_vite, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "grin_txlist_cancled", bundle: ..., traitCollection: ...)`
     static func grin_txlist_cancled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.grin_txlist_cancled, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_confirmd", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_confirmd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_confirmd, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_confirmed", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmed, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_confirmdconbase", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_confirmdconbase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_confirmdconbase, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_confirmedConebase", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_confirmedConebase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_confirmedConebase, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_finalized", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_finalized(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_finalized, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_gatewayConfirmed", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_gatewayConfirmed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_gatewayConfirmed, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_send", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_send, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_gatewayReceived", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_gatewayReceived(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_gatewayReceived, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "grin_txlist_singe", bundle: ..., traitCollection: ...)`
-    static func grin_txlist_singe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.grin_txlist_singe, compatibleWith: traitCollection)
+    /// `UIImage(named: "grin_txlist_receive_received", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_received(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_received, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_receive_waitToReceive", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_receive_waitToReceive(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_receive_waitToReceive, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_created", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_created(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_created, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_posting", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_posting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_posting, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "grin_txlist_send_waitToFinalize", bundle: ..., traitCollection: ...)`
+    static func grin_txlist_send_waitToFinalize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.grin_txlist_send_waitToFinalize, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_address_default_title_frame", bundle: ..., traitCollection: ...)`
@@ -438,6 +722,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_balance_detail_arrows", bundle: ..., traitCollection: ...)`
     static func icon_balance_detail_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_balance_detail_arrows, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_balance_detail_exchange", bundle: ..., traitCollection: ...)`
+    static func icon_balance_detail_exchange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_detail_exchange, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_balance_detail_pledge", bundle: ..., traitCollection: ...)`
@@ -755,6 +1044,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tx_vote, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_vite_exchange", bundle: ..., traitCollection: ...)`
+    static func icon_vite_exchange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_vite_exchange, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_vite_logo", bundle: ..., traitCollection: ...)`
     static func icon_vite_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_vite_logo, compatibleWith: traitCollection)
@@ -885,20 +1179,20 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 380 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 452 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageEmailContent = Rswift.StringResource(key: "aboutUs.page.email.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ On Road
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       static let sendPageQuotaContent = Rswift.StringResource(key: "send.page.quota.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ Unconfirmed
       /// 
       /// Locales: en, zh-Hans
@@ -911,6 +1205,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVote = Rswift.StringResource(key: "pop.page.tip.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">Understand VITE Conversion</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let popPageTipEthViteExchange = Rswift.StringResource(key: "pop.page.tip.ethViteExchange", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -938,7 +1236,7 @@ struct R: Rswift.Validatable {
       /// en translation: Acquire Quota
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPagePledgeTitle = Rswift.StringResource(key: "confirm.transaction.page.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageVitePledgeTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Acquire Quota
       /// 
       /// Locales: en, zh-Hans
@@ -987,6 +1285,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contactsHomePageFilterAll = Rswift.StringResource(key: "contacts.home.page.filter.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageExchangeAllButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.exchange.all.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -1015,11 +1317,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let lockPageFingerprintBtnTitle = Rswift.StringResource(key: "lock.page.fingerprint.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a "Confirmed" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN. The transfer amount should be no less than 0.1 GRIN.
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinSentUseHttpDesc = Rswift.StringResource(key: "grin.sent.useHttp.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. Please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. And only when you use your first VITE address can you receive GRIN.
+      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveByHttpDesc = Rswift.StringResource(key: "grin.receiveByHttp.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1050,7 +1348,11 @@ struct R: Rswift.Validatable {
       /// en translation: Back
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageConfirmBiometryAuthFailedBack = Rswift.StringResource(key: "send.page.confirm.biometryAuthFailed.back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowConfirmPageBiometryAuthFailedBack = Rswift.StringResource(key: "workflow.confirm.page.biometryAuthFailed.back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Backed Up
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Backup Wallet Account
       /// 
       /// Locales: en, zh-Hans
@@ -1059,6 +1361,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balanceInfoDetailBalanceTitle = Rswift.StringResource(key: "balance.info.detail.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Balance
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageMyBalanceTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Balance
       /// 
       /// Locales: en, zh-Hans
@@ -1114,7 +1420,7 @@ struct R: Rswift.Validatable {
       /// en translation: Cannot be identified
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageConfirmBiometryAuthFailedTitle = Rswift.StringResource(key: "send.page.confirm.biometryAuthFailed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowConfirmPageBiometryAuthFailedTitle = Rswift.StringResource(key: "workflow.confirm.page.biometryAuthFailed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Check
       /// 
       /// Locales: en, zh-Hans
@@ -1146,7 +1452,31 @@ struct R: Rswift.Validatable {
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageEthConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.eth.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageGrinConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.grin.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteCallContractConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.call.contract.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteCancelVoteConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.cancel.vote.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageVitePledgeConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.pledge.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteVoteConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
@@ -1155,10 +1485,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaSubmitPopSubmitBtnTitle = Rswift.StringResource(key: "quota.submit.pop.submit.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Confirm
-      /// 
-      /// Locales: en, zh-Hans
-      static let voteListConfirmButtonTitle = Rswift.StringResource(key: "vote.list.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
@@ -1191,6 +1517,26 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let contractConfirmInfo = Rswift.StringResource(key: "contract.confirm.info", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Conversion Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAmountTitle = Rswift.StringResource(key: "eth.vite.exchange.page.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Conversion History
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageExchangeHistoryButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.exchange.history.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageEthViteExchangeConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageSendButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.send.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Convert %@ VITE at most
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAmountPlaceholder = Rswift.StringResource(key: "eth.vite.exchange.page.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Copy
       /// 
       /// Locales: en, zh-Hans
@@ -1214,7 +1560,15 @@ struct R: Rswift.Validatable {
       /// en translation: Created
       /// 
       /// Locales: en, zh-Hans
+      static let grinReceiveSented = Rswift.StringResource(key: "grin.receive.sented", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Created
+      /// 
+      /// Locales: en, zh-Hans
       static let grinTxFileInitStatus = Rswift.StringResource(key: "grin.txFile.init.status", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Created
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxTypeSent = Rswift.StringResource(key: "grin.txType.sent", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Created
       /// 
       /// Locales: en, zh-Hans
@@ -1271,6 +1625,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethSendPageMyAddressTitle = Rswift.StringResource(key: "eth.send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageMyAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: ETH Contact Address
       /// 
       /// Locales: en, zh-Hans
@@ -1299,10 +1657,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageEmpty = Rswift.StringResource(key: "transaction.list.page.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Enter Password
-      /// 
-      /// Locales: en, zh-Hans
-      static let confirmTransactionPageUsePasswordTitle = Rswift.StringResource(key: "confirm.transaction.page.use.password.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Ethereum Network
       /// 
       /// Locales: en, zh-Hans
@@ -1339,10 +1693,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinFinalize = Rswift.StringResource(key: "grin.finalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Finalized
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: GRIN Contact Address
       /// 
       /// Locales: en, zh-Hans
@@ -1387,14 +1737,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinCreating = Rswift.StringResource(key: "grin.creating", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Http Address
+      /// en translation: HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static let grinHttpAddress = Rswift.StringResource(key: "grin.http.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Http Address
+      /// en translation: HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static let grinSentStillUseHttp = Rswift.StringResource(key: "grin.sent.stillUseHttp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodHttp = Rswift.StringResource(key: "grin.txMethod.http", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: I have already read, understood and I agree to our
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: I know
       /// 
       /// Locales: en, zh-Hans
@@ -1407,10 +1765,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinKnow = Rswift.StringResource(key: "grin.know", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I want a different seed phrase
+      /// en translation: I understand if I forget or lose the mnemonic words, nobody can help to recover
       /// 
       /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let mnemonicBackupPageCheckButton2Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: I understand if I lose the mnemonic words, I would never find back my assets
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageCheckButton1Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
       /// 
       /// Locales: en, zh-Hans
@@ -1455,6 +1817,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaAlertTitle = Rswift.StringResource(key: "quota.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Insufficient balance
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethErrorRpcErrorCodeNotEnoughBalance = Rswift.StringResource(key: "eth.error.rpc.error.code.not.enough.balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Insufficient balance
       /// 
       /// Locales: en, zh-Hans
@@ -1539,7 +1905,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let createPageTipContent = Rswift.StringResource(key: "create.page.tip.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
+      /// en translation: Mnemonic words is the only way to recover your account, please do keep them well in case of lost.
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1626,7 +1992,7 @@ struct R: Rswift.Validatable {
       /// en translation: Node Name
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageNodeName = Rswift.StringResource(key: "confirm.transaction.page.node.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageViteVoteNodeName = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.node.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -1643,10 +2009,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicAffirmPageTipTitle = Rswift.StringResource(key: "mnemonic.affirm.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Out of Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethErrorRpcErrorCodeNotEnoughFee = Rswift.StringResource(key: "eth.error.rpc.error.code.not.enough.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Payment
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageTitle = Rswift.StringResource(key: "confirm.transaction.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageViteCallContractTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.call.contract.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please Input Password
       /// 
       /// Locales: en, zh-Hans
@@ -1707,7 +2077,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxbyfileShareSentFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareSentFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please share your first VITE address(Find it at the bottom) with the sender, please note that only when the recipient using his first VITE address can he receive GRIN.
+      /// en translation: Please share your VITE address(Find it at the bottom) with the sender.
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveByViteDesc = Rswift.StringResource(key: "grin.receiveByVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1727,6 +2097,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxbyfileShareReceiveFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareReceiveFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Posting
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Private key locally stored, open-sourced assurance
       /// 
       /// Locales: en, zh-Hans
@@ -1779,7 +2153,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let receivePageTokenTitle = Rswift.StringResource(key: "Receive.page.token.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Receive GRIN though Http Address
+      /// en translation: Receive GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static let grinTeachHttpReceiveTitle = Rswift.StringResource(key: "grin.teach.http.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1815,6 +2189,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListPageNetworkError = Rswift.StringResource(key: "transaction.list.page.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Regenerate
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageTipAnewBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.anewBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Registration
       /// 
       /// Locales: en, zh-Hans
@@ -1842,23 +2220,23 @@ struct R: Rswift.Validatable {
       /// en translation: Retry
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageConfirmPasswordAuthFailedRetry = Rswift.StringResource(key: "send.page.confirm.passwordAuthFailed.retry", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let retry = Rswift.StringResource(key: "Retry", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Retry
+      /// 
+      /// Locales: en, zh-Hans
+      static let workflowConfirmPagePasswordAuthFailedRetry = Rswift.StringResource(key: "workflow.confirm.page.passwordAuthFailed.retry", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Revoke Registration
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCancelRegister = Rswift.StringResource(key: "transaction.list.transaction.type.name.cancelRegister", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Revoke Vote
+      /// en translation: Revoke Voting
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageCancelVote = Rswift.StringResource(key: "confirm.transaction.page.cancel.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageViteCancelVoteTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.cancel.vote.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Revoke Voting
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCancelVote = Rswift.StringResource(key: "transaction.list.transaction.type.name.cancelVote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Revoke Voting
-      /// 
-      /// Locales: en, zh-Hans
-      static let votePageVoteInfoCancelVoteTitle = Rswift.StringResource(key: "vote.page.voteInfo.cancel.vote.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Revoking
       /// 
       /// Locales: en, zh-Hans
@@ -1867,7 +2245,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaAlertPowButtonTitle = Rswift.StringResource(key: "quota.alert.pow.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Run PoW
+      /// en translation: Running PoW for Quota
       /// 
       /// Locales: en, zh-Hans
       static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1911,14 +2289,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageSendButtonTitle = Rswift.StringResource(key: "send.page.send.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Sent
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinReceiveSented = Rswift.StringResource(key: "grin.receive.sented", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Sent
-      /// 
-      /// Locales: en, zh-Hans
-      static let grinTxTypeSent = Rswift.StringResource(key: "grin.txType.sent", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Settings
       /// 
       /// Locales: en, zh-Hans
@@ -1990,11 +2360,11 @@ struct R: Rswift.Validatable {
       /// en translation: Submit Successful
       /// 
       /// Locales: en, zh-Hans
-      static let submitSuccess = Rswift.StringResource(key: "Submit.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowToastSubmitSuccess = Rswift.StringResource(key: "workflow.toast.submit.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Success
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageToastSendSuccess = Rswift.StringResource(key: "send.page.toast.send.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowToastContractSuccess = Rswift.StringResource(key: "workflow.toast.contract.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Successful Vote
       /// 
       /// Locales: en, zh-Hans
@@ -2014,7 +2384,11 @@ struct R: Rswift.Validatable {
       /// en translation: Successfully send vote request
       /// 
       /// Locales: en, zh-Hans
-      static let voteListSendSuccess = Rswift.StringResource(key: "vote.list.send.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowToastVoteSuccess = Rswift.StringResource(key: "workflow.toast.vote.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Switch
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageAddressChangeButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.address.change.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Switch Account
       /// 
       /// Locales: en, zh-Hans
@@ -2031,6 +2405,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let viteErrorRpcErrorCodeVerifyFailure = Rswift.StringResource(key: "vite.error.rpc.error.code.verify.failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Terms and Conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static let mnemonicBackupPageClauseButtonTitle = Rswift.StringResource(key: "mnemonic.backup.page.clause.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The amount has to be positive
       /// 
       /// Locales: en, zh-Hans
@@ -2059,10 +2437,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinThisIsFirstViteAddress = Rswift.StringResource(key: "grin.thisIsFirstViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: To transfer GRIN through VITE address or Http address, please switch to the first VITE address.
+      /// en translation: This page is provided by %@
       /// 
       /// Locales: en, zh-Hans
-      static let grinUseFirstViteAddress = Rswift.StringResource(key: "grin.useFirstViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let webPageHostTip = Rswift.StringResource(key: "web.page.host.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Info Error
       /// 
       /// Locales: en, zh-Hans
@@ -2114,7 +2492,15 @@ struct R: Rswift.Validatable {
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageEthTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.eth.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageGrinTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.grin.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -2127,7 +2513,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameTransfer = Rswift.StringResource(key: "transaction.list.transaction.type.name.transfer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transfer GRIN though Http Address
+      /// en translation: Transfer GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static let grinTeachHttpSentTitle = Rswift.StringResource(key: "grin.teach.http.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2135,14 +2521,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTeachViteSentTitle = Rswift.StringResource(key: "grin.teach.vite.sent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE address can be used to transfer or receive GRIN.
+      /// en translation: Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.
       /// 
       /// Locales: en, zh-Hans
       static let grinSentUseViteDesc = Rswift.StringResource(key: "grin.sent.useVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer Success
       /// 
       /// Locales: en, zh-Hans
-      static let sendPageToastSendTransferSuccess = Rswift.StringResource(key: "send.page.toast.send.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowToastTransferSuccess = Rswift.StringResource(key: "workflow.toast.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -2195,7 +2581,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let systemPageCellTransferFaceId = Rswift.StringResource(key: "system.page.cell.transfer.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Use Http Address
+      /// en translation: Use HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static let grinSentUseHttp = Rswift.StringResource(key: "grin.sent.useHttp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2222,6 +2608,10 @@ struct R: Rswift.Validatable {
       /// en translation: VITE Address
       /// 
       /// Locales: en, zh-Hans
+      static let ethViteExchangePageToAddressTitle = Rswift.StringResource(key: "eth.vite.exchange.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Address
+      /// 
+      /// Locales: en, zh-Hans
       static let grinSentSwitch = Rswift.StringResource(key: "grin.sent.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: VITE Address
       /// 
@@ -2231,6 +2621,26 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageViteContactsButtonTitle = Rswift.StringResource(key: "send.page.vite.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static let balanceInfoDetailExchangeVite = Rswift.StringResource(key: "balance.info.detail.exchange.vite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageEthViteExchangeTitle = Rswift.StringResource(key: "confirm.transaction.page.eth.vite.exchange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static let ethViteExchangePageTitle = Rswift.StringResource(key: "eth.vite.exchange.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE交易代转
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewaysend = Rswift.StringResource(key: "grin.detail.gatewaysend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodVite = Rswift.StringResource(key: "grin.txMethod.vite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Verify
       /// 
       /// Locales: en, zh-Hans
@@ -2263,6 +2673,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网关交易已确认，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayConfirmConntLessThanTen = Rswift.StringResource(key: "grin.detail.gateway.confirmConntLessThanTen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网关代收
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGateway = Rswift.StringResource(key: "grin.detail.gateway", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网关已经签收交易，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayReceived = Rswift.StringResource(key: "grin.detail.gatewayReceived", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite网关确认数达到10个，若长时间未进入待签收状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayConfirmConntBiggerThanTen = Rswift.StringResource(key: "grin.detail.gateway.confirmConntBiggerThanTen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -2270,11 +2696,11 @@ struct R: Rswift.Validatable {
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageVote = Rswift.StringResource(key: "confirm.transaction.page.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let confirmTransactionPageViteVoteTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
-      static let vote = Rswift.StringResource(key: "Vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let vote = Rswift.StringResource(key: "vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -2282,7 +2708,7 @@ struct R: Rswift.Validatable {
       /// en translation: Vote revoking request is successfully sent
       /// 
       /// Locales: en, zh-Hans
-      static let votePageVoteInfoCancelVoteToastTitle = Rswift.StringResource(key: "vote.page.voteInfo.cancel.vote.toast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowToastCancelVoteSuccess = Rswift.StringResource(key: "workflow.toast.cancel.vote.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Votes
       /// 
       /// Locales: en, zh-Hans
@@ -2346,7 +2772,7 @@ struct R: Rswift.Validatable {
       /// en translation: Wrong password!
       /// 
       /// Locales: en, zh-Hans
-      static let confirmTransactionPageToastPasswordError = Rswift.StringResource(key: "confirm.transaction.page.toast.password.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let workflowConfirmPageToastPasswordError = Rswift.StringResource(key: "workflow.confirm.page.toast.password.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wrong password! Please try to import seed phrase instead
       /// 
       /// Locales: en, zh-Hans
@@ -2359,14 +2785,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let yes = Rswift.StringResource(key: "Yes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Yes, I have written down my seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
       /// 
       /// Locales: en, zh-Hans
       static let walletHomeScanUrlAlertMessage = Rswift.StringResource(key: "wallet.home.scan.url.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You can stake VITE to skip the process of running PoW
+      /// 
+      /// Locales: en, zh-Hans
+      static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You cannot make any transfer until you receive a transaction.
       /// 
       /// Locales: en, zh-Hans
@@ -2387,7 +2813,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinFinalizedAlertDesc = Rswift.StringResource(key: "grin.finalized.alertDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Your Http address for receiving GRIN has been copied to the clipboard
+      /// en translation: Your HTTP address for receiving GRIN has been copied to the clipboard
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveByHttpAddressCopyed = Rswift.StringResource(key: "grin.receiveByHttp.addressCopyed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2399,7 +2825,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageErrorTypePwdIllegal = Rswift.StringResource(key: "mnemonic.backup.page.error.type.pwd.illegal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Your transaction has sent, please be aware that you can go through your GRIN transaction only if you use current address.
+      /// en translation: Your transaction has sent.
       /// 
       /// Locales: en, zh-Hans
       static let grinSentViteSuccess = Rswift.StringResource(key: "grin.sent.vite.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2407,6 +2833,162 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已取消。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxCancelled = Rswift.StringResource(key: "grin.detail.txCancelled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已完成。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxCompleted = Rswift.StringResource(key: "grin.detail.txCompleted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已敲定并开始广播。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxFinaziledAndPosting = Rswift.StringResource(key: "grin.detail.txFinaziledAndPosting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已确认，确认数达到10个后，实收金额会进入可用余额。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailConfirmLessThanThen = Rswift.StringResource(key: "grin.detail.confirmLessThanThen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已签收
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxReceived = Rswift.StringResource(key: "grin.detail.txReceived", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxFileReecivedAndCanShare = Rswift.StringResource(key: "grin.detail.txFileReecivedAndCanShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxpostingAndCanRepost = Rswift.StringResource(key: "grin.detail.txpostingAndCanRepost", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易文件
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxFile = Rswift.StringResource(key: "grin.detail.txFile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易文件已创建，请确保将交易文件分享给收款人（您可以选择任何您喜欢的分享方式）并要求返回一个签收交易文件。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxFileCreatedAndCanShare = Rswift.StringResource(key: "grin.detail.txFileCreatedAndCanShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易正在广播中，请等待确认。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxisPostingPlsWait = Rswift.StringResource(key: "grin.detail.txisPostingPlsWait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易状态
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxStatus = Rswift.StringResource(key: "grin.detail.txStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileReceiveDesc = Rswift.StringResource(key: "grin.teach.file.receive.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileSendDesc = Rswift.StringResource(key: "grin.teach.file.send.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用交易文件接收GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileReceiveTitle = Rswift.StringResource(key: "grin.teach.file.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用交易文件转账GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachFileSendTitle = Rswift.StringResource(key: "grin.teach.file.send.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全节点地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeEditNodeAddressTitle = Rswift.StringResource(key: "grin.node.edit.nodeAddressTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 创建交易
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinPayTitleCreat = Rswift.StringResource(key: "grin.pay.title.creat", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 复制HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachHttpReceiveCopyHttpAddress = Rswift.StringResource(key: "grin.teach.http.receive.copyHttpAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 复制VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachViteReceiveCopyViteAddress = Rswift.StringResource(key: "grin.teach.vite.receive.copyViteAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 实收金额
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinReceiveTureAmount = Rswift.StringResource(key: "grin.receive.ture.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已复制Slate ID
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailSlateCopied = Rswift.StringResource(key: "grin.detail.slateCopied", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开始转账
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTeachViteSendStartSend = Rswift.StringResource(key: "grin.teach.vite.send.startSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用HTTP地址。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSentUseHttpDesc = Rswift.StringResource(key: "grin.sent.useHttp.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxReceivedAndCanAskGatewaytoSend = Rswift.StringResource(key: "grin.detail.txReceivedAndCanAskGatewaytoSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 挖矿所得
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailFromMine = Rswift.StringResource(key: "grin.detail.fromMine", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 敲定交易
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinPayTitleFinalize = Rswift.StringResource(key: "grin.pay.title.finalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 文件交易
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinTxMethodFile = Rswift.StringResource(key: "grin.txMethod.file", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 未能连接到全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeSelectCanNotConnect = Rswift.StringResource(key: "grin.node.select.canNotConnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeAddNode = Rswift.StringResource(key: "grin.node.addNode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 秘钥
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeEditApiSecretTitle = Rswift.StringResource(key: "grin.node.edit.apiSecretTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 若长时间未进入已签收状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailTxNotReceivedAndCanAskGatewaytoSend = Rswift.StringResource(key: "grin.detail.txNotReceivedAndCanAskGatewaytoSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请敲定交易。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailPleaseFinalize = Rswift.StringResource(key: "grin.detail.pleaseFinalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请敲定广播。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailPleaseFinalize2 = Rswift.StringResource(key: "grin.detail.pleaseFinalize2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailGatewayResend = Rswift.StringResource(key: "grin.detail.gatewayResend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请等待收款人打开Vite钱包接收交易。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailWaitHerOpenViteWalletToReceive = Rswift.StringResource(key: "grin.detail.waitHerOpenViteWalletToReceive", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailPleaseReciveAndShare = Rswift.StringResource(key: "grin.detail.pleaseReciveAndShare", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinSendIllegalAmmount = Rswift.StringResource(key: "grin.send.illegalAmmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配置全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinNodeConfigNode = Rswift.StringResource(key: "grin.node.configNode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 重新广播
+      /// 
+      /// Locales: en, zh-Hans
+      static let grinDetailRepoat = Rswift.StringResource(key: "grin.detail.repoat", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -2415,18 +2997,18 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("aboutUs.page.email.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
       }
       
+      /// en translation: %@ On Road
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       static func sendPageQuotaContent(_ value1: String) -> String {
         return String(format: NSLocalizedString("send.page.quota.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ Unconfirmed
@@ -2448,6 +3030,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func popPageTipVote(_: Void = ()) -> String {
         return NSLocalizedString("pop.page.tip.vote", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">Understand VITE Conversion</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static func popPageTipEthViteExchange(_: Void = ()) -> String {
+        return NSLocalizedString("pop.page.tip.ethViteExchange", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Quota?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">a.Staking VITE to obtain quota</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">b.Running PoW</p><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is Staking?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">What is PoW?</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>
@@ -2495,8 +3084,8 @@ struct R: Rswift.Validatable {
       /// en translation: Acquire Quota
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPagePledgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.pledge.title", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageVitePledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.pledge.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Acquire Quota
@@ -2583,6 +3172,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.home.page.filter.all", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageExchangeAllButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.exchange.all.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -2632,14 +3228,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("lock.page.fingerprint.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. And please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. For instance, a "Confirmed" state of the transaction in a sender's wallet only indicates the transaction from the sender to Vite is confirmed, doesn't mean the recipient has received GRIN. The transfer amount should be no less than 0.1 GRIN.
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinSentUseHttpDesc(_: Void = ()) -> String {
-        return NSLocalizedString("grin.sent.useHttp.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through Http address. There are transaction fees in both the two steps above, the first one is paid by the sender and the second one is paid by the recipient. Please note that the transaction history in a sender's wallet only includes the transactions between the sender and Vite; And that of a recipient only includes the transactions between Vite and the recipient. And only when you use your first VITE address can you receive GRIN.
+      /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.
       /// 
       /// Locales: en, zh-Hans
       static func grinReceiveByHttpDesc(_: Void = ()) -> String {
@@ -2691,8 +3280,15 @@ struct R: Rswift.Validatable {
       /// en translation: Back
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageConfirmBiometryAuthFailedBack(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.confirm.biometryAuthFailed.back", bundle: R.hostingBundle, comment: "")
+      static func workflowConfirmPageBiometryAuthFailedBack(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.confirm.page.biometryAuthFailed.back", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Backed Up
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Backup Wallet Account
@@ -2707,6 +3303,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func balanceInfoDetailBalanceTitle(_: Void = ()) -> String {
         return NSLocalizedString("balance.info.detail.balance.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Balance
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageMyBalanceTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.my.balance.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Balance
@@ -2803,8 +3406,8 @@ struct R: Rswift.Validatable {
       /// en translation: Cannot be identified
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageConfirmBiometryAuthFailedTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.confirm.biometryAuthFailed.title", bundle: R.hostingBundle, comment: "")
+      static func workflowConfirmPageBiometryAuthFailedTitle(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.confirm.page.biometryAuthFailed.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Check
@@ -2859,8 +3462,50 @@ struct R: Rswift.Validatable {
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageConfirmButton(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.confirm.button", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageEthConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageGrinConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.grin.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteCallContractConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.call.contract.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteCancelVoteConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.cancel.vote.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageVitePledgeConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.pledge.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteVoteConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.vote.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirm
@@ -2875,13 +3520,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaSubmitPopSubmitBtnTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.submit.pop.submit.btn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Confirm
-      /// 
-      /// Locales: en, zh-Hans
-      static func voteListConfirmButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vote.list.confirm.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirm
@@ -2940,6 +3578,41 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("contract.confirm.info", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Conversion Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Conversion History
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageExchangeHistoryButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.exchange.history.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageEthViteExchangeConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Convert
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageSendButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.send.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Convert %@ VITE at most
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAmountPlaceholder(_ value1: String) -> String {
+        return String(format: NSLocalizedString("eth.vite.exchange.page.amount.placeholder", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Copy
       /// 
       /// Locales: en, zh-Hans
@@ -2978,8 +3651,22 @@ struct R: Rswift.Validatable {
       /// en translation: Created
       /// 
       /// Locales: en, zh-Hans
+      static func grinReceiveSented(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.sented", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Created
+      /// 
+      /// Locales: en, zh-Hans
       static func grinTxFileInitStatus(_: Void = ()) -> String {
         return NSLocalizedString("grin.txFile.init.status", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Created
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxTypeSent(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txType.sent", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Created
@@ -3080,6 +3767,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eth.send.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: ETH Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageMyAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.my.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: ETH Contact Address
       /// 
       /// Locales: en, zh-Hans
@@ -3127,13 +3821,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListPageEmpty(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.page.empty", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Enter Password
-      /// 
-      /// Locales: en, zh-Hans
-      static func confirmTransactionPageUsePasswordTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.use.password.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Ethereum Network
@@ -3197,13 +3884,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinFinalize(_: Void = ()) -> String {
         return NSLocalizedString("grin.finalize", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Finalized
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinTxTypeFinalized(_: Void = ()) -> String {
-        return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: GRIN Contact Address
@@ -3283,18 +3963,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.creating", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Http Address
+      /// en translation: HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static func grinHttpAddress(_: Void = ()) -> String {
         return NSLocalizedString("grin.http.address", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Http Address
+      /// en translation: HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static func grinSentStillUseHttp(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.stillUseHttp", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodHttp(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.http", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: I have already read, understood and I agree to our
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageCheckButton3Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: I know
@@ -3318,11 +4012,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.know", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I want a different seed phrase
+      /// en translation: I understand if I forget or lose the mnemonic words, nobody can help to recover
       /// 
       /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
+      static func mnemonicBackupPageCheckButton2Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: I understand if I lose the mnemonic words, I would never find back my assets
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageCheckButton1Title(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.check.button1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.
@@ -3400,6 +4101,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Insufficient balance
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethErrorRpcErrorCodeNotEnoughBalance(_: Void = ()) -> String {
+        return NSLocalizedString("eth.error.rpc.error.code.not.enough.balance", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Insufficient balance
@@ -3549,7 +4257,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("create.page.tip.content", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet, please keep it safe or you won't have access to your account for good.
+      /// en translation: Mnemonic words is the only way to recover your account, please do keep them well in case of lost.
       /// 
       /// Locales: en, zh-Hans
       static func mnemonicBackupPageTipTitle(_: Void = ()) -> String {
@@ -3699,8 +4407,8 @@ struct R: Rswift.Validatable {
       /// en translation: Node Name
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageNodeName(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.node.name", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageViteVoteNodeName(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.vote.node.name", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Notice
@@ -3731,11 +4439,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.affirm.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Out of Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethErrorRpcErrorCodeNotEnoughFee(_: Void = ()) -> String {
+        return NSLocalizedString("eth.error.rpc.error.code.not.enough.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Payment
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.title", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageViteCallContractTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.call.contract.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please Input Password
@@ -3843,7 +4558,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txbyfile.shareSentFileDesc", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Please share your first VITE address(Find it at the bottom) with the sender, please note that only when the recipient using his first VITE address can he receive GRIN.
+      /// en translation: Please share your VITE address(Find it at the bottom) with the sender.
       /// 
       /// Locales: en, zh-Hans
       static func grinReceiveByViteDesc(_: Void = ()) -> String {
@@ -3876,6 +4591,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinTxbyfileShareReceiveFileDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.txbyfile.shareReceiveFileDesc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Posting
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxTypeFinalized(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Private key locally stored, open-sourced assurance
@@ -3969,7 +4691,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Receive.page.token.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Receive GRIN though Http Address
+      /// en translation: Receive GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static func grinTeachHttpReceiveTitle(_: Void = ()) -> String {
@@ -4032,6 +4754,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transaction.list.page.network.error", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Regenerate
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageTipAnewBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.anewBtn.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Registration
       /// 
       /// Locales: en, zh-Hans
@@ -4077,8 +4806,15 @@ struct R: Rswift.Validatable {
       /// en translation: Retry
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageConfirmPasswordAuthFailedRetry(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.confirm.passwordAuthFailed.retry", bundle: R.hostingBundle, comment: "")
+      static func retry(_: Void = ()) -> String {
+        return NSLocalizedString("Retry", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Retry
+      /// 
+      /// Locales: en, zh-Hans
+      static func workflowConfirmPagePasswordAuthFailedRetry(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.confirm.page.passwordAuthFailed.retry", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Revoke Registration
@@ -4088,11 +4824,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transaction.list.transaction.type.name.cancelRegister", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Revoke Vote
+      /// en translation: Revoke Voting
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageCancelVote(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.cancel.vote", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageViteCancelVoteTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.cancel.vote.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Revoke Voting
@@ -4100,13 +4836,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameCancelVote(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.cancelVote", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Revoke Voting
-      /// 
-      /// Locales: en, zh-Hans
-      static func votePageVoteInfoCancelVoteTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vote.page.voteInfo.cancel.vote.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Revoking
@@ -4123,7 +4852,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Run PoW
+      /// en translation: Running PoW for Quota
       /// 
       /// Locales: en, zh-Hans
       static func quotaFloatViewTitle(_: Void = ()) -> String {
@@ -4198,20 +4927,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageSendButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.send.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Sent
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinReceiveSented(_: Void = ()) -> String {
-        return NSLocalizedString("grin.receive.sented", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Sent
-      /// 
-      /// Locales: en, zh-Hans
-      static func grinTxTypeSent(_: Void = ()) -> String {
-        return NSLocalizedString("grin.txType.sent", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Settings
@@ -4336,15 +5051,15 @@ struct R: Rswift.Validatable {
       /// en translation: Submit Successful
       /// 
       /// Locales: en, zh-Hans
-      static func submitSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("Submit.success", bundle: R.hostingBundle, comment: "")
+      static func workflowToastSubmitSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.submit.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Success
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageToastSendSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.toast.send.success", bundle: R.hostingBundle, comment: "")
+      static func workflowToastContractSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.contract.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Successful Vote
@@ -4378,8 +5093,15 @@ struct R: Rswift.Validatable {
       /// en translation: Successfully send vote request
       /// 
       /// Locales: en, zh-Hans
-      static func voteListSendSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("vote.list.send.success", bundle: R.hostingBundle, comment: "")
+      static func workflowToastVoteSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.vote.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Switch
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageAddressChangeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.address.change.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Switch Account
@@ -4408,6 +5130,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func viteErrorRpcErrorCodeVerifyFailure(_ value1: String) -> String {
         return String(format: NSLocalizedString("vite.error.rpc.error.code.verify.failure", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Terms and Conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static func mnemonicBackupPageClauseButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.clause.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: The amount has to be positive
@@ -4459,11 +5188,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.thisIsFirstViteAddress", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: To transfer GRIN through VITE address or Http address, please switch to the first VITE address.
+      /// en translation: This page is provided by %@
       /// 
       /// Locales: en, zh-Hans
-      static func grinUseFirstViteAddress(_: Void = ()) -> String {
-        return NSLocalizedString("grin.useFirstViteAddress", bundle: R.hostingBundle, comment: "")
+      static func webPageHostTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("web.page.host.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Token Info Error
@@ -4553,8 +5282,22 @@ struct R: Rswift.Validatable {
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageTransferTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.transfer.title", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageEthTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageGrinTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.grin.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer
@@ -4578,7 +5321,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transaction.list.transaction.type.name.transfer", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Transfer GRIN though Http Address
+      /// en translation: Transfer GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static func grinTeachHttpSentTitle(_: Void = ()) -> String {
@@ -4592,7 +5335,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.teach.vite.sent.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file. Please note that only the first VITE address can be used to transfer or receive GRIN.
+      /// en translation: Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.
       /// 
       /// Locales: en, zh-Hans
       static func grinSentUseViteDesc(_: Void = ()) -> String {
@@ -4602,8 +5345,8 @@ struct R: Rswift.Validatable {
       /// en translation: Transfer Success
       /// 
       /// Locales: en, zh-Hans
-      static func sendPageToastSendTransferSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.toast.send.transfer.success", bundle: R.hostingBundle, comment: "")
+      static func workflowToastTransferSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.transfer.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
@@ -4697,7 +5440,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("system.page.cell.transfer.faceId", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Use Http Address
+      /// en translation: Use HTTP Address
       /// 
       /// Locales: en, zh-Hans
       static func grinSentUseHttp(_: Void = ()) -> String {
@@ -4742,6 +5485,13 @@ struct R: Rswift.Validatable {
       /// en translation: VITE Address
       /// 
       /// Locales: en, zh-Hans
+      static func ethViteExchangePageToAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE Address
+      /// 
+      /// Locales: en, zh-Hans
       static func grinSentSwitch(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.switch", bundle: R.hostingBundle, comment: "")
       }
@@ -4758,6 +5508,41 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageViteContactsButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.vite.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static func balanceInfoDetailExchangeVite(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.exchange.vite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageEthViteExchangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.eth.vite.exchange.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE Conversion
+      /// 
+      /// Locales: en, zh-Hans
+      static func ethViteExchangePageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.vite.exchange.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE交易代转
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewaysend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gatewaysend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodVite(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.vite", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Verify
@@ -4816,6 +5601,34 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Vite网关交易已确认，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayConfirmConntLessThanTen(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gateway.confirmConntLessThanTen", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vite网关代收
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGateway(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gateway", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vite网关已经签收交易，网关确认数达到10个后将向您转账。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayReceived(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gatewayReceived", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vite网关确认数达到10个，若长时间未进入待签收状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayConfirmConntBiggerThanTen(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gateway.confirmConntBiggerThanTen", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -4826,15 +5639,15 @@ struct R: Rswift.Validatable {
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageVote(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.vote", bundle: R.hostingBundle, comment: "")
+      static func confirmTransactionPageViteVoteTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.vote.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
       static func vote(_: Void = ()) -> String {
-        return NSLocalizedString("Vote", bundle: R.hostingBundle, comment: "")
+        return NSLocalizedString("vote", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vote
@@ -4847,8 +5660,8 @@ struct R: Rswift.Validatable {
       /// en translation: Vote revoking request is successfully sent
       /// 
       /// Locales: en, zh-Hans
-      static func votePageVoteInfoCancelVoteToastTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vote.page.voteInfo.cancel.vote.toast.title", bundle: R.hostingBundle, comment: "")
+      static func workflowToastCancelVoteSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.cancel.vote.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Votes
@@ -4959,8 +5772,8 @@ struct R: Rswift.Validatable {
       /// en translation: Wrong password!
       /// 
       /// Locales: en, zh-Hans
-      static func confirmTransactionPageToastPasswordError(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.toast.password.error", bundle: R.hostingBundle, comment: "")
+      static func workflowConfirmPageToastPasswordError(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.confirm.page.toast.password.error", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Wrong password! Please try to import seed phrase instead
@@ -4984,18 +5797,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Yes", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Yes, I have written down my seed phrase
-      /// 
-      /// Locales: en, zh-Hans
-      static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
       /// 
       /// Locales: en, zh-Hans
       static func walletHomeScanUrlAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("wallet.home.scan.url.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: You can stake VITE to skip the process of running PoW
+      /// 
+      /// Locales: en, zh-Hans
+      static func quotaFloatViewTip(_: Void = ()) -> String {
+        return NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: You cannot make any transfer until you receive a transaction.
@@ -5033,7 +5846,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.finalized.alertDesc", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Your Http address for receiving GRIN has been copied to the clipboard
+      /// en translation: Your HTTP address for receiving GRIN has been copied to the clipboard
       /// 
       /// Locales: en, zh-Hans
       static func grinReceiveByHttpAddressCopyed(_: Void = ()) -> String {
@@ -5054,7 +5867,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.pwd.illegal", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Your transaction has sent, please be aware that you can go through your GRIN transaction only if you use current address.
+      /// en translation: Your transaction has sent.
       /// 
       /// Locales: en, zh-Hans
       static func grinSentViteSuccess(_: Void = ()) -> String {
@@ -5066,6 +5879,279 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip3Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已取消。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxCancelled(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txCancelled", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已完成。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxCompleted(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txCompleted", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已敲定并开始广播。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxFinaziledAndPosting(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txFinaziledAndPosting", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已确认，确认数达到10个后，实收金额会进入可用余额。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailConfirmLessThanThen(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.confirmLessThanThen", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已签收
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxReceived(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txReceived", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已签收，请将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxFileReecivedAndCanShare(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txFileReecivedAndCanShare", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已经开始广播，若长时间交易未确认，可点击重新广播进行重试。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxpostingAndCanRepost(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txpostingAndCanRepost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易文件
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxFile(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txFile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易文件已创建，请确保将交易文件分享给收款人（您可以选择任何您喜欢的分享方式）并要求返回一个签收交易文件。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxFileCreatedAndCanShare(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txFileCreatedAndCanShare", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易正在广播中，请等待确认。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxisPostingPlsWait(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txisPostingPlsWait", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易状态
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxStatus(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txStatus", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileReceiveDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.receive.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileSendDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.send.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用交易文件接收GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileReceiveTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.receive.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用交易文件转账GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachFileSendTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.file.send.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 全节点地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeEditNodeAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.edit.nodeAddressTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 创建交易
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinPayTitleCreat(_: Void = ()) -> String {
+        return NSLocalizedString("grin.pay.title.creat", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 复制HTTP地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachHttpReceiveCopyHttpAddress(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.http.receive.copyHttpAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 复制VITE地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachViteReceiveCopyViteAddress(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.vite.receive.copyViteAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 实收金额
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinReceiveTureAmount(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.ture.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 已复制Slate ID
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailSlateCopied(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.slateCopied", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 开始转账
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTeachViteSendStartSend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.teach.vite.send.startSend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 您可以给任何支持GRIN HTTP地址转账的钱包转账，如果您给Vite钱包用户转账GRIN，我们不建议使用HTTP地址。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSentUseHttpDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.sent.useHttp.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 您的钱包已签收交易，若交易长时间未进入已确认状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxReceivedAndCanAskGatewaytoSend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txReceivedAndCanAskGatewaytoSend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 挖矿所得
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailFromMine(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.fromMine", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 敲定交易
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinPayTitleFinalize(_: Void = ()) -> String {
+        return NSLocalizedString("grin.pay.title.finalize", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 文件交易
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinTxMethodFile(_: Void = ()) -> String {
+        return NSLocalizedString("grin.txMethod.file", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 未能连接到全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeSelectCanNotConnect(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.select.canNotConnect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeAddNode(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.addNode", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 秘钥
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeEditApiSecretTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.edit.apiSecretTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 若长时间未进入已签收状态，请点击请求网关重发。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailTxNotReceivedAndCanAskGatewaytoSend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.txNotReceivedAndCanAskGatewaytoSend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请敲定交易。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailPleaseFinalize(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.pleaseFinalize", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请敲定广播。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailPleaseFinalize2(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.pleaseFinalize2", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请求网管重发
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailGatewayResend(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.gatewayResend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请等待收款人打开Vite钱包接收交易。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailWaitHerOpenViteWalletToReceive(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.waitHerOpenViteWalletToReceive", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请签收交易并将交易文件分享给转账人，您可以选择任何您喜欢的转账方式。
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailPleaseReciveAndShare(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.pleaseReciveAndShare", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 转账金额不合法
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinSendIllegalAmmount(_: Void = ()) -> String {
+        return NSLocalizedString("grin.send.illegalAmmount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 配置全节点
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinNodeConfigNode(_: Void = ()) -> String {
+        return NSLocalizedString("grin.node.configNode", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 重新广播
+      /// 
+      /// Locales: en, zh-Hans
+      static func grinDetailRepoat(_: Void = ()) -> String {
+        return NSLocalizedString("grin.detail.repoat", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

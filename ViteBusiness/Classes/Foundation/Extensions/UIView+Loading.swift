@@ -27,7 +27,7 @@ extension UIView {
     public func displayRetry(retry: @escaping () -> Swift.Void) {
         let btn = UIButton()
         btn.backgroundColor = .clear
-        btn.setTitle(R.string.localizable.sendPageConfirmPasswordAuthFailedRetry(), for: .normal)
+        btn.setTitle(R.string.localizable.retry(), for: .normal)
         btn.setTitleColor(Colors.titleGray, for: .normal)
         self.addSubview(btn)
         btn.frame = CGRect(x: 0, y: 0, width: 100, height: 100)

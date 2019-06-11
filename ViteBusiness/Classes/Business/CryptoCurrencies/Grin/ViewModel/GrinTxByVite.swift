@@ -39,10 +39,13 @@ class GrinTxByViteService {
         guard let account = HDWalletManager.instance.account else {
             return Promise(error: grinError("get account failed"))
         }
+        var slateId: String!
         return creatSentSlate(amount: amount)
             .map { (slate) -> (Slate, URL) in
                 plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address)", tag: .grin)
                 do {
+                    GrinLocalInfoService.shared.addSendInfo(slateId: slate.id, method: "Vite", creatTime: Int(Date().timeIntervalSince1970))
+                    slateId = slate.id
                     let url = try self.save(slate: slate, isResponse: false)
                     return (slate, url)
                 } catch {
@@ -56,6 +59,9 @@ class GrinTxByViteService {
             .then { (fname) ->  Promise<Void> in
                 plog(level: .info, log: "grin-2-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.sentViteTx(toAddress: toAddress, fileName: fname,account: account)
+                    .map {
+                        GrinLocalInfoService.shared.set(shareSendFileTime: Int(Date().timeIntervalSince1970), with: slateId)
+                }
         }
     }
 
@@ -80,10 +86,13 @@ class GrinTxByViteService {
                     account)
                     .then { fname -> Promise<Void> in
                         plog(level: .info, log: "grin-9-handleSentFile-fromSavedResponseSlate-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
-                        return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account)
+                        return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account).map {
+                            GrinLocalInfoService.shared.set(shareResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
+                        }
             }
         }
 
+        var slateId: String!
         plog(level: .info, log: "grin-4-handleSentFileStart.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
 
         return downlodEncryptedSlateData(fileName: fileName, account: account)
@@ -97,9 +106,12 @@ class GrinTxByViteService {
             }
             .then { (sentSlate, url) -> Promise<Slate> in
                 plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+                GrinLocalInfoService.shared.addReceiveInfo(slateId: sentSlate.id, method: "Vite", getSendFileTime:  Int(Date().timeIntervalSince1970))
                 return self.receiveSentSlate(with: url)
             }
             .then { (responseSlate) -> Promise<String> in
+                slateId = responseSlate.id
+                GrinLocalInfoService.shared.set(receiveTime: Int(Date().timeIntervalSince1970), with: responseSlate.id)
                 do {
                     let url = try self.save(slate: responseSlate, isResponse: true)
                     GrinManager.default.set_handleSendFileSuccess_createdResponeseFile(fileName: fileName, slateId: responseSlate.id)
@@ -115,6 +127,9 @@ class GrinTxByViteService {
             .then { fname -> Promise<Void> in
                 plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account)
+                    .map {
+                        GrinLocalInfoService.shared.set(shareResponseFileTime: Int(Date().timeIntervalSince1970), with: slateId)
+                }
         }
     }
 
@@ -134,10 +149,21 @@ class GrinTxByViteService {
             .then { (responseSlate, url) ->  Promise<Void> in
                 plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 slateId = responseSlate.id
+                GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slateId)
                 return self.finalizeResponseSlate(with: url)
             }
             .then { () -> Promise<Void> in
                 plog(level: .info, log: "grin-8-handleReceiveFile-finalizeResponseSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+
+                GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slateId)
+
+                let receiveFileUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: true)
+                let sendFileUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: false)
+                for url in [receiveFileUrl, sendFileUrl] {
+                    if FileManager.default.fileExists(atPath: url.path) {
+                        try? FileManager.default.removeItem(at: url)
+                    }
+                }
                 return self.reportFinalization(slateId: slateId,account: account)
         }
     }

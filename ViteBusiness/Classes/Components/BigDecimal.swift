@@ -205,6 +205,10 @@ extension BigDecimal: CustomStringConvertible {
 
 public struct BigDecimalFormatter {
 
+    public enum Options {
+        case groupSeparator
+    }
+
     public enum Style {
         case decimalRound(Int)
         case decimalTruncation(Int)
@@ -215,9 +219,42 @@ public struct BigDecimalFormatter {
         case padding
     }
 
-    static func format(bigDecimal: BigDecimal, style: Style, padding: Padding) -> String {
+    // -1000.0000, 1000, 1
+    static private func addGroupSeparator(_ string: String) -> String {
 
-        var decimal: Int!
+        let absolute: String
+        let symbol: String
+        if string.hasPrefix("-") {
+            symbol = "-"
+            absolute = String(string.dropFirst())
+        } else {
+            symbol = ""
+            absolute = string
+        }
+
+        let array = absolute.components(separatedBy: ".")
+        let integer = array[0]
+
+        var ret = ""
+        for (index, c) in integer.reversed().enumerated() {
+            if index > 0 && index % 3 == 0 {
+                ret = ret + ","
+            }
+            ret = ret + String(c)
+        }
+
+        if array.count == 1 {
+            return symbol + String(ret.reversed())
+        } else if array.count == 2 {
+            return symbol + String(ret.reversed()) + "." + array[1]
+        } else {
+            fatalError()
+        }
+    }
+
+    static func format(bigDecimal: BigDecimal, style: Style, padding: Padding, options: [Options]) -> String {
+
+        let decimal: Int
         switch style {
         case .decimalRound(let d):
             decimal = d
@@ -239,19 +276,26 @@ public struct BigDecimalFormatter {
             ret = bigDecimal
         }
 
+        let text: String
         switch padding {
         case .none:
-            return ret.description
+            text = ret.description
         case .padding:
             if ret.digits < decimal {
                 if ret.digits == 0 {
-                    return ret.description + "." + "".padding(toLength: decimal - ret.digits, withPad: "0", startingAt: 0)
+                    text = ret.description + "." + "".padding(toLength: decimal - ret.digits, withPad: "0", startingAt: 0)
                 } else {
-                    return ret.description + "".padding(toLength: decimal - ret.digits, withPad: "0", startingAt: 0)
+                    text = ret.description + "".padding(toLength: decimal - ret.digits, withPad: "0", startingAt: 0)
                 }
             } else {
-                return ret.description
+                text = ret.description
             }
+        }
+
+        if options.contains(.groupSeparator) {
+            return addGroupSeparator(text)
+        } else {
+            return text
         }
     }
 }

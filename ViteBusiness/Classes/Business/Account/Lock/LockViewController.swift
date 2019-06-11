@@ -37,7 +37,7 @@ class LockViewController: BaseViewController {
     }()
 
     lazy var loginPwdBtn: UIButton = {
-        let loginBtn = UIButton.init(style: .whiteWithoutShadow)
+        let loginBtn = UIButton.init(style: .white)
         loginBtn.setTitle(R.string.localizable.lockPagePwdBtnTitle(), for: .normal)
         loginBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
         loginBtn.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)

@@ -59,11 +59,6 @@ class GrinTransactVM {
         })
     }
 
-    func support(method: TransferMethod) -> Bool {
-        if method == .file { return true }
-        return HDWalletManager.instance.account?.address == HDWalletManager.instance.accounts.first?.address
-    }
-
     func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
         GrinManager.queue.async {
             guard let amount = self.amountFrom(string: amountString) else {
@@ -92,6 +87,7 @@ class GrinTransactVM {
         },  { (result) in
             switch result {
             case .success(let sendSlate):
+                GrinLocalInfoService.shared.addSendInfo(slateId: sendSlate.id, method: "File", creatTime: Int(Date().timeIntervalSince1970))
                 do {
                     let url = try self.save(slate: sendSlate, isResponse: false)
                     self.sendSlateCreated.onNext((sendSlate, url))
@@ -111,6 +107,7 @@ class GrinTransactVM {
             switch result {
             case .success(let receviedSlate):
                 do {
+                    GrinLocalInfoService.shared.set(receiveTime: Int(Date().timeIntervalSince1970), with: receviedSlate.id)
                     let receviedSlateUrl =  try self.save(slate: receviedSlate, isResponse: true)
                     self.receiveSlateCreated.onNext((receviedSlate, receviedSlateUrl))
                 } catch {
@@ -123,6 +120,7 @@ class GrinTransactVM {
     }
 
     func finalizeTx(slateUrl: URL) {
+//        Statistics.log(eventId: "Vite_app_wallet_TransferGrin_File_3", attributes: ["uuid": UUID.stored])
         grin_async({ () in
            GrinManager.default.txFinalize(slatePath: slateUrl.path)
         },  { (result) in
@@ -133,6 +131,7 @@ class GrinTransactVM {
                 guard let data = JSON(FileManager.default.contents(atPath: slateUrl.path)).rawValue as? [String: Any],
                     let slate = Slate(JSON:data) else { return }
                 GrinManager.default.setFinalizedTx(slate.id)
+                GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
             case .failure(let error):
                 self.message.onNext(error.message)
             }
@@ -163,9 +162,12 @@ class GrinTransactVM {
             GrinManager.default.txSend(amount: anmout, selectionStrategyIsUseAll: false, message: "Sent", dest: destnation)
         },  { (result) in
             switch result {
-            case .success:
+            case .success(let slate):
                 self.message.onNext(R.string.localizable.grinSentHttpSuccess())
                 self.sendTxSuccess.onNext(Void())
+                GrinLocalInfoService.shared.addSendInfo(slateId: slate.id, method: "Http", creatTime: Int(Date().timeIntervalSince1970))
+                GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
+                GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
             case .failure(let error):
                 if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
                 }
@@ -204,12 +206,12 @@ class GrinTransactVM {
             return nil
         }
         guard let decimal = BigDecimal(string) else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         let nanoDecimal = decimal * BigDecimal(BigInt(10).power(9))
         guard nanoDecimal.digits == 0 else {
-            self.message.onNext("wrong amount")
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return nil
         }
         guard nanoDecimal.number <= BigInt(UInt64.max) else {

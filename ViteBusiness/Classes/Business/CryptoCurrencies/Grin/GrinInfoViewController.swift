@@ -14,6 +14,9 @@ import NSObject_Rx
 import Vite_GrinWallet
 import RxDataSources
 import BigInt
+import Moya
+import SwiftyJSON
+import ObjectMapper
 
 func businessBundle() -> Bundle {
     let podBundle = Bundle(for: GrinInfoViewController.self)
@@ -22,7 +25,6 @@ func businessBundle() -> Bundle {
 }
 
 class GrinInfoViewController: BaseViewController {
-
 
     @IBOutlet weak var transcationTiTleLabel: UILabel!
     @IBOutlet weak var titleView: BalanceInfoNavView!
@@ -40,6 +42,13 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lineImageVIew: UIImageView!
     @IBOutlet weak var receiveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
+    let rightBatItemCustombutton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+
+    let helpButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.grin_help(), for: .normal)
+        return button
+    }()
 
     lazy var emptyView: UIView = {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 170))
@@ -63,8 +72,10 @@ class GrinInfoViewController: BaseViewController {
     }()
 
     let walletInfoVM = GrinWalletInfoVM()
+
+    fileprivate let transactionProvider = MoyaProvider<GrinTransaction>(stubClosure: MoyaProvider.neverStub)
     
-    required  init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -74,6 +85,8 @@ class GrinInfoViewController: BaseViewController {
         bind()
         walletInfoVM.action.onNext(.getBalance(manually: true))
         walletInfoVM.action.onNext(.getTxs(manually: true))
+        GrinManager.default.handleSavedTx()
+        GrinTxByViteService().reportViteAddress().done {_ in}
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -119,29 +132,57 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
-        navigationItem.rightBarButtonItem?.rx.tap.asObservable()
-            .bind { [weak self] in
-                Alert.show(title: R.string.localizable.grinWalletCheck(),
-                           message: R.string.localizable.grinWalletCheckDesc(),
-                           actions: [
-                            (.cancel, nil),
-                            (.default(title: R.string.localizable.confirm()), { _ in
-                                self?.walletInfoVM.action.onNext(.checkWallet)
-                                
-                            }),
-                    ])
+        walletInfoVM.fullInfoDetail
+            .bind { [weak self] fullInfo in
+                let detail = GrinTxDetailViewController()
+                detail.fullInfo = fullInfo
+                self?.navigationController?.pushViewController(detail, animated: true)
             }
             .disposed(by: rx.disposeBag)
+
+
+        rightBatItemCustombutton.rx.tap.asObservable()
+            .bind { [weak self] in
+                guard let `self` = self,
+                    let customView = self.navigationItem.rightBarButtonItem?.customView,
+                    let spendableAcountLabel = self.spendableAcountLabel else {
+                    return
+                }
+                FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles:
+                    [R.string.localizable.grinNodeConfigNode(),
+                     R.string.localizable.grinWalletCheck()]).show()
+            }
+            .disposed(by: rx.disposeBag)
+
+        helpButton.rx.tap.bind { _ in
+            var url: URL!
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                url = URL(string: "https://forum.vite.net/topic/1335/grin%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8vite%E9%92%B1%E5%8C%85%E6%94%B6%E8%BD%AC%E8%B4%A6%E6%95%99%E7%A8%8B")
+            } else {
+                url = URL(string: "https://forum.vite.net/topic/1334/a-tutorial-about-how-to-send-receive-a-grin-on-vite-mobile-wallet")
+            }
+            let webvc = WKWebViewController(url: url)
+            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+            }
+            .disposed(by: rx.disposeBag)
+
     }
 
 
     func setupView() {
         navigationBarStyle = .default
 
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem.init(image: R.image.icon_nav_more(), style: .plain, target: nil, action: nil)
+        rightBatItemCustombutton.setImage(R.image.icon_nav_more(), for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBatItemCustombutton)
 
         self.titleView.bind(tokenInfo: GrinManager.tokenInfo)
+
+        self.titleView.addSubview(helpButton)
+        helpButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(16)
+            m.centerY.equalTo(self.titleView.symbolLabel)
+            m.left.equalToSuperview().offset(86)
+        }
 
         grinCardBgView.backgroundColor =
             UIColor.gradientColor(style: .leftTop2rightBottom,
@@ -200,19 +241,7 @@ class GrinInfoViewController: BaseViewController {
     }
 
     func send(use method: TransferMethod) {
-        guard GrinTransactVM().support(method: method) else {
-            Alert.show(title: "", message: R.string.localizable.grinUseFirstViteAddress(), actions: [
-                (.default(title:R.string.localizable.grinSwitchAddress()), { _ in
-                    UIViewController.current?.navigationController?.pushViewController(AddressManageViewController(), animated: true)
-                }),
-                (.default(title: R.string.localizable.grinSentUseFile()), { _ in
-                    self.send(use: .file)
-                }),
-                ])
-            return
-        }
-        
-        let notTeach = method == .file || UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
+        let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_\(method.rawValue)_teach")
         if notTeach {
             let resourceBundle = businessBundle()
             let storyboard = UIStoryboard.init(name: "GrinInfo", bundle: resourceBundle)
@@ -223,6 +252,15 @@ class GrinInfoViewController: BaseViewController {
         } else {
             let vc = GrinTeachViewController.init(txType: .sent, channelType: method)
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+        if method == .http {
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Http", attributes: ["uuid": UUID.stored])
+        } else if method == .vite {
+            Statistics.log(eventId: "grin_tx_gotoSendPage_Vite", attributes: ["uuid": UUID.stored])
+
+        } else if method == .file {
+            Statistics.log(eventId: "grin_tx_gotoSendPage_File", attributes: ["uuid": UUID.stored])
         }
     }
 
@@ -256,14 +294,8 @@ class GrinInfoViewController: BaseViewController {
         }
 
         let a2 = UIAlertAction.init(title:  R.string.localizable.grinSentUseFile(), style: .default) { (_) in
-            var url: URL!
-            if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                url = URL(string: "https://forum.vite.net/topic/1335/%E5%9C%A8vite%E9%92%B1%E5%8C%85%E4%B8%8A%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86grin%E4%BA%A4%E6%98%93%E6%96%87%E4%BB%B6")
-            } else {
-                url = URL(string: "https://forum.vite.net/topic/1334/how-to-use-vite-wallet-to-receive-a-grin-via-files")
-            }
-            let webvc = WKWebViewController(url: url)
-            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+            let vc = GrinTeachViewController.init(txType: .receive, channelType: .file)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let a3 = UIAlertAction.init(title:  R.string.localizable.cancel(), style: .cancel) { _ in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -307,13 +339,13 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let tx = self.walletInfoVM.txs.value[indexPath.row]
         var action = [UITableViewRowAction]()
-        if let slateId = tx.txSlateId {
+        if let slateId = tx.txLogEntry?.txSlateId {
             let copyAction = UITableViewRowAction.init(style: .default, title:  R.string.localizable.grinTxCopyId()) { (_, _) in
                     UIPasteboard.general.string = slateId
                 }
@@ -321,17 +353,17 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
             action.append(copyAction)
         }
 
-        if tx.canRepost {
+        if tx.txLogEntry?.canRepost == true {
             let repostAction = UITableViewRowAction.init(style: .default, title: R.string.localizable.grinTxRepost()) { (_, _) in
-                    self.walletInfoVM.action.onNext(.repost(tx))
+                self.walletInfoVM.action.onNext(.repost(tx.txLogEntry!))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xFFC900)}
             action.append(repostAction)
         }
 
-        if tx.canCancel {
+        if tx.txLogEntry?.canCancel == true {
             let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.cancel()) { (_, _) in
-                    self.walletInfoVM.action.onNext(.cancel(tx))
+                self.walletInfoVM.action.onNext(.cancel(tx.txLogEntry!))
                 }
                 .then { $0.backgroundColor = UIColor(netHex: 0xDEDFE0)}
             action.append(cancleAction)
@@ -339,4 +371,28 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
         return action
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
+        self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
+    }
 }
+
+extension GrinInfoViewController: FloatButtonsViewDelegate {
+
+    func didClick(at index: Int) {
+        if index == 0 {
+            let selectVC = SelectGrinNodeViewController()
+            self.navigationController?.pushViewController(selectVC, animated: true)
+        } else if index == 1 {
+            Alert.show(title: R.string.localizable.grinWalletCheck(),
+                       message: R.string.localizable.grinWalletCheckDesc(),
+                       actions: [
+                        (.cancel, nil),
+                        (.default(title: R.string.localizable.confirm()), {[weak self] _ in
+                            self?.walletInfoVM.action.onNext(.checkWallet)
+                        }),
+                ])
+        }
+    }
+}
+

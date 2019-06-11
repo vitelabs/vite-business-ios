@@ -165,7 +165,7 @@ extension MyTokenInfosService {
     }
 
     public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress == address {
+        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress.lowercased() == address.lowercased() {
             return tokenInfo
         }
         return nil

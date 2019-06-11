@@ -51,7 +51,7 @@ class QuotaSubmitPopViewController: BaseViewController {
     }
 
     lazy var submitBtn = UIButton(style: .blue, title: R.string.localizable.quotaSubmitPopSubmitBtnTitle())
-    lazy var cancelBtn = UIButton(style: .white, title: R.string.localizable.quotaSubmitPopCancelBtnTitle())
+    lazy var cancelBtn = UIButton(style: .whiteWithShadow, title: R.string.localizable.quotaSubmitPopCancelBtnTitle())
 
     func setupView() {
         self.navigationController?.view.backgroundColor = .clear

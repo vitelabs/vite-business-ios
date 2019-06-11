@@ -37,7 +37,6 @@ class AddressManageViewController: BaseTableViewController {
         $0.layer.shadowOpacity = 0.1
         $0.layer.shadowRadius = 3
         $0.layer.shadowOffset = CGSize(width: 0, height: 0)
-        $0.layer.cornerRadius = 2
     }
 
     fileprivate func setupView() {
@@ -85,7 +84,16 @@ class AddressManageViewController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
 
         tableViewModel.defaultAddressNameDriver.drive(headerView.nameLabel.rx.text).disposed(by: rx.disposeBag)
-        tableViewModel.defaultAddressDriver.drive(headerView.addressLabel.rx.text).disposed(by: rx.disposeBag)
+        tableViewModel.defaultAddressDriver.drive(onNext: { [weak self] (index,address) in
+            guard let `self` = self else { return }
+            self.headerView.numberButton.setTitle("#\(index)", for: .normal)
+            let style = NSMutableParagraphStyle()
+            style.firstLineHeadIndent = 30
+            let attributes = [NSAttributedString.Key.paragraphStyle: style]
+            self.headerView.addressLabel.attributedText = NSAttributedString(string: address, attributes: attributes)
+
+        }).disposed(by: rx.disposeBag)
+
         generateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             if self.tableViewModel.canGenerateAddress {

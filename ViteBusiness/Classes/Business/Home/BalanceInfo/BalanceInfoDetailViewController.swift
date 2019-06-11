@@ -44,14 +44,12 @@ class BalanceInfoDetailViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
-        FetchQuotaManager.instance.retainQuota()
+        adapter.viewDidAppear()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
-        FetchQuotaManager.instance.releaseQuota()
+        adapter.viewDidDisappear()
     }
 
     func setupView() {
@@ -70,10 +68,42 @@ class BalanceInfoDetailViewController: BaseViewController {
             m.top.equalTo(navView.snp.bottom).offset(-60)
             m.left.right.bottom.equalToSuperview()
         }
-        adapter.setup(containerView: containerView, tokenInfo: tokenInfo)
+        adapter.setup(containerView: containerView)
+
+
+        if allowJumpTokenDetailPage {
+            let tapGestureRecognizer = UITapGestureRecognizer()
+            navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+            tapGestureRecognizer.rx.event.subscribe(onNext: { [weak self] (r) in
+                guard let url = self?.tokenInfo.infoURL else { return }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: rx.disposeBag)
+        }
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
+
+        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
+            .first().subscribe { [weak self] _ in
+                guard let `self` = self else { return }
+                if self.allowJumpTokenDetailPage {
+                    self.navView.tokenIconView.beat()
+                }
+            }.disposed(by: rx.disposeBag)
+    }
+}
+
+extension BalanceInfoDetailViewController {
+    var allowJumpTokenDetailPage: Bool {
+        switch tokenInfo.coinType {
+        case .vite:
+            return true
+        case .eth:
+            return !tokenInfo.isEtherCoin
+        case .grin:
+            return false
+        }
     }
 }

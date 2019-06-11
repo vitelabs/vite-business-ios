@@ -136,7 +136,7 @@ public extension Dictionary where Key == String, Value == [String: String] {
     func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.currency
         let p = price(for: tokenInfo, balance: balance)
-        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding))"
+        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
     }
 }
 

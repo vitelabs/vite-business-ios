@@ -31,7 +31,7 @@ class WalletHomeNavViewModel {
                         allPrice = allPrice + price
                     }
                     let currency = AppSettingsService.instance.currency
-                    return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding))"
+                    return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
                 }
             })
     }

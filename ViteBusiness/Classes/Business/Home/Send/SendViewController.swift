@@ -101,6 +101,11 @@ class SendViewController: BaseViewController {
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             addressView = view
+
+            #if DEBUG
+            view.textView.text = HDWalletManager.instance.account!.address
+            amountView.textField.text = "0.1"
+            #endif
         }
 
         let sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle())
@@ -220,14 +225,9 @@ class SendViewController: BaseViewController {
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
             .drive(onNext: { [weak self] balanceInfo in
-            guard let `self` = self else { return }
-            if let balanceInfo = balanceInfo {
-                self.balance = balanceInfo.balance
-                self.headerView.balanceLabel.text = balanceInfo.balance.amountFull(decimals: self.token.decimals)
-            } else {
-                // no balanceInfo, set 0.0
-                self.headerView.balanceLabel.text = "0.0"
-            }
+                guard let `self` = self else { return }
+                self.balance = balanceInfo?.balance ?? self.balance
+                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
         }).disposed(by: rx.disposeBag)
 
         FetchQuotaManager.instance.quotaDriver
