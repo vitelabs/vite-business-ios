@@ -562,7 +562,6 @@
 "grin.send.illegalAmmount" = "转账金额不合法";
 "grin.detail.gatewayResend" = "请求网关重发";
 
-
 // CrossChain Deposit & Withdraw
 "crosschain.tokendetail" = "代币详情";
 "crosschain.deposit" = "跨链转入";
@@ -614,22 +613,33 @@
 
 
 
+/* Vite Bifrost */
+"bifrost.connect.tip.in.wallet.home" = "WallectConnect 连接中";
+"bifrost.alert.tip.title" = "温馨提示";
+"bifrost.alert.approve.session.message" = "请确认是否首选如下链接:\n%@";
+"bifrost.alert.switch.address.message" = "您当前城处于WalletConnect链接中，切换地址将断开链接，请确认是否切换地址";
+
+"bifrost.home.page.free.header" = "WallectConnect 连接中";
+"bifrost.home.page.free.content" = "当前暂无交易";
+
+"bifrost.home.page.busy.header" = "您正在web端进行%@操作";
+"bifrost.home.page.busy.content" = "请确认如下交易信息";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// operation
+"bifrost.operation.register.sbp" = "注册SBP";
+"bifrost.operation.register.update.sbp" = "更新SBP";
+"bifrost.operation.cancel.register.sbp" = "撤销SBP注册";
+"bifrost.operation.vote" = "投票";
+"bifrost.operation.cancel.vote" = "撤销投票";
+"bifrost.operation.extract.reward" = "提取奖励";
+"bifrost.operation.pledge" = "获取配额";
+"bifrost.operation.cancel.pledge" = "取回配额抵押";
+"bifrost.operation.coin" = "铸币";
+"bifrost.operation.cancel.coin" = "取回铸币抵押";
+"bifrost.operation.transfer" = "转账";
+"bifrost.operation.vx.deposit" = "交易所充值";
+"bifrost.operation.vx.withdraw" = "交易所提现";
+"bifrost.operation.across.chain.withdraw" = "跨链转出";
+"bifrost.operation.vx.order" = "交易所挂单";
+"bifrost.operation.vx.cancel.order" = "交易所撤单";

@@ -203,6 +203,7 @@ PODS:
     - RxOptional
     - RxSwift (~> 4.0)
     - SnapKit (~> 4.0.0)
+    - Starscream
     - SwiftLint
     - SwiftyJSON
     - Then
@@ -402,7 +403,7 @@ SPEC CHECKSUMS:
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: 3c2ddfef48c8138a57f8bdcfdd5c987acb1c4a5d
+  ViteBusiness: 3818314994164d0e1d20292d05e5cbf5623e7ee3
   ViteEthereum: 999132ec796b1b7ec047513cf8b3837893772a8a
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3swift: 6db59e73e2bcb99dde081088d0242382155690c9

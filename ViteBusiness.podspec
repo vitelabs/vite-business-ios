@@ -43,6 +43,7 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftyJSON'
   s.dependency 'JSONRPCKit'
   s.dependency 'APIKit'
+  s.dependency 'Starscream'
 
 
   s.dependency 'SnapKit', '~> 4.0.0'
