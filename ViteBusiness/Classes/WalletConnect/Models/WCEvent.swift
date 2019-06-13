@@ -13,13 +13,16 @@ public enum WCEvent: String {
     case sessionUpdate = "wc_sessionUpdate"
     case exchangeKey = "wc_exchangeKey"
 
-    case ethSign = "eth_sign"
-    case ethPersonalSign = "personal_sign"
-    case ethSignTypeData = "eth_signTypedData"
-    case ethSendTransaction = "eth_sendTransaction"
-
-    case bnbSign = "bnb_sign"
-    case bnbTransactionConfirm = "bnb_tx_confirmation"
+    case viteSendTransaction = "vite_sendTransaction"
+    case viteCallContract = "vite_callContract"
+    
+//    case ethSign = "eth_sign"
+//    case ethPersonalSign = "personal_sign"
+//    case ethSignTypeData = "eth_signTypedData"
+//    case ethSendTransaction = "eth_sendTransaction"
+//
+//    case bnbSign = "bnb_sign"
+//    case bnbTransactionConfirm = "bnb_tx_confirmation"
 }
 
 extension WCEvent {
