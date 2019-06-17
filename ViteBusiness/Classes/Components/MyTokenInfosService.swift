@@ -58,6 +58,17 @@ public final class MyTokenInfosService: NSObject {
             .bind { [weak self] (config, uuid) in
                 guard let `self` = self else { return }
                 if let _ = uuid {
+                    #if DAPP
+                    self.tokenInfosBehaviorRelay.accept([
+                        TokenInfo(tokenCode: ViteConst.instance.tokenCode.viteCoin,
+                                  coinType: .vite,
+                                  name: ViteWalletConst.viteToken.name,
+                                  symbol: ViteWalletConst.viteToken.symbol,
+                                  decimals: ViteWalletConst.viteToken.decimals,
+                                  icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png",
+                                  id: ViteWalletConst.viteToken.id)])
+                    self.needUpdateTokenInfo = Set()
+                    #else
                     guard let array = config.defaultTokenInfos as? [[String: Any]] else { return }
                     let defaultTokenInfos = [TokenInfo](JSONArray: array).compactMap { $0 }
                     self.defaultTokenInfos = defaultTokenInfos
@@ -76,6 +87,7 @@ public final class MyTokenInfosService: NSObject {
                         self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
                     }
                     self.needUpdateTokenInfo = Set(self.tokenInfosBehaviorRelay.value.map({ $0.tokenCode }))
+                    #endif
                 } else {
                     self.tokenInfosBehaviorRelay.accept([])
                     self.needUpdateTokenInfo = Set()
@@ -185,7 +197,23 @@ extension MyTokenInfosService {
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
             completion(Result.success(tokenInfo))
         } else {
+            #if DAPP
+            ViteNode.mintage.getToken(tokenId: viteTokenId)
+            .done({
+                let tokenInfo = TokenInfo(tokenCode: $0.id,
+                                          coinType: .vite,
+                                          name: $0.name,
+                                          symbol: $0.symbol,
+                                          decimals: $0.decimals,
+                                          icon: "",
+                                          id: $0.id)
+                completion(Result.success(tokenInfo))
+            }).catch({ error in
+                completion(Result.failure(error))
+            })
+            #else
             ExchangeProvider.instance.getTokenInfo(chain: "VITE", id: viteTokenId, completion: completion)
+            #endif
         }
     }
 

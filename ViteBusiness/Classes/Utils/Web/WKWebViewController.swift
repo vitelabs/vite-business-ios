@@ -93,6 +93,15 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.title = self.titleStr
 
+        #if DAPP
+        if #available(iOS 11.0, *) {
+            let spaceItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            spaceItem.width = -15
+            self.navigationItem.leftBarButtonItems = [spaceItem,self.backItem, self.closeItem, self.refreshItem]
+        } else {
+            self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem, self.refreshItem]
+        }
+        #else
         if #available(iOS 11.0, *) {
             let spaceItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
             spaceItem.width = -15
@@ -100,7 +109,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         } else {
               self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem]
         }
-
+        #endif
         self.navigationItem.rightBarButtonItem = self.shareItem
     }
 
@@ -159,6 +168,22 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         return backItem
     }()
 
+    lazy var refreshItem: UIBarButtonItem = {
+        let btn = UIButton(type: .custom)
+        btn.backgroundColor = .clear
+        btn.setTitle("Refresh", for: .normal)
+        btn.addTarget(self, action: #selector(refreshVCAction), for: .touchUpInside)
+        btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.sizeToFit()
+        btn.frame.origin = CGPoint(x: -18, y: 0)
+
+        let btnView = UIView(frame: btn.bounds)
+        btnView.addSubview(btn)
+        let closeItem =   UIBarButtonItem(customView: btnView)
+        return closeItem
+    }()
+
     lazy var closeItem: UIBarButtonItem = {
         let btn = UIButton(type: .custom)
         btn.backgroundColor = .clear
@@ -189,6 +214,10 @@ extension WKWebViewController {
         }
     }
 
+    @objc func refreshVCAction() {
+        webView.reload()
+    }
+
     @objc func goNextBtnAction() {
         webView.goForward()
     }
@@ -199,10 +228,6 @@ extension WKWebViewController {
         }else{
             self.closeVCAction()
         }
-    }
-
-    @objc func reloadWebView() {
-        webView.reload()
     }
 
     @objc func shareWebView() {
