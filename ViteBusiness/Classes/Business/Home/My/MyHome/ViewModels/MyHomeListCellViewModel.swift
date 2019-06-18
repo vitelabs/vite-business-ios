@@ -17,7 +17,7 @@ class MyHomeListCellViewModel: Mappable {
         case custom
     }
 
-    fileprivate var type: ViewModelType = .custom
+    var type: ViewModelType = .custom
     fileprivate var title: StringWrapper = StringWrapper(string: "")
     fileprivate var icon: String = ""
     fileprivate var url: String = ""

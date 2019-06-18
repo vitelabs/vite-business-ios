@@ -40,7 +40,18 @@ public class ViteBusinessLanucher: NSObject {
     public func start(with window: UIWindow) {
         self.window = window
         //config
+        #if DAPP
+        let url: URL
+        if !DebugService.instance.config.rpcCustomUrl.isEmpty,
+            let u = URL(string: DebugService.instance.config.rpcCustomUrl) {
+            url = u
+        } else {
+            url = URL(string: ViteConst.Env.premainnet.vite.nodeHttp)!
+        }
+        Provider.default.update(server: ViteWallet.RPCServer(url: url))
+        #else
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
+        #endif
         EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()

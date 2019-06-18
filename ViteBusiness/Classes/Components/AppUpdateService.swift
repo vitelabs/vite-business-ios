@@ -46,7 +46,9 @@ class AppUpdateService: NSObject {
 
     static func checkUpdate() {
 
-        #if DEBUG || TEST
+        #if DAPP
+        return
+        #elseif DEBUG || TEST
         if DebugService.instance.config.ignoreCheckUpdate {
             return
         }

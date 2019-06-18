@@ -46,6 +46,10 @@ class WalletHomeHeaderView: UIView {
             let sendViewController = TokenListManageController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
+
+        #if DAPP
+        addButton.isHidden = true
+        #endif
     }
 
     required init?(coder aDecoder: NSCoder) {

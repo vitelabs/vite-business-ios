@@ -110,7 +110,12 @@ public extension Storageable {
 
 public extension FileHelper {
 
-    #if DEBUG || TEST
+    #if DAPP
+    static var appPathComponent = "app"
+    static var walletPathComponent: String {
+        return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
+    }
+    #elseif DEBUG || TEST
     static func path() -> String {
         return (DebugService.instance.config.appEnvironment == .online) ? "" : DebugService.instance.config.appEnvironment.name + "/"
     }
