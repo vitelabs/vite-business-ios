@@ -27,6 +27,11 @@ public class WKWebViewJSBridgePublish {
         }
     }
 
+    public func pageOnShowAction() {
+        self.bridge?.call(handlerName: "page.onShow", data: "") {  (_) in
+        }
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(observerShakeGesture!)
     }

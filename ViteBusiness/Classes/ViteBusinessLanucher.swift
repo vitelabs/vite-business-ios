@@ -302,9 +302,26 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        GrinManager.default.handle(url: url)
+        if url.scheme == AppScheme.value {
+            guard let _ = HDWalletManager.instance.account else { return false }
+            if let ret = AppScheme(rawValue: url.host ?? "") {
+                switch ret {
+                case .open:
+                    if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
+                        let url = URL(string: urlString) {
+                        NavigatorManager.instance.push(url)
+                    }
+                }
+            }
+        } else {
+            GrinManager.default.handle(url: url)
+        }
         return true
     }
-
 }
 
+enum AppScheme: String {
+    static let value = "viteapp"
+
+    case open
+}

@@ -74,9 +74,11 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tipLabel.isHidden = false
+        bridge.pageOnShowAction()
     }
 
     fileprivate func handleNavBar() {
@@ -248,12 +250,12 @@ extension WKWebViewController {
         self.tipLabel.text = webView.url?.host.map { R.string.localizable.webPageHostTip($0) }
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.targetFrame == nil {
-            webView.load(navigationAction.request)
-        }
-        decisionHandler(.allow)
-    }
+//    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+//        if navigationAction.targetFrame == nil {
+//            webView.load(navigationAction.request)
+//        }
+//        decisionHandler(.allow)
+//    }
 }
 
 extension WKWebViewController {

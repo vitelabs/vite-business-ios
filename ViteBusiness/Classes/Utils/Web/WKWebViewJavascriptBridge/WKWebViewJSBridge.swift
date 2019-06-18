@@ -34,6 +34,10 @@ public class WKWebViewJSBridge: NSObject {
     }
 
     // MARK: - Public Funcs
+    public func pageOnShowAction() {
+        publish.pageOnShowAction()
+    }
+
     public func reset() {
         base.reset()
     }
