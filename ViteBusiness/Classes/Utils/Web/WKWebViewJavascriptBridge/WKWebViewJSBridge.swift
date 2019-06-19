@@ -38,6 +38,10 @@ public class WKWebViewJSBridge: NSObject {
         publish.pageOnShowAction()
     }
 
+    public func appDidBecomeActive() {
+        publish.appDidBecomeActive()
+    }
+
     public func reset() {
         base.reset()
     }

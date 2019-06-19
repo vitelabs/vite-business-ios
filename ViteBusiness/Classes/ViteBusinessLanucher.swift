@@ -196,7 +196,8 @@ public class ViteBusinessLanucher: NSObject {
                 "platform": "ios",
                 "versionName": Bundle.main.versionNumber,
                 "versionCode": Bundle.main.buildNumberInt,
-                "env": env
+                "env": env,
+                "uuid": UUID.stored
                 ] as [String : Any]
             return Response(code:.success,msg: "ok",data: data)
         }

@@ -69,6 +69,14 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         self.handleNavBar()
 
         self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 100))
+
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).bind {
+            [weak self] _ in
+            guard let current = UIViewController.current else { return }
+            if self == current {
+                self?.bridge.appDidBecomeActive()
+            }
+            }.disposed(by: rx.disposeBag)
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -250,12 +258,12 @@ extension WKWebViewController {
         self.tipLabel.text = webView.url?.host.map { R.string.localizable.webPageHostTip($0) }
     }
 
-//    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//        if navigationAction.targetFrame == nil {
-//            webView.load(navigationAction.request)
-//        }
-//        decisionHandler(.allow)
-//    }
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        decisionHandler(.allow)
+    }
 }
 
 extension WKWebViewController {
