@@ -140,6 +140,37 @@ extension ExchangeProvider {
         })
     }
 
+    @discardableResult
+    func getTokenInfos(chain: String, ids: [String], completion: @escaping (Result<[TokenInfo]>) -> Void) -> Cancellable {
+        return sendRequest(api: .getTokenInfosInChain(chain, ids), completion: { (ret) in
+            switch ret {
+            case .success(let json):
+                var map = [String: TokenInfo]()
+                if let json = json as? [[String: Any]] {
+                    let tokenInfos = [TokenInfo](JSONArray: json).compactMap { $0 }
+                    tokenInfos.forEach({ (tokenInfo) in
+                        map[tokenInfo.id.lowercased()] = tokenInfo
+                    })
+                }
+
+                var tokenInfos = [TokenInfo]()
+                for id in ids {
+                    if let tokenInfo = map[id.lowercased()] {
+                        tokenInfos.append(tokenInfo)
+                    }
+                }
+
+                if tokenInfos.count == ids.count {
+                    completion(Result.success(tokenInfos))
+                } else {
+                    completion(Result.failure(ExchangeError.notFound))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        })
+    }
+
     fileprivate func sendRequest(api: ExchangeAPI, completion: @escaping (Result<Any>) -> Void) -> Cancellable {
         return request(api) { (result) in
             switch result {

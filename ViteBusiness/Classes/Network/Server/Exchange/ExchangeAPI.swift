@@ -15,6 +15,7 @@ enum ExchangeAPI {
     case searchTokenInfo(String)
     case getTokenInfo(TokenCode)
     case getTokenInfoInChain(String, String)
+    case getTokenInfosInChain(String, [String])
 }
 
 extension ExchangeAPI: TargetType {
@@ -35,6 +36,8 @@ extension ExchangeAPI: TargetType {
             return "/api/v1/cryptocurrency/info/assign"
         case .getTokenInfoInChain:
             return "/api/v1/cryptocurrency/info/query"
+        case .getTokenInfosInChain:
+            return "/api/v1/cryptocurrency/info/query"
         }
     }
 
@@ -49,6 +52,8 @@ extension ExchangeAPI: TargetType {
         case .getTokenInfo:
             return .post
         case .getTokenInfoInChain:
+            return .post
+        case .getTokenInfosInChain:
             return .post
         }
     }
@@ -65,6 +70,8 @@ extension ExchangeAPI: TargetType {
             return .requestJSONEncodable([tokenCode])
         case .getTokenInfoInChain(let chain, let id):
             return .requestParameters(parameters: ["platformSymbol": chain, "tokenAddress": id], encoding: JSONEncoding.default)
+        case .getTokenInfosInChain(let chain, let ids):
+            return .requestParameters(parameters: ["platformSymbol": chain, "tokenAddresses": ids], encoding: JSONEncoding.default)
         }
     }
 
