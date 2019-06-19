@@ -80,6 +80,18 @@ class BalanceInfoDetailViewController: BaseViewController {
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }).disposed(by: rx.disposeBag)
         }
+
+        if tokenInfo.isGateway {
+            let button = UIButton.init()
+            button.setTitle(R.string.localizable.crosschainTokendetail(), for: .normal)
+            button.setTitleColor(UIColor.init(netHex:  0x007AFF), for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: button)
+            button.rx.tap.bind { [unowned self] in
+                let vc =  GatewayTokenDetailViewController.init(tokenInfo: self.tokenInfo)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }.disposed(by: rx.disposeBag)
+        }
     }
 
     func bind() {
