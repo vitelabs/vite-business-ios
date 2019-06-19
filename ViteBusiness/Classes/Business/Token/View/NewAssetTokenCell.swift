@@ -19,6 +19,18 @@ class NewAssetTokenCell: UITableViewCell {
         symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59)
     }
 
+    lazy var amountLabel = UILabel().then {(tokenNameLabel) in
+        tokenNameLabel.font = UIFont.systemFont(ofSize: 12)
+        tokenNameLabel.textAlignment = .right
+        tokenNameLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
+    }
+
+    lazy var amountLegalLabel = UILabel().then {(tokenNameLabel) in
+        tokenNameLabel.font = UIFont.systemFont(ofSize: 11)
+        tokenNameLabel.textAlignment = .right
+        tokenNameLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
+    }
+
     lazy var tokenNameLabel = UILabel().then {(tokenNameLabel) in
         tokenNameLabel.font = UIFont.systemFont(ofSize: 11)
         tokenNameLabel.textAlignment = .left
@@ -40,6 +52,10 @@ class NewAssetTokenCell: UITableViewCell {
 
     lazy var line = UIView().then { (line) in
         line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+    }
+
+    lazy var centerline = UIView().then { (line) in
+        line.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
     }
 
     private var tokenInfo: TokenInfo?
@@ -74,6 +90,15 @@ class NewAssetTokenCell: UITableViewCell {
         }
 
         self.tokenLogoImg.tokenInfo = token
+        self.switchControl.setOn(token.isContains, animated: false)
+        
+        guard let price = NewAssetService.instance.fetchAmountByTokenCode(token.tokenCode) else {
+            self.amountLabel.text = ""
+            self.amountLegalLabel.text = ""
+            return
+        }
+        self.amountLabel.text = price.0
+        self.amountLegalLabel.text = price.1
     }
 
     @objc func switchChanged() {
@@ -143,6 +168,28 @@ class NewAssetTokenCell: UITableViewCell {
             m.top.equalTo(self.tokenNameLabel.snp.bottom).offset(2)
             m.width.equalTo(110)
             m.height.equalTo(15)
+        }
+
+        self.contentView.addSubview(centerline)
+        centerline.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(18)
+            m.bottom.equalToSuperview().offset(-18)
+            m.right.equalToSuperview().offset(-73)
+            m.width.equalTo(1)
+        }
+
+        self.contentView.addSubview(amountLabel)
+        amountLabel.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(22)
+            m.right.equalTo(self.centerline.snp.left).offset(-12)
+            m.height.equalTo(16)
+        }
+
+        self.contentView.addSubview(amountLegalLabel)
+        amountLegalLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(self.amountLabel.snp.bottom).offset(3)
+            m.right.equalTo(self.centerline.snp.left).offset(-12)
+            m.height.equalTo(16)
         }
     }
 

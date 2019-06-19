@@ -175,14 +175,23 @@ extension TokenListManageController : UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
        if self.viewModel.isHasNewAssetTokens() && section == 0 {
-            let contentView = NewAssetTableSectionView()
+        let contentView = NewAssetTableSectionView()
         contentView.titleLab.lab.text = R.string.localizable.tokenListPageIgnoreLabTitle(self.viewModel.newAssetTokens.count)
 
         contentView.ignoreBtn.rx.tap.bind {[weak self] in
             guard let `self` = self else {
                 return
             }
-        NewAssetService.instance.addIgnoreReminderTokens(self.viewModel.newAssetTokens)
+
+            Alert.show(title: R.string.localizable.tokenListPageIgnoreAlterTitle(), message: nil, actions: [
+                (.default(title: R.string.localizable.cancel()), nil),
+                (.default(title: R.string.localizable.confirm()), { _ in
+                    NewAssetService.instance.addIgnoreReminderTokens(self.viewModel.newAssetTokens)
+                    self.viewModel.newAssetTokens = []
+                    self.viewModel.refreshList()
+                }),
+                ])
+
         }.disposed(by: rx.disposeBag)
             return contentView
        }else {

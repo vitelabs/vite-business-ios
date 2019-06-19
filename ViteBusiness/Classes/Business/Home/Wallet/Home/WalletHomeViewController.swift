@@ -102,6 +102,29 @@ class WalletHomeViewController: BaseTableViewController {
 
     fileprivate func bind() {
 
+        ViteBalanceInfoManager.instance.unselectBalanceInfoVMsDriver.drive(onNext: { (vms) in
+            plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.symbol + " " }))")
+            var tokens = NewAssetService.instance.handleIsNewTipTokens(vms)
+
+            if tokens.count > 0 {
+                self.headerView.addButton.pp.badgeView.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+                self.headerView.addButton.pp.badgeView.layer.borderColor = UIColor.white.cgColor
+                self.headerView.addButton.pp.badgeView.layer.borderWidth = 1.0
+                self.headerView.addButton.pp.setBadge(flexMode: .middle)
+//                self.headerView.addButton.pp.setBadge(height: 14)
+                self.headerView.addButton.pp.moveBadge(x: -30, y: 15)
+
+                if tokens.count >= 10 {
+                     self.headerView.addButton.pp.addBadge(text: "N")
+                }else {
+                     self.headerView.addButton.pp.addBadge(number: tokens.count)
+                }
+                self.headerView.addButton.pp.showBadge()
+            }else {
+                self.headerView.addButton.pp.hiddenBadge()
+            }
+        }).disposed(by: rx.disposeBag)
+
         tableViewModel = WalletHomeBalanceInfoTableViewModel(isHidePriceDriver: isHidePriceDriver)
         navViewModel = WalletHomeNavViewModel(isHidePriceDriver: isHidePriceDriver, walletHomeBalanceInfoTableViewModel: tableViewModel)
         navView.bind(viewModel: navViewModel)

@@ -361,6 +361,7 @@
 "token.list.page.section.grin.header" = "GRIN网络";
 "token.list.page.ignore.btn.title" = "忽略";
 "token.list.page.ignore.lab.title" = "%d个新资产";
+"token.list.page.ignore.alter.title" = "被忽略币种将不再提示，确定忽略以下币种？";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
