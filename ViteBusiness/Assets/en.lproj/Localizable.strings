@@ -356,6 +356,8 @@
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
 "token.list.page.section.grin.header" = "GRIN Network";
+"token.list.page.ignore.btn.title" = "忽略";
+"token.list.page.ignore.lab.title" = "%d个新资产";
 
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";

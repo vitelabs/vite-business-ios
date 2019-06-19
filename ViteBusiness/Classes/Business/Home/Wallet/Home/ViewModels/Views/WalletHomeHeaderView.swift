@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PPBadgeViewSwift
 
 class WalletHomeHeaderView: UIView {
 
@@ -42,9 +43,16 @@ class WalletHomeHeaderView: UIView {
             m.width.equalTo(76)
         }
 
+        addButton.pp.addBadge(number: 1)
+        addButton.pp.badgeView.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+        addButton.pp.badgeView.layer.borderColor = UIColor.white.cgColor
+        addButton.pp.badgeView.layer.borderWidth = 1.0
+        addButton.pp.setBadge(flexMode: .middle)
+        addButton.pp.setBadge(height: 14)
+        addButton.pp.moveBadge(x: 10, y: 15)
         addButton.rx.tap.bind { [weak self] in
-            let sendViewController = TokenListManageController()
-            UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
+            let vc = TokenListManageController(MyTokenInfosService.instance.tokenInfos)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 
         #if DAPP

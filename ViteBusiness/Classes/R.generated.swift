@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 167 images.
+  /// This `R.image` struct is generated, and contains static references to 168 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -330,6 +330,8 @@ struct R: Rswift.Validatable {
     static let login_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_logo")
     /// Image `network_error`.
     static let network_error = Rswift.ImageResource(bundle: R.hostingBundle, name: "network_error")
+    /// Image `point`.
+    static let point = Rswift.ImageResource(bundle: R.hostingBundle, name: "point")
     /// Image `quota_bell`.
     static let quota_bell = Rswift.ImageResource(bundle: R.hostingBundle, name: "quota_bell")
     /// Image `selected`.
@@ -1133,6 +1135,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.network_error, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "point", bundle: ..., traitCollection: ...)`
+    static func point(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.point, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "quota_bell", bundle: ..., traitCollection: ...)`
     static func quota_bell(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.quota_bell, compatibleWith: traitCollection)
@@ -1193,7 +1200,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 452 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 454 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1215,6 +1222,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressListPageOtherTitle = Rswift.StringResource(key: "address.list.page.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %d个新资产
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageIgnoreLabTitle = Rswift.StringResource(key: "token.list.page.ignore.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -3003,6 +3014,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 忽略
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageIgnoreBtnTitle = Rswift.StringResource(key: "token.list.page.ignore.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -3037,6 +3052,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func addressListPageOtherTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("address.list.page.other.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %d个新资产
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageIgnoreLabTitle(_ value1: Int) -> String {
+        return String(format: NSLocalizedString("token.list.page.ignore.lab.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
@@ -6166,6 +6188,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip3Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 忽略
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageIgnoreBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.ignore.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

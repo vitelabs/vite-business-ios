@@ -12,8 +12,17 @@ import RxCocoa
 public typealias TokenListArray = [[TokenInfo]]
 
 final class TokenListManageViewModel {
+    var newAssetTokens : [TokenInfo] = []
+    func isHasNewAssetTokens() -> Bool {
+        return self.newAssetTokens.count > 0 ? true : false
+    }
+
     lazy var tokenListRefreshDriver = self.tokenListRefreshRelay.asDriver()
     fileprivate  var tokenListRefreshRelay = BehaviorRelay<TokenListArray>(value: TokenListArray())
+
+    init(_ newAssetTokens: [TokenInfo]) {
+        self.newAssetTokens = newAssetTokens
+    }
 
     func refreshList() {
         TokenListService.instance.fetchTokenListCacheData()
@@ -52,6 +61,11 @@ final class TokenListManageViewModel {
         }
 
         var list = Array<[TokenInfo]>()
+
+        if self.isHasNewAssetTokens() {
+            list.append(self.newAssetTokens)
+        }
+
         if var vite = map["VITE"] {
             vite.append(contentsOf: localViteToken)
             list.append(vite)
@@ -70,6 +84,7 @@ final class TokenListManageViewModel {
         }else {
             list.append(localGrinToken)
         }
+
         tokenListRefreshRelay.accept(list)
     }
 
