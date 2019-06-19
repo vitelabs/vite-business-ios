@@ -31,6 +31,10 @@ public class ViteBalanceInfoManager {
     lazy var  balanceInfosDriver: Driver<ViteBalanceInfoMap> = self.balanceInfos.asDriver()
     fileprivate var balanceInfos: BehaviorRelay<ViteBalanceInfoMap>! = nil
 
+    lazy var unselectBalanceInfoVMsDriver: Driver<[WalletHomeBalanceInfoViewModel]> = self.unselectBalanceInfos.asDriver()
+    fileprivate var unselectBalanceInfos: BehaviorRelay<[WalletHomeBalanceInfoViewModel]> = BehaviorRelay(value: [])
+    fileprivate var unselectTokenInfoCache = [TokenInfo]()
+
     fileprivate var service: FetchBalanceInfoService?
 
     fileprivate var address: ViteAddress?
@@ -68,6 +72,9 @@ public class ViteBalanceInfoManager {
             } else {
                 self.balanceInfos.accept(map)
             }
+
+            self.unselectBalanceInfos = BehaviorRelay(value: [])
+            self.unselectTokenInfoCache = [TokenInfo]()
 
             self.address = a?.address
             self.triggerService()
@@ -107,8 +114,30 @@ public class ViteBalanceInfoManager {
                         return ret
                     })
 
+                    let viteTokenIdSet = Set(tokenInfos.map { $0.viteTokenId })
+                    let unselectBalanceInfos = balanceInfos.filter { !viteTokenIdSet.contains($0.token.id)}
+
                     self.save(mappable: balanceInfos)
                     self.balanceInfos.accept(ret)
+
+                    let viteTokenIds = unselectBalanceInfos.map { $0.token.id }
+                    self.updateUnselectTokenInfoCacheIfNeeded(viteTokenIds: viteTokenIds, completion: { [weak self] (ret) in
+                        guard let `self` = self else { return }
+                        switch ret {
+                        case .success:
+
+                            var ret = [WalletHomeBalanceInfoViewModel]()
+                            for balanceInfo in unselectBalanceInfos {
+                                if let tokenInfo = self.getViteTokenInfo(for: balanceInfo.token.id) {
+                                    let vm = WalletHomeBalanceInfoViewModel(tokenInfo: tokenInfo, balance: balanceInfo.balance)
+                                    ret.append(vm)
+                                }
+                            }
+                            self.unselectBalanceInfos.accept(ret)
+                        case .failure:
+                            break
+                        }
+                    })
                 case .failure(let error):
                     plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
                 }
@@ -144,4 +173,38 @@ extension ViteBalanceInfoManager {
             return map[id]
         }
     }
+}
+
+// for unselected vite token
+extension ViteBalanceInfoManager {
+    func updateUnselectTokenInfoCacheIfNeeded(viteTokenIds: [ViteTokenId],completion: @escaping (Result<Void>) -> Void) {
+        let ids = viteTokenIds.filter { !unselectTokenInfoCache(contains: $0) }
+        if ids.isEmpty {
+            completion(Result.success(()))
+        } else {
+            ExchangeProvider.instance.getTokenInfos(chain: "VITE", ids: ids) { (ret) in
+                switch ret {
+                case .success(let tokenInfos):
+                    self.unselectTokenInfoCache = self.unselectTokenInfoCache + tokenInfos
+                    completion(Result.success(()))
+                case .failure(let error):
+                    completion(Result.failure(error))
+                }
+            }
+        }
+    }
+
+    func unselectTokenInfoCache(contains viteTokenId: ViteTokenId) -> Bool {
+        return getViteTokenInfo(for: viteTokenId) != nil
+    }
+
+    func getViteTokenInfo(for viteTokenId: ViteTokenId) -> TokenInfo? {
+        for tokenInfo in unselectTokenInfoCache {
+            if tokenInfo.toViteToken()?.id == viteTokenId {
+                return tokenInfo
+            }
+        }
+        return nil
+    }
+
 }
