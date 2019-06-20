@@ -43,7 +43,7 @@ class CrossChainHistoryViewController: BaseViewController {
         tableView.mj_header = RefreshHeader(refreshingBlock: { [unowned self] in
             self.getRecords()
         })
-        tableView.mj_footer = RefreshFooter.init(refreshingBlock: {
+        tableView.mj_footer = RefreshFooter.init(refreshingBlock: { [unowned self] in
             self.getMoreRecords()
         })
 

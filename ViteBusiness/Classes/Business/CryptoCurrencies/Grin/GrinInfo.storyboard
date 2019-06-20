@@ -482,6 +482,7 @@
                         <outlet property="balanceBackground" destination="N0q-Xq-IAF" id="vny-kz-Yre"/>
                         <outlet property="feeLabel" destination="Hay-0o-J1E" id="cLc-JV-yKK"/>
                         <outlet property="feeTitleLable" destination="1Rc-xz-LB1" id="kmK-BA-Pew"/>
+                        <outlet property="rateLabel" destination="sor-al-TGY" id="Ctt-4Y-sfR"/>
                         <outlet property="spendableLabel" destination="FNI-LU-wil" id="Kfb-9j-vMQ"/>
                         <outlet property="spendableTitleLabel" destination="Cvv-74-G0V" id="EsL-0u-aCw"/>
                         <outlet property="titleView" destination="ICx-r9-Cqy" id="BYj-Ft-h44"/>

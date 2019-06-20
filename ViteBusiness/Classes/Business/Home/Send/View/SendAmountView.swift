@@ -8,6 +8,9 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import BigInt
+import ViteWallet
 
 class SendAmountView: UIView {
 
@@ -23,13 +26,18 @@ class SendAmountView: UIView {
     let symbolLabel = UILabel().then {
         $0.textColor = Colors.titleGray
         $0.font = AppStyle.descWord.font
+        $0.textAlignment = .right
     }
 
     let separatorLine = UIView().then {
         $0.backgroundColor = Colors.lineGray
     }
 
-    init(amount: String, symbol: String) {
+    let token: TokenInfo
+
+    init(amount: String, token: TokenInfo) {
+        let symbol = ""
+        self.token = token
         super.init(frame: CGRect.zero)
 
         let canEdit = amount.isEmpty
@@ -96,6 +104,19 @@ class SendAmountView: UIView {
                 m.centerY.equalTo(titleLabel)
             }
         }
+
+        textField.rx.text.bind { [weak self] text in
+            guard let `self` = self else { return }
+            let rateMap = ExchangeRateManager.instance.rateMap
+            if let amount = text?.toAmount(decimals: self.token.decimals) {
+                self.symbolLabel.text = "≈" + rateMap.priceString(for: self.token, balance: amount)
+            } else {
+                self.symbolLabel.text = "≈ 0.0"
+            }
+        }
+        .disposed(by: rx.disposeBag)
+
+
     }
 
     required init?(coder aDecoder: NSCoder) {

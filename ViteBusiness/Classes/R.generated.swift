@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 168 images.
+  /// This `R.image` struct is generated, and contains static references to 172 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -34,6 +34,14 @@ struct R: Rswift.Validatable {
     static let blue_dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "blue_dotted_line")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
+    /// Image `crosschain_operat`.
+    static let crosschain_operat = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat")
+    /// Image `crosschain_status_confirm`.
+    static let crosschain_status_confirm = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_confirm")
+    /// Image `crosschain_status_gateway`.
+    static let crosschain_status_gateway = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_gateway")
+    /// Image `crosschain_status_vite`.
+    static let crosschain_status_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_vite")
     /// Image `dotted_line`.
     static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
@@ -393,6 +401,26 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "btn_path_bg", bundle: ..., traitCollection: ...)`
     static func btn_path_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.btn_path_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_operat", bundle: ..., traitCollection: ...)`
+    static func crosschain_operat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_operat, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_status_confirm", bundle: ..., traitCollection: ...)`
+    static func crosschain_status_confirm(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_status_confirm, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_status_gateway", bundle: ..., traitCollection: ...)`
+    static func crosschain_status_gateway(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_status_gateway, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_status_vite", bundle: ..., traitCollection: ...)`
+    static func crosschain_status_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_status_vite, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
@@ -1200,7 +1228,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 485 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 491 localization keys.
     struct localizable {
       /// en translation:      The advice comes from the using environment as below: 1.System device: %@ 2.System version:%@ 3.APP version: %@ 4.Language:%@
       /// 
@@ -1222,6 +1250,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressListPageOtherTitle = Rswift.StringResource(key: "address.list.page.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@链待确认
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusWaitToConfirm = Rswift.StringResource(key: "crosschain.status.waitToConfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %d个新资产
       /// 
       /// Locales: en, zh-Hans
@@ -3094,10 +3126,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainTokenDetailIssuanceTrue = Rswift.StringResource(key: "crosschain.tokenDetail.issuance.true", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 对手链交易金额小于最小转入金额，转入流程结束
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusFailedBecausePoor = Rswift.StringResource(key: "crosschain.status.failedBecausePoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 小数位：
       /// 
       /// Locales: en, zh-Hans
       static let crosschainTokenDetailDigit = Rswift.StringResource(key: "crosschain.tokenDetail.digit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已完成
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusConfirmed = Rswift.StringResource(key: "crosschain.status.confirmed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 忽略
       /// 
       /// Locales: en, zh-Hans
@@ -3122,6 +3162,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainDepositMin = Rswift.StringResource(key: "crosschain.deposit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 最少提现
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainWithdrawMin = Rswift.StringResource(key: "crosschain.withdraw.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 网关已接收
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusGatewayReceived = Rswift.StringResource(key: "crosschain.status.gatewayReceived", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 网络错误，点击查看账户详情
+      /// 
+      /// Locales: en, zh-Hans
+      static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 被忽略币种将不再提示，确定忽略以下币种？
       /// 
       /// Locales: en, zh-Hans
@@ -3176,6 +3228,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func addressListPageOtherTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("address.list.page.other.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@链待确认
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusWaitToConfirm(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.status.waitToConfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %d个新资产
@@ -6454,11 +6513,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.tokenDetail.issuance.true", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 对手链交易金额小于最小转入金额，转入流程结束
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusFailedBecausePoor(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.failedBecausePoor", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 小数位：
       /// 
       /// Locales: en, zh-Hans
       static func crosschainTokenDetailDigit(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.digit", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 已完成
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusConfirmed(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.confirmed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 忽略
@@ -6501,6 +6574,27 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainDepositMin(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.deposit.min", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最少提现
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainWithdrawMin(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.min", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 网关已接收
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusGatewayReceived(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.gatewayReceived", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 网络错误，点击查看账户详情
+      /// 
+      /// Locales: en, zh-Hans
+      static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 被忽略币种将不再提示，确定忽略以下币种？

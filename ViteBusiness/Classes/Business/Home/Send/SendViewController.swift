@@ -82,7 +82,7 @@ class SendViewController: BaseViewController {
     lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
 
     var addressView: SendAddressViewType!
-    lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", symbol: token.symbol)
+    lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", token: tokenInfo)
     lazy var noteView = SendNoteView(note: note ?? "", canEdit: noteCanEdit)
 
     private func setupView() {

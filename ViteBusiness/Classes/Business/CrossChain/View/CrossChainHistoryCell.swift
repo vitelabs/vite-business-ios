@@ -125,15 +125,19 @@ class CrossChainHistoryCell: UITableViewCell {
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = "ETH链待确认"
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
-                statusString = "已完成"
+                statusString = R.string.localizable.crosschainStatusConfirmed()
+                iconImageView.image = R.image.crosschain_status_confirm()
             case .BELOW_MINIMUM:
                 statusString = ""
             case .TOT_PROCESSING:
-                statusString = "VITE链待确认"
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
-                statusString = "网关已接收"
+                statusString = R.string.localizable.crosschainStatusGatewayReceived()
+                iconImageView.image = R.image.crosschain_status_gateway()
             case .UNKNOW:
                 statusString = ""
             }
@@ -146,15 +150,19 @@ class CrossChainHistoryCell: UITableViewCell {
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = "ETH链待确认"
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
-                statusString = "网关已接收"
+                statusString = R.string.localizable.crosschainStatusGatewayReceived()
+                iconImageView.image = R.image.crosschain_status_gateway()
             case .BELOW_MINIMUM:
-                statusString = "对手链交易金额小于最小转入金额，转入流程结束"
+                statusString = R.string.localizable.crosschainStatusFailedBecausePoor()
             case .TOT_PROCESSING:
-                statusString = "VITE链待确认"
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
-                statusString = "已完成"
+                statusString = R.string.localizable.crosschainStatusConfirmed()
+                iconImageView.image = R.image.crosschain_status_confirm()
             case .UNKNOW:
                 statusString = ""
             }
