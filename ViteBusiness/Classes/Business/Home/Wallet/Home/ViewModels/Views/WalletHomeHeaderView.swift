@@ -52,8 +52,7 @@ class WalletHomeHeaderView: UIView {
 
     func bindView() {
         self.addButton.rx.tap.bind { [weak self] in
-            var tokens = NewAssetService.instance.isNewTipTokenInfos
-            let vc = TokenListManageController(tokens)
+            let vc = TokenListManageController()
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: self.rx.disposeBag)
     }

@@ -8,7 +8,12 @@
 import UIKit
 import RxSwift
 
+protocol NewAssetTokenCellDelegate : class {
+    func refreshList()
+}
+
 class NewAssetTokenCell: UITableViewCell {
+    weak var delegate: NewAssetTokenCellDelegate?
     lazy var rightContentView = UIView().then{ (rightContentView) in
         rightContentView.backgroundColor = .white
     }
@@ -91,7 +96,7 @@ class NewAssetTokenCell: UITableViewCell {
 
         self.tokenLogoImg.tokenInfo = token
         self.switchControl.setOn(token.isContains, animated: false)
-        
+
         guard let price = NewAssetService.instance.fetchAmountByTokenCode(token.tokenCode) else {
             self.amountLabel.text = ""
             self.amountLegalLabel.text = ""
@@ -107,6 +112,8 @@ class NewAssetTokenCell: UITableViewCell {
         }
         if self.switchControl.isOn() {
             MyTokenInfosService.instance.append(tokenInfo: token)
+            NewAssetService.instance.removeNewTip(token: token)
+            self.delegate?.refreshList()
         }else{
             MyTokenInfosService.instance.removeToken(for: token.tokenCode)
         }

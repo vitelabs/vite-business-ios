@@ -8,20 +8,28 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 public typealias TokenListArray = [[TokenInfo]]
 
 final class TokenListManageViewModel {
-    var newAssetTokens : [TokenInfo] = []
+    fileprivate var newAssetTokens : [TokenInfo] = []
     func isHasNewAssetTokens() -> Bool {
         return self.newAssetTokens.count > 0 ? true : false
+    }
+    func newAssetTokenCount() -> Int {
+        return self.newAssetTokens.count 
     }
 
     lazy var tokenListRefreshDriver = self.tokenListRefreshRelay.asDriver()
     fileprivate  var tokenListRefreshRelay = BehaviorRelay<TokenListArray>(value: TokenListArray())
 
-    init(_ newAssetTokens: [TokenInfo]) {
-        self.newAssetTokens = newAssetTokens
+    let disposeBag = DisposeBag()
+
+    init() {
+        NewAssetService.instance.isNewTipTokenInfosDriver.asObservable().bind { [weak self] tokens in
+                self?.newAssetTokens = tokens
+        }.disposed(by: disposeBag)
     }
 
     func refreshList() {

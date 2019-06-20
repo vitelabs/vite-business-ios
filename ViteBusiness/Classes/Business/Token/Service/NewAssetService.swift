@@ -19,9 +19,17 @@ extension NewAssetService: Storageable {
 public class NewAssetService {
     public static let instance = NewAssetService()
     var isNewTipTokens : [WalletHomeBalanceInfoViewModel] = []
-    var isNewTipTokenInfos : [TokenInfo] = []
+
     fileprivate var appending = "noAddress"
     fileprivate let disposeBag = DisposeBag()
+
+    public lazy var isNewTipTokenInfosDriver: Driver<[TokenInfo]> = self.isNewTipTokensBehaviorRelay.asDriver()
+    private var isNewTipTokensBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
+
+
+    public lazy var ignoreReminderTokensDriver: Driver<[TokenInfo]> = self.ignoreReminderTokensBehaviorRelay.asDriver()
+    public var ignoreReminderTokens: [TokenInfo] {  return ignoreReminderTokensBehaviorRelay.value }
+    private var ignoreReminderTokensBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
 
     init() {
         HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
@@ -39,11 +47,6 @@ public class NewAssetService {
         }
     }
 
-    public lazy var ignoreReminderTokensDriver: Driver<[TokenInfo]> = self.ignoreReminderTokensBehaviorRelay.asDriver()
-    public var ignoreReminderTokens: [TokenInfo] {  return ignoreReminderTokensBehaviorRelay.value }
-
-    private var ignoreReminderTokensBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
-
     func fetchAmountByTokenCode(_ input : TokenCode)-> (String,String)? {
         for viewModel in self.isNewTipTokens where  viewModel.tokenInfo.tokenCode == input {
             return (viewModel.balanceString,viewModel.price)
@@ -58,10 +61,28 @@ public class NewAssetService {
         for viewModel in input where self.containsTokenInfo(for: viewModel.tokenInfo.tokenCode) == false {
             list.append(viewModel.tokenInfo)
         }
-        self.isNewTipTokenInfos = list
+        self.isNewTipTokensBehaviorRelay.accept(list)
         return list
     }
 
+    func handleCleanNewTip() {
+        let tokens = self.isNewTipTokensBehaviorRelay.value
+        NewAssetService.instance.addIgnoreReminderTokens(tokens)
+        self.isNewTipTokensBehaviorRelay.accept([])
+    }
+
+    func removeNewTip(token: TokenInfo) {
+        let tokens = self.isNewTipTokensBehaviorRelay.value.filter { (model) -> Bool in
+            if token.tokenCode == model.tokenCode {
+                return false
+            }else{
+                return true
+            }
+        }
+        self.isNewTipTokensBehaviorRelay.accept(tokens)
+    }
+
+    //add
     public func addIgnoreReminderToken(tokenInfo: TokenInfo) {
         guard containsTokenInfo(for: tokenInfo.tokenCode) == false else { return }
 
