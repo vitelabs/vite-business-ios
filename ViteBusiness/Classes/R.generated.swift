@@ -1831,7 +1831,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let mnemonicBackupPageCheckButton1Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: If the state stays "Awaiting for Signature" for a long time, please try "Request for Vite gateway to resend".
+      /// en translation: If the state stays "Unreceived" for a long time, please try "Request for Vite gateway to resend".
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailTxNotReceivedAndCanAskGatewaytoSend = Rswift.StringResource(key: "grin.detail.txNotReceivedAndCanAskGatewaytoSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2827,7 +2827,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let receivePageWalletName = Rswift.StringResource(key: "Receive.page.wallet.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Vite gateway confirmation has reached 10, if the state not changing to "Awaiting for Signature" for a long time, please try "Request for Vite gateway to resend".
+      /// en translation: Vite gateway confirmation has reached 10, if the state not changing to "Unreceived" for a long time, please try "Request for Vite gateway to resend".
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailGatewayConfirmConntBiggerThanTen = Rswift.StringResource(key: "grin.detail.gateway.confirmConntBiggerThanTen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -4117,7 +4117,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.check.button1.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: If the state stays "Awaiting for Signature" for a long time, please try "Request for Vite gateway to resend".
+      /// en translation: If the state stays "Unreceived" for a long time, please try "Request for Vite gateway to resend".
       /// 
       /// Locales: en, zh-Hans
       static func grinDetailTxNotReceivedAndCanAskGatewaytoSend(_: Void = ()) -> String {
@@ -5860,7 +5860,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Receive.page.wallet.name", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Vite gateway confirmation has reached 10, if the state not changing to "Awaiting for Signature" for a long time, please try "Request for Vite gateway to resend".
+      /// en translation: Vite gateway confirmation has reached 10, if the state not changing to "Unreceived" for a long time, please try "Request for Vite gateway to resend".
       /// 
       /// Locales: en, zh-Hans
       static func grinDetailGatewayConfirmConntBiggerThanTen(_: Void = ()) -> String {
