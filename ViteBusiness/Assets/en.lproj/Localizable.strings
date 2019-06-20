@@ -528,9 +528,9 @@
 "grin.detail.txFileReecivedAndCanShare" = "Transaction has been received, please share the file with the sender, you can choose the way as you like.";
 "grin.detail.txReceived" = "Transaction has been received.";
 "grin.detail.txReceivedAndCanAskGatewaytoSend" = "You have already received the transaction, if the state doesn't go to \"Confirmed\", please try \"Request for Vite gateway to resend\".";
-"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "If the state stays \"Awaiting for Signature\" for a long time, please try \"Request for Vite gateway to resend\".";
+"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "If the state stays \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
 "grin.detail.gateway.confirmConntLessThanTen" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
-"grin.detail.gateway.confirmConntBiggerThanTen" = "Vite gateway confirmation has reached 10, if the state not changing to \"Awaiting for Signature\" for a long time, please try \"Request for Vite gateway to resend\".";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Vite gateway confirmation has reached 10, if the state not changing to \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
 "grin.detail.confirmLessThanThen" = "Transaction has been confirmed, after 10 confirmation, \"Actual Amount\" will go to \"Spendable Amount\".";
 "grin.detail.gateway" = "Vite Gateway Collection";
 "grin.detail.gatewayReceived" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";

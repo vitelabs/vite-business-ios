@@ -35,8 +35,6 @@ extension COSAPI: TargetType {
             switch Constants.appDownloadChannel {
             case .appstore:
                 return "/AppStoreCheckUpdate.json"
-            case .enterprise:
-                return "/EnterpriseCheckUpdate.json"
             }
         case .getAppNotice:
             return "/AppNotice.json"

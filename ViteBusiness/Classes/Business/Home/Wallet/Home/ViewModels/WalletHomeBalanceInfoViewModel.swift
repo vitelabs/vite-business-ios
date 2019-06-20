@@ -33,6 +33,16 @@ final class WalletHomeBalanceInfoViewModel {
             self.balanceString = balanceInfo.balance.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)
             self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
         }
-
     }
+
+    // for unselected vite token
+    init(tokenInfo: TokenInfo, balance: Amount) {
+        self.tokenInfo = tokenInfo
+        self.symbol = tokenInfo.symbol
+        self.coinFamily = tokenInfo.coinFamily
+        self.balance = balance
+        self.balanceString = balance.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)
+        self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: tokenInfo, balance: balance)
+    }
+
 }

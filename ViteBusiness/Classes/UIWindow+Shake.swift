@@ -16,10 +16,11 @@ extension UIWindow {
     open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         NotificationCenter.default.post(name: .shakeGesture, object: nil, userInfo: nil)
 
+        #if DAPP
+        #else
+
         #if DEBUG || TEST
-
         guard let top = UIViewController.current else { return }
-
         if top is DebugViewController {
             top.dismiss(animated: true, completion: nil)
         } else if top is WKWebViewController {
@@ -29,7 +30,7 @@ extension UIWindow {
             let nav = BaseNavigationController(rootViewController: vc)
             top.present(nav, animated: true, completion: nil)
         }
-
+        #endif
         #endif
     }
 }
