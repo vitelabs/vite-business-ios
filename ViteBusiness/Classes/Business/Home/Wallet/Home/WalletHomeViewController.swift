@@ -248,8 +248,6 @@ class WalletHomeViewController: BaseTableViewController {
 
     func handleScanResult(with url: URL, scanViewController: ScanViewController?) {
 
-
-
         func goWeb() {
             guard var viewControllers = self.navigationController?.viewControllers else { return }
             let webvc = WKWebViewController.init(url: url)
