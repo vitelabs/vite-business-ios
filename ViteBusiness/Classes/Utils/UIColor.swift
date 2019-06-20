@@ -50,6 +50,7 @@ public extension UIColor {
         case top2bottom
         case leftTop2rightBottom
         case leftBottom2rightTop
+        case custom(start: CGPoint, end: CGPoint)
     }
 
     public static func gradientColor(style: GradientStyle, frame: CGRect, colors: [UIColor]) -> UIColor {
@@ -70,6 +71,9 @@ public extension UIColor {
         case .leftBottom2rightTop:
             gradientLayer.startPoint = CGPoint(x: 0 , y: 1)
             gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+        case .custom(let start, let end):
+            gradientLayer.startPoint = start
+            gradientLayer.endPoint = end
         }
 
         UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, UIScreen.main.scale)
