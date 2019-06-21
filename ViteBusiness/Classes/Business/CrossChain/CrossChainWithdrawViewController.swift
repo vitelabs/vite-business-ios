@@ -36,7 +36,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
     let abstractView = WalletAbstractView()
     var addressView: AddressTextViewView =  AddressTextViewView()
-    lazy var amountView = SendAmountView(amount: "", symbol: token.symbol)
+    lazy var amountView = SendAmountView(amount: "", token: token)
 
     lazy var feeView: TitleTipContentSymbleItemView = {
         let feeView = TitleTipContentSymbleItemView()
@@ -110,7 +110,7 @@ class GatewayWithdrawViewController: BaseViewController {
                  R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
 
-        rightBarItemBtn.rx.tap.bind {
+        rightBarItemBtn.rx.tap.bind { [unowned self] in
             let vc = CrossChainHistoryViewController()
             vc.style = .withdraw
             vc.gatewayInfoService = self.gateWayInfoService
@@ -130,7 +130,9 @@ class GatewayWithdrawViewController: BaseViewController {
 
 
         amountView.textField.rx.text
-            .throttle(0.5, scheduler: MainScheduler.instance).bind { text in
+            .throttle(0.5, scheduler: MainScheduler.instance).bind { [weak self] text in
+            guard let `self` = self else { return }
+
             guard let viteAddress = HDWalletManager.instance.account?.address else {
                 return
             }
@@ -144,18 +146,12 @@ class GatewayWithdrawViewController: BaseViewController {
                 }.catch({ (error) in
                     print(error.localizedDescription)
                 })
-
-
         }
     }
 
     func withdraw()  {
 
         let address = self.addressView.textView.text ?? ""
-//        guard address.else {
-//            Toast.show(R.string.localizable.sendPageToastAddressError())
-//            return
-//        }
 
         guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
             let a = amountString.toAmount(decimals: TokenInfo.eth.decimals) else {
@@ -190,19 +186,24 @@ class GatewayWithdrawViewController: BaseViewController {
 
 
         when(fulfilled: metalInfo, verify, withdrawInfo)
-            .done { args in
+            .done { [weak self] args in
+                guard let `self` = self else { return }
+
                 let (metalInfo, verify, info) = args
                 guard metalInfo.withdrawState == .open else {
+                    Toast.show("withdrawState is not open")
                     return
                 }
 
                 guard verify == true else {
+                    Toast.show("wrong address")
                     return
                 }
 
                 if !info.minimumWithdrawAmount.isEmpty,
                     let min = info.minimumWithdrawAmount.toAmount(decimals: self.withTokenInfo.decimals) {
                     guard amount >= min else {
+                        Toast.show("less than min amount")
                         return
                     }
                 }
@@ -210,6 +211,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 if !info.maximumWithdrawAmount.isEmpty,
                     let max = info.maximumWithdrawAmount.toAmount(decimals: self.withTokenInfo.decimals) {
                     guard amount <= max else {
+                        Toast.show("bigger than max amount")
                         return
                     }
                 }
@@ -265,11 +267,13 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
             return
         }
         gateWayInfoService.withdrawInfo(viteAddress: address)
-            .done { (info) in
-                self.amountView.textField.placeholder = info.minimumWithdrawAmount
+            .done { [weak self] (info) in
+                guard let `self` = self else { return }
+                if !info.minimumWithdrawAmount.isEmpty,
+                let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
+                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)"
+                }
         }
-
-
 
     }
 }

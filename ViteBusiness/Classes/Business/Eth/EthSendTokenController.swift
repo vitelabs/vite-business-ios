@@ -83,7 +83,7 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress.address)
 
-    private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", symbol: self.tokenInfo.symbol)
+    private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", token: self.tokenInfo)
 
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
             let bottomView = UIView()

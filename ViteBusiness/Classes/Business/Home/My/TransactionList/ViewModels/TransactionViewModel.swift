@@ -29,7 +29,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
                 if let t = accountBlock.timestamp, t > 0 {
-                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd HH:mm:ss")
                 } else {
                     return ""
                 }
@@ -45,7 +45,7 @@ final class TransactionViewModel: TransactionViewModelType {
             self.address = (accountBlock.transactionType == .receive ? accountBlock.fromAddress : accountBlock.toAddress) ?? ""
             self.timeString = {
                 if let t = accountBlock.timestamp, t > 0 {
-                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd")
+                    return Date(timeIntervalSince1970: TimeInterval(t)).format("yyyy.MM.dd HH:mm:ss")
                 } else {
                     return ""
                 }

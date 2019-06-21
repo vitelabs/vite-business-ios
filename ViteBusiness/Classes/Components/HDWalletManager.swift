@@ -100,7 +100,7 @@ public final class HDWalletManager {
         return storage.currentWallet
     }
 
-    var account: Wallet.Account? {
+    public var account: Wallet.Account? {
         return accountBehaviorRelay.value
     }
 

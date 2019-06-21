@@ -90,6 +90,19 @@ public enum CoinType: String {
             fatalError()
         }
     }
+
+    var labelBackgroundColor: UIColor {
+        switch self {
+        case .vite:
+            return UIColor(netHex: 0xCCE5FF)
+        case .eth:
+            return UIColor(netHex: 0xF1FFE6)
+        case .grin:
+            return UIColor(netHex: 0xFFF7DD)
+        default:
+            fatalError()
+        }
+    }
 }
 
 public typealias TokenCode = String

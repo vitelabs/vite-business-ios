@@ -83,7 +83,7 @@ class GatewayDepositViewController: BaseViewController {
                 Toast.show(error.localizedDescription)
         }
 
-        addressView.button?.rx.tap.bind {
+        addressView.button?.rx.tap.bind { [unowned self] in
             UIPasteboard.general.string = self.addressView.textLabel.text
         }
 
