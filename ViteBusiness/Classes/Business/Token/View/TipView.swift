@@ -35,7 +35,7 @@ class TipView: UIView {
             m.height.equalTo(4)
             m.width.equalTo(4)
             m.left.equalToSuperview()
-            m.top.equalToSuperview().offset(6)
+            m.top.equalToSuperview().offset(8)
         }
 
         lab.snp.makeConstraints { (m) in
