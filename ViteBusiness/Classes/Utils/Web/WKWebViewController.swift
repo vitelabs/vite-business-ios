@@ -69,14 +69,24 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         self.handleNavBar()
 
         self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 100))
+
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).bind {
+            [weak self] _ in
+            guard let current = UIViewController.current else { return }
+            if self == current {
+                self?.bridge.appDidBecomeActive()
+            }
+            }.disposed(by: rx.disposeBag)
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tipLabel.isHidden = false
+        bridge.pageOnShowAction()
     }
 
     fileprivate func handleNavBar() {

@@ -2198,7 +2198,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinTxbyfileShareSentFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareSentFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please share your VITE address(Find it at the bottom) with the sender.
+      /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
       static let grinReceiveByViteDesc = Rswift.StringResource(key: "grin.receiveByVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -4889,7 +4889,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txbyfile.shareSentFileDesc", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Please share your VITE address(Find it at the bottom) with the sender.
+      /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
       static func grinReceiveByViteDesc(_: Void = ()) -> String {
