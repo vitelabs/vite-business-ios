@@ -271,18 +271,53 @@ final class GrinWalletInfoVM {
         let gateWay = self.getGateWayDetail(fullInfo: fullInfo)
         let confirm = self.getConfirmInfo(fullInfo: fullInfo)
 
-        when(fulfilled: gateWay, confirm)
+        let txLogEntry = Promise<TxLogEntry?> { seal in
+            if let txid = fullInfo.txLogEntry?.id {
+                grin_async({ () in
+                    self.grinManager.txGet(refreshFromNode: true, txId: txid)
+                },  { (result) in
+                    switch result {
+                    case .success((_, let tx)):
+                        seal.fulfill(tx)
+                    case .failure(let error):
+                        seal.fulfill(fullInfo.txLogEntry)
+                    }
+                })
+            } else {
+                seal.fulfill(fullInfo.txLogEntry)
+            }
+        }
+
+        let localInfo =  Promise<GrinLocalInfo?> { seal in
+            var localInfo = fullInfo.localInfo
+            if fullInfo.isSend,
+                let slateId = fullInfo.localInfo?.slateId,
+                let l = GrinLocalInfoService.shared.getSendInfo(slateId: slateId) {
+                localInfo = l
+            } else if fullInfo.isReceive,
+                let slateId = fullInfo.localInfo?.slateId,
+                let l = GrinLocalInfoService.shared.getReceiveInfo(slateId: slateId) {
+                localInfo = l
+            }
+                seal.fulfill(localInfo)
+            }
+
+
+        when(fulfilled: gateWay, confirm, txLogEntry, localInfo)
             .done { (arg0) in
-                let (gateWayInfo, confirm) = arg0
+                self.showLoading.accept(false)
+                let (gateWayInfo, confirm, tx, l) = arg0
                 fullInfo.gatewayInfo = gateWayInfo
                 fullInfo.confirmInfo = confirm
+                fullInfo.txLogEntry = tx
+                fullInfo.localInfo = l
                 self.fullInfoDetail.onNext(fullInfo)
             }
             .catch { (error) in
+                self.showLoading.accept(false)
                 self.message.accept(error.localizedDescription)
             }
             .finally {
-                self.showLoading.accept(false)
         }
     }
 
@@ -295,10 +330,8 @@ final class GrinWalletInfoVM {
 
         let slatedId = gatewayInfo.slatedId
         return Promise { seal in
-            self.showLoading.accept(true)
             transactionProvider
                 .request(.gatewayTransactionById(slateID: slatedId), completion: { (result) in
-                    self.showLoading.accept(false)
                     do {
                         let response = try result.dematerialize()
                         if JSON(response.data)["code"].int == 0,
