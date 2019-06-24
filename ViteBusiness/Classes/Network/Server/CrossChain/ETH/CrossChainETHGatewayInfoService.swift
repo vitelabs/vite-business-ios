@@ -7,6 +7,3 @@
 
 import Foundation
 
-extension CrossChainGatewayInfoService {
-    static let eth = CrossChainGatewayInfoService.init(tokenInfo: creatGatewayTokenInfoForETH())
-}

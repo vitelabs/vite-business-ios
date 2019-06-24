@@ -161,10 +161,10 @@ extension CrossChainHistoryViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "CrossChainHistoryCell") as! CrossChainHistoryCell
         if self.style == .desposit {
             let desposit = self.depositRecords[indexPath.row]
-            cell.bind(depositRecord: desposit)
+            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, depositRecord: desposit)
         } else if self.style == .withdraw  {
             let withdrawRecord = self.withdrawRecord[indexPath.row]
-            cell.bind(withdrawRecord: withdrawRecord)
+            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, withdrawRecord: withdrawRecord)
         }
         return cell
     }

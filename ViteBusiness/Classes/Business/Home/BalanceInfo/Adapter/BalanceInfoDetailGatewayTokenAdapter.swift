@@ -12,12 +12,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     let tokenInfo: TokenInfo
 
     required init(tokenInfo: TokenInfo) {
-//        let debug = creatGatewayTokenInfoForETH()
-//        if debug.id == tokenInfo.id {
-//            self.tokenInfo = debug
-//        } else {
             self.tokenInfo = tokenInfo
-//        }
     }
 
     func viewDidAppear() {

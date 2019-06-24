@@ -19,6 +19,12 @@ class TokenListInfoCell: UITableViewCell {
         symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59)
     }
 
+    let gatewayNameLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.numberOfLines = 1
+    }
+
+
     lazy var tokenNameLabel = UILabel().then {(tokenNameLabel) in
         tokenNameLabel.font = UIFont.systemFont(ofSize: 11)
         tokenNameLabel.textAlignment = .left
@@ -76,6 +82,16 @@ class TokenListInfoCell: UITableViewCell {
         self.tokenLogoImg.tokenInfo = token
         self.switchControl.isHidden = token.isDefault
         self.switchControl.setOn(token.isContains, animated: false)
+
+        if let gatewayName = token.gatewayName, !gatewayName.isEmpty {
+            gatewayNameLabel.isHidden = false
+            gatewayNameLabel.text = " \(gatewayName) "
+            gatewayNameLabel.backgroundColor = token.coinType.labelBackgroundColor
+            gatewayNameLabel.layer.borderColor = token.coinType.strokeColor.cgColor
+            gatewayNameLabel.layer.borderWidth = 1
+        } else {
+            gatewayNameLabel.isHidden = true
+        }
     }
 
     @objc func switchChanged() {
@@ -127,8 +143,15 @@ class TokenListInfoCell: UITableViewCell {
         rightContentView.addSubview(symbolLabel)
         symbolLabel.snp.makeConstraints { (m) in
             m.left.top.equalTo(rightContentView)
-            m.width.equalTo(110)
+//            m.width.equalTo(110)
             m.height.equalTo(17)
+        }
+
+        rightContentView.addSubview(gatewayNameLabel)
+        gatewayNameLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(symbolLabel.snp.right).offset(6)
+            m.centerY.equalTo(symbolLabel)
+            m.height.equalTo(15)
         }
 
         rightContentView.addSubview(tokenNameLabel)
@@ -146,6 +169,7 @@ class TokenListInfoCell: UITableViewCell {
             m.width.equalTo(110)
             m.height.equalTo(15)
         }
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

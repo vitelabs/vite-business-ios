@@ -169,6 +169,7 @@ public struct TokenInfo: Mappable {
         decimals <- map["decimal"]
         icon <- map["icon"]
         id <- map["tokenAddress"]
+        gatewayInfo <- map["gatewayInfo"]
     }
 
     private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
@@ -285,7 +286,7 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.id == "tti_4d3a69b12962332e8df52701" || self.gatewayInfo != nil
+        return self.gatewayInfo != nil
     }
 
     public var gatewayName: String? {
@@ -369,39 +370,39 @@ public struct MappedTokenInfo: Mappable {
 
 }
 
-func creatGatewayTokenInfoForETH() -> TokenInfo {
-    /*
-    TokenInfo
-        - tokenCode : "1226"
-    - coinType : ViteBusiness.CoinType.vite
-    - name : "ETH Token"
-    - symbol : "ETH-000"
-    - decimals : 18
-    - icon : ""
-    - id : "tti_4d3a69b12962332e8df52701"
-    - gatewayInfo : nil
-    ▿ coinTypeTransform : <TransformOf<CoinType, String>: 0x600000ff5ef0>
-
-
-     TokenInfo
-     - tokenCode : "1"
-     - coinType : ViteBusiness.CoinType.eth
-     - name : "Ether"
-     - symbol : "ETH"
-     - decimals : 18
-     - icon : "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png"
-     - id : ""
-     - gatewayInfo : nil
-     ▿ coinTypeTransform : <TransformOf<CoinType, String>: 0x600003650300>
-
- */
-
-    let maped = MappedTokenInfo.init(tokenCode: "1", coinType: .eth, name: "Ether", symbol: "ETH", decimals: 18, icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png", id: "")
-
-    let gateway = GatewayInfo.init(name: "Gateway", url: "http://132.232.60.116:8083", mappedTokenInfo: maped)
-
-    let tokenInfo = TokenInfo.init(tokenCode: "1226", coinType: .vite, name: "ETH Token", symbol: "ETH-000", decimals: 18, icon: "", id: "tti_4d3a69b12962332e8df52701", gatewayInfo: gateway)
-
-    return tokenInfo
-
-}
+//func creatGatewayTokenInfoForETH() -> TokenInfo {
+//    /*
+//    TokenInfo
+//        - tokenCode : "1226"
+//    - coinType : ViteBusiness.CoinType.vite
+//    - name : "ETH Token"
+//    - symbol : "ETH-000"
+//    - decimals : 18
+//    - icon : ""
+//    - id : "tti_4d3a69b12962332e8df52701"
+//    - gatewayInfo : nil
+//    ▿ coinTypeTransform : <TransformOf<CoinType, String>: 0x600000ff5ef0>
+//
+//
+//     TokenInfo
+//     - tokenCode : "1"
+//     - coinType : ViteBusiness.CoinType.eth
+//     - name : "Ether"
+//     - symbol : "ETH"
+//     - decimals : 18
+//     - icon : "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png"
+//     - id : ""
+//     - gatewayInfo : nil
+//     ▿ coinTypeTransform : <TransformOf<CoinType, String>: 0x600003650300>
+//
+// */
+//
+//    let maped = MappedTokenInfo.init(tokenCode: "1", coinType: .eth, name: "Ether", symbol: "ETH", decimals: 18, icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png", id: "")
+//
+//    let gateway = GatewayInfo.init(name: "Gateway", url: "http://132.232.60.116:8083", mappedTokenInfo: maped)
+//
+//    let tokenInfo = TokenInfo.init(tokenCode: "1226", coinType: .vite, name: "ETH Token", symbol: "ETH-000", decimals: 18, icon: "", id: "tti_4d3a69b12962332e8df52701", gatewayInfo: gateway)
+//
+//    return tokenInfo
+//
+//}

@@ -10,7 +10,11 @@ import PromiseKit
 
 class CrossChainDepositETH {
 
-    var gatewayInfoService: CrossChainGatewayInfoService = CrossChainGatewayInfoService.eth
+    init(gatewayInfoService: CrossChainGatewayInfoService) {
+        self.gatewayInfoService = gatewayInfoService
+    }
+
+    let gatewayInfoService: CrossChainGatewayInfoService
 
     //Send rival Tx
 

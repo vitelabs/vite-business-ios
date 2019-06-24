@@ -97,15 +97,15 @@ class CrossChainHistoryCell: UITableViewCell {
         return dateFormatter
     }()
     
-    func bind(withdrawRecord record: WithdrawRecord)  {
-        self.bind(record: record, type: .withdraw)
+    func bind(tokenInfo: TokenInfo,withdrawRecord record: WithdrawRecord)  {
+        self.bind(tokenInfo: tokenInfo,record: record, type: .withdraw)
     }
 
-    func bind(depositRecord record: DepositRecord)  {
-        self.bind(record: record, type: .desposit)
+    func bind(tokenInfo: TokenInfo,depositRecord record: DepositRecord)  {
+        self.bind(tokenInfo: tokenInfo, record: record, type: .desposit)
     }
 
-    func bind(record:  Record, type: CrossChainHistoryViewController.Style) {
+    func bind(tokenInfo: TokenInfo,record:  Record, type: CrossChainHistoryViewController.Style) {
         statusLabel.text = record.state.rawValue
 
         let date = Date.init(timeIntervalSince1970: TimeInterval((Double(record.dateTime) ?? 0.0
@@ -116,11 +116,12 @@ class CrossChainHistoryCell: UITableViewCell {
         let tokenInfo = TokenInfo.eth
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
-        symbleLabel.text = "ETH"
+        let viteSymble = tokenInfo.symbol
+        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? "Other"
 
         if type == .withdraw {
-            leftHashLabel.text =  "VITE hash:" + record.inTxHash
-            rightHashLabel.text = "ETH hash:" + (record.outTxHash ?? "")
+            leftHashLabel.text =  "\(viteSymble) hash:" + record.inTxHash
+            rightHashLabel.text = "\(othenSymble) hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {
@@ -144,8 +145,8 @@ class CrossChainHistoryCell: UITableViewCell {
             statusLabel.text = statusString
 
         } else if type == .desposit {
-            leftHashLabel.text = "ETH hash:" + record.inTxHash
-            rightHashLabel.text = "VITE hash:" + (record.outTxHash ?? "")
+            leftHashLabel.text = "\(othenSymble) hash:" + record.inTxHash
+            rightHashLabel.text = "\(viteSymble) hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {

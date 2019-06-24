@@ -15,7 +15,6 @@ import ViteWallet
 class GatewayDepositViewController: BaseViewController {
 
     init(gatewayInfoService: CrossChainGatewayInfoService) {
-//        self.gatewayInfo = gatewayInfo
         self.gatewayInfoService = gatewayInfoService
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,8 +26,6 @@ class GatewayDepositViewController: BaseViewController {
     var tokenInfo: TokenInfo {
         return self.gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
     }
-
-//    let gatewayInfo: GatewayInfo
 
     let gatewayInfoService: CrossChainGatewayInfoService
 
