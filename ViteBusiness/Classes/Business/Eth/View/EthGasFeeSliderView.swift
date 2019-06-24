@@ -7,7 +7,7 @@
 import UIKit
 import SnapKit
 import BigInt
-import Web3swift
+import web3swift
 import ViteWallet
 import ViteEthereum
 

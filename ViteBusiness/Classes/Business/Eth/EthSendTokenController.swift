@@ -13,7 +13,7 @@ import RxCocoa
 import NSObject_Rx
 import BigInt
 import ViteEthereum
-import Web3swift
+import web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional

@@ -57,7 +57,7 @@ Pod::Spec.new do |s|
   s.dependency 'Moya'
   s.dependency 'MJRefresh'
   s.dependency 'KMNavigationBarTransition'
-  s.dependency 'XCGLogger', '~> 6.1.0'
+  s.dependency 'XCGLogger', '~> 7.0'
   s.dependency 'pop', '~> 1.0'
   s.dependency 'DACircularProgress', '2.3.1'
   s.dependency 'Kingfisher', '~> 4.0'
@@ -110,6 +110,7 @@ Pod::Spec.new do |s|
   s.dependency 'ViteWallet'
   s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
+  s.dependency 'BinanceChain'
 
 
   # s.resource_bundles = {

@@ -11,7 +11,8 @@ import Moya
 import ObjectMapper
 import BigInt
 import ViteWallet
-import secp256k1_swift
+import web3swift
+import secp256k1
 import CryptoSwift
 
 struct GatewayBindContext: Mappable {

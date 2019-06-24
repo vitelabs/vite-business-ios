@@ -7,7 +7,7 @@
 
 import UIKit
 import ViteEthereum
-import Web3swift
+import web3swift
 import BigInt
 import PromiseKit
 import ViteWallet
