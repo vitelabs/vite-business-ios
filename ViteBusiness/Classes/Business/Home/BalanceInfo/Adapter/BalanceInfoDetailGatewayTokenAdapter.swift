@@ -65,8 +65,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         }
 
         let o1 = BalanceInfoOperation.init(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.crosschainWithdraw()) {
-            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
-                , tokenInfo: self.tokenInfo, withTokenInfo: TokenInfo.eth)
+            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
         let operationView = BalanceInfoOperationView.init(firstOperation: o0, secondOperation: o1)

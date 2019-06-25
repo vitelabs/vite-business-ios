@@ -113,10 +113,9 @@ class CrossChainHistoryCell: UITableViewCell {
         let timeString = CrossChainHistoryCell.dateFormatter.string(from: date)
         timeLabel.text = timeString
 
-        let tokenInfo = TokenInfo.eth
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
-        let viteSymble = tokenInfo.symbol
+        let viteSymble = "VITE"
         let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? "Other"
 
         if type == .withdraw {
@@ -126,7 +125,7 @@ class CrossChainHistoryCell: UITableViewCell {
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()
@@ -134,7 +133,7 @@ class CrossChainHistoryCell: UITableViewCell {
             case .BELOW_MINIMUM:
                 statusString = ""
             case .TOT_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
@@ -151,7 +150,7 @@ class CrossChainHistoryCell: UITableViewCell {
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
@@ -159,7 +158,7 @@ class CrossChainHistoryCell: UITableViewCell {
             case .BELOW_MINIMUM:
                 statusString = R.string.localizable.crosschainStatusFailedBecausePoor()
             case .TOT_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()

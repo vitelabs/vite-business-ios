@@ -16,10 +16,8 @@ import RxCocoa
 
 class GatewayWithdrawViewController: BaseViewController {
 
-    init(gateWayInfoService: CrossChainGatewayInfoService, tokenInfo:TokenInfo, withTokenInfo: TokenInfo) {
+    init(gateWayInfoService: CrossChainGatewayInfoService) {
         self.gateWayInfoService =  gateWayInfoService
-        self.token = tokenInfo
-        self.withTokenInfo = withTokenInfo
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -28,8 +26,14 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     var gateWayInfoService: CrossChainGatewayInfoService
-    var token: TokenInfo
-    var withTokenInfo: TokenInfo
+
+    var token: TokenInfo {
+        return gateWayInfoService.tokenInfo
+    }
+
+    var withTokenInfo: TokenInfo {
+        return gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken
+    }
 
     var balance: Amount = Amount(0)
 
@@ -131,17 +135,28 @@ class GatewayWithdrawViewController: BaseViewController {
 
         amountView.textField.rx.text
             .throttle(0.5, scheduler: MainScheduler.instance).bind { [weak self] text in
-            guard let `self` = self else { return }
+                guard let `self` = self else { return }
 
-            guard let viteAddress = HDWalletManager.instance.account?.address else {
-                return
-            }
-            guard let text = text else {
-                self.feeView.contentLabel.text = nil
-                return
-            }
-            self.gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: text, containsFee: false)
-                .done { fee in
+                guard let viteAddress = HDWalletManager.instance.account?.address else {
+                    return
+                }
+                guard let text = text, !text.isEmpty else {
+                    self.feeView.contentLabel.text = nil
+                    return
+                }
+
+                let decimals = self.withTokenInfo.decimals
+
+                guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
+                    let amount = amountString.toAmount(decimals: decimals) else {
+                        Toast.show(R.string.localizable.sendPageToastAmountEmpty())
+                        return
+                }
+
+                let amountStr = amount.amountFull(decimals: 0)
+                self.gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amountStr, containsFee: false)
+                .done { [weak self] fee in
+                    guard let `self` = self else { return }
                     self.feeView.contentLabel.text = Amount(fee)?.amountShort(decimals: self.token.decimals)
                 }.catch({ (error) in
                     print(error.localizedDescription)
@@ -183,13 +198,14 @@ class GatewayWithdrawViewController: BaseViewController {
         let metalInfo = gateWayInfoService.getMetaInfo()
         let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress)
         let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress)
+        let fee = gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amount.amountFull(decimals: 0), containsFee: false)
 
 
-        when(fulfilled: metalInfo, verify, withdrawInfo)
+        when(fulfilled: metalInfo, verify, withdrawInfo, fee)
             .done { [weak self] args in
                 guard let `self` = self else { return }
 
-                let (metalInfo, verify, info) = args
+                let (metalInfo, verify, info, feeStr) = args
                 guard metalInfo.withdrawState == .open else {
                     Toast.show("withdrawState is not open")
                     return
@@ -201,7 +217,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 }
 
                 if !info.minimumWithdrawAmount.isEmpty,
-                    let min = info.minimumWithdrawAmount.toAmount(decimals: self.withTokenInfo.decimals) {
+                    let min = Amount(info.minimumWithdrawAmount) {
                     guard amount >= min else {
                         Toast.show("less than min amount")
                         return
@@ -216,6 +232,8 @@ class GatewayWithdrawViewController: BaseViewController {
                     }
                 }
 
+                let amountWithFee = amount + (Amount(feeStr) ?? Amount(0))
+
                 let veptype: UInt16 = 3011
                 let tpye: UInt8 = 0
                 let withDrawAddressData = withDrawAddress.data(using: .utf8)
@@ -225,7 +243,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 data.append(Data(tpye.toBytes))
                 data.append(withDrawAddressData!)
 
-                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amount, data: data, completion: { (_) in
+                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, completion: { (_) in
 
                 })
             }.catch { (error) in

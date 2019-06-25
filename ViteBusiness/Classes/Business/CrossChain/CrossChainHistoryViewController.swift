@@ -55,7 +55,7 @@ class CrossChainHistoryViewController: BaseViewController {
             $0.backgroundColor = UIColor.white
         }
 
-        let title = R.string.localizable.crosschainDepositHistory()
+        let title = style == .desposit ? R.string.localizable.crosschainDepositHistory() : R.string.localizable.crosschainWithdrawHistory()
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 24)
             $0.numberOfLines = 1
