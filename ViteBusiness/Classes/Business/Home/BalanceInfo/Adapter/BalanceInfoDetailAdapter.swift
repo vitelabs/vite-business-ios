@@ -34,6 +34,8 @@ extension TokenInfo {
             }
         case .grin:
             fatalError()
+        case .bnb:
+            return BalanceInfoDetailBnbAdapter(tokenInfo: self)
         }
     }
 }

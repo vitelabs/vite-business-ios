@@ -196,6 +196,11 @@ extension HDWalletManager {
         pri_updateWallet(wallet)
         pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
+
+
+        //login bnb
+        BnbWallet.shared.loginWallet(mnemonic)
+
         return true
     }
 
@@ -206,6 +211,7 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(nil)
 
         pri_LogoutEthWallet()
+        BnbWallet.shared.logoutWallet()
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 

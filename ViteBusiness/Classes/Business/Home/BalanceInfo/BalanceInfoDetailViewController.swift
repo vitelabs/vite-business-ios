@@ -116,6 +116,8 @@ extension BalanceInfoDetailViewController {
             return !tokenInfo.isEtherCoin
         case .grin:
             return false
+        case .bnb:
+            return false
         }
     }
 }

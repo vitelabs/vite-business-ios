@@ -12,6 +12,7 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
+    case bnb = "BNB"
 
     var name: String {
         switch self {
@@ -21,6 +22,8 @@ public enum CoinType: String {
             return "ETH"
         case .grin:
             return "GRIN"
+        case .bnb:
+            return "BNB"
         }
     }
 
@@ -47,6 +50,11 @@ public enum CoinType: String {
                 UIColor(netHex: 0xFF5C00),
                 UIColor(netHex: 0xFFC800)
             ]
+        case .bnb:
+            return [
+                UIColor(netHex: 0x429321),
+                UIColor(netHex: 0xB4EC51),
+            ]
         default:
             fatalError()
         }
@@ -60,6 +68,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x5BC500)
         case .grin:
             return UIColor(netHex: 0xFF9C00)
+        case .bnb:
+            return UIColor(netHex: 0x5BC500)
         default:
             fatalError()
         }
@@ -73,6 +83,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x5BC500)
         case .grin:
             return UIColor(netHex: 0xFF9C00)
+        case .bnb:
+            return UIColor(netHex: 0x5BC500)
         default:
             fatalError()
         }
@@ -86,6 +98,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF8FFF2)
         case .grin:
             return UIColor(netHex: 0xFFF9E1)
+        case .bnb:
+            return UIColor(netHex: 0xF8FFF2)
         default:
             fatalError()
         }
@@ -99,6 +113,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF1FFE6)
         case .grin:
             return UIColor(netHex: 0xFFF7DD)
+        case .bnb:
+            return UIColor(netHex: 0xF1FFE6)
         default:
             fatalError()
         }

@@ -153,7 +153,7 @@ class WalletHomeViewController: BaseTableViewController {
                     MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
-                    case .eth, .vite:
+                    case .eth, .vite, .bnb:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     case .grin:
                         if !GrinManager.default.walletCreated.value {
@@ -172,6 +172,11 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func scan() {
+        let tokenInfo = TokenInfo.init(tokenCode: "dd", coinType: .bnb, name: "bnb", symbol: "bnb", decimals: 18, icon: "", id: "bnbdd")
+        let vc = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
+        self.navigationController?.pushViewController(vc, animated: true)
+        return
+
         let scanViewController = ScanViewController()
         scanViewController.reactor = ScanViewReactor.init()
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in

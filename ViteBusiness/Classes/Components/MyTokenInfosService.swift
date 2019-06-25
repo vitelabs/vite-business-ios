@@ -34,6 +34,7 @@ public final class MyTokenInfosService: NSObject {
         var viteTokenInfos: NSMutableArray = NSMutableArray()
         var ethTokenInfos: NSMutableArray = NSMutableArray()
         var grinTokenInfos: NSMutableArray = NSMutableArray()
+        var bnbTokenInfos: NSMutableArray = NSMutableArray()
 
         tokenInfos.forEach { (tokenInfo) in
             switch tokenInfo.coinType {
@@ -43,6 +44,8 @@ public final class MyTokenInfosService: NSObject {
                 ethTokenInfos.add(tokenInfo)
             case .grin:
                 grinTokenInfos.add(tokenInfo)
+            case .bnb:
+                bnbTokenInfos.add(tokenInfo)
             }
         }
 
