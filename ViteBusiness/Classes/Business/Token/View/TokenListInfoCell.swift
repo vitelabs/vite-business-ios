@@ -22,6 +22,7 @@ class TokenListInfoCell: UITableViewCell {
     let gatewayNameLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.numberOfLines = 1
+        $0.textColor = UIColor.init(netHex: 0x007AFF)
     }
 
 
@@ -85,7 +86,7 @@ class TokenListInfoCell: UITableViewCell {
 
         if let gatewayName = token.gatewayName, !gatewayName.isEmpty {
             gatewayNameLabel.isHidden = false
-            gatewayNameLabel.text = " \(gatewayName) "
+            gatewayNameLabel.text = " Gateway "
             gatewayNameLabel.backgroundColor = token.coinType.labelBackgroundColor
             gatewayNameLabel.layer.borderColor = token.coinType.strokeColor.cgColor
             gatewayNameLabel.layer.borderWidth = 1

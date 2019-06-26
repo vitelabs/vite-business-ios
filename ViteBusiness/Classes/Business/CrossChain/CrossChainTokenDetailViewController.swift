@@ -17,15 +17,15 @@ class GatewayTokenDetailViewController: BaseViewController {
 
     var info = [String: Any]() {
         didSet {
-            let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : ""
-            let total = JSON(info)["total"].int != nil ? String(JSON(info)["total"].int!) : ""
-            var issueStr = ""
+            let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
+            let total = JSON(info)["total"].int != nil ? String(JSON(info)["total"].int!) : "--"
+            var issueStr = "--"
             if let issue =  JSON(info)["states"]["issue"].string, issue == "Limit" {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
             } else if let issue =  JSON(info)["states"]["issue"].string, issue == "Float"  {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceTrue()
             }
-            var overview:String?  = ""
+            var overview:String?  = "--"
             if LocalizationService.sharedInstance.currentLanguage == .chinese {
                 overview = JSON(info)["overview"]["zh"].string
             } else {

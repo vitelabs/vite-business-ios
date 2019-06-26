@@ -30,6 +30,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
     let gatewayNameLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x007AFF)
         $0.numberOfLines = 1
     }
 
@@ -176,7 +177,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         if let gatewayName = viewModel.tokenInfo.gatewayName, !gatewayName.isEmpty {
             gatewayNameLabel.isHidden = false
-            gatewayNameLabel.text = " \(gatewayName) "
+            gatewayNameLabel.text = " Gateway "
             gatewayNameLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
             coinFamilyLabel.layer.borderColor = viewModel.tokenInfo.coinType.strokeColor.cgColor
             coinFamilyLabel.layer.borderWidth = 1

@@ -200,11 +200,11 @@ class GatewayWithdrawViewController: BaseViewController {
         let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress)
         let fee = gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amount.amountFull(decimals: 0), containsFee: false)
 
-
+        view.displayLoading()
         when(fulfilled: metalInfo, verify, withdrawInfo, fee)
             .done { [weak self] args in
                 guard let `self` = self else { return }
-
+                self.view.hideLoading()
                 let (metalInfo, verify, info, feeStr) = args
                 guard metalInfo.withdrawState == .open else {
                     Toast.show("withdrawState is not open")
@@ -246,7 +246,8 @@ class GatewayWithdrawViewController: BaseViewController {
                 Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, completion: { (_) in
 
                 })
-            }.catch { (error) in
+            }.catch { [weak self](error) in
+                self?.view.hideLoading()
                 Toast.show(error.localizedDescription)
         }
     }

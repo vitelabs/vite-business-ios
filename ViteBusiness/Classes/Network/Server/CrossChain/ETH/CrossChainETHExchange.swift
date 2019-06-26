@@ -29,9 +29,10 @@ class CrossChainDepositETH {
 
         let metalInfo = gatewayInfoService.getMetaInfo()
         let withdrawInfo = gatewayInfoService.depositInfo(viteAddress: viteAddress)
-
+        UIViewController.current?.view.displayLoading()
         when(fulfilled: metalInfo, withdrawInfo)
             .done { (metalInfo, withdrawInfo) in
+                UIViewController.current?.view.hideLoading()
                 guard metalInfo.depositState == .open else {
                     Toast.show("deposit state is not open")
                     return
@@ -55,8 +56,17 @@ class CrossChainDepositETH {
                 }
 
                 Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (result) in
-
+                    switch result {
+                    case .success(let string):
+                        break
+                    case .failure(let e):
+                        Toast.show(e.localizedDescription)
+                    }
                 })
+        }
+            .catch { (error) in
+                UIViewController.current?.view.hideLoading()
+                Toast.show(error.localizedDescription)
         }
 
     }

@@ -22,10 +22,10 @@ public class EthGasFeeSliderView: UIView {
             }else {
                 self.valueLab.text = String(format: "%.4fgwei", value)
             }
-            var eth = (value * Float(self.gasLimit) * pow(10.0, -9))
+            eth = (value * Float(self.gasLimit) * pow(10.0, -9))
             eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
 
-            var ethStr : String
+
             if eth <= 0.0001 {
                 ethStr = String(format: "%.5f", eth)
             } else {
@@ -41,6 +41,9 @@ public class EthGasFeeSliderView: UIView {
             self.feeSlider.value = Float(value)
         }
     }
+
+    var ethStr: String = ""
+    var eth: Float = 0
 
     lazy var totalGasFeeTitleLab = UILabel().then {(totalGasFeeTitleLab) in
         totalGasFeeTitleLab.textColor = UIColor(netHex: 0x3E4A59)

@@ -166,15 +166,16 @@ class EthViteExchangeViewController: BaseViewController {
                 return
             }
 
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : TokenInfo.eth.decimals
             guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-                let a = amountString.toAmount(decimals: TokenInfo.viteERC20.decimals) else {
+                let a = amountString.toAmount(decimals: decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                     return
             }
 
             let amount: Amount
             if self.exchangeAll {
-                amount = self.balance
+                amount = self.trueAmout(for: self.balance)
             } else {
                 amount = a
             }
@@ -206,8 +207,7 @@ class EthViteExchangeViewController: BaseViewController {
                     let text = self.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteERC20.decimals)
                     self.headerView.balanceLabel.text = text
                     self.amountView.textField.placeholder = R.string.localizable.ethViteExchangePageAmountPlaceholder(text)
-
-                    if self.exchangeAll {
+                    if self.exchangeAll  {
                         self.amountView.textField.text = self.headerView.balanceLabel.text
                     }
 
@@ -221,7 +221,7 @@ class EthViteExchangeViewController: BaseViewController {
                     self.headerView.balanceLabel.text = text
 
                     if self.exchangeAll {
-                        self.amountView.textField.text = self.headerView.balanceLabel.text
+//                        self.amountView.textField.text = self.headerView.balanceLabel.text
                     }
 
                 }).disposed(by: rx.disposeBag)
@@ -247,7 +247,7 @@ class EthViteExchangeViewController: BaseViewController {
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.exchangeAll = true
-            self.amountView.textField.text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
+            self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
             }.disposed(by: rx.disposeBag)
     }
 
@@ -302,7 +302,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func exchangeErc20ViteTokenToViteCoin(viteAddress: String, amount: Amount, gasPrice: Float) {
-        Workflow.ethViteExchangeWithConfirm(viteAddress: viteAddress, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: { [weak self] (r) in
+        Workflow.ethViteExchangeWithConfirm(viteAddress: viteAddress, amount: amount, gasPrice: gasPrice, completion: { [weak self] (r) in
             guard let `self` = self else { return }
             if case .success = r {
                 AlertControl.showCompletion(R.string.localizable.workflowToastSubmitSuccess())
@@ -320,6 +320,16 @@ class EthViteExchangeViewController: BaseViewController {
 
     func exchangeEthCoinToViteToken(viteAddress: String, amount: Amount, gasPrice: Float) {
         CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice)
+    }
+
+    func trueAmout(for amount: Amount) -> Amount {
+        if self.exchangeAll && self.exchangeType == .ethCoinToViteToken {
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : TokenInfo.eth.decimals
+            var ethStr = self.gasSliderView.ethStr
+            return amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
+        } else {
+            return amount
+        }
     }
 }
 
