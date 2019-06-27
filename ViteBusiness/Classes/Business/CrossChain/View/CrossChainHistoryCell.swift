@@ -43,6 +43,8 @@ class CrossChainHistoryCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        self.selectionStyle = .none
+
         contentView.addSubview(iconImageView)
         contentView.addSubview(statusLabel)
         contentView.addSubview(timeLabel)

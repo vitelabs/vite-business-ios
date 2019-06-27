@@ -218,8 +218,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
                 if !info.minimumWithdrawAmount.isEmpty,
                     let min = Amount(info.minimumWithdrawAmount) {
-                    guard amount >= min else {
-                        Toast.show("less than min amount")
+                    guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(amount.amountShort(decimals: TokenInfo.eth.decimals))")
                         return
                     }
                 }
