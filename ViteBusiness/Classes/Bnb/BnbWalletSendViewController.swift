@@ -36,6 +36,11 @@ class BnbWalletSendViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+
+
+//BnbWallet.shared.testFunc()
+
+        BnbWallet.shared.setupWebSocket()
     }
 
     override func viewDidAppear(_ animated: Bool) {
