@@ -67,6 +67,22 @@ extension UITableView {
         tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: 22)
         return tableView
     }
+
+    func set(empty: Bool) {
+        let tag = 1163
+        let emptyView = self.viewWithTag(tag)
+        if empty && emptyView == nil {
+            let view = UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty(), showImage: true)
+            view.tag = tag
+            self.addSubview(view)
+            view.snp.makeConstraints { (m) in
+                m.center.equalToSuperview()
+            }
+        } else if !empty && emptyView != nil {
+            emptyView?.removeFromSuperview()
+        }
+
+    }
 }
 
 public enum AppStyle {

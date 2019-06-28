@@ -20,9 +20,9 @@ class GatewayTokenDetailViewController: BaseViewController {
             let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
             let total = JSON(info)["total"].int != nil ? String(JSON(info)["total"].int!) : "--"
             var issueStr = "--"
-            if let issue =  JSON(info)["states"]["issue"].string, issue == "Limit" {
+            if let issue =  JSON(info)["states"]["issue"].int, issue == 1 {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
-            } else if let issue =  JSON(info)["states"]["issue"].string, issue == "Float"  {
+            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceTrue()
             }
             var overview:String?  = "--"
@@ -36,7 +36,7 @@ class GatewayTokenDetailViewController: BaseViewController {
                     (R.string.localizable.crosschainTokenDetailShortname(),JSON(info)["symbol"].string),
                     (R.string.localizable.crosschainTokenDetailId(),JSON(info)["platform"]["tokenAddress"].string),
                     (R.string.localizable.crosschainTokenDetailName(),JSON(info)["name"].string),
-                    (R.string.localizable.crosschainTokenDetailAddress(),JSON(info)["publisher"].string),
+                    (R.string.localizable.crosschainTokenDetailAddress(),JSON(info)["publisher"].string ?? "--"),
                     (R.string.localizable.crosschainTokenDetailAmount(),total),
                     (R.string.localizable.crosschainTokenDetailDigit(),tokenDigit),
                     (R.string.localizable.crosschainTokenDetailIssuance(),issueStr),

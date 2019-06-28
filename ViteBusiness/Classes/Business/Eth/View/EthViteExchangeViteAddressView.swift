@@ -90,6 +90,7 @@ extension EthViteExchangeViteAddressView {
 
         } else if style == .copyButton {
             let button = UIButton()
+            addressView.button = button
 
             addressView.addSubview(button)
 

@@ -20,6 +20,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     var gatewayInfoService: CrossChainGatewayInfoService?
+    var depositInfo: DepositInfo?
 
 
     let myEthAddress = EtherWallet.shared.address!
@@ -180,6 +181,14 @@ class EthViteExchangeViewController: BaseViewController {
                 amount = a
             }
 
+            if  let depositInfo = self.depositInfo,
+                let minimumDepositAmount = Amount(depositInfo.minimumDepositAmount ?? ""), amount < minimumDepositAmount {
+                let minStr = minimumDepositAmount.amountShort(decimals: self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.decimals ?? 0)
+                let minSymbol = self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.symbol ?? ""
+                Toast.show(R.string.localizable.crosschainDepositMinAlert() + minStr + minSymbol)
+                return
+            }
+
             guard amount > Amount(0) else {
                 Toast.show(R.string.localizable.sendPageToastAmountZero())
                 return
@@ -227,9 +236,10 @@ class EthViteExchangeViewController: BaseViewController {
                 }).disposed(by: rx.disposeBag)
 
             self.gatewayInfoService?.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
-                .done { (info) in
+                .done { [weak self] (info) in
+                    self?.depositInfo = info
                     if let amount = Amount(info.minimumDepositAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
-                        self.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)"
+                        self?.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)"
                     }
 
             }
@@ -249,6 +259,13 @@ class EthViteExchangeViewController: BaseViewController {
             self.exchangeAll = true
             self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
             }.disposed(by: rx.disposeBag)
+
+        gasSliderView.feeSlider.rx.value.bind{ [unowned self] _ in
+            if self.exchangeAll {
+                self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
+            }
+
+            }.disposed(by: rx.disposeBag)
     }
 
 
@@ -265,7 +282,13 @@ class EthViteExchangeViewController: BaseViewController {
             $0.titleLab.textColor = UIColor(netHex: 0x24272B)
         }
 
-        let tokenIconView = UIImageView(image: R.image.icon_vite_exchange())
+        var image: UIImage!
+        if self.exchangeType == .erc20ViteTokenToViteCoin {
+            image = R.image.icon_vite_exchange()
+        } else {
+            image = R.image.crosschain_depoist()
+        }
+        let tokenIconView = UIImageView(image: image)
 
         view.addSubview(titleLabel)
         view.addSubview(tokenIconView)
@@ -319,14 +342,21 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func exchangeEthCoinToViteToken(viteAddress: String, amount: Amount, gasPrice: Float) {
-        CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice)
+        CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     func trueAmout(for amount: Amount) -> Amount {
         if self.exchangeAll && self.exchangeType == .ethCoinToViteToken {
             let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : TokenInfo.eth.decimals
             var ethStr = self.gasSliderView.ethStr
-            return amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
+            let trueAmout = amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
+            if trueAmout <= Amount(0) {
+                return Amount(0)
+            } else {
+                return trueAmout
+            }
         } else {
             return amount
         }

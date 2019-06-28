@@ -8,12 +8,4 @@
 import Foundation
 
 
-protocol CrossChainDeposit{
-
-    var gatewayInfoService: CrossChainGatewayInfoService { get }
-
-    //Send rival Tx
-    func deposit(viteAddress: String, totId: String, amount: String)
-
-}
 

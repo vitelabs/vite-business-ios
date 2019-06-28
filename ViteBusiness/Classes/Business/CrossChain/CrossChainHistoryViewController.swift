@@ -88,6 +88,11 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.depositRecords.append(contentsOf: info.depositRecords)
                     self?.currentpageNum = 1
                     self?.tableView.reloadData()
+                    if self?.depositRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }.finally { [weak self] in
@@ -102,6 +107,11 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.mj_header.endRefreshing()
                     self?.currentpageNum = 1
                     self?.tableView.reloadData()
+                    if self?.withdrawRecord.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }.finally { [weak self] in
@@ -122,6 +132,11 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.depositRecords.append(contentsOf: info.depositRecords)
                     self?.currentpageNum = self?.currentpageNum ?? 0 + 1
                     self?.tableView.reloadData()
+                    if info.depositRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
             }
@@ -136,6 +151,11 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.mj_footer.endRefreshing()
                     self?.currentpageNum = self?.currentpageNum ?? 0 + 1
                     self?.tableView.reloadData()
+                    if info.withdrawRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }
@@ -149,12 +169,18 @@ class CrossChainHistoryViewController: BaseViewController {
 
 extension CrossChainHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count = 0
         if self.style == .desposit {
-            return self.depositRecords.count
+            count = self.depositRecords.count
         } else if self.style == .withdraw  {
-            return self.withdrawRecord.count
+            count = self.withdrawRecord.count
         }
-        return 0
+        if count == 0 {
+            tableView.set(empty: true)
+        } else {
+            tableView.set(empty: false)
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

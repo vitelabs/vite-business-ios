@@ -62,7 +62,7 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     func setUpview()  {
-        navigationTitleView = PageTitleView.titleAndIcon(title: R.string.localizable.crosschainWithdraw(), icon: R.image.icon_vite_exchange())
+        navigationTitleView = PageTitleView.titleAndIcon(title: R.string.localizable.crosschainWithdraw(), icon: R.image.crosschain_withdrwa())
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarItemBtn)
 
@@ -72,12 +72,14 @@ class GatewayWithdrawViewController: BaseViewController {
         view.addSubview(feeView)
         view.addSubview(withdrawButton)
 
-        abstractView.tl0.text = R.string.localizable.sendPageMyBalanceTitle()
+        abstractView.tl0.text = R.string.localizable.sendPageMyAddressTitle()
+        abstractView.cl0.text = HDWalletManager.instance.account?.address
+        abstractView.tl1.text = R.string.localizable.sendPageMyBalanceTitle()
 
         abstractView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
             m.top.equalTo(navigationTitleView!.snp.bottom)
-            m.height.equalTo(76)
+            m.height.equalTo(138)
         }
 
         addressView.snp.makeConstraints { (m) in
@@ -125,11 +127,15 @@ class GatewayWithdrawViewController: BaseViewController {
             self?.withdraw()
         }
 
+        feeView.tipButton.rx.tap.bind { [weak self] in
+            Toast.show(R.string.localizable.crosschainWithdrawFeeDesc())
+        }
+
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
                 self.balance = balanceInfo?.balance ?? self.balance
-                self.abstractView.cl0.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
+                self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
             }).disposed(by: rx.disposeBag)
 
 
@@ -162,6 +168,8 @@ class GatewayWithdrawViewController: BaseViewController {
                     print(error.localizedDescription)
                 })
         }
+
+        self
     }
 
     func withdraw()  {
@@ -212,13 +220,13 @@ class GatewayWithdrawViewController: BaseViewController {
                 }
 
                 guard verify == true else {
-                    Toast.show("wrong address")
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
 
                 if !info.minimumWithdrawAmount.isEmpty,
                     let min = Amount(info.minimumWithdrawAmount) {
-                    guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(amount.amountShort(decimals: TokenInfo.eth.decimals))")
+                    guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: TokenInfo.eth.decimals))")
                         return
                     }
                 }
@@ -243,14 +251,13 @@ class GatewayWithdrawViewController: BaseViewController {
                 data.append(withDrawAddressData!)
 
                 Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, completion: { (_) in
-
+                    self.navigationController?.popViewController(animated: true)
                 })
             }.catch { [weak self](error) in
                 self?.view.hideLoading()
                 Toast.show(error.localizedDescription)
         }
     }
-
 
 }
 

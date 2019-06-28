@@ -73,15 +73,18 @@ class GatewayDepositViewController: BaseViewController {
                 }
                 self.descriptionLabel.text =  R.string.localizable.crosschainDepositMinAmountDesc( minimumDepositAmountStr
                     + self.tokenInfo.symbol)
-
                 self.qrcodeView.bind(tokenInfo: TokenInfo.eth, content: info.depositAddress)
+                self.addressView.textLabel.text = info.depositAddress
 
             }.catch { (error) in
                 Toast.show(error.localizedDescription)
         }
 
         addressView.button?.rx.tap.bind { [unowned self] in
-            UIPasteboard.general.string = self.addressView.textLabel.text
+            if let address = self.addressView.textLabel.text{
+                UIPasteboard.general.string = address
+                Toast.show(R.string.localizable.walletHomeToastCopyAddress())
+            }
         }
 
     }
@@ -120,7 +123,7 @@ class GatewayDepositViewController: BaseViewController {
             $0.titleLab.textColor = UIColor(netHex: 0x24272B)
         }
 
-        let tokenIconView = UIImageView(image: R.image.icon_vite_exchange())
+        let tokenIconView = UIImageView(image:  R.image.crosschain_depoist())
 
         view.addSubview(titleLabel)
         view.addSubview(tokenIconView)

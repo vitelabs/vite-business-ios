@@ -121,8 +121,8 @@ class CrossChainHistoryCell: UITableViewCell {
         let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? "Other"
 
         if type == .withdraw {
-            leftHashLabel.text =  "\(viteSymble) hash:" + record.inTxHash
-            rightHashLabel.text = "\(othenSymble) hash:" + (record.outTxHash ?? "")
+            leftHashLabel.text =  "\(viteSymble) Hash:" + record.inTxHash
+            rightHashLabel.text = "\(othenSymble) Hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {
@@ -146,8 +146,8 @@ class CrossChainHistoryCell: UITableViewCell {
             statusLabel.text = statusString
 
         } else if type == .desposit {
-            leftHashLabel.text = "\(othenSymble) hash:" + record.inTxHash
-            rightHashLabel.text = "\(viteSymble) hash:" + (record.outTxHash ?? "")
+            leftHashLabel.text = "\(othenSymble) Hash:" + record.inTxHash
+            rightHashLabel.text = "\(viteSymble) Hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {

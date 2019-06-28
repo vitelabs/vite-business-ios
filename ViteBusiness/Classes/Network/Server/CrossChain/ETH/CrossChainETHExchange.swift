@@ -25,7 +25,7 @@ class CrossChainDepositETH {
 //    网关监听 VITE 上的该笔 TOT 转出交易，如果交易没有最终被确认，需要重试发送。
 //    #
 
-    func deposit(to viteAddress: String, totId: String, amount: String, gasPrice: Float ) {
+    func deposit(to viteAddress: String, totId: String, amount: String, gasPrice: Float, completion: @escaping (() -> ())) {
 
         let metalInfo = gatewayInfoService.getMetaInfo()
         let withdrawInfo = gatewayInfoService.depositInfo(viteAddress: viteAddress)
@@ -56,7 +56,12 @@ class CrossChainDepositETH {
                 }
 
                 Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (result) in
-                    
+                    switch result {
+                    case .success(_):
+                        completion()
+                    case .failure(_):
+                        break
+                    }
                 })
         }
             .catch { (error) in
