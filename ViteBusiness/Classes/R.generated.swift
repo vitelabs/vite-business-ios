@@ -1254,7 +1254,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatusWaitToConfirm = Rswift.StringResource(key: "crosschain.status.waitToConfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %d个新资产
+      /// en translation: %d new asset(s)
       /// 
       /// Locales: en, zh-Hans
       static let tokenListPageIgnoreLabTitle = Rswift.StringResource(key: "token.list.page.ignore.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1394,6 +1394,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let walletHomeHeaderTitle = Rswift.StringResource(key: "wallet.home.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Assets ignored will not be informed again, are you sure to ignore the assets below?
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageIgnoreAlterTitle = Rswift.StringResource(key: "token.list.page.ignore.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Asynchronous architecture, smooth trade
       /// 
       /// Locales: en, zh-Hans
@@ -1886,6 +1890,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentSuggestUseViteDesc = Rswift.StringResource(key: "grin.sent.suggest.useVite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Ignore
+      /// 
+      /// Locales: en, zh-Hans
+      static let tokenListPageIgnoreBtnTitle = Rswift.StringResource(key: "token.list.page.ignore.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Illegal transfer amount
       /// 
       /// Locales: en, zh-Hans
@@ -3138,10 +3146,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatusConfirmed = Rswift.StringResource(key: "crosschain.status.confirmed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 忽略
-      /// 
-      /// Locales: en, zh-Hans
-      static let tokenListPageIgnoreBtnTitle = Rswift.StringResource(key: "token.list.page.ignore.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的ETH地址
       /// 
       /// Locales: en, zh-Hans
@@ -3174,10 +3178,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 被忽略币种将不再提示，确定忽略以下币种？
-      /// 
-      /// Locales: en, zh-Hans
-      static let tokenListPageIgnoreAlterTitle = Rswift.StringResource(key: "token.list.page.ignore.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请扫面二维码充值
       /// 
       /// Locales: en, zh-Hans
@@ -3237,7 +3237,7 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.status.waitToConfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: %d个新资产
+      /// en translation: %d new asset(s)
       /// 
       /// Locales: en, zh-Hans
       static func tokenListPageIgnoreLabTitle(_ value1: Int) -> String {
@@ -3480,6 +3480,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func walletHomeHeaderTitle(_: Void = ()) -> String {
         return NSLocalizedString("wallet.home.header.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Assets ignored will not be informed again, are you sure to ignore the assets below?
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageIgnoreAlterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.ignore.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Asynchronous architecture, smooth trade
@@ -4341,6 +4348,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinSentSuggestUseViteDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.suggest.useVite.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Ignore
+      /// 
+      /// Locales: en, zh-Hans
+      static func tokenListPageIgnoreBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.ignore.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Illegal transfer amount
@@ -6534,13 +6548,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.status.confirmed", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 忽略
-      /// 
-      /// Locales: en, zh-Hans
-      static func tokenListPageIgnoreBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("token.list.page.ignore.btn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 我的ETH地址
       /// 
       /// Locales: en, zh-Hans
@@ -6595,13 +6602,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 被忽略币种将不再提示，确定忽略以下币种？
-      /// 
-      /// Locales: en, zh-Hans
-      static func tokenListPageIgnoreAlterTitle(_: Void = ()) -> String {
-        return NSLocalizedString("token.list.page.ignore.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请扫面二维码充值

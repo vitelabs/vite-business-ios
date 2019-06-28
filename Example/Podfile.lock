@@ -154,6 +154,7 @@ PODS:
   - Then (2.4.0)
   - Toast-Swift (4.0.1)
   - TrezorCryptoEd25519WithBlake2b (0.0.1)
+  - URLNavigator (2.2.0)
   - Vite_GrinWallet (0.1.0):
     - ObjectMapper
     - Result
@@ -206,6 +207,7 @@ PODS:
     - SwiftyJSON
     - Then
     - Toast-Swift (~> 4.0.1)
+    - URLNavigator
     - Vite_GrinWallet
     - Vite_HDWalletKit
     - ViteEthereum
@@ -303,6 +305,7 @@ SPEC REPOS:
     - Then
     - Toast-Swift
     - TrezorCryptoEd25519WithBlake2b
+    - URLNavigator
     - web3swift
     - XCGLogger
 
@@ -396,9 +399,10 @@ SPEC CHECKSUMS:
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
+  URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: aa0cd761242767aecf114a56f2341d6e8ca0ec0b
+  ViteBusiness: 3c2ddfef48c8138a57f8bdcfdd5c987acb1c4a5d
   ViteEthereum: 999132ec796b1b7ec047513cf8b3837893772a8a
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3swift: 6db59e73e2bcb99dde081088d0242382155690c9
@@ -406,4 +410,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2c5e4fccfbcba7ad9b6603841639e6fdf2e21399
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

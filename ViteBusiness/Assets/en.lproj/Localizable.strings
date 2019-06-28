@@ -357,10 +357,9 @@
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
 "token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "忽略";
-"token.list.page.ignore.lab.title" = "%d个新资产";
-"token.list.page.ignore.alter.title" = "被忽略币种将不再提示，确定忽略以下币种？";
-
+"token.list.page.ignore.btn.title" = "Ignore";
+"token.list.page.ignore.lab.title" = "%d new asset(s)";
+"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";
 "contacts.home.page.no.contact.tip" = "Add your first address";
