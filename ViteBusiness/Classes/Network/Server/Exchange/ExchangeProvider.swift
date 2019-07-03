@@ -141,6 +141,31 @@ extension ExchangeProvider {
     }
 
     @discardableResult
+
+    func getTokenInfoDetail(tokenCode: TokenCode, completion: @escaping (Result<[String: Any]>) -> Void) -> Cancellable {
+        return sendRequest(api: .getTokenInfoDetail(tokenCode), completion: { (ret) in
+            switch ret {
+            case .success(let json):
+                var map = [TokenCode: TokenInfo]()
+                if let json = json as? [[String: Any]] {
+                    let tokenInfos = [TokenInfo](JSONArray: json).compactMap { $0 }
+                    tokenInfos.forEach({ (tokenInfo) in
+                        map[tokenInfo.tokenCode] = tokenInfo
+                    })
+
+                    if let tokenInfo = json.first {
+                        completion(Result.success(tokenInfo))
+                        return
+                    }
+                }
+                completion(Result.failure(ExchangeError.notFound))
+
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        })
+    }
+
     func getTokenInfos(chain: String, ids: [String], completion: @escaping (Result<[TokenInfo]>) -> Void) -> Cancellable {
         return sendRequest(api: .getTokenInfosInChain(chain, ids), completion: { (ret) in
             switch ret {

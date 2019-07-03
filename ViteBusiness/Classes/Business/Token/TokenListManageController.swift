@@ -17,7 +17,16 @@ import MLeaksFinder
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
 class TokenListManageController: BaseViewController {
-    let viewModel = TokenListManageViewModel()
+    var viewModel : TokenListManageViewModel
+
+    init() {
+        viewModel = TokenListManageViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func willDealloc() -> Bool {
         return false
@@ -33,6 +42,7 @@ class TokenListManageController: BaseViewController {
             m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
         }
         tableView.register(TokenListInfoCell.self, forCellReuseIdentifier: "TokenListInfoCell")
+        tableView.register(NewAssetTokenCell.self, forCellReuseIdentifier: "NewAssetTokenCell")
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
     }
@@ -92,10 +102,22 @@ class TokenListManageController: BaseViewController {
 
     func bindData() {
         let dataSource = DataSource(
-            configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-                let cell: TokenListInfoCell = tableView.dequeueReusableCell(for: indexPath)
-                cell.reloadData(item)
-                return cell
+            configureCell: {[weak self](_, tableView, indexPath, item) ->
+                UITableViewCell in
+                guard let `self` = self else {
+                    return UITableViewCell()
+                }
+
+                if self.viewModel.isHasNewAssetTokens() && indexPath.section == 0 {
+                    let cell: NewAssetTokenCell = tableView.dequeueReusableCell(for: indexPath)
+                    cell.delegate = self
+                    cell.reloadData(item)
+                    return cell
+                }else {
+                    let cell: TokenListInfoCell = tableView.dequeueReusableCell(for: indexPath)
+                    cell.reloadData(item)
+                    return cell
+                }
         } ,
             titleForHeaderInSection: { dataSource, sectionIndex in
                 return dataSource[sectionIndex].model
@@ -153,20 +175,35 @@ extension TokenListManageController : UITableViewDelegate {
         return 44
     }
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let contentView = UIView()
-        contentView.backgroundColor = .white
-        let lab = UILabel.init(frame: CGRect.init(x: 18, y: 10, width: 100, height: 20))
-        lab.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        lab.textColor = UIColor.init(netHex: 0x3E4A59)
-        lab.backgroundColor = .white
-        contentView.addSubview(lab)
-        lab.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(10)
-            m.left.equalToSuperview().offset(18)
-            m.right.equalToSuperview().offset(-18)
+       if self.viewModel.isHasNewAssetTokens() && section == 0 {
+        let contentView = NewAssetTableSectionView()
+        contentView.titleLab.lab.text = R.string.localizable.tokenListPageIgnoreLabTitle(self.viewModel.newAssetTokenCount())
+
+        contentView.ignoreBtn.rx.tap.bind {[weak self] in
+            guard let `self` = self else {
+                return
+            }
+
+            Alert.show(title: R.string.localizable.tokenListPageIgnoreAlterTitle(), message: nil, actions: [
+                (.default(title: R.string.localizable.cancel()), nil),
+                (.default(title: R.string.localizable.confirm()), { _ in
+                    NewAssetService.instance.handleCleanNewTip()
+                    self.viewModel.refreshList()
+                }),
+                ])
+
+        }.disposed(by: rx.disposeBag)
+            return contentView
+       }else {
+            let contentView = TokenListInfoSectionView()
+            contentView.titleLab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
+            return contentView
         }
-        
-        lab.text = self.tokenListArray[section][0].getCoinHeaderDisplay()
-        return contentView
+    }
+}
+
+extension TokenListManageController : NewAssetTokenCellDelegate {
+    func refreshList() {
+        self.viewModel.refreshList()
     }
 }

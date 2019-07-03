@@ -74,24 +74,38 @@ class BalanceInfoDetailViewController: BaseViewController {
         if allowJumpTokenDetailPage {
             let tapGestureRecognizer = UITapGestureRecognizer()
             navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
-            tapGestureRecognizer.rx.event.subscribe(onNext: { [weak self] (r) in
-                guard let url = self?.tokenInfo.infoURL else { return }
-                let vc = WKWebViewController.init(url: url)
+            tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
+                let vc =  GatewayTokenDetailViewController.init(tokenInfo: self.tokenInfo)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                guard let url = self?.tokenInfo.infoURL else { return }
+//                let vc = WKWebViewController.init(url: url)
+//                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }).disposed(by: rx.disposeBag)
         }
+
+//        if tokenInfo.isGateway {
+//            let button = UIButton.init()
+//            button.setTitle(R.string.localizable.crosschainTokendetail(), for: .normal)
+//            button.setTitleColor(UIColor.init(netHex:  0x007AFF), for: .normal)
+//            button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//            navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: button)
+//            button.rx.tap.bind { [unowned self] in
+//                let vc =  GatewayTokenDetailViewController.init(tokenInfo: self.tokenInfo)
+//                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//            }.disposed(by: rx.disposeBag)
+//        }
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
 
-        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
-            .first().subscribe { [weak self] _ in
-                guard let `self` = self else { return }
-                if self.allowJumpTokenDetailPage {
-                    self.navView.tokenIconView.beat()
-                }
-            }.disposed(by: rx.disposeBag)
+//        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
+//            .first().subscribe { [weak self] _ in
+//                guard let `self` = self else { return }
+//                if self.allowJumpTokenDetailPage {
+//                    self.navView.tokenIconView.beat()
+//                }
+//            }.disposed(by: rx.disposeBag)
     }
 }
 

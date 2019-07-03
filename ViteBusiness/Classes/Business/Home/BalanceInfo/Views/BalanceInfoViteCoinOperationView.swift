@@ -114,13 +114,13 @@ class OperationButton: UIView {
 
             imageView.snp.makeConstraints { (m) in
                 m.centerY.equalToSuperview()
-                m.left.equalToSuperview().offset(20)
+                m.left.equalToSuperview().offset(14)
                 m.size.equalTo(CGSize(width: 20, height: 20))
             }
 
             vLine.snp.makeConstraints { (m) in
                 m.width.equalTo(CGFloat.singleLineWidth)
-                m.left.equalTo(imageView.snp.right).offset(20)
+                m.left.equalTo(imageView.snp.right).offset(10)
                 m.top.equalToSuperview().offset(10)
                 m.bottom.equalToSuperview().offset(-10)
             }

@@ -57,7 +57,7 @@ class GrinTransactionCell: UITableViewCell {
         }
 
         if let gatewayInfo = fullInfo.gatewayInfo {
-            if gatewayInfo.confirmInfo?.confirm == true {
+            if gatewayInfo.status >= 1 {
                 icon.image = R.image.grin_txlist_receive_gatewayConfirmed()
                 statusLabel.text = R.string.localizable.grinTxTypeConfirmed()
             } else {

@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import PPBadgeViewSwift
 
 class WalletHomeHeaderView: UIView {
 
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: 56)
+    }
+
+    lazy var addButton = UIButton().then {
+        $0.setImage(R.image.icon_token_info_add_button(), for: .normal)
+        $0.setImage(R.image.icon_token_info_add_button()?.highlighted, for: .highlighted)
     }
 
     override init(frame: CGRect) {
@@ -20,11 +26,6 @@ class WalletHomeHeaderView: UIView {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
             $0.textColor = UIColor(netHex: 0x3E4A59)
             $0.text = R.string.localizable.walletHomeHeaderTitle()
-        }
-
-        let addButton = UIButton().then {
-            $0.setImage(R.image.icon_token_info_add_button(), for: .normal)
-            $0.setImage(R.image.icon_token_info_add_button()?.highlighted, for: .highlighted)
         }
 
         backgroundColor = UIColor.clear
@@ -42,14 +43,18 @@ class WalletHomeHeaderView: UIView {
             m.width.equalTo(76)
         }
 
-        addButton.rx.tap.bind { [weak self] in
-            let sendViewController = TokenListManageController()
-            UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
-            }.disposed(by: rx.disposeBag)
-
         #if DAPP
         addButton.isHidden = true
         #endif
+
+        self.bindView()
+    }
+
+    func bindView() {
+        self.addButton.rx.tap.bind { [weak self] in
+            let vc = TokenListManageController()
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }.disposed(by: self.rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

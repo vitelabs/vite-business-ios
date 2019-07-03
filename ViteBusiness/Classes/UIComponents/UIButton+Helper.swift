@@ -18,6 +18,7 @@ extension UIButton {
         case white
         case whiteWithShadow
         case add
+        case navigationItemCustomView
     }
 
     convenience init(style: Style, title: String? = nil) {
@@ -76,6 +77,10 @@ extension UIButton {
             layer.shadowOpacity = 0.1
             layer.shadowRadius = 3
             layer.shadowOffset = CGSize(width: 0, height: 0)
+        case .navigationItemCustomView:
+            titleLabel?.font = UIFont.systemFont(ofSize: 14)
+            titleLabel?.adjustsFontSizeToFitWidth = true
+            setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         }
     }
 
