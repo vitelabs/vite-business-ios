@@ -561,28 +561,28 @@
 // CrossChain Deposit & Withdraw
 
 "crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-chain Deposit";
-"crosschain.withdraw" = "Cross-chain Withdraw";
+"crosschain.deposit" = "Deposit (Cross-Chain)";
+"crosschain.withdraw" = "Withdraw (Cross-Chain)";
 "crosschain.withdraw.btnTitle" = "Withdraw";
 "crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Vite Wallet Deposit";
-"crosschain.deposit.otherwallet" = "Other Wallet Deposit";
+"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
+"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
 "crosschain.deposit.history" = "Deposit History";
 "crosschain.withdraw.history" = "Withdraw History";
-"crosschain.deposit.minAmountDesc" = "The minimum deposit amount is %@ ,if amount less than minimum amount, it will lead to deposit failure.";
+"crosschain.deposit.minAmountDesc" = "The required minimum deposit amount is %@. If you try to deposit an amount less than this threshold, the transaction may fail.";
 "crosschain.deposit.address" = "Deposit Address";
-"crosschain.deposit.scanAddress" = "Please scan the QR code to deposit";
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-chain</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Cross-chain deposit is to map %@ to Vite chain, after deposit, you can get back ETH through cross-chain withdraw. Vite Wallet cross-chain deposit is to use Vite Wallet %@ balance to deposit.</p>";
-"crosschain.withdraw.eth.myAddress" = "ETH Address";
-"crosschain.deposit.min" = "The minimum deposit amount is ";
-"crosschain.withdraw.min" = "The minimum withdraw amount is ";
-"crosschain.deposit.min.alert" = "Deposit amount should be over ";
-"crosschain.deposit.all" = "All";
+"crosschain.deposit.scanAddress" = "Scan QR Code to Deposit";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposits</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdraw. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
+"crosschain.withdraw.eth.myAddress" = "My ETH Address";
+"crosschain.deposit.min" = "Minimum Deposit ";
+"crosschain.withdraw.min" = "Minimum Withdraw ";
+"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.all" = "Deposit All";
 "crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.tokenDetail.shortname" = "Token Abbreviation: ";
+"crosschain.tokenDetail.shortname" = "Symbol: ";
 "crosschain.tokenDetail.id" = "Token ID: ";
 "crosschain.tokenDetail.name" = "Token Name: ";
-"crosschain.tokenDetail.address" = "Issue Address";
+"crosschain.tokenDetail.address" = "Coin Forging Address";
 "crosschain.tokenDetail.amount" = "Total Issuance:";
 "crosschain.tokenDetail.digit" = "Decimals";
 "crosschain.tokenDetail.unit" = "";
@@ -590,11 +590,11 @@
 "crosschain.tokenDetail.issuance.true" = "Yes";
 "crosschain.tokenDetail.issuance.false" = "No";
 "crosschain.tokenDetail.date" = "Issuance Date";
-"crosschain.tokenDetail.desc" = "Token Discription";
+"crosschain.tokenDetail.desc" = "Description";
 "crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
-"crosschain.status.confirmed" = "Completed";
-"crosschain.status.gatewayReceived" = "Gateway Received";
-"crosschain.status.failedBecausePoor" = "The amount from the corresponding chain is less than the minimum amount, deposit falure";
+"crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.gatewayReceived" = "Received by Gateway";
+"crosschain.status.failedBecausePoor" = "Transaction amount is less than minimum amount required by target chain. Transaction failed.";
 "crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 
