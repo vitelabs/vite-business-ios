@@ -45,7 +45,7 @@ class EthViteExchangeViteAddressView: UIView {
         addSubview(textLabel)
 
         titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(self).offset(16)
+            m.top.equalTo(self).offset(24)
             m.left.equalTo(self)
         }
 
@@ -94,11 +94,12 @@ extension EthViteExchangeViteAddressView {
 
             addressView.addSubview(button)
 
-            button.setImage(R.image.icon_button_paste_gray(), for: .normal)
+            button.setImage(R.image.icon_button_paste_light_gray(), for: .normal)
 
             button.snp.makeConstraints { (m) in
                 m.centerY.equalTo(addressView.titleLabel)
                 m.right.equalTo(addressView)
+                m.size.equalTo(CGSize.init(width: 20, height: 20))
             }
 
         } else if style == .chouseAddressButton {

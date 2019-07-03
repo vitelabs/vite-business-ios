@@ -84,11 +84,10 @@ class TokenListInfoCell: UITableViewCell {
         self.switchControl.isHidden = token.isDefault
         self.switchControl.setOn(token.isContains, animated: false)
 
-        if let gatewayName = token.gatewayName, !gatewayName.isEmpty {
+        if token.isGateway {
             gatewayNameLabel.isHidden = false
             gatewayNameLabel.text = " Gateway "
-            gatewayNameLabel.backgroundColor = token.coinType.labelBackgroundColor
-            gatewayNameLabel.layer.borderColor = token.coinType.strokeColor.cgColor
+            gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
             gatewayNameLabel.layer.borderWidth = 1
         } else {
             gatewayNameLabel.isHidden = true

@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 174 images.
+  /// This `R.image` struct is generated, and contains static references to 175 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -36,8 +36,10 @@ struct R: Rswift.Validatable {
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
     /// Image `crosschain_depoist`.
     static let crosschain_depoist = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_depoist")
-    /// Image `crosschain_operat`.
-    static let crosschain_operat = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat")
+    /// Image `crosschain_operat_deposit`.
+    static let crosschain_operat_deposit = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat_deposit")
+    /// Image `crosschain_operat_withdraw`.
+    static let crosschain_operat_withdraw = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat_withdraw")
     /// Image `crosschain_status_confirm`.
     static let crosschain_status_confirm = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_confirm")
     /// Image `crosschain_status_gateway`.
@@ -412,9 +414,14 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.crosschain_depoist, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "crosschain_operat", bundle: ..., traitCollection: ...)`
-    static func crosschain_operat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.crosschain_operat, compatibleWith: traitCollection)
+    /// `UIImage(named: "crosschain_operat_deposit", bundle: ..., traitCollection: ...)`
+    static func crosschain_operat_deposit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_operat_deposit, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_operat_withdraw", bundle: ..., traitCollection: ...)`
+    static func crosschain_operat_withdraw(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_operat_withdraw, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "crosschain_status_confirm", bundle: ..., traitCollection: ...)`
@@ -1242,7 +1249,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 492 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 493 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1296,6 +1303,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let popPageTipVoteLoser = Rswift.StringResource(key: "pop.page.tip.vote.loser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: About Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainWithdrawAboutfee = Rswift.StringResource(key: "crosschain.withdraw.aboutfee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: About Us
       /// 
       /// Locales: en, zh-Hans
@@ -2208,10 +2219,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentSuggestUseViteTitle = Rswift.StringResource(key: "grin.sent.suggest.useVite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Notice The minimum deposit amount is%@ ,if amount less than minimum amount, it will lead to deposit failure.
-      /// 
-      /// Locales: en, zh-Hans
-      static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open to Additional Issue:
       /// 
       /// Locales: en, zh-Hans
@@ -2688,6 +2695,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainDepositMin = Rswift.StringResource(key: "crosschain.deposit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The minimum deposit amount is %@ ,if amount less than minimum amount, it will lead to deposit failure.
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The minimum withdraw amount is 
       /// 
       /// Locales: en, zh-Hans
@@ -3302,6 +3313,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func popPageTipVoteLoser(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("pop.page.tip.vote.loser", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: About Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainWithdrawAboutfee(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.aboutfee", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: About Us
@@ -4900,13 +4918,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("grin.sent.suggest.useVite.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Notice The minimum deposit amount is%@ ,if amount less than minimum amount, it will lead to deposit failure.
-      /// 
-      /// Locales: en, zh-Hans
-      static func crosschainDepositMinAmountDesc(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: Open to Additional Issue:
       /// 
       /// Locales: en, zh-Hans
@@ -5738,6 +5749,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainDepositMin(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.deposit.min", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The minimum deposit amount is %@ ,if amount less than minimum amount, it will lead to deposit failure.
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainDepositMinAmountDesc(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: The minimum withdraw amount is 

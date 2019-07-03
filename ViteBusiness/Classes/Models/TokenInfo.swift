@@ -94,7 +94,7 @@ public enum CoinType: String {
     var labelBackgroundColor: UIColor {
         switch self {
         case .vite:
-            return UIColor(netHex: 0xCCE5FF)
+            return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF1FFE6)
         case .grin:
@@ -286,7 +286,7 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.gatewayInfo != nil
+        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode
     }
 
     public var gatewayName: String? {

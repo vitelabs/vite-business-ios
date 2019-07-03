@@ -36,6 +36,8 @@ class GatewayDepositViewController: BaseViewController {
         view.addSubview(addressView)
         view.addSubview(scanQRCodeLable)
         view.addSubview(qrcodeView)
+        view.addSubview(pointView)
+        view.addSubview(descriptionTitleLabel)
         view.addSubview(descriptionLabel)
 
 
@@ -57,9 +59,20 @@ class GatewayDepositViewController: BaseViewController {
             m.top.equalTo(scanQRCodeLable.snp.bottom).offset(29)
         }
 
+        pointView.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(20)
+            m.height.width.equalTo(6)
+            m.top.equalTo(qrcodeView.snp.bottom).offset(29)
+        }
+
+        descriptionTitleLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(pointView.snp.right).offset(5)
+            m.centerY.equalTo(pointView)
+        }
+
         descriptionLabel.snp.makeConstraints { (m) in
             m.centerX.equalToSuperview()
-            m.top.equalTo(qrcodeView.snp.bottom).offset(29)
+            m.top.equalTo(pointView.snp.bottom).offset(10)
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
         }
@@ -166,7 +179,22 @@ class GatewayDepositViewController: BaseViewController {
         $0.text = R.string.localizable.crosschainDepositMinAmountDesc("-")
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
     }
+
+    let descriptionTitleLabel = UILabel().then {
+        $0.text = R.string.localizable.grinNoticeTitle()
+        $0.numberOfLines = 0
+        $0.font = UIFont.boldSystemFont(ofSize: 14)
+    }
+
+    let pointView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex:0x007AFF)
+        view.layer.cornerRadius = 3
+        view.layer.masksToBounds = true
+        return view
+    }()
 
 
     func showTip() {

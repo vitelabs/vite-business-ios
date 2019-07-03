@@ -30,13 +30,17 @@ class CrossChainHistoryCell: UITableViewCell {
     }
     let leftHashLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 11)
-        $0.textColor = UIColor.init(netHex: 0x3E4A59)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
         $0.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
+        $0.layer.cornerRadius = 2
+        $0.layer.masksToBounds = true
     }
     let rightHashLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 11)
-        $0.textColor = UIColor.init(netHex: 0x3E4A59)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
         $0.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
+        $0.layer.cornerRadius = 2
+        $0.layer.masksToBounds = true
     }
 
 
@@ -118,12 +122,13 @@ class CrossChainHistoryCell: UITableViewCell {
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
         let viteSymble = "VITE"
-        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? "Other"
+        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? ""
+
+        symbleLabel.text = othenSymble
 
         if type == .withdraw {
-            leftHashLabel.text =  "\(viteSymble) Hash:" + record.inTxHash
-            rightHashLabel.text = "\(othenSymble) Hash:" + (record.outTxHash ?? "")
-
+            leftHashLabel.text =  " \(viteSymble) Hash: \(record.inTxHash) "
+            rightHashLabel.text = " \(othenSymble) Hash: \(record.outTxHash ?? "") "
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:

@@ -126,6 +126,7 @@ class EthViteExchangeViewController: BaseViewController {
         if exchangeType == .ethCoinToViteToken {
             addressView.button?.isHidden = true
             amountView.symbolLabel.text = TokenInfo.eth.symbol
+            amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
             amountView.button.setTitle(R.string.localizable.crosschainDepositAll(), for: .normal)
             amountView.titleLabel.text = R.string.localizable.crosschainDepositAmount()
             exchangeButton.setTitle(R.string.localizable.crosschainDepositBtnTitle(), for: .normal)
@@ -239,7 +240,7 @@ class EthViteExchangeViewController: BaseViewController {
                 .done { [weak self] (info) in
                     self?.depositInfo = info
                     if let amount = Amount(info.minimumDepositAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
-                        self?.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)"
+                        self?.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)ETH"
                     }
 
             }

@@ -65,6 +65,7 @@ class GatewayWithdrawViewController: BaseViewController {
         navigationTitleView = PageTitleView.titleAndIcon(title: R.string.localizable.crosschainWithdraw(), icon: R.image.crosschain_withdrwa())
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarItemBtn)
+        amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
 
         view.addSubview(abstractView)
         view.addSubview(addressView)
@@ -128,7 +129,9 @@ class GatewayWithdrawViewController: BaseViewController {
         }
 
         feeView.tipButton.rx.tap.bind { [weak self] in
-            Toast.show(R.string.localizable.crosschainWithdrawFeeDesc())
+            Alert.show(title: R.string.localizable.crosschainWithdrawAboutfee(), message: R.string.localizable.crosschainWithdrawFeeDesc(), actions: [
+                (.default(title: R.string.localizable.confirm()), nil),
+                ])
         }
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
@@ -296,7 +299,7 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
                 guard let `self` = self else { return }
                 if !info.minimumWithdrawAmount.isEmpty,
                 let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
-                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)"
+                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)ETH"
                 }
         }
 

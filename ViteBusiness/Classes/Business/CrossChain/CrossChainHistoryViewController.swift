@@ -48,6 +48,7 @@ class CrossChainHistoryViewController: BaseViewController {
         })
 
         tableView.mj_header.beginRefreshing()
+        tableView.mj_footer.isHidden = true
     }
 
     func createNavigationTitleView() -> UIView {
@@ -90,8 +91,10 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.reloadData()
                     if self?.depositRecords.count == 0 {
                         self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
                     } else {
                         self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
                     }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
@@ -109,8 +112,10 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.reloadData()
                     if self?.withdrawRecord.count == 0 {
                         self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
                     } else {
                         self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
                     }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
@@ -134,8 +139,10 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.reloadData()
                     if info.depositRecords.count == 0 {
                         self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
                     } else {
                         self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
                     }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
@@ -153,8 +160,10 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.reloadData()
                     if info.withdrawRecords.count == 0 {
                         self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
                     } else {
                         self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
                     }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)

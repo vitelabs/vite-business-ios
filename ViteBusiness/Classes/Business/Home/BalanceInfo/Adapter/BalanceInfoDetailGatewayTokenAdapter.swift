@@ -39,7 +39,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         cardView.bind(tokenInfo: tokenInfo)
 
         var sourceView: UIView?
-        let o0 = BalanceInfoOperation.init(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.crosschainDeposit()) {
+        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) {
             let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { [unowned self] (_) in
                 let vc = EthViteExchangeViewController()
                 vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
@@ -64,7 +64,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
             UIViewController.current?.present(alert, animated: true, completion: nil)
         }
 
-        let o1 = BalanceInfoOperation.init(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.crosschainWithdraw()) {
+        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) {
             let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }

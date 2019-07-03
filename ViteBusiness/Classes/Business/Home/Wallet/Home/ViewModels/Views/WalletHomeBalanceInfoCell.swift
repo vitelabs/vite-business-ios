@@ -135,7 +135,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         gatewayNameLabel.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview().offset(-14)
-            m.left.equalTo(coinFamilyLabel.snp.right).offset(0.1)
+            m.left.equalTo(coinFamilyLabel.snp.right).offset(-0.5)
             m.height.equalTo(15)
         }
 
@@ -175,13 +175,13 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         priceLabel.text = viewModel.price
         colorView.backgroundColor = viewModel.tokenInfo.mainColor
 
-        if let gatewayName = viewModel.tokenInfo.gatewayName, !gatewayName.isEmpty {
+        if viewModel.tokenInfo.isGateway {
             gatewayNameLabel.isHidden = false
             gatewayNameLabel.text = " Gateway "
-            gatewayNameLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
-            coinFamilyLabel.layer.borderColor = viewModel.tokenInfo.coinType.strokeColor.cgColor
+//            gatewayNameLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
+            coinFamilyLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
             coinFamilyLabel.layer.borderWidth = 1
-            gatewayNameLabel.layer.borderColor = viewModel.tokenInfo.coinType.strokeColor.cgColor
+            gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
             gatewayNameLabel.layer.borderWidth = 1
         } else {
             gatewayNameLabel.isHidden = true

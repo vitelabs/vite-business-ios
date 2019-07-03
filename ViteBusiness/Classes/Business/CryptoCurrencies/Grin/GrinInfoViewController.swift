@@ -166,6 +166,13 @@ class GrinInfoViewController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        titleView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
+            let vc =  GatewayTokenDetailViewController.init(tokenInfo: GrinManager.tokenInfo)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: rx.disposeBag)
+
     }
 
 
