@@ -63,8 +63,8 @@ public class EthGasFeeSliderView: UIView {
 
         self.addSubview(tipButton)
         tipButton.snp.makeConstraints({ (m) in
+            m.left.equalTo(self.totalGasFeeTitleLab.snp.right).offset(6)
             m.centerY.equalTo(self.totalGasFeeTitleLab)
-            m.right.equalToSuperview()
             m.height.width.equalTo(20)
         })
     }
@@ -76,7 +76,7 @@ public class EthGasFeeSliderView: UIView {
         self.addSubview(totalGasFeeLab)
         totalGasFeeLab.snp.makeConstraints({ (m) in
             m.centerY.equalTo(self.totalGasFeeTitleLab)
-            m.right.equalTo(self.tipButton.snp.left).offset(-4)
+            m.right.equalToSuperview()
             m.height.equalTo(20)
         })
     }
@@ -123,7 +123,7 @@ public class EthGasFeeSliderView: UIView {
 
         self.addSubview(feeSlider)
         feeSlider.snp.makeConstraints({ (m) in
-            m.top.equalTo(self.totalGasFeeTitleLab.snp.bottom).offset(40)
+            m.top.equalTo(self.totalGasFeeTitleLab.snp.bottom).offset(30)
             m.left.equalToSuperview()
             m.right.equalToSuperview()
             m.height.equalTo(18)

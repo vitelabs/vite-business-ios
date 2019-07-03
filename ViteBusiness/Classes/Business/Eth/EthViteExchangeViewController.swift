@@ -62,6 +62,7 @@ class EthViteExchangeViewController: BaseViewController {
     // View
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 50, right: 24)).then {
         $0.layer.masksToBounds = false
+        $0.stackView.spacing = 0
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
@@ -109,9 +110,10 @@ class EthViteExchangeViewController: BaseViewController {
 
 
         scrollView.stackView.addArrangedSubview(headerView)
-        scrollView.stackView.addPlaceholder(height: 14)
+        scrollView.stackView.addPlaceholder(height: 20)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addPlaceholder(height: 21)
         scrollView.stackView.addArrangedSubview(gasSliderView)
 
         let toolbar = UIToolbar()

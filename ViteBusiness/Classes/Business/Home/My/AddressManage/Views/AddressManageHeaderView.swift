@@ -13,7 +13,7 @@ class AddressManageHeaderView: UIView {
     let titleLabel = UILabel().then {
         $0.text = R.string.localizable.addressManageDefaultAddressCellTitle()
         $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = UIColor(netHex: 0x007AFF)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
     }
 
     let titleBgImageView = UIImageView(image: R.image.icon_address_default_title_frame()?.resizable)
@@ -25,7 +25,7 @@ class AddressManageHeaderView: UIView {
 
     let addressLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x24272B)
+        $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
         $0.numberOfLines = 2
     }
 
