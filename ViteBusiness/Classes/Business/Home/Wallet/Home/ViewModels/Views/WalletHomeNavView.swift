@@ -54,18 +54,18 @@ class WalletHomeNavView: UIImageView {
         priceLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
             m.bottom.equalToSuperview().offset(-28)
-            m.right.lessThanOrEqualToSuperview().offset(-62)
+            m.right.equalToSuperview().offset(-76)
         }
 
         hideButton.snp.makeConstraints { (m) in
-            m.left.equalTo(priceLabel.snp.right)
-            m.top.bottom.equalTo(priceLabel)
+            m.left.equalTo(nameLabel.snp.right)
+            m.top.bottom.equalTo(nameLabel)
             m.width.equalTo(28)
         }
 
         nameLabel.snp.makeConstraints { (m) in
             m.left.equalTo(priceLabel)
-            m.right.equalToSuperview().offset(-76)
+            m.right.lessThanOrEqualToSuperview().offset(-62)
             m.centerY.equalTo(scanButton)
         }
 
@@ -73,7 +73,6 @@ class WalletHomeNavView: UIImageView {
             m.right.equalToSuperview().offset(-7)
             m.bottom.equalToSuperview().offset(-74)
             m.size.equalTo(CGSize(width: 28, height: 28))
-            m.left.equalTo(nameLabel.snp.right).offset(10)
         }
     }
 
