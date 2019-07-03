@@ -206,9 +206,10 @@ class BalanceInfoBnbChainCardView: UIView {
 //                "≈" + map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
 //            }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 //
-//        ETHBalanceInfoManager.instance.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()
-//            .map({ $0.balance.amountFullWithGroupSeparator(decimals: token.decimals) })
-//            .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
+        BnbWallet.shared.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil().map({
+            String.init(format: "%.6f", $0.free)
+        }).drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
+
 
         receiveButton.rx.tap.bind { [weak self] in
 //            UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)

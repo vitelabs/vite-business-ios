@@ -47,13 +47,13 @@ public enum CoinType: String {
             ]
         case .grin:
             return [
-                UIColor(netHex: 0xFF5C00),
-                UIColor(netHex: 0xFFC800)
+                UIColor(netHex: 0xFAE52D),
+                UIColor(netHex: 0xFFBB00)
             ]
         case .bnb:
             return [
-                UIColor(netHex: 0x429321),
-                UIColor(netHex: 0xB4EC51),
+                UIColor(netHex: 0xFFCC24),
+                UIColor(netHex: 0xF38B01)
             ]
         default:
             fatalError()

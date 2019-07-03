@@ -172,7 +172,7 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func scan() {
-        let tokenInfo = TokenInfo.init(tokenCode: "dd", coinType: .bnb, name: "bnb", symbol: "bnb", decimals: 18, icon: "", id: "bnbdd")
+        let tokenInfo = TokenInfo.init(tokenCode: "BNB", coinType: .bnb, name: "BNB", symbol: "BNB", decimals: 18, icon: "", id: "bnbdd")
         let vc = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
         self.navigationController?.pushViewController(vc, animated: true)
         return

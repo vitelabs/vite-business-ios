@@ -10,18 +10,79 @@ import RxSwift
 import RxCocoa
 import Foundation
 import NSObject_Rx
+import ObjectMapper
 import BinanceChain
 
-extension BnbWallet: Storageable {
-    public func getStorageConfig() -> StorageConfig {
-        return StorageConfig(name: "BnbWalletToken", path: .wallet ,appending: self.appending)
+extension Transactions : Mappable {
+    public mutating func mapping(map: Map) {
+        total <- map["total"]
+        tx <- map["tx"]
+    }
+
+    public init?(map: Map) {
+        return nil
     }
 }
 
+extension Balance : Mappable {
+    public mutating func mapping(map: Map) {
+        symbol <- map["symbol"]
+        free <- map["free"]
+        locked <- map["locked"]
+        frozen <- map["frozen"]
+    }
+
+    public init?(map: Map) {
+        return nil
+    }
+}
+
+
+extension BnbWallet: Storageable {
+    public func getStorageConfig() -> StorageConfig {
+        return StorageConfig(name: "BnbWalletBalance", path: .wallet ,appending: self.appending)
+    }
+}
+
+//cache
+extension BnbWallet {
+    private func pri_save() {
+        save(mappable: balanceBehaviorRelay.value)
+    }
+
+    private func save(balances: [Balance]) {
+        if let data = balances.toJSONString()?.data(using: .utf8) {
+            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
+    private func read() -> BNBBalanceInfoMap {
+        var map = BNBBalanceInfoMap()
+
+        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+            let jsonString = String(data: data, encoding: .utf8),
+            let balanceInfos = [Balance](JSONString: jsonString) {
+
+            // filter deleted balanceInfo
+            for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.symbol) {
+                map[balanceInfo.symbol] = balanceInfo
+            }
+        }
+        return map
+    }
+}
+
+
+public typealias BNBBalanceInfoMap = [String: Balance]
 public class BnbWallet {
     public static let shared = BnbWallet()
 
     fileprivate var appending = "noAddress"
+    fileprivate var fileHelper: FileHelper! = nil
+    fileprivate static let saveKey = "BnbWalletBalance"
+    
     let binance = BinanceChain(endpoint: .mainnet)
     var wallet : Wallet? = nil
     var fromAddress : String? = nil
@@ -30,10 +91,10 @@ public class BnbWallet {
     fileprivate let disposeBag = DisposeBag()
     //signal
     public lazy var balanceDriver: Driver<[Balance]> = self.balanceBehaviorRelay.asDriver()
-    private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [])
+    private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [Balance]())
     //signal
     public lazy var transactionsDriver: Driver<Transactions> = self.transactionsBehaviorRelay.asDriver()
-    private var transactionsBehaviorRelay: BehaviorRelay<Transactions> = BehaviorRelay(value: Transactions.init())
+    private var transactionsBehaviorRelay: BehaviorRelay<Transactions> = BehaviorRelay(value: Transactions())
 
     private var webSocket: WebSocket?
 
@@ -53,14 +114,26 @@ public class BnbWallet {
         let account = wallet!.account
         self.fromAddress = wallet!.account
         self.appending = wallet!.account
+
+
+        self.fileHelper = FileHelper.createForWallet(appending: self.appending)
+
+        //
+        self.fetchBalance()
+
+
+
+        // make socket
+        self.setupWebSocket()
     }
 
     public func logoutWallet() {
         self.wallet = nil
         self.fromAddress = nil
+        self.fileHelper = nil
     }
 
-    public func setupWebSocket() {
+    private func setupWebSocket() {
         guard let address = self.fromAddress else {
             return
         }
@@ -84,6 +157,15 @@ public class BnbWallet {
             self.pri_save()
             self.output("account", response.account, response.error)
         }
+    }
+
+    func balanceInfoDriver(for tokenCode: String) -> Driver<Balance?> {
+        return balanceDriver.map({ [weak self] map -> Balance? in
+            for model in map where model.symbol == tokenCode {
+                return model
+            }
+            return nil
+        })
     }
 
     public func fetchTransactions() {
@@ -209,13 +291,6 @@ public class BnbWallet {
         }
         print(property)
         print("\n")
-    }
-}
-
-//cache
-extension BnbWallet {
-    private func pri_save() {
-//        save(mappable: balanceBehaviorRelay.value)
     }
 }
 
