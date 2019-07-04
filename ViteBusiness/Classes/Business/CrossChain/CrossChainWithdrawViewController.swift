@@ -103,7 +103,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
         withdrawButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalTo(view.snp_bottom).offset(-24)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
 
     }

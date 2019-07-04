@@ -16,6 +16,16 @@ class CrossChainHistoryCell: UITableViewCell {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
     }
+
+    let reasonLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x77808A)
+    }
+
+    let seperator = UIView().then {
+        $0.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
+    }
+
     let timeLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
@@ -51,6 +61,8 @@ class CrossChainHistoryCell: UITableViewCell {
 
         contentView.addSubview(iconImageView)
         contentView.addSubview(statusLabel)
+        contentView.addSubview(seperator)
+        contentView.addSubview(reasonLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(symbleLabel)
         contentView.addSubview(amountLabel)
@@ -65,6 +77,18 @@ class CrossChainHistoryCell: UITableViewCell {
 
         statusLabel.snp.makeConstraints { (m) in
             m.left.equalTo(iconImageView.snp.right).offset(3)
+            m.centerY.equalTo(iconImageView)
+        }
+
+        seperator.snp.makeConstraints { (m) in
+            m.left.equalTo(statusLabel.snp.right).offset(3)
+            m.centerY.equalTo(iconImageView)
+            m.width.equalTo(1)
+            m.height.equalTo(12)
+        }
+
+        reasonLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(seperator.snp.right).offset(3)
             m.centerY.equalTo(iconImageView)
         }
 
@@ -95,6 +119,9 @@ class CrossChainHistoryCell: UITableViewCell {
             m.right.equalTo(symbleLabel)
             m.width.equalTo(width)
         }
+
+        seperator.isHidden = true
+        reasonLabel.isHidden = true
     }
 
     static let dateFormatter: DateFormatter = {
@@ -112,6 +139,10 @@ class CrossChainHistoryCell: UITableViewCell {
     }
 
     func bind(tokenInfo: TokenInfo,record:  Record, type: CrossChainHistoryViewController.Style) {
+
+        seperator.isHidden = true
+        reasonLabel.isHidden = true
+
         statusLabel.text = record.state.rawValue
 
         let date = Date.init(timeIntervalSince1970: TimeInterval((Double(record.dateTime) ?? 0.0
@@ -163,7 +194,10 @@ class CrossChainHistoryCell: UITableViewCell {
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
                 iconImageView.image = R.image.crosschain_status_gateway()
             case .BELOW_MINIMUM:
-                statusString = R.string.localizable.crosschainStatusFailedBecausePoor()
+                seperator.isHidden = false
+                reasonLabel.isHidden = false
+                statusString = R.string.localizable.crosschainStatusFailed()
+                reasonLabel.text = R.string.localizable.crosschainStatusFailedBecausePoor()
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()

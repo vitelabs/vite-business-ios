@@ -92,7 +92,7 @@ class OperationButton: UIView {
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
             $0.textColor = UIColor(netHex: 0x007AFF)
-            $0.numberOfLines = 1
+            $0.numberOfLines = 2
             $0.textAlignment = .center
         }
 
@@ -127,8 +127,8 @@ class OperationButton: UIView {
 
             titleLabel.snp.makeConstraints { (m) in
                 m.centerY.equalToSuperview()
-                m.left.equalTo(vLine.snp.right)
-                m.right.equalToSuperview()
+                m.left.equalTo(vLine.snp.right).offset(5)
+                m.right.equalToSuperview().offset(-5)
             }
 
         case .single:

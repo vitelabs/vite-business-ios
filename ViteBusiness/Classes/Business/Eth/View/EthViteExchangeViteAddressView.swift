@@ -45,7 +45,7 @@ class EthViteExchangeViteAddressView: UIView {
         addSubview(textLabel)
 
         titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(self).offset(24)
+            m.top.equalTo(self).offset(16)
             m.left.equalTo(self)
         }
 
@@ -53,7 +53,7 @@ class EthViteExchangeViteAddressView: UIView {
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(self)
             m.right.equalTo(self)
-            m.height.equalTo(50)
+            m.height.greaterThanOrEqualTo(17)
             m.bottom.equalTo(self).offset(-16)
         }
 

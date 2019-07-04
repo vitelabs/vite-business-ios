@@ -79,7 +79,7 @@ class EthViteExchangeViewController: BaseViewController {
         $0.textLabel.text = HDWalletManager.instance.account?.address ?? ""
     }
     let amountView = EthViteExchangeAmountView().then {
-        $0.symbolLabel.text = TokenInfo.viteERC20.symbol
+//        $0.symbolLabel.text = TokenInfo.viteERC20.symbol
         $0.textField.keyboardType = .decimalPad
     }
 
@@ -269,6 +269,25 @@ class EthViteExchangeViewController: BaseViewController {
             }
 
             }.disposed(by: rx.disposeBag)
+
+
+        var tokenInfo: TokenInfo
+        if self.exchangeType == .erc20ViteTokenToViteCoin {
+            tokenInfo = TokenInfo.viteERC20
+        } else {
+            tokenInfo = TokenInfo.eth
+        }
+
+        amountView.textField.rx.text.bind { [weak self] text in
+            guard let `self` = self else { return }
+            let rateMap = ExchangeRateManager.instance.rateMap
+            if let amount = text?.toAmount(decimals: tokenInfo.decimals) {
+                self.amountView.symbolLabel.text = "≈" + rateMap.priceString(for: tokenInfo, balance: amount)
+            } else {
+                self.amountView.symbolLabel.text = "≈ 0.0"
+            }
+            }
+            .disposed(by: rx.disposeBag)
     }
 
 

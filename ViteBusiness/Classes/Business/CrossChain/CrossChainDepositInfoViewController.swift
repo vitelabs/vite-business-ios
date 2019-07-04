@@ -37,7 +37,6 @@ class GatewayDepositViewController: BaseViewController {
         view.addSubview(scanQRCodeLable)
         view.addSubview(qrcodeView)
         view.addSubview(pointView)
-        view.addSubview(descriptionTitleLabel)
         view.addSubview(descriptionLabel)
 
 
@@ -65,31 +64,30 @@ class GatewayDepositViewController: BaseViewController {
             m.top.equalTo(qrcodeView.snp.bottom).offset(29)
         }
 
-        descriptionTitleLabel.snp.makeConstraints { (m) in
-            m.left.equalTo(pointView.snp.right).offset(5)
-            m.centerY.equalTo(pointView)
-        }
-
         descriptionLabel.snp.makeConstraints { (m) in
-            m.centerX.equalToSuperview()
-            m.top.equalTo(pointView.snp.bottom).offset(10)
-            m.left.equalToSuperview().offset(20)
+            m.left.equalTo(pointView.snp.right).offset(5)
+            m.top.equalTo(pointView.snp.bottom).offset(-10)
             m.right.equalToSuperview().offset(-20)
         }
 
+        view.displayLoading()
         self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
             .done { [weak self] (info) in
                 guard let `self` = self else { return }
+                self.view.hideLoading()
                 self.addressView.textLabel.text = info.depositAddress
+                self.qrcodeView.bind(tokenInfo: TokenInfo.eth, content: info.depositAddress)
                 guard let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.tokenInfo.decimals) else {
                     return
                 }
-                self.descriptionLabel.text =  R.string.localizable.crosschainDepositMinAmountDesc( minimumDepositAmountStr
-                    + self.tokenInfo.symbol)
-                self.qrcodeView.bind(tokenInfo: TokenInfo.eth, content: info.depositAddress)
-                self.addressView.textLabel.text = info.depositAddress
-
+                let subStirng = minimumDepositAmountStr + self.tokenInfo.symbol
+                let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(subStirng)
+                let range = NSString.init(string: fullString).range(of: minimumDepositAmountStr)
+                let attributeString = NSMutableAttributedString.init(string: fullString)
+                attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: range)
+                self.descriptionLabel.attributedText = attributeString
             }.catch { (error) in
+                self.view.hideLoading()
                 Toast.show(error.localizedDescription)
         }
 

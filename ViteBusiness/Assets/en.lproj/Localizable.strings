@@ -579,14 +579,14 @@
 "crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
 "crosschain.deposit.all" = "Deposit All";
 "crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.tokenDetail.shortname" = "Symbol: ";
-"crosschain.tokenDetail.id" = "Token ID: ";
-"crosschain.tokenDetail.name" = "Token Name: ";
+"crosschain.tokenDetail.shortname" = "Symbol";
+"crosschain.tokenDetail.id" = "Token ID";
+"crosschain.tokenDetail.name" = "Token Name";
 "crosschain.tokenDetail.address" = "Coin Forging Address";
-"crosschain.tokenDetail.amount" = "Total Issuance:";
+"crosschain.tokenDetail.amount" = "Total Issuance";
 "crosschain.tokenDetail.digit" = "Decimals";
 "crosschain.tokenDetail.unit" = "";
-"crosschain.tokenDetail.issuance" = "Open to Additional Issue:";
+"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
 "crosschain.tokenDetail.issuance.true" = "Yes";
 "crosschain.tokenDetail.issuance.false" = "No";
 "crosschain.tokenDetail.date" = "Issuance Date";
@@ -594,7 +594,8 @@
 "crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
 "crosschain.status.confirmed" = "Confirmed";
 "crosschain.status.gatewayReceived" = "Received by Gateway";
-"crosschain.status.failedBecausePoor" = "Transaction amount is less than minimum amount required by target chain. Transaction failed.";
+"crosschain.status.failedBecausePoor" = "Transaction amount is less than minimum amount";
 "crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
+"crosschain.status.failed" = "Failed";
 
