@@ -144,7 +144,7 @@ public class BnbWallet {
                 webSocket.subscribe(accounts: address)
                //Return transfer updates if userAddress is involved (as sender or receiver) in a transfer. Multisend is also covered
                 webSocket.subscribe(transfer: address)
-                webSocket.subscribe(blockheight: .all)
+//                webSocket.subscribe(blockheight: .all)
         }
     }
 
@@ -168,113 +168,19 @@ public class BnbWallet {
         })
     }
 
-    public func fetchTransactions() {
+    public func fetchTransactions(limit:Limit,offset:Int,txAsset:String,completion: @escaping (Transactions) -> Void) {
         guard let address = self.fromAddress else {
             return
         }
-        binance.transactions(address: address) { (response) in
-            self.transactionsBehaviorRelay.accept(response.transactions)
-            self.output("transactions", response.transactions, response.error)
-        }
-    }
+        let endTime = NSDate().timeIntervalSince1970 * 1000
+        let startTime = endTime - 3600*24*30*3*1000
 
-    public func testFunc() {
-        guard let address = self.fromAddress else {
-            return
-        }
-
-        let group = DispatchGroup()
-
-        group.enter()
-        binance.sequence(address: address) { (response) in
-            self.output("addresssequence", response.sequence, response.error)
-            group.leave()
-        }
-
-//        group.enter()
-//        binance.tx(hash: hashId) { (response) in
-//            self.output("tx", response.tx, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.tokens(limit: .fiveHundred, offset: 0) { (response) in
-//            self.output("tokens", response.tokens, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.markets(limit: .oneHundred, offset: 0) { (response) in
-//            self.output("markets", response.markets, response.error)
-//            group.leave()
-//        }
-
-        group.enter()
-        binance.fees() { (response) in
-            self.output("fees", response.fees, response.error)
-            group.leave()
-        }
-
-//        group.enter()
-//        binance.marketDepth(symbol: symbol) { (response) in
-//            self.output("marketdepths", response.marketDepth, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.broadcast(message: Data()) { (response) in
-//            self.output("broadcast", "error is expected", response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.klines(symbol: symbol, interval: .fiveMinutes) { (response) in
-//            self.output("klines", response.candlesticks, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.closedOrders(address: address) { (response) in
-//            self.output("closedorders", response.orderList, response.error)
-//            group.leave()
-//        }
-//
-//        group.enter()
-//        binance.openOrders(address: address) { (response) in
-//            self.output("openorders", response.orderList, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.order(id: orderId) { (response) in
-//            self.output("order", response.order, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.ticker(symbol: symbol) { (response) in
-//            self.output("ticker", response.ticker, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.trades() { (response) in
-//            self.output("trades", response.trades, response.error)
-//            group.leave()
-//        }
-
-//        group.enter()
-//        binance.transactions(address: address) { (response) in
+        binance.transactions(address: address, endTime: endTime,limit: limit,offset: offset,startTime:startTime,txAsset:txAsset) { (response) in
+            completion(response.transactions)
+//            self.transactionsBehaviorRelay.accept(response.transactions)
 //            self.output("transactions", response.transactions, response.error)
-//            group.leave()
-//        }
-
-        group.notify(queue: .main) {
-//            completion()
         }
-
     }
-
 
     private init() {
 
