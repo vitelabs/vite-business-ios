@@ -598,7 +598,7 @@
 "crosschain.status.waitToConfirm" = "%@链待确认";
 "crosschain.status.confirmed" = "已完成";
 "crosschain.status.gatewayReceived" = "网关已接收";
-"crosschain.status.failedBecausePoor" = "充值金额过小";
+"crosschain.status.failedBecausePoor" = "交易金额小于最小转入金额，转入失败";
 "crosschain.withdraw.fee.desc" = "此手续费包含以太矿工费用";
 "crosschain.withdraw.aboutfee" = "关于手续费";
 "crosschain.status.failed" = "转入失败";
