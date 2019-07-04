@@ -173,6 +173,10 @@ extension ViteBalanceInfoManager {
             return map[id]
         }
     }
+
+    func balanceInfo(forViteTokenId id: String) -> BalanceInfo? {
+        return balanceInfos.value[id]
+    }
 }
 
 // for unselected vite token

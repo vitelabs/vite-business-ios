@@ -12,23 +12,19 @@ class BifrostConfrimItemView: UIView {
     private let titleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.numberOfLines = 1
+        $0.numberOfLines = 0
     }
 
-    private let valueLabel = UILabel().then {
+    private let textLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        $0.numberOfLines = 1
+        $0.numberOfLines = 0
     }
 
     init(info: BifrostConfrimItemInfo) {
         super.init(frame: CGRect.zero)
 
-        snp.makeConstraints { (m) in
-            m.height.equalTo(info.isUnderscored ? 60 : 44)
-        }
-
         addSubview(titleLabel)
-        addSubview(valueLabel)
+        addSubview(textLabel)
 
         let gap = info.isUnderscored ? 8 : 0
 
@@ -37,15 +33,16 @@ class BifrostConfrimItemView: UIView {
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
         }
-        valueLabel.snp.makeConstraints { (m) in
+        textLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(titleLabel.snp.bottom).offset(8)
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
             m.bottom.equalToSuperview().offset(-gap)
         }
 
         titleLabel.text = info.title
-        valueLabel.text = info.value
-        valueLabel.textColor = info.valueColor ?? UIColor(netHex: 0x3E4A59)
+        textLabel.text = info.text
+        textLabel.textColor = info.textColor ?? UIColor(netHex: 0x3E4A59)
         backgroundColor = info.backgroundColor ?? UIColor.clear
     }
 

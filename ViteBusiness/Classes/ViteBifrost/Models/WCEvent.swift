@@ -13,8 +13,7 @@ public enum WCEvent: String {
     case sessionUpdate = "wc_sessionUpdate"
     case exchangeKey = "wc_exchangeKey"
 
-    case viteSendTransaction = "vite_sendTransaction"
-    case viteCallContract = "vite_callContract"
+    case viteSendTx = "vite_sendTx"
     
 //    case ethSign = "eth_sign"
 //    case ethPersonalSign = "personal_sign"

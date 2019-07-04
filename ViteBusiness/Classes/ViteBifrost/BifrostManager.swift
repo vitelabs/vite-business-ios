@@ -8,7 +8,8 @@
 import enum Alamofire.Result
 import RxSwift
 import RxCocoa
-
+import ViteWallet
+import PromiseKit
 
 public final class BifrostManager {
     public static let instance = BifrostManager()
@@ -82,12 +83,16 @@ public final class BifrostManager {
         }
     }
 
-    func showBifrostViewControllerIfNeeded() {
-        guard let current = UIViewController.current else { return }
-        guard isConnectedAndApprovedBehaviorRelay.value else { return }
-        if !(current is BifrostViewController) {
+    @discardableResult
+    func showBifrostViewControllerIfNeeded() -> BifrostViewController? {
+        guard let current = UIViewController.current else { return nil }
+        guard isConnectedAndApprovedBehaviorRelay.value else { return nil }
+        if let vc = current as? BifrostViewController {
+            return vc
+        } else {
             let vc = BifrostViewController()
             current.navigationController?.pushViewController(vc, animated: true)
+            return vc
         }
     }
 }
@@ -96,8 +101,8 @@ extension BifrostManager {
 
     fileprivate func configure(interactor: WCInteractor) {
 
-        let accounts = [""]
         let chainId = 1
+        let address = HDWalletManager.instance.account!.address
 
         interactor.onDisconnect = { [weak self] (error) in
             guard let `self` = self else { return }
@@ -114,10 +119,37 @@ extension BifrostManager {
                             self?.approveFailed(message: nil)
                         }),
                         (.default(title: R.string.localizable.confirm()), { _ in
-                            self?.interactor?.approveSession(accounts: accounts, chainId: chainId).cauterize()
+                            self?.interactor?.approveSession(accounts: [address], chainId: chainId).cauterize()
                             self?.isConnectedAndApprovedBehaviorRelay.accept(true)
                         })
                 ])
+        }
+
+        interactor.onViteSendTx = { [weak self] (id, tx) in
+            guard let `self` = self else { return }
+            tx.generateConfrimInfo().done({ (info, tokenInfo) in
+                guard let vc = self.showBifrostViewControllerIfNeeded() else { return }
+                vc.showConfrim(info, result: { [weak self] (result, vc) in
+                    guard let `self` = self else { return }
+                    guard let account = HDWalletManager.instance.account else { return }
+                    if result {
+                        Workflow.sendTransactionWithConfirm(account: account, toAddress: tx.block.toAddress, tokenInfo: tokenInfo, amount: tx.block.amount, data: tx.block.data, completion: { (ret) in
+                            switch ret {
+                            case .success(let accountBlock):
+                                vc.hideConfrim()
+                                self.interactor?.approveViteTx(id: id, accountBlock: accountBlock)
+                            case .failure(let error):
+                                break
+                            }
+                        })
+                    } else {
+                        vc.hideConfrim()
+                        self.interactor?.rejectRequest(id: id, message: "cancel").cauterize()
+                    }
+                })
+            }).catch({ (error) in
+                self.interactor?.rejectRequest(id: id, message: error.localizedDescription).cauterize()
+            })
         }
     }
 

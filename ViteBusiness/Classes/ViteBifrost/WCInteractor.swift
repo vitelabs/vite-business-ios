@@ -9,10 +9,11 @@
 import Foundation
 import Starscream
 import PromiseKit
+import ViteWallet
 
 public typealias SessionRequestClosure = (_ id: Int64, _ peer: WCPeerMeta) -> Void
 public typealias DisconnectClosure = (Error?) -> Void
-public typealias ViteSendTransactionClosure = (_ id: Int64, _ transaction: WCEthereumSendTransaction) -> Void
+public typealias ViteSendTxClosure = (_ id: Int64, _ viteSendTx: VBViteSendTx) -> Void
 //public typealias EthSignClosure = (_ id: Int64, _ params: [String]) -> Void
 //public typealias EthSendTransactionClosure = (_ id: Int64, _ transaction: WCEthereumSendTransaction) -> Void
 //public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
@@ -40,7 +41,7 @@ public class WCInteractor {
     public var onSessionRequest: SessionRequestClosure?
     public var onDisconnect: DisconnectClosure?
 
-    public var onViteSendTransaction: ViteSendTransactionClosure?
+    public var onViteSendTx: ViteSendTxClosure?
 //    public var onEthSign: EthSignClosure?
 //    public var onEthSendTransaction: EthSendTransactionClosure?
 //    public var onBnbSign: BnbSignClosure?
@@ -48,7 +49,7 @@ public class WCInteractor {
     // outgoing promise resolvers
 
     var connectResolver: Resolver<Bool>?
-    var viteTxConfirmResolvers: [Int64: Resolver<WCBinanceTxConfirmParam>] = [:]
+    var viteTxConfirmResolvers: [Int64: Resolver<VBViteTxConfirmParam>] = [:]
 //    var bnbTxConfirmResolvers: [Int64: Resolver<WCBinanceTxConfirmParam>] = [:]
 
     private let socket: WebSocket
@@ -134,6 +135,13 @@ public class WCInteractor {
 //        }
 //    }
 
+    public func approveViteTx(id: Int64, accountBlock: AccountBlock) -> Promise<Void> {
+        guard let data = VBJSONRPCResponse(id: id, result: accountBlock).toJSONString()?.data(using: .utf8) else {
+            fatalError()
+        }
+        return encryptAndSend(data: data)
+    }
+
     public func approveRequest(id: Int64, result: String) -> Promise<Void> {
         let response = JSONRPCResponse(id: id, result: result)
         return encryptAndSend(data: response.encoded)
@@ -182,10 +190,13 @@ extension WCInteractor {
                 peerId = params.peerId
                 peerMeta = params.peerMeta
                 onSessionRequest?(request.id, params.peerMeta)
-            case .viteSendTransaction:
-                break
-            case .viteCallContract:
-                break
+            case .viteSendTx:
+                guard let jsonString = String(data: decrypted, encoding: .utf8),
+                    let request = VBJSONRPCRequest<VBViteSendTx>(JSONString: jsonString),
+                    let viteSendTx = request.params.first else {
+                        throw WCError.badJSONRPCRequest
+                }
+                onViteSendTx?(request.id, viteSendTx)
             // topic == clientId
 //            case .ethSign, .ethPersonalSign:
 //                let request: JSONRPCRequest<[String]> = try event.decode(decrypted)

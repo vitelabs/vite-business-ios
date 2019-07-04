@@ -109,6 +109,10 @@ class BifrostBusyView: UIView {
 
     func set(_ info: BifrostConfrimInfo) {
 
+        scrollView.stackView.arrangedSubviews.forEach { (view) in
+            view.removeFromSuperview()
+        }
+
         headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader(info.title)
 
         let titleView = BifrostConfrimTitleView(title: info.title)
