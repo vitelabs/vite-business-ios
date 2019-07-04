@@ -130,13 +130,13 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         coinFamilyLabel.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview().offset(-14)
             m.left.equalTo(symbolLabel)
-            m.height.equalTo(15)
+            m.height.equalTo(16)
         }
 
         gatewayNameLabel.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview().offset(-14)
             m.left.equalTo(coinFamilyLabel.snp.right).offset(-0.5)
-            m.height.equalTo(15)
+            m.height.equalTo(16)
         }
 
         priceLabel.snp.makeConstraints { (m) in

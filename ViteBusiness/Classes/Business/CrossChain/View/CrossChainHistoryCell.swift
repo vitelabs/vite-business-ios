@@ -111,12 +111,14 @@ class CrossChainHistoryCell: UITableViewCell {
         leftHashLabel.snp.makeConstraints { (m) in
             m.top.equalTo(timeLabel.snp.bottom).offset(9)
             m.left.equalTo(iconImageView)
+            m.height.equalTo(16)
             m.width.equalTo(width)
         }
 
         rightHashLabel.snp.makeConstraints { (m) in
             m.top.equalTo(timeLabel.snp.bottom).offset(9)
             m.right.equalTo(symbleLabel)
+            m.height.equalTo(16)
             m.width.equalTo(width)
         }
 

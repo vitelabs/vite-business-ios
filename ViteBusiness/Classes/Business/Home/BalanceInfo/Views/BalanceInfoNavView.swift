@@ -68,7 +68,7 @@ class BalanceInfoNavView: UIView {
         gatewayNamelabel.snp.makeConstraints { (m) in
             m.left.equalTo(symbolLabel.snp.right).offset(6)
             m.centerY.equalTo(symbolLabel)
-            m.height.equalTo(15)
+            m.height.equalTo(16)
         }
     }
 
