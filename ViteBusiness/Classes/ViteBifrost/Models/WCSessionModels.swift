@@ -21,6 +21,10 @@ public struct WCSessionRequestParam: Codable {
     let chainId: String?
 }
 
+public struct WCSessionPingParam: Codable {}
+
+public struct WCSessionPingResponse: Codable {}
+
 public struct WCSessionUpdateParam: Codable {
     public let approved: Bool
     public let chainId: Int?
@@ -42,3 +46,4 @@ public struct WCApproveSessionResponse: Codable {
     public let peerId: String?
     public let peerMeta: WCPeerMeta?
 }
+

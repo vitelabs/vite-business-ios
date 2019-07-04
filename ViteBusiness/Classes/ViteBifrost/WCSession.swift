@@ -16,11 +16,11 @@ public struct WCSession {
     public let key: Data
 
     public static func from(string: String) -> WCSession? {
-        guard string .hasPrefix("wc:") else {
+        guard string .hasPrefix("vb:") else {
             return nil
         }
 
-        let urlString = string.replacingOccurrences(of: "wc:", with: "wc://")
+        let urlString = string.replacingOccurrences(of: "vb:", with: "vb://")
         guard let url = URL(string: urlString),
             let topic = url.user,
             let version = url.host,

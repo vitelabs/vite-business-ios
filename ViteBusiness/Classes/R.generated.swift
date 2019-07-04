@@ -1284,7 +1284,15 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
+<<<<<<< HEAD
     /// This `R.string.localizable` struct is generated, and contains static references to 525 localization keys.
+=======
+<<<<<<< HEAD
+    /// This `R.string.localizable` struct is generated, and contains static references to 523 localization keys.
+=======
+    /// This `R.string.localizable` struct is generated, and contains static references to 521 localization keys.
+>>>>>>> vifrost implementation pledge
+>>>>>>> vifrost implementation pledge
     struct localizable {
       /// en translation: 
       /// 
@@ -2406,6 +2414,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let scanPageQccodeNotIdentifiable = Rswift.StringResource(key: "Scan.page.qccode.not.identifiable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Quit
+      /// 
+      /// Locales: en, zh-Hans
+      static let quit = Rswift.StringResource(key: "Quit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota
       /// 
       /// Locales: en, zh-Hans
@@ -3122,6 +3134,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ViteBifrost 连接中
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostConnectTipInWalletHome = Rswift.StringResource(key: "bifrost.connect.tip.in.wallet.home", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ViteBifrost 连接中
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostHomePageFreeHeader = Rswift.StringResource(key: "bifrost.home.page.free.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -3154,14 +3174,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteStatusVoting = Rswift.StringResource(key: "vote.page.voteStatus.voting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: WallectConnect 连接中
-      /// 
-      /// Locales: en, zh-Hans
-      static let bifrostConnectTipInWalletHome = Rswift.StringResource(key: "bifrost.connect.tip.in.wallet.home", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: WallectConnect 连接中
-      /// 
-      /// Locales: en, zh-Hans
-      static let bifrostHomePageFreeHeader = Rswift.StringResource(key: "bifrost.home.page.free.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -3322,11 +3334,11 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostHomePageFreeContent = Rswift.StringResource(key: "bifrost.home.page.free.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 您当前城处于WalletConnect链接中，切换地址将断开链接，请确认是否切换地址
+      /// en translation: 您当前城处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
       /// 
       /// Locales: en, zh-Hans
       static let bifrostAlertSwitchAddressMessage = Rswift.StringResource(key: "bifrost.alert.switch.address.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 您正在web端进行%@操作
+      /// en translation: 您正在web端进行操作
       /// 
       /// Locales: en, zh-Hans
       static let bifrostHomePageBusyHeader = Rswift.StringResource(key: "bifrost.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3346,6 +3358,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationCancelVote = Rswift.StringResource(key: "bifrost.operation.cancel.vote", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 操作成功
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostToastOperationSuccess = Rswift.StringResource(key: "bifrost.toast.operation.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 更新SBP
       /// 
       /// Locales: en, zh-Hans
@@ -3358,6 +3374,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostAlertTipTitle = Rswift.StringResource(key: "bifrost.alert.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认是否退出 ViteBifrost?
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostAlertQuitTitle = Rswift.StringResource(key: "bifrost.alert.quit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 网络错误，点击查看账户详情
       /// 
       /// Locales: en, zh-Hans
@@ -5347,6 +5367,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Scan.page.qccode.not.identifiable", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Quit
+      /// 
+      /// Locales: en, zh-Hans
+      static func quit(_: Void = ()) -> String {
+        return NSLocalizedString("Quit", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Quota
       /// 
       /// Locales: en, zh-Hans
@@ -6600,6 +6627,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: ViteBifrost 连接中
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostConnectTipInWalletHome(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.connect.tip.in.wallet.home", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ViteBifrost 连接中
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostHomePageFreeHeader(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.header", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
@@ -6654,20 +6695,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func votePageVoteStatusVoting(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteStatus.voting", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: WallectConnect 连接中
-      /// 
-      /// Locales: en, zh-Hans
-      static func bifrostConnectTipInWalletHome(_: Void = ()) -> String {
-        return NSLocalizedString("bifrost.connect.tip.in.wallet.home", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: WallectConnect 连接中
-      /// 
-      /// Locales: en, zh-Hans
-      static func bifrostHomePageFreeHeader(_: Void = ()) -> String {
-        return NSLocalizedString("bifrost.home.page.free.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Wallet
@@ -6950,18 +6977,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.home.page.free.content", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 您当前城处于WalletConnect链接中，切换地址将断开链接，请确认是否切换地址
+      /// en translation: 您当前城处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
       /// 
       /// Locales: en, zh-Hans
       static func bifrostAlertSwitchAddressMessage(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.alert.switch.address.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 您正在web端进行%@操作
+      /// en translation: 您正在web端进行操作
       /// 
       /// Locales: en, zh-Hans
-      static func bifrostHomePageBusyHeader(_ value1: String) -> String {
-        return String(format: NSLocalizedString("bifrost.home.page.busy.header", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      static func bifrostHomePageBusyHeader(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.busy.header", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 投票
@@ -6992,6 +7019,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.cancel.vote", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 操作成功
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostToastOperationSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.toast.operation.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 更新SBP
       /// 
       /// Locales: en, zh-Hans
@@ -7011,6 +7045,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostAlertTipTitle(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.alert.tip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认是否退出 ViteBifrost?
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostAlertQuitTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.alert.quit.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 网络错误，点击查看账户详情

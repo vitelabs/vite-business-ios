@@ -113,7 +113,7 @@ class BifrostBusyView: UIView {
             view.removeFromSuperview()
         }
 
-        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader(info.title)
+        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
 
         let titleView = BifrostConfrimTitleView(title: info.title)
         scrollView.stackView.addArrangedSubview(titleView)

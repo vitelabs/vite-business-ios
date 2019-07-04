@@ -268,11 +268,14 @@ extension VBViteSendTx {
 //            "ce1f27a7": .extractReward,
             "fdc17f25": .vote,
             "a629c531": .cancelVote,
-//            "8de7dcfd": .pledge,
-//            "9ff9c7b6": .cancelPledge,
+            "8de7dcfd": .pledge,
+            "9ff9c7b6": .cancelPledge,
 //            "27ad872e": .coin,
 //            "7d925ef1": .cancelCoin,
+            "9dfb67ff": .dexDeposit
         ]
+
+        fileprivate static let dexContractAddress = "vite_0000000000000000000000000000000000000006e82b8ba657"
 
         fileprivate static let typeToAddressMap: [BuildInContract: String] = [
 //            .register: ViteWalletConst.ContractAddress.consensus.rawValue,
@@ -281,26 +284,37 @@ extension VBViteSendTx {
 //            .extractReward: ViteWalletConst.ContractAddress.consensus.rawValue,
             .vote: ViteWalletConst.ContractAddress.consensus.rawValue,
             .cancelVote: ViteWalletConst.ContractAddress.consensus.rawValue,
-//            .pledge: ViteWalletConst.ContractAddress.pledge.rawValue,
-//            .cancelPledge: ViteWalletConst.ContractAddress.pledge.rawValue,
+            .pledge: ViteWalletConst.ContractAddress.pledge.rawValue,
+            .cancelPledge: ViteWalletConst.ContractAddress.pledge.rawValue,
 //            .coin: ViteWalletConst.ContractAddress.coin.rawValue,
 //            .cancelCoin: ViteWalletConst.ContractAddress.coin.rawValue,
+            .dexDeposit: dexContractAddress,
         ]
 
         fileprivate static let AbiMap = [
             BuildInContract.transfer: "",
             BuildInContract.vote: "{\"type\":\"function\",\"name\":\"Vote\", \"inputs\":[{\"name\":\"gid\",\"type\":\"gid\"},{\"name\":\"nodeName\",\"type\":\"string\"}]}",
             BuildInContract.cancelVote: "{\"type\":\"function\",\"name\":\"CancelVote\",\"inputs\":[{\"name\":\"gid\",\"type\":\"gid\"}]}",
+            BuildInContract.pledge: "{\"type\":\"function\",\"name\":\"Pledge\", \"inputs\":[{\"name\":\"beneficial\",\"type\":\"address\"}]}",
+            BuildInContract.cancelPledge: "{\"type\":\"function\",\"name\":\"CancelPledge\",\"inputs\":[{\"name\":\"beneficial\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}]}",
+            BuildInContract.dexDeposit: "{\"type\":\"function\",\"name\":\"DexFundUserDeposit\",\"inputs\":[]}",
         ]
         fileprivate static let DesMap = [
             BuildInContract.transfer: "{\"function\":{\"name\":{\"base\":\"转账\",\"zh\":\"转账\"}},\"inputs\":[{\"name\":{\"base\":\"交易地址\",\"zh\":\"交易地址\"}},{\"name\":{\"base\":\"交易金额\",\"zh\":\"交易金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"币种\",\"zh\":\"币种\"}},{\"name\":{\"base\":\"备注信息\",\"zh\":\"备注信息\"}}]}",
             BuildInContract.vote: "{\"function\":{\"name\":{\"base\":\"投票\",\"zh\":\"投票\"}},\"inputs\":[{\"name\":{\"base\":\"投票节点名称\",\"zh\":\"投票节点名称\"}},{\"name\":{\"base\":\"投票量\",\"zh\":\"投票量\"}}]}",
             BuildInContract.cancelVote: "{\"function\":{\"name\":{\"base\":\"撤销投票\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"投票节点名称\",\"zh\":\"投票节点名称\"}},{\"name\":{\"base\":\"撤销投票量\",\"zh\":\"撤销投票量\"}}]}",
+            BuildInContract.pledge: "{\"function\":{\"name\":{\"base\":\"获取配额\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"抵押金额\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"币种\",\"zh\":\"币种\"}},{\"name\":{\"base\":\"配额受益地址\",\"zh\":\"配额受益地址\"}}]}",
+            BuildInContract.cancelPledge: "{\"function\":{\"name\":{\"base\":\"取回配额抵押\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"取回抵押金额\",\"zh\":\"取回抵押金额\"}},{\"name\":{\"base\":\"币种\",\"zh\":\"币种\"}},{\"name\":{\"base\":\"配额受益地址\",\"zh\":\"配额受益地址\"}}]}",
+            BuildInContract.dexDeposit: "{\"function\":{\"name\":{\"base\":\"交易所充值\",\"zh\":\"交易所充值\"}},\"inputs\":[{\"name\":{\"base\":\"充值金额\",\"zh\":\"充值金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"币种\",\"zh\":\"币种\"}}]}",
         ]
 
         case transfer
         case vote
         case cancelVote
+        case pledge
+        case cancelPledge
+
+        case dexDeposit
 
         func confrimInfo(_ block: Block, _ tokenInfo: TokenInfo) -> Promise<BifrostConfrimInfo> {
             let account = HDWalletManager.instance.account!
@@ -311,7 +325,7 @@ extension VBViteSendTx {
             switch self {
             case .transfer:
                 let items = [des.inputs[0].confrimItemInfo(text: block.toAddress),
-                             des.inputs[1].confrimItemInfo(text: block.amount.amountFull(decimals: tokenInfo.decimals)),
+                             des.inputs[1].confrimItemInfo(text: block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)),
                              des.inputs[2].confrimItemInfo(text: tokenInfo.symbol),
                              des.inputs[3].confrimItemInfo(text: block.data?.toAccountBlockNote ?? "")
                 ]
@@ -324,7 +338,7 @@ extension VBViteSendTx {
                     }
                     let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.balance ?? Amount(0)
                     let items = [des.inputs[0].confrimItemInfo(text: name.toString()),
-                                 des.inputs[1].confrimItemInfo(text: balance.amountFull(decimals: ViteWalletConst.viteToken.decimals))
+                                 des.inputs[1].confrimItemInfo(text: balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals))
                     ]
                     return Promise.value(BifrostConfrimInfo(title: title, items: items))
                 } catch {
@@ -340,44 +354,56 @@ extension VBViteSendTx {
                         }
 
                         let items = [des.inputs[0].confrimItemInfo(text: voteInfo.nodeName ?? ""),
-                                     des.inputs[1].confrimItemInfo(text: balance.amountFull(decimals: ViteWalletConst.viteToken.decimals))
+                                     des.inputs[1].confrimItemInfo(text: balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals))
                         ]
                         return Promise.value(BifrostConfrimInfo(title: title, items: items))
                     })
                 } catch {
                     return Promise(error: ConfrimError.InvalidData)
                 }
+            case .pledge:
+                do {
+                    let values = try ABI.Decoding.decodeParameters(block.data!, abiString: abi)
+                    guard let value = values[0] as? ABIAddressValue else {
+                        return Promise(error: ConfrimError.InvalidData)
+                    }
+
+                    let items = [des.inputs[0].confrimItemInfo(text: block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)),
+                                 des.inputs[1].confrimItemInfo(text: tokenInfo.symbol),
+                                 des.inputs[2].confrimItemInfo(text: value.toString())
+                    ]
+                    return Promise.value(BifrostConfrimInfo(title: title, items: items))
+                } catch {
+                    return Promise(error: ConfrimError.InvalidData)
+                }
+            case .cancelPledge:
+                do {
+                    let values = try ABI.Decoding.decodeParameters(block.data!, abiString: abi)
+                    guard let addressValue = values[0] as? ABIAddressValue else {
+                        return Promise(error: ConfrimError.InvalidData)
+                    }
+
+                    guard let amountValue = values[1] as? ABIUnsignedIntegerValue else {
+                        return Promise(error: ConfrimError.InvalidData)
+                    }
+
+                    let amount = Amount(amountValue.toBigUInt())
+                    let items = [des.inputs[0].confrimItemInfo(text: amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)),
+                                 des.inputs[1].confrimItemInfo(text: tokenInfo.symbol),
+                                 des.inputs[2].confrimItemInfo(text: addressValue.toString())
+                    ]
+                    return Promise.value(BifrostConfrimInfo(title: title, items: items))
+                } catch {
+                    return Promise(error: ConfrimError.InvalidData)
+                }
+            case .dexDeposit:
+                let items = [des.inputs[0].confrimItemInfo(text: block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)),
+                             des.inputs[1].confrimItemInfo(text: tokenInfo.symbol)
+                ]
+                return Promise.value(BifrostConfrimInfo(title: title, items: items))
             }
         }
     }
-
-//    struct buildIn {
-//
-//        static let ABIs = [
-//            ""
-//        ]
-//        static let Dess = [
-//        "{\"function\":{\"name\":{\"base\":\"转账\",\"zh\":\"转账\"}},\"inputs\":[{\"name\":{\"base\":\"交易地址\",\"zh\":\"交易地址\"}},{\"name\":{\"base\":\"交易金额\",\"zh\":\"交易金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"币种\",\"zh\":\"币种\"}},{\"name\":{\"base\":\"备注信息\",\"zh\":\"备注信息\"}}]}"
-//        ]
-//
-//
-//        struct AbiAndDes {
-//            let confrimInfo: (Block) -> BifrostConfrimInfo
-//        }
-//
-//        static let transfer = AbiAndDes { (block) -> BifrostConfrimInfo in
-//            let des = Description(JSONString: buildIn.Dess[0])!
-//
-//            let items = [des.inputs[0].confrimItemInfo(text: block.toAddress),
-//                         des.inputs[1].confrimItemInfo(text: block.amount.amountFull(decimals: block.tokenInfo.decimals)),
-//                         des.inputs[2].confrimItemInfo(text: block.tokenInfo.symbol),
-//                         des.inputs[3].confrimItemInfo(text: block.data?.toAccountBlockNote ?? "")
-//            ]
-//            return BifrostConfrimInfo(title: des.function.title ?? "", items: items)
-//        }
-//
-//    }
-
 }
 
 

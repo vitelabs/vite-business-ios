@@ -59,6 +59,9 @@ public class WCInteractor {
     private var peerId: String?
     private var peerMeta: WCPeerMeta?
 
+    private var sessionPingTimer: Timer?
+    private var lastSessionPingTimestamp: TimeInterval = -1
+
     public init(session: WCSession, meta: WCPeerMeta) {
         self.session = session
         self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
@@ -88,6 +91,7 @@ public class WCInteractor {
 
     public func disconnect() {
         pingTimer?.invalidate()
+        sessionPingTimer?.invalidate()
         socket.disconnect()
         connectResolver = nil
         handshakeId = -1
@@ -181,6 +185,7 @@ extension WCInteractor {
             switch event {
             // topic == session.topic
             case .sessionRequest:
+                updateLastSessionPingTimestamp()
                 hasReceivedSessionRequest = true
                 let request: JSONRPCRequest<[WCSessionRequestParam]> = try event.decode(decrypted)
                 guard let params = request.params.first else {
@@ -190,6 +195,11 @@ extension WCInteractor {
                 peerId = params.peerId
                 peerMeta = params.peerMeta
                 onSessionRequest?(request.id, params.peerMeta)
+            case .sessionPeerPing:
+                updateLastSessionPingTimestamp()
+                let request: JSONRPCRequest<[WCSessionPingParam]> = try event.decode(decrypted)
+                let response = JSONRPCResponse(id: request.id, result: WCSessionPingResponse())
+                encryptAndSend(data: response.encoded).cauterize()
             case .viteSendTx:
                 guard let jsonString = String(data: decrypted, encoding: .utf8),
                     let request = VBJSONRPCRequest<VBViteSendTx>(JSONString: jsonString),
@@ -247,6 +257,11 @@ extension WCInteractor {
             print("==> ping")
             socket?.write(ping: Data())
         })
+
+        sessionPingTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self] _ in
+            self?.checkSessionTimeout()
+        })
+
         subscribe(topic: session.topic)
         subscribe(topic: clientId)
         connectResolver?.fulfill(true)
@@ -256,6 +271,7 @@ extension WCInteractor {
     private func onDisconnect(error: Error?) {
         print("<== websocketDidDisconnect, error: \(error.debugDescription)")
         pingTimer?.invalidate()
+        sessionPingTimer?.invalidate()
         if let error = error {
             connectResolver?.reject(error)
         } else {
@@ -281,6 +297,23 @@ extension WCInteractor {
             }
         } catch let error {
             print(error)
+        }
+    }
+}
+
+extension WCInteractor {
+
+    private static let pingTimeout:TimeInterval = 3
+
+    private func updateLastSessionPingTimestamp() {
+        lastSessionPingTimestamp = Date().timeIntervalSince1970
+    }
+
+    private func checkSessionTimeout() {
+        let now = Date().timeIntervalSince1970
+        if now - self.lastSessionPingTimestamp > type(of: self).pingTimeout {
+            print("session timeout")
+            self.killSession().cauterize()
         }
     }
 }

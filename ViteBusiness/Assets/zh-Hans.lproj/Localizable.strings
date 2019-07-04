@@ -21,6 +21,7 @@
 "Update.app" = "更新 App";
 "Submit.cancel" = "撤销";
 "Close"="关闭";
+"Quit" = "退出";
 "web.page.host.tip"="本网页由 %@ 提供";
 
 
@@ -614,17 +615,19 @@
 
 
 /* Vite Bifrost */
-"bifrost.connect.tip.in.wallet.home" = "WallectConnect 连接中";
+"bifrost.connect.tip.in.wallet.home" = "ViteBifrost 连接中";
 "bifrost.alert.tip.title" = "温馨提示";
 "bifrost.alert.approve.session.message" = "请确认是否首选如下链接:\n%@";
-"bifrost.alert.switch.address.message" = "您当前城处于WalletConnect链接中，切换地址将断开链接，请确认是否切换地址";
+"bifrost.alert.switch.address.message" = "您当前处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址";
 
-"bifrost.home.page.free.header" = "WallectConnect 连接中";
+"bifrost.alert.quit.title" = "确认是否退出 ViteBifrost?";
+
+"bifrost.home.page.free.header" = "ViteBifrost 连接中";
 "bifrost.home.page.free.content" = "当前暂无交易";
 
-"bifrost.home.page.busy.header" = "您正在web端进行%@操作";
+"bifrost.home.page.busy.header" = "您正在web端进行操作";
 "bifrost.home.page.busy.content" = "请确认如下交易信息";
-
+"bifrost.toast.operation.success" = "操作成功";
 
 // operation
 "bifrost.operation.register.sbp" = "注册SBP";

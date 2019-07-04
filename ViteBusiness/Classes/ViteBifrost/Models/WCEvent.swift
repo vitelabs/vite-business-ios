@@ -9,19 +9,12 @@
 import Foundation
 
 public enum WCEvent: String {
-    case sessionRequest = "wc_sessionRequest"
-    case sessionUpdate = "wc_sessionUpdate"
-    case exchangeKey = "wc_exchangeKey"
+    case sessionRequest = "vb_sessionRequest"
+    case sessionUpdate = "vb_sessionUpdate"
+    case exchangeKey = "vb_exchangeKey"
 
-    case viteSendTx = "vite_sendTx"
-    
-//    case ethSign = "eth_sign"
-//    case ethPersonalSign = "personal_sign"
-//    case ethSignTypeData = "eth_signTypedData"
-//    case ethSendTransaction = "eth_sendTransaction"
-//
-//    case bnbSign = "bnb_sign"
-//    case bnbTransactionConfirm = "bnb_tx_confirmation"
+    case sessionPeerPing = "vb_peerPing"
+    case viteSendTx = "vite_signAndSendTx"
 }
 
 extension WCEvent {

@@ -25,21 +25,31 @@ public final class BifrostManager {
 
     private let disposeBag = DisposeBag()
 
-
     public lazy var isConnectedAndApprovedDriver: Driver<Bool> = self.isConnectedAndApprovedBehaviorRelay.asDriver()
     private var isConnectedAndApprovedBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    private var tasks = [BifrostViteSendTxTask]()
+
+    public var isConnectedAndApproved: Bool {
+        return isConnectedAndApprovedBehaviorRelay.value
+    }
+
+    var currectTask: BifrostViteSendTxTask? {
+        return tasks.first
+    }
+
+    func removeTask(_ task: BifrostViteSendTxTask) {
+        for (index, t) in tasks.enumerated() where t.id == task.id {
+            tasks.remove(at: index)
+            return
+        }
+    }
 
     private init() {
-        isConnectedAndApprovedDriver.drive(onNext: { (connected) in
+        isConnectedAndApprovedDriver.drive(onNext: { [weak self] (connected) in
+            guard let `self` = self else { return }
             guard let current = UIViewController.current else { return }
             if connected {
-                guard !(current is BifrostViewController) else { return }
-                let vc = BifrostViewController()
-                if let scanVc = current as? ScanViewController {
-                    scanVc.popSelfAndPush(vc)
-                } else {
-                    current.navigationController?.pushViewController(vc, animated: true)
-                }
+                self.showBifrostViewControllerIfNeeded()
             } else {
                 if current is BifrostViewController {
                     current.navigationController?.popViewController(animated: true)
@@ -81,23 +91,15 @@ public final class BifrostManager {
         if let i = interactor, i.connected {
             i.killSession().cauterize()
         }
+
+        tasks = [BifrostViteSendTxTask]()
     }
 
-    @discardableResult
-    func showBifrostViewControllerIfNeeded() -> BifrostViewController? {
-        guard let current = UIViewController.current else { return nil }
-        guard isConnectedAndApprovedBehaviorRelay.value else { return nil }
-        if let vc = current as? BifrostViewController {
-            return vc
-        } else {
-            let vc = BifrostViewController()
-            current.navigationController?.pushViewController(vc, animated: true)
-            return vc
-        }
-    }
+
 }
 
 extension BifrostManager {
+
 
     fileprivate func configure(interactor: WCInteractor) {
 
@@ -127,30 +129,65 @@ extension BifrostManager {
 
         interactor.onViteSendTx = { [weak self] (id, tx) in
             guard let `self` = self else { return }
-            tx.generateConfrimInfo().done({ (info, tokenInfo) in
-                guard let vc = self.showBifrostViewControllerIfNeeded() else { return }
-                vc.showConfrim(info, result: { [weak self] (result, vc) in
-                    guard let `self` = self else { return }
-                    guard let account = HDWalletManager.instance.account else { return }
-                    if result {
-                        Workflow.sendTransactionWithConfirm(account: account, toAddress: tx.block.toAddress, tokenInfo: tokenInfo, amount: tx.block.amount, data: tx.block.data, completion: { (ret) in
-                            switch ret {
-                            case .success(let accountBlock):
-                                vc.hideConfrim()
-                                self.interactor?.approveViteTx(id: id, accountBlock: accountBlock)
-                            case .failure(let error):
-                                break
-                            }
-                        })
-                    } else {
-                        vc.hideConfrim()
-                        self.interactor?.rejectRequest(id: id, message: "cancel").cauterize()
-                    }
-                })
+            tx.generateConfrimInfo().done({[weak self] (info, tokenInfo) in
+                guard let `self` = self else { return }
+                let task = BifrostViteSendTxTask(id: id, tx: tx, info: info, tokenInfo: tokenInfo)
+                self.tasks.append(task)
+                self.showBifrostViewControllerIfNeeded()
             }).catch({ (error) in
                 self.interactor?.rejectRequest(id: id, message: error.localizedDescription).cauterize()
             })
         }
+    }
+
+    @discardableResult
+    func showBifrostViewControllerIfNeeded() -> BifrostViewController? {
+        guard let current = UIViewController.current else { return nil }
+        guard isConnectedAndApprovedBehaviorRelay.value else { return nil }
+
+        let ret: BifrostViewController
+        if let vc = current as? BifrostViewController {
+            ret = vc
+        } else {
+            let vc = BifrostViewController(result: { [weak self] (ret, task, vc) in
+                guard let `self` = self else { return }
+                guard let account = HDWalletManager.instance.account else { return }
+                if ret {
+                    Workflow.bifrostSendTxWithConfirm(title: task.info.title ,
+                                                      account: account,
+                                                      toAddress: task.tx.block.toAddress,
+                                                      tokenInfo: task.tokenInfo,
+                                                      amount: task.tx.block.amount,
+                                                      data: task.tx.block.data,
+                                                      completion: { (ret) in
+                                                        switch ret {
+                                                        case .success(let accountBlock):
+                                                            self.removeTask(task)
+                                                            vc.hideConfrim()
+                                                            self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
+                                                            vc.showConfrimIfNeeded()
+                                                        case .failure(let error):
+                                                            plog(level: .debug, log: error.localizedDescription)
+                                                        }
+                    })
+                } else {
+                    self.removeTask(task)
+                    vc.hideConfrim()
+                    self.interactor?.rejectRequest(id: task.id, message: "cancel").cauterize()
+                    vc.showConfrimIfNeeded()
+                }
+            })
+
+            if let scanVc = current as? ScanViewController {
+                scanVc.popSelfAndPush(vc)
+            } else {
+                current.navigationController?.pushViewController(vc, animated: true)
+            }
+            ret = vc
+        }
+
+        ret.showConfrimIfNeeded()
+        return ret
     }
 
     fileprivate func approveFailed(message: String?) {
@@ -171,4 +208,11 @@ extension BifrostManager {
             Toast.show(msg)
         }
     }
+}
+
+struct BifrostViteSendTxTask {
+    let id: Int64
+    let tx : VBViteSendTx
+    let info: BifrostConfrimInfo
+    let tokenInfo: TokenInfo
 }

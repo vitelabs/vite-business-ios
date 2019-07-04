@@ -108,7 +108,7 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
+    static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
         var cancelPow = false
         let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
             cancelPow = true
