@@ -65,12 +65,12 @@ class WalletHomeNavView: UIImageView {
 
         nameLabel.snp.makeConstraints { (m) in
             m.left.equalTo(priceLabel)
-            m.right.lessThanOrEqualToSuperview().offset(-62)
+            m.right.lessThanOrEqualToSuperview().offset(-72)
             m.centerY.equalTo(scanButton)
         }
 
         scanButton.snp.makeConstraints { (m) in
-            m.right.equalToSuperview().offset(-7)
+            m.right.equalToSuperview().offset(-20)
             m.bottom.equalToSuperview().offset(-74)
             m.size.equalTo(CGSize(width: 28, height: 28))
         }

@@ -53,7 +53,7 @@ class TokenListInfoCell: UITableViewCell {
 
     func reloadData(_ token:TokenInfo) {
         self.tokenInfo = token
-        self.symbolLabel.text = token.symbol
+        self.symbolLabel.text = token.uniqueSymbol
         self.tokenNameLabel.text = token.name
 
         if token.name != "" {
