@@ -66,6 +66,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarItemBtn)
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
+        amountView.textField.keyboardType = .decimalPad
 
         view.addSubview(abstractView)
         view.addSubview(addressView)
