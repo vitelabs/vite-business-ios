@@ -14,7 +14,7 @@ import BinanceChain
 class BnbTransactionCell: BaseTableViewCell {
 
     static var cellHeight: CGFloat {
-        return 72
+        return 94
     }
 
     fileprivate let typeImageView = UIImageView()
@@ -45,6 +45,11 @@ class BnbTransactionCell: BaseTableViewCell {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
     }
 
+    fileprivate let feeLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -60,6 +65,7 @@ class BnbTransactionCell: BaseTableViewCell {
         contentView.addSubview(timeLabel)
         contentView.addSubview(balanceLabel)
         contentView.addSubview(symbolLabel)
+        contentView.addSubview(feeLabel)
 
         typeImageView.setContentHuggingPriority(.required, for: .horizontal)
         typeImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -89,26 +95,30 @@ class BnbTransactionCell: BaseTableViewCell {
             m.right.equalTo(addressBackView).offset(-6)
         }
 
-        timeLabel.setContentHuggingPriority(.required, for: .horizontal)
-        timeLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        timeLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(typeImageView.snp.bottom).offset(14)
-            m.left.equalTo(typeImageView)
-            m.bottom.equalTo(contentView).offset(-13)
-        }
-
         balanceLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(timeLabel)
-            m.left.equalTo(timeLabel.snp.right).offset(10)
+            m.top.equalTo(addressBackView.snp.bottom).offset(12)
         }
 
         symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
         symbolLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         symbolLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(timeLabel)
+            m.centerY.equalTo(balanceLabel)
             m.left.equalTo(balanceLabel.snp.right).offset(8)
             m.right.equalTo(addressBackView)
         }
+
+        timeLabel.setContentHuggingPriority(.required, for: .horizontal)
+        timeLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        timeLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(typeImageView)
+            m.bottom.equalTo(contentView).offset(-8)
+        }
+
+        feeLabel.snp.makeConstraints { (m) in
+            m.centerY.equalTo(timeLabel)
+            m.right.equalTo(addressBackView)
+        }
+
 
         let line = UIView().then {
             $0.backgroundColor = Colors.lineGray
@@ -128,19 +138,32 @@ class BnbTransactionCell: BaseTableViewCell {
     }
 
     func bind(viewModel: Tx, index: Int) {
-//        typeImageView.image = viewModel.typeImage
-//        typeNameLabel.text = viewModel.typeName
-//        addressLabel.text = viewModel.address
-//        timeLabel.text = viewModel.timeString
-//        balanceLabel.text = viewModel.balanceString
-//        balanceLabel.textColor = viewModel.balanceColor
-//        symbolLabel.text = viewModel.symbolString
+        guard let selfAddress = BnbWallet.shared.fromAddress else {
+            return
+        }
+        var balanceTempStr = ""
+        if viewModel.txType == .transfer {
+            typeImageView.image = R.image.bnb_transaction_icon()
+            if selfAddress == viewModel.fromAddr {
+                balanceLabel.textColor = UIColor(netHex: 0xFF0008)
+                addressLabel.text = viewModel.toAddr
+                balanceTempStr = "-"
+            }else {
+                balanceLabel.textColor = UIColor(netHex: 0x5BC500)
+                addressLabel.text = viewModel.fromAddr
+                balanceTempStr = "+"
+            }
+            balanceLabel.text = viewModel.value
+        }else {
+            typeImageView.image = R.image.bnb_transaction_other_icon()
+            addressLabel.text = viewModel.toAddr
+        }
+        balanceLabel.text = String.init(format: "%@%@", balanceTempStr,viewModel.value)
 
-
-        typeNameLabel.text = viewModel.txHash
-        addressLabel.text = viewModel.fromAddr
-        timeLabel.text = viewModel.timestamp.toString()
-        balanceLabel.text = viewModel.txFee
+        typeNameLabel.text = viewModel.txType.rawValue
+        timeLabel.text = viewModel.timestamp.format("yyyy.MM.dd HH:mm:ss")
+        symbolLabel.text = viewModel.txAsset
+        feeLabel.text = String.init(format: "矿工费用 %@", viewModel.txFee)
     }
 
 }

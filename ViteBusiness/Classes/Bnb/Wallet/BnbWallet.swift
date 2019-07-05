@@ -92,18 +92,8 @@ public class BnbWallet {
     //signal
     public lazy var balanceDriver: Driver<[Balance]> = self.balanceBehaviorRelay.asDriver()
     private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [Balance]())
-    //signal
-    public lazy var transactionsDriver: Driver<Transactions> = self.transactionsBehaviorRelay.asDriver()
-    private var transactionsBehaviorRelay: BehaviorRelay<Transactions> = BehaviorRelay(value: Transactions())
 
     private var webSocket: WebSocket?
-
-    private let addressTwo = "tbnb10a6kkxlf823w9lwr6l9hzw4uyphcw7qzrud5rr"
-    private let symbol = "BNB"
-    private let hashId = "5CAA5E0C6266B3BB6D66C00282DFA0A6A2F9F5A705E6D9049F619B63E1BE43FF"
-    private let orderId = "7F756B1BE93AA2E2FDC3D7CB713ABC206F877802-43"
-    private let amount: Double = 200
-    private let mnemonic: String = ""
 
     public func loginWallet(_ mnemonic:String) {
         self.wallet = Wallet(mnemonic: mnemonic,endpoint: .mainnet)
@@ -177,9 +167,27 @@ public class BnbWallet {
 
         binance.transactions(address: address, endTime: endTime,limit: limit,offset: offset,startTime:startTime,txAsset:txAsset) { (response) in
             completion(response.transactions)
-//            self.transactionsBehaviorRelay.accept(response.transactions)
-//            self.output("transactions", response.transactions, response.error)
         }
+    }
+
+    public func sendTransaction(toAddress:String,amount:Double,symbol:String){
+        guard let wallet = self.wallet else {
+            return
+        }
+
+        wallet.synchronise() { [weak self](error) in
+           if let _ = error { return }
+
+            guard let `self` = self else {return}
+            let msg = Message.transfer(symbol: symbol, amount: amount, to: toAddress, wallet: wallet)
+            self.binance.broadcast(message: msg) { (response) in
+                if let error = response.error {
+                    return print(error)
+                }
+                print(response.broadcast)
+            }
+        }
+
     }
 
     private init() {

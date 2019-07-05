@@ -69,11 +69,6 @@ class BnbWalletSendViewController: BaseViewController {
         imgView.tokenInfo =  tokenInfo
     }
 
-    private lazy var gasSliderView: EthGasFeeSliderView = {
-        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer)
-        gasSliderView.value = 1.0
-        return gasSliderView
-    }()
 
     private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress)
 
@@ -126,8 +121,6 @@ class BnbWalletSendViewController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
-        scrollView.stackView.addPlaceholder(height: 1)
-        scrollView.stackView.addArrangedSubview(gasSliderView)
         scrollView.stackView.addPlaceholder(height: 50)
 
         addressView.textView.keyboardType = .default
@@ -155,45 +148,25 @@ class BnbWalletSendViewController: BaseViewController {
         self.sendButton.rx.tap
             .bind { [weak self] in
                 guard let `self` = self else { return }
+                BnbWallet.shared.sendTransaction(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", amount: 0.0001, symbol: "BNB")
 
-                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
-                    toAddress.isValid else {
-                        Toast.show(R.string.localizable.sendPageToastAddressError())
-                        return
-                }
-                guard let amountString = self.amountView.textField.text,
-                    !amountString.isEmpty,
-                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
-                        Toast.show(R.string.localizable.sendPageToastAmountEmpty())
-                        return
-                }
-
-                guard amount > 0 else {
-                    Toast.show(R.string.localizable.sendPageToastAmountZero())
-                    return
-                }
-
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, tokenInfo: self.tokenInfo, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
-                    if case .success = r {
-                        self?.dismiss()
-                    } else if case .failure(let error) = r {
-                        guard ViteError.conversion(from: error) != ViteError.cancel else { return }
-                        if let e = error as? DisplayableError {
-                            Toast.show(e.errorMessage)
-                        } else {
-                            Toast.show((error as NSError).localizedDescription)
-                        }
-                    }
-                })
-            }
-            .disposed(by: rx.disposeBag)
-
-        //        ETHBalanceInfoManager.instance.balanceInfoDriver(for: self.tokenInfo.tokenCode)
-        //            .drive(onNext: { [weak self] ret in
-        //                guard let `self` = self else { return }
-        //                let balance = ret?.balance ?? Amount()
-        //                self.headerView.balanceLabel.text = balance.amountFullWithGroupSeparator(decimals: self.tokenInfo.decimals)
-        //            }).disposed(by: rx.disposeBag)
+//                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
+//                    toAddress.isValid else {
+//                        Toast.show(R.string.localizable.sendPageToastAddressError())
+//                        return
+//                }
+//                guard let amountString = self.amountView.textField.text,
+//                    !amountString.isEmpty,
+//                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
+//                        Toast.show(R.string.localizable.sendPageToastAmountEmpty())
+//                        return
+//                }
+//
+//                guard amount > 0 else {
+//                    Toast.show(R.string.localizable.sendPageToastAmountZero())
+//                    return
+//                }
+        }
     }
 }
 

@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 172 images.
+  /// This `R.image` struct is generated, and contains static references to 174 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -32,6 +32,10 @@ struct R: Rswift.Validatable {
     static let beifen = Rswift.ImageResource(bundle: R.hostingBundle, name: "beifen")
     /// Image `blue_dotted_line`.
     static let blue_dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "blue_dotted_line")
+    /// Image `bnb_transaction_icon`.
+    static let bnb_transaction_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "bnb_transaction_icon")
+    /// Image `bnb_transaction_other_icon`.
+    static let bnb_transaction_other_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "bnb_transaction_other_icon")
     /// Image `btn_path_bg`.
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
     /// Image `crosschain_operat`.
@@ -396,6 +400,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "blue_dotted_line", bundle: ..., traitCollection: ...)`
     static func blue_dotted_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.blue_dotted_line, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "bnb_transaction_icon", bundle: ..., traitCollection: ...)`
+    static func bnb_transaction_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.bnb_transaction_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "bnb_transaction_other_icon", bundle: ..., traitCollection: ...)`
+    static func bnb_transaction_other_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.bnb_transaction_other_icon, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "btn_path_bg", bundle: ..., traitCollection: ...)`
