@@ -237,7 +237,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 if !info.maximumWithdrawAmount.isEmpty,
                     let max = info.maximumWithdrawAmount.toAmount(decimals: self.withTokenInfo.decimals) {
                     guard amount <= max else {
-                        Toast.show("bigger than max amount")
+                        Toast.show(R.string.localizable.crosschainWithdrawGatewayispoor())
                         return
                     }
                 }

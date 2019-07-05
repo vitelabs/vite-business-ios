@@ -22,6 +22,11 @@ class CrossChainHistoryCell: UITableViewCell {
         $0.textColor = UIColor.init(netHex: 0x77808A)
     }
 
+    let feeLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+    }
+
     let seperator = UIView().then {
         $0.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
     }
@@ -61,6 +66,7 @@ class CrossChainHistoryCell: UITableViewCell {
 
         contentView.addSubview(iconImageView)
         contentView.addSubview(statusLabel)
+        contentView.addSubview(feeLabel)
         contentView.addSubview(seperator)
         contentView.addSubview(reasonLabel)
         contentView.addSubview(timeLabel)
@@ -77,6 +83,11 @@ class CrossChainHistoryCell: UITableViewCell {
 
         statusLabel.snp.makeConstraints { (m) in
             m.left.equalTo(iconImageView.snp.right).offset(3)
+            m.centerY.equalTo(iconImageView)
+        }
+
+        feeLabel.snp.makeConstraints { (m) in
+            m.right.equalToSuperview().offset(-24)
             m.centerY.equalTo(iconImageView)
         }
 
@@ -159,6 +170,11 @@ class CrossChainHistoryCell: UITableViewCell {
 
         symbleLabel.text = othenSymble
 
+        if let fee = Amount(record.fee)?.amountShort(decimals: tokenInfo.decimals) {
+            feeLabel.text = "\(R.string.localizable.crosschainFee()) \(fee)"
+        }
+
+
         if type == .withdraw {
             leftHashLabel.text =  " \(viteSymble) Hash: \(record.inTxHash) "
             rightHashLabel.text = " \(othenSymble) Hash: \(record.outTxHash ?? "") "
@@ -200,6 +216,7 @@ class CrossChainHistoryCell: UITableViewCell {
                 reasonLabel.isHidden = false
                 statusString = R.string.localizable.crosschainStatusFailed()
                 reasonLabel.text = R.string.localizable.crosschainStatusFailedBecausePoor()
+                feeLabel.text = nil
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()

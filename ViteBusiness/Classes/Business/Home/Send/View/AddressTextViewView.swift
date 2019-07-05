@@ -45,7 +45,7 @@ class AddressTextViewView: SendAddressViewType {
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(titleLabel)
             m.right.equalTo(addButton.snp.left).offset(-16)
-//            m.height.equalTo(55)
+            m.height.equalTo(55)
             m.bottom.equalTo(self)
         }
 

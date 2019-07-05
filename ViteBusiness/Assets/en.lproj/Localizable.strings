@@ -598,4 +598,7 @@
 "crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Failed";
+"crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
+"crosschain.fee" = "Fee";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the limit, please contact gateway@vite.org.";
 

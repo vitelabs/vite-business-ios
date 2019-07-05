@@ -52,7 +52,11 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
             }
 
             let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-            let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+            var message: String? = R.string.localizable.crosschainBetaAlert()
+            if message == "" {
+                message = nil
+            }
+            let alert = UIAlertController.init(title: nil, message: message, preferredStyle: .actionSheet)
             alert.addAction(a0)
             alert.addAction(a1)
             alert.addAction(a2)

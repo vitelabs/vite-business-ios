@@ -8,6 +8,7 @@
 import UIKit
 import Result
 import SwiftyJSON
+import BigInt
 
 class GatewayTokenDetailViewController: BaseViewController {
 
@@ -20,10 +21,8 @@ class GatewayTokenDetailViewController: BaseViewController {
             let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
 
             var total: String? = "--"
-            if let totalStr = JSON(info)["total"].string,
-                let num = Double(totalStr),
-                let tokenDigit  = JSON(info)["tokenDigit"].double {
-                total = String(Int64(num) % Int64(pow(num, tokenDigit)))
+            if let totalStr = JSON(info)["total"].string {
+                total = totalStr
             }
             var issueStr = "--"
             if let issue =  JSON(info)["states"]["issue"].int, issue == 1 {

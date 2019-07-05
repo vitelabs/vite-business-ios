@@ -55,12 +55,16 @@ class CrossChainDepositETH {
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (result) in
-                    switch result {
-                    case .success(_):
+                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (r) in
+                    if case .success = r {
                         completion()
-                    case .failure(_):
-                        break
+                    } else if case .failure(let error) = r {
+                        guard ViteError.conversion(from: error) != ViteError.cancel else { return }
+                        if let e = error as? DisplayableError {
+                            Toast.show(e.errorMessage)
+                        } else {
+                            Toast.show((error as NSError).localizedDescription)
+                        }
                     }
                 })
         }
