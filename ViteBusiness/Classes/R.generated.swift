@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 175 images.
+  /// This `R.image` struct is generated, and contains static references to 176 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -244,6 +244,8 @@ struct R: Rswift.Validatable {
     static let icon_hide_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_hide_pwd")
     /// Image `icon_logo_chain_eth`.
     static let icon_logo_chain_eth = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo_chain_eth")
+    /// Image `icon_logo_chain_vite`.
+    static let icon_logo_chain_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo_chain_vite")
     /// Image `icon_logo`.
     static let icon_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo")
     /// Image `icon_mnemonic`.
@@ -937,6 +939,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_logo_chain_eth", bundle: ..., traitCollection: ...)`
     static func icon_logo_chain_eth(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_logo_chain_eth, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_logo_chain_vite", bundle: ..., traitCollection: ...)`
+    static func icon_logo_chain_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_logo_chain_vite, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_mnemonic", bundle: ..., traitCollection: ...)`

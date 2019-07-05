@@ -78,7 +78,7 @@ class BalanceInfoNavView: UIView {
     }
 
     func bind(tokenInfo: TokenInfo) {
-        symbolLabel.text = tokenInfo.symbol
+        symbolLabel.text = tokenInfo.uniqueSymbol
         nameLabel.text = tokenInfo.name
         tokenIconView.tokenInfo = tokenInfo
         if let gatewayName = tokenInfo.gatewayName {
