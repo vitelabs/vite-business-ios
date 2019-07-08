@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 176 images.
+  /// This `R.image` struct is generated, and contains static references to 177 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -42,6 +42,8 @@ struct R: Rswift.Validatable {
     static let crosschain_operat_withdraw = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat_withdraw")
     /// Image `crosschain_status_confirm`.
     static let crosschain_status_confirm = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_confirm")
+    /// Image `crosschain_status_failure`.
+    static let crosschain_status_failure = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_failure")
     /// Image `crosschain_status_gateway`.
     static let crosschain_status_gateway = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_gateway")
     /// Image `crosschain_status_vite`.
@@ -429,6 +431,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "crosschain_status_confirm", bundle: ..., traitCollection: ...)`
     static func crosschain_status_confirm(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_status_confirm, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "crosschain_status_failure", bundle: ..., traitCollection: ...)`
+    static func crosschain_status_failure(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_status_failure, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "crosschain_status_gateway", bundle: ..., traitCollection: ...)`
@@ -1256,7 +1263,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 497 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 499 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1406,6 +1413,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageAmountTitle = Rswift.StringResource(key: "send.page.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount exceeds the limit, please contact gateway@vite.org.
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainWithdrawGatewayispoor = Rswift.StringResource(key: "crosschain.withdraw.gatewayispoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: An ID conflict occurs, please re-submit later
       /// 
       /// Locales: en, zh-Hans
@@ -1822,6 +1833,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Exceed the limit
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusTotExceedLimit = Rswift.StringResource(key: "crosschain.status.tot.exceed.limit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -2778,6 +2793,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainTokenDetailName = Rswift.StringResource(key: "crosschain.tokenDetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Too less transfer-in amount.
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusFailedBecausePoor = Rswift.StringResource(key: "crosschain.status.failedBecausePoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Total
       /// 
       /// Locales: en, zh-Hans
@@ -2810,10 +2829,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinDetailTxStatus = Rswift.StringResource(key: "grin.detail.txStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transaction amount is less than minimum amount. Transaction failed.
-      /// 
-      /// Locales: en, zh-Hans
-      static let crosschainStatusFailedBecausePoor = Rswift.StringResource(key: "crosschain.status.failedBecausePoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.
       /// 
       /// Locales: en, zh-Hans
@@ -3170,6 +3185,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let loginPageErrorToastTitle = Rswift.StringResource(key: "login.page.error.toast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Wrong transfer address
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusWrongAddress = Rswift.StringResource(key: "crosschain.status.wrong.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Yes
       /// 
       /// Locales: en, zh-Hans
@@ -3242,10 +3261,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转出金额超出最高限额，请联系gateway@vite.org.
-      /// 
-      /// Locales: en, zh-Hans
-      static let crosschainWithdrawGatewayispoor = Rswift.StringResource(key: "crosschain.withdraw.gatewayispoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -3504,6 +3519,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageAmountTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount exceeds the limit, please contact gateway@vite.org.
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainWithdrawGatewayispoor(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.gatewayispoor", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: An ID conflict occurs, please re-submit later
@@ -4232,6 +4254,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainWithdrawFeeDesc(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Exceed the limit
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusTotExceedLimit(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.tot.exceed.limit", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Export Seed Phrase
@@ -5907,6 +5936,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.tokenDetail.name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Too less transfer-in amount.
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusFailedBecausePoor(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.failedBecausePoor", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Total
       /// 
       /// Locales: en, zh-Hans
@@ -5961,13 +5997,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinDetailTxStatus(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.txStatus", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transaction amount is less than minimum amount. Transaction failed.
-      /// 
-      /// Locales: en, zh-Hans
-      static func crosschainStatusFailedBecausePoor(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.status.failedBecausePoor", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.
@@ -6593,6 +6622,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("login.page.error.toast.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Wrong transfer address
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusWrongAddress(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.wrong.address", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Yes
       /// 
       /// Locales: en, zh-Hans
@@ -6717,13 +6753,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转出金额超出最高限额，请联系gateway@vite.org.
-      /// 
-      /// Locales: en, zh-Hans
-      static func crosschainWithdrawGatewayispoor(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.withdraw.gatewayispoor", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

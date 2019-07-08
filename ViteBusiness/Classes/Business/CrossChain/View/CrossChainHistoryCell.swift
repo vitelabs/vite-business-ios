@@ -186,8 +186,12 @@ class CrossChainHistoryCell: UITableViewCell {
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()
                 iconImageView.image = R.image.crosschain_status_confirm()
-            case .BELOW_MINIMUM:
-                statusString = ""
+            case .TOT_EXCEED_THE_LIMIT:
+                statusString = R.string.localizable.crosschainStatusTotExceedLimit()
+                iconImageView.image = R.image.crosschain_status_failure()
+            case .WRONG_WITHDRAW_ADDRESS:
+                statusString = R.string.localizable.crosschainStatusWrongAddress()
+                iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
@@ -211,12 +215,16 @@ class CrossChainHistoryCell: UITableViewCell {
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
                 iconImageView.image = R.image.crosschain_status_gateway()
-            case .BELOW_MINIMUM:
+            case .TOT_EXCEED_THE_LIMIT:
                 seperator.isHidden = false
                 reasonLabel.isHidden = false
                 statusString = R.string.localizable.crosschainStatusFailed()
                 reasonLabel.text = R.string.localizable.crosschainStatusFailedBecausePoor()
+                iconImageView.image = R.image.crosschain_status_failure()
                 feeLabel.text = nil
+            case .WRONG_WITHDRAW_ADDRESS:
+                statusString = R.string.localizable.crosschainStatusFailed()
+                iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()

@@ -37,6 +37,20 @@ class GatewayWithdrawViewController: BaseViewController {
 
     var balance: Amount = Amount(0)
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        kas_activateAutoScrollingForView(scrollView)
+    }
+
+    // View
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
+        $0.layer.masksToBounds = false
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+    }
 
     let abstractView = WalletAbstractView()
     var addressView: AddressTextViewView =  AddressTextViewView()
@@ -63,15 +77,25 @@ class GatewayWithdrawViewController: BaseViewController {
 
     func setUpview()  {
         navigationTitleView = PageTitleView.titleAndIcon(title: R.string.localizable.crosschainWithdraw(), icon: R.image.crosschain_withdrwa())
+        navigationTitleView?.backgroundColor = UIColor.white
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarItemBtn)
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.textField.keyboardType = .decimalPad
 
-        view.addSubview(abstractView)
-        view.addSubview(addressView)
-        view.addSubview(amountView)
-        view.addSubview(feeView)
+        view.addSubview(scrollView)
+
+        scrollView.snp.makeConstraints { (m) in
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.left.right.equalTo(view)
+        }
+
+
+        scrollView.stackView.addArrangedSubview(abstractView)
+        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addArrangedSubview(addressView)
+        scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addArrangedSubview(feeView)
         view.addSubview(withdrawButton)
 
         abstractView.tl0.text = R.string.localizable.sendPageMyAddressTitle()
@@ -79,26 +103,18 @@ class GatewayWithdrawViewController: BaseViewController {
         abstractView.tl1.text = R.string.localizable.sendPageMyBalanceTitle()
 
         abstractView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.top.equalTo(navigationTitleView!.snp.bottom)
             m.height.equalTo(138)
         }
 
         addressView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.top.equalTo(abstractView.snp.bottom).offset(40)
             m.height.equalTo(78)
         }
 
         amountView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.top.equalTo(addressView.snp.bottom)
             m.height.equalTo(78)
         }
 
         feeView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.top.equalTo(amountView.snp.bottom)
             m.height.equalTo(78)
         }
 
@@ -106,6 +122,19 @@ class GatewayWithdrawViewController: BaseViewController {
             m.left.right.equalToSuperview().inset(24)
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
+
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: nil, action: nil)
+        toolbar.items = [flexSpace, done]
+
+        toolbar.sizeToFit()
+        done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
+        amountView.textField.inputAccessoryView = toolbar
+
+        addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
+        amountView.textField.delegate = self
 
     }
 
@@ -236,7 +265,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 }
 
                 if !info.maximumWithdrawAmount.isEmpty,
-                    let max = info.maximumWithdrawAmount.toAmount(decimals: self.withTokenInfo.decimals) {
+                    let max = Amount(info.maximumWithdrawAmount) {
                     guard amount <= max else {
                         Toast.show(R.string.localizable.crosschainWithdrawGatewayispoor())
                         return
@@ -304,5 +333,18 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
                 }
         }
 
+    }
+}
+
+extension GatewayWithdrawViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == amountView.textField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, gateWayInfoService.tokenInfo.decimals))
+            textField.text = text
+            return ret
+        } else {
+            return true
+        }
     }
 }

@@ -593,8 +593,10 @@
 "crosschain.tokenDetail.desc" = "Description";
 "crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
 "crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.tot.exceed.limit" = "Exceed the limit";
+"crosschain.status.wrong.address" = "Wrong transfer address";
 "crosschain.status.gatewayReceived" = "Received by Gateway";
-"crosschain.status.failedBecausePoor" = "Transaction amount is less than minimum amount. Transaction failed.";
+"crosschain.status.failedBecausePoor" = "Too less transfer-in amount.";
 "crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Failed";
