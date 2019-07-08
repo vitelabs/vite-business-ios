@@ -12,6 +12,7 @@ import Foundation
 import NSObject_Rx
 import ObjectMapper
 import BinanceChain
+import PromiseKit
 
 extension Transactions : Mappable {
     public mutating func mapping(map: Map) {
@@ -170,13 +171,20 @@ public class BnbWallet {
         }
     }
 
-    public func sendTransaction(toAddress:String,amount:Double,symbol:String){
+    public func sendTransactionPromise(toAddress:String,amount:Double,symbol:String) -> Promise<[Transaction]>{
+        return Promise { seal in
+            sendTransaction(toAddress: toAddress, amount: amount,symbol: symbol) { result, error in
+                seal.resolve(result, error)
+            }
+        }
+    }
+
+    public func sendTransaction(toAddress:String,amount:Double,symbol:String,completion: ([Transaction], Error?) -> Void) {
         guard let wallet = self.wallet else {
             return
         }
-
         wallet.synchronise() { [weak self](error) in
-           if let _ = error { return }
+            if let _ = error { return }
 
             guard let `self` = self else {return}
             let msg = Message.transfer(symbol: symbol, amount: amount, to: toAddress, wallet: wallet)
@@ -187,7 +195,6 @@ public class BnbWallet {
                 print(response.broadcast)
             }
         }
-
     }
 
     private init() {

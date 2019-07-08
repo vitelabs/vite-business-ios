@@ -163,7 +163,7 @@ class BnbTransactionCell: BaseTableViewCell {
         typeNameLabel.text = viewModel.txType.rawValue
         timeLabel.text = viewModel.timestamp.format("yyyy.MM.dd HH:mm:ss")
         symbolLabel.text = viewModel.txAsset
-        feeLabel.text = String.init(format: "矿工费用 %@", viewModel.txFee)
+        feeLabel.text = String.init(format: "矿工费用 %@ BNB", viewModel.txFee)
     }
 
 }

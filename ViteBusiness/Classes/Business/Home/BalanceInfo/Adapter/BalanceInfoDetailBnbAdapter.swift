@@ -16,11 +16,11 @@ class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-//        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+
     }
 
     func viewDidDisappear() {
-//        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+
     }
 
     func setup(containerView: UIView) {

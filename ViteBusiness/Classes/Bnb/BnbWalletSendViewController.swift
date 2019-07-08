@@ -36,7 +36,6 @@ class BnbWalletSendViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,9 +69,13 @@ class BnbWalletSendViewController: BaseViewController {
     }
 
 
-    private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress)
+    private lazy var headerView = BnbSendPageTokenInfoView(address: self.fromAddress)
 
     private lazy var amountView = SendAmountView(amount: "", token: self.tokenInfo)
+
+    private lazy var gasFeeView = BnbGasFeeView()
+
+    lazy var noteView = SendNoteView(note:"", canEdit: true)
 
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
         let bottomView = UIView()
@@ -121,6 +124,9 @@ class BnbWalletSendViewController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addArrangedSubview(gasFeeView)
+        scrollView.stackView.addArrangedSubview(noteView)
+
         scrollView.stackView.addPlaceholder(height: 50)
 
         addressView.textView.keyboardType = .default
@@ -139,16 +145,23 @@ class BnbWalletSendViewController: BaseViewController {
         amountView.textField.delegate = self
     }
 
-    private func checkSendParameterLegal()->Bool {
-        return true
-    }
-
     private func bind() {
+        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.tokenCode).drive(onNext:{[weak self] ret in
+            guard let `self` = self else { return }
+            guard let balance = ret else { return }
+            self.headerView.balanceLabel.text =  String.init(format: "%.6f", balance.free)
+        }).disposed(by: rx.disposeBag)
 
         self.sendButton.rx.tap
             .bind { [weak self] in
                 guard let `self` = self else { return }
-                BnbWallet.shared.sendTransaction(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", amount: 0.0001, symbol: "BNB")
+
+                Workflow.sendBnbTransactionWithConfirm(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", tokenInfo: self.tokenInfo, amount: 0.0001, fee: 0.000375, completion: { r in
+
+                })
+
+
+//                BnbWallet.shared.sendTransaction(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", amount: 0.0001, symbol: "BNB")
 
 //                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
 //                    toAddress.isValid else {
