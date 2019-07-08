@@ -128,13 +128,7 @@ public struct TokenInfo: Mappable {
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
-            if symbol == "VITE" ||
-                symbol == "VCP" ||
-                symbol == "VX" {
-                return symbol
-            } else {
-                return String(format:"%@-%03d", symbol, index)
-            }
+            return toViteToken()!.uniqueSymbol
         } else {
             return symbol
         }
@@ -257,7 +251,7 @@ extension TokenInfo {
             return nil
         }
 
-        return Token(id: id, name: name, symbol: symbol, decimals: decimals)
+        return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index)
     }
 
     func toETHToken() -> ETHToken? {
@@ -353,13 +347,7 @@ public struct MappedTokenInfo: Mappable {
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
-            if symbol == "VITE" ||
-                symbol == "VCP" ||
-                symbol == "VX" {
-                return symbol
-            } else {
-                return String(format:"%@-%03d", symbol, index)
-            }
+            return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index).uniqueSymbol
         } else {
             return symbol
         }

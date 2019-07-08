@@ -1284,15 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-<<<<<<< HEAD
-    /// This `R.string.localizable` struct is generated, and contains static references to 525 localization keys.
-=======
-<<<<<<< HEAD
-    /// This `R.string.localizable` struct is generated, and contains static references to 523 localization keys.
-=======
-    /// This `R.string.localizable` struct is generated, and contains static references to 521 localization keys.
->>>>>>> vifrost implementation pledge
->>>>>>> vifrost implementation pledge
+    /// This `R.string.localizable` struct is generated, and contains static references to 531 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -3330,11 +3322,19 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationCancelCoin = Rswift.StringResource(key: "bifrost.operation.cancel.coin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostOperationTitleContractAddress = Rswift.StringResource(key: "bifrost.operation.title.contract.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 币种
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostOperationTitleTokenSymbol = Rswift.StringResource(key: "bifrost.operation.title.token.symbol", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 当前暂无交易
       /// 
       /// Locales: en, zh-Hans
       static let bifrostHomePageFreeContent = Rswift.StringResource(key: "bifrost.home.page.free.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 您当前城处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
+      /// en translation: 您当前处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
       /// 
       /// Locales: en, zh-Hans
       static let bifrostAlertSwitchAddressMessage = Rswift.StringResource(key: "bifrost.alert.switch.address.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3402,6 +3402,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationTransfer = Rswift.StringResource(key: "bifrost.operation.transfer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 金额
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostOperationTitleAmount = Rswift.StringResource(key: "bifrost.operation.title.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 铸币
       /// 
       /// Locales: en, zh-Hans
@@ -6970,6 +6974,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.cancel.coin", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 合约地址
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostOperationTitleContractAddress(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.title.contract.address", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 币种
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostOperationTitleTokenSymbol(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.title.token.symbol", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 当前暂无交易
       /// 
       /// Locales: en, zh-Hans
@@ -6977,7 +6995,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.home.page.free.content", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 您当前城处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
+      /// en translation: 您当前处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址
       /// 
       /// Locales: en, zh-Hans
       static func bifrostAlertSwitchAddressMessage(_: Void = ()) -> String {
@@ -7094,6 +7112,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostOperationTransfer(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.transfer", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 金额
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostOperationTitleAmount(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.title.amount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 铸币

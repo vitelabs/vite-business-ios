@@ -303,7 +303,7 @@ extension WCInteractor {
 
 extension WCInteractor {
 
-    private static let pingTimeout:TimeInterval = 3
+    private static let pingTimeout:TimeInterval = 8
 
     private func updateLastSessionPingTimestamp() {
         lastSessionPingTimestamp = Date().timeIntervalSince1970

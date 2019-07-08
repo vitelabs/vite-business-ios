@@ -18,7 +18,7 @@ public struct BifrostConfrimItemInfo {
         return backgroundColor != nil
     }
 
-    public init(title: String, text: String, textColor: UIColor?, backgroundColor: UIColor?) {
+    public init(title: String, text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         self.title = title
         self.text = text
         self.textColor = textColor

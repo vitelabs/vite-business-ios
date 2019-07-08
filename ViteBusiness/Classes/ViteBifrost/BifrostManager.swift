@@ -54,6 +54,7 @@ public final class BifrostManager {
                 if current is BifrostViewController {
                     current.navigationController?.popViewController(animated: true)
                 }
+                self.tasks = [BifrostViteSendTxTask]()
             }
         }).disposed(by: disposeBag)
     }

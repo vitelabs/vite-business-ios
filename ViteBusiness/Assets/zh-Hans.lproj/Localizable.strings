@@ -646,3 +646,7 @@
 "bifrost.operation.across.chain.withdraw" = "跨链转出";
 "bifrost.operation.vx.order" = "交易所挂单";
 "bifrost.operation.vx.cancel.order" = "交易所撤单";
+
+"bifrost.operation.title.contract.address" = "合约地址";
+"bifrost.operation.title.token.symbol" = "币种";
+"bifrost.operation.title.amount" = "金额";
