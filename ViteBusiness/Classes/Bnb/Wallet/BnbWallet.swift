@@ -179,20 +179,26 @@ public class BnbWallet {
         }
     }
 
-    public func sendTransaction(toAddress:String,amount:Double,symbol:String,completion: ([Transaction], Error?) -> Void) {
+    public func sendTransaction(toAddress:String,amount:Double,symbol:String,completion: @escaping ([Transaction]?, Error?) -> Void) {
         guard let wallet = self.wallet else {
+            //TODO wallet is optional
+            completion(nil, nil)
             return
         }
         wallet.synchronise() { [weak self](error) in
-            if let _ = error { return }
+            if let synchroniseError = error {
+                completion(nil,error)
+                return
+            }
 
             guard let `self` = self else {return}
             let msg = Message.transfer(symbol: symbol, amount: amount, to: toAddress, wallet: wallet)
             self.binance.broadcast(message: msg) { (response) in
                 if let error = response.error {
-                    return print(error)
+                    completion(nil,error)
+                }else{
+                    completion(response.broadcast,nil)
                 }
-                print(response.broadcast)
             }
         }
     }
