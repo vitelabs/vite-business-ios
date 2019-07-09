@@ -63,7 +63,7 @@ final class BnbTransactionListTableViewModel {
 
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
-        BnbWallet.shared.fetchTransactions(limit: .ten, offset: 0, txAsset: "BNB",completion: {[weak self] transactions in
+        BnbWallet.shared.fetchTransactions(limit: .five, offset: 0, txAsset: "BNB",completion: {[weak self] transactions in
             guard let `self` = self else{
                 return
             }

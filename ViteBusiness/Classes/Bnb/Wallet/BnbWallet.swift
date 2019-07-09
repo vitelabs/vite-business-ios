@@ -14,17 +14,6 @@ import ObjectMapper
 import BinanceChain
 import PromiseKit
 
-extension Transactions : Mappable {
-    public mutating func mapping(map: Map) {
-        total <- map["total"]
-        tx <- map["tx"]
-    }
-
-    public init?(map: Map) {
-        return nil
-    }
-}
-
 extension Balance : Mappable {
     public mutating func mapping(map: Map) {
         symbol <- map["symbol"]
@@ -47,11 +36,7 @@ extension BnbWallet: Storageable {
 
 //cache
 extension BnbWallet {
-    private func pri_save() {
-        save(mappable: balanceBehaviorRelay.value)
-    }
-
-    private func save(balances: [Balance]) {
+    private func pri_save(balances: [Balance]) {
         if let data = balances.toJSONString()?.data(using: .utf8) {
             if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
                 assert(false, error.localizedDescription)
@@ -109,11 +94,8 @@ public class BnbWallet {
 
         self.fileHelper = FileHelper.createForWallet(appending: self.appending)
 
-        //
+        //fetch balance
         self.fetchBalance()
-
-
-
         // make socket
         self.setupWebSocket()
     }
@@ -145,7 +127,7 @@ public class BnbWallet {
         }
         binance.account(address: address) { (response) in
             self.balanceBehaviorRelay.accept(response.account.balances)
-            self.pri_save()
+            self.pri_save(balances: response.account.balances)
             self.output("account", response.account, response.error)
         }
     }
@@ -159,6 +141,7 @@ public class BnbWallet {
         })
     }
 
+    //fetch log
     public func fetchTransactions(limit:Limit,offset:Int,txAsset:String,completion: @escaping (Transactions) -> Void) {
         guard let address = self.fromAddress else {
             return
@@ -171,6 +154,7 @@ public class BnbWallet {
         }
     }
 
+    //send
     public func sendTransactionPromise(toAddress:String,amount:Double,symbol:String) -> Promise<[Transaction]>{
         return Promise { seal in
             sendTransaction(toAddress: toAddress, amount: amount,symbol: symbol) { result, error in
@@ -206,22 +190,19 @@ public class BnbWallet {
     private init() {
 
     }
-
-    // MARK: - Utils
-
-    private func output(_ label: String, _ property: Any, _ error: Error? = nil) {
-        // Console
-        print(String(format: "bnb===%@:", label))
-        if let error = error {
-            print("error: \(error.localizedDescription)\n")
-            return
-        }
-        print(property)
-        print("\n")
-    }
 }
 
 extension BnbWallet : WebSocketDelegate {
+    public func webSocket(webSocket: WebSocket, account: Account) {
+        self.balanceBehaviorRelay.accept(account.balances)
+        self.pri_save(balances: account.balances)
+        self.output("websocket.accounts", account)
+    }
+
+    public func webSocket(webSocket: WebSocket, transfer: Transfer) {
+        self.output("websocket.transfers", transfer)
+    }
+
     public func webSocketDidConnect(webSocket: WebSocket) {
         self.output("websocket.didConnect", "")
     }
@@ -234,16 +215,9 @@ extension BnbWallet : WebSocketDelegate {
         self.output("websocket.didFail", "", error)
     }
 
+    //no use api
     public func webSocket(webSocket: WebSocket, orders: [Order]) {
         self.output("websocket.orders", orders)
-    }
-
-    public func webSocket(webSocket: WebSocket, account: Account) {
-        self.output("websocket.accounts", account)
-    }
-
-    public func webSocket(webSocket: WebSocket, transfer: Transfer) {
-        self.output("websocket.transfers", transfer)
     }
 
     public func webSocket(webSocket: WebSocket, trades: [Trade]) {
@@ -280,6 +254,18 @@ extension BnbWallet : WebSocketDelegate {
     // 块高度
     public func webSocket(webSocket: WebSocket, blockHeight: Int) {
         self.output("websocket.blockHeight", blockHeight)
+    }
+}
+
+extension BnbWallet {
+    // MARK: - Utils
+    private func output(_ label: String, _ property: Any, _ error: Error? = nil) {
+        plog(level: .debug, log: String(format: "bnb===%@:", label), tag: .bnb)
+        if let error = error {
+            plog(level: .debug, log:"error: \(error.localizedDescription)\n", tag: .bnb)
+            return
+        }
+        plog(level: .debug, log:property, tag: .bnb)
     }
 }
 

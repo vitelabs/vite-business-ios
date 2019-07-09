@@ -41,8 +41,8 @@ public extension Workflow {
         }
 
 
-        let amountString = String.init(format: "0.6f", amount)
-        let feeString = String.init(format: "0.6f", fee)
+        let amountString = String.init(format: "%0.6f", amount)
+        let feeString = String.init(format: "%0.6f", fee)
 
         let viewModel = ConfirmBnbTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, feeString: feeString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })

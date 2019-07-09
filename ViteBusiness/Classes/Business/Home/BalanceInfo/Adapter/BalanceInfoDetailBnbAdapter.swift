@@ -16,7 +16,7 @@ class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-
+        BnbWallet.shared.fetchBalance()
     }
 
     func viewDidDisappear() {

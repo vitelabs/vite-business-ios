@@ -88,8 +88,6 @@ class BnbTransactionListViewController: BaseTableViewController {
                     guard let `self` = self else { return }
                     self.tableView.deselectRow(at: indexPath, animated: true)
                     if let viewModel = (try? self.dataSource.model(at: indexPath)) as? Tx {
-
-
                         let host = "https://explorer.binance.org/tx"
                         guard let string = viewModel.txHash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
                         guard let url = URL(string: "\(host)/\(string)") else { return }
