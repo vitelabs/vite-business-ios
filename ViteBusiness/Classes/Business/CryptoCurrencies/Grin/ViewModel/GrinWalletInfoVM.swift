@@ -26,13 +26,10 @@ final class GrinWalletInfoVM {
         case cancel(TxLogEntry)
         case repost(TxLogEntry)
         case getFullInfoDetail(GrinFullTxInfo)
-
     }
 
     var grinManager:GrinManager { return GrinManager.default }
     let action = PublishSubject<GrinWalletInfoVM.Action>()
-
-    
     lazy var txsDriver: Driver<[GrinFullTxInfo]> = self.txs.asDriver()
     lazy var balanceDriver: Driver<GrinBalance> = self.balance.asDriver()
     lazy var messageDriver: Driver<String?> = self.message.asDriver()
@@ -235,7 +232,11 @@ final class GrinWalletInfoVM {
         }
 
         for tx in grinTxs {
-            guard let slateID = tx.txSlateId else { continue }
+            guard let slateID = tx.txSlateId else {
+                let fullInfo = GrinFullTxInfo.init(txLogEntry: tx, gatewayInfo: nil, localInfo: nil, openedSalte: nil,openedSalteUrl: nil, openedSalteFlieName: nil)
+                fullTxInfos.append(fullInfo)
+                continue
+            }
             if (tx.txType == .txSent || tx.txType == .txSentCancelled) {
                 if let index = sendIndexMap[slateID] {
                     fullTxInfos[index].txLogEntry = tx
@@ -412,7 +413,7 @@ final class GrinWalletInfoVM {
 
     func repost(_ tx: TxLogEntry) {
         grin_async({ () in
-            self.grinManager.txRepost(txId: UInt32(tx.id))
+            self.grinManager.txRepost(slateID: tx.txSlateId ?? "")
         },  { (result) in
             switch result {
             case .success(_):
