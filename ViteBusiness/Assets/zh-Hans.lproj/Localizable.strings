@@ -477,7 +477,7 @@
 "grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
 "grin.sent.vite.success" = "您的转账交易已发送。";
 "grin.receiveByVite.addressCopyed" = "您的GRIN收款VITE地址已复制至剪贴板";
-"grin.receiveByVite.desc" = "请将您的VITE地址（底部复制）分享给转账人";
+"grin.receiveByVite.desc" = "请将您的VITE地址（底部复制）分享给转账人。请注意，若您登录除iOS钱包外的Vite钱包接受了GRIN转账VITE交易，您需联系转账人取消交易并重新转账。";
 "grin.iknow" = "我知道了";
 "grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
 "grin.receiveByHttp.addressCopyed" = "您的GRIN收款HTTP地址已复制至剪贴板";

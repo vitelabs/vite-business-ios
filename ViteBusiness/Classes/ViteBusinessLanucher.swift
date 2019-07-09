@@ -40,7 +40,18 @@ public class ViteBusinessLanucher: NSObject {
     public func start(with window: UIWindow) {
         self.window = window
         //config
+        #if DAPP
+        let url: URL
+        if !DebugService.instance.config.rpcCustomUrl.isEmpty,
+            let u = URL(string: DebugService.instance.config.rpcCustomUrl) {
+            url = u
+        } else {
+            url = URL(string: ViteConst.Env.premainnet.vite.nodeHttp)!
+        }
+        Provider.default.update(server: ViteWallet.RPCServer(url: url))
+        #else
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
+        #endif
         EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
@@ -185,7 +196,8 @@ public class ViteBusinessLanucher: NSObject {
                 "platform": "ios",
                 "versionName": Bundle.main.versionNumber,
                 "versionCode": Bundle.main.buildNumberInt,
-                "env": env
+                "env": env,
+                "uuid": UUID.stored
                 ] as [String : Any]
             return Response(code:.success,msg: "ok",data: data)
         }
@@ -291,9 +303,26 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        GrinManager.default.handle(url: url)
+        if url.scheme == AppScheme.value {
+            guard let _ = HDWalletManager.instance.account else { return false }
+            if let ret = AppScheme(rawValue: url.host ?? "") {
+                switch ret {
+                case .open:
+                    if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
+                        let url = URL(string: urlString) {
+                        NavigatorManager.instance.push(url)
+                    }
+                }
+            }
+        } else {
+            GrinManager.default.handle(url: url)
+        }
         return true
     }
-
 }
 
+enum AppScheme: String {
+    static let value = "viteapp"
+
+    case open
+}

@@ -19,6 +19,10 @@ class KeychainService {
         if DebugService.instance.config.appEnvironment != .online {
             keyPrefix = "\(keyPrefix)_\(DebugService.instance.config.appEnvironment.name)"
         }
+
+        if Bundle.main.bundleIdentifier != "net.vite.wallet" {
+            keyPrefix = "\(Bundle.main.bundleIdentifier ?? "")_ \(keyPrefix)"
+        }
         return KeychainSwift.init(keyPrefix: keyPrefix)
     }()
     #else
@@ -41,11 +45,7 @@ class KeychainService {
     }
 
     enum Key: String {
-        #if ENTERPRISE
-        case currentWallet = "currentWallet.ep"
-        #else
         case currentWallet
-        #endif
     }
 
     fileprivate(set) var currentWallet: Wallet? {

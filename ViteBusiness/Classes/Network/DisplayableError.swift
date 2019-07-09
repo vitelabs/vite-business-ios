@@ -9,12 +9,12 @@ import Web3swift
 import ViteEthereum
 import ViteWallet
 
-protocol DisplayableError: Error {
+public protocol DisplayableError: Error {
     var errorMessage: String { get }
 }
 
 extension WalletError: DisplayableError {
-    var errorMessage: String {
+    public var errorMessage: String {
         switch self {
         case .notEnoughBalance:
             return R.string.localizable.ethErrorRpcErrorCodeNotEnoughBalance()
@@ -25,13 +25,13 @@ extension WalletError: DisplayableError {
 }
 
 extension ViteError: DisplayableError {
-    var errorMessage: String {
+    public var errorMessage: String {
         return viteErrorMessage
     }
 }
 
 extension Web3Error: DisplayableError {
-    var errorMessage: String {
+    public var errorMessage: String {
         switch self {
         case .transactionSerializationError:
             return "Transaction Serialization Error"

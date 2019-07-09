@@ -12,7 +12,6 @@ public struct Constants {
 
     public enum Channel: String {
         case appstore
-        case enterprise
     }
 
     // support
@@ -20,11 +19,8 @@ public struct Constants {
     //baidu  statistics
     public static let baiduMobileStat = "e74c7f32c0"
     //app channel
-    #if ENTERPRISE
-    public static let appDownloadChannel = Channel.enterprise
-    #else
     public static let appDownloadChannel = Channel.appstore
-    #endif
+
     public static let IntroductionPageVersion = "3.0"
 
     public static let whiteList = ["vite.org",
