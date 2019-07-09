@@ -15,7 +15,9 @@ class GrinLocalInfoService {
         HDWalletManager.instance.walletDriver
             .drive(onNext: { [weak self] (w) in
                 self?.db = GrinLocalInfoService.creatDB()
+                self?.moveNodeInfo()
             })
+        self.moveNodeInfo()
     }
 
     static func creatDB() -> FMDatabase {
@@ -25,7 +27,6 @@ class GrinLocalInfoService {
         do {
             try  db.executeUpdate("create table if not exists tx_send(slateid text primary key,method text, type text, status interger,creattime integer,sharesendfiletime integer,getresponsefiletime integer,finalizetime integer, canclesendtime integer);", values: nil)
             try  db.executeUpdate("create table if not exists tx_receive(slateid text primary key,method text,type text, status interger,getsendfiletime integer,receivetime integer,shareresponsefiletime integer, canclereceivetime integer);", values: nil)
-            try  db.executeUpdate("create table if not exists grin_node(id integer primary key autoincrement, address text, secret text, selected integer default 0);", values: nil)
         } catch {
             print(error)
         }
@@ -33,6 +34,20 @@ class GrinLocalInfoService {
     }
 
     lazy var db: FMDatabase = GrinLocalInfoService.creatDB()
+
+    lazy var nodedb: FMDatabase = {
+        let fileHelper = FileHelper.createForApp()
+        let url = URL.init(fileURLWithPath: fileHelper.rootPath, isDirectory: true) .appendingPathComponent("grin_node_info.db")
+        let db = FMDatabase.init(url: url)
+        db.open()
+        do {
+            try  db.executeUpdate("create table if not exists grin_node(id integer primary key autoincrement, address text, secret text, selected integer default 0);", values: nil)
+        } catch {
+            print(error)
+        }
+        return db
+    }()
+
 
     func addSendInfo(slateId: String, method: String, creatTime: Int) {
         do {
@@ -174,9 +189,7 @@ class GrinLocalInfoService {
         } catch {
 
         }
-
         return result.first
-
     }
 
     func getReceiveInfo(slateId: String) -> GrinLocalInfo? {
@@ -208,7 +221,7 @@ extension GrinLocalInfoService {
     func getNodeAddress() -> [GrinNode] {
         var result = [GrinNode]()
         do {
-            let a = try db.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
+            let a = try nodedb.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
             while a.next() {
                 var info = GrinNode()
                 info.id = a.long(forColumn: "id")
@@ -227,7 +240,7 @@ extension GrinLocalInfoService {
     func getSelectedNode() -> GrinNode? {
         var result = [GrinNode]()
         do {
-            let a = try db.executeQuery("select * from grin_node where selected = 1" ,values: nil)
+            let a = try nodedb.executeQuery("select * from grin_node where selected = 1" ,values: nil)
             while a.next() {
                 var info = GrinNode()
                 info.id = a.long(forColumn: "id")
@@ -245,7 +258,7 @@ extension GrinLocalInfoService {
 
     func add(node:GrinNode ) {
         do {
-            let a = try db.executeUpdate("insert into grin_node(address, secret) values (?,?)", values: [node.address, node.apiSecret])
+            let a = try nodedb.executeUpdate("insert into grin_node(address, secret) values (?,?)", values: [node.address, node.apiSecret])
         } catch {
 
         }
@@ -253,7 +266,7 @@ extension GrinLocalInfoService {
 
     func update(node:GrinNode ) {
         do {
-            try  db.executeUpdate("update grin_node set address = ?, secret = ? where id = ? ", values: [node.address,node.apiSecret, node.id])
+            try  nodedb.executeUpdate("update grin_node set address = ?, secret = ? where id = ? ", values: [node.address,node.apiSecret, node.id])
         } catch {
 
         }
@@ -261,7 +274,7 @@ extension GrinLocalInfoService {
 
     func remove(node:GrinNode ) {
         do {
-            try  db.executeUpdate("delete from grin_node where id = ? ", values: [node.id])
+            try  nodedb.executeUpdate("delete from grin_node where id = ? ", values: [node.id])
         } catch {
 
         }
@@ -269,10 +282,10 @@ extension GrinLocalInfoService {
 
     func select(node:GrinNode ) {
         do {
-            db.beginTransaction()
-            try  db.executeUpdate("update grin_node set selected = 1 where id = ? ", values: [node.id])
-            try  db.executeUpdate("update grin_node set selected = 0 where id != ? ", values: [node.id])
-            db.commit()
+            nodedb.beginTransaction()
+            try  nodedb.executeUpdate("update grin_node set selected = 1 where id = ? ", values: [node.id])
+            try  nodedb.executeUpdate("update grin_node set selected = 0 where id != ? ", values: [node.id])
+            nodedb.commit()
         } catch {
 
         }
@@ -280,9 +293,35 @@ extension GrinLocalInfoService {
 
     func deSelect() {
         do {
-            try  db.executeUpdate("update grin_node set selected = 0 where 1 = 1 ", values: nil)
+            try  nodedb.executeUpdate("update grin_node set selected = 0 where 1 = 1 ", values: nil)
         } catch {
 
+        }
+    }
+
+    func moveNodeInfo() {
+        var result = [GrinNode]()
+        do {
+            let a = try db.executeQuery("select * from grin_node where 1 = 1" ,values: nil)
+            while a.next() {
+                var info = GrinNode()
+                info.id = a.long(forColumn: "id")
+                info.address = a.string(forColumn: "address") ?? ""
+                info.apiSecret = a.string(forColumn: "secret") ?? ""
+                info.id = a.long(forColumn: "id") ?? 0
+                info.seleted = (a.int(forColumn: "selected") == 1)
+                result.append(info)
+            }
+        } catch {
+            return
+        }
+
+        for node in result {
+            add(node: node)
+            if node.seleted {
+                select(node: node)
+            }
+            try? db.executeUpdate("delete from grin_node where id = ? ", values: [node.id])
         }
     }
 }
