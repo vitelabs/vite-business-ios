@@ -104,6 +104,9 @@ public class BnbWallet {
         self.wallet = nil
         self.fromAddress = nil
         self.fileHelper = nil
+        //disconnect websocket
+        self.webSocket?.close()
+        self.webSocket = nil
     }
 
     private func setupWebSocket() {
@@ -142,7 +145,7 @@ public class BnbWallet {
     }
 
     //fetch log
-    public func fetchTransactions(limit:Limit,offset:Int,txAsset:String,completion: @escaping (Transactions) -> Void) {
+    public func fetchTransactions(limit:Limit,offset:Int,txAsset:String,completion: @escaping (Transactions,Error?) -> Void) {
         guard let address = self.fromAddress else {
             return
         }
@@ -150,7 +153,7 @@ public class BnbWallet {
         let startTime = endTime - 3600*24*30*3*1000
 
         binance.transactions(address: address, endTime: endTime,limit: limit,offset: offset,startTime:startTime,txAsset:txAsset) { (response) in
-            completion(response.transactions)
+            completion(response.transactions,response.error)
         }
     }
 

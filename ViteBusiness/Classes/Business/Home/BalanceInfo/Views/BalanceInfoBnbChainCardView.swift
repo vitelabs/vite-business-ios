@@ -199,13 +199,14 @@ class BalanceInfoBnbChainCardView: UIView {
 
     func bind(tokenInfo: TokenInfo) {
 //        guard let token = tokenInfo.toETHToken() else { return }
-//
-//        Driver.combineLatest(
-//            ExchangeRateManager.instance.rateMapDriver,
-//            ETHBalanceInfoManager.instance.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()).map({ (map, balanceInfo) -> String in
-//                "≈" + map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
-//            }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
-//
+//TODO..
+        Driver.combineLatest(
+            ExchangeRateManager.instance.rateMapDriver,
+            BnbWallet.shared.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()).map({ (rateMap, balanceInfo) -> String in
+                let temp = rateMap.priceString(tokenCode: balanceInfo.symbol, balance: Float(balanceInfo.free))
+                return String.init(format: "≈%@", temp)
+            }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
+
         BnbWallet.shared.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil().map({
             String.init(format: "%.6f", $0.free)
         }).drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)

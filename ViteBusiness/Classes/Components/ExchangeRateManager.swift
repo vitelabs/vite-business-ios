@@ -133,6 +133,17 @@ public extension Dictionary where Key == String, Value == [String: String] {
         }
     }
 
+    func priceString(tokenCode: String, balance: Float) -> String {
+        let currency = AppSettingsService.instance.currency
+
+        if let dic = self[tokenCode] as? [String: String],
+           let rate = dic[currency.rawValue] as? String{
+            let price = String.init(format: "0.2f", balance *  Float(string: rate)!)
+            return "\(currency.symbol)\(price)"
+        }
+        return "0.00"
+    }
+
     func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.currency
         let p = price(for: tokenInfo, balance: balance)
