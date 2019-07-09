@@ -259,7 +259,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
                 if !info.minimumWithdrawAmount.isEmpty,
                     let min = Amount(info.minimumWithdrawAmount) {
-                    guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: TokenInfo.eth.decimals))")
+                guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.decimals))")
                         return
                     }
                 }
@@ -267,7 +267,9 @@ class GatewayWithdrawViewController: BaseViewController {
                 if !info.maximumWithdrawAmount.isEmpty,
                     let max = Amount(info.maximumWithdrawAmount) {
                     guard amount <= max else {
-                        Toast.show(R.string.localizable.crosschainWithdrawGatewayispoor())
+                        let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.decimals
+                        let numString = max.amount(decimals: decimals, count: 0, groupSeparator: true)
+                        Toast.show(R.string.localizable.crosschainWithdrawGatewayispoor(numString, self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.symbol))
                         return
                     }
                 }

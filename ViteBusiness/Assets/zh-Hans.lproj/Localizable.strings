@@ -606,7 +606,7 @@
 "crosschain.status.failed" = "转入失败";
 "crosschain.beta.alert" = "当前网关为beta版，请不要转入大额资产";
 "crosschain.fee" = "手续费";
-"crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额，请联系gateway@vite.org.";
+"crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额%@%@，请联系gateway@vite.org转出.";
 
 
 

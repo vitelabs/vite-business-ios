@@ -602,5 +602,5 @@
 "crosschain.status.failed" = "Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
 "crosschain.fee" = "Fee";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the limit, please contact gateway@vite.org.";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
 

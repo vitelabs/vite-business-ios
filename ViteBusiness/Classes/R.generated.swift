@@ -1413,7 +1413,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageAmountTitle = Rswift.StringResource(key: "send.page.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Amount exceeds the limit, please contact gateway@vite.org.
+      /// en translation: Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.
       /// 
       /// Locales: en, zh-Hans
       static let crosschainWithdrawGatewayispoor = Rswift.StringResource(key: "crosschain.withdraw.gatewayispoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3521,11 +3521,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Amount exceeds the limit, please contact gateway@vite.org.
+      /// en translation: Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.
       /// 
       /// Locales: en, zh-Hans
-      static func crosschainWithdrawGatewayispoor(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.withdraw.gatewayispoor", bundle: R.hostingBundle, comment: "")
+      static func crosschainWithdrawGatewayispoor(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.withdraw.gatewayispoor", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: An ID conflict occurs, please re-submit later
