@@ -32,16 +32,12 @@ class BnbTransactionListViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
-        HDWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
-            self?.bind(address: account.address)
-        }).disposed(by: rx.disposeBag)
+        self.bind()
     }
 
     var tableViewModel: BnbTransactionListTableViewModel!
 
     fileprivate func setupView() {
-
         tableView.separatorStyle = .none
         tableView.rowHeight = BnbTransactionCell.cellHeight
         tableView.estimatedRowHeight = BnbTransactionCell.cellHeight
@@ -69,7 +65,7 @@ class BnbTransactionListViewController: BaseTableViewController {
 
     let footerView = GetMoreLoadingView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
 
-    func bind(address: ViteAddress) {
+    func bind() {
 
         if tableViewModel == nil {
             tableViewModel = BnbTransactionListTableViewModel(symbol: self.symbol)
@@ -117,7 +113,7 @@ class BnbTransactionListViewController: BaseTableViewController {
                 }
                 .disposed(by: rx.disposeBag)
         } else {
-            tableViewModel.update(address: address)
+            tableViewModel.update()
         }
 
         dataStatus = .loading
