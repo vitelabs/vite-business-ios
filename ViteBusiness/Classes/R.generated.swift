@@ -1263,7 +1263,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 499 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 501 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1301,6 +1301,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainDepositAbout = Rswift.StringResource(key: "crosschain.deposit.about", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainDepositOtherAbout = Rswift.StringResource(key: "crosschain.deposit.other.about", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -1773,6 +1777,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let delete = Rswift.StringResource(key: "Delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Deposit Failed
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusFailed = Rswift.StringResource(key: "crosschain.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Description
       /// 
       /// Locales: en, zh-Hans
@@ -1845,10 +1853,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let manageWalletPageImportMnemonicCellTitle = Rswift.StringResource(key: "manage.wallet.page.importMnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Failed
-      /// 
-      /// Locales: en, zh-Hans
-      static let crosschainStatusFailed = Rswift.StringResource(key: "crosschain.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Failed to connect with the full node.
       /// 
       /// Locales: en, zh-Hans
@@ -3153,6 +3157,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let ethPageGasFeeNoticeTitle = Rswift.StringResource(key: "eth.page.gasFee.notice.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Withdraw Failed
+      /// 
+      /// Locales: en, zh-Hans
+      static let crosschainStatusWithdrawFailed = Rswift.StringResource(key: "crosschain.status.withdraw.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Withdrawal of staking quota
       /// 
       /// Locales: en, zh-Hans
@@ -3323,6 +3331,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainDepositAbout(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("crosschain.deposit.about", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainDepositOtherAbout(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.other.about", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Voting</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>
@@ -4151,6 +4166,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Delete", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Deposit Failed
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusFailed(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.failed", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Description
       /// 
       /// Locales: en, zh-Hans
@@ -4275,13 +4297,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func manageWalletPageImportMnemonicCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("manage.wallet.page.importMnemonic.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Failed
-      /// 
-      /// Locales: en, zh-Hans
-      static func crosschainStatusFailed(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.status.failed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Failed to connect with the full node.
@@ -6564,6 +6579,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func ethPageGasFeeNoticeTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.page.gasFee.notice.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Withdraw Failed
+      /// 
+      /// Locales: en, zh-Hans
+      static func crosschainStatusWithdrawFailed(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.status.withdraw.failed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Withdrawal of staking quota

@@ -196,7 +196,7 @@ class GatewayDepositViewController: BaseViewController {
 
 
     func showTip() {
-        var htmlString = R.string.localizable.crosschainDepositAbout(self.tokenInfo.symbol, self.tokenInfo.symbol)
+        var htmlString = R.string.localizable.crosschainDepositOtherAbout(self.tokenInfo.symbol)
 
         let vc = PopViewController(htmlString: htmlString)
         vc.modalPresentationStyle = .overCurrentContext

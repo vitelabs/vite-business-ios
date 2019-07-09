@@ -186,9 +186,14 @@ class CrossChainHistoryCell: UITableViewCell {
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()
                 iconImageView.image = R.image.crosschain_status_confirm()
+            case .BELOW_MINIMUM:
+                statusString = ""
             case .TOT_EXCEED_THE_LIMIT:
-                statusString = R.string.localizable.crosschainStatusTotExceedLimit()
+                seperator.isHidden = false
+                reasonLabel.isHidden = false
+                statusString = R.string.localizable.crosschainStatusWithdrawFailed()
                 iconImageView.image = R.image.crosschain_status_failure()
+                reasonLabel.text = R.string.localizable.crosschainStatusTotExceedLimit()
             case .WRONG_WITHDRAW_ADDRESS:
                 statusString = R.string.localizable.crosschainStatusWrongAddress()
                 iconImageView.image = R.image.crosschain_status_failure()
@@ -215,13 +220,16 @@ class CrossChainHistoryCell: UITableViewCell {
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
                 iconImageView.image = R.image.crosschain_status_gateway()
-            case .TOT_EXCEED_THE_LIMIT:
+            case .BELOW_MINIMUM:
                 seperator.isHidden = false
                 reasonLabel.isHidden = false
                 statusString = R.string.localizable.crosschainStatusFailed()
                 reasonLabel.text = R.string.localizable.crosschainStatusFailedBecausePoor()
                 iconImageView.image = R.image.crosschain_status_failure()
-                feeLabel.text = nil
+                amountLabel.text = nil
+                symbleLabel.text = nil
+            case .TOT_EXCEED_THE_LIMIT:
+                statusString = ""
             case .WRONG_WITHDRAW_ADDRESS:
                 statusString = R.string.localizable.crosschainStatusFailed()
                 iconImageView.image = R.image.crosschain_status_failure()

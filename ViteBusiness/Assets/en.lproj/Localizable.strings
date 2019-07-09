@@ -573,6 +573,7 @@
 "crosschain.deposit.address" = "Receive Address";
 "crosschain.deposit.scanAddress" = "Scan QR Code to Receive";
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
 "crosschain.deposit.min" = "Minimum Receive ";
 "crosschain.withdraw.min" = "Minimum Transfer ";
@@ -596,10 +597,11 @@
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
 "crosschain.status.wrong.address" = "Wrong transfer address";
 "crosschain.status.gatewayReceived" = "Received by Gateway";
-"crosschain.status.failedBecausePoor" = "Too less transfer-in amount.";
+"crosschain.status.withdraw.failed" = "Withdraw Failed";
+"crosschain.status.failedBecausePoor" = "Too less amount";
 "crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
-"crosschain.status.failed" = "Failed";
+"crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
 "crosschain.fee" = "Fee";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
