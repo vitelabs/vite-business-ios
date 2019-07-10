@@ -10,13 +10,15 @@ import Foundation
 class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
 
     let tokenInfo: TokenInfo
-
+    let transactionsView : BalanceInfoBnbChainTransactionsView
     required init(tokenInfo: TokenInfo) {
         self.tokenInfo = tokenInfo
+        self.transactionsView = BalanceInfoBnbChainTransactionsView(tokenInfo: tokenInfo)
     }
 
     func viewDidAppear() {
         BnbWallet.shared.fetchBalance()
+        self.transactionsView.refreshData()
     }
 
     func viewDidDisappear() {
@@ -35,8 +37,7 @@ class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
         }
 
         cardView.bind(tokenInfo: tokenInfo)
-
-        let transactionsView = BalanceInfoBnbChainTransactionsView(tokenInfo: tokenInfo)
+        
         containerView.addSubview(transactionsView)
         transactionsView.snp.makeConstraints { (m) in
             m.top.equalTo(cardView.snp.bottom).offset(14)

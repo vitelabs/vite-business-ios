@@ -40,9 +40,14 @@ public extension Workflow {
                 })
         }
 
+        var amountString = "\(amount) \(tokenInfo.symbol)"
 
-        let amountString = String.init(format: "%0.6f", amount)
-        let feeString = String.init(format: "%0.6f", fee)
+        var feeStr = "\(fee)"
+        var rateFee = ""
+        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(fee) {
+            rateFee = String(format: "≈%@",rateFeeStr)
+        }
+        let feeString = String(format: "%@ BNB %@", feeStr,rateFee)
 
         let viewModel = ConfirmBnbTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, feeString: feeString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })

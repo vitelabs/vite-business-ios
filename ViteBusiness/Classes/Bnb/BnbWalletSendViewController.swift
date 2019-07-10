@@ -12,6 +12,8 @@ import RxCocoa
 import NSObject_Rx
 import BinanceChain
 
+import ViteWallet
+
 class BnbWalletSendViewController: BaseViewController {
     // FIXME: Optional
     let fromAddress : String = BnbWallet.shared.fromAddress!
@@ -195,8 +197,18 @@ class BnbWalletSendViewController: BaseViewController {
                 Toast.show(R.string.localizable.sendPageToastAmountError())
                 return
             }
-            Workflow.sendBnbTransactionWithConfirm(toAddress: toAddress, tokenInfo: self.tokenInfo, amount: amount, fee: self.fee, completion: { r in
+            Workflow.sendBnbTransactionWithConfirm(toAddress: toAddress, tokenInfo: self.tokenInfo, amount: amount, fee: self.fee, completion: {[weak self] (r) in
 
+                if case .success = r {
+                    self?.dismiss()
+                } else if case .failure(let error) = r {
+                    guard ViteError.conversion(from: error) != ViteError.cancel else { return }
+                    if let e = error as? DisplayableError {
+                        Toast.show(e.errorMessage)
+                    } else {
+                        Toast.show((error as NSError).localizedDescription)
+                    }
+                }
             })
         }
     }
@@ -232,7 +244,14 @@ extension BnbWalletSendViewController: UITextFieldDelegate {
             let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, 18))
             textField.text = text
             return ret
-        }  else {
+        }else if textField == noteView.textField {
+            // maxCount is 120, about 40 Chinese characters
+            let ret = InputLimitsHelper.allowText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, maxCount: 120)
+            if !ret {
+                Toast.show(R.string.localizable.sendPageToastNoteTooLong())
+            }
+            return ret
+        } else {
             return true
         }
     }

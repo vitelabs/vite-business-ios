@@ -128,7 +128,7 @@ class BnbTransactionListViewController: BaseTableViewController {
         }
     }
 
-    private func refreshList(finished: (() -> Void)? = nil) {
+    func refreshList(finished: (() -> Void)? = nil) {
         tableViewModel.refreshList { [weak self] error in
             if let f = finished {
                 f()
