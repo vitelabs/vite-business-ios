@@ -158,7 +158,7 @@ extension BnbTransactionListViewController: ViewControllerDataStatusable {
 
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
         return UIView.networkErrorAndshowAccountView(error: error, showImage: showImage) { [weak self] in
-            var urlStr = String.init(format: "https://explorer.binance.org/address/%@", BnbWallet.shared.fromAddress ?? "") 
+            var urlStr = String.init(format: "https://explorer.binance.org/address/%@", BnbWallet.shared.fromAddress ?? "")
             let vc = WKWebViewController(url: URL.init(string: urlStr)!)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }

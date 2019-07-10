@@ -6,15 +6,10 @@
 //
 
 import Foundation
-import ViteWallet
 import SnapKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import BigInt
-import ViteEthereum
-import web3swift
-
 import BinanceChain
 
 class BnbWalletSendViewController: BaseViewController {
@@ -22,9 +17,16 @@ class BnbWalletSendViewController: BaseViewController {
     let fromAddress : String = BnbWallet.shared.fromAddress!
 
     public var tokenInfo : TokenInfo
+    var balance = 0.0
+    var fee = BnbWallet.shared.fee
+    var toAddress:String?
+    var amount:String?
 
-    init(_ tokenInfo: TokenInfo) {
+    init(_ tokenInfo: TokenInfo,toAddress: String? = nil,amount:String? = nil) {
+        self.toAddress = toAddress
+        self.amount = amount
         self.tokenInfo = tokenInfo
+        BnbWallet.shared.fetchFee()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,17 +38,16 @@ class BnbWalletSendViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+        BnbWallet.shared.fetchBalance()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-
+        kas_activateAutoScrollingForView(scrollView)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     // View
@@ -71,7 +72,7 @@ class BnbWalletSendViewController: BaseViewController {
 
     private lazy var headerView = BnbSendPageTokenInfoView(address: self.fromAddress)
 
-    private lazy var amountView = SendAmountView(amount: "", token: self.tokenInfo)
+    private lazy var amountView = SendAmountView(amount:  self.amount ?? "", token: self.tokenInfo)
 
     private lazy var gasFeeView = BnbGasFeeView()
 
@@ -98,16 +99,18 @@ class BnbWalletSendViewController: BaseViewController {
     }
 
     private lazy var addressView: SendAddressViewType = {
-
-        let view = AddressTextViewView()
-        view.addButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                [R.string.localizable.ethSendPageEthContactsButtonTitle(),
-                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
-            }.disposed(by: rx.disposeBag)
-        return  view
-
+        if let address = self.toAddress {
+            return AddressLabelView(address: address)
+        }else {
+            let view = AddressTextViewView()
+            view.addButton.rx.tap.bind { [weak self] in
+                guard let `self` = self else { return }
+                FloatButtonsView(targetView: view.addButton, delegate: self, titles:
+                    [R.string.localizable.ethSendPageEthContactsButtonTitle(),
+                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+                }.disposed(by: rx.disposeBag)
+            return  view
+        }
     }()
 
     private func setupView() {
@@ -120,6 +123,14 @@ class BnbWalletSendViewController: BaseViewController {
             m.width.height.equalTo(50)
         }
 
+
+        var feeStr = String(format: "%.6f", self.fee)
+        var rateFee = ""
+        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(self.fee) {
+            rateFee = String(format: "≈%@",rateFeeStr)
+        }
+        self.gasFeeView.totalGasFeeLab.text = String(format: "%@ BNB %@", feeStr,rateFee)
+
         scrollView.stackView.addArrangedSubview(headerView)
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
@@ -131,54 +142,62 @@ class BnbWalletSendViewController: BaseViewController {
 
         addressView.textView.keyboardType = .default
         amountView.textField.keyboardType = .decimalPad
+        noteView.textField.keyboardType = .default
 
         let toolbar = UIToolbar()
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: nil, action: nil)
 
-        toolbar.items = [flexSpace, done]
+        toolbar.items = [flexSpace, next]
         toolbar.sizeToFit()
+        next.rx.tap.bind { [weak self] in self?.noteView.textField.becomeFirstResponder() }.disposed(by: rx.disposeBag)
         done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
         amountView.textField.inputAccessoryView = toolbar
+
         addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
         amountView.textField.delegate = self
+        noteView.textField.kas_setReturnAction(.done(block: {
+            $0.resignFirstResponder()
+        }), delegate: self)
+
     }
 
     private func bind() {
-        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.tokenCode).drive(onNext:{[weak self] ret in
+        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.tokenCode).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
-            guard let balance = ret else { return }
-            self.headerView.balanceLabel.text =  String.init(format: "%.6f", balance.free)
+            guard let ret = r else { return }
+            self.headerView.balanceLabel.text =  String.init(format: "%.6f", ret.free)
+            self.balance = ret.free
         }).disposed(by: rx.disposeBag)
 
-        self.sendButton.rx.tap
-            .bind { [weak self] in
-                guard let `self` = self else { return }
+        self.sendButton
+            .rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
 
-                Workflow.sendBnbTransactionWithConfirm(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", tokenInfo: self.tokenInfo, amount: 0.0001, fee: 0.000375, completion: { r in
+                guard let toAddress : String = self.addressView.textView.text ?? "",
+                toAddress.checkBnbAddressIsValid() else {
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
+                return
+            }
+            guard let amountString = self.amountView.textField.text,
+                !amountString.isEmpty,
+                let amount = Double(amountString) else {
+                    Toast.show(R.string.localizable.sendPageToastAmountEmpty())
+                    return
+            }
+            guard amount > 0 else {
+                Toast.show(R.string.localizable.sendPageToastAmountZero())
+                return
+            }
 
-                })
+            guard amount <= self.balance else {
+                Toast.show(R.string.localizable.sendPageToastAmountError())
+                return
+            }
+            Workflow.sendBnbTransactionWithConfirm(toAddress: toAddress, tokenInfo: self.tokenInfo, amount: amount, fee: self.fee, completion: { r in
 
-
-//                BnbWallet.shared.sendTransaction(toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn", amount: 0.0001, symbol: "BNB")
-
-//                guard let toAddress = EthereumAddress(self.addressView.textView.text ?? ""),
-//                    toAddress.isValid else {
-//                        Toast.show(R.string.localizable.sendPageToastAddressError())
-//                        return
-//                }
-//                guard let amountString = self.amountView.textField.text,
-//                    !amountString.isEmpty,
-//                    let amount = amountString.toAmount(decimals: self.tokenInfo.decimals) else {
-//                        Toast.show(R.string.localizable.sendPageToastAmountEmpty())
-//                        return
-//                }
-//
-//                guard amount > 0 else {
-//                    Toast.show(R.string.localizable.sendPageToastAmountZero())
-//                    return
-//                }
+            })
         }
     }
 }

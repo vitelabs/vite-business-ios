@@ -16,7 +16,7 @@ public extension Workflow {
     static func sendBnbTransactionWithConfirm(toAddress: String,
                                               tokenInfo: TokenInfo,
                                               amount: Double,
-                                              fee: Float,
+                                              fee: Double,
                                               completion: @escaping (Result<String>) -> ()) {
         let sendBlock = {
             HUD.show()

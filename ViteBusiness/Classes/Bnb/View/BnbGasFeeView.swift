@@ -20,8 +20,8 @@ public class BnbGasFeeView: UIView {
     }
 
     lazy var totalGasFeeLab = UILabel().then {(totalGasFeeLab) in
-        totalGasFeeLab.textColor = UIColor(netHex: 0x24272B)
-        totalGasFeeLab.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        totalGasFeeLab.textColor = UIColor(netHex: 0x3E4A59,alpha: 0.7)
+        totalGasFeeLab.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
     let separatorLine = UIView().then {
@@ -30,16 +30,19 @@ public class BnbGasFeeView: UIView {
 
     init() {
         super.init(frame: CGRect.zero)
+        self.backgroundColor = .clear
 
         self.addSubview(totalGasFeeTitleLab)
         totalGasFeeTitleLab.snp.makeConstraints({ (m) in
-            m.top.bottom.left.centerY.equalToSuperview()
+            m.left.top.equalToSuperview()
+            m.bottom.equalToSuperview().offset(-10)
             m.height.equalTo(60)
         })
 
         self.addSubview(totalGasFeeLab)
         totalGasFeeLab.snp.makeConstraints({ (m) in
-            m.top.bottom.right.centerY.equalToSuperview()
+            m.right.top.equalToSuperview()
+            m.bottom.equalToSuperview().offset(-10)
             m.height.equalTo(60)
         })
 

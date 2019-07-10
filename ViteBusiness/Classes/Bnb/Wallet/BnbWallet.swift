@@ -72,7 +72,7 @@ public class BnbWallet {
     let binance = BinanceChain(endpoint: .mainnet)
     var wallet : Wallet? = nil
     var fromAddress : String? = nil
-
+    var fee = 0.000375
 
     fileprivate let disposeBag = DisposeBag()
     //signal
@@ -90,7 +90,6 @@ public class BnbWallet {
         let account = wallet!.account
         self.fromAddress = wallet!.account
         self.appending = wallet!.account
-
 
         self.fileHelper = FileHelper.createForWallet(appending: self.appending)
 
@@ -143,6 +142,15 @@ public class BnbWallet {
             return nil
         })
     }
+    //fetch fee
+    public func fetchFee(){
+        binance.fees { (response) in
+            let dd = response.fees
+            for f in dd where f.fixedFeeParams != nil{
+                self.fee = Double(f.fixedFeeParams?.fee ?? "37500") as! Double / 100000000.0
+            }
+        }
+    }
 
     //fetch log
     public func fetchTransactions(limit:Limit,offset:Int,txAsset:String,completion: @escaping (Transactions,Error?) -> Void) {
@@ -157,7 +165,7 @@ public class BnbWallet {
         }
     }
 
-    //send
+    //send Transaction
     public func sendTransactionPromise(toAddress:String,amount:Double,symbol:String) -> Promise<[Transaction]>{
         return Promise { seal in
             sendTransaction(toAddress: toAddress, amount: amount,symbol: symbol) { result, error in
@@ -191,7 +199,7 @@ public class BnbWallet {
     }
 
     private init() {
-
+        fetchFee()
     }
 }
 

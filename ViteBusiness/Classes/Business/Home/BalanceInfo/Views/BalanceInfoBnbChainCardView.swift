@@ -203,7 +203,7 @@ class BalanceInfoBnbChainCardView: UIView {
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
             BnbWallet.shared.balanceInfoDriver(for: tokenInfo.tokenCode).filterNil()).map({ (rateMap, balanceInfo) -> String in
-                let temp = rateMap.priceString(tokenCode: balanceInfo.symbol, balance: Float(balanceInfo.free))
+                let temp = rateMap.priceString(tokenCode: balanceInfo.symbol, balance: Double(balanceInfo.free))
                 return String.init(format: "≈%@", temp)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
@@ -217,7 +217,7 @@ class BalanceInfoBnbChainCardView: UIView {
             }.disposed(by: rx.disposeBag)
 
         sendButton.rx.tap.bind { [weak self] in
-            UIViewController.current?.navigationController?.pushViewController(BnbWalletSendViewController(tokenInfo), animated: true)
+            UIViewController.current?.navigationController?.pushViewController(BnbWalletSendViewController(tokenInfo,toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn"), animated: true)
             }.disposed(by: rx.disposeBag)
 
         DispatchQueue.main.async {
