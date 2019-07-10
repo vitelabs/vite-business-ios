@@ -1,31 +1,25 @@
 
 //
-//  WCSessionUpdate.swift
-//  WalletConnect
+//  VBSessionUpdate.swift
+//  ViteBusiness
 //
-//  Created by Tao Xu on 3/29/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
+
 
 import Foundation
 
-public struct WCExchangeKeyParam: Codable {
+public struct VBSessionRequestParam: Codable {
     let peerId: String
-    let peerMeta: WCPeerMeta
-    let nextKey: String
-}
-
-public struct WCSessionRequestParam: Codable {
-    let peerId: String
-    let peerMeta: WCPeerMeta
+    let peerMeta: VBPeerMeta
     let chainId: String?
 }
 
-public struct WCSessionPingParam: Codable {}
+public struct VBSessionPingParam: Codable {}
 
-public struct WCSessionPingResponse: Codable {}
+public struct VBSessionPingResponse: Codable {}
 
-public struct WCSessionUpdateParam: Codable {
+public struct VBSessionUpdateParam: Codable {
     public let approved: Bool
     public let chainId: Int?
     public let accounts: [String]?
@@ -38,12 +32,12 @@ public struct WCSessionUpdateParam: Codable {
     }
 }
 
-public struct WCApproveSessionResponse: Codable {
+public struct VBApproveSessionResponse: Codable {
     public let approved: Bool
     public let chainId: Int
     public let accounts: [String]
 
     public let peerId: String?
-    public let peerMeta: WCPeerMeta?
+    public let peerMeta: VBClientMeta?
 }
 

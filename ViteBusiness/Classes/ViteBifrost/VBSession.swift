@@ -1,21 +1,21 @@
 //
-//  WCSession.swift
-//  WalletConnect
+//  VBSession.swift
+//  ViteBusiness
 //
-//  Created by Tao Xu on 3/29/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
+
 
 import Foundation
 import CryptoSwift
 
-public struct WCSession {
+public struct VBSession {
     public let topic: String
     public let version: String
     public let bridge: URL
     public let key: Data
 
-    public static func from(string: String) -> WCSession? {
+    public static func from(string: String) -> VBSession? {
         guard string .hasPrefix("vb:") else {
             return nil
         }
@@ -40,6 +40,6 @@ public struct WCSession {
                 return nil
         }
 
-        return WCSession(topic: topic, version: version, bridge: bridgeUrl, key: Data(hex: key))
+        return VBSession(topic: topic, version: version, bridge: bridgeUrl, key: Data(hex: key))
     }
 }

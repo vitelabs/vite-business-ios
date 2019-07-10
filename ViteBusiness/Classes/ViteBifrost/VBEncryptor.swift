@@ -1,17 +1,17 @@
 //
-//  WCEncryptor.swift
-//  WalletConnect
+//  VBEncryptor.swift
+//  ViteBusiness
 //
-//  Created by Tao Xu on 3/30/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
+
 
 import Foundation
 import CryptoSwift
 import Security
 
-public struct WCEncryptor {
-    public static func encrypt(data: Data, with key: Data) throws -> WCEncryptionPayload {
+public struct VBEncryptor {
+    public static func encrypt(data: Data, with key: Data) throws -> VBEncryptionPayload {
         let ivBytes = randomBytes(16)
         let keyBytes = key.bytes
         let aesCipher = try AES(key: keyBytes, blockMode: CBC(iv: ivBytes))
@@ -22,15 +22,15 @@ public struct WCEncryptor {
         let iv = ivBytes.toHexString()
         let hmac = try computeHMAC(payload: data, iv: iv, key: keyBytes)
 
-        return WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
+        return VBEncryptionPayload(data: data, hmac: hmac, iv: iv)
     }
 
-    public static func decrypt(payload: WCEncryptionPayload, with key: Data) throws -> Data {
+    public static func decrypt(payload: VBEncryptionPayload, with key: Data) throws -> Data {
         let keyBytes = key.bytes
         let computedHmac = try computeHMAC(payload: payload.data, iv: payload.iv, key: keyBytes)
 
         guard computedHmac == payload.hmac else {
-            throw WCError.badServerResponse
+            throw VBError.badServerResponse
         }
 
         let dataBytes = Data(hex: payload.data).bytes

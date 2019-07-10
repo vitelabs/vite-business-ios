@@ -1,14 +1,14 @@
 //
 //  SocketMessage.swift
-//  WalletConnect
+//  ViteBusiness
 //
-//  Created by Tao Xu on 3/29/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
+
 
 import Foundation
 
-public struct WCEncryptionPayload: Codable {
+public struct VBEncryptionPayload: Codable {
     public let data: String
     public let hmac: String
     public let iv: String
@@ -20,7 +20,7 @@ public struct WCEncryptionPayload: Codable {
     }
 }
 
-public struct WCSocketMessage<T: Codable>: Codable {
+public struct VBSocketMessage<T: Codable>: Codable {
     public enum MessageType: String, Codable {
         case pub
         case sub
@@ -30,19 +30,19 @@ public struct WCSocketMessage<T: Codable>: Codable {
     public let payload: T
 }
 
-public extension WCEncryptionPayload {
-    static func extract(_ string: String) -> (topic: String, payload: WCEncryptionPayload)? {
+public extension VBEncryptionPayload {
+    static func extract(_ string: String) -> (topic: String, payload: VBEncryptionPayload)? {
         guard let data = string.data(using: .utf8) else {
             return nil
         }
         do {
             let decoder = JSONDecoder()
-            if let message = try? decoder.decode(WCSocketMessage<WCEncryptionPayload>.self, from: data) {
+            if let message = try? decoder.decode(VBSocketMessage<VBEncryptionPayload>.self, from: data) {
                 return (message.topic, message.payload)
             } else {
-                let message = try decoder.decode(WCSocketMessage<String>.self, from: data)
+                let message = try decoder.decode(VBSocketMessage<String>.self, from: data)
                 let payloadData = message.payload.data(using: .utf8)
-                return  (message.topic, try decoder.decode(WCEncryptionPayload.self, from: payloadData!))
+                return  (message.topic, try decoder.decode(VBEncryptionPayload.self, from: payloadData!))
             }
         } catch let error {
             print(error)

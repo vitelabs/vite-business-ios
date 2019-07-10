@@ -1,217 +1,17 @@
 //
-//  WCEthereumSendTransaction.swift
-//  WalletConnect
+//  BifrostConfrimInfoFactory.swift
+//  ViteBusiness
 //
-//  Created by Tao Xu on 4/3/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
 
 import Foundation
-import ObjectMapper
-import ViteWallet
-import BigInt
-import enum Result.Result
 import PromiseKit
 import SwiftyJSON
+import ViteWallet
 
-public struct VBJSONRPCRequest<T: Mappable>: Mappable {
-    public var id: Int64!
-    public var jsonrpc: String!
-    public var method: String!
-    public var params: [T]!
+struct BifrostConfrimInfoFactory {
 
-    public init?(map: Map) {
-//        guard let id = map.JSON["id"] as? Int64 else {
-//            return nil
-//        }
-
-        guard let jsonrpc = map.JSON["jsonrpc"] as? String, jsonrpc == "2.0" else {
-            return nil
-        }
-
-        guard let method = map.JSON["method"] as? String, !method.isEmpty else {
-            return nil
-        }
-
-//        guard let params = map.JSON["params"] as? [T] else {
-//            return nil
-//        }
-    }
-
-    public mutating func mapping(map: Map) {
-        id <- map["id"]
-        jsonrpc <- map["jsonrpc"]
-        method <- map["method"]
-        params <- map["params"]
-    }
-}
-
-struct VBJSONRPCResponse<T: Mappable>: Mappable {
-
-    public var jsonrpc = "2.0"
-    public var id: Int64!
-    public var result: T!
-
-    init(id: Int64, result: T) {
-        self.id = id
-        self.result = result
-    }
-
-    init?(map: Map) {}
-
-    mutating func mapping(map: Map) {
-        id <- map["id"]
-        jsonrpc <- map["jsonrpc"]
-        result <- map["result"]
-    }
-}
-
-public struct VBViteTxConfirmParam: Mappable {
-    public var accountBlock: AccountBlock?
-    public var errorMsg: String?
-
-    public init?(map: Map) {}
-
-    public mutating func mapping(map: Map) {
-        accountBlock <- map["accountBlock"]
-        errorMsg <- map["errorMsg"]
-    }
-}
-
-public struct VBViteSendTx: Mappable {
-
-    public var block: Block!
-    public var abi: String?
-    public var description: Description?
-    public var extend: [String: Any]?
-
-    public init(block: Block, abi: String?, description: Description?, extend: [String: Any]?) {
-        self.block = block
-        self.abi = abi
-        self.description = description
-    }
-
-    public init?(map: Map) {
-        guard let json = map.JSON["block"] as? Dictionary<String, Any>,
-            let _ = Block(JSON: json) else {
-                return nil
-        }
-    }
-
-    public mutating func mapping(map: Map) {
-        block <- map["block"]
-        abi <- map["abi"]
-        description <- map["description"]
-        extend <- map["extend"]
-    }
-
-    public struct Block: Mappable {
-        public var toAddress: ViteAddress!
-        public var tokenId: ViteTokenId!
-        public var amount: Amount!
-        public var data: Data?
-
-        public init?(map: Map) {
-            guard let toAddress = map.JSON["toAddress"] as? ViteAddress, toAddress.isViteAddress else {
-                return nil
-            }
-
-            guard let tokenId = map.JSON["tokenId"] as? ViteTokenId, tokenId.isViteTokenId else {
-                return nil
-            }
-
-            guard let amount = map.JSON["amount"] as? String, let _ = BigInt(amount) else {
-                return nil
-            }
-
-            if let data = map.JSON["data"] as? String {
-                guard let _ = Data(base64Encoded: data) else {
-                    return nil
-                }
-            }
-        }
-
-        public mutating func mapping(map: Map) {
-            toAddress <- map["toAddress"]
-            tokenId <- map["tokenId"]
-            amount <- (map["amount"], JSONTransformer.balance)
-            data <- (map["data"], JSONTransformer.dataToBase64)
-        }
-    }
-
-    public struct Description: Mappable {
-        public var function: InputDescription = InputDescription()
-        public var inputs: [InputDescription] = []
-
-        init(function: InputDescription, inputs: [InputDescription]) {
-            self.function = function
-            self.inputs = inputs
-        }
-
-        public init?(map: Map) { }
-        public mutating func mapping(map: Map) {
-            function <- map["function"]
-            inputs <- map["inputs"]
-        }
-    }
-
-
-    public struct InputDescription: Mappable {
-
-        public struct Style: Mappable {
-            public var textColor: UIColor?
-            public var backgroundColor: UIColor?
-
-            public init?(map: Map) {}
-
-            public mutating func mapping(map: Map) {
-                textColor <- (map["textColor"], type(of: self).TransformOfColor)
-                backgroundColor <- (map["backgroundColor"], type(of: self).TransformOfColor)
-            }
-
-            static let TransformOfColor = TransformOf<UIColor, String>(fromJSON: { (string) -> UIColor? in
-                guard let string = string, let color = UIColor(hexa: string) else { return nil }
-                return color
-            }, toJSON: { (color) -> String? in
-                guard let color = color else { return nil }
-                var r: CGFloat = 0
-                var g: CGFloat = 0
-                var b: CGFloat = 0
-                var a: CGFloat = 0
-                color.getRed(&r, green: &g, blue: &b, alpha: &a)
-                let rInt = Int(r * 255) << 24
-                let gInt = Int(g * 255) << 16
-                let bInt = Int(b * 255) << 8
-                let aInt = Int(a * 255)
-                let rgba = rInt | gInt | bInt | aInt
-                return String(format:"%08x", rgba)
-            })
-        }
-
-        fileprivate var name: [String: String] = [:]
-        fileprivate var style: Style?
-
-        init() {}
-
-        public init?(map: Map) { }
-
-        mutating public func mapping(map: Map) {
-            name <- map["name"]
-            style <- map["style"]
-        }
-
-        public var title: String? {
-            let key = LocalizationService.sharedInstance.currentLanguage == .chinese ? "zh": "base"
-            return name[key]
-        }
-
-        public func confrimItemInfo(text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil) -> BifrostConfrimItemInfo {
-            return BifrostConfrimItemInfo(title: title ?? "", text: text, textColor: textColor ?? style?.textColor, backgroundColor: backgroundColor ?? style?.backgroundColor)
-        }
-    }
-}
-
-public extension VBViteSendTx {
     public enum ConfrimError: Error {
         case InvalidParameters
         case InvalidToAddress
@@ -223,9 +23,9 @@ public extension VBViteSendTx {
         case unknown(String)
     }
 
-    public func generateConfrimInfo() -> Promise<(BifrostConfrimInfo, TokenInfo)> {
-        let block = self.block!
-        let extend = self.extend
+    static public func generateConfrimInfo(_ sendTx: VBViteSendTx) -> Promise<(BifrostConfrimInfo, TokenInfo)> {
+        let block = sendTx.block!
+        let extend = sendTx.extend
 
         guard let addressType = block.toAddress.viteAddressType else {
             return Promise(error: ConfrimError.InvalidToAddress)
@@ -253,30 +53,27 @@ public extension VBViteSendTx {
                             throw ConfrimError.InvalidData
                         }
 
-                        return BuildInTransfer.crossChainTransfer.confrimInfo(self, tokenInfo).map { ($0, tokenInfo) }
+                        return BuildInTransfer.crossChainTransfer.confrimInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
                         if let data = block.data, !data.isEmpty {
                             guard data.contentTypeInUInt16 == AccountBlockDataContentType.utf8string.rawValue else {
                                 throw ConfrimError.InvalidData
                             }
                         }
-                        return BuildInTransfer.transfer.confrimInfo(self, tokenInfo).map { ($0, tokenInfo) }
+                        return BuildInTransfer.transfer.confrimInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     }
                 case .contract:
                     if let data = block.data,
                         data.count >= 4,
                         let type = BuildInContract.dataPrefixMap[data[0..<4].toHexString()],
                         BuildInContract.typeToAddressMap[type] == block.toAddress {
-                        return type.confrimInfo(self, tokenInfo).map { ($0, tokenInfo) }
+                        return type.confrimInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
-                        return Other.confrimInfo(self, tokenInfo).map { ($0, tokenInfo) }
+                        return Other.confrimInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     }
                 }
             })
     }
-}
-
-extension VBViteSendTx {
 
     struct Other {
         static func confrimInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfrimInfo> {
@@ -327,7 +124,7 @@ extension VBViteSendTx {
 
         func confrimInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfrimInfo> {
             let account = HDWalletManager.instance.account!
-            let des = Description(JSONString: BuildInTransfer.DesMap[self]!)!
+            let des = VBViteSendTx.Description(JSONString: BuildInTransfer.DesMap[self]!)!
             let title = des.function.title ?? ""
             let block = sendTx.block!
 
@@ -454,7 +251,7 @@ extension VBViteSendTx {
         func confrimInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfrimInfo> {
             let account = HDWalletManager.instance.account!
             let abi = BuildInContract.AbiMap[self]!
-            let des = Description(JSONString: BuildInContract.DesMap[self]!)!
+            let des = VBViteSendTx.Description(JSONString: BuildInContract.DesMap[self]!)!
             let title = des.function.title ?? ""
             let block = sendTx.block!
 
@@ -668,26 +465,26 @@ extension VBViteSendTx {
                     let quantity = Amount(quantityValue.toBigUInt())
 
                     return when(fulfilled: ViteNode.mintage.getToken(tokenId: tradeTokenIdValue.toString()),
-                         ViteNode.mintage.getToken(tokenId: quoteTokenIdValue.toString())).then { (tradeToken, quoteToken) -> Promise<BifrostConfrimInfo> in
-                            let orderType: String
-                            let textColor: UIColor
-                            if sideValue.toBool() {
-                                let type = LocalizationService.sharedInstance.currentLanguage == .chinese ? "卖": "Sell"
-                                orderType = "\(type) \(tradeToken.uniqueSymbol)"
-                                textColor = UIColor(netHex: 0xFF0008)
-                            } else {
-                                let type = LocalizationService.sharedInstance.currentLanguage == .chinese ? "买": "Buy"
-                                orderType = "\(type) \(tradeToken.uniqueSymbol)"
-                                textColor = UIColor(netHex: 0x5BC500)
-                            }
+                                ViteNode.mintage.getToken(tokenId: quoteTokenIdValue.toString())).then { (tradeToken, quoteToken) -> Promise<BifrostConfrimInfo> in
+                                    let orderType: String
+                                    let textColor: UIColor
+                                    if sideValue.toBool() {
+                                        let type = LocalizationService.sharedInstance.currentLanguage == .chinese ? "卖": "Sell"
+                                        orderType = "\(type) \(tradeToken.uniqueSymbol)"
+                                        textColor = UIColor(netHex: 0xFF0008)
+                                    } else {
+                                        let type = LocalizationService.sharedInstance.currentLanguage == .chinese ? "买": "Buy"
+                                        orderType = "\(type) \(tradeToken.uniqueSymbol)"
+                                        textColor = UIColor(netHex: 0x5BC500)
+                                    }
 
-                            let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
-                            let items = [des.inputs[0].confrimItemInfo(text: orderType, textColor: textColor),
-                                         des.inputs[1].confrimItemInfo(text: market),
-                                         des.inputs[2].confrimItemInfo(text: priceValue.toString()),
-                                         des.inputs[3].confrimItemInfo(text: quantity.amountFull(decimals: tradeToken.decimals))
-                            ]
-                            return Promise.value(BifrostConfrimInfo(title: title, items: items))
+                                    let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
+                                    let items = [des.inputs[0].confrimItemInfo(text: orderType, textColor: textColor),
+                                                 des.inputs[1].confrimItemInfo(text: market),
+                                                 des.inputs[2].confrimItemInfo(text: priceValue.toString()),
+                                                 des.inputs[3].confrimItemInfo(text: quantity.amountFull(decimals: tradeToken.decimals))
+                                    ]
+                                    return Promise.value(BifrostConfrimInfo(title: title, items: items))
                     }
                 } catch {
                     return Promise(error: ConfrimError.InvalidData)
@@ -741,5 +538,3 @@ extension VBViteSendTx {
         }
     }
 }
-
-

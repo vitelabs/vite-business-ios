@@ -1,10 +1,10 @@
 //
 //  Encodable+Extension.swift
-//  WalletConnect
+//  ViteBusiness
 //
-//  Created by Tao Xu on 4/1/19.
-//  Copyright © 2019 Trust. All rights reserved.
+//  Created by Stone on 2019/7/10.
 //
+
 
 import Foundation
 
