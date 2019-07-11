@@ -16,6 +16,21 @@ class CrossChainHistoryCell: UITableViewCell {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
     }
+
+    let reasonLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x77808A)
+    }
+
+    let feeLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+    }
+
+    let seperator = UIView().then {
+        $0.backgroundColor = UIColor.init(netHex: 0xE5E5EA)
+    }
+
     let timeLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
@@ -30,21 +45,30 @@ class CrossChainHistoryCell: UITableViewCell {
     }
     let leftHashLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 11)
-        $0.textColor = UIColor.init(netHex: 0x3E4A59)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
         $0.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
+        $0.layer.cornerRadius = 2
+        $0.layer.masksToBounds = true
     }
     let rightHashLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 11)
-        $0.textColor = UIColor.init(netHex: 0x3E4A59)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
         $0.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
+        $0.layer.cornerRadius = 2
+        $0.layer.masksToBounds = true
     }
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        self.selectionStyle = .none
+
         contentView.addSubview(iconImageView)
         contentView.addSubview(statusLabel)
+        contentView.addSubview(feeLabel)
+        contentView.addSubview(seperator)
+        contentView.addSubview(reasonLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(symbleLabel)
         contentView.addSubview(amountLabel)
@@ -59,6 +83,23 @@ class CrossChainHistoryCell: UITableViewCell {
 
         statusLabel.snp.makeConstraints { (m) in
             m.left.equalTo(iconImageView.snp.right).offset(3)
+            m.centerY.equalTo(iconImageView)
+        }
+
+        feeLabel.snp.makeConstraints { (m) in
+            m.right.equalToSuperview().offset(-24)
+            m.centerY.equalTo(iconImageView)
+        }
+
+        seperator.snp.makeConstraints { (m) in
+            m.left.equalTo(statusLabel.snp.right).offset(3)
+            m.centerY.equalTo(iconImageView)
+            m.width.equalTo(1)
+            m.height.equalTo(12)
+        }
+
+        reasonLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(seperator.snp.right).offset(3)
             m.centerY.equalTo(iconImageView)
         }
 
@@ -81,14 +122,19 @@ class CrossChainHistoryCell: UITableViewCell {
         leftHashLabel.snp.makeConstraints { (m) in
             m.top.equalTo(timeLabel.snp.bottom).offset(9)
             m.left.equalTo(iconImageView)
+            m.height.equalTo(16)
             m.width.equalTo(width)
         }
 
         rightHashLabel.snp.makeConstraints { (m) in
             m.top.equalTo(timeLabel.snp.bottom).offset(9)
             m.right.equalTo(symbleLabel)
+            m.height.equalTo(16)
             m.width.equalTo(width)
         }
+
+        seperator.isHidden = true
+        reasonLabel.isHidden = true
     }
 
     static let dateFormatter: DateFormatter = {
@@ -97,15 +143,19 @@ class CrossChainHistoryCell: UITableViewCell {
         return dateFormatter
     }()
     
-    func bind(withdrawRecord record: WithdrawRecord)  {
-        self.bind(record: record, type: .withdraw)
+    func bind(tokenInfo: TokenInfo,withdrawRecord record: WithdrawRecord)  {
+        self.bind(tokenInfo: tokenInfo,record: record, type: .withdraw)
     }
 
-    func bind(depositRecord record: DepositRecord)  {
-        self.bind(record: record, type: .desposit)
+    func bind(tokenInfo: TokenInfo,depositRecord record: DepositRecord)  {
+        self.bind(tokenInfo: tokenInfo, record: record, type: .desposit)
     }
 
-    func bind(record:  Record, type: CrossChainHistoryViewController.Style) {
+    func bind(tokenInfo: TokenInfo,record:  Record, type: CrossChainHistoryViewController.Style) {
+
+        seperator.isHidden = true
+        reasonLabel.isHidden = true
+
         statusLabel.text = record.state.rawValue
 
         let date = Date.init(timeIntervalSince1970: TimeInterval((Double(record.dateTime) ?? 0.0
@@ -113,27 +163,42 @@ class CrossChainHistoryCell: UITableViewCell {
         let timeString = CrossChainHistoryCell.dateFormatter.string(from: date)
         timeLabel.text = timeString
 
-        let tokenInfo = TokenInfo.eth
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
-        symbleLabel.text = "ETH"
+        let viteSymble = "VITE"
+        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? ""
+
+        symbleLabel.text = othenSymble
+
+        if let fee = Amount(record.fee)?.amountShort(decimals: tokenInfo.decimals) {
+            feeLabel.text = "\(R.string.localizable.crosschainFee()) \(fee)"
+        }
+
 
         if type == .withdraw {
-            leftHashLabel.text =  "VITE hash:" + record.inTxHash
-            rightHashLabel.text = "ETH hash:" + (record.outTxHash ?? "")
-
+            leftHashLabel.text =  " \(viteSymble) Hash: \(record.inTxHash) "
+            rightHashLabel.text = " \(othenSymble) Hash: \(record.outTxHash ?? "") "
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()
                 iconImageView.image = R.image.crosschain_status_confirm()
             case .BELOW_MINIMUM:
                 statusString = ""
+            case .TOT_EXCEED_THE_LIMIT:
+                seperator.isHidden = false
+                reasonLabel.isHidden = false
+                statusString = R.string.localizable.crosschainStatusWithdrawFailed()
+                iconImageView.image = R.image.crosschain_status_failure()
+                reasonLabel.text = R.string.localizable.crosschainStatusTotExceedLimit()
+            case .WRONG_WITHDRAW_ADDRESS:
+                statusString = R.string.localizable.crosschainStatusWrongAddress()
+                iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
@@ -144,21 +209,32 @@ class CrossChainHistoryCell: UITableViewCell {
             statusLabel.text = statusString
 
         } else if type == .desposit {
-            leftHashLabel.text = "ETH hash:" + record.inTxHash
-            rightHashLabel.text = "VITE hash:" + (record.outTxHash ?? "")
+            leftHashLabel.text = "\(othenSymble) Hash:" + record.inTxHash
+            rightHashLabel.text = "\(viteSymble) Hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("ETH")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
                 iconImageView.image = R.image.crosschain_status_gateway()
             case .BELOW_MINIMUM:
-                statusString = R.string.localizable.crosschainStatusFailedBecausePoor()
+                seperator.isHidden = false
+                reasonLabel.isHidden = false
+                statusString = R.string.localizable.crosschainStatusFailed()
+                reasonLabel.text = R.string.localizable.crosschainStatusFailedBecausePoor()
+                iconImageView.image = R.image.crosschain_status_failure()
+                amountLabel.text = nil
+                symbleLabel.text = nil
+            case .TOT_EXCEED_THE_LIMIT:
+                statusString = ""
+            case .WRONG_WITHDRAW_ADDRESS:
+                statusString = R.string.localizable.crosschainStatusFailed()
+                iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm("VITE")
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()

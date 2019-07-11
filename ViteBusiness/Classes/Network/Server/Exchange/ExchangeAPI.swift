@@ -40,7 +40,7 @@ extension ExchangeAPI: TargetType {
         case .getTokenInfoDetail:
             return "/api/v1/cryptocurrency/info/detail"
         case .getTokenInfosInChain:
-            return "/api/v1/cryptocurrency/info/query"
+            return "/api/v1/cryptocurrency/info/platform/query"
         }
     }
 

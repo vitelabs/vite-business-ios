@@ -68,7 +68,7 @@ class BalanceInfoNavView: UIView {
         gatewayNamelabel.snp.makeConstraints { (m) in
             m.left.equalTo(symbolLabel.snp.right).offset(6)
             m.centerY.equalTo(symbolLabel)
-            m.height.equalTo(15)
+            m.height.equalTo(16)
         }
     }
 
@@ -78,7 +78,7 @@ class BalanceInfoNavView: UIView {
     }
 
     func bind(tokenInfo: TokenInfo) {
-        symbolLabel.text = tokenInfo.symbol
+        symbolLabel.text = tokenInfo.uniqueSymbol
         nameLabel.text = tokenInfo.name
         tokenIconView.tokenInfo = tokenInfo
         if let gatewayName = tokenInfo.gatewayName {

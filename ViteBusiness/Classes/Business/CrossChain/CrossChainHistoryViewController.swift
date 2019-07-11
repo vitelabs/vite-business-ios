@@ -48,6 +48,7 @@ class CrossChainHistoryViewController: BaseViewController {
         })
 
         tableView.mj_header.beginRefreshing()
+        tableView.mj_footer.isHidden = true
     }
 
     func createNavigationTitleView() -> UIView {
@@ -55,7 +56,7 @@ class CrossChainHistoryViewController: BaseViewController {
             $0.backgroundColor = UIColor.white
         }
 
-        let title = R.string.localizable.crosschainDepositHistory()
+        let title = style == .desposit ? R.string.localizable.crosschainDepositHistory() : R.string.localizable.crosschainWithdrawHistory()
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 24)
             $0.numberOfLines = 1
@@ -88,6 +89,13 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.depositRecords.append(contentsOf: info.depositRecords)
                     self?.currentpageNum = 1
                     self?.tableView.reloadData()
+                    if self?.depositRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }.finally { [weak self] in
@@ -102,6 +110,13 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.mj_header.endRefreshing()
                     self?.currentpageNum = 1
                     self?.tableView.reloadData()
+                    if self?.withdrawRecord.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }.finally { [weak self] in
@@ -122,6 +137,13 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.depositRecords.append(contentsOf: info.depositRecords)
                     self?.currentpageNum = self?.currentpageNum ?? 0 + 1
                     self?.tableView.reloadData()
+                    if info.depositRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
             }
@@ -136,6 +158,13 @@ class CrossChainHistoryViewController: BaseViewController {
                     self?.tableView.mj_footer.endRefreshing()
                     self?.currentpageNum = self?.currentpageNum ?? 0 + 1
                     self?.tableView.reloadData()
+                    if info.withdrawRecords.count == 0 {
+                        self?.tableView.mj_footer.state = .noMoreData
+                        self?.tableView.mj_footer.isHidden = true
+                    } else {
+                        self?.tableView.mj_footer.state = .idle
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
                 }
@@ -149,22 +178,28 @@ class CrossChainHistoryViewController: BaseViewController {
 
 extension CrossChainHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count = 0
         if self.style == .desposit {
-            return self.depositRecords.count
+            count = self.depositRecords.count
         } else if self.style == .withdraw  {
-            return self.withdrawRecord.count
+            count = self.withdrawRecord.count
         }
-        return 0
+        if count == 0 {
+            tableView.set(empty: true)
+        } else {
+            tableView.set(empty: false)
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CrossChainHistoryCell") as! CrossChainHistoryCell
         if self.style == .desposit {
             let desposit = self.depositRecords[indexPath.row]
-            cell.bind(depositRecord: desposit)
+            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, depositRecord: desposit)
         } else if self.style == .withdraw  {
             let withdrawRecord = self.withdrawRecord[indexPath.row]
-            cell.bind(withdrawRecord: withdrawRecord)
+            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, withdrawRecord: withdrawRecord)
         }
         return cell
     }

@@ -12,12 +12,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     let tokenInfo: TokenInfo
 
     required init(tokenInfo: TokenInfo) {
-//        let debug = creatGatewayTokenInfoForETH()
-//        if debug.id == tokenInfo.id {
-//            self.tokenInfo = debug
-//        } else {
             self.tokenInfo = tokenInfo
-//        }
     }
 
     func viewDidAppear() {
@@ -44,7 +39,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         cardView.bind(tokenInfo: tokenInfo)
 
         var sourceView: UIView?
-        let o0 = BalanceInfoOperation.init(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.crosschainDeposit()) {
+        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) {
             let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { [unowned self] (_) in
                 let vc = EthViteExchangeViewController()
                 vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
@@ -57,7 +52,11 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
             }
 
             let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-            let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+            var message: String? = R.string.localizable.crosschainBetaAlert()
+            if message == "" {
+                message = nil
+            }
+            let alert = UIAlertController.init(title: nil, message: message, preferredStyle: .actionSheet)
             alert.addAction(a0)
             alert.addAction(a1)
             alert.addAction(a2)
@@ -69,9 +68,8 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
             UIViewController.current?.present(alert, animated: true, completion: nil)
         }
 
-        let o1 = BalanceInfoOperation.init(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.crosschainWithdraw()) {
-            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
-                , tokenInfo: self.tokenInfo, withTokenInfo: TokenInfo.eth)
+        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) {
+            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
         let operationView = BalanceInfoOperationView.init(firstOperation: o0, secondOperation: o1)

@@ -43,6 +43,7 @@ extension CrossChainGateWayAPI: TargetType {
         }
         let gateway = CrossChainGatewayInfoService.gateway[tokenId] ?? ""
         return URL(string: gateway)!
+
     }
 
     var path: String {

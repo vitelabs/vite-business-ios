@@ -8,6 +8,7 @@
 import UIKit
 import Result
 import SwiftyJSON
+import BigInt
 
 class GatewayTokenDetailViewController: BaseViewController {
 
@@ -17,15 +18,19 @@ class GatewayTokenDetailViewController: BaseViewController {
 
     var info = [String: Any]() {
         didSet {
-            let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : ""
-            let total = JSON(info)["total"].int != nil ? String(JSON(info)["total"].int!) : ""
-            var issueStr = ""
-            if let issue =  JSON(info)["states"]["issue"].string, issue == "Limit" {
+            let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
+
+            var total: String? = "--"
+            if let totalStr = JSON(info)["total"].string {
+                total = totalStr
+            }
+            var issueStr = "--"
+            if let issue =  JSON(info)["states"]["issue"].int, issue == 1 {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
-            } else if let issue =  JSON(info)["states"]["issue"].string, issue == "Float"  {
+            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceTrue()
             }
-            var overview:String?  = ""
+            var overview:String?  = "--"
             if LocalizationService.sharedInstance.currentLanguage == .chinese {
                 overview = JSON(info)["overview"]["zh"].string
             } else {
@@ -36,7 +41,7 @@ class GatewayTokenDetailViewController: BaseViewController {
                     (R.string.localizable.crosschainTokenDetailShortname(),JSON(info)["symbol"].string),
                     (R.string.localizable.crosschainTokenDetailId(),JSON(info)["platform"]["tokenAddress"].string),
                     (R.string.localizable.crosschainTokenDetailName(),JSON(info)["name"].string),
-                    (R.string.localizable.crosschainTokenDetailAddress(),JSON(info)["publisher"].string),
+                    (R.string.localizable.crosschainTokenDetailAddress(),JSON(info)["publisher"].string ?? "--"),
                     (R.string.localizable.crosschainTokenDetailAmount(),total),
                     (R.string.localizable.crosschainTokenDetailDigit(),tokenDigit),
                     (R.string.localizable.crosschainTokenDetailIssuance(),issueStr),
@@ -72,8 +77,6 @@ class GatewayTokenDetailViewController: BaseViewController {
         }
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 54
-        tableView.rowHeight = UITableView.automaticDimension;
 
         ExchangeProvider.instance.getTokenInfoDetail(tokenCode: tokenInfo.tokenCode) { [weak self] (result) in
             switch result {
@@ -85,7 +88,6 @@ class GatewayTokenDetailViewController: BaseViewController {
             }
         }
     }
-    
 
 }
 
@@ -131,7 +133,14 @@ extension GatewayTokenDetailViewController: UITableViewDataSource, UITableViewDe
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
+    }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 8 && self.dateSource[8].1 != nil {
+            return UITableView.automaticDimension
+        } else {
+            return 54
+        }
     }
 
 }

@@ -53,7 +53,7 @@ class EthViteExchangeViteAddressView: UIView {
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(self)
             m.right.equalTo(self)
-            m.height.equalTo(50)
+            m.height.greaterThanOrEqualTo(17)
             m.bottom.equalTo(self).offset(-16)
         }
 
@@ -90,14 +90,16 @@ extension EthViteExchangeViteAddressView {
 
         } else if style == .copyButton {
             let button = UIButton()
+            addressView.button = button
 
             addressView.addSubview(button)
 
-            button.setImage(R.image.icon_button_paste_gray(), for: .normal)
+            button.setImage(R.image.icon_button_paste_light_gray(), for: .normal)
 
             button.snp.makeConstraints { (m) in
                 m.centerY.equalTo(addressView.titleLabel)
                 m.right.equalTo(addressView)
+                m.size.equalTo(CGSize.init(width: 20, height: 20))
             }
 
         } else if style == .chouseAddressButton {

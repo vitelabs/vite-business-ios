@@ -20,6 +20,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     var gatewayInfoService: CrossChainGatewayInfoService?
+    var depositInfo: DepositInfo?
 
 
     let myEthAddress = EtherWallet.shared.address!
@@ -61,6 +62,7 @@ class EthViteExchangeViewController: BaseViewController {
     // View
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 50, right: 24)).then {
         $0.layer.masksToBounds = false
+        $0.stackView.spacing = 0
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
@@ -77,7 +79,7 @@ class EthViteExchangeViewController: BaseViewController {
         $0.textLabel.text = HDWalletManager.instance.account?.address ?? ""
     }
     let amountView = EthViteExchangeAmountView().then {
-        $0.symbolLabel.text = TokenInfo.viteERC20.symbol
+//        $0.symbolLabel.text = TokenInfo.viteERC20.symbol
         $0.textField.keyboardType = .decimalPad
     }
 
@@ -108,9 +110,10 @@ class EthViteExchangeViewController: BaseViewController {
 
 
         scrollView.stackView.addArrangedSubview(headerView)
-        scrollView.stackView.addPlaceholder(height: 14)
+        scrollView.stackView.addPlaceholder(height: 20)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addPlaceholder(height: 21)
         scrollView.stackView.addArrangedSubview(gasSliderView)
 
         let toolbar = UIToolbar()
@@ -125,6 +128,7 @@ class EthViteExchangeViewController: BaseViewController {
         if exchangeType == .ethCoinToViteToken {
             addressView.button?.isHidden = true
             amountView.symbolLabel.text = TokenInfo.eth.symbol
+            amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
             amountView.button.setTitle(R.string.localizable.crosschainDepositAll(), for: .normal)
             amountView.titleLabel.text = R.string.localizable.crosschainDepositAmount()
             exchangeButton.setTitle(R.string.localizable.crosschainDepositBtnTitle(), for: .normal)
@@ -166,17 +170,26 @@ class EthViteExchangeViewController: BaseViewController {
                 return
             }
 
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : TokenInfo.eth.decimals
             guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-                let a = amountString.toAmount(decimals: TokenInfo.viteERC20.decimals) else {
+                let a = amountString.toAmount(decimals: decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                     return
             }
 
             let amount: Amount
             if self.exchangeAll {
-                amount = self.balance
+                amount = self.trueAmout(for: self.balance)
             } else {
                 amount = a
+            }
+
+            if  let depositInfo = self.depositInfo,
+                let minimumDepositAmount = Amount(depositInfo.minimumDepositAmount ?? ""), amount < minimumDepositAmount {
+                let minStr = minimumDepositAmount.amountShort(decimals: self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.decimals ?? 0)
+                let minSymbol = self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.symbol ?? ""
+                Toast.show(R.string.localizable.crosschainDepositMinAlert() + minStr + minSymbol)
+                return
             }
 
             guard amount > Amount(0) else {
@@ -206,8 +219,7 @@ class EthViteExchangeViewController: BaseViewController {
                     let text = self.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteERC20.decimals)
                     self.headerView.balanceLabel.text = text
                     self.amountView.textField.placeholder = R.string.localizable.ethViteExchangePageAmountPlaceholder(text)
-
-                    if self.exchangeAll {
+                    if self.exchangeAll  {
                         self.amountView.textField.text = self.headerView.balanceLabel.text
                     }
 
@@ -221,15 +233,16 @@ class EthViteExchangeViewController: BaseViewController {
                     self.headerView.balanceLabel.text = text
 
                     if self.exchangeAll {
-                        self.amountView.textField.text = self.headerView.balanceLabel.text
+//                        self.amountView.textField.text = self.headerView.balanceLabel.text
                     }
 
                 }).disposed(by: rx.disposeBag)
 
             self.gatewayInfoService?.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
-                .done { (info) in
+                .done { [weak self] (info) in
+                    self?.depositInfo = info
                     if let amount = Amount(info.minimumDepositAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
-                        self.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)"
+                        self?.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)ETH"
                     }
 
             }
@@ -247,8 +260,34 @@ class EthViteExchangeViewController: BaseViewController {
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.exchangeAll = true
-            self.amountView.textField.text = self.balance.amountFull(decimals: TokenInfo.viteERC20.decimals)
+            self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
             }.disposed(by: rx.disposeBag)
+
+        gasSliderView.feeSlider.rx.value.bind{ [unowned self] _ in
+            if self.exchangeAll {
+                self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
+            }
+
+            }.disposed(by: rx.disposeBag)
+
+
+        var tokenInfo: TokenInfo
+        if self.exchangeType == .erc20ViteTokenToViteCoin {
+            tokenInfo = TokenInfo.viteERC20
+        } else {
+            tokenInfo = TokenInfo.eth
+        }
+
+        amountView.textField.rx.text.bind { [weak self] text in
+            guard let `self` = self else { return }
+            let rateMap = ExchangeRateManager.instance.rateMap
+            if let amount = text?.toAmount(decimals: tokenInfo.decimals) {
+                self.amountView.symbolLabel.text = "≈" + rateMap.priceString(for: tokenInfo, balance: amount)
+            } else {
+                self.amountView.symbolLabel.text = "≈ 0.0"
+            }
+            }
+            .disposed(by: rx.disposeBag)
     }
 
 
@@ -265,7 +304,13 @@ class EthViteExchangeViewController: BaseViewController {
             $0.titleLab.textColor = UIColor(netHex: 0x24272B)
         }
 
-        let tokenIconView = UIImageView(image: R.image.icon_vite_exchange())
+        var image: UIImage!
+        if self.exchangeType == .erc20ViteTokenToViteCoin {
+            image = R.image.icon_vite_exchange()
+        } else {
+            image = R.image.crosschain_depoist()
+        }
+        let tokenIconView = UIImageView(image: image)
 
         view.addSubview(titleLabel)
         view.addSubview(tokenIconView)
@@ -302,7 +347,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func exchangeErc20ViteTokenToViteCoin(viteAddress: String, amount: Amount, gasPrice: Float) {
-        Workflow.ethViteExchangeWithConfirm(viteAddress: viteAddress, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: { [weak self] (r) in
+        Workflow.ethViteExchangeWithConfirm(viteAddress: viteAddress, amount: amount, gasPrice: gasPrice, completion: { [weak self] (r) in
             guard let `self` = self else { return }
             if case .success = r {
                 AlertControl.showCompletion(R.string.localizable.workflowToastSubmitSuccess())
@@ -319,8 +364,24 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func exchangeEthCoinToViteToken(viteAddress: String, amount: Amount, gasPrice: Float) {
-        CrossChainDepositETH().deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice)
+        CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
 
+    func trueAmout(for amount: Amount) -> Amount {
+        if self.exchangeAll && self.exchangeType == .ethCoinToViteToken {
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : TokenInfo.eth.decimals
+            var ethStr = self.gasSliderView.ethStr
+            let trueAmout = amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
+            if trueAmout <= Amount(0) {
+                return Amount(0)
+            } else {
+                return trueAmout
+            }
+        } else {
+            return amount
+        }
     }
 }
 

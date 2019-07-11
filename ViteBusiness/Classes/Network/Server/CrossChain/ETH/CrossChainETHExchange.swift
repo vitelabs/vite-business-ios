@@ -10,7 +10,11 @@ import PromiseKit
 
 class CrossChainDepositETH {
 
-    var gatewayInfoService: CrossChainGatewayInfoService = CrossChainGatewayInfoService.eth
+    init(gatewayInfoService: CrossChainGatewayInfoService) {
+        self.gatewayInfoService = gatewayInfoService
+    }
+
+    let gatewayInfoService: CrossChainGatewayInfoService
 
     //Send rival Tx
 
@@ -21,13 +25,14 @@ class CrossChainDepositETH {
 //    网关监听 VITE 上的该笔 TOT 转出交易，如果交易没有最终被确认，需要重试发送。
 //    #
 
-    func deposit(to viteAddress: String, totId: String, amount: String, gasPrice: Float ) {
+    func deposit(to viteAddress: String, totId: String, amount: String, gasPrice: Float, completion: @escaping (() -> ())) {
 
         let metalInfo = gatewayInfoService.getMetaInfo()
         let withdrawInfo = gatewayInfoService.depositInfo(viteAddress: viteAddress)
-
+        UIViewController.current?.view.displayLoading()
         when(fulfilled: metalInfo, withdrawInfo)
             .done { (metalInfo, withdrawInfo) in
+                UIViewController.current?.view.hideLoading()
                 guard metalInfo.depositState == .open else {
                     Toast.show("deposit state is not open")
                     return
@@ -50,9 +55,22 @@ class CrossChainDepositETH {
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (result) in
-
+                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (r) in
+                    if case .success = r {
+                        completion()
+                    } else if case .failure(let error) = r {
+                        guard ViteError.conversion(from: error) != ViteError.cancel else { return }
+                        if let e = error as? DisplayableError {
+                            Toast.show(e.errorMessage)
+                        } else {
+                            Toast.show((error as NSError).localizedDescription)
+                        }
+                    }
                 })
+        }
+            .catch { (error) in
+                UIViewController.current?.view.hideLoading()
+                Toast.show(error.localizedDescription)
         }
 
     }

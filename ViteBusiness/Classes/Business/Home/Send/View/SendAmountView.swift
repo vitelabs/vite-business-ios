@@ -24,7 +24,7 @@ class SendAmountView: UIView {
     }
 
     let symbolLabel = UILabel().then {
-        $0.textColor = Colors.titleGray
+        $0.textColor = UIColor(hex: "3E4A59", alpha: 0.7)
         $0.font = AppStyle.descWord.font
         $0.textAlignment = .right
     }

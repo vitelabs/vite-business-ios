@@ -351,7 +351,13 @@ extension GrinTxByViteService {
             }, { (result) in
                 do {
                     let slate = try result.dematerialize()
-                    seal.fulfill(())
+                    let result = GrinManager.default.txRepost(slateID: slate.id)
+                    switch result {
+                    case .success:
+                        seal.fulfill(())
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
                 } catch {
                     seal.reject(error)
                 }

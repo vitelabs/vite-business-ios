@@ -27,7 +27,7 @@ class AddressManageAddressCell: BaseTableViewCell {
 
     fileprivate let addressLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x24272B)
+        $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
         $0.numberOfLines = 2
     }
 

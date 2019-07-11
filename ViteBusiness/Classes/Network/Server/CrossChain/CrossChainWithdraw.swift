@@ -24,18 +24,22 @@ struct CrossChainWithdraw {
                 let (metalInfo, withdrawInfo, verifyWithdrawAddress) = arg0
 
                 guard metalInfo.withdrawState == .open else {
+                    Toast.show("error: withdraw state is not open")
                     return
                 }
 
                 guard verifyWithdrawAddress == true else {
+                    Toast.show("error: wrong withdraw address")
                     return
                 }
 
                 guard amount >= withdrawInfo.minimumWithdrawAmount else {
+                    Toast.show("less than minimum withdran amount")
                     return 
                 }
 
                 guard amount <= withdrawInfo.maximumWithdrawAmount else {
+                    Toast.show("bigger than max withdran amount")
                     return
                 }
 
