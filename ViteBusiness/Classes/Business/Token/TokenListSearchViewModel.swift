@@ -37,6 +37,9 @@ final class TokenListSearchViewModel {
                 if let grin = map["GRIN"] {
                     list.append(grin)
                 }
+                if let bnb = map["BNB"] {
+                    list.append(bnb)
+                }
                 self.tokenListSearchRelay.accept(list)
             case .failure(let error): break
             }

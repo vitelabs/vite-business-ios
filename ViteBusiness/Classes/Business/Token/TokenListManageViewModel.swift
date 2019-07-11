@@ -58,12 +58,15 @@ final class TokenListManageViewModel {
         var localViteToken = [TokenInfo]()
         var localEthToken = [TokenInfo]()
         var localGrinToken = [TokenInfo]()
+        var localBnbToken = [TokenInfo]()
         for item in localData {
             if item.coinType == .vite {
                 localViteToken.append(item)
             }else if item.coinType == .eth {
                 localEthToken.append(item)
             } else if item.coinType == .grin {
+                localGrinToken.append(item)
+            } else if item.coinType == .bnb {
                 localGrinToken.append(item)
             }
         }
@@ -91,6 +94,13 @@ final class TokenListManageViewModel {
             list.append(grin)
         }else {
             list.append(localGrinToken)
+        }
+
+        if var bnb = map["BNB"] {
+            bnb.append(contentsOf: localBnbToken)
+            list.append(bnb)
+        }else {
+            list.append(localBnbToken)
         }
 
         tokenListRefreshRelay.accept(list)
