@@ -204,7 +204,7 @@ extension BifrostManager {
                 } else {
                     self.removeTask(task)
                     vc.hideConfrim()
-                    self.interactor?.rejectRequest(id: task.id, message: "cancel").cauterize()
+                    self.interactor?.cancelRequest(id: task.id).cauterize()
                     vc.showConfrimIfNeeded()
                 }
             })

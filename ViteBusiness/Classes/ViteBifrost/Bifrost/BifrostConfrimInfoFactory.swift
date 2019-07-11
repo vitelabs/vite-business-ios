@@ -12,7 +12,7 @@ import ViteWallet
 
 struct BifrostConfrimInfoFactory {
 
-    public enum ConfrimError: Error {
+    public enum ConfrimError: Error, DisplayableError {
         case InvalidParameters
         case InvalidToAddress
         case InvalidAmount
@@ -21,6 +21,27 @@ struct BifrostConfrimInfoFactory {
         case missingAbi
         case missingDescription
         case unknown(String)
+
+        public var errorMessage: String {
+            switch self {
+            case .InvalidParameters:
+                return "InvalidParameters"
+            case .InvalidToAddress:
+                return "InvalidToAddress"
+            case .InvalidAmount:
+                return "InvalidAmount"
+            case .InvalidData:
+                return "InvalidData"
+            case .InvalidExtend:
+                return "InvalidExtend"
+            case .missingAbi:
+                return "missingAbi"
+            case .missingDescription:
+                return "missingDescription"
+            case .unknown(let text):
+                return "unknown: \(text)"
+            }
+        }
     }
 
     static public func generateConfrimInfo(_ sendTx: VBViteSendTx) -> Promise<(BifrostConfrimInfo, TokenInfo)> {

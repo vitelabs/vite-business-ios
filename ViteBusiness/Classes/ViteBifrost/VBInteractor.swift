@@ -110,7 +110,7 @@ public class VBInteractor {
         guard handshakeId > 0 else {
             return Promise(error: VBError.invalidSession)
         }
-        let response = JSONRPCErrorResponse(id: handshakeId, error: JSONRPCError(code: -32000, message: message))
+        let response = JSONRPCErrorResponse(id: handshakeId, error: JSONRPCError(code: ErrorCode.sessionReject.rawValue, message: message))
         return encryptAndSend(data: response.encoded)
     }
 
@@ -136,12 +136,24 @@ public class VBInteractor {
     }
 
     public func rejectRequest(id: Int64, message: String) -> Promise<Void> {
-        let response = JSONRPCErrorResponse(id: id, error: JSONRPCError(code: -32000, message: message))
+        let response = JSONRPCErrorResponse(id: id, error: JSONRPCError(code: ErrorCode.requestReject.rawValue, message: message))
+        return encryptAndSend(data: response.encoded)
+    }
+
+    public func cancelRequest(id: Int64) -> Promise<Void> {
+        let response = JSONRPCErrorResponse(id: id, error: JSONRPCError(code: ErrorCode.cancelReject.rawValue, message: "User Canceled"))
         return encryptAndSend(data: response.encoded)
     }
 }
 
 extension VBInteractor {
+
+    enum ErrorCode: Int {
+        case sessionReject = 11010
+        case requestReject = 11011
+        case cancelReject = 11012
+    }
+
     private func subscribe(topic: String) {
         let message = VBSocketMessage(topic: topic, type: .sub, payload: "")
         let data = try! JSONEncoder().encode(message)
