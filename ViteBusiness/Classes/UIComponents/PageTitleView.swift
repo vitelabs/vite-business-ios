@@ -21,25 +21,13 @@ class PageTitleView: UIView {
         $0.textColor = UIColor(netHex: 0x24272B)
     }
 
-    var tokenIconView: UIImageView?
+    var tokenIconView: TokenIconView?
 
     var tokenInfo: TokenInfo? {
         didSet {
-            guard let tokenIconView = tokenIconView else {
-                return
-            }
-            tokenIconView.kf.cancelDownloadTask()
-            tokenIconView.image = UIImage.color(UIColor(netHex: 0xF8F8F8))
-            tokenIconView.image = tokenInfo?.chainIcon
-            tokenIconView.isHidden = tokenInfo?.chainIcon == nil
-            guard let tokenInfo = tokenInfo else { return }
-            guard let url = URL(string: tokenInfo.icon) else { return }
-            tokenIconView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
+            tokenIconView?.tokenInfo = tokenInfo
         }
     }
-
-
-
 }
 
 extension PageTitleView {
@@ -69,11 +57,11 @@ extension PageTitleView {
 
     class func titleAndIcon(title: String? = nil, icon: UIImage? = nil) -> PageTitleView {
         let view = PageTitleView.onlyTitle(title: title)
-        view.tokenIconView = UIImageView(image: icon)
+        view.tokenIconView = TokenIconView.init()
         view.addSubview(view.tokenIconView!)
         view.tokenIconView!.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)
-            m.top.equalToSuperview()
+            m.top.equalToSuperview().offset(0.5)
             m.size.equalTo(CGSize(width: 50, height: 50))
         }
         return view

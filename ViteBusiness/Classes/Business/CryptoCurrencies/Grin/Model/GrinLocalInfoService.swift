@@ -33,9 +33,9 @@ class GrinLocalInfoService {
         return db
     }
 
-    lazy var db: FMDatabase = GrinLocalInfoService.creatDB()
+    var db: FMDatabase = GrinLocalInfoService.creatDB()
 
-    lazy var nodedb: FMDatabase = {
+    var nodedb: FMDatabase = {
         let fileHelper = FileHelper.createForApp()
         let url = URL.init(fileURLWithPath: fileHelper.rootPath, isDirectory: true) .appendingPathComponent("grin_node_info.db")
         let db = FMDatabase.init(url: url)
