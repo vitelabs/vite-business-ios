@@ -126,7 +126,7 @@ class BnbWalletSendViewController: BaseViewController {
         }
 
 
-        var feeStr = String(format: "%.6f", self.fee)
+        var feeStr = "\(self.fee)"
         var rateFee = ""
         if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(self.fee) {
             rateFee = String(format: "≈%@",rateFeeStr)
@@ -166,10 +166,10 @@ class BnbWalletSendViewController: BaseViewController {
     }
 
     private func bind() {
-        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.tokenCode).drive(onNext:{[weak self] r in
+        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.id).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
             guard let ret = r else { return }
-            self.headerView.balanceLabel.text =  String.init(format: "%.6f", ret.free)
+            self.headerView.balanceLabel.text = "\(ret.free)"
             self.balance = ret.free
         }).disposed(by: rx.disposeBag)
 

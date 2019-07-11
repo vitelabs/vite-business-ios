@@ -12,7 +12,7 @@ class BalanceInfoBnbChainTransactionsView: UIView {
     private let vc: BnbTransactionListViewController
 
     init(tokenInfo: TokenInfo) {
-        vc = BnbTransactionListViewController(symbol: tokenInfo.symbol)
+        vc = BnbTransactionListViewController(symbol: tokenInfo.id)
         super.init(frame: CGRect.zero)
 
         let titleLabel = UILabel().then {

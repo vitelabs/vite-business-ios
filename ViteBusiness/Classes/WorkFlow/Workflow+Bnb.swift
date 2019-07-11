@@ -22,7 +22,7 @@ public extension Workflow {
             HUD.show()
             let promise: Promise<[Transaction]>
             //send
-            promise = BnbWallet.shared.sendTransactionPromise(toAddress: toAddress, amount: amount, symbol: tokenInfo.tokenCode)
+            promise = BnbWallet.shared.sendTransactionPromise(toAddress: toAddress, amount: amount, symbol: tokenInfo.id)
 
             promise
                 .always {
