@@ -126,6 +126,8 @@ public typealias TokenCode = String
 extension TokenCode {
     public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
     public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
+    //写死，不区分网络
+    public static let bnbCoin = "3"
     public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
     public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
 }
@@ -172,8 +174,12 @@ public struct TokenInfo: Mappable {
             }
         case .grin:
              return "Grin Coin"
-        default:
-            fatalError()
+        case .bnb:
+            if isBnbCoin {
+                return "Binance Coin"
+            } else {
+                return "Binance Token"
+            }
         }
     }
 
@@ -231,6 +237,7 @@ extension TokenInfo: Equatable {
 
     var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
     var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
+    var isBnbCoin: Bool { return tokenCode == TokenCode.bnbCoin }
     var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
 
     static var viteERC20ContractAddress: String {
@@ -248,6 +255,8 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionEthHeader()
         }else if self.coinType == .grin {
             return R.string.localizable.tokenListPageSectionGrinHeader()
+        }else if self.coinType == .bnb {
+            return R.string.localizable.tokenListPageSectionBnbHeader()
         }
         return ""
     }

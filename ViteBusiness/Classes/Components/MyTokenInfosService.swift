@@ -49,7 +49,7 @@ public final class MyTokenInfosService: NSObject {
             }
         }
 
-        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo])
     }
 
     //MARK: Launch

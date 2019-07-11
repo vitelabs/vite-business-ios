@@ -610,6 +610,9 @@
 "crosschain.fee" = "手续费";
 "crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额%@%@，请联系gateway@vite.org转出.";
 
+//bnb
+"token.list.page.section.bnb.header" = "Binance网络";
+
 
 
 

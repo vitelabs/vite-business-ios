@@ -1277,7 +1277,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 501 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 502 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -3283,6 +3283,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// zh-Hans translation: Binance网络
+      /// 
+      /// Locales: zh-Hans
+      static let tokenListPageSectionBnbHeader = Rswift.StringResource(key: "token.list.page.section.bnb.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6789,6 +6793,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: Binance网络
+      /// 
+      /// Locales: zh-Hans
+      static func tokenListPageSectionBnbHeader(_: Void = ()) -> String {
+        return NSLocalizedString("token.list.page.section.bnb.header", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

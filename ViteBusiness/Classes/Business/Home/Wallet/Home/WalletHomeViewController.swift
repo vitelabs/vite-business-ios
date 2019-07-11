@@ -111,7 +111,6 @@ class WalletHomeViewController: BaseTableViewController {
                 self.headerView.addButton.pp.badgeView.layer.borderColor = UIColor.white.cgColor
                 self.headerView.addButton.pp.badgeView.layer.borderWidth = 1.0
                 self.headerView.addButton.pp.setBadge(flexMode: .middle)
-//                self.headerView.addButton.pp.setBadge(height: 14)
                 self.headerView.addButton.pp.moveBadge(x: -30, y: 15)
 
                 if tokens.count >= 10 {
@@ -172,10 +171,10 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func scan() {
-        let tokenInfo = TokenInfo.init(tokenCode: "BNB", coinType: .bnb, name: "BNB", symbol: "BNB", decimals: 18, icon: "", id: "bnbdd")
-        let vc = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
-        self.navigationController?.pushViewController(vc, animated: true)
-        return
+//        let tokenInfo = TokenInfo.init(tokenCode: "BNB", coinType: .bnb, name: "BNB", symbol: "BNB", decimals: 18, icon: "", id: "bnbdd")
+//        let vc = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        return
 
         let scanViewController = ScanViewController()
         scanViewController.reactor = ScanViewReactor.init()
