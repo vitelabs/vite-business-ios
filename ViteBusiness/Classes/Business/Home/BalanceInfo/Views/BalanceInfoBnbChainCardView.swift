@@ -99,7 +99,7 @@ class BalanceInfoBnbChainCardView: UIView {
         }
 
         addressButton.rx.tap.bind {
-            UIPasteboard.general.string = HDWalletManager.instance.ethAddress
+            UIPasteboard.general.string =  BnbWallet.shared.fromAddress
             Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
             }.disposed(by: rx.disposeBag)
 

@@ -67,9 +67,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
         case .bnb:
-            return UIColor(netHex: 0x5BC500)
+            return UIColor(netHex: 0xF5A500)
         default:
             fatalError()
         }
@@ -82,9 +82,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
         case .bnb:
-            return UIColor(netHex: 0x5BC500)
+            return UIColor(netHex: 0xF5A500)
         default:
             fatalError()
         }
@@ -99,7 +99,7 @@ public enum CoinType: String {
         case .grin:
             return UIColor(netHex: 0xFFF9E1)
         case .bnb:
-            return UIColor(netHex: 0xF8FFF2)
+            return UIColor(netHex: 0xFFF9E1)
         default:
             fatalError()
         }
@@ -114,7 +114,7 @@ public enum CoinType: String {
         case .grin:
             return UIColor(netHex: 0xFFF7DD)
         case .bnb:
-            return UIColor(netHex: 0xF1FFE6)
+            return UIColor(netHex: 0xFFFAEA)
         default:
             fatalError()
         }
@@ -300,7 +300,9 @@ extension TokenInfo {
             return R.image.icon_logo_chain_eth()
         } else if case .vite = coinType, !isViteCoin {
             return R.image.icon_logo_chain_vite()
-        } else {
+        } else if case .bnb = coinType, !isBnbCoin {
+            return R.image.icon_logo_chain_bnb()
+        }else {
             return nil
         }
     }
