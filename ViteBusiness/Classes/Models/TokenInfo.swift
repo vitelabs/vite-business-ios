@@ -126,8 +126,7 @@ public typealias TokenCode = String
 extension TokenCode {
     public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
     public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
-    //写死，不区分网络
-    public static let bnbCoin = "3"
+    public static let bnbCoin = ViteConst.instance.tokenCode.bnbCoin
     public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
     public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
 }

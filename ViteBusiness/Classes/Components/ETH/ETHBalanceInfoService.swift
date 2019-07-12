@@ -13,7 +13,7 @@ import enum Alamofire.Result
 
 public class ETHBalanceInfoService: PollService {
 
-    public typealias Ret = Result<ETHBalanceInfo>
+    public typealias Ret = Result<CommonBalanceInfo>
 
     deinit {
         printLog("")
@@ -33,16 +33,16 @@ public class ETHBalanceInfoService: PollService {
 
     public func handle(completion: @escaping (Ret) -> ()) {
 
-        let promise: Promise<ETHBalanceInfo>
+        let promise: Promise<CommonBalanceInfo>
         let tokenCode = tokenInfo.tokenCode
         if tokenInfo.isEtherCoin {
             promise = EtherWallet.balance.etherBalance().map {
-                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+                CommonBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         } else {
             guard let token = tokenInfo.toETHToken() else { fatalError() }
             promise = EtherWallet.balance.tokenBalance(contractAddress: token.contractAddress).map {
-                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
+                CommonBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         }
 

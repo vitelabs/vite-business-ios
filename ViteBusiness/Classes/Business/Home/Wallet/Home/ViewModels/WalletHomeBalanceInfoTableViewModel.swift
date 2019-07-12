@@ -22,7 +22,7 @@ extension BalanceInfo: WalletHomeBalanceInfo {
     }
 }
 
-extension ETHBalanceInfo: WalletHomeBalanceInfo {}
+extension CommonBalanceInfo: WalletHomeBalanceInfo {}
 
 final class WalletHomeBalanceInfoTableViewModel {
     var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
@@ -34,7 +34,7 @@ final class WalletHomeBalanceInfoTableViewModel {
             ViteBalanceInfoManager.instance.balanceInfosDriver,
             ETHBalanceInfoManager.instance.balanceInfosDriver,
             GrinManager.default.balanceDriver,
-            BnbWallet.shared.balanceDriver)
+            BnbWallet.shared.commonBalanceInfoDriver)
             .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
                 let (isHidePrice, _, viteMap, ethMap, grinBalance,bnbMap) = arg
                 return MyTokenInfosService.instance.tokenInfos
@@ -43,11 +43,11 @@ final class WalletHomeBalanceInfoTableViewModel {
                         case .vite:
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
                         case .eth:
-                            return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
+                            return ethMap[tokenInfo.tokenCode] ?? CommonBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
                         case .grin:
                             return grinBalance
                         case .bnb:
-                              return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
+                            return BnbWallet.shared.commonBalanceInfo(for: tokenInfo.tokenCode)
                         }
                     }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
                         return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)

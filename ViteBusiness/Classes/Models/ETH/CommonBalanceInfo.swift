@@ -1,5 +1,5 @@
 //
-//  ETHBalanceInfo.swift
+//  CommonBalanceInfo.swift
 //  Action
 //
 //  Created by Stone on 2019/2/26.
@@ -10,7 +10,7 @@ import ObjectMapper
 import BigInt
 import ViteWallet
 
-public struct ETHBalanceInfo: Mappable {
+public struct CommonBalanceInfo: Mappable {
 
     public fileprivate(set) var tokenCode = ""
     public fileprivate(set) var balance = Amount()

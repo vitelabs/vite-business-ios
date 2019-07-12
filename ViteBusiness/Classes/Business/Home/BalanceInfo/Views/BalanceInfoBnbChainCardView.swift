@@ -202,15 +202,15 @@ class BalanceInfoBnbChainCardView: UIView {
 //TODO..
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
-            BnbWallet.shared.balanceInfoDriver(for: tokenInfo.id).filterNil()).map({ (rateMap, balanceInfo) -> String in
+            BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil()).map({ (rateMap, balanceInfo) -> String in
 
                 //fetch rate TODO...
                 let temp = rateMap.priceString(tokenCode: balanceInfo.symbol, balance: Double(balanceInfo.free))
                 return String.init(format: "≈%@", temp)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
-        BnbWallet.shared.balanceInfoDriver(for: tokenInfo.id).filterNil().map({
-            String.init(format: "%f", $0.free)
+        BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil().map({
+            String.init(format: "%0.8f", $0.free)
         }).drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
 

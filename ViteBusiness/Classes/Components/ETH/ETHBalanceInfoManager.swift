@@ -13,7 +13,7 @@ import enum Alamofire.Result
 import RxSwift
 import RxCocoa
 
-public typealias ETHBalanceInfoMap = [TokenCode: ETHBalanceInfo]
+public typealias ETHBalanceInfoMap = [TokenCode: CommonBalanceInfo]
 
 public class ETHBalanceInfoManager {
     static let instance = ETHBalanceInfoManager()
@@ -127,7 +127,7 @@ public class ETHBalanceInfoManager {
 
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
             let jsonString = String(data: data, encoding: .utf8),
-            let balanceInfos = [ETHBalanceInfo](JSONString: jsonString) {
+            let balanceInfos = [CommonBalanceInfo](JSONString: jsonString) {
 
             // filter deleted balanceInfo
             for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.tokenCode) {
@@ -138,7 +138,7 @@ public class ETHBalanceInfoManager {
         return map
     }
 
-    private func save(balanceInfos: [ETHBalanceInfo]) {
+    private func save(balanceInfos: [CommonBalanceInfo]) {
         if let data = balanceInfos.toJSONString()?.data(using: .utf8) {
             if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
                 assert(false, error.localizedDescription)
@@ -149,8 +149,8 @@ public class ETHBalanceInfoManager {
 
 extension ETHBalanceInfoManager {
 
-    func balanceInfoDriver(for tokenCode: TokenCode) -> Driver<ETHBalanceInfo?> {
-        return balanceInfosDriver.map({ [weak self] map -> ETHBalanceInfo? in
+    func balanceInfoDriver(for tokenCode: TokenCode) -> Driver<CommonBalanceInfo?> {
+        return balanceInfosDriver.map({ [weak self] map -> CommonBalanceInfo? in
             return map[tokenCode]
         })
     }

@@ -14,6 +14,9 @@ import ObjectMapper
 import BinanceChain
 import PromiseKit
 
+import BigInt
+
+
 extension Balance : Mappable {
     public mutating func mapping(map: Map) {
         symbol <- map["symbol"]
@@ -26,7 +29,6 @@ extension Balance : Mappable {
         return nil
     }
 }
-
 
 extension BnbWallet: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -60,7 +62,6 @@ extension BnbWallet {
     }
 }
 
-
 public typealias BNBBalanceInfoMap = [String: Balance]
 public class BnbWallet {
     public static let shared = BnbWallet()
@@ -78,6 +79,10 @@ public class BnbWallet {
     //signal
     public lazy var balanceDriver: Driver<[Balance]> = self.balanceBehaviorRelay.asDriver()
     private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [Balance]())
+
+    public lazy var commonBalanceInfoDriver: Driver<[CommonBalanceInfo]> = self.commonBalanceInfoBehaviorRelay.asDriver()
+    private var commonBalanceInfoBehaviorRelay: BehaviorRelay<[CommonBalanceInfo]> = BehaviorRelay(value: [CommonBalanceInfo]())
+
 
     private var webSocket: WebSocket?
 
@@ -131,12 +136,42 @@ public class BnbWallet {
             self.balanceBehaviorRelay.accept(response.account.balances)
             self.pri_save(balances: response.account.balances)
             self.output("account", response.account, response.error)
+
+            let balances = response.account.balances
+            var balanceInfos : [CommonBalanceInfo] = []
+            for b in balances {
+                let temp = MyTokenInfosService.instance.tokenInfo(forBnbSymbol: b.symbol)
+
+                if temp != nil {
+                    let amount = Int64(b.free * 100000000)
+                    let bigDecimal = BigDecimal.init("\(amount)")
+                    var balanceInfo = CommonBalanceInfo.init(tokenCode: temp!.tokenCode, balance: bigDecimal!.number)
+                    balanceInfos.append(balanceInfo)
+                }
+            }
+            self.commonBalanceInfoBehaviorRelay.accept(balanceInfos)
         }
     }
 
-    func balanceInfoDriver(for tokenCode: String) -> Driver<Balance?> {
+    func balanceInfoDriver(symbol: String) -> Driver<Balance?> {
         return balanceDriver.map({ [weak self] map -> Balance? in
-            for model in map where model.symbol == tokenCode {
+            for model in map where model.symbol == symbol {
+                return model
+            }
+            return nil
+        })
+    }
+
+    func commonBalanceInfo(for tokenCode: String) -> CommonBalanceInfo {
+        let commonBalanceInfos = self.commonBalanceInfoBehaviorRelay.value
+        for model in commonBalanceInfos where model.tokenCode == tokenCode {
+            return model
+        }
+        return CommonBalanceInfo(tokenCode:tokenCode, balance: BigInt())
+    }
+    func commonBalanceInfoDriver(for tokenCode: String) -> Driver<CommonBalanceInfo?> {
+        return commonBalanceInfoDriver.map({ [weak self] map -> CommonBalanceInfo? in
+            for model in map where model.tokenCode == tokenCode {
                 return model
             }
             return nil

@@ -166,7 +166,7 @@ class BnbWalletSendViewController: BaseViewController {
     }
 
     private func bind() {
-        BnbWallet.shared.balanceInfoDriver(for: self.tokenInfo.id).drive(onNext:{[weak self] r in
+        BnbWallet.shared.balanceInfoDriver(symbol: self.tokenInfo.id).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
             guard let ret = r else { return }
             self.headerView.balanceLabel.text = "\(ret.free)"

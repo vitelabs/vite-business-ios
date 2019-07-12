@@ -55,6 +55,7 @@ public extension ViteConst {
         public let etherCoin: String
         public let viteERC20: String
         public let grinCoin: String
+        public let bnbCoin: String
     }
 
     public struct Cos {
@@ -105,7 +106,7 @@ public extension ViteConst {
             Env(tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
-                                     grinCoin: "1174"),
+                                     grinCoin: "1174", bnbCoin: "1384"),
                 cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
                          discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
@@ -129,7 +130,8 @@ public extension ViteConst {
             Env(tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
-                                     grinCoin: "1174"),
+                                     grinCoin: "1174",
+                                     bnbCoin: "1384"),
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
                          discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
@@ -153,7 +155,8 @@ public extension ViteConst {
             Env(tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
-                                     grinCoin: "1174"),
+                                     grinCoin: "1174",
+                                     bnbCoin: "1384"),
                 cos: Cos(config: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com", // stage
                          discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com"), // stage
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",

@@ -186,6 +186,13 @@ extension MyTokenInfosService {
         return nil
     }
 
+    public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.coinType == .bnb && tokenInfo.id == symbol {
+            return tokenInfo
+        }
+        return nil
+    }
+
     func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(for: tokenCode) {
