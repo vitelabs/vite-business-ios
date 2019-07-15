@@ -14,9 +14,18 @@ import PromiseKit
 public final class BifrostManager {
     public static let instance = BifrostManager()
 
-    enum BifrostManagerError: Error {
+    enum BifrostManagerError: Error, DisplayableError {
         case connectTimeout
         case unknown
+
+        var errorMessage: String {
+            switch self {
+            case .connectTimeout:
+                return R.string.localizable.bifrostErrorMessageTimeout()
+            case .unknown:
+                return R.string.localizable.bifrostErrorMessageUnknown()
+            }
+        }
     }
 
     private let disposeBag = DisposeBag()
@@ -94,13 +103,20 @@ public final class BifrostManager {
                 }
             }.catch { [weak self] (error) in
                 plog(level: .info, log: "socket connect error \(error.localizedDescription), exit bifrost", tag: .bifrost)
-                self?.approveFailed(message: error.localizedDescription)
+                self?.approveFailed(message: R.string.localizable.bifrostErrorMessageUnknown())
             }
         interactor = i
     }
 
     func disConnect() {
         plog(level: .info, log: "disconnect, exit bifrost", tag: .bifrost)
+
+        guard let current = UIViewController.current else { return }
+        if current is BifrostViewController {
+            current.navigationController?.popViewController(animated: true)
+        }
+        self.tasks = [BifrostViteSendTxTask]()
+
         if let i = interactor, i.connected {
             i.killSession().cauterize()
         }
@@ -132,25 +148,28 @@ extension BifrostManager {
             guard let `self` = self else { return }
 
             let message: String
-            if self.isConnectedAndApproved {
-                message = R.string.localizable.bifrostAlertApproveSessionAgainMessage(peer.url)
+            let cancel: String
+            let ok: String
+
+            if let address = peer.lastAccount, address.isViteAddress, address != currentAddress {
+                message = R.string.localizable.bifrostAlertApproveSessionAnotherAddressMessage(peer.url)
+                cancel = R.string.localizable.bifrostAlertApproveSessionAnotherAddressCancel()
+                ok = R.string.localizable.bifrostAlertApproveSessionAnotherAddressOk()
             } else {
-                if let address = peer.lastAccount, address.isViteAddress, address != currentAddress {
-                    message = R.string.localizable.bifrostAlertApproveSessionAnotherAddressMessage(address, currentAddress, peer.url)
-                } else {
-                    message = R.string.localizable.bifrostAlertApproveSessionMessage(peer.url)
-                }
+                message = R.string.localizable.bifrostAlertApproveSessionMessage(peer.url)
+                cancel = R.string.localizable.cancel()
+                ok = R.string.localizable.confirm()
             }
 
             Alert.show(title: R.string.localizable.bifrostAlertTipTitle(),
                        message: message,
                        actions: [
-                        (.cancel, { _ in
+                        (.default(title: cancel), { _ in
                             plog(level: .info, log: "user canceled session, exit bifrost", tag: .bifrost)
                             self.interactor?.rejectSession().cauterize()
                             self.approveFailed(message: nil)
                         }),
-                        (.default(title: R.string.localizable.confirm()), { _ in
+                        (.default(title: ok), { _ in
                             plog(level: .info, log: "user approved session, congratulations", tag: .bifrost)
                             self.interactor?.approveSession(accounts: [currentAddress], chainId: chainId).cauterize()
                             self.isConnectedAndApprovedBehaviorRelay.accept(true)
@@ -160,7 +179,7 @@ extension BifrostManager {
 
         interactor.onViteSendTx = { [weak self] (id, tx) in
             guard let `self` = self else { return }
-            BifrostConfrimInfoFactory.generateConfrimInfo(tx).done({[weak self] (info, tokenInfo) in
+            BifrostConfirmInfoFactory.generateConfirmInfo(tx).done({[weak self] (info, tokenInfo) in
                 guard let `self` = self else { return }
                 let task = BifrostViteSendTxTask(id: id, tx: tx, info: info, tokenInfo: tokenInfo)
                 self.tasks.append(task)
@@ -194,18 +213,18 @@ extension BifrostManager {
                                                         switch ret {
                                                         case .success(let accountBlock):
                                                             self.removeTask(task)
-                                                            vc.hideConfrim()
+                                                            vc.hideConfirm()
                                                             self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
-                                                            vc.showConfrimIfNeeded()
+                                                            vc.showConfirmIfNeeded()
                                                         case .failure(let error):
                                                             plog(level: .debug, log: error.localizedDescription)
                                                         }
                     })
                 } else {
                     self.removeTask(task)
-                    vc.hideConfrim()
+                    vc.hideConfirm()
                     self.interactor?.cancelRequest(id: task.id).cauterize()
-                    vc.showConfrimIfNeeded()
+                    vc.showConfirmIfNeeded()
                 }
             })
 
@@ -217,7 +236,7 @@ extension BifrostManager {
             ret = vc
         }
 
-        ret.showConfrimIfNeeded()
+        ret.showConfirmIfNeeded()
         return ret
     }
 

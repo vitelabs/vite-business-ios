@@ -1,5 +1,5 @@
 //
-//  BifrostConfrimItemView.swift
+//  BifrostConfirmItemView.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/6/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BifrostConfrimItemView: UIView {
+class BifrostConfirmItemView: UIView {
 
     private let titleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
@@ -20,7 +20,7 @@ class BifrostConfrimItemView: UIView {
         $0.numberOfLines = 0
     }
 
-    init(info: BifrostConfrimItemInfo) {
+    init(info: BifrostConfirmItemInfo) {
         super.init(frame: CGRect.zero)
 
         addSubview(titleLabel)

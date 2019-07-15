@@ -610,17 +610,15 @@
 "crosschain.fee" = "手续费";
 "crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额%@%@，请联系gateway@vite.org转出.";
 
-
-
-
-
 /* Vite Bifrost */
 "bifrost.connect.tip.in.wallet.home" = "ViteBifrost 已连接";
 "bifrost.alert.tip.title" = "温馨提示";
-"bifrost.alert.approve.session.message" = "请确认是否首选如下链接:\n%@";
-"bifrost.alert.approve.session.again.message" = "你都连了一个了还连，你要干嘛，请确认是否首选如下链接\n%@";
-"bifrost.alert.approve.session.another.address.message" = "上一次用的这个%@地址，这次是这个%@地址，请确认是否首选如下链接\n%@";
-"bifrost.alert.switch.address.message" = "您当前处于 ViteBifrost 连接中，切换地址将断开链接，请确认是否切换地址";
+"bifrost.alert.approve.session.message" = "请确认如下链接\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Web 端地址与当前 App 扫码地址不符，请确认是否使用 App 地址登录\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "确认登录";
+"bifrost.alert.approve.session.another.address.cancel" = "返回";
+
+"bifrost.alert.switch.address.message" = "ViteBifrost 已链接，切换地址将断开链接，请确认是否切换地址";
 
 "bifrost.alert.quit.title" = "确认是否退出 ViteBifrost?";
 
@@ -630,6 +628,9 @@
 "bifrost.home.page.busy.header" = "您正在web端进行操作";
 "bifrost.home.page.busy.content" = "请确认如下交易信息";
 "bifrost.toast.operation.success" = "操作成功";
+
+"bifrost.error.message.timeout" = "连接超时，请稍后重试";
+"bifrost.error.message.unknown" = "连接错误，请稍后重试";
 
 // operation
 "bifrost.operation.register.sbp" = "注册SBP";

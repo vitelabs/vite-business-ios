@@ -9,9 +9,9 @@ import UIKit
 
 class BifrostViewController: BaseViewController {
 
-    let confrimResult: ((Bool, BifrostViteSendTxTask, BifrostViewController) -> Void)
+    let confirmResult: ((Bool, BifrostViteSendTxTask, BifrostViewController) -> Void)
     init(result: @escaping (Bool, BifrostViteSendTxTask, BifrostViewController) -> Void) {
-        confrimResult = result
+        confirmResult = result
         super.init(nibName: nil, bundle: nil)
         setupView()
     }
@@ -50,7 +50,7 @@ class BifrostViewController: BaseViewController {
     var busyView: BifrostBusyView?
 
 
-    func showConfrimIfNeeded() {
+    func showConfirmIfNeeded() {
         guard self.busyView == nil else { return }
 
         if let task = BifrostManager.instance.currectTask {
@@ -65,19 +65,19 @@ class BifrostViewController: BaseViewController {
             busyView.cancelButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 plog(level: .debug, log: "xxxxx cancelButton")
-                self.confrimResult(false, task, self)
+                self.confirmResult(false, task, self)
                 }.disposed(by: busyView.rx.disposeBag)
 
-            busyView.confrimButton.rx.tap.bind { [weak self] in
+            busyView.confirmButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
-                plog(level: .debug, log: "xxxxx confrimButton")
-                self.confrimResult(true, task, self)
+                plog(level: .debug, log: "xxxxx confirmButton")
+                self.confirmResult(true, task, self)
                 }.disposed(by: busyView.rx.disposeBag)
             self.busyView = busyView
         }
     }
 
-    func hideConfrim() {
+    func hideConfirm() {
         self.busyView?.removeFromSuperview()
         self.busyView = nil
     }

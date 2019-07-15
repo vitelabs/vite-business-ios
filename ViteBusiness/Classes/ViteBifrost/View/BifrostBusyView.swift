@@ -17,7 +17,7 @@ class BifrostBusyView: UIView {
     }
     
     let cancelButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.cancel())
-    let confrimButton = UIButton(style: .blueWithShadow, title: R.string.localizable.confirm())
+    let confirmButton = UIButton(style: .blueWithShadow, title: R.string.localizable.confirm())
 
     let scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)).then {
         $0.stackView.spacing = 0
@@ -52,7 +52,7 @@ class BifrostBusyView: UIView {
         addSubview(scrollView)
 
         addSubview(cancelButton)
-        addSubview(confrimButton)
+        addSubview(confirmButton)
 
         imageView.snp.makeConstraints { (m) in
             m.top.equalTo(safeAreaLayoutGuideSnpTop).offset(26)
@@ -96,7 +96,7 @@ class BifrostBusyView: UIView {
             make.bottom.equalTo(safeAreaLayoutGuideSnpBottom).offset(-24)
         }
 
-        confrimButton.snp.makeConstraints { (make) -> Void in
+        confirmButton.snp.makeConstraints { (make) -> Void in
             make.top.bottom.width.height.equalTo(cancelButton)
             make.left.equalTo(cancelButton.snp.right).offset(23)
             make.right.equalToSuperview().offset(-24)
@@ -107,7 +107,7 @@ class BifrostBusyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func set(_ info: BifrostConfrimInfo) {
+    func set(_ info: BifrostConfirmInfo) {
 
         scrollView.stackView.arrangedSubviews.forEach { (view) in
             view.removeFromSuperview()
@@ -115,7 +115,7 @@ class BifrostBusyView: UIView {
 
         headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
 
-        let titleView = BifrostConfrimTitleView(title: info.title)
+        let titleView = BifrostConfirmTitleView(title: info.title)
         scrollView.stackView.addArrangedSubview(titleView)
 
         var previousIsUnderscored: Bool?
@@ -123,7 +123,7 @@ class BifrostBusyView: UIView {
             if let p = previousIsUnderscored, !(p && itemInfo.isUnderscored) {
                 scrollView.stackView.addPlaceholder(height: 16)
             }
-            let itemView = BifrostConfrimItemView(info: itemInfo)
+            let itemView = BifrostConfirmItemView(info: itemInfo)
             scrollView.stackView.addArrangedSubview(itemView)
             previousIsUnderscored = itemInfo.isUnderscored
         }

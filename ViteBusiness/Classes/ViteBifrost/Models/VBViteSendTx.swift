@@ -145,8 +145,8 @@ extension VBViteSendTx {
             return name[key]
         }
 
-        public func confrimItemInfo(text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil) -> BifrostConfrimItemInfo {
-            return BifrostConfrimItemInfo(title: title ?? "", text: text, textColor: textColor ?? style?.textColor, backgroundColor: backgroundColor ?? style?.backgroundColor)
+        public func confirmItemInfo(text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil) -> BifrostConfirmItemInfo {
+            return BifrostConfirmItemInfo(title: title ?? "", text: text, textColor: textColor ?? style?.textColor, backgroundColor: backgroundColor ?? style?.backgroundColor)
         }
     }
 }

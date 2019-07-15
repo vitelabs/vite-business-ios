@@ -18,8 +18,8 @@ class BifrostStatusView: UIButton {
 
         titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         setTitle(R.string.localizable.bifrostConnectTipInWalletHome(), for: .normal)
-        setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        setTitleColor(UIColor(netHex: 0x007AFF), for: .highlighted)
+        setTitleColor(UIColor(netHex: 0x007AFF, alpha: 0.7), for: .normal)
+        setTitleColor(UIColor(netHex: 0x007AFF, alpha: 0.7), for: .highlighted)
         backgroundColor = UIColor(netHex: 0xF5FAFF)
 
         rx.tap.bind {

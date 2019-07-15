@@ -10,6 +10,6 @@ import Foundation
 struct BifrostViteSendTxTask {
     let id: Int64
     let tx : VBViteSendTx
-    let info: BifrostConfrimInfo
+    let info: BifrostConfirmInfo
     let tokenInfo: TokenInfo
 }

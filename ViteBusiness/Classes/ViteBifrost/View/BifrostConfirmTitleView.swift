@@ -1,5 +1,5 @@
 //
-//  BifrostConfrimTitleView.swift
+//  BifrostConfirmTitleView.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/6/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BifrostConfrimTitleView: UIView {
+class BifrostConfirmTitleView: UIView {
 
     private let titleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)

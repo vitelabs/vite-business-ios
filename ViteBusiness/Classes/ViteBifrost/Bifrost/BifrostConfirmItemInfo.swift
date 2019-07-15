@@ -1,5 +1,5 @@
 //
-//  BifrostConfrimItemInfo.swift
+//  BifrostConfirmItemInfo.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/6/13.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BifrostConfrimItemInfo {
+public struct BifrostConfirmItemInfo {
 
     public let title: String
     public let text: String

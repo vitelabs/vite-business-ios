@@ -1,5 +1,5 @@
 //
-//  BifrostConfirmViewController.swift
+//  BifrostConfirmView.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/3/13.
@@ -35,7 +35,8 @@ class BifrostConfirmView: UIView {
     }
 
     let closeButton = UIButton().then {
-        $0.setImage(R.image.icon_nav_close_black(), for: .normal)
+        $0.setImage(R.image.icon_nav_close_black()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.45)), for: .normal)
+        $0.setImage(R.image.icon_nav_close_black()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.45)).highlighted, for: .highlighted)
     }
 
     let titleLabel = UILabel().then {
@@ -94,7 +95,7 @@ class BifrostConfirmView: UIView {
         }
 
         passwordInputView.snp.makeConstraints { (m) in
-            m.top.equalTo(closeButton.snp.bottom).offset(24)
+            m.top.equalTo(closeButton.snp.bottom).offset(16)
             m.leading.equalToSuperview().offset(24)
             m.trailing.equalToSuperview().offset(-24)
         }
@@ -119,9 +120,6 @@ class BifrostConfirmView: UIView {
             .subscribe(onNext: {[weak self] (notification) in
                 let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0.25
                 var height = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-                if #available(iOS 11.0, *) {
-                    height = height - (UIViewController.current?.view.safeAreaInsets.bottom ?? 0)
-                }
                 UIView.animate(withDuration: duration, animations: {
                     self?.contentView.transform = CGAffineTransform(translationX: 0, y: -height)
                 })
