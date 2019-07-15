@@ -274,7 +274,9 @@
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
 "peldge.title" = "My Staking List";
-
+"peldge.cancel.peldge.button.title" = "Withdraw";
+"peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
+"peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
 /* Vote */
 "vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";
@@ -393,6 +395,7 @@
 
 "workflow.toast.transfer.success" = "Transfer Success";
 "workflow.toast.submit.success" = "Submit Successful";
+"workflow.toast.cancel.pledge.success" = "取回抵押请求已发送";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
@@ -409,6 +412,7 @@
 "confirm.transaction.page.vite.confirm.button" = "Confirm";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "Acquire Quota";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
 "confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
 // vite vote & cancel
 "confirm.transaction.page.vite.vote.transfer.title" = "Vote";

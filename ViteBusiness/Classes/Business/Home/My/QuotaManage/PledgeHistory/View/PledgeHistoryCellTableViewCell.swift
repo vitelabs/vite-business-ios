@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PledgeHistoryCell: UITableViewCell {
+final class PledgeHistoryCell: BaseTableViewCell {
 
     let hashLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16)
@@ -18,7 +18,7 @@ final class PledgeHistoryCell: UITableViewCell {
 
     let timeLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
+        $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.60)
     }
 
     let balanceLabel = UILabel().then {
@@ -28,7 +28,16 @@ final class PledgeHistoryCell: UITableViewCell {
 
     let symbolLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.60)
+    }
+
+    let cancelButton = UIButton().then {
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0x007AFF), cornerRadius: 11).resizable, for: .normal)
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0x007AFF), cornerRadius: 11).highlighted.resizable, for: .highlighted)
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0xBCC0CA), cornerRadius: 11).resizable, for: .disabled)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +50,7 @@ final class PledgeHistoryCell: UITableViewCell {
         contentView.addSubview(timeLabel)
         contentView.addSubview(balanceLabel)
         contentView.addSubview(symbolLabel)
+        contentView.addSubview(cancelButton)
 
         hashLabel.snp.makeConstraints { (m) in
             m.top.equalTo(contentView).offset(16)
@@ -48,24 +58,29 @@ final class PledgeHistoryCell: UITableViewCell {
         }
 
         timeLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(hashLabel.snp.bottom).offset(5)
+            m.top.equalTo(hashLabel.snp.bottom).offset(11)
             m.left.equalTo(hashLabel)
         }
 
         balanceLabel.setContentHuggingPriority(.required, for: .horizontal)
         balanceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         balanceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(hashLabel)
+            m.centerY.equalTo(hashLabel)
             m.left.greaterThanOrEqualTo(hashLabel.snp.right).offset(22)
-            m.left.greaterThanOrEqualTo(timeLabel.snp.right).offset(22)
-            m.right.equalTo(contentView).offset(-24)
         }
 
+        symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
+        symbolLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         symbolLabel.snp.makeConstraints { (m) in
-            m.right.equalTo(balanceLabel)
-            m.top.equalTo(timeLabel)
+            m.left.equalTo(balanceLabel.snp.right).offset(8)
+            m.right.equalTo(contentView).offset(-24)
+            m.centerY.equalTo(balanceLabel)
         }
 
+        cancelButton.snp.makeConstraints { (m) in
+            m.bottom.equalTo(timeLabel)
+            m.right.equalTo(symbolLabel)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

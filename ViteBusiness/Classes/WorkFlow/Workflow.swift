@@ -243,10 +243,40 @@ public extension Workflow {
                               completion: completion)
         }
 
-
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func cancelPledgeWithConfirm(account: Wallet.Account,
+                                        beneficialAddress: ViteAddress,
+                                        amount: Amount,
+                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+
+        let sendBlock = {
+            let withoutPowPromise = {
+                return ViteNode.pledge.cancel.withoutPow(account: account,
+                                                          beneficialAddress: beneficialAddress,
+                                                          amount: amount)
+            }
+            let getPowPromise = {
+                return ViteNode.pledge.cancel.getPow(account: account,
+                                                     beneficialAddress: beneficialAddress,
+                                                     amount: amount)
+            }
+
+            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
+                              getPowPromise: getPowPromise,
+                              successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
+                              type: .pledge,
+                              completion: completion)
+        }
+
+
+        let tokenInfo = TokenInfo.viteCoin
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 

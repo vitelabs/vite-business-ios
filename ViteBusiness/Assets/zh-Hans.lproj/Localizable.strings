@@ -277,7 +277,9 @@
 "peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";
 "peldge.deadline" = "到期";
 "peldge.title" = "我的抵押列表";
-
+"peldge.cancel.peldge.button.title" = "取回抵押";
+"peldge.cancel.pledge.withdrawing.title" = "取回中";
+"peldge.cancel.pledge.amount.error.toast" = "最小取回金额为134 VITE，请先抵押足够数量VITE";
 /* Vote */
 "vote.page.title" = "投票";
 "vote.page.info.nodata.title" = "暂无投票";
@@ -397,6 +399,7 @@
 
 "workflow.toast.transfer.success" = "转账交易发送成功";
 "workflow.toast.submit.success" = "提交成功";
+"workflow.toast.cancel.pledge.success" = "取回抵押请求已发送";
 "workflow.toast.vote.success" = "投票请求发送成功";
 "workflow.toast.cancel.vote.success" = "撤销投票请求发送成功";
 "workflow.toast.contract.success" = "支付成功";
@@ -413,6 +416,7 @@
 "confirm.transaction.page.vite.confirm.button" = "确认支付";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "获取配额";
+"confirm.transaction.page.vite.cancel.pledge.title" = "取回抵押";
 "confirm.transaction.page.vite.pledge.confirm.button" = "确认";
 // vite vote & cancel
 "confirm.transaction.page.vite.vote.transfer.title" = "投票";

@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 536 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 541 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -2650,6 +2650,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let viteErrorRpcErrorCodeRefrenceSnapshootBlockIllegal = Rswift.StringResource(key: "vite.error.rpc.error.code.refrence.snapshoot.block.illegal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Something went wrong with network, click here to check account details
+      /// 
+      /// Locales: en, zh-Hans
+      static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Something went wrong with network, please try again later
       /// 
       /// Locales: en, zh-Hans
@@ -2766,6 +2770,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageToastNoteTooLong = Rswift.StringResource(key: "send.page.toast.note.too.long", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The minimum withdraw amount is 134 VITE, please stake enough VITE first.
+      /// 
+      /// Locales: en, zh-Hans
+      static let peldgeCancelPledgeAmountErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.amount.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -3198,6 +3206,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostAlertApproveSessionAnotherAddressMessage = Rswift.StringResource(key: "bifrost.alert.approve.session.another.address.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Withdraw
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmTransactionPageViteCancelPledgeTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.cancel.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Withdraw
+      /// 
+      /// Locales: en, zh-Hans
+      static let peldgeCancelPeldgeButtonTitle = Rswift.StringResource(key: "peldge.cancel.peldge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Withdraw Failed
       /// 
       /// Locales: en, zh-Hans
@@ -3210,6 +3226,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCancelCoin = Rswift.StringResource(key: "transaction.list.transaction.type.name.cancelCoin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Withdrawing
+      /// 
+      /// Locales: en, zh-Hans
+      static let peldgeCancelPledgeWithdrawingTitle = Rswift.StringResource(key: "peldge.cancel.pledge.withdrawing.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Would you like to create a new seed phrase?
       /// 
       /// Locales: en, zh-Hans
@@ -3322,6 +3342,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationVxCancelOrder = Rswift.StringResource(key: "bifrost.operation.vx.cancel.order", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取回抵押请求已发送
+      /// 
+      /// Locales: en, zh-Hans
+      static let workflowToastCancelPledgeSuccess = Rswift.StringResource(key: "workflow.toast.cancel.pledge.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 取回配额抵押
       /// 
       /// Locales: en, zh-Hans
@@ -3386,10 +3410,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostAlertApproveSessionAnotherAddressOk = Rswift.StringResource(key: "bifrost.alert.approve.session.another.address.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 网络错误，点击查看账户详情
-      /// 
-      /// Locales: en, zh-Hans
-      static let transactionListTransactionNetErrorAndShowAccount = Rswift.StringResource(key: "transaction.list.transaction.netErrorAndShowAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 获取配额
       /// 
       /// Locales: en, zh-Hans
@@ -5818,6 +5838,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("vite.error.rpc.error.code.refrence.snapshoot.block.illegal", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Something went wrong with network, click here to check account details
+      /// 
+      /// Locales: en, zh-Hans
+      static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Something went wrong with network, please try again later
       /// 
       /// Locales: en, zh-Hans
@@ -6019,6 +6046,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageToastNoteTooLong(_: Void = ()) -> String {
         return NSLocalizedString("send.page.toast.note.too.long", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The minimum withdraw amount is 134 VITE, please stake enough VITE first.
+      /// 
+      /// Locales: en, zh-Hans
+      static func peldgeCancelPledgeAmountErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.pledge.amount.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: The receipt has been confirmed
@@ -6777,6 +6811,20 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("bifrost.alert.approve.session.another.address.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: Withdraw
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmTransactionPageViteCancelPledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.cancel.pledge.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Withdraw
+      /// 
+      /// Locales: en, zh-Hans
+      static func peldgeCancelPeldgeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.peldge.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Withdraw Failed
       /// 
       /// Locales: en, zh-Hans
@@ -6796,6 +6844,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameCancelCoin(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.cancelCoin", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Withdrawing
+      /// 
+      /// Locales: en, zh-Hans
+      static func peldgeCancelPledgeWithdrawingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.pledge.withdrawing.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Would you like to create a new seed phrase?
@@ -6994,6 +7049,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.vx.cancel.order", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 取回抵押请求已发送
+      /// 
+      /// Locales: en, zh-Hans
+      static func workflowToastCancelPledgeSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.cancel.pledge.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 取回配额抵押
       /// 
       /// Locales: en, zh-Hans
@@ -7104,13 +7166,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostAlertApproveSessionAnotherAddressOk(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.alert.approve.session.another.address.ok", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 网络错误，点击查看账户详情
-      /// 
-      /// Locales: en, zh-Hans
-      static func transactionListTransactionNetErrorAndShowAccount(_: Void = ()) -> String {
-        return NSLocalizedString("transaction.list.transaction.netErrorAndShowAccount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 获取配额
