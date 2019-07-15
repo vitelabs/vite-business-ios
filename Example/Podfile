@@ -3,10 +3,13 @@ use_frameworks!
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
-  pod 'ViteUtils', :git => 'https://github.com/vitelabs/vite-utils-ios.git', :commit => '62af5410efd9368709b8fe6e4cfbf15616474ef5'
-  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => 'c395465dfb62d9097e29ee9da076e4761788b324'
-  pod 'ViteEthereum', :git => 'https://github.com/vitelabs/vite-ethereum-ios.git'
-  pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => 'b5adab3114a69269dc60e4f35f20d2376eb67cf6'
+#  pod 'ViteUtils', :git => 'https://github.com/vitelabs/vite-utils-ios.git', :commit => '62af5410efd9368709b8fe6e4cfbf15616474ef5'
+  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => '363fcd9e3759aa9619f1a4d1ca8c6d0f23268cfc'
+  pod 'ViteEthereum', :git => 'https://github.com/vitelabs/vite-ethereum-ios.git',:commit => '6ddc0b795c65a7a34e84aa196c76f179e032ed97'
+  pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => '5219021d0f7e0db3443500eca1a5146c3ed30163'
+  pod 'Vite_HDWalletKit', :git => 'https://github.com/vitelabs/vite-keystore-ios.git', :commit => '14d8e1d4f26e27e92439c688b8c65a029c8395f9'
+
+  
 
   target 'ViteBusiness_Tests' do
     inherit! :search_paths

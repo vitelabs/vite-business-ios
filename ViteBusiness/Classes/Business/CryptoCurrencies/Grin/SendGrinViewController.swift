@@ -30,7 +30,8 @@ class SendGrinViewController: UIViewController {
     @IBOutlet weak var feeTitleLable: UILabel!
     let txMethodLabel = LabelBgView()
 
-
+    @IBOutlet weak var rateLabel: UILabel!
+    
     let helpButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.grin_help(), for: .normal)
@@ -122,6 +123,17 @@ class SendGrinViewController: UIViewController {
             vc.fromSendVC = true
             self?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
+
+        amountTextField.rx.text.bind { [weak self] text in
+            guard let `self` = self else { return }
+            let rateMap = ExchangeRateManager.instance.rateMap
+            if let amount = text?.toAmount(decimals: GrinManager.tokenInfo.decimals) {
+                self.rateLabel.text = "≈" + rateMap.priceString(for: GrinManager.tokenInfo, balance: amount)
+            } else {
+                self.rateLabel.text = "≈ --"
+            }
+            }
+            .disposed(by: rx.disposeBag)
 
     }
 

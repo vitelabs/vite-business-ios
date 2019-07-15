@@ -23,7 +23,7 @@ final class WalletHomeBalanceInfoViewModel {
     init(balanceInfo: WalletHomeBalanceInfo, isHidePrice: Bool) {
         self.tokenInfo = balanceInfo.tokenInfo
 
-        self.symbol = tokenInfo.symbol
+        self.symbol = tokenInfo.uniqueSymbol
         self.coinFamily = tokenInfo.coinFamily
         self.balance = balanceInfo.balance
         if isHidePrice {
@@ -38,7 +38,7 @@ final class WalletHomeBalanceInfoViewModel {
     // for unselected vite token
     init(tokenInfo: TokenInfo, balance: Amount) {
         self.tokenInfo = tokenInfo
-        self.symbol = tokenInfo.symbol
+        self.symbol = tokenInfo.uniqueSymbol
         self.coinFamily = tokenInfo.coinFamily
         self.balance = balance
         self.balanceString = balance.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)

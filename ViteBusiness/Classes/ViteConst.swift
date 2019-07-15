@@ -17,6 +17,7 @@ public struct ViteConst {
     public let vite: Vite
     public let eth: Eth
     public let grin: Grin
+    public let crossChain: CrossChain
 
 
     init() {
@@ -43,6 +44,7 @@ public struct ViteConst {
         vite = currentEnv.vite
         eth = currentEnv.eth
         grin = currentEnv.grin
+        crossChain = currentEnv.crossChain
     }
 }
 
@@ -82,12 +84,22 @@ public extension ViteConst {
         public let x: String
     }
 
+    public struct CrossChain {
+        public struct ETH {
+            public let gateway: String
+            public let tokenId: String
+        }
+        let eth: CrossChain.ETH
+
+    }
+
     public struct Env {
         public let tokenCode: TokenCode
         public let cos: Cos
         public let vite: Vite
         public let eth: Eth
         public let grin: Grin
+        public let crossChain: CrossChain
 
         public static let premainnet =
             Env(tokenCode: TokenCode(viteCoin: "1171",
@@ -108,7 +120,10 @@ public extension ViteConst {
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
-                           x: "https://grinx.vite.net"))
+                           x: "https://grinx.vite.net"),
+                crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
+                                                tokenId: "tti_4d3a69b12962332e8df52701"))
+        )
 
         public static let testEnv =
             Env(tokenCode: TokenCode(viteCoin: "1171",
@@ -129,7 +144,10 @@ public extension ViteConst {
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.usernet.rawValue,
-                           x: "http://129.28.98.62:8080"))
+                           x: "http://129.28.98.62:8080"),
+                crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
+                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+        )
 
         public static let stageEnv =
             Env(tokenCode: TokenCode(viteCoin: "1171",
@@ -150,6 +168,9 @@ public extension ViteConst {
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
-                           x: "https://grinx.vite.net"))
+                           x: "https://grinx.vite.net"),
+                crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
+                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+        )
     }
 }

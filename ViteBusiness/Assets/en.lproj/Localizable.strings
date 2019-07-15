@@ -141,6 +141,7 @@
 "transaction.list.transaction.type.name.coin" = "Token Issuance";
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
+"transaction.list.transaction.netErrorAndShowAccount" = "网络错误，点击查看账户详情";
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
@@ -356,7 +357,9 @@
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
 "token.list.page.section.grin.header" = "GRIN Network";
-
+"token.list.page.ignore.btn.title" = "Ignore";
+"token.list.page.ignore.lab.title" = "%d new asset(s)";
+"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";
 "contacts.home.page.no.contact.tip" = "Add your first address";
@@ -555,6 +558,51 @@
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
 
 
+// CrossChain Transfer & Receive
 
-
+"crosschain.tokendetail" = "Token Details";
+"crosschain.deposit" = "Cross-Chain Receive";
+"crosschain.withdraw" = "Cross-Chain Transfer";
+"crosschain.withdraw.btnTitle" = "Transfer";
+"crosschain.deposit.btnTitle" = "Receive";
+"crosschain.deposit.vitewallet" = "Receive from Vite Wallet";
+"crosschain.deposit.otherwallet" = "Receive from Another Wallet";
+"crosschain.deposit.history" = "Receive History";
+"crosschain.withdraw.history" = "Transfer History";
+"crosschain.deposit.minAmountDesc" = "The required minimum receive amount is %@. If you try to receive an amount less than this threshold, the transaction will fail.";
+"crosschain.deposit.address" = "Receive Address";
+"crosschain.deposit.scanAddress" = "Scan QR Code to Receive";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
+"crosschain.withdraw.eth.myAddress" = "My ETH Address";
+"crosschain.deposit.min" = "Minimum Receive ";
+"crosschain.withdraw.min" = "Minimum Transfer ";
+"crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
+"crosschain.deposit.all" = "Receive All";
+"crosschain.deposit.amount" = "Receive Amount";
+"crosschain.tokenDetail.shortname" = "Symbol";
+"crosschain.tokenDetail.id" = "Token ID";
+"crosschain.tokenDetail.name" = "Token Name";
+"crosschain.tokenDetail.address" = "Coin Forging Address";
+"crosschain.tokenDetail.amount" = "Total Issuance";
+"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.tokenDetail.unit" = "";
+"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
+"crosschain.tokenDetail.issuance.true" = "Yes";
+"crosschain.tokenDetail.issuance.false" = "No";
+"crosschain.tokenDetail.date" = "Issuance Date";
+"crosschain.tokenDetail.desc" = "Description";
+"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
+"crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.tot.exceed.limit" = "Exceed the limit";
+"crosschain.status.wrong.address" = "Wrong transfer address";
+"crosschain.status.gatewayReceived" = "Received by Gateway";
+"crosschain.status.withdraw.failed" = "Withdraw Failed";
+"crosschain.status.failedBecausePoor" = "Too less amount";
+"crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
+"crosschain.withdraw.aboutfee" = "About Fee";
+"crosschain.status.failed" = "Deposit Failed";
+"crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
+"crosschain.fee" = "Fee";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
 

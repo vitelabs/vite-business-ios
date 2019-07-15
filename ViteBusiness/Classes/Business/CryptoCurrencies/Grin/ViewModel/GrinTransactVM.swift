@@ -125,13 +125,19 @@ class GrinTransactVM {
            GrinManager.default.txFinalize(slatePath: slateUrl.path)
         },  { (result) in
             switch result {
-            case .success:
-                self.message.onNext(R.string.localizable.grinFinalizedAlertDesc())
-                self.finalizeTxSuccess.onNext(Void())
-                guard let data = JSON(FileManager.default.contents(atPath: slateUrl.path)).rawValue as? [String: Any],
-                    let slate = Slate(JSON:data) else { return }
-                GrinManager.default.setFinalizedTx(slate.id)
-                GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
+            case .success(let slate):
+                let result = GrinManager.default.txRepost(slateID: slate.id)
+                switch result {
+                case .success:
+                    self.message.onNext(R.string.localizable.grinFinalizedAlertDesc())
+                    self.finalizeTxSuccess.onNext(Void())
+                    guard let data = JSON(FileManager.default.contents(atPath: slateUrl.path)).rawValue as? [String: Any],
+                        let slate = Slate(JSON:data) else { return }
+                    GrinManager.default.setFinalizedTx(slate.id)
+                    GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
+                case .failure(let error):
+                    self.message.onNext(error.message)
+                }
             case .failure(let error):
                 self.message.onNext(error.message)
             }
@@ -140,6 +146,10 @@ class GrinTransactVM {
 
     func sentTx(amountString: String?, destnation: String?) {
         guard let amount = amountFrom(string: amountString) else {
+            return
+        }
+        guard amount > 0 else {
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
             return
         }
         if let destnation = destnation {
@@ -163,14 +173,18 @@ class GrinTransactVM {
         },  { (result) in
             switch result {
             case .success(let slate):
-                self.message.onNext(R.string.localizable.grinSentHttpSuccess())
-                self.sendTxSuccess.onNext(Void())
-                GrinLocalInfoService.shared.addSendInfo(slateId: slate.id, method: "Http", creatTime: Int(Date().timeIntervalSince1970))
-                GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
-                GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
-            case .failure(let error):
-                if error.message == "LibWallet Error: Client Callback Error: Posting transaction to node: Request error: Wrong response code" {
+                let result = GrinManager.default.txRepost(slateID: slate.id)
+                switch result {
+                case .success:
+                    self.message.onNext(R.string.localizable.grinSentHttpSuccess())
+                    self.sendTxSuccess.onNext(Void())
+                    GrinLocalInfoService.shared.addSendInfo(slateId: slate.id, method: "Http", creatTime: Int(Date().timeIntervalSince1970))
+                    GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slate.id)
+                    GrinLocalInfoService.shared.set(finalizeTime: Int(Date().timeIntervalSince1970), with: slate.id)
+                case .failure(let error):
+                    self.message.onNext(error.message)
                 }
+            case .failure(let error):
                 self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.message)
             }

@@ -20,7 +20,7 @@ class EthViteExchangeViteAddressView: UIView {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     }
 
-    let button = UIButton().then {
+    var button: UIButton? = UIButton().then {
         $0.setTitle(R.string.localizable.ethViteExchangePageAddressChangeButtonTitle(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
@@ -42,7 +42,6 @@ class EthViteExchangeViteAddressView: UIView {
         titleLabel.text = R.string.localizable.ethViteExchangePageToAddressTitle()
 
         addSubview(titleLabel)
-        addSubview(button)
         addSubview(textLabel)
 
         titleLabel.snp.makeConstraints { (m) in
@@ -50,20 +49,13 @@ class EthViteExchangeViteAddressView: UIView {
             m.left.equalTo(self)
         }
 
-        button.snp.makeConstraints { (m) in
-            m.centerY.equalTo(titleLabel)
-            m.right.equalTo(self)
-        }
-
         textLabel.snp.makeConstraints { (m) in
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.left.equalTo(self)
             m.right.equalTo(self)
-            m.height.equalTo(50)
+            m.height.greaterThanOrEqualTo(17)
             m.bottom.equalTo(self).offset(-16)
         }
-
-
 
         let backView = UIView()
         backView.backgroundColor = UIColor(netHex: 0x007AFF).withAlphaComponent(0.06)
@@ -81,4 +73,62 @@ class EthViteExchangeViteAddressView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+extension EthViteExchangeViteAddressView {
+
+    enum Style {
+        case chouseAddressButton
+        case copyButton
+        case none
+    }
+
+    class func addressView(style: EthViteExchangeViteAddressView.Style) -> EthViteExchangeViteAddressView {
+        let addressView = EthViteExchangeViteAddressView()
+
+        if style == .none {
+
+        } else if style == .copyButton {
+            let button = UIButton()
+            addressView.button = button
+
+            addressView.addSubview(button)
+
+            button.setImage(R.image.icon_button_paste_light_gray(), for: .normal)
+
+            button.snp.makeConstraints { (m) in
+                m.centerY.equalTo(addressView.titleLabel)
+                m.right.equalTo(addressView)
+                m.size.equalTo(CGSize.init(width: 20, height: 20))
+            }
+
+        } else if style == .chouseAddressButton {
+            let button = UIButton().then {
+                $0.setTitle(R.string.localizable.ethViteExchangePageAddressChangeButtonTitle(), for: .normal)
+                $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+                $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+                $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+
+                let lineImageView = UIImageView(image: R.image.blue_dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
+
+                $0.addSubview(lineImageView)
+                let titleLabel = $0.titleLabel!
+                lineImageView.snp.makeConstraints { (m) in
+                    m.left.right.equalToSuperview()
+                    m.bottom.equalTo(titleLabel).offset(2)
+                }
+            }
+
+            addressView.button = button
+            addressView.addSubview(button)
+
+            button.snp.makeConstraints { (m) in
+                m.centerY.equalTo(addressView.titleLabel)
+                m.right.equalTo(addressView)
+            }
+        }
+
+        return addressView
+
+    }
 }

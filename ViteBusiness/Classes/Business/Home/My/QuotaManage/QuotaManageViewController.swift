@@ -77,6 +77,7 @@ class QuotaManageViewController: BaseViewController {
 
     lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
+        $0.textView.text = HDWalletManager.instance.account?.address
         $0.textView.keyboardType = .default
     }
 

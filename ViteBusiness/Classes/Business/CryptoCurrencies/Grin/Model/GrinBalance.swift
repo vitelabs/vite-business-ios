@@ -22,6 +22,7 @@ class GrinBalance: WalletHomeBalanceInfo {
     var amountCurrentlySpendable = "--"
     var amountLocked = "--"
     var legalTenderWorthed = "≈--"
+    var amountAwaitingFinalization = "--"
 
     var lastConfirmedHeight = 0
 
@@ -44,6 +45,7 @@ class GrinBalance: WalletHomeBalanceInfo {
                 .priceString(for: GrinManager.tokenInfo, balance: spendableBalance)
         balance = spendableBalance
         lastConfirmedHeight = info.lastConfirmedHeight
+        amountAwaitingFinalization = Amount(info.amountAwaitingFinalization).amount(decimals: 9, count: 9)
     }
 
 }

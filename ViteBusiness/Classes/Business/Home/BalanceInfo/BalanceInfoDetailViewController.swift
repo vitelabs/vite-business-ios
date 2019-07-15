@@ -71,27 +71,26 @@ class BalanceInfoDetailViewController: BaseViewController {
         adapter.setup(containerView: containerView)
 
 
-        if allowJumpTokenDetailPage {
-            let tapGestureRecognizer = UITapGestureRecognizer()
-            navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
-            tapGestureRecognizer.rx.event.subscribe(onNext: { [weak self] (r) in
-                guard let url = self?.tokenInfo.infoURL else { return }
-                let vc = WKWebViewController.init(url: url)
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-            }).disposed(by: rx.disposeBag)
-        }
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
+            let vc =  GatewayTokenDetailViewController.init(tokenInfo: self.tokenInfo)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: rx.disposeBag)
+
+
     }
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
 
-        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
-            .first().subscribe { [weak self] _ in
-                guard let `self` = self else { return }
-                if self.allowJumpTokenDetailPage {
-                    self.navView.tokenIconView.beat()
-                }
-            }.disposed(by: rx.disposeBag)
+//        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
+//            .first().subscribe { [weak self] _ in
+//                guard let `self` = self else { return }
+//                if self.allowJumpTokenDetailPage {
+//                    self.navView.tokenIconView.beat()
+//                }
+//            }.disposed(by: rx.disposeBag)
     }
 }
 

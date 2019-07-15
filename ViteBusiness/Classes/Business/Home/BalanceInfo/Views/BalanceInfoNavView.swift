@@ -21,6 +21,14 @@ class BalanceInfoNavView: UIView {
         $0.numberOfLines = 1
     }
 
+    let gatewayNamelabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x007AFF)
+        $0.numberOfLines = 1
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
+    }
+
     let tokenIconView = TokenIconView()
 
     override init(frame: CGRect) {
@@ -32,6 +40,7 @@ class BalanceInfoNavView: UIView {
         addSubview(symbolLabel)
         addSubview(nameLabel)
         addSubview(tokenIconView)
+        addSubview(gatewayNamelabel)
 
         backgroundColor = UIColor.white
         layer.shadowColor = UIColor(netHex: 0x000000).cgColor
@@ -53,9 +62,13 @@ class BalanceInfoNavView: UIView {
 
         symbolLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
-
-            m.right.equalTo(tokenIconView.snp.left).offset(-10)
             m.bottom.equalTo(nameLabel.snp.top).offset(-6)
+        }
+
+        gatewayNamelabel.snp.makeConstraints { (m) in
+            m.left.equalTo(symbolLabel.snp.right).offset(6)
+            m.centerY.equalTo(symbolLabel)
+            m.height.equalTo(16)
         }
     }
 
@@ -65,9 +78,15 @@ class BalanceInfoNavView: UIView {
     }
 
     func bind(tokenInfo: TokenInfo) {
-        symbolLabel.text = tokenInfo.symbol
+        symbolLabel.text = tokenInfo.uniqueSymbol
         nameLabel.text = tokenInfo.name
         tokenIconView.tokenInfo = tokenInfo
+        if let gatewayName = tokenInfo.gatewayName {
+            gatewayNamelabel.text = " \(gatewayName) "
+            gatewayNamelabel.isHidden = false
+        } else {
+            gatewayNamelabel.isHidden = true
+        }
     }
 }
 

@@ -90,6 +90,19 @@ public enum CoinType: String {
             fatalError()
         }
     }
+
+    var labelBackgroundColor: UIColor {
+        switch self {
+        case .vite:
+            return UIColor(netHex: 0xF2F8FF)
+        case .eth:
+            return UIColor(netHex: 0xF1FFE6)
+        case .grin:
+            return UIColor(netHex: 0xFFF7DD)
+        default:
+            fatalError()
+        }
+    }
 }
 
 public typealias TokenCode = String
@@ -108,8 +121,24 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var decimals: Int = 0
+    public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
     public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
+    public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
+
+    public var uniqueSymbol: String {
+        if case .vite = coinType {
+            if symbol == "VITE" ||
+                symbol == "VCP" ||
+                symbol == "VX" {
+                return symbol
+            } else {
+                return String(format:"%@-%03d", symbol, index)
+            }
+        } else {
+            return symbol
+        }
+    }
 
     public var coinFamily: String {
         switch coinType {
@@ -152,8 +181,10 @@ public struct TokenInfo: Mappable {
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimal"]
+        index <- map["tokenIndex"]
         icon <- map["icon"]
         id <- map["tokenAddress"]
+        gatewayInfo <- map["gatewayInfo"]
     }
 
     private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
@@ -164,14 +195,16 @@ public struct TokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
         self.tokenCode = tokenCode
         self.coinType = coinType
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
+        self.index = index
         self.icon = icon
         self.id = id
+        self.gatewayInfo = gatewayInfo
     }
 }
 
@@ -212,6 +245,10 @@ extension TokenInfo {
     static var viteERC20: TokenInfo {
         return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20)!
     }
+
+    static var eth: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin)!
+    }
 }
 
 extension TokenInfo {
@@ -237,6 +274,8 @@ extension TokenInfo {
     var chainIcon: UIImage? {
         if case .eth = coinType, !isEtherCoin {
             return R.image.icon_logo_chain_eth()
+        } else if case .vite = coinType, !isViteCoin {
+            return R.image.icon_logo_chain_vite()
         } else {
             return nil
         }
@@ -258,6 +297,110 @@ extension TokenInfo {
 
     var shadowColor: UIColor {
         return coinType.shadowColor
+    }
+
+}
+
+extension TokenInfo {
+
+    public var isGateway: Bool {
+        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode
+    }
+
+    public var gatewayName: String? {
+        return self.gatewayInfo?.name
+    }
+}
+
+public struct GatewayInfo: Mappable {
+
+    public init?(map: Map) {
+
+    }
+
+    init(name: String, url: String, mappedTokenInfo: MappedTokenInfo) {
+        self.name = name
+        self.url = url
+        self.mappedTokenInfo = mappedTokenInfo
+    }
+
+    public mutating func mapping(map: Map) {
+        name <- map["name"]
+        url <- map["url"]
+        mappedTokenInfo <- map["mappedToken"]
+    }
+
+    var name =  ""
+    var url = ""
+    private var mappedTokenInfo = MappedTokenInfo()
+
+    var mappedToken: TokenInfo {
+        let mapped = mappedTokenInfo
+        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
+    }
+}
+
+public struct MappedTokenInfo: Mappable {
+
+    public fileprivate(set)  var tokenCode: TokenCode = ""
+    public fileprivate(set)  var name: String = ""
+    public fileprivate(set)  var symbol: String = ""
+    public fileprivate(set)  var coinType: CoinType = .eth
+    public fileprivate(set)  var decimals: Int = 0
+    public fileprivate(set)  var index: Int = 0
+    public fileprivate(set)  var icon: String = ""
+    public fileprivate(set)  var id: String = ""
+
+    public var uniqueSymbol: String {
+        if case .vite = coinType {
+            if symbol == "VITE" ||
+                symbol == "VCP" ||
+                symbol == "VX" {
+                return symbol
+            } else {
+                return String(format:"%@-%03d", symbol, index)
+            }
+        } else {
+            return symbol
+        }
+    }
+
+    public init?(map: Map) {
+
+    }
+
+    init() {
+
+    }
+
+    public mutating func mapping(map: Map) {
+        tokenCode <- map["tokenCode"]
+        name <- map["name"]
+        symbol <- map["symbol"]
+        coinType <- (map["platform"], coinTypeTransform)
+        decimals <- map["decimal"]
+        index <- map["tokenIndex"]
+        icon <- map["icon"]
+        id <- map["tokenAddress"]
+    }
+
+    private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
+        guard let string = string else { return nil }
+        return CoinType(rawValue: string)
+    }, toJSON: { (coinType) -> String? in
+        guard let coinType = coinType else { return nil }
+        return coinType.rawValue
+    })
+
+    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
+        self.tokenCode = tokenCode
+        self.coinType = coinType
+        self.name = name
+        self.symbol = symbol
+        self.decimals = decimals
+        self.index = index
+        self.icon = icon
+        self.id = id
     }
 
 }

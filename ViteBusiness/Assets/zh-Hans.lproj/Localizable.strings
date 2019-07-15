@@ -143,6 +143,7 @@
 "transaction.list.transaction.type.name.coin" = "铸币";
 "transaction.list.transaction.type.name.cancelCoin" = "取回铸币抵押";
 "transaction.list.transaction.type.name.transfer" = "转账";
+"transaction.list.transaction.netErrorAndShowAccount" = "网络错误，点击查看账户详情";
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "账户余额";
@@ -359,6 +360,9 @@
 "token.list.page.section.vite.header" = "Vite网络";
 "token.list.page.section.eth.header" = "Ethereum网络";
 "token.list.page.section.grin.header" = "GRIN网络";
+"token.list.page.ignore.btn.title" = "忽略";
+"token.list.page.ignore.lab.title" = "%d个新资产";
+"token.list.page.ignore.alter.title" = "被忽略币种将不再提示，确定忽略以下币种？";
 
 // Contacts Home
 "contacts.home.page.title" = "联系地址";
@@ -557,6 +561,61 @@
 "grin.detail.slateCopied" = "已复制Slate ID";
 "grin.send.illegalAmmount" = "转账金额不合法";
 "grin.detail.gatewayResend" = "请求网关重发";
+
+
+// CrossChain Deposit & Withdraw
+"crosschain.tokendetail" = "代币详情";
+"crosschain.deposit" = "跨链转入";
+"crosschain.withdraw" = "跨链转出";
+"crosschain.withdraw.btnTitle" = "转出";
+"crosschain.deposit.btnTitle" = "转入";
+"crosschain.deposit.vitewallet" = "Vite钱包转入";
+"crosschain.deposit.otherwallet" = "其他钱包转入";
+"crosschain.deposit.history" = "转入记录";
+"crosschain.withdraw.history" = "转出记录";
+"crosschain.deposit.minAmountDesc" = "最小转入金额为%@ ，若转入金额小于最小转入金额，将导致转入失败。";
+"crosschain.deposit.address" = "转入地址";
+"crosschain.deposit.scanAddress" = "请扫描二维码转入";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。Vite钱包跨链转入是使用Vite钱包%@余额进行转入。</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。</p>";
+"crosschain.withdraw.eth.myAddress" = "我的ETH地址";
+"crosschain.deposit.min" = "最少转入";
+"crosschain.withdraw.min" = "最少转出";
+"crosschain.deposit.min.alert" = "转入金额不得少于";
+"crosschain.deposit.all" = "全部转入";
+"crosschain.deposit.amount" = "转入金额";
+"crosschain.tokenDetail.shortname" = "代币简称";
+"crosschain.tokenDetail.id" = "代币ID";
+"crosschain.tokenDetail.name" = "代币名称";
+"crosschain.tokenDetail.address" = "铸币地址";
+"crosschain.tokenDetail.amount" = "发行总量";
+"crosschain.tokenDetail.digit" = "小数位";
+"crosschain.tokenDetail.unit" = "";
+"crosschain.tokenDetail.issuance" = "可否增发";
+"crosschain.tokenDetail.issuance.true" = "可增发";
+"crosschain.tokenDetail.issuance.false" = "不可增发";
+"crosschain.tokenDetail.date" = "发行日期";
+"crosschain.tokenDetail.desc" = "代币描述";
+"crosschain.status.waitToConfirm" = "%@链待确认";
+"crosschain.status.confirmed" = "已完成";
+"crosschain.status.tot.exceed.limit" = "超过限额";
+"crosschain.status.wrong.address" = "转出地址错误";
+"crosschain.status.gatewayReceived" = "网关已接收";
+"crosschain.status.withdraw.failed" = "转出失败";
+"crosschain.status.failedBecausePoor" = "转入金额过小";
+"crosschain.withdraw.fee.desc" = "此手续费包含以太矿工费用";
+"crosschain.withdraw.aboutfee" = "关于手续费";
+"crosschain.status.failed" = "转入失败";
+"crosschain.beta.alert" = "当前网关为beta版，请不要转入大额资产";
+"crosschain.fee" = "手续费";
+"crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额%@%@，请联系gateway@vite.org转出.";
+
+
+
+
+
+
+
 
 
 

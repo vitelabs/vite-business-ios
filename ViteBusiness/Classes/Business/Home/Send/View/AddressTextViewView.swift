@@ -57,6 +57,7 @@ class AddressTextViewView: SendAddressViewType {
         addButton.snp.makeConstraints { (m) in
             m.right.equalTo(titleLabel)
             m.bottom.equalTo(self).offset(-10)
+            m.size.equalTo(CGSize(width: 28, height: 28))
         }
 
         textView.textColor = UIColor(netHex: 0x24272B)

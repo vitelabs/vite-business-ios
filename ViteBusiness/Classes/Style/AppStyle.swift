@@ -52,6 +52,39 @@ public struct Fonts {
     static let Font24 = UIFont.systemFont(ofSize: 24, weight: .semibold)
 }
 
+func font(_ size: CGFloat) -> UIFont {
+    return UIFont.systemFont(ofSize: size)
+}
+
+func boldFont(_ size: CGFloat) ->  UIFont {
+    return UIFont.boldSystemFont(ofSize: size)
+}
+
+extension UITableView {
+    static func listView() -> UITableView {
+        let tableView = UITableView()
+        tableView.tableFooterView = UIView()
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: 22)
+        return tableView
+    }
+
+    func set(empty: Bool) {
+        let tag = 1163
+        let emptyView = self.viewWithTag(tag)
+        if empty && emptyView == nil {
+            let view = UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty(), showImage: true)
+            view.tag = tag
+            self.addSubview(view)
+            view.snp.makeConstraints { (m) in
+                m.center.equalToSuperview()
+            }
+        } else if !empty && emptyView != nil {
+            emptyView?.removeFromSuperview()
+        }
+
+    }
+}
+
 public enum AppStyle {
     case inputDescWord
     case descWord

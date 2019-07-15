@@ -28,6 +28,12 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         $0.numberOfLines = 1
     }
 
+    let gatewayNameLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x007AFF)
+        $0.numberOfLines = 1
+    }
+
     fileprivate let balanceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
@@ -79,6 +85,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         whiteView.addSubview(iconImageView)
         whiteView.addSubview(symbolLabel)
         whiteView.addSubview(coinFamilyLabel)
+        whiteView.addSubview(gatewayNameLabel)
         whiteView.addSubview(balanceLabel)
         whiteView.addSubview(priceLabel)
         whiteView.addSubview(colorView)
@@ -123,18 +130,23 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         coinFamilyLabel.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview().offset(-14)
             m.left.equalTo(symbolLabel)
+            m.height.equalTo(16)
+        }
+
+        gatewayNameLabel.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview().offset(-14)
+            m.left.equalTo(coinFamilyLabel.snp.right).offset(-0.5)
+            m.height.equalTo(16)
         }
 
         priceLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(coinFamilyLabel)
             m.right.equalToSuperview().offset(-14)
-            m.left.equalTo(coinFamilyLabel.snp.right).offset(10)
         }
 
         symbolLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         balanceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
-        coinFamilyLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         priceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
@@ -157,10 +169,23 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         symbolLabel.text = viewModel.symbol
         symbolLabel.textColor = UIColor.init(netHex: 0x24272B)
         coinFamilyLabel.textColor = viewModel.tokenInfo.mainColor
-        coinFamilyLabel.text = viewModel.coinFamily
+        coinFamilyLabel.text = " \(viewModel.coinFamily) "
+        coinFamilyLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
         colorView.backgroundColor = viewModel.tokenInfo.mainColor
+
+        if viewModel.tokenInfo.isGateway {
+            gatewayNameLabel.isHidden = false
+            gatewayNameLabel.text = " Gateway "
+//            gatewayNameLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
+            coinFamilyLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
+            coinFamilyLabel.layer.borderWidth = 1
+            gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
+            gatewayNameLabel.layer.borderWidth = 1
+        } else {
+            gatewayNameLabel.isHidden = true
+        }
 
         if viewModel.tokenInfo.coinType == .grin {
             if !GrinManager.default.walletCreated.value {

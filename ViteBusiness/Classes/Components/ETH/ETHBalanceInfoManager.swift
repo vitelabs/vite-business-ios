@@ -85,14 +85,14 @@ public class ETHBalanceInfoManager {
                     return true
                 }
             }.forEach { (tokenInfo) in
-                plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.symbol)", tag: .transaction)
+                plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
                 let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 5, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {
                     case .success(let balanceInfo):
 
-                        plog(level: .debug, log: "\(address) \(tokenInfo.symbol): \(balanceInfo.balance.description)", tag: .transaction)
+                        plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
                         
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
@@ -109,7 +109,7 @@ public class ETHBalanceInfoManager {
 
             serviceMap.forEach { (tokenCode, service) in
                 if !tokenInfos.contains(where: { $0.tokenCode == tokenCode }) {
-                    plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.symbol)", tag: .transaction)
+                    plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
                     serviceMap[tokenCode] = nil
                 }
             }

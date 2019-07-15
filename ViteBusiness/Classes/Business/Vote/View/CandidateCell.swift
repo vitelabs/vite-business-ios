@@ -52,8 +52,8 @@ class CandidateCell: UITableViewCell {
     }
 
     let addressLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = UIColor.init(netHex: 0x3E4A59)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
         $0.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
         $0.lineBreakMode = .byTruncatingMiddle
     }
@@ -61,7 +61,7 @@ class CandidateCell: UITableViewCell {
     let voteButton = UIButton().then {
         $0.setTitle(R.string.localizable.vote(), for: .normal)
         $0.backgroundColor = UIColor.init(netHex: 0x007AFF)
-        $0.layer.cornerRadius = 11
+        $0.layer.cornerRadius = 12.5
         $0.layer.masksToBounds = true
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
     }

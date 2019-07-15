@@ -21,6 +21,8 @@ extension TokenInfo {
         case .vite:
             if isViteCoin {
                 return BalanceInfoDetailViteCoinAdapter(tokenInfo: self)
+            } else if isGateway {
+                return BalanceInfoDetailGatewayTokenAdapter(tokenInfo: self)
             } else {
                 return BalanceInfoDetailViteTokenAdapter(tokenInfo: self)
             }

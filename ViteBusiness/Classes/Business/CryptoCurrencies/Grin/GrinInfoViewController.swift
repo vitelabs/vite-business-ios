@@ -42,6 +42,8 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var lineImageVIew: UIImageView!
     @IBOutlet weak var receiveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var finalizationTitleLabel: UILabel!
+    @IBOutlet weak var finalizationCountLabel: UILabel!
     let rightBatItemCustombutton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
 
     let helpButton: UIButton = {
@@ -102,6 +104,7 @@ class GrinInfoViewController: BaseViewController {
                 self?.lockedCountLabel.text = info.amountLocked
                 self?.totalCountLabel.text = info.total
                 self?.spendableExchangeLalbe.text = info.legalTenderWorthed
+                self?.finalizationCountLabel.text = info.amountAwaitingFinalization
             })
             .disposed(by: rx.disposeBag)
 
@@ -166,6 +169,13 @@ class GrinInfoViewController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        titleView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
+            let vc =  GatewayTokenDetailViewController.init(tokenInfo: GrinManager.tokenInfo)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: rx.disposeBag)
+
     }
 
 
@@ -186,7 +196,7 @@ class GrinInfoViewController: BaseViewController {
 
         grinCardBgView.backgroundColor =
             UIColor.gradientColor(style: .leftTop2rightBottom,
-                                  frame: CGRect.init(x: 0, y: 0, width: kScreenW - 48, height: 201),
+                                  frame: CGRect.init(x: 0, y: 0, width: kScreenW - 48, height: 225),
                                   colors: [UIColor(netHex: 0xFF5C00),UIColor(netHex: 0xFFC800)])
         lineImageVIew.image =
             R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile)
@@ -205,6 +215,7 @@ class GrinInfoViewController: BaseViewController {
         sendBtn.setTitle(R.string.localizable.grinSentBtnTitle(), for: .normal)
         receiveBtn.setTitle(R.string.localizable.grinReceiveBtnTitle(), for: .normal)
         transcationTiTleLabel.text = R.string.localizable.transactionListPageTitle()
+        finalizationTitleLabel.text = R.string.localizable.grinTxbyfileReceivedStatusSender() 
         tableView.tableFooterView = UIView()
 
         tableView.addSubview(emptyView)

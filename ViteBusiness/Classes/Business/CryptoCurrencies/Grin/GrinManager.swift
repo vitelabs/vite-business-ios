@@ -124,13 +124,27 @@ class GrinManager: GrinBridge {
         },  { (result) in
             switch result {
             case .success(_):
+                if self.walletExists() {
+                    self.walletCreated.accept(true)
+                }
                 self.getBalance()
             case .failure(let error):
-                Toast.show("error: \(error.message)")
+//                Toast.show("error0: \(error.message)")
+                //try again
                 plog(level: .info, log: "wallet recover failed:" + error.message, tag: .grin)
-            }
-            if self.walletExists() {
-                self.walletCreated.accept(true)
+                grin_async({ () in
+                    self.walletRestore()
+                },  { (result) in
+                    if self.walletExists() {
+                        self.walletCreated.accept(true)
+                    }
+                    switch result {
+                    case .success:
+                        self.getBalance()
+                    case .failure(let error):
+                        Toast.show("error: \(error.message)")
+                    }
+                })
             }
         })
     }
@@ -450,6 +464,7 @@ extension GrinManager {
                       name: "grin",
                       symbol: "GRIN",
                       decimals: 9,
+                      index: 0,
                       icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
                       id: "GRIN")
     }

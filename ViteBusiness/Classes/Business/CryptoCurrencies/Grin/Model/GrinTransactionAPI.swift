@@ -116,7 +116,8 @@ extension GrinTransaction: TargetType {
         return [
             "versionCode": String(Bundle.main.buildNumberInt),
             "platform": "ios",
-            "language": LocalizationService.sharedInstance.currentLanguage.rawValue
+            "language": LocalizationService.sharedInstance.currentLanguage.rawValue,
+            "grinversion": "v2"
         ]
     }
 

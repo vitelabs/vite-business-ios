@@ -37,6 +37,7 @@ class EthViteExchangeAmountView: UIView {
     let symbolLabel = UILabel().then {
         $0.textColor = Colors.titleGray
         $0.font = AppStyle.descWord.font
+        $0.textAlignment = .right
     }
 
     let separatorLine = UIView().then {

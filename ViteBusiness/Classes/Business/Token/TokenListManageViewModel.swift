@@ -8,12 +8,29 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 public typealias TokenListArray = [[TokenInfo]]
 
 final class TokenListManageViewModel {
+    fileprivate var newAssetTokens : [TokenInfo] = []
+    func isHasNewAssetTokens() -> Bool {
+        return self.newAssetTokens.count > 0 ? true : false
+    }
+    func newAssetTokenCount() -> Int {
+        return self.newAssetTokens.count 
+    }
+
     lazy var tokenListRefreshDriver = self.tokenListRefreshRelay.asDriver()
     fileprivate  var tokenListRefreshRelay = BehaviorRelay<TokenListArray>(value: TokenListArray())
+
+    let disposeBag = DisposeBag()
+
+    init() {
+        NewAssetService.instance.isNewTipTokenInfosDriver.asObservable().bind { [weak self] tokens in
+                self?.newAssetTokens = tokens
+        }.disposed(by: disposeBag)
+    }
 
     func refreshList() {
         TokenListService.instance.fetchTokenListCacheData()
@@ -52,6 +69,11 @@ final class TokenListManageViewModel {
         }
 
         var list = Array<[TokenInfo]>()
+
+        if self.isHasNewAssetTokens() {
+            list.append(self.newAssetTokens)
+        }
+
         if var vite = map["VITE"] {
             vite.append(contentsOf: localViteToken)
             list.append(vite)
@@ -70,6 +92,7 @@ final class TokenListManageViewModel {
         }else {
             list.append(localGrinToken)
         }
+
         tokenListRefreshRelay.accept(list)
     }
 
