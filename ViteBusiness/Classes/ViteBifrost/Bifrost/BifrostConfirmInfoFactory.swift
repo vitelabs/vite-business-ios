@@ -262,18 +262,18 @@ struct BifrostConfirmInfoFactory {
         ]
         fileprivate static let DesMap: [BuildInContract: String] = [
             .register: "{\"function\":{\"name\":{\"base\":\"Register SBP\",\"zh\":\"注册 SBP\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP 名称\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}}]}",
-            .registerUpdate: "{\"function\":{\"name\":{\"base\":\"Update SBP\",\"zh\":\"更新 SBP\"}},\"inputs\":[{\"name\":{\"base\":\"Updated Address\",\"zh\":\"更新地址\"}}]}",
-            .cancelRegister: "{\"function\":{\"name\":{\"base\":\"Deregister SBP\",\"zh\":\"撤销 SBP 注册\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP名称\"}}]}",
-            .extractReward: "{\"function\":{\"name\":{\"base\":\"Extract Rewards\",\"zh\":\"提取奖励\"}},\"inputs\":[{\"name\":{\"base\":\"Receive Address\",\"zh\":\"收款地址\"}}]}",
-            .vote: "{\"function\":{\"name\":{\"base\":\"Vote\",\"zh\":\"投票\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Candidate\",\"zh\":\"投票节点名称\"}},{\"name\":{\"base\":\"Votes\",\"zh\":\"投票量\"}}]}",
-            .cancelVote: "{\"function\":{\"name\":{\"base\":\"Revoke Vote\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"Votes Revoked\",\"zh\":\"撤销投票量\"}}]}",
+            .registerUpdate: "{\"function\":{\"name\":{\"base\":\"Update SBP\",\"zh\":\"更新 SBP\"}},\"inputs\":[{\"name\":{\"base\":\"Update Address\",\"zh\":\"更新地址\"}}]}",
+            .cancelRegister: "{\"function\":{\"name\":{\"base\":\"Revoke SBP Registration\",\"zh\":\"撤销 SBP 注册\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP名称\"}}]}",
+            .extractReward: "{\"function\":{\"name\":{\"base\":\"Claim Rewards\",\"zh\":\"提取奖励\"}},\"inputs\":[{\"name\":{\"base\":\"Recipient Address\",\"zh\":\"收款地址\"}}]}",
+            .vote: "{\"function\":{\"name\":{\"base\":\"Vote\",\"zh\":\"投票\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Candidates\",\"zh\":\"投票节点名称\"}},{\"name\":{\"base\":\"Votes\",\"zh\":\"投票量\"}}]}",
+            .cancelVote: "{\"function\":{\"name\":{\"base\":\"Revoke Voting\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"Votes Revoked\",\"zh\":\"撤销投票量\"}}]}",
             .pledge: "{\"function\":{\"name\":{\"base\":\"Acquire Quota\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"配额受益地址\"}}]}",
-            .cancelPledge: "{\"function\":{\"name\":{\"base\":\"Regain Stake for Quota\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"取回抵押金额\"}}]}",
+            .cancelPledge: "{\"function\":{\"name\":{\"base\":\"Retrieve Staking for Quota\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"取回抵押金额\"}}]}",
             .coin: "{\"function\":{\"name\":{\"base\":\"Token Issuance\",\"zh\":\"铸币\"}},\"inputs\":[{\"name\":{\"base\":\"Token Name\",\"zh\":\"代币全称\"}},{\"name\":{\"base\":\"Token Symbol\",\"zh\":\"代币简称\"}},{\"name\":{\"base\":\"Total Supply\",\"zh\":\"总发行量\"}},{\"name\":{\"base\":\"Decimals\",\"zh\":\"价格精度\"}}]}",
-            .dexDeposit: "{\"function\":{\"name\":{\"base\":\"Dex Deposit\",\"zh\":\"交易所充值\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"充值金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
-            .dexWithdraw: "{\"function\":{\"name\":{\"base\":\"Dex Withdraw\",\"zh\":\"交易所提现\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"提现金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
-            .dexPost: "{\"function\":{\"name\":{\"base\":\"Dex Post\",\"zh\":\"交易所挂单\"}},\"inputs\":[{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"数量\"}}]}",
-            .dexCancel: "{\"function\":{\"name\":{\"base\":\"Dex Cancel\",\"zh\":\"交易所撤单\"}},\"inputs\":[{\"name\":{\"base\":\"Order ID\",\"zh\":\"订单 ID\"}},{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}}]}",
+            .dexDeposit: "{\"function\":{\"name\":{\"base\":\"ViteX Deposit\",\"zh\":\"交易所充值\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"充值金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
+            .dexWithdraw: "{\"function\":{\"name\":{\"base\":\"ViteX Withdrawal\",\"zh\":\"交易所提现\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"提现金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
+            .dexPost: "{\"function\":{\"name\":{\"base\":\"Place Order on ViteX\",\"zh\":\"交易所挂单\"}},\"inputs\":[{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"数量\"}}]}",
+            .dexCancel: "{\"function\":{\"name\":{\"base\":\"Cancel Order on ViteX\",\"zh\":\"交易所撤单\"}},\"inputs\":[{\"name\":{\"base\":\"Order ID\",\"zh\":\"订单 ID\"}},{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}}]}",
         ]
 
         func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
