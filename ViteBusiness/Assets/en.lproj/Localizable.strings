@@ -141,7 +141,7 @@
 "transaction.list.transaction.type.name.coin" = "Token Issuance";
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
-"transaction.list.transaction.netErrorAndShowAccount" = "网络错误，点击查看账户详情";
+"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
