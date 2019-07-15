@@ -184,6 +184,8 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
             gatewayNameLabel.layer.borderWidth = 1
         } else {
+            coinFamilyLabel.layer.borderColor = nil
+            coinFamilyLabel.layer.borderWidth = 0
             gatewayNameLabel.isHidden = true
         }
 
