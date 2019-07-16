@@ -198,28 +198,24 @@ class BalanceInfoBnbChainCardView: UIView {
     var quotaLabel: UILabel!
 
     func bind(tokenInfo: TokenInfo) {
-//        guard let token = tokenInfo.toETHToken() else { return }
-//TODO..
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
             BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil()).map({ (rateMap, balanceInfo) -> String in
-
-                //fetch rate TODO...
-                let temp = rateMap.priceString(tokenCode: balanceInfo.symbol, balance: Double(balanceInfo.free))
+                let temp = rateMap.priceString(tokenCode: tokenInfo.tokenCode, balance: Double.init(string: balanceInfo.free)!)
                 return String.init(format: "≈%@", temp)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
         BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil().map({
-            String.init(format: "%0.8f", $0.free)
+            $0.free
         }).drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
 
         receiveButton.rx.tap.bind { [weak self] in
-//            UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
+            UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
         sendButton.rx.tap.bind { [weak self] in
-            UIViewController.current?.navigationController?.pushViewController(BnbWalletSendViewController(tokenInfo,toAddress: "bnb157mhtzq8z80x4mtf8ckhvaxfqpsym9hf3cvsqn"), animated: true)
+            UIViewController.current?.navigationController?.pushViewController(BnbWalletSendViewController(tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
         DispatchQueue.main.async {

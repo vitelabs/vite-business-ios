@@ -612,7 +612,8 @@
 
 //bnb
 "token.list.page.section.bnb.header" = "Binance网络";
-
+"bnb.send.page.feeView.titleLabel.title" = "矿工费用";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "Bnb地址";
 
 
 

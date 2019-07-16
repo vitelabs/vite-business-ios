@@ -16,7 +16,7 @@ public class BnbGasFeeView: UIView {
     lazy var totalGasFeeTitleLab = UILabel().then {(totalGasFeeTitleLab) in
         totalGasFeeTitleLab.textColor = UIColor(netHex: 0x3E4A59)
         totalGasFeeTitleLab.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        totalGasFeeTitleLab.text = "矿工费用"
+        totalGasFeeTitleLab.text = R.string.localizable.bnbSendPageFeeViewTitleLabelTitle()
     }
 
     lazy var totalGasFeeLab = UILabel().then {(totalGasFeeLab) in

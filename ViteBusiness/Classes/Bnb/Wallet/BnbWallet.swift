@@ -75,7 +75,6 @@ public class BnbWallet {
     var fromAddress : String? = nil
     var fee = 0.000375
 
-    fileprivate let disposeBag = DisposeBag()
     //signal
     public lazy var balanceDriver: Driver<[Balance]> = self.balanceBehaviorRelay.asDriver()
     private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [Balance]())
@@ -140,12 +139,9 @@ public class BnbWallet {
             let balances = response.account.balances
             var balanceInfos : [CommonBalanceInfo] = []
             for b in balances {
-                let temp = MyTokenInfosService.instance.tokenInfo(forBnbSymbol: b.symbol)
-
-                if temp != nil {
-                    let amount = Int64(b.free * 100000000)
-                    let bigDecimal = BigDecimal.init("\(amount)")
-                    var balanceInfo = CommonBalanceInfo.init(tokenCode: temp!.tokenCode, balance: bigDecimal!.number)
+                if let temp = MyTokenInfosService.instance.tokenInfo(forBnbSymbol: b.symbol) {
+                    let bigDecimal =  b.free.toAmount(decimals: temp.decimals)
+                    var balanceInfo = CommonBalanceInfo.init(tokenCode: temp.tokenCode, balance: bigDecimal!)
                     balanceInfos.append(balanceInfo)
                 }
             }
@@ -211,7 +207,6 @@ public class BnbWallet {
 
     public func sendTransaction(toAddress:String,amount:Double,symbol:String,completion: @escaping ([Transaction]?, Error?) -> Void) {
         guard let wallet = self.wallet else {
-            //TODO wallet is optional
             completion(nil, nil)
             return
         }

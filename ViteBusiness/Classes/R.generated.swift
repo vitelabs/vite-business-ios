@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 502 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 504 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -3294,6 +3294,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let tokenListPageSectionBnbHeader = Rswift.StringResource(key: "token.list.page.section.bnb.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: Bnb地址
+      /// 
+      /// Locales: zh-Hans
+      static let bnbSendPageAddressTitleLabelTitleLabelTitle = Rswift.StringResource(key: "bnb.send.page.addressTitleLabel.titleLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 矿工费用
+      /// 
+      /// Locales: zh-Hans
+      static let bnbSendPageFeeViewTitleLabelTitle = Rswift.StringResource(key: "bnb.send.page.feeView.titleLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6807,6 +6815,20 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func tokenListPageSectionBnbHeader(_: Void = ()) -> String {
         return NSLocalizedString("token.list.page.section.bnb.header", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: Bnb地址
+      /// 
+      /// Locales: zh-Hans
+      static func bnbSendPageAddressTitleLabelTitleLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.send.page.addressTitleLabel.titleLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 矿工费用
+      /// 
+      /// Locales: zh-Hans
+      static func bnbSendPageFeeViewTitleLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.send.page.feeView.titleLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

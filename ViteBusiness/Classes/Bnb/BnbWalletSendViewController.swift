@@ -169,8 +169,8 @@ class BnbWalletSendViewController: BaseViewController {
         BnbWallet.shared.balanceInfoDriver(symbol: self.tokenInfo.id).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
             guard let ret = r else { return }
-            self.headerView.balanceLabel.text = "\(ret.free)"
-            self.balance = ret.free
+            self.headerView.balanceLabel.text = ret.free
+            self.balance = Double.init(string: ret.free)!
         }).disposed(by: rx.disposeBag)
 
         self.sendButton

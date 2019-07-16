@@ -13,7 +13,7 @@ class BnbSendPageTokenInfoView: UIView {
     let addressTitleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = "Bnb地址"
+        $0.text = R.string.localizable.bnbSendPageAddressTitleLabelTitleLabelTitle()
     }
 
     let addressLabel = UILabel().then {

@@ -39,7 +39,7 @@ struct ConfirmBnbTransactionViewModel: ConfirmViewModelType {
         let infoView = ConfirmDefaultInfoView()
         let amountView = ConfirmAmountView(type: .amount)
         let feeView = ConfirmAmountView(type: .fee)
-        feeView.titleLabel.text = "矿工费用"
+        feeView.titleLabel.text = R.string.localizable.bnbSendPageFeeViewTitleLabelTitle()
 
         stackView.addArrangedSubview(infoView)
         stackView.addPlaceholder(height: 15)
