@@ -108,7 +108,7 @@ class BnbWalletSendViewController: BaseViewController {
             view.addButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                    [R.string.localizable.ethSendPageEthContactsButtonTitle(),
+                    [R.string.localizable.bnbSendPageEthContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             return  view
@@ -168,9 +168,8 @@ class BnbWalletSendViewController: BaseViewController {
     private func bind() {
         BnbWallet.shared.balanceInfoDriver(symbol: self.tokenInfo.id).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
-            guard let ret = r else { return }
-            self.headerView.balanceLabel.text = ret.free
-            self.balance = Double.init(string: ret.free)!
+            self.headerView.balanceLabel.text = r.free
+            self.balance = Double.init(string: r.free)!
         }).disposed(by: rx.disposeBag)
 
         self.sendButton
@@ -218,11 +217,15 @@ class BnbWalletSendViewController: BaseViewController {
 extension BnbWalletSendViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int) {
         if index == 0 {
-            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.bnb)
             let vc = AddressListViewController(viewModel: viewModel)
             vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
+
+            //TODO...scan
+
+
             let scanViewController = ScanViewController()
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in

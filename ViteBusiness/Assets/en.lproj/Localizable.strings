@@ -606,3 +606,21 @@
 "crosschain.fee" = "Fee";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
 
+
+//bnb
+"token.list.page.section.bnb.header" = "Binance网络";
+"bnb.send.page.feeView.titleLabel.title" = "矿工费用";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "Bnb地址";
+"bnb.send.page.eth.contacts.button.title" = "Bnb联系地址";
+"bnb.txType.newOrder.title" = "Place Order";
+"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.listToken.title" = "Listing";
+"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.transfer.title" = "Transfer";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "Vote";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Deposit";

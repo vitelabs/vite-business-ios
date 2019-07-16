@@ -30,6 +30,39 @@ extension Balance : Mappable {
     }
 }
 
+extension TxType {
+    public func viteWords() -> String {
+        switch  self{
+        case .unknown:
+            return self.rawValue
+        case .newOrder:
+            return R.string.localizable.bnbTxTypeNewOrderTitle()
+        case .issueToken:
+            return R.string.localizable.bnbTxTypeIssueTokenTitle()
+        case .burnToken:
+            return R.string.localizable.bnbTxTypeBurnTokenTitle()
+        case .listToken:
+            return R.string.localizable.bnbTxTypeListTokenTitle()
+        case .cancelOrder:
+            return R.string.localizable.bnbTxTypeCancelOrderTitle()
+        case .freezeToken:
+            return R.string.localizable.bnbTxTypeFreezeTokenTitle()
+        case .unfreezeToken:
+            return R.string.localizable.bnbTxTypeUnfreezeTokenTitle()
+        case .transfer:
+            return R.string.localizable.bnbTxTypeTransferTitle()
+        case .proposal:
+            return R.string.localizable.bnbTxTypeProposalTitle()
+        case .vote:
+            return R.string.localizable.bnbTxTypeVoteTitle()
+        case .mint:
+            return R.string.localizable.bnbTxTypeMintTitle()
+        case .deposit:
+            return R.string.localizable.bnbTxTypeDepositTitle()
+        }
+    }
+}
+
 extension BnbWallet: Storageable {
     public func getStorageConfig() -> StorageConfig {
         return StorageConfig(name: "BnbWalletBalance", path: .wallet ,appending: self.appending)
@@ -149,12 +182,15 @@ public class BnbWallet {
         }
     }
 
-    func balanceInfoDriver(symbol: String) -> Driver<Balance?> {
-        return balanceDriver.map({ [weak self] map -> Balance? in
+    func balanceInfoDriver(symbol: String) -> Driver<Balance> {
+        return balanceDriver.map({ [weak self] map -> Balance in
             for model in map where model.symbol == symbol {
                 return model
             }
-            return nil
+            var balance = Balance()
+            balance.symbol = symbol
+            balance.free = "0.00000000"
+            return balance
         })
     }
 
@@ -165,12 +201,12 @@ public class BnbWallet {
         }
         return CommonBalanceInfo(tokenCode:tokenCode, balance: BigInt())
     }
-    func commonBalanceInfoDriver(for tokenCode: String) -> Driver<CommonBalanceInfo?> {
-        return commonBalanceInfoDriver.map({ [weak self] map -> CommonBalanceInfo? in
+    func commonBalanceInfoDriver(for tokenCode: String) -> Driver<CommonBalanceInfo> {
+        return commonBalanceInfoDriver.map({ [weak self] map -> CommonBalanceInfo in
             for model in map where model.tokenCode == tokenCode {
                 return model
             }
-            return nil
+            return CommonBalanceInfo.init(tokenCode: tokenCode, balance: BigInt())
         })
     }
     //fetch fee

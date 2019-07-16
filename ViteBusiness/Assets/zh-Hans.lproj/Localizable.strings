@@ -614,8 +614,19 @@
 "token.list.page.section.bnb.header" = "Binance网络";
 "bnb.send.page.feeView.titleLabel.title" = "矿工费用";
 "bnb.send.page.addressTitleLabel.titleLabel.title" = "Bnb地址";
-
-
+"bnb.send.page.eth.contacts.button.title" = "Bnb联系地址";
+"bnb.txType.newOrder.title" = "下单";
+"bnb.txType.issueToken.title" = "铸币";
+"bnb.txType.burnToken.title" = "销毁";
+"bnb.txType.listToken.title" = "上币";
+"bnb.txType.cancelOrder.title" = "撤单";
+"bnb.txType.freezeToken.title" = "冻结代币";
+"bnb.txType.unfreezeToken.title" = "解冻代币";
+"bnb.txType.transfer.title" = "交易";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "投票";
+"bnb.txType.mint.title" = "mint";
+"bnb.txType.deposit.title" = "充值";
 
 
 

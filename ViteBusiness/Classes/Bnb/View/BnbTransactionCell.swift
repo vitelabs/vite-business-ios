@@ -153,7 +153,6 @@ class BnbTransactionCell: BaseTableViewCell {
                 addressLabel.text = viewModel.fromAddr
                 balanceTempStr = "+"
             }
-            balanceLabel.text = viewModel.value
         }else {
             typeImageView.image = R.image.bnb_transaction_other_icon()
             addressLabel.text = viewModel.toAddr

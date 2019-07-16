@@ -198,14 +198,15 @@ class BalanceInfoBnbChainCardView: UIView {
     var quotaLabel: UILabel!
 
     func bind(tokenInfo: TokenInfo) {
+
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
-            BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil()).map({ (rateMap, balanceInfo) -> String in
-                let temp = rateMap.priceString(tokenCode: tokenInfo.tokenCode, balance: Double.init(string: balanceInfo.free)!)
-                return String.init(format: "≈%@", temp)
+             BnbWallet.shared.commonBalanceInfoDriver(for: tokenInfo.tokenCode)).map({ (rateMap, balanceInfo) -> String in
+                  "≈" + rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
-        BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).filterNil().map({
+
+        BnbWallet.shared.balanceInfoDriver(symbol: tokenInfo.id).map({
             $0.free
         }).drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 

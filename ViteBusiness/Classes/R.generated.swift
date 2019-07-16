@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 504 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 517 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -3298,10 +3298,62 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let bnbSendPageAddressTitleLabelTitleLabelTitle = Rswift.StringResource(key: "bnb.send.page.addressTitleLabel.titleLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: Bnb联系地址
+      /// 
+      /// Locales: zh-Hans
+      static let bnbSendPageEthContactsButtonTitle = Rswift.StringResource(key: "bnb.send.page.eth.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: Proposal Request
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeProposalTitle = Rswift.StringResource(key: "bnb.txType.proposal.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: mint
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeMintTitle = Rswift.StringResource(key: "bnb.txType.mint.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 上币
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeListTokenTitle = Rswift.StringResource(key: "bnb.txType.listToken.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 下单
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeNewOrderTitle = Rswift.StringResource(key: "bnb.txType.newOrder.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 交易
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeTransferTitle = Rswift.StringResource(key: "bnb.txType.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 充值
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeDepositTitle = Rswift.StringResource(key: "bnb.txType.deposit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 冻结代币
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeFreezeTokenTitle = Rswift.StringResource(key: "bnb.txType.freezeToken.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 投票
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeVoteTitle = Rswift.StringResource(key: "bnb.txType.vote.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 撤单
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeCancelOrderTitle = Rswift.StringResource(key: "bnb.txType.cancelOrder.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 矿工费用
       /// 
       /// Locales: zh-Hans
       static let bnbSendPageFeeViewTitleLabelTitle = Rswift.StringResource(key: "bnb.send.page.feeView.titleLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 解冻代币
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeUnfreezeTokenTitle = Rswift.StringResource(key: "bnb.txType.unfreezeToken.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 铸币
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeIssueTokenTitle = Rswift.StringResource(key: "bnb.txType.issueToken.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 销毁
+      /// 
+      /// Locales: zh-Hans
+      static let bnbTxTypeBurnTokenTitle = Rswift.StringResource(key: "bnb.txType.burnToken.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6824,11 +6876,102 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bnb.send.page.addressTitleLabel.titleLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: Bnb联系地址
+      /// 
+      /// Locales: zh-Hans
+      static func bnbSendPageEthContactsButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.send.page.eth.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: Proposal Request
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeProposalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.proposal.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: mint
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeMintTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.mint.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 上币
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeListTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.listToken.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 下单
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeNewOrderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.newOrder.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 交易
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 充值
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeDepositTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.deposit.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 冻结代币
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeFreezeTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.freezeToken.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 投票
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeVoteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.vote.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 撤单
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeCancelOrderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.cancelOrder.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 矿工费用
       /// 
       /// Locales: zh-Hans
       static func bnbSendPageFeeViewTitleLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("bnb.send.page.feeView.titleLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 解冻代币
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeUnfreezeTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.unfreezeToken.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 铸币
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeIssueTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.issueToken.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 销毁
+      /// 
+      /// Locales: zh-Hans
+      static func bnbTxTypeBurnTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bnb.txType.burnToken.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
