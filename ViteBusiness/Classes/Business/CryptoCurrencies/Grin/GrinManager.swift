@@ -124,13 +124,27 @@ class GrinManager: GrinBridge {
         },  { (result) in
             switch result {
             case .success(_):
+                if self.walletExists() {
+                    self.walletCreated.accept(true)
+                }
                 self.getBalance()
             case .failure(let error):
-                Toast.show("error: \(error.message)")
+//                Toast.show("error0: \(error.message)")
+                //try again
                 plog(level: .info, log: "wallet recover failed:" + error.message, tag: .grin)
-            }
-            if self.walletExists() {
-                self.walletCreated.accept(true)
+                grin_async({ () in
+                    self.walletRestore()
+                },  { (result) in
+                    if self.walletExists() {
+                        self.walletCreated.accept(true)
+                    }
+                    switch result {
+                    case .success:
+                        self.getBalance()
+                    case .failure(let error):
+                        Toast.show("error: \(error.message)")
+                    }
+                })
             }
         })
     }

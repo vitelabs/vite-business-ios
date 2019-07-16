@@ -33,7 +33,7 @@ public extension BatchFactory {
 
 public struct BatchArray<Request: JSONRPCKit.Request>: Batch {
     public typealias Responses = [Request.Response]
-    public typealias Results = [Result<Request.Response, JSONRPCError>]
+    public typealias Results = [Result<Request.Response, JSONRPCKit.JSONRPCError>]
 
     public let batchElements: [BatchElement<Request>]
 
@@ -43,7 +43,7 @@ public struct BatchArray<Request: JSONRPCKit.Request>: Batch {
 
     public func responses(from object: Any) throws -> Responses {
         guard let batchObjects = object as? [Any] else {
-            throw JSONRPCError.nonArrayResponse(object)
+            throw JSONRPCKit.JSONRPCError.nonArrayResponse(object)
         }
 
         return try batchElements.map { try $0.e_response(from: batchObjects) }
@@ -85,7 +85,7 @@ fileprivate extension BatchElement {
         }
     }
 
-    internal func e_result(from object: Any) -> Result<Request.Response, JSONRPCError> {
+    internal func e_result(from object: Any) -> Result<Request.Response, JSONRPCKit.JSONRPCError> {
         guard let dictionary = object as? [String: Any] else {
             return .failure(.unexpectedTypeObject(object))
         }
@@ -104,7 +104,7 @@ fileprivate extension BatchElement {
 
         switch (resultObject, errorObject) {
         case (nil, let errorObject?):
-            return .failure(JSONRPCError(errorObject: errorObject))
+            return .failure(JSONRPCKit.JSONRPCError(errorObject: errorObject))
 
         case (let resultObject?, nil):
             do {
@@ -118,7 +118,7 @@ fileprivate extension BatchElement {
         }
     }
 
-    internal func e_result(from objects: [Any]) -> Result<Request.Response, JSONRPCError> {
+    internal func e_result(from objects: [Any]) -> Result<Request.Response, JSONRPCKit.JSONRPCError> {
         let matchedObject = objects
             .flatMap { $0 as? [String: Any] }
             .filter { $0["id"].flatMap(Id.init) == id }

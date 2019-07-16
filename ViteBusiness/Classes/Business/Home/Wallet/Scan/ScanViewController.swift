@@ -249,4 +249,10 @@ class ScanViewController: BaseViewController, View {
         self.present(alertController, animated: true, completion: nil)
     }
 
+    func popSelfAndPush(_ vc: UIViewController) {
+        guard var viewControllers = self.navigationController?.viewControllers else { return }
+        _ = viewControllers.popLast()
+        viewControllers.append(vc)
+        self.navigationController?.setViewControllers(viewControllers, animated: true)
+    }
 }

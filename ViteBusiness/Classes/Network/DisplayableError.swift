@@ -13,6 +13,16 @@ public protocol DisplayableError: Error {
     var errorMessage: String { get }
 }
 
+extension Error {
+    var localizedDescription: String {
+        if let e = self as? DisplayableError {
+            return e.errorMessage
+        } else {
+            return (self as NSError).localizedDescription
+        }
+    }
+}
+
 extension WalletError: DisplayableError {
     public var errorMessage: String {
         switch self {

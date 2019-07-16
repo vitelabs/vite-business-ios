@@ -21,6 +21,7 @@
 "Update.app" = "更新 App";
 "Submit.cancel" = "撤销";
 "Close"="关闭";
+"Quit" = "退出";
 "web.page.host.tip"="本网页由 %@ 提供";
 
 
@@ -276,7 +277,9 @@
 "peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";
 "peldge.deadline" = "到期";
 "peldge.title" = "我的抵押列表";
-
+"peldge.cancel.peldge.button.title" = "取回抵押";
+"peldge.cancel.pledge.withdrawing.title" = "取回中";
+"peldge.cancel.pledge.amount.error.toast" = "最小取回金额为134 VITE，请先抵押足够数量VITE";
 /* Vote */
 "vote.page.title" = "投票";
 "vote.page.info.nodata.title" = "暂无投票";
@@ -396,6 +399,7 @@
 
 "workflow.toast.transfer.success" = "转账交易发送成功";
 "workflow.toast.submit.success" = "提交成功";
+"workflow.toast.cancel.pledge.success" = "取回抵押请求已发送";
 "workflow.toast.vote.success" = "投票请求发送成功";
 "workflow.toast.cancel.vote.success" = "撤销投票请求发送成功";
 "workflow.toast.contract.success" = "支付成功";
@@ -412,6 +416,7 @@
 "confirm.transaction.page.vite.confirm.button" = "确认支付";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "获取配额";
+"confirm.transaction.page.vite.cancel.pledge.title" = "取回抵押";
 "confirm.transaction.page.vite.pledge.confirm.button" = "确认";
 // vite vote & cancel
 "confirm.transaction.page.vite.vote.transfer.title" = "投票";
@@ -562,7 +567,6 @@
 "grin.send.illegalAmmount" = "转账金额不合法";
 "grin.detail.gatewayResend" = "请求网关重发";
 
-
 // CrossChain Deposit & Withdraw
 "crosschain.tokendetail" = "代币详情";
 "crosschain.deposit" = "跨链转入";
@@ -610,11 +614,55 @@
 "crosschain.fee" = "手续费";
 "crosschain.withdraw.gatewayispoor" = "转出金额超出最高限额%@%@，请联系gateway@vite.org转出.";
 
+/* Vite Bifrost */
+"bifrost.connect.tip.in.wallet.home" = "ViteBifrost 已连接";
+"bifrost.alert.tip.title" = "温馨提示";
+"bifrost.alert.approve.session.message" = "请确认如下链接\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Web 端地址与当前 App 扫码地址不符，请确认是否使用 App 地址登录\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "确认登录";
+"bifrost.alert.approve.session.another.address.cancel" = "返回";
+
+"bifrost.alert.switch.address.message" = "ViteBifrost 已链接，切换地址将断开链接，请确认是否切换地址";
+
+"bifrost.alert.quit.title" = "确认是否退出 ViteBifrost?";
+
+"bifrost.home.page.free.header" = "ViteBifrost 已连接";
+"bifrost.home.page.free.content" = "当前暂无交易";
+
+"bifrost.home.page.busy.header" = "您正在web端进行操作";
+"bifrost.home.page.busy.content" = "请确认如下交易信息";
+"bifrost.toast.operation.success" = "操作成功";
+
+"bifrost.error.message.timeout" = "连接超时，请稍后重试";
+"bifrost.error.message.unknown" = "连接错误，请稍后重试";
+
+// operation
+"bifrost.operation.register.sbp" = "注册SBP";
+"bifrost.operation.register.update.sbp" = "更新SBP";
+"bifrost.operation.cancel.register.sbp" = "撤销SBP注册";
+"bifrost.operation.vote" = "投票";
+"bifrost.operation.cancel.vote" = "撤销投票";
+"bifrost.operation.extract.reward" = "提取奖励";
+"bifrost.operation.pledge" = "获取配额";
+"bifrost.operation.cancel.pledge" = "取回配额抵押";
+"bifrost.operation.coin" = "铸币";
+"bifrost.operation.cancel.coin" = "取回铸币抵押";
+"bifrost.operation.transfer" = "转账";
+"bifrost.operation.vx.deposit" = "交易所充值";
+"bifrost.operation.vx.withdraw" = "交易所提现";
+"bifrost.operation.across.chain.withdraw" = "跨链转出";
+"bifrost.operation.vx.order" = "交易所挂单";
+"bifrost.operation.vx.cancel.order" = "交易所撤单";
+
+"bifrost.operation.title.contract.address" = "合约地址";
+"bifrost.operation.title.token.symbol" = "币种";
+"bifrost.operation.title.amount" = "金额";
+
 //bnb
 "token.list.page.section.bnb.header" = "Binance网络";
 "bnb.send.page.feeView.titleLabel.title" = "矿工费用";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "Bnb地址";
-"bnb.send.page.eth.contacts.button.title" = "Bnb联系地址";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB地址";
+"bnb.send.page.eth.contacts.button.title" = "BNB联系地址";
 "bnb.txType.newOrder.title" = "下单";
 "bnb.txType.issueToken.title" = "铸币";
 "bnb.txType.burnToken.title" = "销毁";
@@ -627,24 +675,3 @@
 "bnb.txType.vote.title" = "投票";
 "bnb.txType.mint.title" = "mint";
 "bnb.txType.deposit.title" = "充值";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -22,6 +22,41 @@ public extension UIColor {
         self.init(red: (netHex >> 16) & 0xff, green: (netHex >> 8) & 0xff, blue: netHex & 0xff, alpha: alpha)
     }
 
+    public convenience init?(hexa: String) {
+
+        let string: String
+        if hexa.hasPrefix("0x") || hexa.hasPrefix("0X") {
+            string = String(hexa.dropFirst(2))
+        } else {
+            string = hexa
+        }
+
+        if string.count == 6 {
+            self.init(hex: string)
+        } else if string.count == 8 {
+            let scanner = Scanner(string: string)
+            scanner.scanLocation = 0
+
+            var rgbaValue: UInt64 = 0
+
+            scanner.scanHexInt64(&rgbaValue)
+
+            let r = (rgbaValue & 0xff000000) >> 24
+            let g = (rgbaValue & 0xff0000) >> 16
+            let b = (rgbaValue & 0xff00) >> 8
+            let a = rgbaValue & 0xff
+
+            self.init(
+                red: CGFloat(r) / 0xff,
+                green: CGFloat(g) / 0xff,
+                blue: CGFloat(b) / 0xff,
+                alpha: CGFloat(a) / 0xff
+            )
+        } else {
+            return nil
+        }
+    }
+
     public convenience init(hex: String, alpha: CGFloat = 1.0) {
         let scanner = Scanner(string: hex)
         scanner.scanLocation = 0

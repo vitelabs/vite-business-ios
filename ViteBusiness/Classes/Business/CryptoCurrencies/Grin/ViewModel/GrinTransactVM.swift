@@ -148,6 +148,10 @@ class GrinTransactVM {
         guard let amount = amountFrom(string: amountString) else {
             return
         }
+        guard amount > 0 else {
+            self.message.onNext(R.string.localizable.grinSendIllegalAmmount())
+            return
+        }
         if let destnation = destnation {
            if destnation.isViteAddress {
                 self.sendButtonEnabled.accept(false)
