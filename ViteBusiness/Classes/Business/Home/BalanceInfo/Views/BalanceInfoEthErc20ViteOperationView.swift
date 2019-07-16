@@ -33,6 +33,7 @@ class BalanceInfoEthErc20ViteOperationView: UIView {
         }
 
         exchangeButton.button.rx.tap.bind {
+            Statistics.log(eventId: Statistics.Page.WalletHome.ethViteConversionClicked.rawValue)
             let sendViewController = EthViteExchangeViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)

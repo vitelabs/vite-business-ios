@@ -43,6 +43,7 @@ class ContactsHomeViewController: BaseViewController {
             } else {
                 type = nil
             }
+            Statistics.log(eventId: Statistics.Page.MyHome.contactAddClicked.rawValue)
             self?.navigationController?.pushViewController(ContactsEditViewController(type: type), animated: true)
         }.disposed(by: rx.disposeBag)
     }
@@ -171,6 +172,7 @@ class ContactsHomeViewController: BaseViewController {
                 })
 
                 button.rx.tap.bind { [weak self] in
+                    Statistics.log(eventId: Statistics.Page.MyHome.contactAddClicked.rawValue)
                     self?.navigationController?.pushViewController(ContactsEditViewController(type: nil), animated: true)
 
                     }.disposed(by: rx.disposeBag)

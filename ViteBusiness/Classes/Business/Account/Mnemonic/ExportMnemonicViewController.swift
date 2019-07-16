@@ -15,6 +15,7 @@ extension UIViewController {
         let controller = AlertControl(title: R.string.localizable.exportPageAlterTitle(), message: nil)
         let cancelAction = AlertAction(title: R.string.localizable.cancel(), style: .light, handler: nil)
         let okAction = AlertAction(title: R.string.localizable.confirm(), style: .light) { controller in
+            Statistics.log(eventId: Statistics.Page.MyHome.mnemonicDeriveClicked.rawValue)
             let textField = (controller.textFields?.first)! as UITextField
             if HDWalletManager.instance.verifyPassword(textField.text ?? "") {
                 callback()
@@ -81,6 +82,7 @@ extension ExportMnemonicViewController {
     }
 
     @objc func confirmBtnAction() {
+        Statistics.log(eventId: Statistics.Page.MyHome.mnemonicConfirmClicked.rawValue)
         self.navigationController?.popViewController(animated: true)
     }
 }

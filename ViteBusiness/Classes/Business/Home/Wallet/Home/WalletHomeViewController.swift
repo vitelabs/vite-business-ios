@@ -124,6 +124,7 @@ class WalletHomeViewController: BaseTableViewController {
 
         navView.scanButton.rx.tap.bind { [weak self] in
             self?.scan()
+            Statistics.log(eventId: Statistics.Page.WalletHome.scanClicked.rawValue)
             }.disposed(by: rx.disposeBag)
 
         navView.hideButton.rx.tap.bind { [weak self] in
@@ -159,6 +160,7 @@ class WalletHomeViewController: BaseTableViewController {
                         }
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
+                    Statistics.log(eventId: String(format: Statistics.Page.WalletHome.enterTokenDetails.rawValue, viewModel.tokenInfo.statisticsId))
                 }
             }
             .disposed(by: rx.disposeBag)

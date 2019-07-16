@@ -69,6 +69,7 @@ class WalletHomeHeaderView: UIView {
         self.addButton.rx.tap.bind { [weak self] in
             let vc = TokenListManageController()
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            Statistics.log(eventId: Statistics.Page.WalletHome.addTokenclicked.rawValue)
             }.disposed(by: self.rx.disposeBag)
     }
 

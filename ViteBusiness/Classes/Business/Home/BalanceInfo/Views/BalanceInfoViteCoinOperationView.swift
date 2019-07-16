@@ -41,11 +41,13 @@ class BalanceInfoViteCoinOperationView: UIView {
         }
 
         voteButton.button.rx.tap.bind {
+            Statistics.log(eventId: Statistics.Page.WalletHome.voteClicked.rawValue)
             let sendViewController = VoteHomeViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
         
         pledgeButton.button.rx.tap.bind {
+            Statistics.log(eventId: Statistics.Page.WalletHome.quotaClicked.rawValue)
             let sendViewController = QuotaManageViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)

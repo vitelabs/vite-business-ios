@@ -130,6 +130,7 @@ class ContactsEditViewController: BaseViewController {
                 fatalError()
             }
 
+            Statistics.log(eventId: Statistics.Page.MyHome.contactAddSaveClicked.rawValue)
             if let contact = self.contact {
                 let c = Contact(id: contact.id, type: self.type.value, name: self.nameView.textField.text!, address: self.addressView.textView.text)
                 AddressManageService.instance.updateContact(c)

@@ -95,10 +95,12 @@ class MyHomeViewController: BaseTableViewController {
 
 extension MyHomeViewController: MyHomeListHeaderViewDelegate {
     func contactsBtnAction() {
+        Statistics.log(eventId: Statistics.Page.MyHome.contactClicked.rawValue)
         let vc = ContactsHomeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     func mnemonicBtnAction() {
+        Statistics.log(eventId: Statistics.Page.MyHome.mnemonicClicked.rawValue)
         self.verifyWalletPassword(callback: {
             let vc = ExportMnemonicViewController()
             self.navigationController?.pushViewController(vc, animated: true)
@@ -205,6 +207,7 @@ extension UIViewController {
 
 extension MyHomeViewController {
     @objc func logoutBtnAction() {
+        Statistics.log(eventId: Statistics.Page.MyHome.logoutClicked.rawValue)
         self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
         DispatchQueue.global().async {
             HDWalletManager.instance.logout()

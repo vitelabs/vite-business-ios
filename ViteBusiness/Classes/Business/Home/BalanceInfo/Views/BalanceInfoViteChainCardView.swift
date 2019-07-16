@@ -111,6 +111,7 @@ class BalanceInfoViteChainCardView: UIView {
         addressLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
         addressButton.rx.tap.bind {
+            Statistics.log(eventId: Statistics.Page.WalletHome.changeAddressClicked.rawValue)
             UIViewController.current?.navigationController?.pushViewController(AddressManageViewController(), animated: true)
             }.disposed(by: rx.disposeBag)
 
@@ -280,10 +281,12 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
+            Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, tokenInfo.statisticsId))
             UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
         sendButton.rx.tap.bind { [weak self] in
+            Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsSendClicked.rawValue, tokenInfo.statisticsId))
             let sendViewController = SendViewController(tokenInfo: tokenInfo, address: nil, amount: nil, note: nil)
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)

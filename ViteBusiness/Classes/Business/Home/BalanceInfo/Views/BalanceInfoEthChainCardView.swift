@@ -211,10 +211,12 @@ class BalanceInfoEthChainCardView: UIView {
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
+            Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, tokenInfo.statisticsId))
             UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
         sendButton.rx.tap.bind { [weak self] in
+            Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsSendClicked.rawValue, tokenInfo.statisticsId))
             UIViewController.current?.navigationController?.pushViewController(EthSendTokenController(tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 

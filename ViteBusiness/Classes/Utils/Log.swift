@@ -10,6 +10,7 @@ import Foundation
 import XCGLogger
 
 public enum Tag: String {
+    case statistics
     case life
     case base
     case wallet
