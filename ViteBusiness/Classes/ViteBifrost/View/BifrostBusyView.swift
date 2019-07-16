@@ -21,6 +21,9 @@ class BifrostBusyView: UIView {
 
     let scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)).then {
         $0.stackView.spacing = 0
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        }
     }
 
     override init(frame: CGRect) {

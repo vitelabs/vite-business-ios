@@ -16,6 +16,7 @@ struct BifrostConfirmInfoFactory {
         case InvalidParameters
         case InvalidToAddress
         case InvalidAmount
+        case InvalidFee
         case InvalidData
         case InvalidExtend
         case missingAbi
@@ -30,6 +31,8 @@ struct BifrostConfirmInfoFactory {
                 return "InvalidToAddress"
             case .InvalidAmount:
                 return "InvalidAmount"
+            case .InvalidFee:
+                return "InvalidFee"
             case .InvalidData:
                 return "InvalidData"
             case .InvalidExtend:
@@ -269,7 +272,7 @@ struct BifrostConfirmInfoFactory {
             .cancelVote: "{\"function\":{\"name\":{\"base\":\"Revoke Voting\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"Votes Revoked\",\"zh\":\"撤销投票量\"}}]}",
             .pledge: "{\"function\":{\"name\":{\"base\":\"Acquire Quota\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"配额受益地址\"}}]}",
             .cancelPledge: "{\"function\":{\"name\":{\"base\":\"Retrieve Staking for Quota\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"取回抵押金额\"}}]}",
-            .coin: "{\"function\":{\"name\":{\"base\":\"Token Issuance\",\"zh\":\"铸币\"}},\"inputs\":[{\"name\":{\"base\":\"Token Name\",\"zh\":\"代币全称\"}},{\"name\":{\"base\":\"Token Symbol\",\"zh\":\"代币简称\"}},{\"name\":{\"base\":\"Total Supply\",\"zh\":\"总发行量\"}},{\"name\":{\"base\":\"Decimals\",\"zh\":\"价格精度\"}}]}",
+            .coin: "{\"function\":{\"name\":{\"base\":\"Token Issuance\",\"zh\":\"铸币\"}},\"inputs\":[{\"name\":{\"base\":\"Token Name\",\"zh\":\"代币全称\"}},{\"name\":{\"base\":\"Token Symbol\",\"zh\":\"代币简称\"}},{\"name\":{\"base\":\"Total Supply\",\"zh\":\"总发行量\"}},{\"name\":{\"base\":\"Decimals\",\"zh\":\"价格精度\"}},{\"name\":{\"base\":\"Fee\",\"zh\":\"铸币费\"}}]}",
             .dexDeposit: "{\"function\":{\"name\":{\"base\":\"ViteX Deposit\",\"zh\":\"交易所充值\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"充值金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
             .dexWithdraw: "{\"function\":{\"name\":{\"base\":\"ViteX Withdrawal\",\"zh\":\"交易所提现\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"提现金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
             .dexPost: "{\"function\":{\"name\":{\"base\":\"Place Order on ViteX\",\"zh\":\"交易所挂单\"}},\"inputs\":[{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"数量\"}}]}",
@@ -433,6 +436,11 @@ struct BifrostConfirmInfoFactory {
                     return Promise(error: ConfirmError.InvalidData)
                 }
             case .coin:
+
+                guard let fee = block.fee else {
+                    return Promise(error: ConfirmError.InvalidFee)
+                }
+
                 do {
                     let values = try ABI.Decoding.decodeParameters(block.data!, abiString: abi)
                     guard let isReIssuableValue = values[0] as? ABIBoolValue else {
@@ -463,11 +471,12 @@ struct BifrostConfirmInfoFactory {
                         return Promise(error: ConfirmError.InvalidData)
                     }
 
-
+                    let feeString = "\(fee.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(ViteWalletConst.viteToken.symbol)"
                     let items = [des.inputs[0].confirmItemInfo(text: tokenNameValue.toString()),
                                  des.inputs[1].confirmItemInfo(text: tokenSymbolValue.toString()),
                                  des.inputs[2].confirmItemInfo(text: maxSupplyValue.toString()),
-                                 des.inputs[3].confirmItemInfo(text: decimalsValue.toString())
+                                 des.inputs[3].confirmItemInfo(text: decimalsValue.toString()),
+                                 des.inputs[4].confirmItemInfo(text: feeString)
                     ]
                     return Promise.value(BifrostConfirmInfo(title: title, items: items))
                 } catch {

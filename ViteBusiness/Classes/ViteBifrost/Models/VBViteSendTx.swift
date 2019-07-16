@@ -46,6 +46,7 @@ extension VBViteSendTx {
         public var toAddress: ViteAddress!
         public var tokenId: ViteTokenId!
         public var amount: Amount!
+        public var fee: Amount?
         public var data: Data?
 
         public init?(map: Map) {
@@ -72,6 +73,7 @@ extension VBViteSendTx {
             toAddress <- map["toAddress"]
             tokenId <- map["tokenId"]
             amount <- (map["amount"], JSONTransformer.balance)
+            fee <- (map["fee"], JSONTransformer.balance)
             data <- (map["data"], JSONTransformer.dataToBase64)
         }
     }
