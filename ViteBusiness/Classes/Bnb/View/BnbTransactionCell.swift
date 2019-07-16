@@ -159,7 +159,7 @@ class BnbTransactionCell: BaseTableViewCell {
         }
         balanceLabel.text = String.init(format: "%@%@", balanceTempStr,viewModel.value)
 
-        typeNameLabel.text = viewModel.txType.rawValue
+        typeNameLabel.text = viewModel.txType.viteWords()
         timeLabel.text = viewModel.timestamp.format("yyyy.MM.dd HH:mm:ss")
         symbolLabel.text = viewModel.txAsset
 
