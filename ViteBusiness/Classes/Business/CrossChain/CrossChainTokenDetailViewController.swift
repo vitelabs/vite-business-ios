@@ -46,7 +46,7 @@ class GatewayTokenDetailViewController: BaseViewController {
                     (R.string.localizable.crosschainTokenDetailDigit(),tokenDigit),
                     (R.string.localizable.crosschainTokenDetailIssuance(),issueStr),
                     (R.string.localizable.crosschainTokenDetailDate(),JSON(info)["updateTime"].string),
-                    (R.string.localizable.crosschainTokenDetailDesc(),JSON(info)["overview"].string),
+                    (R.string.localizable.crosschainTokenDetailDesc(),overview),
                 ] as! [(String, String?)]
         }
     }
