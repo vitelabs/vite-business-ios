@@ -32,6 +32,11 @@ public extension Statistics {
             case quotaClicked = "home_vite_viteDetails_quota"
             case changeAddressClicked = "home_vite_viteDetails_changeAddress"
             case ethViteConversionClicked = "home_eth_viteDetails_conversion"
+
+            case bifrostConnect = "home_ViteBifrost_connect"
+            case bifrostReturn = "home_ViteBifrost_return"
+            case bifrostDis = "home_ViteBifrost_dis"
+            case bifrostDisConfirm = "home_ViteBifrost_dis_confirm"
         }
 
         enum MyHome: String {

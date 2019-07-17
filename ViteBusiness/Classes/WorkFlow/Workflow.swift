@@ -159,6 +159,7 @@ public extension Workflow {
                                                       toAddress: toAddress,
                                                       tokenId: tokenInfo.viteTokenId,
                                                       amount: amount,
+                                                      fee: Amount(0),
                                                       data: data)
             }
 
@@ -167,6 +168,7 @@ public extension Workflow {
                                                   toAddress: toAddress,
                                                   tokenId: tokenInfo.viteTokenId,
                                                   amount: amount,
+                                                  fee: Amount(0),
                                                   data: data)
             }
 
@@ -340,6 +342,7 @@ public extension Workflow {
                                         toAddress: ViteAddress,
                                         tokenInfo: TokenInfo,
                                         amount: Amount,
+                                        fee: Amount,
                                         data: Data?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
@@ -349,6 +352,7 @@ public extension Workflow {
                                                       toAddress: toAddress,
                                                       tokenId: tokenInfo.viteTokenId,
                                                       amount: amount,
+                                                      fee: fee,
                                                       data: data)
             }
             let getPowPromise =  {
@@ -356,6 +360,7 @@ public extension Workflow {
                                                   toAddress: toAddress,
                                                   tokenId: tokenInfo.viteTokenId,
                                                   amount: amount,
+                                                  fee: fee,
                                                   data: data)
             }
 
@@ -386,11 +391,16 @@ public extension Workflow {
             return
         }
 
+        guard let fee = uri.feeForSmallestUnit(decimals: ViteWalletConst.viteToken.decimals) else {
+            completion(Result.failure(WorkflowError.feeInvalid))
+            return
+        }
+
         switch uri.type {
         case .transfer:
             sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
         case .contract:
-            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
+            callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, fee: fee, data: uri.data, completion: completion)
         }
     }
 
@@ -398,6 +408,7 @@ public extension Workflow {
         case notLogin
         case accountAddressInconformity
         case amountInvalid
+        case feeInvalid
     }
 }
 

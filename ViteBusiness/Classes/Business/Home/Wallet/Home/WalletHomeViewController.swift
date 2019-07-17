@@ -205,6 +205,11 @@ class WalletHomeViewController: BaseTableViewController {
                     return
                 }
 
+                guard let fee = uri.feeForSmallestUnit(decimals: ViteWalletConst.viteToken.decimals) else {
+                    scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
+                    return
+                }
+
                 if !tokenInfo.isContains {
                     MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
                 }
@@ -231,6 +236,7 @@ class WalletHomeViewController: BaseTableViewController {
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
                                                      amount: amount,
+                                                     fee: fee,
                                                      data: uri.data,
                                                      completion: { _ in })
                 }

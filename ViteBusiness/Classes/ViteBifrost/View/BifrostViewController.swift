@@ -33,14 +33,20 @@ class BifrostViewController: BaseViewController {
 
     }
 
-    @objc fileprivate func onDisconnect() {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostReturn.rawValue)
+    }
 
+    @objc fileprivate func onDisconnect() {
+        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDis.rawValue)
         Alert.show(title: R.string.localizable.bifrostAlertQuitTitle(),
                    message: nil,
                    actions: [
                     (.cancel, nil),
                     (.default(title: R.string.localizable.quit()), { _ in
                         BifrostManager.instance.disConnect()
+                        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDisConfirm.rawValue)
                     })
             ])
     }
@@ -58,7 +64,9 @@ class BifrostViewController: BaseViewController {
             busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
             view.addSubview(busyView)
             busyView.snp.makeConstraints { (m) in
-                m.edges.equalToSuperview()
+                m.left.right.equalToSuperview()
+                m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
             }
             busyView.set(task.info)
 

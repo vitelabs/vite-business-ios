@@ -173,6 +173,7 @@ extension BifrostManager {
                             plog(level: .info, log: "user approved session, congratulations", tag: .bifrost)
                             self.interactor?.approveSession(accounts: [currentAddress], chainId: chainId).cauterize()
                             self.isConnectedAndApprovedBehaviorRelay.accept(true)
+                            Statistics.log(eventId: Statistics.Page.WalletHome.bifrostConnect.rawValue)
                         })
                 ])
         }
@@ -208,6 +209,7 @@ extension BifrostManager {
                                                       toAddress: task.tx.block.toAddress,
                                                       tokenInfo: task.tokenInfo,
                                                       amount: task.tx.block.amount,
+                                                      fee: task.tx.block.fee,
                                                       data: task.tx.block.data,
                                                       completion: { (ret) in
                                                         switch ret {

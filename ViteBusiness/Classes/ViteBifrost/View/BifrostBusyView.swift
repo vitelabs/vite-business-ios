@@ -58,7 +58,7 @@ class BifrostBusyView: UIView {
         addSubview(confirmButton)
 
         imageView.snp.makeConstraints { (m) in
-            m.top.equalTo(safeAreaLayoutGuideSnpTop).offset(26)
+            m.top.equalToSuperview().offset(26)
             m.centerX.equalToSuperview()
         }
 
@@ -96,7 +96,7 @@ class BifrostBusyView: UIView {
             make.top.equalTo(scrollView.snp.bottom).offset(24)
             make.left.equalToSuperview().offset(24)
             make.height.equalTo(50)
-            make.bottom.equalTo(safeAreaLayoutGuideSnpBottom).offset(-24)
+            make.bottom.equalToSuperview().offset(-24)
         }
 
         confirmButton.snp.makeConstraints { (make) -> Void in

@@ -277,7 +277,7 @@ extension VBInteractor {
 
 extension VBInteractor {
 
-    private static let pingTimeout:TimeInterval = 6
+    private static let pingTimeout:TimeInterval = 10
 
     private func updateLastSessionPingTimestamp() {
         lastSessionPingTimestamp = Date().timeIntervalSince1970

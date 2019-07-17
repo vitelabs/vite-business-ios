@@ -21,6 +21,7 @@ public extension Workflow {
                                          toAddress: ViteAddress,
                                          tokenInfo: TokenInfo,
                                          amount: Amount,
+                                         fee: Amount?,
                                          data: Data?,
                                          completion: @escaping (Result<AccountBlock>) -> ()) {
         func send() {
@@ -29,6 +30,7 @@ public extension Workflow {
                                            toAddress: toAddress,
                                            tokenId: tokenInfo.viteTokenId,
                                            amount: amount,
+                                           fee: fee,
                                            data: data)
                 .always {
                     HUD.hide()
@@ -39,6 +41,7 @@ public extension Workflow {
                                                               toAddress: toAddress,
                                                               tokenId: tokenInfo.viteTokenId,
                                                               amount: amount,
+                                                              fee: fee,
                                                               data: data)
                         })
                     } else {
