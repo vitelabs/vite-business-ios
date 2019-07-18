@@ -16,11 +16,11 @@ public struct VBSession {
     public let key: Data
 
     public static func from(string: String) -> VBSession? {
-        guard string .hasPrefix("vb:") else {
+        guard string .hasPrefix("vc:") else {
             return nil
         }
 
-        let urlString = string.replacingOccurrences(of: "vb:", with: "vb://")
+        let urlString = string.replacingOccurrences(of: "vc:", with: "vc://")
         guard let url = URL(string: urlString),
             let topic = url.user,
             let version = url.host,

@@ -610,19 +610,19 @@
 "crosschain.fee" = "Fee";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
 
-/* Vite Bifrost */
-"bifrost.connect.tip.in.wallet.home" = "ViteBifrost Connected";
+/* ViteConnect */
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
 "bifrost.alert.tip.title" = "Notice";
 "bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
 "bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
 "bifrost.alert.approve.session.another.address.cancel" = "Back";
 
-"bifrost.alert.switch.address.message" = "ViteBifrost is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteBifrost?";
+"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
 
-"bifrost.home.page.free.header" = "ViteBifrost Connected";
+"bifrost.home.page.free.header" = "ViteConnect Connected";
 "bifrost.home.page.free.content" = "You have no transaction yet";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";

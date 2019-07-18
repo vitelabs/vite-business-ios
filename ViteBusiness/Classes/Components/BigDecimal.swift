@@ -271,7 +271,11 @@ public struct BigDecimalFormatter {
                 ret = bigDecimal
             }
 
-            ret = BigDecimal(String(ret.description.dropLast(ret.digits - decimal)))!
+            // temporary fix crash
+            guard let r = BigDecimal(String(ret.description.dropLast(ret.digits - decimal))) else {
+                return "--"
+            }
+            ret = r
         } else {
             ret = bigDecimal
         }
