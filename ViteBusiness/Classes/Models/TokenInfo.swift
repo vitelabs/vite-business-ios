@@ -27,7 +27,7 @@ public enum CoinType: String {
         }
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth, .grin]
+    static var allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
 
 
     var backgroundGradientColors: [UIColor] {
