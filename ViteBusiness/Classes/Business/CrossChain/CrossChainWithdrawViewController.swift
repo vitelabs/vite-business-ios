@@ -210,7 +210,8 @@ class GatewayWithdrawViewController: BaseViewController {
         let address = self.addressView.textView.text ?? ""
 
         guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-            let a = amountString.toAmount(decimals: TokenInfo.eth.decimals) else {
+            let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
+            let a = amountString.toAmount(decimals: decimals) else {
                 Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                 return
         }
@@ -328,10 +329,12 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
         }
         gateWayInfoService.withdrawInfo(viteAddress: address)
             .done { [weak self] (info) in
-                guard let `self` = self else { return }
+                guard let `self` = self,
+                    let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
+                let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
                 if !info.minimumWithdrawAmount.isEmpty,
-                let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: TokenInfo.eth.decimals) {
-                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)ETH"
+                let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: decimals) {
+                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)\(symble)"
                 }
         }
 

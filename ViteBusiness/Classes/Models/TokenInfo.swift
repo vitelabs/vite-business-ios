@@ -298,7 +298,7 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode
+        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.coinType == .eth
     }
 
     public var gatewayName: String? {

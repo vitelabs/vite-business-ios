@@ -43,7 +43,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
             let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { [unowned self] (_) in
                 let vc = EthViteExchangeViewController()
                 vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
-                vc.exchangeType = .ethCoinToViteToken
+                vc.exchangeType = .ethChainToViteToken
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
             let a1 = UIAlertAction.init(title: R.string.localizable.crosschainDepositOtherwallet(), style: .default) { [unowned self] (_) in
