@@ -127,7 +127,10 @@ class ContactsEditViewController: BaseViewController {
                     return
                 }
             case .grin:
-                break
+                guard self.addressView.textView.text.isViteAddress || self.addressView.textView.text.hasPrefix("http") else {
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
+                    return
+                }
             case .bnb:
                 guard let toAddress : String = self.addressView.textView.text ?? "",
                     toAddress.checkBnbAddressIsValid() else {
@@ -159,8 +162,12 @@ class ContactsEditViewController: BaseViewController {
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
                     self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
+                } else if case .success(let uri) = BnbURI.parser(string: result) {
+                    self.addressView.textView.text = uri.address
+                    scanViewController.navigationController?.popViewController(animated: true)
                 } else {
-                    scanViewController.showAlertMessage(result)
+                    self.addressView.textView.text = result
+                    scanViewController.navigationController?.popViewController(animated: true)
                 }
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)

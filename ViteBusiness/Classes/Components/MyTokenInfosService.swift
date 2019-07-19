@@ -235,6 +235,14 @@ extension MyTokenInfosService {
             ExchangeProvider.instance.getTokenInfo(chain: "ETH", id: address, completion: completion)
         }
     }
+
+    public func tokenInfo(forBnbSymbol symbol: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
+        if let tokenInfo = tokenInfo(forBnbSymbol: symbol) {
+            completion(Result.success(tokenInfo))
+        } else {
+            ExchangeProvider.instance.getTokenInfo(chain: "BNB", id: symbol, completion: completion)
+        }
+    }
 }
 
 extension TokenInfo {

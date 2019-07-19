@@ -173,10 +173,6 @@ class WalletHomeViewController: BaseTableViewController {
     }
 
     func scan() {
-//        let tokenInfo = TokenInfo.init(tokenCode: "BNB", coinType: .bnb, name: "BNB", symbol: "BNB", decimals: 18, icon: "", id: "bnbdd")
-//        let vc = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
-//        self.navigationController?.pushViewController(vc, animated: true)
-//        return
 
         let scanViewController = ScanViewController()
         scanViewController.reactor = ScanViewReactor.init()
@@ -189,6 +185,8 @@ class WalletHomeViewController: BaseTableViewController {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
             } else if case .success(let uri) = BifrostURI.parser(string: result) {
                 self.handleScanResultForBifrost(with: uri, scanViewController: scanViewController)
+            } else if case .success(let uri) = BnbURI.parser(string: result) {
+                self.handleScanResultForBnb(with: uri, scanViewController: scanViewController)
             } else {
                 scanViewController?.showAlertMessage(result)
             }
@@ -260,6 +258,25 @@ class WalletHomeViewController: BaseTableViewController {
                 }
 
                 let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
+                scanViewController?.popSelfAndPush(sendViewController)
+            case .failure(let error):
+                scanViewController?.showToast(string: error.viteErrorMessage)
+            }
+        }
+    }
+
+    func handleScanResultForBnb(with uri: BnbURI, scanViewController: ScanViewController?) {
+        scanViewController?.view.displayLoading(text: "")
+        MyTokenInfosService.instance.tokenInfo(forBnbSymbol: uri.bnbSymbol) {[weak scanViewController] (result) in
+            scanViewController?.view.hideLoading()
+            switch result {
+            case .success(let tokenInfo):
+
+                if !tokenInfo.isContains {
+                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
+                }
+
+                let sendViewController = BnbWalletSendViewController(tokenInfo, toAddress: uri.address, amount: uri.amount)
                 scanViewController?.popSelfAndPush(sendViewController)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)

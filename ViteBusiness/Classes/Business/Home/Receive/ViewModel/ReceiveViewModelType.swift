@@ -37,11 +37,10 @@ extension TokenInfo {
             return ReceiveViteViewModel(tokenInfo: self)
         case .eth:
             return ReceiveEthViewModel(tokenInfo: self)
-        case .bnb:
-            //TODO...
-            return ReceiveEthViewModel(tokenInfo: self)
-        default:
+        case .grin:
             fatalError()
+        case .bnb:
+            return ReceiveBnbViewModel(tokenInfo: self)
         }
     }
 }

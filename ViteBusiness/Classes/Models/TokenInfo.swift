@@ -140,7 +140,7 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
-    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
+    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
 
     public var uniqueSymbol: String {
