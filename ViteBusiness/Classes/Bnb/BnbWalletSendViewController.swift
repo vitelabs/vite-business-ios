@@ -222,14 +222,10 @@ extension BnbWalletSendViewController: FloatButtonsViewDelegate {
             vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
-
-            //TODO...scan
-
-
             let scanViewController = ScanViewController()
             scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                if case .success(let uri) = ETHURI.parser(string: result) {
+                if case .success(let uri) = BnbURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {
