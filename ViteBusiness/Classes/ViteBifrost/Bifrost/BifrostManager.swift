@@ -46,6 +46,12 @@ public final class BifrostManager {
     }
 
     private init() {
+        HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] (account) in
+            if account == nil {
+                self?.disConnect()
+            }
+        }).disposed(by: disposeBag)
+
         isConnectedAndApprovedDriver.drive(onNext: { [weak self] (connected) in
             plog(level: .info, log: "connect state changed: \(connected)", tag: .bifrost)
             guard let `self` = self else { return }
