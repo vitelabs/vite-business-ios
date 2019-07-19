@@ -67,7 +67,7 @@ final class TokenListManageViewModel {
             } else if item.coinType == .grin {
                 localGrinToken.append(item)
             } else if item.coinType == .bnb {
-                localGrinToken.append(item)
+                localBnbToken.append(item)
             }
         }
 
