@@ -165,29 +165,39 @@ struct BifrostConfirmInfoFactory {
                 guard let data = block.data, data.count > 3 else { return Promise(error: ConfirmError.InvalidData) }
                 let type = data[2]
 
-                let address: String
                 if type == 0x00 {
-                    guard let a = String(bytes: data[3...], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
-                    address = a
+                    guard let address = String(bytes: data[3...], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
+                    let amount = "\(block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+                    let items = [des.inputs[0].confirmItemInfo(text: amount),
+                                 des.inputs[1].confirmItemInfo(text: address)
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
                 } else if type == 0x01 {
                     let addressSize = Int(UInt8(data[3]))
                     let addressOffset: Int = 3 + 1
                     guard data.count > addressOffset + addressSize + 1 else { return Promise(error: ConfirmError.InvalidData) }
-                    guard let a = String(bytes: data[addressOffset..<addressOffset + addressSize], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
+                    guard let address = String(bytes: data[addressOffset..<addressOffset + addressSize], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
                     let labelSize = Int(data[Int(addressOffset + addressSize)])
                     let labelOffset: Int = addressOffset + addressSize + 1
                     guard data.count == labelOffset + labelSize else { return Promise(error: ConfirmError.InvalidData) }
-                    guard let l = String(bytes: data[labelOffset..<labelOffset + labelSize], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
-                    address = "\(a) \(l)"
+                    guard let label = String(bytes: data[labelOffset..<labelOffset + labelSize], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
+
+                    guard let e = sendTx.extend,
+                        let json = try? JSON(e),
+                        let labelNameJson = json["labelTitle"].dictionaryObject,
+                        let labelNameInputDescription = VBViteSendTx.InputDescription(JSON: labelNameJson) else {
+                        return Promise(error: ConfirmError.InvalidExtend)
+                    }
+
+                    let amount = "\(block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+                    let items = [des.inputs[0].confirmItemInfo(text: amount),
+                                 des.inputs[1].confirmItemInfo(text: address),
+                                 labelNameInputDescription.confirmItemInfo(text: label)
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
                 } else {
                     return Promise(error: ConfirmError.InvalidData)
                 }
-
-                let amount = "\(block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-                let items = [des.inputs[0].confirmItemInfo(text: amount),
-                             des.inputs[1].confirmItemInfo(text: address)
-                ]
-                return Promise.value(BifrostConfirmInfo(title: title, items: items))
             }
         }
     }
@@ -211,6 +221,9 @@ struct BifrostConfirmInfoFactory {
         case dexPost
         case dexCancel
 
+        case dexNewInviter
+        case dexBindInviter
+
         fileprivate static let dataPrefixMap: [String: BuildInContract] = [
             "f29c6ce2": .register,
             "3b7bdf74": .registerUpdate,
@@ -226,6 +239,8 @@ struct BifrostConfirmInfoFactory {
             "cc329169": .dexWithdraw,
             "147927ec": .dexPost,
             "b251adc5": .dexCancel,
+            "da85ec8a": .dexNewInviter,
+            "a562b706": .dexBindInviter,
         ]
 
         fileprivate static let dexFundContractAddress = "vite_0000000000000000000000000000000000000006e82b8ba657"
@@ -246,6 +261,8 @@ struct BifrostConfirmInfoFactory {
             .dexWithdraw: dexFundContractAddress,
             .dexPost: dexFundContractAddress,
             .dexCancel: dexTradeContractAddress,
+            .dexNewInviter: dexFundContractAddress,
+            .dexBindInviter: dexFundContractAddress,
         ]
 
         fileprivate static let AbiMap: [BuildInContract: String] = [
@@ -262,6 +279,8 @@ struct BifrostConfirmInfoFactory {
             .dexWithdraw: "{\"type\":\"function\",\"name\":\"DexFundUserWithdraw\",\"inputs\":[{\"name\":\"token\",\"type\":\"tokenId\"},{\"name\":\"amount\",\"type\":\"uint256\"}]}",
             .dexPost: "{\"type\":\"function\",\"name\":\"DexFundNewOrder\",\"inputs\":[{\"name\":\"tradeToken\",\"type\":\"tokenId\"},{\"name\":\"quoteToken\",\"type\":\"tokenId\"},{\"name\":\"side\",\"type\":\"bool\"},{\"name\":\"orderType\",\"type\":\"uint8\"},{\"name\":\"price\",\"type\":\"string\"},{\"name\":\"quantity\",\"type\":\"uint256\"}]}",
             .dexCancel: "{\"type\":\"function\",\"name\":\"DexTradeCancelOrder\",\"inputs\":[{\"name\":\"orderId\",\"type\":\"bytes\"}]}",
+            .dexNewInviter: "{\"type\":\"function\",\"name\":\"DexFundNewInviter\",\"inputs\":[]}",
+            .dexBindInviter: "{\"type\":\"function\",\"name\":\"DexFundBindInviteCode\",\"inputs\":[{\"name\":\"code\",\"type\":\"uint32\"}]}",
         ]
         fileprivate static let DesMap: [BuildInContract: String] = [
             .register: "{\"function\":{\"name\":{\"base\":\"Register SBP\",\"zh\":\"注册 SBP\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP 名称\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}}]}",
@@ -277,6 +296,8 @@ struct BifrostConfirmInfoFactory {
             .dexWithdraw: "{\"function\":{\"name\":{\"base\":\"ViteX Withdrawal\",\"zh\":\"交易所提现\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"提现金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}",
             .dexPost: "{\"function\":{\"name\":{\"base\":\"Place Order on ViteX\",\"zh\":\"交易所挂单\"}},\"inputs\":[{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"数量\"}}]}",
             .dexCancel: "{\"function\":{\"name\":{\"base\":\"Cancel Order on ViteX\",\"zh\":\"交易所撤单\"}},\"inputs\":[{\"name\":{\"base\":\"Order ID\",\"zh\":\"订单 ID\"}},{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}}]}",
+            .dexNewInviter: "{\"function\":{\"name\":{\"base\":\"Create Referral Code\",\"zh\":\"生成邀请码\"}},\"inputs\":[{\"name\":{\"base\":\"Current Address\",\"zh\":\"当前地址\"}},{\"name\":{\"base\":\"Cost\",\"zh\":\"扣款金额\"}}]}",
+            .dexBindInviter: "{\"function\":{\"name\":{\"base\":\"Use Referral Code\",\"zh\":\"使用邀请码\"}},\"inputs\":[{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"接受邀请地址\"}},{\"name\":{\"base\":\"Referral Code\",\"zh\":\"邀请码\"}}]}",
         ]
 
         func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -583,7 +604,7 @@ struct BifrostConfirmInfoFactory {
                     guard let orderIdValue = values[0] as? ABIBytesValue else {
                         return Promise(error: ConfirmError.InvalidData)
                     }
-                    let rawId = orderIdValue.toString()
+                    let rawId = orderIdValue.toHexString()
                     guard rawId.count == 44 else { return Promise(error: ConfirmError.InvalidData) }
                     let id = "\(rawId.prefix(8))...\(rawId.suffix(8))"
 
@@ -606,6 +627,35 @@ struct BifrostConfirmInfoFactory {
                                  des.inputs[1].confirmItemInfo(text: orderType, textColor: textColor),
                                  des.inputs[2].confirmItemInfo(text: market),
                                  des.inputs[3].confirmItemInfo(text: price)
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
+                } catch {
+                    return Promise(error: ConfirmError.InvalidData)
+                }
+            case .dexNewInviter:
+                guard block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
+
+                guard let e = sendTx.extend, let json = try? JSON(e), json["type"].string == "dexNewInviter",
+                    let costString = json["cost"].string else {
+                        return Promise(error: ConfirmError.InvalidExtend)
+                }
+
+                let items = [des.inputs[0].confirmItemInfo(text: account.address),
+                             des.inputs[1].confirmItemInfo(text: costString)
+                ]
+                return Promise.value(BifrostConfirmInfo(title: title, items: items))
+
+            case .dexBindInviter:
+                guard block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
+
+                do {
+
+                    let values = try ABI.Decoding.decodeParameters(block.data!, abiString: abi)
+                    guard let codeValue = values[0] as? ABIUnsignedIntegerValue else {
+                        return Promise(error: ConfirmError.InvalidData)
+                    }
+                    let items = [des.inputs[0].confirmItemInfo(text: account.address),
+                                 des.inputs[1].confirmItemInfo(text: codeValue.toString())
                     ]
                     return Promise.value(BifrostConfirmInfo(title: title, items: items))
                 } catch {
