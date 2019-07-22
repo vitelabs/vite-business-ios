@@ -43,6 +43,8 @@ public final class MyTokenInfosService: NSObject {
                 ethTokenInfos.add(tokenInfo)
             case .grin:
                 grinTokenInfos.add(tokenInfo)
+            case .btc:
+                fatalError()
             }
         }
 

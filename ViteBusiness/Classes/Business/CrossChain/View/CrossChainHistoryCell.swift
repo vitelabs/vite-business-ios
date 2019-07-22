@@ -166,7 +166,7 @@ class CrossChainHistoryCell: UITableViewCell {
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
         let viteSymble = "VITE"
-        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.symbol ?? ""
+        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.coinType.rawValue ?? ""
 
         symbleLabel.text = othenSymble
 

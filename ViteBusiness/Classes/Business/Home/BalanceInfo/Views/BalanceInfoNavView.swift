@@ -103,6 +103,8 @@ extension TokenInfo {
             }
         case .grin:
             return nil
+        case .btc:
+            return nil
         }
     }
 }

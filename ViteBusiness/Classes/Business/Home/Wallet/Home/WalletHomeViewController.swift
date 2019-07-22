@@ -158,6 +158,8 @@ class WalletHomeViewController: BaseTableViewController {
                                 balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
+                    case .btc:
+                        fatalError()
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
                     Statistics.log(eventId: String(format: Statistics.Page.WalletHome.enterTokenDetails.rawValue, viewModel.tokenInfo.statisticsId))

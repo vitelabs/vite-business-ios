@@ -12,6 +12,8 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
+    case btc = "BTC"
+
 
     var name: String {
         switch self {
@@ -21,6 +23,8 @@ public enum CoinType: String {
             return "ETH"
         case .grin:
             return "GRIN"
+        case .btc:
+            return "BTC"
         }
     }
 
@@ -302,6 +306,9 @@ extension TokenInfo {
     }
 
     public var gatewayName: String? {
+        if !isGateway {
+            return nil
+        }
         return self.gatewayInfo?.name
     }
 }
@@ -339,7 +346,7 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
-    public fileprivate(set)  var coinType: CoinType = .eth
+    public fileprivate(set)  var coinType: CoinType = .vite
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""

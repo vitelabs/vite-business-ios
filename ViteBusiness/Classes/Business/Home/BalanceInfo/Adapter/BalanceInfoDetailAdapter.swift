@@ -34,6 +34,9 @@ extension TokenInfo {
             }
         case .grin:
             fatalError()
+        case .btc:
+            fatalError()
+
         }
     }
 }

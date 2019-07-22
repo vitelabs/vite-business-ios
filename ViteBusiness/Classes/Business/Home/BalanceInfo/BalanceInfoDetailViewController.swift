@@ -83,26 +83,6 @@ class BalanceInfoDetailViewController: BaseViewController {
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)
-
-//        ControlEvent(events: rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).map { _ in })
-//            .first().subscribe { [weak self] _ in
-//                guard let `self` = self else { return }
-//                if self.allowJumpTokenDetailPage {
-//                    self.navView.tokenIconView.beat()
-//                }
-//            }.disposed(by: rx.disposeBag)
     }
 }
 
-extension BalanceInfoDetailViewController {
-    var allowJumpTokenDetailPage: Bool {
-        switch tokenInfo.coinType {
-        case .vite:
-            return true
-        case .eth:
-            return !tokenInfo.isEtherCoin
-        case .grin:
-            return false
-        }
-    }
-}
