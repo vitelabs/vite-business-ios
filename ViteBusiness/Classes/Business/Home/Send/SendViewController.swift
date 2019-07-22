@@ -178,11 +178,6 @@ class SendViewController: BaseViewController {
                     return
                 }
 
-                guard amount > 0 else {
-                    Toast.show(R.string.localizable.sendPageToastAmountZero())
-                    return
-                }
-
                 guard amount <= self.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
