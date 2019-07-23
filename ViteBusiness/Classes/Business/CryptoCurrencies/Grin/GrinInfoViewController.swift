@@ -122,7 +122,10 @@ class GrinInfoViewController: BaseViewController {
 
         walletInfoVM.messageDriver
             .filterNil()
-            .drive(onNext:{ Toast.show($0) })
+            .drive(onNext:{ [weak self] in
+                self?.view.hideLoading()
+                Toast.show($0)
+            })
             .disposed(by: rx.disposeBag)
 
         walletInfoVM.showLoadingDriver
@@ -137,6 +140,7 @@ class GrinInfoViewController: BaseViewController {
 
         walletInfoVM.fullInfoDetail
             .bind { [weak self] fullInfo in
+                self?.view.hideLoading()
                 let detail = GrinTxDetailViewController()
                 detail.fullInfo = fullInfo
                 self?.navigationController?.pushViewController(detail, animated: true)
@@ -385,6 +389,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.displayLoading()
         let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
         self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
     }

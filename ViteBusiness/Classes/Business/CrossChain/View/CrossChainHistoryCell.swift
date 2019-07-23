@@ -166,9 +166,9 @@ class CrossChainHistoryCell: UITableViewCell {
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
         let viteSymble = "VITE"
-        let othenSymble = tokenInfo.gatewayInfo?.mappedToken.coinType.rawValue ?? ""
+        let othenPlatform = tokenInfo.gatewayInfo?.mappedToken.coinType.rawValue ?? ""
 
-        symbleLabel.text = othenSymble
+        symbleLabel.text = tokenInfo.gatewayInfo?.mappedToken.symbol
 
         if let fee = Amount(record.fee)?.amountShort(decimals: tokenInfo.decimals) {
             feeLabel.text = "\(R.string.localizable.crosschainFee()) \(fee)"
@@ -177,11 +177,11 @@ class CrossChainHistoryCell: UITableViewCell {
 
         if type == .withdraw {
             leftHashLabel.text =  " \(viteSymble) Hash: \(record.inTxHash) "
-            rightHashLabel.text = " \(othenSymble) Hash: \(record.outTxHash ?? "") "
+            rightHashLabel.text = " \(othenPlatform) Hash: \(record.outTxHash ?? "") "
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusConfirmed()
@@ -209,13 +209,13 @@ class CrossChainHistoryCell: UITableViewCell {
             statusLabel.text = statusString
 
         } else if type == .desposit {
-            leftHashLabel.text = "\(othenSymble) Hash:" + record.inTxHash
+            leftHashLabel.text = "\(othenPlatform) Hash:" + record.inTxHash
             rightHashLabel.text = "\(viteSymble) Hash:" + (record.outTxHash ?? "")
 
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenSymble)
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
