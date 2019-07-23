@@ -26,9 +26,9 @@ class GatewayTokenDetailViewController: BaseViewController {
             }
             var issueStr = "--"
             if let issue =  JSON(info)["states"]["issue"].int, issue == 1 {
-                issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
-            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceTrue()
+            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
+                issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
             }
             var overview:String?  = "--"
             if LocalizationService.sharedInstance.currentLanguage == .chinese {
