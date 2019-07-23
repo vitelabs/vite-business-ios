@@ -313,10 +313,12 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address
-                    scanViewController.navigationController?.popViewController(animated: true)
+                } else if case .success(let uri) = ETHURI.parser(string: result) {
+                    self?.addressView.textView.text = uri.address
                 } else {
-                    scanViewController.showAlertMessage(result)
+                    self?.addressView.textView.text = result
                 }
+                scanViewController.navigationController?.popViewController(animated: true)
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
         }

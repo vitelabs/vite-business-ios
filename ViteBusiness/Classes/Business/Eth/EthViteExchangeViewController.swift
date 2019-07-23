@@ -266,15 +266,21 @@ class EthViteExchangeViewController: BaseViewController {
                  R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
 
+
+        var decimals = TokenInfo.viteERC20.decimals
+        if self.exchangeType == .ethChainToViteToken {
+            decimals = self.gatewayInfoService!.tokenInfo.decimals
+        }
+
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.exchangeAll = true
-            self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
+            self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: decimals)
             }.disposed(by: rx.disposeBag)
 
         gasSliderView.feeSlider.rx.value.bind{ [unowned self] _ in
             if self.exchangeAll {
-                self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: TokenInfo.viteERC20.decimals)
+                self.amountView.textField.text = self.trueAmout(for: self.balance).amountFull(decimals: decimals)
             }
 
             }.disposed(by: rx.disposeBag)
@@ -380,7 +386,7 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func trueAmout(for amount: Amount) -> Amount {
-        if self.exchangeAll && self.exchangeType == .ethChainToViteToken {
+        if self.exchangeAll && self.exchangeType == .ethChainToViteToken &&  self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode {
             let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : ( self.gatewayInfoService!.tokenInfo.gatewayInfo!.mappedToken.decimals)
             var ethStr = self.gasSliderView.ethStr
             let trueAmout = amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
@@ -425,10 +431,15 @@ extension EthViteExchangeViewController: FloatButtonsViewDelegate {
 
 extension EthViteExchangeViewController: UITextFieldDelegate {
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
         if textField == amountView.textField {
+            var decimals = TokenInfo.viteERC20.decimals
+            if let d =   self.gatewayInfoService?.tokenInfo.decimals {
+                decimals = d
+            }
             exchangeAll = false
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, TokenInfo.viteERC20.decimals))
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, decimals))
             textField.text = text
             return ret
         } else {
