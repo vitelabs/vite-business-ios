@@ -150,6 +150,7 @@ struct BifrostConfirmInfoFactory {
         case dexMarketConfig
 
         fileprivate var info: BuildInContractProtocol {
+
             switch self {
             case .register:
                 return BuildInContractRegister()

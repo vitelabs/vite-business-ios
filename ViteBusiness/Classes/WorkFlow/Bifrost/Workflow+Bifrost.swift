@@ -24,49 +24,8 @@ public extension Workflow {
                                          fee: Amount?,
                                          data: Data?,
                                          completion: @escaping (Result<AccountBlock>) -> ()) {
-        func send() {
-            HUD.show()
-            ViteNode.rawTx.send.withoutPow(account: account,
-                                           toAddress: toAddress,
-                                           tokenId: tokenInfo.viteTokenId,
-                                           amount: amount,
-                                           fee: fee,
-                                           data: data)
-                .always {
-                    HUD.hide()
-                }.recover { (e) -> Promise<AccountBlock> in
-                    if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                        return sendRawTxWithPowWorkflow(getPowPromise: {
-                            return ViteNode.rawTx.send.getPow(account: account,
-                                                              toAddress: toAddress,
-                                                              tokenId: tokenInfo.viteTokenId,
-                                                              amount: amount,
-                                                              fee: fee,
-                                                              data: data)
-                        })
-                    } else {
-                        return Promise(error: e)
-                    }
-                }.done {
-                    AlertControl.showCompletion(R.string.localizable.bifrostToastOperationSuccess())
-                    completion(Result.success($0))
-                }
-                .catch { e in
-                    let error = ViteError.conversion(from: e)
-                    if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                        AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
-                                        titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
-                    } else if error != ViteError.cancel {
-                        Toast.show(error.viteErrorMessage)
-                    }
-                    completion(Result.failure(error))
-            }
-
-        }
-
         func showConfirm() {
             BifrostConfirmView(title: title) { (ret) in
-
                 switch ret {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedTitle(), message: nil,
@@ -79,7 +38,15 @@ public extension Workflow {
                 case .cancelled:
                     completion(Result.failure(ViteError.cancel))
                 case .success:
-                    send()
+                    send(account: account,
+                         toAddress: toAddress,
+                         tokenId: tokenInfo.viteTokenId,
+                         amount: amount,
+                         fee: fee,
+                         data: data,
+                         successToast: R.string.localizable.bifrostToastOperationSuccess(),
+                         type: .other,
+                         completion: completion)
                 }
                 }.show()
         }

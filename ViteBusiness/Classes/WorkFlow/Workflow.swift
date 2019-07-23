@@ -54,6 +54,93 @@ public struct Workflow {
         showConfirm()
     }
 
+    static func getPowWorkflow(context: SendBlockContext) -> Promise<SendBlockContext> {
+        var cancelPow = false
+        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
+            cancelPow = true
+        }
+        getPowFloatView.show()
+        let waitAtLeast = after(seconds: 3)
+        return ViteNode.rawTx.send.getPow(context: context)
+            .recover { (e) -> Promise<SendBlockContext> in
+                getPowFloatView.hide()
+                return Promise(error: e)
+            }
+            .then { context -> Promise<SendBlockContext> in
+                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+                    return .value(context)
+                })
+            }
+            .then { context -> Promise<SendBlockContext> in
+                if cancelPow {
+                    return Promise(error: ViteError.cancel)
+                } else {
+                    return Promise<SendBlockContext> { seal in
+                        getPowFloatView.finish { seal.fulfill(context) }
+                    }
+                }
+            }
+    }
+
+    static func send(account: Wallet.Account,
+                     toAddress: ViteAddress,
+                     tokenId: ViteTokenId,
+                     amount: Amount,
+                     fee: Amount?,
+                     data: Data?,
+                     successToast: String,
+                     type: workflowType,
+                     completion: @escaping (Result<AccountBlock>) -> ()) {
+        HUD.show()
+        ViteNode.rawTx.send.prepare(account: account,
+                                    toAddress: toAddress,
+                                    tokenId: tokenId,
+                                    amount: amount,
+                                    fee: fee,
+                                    data: data)
+            .always {
+                HUD.hide()
+            }.then { (context) -> Promise<(context: SendBlockContext, calculatedPoW: Bool, getPoWTimestamp: Date)> in
+                let start = Date()
+                if context.isNeedToCalcPoW {
+                    return getPowWorkflow(context: context).map { ($0, context.isNeedToCalcPoW, start) }
+                } else {
+                    return Promise.value((context, context.isNeedToCalcPoW, start))
+                }
+            }.always {
+                HUD.show()
+            }.then { (context, calculatedPoW, start) -> Promise<(accountBlock: AccountBlock, calculatedPoW: Bool, duration: String)> in
+                let duration = String(Int((Date().timeIntervalSince1970 - start.timeIntervalSince1970)))
+                return ViteNode.rawTx.send.context(context).map { ($0, calculatedPoW, duration) }
+            }.always {
+                HUD.hide()
+            }.done { (accountBlock, calculatedPoW, duration) in
+                if calculatedPoW {
+                    Alert.show(title: "abc", message: duration, actions: [
+                        (.default(title: R.string.localizable.confirm()), nil),
+                        ])
+                } else {
+                    AlertControl.showCompletion(successToast)
+                }
+                completion(Result.success(accountBlock))
+            }.catch { (e) in
+                let error = ViteError.conversion(from: e)
+                if error.code == ViteErrorCode.rpcNotEnoughBalance {
+                    AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
+                                    titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
+                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
+                    Toast.show(error.viteErrorMessage)
+                } else if error != ViteError.cancel {
+                    if case .vote = type, error.code == ViteErrorCode.rpcNoTransactionBefore {
+                        Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+                    } else {
+                        Toast.show(error.viteErrorMessage)
+                    }
+                }
+                completion(Result.failure(error))
+        }
+    }
+
     private static func sendRawTxWorkflow(withoutPowPromise: @escaping () -> Promise<AccountBlock>,
                                           getPowPromise: @escaping () -> Promise<SendBlockContext>,
                                           successToast: String,
@@ -154,30 +241,15 @@ public extension Workflow {
                                            data: Data?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            let withoutPowPromise = {
-                return ViteNode.rawTx.send.withoutPow(account: account,
-                                                      toAddress: toAddress,
-                                                      tokenId: tokenInfo.viteTokenId,
-                                                      amount: amount,
-                                                      fee: Amount(0),
-                                                      data: data)
-            }
-
-            let getPowPromise = {
-                return ViteNode.rawTx.send.getPow(account: account,
-                                                  toAddress: toAddress,
-                                                  tokenId: tokenInfo.viteTokenId,
-                                                  amount: amount,
-                                                  fee: Amount(0),
-                                                  data: data)
-            }
-
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastTransferSuccess(),
-                              type: .other,
-                              completion: completion)
+            send(account: account,
+                 toAddress: toAddress,
+                 tokenId: tokenInfo.viteTokenId,
+                 amount: amount,
+                 fee: Amount(0),
+                 data: data,
+                 successToast: R.string.localizable.workflowToastTransferSuccess(),
+                 type: .other,
+                 completion: completion)
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
@@ -192,28 +264,15 @@ public extension Workflow {
                                            note: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            let withoutPowPromise = {
-                return ViteNode.transaction.withoutPow(account: account,
-                                                       toAddress: toAddress,
-                                                       tokenId: tokenInfo.viteTokenId,
-                                                       amount: amount,
-                                                       note: note)
-            }
-
-            let getPowPromise = {
-                return ViteNode.transaction.getPow(account: account,
-                                                   toAddress: toAddress,
-                                                   tokenId: tokenInfo.viteTokenId,
-                                                   amount: amount,
-                                                   note: note)
-            }
-
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastTransferSuccess(),
-                              type: .other,
-                              completion: completion)
+            send(account: account,
+                 toAddress: toAddress,
+                 tokenId: tokenInfo.viteTokenId,
+                 amount: amount,
+                 fee: Amount(0),
+                 data: note?.utf8StringToAccountBlockData(),
+                 successToast: R.string.localizable.workflowToastTransferSuccess(),
+                 type: .other,
+                 completion: completion)
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
@@ -225,24 +284,16 @@ public extension Workflow {
                                   beneficialAddress: ViteAddress,
                                   amount: Amount,
                                   completion: @escaping (Result<AccountBlock>) -> ()) {
-
         let sendBlock = {
-            let withoutPowPromise = {
-                return ViteNode.pledge.perform.withoutPow(account: account,
-                                                          beneficialAddress: beneficialAddress,
-                                                          amount: amount)
-            }
-            let getPowPromise = {
-                return ViteNode.pledge.perform.getPow(account: account,
-                                                      beneficialAddress: beneficialAddress,
-                                                      amount: amount)
-            }
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastSubmitSuccess(),
-                              type: .pledge,
-                              completion: completion)
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.pledge.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: amount,
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getPledgeData(beneficialAddress: beneficialAddress),
+                 successToast: R.string.localizable.workflowToastSubmitSuccess(),
+                 type: .pledge,
+                 completion: completion)
         }
 
         let tokenInfo = TokenInfo.viteCoin
@@ -255,26 +306,17 @@ public extension Workflow {
                                         beneficialAddress: ViteAddress,
                                         amount: Amount,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
-
         let sendBlock = {
-            let withoutPowPromise = {
-                return ViteNode.pledge.cancel.withoutPow(account: account,
-                                                          beneficialAddress: beneficialAddress,
-                                                          amount: amount)
-            }
-            let getPowPromise = {
-                return ViteNode.pledge.cancel.getPow(account: account,
-                                                     beneficialAddress: beneficialAddress,
-                                                     amount: amount)
-            }
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
-                              type: .pledge,
-                              completion: completion)
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.pledge.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getCancelPledgeData(beneficialAddress: beneficialAddress, amount: amount),
+                 successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
+                 type: .other,
+                 completion: completion)
         }
-
 
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
@@ -287,23 +329,15 @@ public extension Workflow {
                                 completion: @escaping (Result<AccountBlock>) -> ()) {
 
         let sendBlock = {
-            let provider = Provider.default
-            let withoutPowPromise =  {
-                return ViteNode.vote.perform.withoutPow(account: account,
-                                                        gid: ViteWalletConst.ConsensusGroup.snapshot.id,
-                                                        name: name)
-            }
-            let getPowPromise =  {
-                    return ViteNode.vote.perform.getPow(account: account,
-                                                        gid: ViteWalletConst.ConsensusGroup.snapshot.id,
-                                                        name: name)
-            }
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastVoteSuccess(),
-                              type: .vote,
-                              completion: completion)
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.consensus.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name),
+                 successToast: R.string.localizable.workflowToastVoteSuccess(),
+                 type: .vote,
+                 completion: completion)
         }
 
         let tokenInfo = TokenInfo.viteCoin
@@ -314,23 +348,16 @@ public extension Workflow {
     static func cancelVoteWithConfirm(account: Wallet.Account,
                                       name: String,
                                       completion: @escaping (Result<AccountBlock>) -> ()) {
-
         let sendBlock = {
-            let provider = Provider.default
-            let withoutPowPromise =  {
-                return ViteNode.vote.cancel.withoutPow(account: account,
-                                                       gid: ViteWalletConst.ConsensusGroup.snapshot.id)
-            }
-            let getPowPromise =  {
-                return ViteNode.vote.cancel.getPow(account: account,
-                                                   gid: ViteWalletConst.ConsensusGroup.snapshot.id)
-            }
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
-                              type: .other,
-                              completion: completion)
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.consensus.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getCancelVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id),
+                 successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
+                 type: .vote,
+                 completion: completion)
         }
 
         let tokenInfo = TokenInfo.viteCoin
@@ -346,29 +373,15 @@ public extension Workflow {
                                         data: Data?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
-            let provider = Provider.default
-            let withoutPowPromise =  {
-                return ViteNode.rawTx.send.withoutPow(account: account,
-                                                      toAddress: toAddress,
-                                                      tokenId: tokenInfo.viteTokenId,
-                                                      amount: amount,
-                                                      fee: fee,
-                                                      data: data)
-            }
-            let getPowPromise =  {
-                return ViteNode.rawTx.send.getPow(account: account,
-                                                  toAddress: toAddress,
-                                                  tokenId: tokenInfo.viteTokenId,
-                                                  amount: amount,
-                                                  fee: fee,
-                                                  data: data)
-            }
-
-            sendRawTxWorkflow(withoutPowPromise: withoutPowPromise,
-                              getPowPromise: getPowPromise,
-                              successToast: R.string.localizable.workflowToastContractSuccess(),
-                              type: .other,
-                              completion: completion)
+            send(account: account,
+                 toAddress: toAddress,
+                 tokenId: tokenInfo.viteTokenId,
+                 amount: amount,
+                 fee: fee,
+                 data: data,
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
