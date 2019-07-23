@@ -1,0 +1,3 @@
+files:
+  - source: /ViteBusiness/Assets/en.lproj/Localizable.strings
+    translation: /ViteBusiness/Assets/%locale%.lproj/Localizable.strings
