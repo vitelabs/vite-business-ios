@@ -11,9 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexCancel: BuildInContractProtocol {
 
-    let functionSignatureHexString = "b251adc5"
-    let toAddress = ViteWalletConst.ContractAddress.dexTrade.rawValue
-    let abi = "{\"type\":\"function\",\"name\":\"DexTradeCancelOrder\",\"inputs\":[{\"name\":\"orderId\",\"type\":\"bytes\"}]}"
+    let abi =  ABI.BuildIn.dexCancel
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Cancel Order on ViteX\",\"zh\":\"交易所撤单\"}},\"inputs\":[{\"name\":{\"base\":\"Order ID\",\"zh\":\"订单 ID\"}},{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -29,7 +27,7 @@ struct BuildInContractDexCancel: BuildInContractProtocol {
                     return Promise(error: ConfirmError.InvalidExtend)
             }
 
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)
+            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
             guard let orderIdValue = values[0] as? ABIBytesValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }

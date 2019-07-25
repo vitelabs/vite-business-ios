@@ -657,3 +657,46 @@
 "bifrost.operation.title.contract.address" = "合约地址";
 "bifrost.operation.title.token.symbol" = "币种";
 "bifrost.operation.title.amount" = "金额";
+
+// Buildin
+"buildin.coin.transfer.ownership.function.title" = "转移代币权限";
+"buildin.coin.transfer.ownership.item0.title" = "代币全称";
+"buildin.coin.transfer.ownership.item1.title" = "代币简称";
+"buildin.coin.transfer.ownership.item2.title" = "接受权限地址";
+
+"buildin.coin.reissue.token.function.title" = "增发代币";
+"buildin.coin.reissue.token.item0.title" = "代币全称";
+"buildin.coin.reissue.token.item1.title" = "代币简称";
+"buildin.coin.reissue.token.item2.title" = "增发地址";
+"buildin.coin.reissue.token.item3.title" = "增发数量";
+
+"buildin.coin.change.to.nonissuable.function.title" = "改为不可增发";
+
+
+"buildin.dex.transfer.token.owner.function.title" = "转移币种权限";
+"buildin.dex.transfer.token.owner.item0.title" = "代币全称";
+"buildin.dex.transfer.token.owner.item1.title" = "代币简称";
+"buildin.dex.transfer.token.owner.item2.title" = "接受权限地址";
+
+"buildin.dex.transfer.pair.function.title" = "转移交易对权限";
+"buildin.dex.transfer.pair.item0.title" = "交易对名称";
+"buildin.dex.transfer.pair.item1.title" = "接受权限地址";
+
+"buildin.dex.adjust.fees.function.title" = "调整费率";
+"buildin.dex.adjust.fees.item0.title" = "交易对名称";
+"buildin.dex.adjust.fees.item1.title" = "当前地址";
+"buildin.dex.adjust.fees.item.maker.title" = "调整后Maker费率";
+"buildin.dex.adjust.fees.item.taker.title" = "调整后Taker费率";
+
+"buildin.dex.open.trading.pair.function.title" = "开通交易对";
+"buildin.dex.open.trading.pair.item0.title" = "交易对名称";
+"buildin.dex.open.trading.pair.item1.title" = "当前地址";
+"buildin.dex.open.trading.pair.item2.title" = "上币费";
+
+"buildin.dex.suspend.trading.pair.function.title" = "暂停交易对";
+"buildin.dex.suspend.trading.pair.item0.title" = "交易对名称";
+"buildin.dex.suspend.trading.pair.item1.title" = "当前地址";
+
+"buildin.dex.recover.trading.pair.function.title" = "恢复交易对";
+"buildin.dex.recover.trading.pair.item0.title" = "交易对名称";
+"buildin.dex.recover.trading.pair.item1.title" = "当前地址";

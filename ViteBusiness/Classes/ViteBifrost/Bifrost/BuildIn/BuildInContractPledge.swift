@@ -10,15 +10,13 @@ import PromiseKit
 
 struct BuildInContractPledge: BuildInContractProtocol {
 
-    let functionSignatureHexString = "8de7dcfd"
-    let toAddress = ViteWalletConst.ContractAddress.pledge.rawValue
-    let abi = ABI.BuildIn.pledge.rawValue
+    let abi = ABI.BuildIn.pledge
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Acquire Quota\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"配额受益地址\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         let title = description.function.title ?? ""
         do {
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)
+            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
             guard let value = values[0] as? ABIAddressValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }

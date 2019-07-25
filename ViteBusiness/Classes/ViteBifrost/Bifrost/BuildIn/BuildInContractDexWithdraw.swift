@@ -10,16 +10,14 @@ import PromiseKit
 
 struct BuildInContractDexWithdraw: BuildInContractProtocol {
 
-    let functionSignatureHexString = "cc329169"
-    let toAddress = ViteWalletConst.ContractAddress.dexFund.rawValue
-    let abi = "{\"type\":\"function\",\"name\":\"DexFundUserWithdraw\",\"inputs\":[{\"name\":\"token\",\"type\":\"tokenId\"},{\"name\":\"amount\",\"type\":\"uint256\"}]}"
+    let abi =  ABI.BuildIn.dexWithdraw
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"ViteX Withdrawal\",\"zh\":\"交易所提现\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"提现金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
         let title = description.function.title ?? ""
         do {
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)
+            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
             guard let tokenIdValue = values[0] as? ABITokenIdValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }

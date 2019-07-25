@@ -10,9 +10,7 @@ import PromiseKit
 
 struct BuildInContractDexDeposit: BuildInContractProtocol {
 
-    let functionSignatureHexString = "9dfb67ff"
-    let toAddress = ViteWalletConst.ContractAddress.dexFund.rawValue
-    let abi = "{\"type\":\"function\",\"name\":\"DexFundUserDeposit\",\"inputs\":[]}"
+    let abi =  ABI.BuildIn.dexDeposit
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"ViteX Deposit\",\"zh\":\"交易所充值\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"充值金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

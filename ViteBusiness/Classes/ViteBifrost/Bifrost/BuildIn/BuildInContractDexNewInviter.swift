@@ -11,9 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexNewInviter: BuildInContractProtocol {
 
-    let functionSignatureHexString = "da85ec8a"
-    let toAddress = ViteWalletConst.ContractAddress.dexFund.rawValue
-    let abi = "{\"type\":\"function\",\"name\":\"DexFundNewInviter\",\"inputs\":[]}"
+    let abi =  ABI.BuildIn.dexNewInviter
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Create Referral Code\",\"zh\":\"生成邀请码\"}},\"inputs\":[{\"name\":{\"base\":\"Current Address\",\"zh\":\"当前地址\"}},{\"name\":{\"base\":\"Cost\",\"zh\":\"扣款金额\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

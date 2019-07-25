@@ -10,9 +10,7 @@ import PromiseKit
 
 struct BuildInContractDexBindInviter: BuildInContractProtocol {
 
-    let functionSignatureHexString = "a562b706"
-    let toAddress = ViteWalletConst.ContractAddress.dexFund.rawValue
-    let abi = "{\"type\":\"function\",\"name\":\"DexFundBindInviteCode\",\"inputs\":[{\"name\":\"code\",\"type\":\"uint32\"}]}"
+    let abi = ABI.BuildIn.dexBindInviter
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Use Referral Code\",\"zh\":\"使用邀请码\"}},\"inputs\":[{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"接受邀请地址\"}},{\"name\":{\"base\":\"Referral Code\",\"zh\":\"邀请码\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -21,7 +19,7 @@ struct BuildInContractDexBindInviter: BuildInContractProtocol {
         let title = description.function.title ?? ""
         do {
 
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)
+            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
             guard let codeValue = values[0] as? ABIUnsignedIntegerValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }

@@ -653,3 +653,46 @@
 "bifrost.operation.title.contract.address" = "Contract Address";
 "bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
+
+// Buildin
+"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
+"buildin.coin.transfer.ownership.item0.title" = "Token Name";
+"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
+"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+
+"buildin.coin.reissue.token.function.title" = "Re-issue Token";
+"buildin.coin.reissue.token.item0.title" = "Token Name";
+"buildin.coin.reissue.token.item1.title" = "Token Symbol";
+"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
+"buildin.coin.reissue.token.item3.title" = "Amount";
+
+"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
+
+
+"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
+"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
+"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
+"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+
+"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
+"buildin.dex.transfer.pair.item0.title" = "Name";
+"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+
+"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
+"buildin.dex.adjust.fees.item0.title" = "Name";
+"buildin.dex.adjust.fees.item1.title" = "Current Address";
+"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
+"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+
+"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
+"buildin.dex.open.trading.pair.item0.title" = "Name";
+"buildin.dex.open.trading.pair.item1.title" = "Current Address";
+"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+
+"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
+"buildin.dex.suspend.trading.pair.item0.title" = "Name";
+"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
+"buildin.dex.recover.trading.pair.item0.title" = "Name";
+"buildin.dex.recover.trading.pair.item1.title" = "Current Address";

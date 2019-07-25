@@ -106,6 +106,11 @@ extension VBViteSendTx {
 
             public init?(map: Map) {}
 
+            public init(textColor: UIColor?, backgroundColor: UIColor?) {
+                self.textColor = textColor
+                self.backgroundColor = backgroundColor
+            }
+
             public mutating func mapping(map: Map) {
                 textColor <- (map["textColor"], type(of: self).TransformOfColor)
                 backgroundColor <- (map["backgroundColor"], type(of: self).TransformOfColor)
@@ -128,6 +133,18 @@ extension VBViteSendTx {
                 let rgba = rInt | gInt | bInt | aInt
                 return String(format:"%08x", rgba)
             })
+
+            static var blue: Style {
+                return Style(textColor: UIColor(netHex: 0x007AFF), backgroundColor: UIColor(netHex: 0x007AFF, alpha: 0.06))
+            }
+
+            static var red: Style {
+                return Style(textColor: UIColor(netHex: 0xFF0008), backgroundColor: UIColor(netHex: 0x007AFF, alpha: 0.06))
+            }
+
+            static var green: Style {
+                return Style(textColor: UIColor(netHex: 0x5BC500), backgroundColor: UIColor(netHex: 0x007AFF, alpha: 0.06))
+            }
         }
 
         fileprivate var name: [String: String] = [:]
@@ -137,14 +154,19 @@ extension VBViteSendTx {
 
         public init?(map: Map) { }
 
+        init(name: String, style: Style? = nil) {
+            self.name["base"] = name
+            self.style = style
+        }
+
         mutating public func mapping(map: Map) {
             name <- map["name"]
             style <- map["style"]
         }
 
         public var title: String? {
-            let key = LocalizationService.sharedInstance.currentLanguage == .chinese ? "zh": "base"
-            return name[key]
+            let key = LocalizationService.sharedInstance.currentLanguage.languageCode
+            return name[key] ?? name["base"]
         }
 
         public func confirmItemInfo(text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil) -> BifrostConfirmItemInfo {

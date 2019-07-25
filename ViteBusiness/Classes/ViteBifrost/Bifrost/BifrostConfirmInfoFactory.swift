@@ -13,6 +13,7 @@ import ViteWallet
 public enum ConfirmError: Error, DisplayableError {
     case InvalidParameters
     case InvalidToAddress
+    case InvalidTokenId
     case InvalidAmount
     case InvalidFee
     case InvalidData
@@ -27,6 +28,8 @@ public enum ConfirmError: Error, DisplayableError {
             return "InvalidParameters"
         case .InvalidToAddress:
             return "InvalidToAddress"
+        case .InvalidTokenId:
+            return "InvalidTokenId"
         case .InvalidAmount:
             return "InvalidAmount"
         case .InvalidFee:
@@ -73,10 +76,9 @@ struct BifrostConfirmInfoFactory {
                     }
                     return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                 case .contract:
-                    if let data = block.data,
-                        data.count >= 4,
-                        let type = BuildInContract.dataPrefixMap[data[0..<4].toHexString()],
-                        type.info.toAddress == block.toAddress {
+                    let map = BuildInContract.toAddressAndDataPrefixMap
+                    if let data = block.data, data.count >= 4,
+                        let type = map["\(block.toAddress!)_\(data[0..<4].toHexString())"] {
                         return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
                         return BuildInContractOthers.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
@@ -111,10 +113,12 @@ struct BifrostConfirmInfoFactory {
 
     enum BuildInContract: CaseIterable {
 
-        fileprivate static let dataPrefixMap: [String: BuildInContract] =
+        fileprivate static let toAddressAndDataPrefixMap: [String: BuildInContract] =
             BuildInContract.allCases.reduce([String: BuildInContract]()) { (r, c) -> [String: BuildInContract] in
                 var ret = r
-                ret[c.info.functionSignatureHexString] = c
+                let abi = c.info.abi
+                let key = "\(abi.toAddress)_\(abi.encodedFunctionSignature.toHexString())"
+                ret[key] = c
                 return ret
         }
 
@@ -127,7 +131,11 @@ struct BifrostConfirmInfoFactory {
         case cancelVote
         case pledge
         case cancelPledge
-        case coin
+
+        case coinMint
+        case coinIssue
+        case coinTransferOwner
+        case coinChangeTokenType
 
         case dexDeposit
         case dexWithdraw
@@ -136,6 +144,10 @@ struct BifrostConfirmInfoFactory {
 
         case dexNewInviter
         case dexBindInviter
+
+        case dexTransferTokenOwner
+        case dexNewMarket
+        case dexMarketConfig
 
         fileprivate var info: BuildInContractProtocol {
             switch self {
@@ -155,8 +167,14 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractPledge()
             case .cancelPledge:
                 return BuildInContractCancelPledge()
-            case .coin:
-                return BuildInContractCoin()
+            case .coinMint:
+                return BuildInContractCoinMint()
+            case .coinIssue:
+                return BuildInContractCoinIssue()
+            case .coinTransferOwner:
+                return BuildInContractCoinTransferOwner()
+            case .coinChangeTokenType:
+                return BuildInContractCoinChangeTokenType()
             case .dexDeposit:
                 return BuildInContractDexDeposit()
             case .dexWithdraw:
@@ -169,6 +187,12 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractDexNewInviter()
             case .dexBindInviter:
                 return BuildInContractDexBindInviter()
+            case .dexTransferTokenOwner:
+                return BuildInContractDexTransferTokenOwner()
+            case .dexNewMarket:
+                return BuildInContractDexNewMarket()
+            case .dexMarketConfig:
+                return BuildInContractDexMarketConfig()
             }
         }
     }

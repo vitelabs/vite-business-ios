@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 541 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 573 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1422,6 +1422,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let addressManageAddressHeaderTitle = Rswift.StringResource(key: "address.manage.address.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Adjust Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexAdjustFeesFunctionTitle = Rswift.StringResource(key: "buildin.dex.adjust.fees.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Adjusted Maker Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexAdjustFeesItemMakerTitle = Rswift.StringResource(key: "buildin.dex.adjust.fees.item.maker.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Adjusted Taker Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexAdjustFeesItemTakerTitle = Rswift.StringResource(key: "buildin.dex.adjust.fees.item.taker.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: All
       /// 
       /// Locales: en, zh-Hans
@@ -1434,6 +1446,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationTitleAmount = Rswift.StringResource(key: "bifrost.operation.title.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinReissueTokenItem3Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -1530,6 +1546,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let walletHomeBalanceTitle = Rswift.StringResource(key: "wallet.home.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Beneficiary Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinReissueTokenItem2Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -1586,6 +1606,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let workflowConfirmPageBiometryAuthFailedTitle = Rswift.StringResource(key: "workflow.confirm.page.biometryAuthFailed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Change to Non-issuable
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinChangeToNonissuableFunctionTitle = Rswift.StringResource(key: "buildin.coin.change.to.nonissuable.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Check
       /// 
       /// Locales: en, zh-Hans
@@ -1810,6 +1834,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexAdjustFeesItem1Title = Rswift.StringResource(key: "buildin.dex.adjust.fees.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexOpenTradingPairItem1Title = Rswift.StringResource(key: "buildin.dex.open.trading.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexRecoverTradingPairItem1Title = Rswift.StringResource(key: "buildin.dex.recover.trading.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexSuspendTradingPairItem1Title = Rswift.StringResource(key: "buildin.dex.suspend.trading.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Height
       /// 
       /// Locales: en, zh-Hans
@@ -2130,6 +2170,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let systemPageCellChangeLanguage = Rswift.StringResource(key: "system.page.cell.change.language", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Listing Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexOpenTradingPairItem2Title = Rswift.StringResource(key: "buildin.dex.open.trading.pair.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Loading
       /// 
       /// Locales: en, zh-Hans
@@ -2253,6 +2297,26 @@ struct R: Rswift.Validatable {
       /// en translation: Name
       /// 
       /// Locales: en, zh-Hans
+      static let buildinDexAdjustFeesItem0Title = Rswift.StringResource(key: "buildin.dex.adjust.fees.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexOpenTradingPairItem0Title = Rswift.StringResource(key: "buildin.dex.open.trading.pair.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexRecoverTradingPairItem0Title = Rswift.StringResource(key: "buildin.dex.recover.trading.pair.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexSuspendTradingPairItem0Title = Rswift.StringResource(key: "buildin.dex.suspend.trading.pair.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferPairItem0Title = Rswift.StringResource(key: "buildin.dex.transfer.pair.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
       static let contactsEditPageNameTitle = Rswift.StringResource(key: "contacts.edit.page.name.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
@@ -2314,6 +2378,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let grinSentSuggestUseViteTitle = Rswift.StringResource(key: "grin.sent.suggest.useVite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Open Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexOpenTradingPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.open.trading.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open to Additional Issue
       /// 
       /// Locales: en, zh-Hans
@@ -2494,6 +2562,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaManagePageInputAddressTitle = Rswift.StringResource(key: "quota.manage.page.input.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Re-issue Token
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinReissueTokenFunctionTitle = Rswift.StringResource(key: "buildin.coin.reissue.token.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
@@ -2570,6 +2642,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let sendPageToAddressTitle = Rswift.StringResource(key: "send.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinTransferOwnershipItem2Title = Rswift.StringResource(key: "buildin.coin.transfer.ownership.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferPairItem1Title = Rswift.StringResource(key: "buildin.dex.transfer.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferTokenOwnerItem2Title = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recover Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexRecoverTradingPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.recover.trading.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Recover and sync, 3 mins estimated
       /// 
       /// Locales: en, zh-Hans
@@ -2818,6 +2906,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let workflowToastVoteSuccess = Rswift.StringResource(key: "workflow.toast.vote.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Suspend Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexSuspendTradingPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.suspend.trading.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Switch
       /// 
       /// Locales: en, zh-Hans
@@ -2925,11 +3017,35 @@ struct R: Rswift.Validatable {
       /// en translation: Token Name
       /// 
       /// Locales: en, zh-Hans
+      static let buildinCoinReissueTokenItem0Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinTransferOwnershipItem0Title = Rswift.StringResource(key: "buildin.coin.transfer.ownership.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferTokenOwnerItem0Title = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
       static let crosschainTokenDetailName = Rswift.StringResource(key: "crosschain.tokenDetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationTitleTokenSymbol = Rswift.StringResource(key: "bifrost.operation.title.token.symbol", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinReissueTokenItem1Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinTransferOwnershipItem1Title = Rswift.StringResource(key: "buildin.coin.transfer.ownership.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferTokenOwnerItem1Title = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Too less amount
       /// 
       /// Locales: en, zh-Hans
@@ -3074,10 +3190,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainWithdrawHistory = Rswift.StringResource(key: "crosschain.withdraw.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinTransferOwnershipFunctionTitle = Rswift.StringResource(key: "buildin.coin.transfer.ownership.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer Success
       /// 
       /// Locales: en, zh-Hans
       static let workflowToastTransferSuccess = Rswift.StringResource(key: "workflow.toast.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer Token's Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferTokenOwnerFunctionTitle = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer Trading pair's Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinDexTransferPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.transfer.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -3689,6 +3817,27 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("address.manage.address.header.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Adjust Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexAdjustFeesFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.adjust.fees.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Adjusted Maker Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexAdjustFeesItemMakerTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.adjust.fees.item.maker.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Adjusted Taker Fees
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexAdjustFeesItemTakerTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.adjust.fees.item.taker.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: All
       /// 
       /// Locales: en, zh-Hans
@@ -3708,6 +3857,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostOperationTitleAmount(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinReissueTokenItem3Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.reissue.token.item3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
@@ -3878,6 +4034,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("wallet.home.balance.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Beneficiary Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinReissueTokenItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.reissue.token.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -3974,6 +4137,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func workflowConfirmPageBiometryAuthFailedTitle(_: Void = ()) -> String {
         return NSLocalizedString("workflow.confirm.page.biometryAuthFailed.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Change to Non-issuable
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinChangeToNonissuableFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.change.to.nonissuable.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Check
@@ -4366,6 +4536,34 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func systemPageCellChangeCurrency(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexAdjustFeesItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.adjust.fees.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexOpenTradingPairItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.open.trading.pair.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexRecoverTradingPairItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.recover.trading.pair.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexSuspendTradingPairItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.suspend.trading.pair.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Current Height
@@ -4928,6 +5126,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("system.page.cell.change.language", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Listing Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexOpenTradingPairItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.open.trading.pair.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Loading
       /// 
       /// Locales: en, zh-Hans
@@ -5141,6 +5346,41 @@ struct R: Rswift.Validatable {
       /// en translation: Name
       /// 
       /// Locales: en, zh-Hans
+      static func buildinDexAdjustFeesItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.adjust.fees.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexOpenTradingPairItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.open.trading.pair.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexRecoverTradingPairItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.recover.trading.pair.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexSuspendTradingPairItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.suspend.trading.pair.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferPairItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.pair.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Name
+      /// 
+      /// Locales: en, zh-Hans
       static func contactsEditPageNameTitle(_: Void = ()) -> String {
         return NSLocalizedString("contacts.edit.page.name.title", bundle: R.hostingBundle, comment: "")
       }
@@ -5248,6 +5488,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func grinSentSuggestUseViteTitle(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.suggest.useVite.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Open Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexOpenTradingPairFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.open.trading.pair.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Open to Additional Issue
@@ -5565,6 +5812,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.input.address.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Re-issue Token
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinReissueTokenFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.reissue.token.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Receive
       /// 
       /// Locales: en, zh-Hans
@@ -5696,6 +5950,34 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func sendPageToAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinTransferOwnershipItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.transfer.ownership.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferPairItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.pair.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferTokenOwnerItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.token.owner.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recover Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexRecoverTradingPairFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.recover.trading.pair.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Recover and sync, 3 mins estimated
@@ -6132,6 +6414,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.toast.vote.success", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Suspend Trading Pair
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexSuspendTradingPairFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.suspend.trading.pair.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Switch
       /// 
       /// Locales: en, zh-Hans
@@ -6317,6 +6606,27 @@ struct R: Rswift.Validatable {
       /// en translation: Token Name
       /// 
       /// Locales: en, zh-Hans
+      static func buildinCoinReissueTokenItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.reissue.token.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinTransferOwnershipItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.transfer.ownership.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferTokenOwnerItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.token.owner.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
       static func crosschainTokenDetailName(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.name", bundle: R.hostingBundle, comment: "")
       }
@@ -6326,6 +6636,27 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostOperationTitleTokenSymbol(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.token.symbol", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinReissueTokenItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.reissue.token.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinTransferOwnershipItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.transfer.ownership.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferTokenOwnerItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.token.owner.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Too less amount
@@ -6580,11 +6911,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.withdraw.history", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transfer Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinTransferOwnershipFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.transfer.ownership.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transfer Success
       /// 
       /// Locales: en, zh-Hans
       static func workflowToastTransferSuccess(_: Void = ()) -> String {
         return NSLocalizedString("workflow.toast.transfer.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer Token's Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferTokenOwnerFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.token.owner.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer Trading pair's Ownership
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinDexTransferPairFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.transfer.pair.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote

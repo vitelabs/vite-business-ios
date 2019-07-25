@@ -10,16 +10,14 @@ import PromiseKit
 
 struct BuildInContractCancelRegister: BuildInContractProtocol {
 
-    let functionSignatureHexString = "60862fe2"
-    let toAddress = ViteWalletConst.ContractAddress.consensus.rawValue
-    let abi = ABI.BuildIn.cancelRegister.rawValue
+    let abi = ABI.BuildIn.cancelRegister
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Revoke SBP Registration\",\"zh\":\"撤销 SBP 注册\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP名称\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
         let title = description.function.title ?? ""
         do {
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)
+            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
             guard let gidValue = values[0] as? ABIGIdValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }
