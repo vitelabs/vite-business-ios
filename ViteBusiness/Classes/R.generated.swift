@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 578 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 591 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1881,6 +1881,10 @@ struct R: Rswift.Validatable {
       /// en translation: Decimals
       /// 
       /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem4Title = Rswift.StringResource(key: "buildin.coin.issuance.item4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Decimals
+      /// 
+      /// Locales: en, zh-Hans
       static let crosschainTokenDetailDigit = Rswift.StringResource(key: "crosschain.tokenDetail.digit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Default Address
       /// 
@@ -2170,10 +2174,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteStatusVoteInvalid = Rswift.StringResource(key: "vote.page.voteStatus.voteInvalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Issuance Address
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem0Title = Rswift.StringResource(key: "buildin.coin.issuance.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Issuance Date
       /// 
       /// Locales: en, zh-Hans
       static let crosschainTokenDetailDate = Rswift.StringResource(key: "crosschain.tokenDetail.date", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Issuance Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem7Title = Rswift.StringResource(key: "buildin.coin.issuance.item7.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Key
       /// 
       /// Locales: en, zh-Hans
@@ -2234,6 +2246,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaSubmitPopDesc = Rswift.StringResource(key: "quota.submit.pop.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Max Supply
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem6Title = Rswift.StringResource(key: "buildin.coin.issuance.item6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Maximum Amount of Tx
       /// 
       /// Locales: en, zh-Hans
@@ -2306,6 +2322,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let votePageVoteInfoNodePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.nodePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: NO
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem5NoValue = Rswift.StringResource(key: "buildin.coin.issuance.item5.no.value", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: NOTICE
       /// 
       /// Locales: en, zh-Hans
@@ -2582,6 +2602,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let quotaManagePageInputAddressTitle = Rswift.StringResource(key: "quota.manage.page.input.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Re-issuable
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem5Title = Rswift.StringResource(key: "buildin.coin.issuance.item5.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Re-issue Token
       /// 
       /// Locales: en, zh-Hans
@@ -3033,7 +3057,19 @@ struct R: Rswift.Validatable {
       /// en translation: Token Issuance
       /// 
       /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceFunctionTitle = Rswift.StringResource(key: "buildin.coin.issuance.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Issuance
+      /// 
+      /// Locales: en, zh-Hans
       static let transactionListTransactionTypeNameCoin = Rswift.StringResource(key: "transaction.list.transaction.type.name.coin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinChangeToNonissuableItem0Title = Rswift.StringResource(key: "buildin.coin.change.to.nonissuable.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem1Title = Rswift.StringResource(key: "buildin.coin.issuance.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Name
       /// 
       /// Locales: en, zh-Hans
@@ -3054,6 +3090,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bifrostOperationTitleTokenSymbol = Rswift.StringResource(key: "bifrost.operation.title.token.symbol", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinChangeToNonissuableItem1Title = Rswift.StringResource(key: "buildin.coin.change.to.nonissuable.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem2Title = Rswift.StringResource(key: "buildin.coin.issuance.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
@@ -3078,6 +3122,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainTokenDetailAmount = Rswift.StringResource(key: "crosschain.tokenDetail.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Total Supply
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem3Title = Rswift.StringResource(key: "buildin.coin.issuance.item3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -3522,6 +3570,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatusWrongAddress = Rswift.StringResource(key: "crosschain.status.wrong.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: YES
+      /// 
+      /// Locales: en, zh-Hans
+      static let buildinCoinIssuanceItem5YesValue = Rswift.StringResource(key: "buildin.coin.issuance.item5.yes.value", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Yes
       /// 
       /// Locales: en, zh-Hans
@@ -4638,6 +4690,13 @@ struct R: Rswift.Validatable {
       /// en translation: Decimals
       /// 
       /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem4Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item4.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Decimals
+      /// 
+      /// Locales: en, zh-Hans
       static func crosschainTokenDetailDigit(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.digit", bundle: R.hostingBundle, comment: "")
       }
@@ -5146,11 +5205,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.voteStatus.voteInvalid", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Issuance Address
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Issuance Date
       /// 
       /// Locales: en, zh-Hans
       static func crosschainTokenDetailDate(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.date", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Issuance Fee
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem7Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item7.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Key
@@ -5256,6 +5329,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaSubmitPopDesc(_ value1: String) -> String {
         return String(format: NSLocalizedString("quota.submit.pop.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Max Supply
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem6Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item6.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Maximum Amount of Tx
@@ -5382,6 +5462,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func votePageVoteInfoNodePollsTitle(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteInfo.nodePolls.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: NO
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem5NoValue(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item5.no.value", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: NOTICE
@@ -5865,6 +5952,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func quotaManagePageInputAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.manage.page.input.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Re-issuable
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem5Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item5.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Re-issue Token
@@ -6654,8 +6748,29 @@ struct R: Rswift.Validatable {
       /// en translation: Token Issuance
       /// 
       /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Issuance
+      /// 
+      /// Locales: en, zh-Hans
       static func transactionListTransactionTypeNameCoin(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.coin", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinChangeToNonissuableItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.change.to.nonissuable.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Token Name
@@ -6691,6 +6806,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bifrostOperationTitleTokenSymbol(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.token.symbol", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinChangeToNonissuableItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.change.to.nonissuable.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token Symbol
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Token Symbol
@@ -6733,6 +6862,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainTokenDetailAmount(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Total Supply
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem3Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction File
@@ -7510,6 +7646,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainStatusWrongAddress(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.status.wrong.address", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: YES
+      /// 
+      /// Locales: en, zh-Hans
+      static func buildinCoinIssuanceItem5YesValue(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.coin.issuance.item5.yes.value", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Yes

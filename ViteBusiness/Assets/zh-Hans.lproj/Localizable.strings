@@ -665,6 +665,19 @@
 "bifrost.operation.title.amount" = "金额";
 
 // Buildin
+
+"buildin.coin.issuance.function.title" = "铸币";
+"buildin.coin.issuance.item0.title" = "铸币地址";
+"buildin.coin.issuance.item1.title" = "代币全称";
+"buildin.coin.issuance.item2.title" = "代币简称";
+"buildin.coin.issuance.item3.title" = "总发行量";
+"buildin.coin.issuance.item4.title" = "价格精度";
+"buildin.coin.issuance.item5.title" = "是否可增发";
+"buildin.coin.issuance.item5.yes.value" = "是";
+"buildin.coin.issuance.item5.no.value" = "否";
+"buildin.coin.issuance.item6.title" = "最大发行量";
+"buildin.coin.issuance.item7.title" = "铸币费";
+
 "buildin.coin.transfer.ownership.function.title" = "转移代币权限";
 "buildin.coin.transfer.ownership.item0.title" = "代币全称";
 "buildin.coin.transfer.ownership.item1.title" = "代币简称";
@@ -677,7 +690,8 @@
 "buildin.coin.reissue.token.item3.title" = "增发数量";
 
 "buildin.coin.change.to.nonissuable.function.title" = "改为不可增发";
-
+"buildin.coin.change.to.nonissuable.item0.title" = "代币全称";
+"buildin.coin.change.to.nonissuable.item1.title" = "代币简称";
 
 "buildin.dex.transfer.token.owner.function.title" = "转移币种权限";
 "buildin.dex.transfer.token.owner.item0.title" = "代币全称";

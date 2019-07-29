@@ -13,7 +13,10 @@ struct BuildInContractCoinChangeTokenType: BuildInContractProtocol {
     let abi = ABI.BuildIn.coinChangeTokenType
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinChangeToNonissuableFunctionTitle()),
-        inputs: [])
+        inputs: [
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinChangeToNonissuableItem0Title()),
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinChangeToNonissuableItem1Title()),
+        ])
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
@@ -24,7 +27,13 @@ struct BuildInContractCoinChangeTokenType: BuildInContractProtocol {
                 return Promise(error: ConfirmError.InvalidData)
             }
 
-            return Promise.value(BifrostConfirmInfo(title: title, items: []))
+            return ViteNode.mintage.getToken(tokenId: tokenIdValue.toString()).then({ (token) -> Promise<BifrostConfirmInfo> in
+                let items = [
+                    self.description.inputs[0].confirmItemInfo(text: token.name),
+                    self.description.inputs[1].confirmItemInfo(text: token.uniqueSymbol),
+                ]
+                return Promise.value(BifrostConfirmInfo(title: title, items: items))
+            })
         } catch {
             return Promise(error: ConfirmError.InvalidData)
         }
