@@ -24,6 +24,10 @@ class WalletHomeViewController: BaseTableViewController {
         super.viewDidLoad()
         setupView()
         bind()
+
+        if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
+            CreateWalletService.sharedInstance.showBackUpTipAlert()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

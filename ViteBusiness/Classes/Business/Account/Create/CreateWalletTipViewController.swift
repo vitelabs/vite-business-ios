@@ -70,7 +70,7 @@ extension CreateWalletTipViewController {
     }
 
     @objc func nextBtnAction() {
-        let backupMnemonicCashVC = BackupMnemonicViewController()
+        let backupMnemonicCashVC = BackupMnemonicViewController(forCreate: true)
         self.navigationController?.pushViewController(backupMnemonicCashVC, animated: true)
     }
 }

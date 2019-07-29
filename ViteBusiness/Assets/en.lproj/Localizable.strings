@@ -56,6 +56,7 @@
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
 "mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
 "mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
+"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";
@@ -67,7 +68,12 @@
 "mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
-"mnemonic.affirm.page.title" = "Confirm your seed phrase";
+"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
+"mnemonic.backup.tip.alert.message" = "Please select Mnemonic Words in correct order.";
+"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
+"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+
+"mnemonic.affirm.page.title" = "Confirm";
 "mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
 "mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
 "mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";

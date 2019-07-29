@@ -102,8 +102,15 @@ extension MyHomeViewController: MyHomeListHeaderViewDelegate {
     func mnemonicBtnAction() {
         Statistics.log(eventId: Statistics.Page.MyHome.mnemonicClicked.rawValue)
         self.verifyWalletPassword(callback: {
-            let vc = ExportMnemonicViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+
+            if !HDWalletManager.instance.isBackedUp {
+                let vc = BackupMnemonicViewController(forCreate: false)
+                let nav = BaseNavigationController(rootViewController: vc)
+                UIViewController.current?.present(nav, animated: true, completion: nil)
+            } else {
+                let vc = ExportMnemonicViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
         })
     }
 
@@ -208,14 +215,26 @@ extension UIViewController {
 extension MyHomeViewController {
     @objc func logoutBtnAction() {
         Statistics.log(eventId: Statistics.Page.MyHome.logoutClicked.rawValue)
-        self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
-        DispatchQueue.global().async {
-            HDWalletManager.instance.logout()
-            KeychainService.instance.clearCurrentWallet()
-            DispatchQueue.main.async {
-                self.view.hideLoading()
-                NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+
+        func logout() {
+            self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
+            DispatchQueue.global().async {
+                HDWalletManager.instance.logout()
+                KeychainService.instance.clearCurrentWallet()
+                DispatchQueue.main.async {
+                    self.view.hideLoading()
+                    NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+                }
             }
+        }
+
+        if !HDWalletManager.instance.isBackedUp {
+            CreateWalletService.sharedInstance.needBackup = true
+            CreateWalletService.sharedInstance.showBackUpTipAlert(cancel: {
+                logout()
+            })
+        } else {
+            logout()
         }
     }
 }

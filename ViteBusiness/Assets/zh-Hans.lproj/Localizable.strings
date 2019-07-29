@@ -57,6 +57,7 @@
 "mnemonic.backup.page.tip.lab.title" = "助记词";
 "mnemonic.backup.page.tip.anewBtn.title" = "重新生成";
 "mnemonic.backup.page.tip.nextBtn.title" = "已备份";
+"mnemonic.backup.page.tip.skip.title" = "以后备份";
 "mnemonic.backup.page.alter.title" = "截图保存助记词是不安全的方式，建议您用纸笔记录并存放在安全的地方";
 "mnemonic.backup.page.alter.message" = "是否重新生成助记词？";
 "mnemonic.backup.page.alter.cancel" = "不了";
@@ -68,8 +69,13 @@
 "mnemonic.backup.page.error.type.pwd.illegal" = "密码至少包含8个字符";
 "mnemonic.backup.page.switch.mode.title" = "切换%@个助记词";
 
-"mnemonic.affirm.page.title" = "确认输入助记词";
-"mnemonic.affirm.page.tip.title" = "按顺序选择助记词输入";
+"mnemonic.backup.tip.alert.title" = "助记词未备份";
+"mnemonic.backup.tip.alert.message" = "请输入密码备份助记词";
+"mnemonic.backup.tip.alert.ok.title" = "去备份";
+"mnemonic.backup.tip.alert.cancel.title" = "暂不备份";
+
+"mnemonic.affirm.page.title" = "确认备份助记词";
+"mnemonic.affirm.page.tip.title" = "按顺序选择助记词";
 "mnemonic.affirm.alter.title" = "返回会重新生成助记词，是否返回";
 "mnemonic.affirm.alter.check.title" = "助记词输入错误";
 "mnemonic.affirm.page.add.loading" = "添加中...";

@@ -15,7 +15,9 @@ class AffirmInputMnemonicViewController: BaseViewController, MnemonicCollectionV
     fileprivate var viewModel: AffirmInputMnemonicVM
     fileprivate var chooseMnemonicCollectionViewHeight: CGFloat
     fileprivate var defaultMnemonicCollectionViewHeight: CGFloat
-    init(mnemonicWordsStr: String) {
+    fileprivate let forCreate: Bool
+    init(mnemonicWordsStr: String, forCreate: Bool) {
+        self.forCreate = forCreate
         self.viewModel = AffirmInputMnemonicVM(mnemonicWordsStr: mnemonicWordsStr)
         self.chooseMnemonicCollectionViewHeight = self.viewModel.mnemonicWordsList.count == 24 ? 186.0 : 110
         self.defaultMnemonicCollectionViewHeight = self.viewModel.mnemonicWordsList.count == 24 ? 210.0 : 110
@@ -143,28 +145,25 @@ extension AffirmInputMnemonicViewController {
                 (.default(title: R.string.localizable.confirm()), nil),
                 ])
         } else {
-            self.view.displayLoading(text: R.string.localizable.mnemonicAffirmPageAddLoading(), animated: true)
-            DispatchQueue.global().async {
-                let uuid = UUID().uuidString
-                let encryptKey = CreateWalletService.sharedInstance.password.toEncryptKey(salt: uuid)
-                KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: encryptKey)
-                HDWalletManager.instance.addAndLoginWallet(uuid: uuid, name: CreateWalletService.sharedInstance.name, mnemonic: CreateWalletService.sharedInstance.mnemonic, encryptKey: encryptKey)
-                DispatchQueue.main.async {
-                    self.view.hideLoading()
-                    NotificationCenter.default.post(name: .createAccountSuccess, object: nil)
-                }
+            if forCreate {
+                CreateWalletService.sharedInstance.createWallet(isBackedUp: true)
+            } else {
+                HDWalletManager.instance.setBackedUp()
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
 
     @objc func backItemAction() {
-        Alert.show(title: R.string.localizable.mnemonicAffirmAlterTitle(), message: nil, actions: [
-            (.default(title: R.string.localizable.no()), nil),
-            (.default(title: R.string.localizable.yes()), { _ in
-                self.navigationController?.popViewController(animated: true)
-            }),
-            ], config: {
-                $0.preferredAction = $0.actions[0]
-        })
+        if forCreate {
+            Alert.show(title: R.string.localizable.mnemonicAffirmAlterTitle(), message: nil, actions: [
+                (.default(title: R.string.localizable.no()), nil),
+                (.default(title: R.string.localizable.yes()), { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }),
+                ], config: {
+                    $0.preferredAction = $0.actions[0]
+            })
+        }
     }
 }

@@ -135,6 +135,15 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(wallet)
     }
 
+    func setBackedUp() {
+        guard let wallet = storage.updateCurrentWallet(isBackedUp: true) else { return }
+        walletBehaviorRelay.accept(wallet)
+    }
+
+    var isBackedUp: Bool {
+        return storage.currentWallet?.isBackedUp ?? true
+    }
+
     var isRequireAuthentication: Bool {
         return storage.currentWallet?.isRequireAuthentication ?? false
     }
@@ -159,9 +168,9 @@ extension HDWalletManager {
         return nil
     }
 
-    func addAndLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
+    func addAndLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String, isBackedUp: Bool) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false, isBackedUp: isBackedUp)
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
@@ -171,7 +180,7 @@ extension HDWalletManager {
 
     func importAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true, isBackedUp: true)
         self.mnemonic = mnemonic
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)

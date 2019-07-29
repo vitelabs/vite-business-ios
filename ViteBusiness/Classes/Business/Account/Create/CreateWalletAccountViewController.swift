@@ -12,14 +12,12 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
+import ActiveLabel
 
 extension CreateWalletAccountViewController {
 
     private func _bindViewModel() {
         self.createNameAndPwdVM = CreateNameAndPwdVM(input: (self.createNameAndPwdView.walletNameTF.textField, self.createNameAndPwdView.passwordTF.textField, self.createNameAndPwdView.passwordRepeateTF.textField))
-        self.createNameAndPwdVM?.submitBtnEnable.drive(onNext: { [unowned self] (isEnabled) in
-                self.submitBtn.isEnabled = isEnabled
-            }).disposed(by: rx.disposeBag)
 
         self.submitBtn.rx.tap.bind {[unowned self]  in
           self.createNameAndPwdVM?.submitAction.execute((self.createNameAndPwdView.walletNameTF.textField.text ?? "", self.createNameAndPwdView.passwordTF.textField.text ?? "", self.createNameAndPwdView.passwordRepeateTF.textField.text ?? "")).subscribe(onNext: { [unowned self](result) in
@@ -31,6 +29,20 @@ extension CreateWalletAccountViewController {
                 }
             }).disposed(by: self.disposeBag)
         }.disposed(by: rx.disposeBag)
+
+        Driver.combineLatest(
+            self.createNameAndPwdVM!.submitBtnEnable,
+            checkButton.checkButton.rx.observe(Bool.self, #keyPath(UIButton.isSelected)).asDriver(onErrorJustReturn: false))
+            .map({ (r1, r2) -> Bool in
+                if let r2 = r2 {
+                    return r1 && r2
+                } else {
+                    return false
+                }
+            })
+            .drive(onNext: { [unowned self] (r) in
+                self.submitBtn.isEnabled = r
+            }).disposed(by: rx.disposeBag)
     }
 }
 
@@ -54,6 +66,7 @@ class CreateWalletAccountViewController: BaseViewController {
         self.createNameAndPwdView.walletNameTF.textField.text = "Debug"
         self.createNameAndPwdView.passwordTF.textField.text = "qqqqqqqq"
         self.createNameAndPwdView.passwordRepeateTF.textField.text = "qqqqqqqq"
+        self.checkButton.checkButton.isSelected = true
         #endif
         self._bindViewModel()
     }
@@ -64,6 +77,30 @@ class CreateWalletAccountViewController: BaseViewController {
         let createNameAndPwdView = CreateNameAndPwdView()
         return createNameAndPwdView
     }()
+
+    let checkButton = BackupMnemonicViewController.ConfirmView().then { view in
+        view.label.text = R.string.localizable.mnemonicBackupPageCheckButton3Title() + R.string.localizable.mnemonicBackupPageClauseButtonTitle()
+        let customType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageCheckButton3Title())
+        let termType = ActiveType.custom(pattern: R.string.localizable.mnemonicBackupPageClauseButtonTitle())
+        view.label.enabledTypes = [termType, customType]
+        view.label.customize { [weak view] label in
+            label.customColor[customType] = view?.label.textColor
+            label.customSelectedColor[customType] = view?.label.textColor
+            label.handleCustomTap(for: customType) { [weak view] element in
+                view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
+            }
+        }
+
+        view.label.customize { label in
+            label.customColor[termType] = UIColor(netHex: 0x007AFF)
+            label.customSelectedColor[termType] = UIColor(netHex: 0x007AFF).highlighted
+            label.handleCustomTap(for: termType) { element in
+                guard let url = URL(string: "https://growth.vite.net/term") else { return }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
 
     lazy var submitBtn: UIButton = {
         var submitBtn = UIButton.init(style: .blue)
@@ -98,6 +135,13 @@ extension CreateWalletAccountViewController {
             make.left.equalTo(contentView).offset(24)
             make.right.equalTo(contentView).offset(-24)
             make.top.equalTo(contentView).offset(60)
+        }
+
+        contentView.addSubview(self.checkButton)
+        self.checkButton.snp.makeConstraints { (m) in
+            m.top.equalTo(self.createNameAndPwdView.snp.bottom).offset(15)
+            m.left.equalTo(contentView).offset(24)
+            m.right.equalTo(contentView).offset(-24)
         }
 
         contentView.addSubview(self.submitBtn)
