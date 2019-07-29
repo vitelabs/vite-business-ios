@@ -294,8 +294,14 @@ extension BackupMnemonicViewController {
     }
 
     @objc func nextMnemonicBtnAction() {
-        CreateWalletService.sharedInstance.mnemonic = self.viewModel.mnemonicWordsStr.value
-        let vc = AffirmInputMnemonicViewController.init(mnemonicWordsStr: self.viewModel.mnemonicWordsStr.value, forCreate: forCreate)
+        let mnemonicWordsStr: String
+        if forCreate {
+            mnemonicWordsStr = self.viewModel.mnemonicWordsStr.value
+            CreateWalletService.sharedInstance.mnemonic = mnemonicWordsStr
+        } else {
+            mnemonicWordsStr = HDWalletManager.instance.mnemonic ?? ""
+        }
+        let vc = AffirmInputMnemonicViewController.init(mnemonicWordsStr: mnemonicWordsStr, forCreate: forCreate)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

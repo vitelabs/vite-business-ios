@@ -164,6 +164,8 @@ extension AffirmInputMnemonicViewController {
                 ], config: {
                     $0.preferredAction = $0.actions[0]
             })
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
