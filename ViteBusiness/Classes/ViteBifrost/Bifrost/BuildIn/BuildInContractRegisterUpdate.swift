@@ -24,7 +24,10 @@ struct BuildInContractRegisterUpdate: BuildInContractProtocol {
             guard let nameValue = values[1] as? ABIStringValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }
-            let items = [description.inputs[0].confirmItemInfo(text: nameValue.toString())
+            guard let addressValue = values[2] as? ABIAddressValue else {
+                return Promise(error: ConfirmError.InvalidData)
+            }
+            let items = [description.inputs[0].confirmItemInfo(text: addressValue.toString())
             ]
             return Promise.value(BifrostConfirmInfo(title: title, items: items))
         } catch {

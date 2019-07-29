@@ -140,7 +140,8 @@ extension AffirmInputMnemonicViewController {
 
     @objc func submitBtnAction() {
         let chooseStr = self.viewModel.hasChooseMnemonicWordsList.value.joined(separator: " ")
-        if chooseStr != CreateWalletService.sharedInstance.mnemonic {
+        let mnemonic = forCreate ? CreateWalletService.sharedInstance.mnemonic : HDWalletManager.instance.mnemonic
+        if chooseStr != mnemonic {
             Alert.show(title: R.string.localizable.mnemonicAffirmAlterCheckTitle(), message: nil, actions: [
                 (.default(title: R.string.localizable.confirm()), nil),
                 ])
