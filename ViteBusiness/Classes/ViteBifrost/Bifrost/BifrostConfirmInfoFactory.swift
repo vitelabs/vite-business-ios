@@ -18,8 +18,8 @@ public enum ConfirmError: Error, DisplayableError {
     case InvalidFee
     case InvalidData
     case InvalidExtend
-    case missingAbi
-    case missingDescription
+    case InvalidAbi
+    case InvalidDescription
     case unknown(String)
 
     public var errorMessage: String {
@@ -38,10 +38,10 @@ public enum ConfirmError: Error, DisplayableError {
             return "InvalidData"
         case .InvalidExtend:
             return "InvalidExtend"
-        case .missingAbi:
-            return "missingAbi"
-        case .missingDescription:
-            return "missingDescription"
+        case .InvalidAbi:
+            return "InvalidAbi"
+        case .InvalidDescription:
+            return "InvalidDescription"
         case .unknown(let text):
             return "unknown: \(text)"
         }

@@ -656,9 +656,11 @@
 "bifrost.operation.vx.order" = "Place Order on ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
 
+"bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
 "bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.data" = "Data";
 
 // Buildin
 

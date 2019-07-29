@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 591 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 593 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1874,6 +1874,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Data
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostOperationTitleData = Rswift.StringResource(key: "bifrost.operation.title.data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Decentralized wallet
       /// 
       /// Locales: en, zh-Hans
@@ -3650,6 +3654,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约调用
+      /// 
+      /// Locales: en, zh-Hans
+      static let bifrostOperationFunctionTitle = Rswift.StringResource(key: "bifrost.operation.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -4678,6 +4686,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func peldgeMessage(_: Void = ()) -> String {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Data
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostOperationTitleData(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.title.data", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Decentralized wallet
@@ -7786,6 +7801,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func introductionPageTip3Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合约调用
+      /// 
+      /// Locales: en, zh-Hans
+      static func bifrostOperationFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
