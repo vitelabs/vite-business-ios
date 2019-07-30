@@ -86,7 +86,7 @@ public final class BifrostManager {
                                     versionCode: Bundle.main.buildNumber,
                                     bundleId: Bundle.main.bundleIdentifier ?? "",
                                     platform: "ios",
-                                    language: LocalizationService.sharedInstance.currentLanguage.languageCode)
+                                    language: LocalizationService.sharedInstance.currentLanguage.code)
 
         let i = VBInteractor(session: session, meta: clientMeta)
         configure(interactor: i)

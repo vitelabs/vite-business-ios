@@ -177,7 +177,7 @@ public class ViteBusinessLanucher: NSObject {
         }
 
         WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: String]?) -> Response? in
-            return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.rawValue)
+            return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.code)
         }
 
         WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: String]?) -> Response? in

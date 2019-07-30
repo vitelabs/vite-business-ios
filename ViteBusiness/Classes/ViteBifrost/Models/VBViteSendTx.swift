@@ -165,7 +165,7 @@ extension VBViteSendTx {
         }
 
         public var title: String? {
-            let key = LocalizationService.sharedInstance.currentLanguage.languageCode
+            let key = LocalizationService.sharedInstance.currentLanguage.code
             return name[key] ?? name["base"]
         }
 
