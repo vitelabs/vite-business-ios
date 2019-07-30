@@ -312,8 +312,12 @@
 "quota.alert.need.quota.message" = "PoW 获取的配额不足，建议您进行抵押 VITE 获取配额";
 "quota.alert.pow.button.title" = "运行 PoW";
 "quota.alert.quota.button.title" = "抵押 VITE";
-"quota.float.view.title" = "正在运行PoW获取配额";
-"quota.float.view.tip" = "如果您不想运行PoW，您可抵押VITE跳过此步骤";
+"quota.float.view.title" = "正在为您计算PoW获取配额";
+"quota.float.view.tip" = "本次交易需消耗%@UT";
+"quota.pow.finished.float.view.title" = "交易已发出";
+"quota.pow.finished.float.view.h1" = "计算PoW花费%1$@秒，为您获得%2$@UT";
+"quota.pow.finished.float.view.h2" = "抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。";
+"quota.pow.finished.float.view.pledge.button.title" = "抵押加速交易";
 
 /* Peldge History */
 "peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";

@@ -56,11 +56,11 @@ public struct Workflow {
 
     static func getPowWorkflow(context: SendBlockContext) -> Promise<SendBlockContext> {
         var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
+        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: context.quota?.utRequired ?? "") {
             cancelPow = true
         }
         getPowFloatView.show()
-        let waitAtLeast = after(seconds: 3)
+        let waitAtLeast = after(seconds: TimeInterval(AppConfigService.instance.pDelay))
         return ViteNode.rawTx.send.getPow(context: context)
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()
@@ -100,25 +100,26 @@ public struct Workflow {
                                     data: data)
             .always {
                 HUD.hide()
-            }.then { (context) -> Promise<(context: SendBlockContext, calculatedPoW: Bool, getPoWTimestamp: Date)> in
+            }.then { (context) -> Promise<(context: SendBlockContext, getPoWTimestamp: Date)> in
                 let start = Date()
                 if context.isNeedToCalcPoW {
-                    return getPowWorkflow(context: context).map { ($0, context.isNeedToCalcPoW, start) }
+                    return getPowWorkflow(context: context).map { ($0, start) }
                 } else {
-                    return Promise.value((context, context.isNeedToCalcPoW, start))
+                    return Promise.value((context, start))
                 }
             }.always {
                 HUD.show()
-            }.then { (context, calculatedPoW, start) -> Promise<(accountBlock: AccountBlock, calculatedPoW: Bool, duration: String)> in
+            }.then { (context, start) -> Promise<(context: SendBlockContext, accountBlock: AccountBlock, duration: String)> in
                 let duration = String(Int((Date().timeIntervalSince1970 - start.timeIntervalSince1970)))
-                return ViteNode.rawTx.send.context(context).map { ($0, calculatedPoW, duration) }
+                return ViteNode.rawTx.send.context(context).map { (context, $0, duration) }
             }.always {
                 HUD.hide()
-            }.done { (accountBlock, calculatedPoW, duration) in
-                if calculatedPoW {
-                    Alert.show(title: "abc", message: duration, actions: [
-                        (.default(title: R.string.localizable.confirm()), nil),
-                        ])
+            }.done { (context, accountBlock, duration) in
+                if context.isNeedToCalcPoW {
+                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota?.utRequired ?? "", pledgeClick: {
+                        let vc = QuotaManageViewController()
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    }, cancelClick: {}).show()
                 } else {
                     AlertControl.showCompletion(successToast)
                 }
@@ -197,7 +198,7 @@ public struct Workflow {
 
     static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
         var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!) {
+        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: "") {
             cancelPow = true
         }
         getPowFloatView.show()

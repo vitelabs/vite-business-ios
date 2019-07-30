@@ -308,8 +308,12 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Running PoW for Quota";
-"quota.float.view.tip" = "You can stake VITE to skip the process of running PoW";
+"quota.float.view.title" = "正在为您计算PoW获取配额";
+"quota.float.view.tip" = "本次交易需消耗%@UT";
+"quota.pow.finished.float.view.title" = "交易已发出";
+"quota.pow.finished.float.view.h1" = "计算PoW花费%1$@秒，为您获得%2$@UT";
+"quota.pow.finished.float.view.h2" = "抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。";
+"quota.pow.finished.float.view.pledge.button.title" = "抵押加速交易";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";

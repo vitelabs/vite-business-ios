@@ -19,6 +19,7 @@ public class AppConfigService {
     fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
     public var lastBuildNumber: Int?
+    public var pDelay: Int = 3
 
     private init() {
         if let (config, hash): (AppConfig, String) = readMappableAndHash() {
@@ -46,6 +47,7 @@ public class AppConfigService {
                 guard let string = jsonString else { return }
                 guard let configHash = ConfigHash(JSONString: string) else { return }
                 self.lastBuildNumber = configHash.lastBuildNumber
+                self.pDelay = configHash.pDelay ?? self.pDelay
                 self.getAppSettingsConfig(hash: configHash.appConfig)
                 LocalizationService.sharedInstance.updateLocalizableIfNeeded(localizationHash: configHash.localization)
             case .failure(let error):
@@ -97,6 +99,7 @@ extension AppConfigService {
     public struct ConfigHash: Mappable {
         fileprivate(set) var appConfig: String?
         fileprivate(set) var lastBuildNumber: Int?
+        fileprivate(set) var pDelay: Int?
         fileprivate(set) var localization: [String: Any] = [:]
 
         public init?(map: Map) { }
@@ -104,6 +107,7 @@ extension AppConfigService {
         public mutating func mapping(map: Map) {
             appConfig <- map["AppConfig"]
             lastBuildNumber <- map["LastBuildNumber"]
+            pDelay <- map["pDelay"]
             localization <- map["Localization"]
         }
     }

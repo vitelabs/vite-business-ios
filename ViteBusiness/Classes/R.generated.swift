@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 180 images.
+  /// This `R.image` struct is generated, and contains static references to 182 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -274,6 +274,10 @@ public struct R: Rswift.Validatable {
     public static let icon_price_hide_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_price_hide_button")
     /// Image `icon_price_show_button`.
     public static let icon_price_show_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_price_show_button")
+    /// Image `icon_quota_close`.
+    public static let icon_quota_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_quota_close")
+    /// Image `icon_quota_time`.
+    public static let icon_quota_time = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_quota_time")
     /// Image `icon_quota`.
     public static let icon_quota = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_quota")
     /// Image `icon_receive_logo`.
@@ -1024,6 +1028,16 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_quota, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_quota_close", bundle: ..., traitCollection: ...)`
+    public static func icon_quota_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_quota_close, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_quota_time", bundle: ..., traitCollection: ...)`
+    public static func icon_quota_time(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_quota_time, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_receive_logo", bundle: ..., traitCollection: ...)`
     public static func icon_receive_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_receive_logo, compatibleWith: traitCollection)
@@ -1284,7 +1298,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 620 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 624 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2866,10 +2880,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertPowButtonTitle = Rswift.StringResource(key: "quota.alert.pow.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Running PoW for Quota
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -3702,10 +3712,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageBusyHeader = Rswift.StringResource(key: "bifrost.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: You can stake VITE to skip the process of running PoW
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
       /// 
       /// Locales: en, zh-Hans
@@ -3766,6 +3772,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易已发出
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押加速交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewPledgeButtonTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.pledge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 本次交易需消耗%@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 正在为您计算PoW获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6532,13 +6562,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Running PoW for Quota
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaFloatViewTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -7995,13 +8018,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.home.page.busy.header", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: You can stake VITE to skip the process of running PoW
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaFloatViewTip(_: Void = ()) -> String {
-        return NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
       /// 
       /// Locales: en, zh-Hans
@@ -8105,6 +8121,48 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func introductionPageTip3Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易已发出
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewH2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押加速交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewPledgeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.pledge.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 本次交易需消耗%@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaFloatViewTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 正在为您计算PoW获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaFloatViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("quota.pow.finished.float.view.h1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       fileprivate init() {}
