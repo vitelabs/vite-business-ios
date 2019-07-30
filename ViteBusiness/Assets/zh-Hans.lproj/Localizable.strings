@@ -6,6 +6,42 @@
   
 */
 
+/* ViteCommunity */
+
+"confirm.button.title" = "确认";
+"cancel.button.title" = "取消";
+"alter.title" = "重要提示";
+
+"discover.page.title"="发现";
+"discover.page.game.cell.palyNum"="%@人在玩";
+"discover.page.activity.page.title1"="线上活动";
+"discover.page.activity.page.title2"="往期活动";
+"discover.page.news.cell.official"="官方";
+"discover.page.news.cell.time.minute"="刚刚";
+"discover.page.news.cell.time.hour"="%@小时前";
+"discover.page.news.cell.time.day"="%@天前";
+"discover.page.headerTitle.activity"="活动中心";
+"discover.page.headerTitle.game"="Vite游戏";
+"discover.page.headerTitle.news"="Vite资讯";
+"discover.page.VCWebTitle.activity"="Vite活动";
+"discover.page.VCWebTitle.game"="Vite游戏";
+"discover.page.VCWebTitle.news"="Vite资讯";
+"discover.page.game.alter.title"="您所访问的页面将跳转至第三方 dApp，您在第三方 dApp 上的使用行为将适用该第三方 dApp 的用户协议和隐私政策，VITE 官方将不承担责任。";
+
+
+//AirDrop
+"airdrop.help" = "帮助";
+"airdrop.vpower" = "空投大奖";
+"airdrop.profit" = "查看收益";
+"airdrop.validationFailed" = "验证失败";
+"airdrop.enabled" = "可领取 10~1000";
+"airdrop.leftTime" = "还剩";
+
+"airdrop.error.tip.need.update" = "空投仅支持iOS 11及以上操作系统";
+"airdrop.error.tip.not.support" = "当前设备暂不支持领取空投";
+"airdrop.error.tip.unknown.error" = "未知错误";
+
+
 /* App */
 "Cancel" = "取消";
 "Finish" = "完成";

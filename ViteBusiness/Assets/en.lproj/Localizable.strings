@@ -6,6 +6,41 @@
   
 */
 
+/* ViteCommunity */
+
+"confirm.button.title" = "Confirm";
+"cancel.button.title" = "Cancel";
+"alter.title" = "NOTICE";
+
+"discover.page.title"="Discovery";
+"discover.page.game.cell.palyNum"="%@ players are playing";
+"discover.page.activity.page.title1"="Latest Events";
+"discover.page.activity.page.title2"="History";
+"discover.page.news.cell.official"="Vite";
+"discover.page.news.cell.time.minute"="Now";
+"discover.page.news.cell.time.hour"="%@h ago";
+"discover.page.news.cell.time.day"="%@d ago";
+"discover.page.headerTitle.activity"="Campaign Center";
+"discover.page.headerTitle.game"="Vite Games";
+"discover.page.headerTitle.news"="Vite News";
+"discover.page.VCWebTitle.activity"="Vite Events";
+"discover.page.VCWebTitle.game"="Vite Games";
+"discover.page.VCWebTitle.news"="Vite News";
+"discover.page.game.alter.title"="You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+
+//AirDrop
+"airdrop.help" = "Help";
+"airdrop.vpower" = "Winners";
+"airdrop.profit" = "Benefits";
+"airdrop.validationFailed" = "Verification Failed";
+"airdrop.enabled" = "Pick up 10~1000";
+"airdrop.leftTime" = "Countdown";
+
+"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
+"airdrop.error.tip.not.support" = "Your device not support airdrop.";
+"airdrop.error.tip.unknown.error" = "Unknown Error.";
+
+
 /* App */
 "Cancel" = "Cancel";
 "Finish" = "Done";
