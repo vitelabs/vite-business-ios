@@ -315,6 +315,18 @@ extension TokenInfo {
 
 public struct GatewayInfo: Mappable {
 
+    var name =  "name"
+    var url = "http://baidu.com"
+    var icon = "icon"
+    var website = "http://baidu.com"
+    var overview = [String:String]()
+    var policy = [String:String]()
+    var support = "xx@vite.org"
+    var isOfficial = false
+
+    private var mappedTokenInfo = MappedTokenInfo()
+
+
     public init?(map: Map) {
 
     }
@@ -328,12 +340,15 @@ public struct GatewayInfo: Mappable {
     public mutating func mapping(map: Map) {
         name <- map["name"]
         url <- map["url"]
+        icon <- map["icon"]
+        website <- map["website"]
+        overview <- map["overview"]
+        policy <- map["policy"]
+        support <- map["support"]
         mappedTokenInfo <- map["mappedToken"]
+        isOfficial <- map["isOfficial"]
     }
 
-    var name =  ""
-    var url = ""
-    private var mappedTokenInfo = MappedTokenInfo()
 
     var mappedToken: TokenInfo {
         let mapped = mappedTokenInfo

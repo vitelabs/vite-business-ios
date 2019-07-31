@@ -72,7 +72,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func showStatement(completion:@escaping ()->()) {
-        let vc = CrossChainStatementViewController()
+        let vc = CrossChainStatementViewController(tokenInfo: tokenInfo)
         vc.completion = completion
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }

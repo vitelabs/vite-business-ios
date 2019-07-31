@@ -10,13 +10,23 @@ import ActiveLabel
 
 class CrossChainStatementViewController: BaseViewController {
 
+    let tokenInfo: TokenInfo
+
     var completion: (()-> ())?
 
     let topLabel = ActiveLabel()
     let bottomLabel = ActiveLabel()
-    let agreeButton = UIButton.init(style: .blueWithShadow,title: "下一步")
+    let agreeButton = UIButton.init(style: .blueWithShadow,title: R.string.localizable.grinSentNext())
 
-
+    init(tokenInfo: TokenInfo) {
+        self.tokenInfo = tokenInfo
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,11 +68,15 @@ class CrossChainStatementViewController: BaseViewController {
 
     func setStatementInfo()  {
 
-        var isVite = false
+        var isVite = tokenInfo.gatewayInfo?.isOfficial ?? false
 
-        let name = "xinsheng"
+        let name = tokenInfo.gatewayInfo?.name ?? "--"
         let detail = R.string.localizable.crosschainStatementDetail()
-        let email = "xx@vite.rog"
+        let email = tokenInfo.gatewayInfo?.support ?? "xx@vite.org"
+        let isEn = LocalizationService.sharedInstance.currentLanguage == .base
+
+        let policy = (isEn ?  tokenInfo.gatewayInfo?.policy["en"] : tokenInfo.gatewayInfo?.policy["ch"]) ?? "--"
+
         var str = ""
         if isVite {
             str = R.string.localizable.crosschainStatementViteDesc(name, name, name, detail, name, name, email)
@@ -91,11 +105,17 @@ class CrossChainStatementViewController: BaseViewController {
             label.customColor[detailType] = UIColor.init(netHex: 0x007AFF)
             label.customColor[emailType] = UIColor.init(netHex: 0x007AFF)
             label.handleCustomTap(for: detailType) { [weak view] element in
-                Toast.show("aaa")
-
+                guard let url = URL.init(string: policy) else {
+                    return
+                }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
             label.handleCustomTap(for: emailType) { [weak view] element in
-                Toast.show("aaa")
+                guard let url = URL.init(string: "mailto:" + email) else {
+                    return
+                }
+                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
 
@@ -109,9 +129,14 @@ class CrossChainStatementViewController: BaseViewController {
             label.customColor[customType4] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
             label.customColor[detailType] = UIColor.init(netHex: 0x007AFF)
             label.handleCustomTap(for: detailType) { [weak view] element in
-                Toast.show("aaa")
+                guard let url = URL.init(string: "mailto:" + policy) else {
+                    return
+                }
+                let vc = WKWebViewController.init(url: url)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
+
 
 }

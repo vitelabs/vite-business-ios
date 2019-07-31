@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
 
   s.dependency 'SnapKit', '~> 4.0.0'
-  s.dependency 'BigInt', '~> 3.0'
+  s.dependency 'BigInt'
   s.dependency 'R.swift', '5.0.0.alpha.3'
   s.dependency 'JSONRPCKit', '~> 3.0.0'
   s.dependency 'PromiseKit', '~> 6.0'
