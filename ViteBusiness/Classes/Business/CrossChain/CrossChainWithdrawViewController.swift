@@ -9,8 +9,8 @@ import UIKit
 import BigInt
 import ViteWallet
 import PromiseKit
-import Web3swift
-import ViteEthereum
+import web3swift
+
 import RxSwift
 import RxCocoa
 

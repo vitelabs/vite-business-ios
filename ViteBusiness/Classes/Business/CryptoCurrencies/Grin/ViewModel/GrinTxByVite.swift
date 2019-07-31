@@ -11,7 +11,7 @@ import Ioscrypto
 import CryptoSwift
 import Moya
 import SwiftyJSON
-import Web3swift
+import web3swift
 import Vite_GrinWallet
 import PromiseKit
 import Result

@@ -7,7 +7,7 @@
 
 import Foundation
 import Vite_GrinWallet
-import Web3swift
+import web3swift
 
 public struct ViteConst {
     public static let instance = ViteConst()
@@ -75,7 +75,7 @@ public extension ViteConst {
 
     public struct Eth {
         public let nodeHttp: String
-        public let chainType: Web3swift.Networks
+        public let chainType: web3swift.Networks
         public let explorer: String
     }
 

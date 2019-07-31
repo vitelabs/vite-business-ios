@@ -7,9 +7,9 @@
 import UIKit
 import SnapKit
 import BigInt
-import Web3swift
+import web3swift
 import ViteWallet
-import ViteEthereum
+
 
 public class EthGasFeeSliderView: UIView {
     public var value : Float = 0.0 {
