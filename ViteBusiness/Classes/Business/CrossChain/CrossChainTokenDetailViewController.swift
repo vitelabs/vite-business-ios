@@ -36,6 +36,12 @@ class GatewayTokenDetailViewController: BaseViewController {
             } else {
                 overview = JSON(info)["overview"]["en"].string
             }
+
+            var publisherDate = JSON(info)["publisherDate"].string ?? "--"
+            if tokenInfo.coinType == .vite {
+                publisherDate = "--"
+            }
+
             self.dateSource =
                 [
                     (R.string.localizable.crosschainTokenDetailShortname(),JSON(info)["symbol"].string),
@@ -45,7 +51,7 @@ class GatewayTokenDetailViewController: BaseViewController {
                     (R.string.localizable.crosschainTokenDetailAmount(),total),
                     (R.string.localizable.crosschainTokenDetailDigit(),tokenDigit),
                     (R.string.localizable.crosschainTokenDetailIssuance(),issueStr),
-                    (R.string.localizable.crosschainTokenDetailDate(),JSON(info)["publisherDate"].string ?? "--"),
+                    (R.string.localizable.crosschainTokenDetailDate(),publisherDate),
                     (R.string.localizable.crosschainTokenDetailDesc(),overview),
                 ] as! [(String, String?)]
         }

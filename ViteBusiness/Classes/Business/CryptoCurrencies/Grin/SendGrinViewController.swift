@@ -135,6 +135,17 @@ class SendGrinViewController: UIViewController {
             }
             .disposed(by: rx.disposeBag)
 
+        transferVM.showLoading
+            .bind(onNext: { [weak self] showLoading in
+                if showLoading {
+                    self?.view.displayLoading()
+                } else {
+                    self?.view.hideLoading()
+                }
+            })
+            .disposed(by: rx.disposeBag)
+
+
     }
 
     func setUpView()  {

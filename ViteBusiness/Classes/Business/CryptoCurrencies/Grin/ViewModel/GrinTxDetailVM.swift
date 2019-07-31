@@ -194,7 +194,7 @@ class GrinTxDetailVM: NSObject {
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txInfo))
             }
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
 
         }
         return pageInfo
@@ -267,12 +267,12 @@ class GrinTxDetailVM: NSObject {
             cellInfo1.lineImage = blueLineImage
             cellInfo2.statusImage = R.image.grin_detail_waitToSign()
             cellInfo2.timeStr = (getResponseFileTime.grinTimeString())
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
             let finalezeAction = {
                 Statistics.log(eventId: "grin_tx_finalizeButtonClicked_File", attributes: ["uuid": UUID.stored])
                 self.txVM.action.onNext(.finalizeTx(slateUrl: openedSalteUrl ?? responseFileUrl))
             }
-            pageInfo.actions.append((R.string.localizable.grinFinalize(), finalezeAction))
+            pageInfo.actions.append((R.string.localizable.grinFinalize(), finalezeAction, false))
 
             if txInfo.txType == .txSentCancelled && cancleTime >= getResponseFileTime {
                 pageInfo.cellInfo.append(cellInfo2)
@@ -285,11 +285,11 @@ class GrinTxDetailVM: NSObject {
         } else {
             cellInfo1.lineImage = grayLineImage
             cellInfo2.statusImage = R.image.grin_detail_waitToSign_gray()
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
             let shareAction = {
                 self.shareSlate(url: openedSalteUrl ?? sendFileUrl)
             }
-            pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction))
+            pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction, false))
         }
         pageInfo.cellInfo.append(cellInfo2)
 
@@ -312,7 +312,7 @@ class GrinTxDetailVM: NSObject {
             let repostAction = {
                 self.infoVM.action.onNext(.repost(txInfo))
             }
-            pageInfo.actions.append((R.string.localizable.grinDetailRepoat(), repostAction))
+            pageInfo.actions.append((R.string.localizable.grinDetailRepoat(), repostAction, false))
         } else {
             cellInfo2.lineImage = grayLineImage
             cellInfo3.statusImage = R.image.grin_detail_poasting_gray()
@@ -382,7 +382,7 @@ class GrinTxDetailVM: NSObject {
                 let cancelAction = {
                     self.infoVM.action.onNext(.cancel(txLogEntry))
                 }
-                pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+                pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
             }
         }
         pageInfo.cellInfo.append(cellInfo2)
@@ -469,7 +469,7 @@ class GrinTxDetailVM: NSObject {
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(fullInfo.txLogEntry!))
             }
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
         }
         return pageInfo
     }
@@ -543,7 +543,7 @@ class GrinTxDetailVM: NSObject {
             let action = {
                 self.gatewayResend(address: gatewayInfo.address, slateID: gatewayInfo.slatedId)
             }
-            pageInfo.actions.append((R.string.localizable.grinDetailGatewayResend(),action))
+            pageInfo.actions.append((R.string.localizable.grinDetailGatewayResend(),action,false))
         }
 
         if !gatewayInfo.toSlatedId.isEmpty {
@@ -689,7 +689,7 @@ class GrinTxDetailVM: NSObject {
                 Statistics.log(eventId: "grin_tx_receiveButtonClicked_File", attributes: ["uuid": UUID.stored])
                 self.txVM.action.onNext(.receiveTx(slateUrl: url))
             }
-            pageInfo.actions.append((R.string.localizable.grinSignAndShare(), receiveAction))
+            pageInfo.actions.append((R.string.localizable.grinSignAndShare(), receiveAction, false))
         }
 
         let cellInfo2 = GrinDetailCellInfo()
@@ -709,14 +709,14 @@ class GrinTxDetailVM: NSObject {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
             }
 
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
 
             let url = GrinManager.default.getSlateUrl(slateId: txLogEntry.txSlateId ?? "", isResponse: true)
             if FileManager.default.fileExists(atPath: url.path) {
                 let shareAction = {
                     self.shareSlate(url: url)
                 }
-                pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction))
+                pageInfo.actions.append((R.string.localizable.grinShareFile(), shareAction, false))
             }
             cellInfo2.statusImage = R.image.grin_detail_received()
             cellInfo1.lineImage = blueLineImage
@@ -788,7 +788,7 @@ class GrinTxDetailVM: NSObject {
             let cancelAction = {
                 self.infoVM.action.onNext(.cancel(txLogEntry))
             }
-            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction))
+            pageInfo.actions.append((R.string.localizable.cancel(), cancelAction, true))
         }
         return pageInfo
     }

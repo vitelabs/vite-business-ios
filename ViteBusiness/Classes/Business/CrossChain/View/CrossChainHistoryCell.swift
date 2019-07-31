@@ -8,6 +8,8 @@
 import UIKit
 import BigInt
 import ViteWallet
+import RxSwift
+import RxCocoa
 
 class CrossChainHistoryCell: UITableViewCell {
 
@@ -58,6 +60,10 @@ class CrossChainHistoryCell: UITableViewCell {
         $0.layer.masksToBounds = true
     }
 
+    let leftHashButton = UIButton()
+
+    let rightHashButton = UIButton()
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -74,6 +80,9 @@ class CrossChainHistoryCell: UITableViewCell {
         contentView.addSubview(amountLabel)
         contentView.addSubview(leftHashLabel)
         contentView.addSubview(rightHashLabel)
+        contentView.addSubview(leftHashButton)
+        contentView.addSubview(rightHashButton)
+
 
         iconImageView.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
@@ -133,9 +142,20 @@ class CrossChainHistoryCell: UITableViewCell {
             m.width.equalTo(width)
         }
 
+        leftHashButton.snp.makeConstraints { (m) in
+            m.edges.equalTo(leftHashLabel)
+        }
+
+        rightHashButton.snp.makeConstraints { (m) in
+            m.edges.equalTo(rightHashLabel)
+        }
+
         seperator.isHidden = true
         reasonLabel.isHidden = true
     }
+
+    var leftAction: Disposable?
+    var rightAction: Disposable?
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -178,6 +198,35 @@ class CrossChainHistoryCell: UITableViewCell {
         if type == .withdraw {
             leftHashLabel.text =  " \(viteSymble) Hash: \(record.inTxHash) "
             rightHashLabel.text = " \(othenPlatform) Hash: \(record.outTxHash ?? "") "
+
+            leftAction?.dispose()
+            if !record.inTxHash.isEmpty {
+                leftHashLabel.textColor = UIColor.init(netHex: 0x007AFF,alpha: 0.5)
+                leftAction = leftHashButton.rx.tap.bind {
+                    if let url = URL.init(string:record.inTxExplorer) {
+                        let vc = WKWebViewController.init(url: url)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                leftAction?.disposed(by: rx.disposeBag)
+            } else {
+                leftHashLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+            }
+
+            rightAction?.dispose()
+            if let outHash = record.outTxHash, !outHash.isEmpty {
+                rightHashLabel.textColor = UIColor.init(netHex: 0x007AFF,alpha: 0.5)
+                rightAction = rightHashButton.rx.tap.bind {
+                    if let url = URL.init(string:record.outTxExplorer) {
+                        let vc = WKWebViewController.init(url: url)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                rightAction?.disposed(by: rx.disposeBag)
+            } else {
+                rightHashLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+            }
+
             var statusString = ""
             switch record.state {
             case .OPPOSITE_PROCESSING:
@@ -211,6 +260,35 @@ class CrossChainHistoryCell: UITableViewCell {
         } else if type == .desposit {
             leftHashLabel.text = "\(othenPlatform) Hash:" + record.inTxHash
             rightHashLabel.text = "\(viteSymble) Hash:" + (record.outTxHash ?? "")
+
+            leftAction?.dispose()
+            rightAction?.dispose()
+
+            if !record.inTxHash.isEmpty {
+                leftHashLabel.textColor = UIColor.init(netHex: 0x007AFF,alpha: 0.5)
+                leftAction = leftHashButton.rx.tap.bind {
+                    if let url = URL.init(string:record.inTxExplorer) {
+                        let vc = WKWebViewController.init(url: url)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                leftAction?.disposed(by: rx.disposeBag)
+            } else {
+                leftHashLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+            }
+
+            if let outHash = record.outTxHash, !outHash.isEmpty {
+                rightHashLabel.textColor = UIColor.init(netHex: 0x007AFF,alpha: 0.5)
+                rightAction = rightHashButton.rx.tap.bind {
+                    if let url = URL.init(string:record.outTxExplorer) {
+                        let vc = WKWebViewController.init(url: url)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                rightAction?.disposed(by: rx.disposeBag)
+            } else {
+                rightHashLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
+            }
 
             var statusString = ""
             switch record.state {
