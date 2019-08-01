@@ -33,7 +33,7 @@ class BalanceInfoDetailViteCoinAdapter: BalanceInfoDetailAdapter {
             m.top.equalToSuperview()
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(188)
+            m.height.equalTo(cardView.intrinsicContentSize.height)
         }
 
         cardView.bind(tokenInfo: tokenInfo)

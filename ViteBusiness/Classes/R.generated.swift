@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 182 images.
+  /// This `R.image` struct is generated, and contains static references to 183 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -190,6 +190,8 @@ public struct R: Rswift.Validatable {
     public static let icon_balance_detail_pledge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_pledge")
     /// Image `icon_balance_detail_vote`.
     public static let icon_balance_detail_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_vote")
+    /// Image `icon_balance_quota_arrows`.
+    public static let icon_balance_quota_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_quota_arrows")
     /// Image `icon_button_add`.
     public static let icon_button_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_add")
     /// Image `icon_button_address_add`.
@@ -813,6 +815,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_balance_detail_vote, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_balance_quota_arrows", bundle: ..., traitCollection: ...)`
+    public static func icon_balance_quota_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_balance_quota_arrows, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_button_add", bundle: ..., traitCollection: ...)`
     public static func icon_button_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_add, compatibleWith: traitCollection)
@@ -1312,18 +1319,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatusWaitToConfirm = Rswift.StringResource(key: "crosschain.status.waitToConfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ On Road
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailOnroadAmountContent = Rswift.StringResource(key: "balance.info.detail.onroad.amount.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageQuotaContent = Rswift.StringResource(key: "send.page.quota.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailUnconfirmedCountTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.count.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ contact address
       /// 
       /// Locales: en, zh-Hans
@@ -1344,6 +1343,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tokenListPageIgnoreLabTitle = Rswift.StringResource(key: "token.list.page.ignore.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 0 UT/0 UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -2680,10 +2683,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Quota %@ UTPS
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
@@ -3387,10 +3386,6 @@ public struct R: Rswift.Validatable {
       /// en translation: Unreceived
       /// 
       /// Locales: en, zh-Hans
-      public static let balanceInfoDetailUnconfirmedTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Unreceived
-      /// 
-      /// Locales: en, zh-Hans
       public static let grinTxTypeWaitToSign = Rswift.StringResource(key: "grin.txType.waitToSign", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unreceived %@
       /// 
@@ -3776,6 +3771,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowFinishedFloatViewTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 可用配额/配额上限
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 在途(%@ UT)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailUnconfirmedTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailPledgeAmountTitle = Rswift.StringResource(key: "balance.info.detail.pledge.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
       /// 
       /// Locales: en, zh-Hans
@@ -3818,25 +3825,11 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.status.waitToConfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: %@ On Road
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailOnroadAmountContent(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.onroad.amount.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
       public static func sendPageQuotaContent(_ value1: String) -> String {
         return String(format: NSLocalizedString("send.page.quota.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@ Unconfirmed
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailUnconfirmedCountTitle(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.unconfirmed.count.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ contact address
@@ -3872,6 +3865,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func tokenListPageIgnoreLabTitle(_ value1: Int) -> String {
         return String(format: NSLocalizedString("token.list.page.ignore.lab.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 0 UT/0 UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailPledgeNoneTip(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>
@@ -6212,13 +6212,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Quota %@ UTPS
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailPledgeCountContent(_ value1: String) -> String {
-        return String(format: NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
@@ -7447,13 +7440,6 @@ public struct R: Rswift.Validatable {
       /// en translation: Unreceived
       /// 
       /// Locales: en, zh-Hans
-      public static func balanceInfoDetailUnconfirmedTitle(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.unconfirmed.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unreceived
-      /// 
-      /// Locales: en, zh-Hans
       public static func grinTxTypeWaitToSign(_: Void = ()) -> String {
         return NSLocalizedString("grin.txType.waitToSign", bundle: R.hostingBundle, comment: "")
       }
@@ -8128,6 +8114,27 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaPowFinishedFloatViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.pow.finished.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 可用配额/配额上限
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailPledgeCountContent(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 在途(%@ UT)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailUnconfirmedTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("balance.info.detail.unconfirmed.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 已抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailPledgeAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。

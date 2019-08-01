@@ -225,9 +225,9 @@ class SendViewController: BaseViewController {
                 self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaManager.instance.quotaDriver
-            .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
-            .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+//        FetchQuotaManager.instance.quotaDriver
+//            .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
+//            .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }
 

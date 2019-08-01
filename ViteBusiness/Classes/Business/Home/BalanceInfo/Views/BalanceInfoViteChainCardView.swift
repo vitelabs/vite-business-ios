@@ -13,16 +13,15 @@ import ViteWallet
 
 class BalanceInfoViteChainCardView: UIView {
 
+    let colorBackgroundView = UIView()
+
     let addressButton = UIButton().then {
         $0.setBackgroundImage(nil, for: .normal)
         $0.setBackgroundImage(UIImage.color(UIColor.white.withAlphaComponent(0.2)), for: .highlighted)
     }
     let balanceView = UIView()
-
-    let onroadView = UIView().then {
-        $0.backgroundColor = UIColor.black.withAlphaComponent(0.14)
-        $0.isHidden = true
-    }
+    let onroadView = UIView()
+    let pledgeView = UIView()
 
     let buttonView = UIView().then {
         $0.backgroundColor = UIColor.white.withAlphaComponent(0.2)
@@ -32,8 +31,10 @@ class BalanceInfoViteChainCardView: UIView {
         $0.layer.shadowRadius = 2
     }
 
+    let quotaView = BalanceInfoViteChainQuotaView()
+
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: 188)
+        return CGSize(width: 0, height: 308)
     }
 
     override init(frame: CGRect) {
@@ -41,11 +42,21 @@ class BalanceInfoViteChainCardView: UIView {
         layer.masksToBounds = true
         layer.cornerRadius = 2
 
+        addSubview(colorBackgroundView)
+        colorBackgroundView.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
+            m.height.equalTo(218)
+        }
+
         setupAddressView()
         setupBalanceView()
 
         setupButtonView()
+
         setupOnroadView()
+        setupPledgeView()
+
+        setupQuotaView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +79,7 @@ class BalanceInfoViteChainCardView: UIView {
         let arrowsImageView = UIImageView(image: R.image.icon_balance_detail_arrows())
         let lineImageView = UIImageView(image: R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
 
-        addSubview(addressButton)
+        colorBackgroundView.addSubview(addressButton)
         addressButton.addSubview(nameImageView)
         addressButton.addSubview(nameLabel)
         addressButton.addSubview(addressLabel)
@@ -137,65 +148,95 @@ class BalanceInfoViteChainCardView: UIView {
             $0.numberOfLines = 1
         }
 
-        quotaLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-            $0.textColor = UIColor.white.withAlphaComponent(0.7)
-            $0.numberOfLines = 1
-        }
-
-        addSubview(balanceView)
+        colorBackgroundView.addSubview(balanceView)
         balanceView.addSubview(balanceLabel)
         balanceView.addSubview(priceLabel)
-        balanceView.addSubview(quotaLabel)
 
         balanceView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview()
-            m.top.equalTo(addressButton.snp.bottom)
-            m.height.equalTo(80)
+            m.top.equalTo(addressButton.snp.bottom).offset(11)
+            m.height.equalTo(52)
         }
 
         balanceLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(15)
+            m.top.equalToSuperview()
             m.left.equalToSuperview().offset(14)
             m.right.equalToSuperview().offset(-14)
         }
 
         priceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(balanceLabel.snp.bottom).offset(14)
+            m.bottom.equalToSuperview()
             m.left.equalToSuperview().offset(14)
-        }
-
-        quotaLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(balanceLabel.snp.bottom).offset(14)
-            m.left.equalTo(priceLabel.snp.right).offset(10)
             m.right.equalToSuperview().offset(-14)
         }
-
-        priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        quotaLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
     func setupOnroadView() {
 
-        onroadLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 11, weight: .regular)
-            $0.textColor = UIColor.white.withAlphaComponent(0.7)
+        onroadTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor.white.withAlphaComponent(0.8)
             $0.numberOfLines = 1
         }
 
-        addSubview(onroadView)
+        onroadLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+            $0.textColor = UIColor.white
+            $0.numberOfLines = 1
+        }
+
+        colorBackgroundView.addSubview(onroadView)
+        onroadView.addSubview(onroadTitleLabel)
         onroadView.addSubview(onroadLabel)
 
         onroadView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview()
-            m.bottom.equalTo(buttonView.snp.top)
-            m.height.equalTo(18)
+            m.top.equalTo(balanceView.snp.bottom).offset(14)
+            m.left.equalToSuperview().offset(14)
+            m.height.equalTo(37)
+        }
+
+        onroadTitleLabel.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
         }
 
         onroadLabel.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(14)
+            m.bottom.left.right.equalToSuperview()
+        }
+    }
+
+    func setupPledgeView() {
+
+        pledgeTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor.white.withAlphaComponent(0.8)
+            $0.numberOfLines = 1
+            $0.text = R.string.localizable.balanceInfoDetailPledgeAmountTitle()
+        }
+
+        pledgeLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+            $0.textColor = UIColor.white
+            $0.numberOfLines = 1
+        }
+
+        colorBackgroundView.addSubview(pledgeView)
+        pledgeView.addSubview(pledgeTitleLabel)
+        pledgeView.addSubview(pledgeLabel)
+
+        pledgeView.snp.makeConstraints { (m) in
+            m.top.equalTo(onroadView)
+            m.left.equalTo(onroadView.snp.right)
             m.right.equalToSuperview().offset(-14)
-            m.centerY.equalToSuperview()
+            m.height.equalTo(onroadView)
+            m.width.equalTo(onroadView)
+        }
+
+        pledgeTitleLabel.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
+        }
+
+        pledgeLabel.snp.makeConstraints { (m) in
+            m.bottom.left.right.equalToSuperview()
         }
     }
 
@@ -219,7 +260,7 @@ class BalanceInfoViteChainCardView: UIView {
             $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
         }
 
-        addSubview(buttonView)
+        colorBackgroundView.addSubview(buttonView)
         buttonView.addSubview(receiveButton)
         buttonView.addSubview(sendButton)
         buttonView.addSubview(vLine)
@@ -247,15 +288,29 @@ class BalanceInfoViteChainCardView: UIView {
         }
     }
 
+    func setupQuotaView() {
+        addSubview(quotaView)
+        quotaView.snp.makeConstraints { (m) in
+            m.top.equalTo(colorBackgroundView.snp.bottom).offset(16)
+            m.left.equalToSuperview()
+            m.right.equalToSuperview()
+            m.height.equalTo(74)
+        }
+    }
+
     var balanceLabel: UILabel!
     var receiveButton: UIButton!
     var sendButton: UIButton!
+    var onroadTitleLabel: UILabel!
     var onroadLabel: UILabel!
+    var pledgeTitleLabel: UILabel!
+    var pledgeLabel: UILabel!
     var priceLabel: UILabel!
-    var quotaLabel: UILabel!
 
     func bind(tokenInfo: TokenInfo) {
         guard let token = tokenInfo.toViteToken() else { return }
+
+        pledgeView.isHidden = !tokenInfo.isViteCoin
 
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
@@ -268,17 +323,21 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.unconfirmedBalance.amountFullWithGroupSeparator(decimals: token.decimals) })
-            .map({ R.string.localizable.balanceInfoDetailOnroadAmountContent($0) })
-            .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
+            .map({ R.string.localizable.balanceInfoDetailUnconfirmedTitle("\($0.unconfirmedCount)") })
+            .drive(onroadTitleLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.unconfirmedBalance == 0 })
-            .drive(onroadView.rx.isHidden).disposed(by: rx.disposeBag)
+            .map({ $0.unconfirmedBalance.amountFullWithGroupSeparator(decimals: token.decimals) })
+            .drive(onroadLabel.rx.text).disposed(by: rx.disposeBag)
 
-        FetchQuotaManager.instance.quotaDriver
-            .map({ R.string.localizable.balanceInfoDetailPledgeCountContent(String($0.utps)) })
-            .drive(quotaLabel.rx.text).disposed(by: rx.disposeBag)
+        FetchQuotaManager.instance.quotaDriver.drive(onNext: { [weak self] (quota) in
+            guard let `self` = self else { return }
+            self.quotaView.updateQuota(currect: quota.currentUt, max: quota.utpe)
+        }).disposed(by: rx.disposeBag)
+
+        FetchQuotaManager.instance.pledgeAmountDriver
+            .map({ $0.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals) })
+            .drive(pledgeLabel.rx.text).disposed(by: rx.disposeBag)
 
         receiveButton.rx.tap.bind { [weak self] in
             Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, tokenInfo.statisticsId))
@@ -292,7 +351,7 @@ class BalanceInfoViteChainCardView: UIView {
             }.disposed(by: rx.disposeBag)
 
         DispatchQueue.main.async {
-            self.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: tokenInfo.coinBackgroundGradientColors)
+            self.colorBackgroundView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: tokenInfo.coinBackgroundGradientColors)
         }
     }
 }

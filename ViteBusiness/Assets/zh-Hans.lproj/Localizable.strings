@@ -190,16 +190,16 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "账户余额";
-"balance.info.detail.unconfirmed.title" = "待接收";
-"balance.info.detail.unconfirmed.count.title" = "%@笔待确认";
+"balance.info.detail.unconfirmed.title" = "在途(%@ UT)";
+"balance.info.detail.pledge.amount.title" = "已抵押";
 "balance.info.detail.show.transactions.button.title" = "到以太坊浏览器查看交易记录";
 "balance.info.detail.reveice.button.title" = "收款";
 "balance.info.detail.send.button.title" = "转账";
 "balance.info.detail.vote" = "投票";
 "balance.info.detail.pledge" = "获取配额";
 "balance.info.detail.exchange.vite" = "置换 VITE";
-"balance.info.detail.pledge.count.content" = "配额 %@ UTPS";
-"balance.info.detail.onroad.amount.content" = "%@ 在途";
+"balance.info.detail.pledge.count.content" = "可用配额/配额上限";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 /* Address Manage Page */
 "address.manage.page.title" = "我的VITE地址";

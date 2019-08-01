@@ -187,16 +187,16 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "Unreceived";
-"balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
+"balance.info.detail.unconfirmed.title" = "在途(%@ UT)";
+"balance.info.detail.pledge.amount.title" = "已抵押";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
-"balance.info.detail.onroad.amount.content" = "%@ On Road";
+"balance.info.detail.pledge.count.content" = "可用配额/配额上限";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 /* Address Manage Page */
 "address.manage.page.title" = "My VITE Address";

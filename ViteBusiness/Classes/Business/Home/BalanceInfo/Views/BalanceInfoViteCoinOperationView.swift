@@ -16,8 +16,7 @@ class BalanceInfoViteCoinOperationView: UIView {
         return CGSize(width: 0, height: 44)
     }
 
-    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote())
-    let pledgeButton = OperationButton(icon: R.image.icon_balance_detail_pledge(), title: R.string.localizable.balanceInfoDetailPledge())
+    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote(), style: .single)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,29 +25,16 @@ class BalanceInfoViteCoinOperationView: UIView {
         clipsToBounds = false
         
         addSubview(voteButton)
-        addSubview(pledgeButton)
 
         voteButton.snp.makeConstraints { (m) in
             m.top.bottom.equalToSuperview()
             m.left.equalToSuperview()
-        }
-
-        pledgeButton.snp.makeConstraints { (m) in
-            m.top.bottom.equalToSuperview()
-            m.left.equalTo(voteButton.snp.right).offset(15)
             m.right.equalToSuperview()
-            m.width.equalTo(voteButton)
         }
 
         voteButton.button.rx.tap.bind {
             Statistics.log(eventId: Statistics.Page.WalletHome.voteClicked.rawValue)
             let sendViewController = VoteHomeViewController()
-            UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
-            }.disposed(by: rx.disposeBag)
-        
-        pledgeButton.button.rx.tap.bind {
-            Statistics.log(eventId: Statistics.Page.WalletHome.quotaClicked.rawValue)
-            let sendViewController = QuotaManageViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
     }
