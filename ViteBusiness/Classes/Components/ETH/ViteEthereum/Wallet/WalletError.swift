@@ -4,18 +4,7 @@ public protocol ViteEthError: Error {
 }
 
 public extension ViteEthError where Self: RawRepresentable, Self.RawValue == String {
-}
-public enum Result<T> {
-    case success(T)
-    case failure(Error)
 
-    public init(value: T) {
-        self = .success(value)
-    }
-
-    public init(error: Error) {
-        self = .failure(error)
-    }
 }
 
 public enum WalletError: String , Error {

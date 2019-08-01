@@ -188,7 +188,7 @@ extension MyTokenInfosService {
     func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(for: tokenCode) {
-            completion(Result.success(tokenInfo))
+            completion(Alamofire.Result.success(tokenInfo))
         } else {
             ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode, completion: completion)
         }
@@ -197,7 +197,7 @@ extension MyTokenInfosService {
     func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
-            completion(Result.success(tokenInfo))
+            completion(Alamofire.Result.success(tokenInfo))
         } else {
             #if DAPP
             ViteNode.mintage.getToken(tokenId: viteTokenId)
@@ -222,7 +222,7 @@ extension MyTokenInfosService {
     func tokenInfo(forEthContractAddress address: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 
         if let tokenInfo = tokenInfo(forEthContractAddress: address) {
-            completion(Result.success(tokenInfo))
+            completion(Alamofire.Result.success(tokenInfo))
         } else {
             ExchangeProvider.instance.getTokenInfo(chain: "ETH", id: address, completion: completion)
         }
