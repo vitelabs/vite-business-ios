@@ -35,9 +35,9 @@ class GateWayDetailViewController: BaseViewController {
                 gatewayInfo.name,
                 gatewayInfo.website,
                 gatewayInfo.support,
-                isEn ? gatewayInfo.policy["en"] : gatewayInfo.policy["ch"],
+                isEn ? gatewayInfo.policy["en"] : gatewayInfo.policy["zh"],
                 gatewayInfo.url,
-                isEn ? gatewayInfo.overview["en"] : gatewayInfo.overview["ch"]
+                isEn ? gatewayInfo.overview["en"] : gatewayInfo.overview["zh"]
             ]
 
         }

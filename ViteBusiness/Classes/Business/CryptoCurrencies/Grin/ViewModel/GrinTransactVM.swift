@@ -61,11 +61,11 @@ class GrinTransactVM {
     }
 
     func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
+        guard let amount = self.amountFrom(string: amountString) else {
+            self.txFee.accept("")
+            return
+        }
         GrinManager.queue.async {
-            guard let amount = self.amountFrom(string: amountString) else {
-                self.txFee.accept("")
-                return
-            }
             let result = GrinManager.default.txStrategies(amount: amount)
             DispatchQueue.main.async {
                 switch result {

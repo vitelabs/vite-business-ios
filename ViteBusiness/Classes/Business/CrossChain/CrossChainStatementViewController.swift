@@ -75,7 +75,7 @@ class CrossChainStatementViewController: BaseViewController {
         let email = tokenInfo.gatewayInfo?.support ?? "xx@vite.org"
         let isEn = LocalizationService.sharedInstance.currentLanguage == .base
 
-        let policy = (isEn ?  tokenInfo.gatewayInfo?.policy["en"] : tokenInfo.gatewayInfo?.policy["ch"]) ?? "--"
+        let policy = (isEn ?  tokenInfo.gatewayInfo?.policy["en"] : tokenInfo.gatewayInfo?.policy["zh"]) ?? "--"
 
         var str = ""
         if isVite {

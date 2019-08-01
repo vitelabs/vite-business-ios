@@ -99,6 +99,7 @@ class SendGrinViewController: UIViewController {
             .disposed(by: rx.disposeBag)
 
         transferVM.message.asObservable()
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .bind { [weak self] message in
                 Toast.show(message)
             }

@@ -247,6 +247,9 @@ extension TokenInfo {
     static var eth: TokenInfo {
         return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin)!
     }
+    static var eth000: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(for: "1352")!
+    }
 }
 
 extension TokenInfo {
@@ -315,13 +318,13 @@ extension TokenInfo {
 
 public struct GatewayInfo: Mappable {
 
-    var name =  "name"
-    var url = "http://baidu.com"
-    var icon = "icon"
-    var website = "http://baidu.com"
+    var name =  ""
+    var url = ""
+    var icon = ""
+    var website = ""
     var overview = [String:String]()
     var policy = [String:String]()
-    var support = "xx@vite.org"
+    var support = ""
     var isOfficial = false
 
     private var mappedTokenInfo = MappedTokenInfo()

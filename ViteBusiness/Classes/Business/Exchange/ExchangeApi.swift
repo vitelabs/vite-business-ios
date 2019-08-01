@@ -52,13 +52,13 @@ extension ExchangeApi: TargetType {
             return .requestParameters(parameters: ["address": address,
                                                     "market": market,
                                                     "pageSize": pageSize,
-                                                    "pageNumber": pageNumber],
+                                                    "pageIndex": pageNumber],
                                       encoding: URLEncoding.queryString)
         case .report(let address, let market, let hash):
-            return .requestParameters(parameters: ["address": address,
-                                                   "market": market,
-                                                   "hash": hash],
-                                      encoding: URLEncoding.default)
+            let parameters = ["address": address,
+                              "market": market,
+                              "hash": hash] as [String : Any]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 

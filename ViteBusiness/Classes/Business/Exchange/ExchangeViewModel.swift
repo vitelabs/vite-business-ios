@@ -13,23 +13,29 @@ class ExchangeViewModel {
 
     enum Action {
         case getRate
-        case getHistory(pageSize: Int, pageNumber: Int)
         case report(hash: String)
+        
+        case refreshHistory
+        case getMoreHistory
     }
 
     let action = PublishSubject<ExchangeViewModel.Action>()
-
     
-    let txs = BehaviorRelay<[Exchangeprovider.HistoryInfo]>(value: [])
     let rateInfo = BehaviorRelay<Exchangeprovider.RateInfo>(value: Exchangeprovider.RateInfo())
     let exchangeResult = PublishSubject<Exchangeprovider.ExchangeResult>()
     let message: PublishSubject<String> = PublishSubject<String>()
     let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
+    let txs = BehaviorRelay<[Exchangeprovider.HistoryInfo]>(value: [])
+    let noMoreHistoryData: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+
 
     fileprivate let exProvider = Exchangeprovider()
 
     private let bag = DisposeBag()
+
+    let pageSize = 20
+    var pageNum = 1
 
 
     init() {
@@ -38,10 +44,12 @@ class ExchangeViewModel {
                 switch action {
                 case .getRate:
                     self?.getRate()
-                case .getHistory(let pageSize, let pageNum):
-                    self?.getHistory(pageSize: 10, pageNumber: 1)
                 case .report(let hash):
                     self?.report(hash: hash)
+                case .refreshHistory:
+                    self?.getHistory(isRefresh: true)
+                case .getMoreHistory:
+                    self?.getHistory(isRefresh: false)
                 }
             })
             .disposed(by: bag)
@@ -64,16 +72,32 @@ class ExchangeViewModel {
         }
     }
 
-    func getHistory(pageSize: Int, pageNumber: Int) {
+    func getHistory(isRefresh: Bool) {
         guard let address = HDWalletManager.instance.account?.address else {
             return
         }
+        if isRefresh {
+            pageNum = 1
+        } else {
+            pageNum = pageNum + 1
+        }
         exProvider
-            .getHistory(address: address, market: "eth_vite", pageSize: pageSize, pageNumber: pageNumber) { [weak self]  (result) in
+            .getHistory(address: address, market: "eth_vite", pageSize: pageSize, pageNumber: pageNum) { [weak self]  (result) in
                 guard let `self` = self else { return }
                 switch result {
                 case .success(let r):
-                    self.txs.accept(r)
+                    if isRefresh {
+                        self.txs.accept(r)
+                    } else {
+                        var value = self.txs.value
+                        value = value + r
+                        self.txs.accept(value)
+                    }
+                    if r.isEmpty {
+                        self.noMoreHistoryData.accept(true)
+                    } else {
+                        self.noMoreHistoryData.accept(false)
+                    }
                 case .failure(let e):
                     self.message.onNext(e.localizedDescription)
                 }
