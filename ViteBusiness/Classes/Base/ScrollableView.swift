@@ -15,7 +15,7 @@ class ScrollableView: UIScrollView {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
-        $0.spacing = 10
+        $0.spacing = 0
     }
 
     init(insets: UIEdgeInsets = UIEdgeInsets.zero) {

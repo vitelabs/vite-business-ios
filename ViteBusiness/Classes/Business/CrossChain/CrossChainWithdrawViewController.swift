@@ -45,6 +45,7 @@ class GatewayWithdrawViewController: BaseViewController {
     // View
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
         $0.layer.masksToBounds = false
+        $0.stackView.spacing = 10
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {

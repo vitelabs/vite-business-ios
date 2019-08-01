@@ -47,9 +47,7 @@ class ContactsEditViewController: BaseViewController {
         bind()
     }
 
-    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24)).then {
-        $0.stackView.spacing = 0
-    }
+    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
 
     let nameView = TitleTextFieldView(title: R.string.localizable.contactsEditPageNameTitle())
     let addressView = ContactAddressInputView()

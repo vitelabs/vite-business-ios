@@ -59,6 +59,7 @@ class EthSendTokenController: BaseViewController {
     // View
     private lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then { (scrollView) in
         scrollView.layer.masksToBounds = false
+        scrollView.stackView.spacing = 10
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {

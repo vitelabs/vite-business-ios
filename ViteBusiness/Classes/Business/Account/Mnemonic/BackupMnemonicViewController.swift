@@ -98,7 +98,6 @@ class BackupMnemonicViewController: BaseViewController {
     }()
 
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 4, left: 24, bottom: 10, right: 24)).then {
-        $0.stackView.spacing = 0
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
