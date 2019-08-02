@@ -214,7 +214,8 @@
 "send.page.title" = "Transfer";
 "send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
-"send.page.my.quota.title" = "Quota";
+"send.page.my.pledge.title" = "已获得抵押";
+"send.page.my.quota.title" = "配额余额/上限";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
 "send.page.add.my.address.button.title" = "Mine";
 "send.page.vite.contacts.button.title" = "VITE Contact Address";
@@ -291,6 +292,7 @@
 "quota.manage.page.title" = "Acquire Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.quota.quota.title" = "配额";
 "quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";

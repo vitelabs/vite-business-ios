@@ -160,8 +160,8 @@ class BalanceInfoViteChainQuotaView: UIView {
             maxLabel.isHidden = false
             tipLabel.isHidden = true
 
-            currentLabel.text = doubleUtToString(currect)
-            maxLabel.text = doubleUtToString(max)
+            currentLabel.text = currect.utToString() + " UT"
+            maxLabel.text = max.utToString() + " UT"
 
             let mu = currect / max
 
@@ -179,14 +179,5 @@ class BalanceInfoViteChainQuotaView: UIView {
         }
     }
 
-    fileprivate func doubleUtToString(_ num: Double) -> String {
-        var text = String(format:"%.4f", num)
-        if text.contains(".") {
-            text = text.trimmingCharacters(in: CharacterSet(charactersIn: "0"))
-            if text.hasSuffix(".") {
-                text = String(text.dropLast())
-            }
-        }
-        return text + " UT"
-    }
+    
 }

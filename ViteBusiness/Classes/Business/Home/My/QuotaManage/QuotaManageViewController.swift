@@ -19,10 +19,8 @@ class QuotaManageViewController: BaseViewController {
     let account = HDWalletManager.instance.account!
 
     var address: ViteAddress?
-    var balance: Amount
 
     init() {
-        self.balance = Amount(0)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -51,7 +49,6 @@ class QuotaManageViewController: BaseViewController {
     // View
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 50, right: 24)).then {
         $0.layer.masksToBounds = false
-        $0.stackView.spacing = 10
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
@@ -68,13 +65,9 @@ class QuotaManageViewController: BaseViewController {
     }
 
     //snapshoot height
-    lazy var snapshootHeightLab = TitleDescView(title: R.string.localizable.quotaManagePageQuotaSnapshootHeightTitle()).then {
-        let str = R.string.localizable.quotaManagePageQuotaSnapshootHeightDesc("3")
-        let range = str.range(of: "3")!
-        let attributedString = NSMutableAttributedString(string: str)
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: Colors.titleGray_45], range: NSRange.init(range, in: str))
-        $0.descLab.attributedText = attributedString
-    }
+    lazy var pledgeView = SendPledgeItemView()
+
+    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.pledge.ut.utToString())
 
     lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
@@ -114,11 +107,13 @@ class QuotaManageViewController: BaseViewController {
         scrollView.stackView.addArrangedSubview(headerView)
         scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(addressView)
-        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addPlaceholder(height: 20)
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addPlaceholder(height: 40)
-        scrollView.stackView.addArrangedSubview(snapshootHeightLab)
-        scrollView.stackView.addPlaceholder(height: 37)
+        scrollView.stackView.addArrangedSubview(pledgeView)
+        scrollView.stackView.addPlaceholder(height: 40)
+        scrollView.stackView.addArrangedSubview(quotaView)
+        scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(sendButton)
 
         let toolbar = UIToolbar()
@@ -195,7 +190,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount <= self.balance else {
+                guard amount <= self.headerView.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
@@ -230,16 +225,7 @@ extension QuotaManageViewController {
     }
 
     func initBinds() {
-        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
-            .drive(onNext: { [weak self] balanceInfo in
-                guard let `self` = self else { return }
-                self.balance = balanceInfo?.balance ?? self.balance
-                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
-            }).disposed(by: rx.disposeBag)
-
-//    FetchQuotaManager.instance.quotaDriver
-//        .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
-//        .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+        headerView.bind(token: ViteWalletConst.viteToken)
     }
 }
 

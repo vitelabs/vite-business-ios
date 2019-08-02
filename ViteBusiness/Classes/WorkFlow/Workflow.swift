@@ -56,7 +56,7 @@ public struct Workflow {
 
     static func getPowWorkflow(context: SendBlockContext) -> Promise<SendBlockContext> {
         var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: context.quota?.utRequired ?? "") {
+        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: context.quota?.utRequired.utToString() ?? "") {
             cancelPow = true
         }
         getPowFloatView.show()
@@ -116,7 +116,7 @@ public struct Workflow {
                 HUD.hide()
             }.done { (context, accountBlock, duration) in
                 if context.isNeedToCalcPoW {
-                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota?.utRequired ?? "", pledgeClick: {
+                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota?.utRequired.utToString() ?? "", pledgeClick: {
                         let vc = QuotaManageViewController()
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     }, cancelClick: {}).show()
