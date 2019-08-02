@@ -1312,7 +1312,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 627 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 628 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3774,6 +3774,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowFinishedFloatViewTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 受益地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static let peldgeAddressTitle = Rswift.StringResource(key: "peldge.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 可用配额/配额上限
       /// 
       /// Locales: en, zh-Hans
@@ -8126,6 +8130,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaPowFinishedFloatViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.pow.finished.float.view.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 受益地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static func peldgeAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 可用配额/配额上限

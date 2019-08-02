@@ -48,11 +48,16 @@ class PledgeHistoryViewController: BaseViewController, View {
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
             m.top.equalTo(navigationTitleView.snp.bottom).offset(12)
         }
-        tableView.rowHeight = 76
+        tableView.rowHeight = 100
         tableView.register(PledgeHistoryCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorColor = UIColor.init(netHex: 0xD3DFEF)
         tableView.tableFooterView = UIView()
         tableView.mj_header.beginRefreshing()
+    }
+
+    fileprivate func nameAndAddress(_ address: ViteAddress) -> String {
+        let name = AddressManageService.instance.contactName(for: address) ?? AddressManageService.instance.name(for: address)
+        return "\(name): \(address)"
     }
 
     func bind(reactor: PledgeHistoryViewReactor) {
@@ -70,7 +75,7 @@ class PledgeHistoryViewController: BaseViewController, View {
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) {[weak self] _, pledge, cell in
                 guard let `self` = self else { return }
                 let cell = cell as! PledgeHistoryCell
-                cell.hashLabel.text = pledge.beneficialAddress
+                cell.addressLabel.text = self.nameAndAddress(pledge.beneficialAddress)
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
                 cell.balanceLabel.text =  pledge.amount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"

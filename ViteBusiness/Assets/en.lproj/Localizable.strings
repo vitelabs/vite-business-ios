@@ -321,6 +321,7 @@
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
 "peldge.title" = "My Staking List";
+"peldge.address.title" = "受益地址";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
