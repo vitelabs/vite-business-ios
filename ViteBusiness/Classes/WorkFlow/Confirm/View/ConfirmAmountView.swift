@@ -16,6 +16,7 @@ class ConfirmAmountView: UIView {
     enum ViewType {
         case amount
         case fee
+        case quota
     }
 
     private let titleLabel = UILabel().then {
@@ -29,7 +30,10 @@ class ConfirmAmountView: UIView {
         $0.adjustsFontSizeToFitWidth = true
     }
 
+    private let type: ViewType
+
     init(type: ViewType) {
+        self.type = type
         super.init(frame: CGRect.zero)
 
         addSubview(titleLabel)
@@ -46,9 +50,13 @@ class ConfirmAmountView: UIView {
             backgroundColor = UIColor(netHex: 0xF9FCFF)
             titleLabel.text = R.string.localizable.confirmTransactionAmountTitle()
             textLabel.textColor = UIColor(netHex: 0x007AFF, alpha: 0.7)
-        default:
+        case .fee:
             backgroundColor = UIColor(netHex: 0xffffff)
             titleLabel.text = R.string.localizable.confirmTransactionFeeTitle()
+            textLabel.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
+        case .quota:
+            backgroundColor = UIColor(netHex: 0xffffff)
+            titleLabel.text = R.string.localizable.confirmTransactionQuotaTitle()
             textLabel.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
         }
 
@@ -65,7 +73,14 @@ class ConfirmAmountView: UIView {
     }
 
     func set(text: String) {
-        textLabel.text = text
+        switch type {
+        case .amount:
+            textLabel.text = text
+        case .fee:
+            textLabel.text = text
+        case .quota:
+            textLabel.text = text + " UT"
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

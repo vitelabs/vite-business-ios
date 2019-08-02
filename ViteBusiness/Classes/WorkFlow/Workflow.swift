@@ -240,6 +240,7 @@ public extension Workflow {
                                            tokenInfo: TokenInfo,
                                            amount: Amount,
                                            data: Data?,
+                                           utString: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             send(account: account,
@@ -254,7 +255,7 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
+        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, utString: utString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -263,6 +264,7 @@ public extension Workflow {
                                            tokenInfo: TokenInfo,
                                            amount: Amount,
                                            note: String?,
+                                           utString: String?,
                                            completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             send(account: account,
@@ -277,7 +279,7 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
+        let viewModel = ConfirmViteTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, utString: utString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -299,7 +301,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
+        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.pledge.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -321,7 +323,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.viteCoin
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString)
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -342,7 +344,7 @@ public extension Workflow {
         }
 
         let tokenInfo = TokenInfo.viteCoin
-        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name)
+        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.vote.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -362,7 +364,7 @@ public extension Workflow {
         }
 
         let tokenInfo = TokenInfo.viteCoin
-        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name)
+        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelVote.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -386,7 +388,7 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString)
+        let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, utString: nil)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -412,7 +414,7 @@ public extension Workflow {
 
         switch uri.type {
         case .transfer:
-            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: completion)
+            sendTransactionWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, utString: nil, completion: completion)
         case .contract:
             callContractWithConfirm(account: account, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, fee: fee, data: uri.data, completion: completion)
         }

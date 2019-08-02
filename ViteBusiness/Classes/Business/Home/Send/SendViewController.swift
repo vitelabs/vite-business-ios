@@ -190,7 +190,7 @@ class SendViewController: BaseViewController {
 
                 switch address.viteAddressType! {
                 case .user:
-                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             GCD.delay(1) { self.dismiss() }
                         }
@@ -201,7 +201,7 @@ class SendViewController: BaseViewController {
                         Toast.show(msg)
                         return
                     }
-                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, completion: { (r) in
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             GCD.delay(1) { self.dismiss() }
                         }

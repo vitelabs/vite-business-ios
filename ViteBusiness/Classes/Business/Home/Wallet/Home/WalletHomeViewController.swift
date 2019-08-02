@@ -230,7 +230,7 @@ class WalletHomeViewController: BaseTableViewController {
                             scanViewController?.popSelfAndPush(sendViewController)
                         } else {
                             self.navigationController?.popViewController(animated: true)
-                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: { _ in })
+                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, utString: nil, completion: { _ in })
                         }
                     } else {
                         let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: nil)

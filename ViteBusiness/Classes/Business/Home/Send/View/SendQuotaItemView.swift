@@ -9,7 +9,10 @@ import UIKit
 
 class SendQuotaItemView: SendStaticItemView {
 
+    var utString: String
+
     init(utString: String) {
+        self.utString = utString
         super.init(title: R.string.localizable.quotaManagePageQuotaQuotaTitle(), rightViewStyle: .label(style: .attributed(string: type(of: self).utStringToAttributedString(utString: utString))), titleTipButtonStyle: .button(style: .tip(clicked: {
             let htmlString = R.string.localizable.popPageTipQuota()
             let vc = PopViewController(htmlString: htmlString)
@@ -30,11 +33,11 @@ class SendQuotaItemView: SendStaticItemView {
 
     func update(utString: String) {
         guard let label = rightView as? UILabel else { fatalError() }
+        self.utString = utString
         label.attributedText = type(of: self).utStringToAttributedString(utString: utString)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

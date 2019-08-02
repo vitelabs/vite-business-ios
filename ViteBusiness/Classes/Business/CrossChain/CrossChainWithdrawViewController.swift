@@ -287,7 +287,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 data.append(Data(tpye.toBytes))
                 data.append(withDrawAddressData!)
 
-                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, completion: { (_) in
+                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, utString: nil, completion: { (_) in
                     self.navigationController?.popViewController(animated: true)
                 })
             }.catch { [weak self](error) in

@@ -457,6 +457,7 @@
 "confirm.transaction.address.title" = "收款地址";
 "confirm.transaction.amount.title" = "金额";
 "confirm.transaction.fee.title" = "手续费";
+"confirm.transaction.quota.title" = "配额";
 "confirm.transaction.page.use.password" = "使用密码";
 "confirm.transaction.page.pw.title" = "请输入密码";
 // vite transfer

@@ -1312,7 +1312,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 626 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 627 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3810,6 +3810,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionQuotaTitle = Rswift.StringResource(key: "confirm.transaction.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额
       /// 
       /// Locales: en, zh-Hans
@@ -8185,6 +8189,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("quota.pow.finished.float.view.h1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: 配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额

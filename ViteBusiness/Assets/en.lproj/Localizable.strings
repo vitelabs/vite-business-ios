@@ -452,6 +452,7 @@
 "confirm.transaction.address.title" = "Recipient";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.quota.title" = "配额";
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.pw.title" = "Please input password";
 // vite transfer
