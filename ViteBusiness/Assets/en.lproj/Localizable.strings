@@ -448,6 +448,11 @@
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
 
+"workflow.fast.get.quota.title" = "快速获取配额";
+"workflow.fast.get.quota.message" = "请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。";
+"workflow.fast.get.quota.tip" = "您也可以%@为任意地址抵押获取配额。";
+"workflow.fast.get.quota.link" = "点击此处";
+
 /* Confirm Transaction Page */
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
 "confirm.transaction.address.title" = "Recipient";

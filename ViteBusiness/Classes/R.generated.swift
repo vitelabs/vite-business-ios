@@ -1312,7 +1312,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 628 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 632 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3794,6 +3794,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 快速获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaTitle = Rswift.StringResource(key: "workflow.fast.get.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 您也可以%@为任意地址抵押获取配额。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaTip = Rswift.StringResource(key: "workflow.fast.get.quota.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
       /// 
       /// Locales: en, zh-Hans
@@ -3810,10 +3818,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 点击此处
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaMessage = Rswift.StringResource(key: "workflow.fast.get.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 配额
       /// 
       /// Locales: en, zh-Hans
@@ -8167,6 +8183,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 快速获取配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 您也可以%@为任意地址抵押获取配额。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("workflow.fast.get.quota.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
       /// 
       /// Locales: en, zh-Hans
@@ -8195,11 +8225,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 点击此处
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
       /// 
       /// Locales: en, zh-Hans
       public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("quota.pow.finished.float.view.h1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: 请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaMessage(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 配额

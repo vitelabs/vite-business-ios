@@ -187,4 +187,8 @@ extension UIViewController {
 
         return current(rootVC)
     }
+
+    public static var rootViewController: UIViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController
+    }
 }
