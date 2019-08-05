@@ -170,7 +170,7 @@ PODS:
     - Alamofire
     - APIKit
     - BaiduMobStat
-    - BigInt (~> 3.0)
+    - BigInt
     - CHIPageControl
     - Crashlytics
     - CryptoSwift
@@ -393,7 +393,7 @@ SPEC CHECKSUMS:
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: 848fde00023e2ebdd516a3f3ce731d6f1094cfab
+  ViteBusiness: 6317a4d81dd7ddab400a572bdc30297718699ebb
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 54e02dfe2807ed2cb04c85575713500e6f440822
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd

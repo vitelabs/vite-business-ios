@@ -91,6 +91,22 @@ extension GateWayDetailViewController: UITableViewDataSource, UITableViewDelegat
         cell.textLabel?.text = self.itemTitles[indexPath.row]
         cell.detailTextLabel?.text = self.items[indexPath.row]
         cell.detailTextLabel?.font = font(16)
+
+        if indexPath.row != 5 {
+            cell.textLabel?.snp.makeConstraints { m in
+                m.left.equalToSuperview().offset(24)
+                m.centerY.equalToSuperview()
+            }
+            cell.detailTextLabel?.snp.makeConstraints { (m) in
+                m.right.equalToSuperview().offset(-24)
+                m.centerY.equalToSuperview()
+                m.left.greaterThanOrEqualTo(cell.textLabel!.snp.right).offset(10)
+            }
+            cell.detailTextLabel?.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            cell.detailTextLabel?.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+        }
+        return cell
         return cell
     }
 

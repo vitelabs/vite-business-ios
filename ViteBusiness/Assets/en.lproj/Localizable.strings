@@ -731,3 +731,7 @@
 "buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
 "buildin.dex.recover.trading.pair.item0.title" = "Name";
 "buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+
+"unit.Million" = "Million";
+"unit.Billion" = "Billion";
+"unit.Trillion" = "Trillion";

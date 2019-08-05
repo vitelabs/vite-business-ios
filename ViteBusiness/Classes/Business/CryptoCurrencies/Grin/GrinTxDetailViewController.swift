@@ -17,9 +17,6 @@ class GrinTxDetailViewController: UIViewController {
     let titleView = GrinTransactionTitleView()
     let txMethodLabel = LabelBgView()
 
-//    let methodView = ()
-
-
     let pointView = UIView()
     let descLabel = UILabel()
     let amountInfoView = UIView()

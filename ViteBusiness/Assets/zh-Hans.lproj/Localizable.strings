@@ -735,3 +735,7 @@
 "buildin.dex.recover.trading.pair.function.title" = "恢复交易对";
 "buildin.dex.recover.trading.pair.item0.title" = "交易对名称";
 "buildin.dex.recover.trading.pair.item1.title" = "当前地址";
+
+"unit.Million" = "Million";
+"unit.Billion" = "Billion";
+"unit.Trillion" = "Trillion";

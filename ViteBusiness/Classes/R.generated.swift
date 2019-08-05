@@ -1284,7 +1284,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 606 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 609 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -1562,6 +1562,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let buildinCoinReissueTokenItem2Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Billion
+      /// 
+      /// Locales: en, zh-Hans
+      static let unitBillion = Rswift.StringResource(key: "unit.Billion", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -2266,6 +2270,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let tabbarItemTitleMy = Rswift.StringResource(key: "tabbar.item.title.my", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Million
+      /// 
+      /// Locales: en, zh-Hans
+      static let unitMillion = Rswift.StringResource(key: "unit.Million", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
@@ -3282,6 +3290,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let buildinDexTransferPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.transfer.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trillion
+      /// 
+      /// Locales: en, zh-Hans
+      static let unitTrillion = Rswift.StringResource(key: "unit.Trillion", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -3678,11 +3690,11 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatementDetail = Rswift.StringResource(key: "crosschain.statement.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
+      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@。
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatementViteDesc = Rswift.StringResource(key: "crosschain.statement.vite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务.  若您对支付流程有任何疑问，请联系%@客服团队%@
+      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
       /// 
       /// Locales: en, zh-Hans
       static let crosschainStatementOtherDesc = Rswift.StringResource(key: "crosschain.statement.other.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -4192,6 +4204,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func buildinCoinReissueTokenItem2Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.coin.reissue.token.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Billion
+      /// 
+      /// Locales: en, zh-Hans
+      static func unitBillion(_: Void = ()) -> String {
+        return NSLocalizedString("unit.Billion", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Built-in contract error, please try again later(-35004)
@@ -5424,6 +5443,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func tabbarItemTitleMy(_: Void = ()) -> String {
         return NSLocalizedString("tabbar.item.title.my", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Million
+      /// 
+      /// Locales: en, zh-Hans
+      static func unitMillion(_: Void = ()) -> String {
+        return NSLocalizedString("unit.Million", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Mine
@@ -7204,6 +7230,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.dex.transfer.pair.function.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Trillion
+      /// 
+      /// Locales: en, zh-Hans
+      static func unitTrillion(_: Void = ()) -> String {
+        return NSLocalizedString("unit.Trillion", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -7897,14 +7930,14 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.statement.detail", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
+      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@。
       /// 
       /// Locales: en, zh-Hans
       static func crosschainStatementViteDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String) -> String {
         return String(format: NSLocalizedString("crosschain.statement.vite.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7)
       }
       
-      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务.  若您对支付流程有任何疑问，请联系%@客服团队%@
+      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
       /// 
       /// Locales: en, zh-Hans
       static func crosschainStatementOtherDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String, _ value8: String, _ value9: String) -> String {
