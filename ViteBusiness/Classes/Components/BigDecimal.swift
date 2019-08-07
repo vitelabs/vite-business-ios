@@ -252,7 +252,7 @@ public struct BigDecimalFormatter {
         }
     }
 
-    static func format(bigDecimal: BigDecimal, style: Style, padding: Padding, options: [Options]) -> String {
+    public static func format(bigDecimal: BigDecimal, style: Style, padding: Padding, options: [Options]) -> String {
 
         let decimal: Int
         switch style {
@@ -271,11 +271,9 @@ public struct BigDecimalFormatter {
                 ret = bigDecimal
             }
 
-            // temporary fix crash
-            guard let r = BigDecimal(String(ret.description.dropLast(ret.digits - decimal))) else {
-                return "--"
+            if ret.digits > decimal {
+                ret = BigDecimal(String(ret.description.dropLast(ret.digits - decimal)))!
             }
-            ret = r
         } else {
             ret = bigDecimal
         }
