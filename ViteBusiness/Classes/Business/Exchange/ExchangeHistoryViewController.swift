@@ -100,8 +100,8 @@ extension ExchangeHistoryViewController: UITableViewDelegate, UITableViewDataSou
         let cell = ExchangeHistoryCell()
         let tx = self.vm.txs.value[indexPath.row]
         cell.priceLabel.text  = R.string.localizable.exchangePrice() + (String(tx.ratePrice) ?? "") + " ETH"
-        cell.countLabel.text = R.string.localizable.exchangeAmount() + (String(tx.viteAmount) ?? "") + " VITE"
-        cell.amountLabel.text = "-" + (String(tx.xAmount) ?? "")
+        cell.viteAmountLabel.text =  (String(tx.viteAmount) ?? "") 
+        cell.ethAmountLabel.text =  (String(tx.xAmount) ?? "")
 
         let date = Date.init(timeIntervalSince1970: TimeInterval(tx.ctime/1000))
         let timeStr = dateFormatter.string(from: date)

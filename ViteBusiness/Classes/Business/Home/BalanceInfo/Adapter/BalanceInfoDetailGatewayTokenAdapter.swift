@@ -40,15 +40,11 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         cardView.bind(tokenInfo: tokenInfo)
 
         let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) { [weak self] in
-            self?.showStatement {
-                self?.gotoDesposePage()
-            }
+            self?.showStatement(isWithDraw: false)
         }
 
         let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) { [weak self] in
-            self?.showStatement {
-                self?.gotoWithdrawPage()
-            }
+            self?.showStatement(isWithDraw: true)
         }
         let operationView = BalanceInfoOperationView.init(firstOperation: o0, secondOperation: o1)
         sourceView = operationView.leftButton
@@ -71,43 +67,10 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         }
     }
 
-    func showStatement(completion:@escaping ()->()) {
+    func showStatement(isWithDraw:Bool) {
         let vc = CrossChainStatementViewController(tokenInfo: tokenInfo)
-        vc.completion = completion
+        vc.isWithDraw = isWithDraw
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func gotoDesposePage() {
-        let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { [unowned self] (_) in
-            let vc = EthViteExchangeViewController()
-            vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
-            vc.exchangeType = .ethChainToViteToken
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        }
-        let a1 = UIAlertAction.init(title: R.string.localizable.crosschainDepositOtherwallet(), style: .default) { [unowned self] (_) in
-            let vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        }
-
-        let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-        var message: String? = R.string.localizable.crosschainBetaAlert()
-        if message == "" {
-            message = nil
-        }
-        let alert = UIAlertController.init(title: nil, message: message, preferredStyle: .actionSheet)
-        alert.addAction(a0)
-        alert.addAction(a1)
-        alert.addAction(a2)
-        if let popover = alert.popoverPresentationController, let sourceView = sourceView {
-            popover.sourceView = sourceView
-            popover.sourceRect = sourceView.bounds
-            popover.permittedArrowDirections = .any;
-        }
-        UIViewController.current?.present(alert, animated: true, completion: nil)
-    }
-
-    func gotoWithdrawPage() {
-        let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-    }
 }

@@ -12,7 +12,7 @@ class CrossChainStatementViewController: BaseViewController {
 
     let tokenInfo: TokenInfo
 
-    var completion: (()-> ())?
+    var isWithDraw = true
 
     let topLabel = ActiveLabel()
     let bottomLabel = ActiveLabel()
@@ -60,9 +60,19 @@ class CrossChainStatementViewController: BaseViewController {
 
         setStatementInfo()
 
-        agreeButton.rx.tap.bind { _ in
-            self.navigationController?.popViewController(animated: true)
-            self.completion?()
+        agreeButton.rx.tap.bind { [unowned self] _ in
+            guard var vcs = self.navigationController?.viewControllers else {
+                return
+            }
+            vcs.removeLast()
+            var vc: UIViewController!
+            if self.isWithDraw {
+                vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+            } else {
+                vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+            }
+            vcs.append(vc)
+            self.navigationController?.setViewControllers(vcs, animated: true)
         }
     }
 

@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 184 images.
+  /// This `R.image` struct is generated, and contains static references to 186 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -36,6 +36,8 @@ struct R: Rswift.Validatable {
     static let btn_path_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "btn_path_bg")
     /// Image `crosschain_depoist`.
     static let crosschain_depoist = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_depoist")
+    /// Image `crosschain_deposie_switch`.
+    static let crosschain_deposie_switch = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_deposie_switch")
     /// Image `crosschain_operat_deposit`.
     static let crosschain_operat_deposit = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_operat_deposit")
     /// Image `crosschain_operat_withdraw`.
@@ -62,6 +64,8 @@ struct R: Rswift.Validatable {
     static let exchange_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_icon")
     /// Image `exchange_middle_line`.
     static let exchange_middle_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_middle_line")
+    /// Image `exchange_txs`.
+    static let exchange_txs = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_txs")
     /// Image `face_id`.
     static let face_id = Rswift.ImageResource(bundle: R.hostingBundle, name: "face_id")
     /// Image `fetch_gift_bg`.
@@ -432,6 +436,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.crosschain_depoist, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "crosschain_deposie_switch", bundle: ..., traitCollection: ...)`
+    static func crosschain_deposie_switch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.crosschain_deposie_switch, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "crosschain_operat_deposit", bundle: ..., traitCollection: ...)`
     static func crosschain_operat_deposit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_operat_deposit, compatibleWith: traitCollection)
@@ -495,6 +504,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "exchange_middle_line", bundle: ..., traitCollection: ...)`
     static func exchange_middle_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.exchange_middle_line, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_txs", bundle: ..., traitCollection: ...)`
+    static func exchange_txs(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_txs, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "face_id", bundle: ..., traitCollection: ...)`

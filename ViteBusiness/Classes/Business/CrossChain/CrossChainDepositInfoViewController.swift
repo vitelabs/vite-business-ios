@@ -38,6 +38,7 @@ class GatewayDepositViewController: BaseViewController {
         view.addSubview(qrcodeView)
         view.addSubview(pointView)
         view.addSubview(descriptionLabel)
+        view.addSubview(useViteWalletButton)
 
 
         addressView.titleLabel.text = R.string.localizable.crosschainDepositAddress()
@@ -70,6 +71,13 @@ class GatewayDepositViewController: BaseViewController {
             m.right.equalToSuperview().offset(-20)
         }
 
+
+        useViteWalletButton.snp.makeConstraints { (m) in
+            m.bottom.equalTo(view.snp.bottomMargin).offset(-20)
+            m.height.equalTo(50)
+            m.centerX.equalToSuperview()
+        }
+
         view.displayLoading()
         self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
             .done { [weak self] (info) in
@@ -96,7 +104,14 @@ class GatewayDepositViewController: BaseViewController {
                 UIPasteboard.general.string = address
                 Toast.show(R.string.localizable.walletHomeToastCopyAddress())
             }
-        }
+        }.disposed(by: rx.disposeBag)
+
+        useViteWalletButton.rx.tap.bind { [unowned self] in
+            let vc = EthViteExchangeViewController()
+            vc.gatewayInfoService = self.gatewayInfoService
+            vc.exchangeType = .ethChainToViteToken
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
 
     }
 
@@ -203,6 +218,12 @@ class GatewayDepositViewController: BaseViewController {
         let delegate =  StyleActionSheetTranstionDelegate()
         vc.transitioningDelegate = delegate
         present(vc, animated: true, completion: nil)
+    }
+
+    let useViteWalletButton = UIButton.init(style: .add).then {
+        $0.setImage(R.image.crosschain_deposie_switch(), for: .normal)
+        $0.setImage(R.image.crosschain_deposie_switch(), for: .highlighted)
+        $0.setTitle("VITE钱包转入", for: .normal)
     }
 
     
