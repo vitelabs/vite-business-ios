@@ -13,6 +13,12 @@ class ExchangeHistoryViewController: BaseViewController {
 
     let vm = ExchangeViewModel()
 
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm:ss"
+        return dateFormatter
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationTitleView = createNavigationTitleView()
@@ -42,7 +48,18 @@ class ExchangeHistoryViewController: BaseViewController {
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
-        }
+        }.disposed(by: rx.disposeBag)
+
+        vm.noMoreHistoryData.bind {  [weak self] noMoreHistoryData in
+            guard let `self` = self else { return }
+            if noMoreHistoryData {
+                self.tableView.mj_footer.isHidden = true
+            } else {
+                self.tableView.mj_footer.isHidden = false
+            }
+
+        }.disposed(by: rx.disposeBag)
+
         self.tableView.mj_header.beginRefreshing()
 
     }
@@ -52,7 +69,7 @@ class ExchangeHistoryViewController: BaseViewController {
             $0.backgroundColor = UIColor.white
         }
 
-        let title = "lishi"
+        let title = R.string.localizable.exchangeHistory()
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 24)
             $0.numberOfLines = 1
@@ -80,9 +97,16 @@ extension ExchangeHistoryViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = ExchangeHistoryCell()
         let tx = self.vm.txs.value[indexPath.row]
-        cell.textLabel?.text = tx.address
+        cell.priceLabel.text  = R.string.localizable.exchangePrice() + (String(tx.ratePrice) ?? "") + " ETH"
+        cell.countLabel.text = R.string.localizable.exchangeAmount() + (String(tx.viteAmount) ?? "") + " VITE"
+        cell.amountLabel.text = "-" + (String(tx.xAmount) ?? "")
+
+        let date = Date.init(timeIntervalSince1970: TimeInterval(tx.ctime/1000))
+        let timeStr = dateFormatter.string(from: date)
+        cell.dateLabel.text = timeStr
+
         return cell
     }
 

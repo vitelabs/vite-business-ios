@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 180 images.
+  /// This `R.image` struct is generated, and contains static references to 184 images.
   struct image {
     /// Image `aboutus_logo`.
     static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -54,6 +54,14 @@ struct R: Rswift.Validatable {
     static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
     static let empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "empty")
+    /// Image `exchange_arrow`.
+    static let exchange_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_arrow")
+    /// Image `exchange_hisrory_arrow`.
+    static let exchange_hisrory_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_hisrory_arrow")
+    /// Image `exchange_icon`.
+    static let exchange_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_icon")
+    /// Image `exchange_middle_line`.
+    static let exchange_middle_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_middle_line")
     /// Image `face_id`.
     static let face_id = Rswift.ImageResource(bundle: R.hostingBundle, name: "face_id")
     /// Image `fetch_gift_bg`.
@@ -467,6 +475,26 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "empty", bundle: ..., traitCollection: ...)`
     static func empty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.empty, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_arrow", bundle: ..., traitCollection: ...)`
+    static func exchange_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_arrow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_hisrory_arrow", bundle: ..., traitCollection: ...)`
+    static func exchange_hisrory_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_hisrory_arrow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_icon", bundle: ..., traitCollection: ...)`
+    static func exchange_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_middle_line", bundle: ..., traitCollection: ...)`
+    static func exchange_middle_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_middle_line, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "face_id", bundle: ..., traitCollection: ...)`
@@ -1284,7 +1312,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 609 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 615 localization keys.
     struct localizable {
       /// en translation: 
       /// 
@@ -3678,6 +3706,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 一键买币
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangeTitley = Rswift.StringResource(key: "exchange.titley", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 买入VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangeCardTitle = Rswift.StringResource(key: "exchange.card.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 价格：
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangePrice = Rswift.StringResource(key: "exchange.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 官网
       /// 
       /// Locales: en, zh-Hans
@@ -3686,6 +3726,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainGatewaydetailEmail = Rswift.StringResource(key: "crosschain.gatewaydetail.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 数量：
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangeAmount = Rswift.StringResource(key: "exchange.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 服务条款，交易条件，限制及隐私政策
       /// 
       /// Locales: en, zh-Hans
@@ -3718,6 +3762,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let crosschainGatewaydetailTitle = Rswift.StringResource(key: "crosschain.gatewaydetail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 购买
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangeBuy = Rswift.StringResource(key: "exchange.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 购买记录
+      /// 
+      /// Locales: en, zh-Hans
+      static let exchangeHistory = Rswift.StringResource(key: "exchange.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 隐私政策&服务条款
       /// 
       /// Locales: en, zh-Hans
@@ -7909,6 +7961,27 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 一键买币
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangeTitley(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.titley", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 买入VITE
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangeCardTitle(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.card.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 价格：
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangePrice(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.price", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 官网
       /// 
       /// Locales: en, zh-Hans
@@ -7921,6 +7994,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainGatewaydetailEmail(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.gatewaydetail.email", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 数量：
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangeAmount(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.amount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 服务条款，交易条件，限制及隐私政策
@@ -7977,6 +8057,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func crosschainGatewaydetailTitle(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.gatewaydetail.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 购买
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangeBuy(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.buy", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 购买记录
+      /// 
+      /// Locales: en, zh-Hans
+      static func exchangeHistory(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.history", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 隐私政策&服务条款

@@ -172,7 +172,7 @@ extension Exchangeprovider {
         var ratePrice = 0.0
         var receiveHash = ""
         var sendHash = ""
-        var ctime = 0.0
+        var ctime = 0
 
         init?(map: Map) {
             self.mapping(map: map)

@@ -18,84 +18,135 @@ class ExchangeViewController: BaseViewController {
     let viteTextField = UITextField()
     let ethTextField = UITextField()
     let rateLabel = UILabel()
-    let exchangeButton = UIButton.init(style: .blueWithShadow, title: "exchange")
+    let exchangeButton = UIButton.init(style: .blueWithShadow, title: R.string.localizable.exchangeBuy())
+
+    let topBackgroundView = UIImageView()
+
+    let card = ExchangeCard()
+
+    let titleView = PageTitleView.titleAndInfoButton(title: R.string.localizable.exchangeTitley())
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
         setupViews()
         bind()
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         vm.action.onNext(.getRate)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     func setupViews()  {
-         let button = UIButton()
-        button.setTitle("历史", for:  .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.sizeToFit()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: button)
 
-        button.rx.tap.bind { _ in
+        kas_activateAutoScrollingForView(scrollView)
 
-            UIViewController.current?.navigationController?.pushViewController(ExchangeHistoryViewController(), animated: true)
-
-            }.disposed(by: rx.disposeBag)
-
-        view.addSubview(viteTextField)
-        view.addSubview(ethTextField)
-        view.addSubview(rateLabel)
+        view.addSubview(scrollView)
         view.addSubview(exchangeButton)
+        scrollView.addSubview(topBackgroundView)
+        scrollView.addSubview(titleView)
+        scrollView.addSubview(card)
 
-        viteTextField.backgroundColor = .blue
-        ethTextField.backgroundColor = .blue
-        rateLabel.backgroundColor = .blue
-
-
-        viteTextField.snp.makeConstraints { (m) in
-            m.width.height.equalTo(100)
-            m.top.equalToSuperview()
+        scrollView.snp.makeConstraints { (m) in
+            m.left.right.top.equalToSuperview()
+            m.bottom.equalTo(exchangeButton.snp.top).offset(-10)
         }
 
-        ethTextField.snp.makeConstraints { (m) in
-            m.width.height.equalTo(100)
-            m.top.equalTo(viteTextField.snp.bottom).offset(20)
+        topBackgroundView.snp.makeConstraints { (m) in
+            m.left.right.top.equalToSuperview()
+            m.height.equalTo(192)
         }
 
-        rateLabel.snp.makeConstraints { (m) in
-            m.width.height.equalTo(100)
-            m.top.equalTo(ethTextField.snp.bottom).offset(20)
+        titleView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.top.equalToSuperview().offset(70)
         }
+
+        titleView.titleLabel.textColor = .white
+
+        topBackgroundView.backgroundColor =  UIColor.gradientColor(style: .leftTop2rightBottom,
+                                                                   frame: CGRect.init(x: 0, y: 0, width:kScreenW, height: 192),
+                                                                   colors: [UIColor(netHex: 0x052EF5),UIColor(netHex: 0x0BB6EB)])
+
+
+
+        scrollView.contentSize = CGSize.init(width: kScreenW, height: 567)
+        scrollView.isScrollEnabled = true
+
+        card.snp.makeConstraints { m in
+            m.left.right.equalToSuperview().inset(24)
+            m.height.equalTo(412)
+            m.centerX.equalToSuperview()
+            m.top.equalTo(topBackgroundView.snp.bottom).offset(-72)
+            m.bottom.equalToSuperview().offset(-20)
+
+        }
+
+        card.backgroundColor = UIColor.init(netHex: 0xffffff)
+        card.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        card.layer.shadowOpacity = 0.1
+        card.layer.shadowOffset = CGSize(width: 0, height: 0)
+        card.layer.shadowRadius = 4
+
 
         exchangeButton.snp.makeConstraints { (m) in
-            m.width.height.equalTo(100)
-            m.top.equalTo(rateLabel.snp.bottom).offset(20)
+            m.left.right.equalToSuperview().inset(24)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-20)
         }
     }
 
     func bind()  {
         vm.rateInfo.bind { info in
-            self.rateLabel.text = String(info.rightRate)
+            self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1VITE = " + (String(info.rightRate) ?? "-") + "ETH"
         }.disposed(by: rx.disposeBag)
 
-        viteTextField.rx.text.bind { text in
-            guard let count = Double(text ?? "") else { return }
+        card.viteInfo.inputTextField.rx.text.bind { text in
+            guard let count = Double(text ?? "") else {
+                self.card.ethInfo.inputTextField.text = nil
+                return
+            }
              let rightRate = self.vm.rateInfo.value.rightRate
 
+            guard rightRate > 0 else {
+                self.card.ethInfo.inputTextField.text = nil
+                return
+            }
+
             let a = count * rightRate
-
-            self.ethTextField.text = a.description
-
+            self.card.ethInfo.inputTextField.text = String(a)
         }.disposed(by: rx.disposeBag)
 
-        ethTextField.rx.text.bind { text in
-            guard let count = Double(text ?? "") else { return }
+        card.ethInfo.inputTextField.rx.text.bind { text in
+            guard let count = Double(text ?? "") else {
+                self.card.viteInfo.inputTextField.text = nil
+                return
+            }
             let rightRate = self.vm.rateInfo.value.rightRate
+            guard rightRate > 0 else {
+                self.card.viteInfo.inputTextField.text = nil
+                return
+            }
 
             let a = count / rightRate
 
-            self.viteTextField.text = a.description
+            self.card.viteInfo.inputTextField.text = String(a)
 
         }.disposed(by: rx.disposeBag)
+
+
+        card.historyButton.rx.tap.bind { _ in
+
+            UIViewController.current?.navigationController?.pushViewController(ExchangeHistoryViewController(), animated: true)
+
+            }.disposed(by: rx.disposeBag)
 
         exchangeButton.rx.tap.bind{
 
@@ -121,13 +172,21 @@ class ExchangeViewController: BaseViewController {
                     Toast.show(e.localizedDescription)
                 }
             }
+        }.disposed(by: rx.disposeBag)
 
-
+        titleView.infoButton.rx.tap.bind{
+            let vc = WKWebViewController.init(url: URL.init(string: "http://www.baidu.com")!)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
+        $0.layer.masksToBounds = false
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
     }
     
 
@@ -140,5 +199,7 @@ class ExchangeViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+
 
 }
