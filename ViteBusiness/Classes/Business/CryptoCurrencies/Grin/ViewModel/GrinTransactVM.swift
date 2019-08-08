@@ -39,6 +39,7 @@ class GrinTransactVM {
     let sendTxSuccess: PublishSubject<Void> = PublishSubject()
     let message: PublishSubject<String> = PublishSubject()
     let sendButtonEnabled: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+    let showLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     lazy var viteService = GrinTxByViteService()
 
@@ -60,11 +61,11 @@ class GrinTransactVM {
     }
 
     func txStrategies(amountString: String?, completion: ((String?) -> Void)? = nil) {
+        guard let amount = self.amountFrom(string: amountString) else {
+            self.txFee.accept("")
+            return
+        }
         GrinManager.queue.async {
-            guard let amount = self.amountFrom(string: amountString) else {
-                self.txFee.accept("")
-                return
-            }
             let result = GrinManager.default.txStrategies(amount: amount)
             DispatchQueue.main.async {
                 switch result {
@@ -82,9 +83,11 @@ class GrinTransactVM {
     }
 
     func creatTxFile(_ amount: UInt64) {
+        self.showLoading.accept(true)
         grin_async({ () in
             GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "")
         },  { (result) in
+            self.showLoading.accept(false)
             switch result {
             case .success(let sendSlate):
                 GrinLocalInfoService.shared.addSendInfo(slateId: sendSlate.id, method: "File", creatTime: Int(Date().timeIntervalSince1970))
@@ -168,9 +171,11 @@ class GrinTransactVM {
     }
 
     func sendTxByHttp(anmout: UInt64, destnation: String) {
+        self.showLoading.accept(true)
         grin_async({ () in
             GrinManager.default.txSend(amount: anmout, selectionStrategyIsUseAll: false, message: "Sent", dest: destnation)
         },  { (result) in
+            self.showLoading.accept(false)
             switch result {
             case .success(let slate):
                 let result = GrinManager.default.txRepost(slateID: slate.id)
@@ -192,6 +197,7 @@ class GrinTransactVM {
     }
 
     func sendTxByVite(amount: UInt64, destnation: String)  {
+        self.showLoading.accept(true)
         viteService.sendGrin(amount: amount, to: destnation)
             .done {
                 plog(level: .info, log: "grin-3-sendGrin-sendGrinSuccess.amount:\(amount),destnation:\(destnation)", tag: .grin)
@@ -202,6 +208,9 @@ class GrinTransactVM {
                 plog(level: .info, log: "grin-3-sendGrin-sendGrinFailed.amount:\(amount),destnation:\(destnation),error:\(error)", tag: .grin)
                 self.sendButtonEnabled.accept(true)
                 self.message.onNext(error.localizedDescription)
+        }
+            .finally {
+                self.showLoading.accept(false)
         }
     }
 

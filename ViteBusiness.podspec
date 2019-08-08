@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
 
   s.dependency 'SnapKit', '~> 4.0.0'
-  s.dependency 'BigInt', '~> 3.0'
+  s.dependency 'BigInt'
   s.dependency 'R.swift', '5.0.0.alpha.3'
   s.dependency 'JSONRPCKit', '~> 3.0.0'
   s.dependency 'PromiseKit', '~> 6.0'
@@ -64,6 +64,8 @@ Pod::Spec.new do |s|
   s.dependency 'Kingfisher', '~> 4.0'
   s.dependency 'NYXImagesKit', '2.3'
   s.dependency 'URLNavigator'
+  s.dependency 'web3.swift.pod', '~> 2.2.0'
+
 
 
   #request
@@ -109,7 +111,7 @@ Pod::Spec.new do |s|
   s.dependency 'MLeaksFinder'
 
   s.dependency 'ViteWallet'
-  s.dependency 'ViteEthereum'
+  #s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
 
 

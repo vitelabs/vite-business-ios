@@ -13,7 +13,7 @@ import NSObject_Rx
 import RxDataSources
 import ActionSheetPicker_3_0
 import ViteWallet
-import Web3swift
+import web3swift
 
 class ContactsEditViewController: BaseViewController {
 

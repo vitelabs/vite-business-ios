@@ -14,7 +14,7 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import Web3swift
+import web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 

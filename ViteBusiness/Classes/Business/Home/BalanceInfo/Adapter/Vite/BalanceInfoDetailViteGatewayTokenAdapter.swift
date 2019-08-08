@@ -10,7 +10,11 @@ import Foundation
 class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
 
     let tokenInfo: TokenInfo
+
     let delegate: BalanceInfoDetailTableViewDelegate?
+
+    var sourceView: UIView?
+
 
     required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
         let handler = TableViewHandler(tableView: tableView)
@@ -45,42 +49,23 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
 
     fileprivate func getOperationView() -> UIView {
         let tokenInfo = self.tokenInfo
-        var sourceView: UIView?
-        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) {
-            let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { (_) in
-                let vc = EthViteExchangeViewController()
-                vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: tokenInfo)
-                vc.exchangeType = .ethChainToViteToken
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-            }
-            let a1 = UIAlertAction.init(title: R.string.localizable.crosschainDepositOtherwallet(), style: .default) { (_) in
-                let vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: tokenInfo))
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-            }
 
-            let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-            var message: String? = R.string.localizable.crosschainBetaAlert()
-            if message == "" {
-                message = nil
-            }
-            let alert = UIAlertController.init(title: nil, message: message, preferredStyle: .actionSheet)
-            alert.addAction(a0)
-            alert.addAction(a1)
-            alert.addAction(a2)
-            if let popover = alert.popoverPresentationController, let sourceView = sourceView {
-                popover.sourceView = sourceView
-                popover.sourceRect = sourceView.bounds
-                popover.permittedArrowDirections = .any;
-            }
-            UIViewController.current?.present(alert, animated: true, completion: nil)
+        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) { [weak self] in
+            self?.showStatement(isWithDraw: false)
         }
 
-        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) {
-            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: tokenInfo))
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) { [weak self] in
+            self?.showStatement(isWithDraw: true)
         }
         let operationView = BalanceInfoViteGatewayOperationView.init(firstOperation: o0, secondOperation: o1)
         sourceView = operationView.leftButton
         return operationView
     }
+
+    func showStatement(isWithDraw:Bool) {
+        let vc = CrossChainStatementViewController(tokenInfo: tokenInfo)
+        vc.isWithDraw = isWithDraw
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+    }
+
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 import Vite_GrinWallet
-import Web3swift
+import web3swift
 
 public struct ViteConst {
     public static let instance = ViteConst()
@@ -69,11 +69,13 @@ public extension ViteConst {
         public let x: String
         public let genesisPageUrl: String
         public let gateway: String
+        public let exchange: String
+
     }
 
     public struct Eth {
         public let nodeHttp: String
-        public let chainType: Web3swift.Networks
+        public let chainType: web3swift.Networks
         public let explorer: String
     }
 
@@ -113,7 +115,8 @@ public extension ViteConst {
                            growth: "https://growth.vite.net",
                            x: "https://vitex.vite.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "https://wallet.vite.net"),
+                           gateway: "https://wallet.vite.net",
+                           exchange: "http://150.109.40.169:7070/test"),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
@@ -137,7 +140,8 @@ public extension ViteConst {
                            growth: "https://growth.vite.net/test",
                            x: "http://132.232.65.121:8080/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "http://132.232.60.116:8001"),
+                           gateway: "http://132.232.60.116:8001",
+                           exchange: "http://150.109.40.169:7070/test"),
                 eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
@@ -161,7 +165,8 @@ public extension ViteConst {
                            growth: "https://growth.vite.net",
                            x: "https://vitex.vite.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "https://wallet.vite.net"),
+                           gateway: "https://wallet.vite.net",
+                           exchange: "http://150.109.40.169:7070/test"),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),

@@ -9,7 +9,7 @@ import ViteWallet
 import BigInt
 import Vite_HDWalletKit
 import enum Result.Result
-import Web3swift
+import web3swift
 
 public struct ETHURI: URIType {
 

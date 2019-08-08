@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import ViteEthereum
-import Web3swift
+
+import web3swift
 import BigInt
 import PromiseKit
 import ViteWallet
@@ -380,7 +380,11 @@ class EthViteExchangeViewController: BaseViewController {
 
     func exchangeEthCoinToViteToken(viteAddress: String, amount: Amount, gasPrice: Float) {
         CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            guard let `self` = self else {return}
+            let vc = CrossChainHistoryViewController()
+            vc.style = .desposit
+            vc.gatewayInfoService = self.gatewayInfoService
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

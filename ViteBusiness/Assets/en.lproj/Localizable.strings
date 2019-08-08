@@ -647,6 +647,8 @@
 "crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
 "crosschain.deposit.all" = "Receive All";
 "crosschain.deposit.amount" = "Receive Amount";
+"crosschain.withdraw.all" = "Withdraw All";
+"crosschain.withdraw.amount" = "Withdraw Amount";
 "crosschain.tokenDetail.shortname" = "Symbol";
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Token Name";
@@ -672,6 +674,17 @@
 "crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
 "crosschain.fee" = "Fee";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
+"crosschain.gatewaydetail.title" = "网关详情";
+"crosschain.gatewaydetail.name" =  "网关名称";
+"crosschain.gatewaydetail.webset" =  "官网";
+"crosschain.gatewaydetail.email" = "客服邮箱";
+"crosschain.gatewaydetail.statement" = "隐私政策&服务条款";
+"crosschain.gatewaydetail.host" = "网关URL";
+"crosschain.gatewaydetail.abstract" = "简介";
+"crosschain.statement.other.desc" = "本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动。\n\n使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。\n\n若您对支付流程有任何疑问，请联系%@客服团队%@";
+"crosschain.statement.vite.desc" = "本服务由%@提供。\n\n使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。\n\n若您对支付流程有任何疑问，请联系%@客服团队%@。";
+"crosschain.statement.detail" = "服务条款，交易条件，限制及隐私政策";
+"crosschain.statement.agree" = "点击下一步代表您已同意%@的%@";
 
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
@@ -775,3 +788,15 @@
 "buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
 "buildin.dex.recover.trading.pair.item0.title" = "Name";
 "buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+
+"unit.Million" = "Million";
+"unit.Billion" = "Billion";
+"unit.Trillion" = "Trillion";
+
+"exchange.history" = "购买记录";
+"exchange.card.title" = "买入VITE";
+"exchange.titley" = "一键买币";
+"exchange.buy" = "购买";
+"exchange.price" = "价格：";
+"exchange.amount" = "数量：";
+

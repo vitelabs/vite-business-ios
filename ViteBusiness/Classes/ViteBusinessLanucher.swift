@@ -13,8 +13,8 @@ import NSObject_Rx
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import Web3swift
-import ViteEthereum
+import web3swift
+
 
 public class ViteBusinessLanucher: NSObject {
 

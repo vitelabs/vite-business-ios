@@ -13,7 +13,7 @@ import ObjectMapper
 import RxSwift
 import RxCocoa
 import CryptoSwift
-import ViteEthereum
+
 
 public final class HDWalletManager {
     public static let instance = HDWalletManager()

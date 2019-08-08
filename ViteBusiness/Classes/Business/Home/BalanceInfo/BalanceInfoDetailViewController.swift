@@ -107,6 +107,11 @@ class BalanceInfoDetailViewController: BaseViewController {
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: rx.disposeBag)
 
+        navView.gatewayInfoBtn.rx.tap.bind { [unowned self] _ in
+            guard self.tokenInfo.isGateway else { return }
+            let vc = GateWayDetailViewController.init(tokenInfo: self.tokenInfo)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 
     func bind() {

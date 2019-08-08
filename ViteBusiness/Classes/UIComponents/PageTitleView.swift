@@ -12,6 +12,7 @@ class PageTitleView: UIView {
     enum Style {
         case onlyTitle
         case titleAndIcon
+        case titleAndInfoButton
     }
 
     let titleLabel = UILabel().then {
@@ -22,6 +23,10 @@ class PageTitleView: UIView {
     }
 
     var tokenIconView: TokenIconView?
+
+    var infoButton = UIButton.init() .then {
+        $0.setImage(R.image.infor_white(), for: .normal)
+    }
 
     var tokenInfo: TokenInfo? {
         didSet {
@@ -37,6 +42,8 @@ extension PageTitleView {
             return self.onlyTitle()
         case .titleAndIcon:
             return self.titleAndIcon()
+        case .titleAndInfoButton:
+            return self.titleAndInfoButton()
         default:
             break
         }
@@ -63,6 +70,17 @@ extension PageTitleView {
             m.right.equalToSuperview().offset(-22)
             m.top.equalToSuperview().offset(0.5)
             m.size.equalTo(CGSize(width: 50, height: 50))
+        }
+        return view
+    }
+
+    class func titleAndInfoButton(title: String? = nil) -> PageTitleView {
+        let view = PageTitleView.onlyTitle(title: title)
+        view.addSubview(view.infoButton)
+        view.infoButton.snp.makeConstraints { (m) in
+            m.left.equalTo(view.titleLabel.snp.right).offset(6)
+            m.centerY.equalTo(view.titleLabel)
+            m.size.equalTo(CGSize(width: 16, height: 16))
         }
         return view
     }
