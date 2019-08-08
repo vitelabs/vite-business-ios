@@ -10,9 +10,16 @@ import Foundation
 class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
 
     let tokenInfo: TokenInfo
+    let delegate: BalanceInfoDetailTableViewDelegate?
 
-    required init(tokenInfo: TokenInfo) {
-            self.tokenInfo = tokenInfo
+    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
+        let handler = TableViewHandler(tableView: tableView)
+        let delegate = BalanceInfoViteChainTabelViewDelegate(tokenInfo: tokenInfo, tableViewHandler: handler)
+        handler.delegate = delegate
+
+        self.tokenInfo = tokenInfo
+        self.delegate = delegate
+        self.setup(headerView: headerView)
     }
 
     func viewDidAppear() {
@@ -25,29 +32,29 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         FetchQuotaManager.instance.releaseQuota()
     }
 
-    func setup(containerView: UIView) {
-
+    func setup(headerView: UIStackView) {
         let cardView = BalanceInfoViteChainCardView()
-        containerView.addSubview(cardView)
-        cardView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(cardView.intrinsicContentSize.height)
-        }
+        let operationView = getOperationView()
 
         cardView.bind(tokenInfo: tokenInfo)
 
+        headerView.addArrangedSubview(cardView.padding(horizontal: 24))
+        headerView.addPlaceholder(height: 16)
+        headerView.addArrangedSubview(operationView.padding(horizontal: 24))
+    }
+
+    fileprivate func getOperationView() -> UIView {
+        let tokenInfo = self.tokenInfo
         var sourceView: UIView?
         let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) {
-            let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { [unowned self] (_) in
+            let a0 = UIAlertAction.init(title: R.string.localizable.crosschainDepositVitewallet(), style: .default) { (_) in
                 let vc = EthViteExchangeViewController()
-                vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
+                vc.gatewayInfoService = CrossChainGatewayInfoService.init(tokenInfo: tokenInfo)
                 vc.exchangeType = .ethChainToViteToken
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
-            let a1 = UIAlertAction.init(title: R.string.localizable.crosschainDepositOtherwallet(), style: .default) { [unowned self] (_) in
-                let vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+            let a1 = UIAlertAction.init(title: R.string.localizable.crosschainDepositOtherwallet(), style: .default) { (_) in
+                let vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: tokenInfo))
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
 
@@ -69,27 +76,11 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
         }
 
         let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) {
-            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+            let vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: tokenInfo))
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
-        let operationView = BalanceInfoOperationView.init(firstOperation: o0, secondOperation: o1)
+        let operationView = BalanceInfoViteGatewayOperationView.init(firstOperation: o0, secondOperation: o1)
         sourceView = operationView.leftButton
-
-        containerView.addSubview(operationView)
-        operationView.snp.makeConstraints { (m) in
-            m.top.equalTo(cardView.snp.bottom).offset(16)
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-            m.height.equalTo(44)
-        }
-
-        let transactionsView = BalanceInfoViteChainTransactionsView(tokenInfo: tokenInfo)
-        containerView.addSubview(transactionsView)
-        transactionsView.snp.makeConstraints { (m) in
-            m.top.equalTo(operationView.snp.bottom).offset(14)
-            m.left.equalToSuperview()
-            m.right.equalToSuperview()
-            m.bottom.equalToSuperview()
-        }
+        return operationView
     }
 }

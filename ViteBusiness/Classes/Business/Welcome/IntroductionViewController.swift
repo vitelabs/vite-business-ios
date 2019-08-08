@@ -12,6 +12,22 @@ import NYXImagesKit
 import RazzleDazzle
 import CHIPageControl
 
+class f__IntroductionViewController: BaseViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        GCD.delay(5) {
+            UserDefaultsService.instance.setObject(Constants.IntroductionPageVersion, forKey: "IntroView", inCollection: "IntroViewPageVersion")
+            NotificationCenter.default.post(name: .finishShowIntroPage, object: nil)
+        }
+    }
+}
+
 class IntroductionViewController: AnimatedPagingScrollViewController {
     fileprivate let numPages = 4
     fileprivate var iconsDict: [String] = [

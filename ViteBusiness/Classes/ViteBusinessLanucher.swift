@@ -274,7 +274,7 @@ public class ViteBusinessLanucher: NSObject {
     func goShowIntroViewPage() {
         let introViewPageVersion = UserDefaultsService.instance.objectForKey("IntroView", inCollection: "IntroViewPageVersion") as? String  ?? ""
         if introViewPageVersion != Constants.IntroductionPageVersion {
-            let vc = IntroductionViewController()
+            let vc = f__IntroductionViewController()
             window.rootViewController = vc
             window.makeKeyAndVisible()
         } else {

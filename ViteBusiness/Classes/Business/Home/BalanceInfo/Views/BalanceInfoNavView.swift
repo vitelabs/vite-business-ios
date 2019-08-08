@@ -43,10 +43,10 @@ class BalanceInfoNavView: UIView {
         addSubview(gatewayNamelabel)
 
         backgroundColor = UIColor.white
-        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 20
+//        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+//        layer.shadowOpacity = 0.1
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+//        layer.shadowRadius = 20
 
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)

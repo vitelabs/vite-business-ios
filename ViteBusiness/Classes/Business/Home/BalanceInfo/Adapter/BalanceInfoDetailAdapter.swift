@@ -8,35 +8,44 @@
 import Foundation
 
 protocol BalanceInfoDetailAdapter {
-    var tokenInfo: TokenInfo { get }
-    init(tokenInfo: TokenInfo)
+    init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView)
+    var delegate: BalanceInfoDetailTableViewDelegate? { get }
     func viewDidAppear()
     func viewDidDisappear()
-    func setup(containerView: UIView)
+}
+
+extension BalanceInfoDetailAdapter {
+
+    init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
+        fatalError()
+    }
+
+    var delegate: BalanceInfoDetailTableViewDelegate? {
+        fatalError()
+    }
 }
 
 extension TokenInfo {
-    func createBalanceInfoDetailAdapter() -> BalanceInfoDetailAdapter {
+    func createBalanceInfoDetailAdapter(headerView: UIStackView, tableView: UITableView) -> BalanceInfoDetailAdapter {
         switch coinType {
         case .vite:
             if isViteCoin {
-                return BalanceInfoDetailViteCoinAdapter(tokenInfo: self)
+                return BalanceInfoDetailViteCoinAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             } else if isGateway {
-                return BalanceInfoDetailGatewayTokenAdapter(tokenInfo: self)
+                return BalanceInfoDetailGatewayTokenAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             } else {
-                return BalanceInfoDetailViteTokenAdapter(tokenInfo: self)
+                return BalanceInfoDetailViteTokenAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             }
         case .eth:
             if isViteERC20 {
-                return BalanceInfoDetailEthErc20ViteAdapter(tokenInfo: self)
+                return BalanceInfoDetailEthErc20ViteAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             } else {
-                return BalanceInfoDetailEthChainAdapter(tokenInfo: self)
+                return BalanceInfoDetailEthChainAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             }
         case .grin:
             fatalError()
         case .btc:
             fatalError()
-
         }
     }
 }

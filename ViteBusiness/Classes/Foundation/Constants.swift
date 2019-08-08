@@ -21,7 +21,7 @@ public struct Constants {
     //app channel
     public static let appDownloadChannel = Channel.appstore
 
-    public static let IntroductionPageVersion = "3.0"
+    public static let IntroductionPageVersion = "4"
 
     public static let whiteList = ["vite.org",
                                    "vite.net",

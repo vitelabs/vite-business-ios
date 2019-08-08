@@ -1,5 +1,5 @@
 //
-//  BalanceInfoOperationView.swift
+//  BalanceInfoViteGatewayOperationView.swift
 //  Action
 //
 //  Created by haoshenyang on 2019/6/11.
@@ -17,7 +17,7 @@ struct BalanceInfoOperation {
     let action: (()->())?
 }
 
-class BalanceInfoOperationView: UIView {
+class BalanceInfoViteGatewayOperationView: UIView {
 
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: 44)

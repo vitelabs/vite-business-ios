@@ -54,4 +54,22 @@ extension UIView {
         view.snp.makeConstraints { $0.height.equalTo(height) }
         return view
     }
+
+    func padding(_ insets: UIEdgeInsets) -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(self)
+        self.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(insets.top)
+            m.left.equalToSuperview().offset(insets.left)
+            m.right.equalToSuperview().offset(-insets.right)
+            m.bottom.equalToSuperview().offset(-insets.bottom)
+        }
+
+        return view
+    }
+
+    func padding(horizontal: CGFloat) -> UIView {
+        return padding(UIEdgeInsets(top: 0, left: horizontal, bottom: 0, right: horizontal))
+    }
 }
