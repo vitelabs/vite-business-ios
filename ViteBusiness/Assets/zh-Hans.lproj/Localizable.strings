@@ -190,7 +190,8 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "账户余额";
-"balance.info.detail.unconfirmed.title" = "在途(%@ UT)";
+"balance.info.detail.unconfirmed.title" = "在途";
+"balance.info.detail.unconfirmed.quota.title" = "(配额 %@ UT)";
 "balance.info.detail.pledge.amount.title" = "已抵押";
 "balance.info.detail.show.transactions.button.title" = "到以太坊浏览器查看交易记录";
 "balance.info.detail.reveice.button.title" = "收款";
@@ -296,11 +297,11 @@
 "quota.manage.page.input.address.title" = "配额受益地址";
 "quota.manage.page.quota.money.title" = "抵押金额";
 "quota.manage.page.quota.quota.title" = "配额";
-"quota.manage.page.quota.money.placeholder" = "请输入抵押金额，最小134 vite";
+"quota.manage.page.quota.money.placeholder" = "请输入抵押金额，最小134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "抵押锁定时长";
 "quota.manage.page.quota.snapshoot.height.desc" = "约 %@ 天";
 "quota.manage.page.submit.btn.title" = "提交抵押";
-"quota.manage.page.check.quotaList.btn.title" = "抵押列表";
+"quota.manage.page.check.quotaList.btn.title" = "抵押记录";
 "quota.manage.page.toast.money.error" = "抵押金额必须大于134 vite";
 "quota.submit.pop.desc" = "确认是否抵押%@以获取配额，抵押生效3天之后才可取回抵押金额";
 "quota.submit.pop.submit.btn.title" = "确认抵押";
@@ -324,7 +325,7 @@
 /* Peldge History */
 "peldge.message" = "当前app仅支持查看抵押列表，如需要取回到期抵押VITE，请前往web钱包操作";
 "peldge.deadline" = "到期";
-"peldge.title" = "我的抵押列表";
+"peldge.title" = "抵押记录";
 "peldge.address.title" = "受益地址";
 "peldge.cancel.peldge.button.title" = "取回抵押";
 "peldge.cancel.pledge.withdrawing.title" = "取回中";
@@ -452,6 +453,15 @@
 "workflow.toast.vote.success" = "投票请求发送成功";
 "workflow.toast.cancel.vote.success" = "撤销投票请求发送成功";
 "workflow.toast.contract.success" = "支付成功";
+
+"workflow.congestion.without.pow.alert.title" = "提示";
+"workflow.congestion.without.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。";
+"workflow.congestion.without.pow.alert.cancel" = "稍后转账";
+"workflow.congestion.without.pow.alert.ok" = "动态配额转账";
+"workflow.congestion.with.pow.alert.title" = "提示";
+"workflow.congestion.with.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额不足，请稍后转账。";
+"workflow.congestion.with.pow.alert.cancel" = "稍后转账";
+
 
 "workflow.fast.get.quota.title" = "快速获取配额";
 "workflow.fast.get.quota.message" = "请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。";

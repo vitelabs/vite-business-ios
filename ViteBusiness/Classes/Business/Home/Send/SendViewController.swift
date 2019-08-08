@@ -192,7 +192,7 @@ class SendViewController: BaseViewController {
                 case .user:
                     Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
-                            GCD.delay(1) { self.dismiss() }
+                            self.dismiss()
                         }
                     })
                 case .contract:
@@ -203,7 +203,7 @@ class SendViewController: BaseViewController {
                     }
                     Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
-                            GCD.delay(1) { self.dismiss() }
+                            self.dismiss()
                         }
                     })
                 }

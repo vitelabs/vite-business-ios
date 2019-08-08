@@ -187,13 +187,14 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "在途(%@ UT)";
+"balance.info.detail.unconfirmed.title" = "在途";
+"balance.info.detail.unconfirmed.quota.title" = "(配额 %@ UT)";
 "balance.info.detail.pledge.amount.title" = "已抵押";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Quota";
+"balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "可用配额/配额上限";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
@@ -289,7 +290,7 @@
 "toast.error.login" = "Login Error";
 
 /* quota manage */
-"quota.manage.page.title" = "Acquire Quota";
+"quota.manage.page.title" = "Get Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
 "quota.manage.page.quota.quota.title" = "配额";
@@ -320,7 +321,7 @@
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
-"peldge.title" = "My Staking List";
+"peldge.title" = "Staking List";
 "peldge.address.title" = "受益地址";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
@@ -448,6 +449,14 @@
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
 
+"workflow.congestion.without.pow.alert.title" = "提示";
+"workflow.congestion.without.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。";
+"workflow.congestion.without.pow.alert.cancel" = "稍后转账";
+"workflow.congestion.without.pow.alert.ok" = "动态配额转账";
+"workflow.congestion.with.pow.alert.title" = "提示";
+"workflow.congestion.with.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额不足，请稍后转账。";
+"workflow.congestion.with.pow.alert.cancel" = "稍后转账";
+
 "workflow.fast.get.quota.title" = "快速获取配额";
 "workflow.fast.get.quota.message" = "请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。";
 "workflow.fast.get.quota.tip" = "您也可以%@为任意地址抵押获取配额。";
@@ -465,7 +474,7 @@
 "confirm.transaction.page.vite.transfer.title" = "Transfer";
 "confirm.transaction.page.vite.confirm.button" = "Confirm";
 // vite pledge
-"confirm.transaction.page.vite.pledge.title" = "Acquire Quota";
+"confirm.transaction.page.vite.pledge.title" = "Get Quota";
 "confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
 "confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
 // vite vote & cancel
@@ -693,7 +702,7 @@
 "bifrost.operation.vote" = "Voting";
 "bifrost.operation.cancel.vote" = "Revoke Voting";
 "bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Acquire Quota";
+"bifrost.operation.pledge" = "Get Quota";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";

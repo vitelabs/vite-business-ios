@@ -323,7 +323,14 @@ class BalanceInfoViteChainCardView: UIView {
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ R.string.localizable.balanceInfoDetailUnconfirmedTitle("\($0.unconfirmedCount)") })
+            .map({
+                if $0.unconfirmedCount > 0 {
+                    let ut = (Double($0.unconfirmedCount) * ViteWalletConst.ut.receive).utToString()
+                    return R.string.localizable.balanceInfoDetailUnconfirmedTitle() + R.string.localizable.balanceInfoDetailUnconfirmedQuotaTitle("\(ut)")
+                } else {
+                    return R.string.localizable.balanceInfoDetailUnconfirmedTitle()
+                }
+            })
             .drive(onroadTitleLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()

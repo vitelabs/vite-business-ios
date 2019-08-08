@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ViteWallet
 
 public struct WebHandler {
 
@@ -15,6 +16,13 @@ public struct WebHandler {
     static func open(_ url: URL) {
         let webvc = WKWebViewController(url: url)
         UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+    }
+
+    static func openAddressDetailPage(address: ViteAddress) {
+        let host = appendLanguagePath(urlString: browserUrlString)
+        guard let string = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+        guard let url = URL(string: "\(host)/account/\(string)") else { return }
+        open(url)
     }
 
     static func openTranscationDetailPage(hash: String) {

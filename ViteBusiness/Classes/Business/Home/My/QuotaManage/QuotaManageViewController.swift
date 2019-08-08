@@ -79,7 +79,7 @@ class QuotaManageViewController: BaseViewController {
 
     private func setupNavBar() {
         statisticsPageName = Statistics.Page.WalletQuota.name
-        navigationTitleView = createNavigationTitleView()
+        navigationTitleView = NavigationTitleView(title: R.string.localizable.quotaManagePageTitle())
         let rightItem = UIBarButtonItem(title: R.string.localizable.quotaManagePageCheckQuotaListBtnTitle(), style: .plain, target: self, action: nil)
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .normal)
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
@@ -128,38 +128,6 @@ class QuotaManageViewController: BaseViewController {
         amountView.textField.delegate = self
 
         self.initBtnAction()
-    }
-
-    func createNavigationTitleView() -> UIView {
-        let view = UIView().then {
-            $0.backgroundColor = UIColor.white
-        }
-
-        let titleLabel = LabelTipView(R.string.localizable.quotaManagePageTitle()).then {
-            $0.titleLab.font = UIFont.systemFont(ofSize: 24)
-            $0.titleLab.numberOfLines = 1
-            $0.titleLab.adjustsFontSizeToFitWidth = true
-            $0.titleLab.textColor = UIColor(netHex: 0x24272B)
-        }
-
-        view.addSubview(titleLabel)
-
-        titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(view).offset(6)
-            m.left.equalTo(view).offset(24)
-            m.bottom.equalTo(view).offset(-20)
-            m.height.equalTo(29)
-        }
-
-        titleLabel.tipButton.rx.tap.bind { [weak self] in
-            let htmlString = R.string.localizable.popPageTipQuota()
-            let vc = PopViewController(htmlString: htmlString)
-            vc.modalPresentationStyle = .overCurrentContext
-            let delegate =  StyleActionSheetTranstionDelegate()
-            vc.transitioningDelegate = delegate
-            self?.present(vc, animated: true, completion: nil)
-        }.disposed(by: rx.disposeBag)
-        return view
     }
 }
 

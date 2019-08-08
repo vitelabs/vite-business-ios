@@ -70,6 +70,16 @@ class PledgeHistoryViewController: BaseViewController, View {
             reactor?.action.onNext(.loadMore)
         }
 
+        tableView.rx.itemSelected
+            .bind { [weak self] indexPath in
+                guard let `self` = self else { fatalError() }
+                if let pledge = self.reactor?.currentState.pledges[indexPath.row] {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    WebHandler.openAddressDetailPage(address: pledge.beneficialAddress)
+                }
+            }
+            .disposed(by: rx.disposeBag)
+
         reactor.state
             .map { $0.pledges }
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) {[weak self] _, pledge, cell in

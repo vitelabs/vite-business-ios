@@ -24,7 +24,7 @@ final class PledgeHistoryCell: BaseTableViewCell {
 
     let addressBackView = UIImageView().then {
         $0.image = UIImage.image(withColor: UIColor(netHex: 0xF3F5F9), cornerRadius: 2).resizable
-        $0.highlightedImage = $0.image
+        $0.highlightedImage = UIImage.color(UIColor(netHex: 0xd9d9d9))
     }
 
     let timeLabel = UILabel().then {
@@ -55,7 +55,6 @@ final class PledgeHistoryCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: -24)
-        self.selectionStyle = .none
 
         contentView.addSubview(addressTitleLabel)
         contentView.addSubview(addressBackView)

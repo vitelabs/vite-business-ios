@@ -56,7 +56,7 @@ public struct Workflow {
 
     static func getPowWorkflow(context: SendBlockContext) -> Promise<SendBlockContext> {
         var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: context.quota?.utRequired.utToString() ?? "") {
+        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: context.quota.utRequired.utToString()) {
             cancelPow = true
         }
         getPowFloatView.show()
@@ -101,11 +101,32 @@ public struct Workflow {
             .always {
                 HUD.hide()
             }.then { (context) -> Promise<(context: SendBlockContext, getPoWTimestamp: Date)> in
-                let start = Date()
-                if context.isNeedToCalcPoW {
-                    return getPowWorkflow(context: context).map { ($0, start) }
+                if context.quota.isCongestion {
+                    if context.isNeedToCalcPoW {
+                        return Promise { seal in
+                            Alert.show(title: R.string.localizable.workflowCongestionWithPowAlertTitle(), message: R.string.localizable.workflowCongestionWithPowAlertMessage(), actions: [
+                                (.default(title: R.string.localizable.workflowCongestionWithPowAlertCancel()), { alertController in
+                                    seal.reject(ViteError.cancel)
+                                })])
+                        }
+                    } else {
+                        return Promise { seal in
+                            Alert.show(title: R.string.localizable.workflowCongestionWithoutPowAlertTitle(), message: R.string.localizable.workflowCongestionWithoutPowAlertMessage(), actions: [
+                                (.default(title: R.string.localizable.workflowCongestionWithoutPowAlertOk()), { alertController in
+                                    seal.fulfill((context, Date()))
+                                }),
+                                (.default(title: R.string.localizable.workflowCongestionWithoutPowAlertCancel()), { alertController in
+                                    seal.reject(ViteError.cancel)
+                                })])
+                        }
+                    }
                 } else {
-                    return Promise.value((context, start))
+                    let start = Date()
+                    if context.isNeedToCalcPoW {
+                        return getPowWorkflow(context: context).map { ($0, start) }
+                    } else {
+                        return Promise.value((context, start))
+                    }
                 }
             }.always {
                 HUD.show()
@@ -115,8 +136,8 @@ public struct Workflow {
             }.always {
                 HUD.hide()
             }.done { (context, accountBlock, duration) in
-                if context.isNeedToCalcPoW {
-                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota?.utRequired.utToString() ?? "", pledgeClick: {
+                if context.isNeedToCalcPoW && type != .pledge {
+                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota.utRequired.utToString(), pledgeClick: {
                         let vc = QuotaManageViewController()
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     }, cancelClick: {}).show()
