@@ -315,7 +315,10 @@ class GatewayWithdrawViewController: BaseViewController {
                 data.append(withDrawAddressData!)
 
                 Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, completion: { (_) in
-                    self.navigationController?.popViewController(animated: true)
+                    let vc = CrossChainHistoryViewController()
+                    vc.style = .withdraw
+                    vc.gatewayInfoService = self.gateWayInfoService
+                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                 })
             }.catch { [weak self](error) in
                 self?.view.hideLoading()

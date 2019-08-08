@@ -14,7 +14,6 @@ class ExchangeViewModel {
     enum Action {
         case getRate
         case report(hash: String)
-        
         case refreshHistory
         case getMoreHistory
     }
