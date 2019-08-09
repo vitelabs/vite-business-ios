@@ -30,22 +30,22 @@ class ExchangeViewController: BaseViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        kas_activateAutoScrollingForView(scrollView)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         vm.action.onNext(.getRate)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     func setupViews()  {
-
-        kas_activateAutoScrollingForView(scrollView)
-
+        navigationBarStyle = .clear
         view.addSubview(scrollView)
         view.addSubview(exchangeButton)
         scrollView.addSubview(topBackgroundView)
@@ -96,7 +96,7 @@ class ExchangeViewController: BaseViewController {
 
         exchangeButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-20)
+            m.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
     }
 
@@ -110,7 +110,7 @@ class ExchangeViewController: BaseViewController {
                 self.card.ethInfo.inputTextField.text = nil
                 return
             }
-             let rightRate = self.vm.rateInfo.value.rightRate
+            let rightRate = self.vm.rateInfo.value.rightRate
 
             guard rightRate > 0 else {
                 self.card.ethInfo.inputTextField.text = nil
@@ -180,7 +180,13 @@ class ExchangeViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
 
         titleView.infoButton.rx.tap.bind{
-            let vc = WKWebViewController.init(url: URL.init(string: "http://www.baidu.com")!)
+            var url: URL!
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                url = URL.init(string: "https://vite-static-pages.netlify.com/exchange/zh/exchange.html")
+            } else {
+                url = URL.init(string: "https://vite-static-pages.netlify.com/exchange/en/exchange.html")
+            }
+            let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
 
