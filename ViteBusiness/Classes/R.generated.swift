@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 190 images.
+  /// This `R.image` struct is generated, and contains static references to 192 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -64,6 +64,10 @@ public struct R: Rswift.Validatable {
     public static let exchange_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_icon")
     /// Image `exchange_middle_line`.
     public static let exchange_middle_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_middle_line")
+    /// Image `exchange_tabbar_icon_unseleted`.
+    public static let exchange_tabbar_icon_unseleted = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_tabbar_icon_unseleted")
+    /// Image `exchange_tabbar_icon`.
+    public static let exchange_tabbar_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_tabbar_icon")
     /// Image `exchange_txs`.
     public static let exchange_txs = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_txs")
     /// Image `face_id`.
@@ -512,6 +516,16 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "exchange_middle_line", bundle: ..., traitCollection: ...)`
     public static func exchange_middle_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.exchange_middle_line, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_tabbar_icon", bundle: ..., traitCollection: ...)`
+    public static func exchange_tabbar_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_tabbar_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_tabbar_icon_unseleted", bundle: ..., traitCollection: ...)`
+    public static func exchange_tabbar_icon_unseleted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_tabbar_icon_unseleted, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "exchange_txs", bundle: ..., traitCollection: ...)`
