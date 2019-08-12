@@ -384,7 +384,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/APIKit/APIKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
@@ -501,7 +501,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6D8F98208286855C862CAE6C /* [CP] Check Pods Manifest.lock */ = {
@@ -592,7 +592,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Tests/Pods-ViteBusiness_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Tests/Pods-ViteBusiness_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
@@ -605,7 +605,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Tests/Pods-ViteBusiness_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Tests/Pods-ViteBusiness_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D9A4B749721410F82E0B43EC /* [CP] Embed Pods Frameworks */ = {
@@ -616,7 +616,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-UpdateRswift/Pods-UpdateRswift-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-UpdateRswift/Pods-UpdateRswift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -627,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UpdateRswift/Pods-UpdateRswift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UpdateRswift/Pods-UpdateRswift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EAAD84195839C7D5C5F115CD /* [CP] Copy Pods Resources */ = {
@@ -638,7 +638,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ViteBusiness/ViteBusiness.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -649,7 +649,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF09673636F070C13DFBEAF2 /* [CP] Check Pods Manifest.lock */ = {
