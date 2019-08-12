@@ -11,7 +11,13 @@ import SwiftyJSON
 
 struct BuildInTransferCrossChain: BuildInTransferProtocol {
 
-    let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Cross-Chain Transfer\",\"zh\":\"跨链转出\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"转出金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Fee\",\"zh\":\"手续费\"}},{\"name\":{\"base\":\"Receive Address\",\"zh\":\"收款地址\"}}]}")!
+    let description = VBViteSendTx.Description(
+        function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinTransferCrossChainFunctionTitle()),
+        inputs: [
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinTransferCrossChainItem0Title(), style: VBViteSendTx.InputDescription.Style.blue),
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinTransferCrossChainItem1Title()),
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinTransferCrossChainItem2Title()),
+        ])
 
     func match(_ sendTx: VBViteSendTx) -> Bool {
 
@@ -57,7 +63,7 @@ struct BuildInTransferCrossChain: BuildInTransferProtocol {
         } else if type == 0x01 {
             let addressSize = Int(UInt8(data[3]))
             let addressOffset: Int = 3 + 1
-            guard data.count > addressOffset + addressSize + 1 else { return Promise(error: ConfirmError.InvalidData) }
+            guard data.count >= addressOffset + addressSize + 1 else { return Promise(error: ConfirmError.InvalidData) }
             guard let address = String(bytes: data[addressOffset..<addressOffset + addressSize], encoding: .utf8) else { return Promise(error: ConfirmError.InvalidData) }
             let labelSize = Int(data[Int(addressOffset + addressSize)])
             let labelOffset: Int = addressOffset + addressSize + 1

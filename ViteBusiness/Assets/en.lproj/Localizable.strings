@@ -721,6 +721,11 @@
 
 // Buildin
 
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Transfer";
+"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.item1.title" = "Fee";
+"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
 "buildin.coin.issuance.function.title" = "Token Issuance";
 "buildin.coin.issuance.item0.title" = "Issuance Address";
 "buildin.coin.issuance.item1.title" = "Token Name";
@@ -775,3 +780,19 @@
 "buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
 "buildin.dex.recover.trading.pair.item0.title" = "Name";
 "buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
+"buildin.dex.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.become.vip.function.title" = "Become a VIP";
+"buildin.dex.become.vip.item0.title" = "Current Address";
+"buildin.dex.become.vip.item1.title" = "Amount";
+
+"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
+"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.item1.title" = "Amount";

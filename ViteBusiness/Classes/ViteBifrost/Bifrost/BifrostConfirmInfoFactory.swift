@@ -149,6 +149,9 @@ struct BifrostConfirmInfoFactory {
         case dexNewMarket
         case dexMarketConfig
 
+        case dexStakingAsMining
+        case dexVip
+
         fileprivate var info: BuildInContractProtocol {
 
             switch self {
@@ -194,6 +197,10 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractDexNewMarket()
             case .dexMarketConfig:
                 return BuildInContractDexMarketConfig()
+            case .dexStakingAsMining:
+                return BuildInContractDexStakingAsMining()
+            case .dexVip:
+                return BuildInContractDexVip()
             }
         }
     }

@@ -22,7 +22,7 @@ struct BuildInContractOthers {
             let amountItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleAmount(),
                                                     text: sendTx.block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals))
             let dataItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleData(),
-                                                  text: sendTx.block.data?.base64EncodedString() ?? "")
+                                                  text: sendTx.block.data?.toHexString() ?? "")
 
             if let abi = sendTx.abi {
                 let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi)

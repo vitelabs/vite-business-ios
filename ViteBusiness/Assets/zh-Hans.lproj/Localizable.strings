@@ -727,6 +727,11 @@
 
 // Buildin
 
+"buildin.transfer.cross.chain.function.title" = "跨链转出";
+"buildin.transfer.cross.chain.item0.title" = "转出金额";
+"buildin.transfer.cross.chain.item1.title" = "手续费";
+"buildin.transfer.cross.chain.item2.title" = "收款地址";
+
 "buildin.coin.issuance.function.title" = "铸币";
 "buildin.coin.issuance.item0.title" = "铸币地址";
 "buildin.coin.issuance.item1.title" = "代币全称";
@@ -781,3 +786,21 @@
 "buildin.dex.recover.trading.pair.function.title" = "恢复交易对";
 "buildin.dex.recover.trading.pair.item0.title" = "交易对名称";
 "buildin.dex.recover.trading.pair.item1.title" = "当前地址";
+
+"buildin.dex.staking.as.mining.function.title" = "抵押挖矿";
+"buildin.dex.staking.as.mining.item0.title" = "当前地址";
+"buildin.dex.staking.as.mining.item1.title" = "抵押金额";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "撤销抵押挖矿";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "当前地址";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "抵押金额";
+
+"buildin.dex.become.vip.function.title" = "开通VIP";
+"buildin.dex.become.vip.item0.title" = "当前地址";
+"buildin.dex.become.vip.item1.title" = "抵押金额";
+
+"buildin.dex.cancel.vip.function.title" = "撤销VIP";
+"buildin.dex.cancel.vip.item0.title" = "当前地址";
+"buildin.dex.cancel.vip.item1.title" = "抵押金额";
+
+

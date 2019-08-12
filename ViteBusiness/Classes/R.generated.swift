@@ -1312,7 +1312,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 640 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 656 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1485,6 +1485,26 @@ public struct R: Rswift.Validatable {
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
+      public static let buildinDexBecomeVipItem1Title = Rswift.StringResource(key: "buildin.dex.become.vip.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelStakingAsMiningItem1Title = Rswift.StringResource(key: "buildin.dex.cancel.staking.as.mining.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelVipItem1Title = Rswift.StringResource(key: "buildin.dex.cancel.vip.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexStakingAsMiningItem1Title = Rswift.StringResource(key: "buildin.dex.staking.as.mining.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferCrossChainItem0Title = Rswift.StringResource(key: "buildin.transfer.cross.chain.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
       public static let confirmTransactionAmountTitle = Rswift.StringResource(key: "confirm.transaction.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
@@ -1590,6 +1610,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let walletHomeBalanceTitle = Rswift.StringResource(key: "wallet.home.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Become a VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexBecomeVipFunctionTitle = Rswift.StringResource(key: "buildin.dex.become.vip.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Beneficiary Address
       /// 
       /// Locales: en, zh-Hans
@@ -1642,6 +1666,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostOperationCancelRegisterSbp = Rswift.StringResource(key: "bifrost.operation.cancel.register.sbp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cancel Staking as Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelStakingAsMiningFunctionTitle = Rswift.StringResource(key: "buildin.dex.cancel.staking.as.mining.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cancel VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelVipFunctionTitle = Rswift.StringResource(key: "buildin.dex.cancel.vip.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Canceled
       /// 
       /// Locales: en, zh-Hans
@@ -1893,6 +1925,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Cross-Chain Transfer
       /// 
       /// Locales: en, zh-Hans
+      public static let buildinTransferCrossChainFunctionTitle = Rswift.StringResource(key: "buildin.transfer.cross.chain.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cross-Chain Transfer
+      /// 
+      /// Locales: en, zh-Hans
       public static let crosschainWithdraw = Rswift.StringResource(key: "crosschain.withdraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Cross-chain multiple token types
       /// 
@@ -1909,11 +1945,27 @@ public struct R: Rswift.Validatable {
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
+      public static let buildinDexBecomeVipItem0Title = Rswift.StringResource(key: "buildin.dex.become.vip.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelStakingAsMiningItem0Title = Rswift.StringResource(key: "buildin.dex.cancel.staking.as.mining.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelVipItem0Title = Rswift.StringResource(key: "buildin.dex.cancel.vip.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
       public static let buildinDexOpenTradingPairItem1Title = Rswift.StringResource(key: "buildin.dex.open.trading.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexRecoverTradingPairItem1Title = Rswift.StringResource(key: "buildin.dex.recover.trading.pair.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexStakingAsMiningItem0Title = Rswift.StringResource(key: "buildin.dex.staking.as.mining.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
@@ -2050,6 +2102,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let introductionPageTip4Title = Rswift.StringResource(key: "introduction.page.tip4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferCrossChainItem1Title = Rswift.StringResource(key: "buildin.transfer.cross.chain.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Fee
       /// 
       /// Locales: en, zh-Hans
@@ -2717,6 +2773,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Receive Address
       /// 
       /// Locales: en, zh-Hans
+      public static let buildinTransferCrossChainItem2Title = Rswift.StringResource(key: "buildin.transfer.cross.chain.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Receive Address
+      /// 
+      /// Locales: en, zh-Hans
       public static let crosschainDepositAddress = Rswift.StringResource(key: "crosschain.deposit.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Receive All
       /// 
@@ -2990,6 +3050,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaManagePageToastMoneyError = Rswift.StringResource(key: "quota.manage.page.toast.money.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Staking as Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexStakingAsMiningFunctionTitle = Rswift.StringResource(key: "buildin.dex.staking.as.mining.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Staking freeze duration
       /// 
       /// Locales: en, zh-Hans
@@ -4172,6 +4236,41 @@ public struct R: Rswift.Validatable {
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinDexBecomeVipItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.become.vip.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelStakingAsMiningItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.staking.as.mining.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelVipItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.vip.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexStakingAsMiningItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.staking.as.mining.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferCrossChainItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.cross.chain.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
       public static func confirmTransactionAmountTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.amount.title", bundle: R.hostingBundle, comment: "")
       }
@@ -4358,6 +4457,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("wallet.home.balance.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Become a VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexBecomeVipFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.become.vip.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Beneficiary Address
       /// 
       /// Locales: en, zh-Hans
@@ -4447,6 +4553,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostOperationCancelRegisterSbp(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.cancel.register.sbp", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cancel Staking as Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelStakingAsMiningFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.staking.as.mining.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cancel VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelVipFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.vip.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Canceled
@@ -4886,6 +5006,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Cross-Chain Transfer
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinTransferCrossChainFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.cross.chain.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cross-Chain Transfer
+      /// 
+      /// Locales: en, zh-Hans
       public static func crosschainWithdraw(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.withdraw", bundle: R.hostingBundle, comment: "")
       }
@@ -4914,6 +5041,27 @@ public struct R: Rswift.Validatable {
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinDexBecomeVipItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.become.vip.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelStakingAsMiningItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.staking.as.mining.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelVipItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.vip.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
       public static func buildinDexOpenTradingPairItem1Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.dex.open.trading.pair.item1.title", bundle: R.hostingBundle, comment: "")
       }
@@ -4923,6 +5071,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinDexRecoverTradingPairItem1Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.dex.recover.trading.pair.item1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexStakingAsMiningItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.staking.as.mining.item0.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Current Address
@@ -5161,6 +5316,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func introductionPageTip4Title(_: Void = ()) -> String {
         return NSLocalizedString("introduction.page.tip4.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferCrossChainItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.cross.chain.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fee
@@ -6328,6 +6490,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Receive Address
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinTransferCrossChainItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.cross.chain.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Receive Address
+      /// 
+      /// Locales: en, zh-Hans
       public static func crosschainDepositAddress(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.deposit.address", bundle: R.hostingBundle, comment: "")
       }
@@ -6806,6 +6975,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaManagePageToastMoneyError(_: Void = ()) -> String {
         return NSLocalizedString("quota.manage.page.toast.money.error", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Staking as Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexStakingAsMiningFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.staking.as.mining.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Staking freeze duration
