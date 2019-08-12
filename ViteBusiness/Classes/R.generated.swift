@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 184 images.
+  /// This `R.image` struct is generated, and contains static references to 186 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -346,6 +346,8 @@ public struct R: Rswift.Validatable {
     public static let icon_wallet_home_nav_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_wallet_home_nav_bg")
     /// Image `infor_white`.
     public static let infor_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "infor_white")
+    /// Image `intro_en`.
+    public static let intro_en = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_en")
     /// Image `intro_icon_0`.
     public static let intro_icon_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_0")
     /// Image `intro_icon_1`.
@@ -354,6 +356,8 @@ public struct R: Rswift.Validatable {
     public static let intro_icon_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_2")
     /// Image `intro_icon_3`.
     public static let intro_icon_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_icon_3")
+    /// Image `intro_zh`.
+    public static let intro_zh = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro_zh")
     /// Image `lock_page_user`.
     public static let lock_page_user = Rswift.ImageResource(bundle: R.hostingBundle, name: "lock_page_user")
     /// Image `login_bg`.
@@ -1207,6 +1211,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.infor_white, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "intro_en", bundle: ..., traitCollection: ...)`
+    public static func intro_en(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.intro_en, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "intro_icon_0", bundle: ..., traitCollection: ...)`
     public static func intro_icon_0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.intro_icon_0, compatibleWith: traitCollection)
@@ -1225,6 +1234,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "intro_icon_3", bundle: ..., traitCollection: ...)`
     public static func intro_icon_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.intro_icon_3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "intro_zh", bundle: ..., traitCollection: ...)`
+    public static func intro_zh(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.intro_zh, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "lock_page_user", bundle: ..., traitCollection: ...)`
@@ -1312,7 +1326,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 656 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 648 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1350,7 +1364,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tokenListPageIgnoreLabTitle = Rswift.StringResource(key: "token.list.page.ignore.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: (配额 %@ UT)
+      /// en translation: (%@ UT)
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailUnconfirmedQuotaTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -1546,10 +1560,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tokenListPageIgnoreAlterTitle = Rswift.StringResource(key: "token.list.page.ignore.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Asynchronous architecture, smooth trade
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip4Desc = Rswift.StringResource(key: "introduction.page.tip4.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.
       /// 
       /// Locales: en, zh-Hans
@@ -1614,6 +1624,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexBecomeVipFunctionTitle = Rswift.StringResource(key: "buildin.dex.become.vip.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Beneficiary
+      /// 
+      /// Locales: en, zh-Hans
+      public static let peldgeAddressTitle = Rswift.StringResource(key: "peldge.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Beneficiary Address
       /// 
       /// Locales: en, zh-Hans
@@ -1734,6 +1748,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageRemarkTitle = Rswift.StringResource(key: "send.page.remark.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Computing PoW to Secure Quota for this Transaction…
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Configurate Full Node.
       /// 
       /// Locales: en, zh-Hans
@@ -1930,10 +1948,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdraw = Rswift.StringResource(key: "crosschain.withdraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Cross-chain multiple token types
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip1Title = Rswift.StringResource(key: "introduction.page.tip1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Currency Unit
       /// 
       /// Locales: en, zh-Hans
@@ -1986,10 +2000,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostOperationTitleData = Rswift.StringResource(key: "bifrost.operation.title.data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Decentralized wallet
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip2Title = Rswift.StringResource(key: "introduction.page.tip2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Decimals
       /// 
       /// Locales: en, zh-Hans
@@ -2098,10 +2108,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethPageGasFeeFastTitle = Rswift.StringResource(key: "eth.page.gasFee.fast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fast transactions
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip4Title = Rswift.StringResource(key: "introduction.page.tip4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Fee
       /// 
       /// Locales: en, zh-Hans
@@ -2286,6 +2292,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let receivePageTokenAmountButtonTitle = Rswift.StringResource(key: "Receive.page.token.amount.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Instantly Getting Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaTitle = Rswift.StringResource(key: "workflow.fast.get.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Insufficient Balance
       /// 
       /// Locales: en, zh-Hans
@@ -2434,10 +2444,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Multi-token support, easy assets management
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip1Desc = Rswift.StringResource(key: "introduction.page.tip1.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -2562,6 +2568,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinSentSuggestUseViteTitle = Rswift.StringResource(key: "grin.sent.suggest.useVite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Notice
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithPowAlertTitle = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Notice
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithoutPowAlertTitle = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Now
       /// 
       /// Locales: en, zh-Hans
@@ -2606,6 +2620,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exportPageAlterTitle = Rswift.StringResource(key: "export.page.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaMessage = Rswift.StringResource(key: "workflow.fast.get.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please confirm the following link %@
       /// 
       /// Locales: en, zh-Hans
@@ -2714,10 +2732,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxTypeFinalized = Rswift.StringResource(key: "grin.txType.finalized", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Private key locally stored, open-sourced assurance
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageTip2Desc = Rswift.StringResource(key: "introduction.page.tip2.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Processing
       /// 
       /// Locales: en, zh-Hans
@@ -2742,6 +2756,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quit = Rswift.StringResource(key: "Quit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionQuotaTitle = Rswift.StringResource(key: "confirm.transaction.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaManagePageQuotaQuotaTitle = Rswift.StringResource(key: "quota.manage.page.quota.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Quota Beneficiary
       /// 
       /// Locales: en, zh-Hans
@@ -3030,15 +3052,31 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinBalanceSpendable = Rswift.StringResource(key: "grin.balance.spendable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Spendable Quota/Quota Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Spendable Quota/Quota Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Stake VITE
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertQuotaButtonTitle = Rswift.StringResource(key: "quota.alert.quota.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Stake to Speed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewPledgeButtonTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.pledge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Staked
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailPledgeAmountTitle = Rswift.StringResource(key: "balance.info.detail.pledge.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Staking Amount
       /// 
       /// Locales: en, zh-Hans
       public static let quotaManagePageQuotaMoneyTitle = Rswift.StringResource(key: "quota.manage.page.quota.money.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Staking List
+      /// en translation: Staking History
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeTitle = Rswift.StringResource(key: "peldge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3058,10 +3096,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaManagePageQuotaSnapshootHeightTitle = Rswift.StringResource(key: "quota.manage.page.quota.snapshoot.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Start Your Vite Journey
-      /// 
-      /// Locales: en, zh-Hans
-      public static let introductionPageNextBtnTitle = Rswift.StringResource(key: "introduction.page.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Start to Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -3154,6 +3188,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeCancelPledgeAmountErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.amount.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithoutPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -3278,6 +3320,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinCoinIssuanceItem3Title = Rswift.StringResource(key: "buildin.coin.issuance.item3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transact Later
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithPowAlertCancel = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transact Later
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithoutPowAlertCancel = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transact Now
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowCongestionWithoutPowAlertOk = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -3298,6 +3352,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxidTitle = Rswift.StringResource(key: "grin.txid.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Sent
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction State
       /// 
       /// Locales: en, zh-Hans
@@ -3350,10 +3408,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteErrorRpcErrorCodeRefrenceSameSnapshootBlock = Rswift.StringResource(key: "vite.error.rpc.error.code.refrence.same.snapshoot.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transactions consume quota, PoW running acquires free quota
+      /// en translation: Transactions cost quota. To get quota is free.
       /// 
       /// Locales: en, zh-Hans
-      public static let introductionPageTip3Desc = Rswift.StringResource(key: "introduction.page.tip3.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let introductionTipTitle = Rswift.StringResource(key: "introduction.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -3454,6 +3512,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let systemPageCellLoginTouchId = Rswift.StringResource(key: "system.page.cell.login.touchId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Unreceived
+      /// 
+      /// Locales: en, zh-Hans
+      public static let balanceInfoDetailUnconfirmedTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unreceived
       /// 
       /// Locales: en, zh-Hans
@@ -3778,6 +3840,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageBusyHeader = Rswift.StringResource(key: "bifrost.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You can also get quota for any other address by %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowFastGetQuotaTip = Rswift.StringResource(key: "workflow.fast.get.quota.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
       /// 
       /// Locales: en, zh-Hans
@@ -3810,6 +3876,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Your GRIN transaction has started to be broadcast
       /// 
       /// Locales: en, zh-Hans
@@ -3834,110 +3904,22 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinSentViteSuccess = Rswift.StringResource(key: "grin.sent.vite.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Zero transaction fees
+      /// en translation: clicking here
       /// 
       /// Locales: en, zh-Hans
-      public static let introductionPageTip3Title = Rswift.StringResource(key: "introduction.page.tip3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易已发出
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowFinishedFloatViewTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 动态配额转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithoutPowAlertOk = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 受益地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let peldgeAddressTitle = Rswift.StringResource(key: "peldge.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 可用配额/配额上限
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 在途
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailUnconfirmedTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static let balanceInfoDetailPledgeAmountTitle = Rswift.StringResource(key: "balance.info.detail.pledge.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已获得抵押
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 当前网络拥堵，已经进入动态配额阶段，您的可用配额不足，请稍后转账。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithoutPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 快速获取配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowFastGetQuotaTitle = Rswift.StringResource(key: "workflow.fast.get.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 您也可以%@为任意地址抵押获取配额。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowFastGetQuotaTip = Rswift.StringResource(key: "workflow.fast.get.quota.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 抵押加速交易
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowFinishedFloatViewPledgeButtonTitle = Rswift.StringResource(key: "quota.pow.finished.float.view.pledge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithPowAlertTitle = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithoutPowAlertTitle = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 本次交易需消耗%@UT
       /// 
       /// Locales: en, zh-Hans
       public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 正在为您计算PoW获取配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 点击此处
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 稍后转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithPowAlertCancel = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 稍后转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowCongestionWithoutPowAlertCancel = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowFastGetQuotaMessage = Rswift.StringResource(key: "workflow.fast.get.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static let confirmTransactionQuotaTitle = Rswift.StringResource(key: "confirm.transaction.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaManagePageQuotaQuotaTitle = Rswift.StringResource(key: "quota.manage.page.quota.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 配额余额/上限
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -4002,7 +3984,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("token.list.page.ignore.lab.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: (配额 %@ UT)
+      /// en translation: (%@ UT)
       /// 
       /// Locales: en, zh-Hans
       public static func balanceInfoDetailUnconfirmedQuotaTitle(_ value1: String) -> String {
@@ -4345,13 +4327,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("token.list.page.ignore.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Asynchronous architecture, smooth trade
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip4Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip4.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.
       /// 
       /// Locales: en, zh-Hans
@@ -4462,6 +4437,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinDexBecomeVipFunctionTitle(_: Void = ()) -> String {
         return NSLocalizedString("buildin.dex.become.vip.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Beneficiary
+      /// 
+      /// Locales: en, zh-Hans
+      public static func peldgeAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Beneficiary Address
@@ -4672,6 +4654,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func sendPageRemarkTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.remark.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Computing PoW to Secure Quota for this Transaction…
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaFloatViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Configurate Full Node.
@@ -5017,13 +5006,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.withdraw", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Cross-chain multiple token types
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip1Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip1.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Currency Unit
       /// 
       /// Locales: en, zh-Hans
@@ -5113,13 +5095,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostOperationTitleData(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.data", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Decentralized wallet
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip2Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Decimals
@@ -5309,13 +5284,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func ethPageGasFeeFastTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.page.gasFee.fast.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Fast transactions
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip4Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip4.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fee
@@ -5640,6 +5608,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("Receive.page.token.amount.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Instantly Getting Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Insufficient Balance
       /// 
       /// Locales: en, zh-Hans
@@ -5899,13 +5874,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Multi-token support, easy assets management
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip1Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip1.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: My ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -6123,6 +6091,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.sent.suggest.useVite.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Notice
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithPowAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.with.pow.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Notice
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithoutPowAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.without.pow.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Now
       /// 
       /// Locales: en, zh-Hans
@@ -6198,6 +6180,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exportPageAlterTitle(_: Void = ()) -> String {
         return NSLocalizedString("export.page.alter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaMessage(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please confirm the following link %@
@@ -6389,13 +6378,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txType.finalized", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Private key locally stored, open-sourced assurance
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageTip2Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip2.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Processing
       /// 
       /// Locales: en, zh-Hans
@@ -6436,6 +6418,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quit(_: Void = ()) -> String {
         return NSLocalizedString("Quit", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.quota.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaManagePageQuotaQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.manage.page.quota.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Quota Beneficiary
@@ -6942,11 +6938,39 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.balance.spendable", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Spendable Quota/Quota Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailPledgeCountContent(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Spendable Quota/Quota Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageMyQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Stake VITE
       /// 
       /// Locales: en, zh-Hans
       public static func quotaAlertQuotaButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.quota.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Stake to Speed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewPledgeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.pledge.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Staked
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailPledgeAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Staking Amount
@@ -6956,7 +6980,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.quota.money.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Staking List
+      /// en translation: Staking History
       /// 
       /// Locales: en, zh-Hans
       public static func peldgeTitle(_: Void = ()) -> String {
@@ -6989,13 +7013,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaManagePageQuotaSnapshootHeightTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.manage.page.quota.snapshoot.height.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Start Your Vite Journey
-      /// 
-      /// Locales: en, zh-Hans
-      public static func introductionPageNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Start to Transfer
@@ -7157,6 +7174,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func peldgeCancelPledgeAmountErrorToast(_: Void = ()) -> String {
         return NSLocalizedString("peldge.cancel.pledge.amount.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithoutPowAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.without.pow.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithPowAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.with.pow.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: The receipt has been confirmed
@@ -7376,6 +7407,27 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.coin.issuance.item3.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transact Later
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithPowAlertCancel(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.with.pow.alert.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transact Later
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithoutPowAlertCancel(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.without.pow.alert.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transact Now
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowCongestionWithoutPowAlertOk(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.congestion.without.pow.alert.ok", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -7409,6 +7461,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinTxidTitle(_: Void = ()) -> String {
         return NSLocalizedString("grin.txid.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transaction Sent
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction State
@@ -7502,11 +7561,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vite.error.rpc.error.code.refrence.same.snapshoot.block", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Transactions consume quota, PoW running acquires free quota
+      /// en translation: Transactions cost quota. To get quota is free.
       /// 
       /// Locales: en, zh-Hans
-      public static func introductionPageTip3Desc(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip3.desc", bundle: R.hostingBundle, comment: "")
+      public static func introductionTipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("introduction.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer
@@ -7682,6 +7741,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func systemPageCellLoginTouchId(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.login.touchId", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Unreceived
+      /// 
+      /// Locales: en, zh-Hans
+      public static func balanceInfoDetailUnconfirmedTitle(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.unconfirmed.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unreceived
@@ -8251,6 +8317,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.home.page.busy.header", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: You can also get quota for any other address by %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowFastGetQuotaTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("workflow.fast.get.quota.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
       /// 
       /// Locales: en, zh-Hans
@@ -8307,6 +8380,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("quota.pow.finished.float.view.h1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// en translation: Your GRIN transaction has started to be broadcast
       /// 
       /// Locales: en, zh-Hans
@@ -8349,53 +8429,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.sent.vite.success", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Zero transaction fees
+      /// en translation: clicking here
       /// 
       /// Locales: en, zh-Hans
-      public static func introductionPageTip3Title(_: Void = ()) -> String {
-        return NSLocalizedString("introduction.page.tip3.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 交易已发出
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowFinishedFloatViewTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.finished.float.view.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 动态配额转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithoutPowAlertOk(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.without.pow.alert.ok", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 受益地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func peldgeAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("peldge.address.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 可用配额/配额上限
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailPledgeCountContent(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 在途
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailUnconfirmedTitle(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.unconfirmed.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 已抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static func balanceInfoDetailPledgeAmountTitle(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.pledge.amount.title", bundle: R.hostingBundle, comment: "")
+      public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 已获得抵押
@@ -8405,34 +8443,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 当前网络拥堵，已经进入动态配额阶段，您的可用配额不足，请稍后转账。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithPowAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.with.pow.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithoutPowAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.without.pow.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 快速获取配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowFastGetQuotaTitle(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.fast.get.quota.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 您也可以%@为任意地址抵押获取配额。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowFastGetQuotaTip(_ value1: String) -> String {
-        return String(format: NSLocalizedString("workflow.fast.get.quota.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
       /// 
       /// Locales: en, zh-Hans
@@ -8440,95 +8450,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 抵押加速交易
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowFinishedFloatViewPledgeButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.finished.float.view.pledge.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithPowAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.with.pow.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithoutPowAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.without.pow.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 本次交易需消耗%@UT
       /// 
       /// Locales: en, zh-Hans
       public static func quotaFloatViewTip(_ value1: String) -> String {
         return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 正在为您计算PoW获取配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaFloatViewTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.float.view.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 点击此处
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 稍后转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithPowAlertCancel(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.with.pow.alert.cancel", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 稍后转账
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowCongestionWithoutPowAlertCancel(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.congestion.without.pow.alert.cancel", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 计算PoW花费%1$@秒，为您获得%2$@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("quota.pow.finished.float.view.h1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
-      /// en translation: 请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowFastGetQuotaMessage(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.fast.get.quota.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static func confirmTransactionQuotaTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.quota.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 配额
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaManagePageQuotaQuotaTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.manage.page.quota.quota.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 配额余额/上限
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageMyQuotaTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

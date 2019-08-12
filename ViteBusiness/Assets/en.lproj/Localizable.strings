@@ -187,16 +187,16 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "在途";
-"balance.info.detail.unconfirmed.quota.title" = "(配额 %@ UT)";
-"balance.info.detail.pledge.amount.title" = "已抵押";
+"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Transfer";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "可用配额/配额上限";
+"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 /* Address Manage Page */
@@ -216,7 +216,7 @@
 "send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
 "send.page.my.pledge.title" = "已获得抵押";
-"send.page.my.quota.title" = "配额余额/上限";
+"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
 "send.page.add.my.address.button.title" = "Mine";
 "send.page.vite.contacts.button.title" = "VITE Contact Address";
@@ -293,7 +293,7 @@
 "quota.manage.page.title" = "Get Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.quota.title" = "配额";
+"quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
@@ -311,18 +311,18 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "正在为您计算PoW获取配额";
+"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction…";
 "quota.float.view.tip" = "本次交易需消耗%@UT";
-"quota.pow.finished.float.view.title" = "交易已发出";
-"quota.pow.finished.float.view.h1" = "计算PoW花费%1$@秒，为您获得%2$@UT";
+"quota.pow.finished.float.view.title" = "Transaction Sent";
+"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。";
-"quota.pow.finished.float.view.pledge.button.title" = "抵押加速交易";
+"quota.pow.finished.float.view.pledge.button.title" = "Stake to Speed";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
-"peldge.title" = "Staking List";
-"peldge.address.title" = "受益地址";
+"peldge.title" = "Staking History";
+"peldge.address.title" = "Beneficiary";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
@@ -360,15 +360,16 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.page.tip1.title" = "Cross-chain multiple token types";
-"introduction.page.tip2.title" = "Decentralized wallet";
-"introduction.page.tip3.title" = "Zero transaction fees";
-"introduction.page.tip4.title" = "Fast transactions";
-"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
-"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
-"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
-"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
-"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+"introduction.tip.title" = "Transactions cost quota.\nTo get quota is free.";
+//"introduction.page.tip1.title" = "Cross-chain multiple token types";
+//"introduction.page.tip2.title" = "Decentralized wallet";
+//"introduction.page.tip3.title" = "Zero transaction fees";
+//"introduction.page.tip4.title" = "Fast transactions";
+//"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+//"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+//"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+//"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+//"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 
 /* Error Message */
 "vite.error.network.error" = "Something went wrong with network, please try again later";
@@ -449,25 +450,25 @@
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
 
-"workflow.congestion.without.pow.alert.title" = "提示";
-"workflow.congestion.without.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。";
-"workflow.congestion.without.pow.alert.cancel" = "稍后转账";
-"workflow.congestion.without.pow.alert.ok" = "动态配额转账";
-"workflow.congestion.with.pow.alert.title" = "提示";
-"workflow.congestion.with.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额不足，请稍后转账。";
-"workflow.congestion.with.pow.alert.cancel" = "稍后转账";
+"workflow.congestion.without.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
+"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.without.pow.alert.ok" = "Transact Now";
+"workflow.congestion.with.pow.alert.title" = "Notice";
+"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
+"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
 
-"workflow.fast.get.quota.title" = "快速获取配额";
-"workflow.fast.get.quota.message" = "请确认是否抵押134 VITE 为当前地址获取配额，3天后可进入抵押记录取回抵押。";
-"workflow.fast.get.quota.tip" = "您也可以%@为任意地址抵押获取配额。";
-"workflow.fast.get.quota.link" = "点击此处";
+"workflow.fast.get.quota.title" = "Instantly Getting Quota";
+"workflow.fast.get.quota.message" = "Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
+"workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
+"workflow.fast.get.quota.link" = "clicking here";
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
 "confirm.transaction.address.title" = "Recipient";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
-"confirm.transaction.quota.title" = "配额";
+"confirm.transaction.quota.title" = "Quota";
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.pw.title" = "Please input password";
 // vite transfer
