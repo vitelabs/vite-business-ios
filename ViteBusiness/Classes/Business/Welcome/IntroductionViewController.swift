@@ -40,11 +40,11 @@ class f__IntroductionViewController: BaseViewController {
         layout.snp.makeConstraints { (m) in
             m.top.equalTo(imageView.snp.bottom)
             m.left.right.equalToSuperview()
-            m.width.equalTo(layout.snp.height).multipliedBy(375.0/48.0)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
 
         label.snp.makeConstraints { (m) in
-            m.top.equalTo(layout.snp.bottom)
+            m.centerY.equalTo(layout)
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
         }
