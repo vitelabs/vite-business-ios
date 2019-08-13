@@ -1688,6 +1688,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinCoinReissueTokenItem2Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Benefited Stake
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Benefits
       /// 
       /// Locales: en, zh-Hans
@@ -3276,6 +3280,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let importPageAlertExistTitle = Rswift.StringResource(key: "import.page.alert.exist.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Transaction costs %@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This action will regenerate seed phrase, ready to go back?
       /// 
       /// Locales: en, zh-Hans
@@ -3952,6 +3960,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
       /// 
       /// Locales: en, zh-Hans
@@ -4004,14 +4016,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailEmail = Rswift.StringResource(key: "crosschain.gatewaydetail.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已获得抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 数量：
       /// 
       /// Locales: en, zh-Hans
@@ -4028,10 +4032,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementOtherDesc = Rswift.StringResource(key: "crosschain.statement.other.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本次交易需消耗%@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 点击下一步代表您已同意%@的%@
       /// 
       /// Locales: en, zh-Hans
@@ -4595,6 +4595,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinCoinReissueTokenItem2Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.coin.reissue.token.item2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Benefited Stake
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Benefits
@@ -7376,6 +7383,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("import.page.alert.exist.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: This Transaction costs %@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaFloatViewTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: This action will regenerate seed phrase, ready to go back?
       /// 
       /// Locales: en, zh-Hans
@@ -8559,6 +8573,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewH2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
       /// 
       /// Locales: en, zh-Hans
@@ -8650,20 +8671,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.gatewaydetail.email", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 已获得抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowFinishedFloatViewH2(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 数量：
       /// 
       /// Locales: en, zh-Hans
@@ -8690,13 +8697,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainStatementOtherDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String, _ value8: String, _ value9: String) -> String {
         return String(format: NSLocalizedString("crosschain.statement.other.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7, value8, value9)
-      }
-      
-      /// en translation: 本次交易需消耗%@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaFloatViewTip(_ value1: String) -> String {
-        return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 点击下一步代表您已同意%@的%@
