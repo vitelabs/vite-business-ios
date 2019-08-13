@@ -326,6 +326,7 @@
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
+"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
 /* Vote */
 "vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";

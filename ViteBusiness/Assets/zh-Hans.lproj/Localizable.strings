@@ -330,6 +330,7 @@
 "peldge.cancel.peldge.button.title" = "取回抵押";
 "peldge.cancel.pledge.withdrawing.title" = "取回中";
 "peldge.cancel.pledge.amount.error.toast" = "最小取回金额为134 VITE，请先抵押足够数量VITE";
+"peldge.cancel.pledge.agent.error.toast" = "此抵押非普通抵押，请至提交抵押处取回";
 /* Vote */
 "vote.page.title" = "投票";
 "vote.page.info.nodata.title" = "暂无投票";

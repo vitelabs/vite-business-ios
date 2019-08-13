@@ -1382,7 +1382,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 670 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 671 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2624,6 +2624,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteVoteNodeName = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.node.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Not common stake, please try withdrawal where you placed the stake.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let peldgeCancelPledgeAgentErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.agent.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -6233,6 +6237,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func confirmTransactionPageViteVoteNodeName(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.vite.vote.node.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Not common stake, please try withdrawal where you placed the stake.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func peldgeCancelPledgeAgentErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.pledge.agent.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Notice
