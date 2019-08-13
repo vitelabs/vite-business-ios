@@ -57,7 +57,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address), type: .pledge)
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {

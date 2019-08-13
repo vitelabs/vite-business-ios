@@ -61,6 +61,15 @@ public final class BifrostManager {
             } else {
                 if current is BifrostViewController {
                     current.navigationController?.popViewController(animated: true)
+                } else {
+                    guard var viewControllers = current.navigationController?.viewControllers else { return }
+                    for (index, vc) in viewControllers.enumerated() {
+                        if vc is BifrostViewController {
+                            viewControllers.remove(at: index)
+                            break
+                        }
+                    }
+                    current.navigationController?.setViewControllers(viewControllers, animated: false)
                 }
                 self.tasks = [BifrostViteSendTxTask]()
             }
@@ -206,6 +215,14 @@ extension BifrostManager {
         if let vc = current as? BifrostViewController {
             ret = vc
         } else {
+            guard var viewControllers = current.navigationController?.viewControllers else { return nil }
+            for (index, vc) in viewControllers.enumerated() {
+                if vc is BifrostViewController {
+                    viewControllers.remove(at: index)
+                    break
+                }
+            }
+
             let vc = BifrostViewController(result: { [weak self] (ret, task, vc) in
                 guard let `self` = self else { return }
                 guard let account = HDWalletManager.instance.account else { return }
@@ -237,13 +254,12 @@ extension BifrostManager {
             })
 
             if let scanVc = current as? ScanViewController {
-                scanVc.popSelfAndPush(vc)
-            } else {
-                current.navigationController?.pushViewController(vc, animated: true)
+                _ = viewControllers.popLast()
             }
+            viewControllers.append(vc)
+            current.navigationController?.setViewControllers(viewControllers, animated: true)
             ret = vc
         }
-
         ret.showConfirmIfNeeded()
         return ret
     }

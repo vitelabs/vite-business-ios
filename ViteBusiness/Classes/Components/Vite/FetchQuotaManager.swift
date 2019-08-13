@@ -16,7 +16,7 @@ import ObjectMapper
 
 extension FetchQuotaManager: Storageable {
     public func getStorageConfig() -> StorageConfig {
-        return StorageConfig(name: "PledgeQuota", path: .wallet, appending: self.appending)
+        return StorageConfig(name: "PledgeQuota", path: .wallet, appending: self.currentAddress)
     }
 
     public struct Storage: Mappable {
@@ -48,7 +48,7 @@ final class FetchQuotaManager {
     fileprivate var pledgeAmountBehaviorRelay: BehaviorRelay<Amount> = BehaviorRelay(value: Amount())
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var appending = "noAddress"
+    fileprivate var currentAddress = "noAddress"
 
     fileprivate var service: FetchPledgeQuotaService?
     fileprivate var retainCount = 0
@@ -62,10 +62,14 @@ final class FetchQuotaManager {
             self.balanceDisposable?.dispose()
 
             if let account = a {
-                self.appending = account.address
+                self.currentAddress = account.address
+                self.lastViteBalance = nil
                 if let storage: Storage = self.readMappable() {
                     self.quotaBehaviorRelay.accept(storage.quota)
                     self.pledgeAmountBehaviorRelay.accept(storage.pledgeAmount)
+                } else {
+                    self.quotaBehaviorRelay.accept(Quota())
+                    self.pledgeAmountBehaviorRelay.accept(Amount(0))
                 }
 
                 let address = account.address
@@ -93,10 +97,12 @@ final class FetchQuotaManager {
                 self.balanceDisposable = ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id).drive(onNext: { [weak self] (balanceInfo) in
                     let amount = balanceInfo?.balance ?? Amount(0)
                     guard let `self` = self else { return }
+                    guard self.currentAddress == address else { return }
                     guard self.lastViteBalance != amount else { return }
                     GCD.delay(2, task: {
                         ViteNode.pledge.info.getPledgeDetail(address: address, index: 0, count: 0)
                             .done({ (detail) in
+                                guard self.currentAddress == address else { return }
                                 self.lastViteBalance = amount
                                 self.pledgeAmountBehaviorRelay.accept(detail.totalPledgeAmount)
                                 self.save(mappable: Storage(quota: self.quotaBehaviorRelay.value, pledgeAmount: self.pledgeAmountBehaviorRelay.value))
