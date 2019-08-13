@@ -72,14 +72,14 @@ class TableViewPlaceholderView: UIView {
         addSubview(button)
 
         imageView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
+            m.top.equalToSuperview().offset(30)
             m.centerX.equalToSuperview()
             m.size.equalTo(CGSize(width: 130, height: 130))
         }
         button.snp.makeConstraints { (m) in
             m.top.equalTo(imageView.snp.bottom).offset(20)
             m.left.right.equalToSuperview()
-            m.bottom.equalToSuperview().offset(-40)
+            m.bottom.equalToSuperview().offset(-30)
         }
     }
 

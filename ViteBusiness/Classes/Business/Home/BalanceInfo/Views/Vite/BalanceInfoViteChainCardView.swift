@@ -257,7 +257,7 @@ class BalanceInfoViteChainCardView: UIView {
         }
 
         let vLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
+            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.26)
         }
 
         colorBackgroundView.addSubview(buttonView)

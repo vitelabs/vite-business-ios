@@ -64,8 +64,9 @@ public class TableViewHandler {
                     m.right.equalToSuperview().offset(-24)
                 }
                 view.layoutIfNeeded()
+                let lastTableFooterViewHeight = tableView.tableFooterView?.frame.height ?? 0
                 let height = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-                footerView.frame = CGRect(x: 0, y: 0, width: 0, height: max(height, placeholderViewHeight))
+                footerView.frame = CGRect(x: 0, y: 0, width: 0, height: max(height, placeholderViewHeight + lastTableFooterViewHeight - tableView.contentInset.bottom))
                 tableView.tableFooterView = footerView
             } else {
                 tableView.tableFooterView = nil

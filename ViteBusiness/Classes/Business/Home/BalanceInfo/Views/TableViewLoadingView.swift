@@ -19,9 +19,9 @@ class TableViewLoadingView: UIView {
 
         activityIndicatorView.startAnimating()
         activityIndicatorView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
+            m.top.equalToSuperview().offset(30)
             m.center.equalToSuperview()
-            m.bottom.equalToSuperview().offset(-40)
+            m.bottom.equalToSuperview().offset(-30)
         }
     }
 
