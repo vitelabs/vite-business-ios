@@ -230,9 +230,7 @@ extension MyHomeViewController {
 
         if !HDWalletManager.instance.isBackedUp {
             CreateWalletService.sharedInstance.needBackup = true
-            CreateWalletService.sharedInstance.showBackUpTipAlert(cancel: {
-                logout()
-            })
+            CreateWalletService.sharedInstance.showBackUpTipAlert(cancel: { })
         } else {
             logout()
         }

@@ -63,13 +63,17 @@ public final class BifrostManager {
                     current.navigationController?.popViewController(animated: true)
                 } else {
                     guard var viewControllers = current.navigationController?.viewControllers else { return }
+                    var hasVC = false
                     for (index, vc) in viewControllers.enumerated() {
                         if vc is BifrostViewController {
                             viewControllers.remove(at: index)
+                            hasVC = true
                             break
                         }
                     }
-                    current.navigationController?.setViewControllers(viewControllers, animated: false)
+                    if hasVC {
+                        current.navigationController?.setViewControllers(viewControllers, animated: false)
+                    }
                 }
                 self.tasks = [BifrostViteSendTxTask]()
             }
