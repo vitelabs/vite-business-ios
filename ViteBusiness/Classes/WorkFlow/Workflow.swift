@@ -24,7 +24,7 @@ public struct Workflow {
 
     enum workflowType {
         case other
-        case pledge
+        case pledge(beneficialAddress: ViteAddress)
         case vote
     }
 
@@ -136,7 +136,9 @@ public struct Workflow {
             }.always {
                 HUD.hide()
             }.done { (context, accountBlock, duration) in
-                if context.isNeedToCalcPoW && type != .pledge {
+                if case .pledge(let beneficialAddress) = type, beneficialAddress == account.address {
+                    AlertControl.showCompletion(successToast)
+                } else if context.isNeedToCalcPoW {
                     GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota.utRequired.utToString(), pledgeClick: {
                         let vc = QuotaManageViewController()
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
@@ -316,7 +318,7 @@ public extension Workflow {
                  fee: Amount(0),
                  data: ABI.BuildIn.getPledgeData(beneficialAddress: beneficialAddress),
                  successToast: R.string.localizable.workflowToastSubmitSuccess(),
-                 type: .pledge,
+                 type: .pledge(beneficialAddress: beneficialAddress),
                  completion: completion)
         }
 
