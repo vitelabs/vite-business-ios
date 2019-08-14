@@ -2288,7 +2288,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageActivityPageTitle2 = Rswift.StringResource(key: "discover.page.activity.page.title2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I have already read, understood and I agree to our
+      /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2704,6 +2704,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageBusyContent = Rswift.StringResource(key: "bifrost.home.page.busy.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please enter password to back up the Mnemonic Words.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupTipAlertMessage = Rswift.StringResource(key: "mnemonic.backup.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please enter the same password!
       /// 
       /// Locales: en, zh-Hans
@@ -2764,10 +2768,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxbyfileShareSentFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareSentFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please select Mnemonic Words in correct order.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupTipAlertMessage = Rswift.StringResource(key: "mnemonic.backup.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
@@ -5651,7 +5651,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.activity.page.title2", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I have already read, understood and I agree to our
+      /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
       public static func mnemonicBackupPageCheckButton3Title(_: Void = ()) -> String {
@@ -6379,6 +6379,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.home.page.busy.content", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Please enter password to back up the Mnemonic Words.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupTipAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.tip.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Please enter the same password!
       /// 
       /// Locales: en, zh-Hans
@@ -6482,13 +6489,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinTxbyfileShareSentFileDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.txbyfile.shareSentFileDesc", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Please select Mnemonic Words in correct order.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupTipAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.tip.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
