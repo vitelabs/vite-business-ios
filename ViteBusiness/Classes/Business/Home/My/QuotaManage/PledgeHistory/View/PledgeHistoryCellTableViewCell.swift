@@ -17,7 +17,7 @@ final class PledgeHistoryCell: BaseTableViewCell {
     }
 
     let addressLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 11)
+        $0.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
         $0.lineBreakMode = .byTruncatingMiddle
     }

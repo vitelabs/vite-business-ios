@@ -86,7 +86,7 @@
 "mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our";
+"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
 "mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
@@ -104,7 +104,7 @@
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please select Mnemonic Words in correct order.";
+"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
 "mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
 "mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
 
@@ -215,7 +215,7 @@
 "send.page.title" = "Transfer";
 "send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
-"send.page.my.pledge.title" = "已获得抵押";
+"send.page.my.pledge.title" = "Benefited Stake";
 "send.page.my.quota.title" = "Spendable Quota/Quota Limit";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
 "send.page.add.my.address.button.title" = "Mine";
@@ -312,10 +312,10 @@
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction…";
-"quota.float.view.tip" = "本次交易需消耗%@UT";
+"quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
-"quota.pow.finished.float.view.h2" = "抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。";
+"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Stake to Speed";
 
 /* Peldge History */
@@ -326,6 +326,7 @@
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
+"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
 /* Vote */
 "vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";

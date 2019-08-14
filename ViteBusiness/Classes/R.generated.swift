@@ -1382,7 +1382,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 674 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 675 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1588,6 +1588,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawGatewayispoor = Rswift.StringResource(key: "crosschain.withdraw.gatewayispoor", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeAmount = Rswift.StringResource(key: "exchange.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: An ID conflict occurs, please re-submit later
       /// 
       /// Locales: en, zh-Hans
@@ -1688,6 +1692,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinCoinReissueTokenItem2Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Benefited Stake
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Benefits
       /// 
       /// Locales: en, zh-Hans
@@ -1704,6 +1712,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteErrorRpcErrorCodeContractMethodNotExist = Rswift.StringResource(key: "vite.error.rpc.error.code.contract.method.not.exist", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Buy
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeBuy = Rswift.StringResource(key: "exchange.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Buy VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeCardTitle = Rswift.StringResource(key: "exchange.card.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: By clicking Next, you agree with the %@'s %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementAgree = Rswift.StringResource(key: "crosschain.statement.agree", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Campaign Center
       /// 
       /// Locales: en, zh-Hans
@@ -2056,7 +2076,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Daily Transaction Limit %@ VITE；剩余额度：%@ VITE
+      /// en translation: Daily Transaction Limit %@ VITE；rest：%@ VITE
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitOneday = Rswift.StringResource(key: "exchange.limit.oneday", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2232,6 +2252,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethPageGasFeeTitle = Rswift.StringResource(key: "eth.page.gasFee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailTitle = Rswift.StringResource(key: "crosschain.gatewaydetail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailName = Rswift.StringResource(key: "crosschain.gatewaydetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway URL
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailHost = Rswift.StringResource(key: "crosschain.gatewaydetail.host", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Generate Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -2288,7 +2320,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageActivityPageTitle2 = Rswift.StringResource(key: "discover.page.activity.page.title2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: I have already read, understood and I agree to our
+      /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageCheckButton3Title = Rswift.StringResource(key: "mnemonic.backup.page.check.button3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2356,6 +2388,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let receivePageTokenAmountButtonTitle = Rswift.StringResource(key: "Receive.page.token.amount.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Instant Purchase
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeTitley = Rswift.StringResource(key: "exchange.titley", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Instantly Getting Quota
       /// 
       /// Locales: en, zh-Hans
@@ -2388,6 +2424,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertNeedQuotaMessage = Rswift.StringResource(key: "quota.alert.need.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailAbstract = Rswift.StringResource(key: "crosschain.gatewaydetail.abstract", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementTitle = Rswift.StringResource(key: "crosschain.statement.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Invalid Voting
       /// 
       /// Locales: en, zh-Hans
@@ -2624,6 +2668,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteVoteNodeName = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.node.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Not common stake, please try withdrawal where you placed the stake.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let peldgeCancelPledgeAgentErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.agent.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -2648,6 +2696,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageNewsCellTimeMinute = Rswift.StringResource(key: "discover.page.news.cell.time.minute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Official Website
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailWebset = Rswift.StringResource(key: "crosschain.gatewaydetail.webset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, zh-Hans
@@ -2700,6 +2752,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageBusyContent = Rswift.StringResource(key: "bifrost.home.page.busy.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please enter password to back up the Mnemonic Words.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupTipAlertMessage = Rswift.StringResource(key: "mnemonic.backup.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please enter the same password!
       /// 
       /// Locales: en, zh-Hans
@@ -2760,10 +2816,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxbyfileShareSentFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareSentFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please select Mnemonic Words in correct order.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupTipAlertMessage = Rswift.StringResource(key: "mnemonic.backup.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
@@ -2816,6 +2868,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteRefreshBackFooterIdleText = Rswift.StringResource(key: "vite.RefreshBackFooter.IdleText", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Purchase History
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeHistory = Rswift.StringResource(key: "exchange.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: QRCode cannot be identified
       /// 
       /// Locales: en, zh-Hans
@@ -2836,6 +2892,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaManagePageInputAddressTitle = Rswift.StringResource(key: "quota.manage.page.input.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Rate: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangePrice = Rswift.StringResource(key: "exchange.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Re-issuable
       /// 
       /// Locales: en, zh-Hans
@@ -3076,6 +3136,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageSendButtonTitle = Rswift.StringResource(key: "send.page.send.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Service Mailbox
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailEmail = Rswift.StringResource(key: "crosschain.gatewaydetail.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Settings
       /// 
       /// Locales: en, zh-Hans
@@ -3240,6 +3304,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageClauseButtonTitle = Rswift.StringResource(key: "mnemonic.backup.page.clause.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Terms of Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainGatewaydetailStatement = Rswift.StringResource(key: "crosschain.gatewaydetail.statement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Terms of Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementDetail = Rswift.StringResource(key: "crosschain.statement.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The address you scanned now is not consistent with the one on web platform. Continue login with App address? (%@)
       /// 
       /// Locales: en, zh-Hans
@@ -3288,6 +3360,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let importPageAlertExistTitle = Rswift.StringResource(key: "import.page.alert.exist.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Service is provided by %@.  By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementViteDesc = Rswift.StringResource(key: "crosschain.statement.vite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.  By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementOtherDesc = Rswift.StringResource(key: "crosschain.statement.other.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Transaction costs %@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This action will regenerate seed phrase, ready to go back?
       /// 
       /// Locales: en, zh-Hans
@@ -3964,6 +4048,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let voteListAlertAlreadyVoted = Rswift.StringResource(key: "vote.list.alert.already.voted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
       /// 
       /// Locales: en, zh-Hans
@@ -3996,90 +4084,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 一键买币
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangeTitley = Rswift.StringResource(key: "exchange.titley", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 买入VITE
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangeCardTitle = Rswift.StringResource(key: "exchange.card.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 价格：
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangePrice = Rswift.StringResource(key: "exchange.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 官网
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailWebset = Rswift.StringResource(key: "crosschain.gatewaydetail.webset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 客服邮箱
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailEmail = Rswift.StringResource(key: "crosschain.gatewaydetail.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已获得抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 数量：
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangeAmount = Rswift.StringResource(key: "exchange.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 服务条款，交易条件，限制及隐私政策
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainStatementDetail = Rswift.StringResource(key: "crosschain.statement.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainStatementViteDesc = Rswift.StringResource(key: "crosschain.statement.vite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainStatementOtherDesc = Rswift.StringResource(key: "crosschain.statement.other.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 本次交易需消耗%@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 点击下一步代表您已同意%@的%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainStatementAgree = Rswift.StringResource(key: "crosschain.statement.agree", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 简介
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailAbstract = Rswift.StringResource(key: "crosschain.gatewaydetail.abstract", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 网关URL
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailHost = Rswift.StringResource(key: "crosschain.gatewaydetail.host", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 网关名称
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailName = Rswift.StringResource(key: "crosschain.gatewaydetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 网关详情
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailTitle = Rswift.StringResource(key: "crosschain.gatewaydetail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 购买
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangeBuy = Rswift.StringResource(key: "exchange.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 购买记录
-      /// 
-      /// Locales: en, zh-Hans
-      public static let exchangeHistory = Rswift.StringResource(key: "exchange.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 重要通知
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainStatementTitle = Rswift.StringResource(key: "crosschain.statement.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 隐私政策&服务条款
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainGatewaydetailStatement = Rswift.StringResource(key: "crosschain.gatewaydetail.statement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -4438,6 +4442,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.withdraw.gatewayispoor", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
+      /// en translation: Amount: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeAmount(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: An ID conflict occurs, please re-submit later
       /// 
       /// Locales: en, zh-Hans
@@ -4613,6 +4624,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.coin.reissue.token.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Benefited Stake
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Benefits
       /// 
       /// Locales: en, zh-Hans
@@ -4639,6 +4657,27 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteErrorRpcErrorCodeContractMethodNotExist(_: Void = ()) -> String {
         return NSLocalizedString("vite.error.rpc.error.code.contract.method.not.exist", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Buy
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeBuy(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.buy", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Buy VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeCardTitle(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.card.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: By clicking Next, you agree with the %@'s %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementAgree(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.agree", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: Campaign Center
@@ -5257,7 +5296,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Daily Transaction Limit %@ VITE；剩余额度：%@ VITE
+      /// en translation: Daily Transaction Limit %@ VITE；rest：%@ VITE
       /// 
       /// Locales: en, zh-Hans
       public static func exchangeLimitOneday(_ value1: String, _ value2: String) -> String {
@@ -5565,6 +5604,27 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Gateway Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailTitle(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailName(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway URL
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailHost(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.host", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Generate Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -5663,7 +5723,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.activity.page.title2", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: I have already read, understood and I agree to our
+      /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
       public static func mnemonicBackupPageCheckButton3Title(_: Void = ()) -> String {
@@ -5782,6 +5842,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("Receive.page.token.amount.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Instant Purchase
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeTitley(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.titley", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Instantly Getting Quota
       /// 
       /// Locales: en, zh-Hans
@@ -5836,6 +5903,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaAlertNeedQuotaMessage(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.need.quota.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailAbstract(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.abstract", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementTitle(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.statement.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Invalid Voting
@@ -6251,6 +6332,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("confirm.transaction.page.vite.vote.node.name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Not common stake, please try withdrawal where you placed the stake.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func peldgeCancelPledgeAgentErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.pledge.agent.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -6291,6 +6379,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func discoverPageNewsCellTimeMinute(_: Void = ()) -> String {
         return NSLocalizedString("discover.page.news.cell.time.minute", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Official Website
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailWebset(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.webset", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Open Trading Pair
@@ -6382,6 +6477,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostHomePageBusyContent(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.home.page.busy.content", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please enter password to back up the Mnemonic Words.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupTipAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.tip.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please enter the same password!
@@ -6489,13 +6591,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txbyfile.shareSentFileDesc", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Please select Mnemonic Words in correct order.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupTipAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.tip.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
@@ -6587,6 +6682,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vite.RefreshBackFooter.IdleText", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Purchase History
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeHistory(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.history", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: QRCode cannot be identified
       /// 
       /// Locales: en, zh-Hans
@@ -6620,6 +6722,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaManagePageInputAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.manage.page.input.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Rate: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangePrice(_: Void = ()) -> String {
+        return NSLocalizedString("exchange.price", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Re-issuable
@@ -7042,6 +7151,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.send.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Service Mailbox
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailEmail(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.email", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Settings
       /// 
       /// Locales: en, zh-Hans
@@ -7329,6 +7445,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.clause.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Terms of Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainGatewaydetailStatement(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.gatewaydetail.statement", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Terms of Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementDetail(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.statement.detail", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: The address you scanned now is not consistent with the one on web platform. Continue login with App address? (%@)
       /// 
       /// Locales: en, zh-Hans
@@ -7411,6 +7541,27 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func importPageAlertExistTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("import.page.alert.exist.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: This Service is provided by %@.  By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementViteDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.vite.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7)
+      }
+      
+      /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.  By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementOtherDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String, _ value8: String, _ value9: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.other.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7, value8, value9)
+      }
+      
+      /// en translation: This Transaction costs %@UT
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaFloatViewTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: This action will regenerate seed phrase, ready to go back?
@@ -8596,6 +8747,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("vote.list.alert.already.voted", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowFinishedFloatViewH2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
       /// 
       /// Locales: en, zh-Hans
@@ -8650,153 +8808,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 一键买币
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangeTitley(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.titley", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 买入VITE
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangeCardTitle(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.card.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 价格：
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangePrice(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.price", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 官网
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailWebset(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.webset", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 客服邮箱
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailEmail(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.email", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 已获得抵押
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 抵押三天后可免费取回。当抵押获得的配额足够交易时，您将直接跳过PoW步骤及本弹窗。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowFinishedFloatViewH2(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 数量：
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangeAmount(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.amount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 服务条款，交易条件，限制及隐私政策
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainStatementDetail(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.statement.detail", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 本服务由%@提供。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainStatementViteDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String) -> String {
-        return String(format: NSLocalizedString("crosschain.statement.vite.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7)
-      }
-      
-      /// en translation: 本服务由%@提供。Vite平台对%@的业务没有任何责任，Vite平台不参与%@与Vite平台用户之间的任何活动。  使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。  若您对支付流程有任何疑问，请联系%@客服团队%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainStatementOtherDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String, _ value8: String, _ value9: String) -> String {
-        return String(format: NSLocalizedString("crosschain.statement.other.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7, value8, value9)
-      }
-      
-      /// en translation: 本次交易需消耗%@UT
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaFloatViewTip(_ value1: String) -> String {
-        return String(format: NSLocalizedString("quota.float.view.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 点击下一步代表您已同意%@的%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainStatementAgree(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("crosschain.statement.agree", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
-      /// en translation: 简介
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailAbstract(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.abstract", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 网关URL
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailHost(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.host", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 网关名称
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailName(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.name", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 网关详情
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailTitle(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 购买
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangeBuy(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.buy", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 购买记录
-      /// 
-      /// Locales: en, zh-Hans
-      public static func exchangeHistory(_: Void = ()) -> String {
-        return NSLocalizedString("exchange.history", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 重要通知
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainStatementTitle(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.statement.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 隐私政策&服务条款
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainGatewaydetailStatement(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.gatewaydetail.statement", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

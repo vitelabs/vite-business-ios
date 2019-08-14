@@ -57,7 +57,7 @@ class ConfirmAmountView: UIView {
         case .quota:
             backgroundColor = UIColor(netHex: 0xffffff)
             titleLabel.text = R.string.localizable.confirmTransactionQuotaTitle()
-            textLabel.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
+            textLabel.textColor = UIColor(netHex: 0x007AFF, alpha: 0.7)
         }
 
         titleLabel.snp.makeConstraints { (m) in

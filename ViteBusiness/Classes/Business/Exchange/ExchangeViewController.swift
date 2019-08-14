@@ -68,11 +68,7 @@ class ExchangeViewController: BaseViewController {
         super.viewWillAppear(animated)
         vm.action.onNext(.getRate)
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+    
     func setupViews()  {
         navigationBarStyle = .clear
         view.addSubview(scrollView)

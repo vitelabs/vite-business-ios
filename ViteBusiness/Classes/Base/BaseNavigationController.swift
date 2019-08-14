@@ -29,10 +29,11 @@ public class BaseNavigationController: UINavigationController {
     }
 
     override public func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
-        viewControllers.last?.hidesBottomBarWhenPushed = true
+        if viewControllers.count > 1 {
+            viewControllers.last?.hidesBottomBarWhenPushed = true
+        }
         super.setViewControllers(viewControllers, animated: animated)
     }
-
 }
 
 extension BaseNavigationController: UINavigationControllerDelegate {

@@ -156,7 +156,7 @@ extension CreateWalletAccountViewController {
     func goNextVC() {
         CreateWalletService.sharedInstance.name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
         CreateWalletService.sharedInstance.password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
-        let vc = CreateWalletTipViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let backupMnemonicCashVC = BackupMnemonicViewController(forCreate: true)
+        self.navigationController?.pushViewController(backupMnemonicCashVC, animated: true)
     }
 }

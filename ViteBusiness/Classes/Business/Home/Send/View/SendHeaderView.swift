@@ -46,6 +46,11 @@ extension SendHeaderView {
             fatalError("init(coder:) has not been implemented")
         }
     }
+
+    enum ViewType {
+        case send
+        case pledge
+    }
 }
 
 class SendHeaderView: UIView {
@@ -62,7 +67,7 @@ class SendHeaderView: UIView {
     let pledgeView = ItemView(title: R.string.localizable.sendPageMyPledgeTitle())
     let quotaView = ItemView(title: R.string.localizable.sendPageMyQuotaTitle())
 
-    init(address: String, name: String) {
+    init(address: String, name: String, type: ViewType) {
         super.init(frame: CGRect.zero)
 
         addressView.titleLabel.text = name
@@ -86,7 +91,12 @@ class SendHeaderView: UIView {
 
         stackView.addArrangedSubview(addressView)
         stackView.addArrangedSubview(balanceView)
-        stackView.addArrangedSubview(pledgeView)
+        switch type {
+        case .send:
+            break
+        case .pledge:
+            stackView.addArrangedSubview(pledgeView)
+        }
         stackView.addArrangedSubview(quotaView)
 
         line.snp.makeConstraints({ (m) in

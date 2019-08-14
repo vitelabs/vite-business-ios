@@ -98,6 +98,11 @@ class PledgeHistoryViewController: BaseViewController, View {
                 }
                 cell.cancelButton.rx.tap.bind { [weak self, weak cell] in
 
+                    guard !pledge.agent else {
+                        Toast.show(R.string.localizable.peldgeCancelPledgeAgentErrorToast())
+                        return
+                    }
+
                     guard pledge.amount >= BigInt(134) * BigInt(10).power(ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.peldgeCancelPledgeAmountErrorToast())
                         return
