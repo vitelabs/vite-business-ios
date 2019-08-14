@@ -155,7 +155,12 @@ class EthViteExchangeViewController: BaseViewController {
                 let vc = CrossChainHistoryViewController()
                 vc.style = .desposit
                 vc.gatewayInfoService = self?.gatewayInfoService
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                var vcs = UIViewController.current?.navigationController?.viewControllers
+                vcs?.popLast()
+                vcs?.append(vc)
+                if let vcs = vcs {
+                    UIViewController.current?.navigationController?.setViewControllers(vcs, animated: true)
+                }
             }
 
             }.disposed(by: rx.disposeBag)
@@ -379,12 +384,8 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func exchangeEthCoinToViteToken(viteAddress: String, amount: Amount, gasPrice: Float) {
-        CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice) { [weak self] in
-            guard let `self` = self else {return}
-            let vc = CrossChainHistoryViewController()
-            vc.style = .desposit
-            vc.gatewayInfoService = self.gatewayInfoService
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        CrossChainDepositETH.init(gatewayInfoService: gatewayInfoService!) .deposit(to: viteAddress, totId: ViteConst.instance.crossChain.eth.tokenId, amount: String(amount), gasPrice: gasPrice) {
+
         }
     }
 

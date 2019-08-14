@@ -30,16 +30,15 @@ class GateWayDetailViewController: BaseViewController {
         self.tokenInfo = tokenInfo
         super.init(nibName: nil, bundle: nil)
         if let gatewayInfo = tokenInfo.gatewayInfo {
-            let isEn = LocalizationService.sharedInstance.currentLanguage == .base
+            let isZh = LocalizationService.sharedInstance.currentLanguage == .chinese
             items = [
                 gatewayInfo.name,
                 gatewayInfo.website,
                 gatewayInfo.support,
-                isEn ? gatewayInfo.policy["en"] : gatewayInfo.policy["zh"],
+                isZh ? (gatewayInfo.policy["zh"] ?? gatewayInfo.policy["en"]) : gatewayInfo.policy["en"],
                 gatewayInfo.url,
-                isEn ? gatewayInfo.overview["en"] : gatewayInfo.overview["zh"]
+                isZh ? (gatewayInfo.overview["zh"] ?? gatewayInfo.overview["en"] ): gatewayInfo.overview["en"]
             ]
-
         }
     }
 

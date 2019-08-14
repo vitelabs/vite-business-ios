@@ -315,11 +315,17 @@ class GatewayWithdrawViewController: BaseViewController {
                 data.append(Data(tpye.toBytes))
                 data.append(withDrawAddressData!)
 
-                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, utString:nil,  completion: { (_) in
-                    let vc = CrossChainHistoryViewController()
-                    vc.style = .withdraw
-                    vc.gatewayInfoService = self.gateWayInfoService
-                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, utString:nil,  completion: { (result) in
+                    switch result {
+                    case .success(_):
+                        let vc = CrossChainHistoryViewController()
+                        vc.style = .withdraw
+                        vc.gatewayInfoService = self.gateWayInfoService
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                    case .failure(let error):
+                        Toast.show(error.localizedDescription)
+                    }
+
                 })
             }.catch { [weak self](error) in
                 self?.view.hideLoading()

@@ -140,6 +140,7 @@ extension Exchangeprovider {
         var unitQuotaMin = 0.0
         var unitQuotaMax = 0.0
         var quotaRest = 0.0
+        var quotaTotal = 0.0
         var version = 0
         var ctime = ""
 
@@ -158,6 +159,7 @@ extension Exchangeprovider {
             quotaRest <- map["quotaRest"]
             version <- map["version"]
             ctime <- map["ctime"]
+            quotaTotal <- map["quotaTotal"]
         }
     }
 

@@ -692,6 +692,7 @@
 "crosschain.statement.vite.desc" = "本服务由%@提供。\n\n使用%@提供的服务，表明您同意%@%@。若您不同意这些条款，请勿使用%@服务。\n\n若您对支付流程有任何疑问，请联系%@客服团队%@。";
 "crosschain.statement.detail" = "服务条款，交易条件，限制及隐私政策";
 "crosschain.statement.agree" = "点击下一步代表您已同意%@的%@";
+"crosschain.statement.title" = "重要通知";
 
 "unit.Million" = "Million";
 "unit.Billion" = "Billion";
@@ -703,6 +704,9 @@
 "exchange.buy" = "购买";
 "exchange.price" = "价格：";
 "exchange.amount" = "数量：";
+"exchange.limit.onetime" = "单次购买限额：%@ - %@ VITE";
+"exchange.limit.oneday" = "单日总限额：%@ VITE；剩余额度：%@ VITE";
+"exchange.limit.alert" = "您输入的金额超出限制范围，单次购买限额%@-%@VITE，单日限额%@VITE";
 
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect 已连接";

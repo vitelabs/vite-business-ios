@@ -23,8 +23,37 @@ class ExchangeViewController: BaseViewController {
 
     let titleView = PageTitleView.titleAndInfoButton(title: R.string.localizable.exchangeTitley())
 
-    override func viewDidLoad() {
+    let label0 = UILabel().then {
+        $0.text = R.string.localizable.exchangeLimitOnetime("-", "-")
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
+    }
 
+    let pointView0: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex:0x007AFF)
+        view.layer.cornerRadius = 3
+        view.layer.masksToBounds = true
+        return view
+    }()
+
+    let label1 = UILabel().then {
+        $0.text = R.string.localizable.exchangeLimitOneday("-", "-")
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
+    }
+
+    let pointView1: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex:0x007AFF)
+        view.layer.cornerRadius = 3
+        view.layer.masksToBounds = true
+        return view
+    }()
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         bind()
@@ -51,6 +80,10 @@ class ExchangeViewController: BaseViewController {
         scrollView.addSubview(topBackgroundView)
         scrollView.addSubview(titleView)
         scrollView.addSubview(card)
+        scrollView.addSubview(label0)
+        scrollView.addSubview(label1)
+        scrollView.addSubview(pointView0)
+        scrollView.addSubview(pointView1)
 
         scrollView.snp.makeConstraints { (m) in
             m.left.right.top.equalToSuperview()
@@ -73,8 +106,6 @@ class ExchangeViewController: BaseViewController {
                                                                    frame: CGRect.init(x: 0, y: 0, width:kScreenW, height: 192),
                                                                    colors: [UIColor(netHex: 0x052EF5),UIColor(netHex: 0x0BB6EB)])
 
-
-
         scrollView.contentSize = CGSize.init(width: kScreenW, height: 567)
         scrollView.isScrollEnabled = true
 
@@ -83,8 +114,6 @@ class ExchangeViewController: BaseViewController {
             m.height.equalTo(412)
             m.centerX.equalToSuperview()
             m.top.equalTo(topBackgroundView.snp.bottom).offset(-72)
-            m.bottom.equalToSuperview().offset(-20)
-
         }
 
         card.backgroundColor = UIColor.init(netHex: 0xffffff)
@@ -93,6 +122,33 @@ class ExchangeViewController: BaseViewController {
         card.layer.shadowOffset = CGSize(width: 0, height: 0)
         card.layer.shadowRadius = 4
 
+        card.viteInfo.inputTextField.delegate = self
+        card.ethInfo.inputTextField.delegate = self
+
+        pointView0.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(20)
+            m.height.width.equalTo(6)
+            m.top.equalTo(card.snp.bottom).offset(29)
+        }
+
+        label0.snp.makeConstraints { (m) in
+            m.left.equalTo(pointView0.snp.right).offset(5)
+            m.top.equalTo(pointView0.snp.bottom).offset(-10)
+            m.right.equalToSuperview().offset(-20)
+        }
+
+        pointView1.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(20)
+            m.height.width.equalTo(6)
+            m.top.equalTo(label0.snp.bottom).offset(29)
+        }
+
+        label1.snp.makeConstraints { (m) in
+            m.left.equalTo(pointView1.snp.right).offset(5)
+            m.top.equalTo(pointView1.snp.bottom).offset(-10)
+            m.right.equalToSuperview().offset(-20)
+            m.bottom.equalToSuperview().offset(-20)
+        }
 
         exchangeButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
@@ -101,8 +157,13 @@ class ExchangeViewController: BaseViewController {
     }
 
     func bind()  {
-        vm.rateInfo.bind { info in
-            self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1VITE = " + (String(info.rightRate) ?? "-") + "ETH"
+        vm.rateInfo.bind { [weak self] info in
+            guard let `self` = self else { return }
+            self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1 VITE = " + (String(info.rightRate) ?? "-") + " ETH"
+            self.label0.text = R.string.localizable.exchangeLimitOnetime(String(info.quota.unitQuotaMin), String(info.quota.unitQuotaMax))
+            self.label1.text = R.string.localizable.exchangeLimitOneday(String(info.quota.quotaTotal), String(info.quota.quotaRest))
+             self.card.viteInfo.inputTextField.placeholder = String(info.quota.unitQuotaMin) + "-" + String(info.quota.unitQuotaMax)
+
         }.disposed(by: rx.disposeBag)
 
         card.viteInfo.inputTextField.rx.text.bind { text in
@@ -131,9 +192,7 @@ class ExchangeViewController: BaseViewController {
                 self.card.viteInfo.inputTextField.text = nil
                 return
             }
-
             let a = count / rightRate
-
             self.card.viteInfo.inputTextField.text = String(a)
 
         }.disposed(by: rx.disposeBag)
@@ -148,15 +207,17 @@ class ExchangeViewController: BaseViewController {
         exchangeButton.rx.tap.bind{ [unowned self] in
 
             guard let viteAmount = Double(self.card.viteInfo.inputTextField.text ?? "")  else  {
-                Toast.show("illegal  amount")
+                Toast.show(R.string.localizable.grinSendIllegalAmmount())
                 return
             }
-            guard viteAmount >= self.vm.rateInfo.value.quota.unitQuotaMin  else  {
-                Toast.show("less than min  amount \(self.vm.rateInfo.value.quota.unitQuotaMin)")
-                return
-            }
-            guard viteAmount <= self.vm.rateInfo.value.quota.unitQuotaMax  else  {
-                Toast.show("bigger than max amount \(self.vm.rateInfo.value.quota.unitQuotaMax)")
+            let info = self.vm.rateInfo.value
+            guard viteAmount >= self.vm.rateInfo.value.quota.unitQuotaMin,
+                viteAmount <= self.vm.rateInfo.value.quota.unitQuotaMax,
+                viteAmount <= self.vm.rateInfo.value.quota.quotaRest else {
+                    let message = R.string.localizable.exchangeLimitAlert(String(info.quota.unitQuotaMin), String(info.quota.unitQuotaMax), String(info.quota.quotaTotal))
+                    Alert.show(title: R.string.localizable.grinNoticeTitle(), message: message, actions: [
+                        (.default(title: R.string.localizable.confirm()), nil),
+                        ])
                 return
             }
 
@@ -216,5 +277,21 @@ class ExchangeViewController: BaseViewController {
     */
 
 
-
 }
+
+extension ExchangeViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == card.ethInfo.inputTextField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.eth.decimals)
+            textField.text = text
+            return ret
+        } else if textField == card.viteInfo.inputTextField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.viteCoin.decimals)
+            textField.text = text
+            return ret
+        } else {
+            return true
+        }
+    }
+}
+

@@ -235,7 +235,6 @@ class ExchangeTokenInfoView: UIView {
         inputTextField.textColor = UIColor.init(netHex: 0x24272B)
         inputTextField.keyboardType = .decimalPad
 
-
         bottonLine.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
 
     }

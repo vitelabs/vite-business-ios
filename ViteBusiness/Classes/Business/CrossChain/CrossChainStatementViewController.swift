@@ -14,6 +14,11 @@ class CrossChainStatementViewController: BaseViewController {
 
     var isWithDraw = true
 
+    let titleView = PageTitleView.titleView(style: .onlyTitle).then {
+        $0.titleLabel.text = R.string.localizable.crosschainStatementTitle()
+
+    }
+
     let topLabel = ActiveLabel()
     let bottomLabel = ActiveLabel()
     let agreeButton = UIButton.init(style: .blueWithShadow,title: R.string.localizable.grinSentNext())
@@ -35,12 +40,20 @@ class CrossChainStatementViewController: BaseViewController {
         topLabel.font = UIFont.systemFont(ofSize: 12)
         bottomLabel.font = UIFont.systemFont(ofSize: 12)
 
+        view.addSubview(titleView)
         view.addSubview(topLabel)
         view.addSubview(bottomLabel)
         view.addSubview(agreeButton)
 
+        titleView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.equalToSuperview()
+            m.right.equalToSuperview()
+            m.height.equalTo(64)
+        }
+
         topLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
+            m.top.equalTo(titleView.snp.bottom).offset(20)
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
         }
@@ -76,16 +89,20 @@ class CrossChainStatementViewController: BaseViewController {
         }
     }
 
+    func createNavigationTitleView() -> UIView {
+        return titleView
+    }
+
     func setStatementInfo()  {
 
         var isVite = tokenInfo.gatewayInfo?.isOfficial ?? false
 
         let name = tokenInfo.gatewayInfo?.name ?? "--"
         let detail = R.string.localizable.crosschainStatementDetail()
-        let email = tokenInfo.gatewayInfo?.support ?? "xx@vite.org"
-        let isEn = LocalizationService.sharedInstance.currentLanguage == .base
+        let email = tokenInfo.gatewayInfo?.support ?? ""
+        let isZH = LocalizationService.sharedInstance.currentLanguage == .chinese
 
-        let policy = (isEn ?  tokenInfo.gatewayInfo?.policy["en"] : tokenInfo.gatewayInfo?.policy["zh"]) ?? "--"
+        let policy = (isZH ? (tokenInfo.gatewayInfo?.policy["zh"] ?? tokenInfo.gatewayInfo?.policy["en"]) : tokenInfo.gatewayInfo?.policy["en"] ) ?? ""
 
         var str = ""
         if isVite {
@@ -105,6 +122,7 @@ class CrossChainStatementViewController: BaseViewController {
         let customType2 = ActiveType.custom(pattern: c2 ?? "")
 
         let detailType = ActiveType.custom(pattern: detail)
+
         let emailType = ActiveType.custom(pattern: email)
         topLabel.enabledTypes = [customType0, customType1, customType2, detailType, emailType, .mention, .hashtag, .url]
         topLabel.customize { label in
@@ -129,17 +147,19 @@ class CrossChainStatementViewController: BaseViewController {
             }
         }
 
-        let str2 = R.string.localizable.crosschainStatementAgree(name, name)
-        bottomLabel.text = str2 + detail
+        let str2 = R.string.localizable.crosschainStatementAgree(name, detail)
+        bottomLabel.text = str2
+        
+        let customType4 = ActiveType.custom(pattern: R.string.localizable.crosschainStatementAgree(name, "") ?? "")
+        let detailType2 = ActiveType.custom(pattern: detail)
 
-        let customType4 = ActiveType.custom(pattern: str2 ?? "")
-        bottomLabel.enabledTypes = [customType4, detailType]
+        bottomLabel.enabledTypes = [customType4, detailType2]
         bottomLabel.customize { label in
             label.lineSpacing = 8
             label.customColor[customType4] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
-            label.customColor[detailType] = UIColor.init(netHex: 0x007AFF)
-            label.handleCustomTap(for: detailType) { [weak view] element in
-                guard let url = URL.init(string: "mailto:" + policy) else {
+            label.customColor[detailType2] = UIColor.init(netHex: 0x007AFF)
+            label.handleCustomTap(for: detailType2) { [weak view] element in
+                guard let url = URL.init(string: policy) else {
                     return
                 }
                 let vc = WKWebViewController.init(url: url)

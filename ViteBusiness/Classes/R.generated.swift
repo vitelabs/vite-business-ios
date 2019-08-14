@@ -1382,7 +1382,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 670 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 674 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2056,6 +2056,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Daily Transaction Limit %@ VITE；剩余额度：%@ VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeLimitOneday = Rswift.StringResource(key: "exchange.limit.oneday", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Data
       /// 
       /// Locales: en, zh-Hans
@@ -3088,6 +3092,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertPowAndQuotaMessage = Rswift.StringResource(key: "quota.alert.pow.and.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Single Transaction Limit: %@ - %@ VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeLimitOnetime = Rswift.StringResource(key: "exchange.limit.onetime", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Slate ID Copied.
       /// 
       /// Locales: en, zh-Hans
@@ -3240,6 +3248,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageToastAmountZero = Rswift.StringResource(key: "send.page.toast.amount.zero", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let exchangeLimitAlert = Rswift.StringResource(key: "exchange.limit.alert", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters
       /// 
       /// Locales: en, zh-Hans
@@ -4060,6 +4072,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeHistory = Rswift.StringResource(key: "exchange.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 重要通知
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementTitle = Rswift.StringResource(key: "crosschain.statement.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 隐私政策&服务条款
       /// 
       /// Locales: en, zh-Hans
@@ -5239,6 +5255,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func peldgeMessage(_: Void = ()) -> String {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Daily Transaction Limit %@ VITE；剩余额度：%@ VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeLimitOneday(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("exchange.limit.oneday", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: Data
@@ -7047,6 +7070,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.and.quota.message", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Single Transaction Limit: %@ - %@ VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeLimitOnetime(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("exchange.limit.onetime", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// en translation: Slate ID Copied.
       /// 
       /// Locales: en, zh-Hans
@@ -7311,6 +7341,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func sendPageToastAmountZero(_: Void = ()) -> String {
         return NSLocalizedString("send.page.toast.amount.zero", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func exchangeLimitAlert(_ value1: String, _ value2: String, _ value3: String) -> String {
+        return String(format: NSLocalizedString("exchange.limit.alert", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
       /// en translation: The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters
@@ -8746,6 +8783,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exchangeHistory(_: Void = ()) -> String {
         return NSLocalizedString("exchange.history", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 重要通知
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementTitle(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.statement.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 隐私政策&服务条款

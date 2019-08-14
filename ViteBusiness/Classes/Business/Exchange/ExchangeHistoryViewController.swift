@@ -31,7 +31,7 @@ class ExchangeHistoryViewController: BaseViewController {
         }
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CrossChainHistoryCell.self, forCellReuseIdentifier: "CrossChainHistoryCell")
+        tableView.register(ExchangeHistoryCell.self, forCellReuseIdentifier: "ExchangeHistoryCell")
         tableView.separatorColor = UIColor.init(netHex: 0xD3DFEF)
 
         tableView.mj_header = RefreshHeader(refreshingBlock: { [unowned self] in
@@ -97,11 +97,21 @@ extension ExchangeHistoryViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ExchangeHistoryCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeHistoryCell") as! ExchangeHistoryCell
         let tx = self.vm.txs.value[indexPath.row]
         cell.priceLabel.text  = R.string.localizable.exchangePrice() + (String(tx.ratePrice) ?? "") + " ETH"
-        cell.viteAmountLabel.text =  (String(tx.viteAmount) ?? "") 
-        cell.ethAmountLabel.text =  (String(tx.xAmount) ?? "")
+        if let de = BigDecimal(String(tx.viteAmount) ) {
+            cell.viteAmountLabel.text =
+                BigDecimalFormatter.format(bigDecimal: de , style: .decimalTruncation(4), padding: .none, options:  [.groupSeparator])
+        } else {
+            cell.viteAmountLabel.text = nil
+        }
+        if let de2 = BigDecimal(String(tx.xAmount) ) {
+            cell.ethAmountLabel.text =
+                BigDecimalFormatter.format(bigDecimal: de2 , style: .decimalTruncation(4), padding: .none, options:  [.groupSeparator])
+        } else {
+            cell.ethAmountLabel.text = nil
+        }
 
         let date = Date.init(timeIntervalSince1970: TimeInterval(tx.ctime/1000))
         let timeStr = dateFormatter.string(from: date)

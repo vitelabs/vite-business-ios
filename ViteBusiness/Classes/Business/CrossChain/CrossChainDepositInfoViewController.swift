@@ -223,10 +223,9 @@ class GatewayDepositViewController: BaseViewController {
     let useViteWalletButton = UIButton.init(style: .add).then {
         $0.setImage(R.image.crosschain_deposie_switch(), for: .normal)
         $0.setImage(R.image.crosschain_deposie_switch(), for: .highlighted)
-        $0.setTitle("VITE钱包转入", for: .normal)
+        $0.setTitle(R.string.localizable.crosschainDepositVitewallet(), for: .normal)
     }
 
-    
 
     /*
     // MARK: - Navigation
