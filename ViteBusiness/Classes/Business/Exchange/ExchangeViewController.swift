@@ -88,18 +88,18 @@ class ExchangeViewController: BaseViewController {
 
         topBackgroundView.snp.makeConstraints { (m) in
             m.left.right.top.equalToSuperview()
-            m.height.equalTo(192)
+            m.height.equalTo(172 + UIApplication.shared.statusBarFrame.size.height)
         }
 
         titleView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview()
-            m.top.equalToSuperview().offset(70)
+            m.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.size.height + 50)
         }
 
         titleView.titleLabel.textColor = .white
 
         topBackgroundView.backgroundColor =  UIColor.gradientColor(style: .leftTop2rightBottom,
-                                                                   frame: CGRect.init(x: 0, y: 0, width:kScreenW, height: 192),
+                                                                   frame: CGRect.init(x: 0, y: 0, width:kScreenW, height: UIApplication.shared.statusBarFrame.size.height + 172),
                                                                    colors: [UIColor(netHex: 0x052EF5),UIColor(netHex: 0x0BB6EB)])
 
         scrollView.contentSize = CGSize.init(width: kScreenW, height: 567)
@@ -107,7 +107,7 @@ class ExchangeViewController: BaseViewController {
 
         card.snp.makeConstraints { m in
             m.left.right.equalToSuperview().inset(24)
-            m.height.equalTo(412)
+            m.height.equalTo(424)
             m.centerX.equalToSuperview()
             m.top.equalTo(topBackgroundView.snp.bottom).offset(-72)
         }
@@ -117,6 +117,8 @@ class ExchangeViewController: BaseViewController {
         card.layer.shadowOpacity = 0.1
         card.layer.shadowOffset = CGSize(width: 0, height: 0)
         card.layer.shadowRadius = 4
+        card.layer.cornerRadius = 2
+
 
         card.viteInfo.inputTextField.delegate = self
         card.ethInfo.inputTextField.delegate = self
@@ -271,6 +273,10 @@ class ExchangeViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 
 
 }

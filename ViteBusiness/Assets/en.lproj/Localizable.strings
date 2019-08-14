@@ -684,7 +684,13 @@
 "crosschain.gatewaydetail.host" = "Gateway URL";
 "crosschain.gatewaydetail.abstract" = "Introduction";
 "crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
+"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
 "crosschain.statement.title" = "Introduction";

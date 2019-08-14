@@ -78,11 +78,11 @@ class GatewayDepositViewController: BaseViewController {
             m.centerX.equalToSuperview()
         }
 
-        view.displayLoading()
+        qrcodeView.displayLoading()
         self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
             .done { [weak self] (info) in
                 guard let `self` = self else { return }
-                self.view.hideLoading()
+                self.qrcodeView.hideLoading()
                 self.addressView.textLabel.text = info.depositAddress
                 self.qrcodeView.bind(tokenInfo: TokenInfo.eth, content: info.depositAddress)
                 guard let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.tokenInfo.decimals) else {

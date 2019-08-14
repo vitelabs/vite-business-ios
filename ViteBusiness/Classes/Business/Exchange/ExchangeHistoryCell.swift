@@ -94,7 +94,6 @@ class ExchangeHistoryCell: UITableViewCell {
         }
 
 
-
     }
 
     required init?(coder aDecoder: NSCoder) {

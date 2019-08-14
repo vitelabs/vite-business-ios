@@ -15,6 +15,11 @@ class ExchangeCard: UIView {
     let historyButton = UIButton()
     let historyArrowImage = UIImageView()
 
+    let whiteView = UIView().then {
+        $0.backgroundColor = UIColor.white
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = 2
+    }
 
     let middleSeperator = UIImageView()
     let middleIcon = UIImageView()
@@ -31,23 +36,26 @@ class ExchangeCard: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubview(topBackground)
-        addSubview(exchangeIcon)
-        addSubview(exchangeTitlelabel)
-        addSubview(historyArrowImage)
-        addSubview(historyButton)
-        addSubview(middleSeperator)
-        addSubview(middleIcon)
-        addSubview(viteInfo)
-        addSubview(ethInfo)
-        addSubview(priceBackground)
-        addSubview(priceLabel)
+        addSubview(whiteView)
+        whiteView.addSubview(topBackground)
+        whiteView.addSubview(exchangeIcon)
+        whiteView.addSubview(exchangeTitlelabel)
+        whiteView.addSubview(historyArrowImage)
+        whiteView.addSubview(historyButton)
+        whiteView.addSubview(middleSeperator)
+        whiteView.addSubview(middleIcon)
+        whiteView.addSubview(viteInfo)
+        whiteView.addSubview(ethInfo)
+        whiteView.addSubview(priceBackground)
+        whiteView.addSubview(priceLabel)
+
+
 
 
         historyArrowImage.image = R.image.exchange_hisrory_arrow()
 
         exchangeTitlelabel.text = R.string.localizable.exchangeCardTitle()
-        exchangeTitlelabel.font = UIFont.systemFont(ofSize: 14)
+        exchangeTitlelabel.font = UIFont.boldSystemFont(ofSize: 14)
         exchangeTitlelabel.textColor = UIColor.init(netHex: 0x3E4A59)
 
         exchangeIcon.image = R.image.exchange_icon()
@@ -79,6 +87,11 @@ class ExchangeCard: UIView {
                     self.viteInfo.banlanceLabel.text = balanceInfo?.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteCoin.decimals)
                 }).disposed(by: self.rx.disposeBag)
 
+        }
+
+
+        whiteView.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
         }
 
         topBackground.snp.makeConstraints { (m) in
@@ -222,7 +235,7 @@ class ExchangeTokenInfoView: UIView {
             m.right.equalToSuperview().offset(-16)
             m.left.equalToSuperview().offset(16)
             m.top.equalTo(inputTextField.snp.bottom)
-            m.height.equalTo(1)
+            m.height.equalTo(CGFloat.singleLineWidth)
         }
 
         tokenNamelabel.font = UIFont.systemFont(ofSize: 16)

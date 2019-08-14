@@ -19,7 +19,9 @@ class CrossChainStatementViewController: BaseViewController {
 
     }
 
-    let topLabel = ActiveLabel()
+    let topLabel0 = ActiveLabel()
+    let topLabel1 = ActiveLabel()
+    let topLabel2 = ActiveLabel()
     let bottomLabel = ActiveLabel()
     let agreeButton = UIButton.init(style: .blueWithShadow,title: R.string.localizable.grinSentNext())
 
@@ -35,13 +37,20 @@ class CrossChainStatementViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        topLabel.numberOfLines = 0
+        topLabel0.numberOfLines = 0
+        topLabel1.numberOfLines = 0
+        topLabel2.numberOfLines = 0
         bottomLabel.numberOfLines = 0
-        topLabel.font = UIFont.systemFont(ofSize: 12)
+        topLabel0.font = UIFont.systemFont(ofSize: 12)
+        topLabel1.font = UIFont.systemFont(ofSize: 12)
+        topLabel2.font = UIFont.systemFont(ofSize: 12)
         bottomLabel.font = UIFont.systemFont(ofSize: 12)
 
         view.addSubview(titleView)
-        view.addSubview(topLabel)
+        view.addSubview(topLabel0)
+        view.addSubview(topLabel1)
+        view.addSubview(topLabel2)
+
         view.addSubview(bottomLabel)
         view.addSubview(agreeButton)
 
@@ -52,14 +61,26 @@ class CrossChainStatementViewController: BaseViewController {
             m.height.equalTo(64)
         }
 
-        topLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(titleView.snp.bottom).offset(20)
+        topLabel0.snp.makeConstraints { (m) in
+            m.top.equalTo(titleView.snp.bottom).offset(6)
+            m.left.equalToSuperview().offset(20)
+            m.right.equalToSuperview().offset(-20)
+        }
+
+        topLabel1.snp.makeConstraints { (m) in
+            m.top.equalTo(topLabel0.snp.bottom).offset(18)
+            m.left.equalToSuperview().offset(20)
+            m.right.equalToSuperview().offset(-20)
+        }
+
+        topLabel2.snp.makeConstraints { (m) in
+            m.top.equalTo(topLabel1.snp.bottom).offset(18)
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
         }
 
         agreeButton.snp.makeConstraints { (m) in
-            m.bottom.equalTo(view.snp_bottom).offset(-40)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
             m.left.equalToSuperview().offset(20)
             m.right.equalToSuperview().offset(-20)
             m.height.equalTo(50)
@@ -104,59 +125,75 @@ class CrossChainStatementViewController: BaseViewController {
 
         let policy = (isZH ? (tokenInfo.gatewayInfo?.policy["zh"] ?? tokenInfo.gatewayInfo?.policy["en"]) : tokenInfo.gatewayInfo?.policy["en"] ) ?? ""
 
-        var str = ""
-        if isVite {
-            str = R.string.localizable.crosschainStatementViteDesc(name, name, name, detail, name, name, email)
-        } else {
-            str = R.string.localizable.crosschainStatementOtherDesc(name, name, name, name, name, detail, name, name, email)
-        }
-        topLabel.text = str
+        var str0 = ""
+        var str1 = ""
+        var str2 = ""
 
-        var subs = str.components(separatedBy: detail)
-        let (sub0, sub1) = (subs.first, subs.last)
-        subs = (sub1?.components(separatedBy: email))!
-        let (c0, c1, c2) = (sub0, subs.first, subs.last)
+        if isVite {
+            str0 = R.string.localizable.crosschainStatementViteDesc0(name)
+            str1 = R.string.localizable.crosschainStatementViteDesc1(name, name, detail,name)
+            str2 = R.string.localizable.crosschainStatementViteDesc2(name, email)
+        } else {
+            str0 = R.string.localizable.crosschainStatementOtherDesc0(name, name, name)
+            str1 = R.string.localizable.crosschainStatementOtherDesc1(name, name, detail, name)
+            str2 = R.string.localizable.crosschainStatementOtherDesc2(name, email)
+        }
+
+        topLabel0.text = str0
+        topLabel1.text = str1
+        topLabel2.text = str2
+
+        let c0 = str0
+        let (c1, c2) = (str1.components(separatedBy: detail).first, str1.components(separatedBy: detail).last )
+        let (c3, c4) = (str2.components(separatedBy: email).first, str2.components(separatedBy: email).last )
 
         let customType0 = ActiveType.custom(pattern: c0 ?? "")
         let customType1 = ActiveType.custom(pattern: c1 ?? "")
         let customType2 = ActiveType.custom(pattern: c2 ?? "")
+        let customType3 = ActiveType.custom(pattern: c3 ?? "")
+        let customType4 = ActiveType.custom(pattern: c4 ?? "")
 
         let detailType = ActiveType.custom(pattern: detail)
 
         let emailType = ActiveType.custom(pattern: email)
-        topLabel.enabledTypes = [customType0, customType1, customType2, detailType, emailType, .mention, .hashtag, .url]
-        topLabel.customize { label in
-            label.lineSpacing = 8
-            label.customColor[customType0] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
-            label.customColor[customType1] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
-            label.customColor[customType2] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
-            label.customColor[detailType] = UIColor.init(netHex: 0x007AFF)
-            label.customColor[emailType] = UIColor.init(netHex: 0x007AFF)
-            label.handleCustomTap(for: detailType) { [weak view] element in
-                guard let url = URL.init(string: policy) else {
-                    return
+
+        for label in [topLabel0, topLabel1, topLabel2] {
+            label.enabledTypes = [customType0, customType1, customType2,customType3, customType4, detailType, emailType, .mention, .hashtag, .url]
+            label.customize { label in
+                label.lineSpacing = 8
+                label.customColor[customType0] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+                label.customColor[customType1] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+                label.customColor[customType2] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+                label.customColor[customType3] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+                label.customColor[customType4] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+                label.customColor[detailType] = UIColor.init(netHex: 0x007AFF)
+                label.customColor[emailType] = UIColor.init(netHex: 0x007AFF)
+                label.handleCustomTap(for: detailType) { [weak view] element in
+                    guard let url = URL.init(string: policy) else {
+                        return
+                    }
+                    let vc = WKWebViewController.init(url: url)
+                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                 }
-                let vc = WKWebViewController.init(url: url)
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-            }
-            label.handleCustomTap(for: emailType) { [weak view] element in
-                guard let url = URL.init(string: "mailto:" + email) else {
-                    return
+                label.handleCustomTap(for: emailType) { [weak view] element in
+                    guard let url = URL.init(string: "mailto:" + email) else {
+                        return
+                    }
+                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
 
-        let str2 = R.string.localizable.crosschainStatementAgree(name, detail)
-        bottomLabel.text = str2
-        
-        let customType4 = ActiveType.custom(pattern: R.string.localizable.crosschainStatementAgree(name, "") ?? "")
+        let str3 = R.string.localizable.crosschainStatementAgree(name, detail)
+        bottomLabel.text = str3
+
+        let customType5 = ActiveType.custom(pattern: R.string.localizable.crosschainStatementAgree(name, "") ?? "")
         let detailType2 = ActiveType.custom(pattern: detail)
 
-        bottomLabel.enabledTypes = [customType4, detailType2]
+        bottomLabel.enabledTypes = [customType5, detailType2]
         bottomLabel.customize { label in
             label.lineSpacing = 8
-            label.customColor[customType4] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+            label.customColor[customType5] = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
             label.customColor[detailType2] = UIColor.init(netHex: 0x007AFF)
             label.handleCustomTap(for: detailType2) { [weak view] element in
                 guard let url = URL.init(string: policy) else {

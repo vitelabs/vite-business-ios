@@ -1382,7 +1382,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 675 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 681 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1724,6 +1724,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementAgree = Rswift.StringResource(key: "crosschain.statement.agree", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementOtherDesc1 = Rswift.StringResource(key: "crosschain.statement.other.desc1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementViteDesc1 = Rswift.StringResource(key: "crosschain.statement.vite.desc1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Campaign Center
       /// 
       /// Locales: en, zh-Hans
@@ -2372,6 +2380,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let importPageSubmitLoading = Rswift.StringResource(key: "import.page.submit.loading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementOtherDesc2 = Rswift.StringResource(key: "crosschain.statement.other.desc2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementViteDesc2 = Rswift.StringResource(key: "crosschain.statement.vite.desc2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Inactive
       /// 
       /// Locales: en, zh-Hans
@@ -3360,10 +3376,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let importPageAlertExistTitle = Rswift.StringResource(key: "import.page.alert.exist.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Service is provided by %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementViteDesc0 = Rswift.StringResource(key: "crosschain.statement.vite.desc0", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This Service is provided by %@.  By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementViteDesc = Rswift.StringResource(key: "crosschain.statement.vite.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainStatementOtherDesc0 = Rswift.StringResource(key: "crosschain.statement.other.desc0", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.  By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
       /// 
       /// Locales: en, zh-Hans
@@ -4680,6 +4704,20 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.statement.agree", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
+      /// en translation: By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementOtherDesc1(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.other.desc1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
+      }
+      
+      /// en translation: By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementViteDesc1(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.vite.desc1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
+      }
+      
       /// en translation: Campaign Center
       /// 
       /// Locales: en, zh-Hans
@@ -5812,6 +5850,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func importPageSubmitLoading(_: Void = ()) -> String {
         return NSLocalizedString("import.page.submit.loading", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementOtherDesc2(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.other.desc2", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: In case of problems with verification or payment processing, please contact %@ support team at %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementViteDesc2(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.vite.desc2", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: Inactive
@@ -7543,11 +7595,25 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("import.page.alert.exist.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: This Service is provided by %@.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementViteDesc0(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.vite.desc0", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: This Service is provided by %@.  By using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
       /// 
       /// Locales: en, zh-Hans
       public static func crosschainStatementViteDesc(_ value1: String, _ value2: String, _ value3: String, _ value4: String, _ value5: String, _ value6: String, _ value7: String) -> String {
         return String(format: NSLocalizedString("crosschain.statement.vite.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7)
+      }
+      
+      /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainStatementOtherDesc0(_ value1: String, _ value2: String, _ value3: String) -> String {
+        return String(format: NSLocalizedString("crosschain.statement.other.desc0", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
       /// en translation: This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.  By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.  In case of problems with verification or payment processing, please contact %@ support team at %@.
