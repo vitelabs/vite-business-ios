@@ -33,7 +33,7 @@ public class WKWebViewJSBridgePublish {
     }
 
     public func appDidBecomeActive() {
-        self.bridge?.call(handlerName: "app.didBecomeActive", data: "") {  (_) in
+         self.bridge?.call(handlerName: "page.onShow", data: ["reason": "appDidBecomeActive"]) {  (_) in
         }
     }
 
