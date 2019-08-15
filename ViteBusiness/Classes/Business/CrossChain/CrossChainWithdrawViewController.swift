@@ -374,7 +374,7 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
                 let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
                 if !info.minimumWithdrawAmount.isEmpty,
                 let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: decimals) {
-                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount)\(symble)"
+                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
                 }
         }
 

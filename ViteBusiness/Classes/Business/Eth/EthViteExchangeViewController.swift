@@ -255,7 +255,7 @@ class EthViteExchangeViewController: BaseViewController {
                         return
                     }
                     if let amount = Amount(info.minimumDepositAmount)?.amountShort(decimals: decimals) {
-                        self.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount)\(symble)"
+                        self.amountView.textField.placeholder = "\(R.string.localizable.crosschainDepositMin())\(amount) \(symble)"
                     }
 
             }

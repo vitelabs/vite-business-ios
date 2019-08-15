@@ -18,9 +18,9 @@ public class EthGasFeeSliderView: UIView {
                 return
             }
             if value == self.feeSlider.minimumValue || value == self.feeSlider.maximumValue {
-                self.valueLab.text = String(format: "%.2fgwei", value)
+                self.valueLab.text = String(format: "%.2f gwei", value)
             }else {
-                self.valueLab.text = String(format: "%.4fgwei", value)
+                self.valueLab.text = String(format: "%.4f gwei", value)
             }
             eth = (value * Float(self.gasLimit) * pow(10.0, -9))
             eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)

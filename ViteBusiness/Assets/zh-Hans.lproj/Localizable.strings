@@ -656,7 +656,7 @@
 "crosschain.deposit.all" = "全部转入";
 "crosschain.deposit.amount" = "转入金额";
 "crosschain.withdraw.all" = "全部转出";
-"crosschain.withdraw.amount" = "全部金额";
+"crosschain.withdraw.amount" = "转出金额";
 "crosschain.tokenDetail.shortname" = "代币简称";
 "crosschain.tokenDetail.id" = "代币ID";
 "crosschain.tokenDetail.name" = "代币名称";

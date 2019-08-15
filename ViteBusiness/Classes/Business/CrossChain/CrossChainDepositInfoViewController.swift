@@ -88,7 +88,7 @@ class GatewayDepositViewController: BaseViewController {
                 guard let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.tokenInfo.decimals) else {
                     return
                 }
-                let subStirng = minimumDepositAmountStr + self.tokenInfo.symbol
+                let subStirng = minimumDepositAmountStr +  " " + self.tokenInfo.symbol
                 let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(subStirng)
                 let range = NSString.init(string: fullString).range(of: minimumDepositAmountStr)
                 let attributeString = NSMutableAttributedString.init(string: fullString)
@@ -193,12 +193,6 @@ class GatewayDepositViewController: BaseViewController {
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
-    }
-
-    let descriptionTitleLabel = UILabel().then {
-        $0.text = R.string.localizable.grinNoticeTitle()
-        $0.numberOfLines = 0
-        $0.font = UIFont.boldSystemFont(ofSize: 14)
     }
 
     let pointView: UIView = {
