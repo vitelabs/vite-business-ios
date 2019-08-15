@@ -706,7 +706,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；rest：%@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；The Rest：%@ VITE";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 

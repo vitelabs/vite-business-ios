@@ -72,7 +72,7 @@ class ExchangeViewController: BaseViewController {
     func setupViews()  {
         navigationBarStyle = .clear
         view.addSubview(scrollView)
-        view.addSubview(exchangeButton)
+        scrollView.addSubview(exchangeButton)
         scrollView.addSubview(topBackgroundView)
         scrollView.addSubview(titleView)
         scrollView.addSubview(card)
@@ -81,9 +81,10 @@ class ExchangeViewController: BaseViewController {
         scrollView.addSubview(pointView0)
         scrollView.addSubview(pointView1)
 
+
         scrollView.snp.makeConstraints { (m) in
             m.left.right.top.equalToSuperview()
-            m.bottom.equalTo(exchangeButton.snp.top).offset(-10)
+            m.bottom.equalToSuperview()
         }
 
         topBackgroundView.snp.makeConstraints { (m) in
@@ -102,8 +103,8 @@ class ExchangeViewController: BaseViewController {
                                                                    frame: CGRect.init(x: 0, y: 0, width:kScreenW, height: UIApplication.shared.statusBarFrame.size.height + 172),
                                                                    colors: [UIColor(netHex: 0x052EF5),UIColor(netHex: 0x0BB6EB)])
 
-        scrollView.contentSize = CGSize.init(width: kScreenW, height: 567)
         scrollView.isScrollEnabled = true
+        scrollView.bounces = false
 
         card.snp.makeConstraints { m in
             m.left.right.equalToSuperview().inset(24)
@@ -123,35 +124,37 @@ class ExchangeViewController: BaseViewController {
         card.viteInfo.inputTextField.delegate = self
         card.ethInfo.inputTextField.delegate = self
 
-        pointView0.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(20)
-            m.height.width.equalTo(6)
+        exchangeButton.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
             m.top.equalTo(card.snp.bottom).offset(29)
+            m.height.equalTo(50)
+        }
+
+        pointView0.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(35)
+            m.height.width.equalTo(6)
+            m.top.equalTo(exchangeButton.snp.bottom).offset(29)
         }
 
         label0.snp.makeConstraints { (m) in
             m.left.equalTo(pointView0.snp.right).offset(5)
             m.top.equalTo(pointView0.snp.bottom).offset(-10)
-            m.right.equalToSuperview().offset(-20)
+            m.right.equalToSuperview().offset(-24)
         }
 
         pointView1.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(20)
+            m.left.equalToSuperview().offset(35)
             m.height.width.equalTo(6)
-            m.top.equalTo(label0.snp.bottom).offset(29)
+            m.top.equalTo(label0.snp.bottom).offset(10)
         }
 
         label1.snp.makeConstraints { (m) in
             m.left.equalTo(pointView1.snp.right).offset(5)
             m.top.equalTo(pointView1.snp.bottom).offset(-10)
-            m.right.equalToSuperview().offset(-20)
+            m.right.equalToSuperview().offset(-24)
             m.bottom.equalToSuperview().offset(-20)
         }
 
-        exchangeButton.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
     }
 
     func bind()  {
