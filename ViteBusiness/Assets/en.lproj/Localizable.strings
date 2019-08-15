@@ -693,7 +693,7 @@
 "crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
-"crosschain.statement.title" = "Introduction";
+"crosschain.statement.title" = "Important Notice";
 
 "unit.Million" = "Million";
 "unit.Billion" = "Billion";

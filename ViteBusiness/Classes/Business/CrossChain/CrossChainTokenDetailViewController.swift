@@ -27,11 +27,11 @@ class GatewayTokenDetailViewController: BaseViewController {
                 if totoalAmount / 1_000_000  < 1 {
                     total = totalStr
                 }  else if totoalAmount / 1_000_000_000_000  >= 1  {
-                    total =  String(format:"%.4f",totoalAmount / 1_000_000_000_000) + R.string.localizable.unitTrillion()
+                    total =  String(format:"%.4f",totoalAmount / 1_000_000_000_000) + " " + R.string.localizable.unitTrillion()
                 }  else if totoalAmount / 1_000_000_000  >= 1 {
-                    total = String(format:"%.4f",totoalAmount / 1_000_000_000) + R.string.localizable.unitBillion()
+                    total = String(format:"%.4f",totoalAmount / 1_000_000_000) + " " +  R.string.localizable.unitBillion()
                 } else if totoalAmount / 1_000_000  >= 1 {
-                    total = String(format:"%.4f",totoalAmount / 1_000_000) + R.string.localizable.unitMillion()
+                    total = String(format:"%.4f",totoalAmount / 1_000_000) + " " +  R.string.localizable.unitMillion()
                 }
             }
             var issueStr = "--"
