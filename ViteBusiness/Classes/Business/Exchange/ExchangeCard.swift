@@ -161,7 +161,7 @@ class ExchangeCard: UIView {
             m.right.equalToSuperview().offset(-16)
             m.left.equalToSuperview().offset(16)
             m.height.equalTo(32)
-            m.bottom.equalToSuperview().offset(-24)
+            m.bottom.equalToSuperview().offset(-26)
         }
 
         priceBackground.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
@@ -173,8 +173,6 @@ class ExchangeCard: UIView {
 
         priceLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha:  0.45)
         priceLabel.font = UIFont.systemFont(ofSize: 14)
-
-
 
     }
 
@@ -238,7 +236,7 @@ class ExchangeTokenInfoView: UIView {
             m.height.equalTo(CGFloat.singleLineWidth)
         }
 
-        tokenNamelabel.font = UIFont.systemFont(ofSize: 16)
+        tokenNamelabel.font = UIFont.boldSystemFont(ofSize: 16)
         tokenNamelabel.textColor = UIColor.init(netHex: 0x3E4A59)
 
         banlanceLabel.font = UIFont.systemFont(ofSize: 13)
