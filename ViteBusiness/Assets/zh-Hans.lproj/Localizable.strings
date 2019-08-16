@@ -704,9 +704,9 @@
 "crosschain.statement.agree" = "点击下一步代表您已同意%@的%@";
 "crosschain.statement.title" = "重要通知";
 
-"unit.Million" = "Million";
-"unit.Billion" = "Billion";
-"unit.Trillion" = "Trillion";
+"unit.Million" = " Million";
+"unit.Billion" = " Billion";
+"unit.Trillion" = " Trillion";
 
 "exchange.history" = "购买记录";
 "exchange.card.title" = "买入VITE";

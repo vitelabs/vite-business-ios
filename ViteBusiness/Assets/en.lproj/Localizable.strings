@@ -192,7 +192,7 @@
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Transfer";
+"balance.info.detail.send.button.title" = "Send";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
@@ -212,7 +212,7 @@
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
-"send.page.title" = "Transfer";
+"send.page.title" = "Send";
 "send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
 "send.page.my.pledge.title" = "Benefited Stake";
@@ -252,7 +252,7 @@
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
 "Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and transfer %@";
+"Receive.page.token.name.label" = "Scan and Send %@";
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
@@ -295,7 +295,7 @@
 "quota.manage.page.quota.money.title" = "Staking Amount";
 "quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
+"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
@@ -361,7 +361,7 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nTo get quota is free.";
+"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -444,7 +444,7 @@
 "workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
 "workflow.confirm.page.toast.password.error" = "Wrong password!";
 
-"workflow.toast.transfer.success" = "Transfer Success";
+"workflow.toast.transfer.success" = "Send Success";
 "workflow.toast.submit.success" = "Submit Successful";
 "workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
 "workflow.toast.vote.success" = "Successfully send vote request";
@@ -473,7 +473,7 @@
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.pw.title" = "Please input password";
 // vite transfer
-"confirm.transaction.page.vite.transfer.title" = "Transfer";
+"confirm.transaction.page.vite.transfer.title" = "Send";
 "confirm.transaction.page.vite.confirm.button" = "Confirm";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "Get Quota";
@@ -489,13 +489,13 @@
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Transfer";
+"confirm.transaction.page.eth.transfer.title" = "Send";
 "confirm.transaction.page.eth.confirm.button" = "Confirm";
 // eth vite exchange
 "confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
 "confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Transfer";
+"confirm.transaction.page.grin.transfer.title" = "Send";
 "confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
@@ -517,13 +517,13 @@
 "grin.tx.Repost" = "Repost";
 "grin.tx.copyId" = "Copy";
 "grin.tx.useVite" = "Use VITE Address";
-"grin.sent.useVite.desc" = "Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
+"grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
 "grin.sent.useHttp" = "Use HTTP Address";
 "grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
 "grin.sent.useFile" = "Use Transaction File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "GRIN Transfer";
+"grin.sent.title" = "Send GRIN";
 "grin.sent.amount" = "Amount";
 "grin.receive.ture.amount" = "Actual Amount";
 "grin.sent.fee" = "Fees";
@@ -532,7 +532,7 @@
 "grin.txFile.init.status" = "Created";
 "grin.txFile.id" = "Transaction ID";
 "grin.shareFile" = "Share Transaction File";
-"grin.finalize.title" = "GRIN Transfer";
+"grin.finalize.title" = "Send GRIN";
 "grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txFile.received.status" = "The receipt has been confirmed";
 "grin.finalize" = "Finalize and Broadcast";
@@ -551,17 +551,17 @@
 "grin.thisIsFirstViteAddress" = "This is your first VITE address";
 "grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
 "grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
-"grin.receive.title" = "GRIN Transfer";
+"grin.receive.title" = "Send GRIN";
 "grin.receive.sented" = "Created";
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Receive and Share";
-"grin.sent.btnTitle" = "Transfer";
+"grin.sent.btnTitle" = "Send";
 "grin.receive.BtnTitle" = "Receive";
 "grin.notice.title" = "Notice";
 "grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
 "grin.teach.http.receive.title" = "Receive GRIN though HTTP Address";
-"grin.teach.vite.sent.title" = "Transfer GRIN through VITE Address";
-"grin.teach.http.sent.title" = "Transfer GRIN though HTTP Address";
+"grin.teach.vite.sent.title" = "Send GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Send GRIN though HTTP Address";
 "grin.txid.title" = "Transaction ID";
 "grin.switchAddress" = "Switch Address";
 "grin.http.address" = "HTTP Address";
@@ -585,11 +585,11 @@
 
 "grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
 "grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
-"grin.teach.file.send.title" = "Transfer GRIN through Transaction File";
+"grin.teach.file.send.title" = "Send GRIN through Transaction File";
 "grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
 "grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
 "grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
-"grin.teach.vite.send.startSend" = "Start to Transfer";
+"grin.teach.vite.send.startSend" = "Start to Send";
 "grin.txMethod.http" = "HTTP Address";
 "grin.txMethod.vite" = "VITE Address";
 "grin.txMethod.file" = "File Transaction";
@@ -616,7 +616,7 @@
 "grin.detail.txisPostingPlsWait" = "Transaction is in broadcast, please wait for confirmation.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Please wait for the recipient to open Vite wallet and receive the transaction.";
 "grin.detail.pleaseReciveAndShare" = "Please sign the transaction and share the file with the sender, you can choose whichever way you prefer.";
-"grin.detail.gatewaysend" = "VITE Transaction Transfer";
+"grin.detail.gatewaysend" = "VITE Transaction Send";
 "grin.detail.repoat" = "Repost";
 "grin.node.configNode" = "Configurate Full Node.";
 "grin.node.addNode" = "Add New Full Node";
@@ -631,10 +631,10 @@
 
 "crosschain.tokendetail" = "Token Details";
 "crosschain.deposit" = "Cross-Chain Receive";
-"crosschain.withdraw" = "Cross-Chain Transfer";
-"crosschain.withdraw.btnTitle" = "Transfer";
+"crosschain.withdraw" = "Cross-Chain Send";
+"crosschain.withdraw.btnTitle" = "Send";
 "crosschain.deposit.btnTitle" = "Receive";
-"crosschain.deposit.vitewallet" = "Transfer In through Vite Wallet";
+"crosschain.deposit.vitewallet" = "Deposit through Vite Wallet";
 "crosschain.deposit.otherwallet" = "Receive from Another Wallet";
 "crosschain.deposit.history" = "Receive History";
 "crosschain.withdraw.history" = "Transfer History";
@@ -644,8 +644,8 @@
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Receive ";
-"crosschain.withdraw.min" = "Minimum Transfer ";
+"crosschain.deposit.min" = "Minimum Receive Amount ";
+"crosschain.withdraw.min" = "Minimum Send Amount";
 "crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
 "crosschain.deposit.all" = "Receive All";
 "crosschain.deposit.amount" = "Receive Amount";
@@ -695,9 +695,9 @@
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
 "crosschain.statement.title" = "Important Notice";
 
-"unit.Million" = "Million";
-"unit.Billion" = "Billion";
-"unit.Trillion" = "Trillion";
+"unit.Million" = " Million";
+"unit.Billion" = " Billion";
+"unit.Trillion" = " Trillion";
 
 "exchange.history" = "Purchase History";
 "exchange.card.title" = "Buy VITE";
@@ -706,7 +706,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；The Rest：%@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
@@ -743,10 +743,10 @@
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Transfer";
+"bifrost.operation.transfer" = "Send";
 "bifrost.operation.vx.deposit" = "ViteX Deposit";
 "bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Transfer";
+"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
 "bifrost.operation.vx.order" = "Place Order on ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
 
@@ -758,7 +758,7 @@
 
 // Buildin
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Transfer";
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
 "buildin.transfer.cross.chain.item0.title" = "Amount";
 "buildin.transfer.cross.chain.item1.title" = "Fee";
 "buildin.transfer.cross.chain.item2.title" = "Receive Address";
