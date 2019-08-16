@@ -161,9 +161,18 @@ class ExchangeViewController: BaseViewController {
         vm.rateInfo.bind { [weak self] info in
             guard let `self` = self else { return }
             self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1 VITE = " + (String(info.rightRate) ?? "-") + " ETH"
-            self.label0.text = R.string.localizable.exchangeLimitOnetime(String(info.quota.unitQuotaMin), String(info.quota.unitQuotaMax))
-            self.label1.text = R.string.localizable.exchangeLimitOneday(String(info.quota.quotaTotal), String(info.quota.quotaRest))
-             self.card.viteInfo.inputTextField.placeholder = String(info.quota.unitQuotaMin) + "-" + String(info.quota.unitQuotaMax)
+            if let total = BigDecimal(String(info.quota.quotaTotal) ),
+                let min = BigDecimal(String(info.quota.unitQuotaMin)),
+            let max = BigDecimal(String(info.quota.unitQuotaMax)),
+            let rest = BigDecimal(String(info.quota.quotaRest)) {
+                let totalStr =  BigDecimalFormatter.format(bigDecimal: total , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+                let minStr =  BigDecimalFormatter.format(bigDecimal: min , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+                let maxStr =  BigDecimalFormatter.format(bigDecimal: max , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+                 let restStr =  BigDecimalFormatter.format(bigDecimal: rest , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+                self.label0.text = R.string.localizable.exchangeLimitOnetime(minStr, maxStr)
+                self.label1.text = R.string.localizable.exchangeLimitOneday(totalStr, restStr)
+                self.card.viteInfo.inputTextField.placeholder = minStr + " - " + maxStr
+            }
 
         }.disposed(by: rx.disposeBag)
 
