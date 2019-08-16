@@ -165,95 +165,138 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWorkflow(withoutPowPromise: @escaping () -> Promise<AccountBlock>,
-                                          getPowPromise: @escaping () -> Promise<SendBlockContext>,
-                                          successToast: String,
-                                          type: workflowType,
-                                          completion: @escaping (Result<AccountBlock>) -> ()) {
-        HUD.show()
-        withoutPowPromise()
-            .always {
-                HUD.hide()
-            }
-            .recover { (e) -> Promise<AccountBlock> in
-                if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                } else {
-                    return Promise(error: e)
-                }
-            }
-            .done {
-                AlertControl.showCompletion(successToast)
-                completion(Result.success($0))
-            }
-            .catch { e in
-                let error = ViteError.conversion(from: e)
-                if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                    AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
-                                    titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
-                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-                    switch type {
-                    case .other, .vote:
-                        AlertSheet.show(title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertNeedQuotaMessage(),
-                                        titles: [.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
-                                                 .cancel],
-                                        handler: { (_, index) in
-                                            if index == 0 {
-                                                let vc = QuotaManageViewController()
-                                                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                                            }
-                        }, config: { alert in
-                            alert.preferredAction = alert.actions[0]
-                        })
-                    case .pledge:
-                        Toast.show(error.viteErrorMessage)
-                    }
-                } else if error != ViteError.cancel {
-                    if case .vote = type, error.code == ViteErrorCode.rpcNoTransactionBefore {
-                        Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+    static func sendSilently(account: Wallet.Account,
+                             toAddress: ViteAddress,
+                             tokenId: ViteTokenId,
+                             amount: Amount,
+                             fee: Amount?,
+                             data: Data?,
+                             completion: @escaping (Result<AccountBlock>) -> ()) {
+        ViteNode.rawTx.send.prepare(account: account,
+                                    toAddress: toAddress,
+                                    tokenId: tokenId,
+                                    amount: amount,
+                                    fee: fee,
+                                    data: data)
+            .then { (context) -> Promise<SendBlockContext> in
+                if context.quota.isCongestion {
+                    if context.isNeedToCalcPoW {
+                        return Promise(error: ViteError.cancel)
                     } else {
-                        Toast.show(error.viteErrorMessage)
+                        return Promise(error: ViteError.cancel)
+                    }
+                } else {
+                    if context.isNeedToCalcPoW {
+                        let waitAtLeast = after(seconds: TimeInterval(AppConfigService.instance.pDelay))
+                        return ViteNode.rawTx.send.getPow(context: context)
+                            .then { context -> Promise<SendBlockContext> in
+                                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+                                    return .value(context)
+                                })
+                        }
+                    } else {
+                        return Promise.value(context)
                     }
                 }
+            }.then { context -> Promise<(context: SendBlockContext, accountBlock: AccountBlock)> in
+                return ViteNode.rawTx.send.context(context).map { (context, $0) }
+            }.done { (context, accountBlock) in
+                completion(Result.success(accountBlock))
+            }.catch { (e) in
+                let error = ViteError.conversion(from: e)
                 completion(Result.failure(error))
         }
     }
 
-    static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
-        var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: "") {
-            cancelPow = true
-        }
-        getPowFloatView.show()
-        let waitAtLeast = after(seconds: 1.5)
-        return getPowPromise()
-            .recover { (e) -> Promise<SendBlockContext> in
-                getPowFloatView.hide()
-                return Promise(error: e)
-            }
-            .then { context -> Promise<SendBlockContext> in
-                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
-                    return .value(context)
-                })
-            }
-            .then { context -> Promise<SendBlockContext> in
-                if cancelPow {
-                    return Promise(error: ViteError.cancel)
-                } else {
-                    return Promise<SendBlockContext> { seal in
-                        getPowFloatView.finish { seal.fulfill(context) }
-                    }
-                }
-            }
-            .always {
-                HUD.show()
-            }
-            .then { context -> Promise<AccountBlock> in
-                return ViteNode.rawTx.send.context(context)
-            }.always {
-                HUD.hide()
-        }
-    }
+//    private static func sendRawTxWorkflow(withoutPowPromise: @escaping () -> Promise<AccountBlock>,
+//                                          getPowPromise: @escaping () -> Promise<SendBlockContext>,
+//                                          successToast: String,
+//                                          type: workflowType,
+//                                          completion: @escaping (Result<AccountBlock>) -> ()) {
+//        HUD.show()
+//        withoutPowPromise()
+//            .always {
+//                HUD.hide()
+//            }
+//            .recover { (e) -> Promise<AccountBlock> in
+//                if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
+//                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
+//                } else {
+//                    return Promise(error: e)
+//                }
+//            }
+//            .done {
+//                AlertControl.showCompletion(successToast)
+//                completion(Result.success($0))
+//            }
+//            .catch { e in
+//                let error = ViteError.conversion(from: e)
+//                if error.code == ViteErrorCode.rpcNotEnoughBalance {
+//                    AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
+//                                    titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
+//                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
+//                    switch type {
+//                    case .other, .vote:
+//                        AlertSheet.show(title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertNeedQuotaMessage(),
+//                                        titles: [.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
+//                                                 .cancel],
+//                                        handler: { (_, index) in
+//                                            if index == 0 {
+//                                                let vc = QuotaManageViewController()
+//                                                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                                            }
+//                        }, config: { alert in
+//                            alert.preferredAction = alert.actions[0]
+//                        })
+//                    case .pledge:
+//                        Toast.show(error.viteErrorMessage)
+//                    }
+//                } else if error != ViteError.cancel {
+//                    if case .vote = type, error.code == ViteErrorCode.rpcNoTransactionBefore {
+//                        Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+//                    } else {
+//                        Toast.show(error.viteErrorMessage)
+//                    }
+//                }
+//                completion(Result.failure(error))
+//        }
+//    }
+//
+//    static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
+//        var cancelPow = false
+//        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: "") {
+//            cancelPow = true
+//        }
+//        getPowFloatView.show()
+//        let waitAtLeast = after(seconds: 1.5)
+//        return getPowPromise()
+//            .recover { (e) -> Promise<SendBlockContext> in
+//                getPowFloatView.hide()
+//                return Promise(error: e)
+//            }
+//            .then { context -> Promise<SendBlockContext> in
+//                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+//                    return .value(context)
+//                })
+//            }
+//            .then { context -> Promise<SendBlockContext> in
+//                if cancelPow {
+//                    return Promise(error: ViteError.cancel)
+//                } else {
+//                    return Promise<SendBlockContext> { seal in
+//                        getPowFloatView.finish { seal.fulfill(context) }
+//                    }
+//                }
+//            }
+//            .always {
+//                HUD.show()
+//            }
+//            .then { context -> Promise<AccountBlock> in
+//                return ViteNode.rawTx.send.context(context)
+//            }.always {
+//                HUD.hide()
+//        }
+//    }
 }
 
 //MARK: Public

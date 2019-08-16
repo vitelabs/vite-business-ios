@@ -252,20 +252,21 @@ class WalletHomeViewController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
-        BifrostManager.instance.isConnectedAndApprovedDriver.drive(onNext: { [weak self] (connected) in
+        BifrostManager.instance.statusDriver.drive(onNext: { [weak self] (status) in
             guard let `self` = self else { return }
-            self.bifrostStatusView.isHidden = !connected
-            if connected {
-                self.bifrostStatusView.snp_remakeConstraints({ (m) in
-                    m.top.equalTo(self.navView.snp.bottom)
-                    m.left.right.equalToSuperview()
-                    m.height.equalTo(30)
-                })
-            } else {
+            if status == .disconnect {
+                self.bifrostStatusView.isHidden = true
                 self.bifrostStatusView.snp_remakeConstraints({ (m) in
                     m.top.equalTo(self.navView.snp.bottom)
                     m.left.right.equalToSuperview()
                     m.height.equalTo(0)
+                })
+            } else {
+                self.bifrostStatusView.isHidden = false
+                self.bifrostStatusView.snp_remakeConstraints({ (m) in
+                    m.top.equalTo(self.navView.snp.bottom)
+                    m.left.right.equalToSuperview()
+                    m.height.equalTo(30)
                 })
             }
             self.walletTable.reloadData()

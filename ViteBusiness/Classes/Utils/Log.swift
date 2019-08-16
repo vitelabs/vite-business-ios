@@ -55,11 +55,11 @@ private let __log: XCGLogger = {
     let systemDestination = AppleSystemLogDestination(identifier: "advancedLogger.systemDestination")
 
     systemDestination.showLogIdentifier = false
-    systemDestination.showFunctionName = true
+    systemDestination.showFunctionName = false
     systemDestination.showThreadName = false
     systemDestination.showLevel = true
-    systemDestination.showFileName = true
-    systemDestination.showLineNumber = true
+    systemDestination.showFileName = false
+    systemDestination.showLineNumber = false
     systemDestination.showDate = true
     log.add(destination: systemDestination)
 

@@ -10,8 +10,7 @@ import Foundation
 public enum VBEvent: String {
     case sessionRequest = "vc_sessionRequest"
     case sessionUpdate = "vc_sessionUpdate"
-    case exchangeKey = "vc_exchangeKey"
-
+//    case exchangeKey = "vc_exchangeKey"
     case sessionPeerPing = "vc_peerPing"
     case viteSendTx = "vite_signAndSendTx"
 }

@@ -69,19 +69,20 @@ class SignAndSendConfirmViewController: BaseViewController {
             guard let account = HDWalletManager.instance.account else { return }
             guard let amount = self.uri.amountForSmallestUnit(decimals: self.tokenInfo.decimals) else { return }
             guard let fee = self.uri.feeForSmallestUnit(decimals: ViteWalletConst.viteToken.decimals) else { return }
-            Workflow.bifrostSendTxWithConfirm(title: self.info.title,
-                                              account: account,
-                                              toAddress: self.uri.address,
-                                              tokenId: self.uri.tokenId,
-                                              amount: amount,
-                                              fee: fee,
-                                              data: self.uri.data, completion: { (ret) in
-                                                switch ret {
-                                                case .success:
-                                                    self.dismiss()
-                                                case .failure:
-                                                    break
-                                                }
+            Workflow.bifrostSendTx(needConfirm: true,
+                                   title: self.info.title,
+                                   account: account,
+                                   toAddress: self.uri.address,
+                                   tokenId: self.uri.tokenId,
+                                   amount: amount,
+                                   fee: fee,
+                                   data: self.uri.data, completion: { (ret) in
+                                    switch ret {
+                                    case .success:
+                                        self.dismiss()
+                                    case .failure:
+                                        break
+                                    }
             })
             }.disposed(by: rx.disposeBag)
     }

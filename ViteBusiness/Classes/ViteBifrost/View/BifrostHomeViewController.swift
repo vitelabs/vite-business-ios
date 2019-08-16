@@ -1,5 +1,5 @@
 //
-//  BifrostViewController.swift
+//  BifrostHomeViewController.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/6/11.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class BifrostViewController: BaseViewController {
+class BifrostHomeViewController: BaseViewController {
 
-    let confirmResult: ((Bool, BifrostViteSendTxTask, BifrostViewController) -> Void)
-    init(result: @escaping (Bool, BifrostViteSendTxTask, BifrostViewController) -> Void) {
+    let confirmResult: ((Bool, BifrostViteSendTxTask, BifrostHomeViewController) -> Void)
+    init(result: @escaping (Bool, BifrostViteSendTxTask, BifrostHomeViewController) -> Void) {
         confirmResult = result
         super.init(nibName: nil, bundle: nil)
         setupView()
@@ -31,6 +31,9 @@ class BifrostViewController: BaseViewController {
             m.centerY.left.right.equalToSuperview()
         }
 
+        #if DEBUG
+        debugView()
+        #endif
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -51,48 +54,61 @@ class BifrostViewController: BaseViewController {
                    actions: [
                     (.cancel, nil),
                     (.default(title: R.string.localizable.quit()), { _ in
-                        BifrostManager.instance.disConnect()
+                        BifrostManager.instance.disConnectByUser()
                         Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDisConfirm.rawValue)
                     })
             ])
     }
 
-
     let freeView = BifrostFreeView()
     var busyView: BifrostBusyView?
 
+    func showConfirm(task: BifrostViteSendTxTask) {
+        self.busyView?.removeFromSuperview()
 
-    func showConfirmIfNeeded() {
-        guard self.busyView == nil else { return }
-
-        if let task = BifrostManager.instance.currectTask {
-            let busyView = BifrostBusyView()
-            busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
-            view.addSubview(busyView)
-            busyView.snp.makeConstraints { (m) in
-                m.left.right.equalToSuperview()
-                m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
-                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
-            }
-            busyView.set(task.info)
-
-            busyView.cancelButton.rx.tap.bind { [weak self] in
-                guard let `self` = self else { return }
-                plog(level: .debug, log: "xxxxx cancelButton")
-                self.confirmResult(false, task, self)
-                }.disposed(by: busyView.rx.disposeBag)
-
-            busyView.confirmButton.rx.tap.bind { [weak self] in
-                guard let `self` = self else { return }
-                plog(level: .debug, log: "xxxxx confirmButton")
-                self.confirmResult(true, task, self)
-                }.disposed(by: busyView.rx.disposeBag)
-            self.busyView = busyView
+        let busyView = BifrostBusyView()
+        busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
+        view.addSubview(busyView)
+        busyView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
+        busyView.set(task.info)
+
+        busyView.cancelButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            plog(level: .info, log: "[user] canceled sign", tag: .bifrost)
+            self.confirmResult(false, task, self)
+            }.disposed(by: busyView.rx.disposeBag)
+
+        busyView.confirmButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            plog(level: .info, log: "[user] confirm sign", tag: .bifrost)
+            self.confirmResult(true, task, self)
+            }.disposed(by: busyView.rx.disposeBag)
+        self.busyView = busyView
     }
 
     func hideConfirm() {
         self.busyView?.removeFromSuperview()
         self.busyView = nil
+    }
+}
+
+extension BifrostHomeViewController {
+
+    func debugView() {
+        let statusLabel = UILabel().then {
+            $0.backgroundColor = .red
+        }
+
+        view.addSubview(statusLabel)
+        statusLabel.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(20)
+            m.centerX.equalToSuperview()
+        }
+
+        BifrostManager.instance.statusDriver.map{ "\($0)" }.drive(statusLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }
