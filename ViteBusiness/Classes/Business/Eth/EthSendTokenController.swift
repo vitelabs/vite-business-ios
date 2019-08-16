@@ -122,7 +122,7 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private func setupView() {
-        navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.uniqueSymbol))
+        navigationTitleView = NavigationTitleView(title: "\(R.string.localizable.sendPageTitle()) \(self.tokenInfo.uniqueSymbol)")
 
         navigationTitleView!.addSubview(logoImgView)
         logoImgView.snp.makeConstraints { (m) in
