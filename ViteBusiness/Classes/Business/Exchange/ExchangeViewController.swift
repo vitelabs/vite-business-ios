@@ -193,7 +193,7 @@ class ExchangeViewController: BaseViewController {
 
             if let de2 = BigDecimal(str ) {
                 self.card.ethInfo.inputTextField.text =
-                    BigDecimalFormatter.format(bigDecimal: de2 , style: .decimalTruncation(18), padding: .none, options:  [.groupSeparator])
+                    BigDecimalFormatter.format(bigDecimal: de2 , style: .decimalTruncation(18), padding: .none, options:  [])
             } else {
                 self.card.ethInfo.inputTextField.text = str
             }
