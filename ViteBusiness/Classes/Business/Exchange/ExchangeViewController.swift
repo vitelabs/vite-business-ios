@@ -189,7 +189,15 @@ class ExchangeViewController: BaseViewController {
             }
 
             let a = count * rightRate
-            self.card.ethInfo.inputTextField.text = String(a)
+            let str = String(format: "%.18lf", a)
+
+            if let de2 = BigDecimal(str ) {
+                self.card.ethInfo.inputTextField.text =
+                    BigDecimalFormatter.format(bigDecimal: de2 , style: .decimalTruncation(18), padding: .none, options:  [.groupSeparator])
+            } else {
+                self.card.ethInfo.inputTextField.text = str
+            }
+
         }.disposed(by: rx.disposeBag)
 
         card.ethInfo.inputTextField.rx.text.bind { text in
