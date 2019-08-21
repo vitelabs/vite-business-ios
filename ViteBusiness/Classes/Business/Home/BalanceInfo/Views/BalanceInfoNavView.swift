@@ -109,7 +109,7 @@ extension TokenInfo {
             }
         case .grin:
             return nil
-        case .btc:
+        case .unsupport:
             return nil
         }
     }

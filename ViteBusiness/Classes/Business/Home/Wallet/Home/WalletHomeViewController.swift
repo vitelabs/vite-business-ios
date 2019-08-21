@@ -158,11 +158,10 @@ class WalletHomeViewController: BaseTableViewController {
                             Toast.show(R.string.localizable.grinCreating())
                             return
                         } else {
-                            let storyboard =
-                                balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
+                            balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
-                    case .btc:
+                    case .unsupport:
                         fatalError()
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
