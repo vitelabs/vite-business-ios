@@ -7,7 +7,7 @@
 
 import ViteWallet
 import PromiseKit
-import ViteEthereum
+
 import BigInt
 import enum Alamofire.Result
 import RxSwift
@@ -95,7 +95,7 @@ public class ViteBalanceInfoManager {
                 switch r {
                 case .success(let balanceInfos):
 
-                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + balanceInfo.balance.description }))", tag: .transaction)
+                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
 
                     let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
                         var map = m
@@ -115,7 +115,9 @@ public class ViteBalanceInfoManager {
                     })
 
                     let viteTokenIdSet = Set(tokenInfos.map { $0.viteTokenId })
-                    let unselectBalanceInfos = balanceInfos.filter { !viteTokenIdSet.contains($0.token.id)}
+                    let unselectBalanceInfos = balanceInfos
+                        .filter { !viteTokenIdSet.contains($0.token.id)}
+                        .filter { $0.balance > 0 }
 
                     self.save(mappable: balanceInfos)
                     self.balanceInfos.accept(ret)
@@ -172,6 +174,10 @@ extension ViteBalanceInfoManager {
         return balanceInfosDriver.map { map -> BalanceInfo? in
             return map[id]
         }
+    }
+
+    func balanceInfo(forViteTokenId id: String) -> BalanceInfo? {
+        return balanceInfos.value[id]
     }
 }
 

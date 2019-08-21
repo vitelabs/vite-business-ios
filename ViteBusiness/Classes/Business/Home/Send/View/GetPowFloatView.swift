@@ -41,10 +41,10 @@ class GetPowFloatView: VisualEffectAnimationView {
         $0.text = "0%"
     }
 
-    fileprivate let tipLabel = UILabel().then {
+    lazy fileprivate var tipLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.text = R.string.localizable.quotaFloatViewTip()
+        $0.text = R.string.localizable.quotaFloatViewTip(self.utString)
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -56,16 +56,18 @@ class GetPowFloatView: VisualEffectAnimationView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
 
-    init(superview: UIView, cancelClick: @escaping () -> Void) {
+    let utString: String
+    init(superview: UIView, utString: String, cancelClick: @escaping () -> Void) {
+        self.utString = utString
         super.init(superview: superview)
 
         isEnableTapDismiss = false
 
         contentView.addSubview(containerView)
         containerView.addSubview(titleLabel)
+        containerView.addSubview(tipLabel)
         containerView.addSubview(progressView)
         containerView.addSubview(progressLabel)
-        containerView.addSubview(tipLabel)
         containerView.addSubview(cancelButton)
 
         containerView.snp.makeConstraints { (m) in
@@ -79,8 +81,14 @@ class GetPowFloatView: VisualEffectAnimationView {
             m.right.equalToSuperview().offset(-16)
         }
 
+        tipLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(titleLabel.snp.bottom).offset(11)
+            m.left.equalToSuperview().offset(16)
+            m.right.equalToSuperview().offset(-16)
+        }
+
         progressView.snp.makeConstraints { (m) in
-            m.top.equalTo(titleLabel.snp.bottom).offset(20)
+            m.top.equalTo(tipLabel.snp.bottom).offset(20)
             m.centerX.equalTo(containerView)
             m.size.equalTo(CGSize(width: 100, height: 100))
         }
@@ -89,14 +97,8 @@ class GetPowFloatView: VisualEffectAnimationView {
             m.center.equalTo(progressView)
         }
 
-        tipLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(progressView.snp.bottom).offset(16)
-            m.left.equalToSuperview().offset(16)
-            m.right.equalToSuperview().offset(-16)
-        }
-
         cancelButton.snp.makeConstraints { (m) in
-            m.top.equalTo(tipLabel.snp.bottom).offset(12)
+            m.top.equalTo(progressView.snp.bottom).offset(20)
             m.height.equalTo(49)
             m.left.right.bottom.equalToSuperview()
         }

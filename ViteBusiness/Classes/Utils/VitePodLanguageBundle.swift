@@ -61,7 +61,7 @@ open class VitePodLanguageBundle: Bundle {
             bundle = resourcesBundle
         }
 
-        if let path = bundle.path(forResource: serviceSharedInstance.currentLanguage.rawValue, ofType: "lproj"),
+        if let path = bundle.path(forResource: serviceSharedInstance.currentLanguage.resourceName, ofType: "lproj"),
             let bundle = Bundle(path: path) {
             return bundle.localizedString(forKey: key, value: value, table: tableName)
         }

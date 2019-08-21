@@ -13,7 +13,7 @@ import NSObject_Rx
 import RxDataSources
 import ActionSheetPicker_3_0
 import ViteWallet
-import Web3swift
+import web3swift
 
 class ContactsEditViewController: BaseViewController {
 
@@ -47,9 +47,7 @@ class ContactsEditViewController: BaseViewController {
         bind()
     }
 
-    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24)).then {
-        $0.stackView.spacing = 0
-    }
+    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
 
     let nameView = TitleTextFieldView(title: R.string.localizable.contactsEditPageNameTitle())
     let addressView = ContactAddressInputView()
@@ -130,6 +128,7 @@ class ContactsEditViewController: BaseViewController {
                 fatalError()
             }
 
+            Statistics.log(eventId: Statistics.Page.MyHome.contactAddSaveClicked.rawValue)
             if let contact = self.contact {
                 let c = Contact(id: contact.id, type: self.type.value, name: self.nameView.textField.text!, address: self.addressView.textView.text)
                 AddressManageService.instance.updateContact(c)

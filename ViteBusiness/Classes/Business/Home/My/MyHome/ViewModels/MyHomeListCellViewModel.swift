@@ -64,12 +64,19 @@ class MyHomeListCellViewModel: Mappable {
     func clicked(viewController: UIViewController) {
         switch type {
         case .settings:
+            Statistics.log(eventId: Statistics.Page.MyHome.settingClicked.rawValue)
             let vc = SystemViewController()
             viewController.navigationController?.pushViewController(vc, animated: true)
         case .about:
+            Statistics.log(eventId: Statistics.Page.MyHome.aboutClicked.rawValue)
             let vc = AboutUsViewController()
             viewController.navigationController?.pushViewController(vc, animated: true)
         case .custom:
+            if url == "https://growth.vite.net/invite" {
+                Statistics.log(eventId: Statistics.Page.MyHome.inviteClicked.rawValue)
+            } else if url == "https://forum.vite.net" {
+                Statistics.log(eventId: Statistics.Page.MyHome.forumClicked.rawValue)
+            }
             guard let url = URL(string: url) else { return }
             let webvc = WKWebViewController(url: WebHandler.appendQuery(url: url))
             UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)

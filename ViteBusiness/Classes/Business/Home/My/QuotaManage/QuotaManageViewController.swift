@@ -19,10 +19,8 @@ class QuotaManageViewController: BaseViewController {
     let account = HDWalletManager.instance.account!
 
     var address: ViteAddress?
-    var balance: Amount
 
     init() {
-        self.balance = Amount(0)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -59,7 +57,7 @@ class QuotaManageViewController: BaseViewController {
     }
 
     // headerView
-    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address), type: .pledge)
 
     // money
     lazy var amountView = TitleMoneyInputView(title: R.string.localizable.quotaManagePageQuotaMoneyTitle(), placeholder: R.string.localizable.quotaManagePageQuotaMoneyPlaceholder(), content: "", desc: ViteWalletConst.viteToken.symbol).then {
@@ -67,13 +65,9 @@ class QuotaManageViewController: BaseViewController {
     }
 
     //snapshoot height
-    lazy var snapshootHeightLab = TitleDescView(title: R.string.localizable.quotaManagePageQuotaSnapshootHeightTitle()).then {
-        let str = R.string.localizable.quotaManagePageQuotaSnapshootHeightDesc("3")
-        let range = str.range(of: "3")!
-        let attributedString = NSMutableAttributedString(string: str)
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: Colors.titleGray_45], range: NSRange.init(range, in: str))
-        $0.descLab.attributedText = attributedString
-    }
+    lazy var pledgeView = SendPledgeItemView()
+
+    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.pledge.ut.utToString())
 
     lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
@@ -85,7 +79,7 @@ class QuotaManageViewController: BaseViewController {
 
     private func setupNavBar() {
         statisticsPageName = Statistics.Page.WalletQuota.name
-        navigationTitleView = createNavigationTitleView()
+        navigationTitleView = NavigationTitleView(title: R.string.localizable.quotaManagePageTitle())
         let rightItem = UIBarButtonItem(title: R.string.localizable.quotaManagePageCheckQuotaListBtnTitle(), style: .plain, target: self, action: nil)
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .normal)
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
@@ -113,11 +107,13 @@ class QuotaManageViewController: BaseViewController {
         scrollView.stackView.addArrangedSubview(headerView)
         scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(addressView)
-        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addPlaceholder(height: 20)
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addPlaceholder(height: 40)
-        scrollView.stackView.addArrangedSubview(snapshootHeightLab)
-        scrollView.stackView.addPlaceholder(height: 37)
+        scrollView.stackView.addArrangedSubview(pledgeView)
+        scrollView.stackView.addPlaceholder(height: 40)
+        scrollView.stackView.addArrangedSubview(quotaView)
+        scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(sendButton)
 
         let toolbar = UIToolbar()
@@ -132,38 +128,6 @@ class QuotaManageViewController: BaseViewController {
         amountView.textField.delegate = self
 
         self.initBtnAction()
-    }
-
-    func createNavigationTitleView() -> UIView {
-        let view = UIView().then {
-            $0.backgroundColor = UIColor.white
-        }
-
-        let titleLabel = LabelTipView(R.string.localizable.quotaManagePageTitle()).then {
-            $0.titleLab.font = UIFont.systemFont(ofSize: 24)
-            $0.titleLab.numberOfLines = 1
-            $0.titleLab.adjustsFontSizeToFitWidth = true
-            $0.titleLab.textColor = UIColor(netHex: 0x24272B)
-        }
-
-        view.addSubview(titleLabel)
-
-        titleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(view).offset(6)
-            m.left.equalTo(view).offset(24)
-            m.bottom.equalTo(view).offset(-20)
-            m.height.equalTo(29)
-        }
-
-        titleLabel.tipButton.rx.tap.bind { [weak self] in
-            let htmlString = R.string.localizable.popPageTipQuota()
-            let vc = PopViewController(htmlString: htmlString)
-            vc.modalPresentationStyle = .overCurrentContext
-            let delegate =  StyleActionSheetTranstionDelegate()
-            vc.transitioningDelegate = delegate
-            self?.present(vc, animated: true, completion: nil)
-        }.disposed(by: rx.disposeBag)
-        return view
     }
 }
 
@@ -194,7 +158,7 @@ extension QuotaManageViewController {
                     return
                 }
 
-                guard amount <= self.balance else {
+                guard amount <= self.headerView.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
@@ -229,16 +193,7 @@ extension QuotaManageViewController {
     }
 
     func initBinds() {
-        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: ViteWalletConst.viteToken.id)
-            .drive(onNext: { [weak self] balanceInfo in
-                guard let `self` = self else { return }
-                self.balance = balanceInfo?.balance ?? self.balance
-                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
-            }).disposed(by: rx.disposeBag)
-
-    FetchQuotaManager.instance.quotaDriver
-        .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
-        .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+        headerView.bind(token: ViteWalletConst.viteToken)
     }
 }
 

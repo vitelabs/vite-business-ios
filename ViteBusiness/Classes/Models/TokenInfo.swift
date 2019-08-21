@@ -12,6 +12,8 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
+    case btc = "BTC"
+
 
     var name: String {
         switch self {
@@ -21,6 +23,8 @@ public enum CoinType: String {
             return "ETH"
         case .grin:
             return "GRIN"
+        case .btc:
+            return "BTC"
         }
     }
 
@@ -128,13 +132,7 @@ public struct TokenInfo: Mappable {
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
-            if symbol == "VITE" ||
-                symbol == "VCP" ||
-                symbol == "VX" {
-                return symbol
-            } else {
-                return String(format:"%@-%03d", symbol, index)
-            }
+            return toViteToken()!.uniqueSymbol
         } else {
             return symbol
         }
@@ -249,6 +247,9 @@ extension TokenInfo {
     static var eth: TokenInfo {
         return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin)!
     }
+    static var eth000: TokenInfo {
+        return MyTokenInfosService.instance.tokenInfo(for: "1352")!
+    }
 }
 
 extension TokenInfo {
@@ -257,7 +258,7 @@ extension TokenInfo {
             return nil
         }
 
-        return Token(id: id, name: name, symbol: symbol, decimals: decimals)
+        return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index)
     }
 
     func toETHToken() -> ETHToken? {
@@ -304,15 +305,30 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode
+        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.coinType == .eth
     }
 
     public var gatewayName: String? {
+        if !isGateway {
+            return nil
+        }
         return self.gatewayInfo?.name
     }
 }
 
 public struct GatewayInfo: Mappable {
+
+    var name =  ""
+    var url = ""
+    var icon = ""
+    var website = ""
+    var overview = [String:String]()
+    var policy = [String:String]()
+    var support = ""
+    var isOfficial = false
+
+    private var mappedTokenInfo = MappedTokenInfo()
+
 
     public init?(map: Map) {
 
@@ -327,12 +343,15 @@ public struct GatewayInfo: Mappable {
     public mutating func mapping(map: Map) {
         name <- map["name"]
         url <- map["url"]
+        icon <- map["icon"]
+        website <- map["website"]
+        overview <- map["overview"]
+        policy <- map["policy"]
+        support <- map["support"]
         mappedTokenInfo <- map["mappedToken"]
+        isOfficial <- map["isOfficial"]
     }
 
-    var name =  ""
-    var url = ""
-    private var mappedTokenInfo = MappedTokenInfo()
 
     var mappedToken: TokenInfo {
         let mapped = mappedTokenInfo
@@ -345,7 +364,7 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
-    public fileprivate(set)  var coinType: CoinType = .eth
+    public fileprivate(set)  var coinType: CoinType = .vite
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
@@ -353,13 +372,7 @@ public struct MappedTokenInfo: Mappable {
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
-            if symbol == "VITE" ||
-                symbol == "VCP" ||
-                symbol == "VX" {
-                return symbol
-            } else {
-                return String(format:"%@-%03d", symbol, index)
-            }
+            return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index).uniqueSymbol
         } else {
             return symbol
         }

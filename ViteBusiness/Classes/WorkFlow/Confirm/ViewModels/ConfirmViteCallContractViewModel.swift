@@ -12,11 +12,13 @@ struct ConfirmViteCallContractViewModel: ConfirmViewModelType {
     private let tokenInfo: TokenInfo
     private let addressString: String
     private let amountString: String
+    private let utString: String?
 
-    init(tokenInfo: TokenInfo, addressString: String, amountString: String) {
+    init(tokenInfo: TokenInfo, addressString: String, amountString: String, utString: String?) {
         self.tokenInfo = tokenInfo
         self.addressString = addressString
         self.amountString = amountString
+        self.utString = utString
     }
 
     var confirmTitle: String {
@@ -43,6 +45,12 @@ struct ConfirmViteCallContractViewModel: ConfirmViewModelType {
 
         infoView.set(title: R.string.localizable.contractConfirmInfo(), detail: addressString, tokenInfo: tokenInfo)
         amountView.set(text: amountString)
+
+        if let utString = utString {
+            let quotaView = ConfirmAmountView(type: .quota)
+            quotaView.set(text: utString)
+            stackView.addArrangedSubview(quotaView)
+        }
 
         return stackView
     }

@@ -94,6 +94,13 @@ public final class AddressManageService {
         contactsBehaviorRelay.accept(array)
         pri_save()
     }
+
+    func contactName(for address: ViteAddress) -> String? {
+        for contact in contactsBehaviorRelay.value where contact.address == address {
+            return contact.name
+        }
+        return nil
+    }
 }
 
 public struct Contact: Mappable {

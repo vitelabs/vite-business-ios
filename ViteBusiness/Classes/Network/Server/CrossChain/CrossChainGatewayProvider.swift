@@ -107,7 +107,13 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
             sendRequest(api: .depositRecords(tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
                 switch ret {
                 case .success(let json):
-                    if let depositRecordInfos = DepositRecordInfos.init(JSON: json) {
+                    if var depositRecordInfos = DepositRecordInfos.init(JSON: json) {
+                        depositRecordInfos.depositRecords = depositRecordInfos.depositRecords.map({ (r) -> DepositRecord in
+                            var record = r
+                            record.inTxExplorer = depositRecordInfos.inTxExplorerFormat.replacingOccurrences(of: "{$tx}", with: record.inTxHash)
+                            record.outTxExplorer = depositRecordInfos.outTxExplorerFormat.replacingOccurrences(of: "{$tx}", with: record.outTxHash ?? "")
+                            return record
+                        })
                         seal.fulfill(depositRecordInfos)
                     } else {
                         seal.reject(CrossChainGatewayError.notFound)
@@ -124,7 +130,13 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
             sendRequest(api: .withdrawRecords(tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
                 switch ret {
                 case .success(let json):
-                    if let withdrawRecordInfos = WithdrawRecordInfos.init(JSON: json) {
+                    if var withdrawRecordInfos = WithdrawRecordInfos.init(JSON: json) {
+                       withdrawRecordInfos.withdrawRecords = withdrawRecordInfos.withdrawRecords.map({ (r) -> WithdrawRecord in
+                            var record = r
+                            record.inTxExplorer = withdrawRecordInfos.inTxExplorerFormat.replacingOccurrences(of: "{$tx}", with: record.inTxHash)
+                            record.outTxExplorer = withdrawRecordInfos.outTxExplorerFormat.replacingOccurrences(of: "{$tx}", with: record.outTxHash ?? "")
+                            return record
+                        })
                         seal.fulfill(withdrawRecordInfos)
                     } else {
                         seal.reject(CrossChainGatewayError.notFound)
@@ -282,6 +294,9 @@ struct DepositRecord: Mappable, Record {
     var state: CrossChainState = .UNKNOW
     var dateTime: String = ""
 
+    var inTxExplorer = ""
+    var outTxExplorer = ""
+
     init?(map: Map) { }
 
     mutating func mapping(map: Map) {
@@ -319,6 +334,9 @@ struct WithdrawRecord: Mappable, Record {
     var state: CrossChainState = .UNKNOW
     var dateTime: String = ""
 
+    var inTxExplorer = ""
+    var outTxExplorer = ""
+
     init?(map: Map) { }
 
     mutating func mapping(map: Map) {
@@ -340,6 +358,8 @@ protocol Record {
     var fee: String { get }
     var state: CrossChainState { get }
     var dateTime: String { get }
+    var inTxExplorer: String { get }
+    var outTxExplorer: String { get }
 
 }
 

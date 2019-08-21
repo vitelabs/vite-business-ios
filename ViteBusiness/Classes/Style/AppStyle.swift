@@ -64,7 +64,8 @@ extension UITableView {
     static func listView() -> UITableView {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
-        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: 22)
+        tableView.separatorColor = UIColor.init(netHex: 0xD3DFEF)
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: 24)
         return tableView
     }
 

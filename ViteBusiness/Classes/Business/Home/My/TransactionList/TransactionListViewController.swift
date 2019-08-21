@@ -170,7 +170,7 @@ extension TransactionListViewController: ViewControllerDataStatusable {
 
     func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
         return UIView.networkErrorAndshowAccountView(error: error, showImage: showImage) { [weak self] in
-            var urlStr = "\(ViteConst.instance.eth.explorer)/account/\(HDWalletManager.instance.account?.address ?? "")"
+            var urlStr = "\(ViteConst.instance.vite.explorer)/account/\(HDWalletManager.instance.account?.address ?? "")"
             let vc = WKWebViewController(url: URL.init(string: urlStr)!)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }

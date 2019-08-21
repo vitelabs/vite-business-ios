@@ -53,7 +53,7 @@ struct CrossChainWithdraw {
                     return
                 }
 
-                Workflow.sendTransactionWithConfirm(account: account, toAddress: withdrawInfo.gatewayAddress, tokenInfo: tokenInfo, amount: amount, note: withdrawAddress, completion: { (accountBlock) in
+                Workflow.sendTransactionWithConfirm(account: account, toAddress: withdrawInfo.gatewayAddress, tokenInfo: tokenInfo, amount: amount, note: withdrawAddress, utString: nil, completion: { (accountBlock) in
 
 
                 })

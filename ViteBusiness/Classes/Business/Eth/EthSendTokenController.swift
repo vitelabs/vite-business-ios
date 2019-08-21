@@ -12,8 +12,8 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import BigInt
-import ViteEthereum
-import Web3swift
+
+import web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
@@ -59,6 +59,7 @@ class EthSendTokenController: BaseViewController {
     // View
     private lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then { (scrollView) in
         scrollView.layer.masksToBounds = false
+        scrollView.stackView.spacing = 10
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -121,7 +122,7 @@ class EthSendTokenController: BaseViewController {
     }()
 
     private func setupView() {
-        navigationTitleView = NavigationTitleView(title: String.init(format: "%@ \(R.string.localizable.sendPageTitle())",self.tokenInfo.uniqueSymbol))
+        navigationTitleView = NavigationTitleView(title: "\(R.string.localizable.sendPageTitle()) \(self.tokenInfo.uniqueSymbol)")
 
         navigationTitleView!.addSubview(logoImgView)
         logoImgView.snp.makeConstraints { (m) in

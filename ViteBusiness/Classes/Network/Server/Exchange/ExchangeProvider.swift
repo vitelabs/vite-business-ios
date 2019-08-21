@@ -94,7 +94,7 @@ extension ExchangeProvider {
     }
 
     @discardableResult
-    func getTokenInfo(tokenCode: TokenCode, completion: @escaping (Result<TokenInfo>) -> Void) -> Cancellable {
+    func getTokenInfo(tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) -> Cancellable {
         return sendRequest(api: .getTokenInfo(tokenCode), completion: { (ret) in
             switch ret {
             case .success(let json):
@@ -107,18 +107,18 @@ extension ExchangeProvider {
                 }
 
                 if let tokenInfo = map[tokenCode] {
-                    completion(Result.success(tokenInfo))
+                    completion(Alamofire.Result.success(tokenInfo))
                 } else {
-                    completion(Result.failure(ExchangeError.notFound))
+                    completion(Alamofire.Result.failure(ExchangeError.notFound))
                 }
             case .failure(let error):
-                completion(Result.failure(error))
+                completion(Alamofire.Result.failure(error))
             }
         })
     }
 
     @discardableResult
-    func getTokenInfo(chain: String, id: String, completion: @escaping (Result<TokenInfo>) -> Void) -> Cancellable {
+    func getTokenInfo(chain: String, id: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) -> Cancellable {
         return sendRequest(api: .getTokenInfoInChain(chain, id), completion: { (ret) in
             switch ret {
             case .success(let json):
@@ -130,12 +130,12 @@ extension ExchangeProvider {
                     })
                 }
                 if let tokenInfo = map[id.lowercased()] {
-                    completion(Result.success(tokenInfo))
+                    completion(Alamofire.Result.success(tokenInfo))
                 } else {
-                    completion(Result.failure(ExchangeError.notFound))
+                    completion(Alamofire.Result.failure(ExchangeError.notFound))
                 }
             case .failure(let error):
-                completion(Result.failure(error))
+                completion(Alamofire.Result.failure(error))
             }
         })
     }

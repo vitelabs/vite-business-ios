@@ -5,8 +5,8 @@
 //  Created by Water on 2019/2/25.
 //
 
-import ViteEthereum
-import Web3swift
+
+import web3swift
 import ViteWallet
 import BigInt
 import PromiseKit

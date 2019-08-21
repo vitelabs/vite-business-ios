@@ -13,8 +13,8 @@ import NSObject_Rx
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import Web3swift
-import ViteEthereum
+import web3swift
+
 
 public class ViteBusinessLanucher: NSObject {
 
@@ -177,7 +177,7 @@ public class ViteBusinessLanucher: NSObject {
         }
 
         WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: String]?) -> Response? in
-            return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.rawValue)
+            return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.code)
         }
 
         WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: String]?) -> Response? in
@@ -274,7 +274,7 @@ public class ViteBusinessLanucher: NSObject {
     func goShowIntroViewPage() {
         let introViewPageVersion = UserDefaultsService.instance.objectForKey("IntroView", inCollection: "IntroViewPageVersion") as? String  ?? ""
         if introViewPageVersion != Constants.IntroductionPageVersion {
-            let vc = IntroductionViewController()
+            let vc = f__IntroductionViewController()
             window.rootViewController = vc
             window.makeKeyAndVisible()
         } else {

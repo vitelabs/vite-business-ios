@@ -29,6 +29,8 @@ class BalanceInfoNavView: UIView {
         $0.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
     }
 
+    let gatewayInfoBtn = UIButton()
+
     let tokenIconView = TokenIconView()
 
     override init(frame: CGRect) {
@@ -41,12 +43,13 @@ class BalanceInfoNavView: UIView {
         addSubview(nameLabel)
         addSubview(tokenIconView)
         addSubview(gatewayNamelabel)
+        addSubview(gatewayInfoBtn)
 
         backgroundColor = UIColor.white
-        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 20
+//        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+//        layer.shadowOpacity = 0.1
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+//        layer.shadowRadius = 20
 
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-22)
@@ -69,6 +72,9 @@ class BalanceInfoNavView: UIView {
             m.left.equalTo(symbolLabel.snp.right).offset(6)
             m.centerY.equalTo(symbolLabel)
             m.height.equalTo(16)
+        }
+        gatewayInfoBtn.snp.makeConstraints { (m) in
+            m.edges.equalTo(gatewayNamelabel)
         }
     }
 
@@ -102,6 +108,8 @@ extension TokenInfo {
                 return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
             }
         case .grin:
+            return nil
+        case .btc:
             return nil
         }
     }

@@ -43,7 +43,7 @@ class SendNavView: UIView {
     }
 
     func bind(tokenInfo: TokenInfo) {
-        symbolLabel.text = "\(tokenInfo.uniqueSymbol) \(R.string.localizable.sendPageTitle())"
+        symbolLabel.text = "\(R.string.localizable.sendPageTitle()) \(tokenInfo.uniqueSymbol)"
         tokenIconView.tokenInfo = tokenInfo
     }
 }

@@ -17,9 +17,6 @@ class GrinTxDetailViewController: UIViewController {
     let titleView = GrinTransactionTitleView()
     let txMethodLabel = LabelBgView()
 
-//    let methodView = ()
-
-
     let pointView = UIView()
     let descLabel = UILabel()
     let amountInfoView = UIView()
@@ -185,75 +182,63 @@ class GrinTxDetailViewController: UIViewController {
                 m.top.equalTo(infoview.snp.bottom).offset(20)
             }
             self.bottomView.isHidden = false
+
+            button0.removeFromSuperview()
+            button1.removeFromSuperview()
+
             if pageInfo.actions.count == 1 {
-//                button0.layer.cornerRadius = 2
-//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
-                if button0.superview == nil {
-                    bottomView.addSubview(button0)
-                    button0.snp.makeConstraints { (m) in
-                        m.left.equalToSuperview().offset(24)
-                        m.right.equalToSuperview().offset(-24)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
+                if pageInfo.actions.first?.2 == true {
+                    button0 = UIButton.init(style: .whiteWithShadow)
                 } else {
-                    button0.snp.remakeConstraints { (m) in
-                        m.left.equalToSuperview().offset(24)
-                        m.right.equalToSuperview().offset(-24)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
+                    button0 = UIButton.init(style: .blueWithShadow)
                 }
+                bottomView.addSubview(button0)
+                button0.snp.makeConstraints { (m) in
+                    m.left.equalToSuperview().offset(24)
+                    m.right.equalToSuperview().offset(-24)
+                    m.height.equalTo(50)
+                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                }
+
                 button0.setTitle(pageInfo.actions.first?.0, for: .normal)
                 bottomView.addSubview(button0)
                 button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
             } else if pageInfo.actions.count == 2 {
-                if button0.superview == nil {
-                    bottomView.addSubview(button0)
-                    button0.snp.makeConstraints { (m) in
-                        m.left.equalToSuperview().offset(24)
-                        m.width.equalTo(kScreenW/2-36)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
+                if pageInfo.actions.first?.2 == true {
+                    button0 = UIButton.init(style: .whiteWithShadow)
                 } else {
-                    button0.snp.remakeConstraints { (m) in
-                        m.left.equalToSuperview().offset(24)
-                        m.width.equalTo(kScreenW/2-36)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
+                    button0 = UIButton.init(style: .blueWithShadow)
                 }
-//                button0.layer.cornerRadius = 2
-//                button0.backgroundColor = UIColor.init(netHex: 0x007aff)
+                if pageInfo.actions.last?.2 == true {
+                    button1 = UIButton.init(style: .whiteWithShadow)
+                } else {
+                    button1 = UIButton.init(style: .blueWithShadow)
+                }
+                bottomView.addSubview(button0)
+                button0.snp.makeConstraints { (m) in
+                    m.left.equalToSuperview().offset(24)
+                    m.width.equalTo(kScreenW/2-36)
+                    m.height.equalTo(50)
+                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
+                }
+
                 button0.setTitle(pageInfo.actions.first?.0, for: .normal)
                 bottomView.addSubview(button0)
-
                 button0.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.first?.1()
                 }.disposed(by:rx.disposeBag)
-//                button1.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
-//                button1.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
-//                button1.layer.cornerRadius = 2
                 button1.setTitle(pageInfo.actions.last?.0, for: .normal)
-                if button1.superview == nil {
-                    bottomView.addSubview(button1)
-                    button1.snp.makeConstraints { (m) in
-                        m.right.equalToSuperview().offset(-24)
-                        m.width.equalTo(kScreenW/2-36)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
-                } else {
-                    button1.snp.remakeConstraints { (m) in
-                        m.right.equalToSuperview().offset(-24)
-                        m.width.equalTo(kScreenW/2-36)
-                        m.height.equalTo(50)
-                        m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
-                    }
+
+                bottomView.addSubview(button1)
+                button1.snp.makeConstraints { (m) in
+                    m.right.equalToSuperview().offset(-24)
+                    m.width.equalTo(kScreenW/2-36)
+                    m.height.equalTo(50)
+                    m.bottom.equalTo(bottomView.safeAreaLayoutGuideSnpBottom)
                 }
+
                 button1.rx.tap.bind {[weak self] _ in
                     self?.pageInfo.actions.last?.1()
                 }.disposed(by:rx.disposeBag)

@@ -10,6 +10,7 @@ import Foundation
 import XCGLogger
 
 public enum Tag: String {
+    case statistics
     case life
     case base
     case wallet
@@ -20,6 +21,7 @@ public enum Tag: String {
     case discover
     case exchange
     case grin
+    case bifrost
 }
 
 public func plog(level: XCGLogger.Level, log: @escaping @autoclosure () -> Any?, tag: Tag, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {

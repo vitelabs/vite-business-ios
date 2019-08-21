@@ -13,6 +13,8 @@ import Vite_HDWalletKit
 import BigInt
 import PromiseKit
 import JSONRPCKit
+import RxCocoa
+import RxSwift
 
 class SendViewController: BaseViewController {
 
@@ -21,7 +23,6 @@ class SendViewController: BaseViewController {
 
     let tokenInfo: TokenInfo
     var token: Token
-    var balance: Amount
 
     let address: ViteAddress?
     let amount: Amount?
@@ -33,7 +34,6 @@ class SendViewController: BaseViewController {
         self.tokenInfo = tokenInfo
         self.token = tokenInfo.toViteToken()!
         self.address = address
-        self.balance = Amount(0)
         if let amount = amount {
             self.amount = amount
         } else {
@@ -79,11 +79,12 @@ class SendViewController: BaseViewController {
 
     // headerView
     var navView = SendNavView()
-    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address))
+    lazy var headerView = SendHeaderView(address: account.address, name: AddressManageService.instance.name(for: account.address), type: .send)
 
     var addressView: SendAddressViewType!
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", token: tokenInfo)
     lazy var noteView = SendNoteView(note: note ?? "", canEdit: noteCanEdit)
+    let quotaView = SendQuotaItemView(utString: "--")
 
     private func setupView() {
 
@@ -126,10 +127,14 @@ class SendViewController: BaseViewController {
         }
 
         scrollView.stackView.addArrangedSubview(headerView)
-        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addPlaceholder(height: 40)
         scrollView.stackView.addArrangedSubview(addressView)
+        scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(amountView)
+        scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(noteView)
+        scrollView.stackView.addPlaceholder(height: 40)
+        scrollView.stackView.addArrangedSubview(quotaView)
 
         sendButton.snp.makeConstraints { (m) in
             m.top.greaterThanOrEqualTo(scrollView.snp.bottom).offset(10)
@@ -178,61 +183,87 @@ class SendViewController: BaseViewController {
                     return
                 }
 
-                guard amount > 0 else {
-                    Toast.show(R.string.localizable.sendPageToastAmountZero())
-                    return
-                }
-
-                guard amount <= self.balance else {
+                guard amount <= self.headerView.balance else {
                     Toast.show(R.string.localizable.sendPageToastAmountError())
                     return
                 }
 
                 switch address.viteAddressType! {
                 case .user:
-                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, completion: { (r) in
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
-                            GCD.delay(1) { self.dismiss() }
+                            self.dismiss()
                         }
                     })
                 case .contract:
-                    let data: Data?
-                    if let note = self.noteView.textField.text, !note.isEmpty {
-                        let bytes = note.hex2Bytes
-                        guard !bytes.isEmpty else {
-                            Toast.show(R.string.localizable.sendPageToastContractAddressSupportHex())
-                            return
-                        }
-                        data = Data(bytes)
-                    } else {
-                        data = nil
+                    let (data, errorMessage) = self.contractStringToData(text: self.noteView.textField.text)
+                    if let msg = errorMessage {
+                        Toast.show(msg)
+                        return
                     }
-                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, completion: { (r) in
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
-                            GCD.delay(1) { self.dismiss() }
+                            self.dismiss()
                         }
                     })
-
                 }
-
-
             }
             .disposed(by: rx.disposeBag)
     }
 
     private func bind() {
         navView.bind(tokenInfo: tokenInfo)
+        headerView.bind(token: tokenInfo.toViteToken()!)
 
-        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
-            .drive(onNext: { [weak self] balanceInfo in
+        Driver.combineLatest(addressView.textView.rx.text.asDriver(),
+                             noteView.textField.rx.text.asDriver())
+            .throttle(1)
+            .distinctUntilChanged({ (arg0, arg1) -> Bool in  return arg0.0 == arg1.0 && arg0.1 == arg1.1 })
+            .drive(onNext: { [weak self] (address, text) in
                 guard let `self` = self else { return }
-                self.balance = balanceInfo?.balance ?? self.balance
-                self.headerView.balanceLabel.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
-        }).disposed(by: rx.disposeBag)
+                if (address ?? "").isViteAddress {
 
-        FetchQuotaManager.instance.quotaDriver
-            .map({ R.string.localizable.sendPageQuotaContent(String($0.utps)) })
-            .drive(headerView.quotaLabel.rx.text).disposed(by: rx.disposeBag)
+                    let data: Data?
+                    switch address!.viteAddressType! {
+                    case .user:
+                        data = text?.utf8StringToAccountBlockData()
+                    case .contract:
+                        let (d, errorMessage) = self.contractStringToData(text: text)
+                        guard errorMessage == nil else {
+                            self.quotaView.update(utString: "--")
+                            return
+                        }
+                        data = d
+                    }
+
+                    ViteNode.tx.getPowAccountBlockQuota(accountAddress: self.account.address,
+                                                        type: .send,
+                                                        toAddress: address,
+                                                        data: data)
+                        .done({ (quota) in
+                            self.quotaView.update(utString: quota.utRequired.utToString())
+                        })
+                        .catch({ (_) in
+                            self.quotaView.update(utString: "--")
+                        })
+                } else {
+                    self.quotaView.update(utString: "--")
+                }
+            }).disposed(by: rx.disposeBag)
+    }
+
+    fileprivate func contractStringToData(text: String?) -> (Data?, String?) {
+        let data: Data?
+        if let text = text, !text.isEmpty {
+            let bytes = text.hex2Bytes
+            guard !bytes.isEmpty else {
+                return (nil, R.string.localizable.sendPageToastContractAddressSupportHex())
+            }
+            data = Data(bytes)
+        } else {
+            data = nil
+        }
+        return (data, nil)
     }
 }
 

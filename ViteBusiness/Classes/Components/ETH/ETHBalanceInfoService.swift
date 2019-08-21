@@ -7,7 +7,7 @@
 
 import ViteWallet
 import PromiseKit
-import ViteEthereum
+
 import BigInt
 import enum Alamofire.Result
 

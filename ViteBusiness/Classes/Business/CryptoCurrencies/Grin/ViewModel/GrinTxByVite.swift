@@ -11,7 +11,7 @@ import Ioscrypto
 import CryptoSwift
 import Moya
 import SwiftyJSON
-import Web3swift
+import web3swift
 import Vite_GrinWallet
 import PromiseKit
 import Result
@@ -420,6 +420,7 @@ extension GrinTxByViteService {
                                               toAddress: toAddress,
                                               tokenId: tokenId,
                                               amount: amount,
+                                              fee: Amount(0),
                                               data: data)
             .map { _ in return Void() }
             .recover({ (e) -> Promise<Void> in
@@ -439,6 +440,7 @@ extension GrinTxByViteService {
                                                       toAddress: toAddress,
                                                       tokenId: tokenId,
                                                       amount: amount,
+                                                      fee: Amount(0),
                                                       data: data)
                         .then({ (context) -> Promise<Void> in
                             return ViteNode.rawTx.send.context(context).map { _ in return Void() }

@@ -21,6 +21,10 @@ extension Bundle {
         return Int(Bundle.main.buildNumber) ?? -1
     }
 
+    public var appName: String {
+        return infoDictionary?[kCFBundleNameKey as String] as! String
+    }
+
     public var fullVersion: String {
         let versionNumber = Bundle.main.versionNumber
         let buildNumber = Bundle.main.buildNumber

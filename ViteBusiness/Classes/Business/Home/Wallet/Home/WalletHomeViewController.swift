@@ -14,7 +14,7 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import Web3swift
+import web3swift
 
 class WalletHomeViewController: BaseTableViewController {
 
@@ -24,6 +24,10 @@ class WalletHomeViewController: BaseTableViewController {
         super.viewDidLoad()
         setupView()
         bind()
+
+        if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
+            CreateWalletService.sharedInstance.showBackUpTipAlert()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,14 +82,7 @@ class WalletHomeViewController: BaseTableViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 56)).then {
-            $0.backgroundColor = UIColor.clear
-            $0.addSubview(headerView)
-            headerView.snp.makeConstraints { (m) in
-                m.top.equalToSuperview()
-                m.left.right.equalToSuperview()
-            }
-        }
+        tableView.tableHeaderView = headerView
 
         if #available(iOS 11.0, *) {
 
@@ -131,6 +128,7 @@ class WalletHomeViewController: BaseTableViewController {
 
         navView.scanButton.rx.tap.bind { [weak self] in
             self?.scan()
+            Statistics.log(eventId: Statistics.Page.WalletHome.scanClicked.rawValue)
             }.disposed(by: rx.disposeBag)
 
         navView.hideButton.rx.tap.bind { [weak self] in
@@ -164,11 +162,23 @@ class WalletHomeViewController: BaseTableViewController {
                                 balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
+                    case .btc:
+                        fatalError()
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
+                    Statistics.log(eventId: String(format: Statistics.Page.WalletHome.enterTokenDetails.rawValue, viewModel.tokenInfo.statisticsId))
                 }
             }
             .disposed(by: rx.disposeBag)
+
+        BifrostManager.instance.isConnectedAndApprovedDriver.drive(onNext: { [weak self] (connected) in
+            if connected {
+                self?.headerView.showBifrostStatusView()
+            } else {
+                self?.headerView.hideBifrostStatusView()
+            }
+            self?.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
     }
 
     func scan() {
@@ -181,6 +191,8 @@ class WalletHomeViewController: BaseTableViewController {
                 self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
             } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
+            } else if case .success(let uri) = BifrostURI.parser(string: result) {
+                self.handleScanResultForBifrost(with: uri, scanViewController: scanViewController)
             } else {
                 scanViewController?.showAlertMessage(result)
             }
@@ -199,6 +211,11 @@ class WalletHomeViewController: BaseTableViewController {
                     return
                 }
 
+                guard let fee = uri.feeForSmallestUnit(decimals: ViteWalletConst.viteToken.decimals) else {
+                    scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
+                    return
+                }
+
                 if !tokenInfo.isContains {
                     MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
                 }
@@ -209,22 +226,15 @@ class WalletHomeViewController: BaseTableViewController {
                         if data.contentType == .utf8string,
                             let contentData = data.rawContent,
                             let note = String(bytes: contentData, encoding: .utf8) {
-
                             let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
-                            guard var viewControllers = self.navigationController?.viewControllers else { return }
-                            _ = viewControllers.popLast()
-                            viewControllers.append(sendViewController)
-                            scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+                            scanViewController?.popSelfAndPush(sendViewController)
                         } else {
                             self.navigationController?.popViewController(animated: true)
-                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, completion: { _ in })
+                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, utString: nil, completion: { _ in })
                         }
                     } else {
                         let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: nil)
-                        guard var viewControllers = self.navigationController?.viewControllers else { return }
-                        _ = viewControllers.popLast()
-                        viewControllers.append(sendViewController)
-                        scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+                        scanViewController?.popSelfAndPush(sendViewController)
                     }
                 case .contract:
                     self.navigationController?.popViewController(animated: true)
@@ -232,6 +242,7 @@ class WalletHomeViewController: BaseTableViewController {
                                                      toAddress: uri.address,
                                                      tokenInfo: tokenInfo,
                                                      amount: amount,
+                                                     fee: fee,
                                                      data: uri.data,
                                                      completion: { _ in })
                 }
@@ -259,10 +270,7 @@ class WalletHomeViewController: BaseTableViewController {
                 }
 
                 let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
-                guard var viewControllers = self.navigationController?.viewControllers else { return }
-                _ = viewControllers.popLast()
-                viewControllers.append(sendViewController)
-                scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+                scanViewController?.popSelfAndPush(sendViewController)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)
             }
@@ -272,11 +280,8 @@ class WalletHomeViewController: BaseTableViewController {
     func handleScanResult(with url: URL, scanViewController: ScanViewController?) {
 
         func goWeb() {
-            guard var viewControllers = self.navigationController?.viewControllers else { return }
             let webvc = WKWebViewController.init(url: url)
-            _ = viewControllers.popLast()
-            viewControllers.append(webvc)
-            scanViewController?.navigationController?.setViewControllers(viewControllers, animated: true)
+            scanViewController?.popSelfAndPush(webvc)
         }
 
         var showAlert = true
@@ -302,5 +307,9 @@ class WalletHomeViewController: BaseTableViewController {
         } else {
             goWeb()
         }
+    }
+
+    func handleScanResultForBifrost(with uri: BifrostURI, scanViewController: ScanViewController?) {
+        BifrostManager.instance.tryConnect(uri: uri)
     }
 }

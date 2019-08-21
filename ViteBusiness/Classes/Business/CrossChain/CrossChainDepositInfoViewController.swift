@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import ViteEthereum
-import Web3swift
+
+import web3swift
 import BigInt
 import PromiseKit
 import ViteWallet
@@ -38,6 +38,7 @@ class GatewayDepositViewController: BaseViewController {
         view.addSubview(qrcodeView)
         view.addSubview(pointView)
         view.addSubview(descriptionLabel)
+        view.addSubview(useViteWalletButton)
 
 
         addressView.titleLabel.text = R.string.localizable.crosschainDepositAddress()
@@ -70,17 +71,24 @@ class GatewayDepositViewController: BaseViewController {
             m.right.equalToSuperview().offset(-20)
         }
 
-        view.displayLoading()
+
+        useViteWalletButton.snp.makeConstraints { (m) in
+            m.bottom.equalTo(view.snp.bottomMargin).offset(-20)
+            m.height.equalTo(50)
+            m.centerX.equalToSuperview()
+        }
+
+        qrcodeView.displayLoading()
         self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
             .done { [weak self] (info) in
                 guard let `self` = self else { return }
-                self.view.hideLoading()
+                self.qrcodeView.hideLoading()
                 self.addressView.textLabel.text = info.depositAddress
                 self.qrcodeView.bind(tokenInfo: TokenInfo.eth, content: info.depositAddress)
                 guard let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.tokenInfo.decimals) else {
                     return
                 }
-                let subStirng = minimumDepositAmountStr + self.tokenInfo.symbol
+                let subStirng = minimumDepositAmountStr +  " " + self.tokenInfo.symbol
                 let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(subStirng)
                 let range = NSString.init(string: fullString).range(of: minimumDepositAmountStr)
                 let attributeString = NSMutableAttributedString.init(string: fullString)
@@ -96,7 +104,14 @@ class GatewayDepositViewController: BaseViewController {
                 UIPasteboard.general.string = address
                 Toast.show(R.string.localizable.walletHomeToastCopyAddress())
             }
-        }
+        }.disposed(by: rx.disposeBag)
+
+        useViteWalletButton.rx.tap.bind { [unowned self] in
+            let vc = EthViteExchangeViewController()
+            vc.gatewayInfoService = self.gatewayInfoService
+            vc.exchangeType = .ethChainToViteToken
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
 
     }
 
@@ -180,12 +195,6 @@ class GatewayDepositViewController: BaseViewController {
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
     }
 
-    let descriptionTitleLabel = UILabel().then {
-        $0.text = R.string.localizable.grinNoticeTitle()
-        $0.numberOfLines = 0
-        $0.font = UIFont.boldSystemFont(ofSize: 14)
-    }
-
     let pointView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.init(netHex:0x007AFF)
@@ -205,7 +214,12 @@ class GatewayDepositViewController: BaseViewController {
         present(vc, animated: true, completion: nil)
     }
 
-    
+    let useViteWalletButton = UIButton.init(style: .add).then {
+        $0.setImage(R.image.crosschain_deposie_switch(), for: .normal)
+        $0.setImage(R.image.crosschain_deposie_switch(), for: .highlighted)
+        $0.setTitle(R.string.localizable.crosschainDepositVitewallet(), for: .normal)
+    }
+
 
     /*
     // MARK: - Navigation

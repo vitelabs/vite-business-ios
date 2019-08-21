@@ -9,6 +9,7 @@ import UIKit
 import Result
 import SwiftyJSON
 import BigInt
+import SnapKit
 
 class GatewayTokenDetailViewController: BaseViewController {
 
@@ -21,14 +22,23 @@ class GatewayTokenDetailViewController: BaseViewController {
             let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
 
             var total: String? = "--"
-            if let totalStr = JSON(info)["total"].string {
-                total = totalStr
+            if let totalStr = JSON(info)["total"].string,
+                let totoalAmount = Double(totalStr) {
+                if totoalAmount / 1_000_000  < 1 {
+                    total = totalStr
+                }  else if totoalAmount / 1_000_000_000_000  >= 1  {
+                    total =  String(format:"%.4f",totoalAmount / 1_000_000_000_000) + " " + R.string.localizable.unitTrillion()
+                }  else if totoalAmount / 1_000_000_000  >= 1 {
+                    total = String(format:"%.4f",totoalAmount / 1_000_000_000) + " " +  R.string.localizable.unitBillion()
+                } else if totoalAmount / 1_000_000  >= 1 {
+                    total = String(format:"%.4f",totoalAmount / 1_000_000) + " " +  R.string.localizable.unitMillion()
+                }
             }
             var issueStr = "--"
             if let issue =  JSON(info)["states"]["issue"].int, issue == 1 {
-                issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
-            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
                 issueStr = R.string.localizable.crosschainTokenDetailIssuanceTrue()
+            } else if let issue =  JSON(info)["states"]["issue"].int, issue == 2  {
+                issueStr = R.string.localizable.crosschainTokenDetailIssuanceFalse()
             }
             var overview:String?  = "--"
             if LocalizationService.sharedInstance.currentLanguage == .chinese {
@@ -36,6 +46,12 @@ class GatewayTokenDetailViewController: BaseViewController {
             } else {
                 overview = JSON(info)["overview"]["en"].string
             }
+
+            var publisherDate = JSON(info)["publisherDate"].string ?? "--"
+            if tokenInfo.coinType == .vite {
+                publisherDate = "--"
+            }
+
             self.dateSource =
                 [
                     (R.string.localizable.crosschainTokenDetailShortname(),JSON(info)["symbol"].string),
@@ -45,8 +61,8 @@ class GatewayTokenDetailViewController: BaseViewController {
                     (R.string.localizable.crosschainTokenDetailAmount(),total),
                     (R.string.localizable.crosschainTokenDetailDigit(),tokenDigit),
                     (R.string.localizable.crosschainTokenDetailIssuance(),issueStr),
-                    (R.string.localizable.crosschainTokenDetailDate(),JSON(info)["updateTime"].string),
-                    (R.string.localizable.crosschainTokenDetailDesc(),JSON(info)["overview"].string),
+                    (R.string.localizable.crosschainTokenDetailDate(),publisherDate),
+                    (R.string.localizable.crosschainTokenDetailDesc(),overview),
                 ] as! [(String, String?)]
         }
     }
@@ -116,6 +132,21 @@ extension GatewayTokenDetailViewController: UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = self.dateSource[indexPath.row].0
         cell.detailTextLabel?.font = font(16)
         cell.detailTextLabel?.text = self.dateSource[indexPath.row].1
+
+        if indexPath.row != 8 {
+            cell.textLabel?.snp.makeConstraints { m in
+                m.left.equalToSuperview().offset(24)
+                m.centerY.equalToSuperview()
+            }
+            cell.detailTextLabel?.snp.makeConstraints { (m) in
+                m.right.equalToSuperview().offset(-24)
+                m.centerY.equalToSuperview()
+                m.left.greaterThanOrEqualTo(cell.textLabel!.snp.right).offset(10)
+            }
+            cell.detailTextLabel?.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            cell.detailTextLabel?.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+        }
         return cell
     }
 

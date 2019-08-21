@@ -27,7 +27,7 @@ class DebugWorkflowViewController: FormViewController {
                 $0.title =  "Transaction"
                 }.onCellSelection({ _, _  in
                     if let account = HDWalletManager.instance.account {
-                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("10000000000000000000")!, note: "haha") { (r) in
+                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("10000000000000000000")!, note: "haha", utString: "--") { (r) in
                             print(r)
                         }
                     } else {

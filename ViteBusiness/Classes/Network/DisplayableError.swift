@@ -5,12 +5,22 @@
 //  Created by Stone on 2019/5/30.
 //
 
-import Web3swift
-import ViteEthereum
+import web3swift
+
 import ViteWallet
 
 public protocol DisplayableError: Error {
     var errorMessage: String { get }
+}
+
+extension Error {
+    var localizedDescription: String {
+        if let e = self as? DisplayableError {
+            return e.errorMessage
+        } else {
+            return (self as NSError).localizedDescription
+        }
+    }
 }
 
 extension WalletError: DisplayableError {

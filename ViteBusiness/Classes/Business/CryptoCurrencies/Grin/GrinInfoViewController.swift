@@ -122,7 +122,10 @@ class GrinInfoViewController: BaseViewController {
 
         walletInfoVM.messageDriver
             .filterNil()
-            .drive(onNext:{ Toast.show($0) })
+            .drive(onNext:{ [weak self] in
+                self?.view.hideLoading()
+                Toast.show($0)
+            })
             .disposed(by: rx.disposeBag)
 
         walletInfoVM.showLoadingDriver
@@ -137,6 +140,7 @@ class GrinInfoViewController: BaseViewController {
 
         walletInfoVM.fullInfoDetail
             .bind { [weak self] fullInfo in
+                self?.view.hideLoading()
                 let detail = GrinTxDetailViewController()
                 detail.fullInfo = fullInfo
                 self?.navigationController?.pushViewController(detail, animated: true)
@@ -228,6 +232,7 @@ class GrinInfoViewController: BaseViewController {
     }
 
     @IBAction func sendAciton(_ sender: Any) {
+        Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsSendClicked.rawValue, "grin_grin"))
         let a0 = UIAlertAction.init(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
           self.send(use: .vite)
         }
@@ -276,6 +281,7 @@ class GrinInfoViewController: BaseViewController {
     }
 
     @IBAction func receiveAction(_ sender: Any) {
+        Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, "grin_grin"))
         let a0 = UIAlertAction(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
             let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
             if notTeach {
@@ -383,6 +389,7 @@ extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.displayLoading()
         let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
         self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
     }
