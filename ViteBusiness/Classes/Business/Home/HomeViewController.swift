@@ -8,6 +8,8 @@
 
 import UIKit
 import Then
+import RxCocoa
+import RxSwift
 
 class HomeViewController: UITabBarController {
 
@@ -42,6 +44,7 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             $0.tabBarItem.image = R.image.exchange_tabbar_icon_unseleted()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.exchange_tabbar_icon()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.tag = 1001
         }
 
         var subViewControlles: [UIViewController] = [walletNav, exchangeNav, myNav]
@@ -66,6 +69,15 @@ class HomeViewController: UITabBarController {
         tabBar.backgroundImage = UIImage.color(UIColor.white).resizable
 
         GCD.delay(1) { AppUpdateService.checkUpdate() }
+
+        self.rx.observe(UIViewController.self, #keyPath(UITabBarController.selectedViewController))
+            .map{ $0?.tabBarItem.tag }
+            .filterNil()
+            .bind { tag in
+                if tag == 1001 {
+                    Statistics.log(eventId: "instant_purchase")
+                }
+        }.disposed(by: rx.disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {

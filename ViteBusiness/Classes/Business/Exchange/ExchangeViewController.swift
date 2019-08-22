@@ -224,6 +224,8 @@ class ExchangeViewController: BaseViewController {
 
         exchangeButton.rx.tap.bind{ [unowned self] in
 
+            Statistics.log(eventId: "instant_purchase_buy")
+
             guard let viteAmount = Double(self.card.viteInfo.inputTextField.text ?? "")  else  {
                 Toast.show(R.string.localizable.grinSendIllegalAmmount())
                 return
