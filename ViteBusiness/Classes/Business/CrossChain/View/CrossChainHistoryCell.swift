@@ -247,7 +247,10 @@ class CrossChainHistoryCell: UITableViewCell {
                 statusString = R.string.localizable.crosschainStatusWrongAddress()
                 iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
-                statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
+                statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
+                if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
+                    statusString = statusString + "(\(current)/\(total))"
+                }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()

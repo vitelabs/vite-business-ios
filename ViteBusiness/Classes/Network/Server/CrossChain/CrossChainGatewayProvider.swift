@@ -245,6 +245,7 @@ struct DepositInfo: Mappable {
 struct WithdrawInfo: Mappable {
     var gatewayAddress: String = ""
     var noticeMsg: String?
+    var labelName: String?
     var minimumWithdrawAmount: String = ""
     var maximumWithdrawAmount: String = ""
 
@@ -255,6 +256,7 @@ struct WithdrawInfo: Mappable {
         minimumWithdrawAmount <- map["minimumWithdrawAmount"]
         maximumWithdrawAmount <- map["maximumWithdrawAmount"]
         noticeMsg <- map["noticeMsg"]
+        labelName <- map["labelName"]
     }
 }
 
@@ -297,6 +299,9 @@ struct DepositRecord: Mappable, Record {
     var inTxExplorer = ""
     var outTxExplorer = ""
 
+    var inTxConfirmedCount: Int?
+    var inTxConfirmationCount: Int?
+
     init?(map: Map) { }
 
     mutating func mapping(map: Map) {
@@ -306,6 +311,9 @@ struct DepositRecord: Mappable, Record {
         fee <- map["fee"]
         state <- map["state"]
         dateTime <- map["dateTime"]
+        inTxConfirmedCount <- map["inTxConfirmedCount"]
+        inTxConfirmationCount <- map["inTxConfirmationCount"]
+
     }
 }
 
@@ -333,6 +341,8 @@ struct WithdrawRecord: Mappable, Record {
     var fee: String = ""
     var state: CrossChainState = .UNKNOW
     var dateTime: String = ""
+    var inTxConfirmedCount: Int?
+    var inTxConfirmationCount: Int?
 
     var inTxExplorer = ""
     var outTxExplorer = ""
@@ -346,6 +356,8 @@ struct WithdrawRecord: Mappable, Record {
         fee <- map["fee"]
         state <- map["state"]
         dateTime <- map["dateTime"]
+        inTxConfirmedCount <- map["inTxConfirmedCount"]
+        inTxConfirmationCount <- map["inTxConfirmationCount"]
     }
 }
 
@@ -354,12 +366,13 @@ protocol Record {
 
     var inTxHash: String { get }
     var outTxHash: String? { get }
+    var inTxConfirmedCount: Int? { get }
+    var inTxConfirmationCount: Int? { get }
     var amount: String { get }
     var fee: String { get }
     var state: CrossChainState { get }
     var dateTime: String { get }
     var inTxExplorer: String { get }
     var outTxExplorer: String { get }
-
 }
 

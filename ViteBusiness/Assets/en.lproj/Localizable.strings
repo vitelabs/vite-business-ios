@@ -638,9 +638,13 @@
 "crosschain.deposit.otherwallet" = "Receive from Another Wallet";
 "crosschain.deposit.history" = "Receive History";
 "crosschain.withdraw.history" = "Transfer History";
-"crosschain.deposit.minAmountDesc" = "The required minimum receive amount is %@. If you try to receive an amount less than this threshold, the transaction will fail.";
+"crosschain.deposit.minAmountDesc" = "通过下方转入地址只能转入%@，且金额不得低于%@";
+"crosschain.deposit.minComfirm" = "%@个网络确认之后到账，请耐心等待";
 "crosschain.deposit.address" = "Receive Address";
-"crosschain.deposit.scanAddress" = "Scan QR Code to Receive";
+"crosschain.deposit.scanAddress" = "请扫描地址二维码";
+"crosschain.deposit.scanLabel" = "“请扫描%@二维码";
+"crosschain.deposit.labelDesc" = "请将%@与充值地址同时使用，否则币会丢失";
+
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
@@ -670,7 +674,7 @@
 "crosschain.status.gatewayReceived" = "Received by Gateway";
 "crosschain.status.withdraw.failed" = "Withdraw Failed";
 "crosschain.status.failedBecausePoor" = "Too less amount";
-"crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
+"crosschain.withdraw.fee.desc" = "%@ transaction fee is included.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
@@ -706,7 +710,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE\n\n\n";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
