@@ -461,7 +461,7 @@ extension GrinManager {
         return MyTokenInfosService.instance.tokenInfo(for: .grinCoin) ??
             TokenInfo(tokenCode: .grinCoin,
                       coinType: .grin,
-                      rawCoinName: CoinType.grin.name,
+                      rawChainName: CoinType.grin.name,
                       name: "grin",
                       symbol: "GRIN",
                       decimals: 9,

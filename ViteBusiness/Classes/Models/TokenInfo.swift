@@ -113,7 +113,7 @@ public struct TokenInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var coinType: CoinType = .unsupport
-    public fileprivate(set)  var rawCoinName: String = ""
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var decimals: Int = 0
@@ -170,7 +170,7 @@ public struct TokenInfo: Mappable {
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
         coinType <- (map["platform"], coinTypeTransform)
-        rawCoinName <- map["platform"]
+        rawChainName <- map["platform"]
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimal"]
@@ -188,10 +188,10 @@ public struct TokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, rawCoinName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
         self.tokenCode = tokenCode
         self.coinType = coinType
-        self.rawCoinName = rawCoinName
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
@@ -351,7 +351,7 @@ public struct GatewayInfo: Mappable {
 
     var mappedToken: TokenInfo {
         let mapped = mappedTokenInfo
-        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, rawCoinName: mapped.rawCoinName, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
+        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, rawChainName: mapped.rawChainName, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
     }
 }
 
@@ -361,7 +361,7 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var coinType: CoinType = .unsupport
-    public fileprivate(set)  var rawCoinName: String = ""
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
@@ -388,7 +388,7 @@ public struct MappedTokenInfo: Mappable {
         name <- map["name"]
         symbol <- map["symbol"]
         coinType <- (map["platform"], coinTypeTransform)
-        rawCoinName <- map["platform"]
+        rawChainName <- map["platform"]
         decimals <- map["decimal"]
         index <- map["tokenIndex"]
         icon <- map["icon"]
@@ -403,10 +403,10 @@ public struct MappedTokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, rawCoinName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
         self.tokenCode = tokenCode
         self.coinType = coinType
-        self.rawCoinName = rawCoinName
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
