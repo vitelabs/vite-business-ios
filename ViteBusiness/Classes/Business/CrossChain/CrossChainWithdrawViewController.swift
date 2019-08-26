@@ -56,7 +56,12 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     let abstractView = WalletAbstractView()
-    var addressView: AddressTextViewView =  AddressTextViewView()
+
+    lazy var addressView: AddressTextViewView =  AddressTextViewView().then {
+        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType != .eth {
+            $0.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
+        }
+    }
 
     let labelView = AddressTextViewView().then { labelView in
         labelView.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
@@ -112,7 +117,6 @@ class GatewayWithdrawViewController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(addressView)
 
-//        self.withDrawInfo.labelName = "labelname"
         if let labelname = self.withDrawInfo.labelName {
             scrollView.stackView.addPlaceholder(height: 10)
             scrollView.stackView.addArrangedSubview(labelView)
@@ -179,9 +183,7 @@ class GatewayWithdrawViewController: BaseViewController {
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
 
             } else {
-                FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
-                    [
-                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+                self.scanAddress()
             }
             }.disposed(by: rx.disposeBag)
 
@@ -400,6 +402,22 @@ class GatewayWithdrawViewController: BaseViewController {
         }
     }
 
+    func scanAddress() {
+        let scanViewController = ScanViewController()
+        scanViewController.reactor = ScanViewReactor()
+        _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+            if case .success(let uri) = ViteURI.parser(string: result) {
+                self?.addressView.textView.text = uri.address
+            } else if case .success(let uri) = ETHURI.parser(string: result) {
+                self?.addressView.textView.text = uri.address
+            } else {
+                self?.addressView.textView.text = result
+            }
+            scanViewController.navigationController?.popViewController(animated: true)
+        }
+        UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+    }
+
 }
 
 
@@ -414,35 +432,7 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
                 vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             } else if index == 2 {
-                let scanViewController = ScanViewController()
-                scanViewController.reactor = ScanViewReactor()
-                _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                    if case .success(let uri) = ViteURI.parser(string: result) {
-                        self?.addressView.textView.text = uri.address
-                    } else if case .success(let uri) = ETHURI.parser(string: result) {
-                        self?.addressView.textView.text = uri.address
-                    } else {
-                        self?.addressView.textView.text = result
-                    }
-                    scanViewController.navigationController?.popViewController(animated: true)
-                }
-                UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
-            }
-        } else {
-            if index == 0 {
-                let scanViewController = ScanViewController()
-                scanViewController.reactor = ScanViewReactor()
-                _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                    if case .success(let uri) = ViteURI.parser(string: result) {
-                        self?.addressView.textView.text = uri.address
-                    } else if case .success(let uri) = ETHURI.parser(string: result) {
-                        self?.addressView.textView.text = uri.address
-                    } else {
-                        self?.addressView.textView.text = result
-                    }
-                    scanViewController.navigationController?.popViewController(animated: true)
-                }
-                UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+                scanAddress()
             }
         }
     }
