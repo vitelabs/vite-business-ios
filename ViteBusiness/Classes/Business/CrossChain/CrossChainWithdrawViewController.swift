@@ -172,10 +172,17 @@ class GatewayWithdrawViewController: BaseViewController {
     func bind() {
         addressView.addButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
-                [R.string.localizable.crosschainWithdrawEthMyAddress(),
-                 R.string.localizable.ethSendPageEthContactsButtonTitle(),
-                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+            if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
+                FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
+                    [R.string.localizable.crosschainWithdrawEthMyAddress(),
+                     R.string.localizable.ethSendPageEthContactsButtonTitle(),
+                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+
+            } else {
+                FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
+                    [
+                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+            }
             }.disposed(by: rx.disposeBag)
 
         labelView.addButton.rx.tap.bind { [weak self] in
@@ -398,27 +405,45 @@ class GatewayWithdrawViewController: BaseViewController {
 
 extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int) {
-        if index == 0 {
-            addressView.textView.text = EtherWallet.shared.ethereumAddress?.address
-        } else if index == 1 {
-            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
-            let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        } else if index == 2 {
-            let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
-            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address
-                } else if case .success(let uri) = ETHURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address
-                } else {
-                    self?.addressView.textView.text = result
+        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
+            if index == 0 {
+                addressView.textView.text = EtherWallet.shared.ethereumAddress?.address
+            } else if index == 1 {
+                let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
+                let vc = AddressListViewController(viewModel: viewModel)
+                vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            } else if index == 2 {
+                let scanViewController = ScanViewController()
+                scanViewController.reactor = ScanViewReactor()
+                _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                    if case .success(let uri) = ViteURI.parser(string: result) {
+                        self?.addressView.textView.text = uri.address
+                    } else if case .success(let uri) = ETHURI.parser(string: result) {
+                        self?.addressView.textView.text = uri.address
+                    } else {
+                        self?.addressView.textView.text = result
+                    }
+                    scanViewController.navigationController?.popViewController(animated: true)
                 }
-                scanViewController.navigationController?.popViewController(animated: true)
+                UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
             }
-            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        } else {
+            if index == 0 {
+                let scanViewController = ScanViewController()
+                scanViewController.reactor = ScanViewReactor()
+                _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                    if case .success(let uri) = ViteURI.parser(string: result) {
+                        self?.addressView.textView.text = uri.address
+                    } else if case .success(let uri) = ETHURI.parser(string: result) {
+                        self?.addressView.textView.text = uri.address
+                    } else {
+                        self?.addressView.textView.text = result
+                    }
+                    scanViewController.navigationController?.popViewController(animated: true)
+                }
+                UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+            }
         }
     }
 
