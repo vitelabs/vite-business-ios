@@ -1396,7 +1396,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 684 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 696 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1598,6 +1598,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinTransferCrossChainItem0Title = Rswift.StringResource(key: "buildin.transfer.cross.chain.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferUtf8stringItem1Title = Rswift.StringResource(key: "buildin.transfer.utf8string.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -1850,6 +1854,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailFromMine = Rswift.StringResource(key: "grin.detail.fromMine", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Comment
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferUtf8stringItem2Title = Rswift.StringResource(key: "buildin.transfer.utf8string.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Comment
       /// 
       /// Locales: en, zh-Hans
@@ -2222,6 +2230,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethPageGasFeeFastTitle = Rswift.StringResource(key: "eth.page.gasFee.fast.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationTitleFee = Rswift.StringResource(key: "bifrost.operation.title.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Fee
       /// 
       /// Locales: en, zh-Hans
@@ -2642,6 +2654,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let contactsEditPageNameTitle = Rswift.StringResource(key: "contacts.edit.page.name.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Network Error
+      /// 
+      /// Locales: en, zh-Hans
+      public static let appSchemeNetworkError = Rswift.StringResource(key: "app.scheme.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -2774,6 +2790,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostAlertApproveSessionMessage = Rswift.StringResource(key: "bifrost.alert.approve.session.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please confirm transaction information below
+      /// 
+      /// Locales: en, zh-Hans
+      public static let appSchemeHomePageBusyContent = Rswift.StringResource(key: "app.scheme.home.page.busy.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please confirm transaction information below
       /// 
       /// Locales: en, zh-Hans
@@ -3126,6 +3146,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertPowButtonTitle = Rswift.StringResource(key: "quota.alert.pow.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: SBP Candidates
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinVoteItem0Title = Rswift.StringResource(key: "buildin.vote.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -3598,6 +3622,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowCongestionWithoutPowAlertOk = Rswift.StringResource(key: "workflow.congestion.without.pow.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferUtf8stringItem0Title = Rswift.StringResource(key: "buildin.transfer.utf8string.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -3678,6 +3706,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let introductionTipTitle = Rswift.StringResource(key: "introduction.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinTransferUtf8stringFunctionTitle = Rswift.StringResource(key: "buildin.transfer.utf8string.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transfer
       /// 
       /// Locales: en, zh-Hans
@@ -3866,6 +3898,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageVCWebTitleNews = Rswift.StringResource(key: "discover.page.VCWebTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite Store 下单
+      /// 
+      /// Locales: en, zh-Hans
+      public static let appSchemeHomePageViteStoreFunctionTitle = Rswift.StringResource(key: "app.scheme.home.page.vite.store.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -3921,6 +3957,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
+      public static let buildinVoteFunctionTitle = Rswift.StringResource(key: "buildin.vote.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteVoteTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vote
       /// 
@@ -3934,6 +3974,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowToastCancelVoteSuccess = Rswift.StringResource(key: "workflow.toast.cancel.vote.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Votes
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinVoteItem1Title = Rswift.StringResource(key: "buildin.vote.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Votes
       /// 
       /// Locales: en, zh-Hans
@@ -4134,6 +4178,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static let appSchemeHomePageBusyHeader = Rswift.StringResource(key: "app.scheme.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -4483,6 +4531,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinTransferCrossChainItem0Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.transfer.cross.chain.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferUtf8stringItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.utf8string.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
@@ -4924,6 +4979,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinDetailFromMine(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.fromMine", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Comment
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferUtf8stringItem2Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.utf8string.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Comment
@@ -5575,6 +5637,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func ethPageGasFeeFastTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.page.gasFee.fast.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationTitleFee(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.title.fee", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fee
@@ -6312,6 +6381,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.edit.page.name.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Network Error
+      /// 
+      /// Locales: en, zh-Hans
+      public static func appSchemeNetworkError(_: Void = ()) -> String {
+        return NSLocalizedString("app.scheme.network.error", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -6541,6 +6617,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostAlertApproveSessionMessage(_ value1: String) -> String {
         return String(format: NSLocalizedString("bifrost.alert.approve.session.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Please confirm transaction information below
+      /// 
+      /// Locales: en, zh-Hans
+      public static func appSchemeHomePageBusyContent(_: Void = ()) -> String {
+        return NSLocalizedString("app.scheme.home.page.busy.content", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please confirm transaction information below
@@ -7157,6 +7240,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaAlertPowButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.pow.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: SBP Candidates
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinVoteItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.vote.item0.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Save
@@ -7985,6 +8075,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.congestion.without.pow.alert.ok", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transaction Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferUtf8stringItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.utf8string.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -8123,6 +8220,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func introductionTipTitle(_: Void = ()) -> String {
         return NSLocalizedString("introduction.tip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transfer
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinTransferUtf8stringFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.transfer.utf8string.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transfer
@@ -8454,6 +8558,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.VCWebTitle.news", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Vite Store 下单
+      /// 
+      /// Locales: en, zh-Hans
+      public static func appSchemeHomePageViteStoreFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("app.scheme.home.page.vite.store.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vite Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -8548,6 +8659,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Vote
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinVoteFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.vote.function.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vote
+      /// 
+      /// Locales: en, zh-Hans
       public static func confirmTransactionPageViteVoteTransferTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.vite.vote.transfer.title", bundle: R.hostingBundle, comment: "")
       }
@@ -8571,6 +8689,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowToastCancelVoteSuccess(_: Void = ()) -> String {
         return NSLocalizedString("workflow.toast.cancel.vote.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Votes
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinVoteItem1Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.vote.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Votes
@@ -8921,6 +9046,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static func appSchemeHomePageBusyHeader(_: Void = ()) -> String {
+        return NSLocalizedString("app.scheme.home.page.busy.header", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

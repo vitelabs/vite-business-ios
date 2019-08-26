@@ -28,7 +28,8 @@ public class WKWebViewJSBridgeEngine: NSObject {
     "app.share":("goToshare",[]),
     "app.setRRButton":("setRRButton",[]),
     "wallet.currentAddress":("fetchViteAddress",[]),
-    "wallet.sendTxByURI":("invokeUri",[])
+    "wallet.sendTxByURI":("invokeUri",[]),
+    "wallet.sendTx":("sendTx",[])
     ]
 
     weak var delegate: WKWebViewJSBridgeEngineDelegate?

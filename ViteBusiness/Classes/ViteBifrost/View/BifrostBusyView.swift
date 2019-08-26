@@ -15,6 +15,13 @@ class BifrostBusyView: UIView {
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
+
+    let contentLabel = UILabel().then {
+        $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.6)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+    }
     
     let cancelButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.cancel())
     let confirmButton = UIButton(style: .blueWithShadow, title: R.string.localizable.confirm())
@@ -30,13 +37,6 @@ class BifrostBusyView: UIView {
 
         let imageView = UIImageView(image: R.image.icon_vb_placeholder_busy())
 
-        let contentLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.numberOfLines = 0
-            $0.textAlignment = .center
-        }
-
         let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
             $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
             $0.layer.shadowOpacity = 0.1
@@ -44,6 +44,7 @@ class BifrostBusyView: UIView {
             $0.layer.shadowRadius = 20
         }
 
+        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
         contentLabel.text = R.string.localizable.bifrostHomePageBusyContent()
 
         addSubview(imageView)
@@ -114,8 +115,6 @@ class BifrostBusyView: UIView {
         scrollView.stackView.arrangedSubviews.forEach { (view) in
             view.removeFromSuperview()
         }
-
-        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
 
         let titleView = BifrostConfirmTitleView(title: info.title)
         scrollView.stackView.addArrangedSubview(titleView)

@@ -1,14 +1,14 @@
 //
-//  BuildInContractVote.swift
+//  SASConfirmViewModelContractVote.swift
 //  ViteBusiness
 //
-//  Created by Stone on 2019/7/24.
+//  Created by Stone on 2019/8/26.
 //
 
-import ViteWallet
 import PromiseKit
+import ViteWallet
 
-struct BuildInContractVote: BuildInContractProtocol {
+struct SASConfirmViewModelContractVote: SASConfirmViewModelContract {
 
     let abi = ABI.BuildIn.vote
     let description = VBViteSendTx.Description(
@@ -17,12 +17,11 @@ struct BuildInContractVote: BuildInContractProtocol {
             VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteItem0Title()),
             VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteItem1Title()),
         ])
-
-    func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
-        guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
+    func confirmInfo(uri: ViteURI, tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
+        guard uri.amountForSmallestUnit(decimals: tokenInfo.decimals) == 0 else { return Promise(error: ConfirmError.InvalidAmount) }
         let title = description.function.title ?? ""
         do {
-            let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
+            let values = try ABI.Decoding.decodeParameters(uri.data!, abiString: abi.rawValue)
             guard let gidValue = values[0] as? ABIGIdValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }
@@ -37,5 +36,19 @@ struct BuildInContractVote: BuildInContractProtocol {
         } catch {
             return Promise(error: ConfirmError.InvalidData)
         }
+    }
+}
+
+extension SASConfirmViewModelContractVote {
+    static func makeURIBy(name: String, gid: String) -> ViteURI {
+        return ViteURI(address: ABI.BuildIn.vote.toAddress,
+                       chainId: nil,
+                       type: .contract,
+                       functionName: ABI.BuildIn.vote.abiRecord.name!,
+                       tokenId: ViteWalletConst.viteToken.id,
+                       amount: nil,
+                       fee: nil,
+                       data: ABI.BuildIn.getVoteData(gid: gid, name: name),
+                       parameters: nil)
     }
 }

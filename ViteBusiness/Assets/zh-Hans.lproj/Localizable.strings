@@ -765,14 +765,24 @@
 "bifrost.operation.title.contract.address" = "合约地址";
 "bifrost.operation.title.token.symbol" = "币种";
 "bifrost.operation.title.amount" = "金额";
+"bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
 // Buildin
+
+"buildin.transfer.utf8string.function.title" = "转账";
+"buildin.transfer.utf8string.item0.title" = "交易地址";
+"buildin.transfer.utf8string.item1.title" = "交易金额";
+"buildin.transfer.utf8string.item2.title" = "备注信息";
 
 "buildin.transfer.cross.chain.function.title" = "跨链转出";
 "buildin.transfer.cross.chain.item0.title" = "转出金额";
 "buildin.transfer.cross.chain.item1.title" = "手续费";
 "buildin.transfer.cross.chain.item2.title" = "收款地址";
+
+"buildin.vote.function.title" = "投票";
+"buildin.vote.item0.title" = "投票节点名称";
+"buildin.vote.item1.title" = "投票量";
 
 "buildin.coin.issuance.function.title" = "铸币";
 "buildin.coin.issuance.item0.title" = "铸币地址";
@@ -844,3 +854,9 @@
 "buildin.dex.cancel.vip.function.title" = "撤销VIP";
 "buildin.dex.cancel.vip.item0.title" = "当前地址";
 "buildin.dex.cancel.vip.item1.title" = "抵押金额";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "交易确认";
+"app.scheme.home.page.busy.content" = "请确认如下交易信息";
+"app.scheme.network.error" = "网络错误";
+"app.scheme.home.page.vite.store.function.title" = "Vite Store 下单";

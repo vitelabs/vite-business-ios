@@ -231,13 +231,9 @@ extension BifrostManager {
                 guard let `self` = self else { return }
                 guard let account = HDWalletManager.instance.account else { return }
                 if ret {
-                    Workflow.bifrostSendTxWithConfirm(title: task.info.title ,
+                    Workflow.bifrostSendTxWithConfirm(title: task.info.title,
                                                       account: account,
-                                                      toAddress: task.tx.block.toAddress,
-                                                      tokenInfo: task.tokenInfo,
-                                                      amount: task.tx.block.amount,
-                                                      fee: task.tx.block.fee,
-                                                      data: task.tx.block.data,
+                                                      block: task.tx.block,
                                                       completion: { (ret) in
                                                         switch ret {
                                                         case .success(let accountBlock):

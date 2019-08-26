@@ -89,14 +89,48 @@ public class ViteBusinessLanucher: NSObject {
             callback(Response(code:.success,msg: "",data: account.address),callbackId)
         }
 
+        enum ErrorCode: Int {
+            case lastTransactionNotCompleted = 4001
+            case tokenInfoNotFound = 4002
+            case amountError = 4003
+            case userCancel = 4004
+        }
+
         WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
-            enum ErrorCode: Int {
-                case lastTransactionNotCompleted = 4001
-                case tokenInfoNotFound = 4002
-                case amountError = 4003
-                case userCancel = 4004
+            guard let data = data, let sendTx = VBViteSendTx(JSON: data)else {
+                callback(Response(code: .invalidParameter, msg: "invalid parameter: data", data: nil), callbackId)
+                return
             }
+
+
+            guard let account = HDWalletManager.instance.account else {
+                callback(Response(code: .notLogin, msg: "not login", data: nil), callbackId)
+                return
+            }
+
+            guard WKWebViewConfig.instance.isInvokingUri == false else {
+                callback(Response(code: .other(code: ErrorCode.lastTransactionNotCompleted.rawValue), msg: "the last transaction was not completed", data: nil), callbackId)
+                return
+            }
+
+            WKWebViewConfig.instance.isInvokingUri = true
+            Workflow.bifrostSendTxWithConfirm(title: "xxx", account: account, block: sendTx.block, completion: { (r) in
+                WKWebViewConfig.instance.isInvokingUri = false
+                switch r {
+                case .success(let accountBlock):
+                    callback(Response(code: .success, msg: "", data: accountBlock.toJSON()), callbackId)
+                case .failure(let error):
+                    if let e = error as? ViteError, case .cancel = e {
+                        callback(Response(code: .other(code: ErrorCode.userCancel.rawValue), msg: "user cancel", data: nil), callbackId)
+                    } else {
+                        callback(Response(code: .other(code: error.viteErrorCode.id), msg: error.viteErrorMessage, data: nil), callbackId)
+                    }
+                }
+            })
+        }
+
+        WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
             guard let data = data else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: data", data: nil), callbackId)
@@ -304,13 +338,29 @@ public class ViteBusinessLanucher: NSObject {
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.scheme == AppScheme.value {
-            guard let _ = HDWalletManager.instance.account else { return false }
+            guard let account = HDWalletManager.instance.account else { return false }
             if let ret = AppScheme(rawValue: url.host ?? "") {
                 switch ret {
                 case .open:
                     if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
                         let url = URL(string: urlString) {
                         NavigatorManager.instance.push(url)
+                    }
+                case .sendRawTx:
+                    if let uriString = url.queryParameters["uri"]?.removingPercentEncoding {
+                        if case .success(let uri) = ViteURI.parser(string: uriString) {
+                            // only support transfer now
+                            guard case .transfer = uri.type else { return true }
+                            let vc = SignAndSendConfirmViewController(uri: uri)
+                            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                case .vote:
+                    if let name = url.queryParameters["name"]?.removingPercentEncoding {
+                        let gid = url.queryParameters["gid"]?.removingPercentEncoding ?? ViteWalletConst.ConsensusGroup.snapshot.id
+                        let uri = SASConfirmViewModelContractVote.makeURIBy(name: name, gid: gid)
+                        let vc = SignAndSendConfirmViewController(uri: uri)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
             }
@@ -325,4 +375,6 @@ enum AppScheme: String {
     static let value = "viteapp"
 
     case open
+    case sendRawTx
+    case vote
 }

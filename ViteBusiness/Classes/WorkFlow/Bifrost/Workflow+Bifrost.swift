@@ -18,8 +18,22 @@ public extension Workflow {
 
     static func bifrostSendTxWithConfirm(title: String,
                                          account: Wallet.Account,
+                                         block: VBViteSendTx.Block,
+                                         completion: @escaping (Result<AccountBlock>) -> ()) {
+        bifrostSendTxWithConfirm(title: title,
+                                 account: account,
+                                 toAddress: block.toAddress,
+                                 tokenId: block.tokenId,
+                                 amount: block.amount,
+                                 fee: block.fee,
+                                 data: block.data,
+                                 completion: completion)
+    }
+
+    static func bifrostSendTxWithConfirm(title: String,
+                                         account: Wallet.Account,
                                          toAddress: ViteAddress,
-                                         tokenInfo: TokenInfo,
+                                         tokenId: ViteTokenId,
                                          amount: Amount,
                                          fee: Amount?,
                                          data: Data?,
@@ -40,7 +54,7 @@ public extension Workflow {
                 case .success:
                     send(account: account,
                          toAddress: toAddress,
-                         tokenId: tokenInfo.viteTokenId,
+                         tokenId: tokenId,
                          amount: amount,
                          fee: fee,
                          data: data,

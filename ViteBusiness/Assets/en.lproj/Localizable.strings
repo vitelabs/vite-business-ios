@@ -758,14 +758,24 @@
 "bifrost.operation.title.contract.address" = "Contract Address";
 "bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
 // Buildin
+
+"buildin.transfer.utf8string.function.title" = "Transfer";
+"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item2.title" = "Comment";
 
 "buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
 "buildin.transfer.cross.chain.item0.title" = "Amount";
 "buildin.transfer.cross.chain.item1.title" = "Fee";
 "buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
+"buildin.vote.function.title" = "Vote";
+"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item1.title" = "Votes";
 
 "buildin.coin.issuance.function.title" = "Token Issuance";
 "buildin.coin.issuance.item0.title" = "Issuance Address";
@@ -837,3 +847,9 @@
 "buildin.dex.cancel.vip.function.title" = "Cancel VIP";
 "buildin.dex.cancel.vip.item0.title" = "Current Address";
 "buildin.dex.cancel.vip.item1.title" = "Amount";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "交易确认";
+"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.vite.store.function.title" = "Vite Store 下单";

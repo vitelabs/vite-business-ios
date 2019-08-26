@@ -33,6 +33,7 @@ extension EtherWallet: BalanceService {
 
                     var options = TransactionOptions.defaultOptions
                     options.from = myEthAddress
+                    options.callOnBlock = .latest
 
                     guard let tx = contract.read("balanceOf",
                                                  parameters: [myEthAddress] as [AnyObject],

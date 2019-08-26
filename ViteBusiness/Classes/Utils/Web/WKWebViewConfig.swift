@@ -94,6 +94,7 @@ public struct Response : Mappable {
     public var fetchViteAddress: AsyncWebViewConfigClosure?
     //h5 invoke uri
     public var invokeUri: AsyncWebViewConfigClosure?
+    public var sendTx: AsyncWebViewConfigClosure?
     public var isInvokingUri: Bool = false
 
     private init() {
@@ -114,6 +115,9 @@ public struct Response : Mappable {
             print(data)
         }
         invokeUri = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
+            print(data)
+        }
+        sendTx = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
         }
     }
