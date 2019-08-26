@@ -346,7 +346,7 @@ public class ViteBusinessLanucher: NSObject {
                         let url = URL(string: urlString) {
                         NavigatorManager.instance.push(url)
                     }
-                case .sendRawTx:
+                case .sendTx:
                     if let uriString = url.queryParameters["uri"]?.removingPercentEncoding {
                         if case .success(let uri) = ViteURI.parser(string: uriString) {
                             // only support transfer now
@@ -375,6 +375,6 @@ enum AppScheme: String {
     static let value = "viteapp"
 
     case open
-    case sendRawTx
+    case sendTx = "send-tx"
     case vote
 }
