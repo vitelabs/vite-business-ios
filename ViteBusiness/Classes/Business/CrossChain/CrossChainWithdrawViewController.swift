@@ -206,7 +206,7 @@ class GatewayWithdrawViewController: BaseViewController {
         }
 
         feeView.tipButton.rx.tap.bind { [weak self] in
-            Alert.show(title: R.string.localizable.crosschainWithdrawAboutfee(), message: R.string.localizable.crosschainWithdrawFeeDesc(self?.gateWayInfoService.tokenInfo.symbol ?? ""), actions: [
+            Alert.show(title: R.string.localizable.crosschainWithdrawAboutfee(), message: R.string.localizable.crosschainWithdrawFeeDesc(), actions: [
                 (.default(title: R.string.localizable.confirm()), nil),
                 ])
         }

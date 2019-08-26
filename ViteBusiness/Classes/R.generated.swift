@@ -1434,10 +1434,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageGameCellPalyNum = Rswift.StringResource(key: "discover.page.game.cell.palyNum", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ transaction fee is included.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@d ago
       /// 
       /// Locales: en, zh-Hans
@@ -1446,10 +1442,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageNewsCellTimeHour = Rswift.StringResource(key: "discover.page.news.cell.time.hour", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@个网络确认之后到账，请耐心等待
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositMinComfirm = Rswift.StringResource(key: "crosschain.deposit.minComfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %d new asset(s)
       /// 
       /// Locales: en, zh-Hans
@@ -2730,6 +2722,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailWebset = Rswift.StringResource(key: "crosschain.gatewaydetail.webset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Only %@ is accepted by the address below, and the minimum amount should be no less than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, zh-Hans
@@ -2782,6 +2778,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageBusyContent = Rswift.StringResource(key: "bifrost.home.page.busy.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please do use %@ together with the Receive Address, or you will lose the token(s).
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositLabelDesc = Rswift.StringResource(key: "crosschain.deposit.labelDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please enter password to back up the Mnemonic Words.
       /// 
       /// Locales: en, zh-Hans
@@ -2846,6 +2846,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxbyfileShareSentFileDesc = Rswift.StringResource(key: "grin.txbyfile.shareSentFileDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please scan the %@ code
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositScanLabel = Rswift.StringResource(key: "crosschain.deposit.scanLabel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please scan the address QR code
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositScanAddress = Rswift.StringResource(key: "crosschain.deposit.scanAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
       /// 
       /// Locales: en, zh-Hans
@@ -3430,6 +3438,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowCongestionWithPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The process should take %@ confirmation(s), please wait.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositMinComfirm = Rswift.StringResource(key: "crosschain.deposit.minComfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -3466,6 +3478,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicAffirmAlterTitle = Rswift.StringResource(key: "mnemonic.affirm.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: This fee is charged by the gateway.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This is your first VITE address
       /// 
       /// Locales: en, zh-Hans
@@ -4118,22 +4134,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: “请扫描%@二维码
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositScanLabel = Rswift.StringResource(key: "crosschain.deposit.scanLabel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请将%@与充值地址同时使用，否则币会丢失
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositLabelDesc = Rswift.StringResource(key: "crosschain.deposit.labelDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请扫描地址二维码
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositScanAddress = Rswift.StringResource(key: "crosschain.deposit.scanAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 通过下方转入地址只能转入%@，且金额不得低于%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -4198,13 +4198,6 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("discover.page.game.cell.palyNum", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: %@ transaction fee is included.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainWithdrawFeeDesc(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: %@d ago
       /// 
       /// Locales: en, zh-Hans
@@ -4217,13 +4210,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func discoverPageNewsCellTimeHour(_ value1: String) -> String {
         return String(format: NSLocalizedString("discover.page.news.cell.time.hour", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@个网络确认之后到账，请耐心等待
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositMinComfirm(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.minComfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %d new asset(s)
@@ -6466,6 +6452,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.gatewaydetail.webset", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Only %@ is accepted by the address below, and the minimum amount should be no less than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositMinAmountDesc(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, zh-Hans
@@ -6555,6 +6548,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostHomePageBusyContent(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.home.page.busy.content", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please do use %@ together with the Receive Address, or you will lose the token(s).
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositLabelDesc(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.labelDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Please enter password to back up the Mnemonic Words.
@@ -6667,6 +6667,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinTxbyfileShareSentFileDesc(_: Void = ()) -> String {
         return NSLocalizedString("grin.txbyfile.shareSentFileDesc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please scan the %@ code
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositScanLabel(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.scanLabel", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Please scan the address QR code
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositScanAddress(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.deposit.scanAddress", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.
@@ -7691,6 +7705,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.congestion.with.pow.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: The process should take %@ confirmation(s), please wait.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositMinComfirm(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.minComfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -7752,6 +7773,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicAffirmAlterTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.affirm.alter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: This fee is charged by the gateway.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawFeeDesc(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: This is your first VITE address
@@ -8893,34 +8921,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: “请扫描%@二维码
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositScanLabel(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.scanLabel", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 请将%@与充值地址同时使用，否则币会丢失
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositLabelDesc(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.labelDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 请扫描地址二维码
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositScanAddress(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.deposit.scanAddress", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 通过下方转入地址只能转入%@，且金额不得低于%@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositMinAmountDesc(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       fileprivate init() {}
