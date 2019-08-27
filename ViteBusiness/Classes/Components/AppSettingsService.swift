@@ -11,9 +11,9 @@ import RxCocoa
 import ObjectMapper
 
 public class AppSettingsService {
-    static let instance = AppSettingsService()
+    public static let instance = AppSettingsService()
 
-    lazy var currencyDriver: Driver<CurrencyCode> = self.currencyBehaviorRelay.asDriver()
+    public lazy var currencyDriver: Driver<CurrencyCode> = self.currencyBehaviorRelay.asDriver()
     fileprivate var currencyBehaviorRelay: BehaviorRelay<CurrencyCode>!
 
     private init() {
