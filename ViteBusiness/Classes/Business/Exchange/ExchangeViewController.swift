@@ -84,7 +84,7 @@ class ExchangeViewController: BaseViewController {
 
         scrollView.snp.makeConstraints { (m) in
             m.left.right.top.equalToSuperview()
-            m.bottom.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
 
         topBackgroundView.snp.makeConstraints { (m) in
