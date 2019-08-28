@@ -649,7 +649,7 @@
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
 "crosschain.deposit.min" = "Minimum Receive Amount ";
-"crosschain.withdraw.min" = "Minimum Send Amount";
+"crosschain.withdraw.min" = "Minimum Send Amount ";
 "crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
 "crosschain.deposit.all" = "Receive All";
 "crosschain.deposit.amount" = "Receive Amount";
