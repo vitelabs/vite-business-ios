@@ -249,7 +249,7 @@ class CrossChainHistoryCell: UITableViewCell {
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
                 if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
-                    statusString = statusString + "(\(current)/\(total))"
+                    statusString = statusString + " (\(current)/\(total))"
                 }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
@@ -298,7 +298,7 @@ class CrossChainHistoryCell: UITableViewCell {
             case .OPPOSITE_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
                 if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
-                    statusString = statusString + "(\(current)/\(total))"
+                    statusString = statusString + " (\(current)/\(total))"
                 }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
