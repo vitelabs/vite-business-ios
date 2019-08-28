@@ -297,6 +297,9 @@ class CrossChainHistoryCell: UITableViewCell {
             switch record.state {
             case .OPPOSITE_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
+                if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
+                    statusString = statusString + "(\(current)/\(total))"
+                }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
