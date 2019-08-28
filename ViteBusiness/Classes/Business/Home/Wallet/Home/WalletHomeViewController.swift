@@ -222,9 +222,7 @@ class WalletHomeViewController: BaseTableViewController {
                 switch uri.type {
                 case .transfer:
                     if let data = uri.data {
-                        if data.contentType == .utf8string,
-                            let contentData = data.rawContent,
-                            let note = String(bytes: contentData, encoding: .utf8) {
+                        if let note = uri.data?.accountBlockDataToUTF8String() {
                             let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
                             scanViewController?.popSelfAndPush(sendViewController)
                         } else {

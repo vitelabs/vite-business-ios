@@ -22,8 +22,18 @@ struct SASConfirmViewModelTransferNormal: SASConfirmViewModel {
                                                 text: amountString,
                                                 textColor: VBViteSendTx.InputDescription.Style.blue.textColor,
                                                 backgroundColor: VBViteSendTx.InputDescription.Style.blue.backgroundColor)
+        let note: String?
+        if let data = uri.data {
+            if let n = data.accountBlockDataToUTF8String() {
+                note  = n
+            } else {
+                note = nil
+            }
+        } else {
+            note  = ""
+        }
         let dataItem: BifrostConfirmItemInfo
-        if let note = uri.data?.toAccountBlockNote {
+        if let note = note {
             dataItem = BifrostConfirmItemInfo(title: R.string.localizable.buildinTransferUtf8stringItem2Title(),
                                               text: note)
         } else {
