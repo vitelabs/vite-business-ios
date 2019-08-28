@@ -79,7 +79,7 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func handleWebWalletBridgeConfig()  {
-        WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
+        WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: Any]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
             guard let account = HDWalletManager.instance.account else {
                 callback(Response(code: .notLogin, msg: "not login", data: nil), callbackId)
@@ -96,53 +96,19 @@ public class ViteBusinessLanucher: NSObject {
             case userCancel = 4004
         }
 
-        WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
-
-            guard let data = data, let sendTx = VBViteSendTx(JSON: data)else {
-                callback(Response(code: .invalidParameter, msg: "invalid parameter: data", data: nil), callbackId)
-                return
-            }
-
-
-            guard let account = HDWalletManager.instance.account else {
-                callback(Response(code: .notLogin, msg: "not login", data: nil), callbackId)
-                return
-            }
-
-            guard WKWebViewConfig.instance.isInvokingUri == false else {
-                callback(Response(code: .other(code: ErrorCode.lastTransactionNotCompleted.rawValue), msg: "the last transaction was not completed", data: nil), callbackId)
-                return
-            }
-
-            WKWebViewConfig.instance.isInvokingUri = true
-            Workflow.bifrostSendTxWithConfirm(title: "xxx", account: account, block: sendTx.block, completion: { (r) in
-                WKWebViewConfig.instance.isInvokingUri = false
-                switch r {
-                case .success(let accountBlock):
-                    callback(Response(code: .success, msg: "", data: accountBlock.toJSON()), callbackId)
-                case .failure(let error):
-                    if let e = error as? ViteError, case .cancel = e {
-                        callback(Response(code: .other(code: ErrorCode.userCancel.rawValue), msg: "user cancel", data: nil), callbackId)
-                    } else {
-                        callback(Response(code: .other(code: error.viteErrorCode.id), msg: error.viteErrorMessage, data: nil), callbackId)
-                    }
-                }
-            })
-        }
-
-        WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
+        WKWebViewConfig.instance.invokeUri = { (_ data: [String: Any]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
             guard let data = data else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: data", data: nil), callbackId)
                 return
             }
 
-            guard let addressString = data["address"], addressString.isViteAddress else {
+            guard let addressString = data["address"] as? ViteAddress, addressString.isViteAddress else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: address", data: nil), callbackId)
                 return
             }
 
-            guard let uriString = data["uri"] else {
+            guard let uriString = data["uri"] as? String else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: uri", data: nil), callbackId)
                 return
             }
@@ -202,7 +168,7 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func handleWebAppBridgeConfig()  {
-        WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.share = { (_ data: [String: Any]?) -> Response? in
             if let url = data?["url"] as? String {
                 let shareUrl = URL.init(string: url)
                 Workflow.share(activityItems: [shareUrl])
@@ -210,11 +176,11 @@ public class ViteBusinessLanucher: NSObject {
             return nil
         }
 
-        WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: Any]?) -> Response? in
             return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.code)
         }
 
-        WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: Any]?) -> Response? in
             #if DEBUG || TEST
             var env: String!
             switch DebugService.instance.config.appEnvironment {

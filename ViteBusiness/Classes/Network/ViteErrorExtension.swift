@@ -36,7 +36,7 @@ extension ViteError {
 
 extension Error {
 
-    var viteErrorCode: ViteErrorCode {
+    public var viteErrorCode: ViteErrorCode {
         if let error = self as? ViteError {
             return error.code
         } else {
@@ -45,7 +45,7 @@ extension Error {
     }
 
     // show in UI
-    var viteErrorMessage: String {
+    public var viteErrorMessage: String {
         var ret = ""
         let error = ViteError.conversion(from: self)
         if let str = ViteError.code2MessageMap[error.code] {

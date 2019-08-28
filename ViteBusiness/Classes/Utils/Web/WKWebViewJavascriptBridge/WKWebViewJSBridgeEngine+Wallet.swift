@@ -19,18 +19,6 @@ public extension WKWebViewJSBridgeEngine {
         handler(parameters,callbackID, callback)
     }
 
-    @objc func jsapi_sendTx(parameters: [String: String]?, callbackID: String) {
-        guard let handler =  WKWebViewConfig.instance.sendTx else {
-            return
-        }
-        let callback = { (_ response: Response, _ callbackId: String) -> Void in
-            let responseData = response.toJSONString(prettyPrint: true)
-            let message = ["responseID": callbackId, "responseData": responseData]
-            self.sendResponds(message)
-        }
-        handler(parameters,callbackID, callback)
-    }
-
     @objc func jsapi_fetchViteAddress(parameters: [String: String], callbackID: String) {
         guard let handler =  WKWebViewConfig.instance.fetchViteAddress else {
             return

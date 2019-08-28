@@ -70,8 +70,8 @@ public struct Response : Mappable {
 
  public class WKWebViewConfig {
     public typealias  NativeCallback = (_ response: Response,_ callbackID:String) -> Void
-    public typealias  WebViewConfigClosure = (_ data: [String: String]?) -> Response?
-    public typealias  AsyncWebViewConfigClosure = (_ data: [String: String]?,_ callbackId: String, _ callback: @escaping NativeCallback) -> Void
+    public typealias  WebViewConfigClosure = (_ data: [String: Any]?) -> Response?
+    public typealias  AsyncWebViewConfigClosure = (_ data: [String: Any]?,_ callbackId: String, _ callback: @escaping NativeCallback) -> Void
 
     public static let instance = WKWebViewConfig()
 
@@ -94,30 +94,26 @@ public struct Response : Mappable {
     public var fetchViteAddress: AsyncWebViewConfigClosure?
     //h5 invoke uri
     public var invokeUri: AsyncWebViewConfigClosure?
-    public var sendTx: AsyncWebViewConfigClosure?
     public var isInvokingUri: Bool = false
 
     private init() {
-        fetchAppInfo = { (_ data: [String: String]?) -> Response? in
+        fetchAppInfo = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
-        share = { (_ data: [String: String]?) -> Response? in
+        share = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
-        fetchLanguage = { (_ data: [String: String]?) -> Response? in
+        fetchLanguage = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
 
-        fetchViteAddress = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
+        fetchViteAddress = { (_ data: [String: Any]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
         }
-        invokeUri = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
-            print(data)
-        }
-        sendTx = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
+        invokeUri = { (_ data: [String: Any]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
         }
     }
