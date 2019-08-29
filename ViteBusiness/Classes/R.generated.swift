@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 199 images.
+  /// This `R.image` struct is generated, and contains static references to 200 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -280,6 +280,8 @@ public struct R: Rswift.Validatable {
     public static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
     /// Image `icon_nav_add`.
     public static let icon_nav_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_add")
+    /// Image `icon_nav_back_black_offset`.
+    public static let icon_nav_back_black_offset = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black_offset")
     /// Image `icon_nav_back_black`.
     public static let icon_nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black")
     /// Image `icon_nav_close_black`.
@@ -1075,6 +1077,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_nav_back_black", bundle: ..., traitCollection: ...)`
     public static func icon_nav_back_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_back_black, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_nav_back_black_offset", bundle: ..., traitCollection: ...)`
+    public static func icon_nav_back_black_offset(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_back_black_offset, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_close_black", bundle: ..., traitCollection: ...)`

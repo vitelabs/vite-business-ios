@@ -18,8 +18,8 @@ public enum NavigationBarStyle {
 
         guard let navigationBar = viewController.navigationController?.navigationBar else { return }
 
-        navigationBar.backIndicatorImage = R.image.icon_nav_back_black()
-        navigationBar.backIndicatorTransitionMaskImage = R.image.icon_nav_back_black()
+        navigationBar.backIndicatorImage = R.image.icon_nav_back_black_offset()
+        navigationBar.backIndicatorTransitionMaskImage = R.image.icon_nav_back_black_offset()
         navigationBar.shadowImage = UIImage()
 
         switch style {
