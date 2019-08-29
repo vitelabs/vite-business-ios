@@ -70,7 +70,8 @@ public extension  WKWebViewJSBridgeEngine {
             guard let imgNSData = Data(base64Encoded: imgBase64Str) else {
                 return
             }
-            guard let codeImage = UIImage(data: imgNSData) else {
+             
+            guard let codeImage = UIImage(data: imgNSData, scale: 3) else {
                 return
             }
             self.delegate?.changeWebRRBtn(itemTitle: nil, itemImg: codeImage)

@@ -93,7 +93,7 @@ extension WKWebViewJSBridge: WKWebViewJSBridgeEngineDelegate {
     }
 
     func changeWebVCTitle(title: String) {
-        self.vc?.title = title
+        self.vc?.navigationItem.title = title
     }
 
     @objc func webRRBtnClicked() {
@@ -108,29 +108,6 @@ extension WKWebViewJSBridge: WKWebViewJSBridgeEngineDelegate {
         } else {
             vc.navigationItem.rightBarButtonItems = [vc.refreshItem]
         }
-//
-//        let btn = UIButton(type: .custom)
-//        if let title = itemTitle {
-//            btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
-//            btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-//            btn.titleLabel?.textAlignment = .right
-//            btn.sizeToFit()
-//            btn.setTitle(title, for: .normal)
-//            btn.setTitle(title, for: .highlighted)
-//            btn.frame = CGRect.init(x: 0, y: 0, width: 70, height: 40)
-//        }
-//        if let img = itemImg {
-//            btn.setImage(img, for: .normal)
-//            btn.setImage(img, for: .highlighted)
-//            btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-//        }
-//        btn.rx.tap.asObservable().bind { [weak self] in
-//            self?.publish.setRRBtnAction()
-//        }
-//        let btnView = UIView(frame: btn.bounds)
-//        btnView.addSubview(btn)
-//        let item =  UIBarButtonItem(customView: btnView)
-//        self.vc?.navigationItem.rightBarButtonItem = item
     }
 }
 

@@ -211,9 +211,9 @@ public class ViteBusinessLanucher: NSObject {
             WKWebViewConfig.instance.closeStr = R.string.localizable.close()
         }.disposed(by: rx.disposeBag)
 
-        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
-        WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
-        WKWebViewConfig.instance.closeStr = R.string.localizable.close()
+        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()
+        WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()
+        WKWebViewConfig.instance.closeStr  = R.string.localizable.close()
     }
 
     func handleNotification() {
