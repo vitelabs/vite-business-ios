@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 198 images.
+  /// This `R.image` struct is generated, and contains static references to 199 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -290,6 +290,8 @@ public struct R: Rswift.Validatable {
     public static let icon_nav_photo_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_photo_black")
     /// Image `icon_nav_qrcode_black`.
     public static let icon_nav_qrcode_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_qrcode_black")
+    /// Image `icon_nav_refresh`.
+    public static let icon_nav_refresh = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_refresh")
     /// Image `icon_nav_scan_black`.
     public static let icon_nav_scan_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_scan_black")
     /// Image `icon_nav_share_black`.
@@ -1093,6 +1095,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_nav_qrcode_black", bundle: ..., traitCollection: ...)`
     public static func icon_nav_qrcode_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_qrcode_black, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_nav_refresh", bundle: ..., traitCollection: ...)`
+    public static func icon_nav_refresh(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_refresh, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_scan_black", bundle: ..., traitCollection: ...)`
@@ -2584,7 +2591,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainDepositMin = Rswift.StringResource(key: "crosschain.deposit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Minimum Send Amount
+      /// en translation: Minimum Send Amount 
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawMin = Rswift.StringResource(key: "crosschain.withdraw.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -6248,7 +6255,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.deposit.min", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Minimum Send Amount
+      /// en translation: Minimum Send Amount 
       /// 
       /// Locales: en, zh-Hans
       public static func crosschainWithdrawMin(_: Void = ()) -> String {
