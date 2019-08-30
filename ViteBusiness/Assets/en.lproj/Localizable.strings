@@ -756,7 +756,6 @@
 
 "bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
@@ -852,6 +851,6 @@
 "app.scheme.home.page.busy.header" = "交易确认";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";
 "app.scheme.network.error" = "Network Error";
-"app.scheme.home.page.vite.store.function.title" = "Vite Store 下单";
+
 
 "copyed" = "Successfully copied";

@@ -131,6 +131,11 @@ public class ViteBusinessLanucher: NSObject {
             WKWebViewConfig.instance.isInvokingUri = true
             switch ViteURI.parser(string: uriString) {
             case .success(let uri):
+                if uri.address == ViteWalletConst.ContractAddress.dexFund.address ||
+                    uri.address == ViteWalletConst.ContractAddress.dexTrade.address {
+                    callback(Response(code: .noJurisdiction, msg: "Not Allow Call Dex Contract", data: nil), callbackId)
+                    return
+                }
                 HUD.show()
                 MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
@@ -303,44 +308,9 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme == AppScheme.value {
-            guard let account = HDWalletManager.instance.account else { return false }
-            if let ret = AppScheme(rawValue: url.host ?? "") {
-                switch ret {
-                case .open:
-                    if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
-                        let url = URL(string: urlString) {
-                        NavigatorManager.instance.push(url)
-                    }
-                case .sendTx:
-                    if let uriString = url.queryParameters["uri"]?.removingPercentEncoding {
-                        if case .success(let uri) = ViteURI.parser(string: uriString) {
-                            // only support transfer now
-                            guard case .transfer = uri.type else { return true }
-                            let vc = SignAndSendConfirmViewController(uri: uri)
-                            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    }
-                case .vote:
-                    if let name = url.queryParameters["name"]?.removingPercentEncoding {
-                        let gid = url.queryParameters["gid"]?.removingPercentEncoding ?? ViteWalletConst.ConsensusGroup.snapshot.id
-                        let uri = SASConfirmViewModelContractVote.makeURIBy(name: name, gid: gid)
-                        let vc = SignAndSendConfirmViewController(uri: uri)
-                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            }
-        } else {
-            GrinManager.default.handle(url: url)
-        }
+        ViteAppSchemeHandler.instance.handle(url)
         return true
     }
 }
 
-enum AppScheme: String {
-    static let value = "viteapp"
 
-    case open
-    case sendTx = "send-tx"
-    case vote
-}

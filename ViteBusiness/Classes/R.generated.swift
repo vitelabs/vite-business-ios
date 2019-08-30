@@ -1424,7 +1424,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 697 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 695 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3605,10 +3605,6 @@ public struct R: Rswift.Validatable {
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
-      public static let bifrostOperationTitleTokenSymbol = Rswift.StringResource(key: "bifrost.operation.title.token.symbol", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Token Symbol
-      /// 
-      /// Locales: en, zh-Hans
       public static let buildinCoinChangeToNonissuableItem1Title = Rswift.StringResource(key: "buildin.coin.change.to.nonissuable.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Symbol
       /// 
@@ -3930,10 +3926,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageVCWebTitleNews = Rswift.StringResource(key: "discover.page.VCWebTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Vite Store 下单
-      /// 
-      /// Locales: en, zh-Hans
-      public static let appSchemeHomePageViteStoreFunctionTitle = Rswift.StringResource(key: "app.scheme.home.page.vite.store.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -8026,13 +8018,6 @@ public struct R: Rswift.Validatable {
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
-      public static func bifrostOperationTitleTokenSymbol(_: Void = ()) -> String {
-        return NSLocalizedString("bifrost.operation.title.token.symbol", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Token Symbol
-      /// 
-      /// Locales: en, zh-Hans
       public static func buildinCoinChangeToNonissuableItem1Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.coin.change.to.nonissuable.item1.title", bundle: R.hostingBundle, comment: "")
       }
@@ -8595,13 +8580,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func discoverPageVCWebTitleNews(_: Void = ()) -> String {
         return NSLocalizedString("discover.page.VCWebTitle.news", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vite Store 下单
-      /// 
-      /// Locales: en, zh-Hans
-      public static func appSchemeHomePageViteStoreFunctionTitle(_: Void = ()) -> String {
-        return NSLocalizedString("app.scheme.home.page.vite.store.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vite Wallet

@@ -68,16 +68,6 @@ class GrinManager: GrinBridge {
         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .bind{ [weak self] _ in self?.getBalance()}
             .disposed(by: self.bag)
-
-        NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
-            .bind { [weak self] n in
-                self?.gotoSlateVCIfNeed()
-                self?.getBalance()
-            }
-            .disposed(by: self.bag)
-
-        FMDatabase()
-
     }
 
 

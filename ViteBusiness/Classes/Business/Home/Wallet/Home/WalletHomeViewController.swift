@@ -193,7 +193,11 @@ class WalletHomeViewController: BaseTableViewController {
             } else if case .success(let uri) = BifrostURI.parser(string: result) {
                 self.handleScanResultForBifrost(with: uri, scanViewController: scanViewController)
             } else {
-                scanViewController?.showAlertMessage(result)
+                if let url = URL(string: result), ViteAppSchemeHandler.instance.handleViteScheme(url) {
+                    // do nothing
+                } else {
+                    scanViewController?.showAlertMessage(result)
+                }
             }
         }
         self.navigationController?.pushViewController(scanViewController, animated: true)

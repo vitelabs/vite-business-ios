@@ -763,7 +763,6 @@
 
 "bifrost.operation.function.title" = "合约调用";
 "bifrost.operation.title.contract.address" = "合约地址";
-"bifrost.operation.title.token.symbol" = "币种";
 "bifrost.operation.title.amount" = "金额";
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
@@ -859,6 +858,6 @@
 "app.scheme.home.page.busy.header" = "交易确认";
 "app.scheme.home.page.busy.content" = "请确认如下交易信息";
 "app.scheme.network.error" = "网络错误";
-"app.scheme.home.page.vite.store.function.title" = "Vite Store 下单";
+
 
 "copyed" = "复制成功";

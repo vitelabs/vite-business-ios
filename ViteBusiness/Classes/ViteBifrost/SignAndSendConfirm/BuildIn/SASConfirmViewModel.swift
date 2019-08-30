@@ -49,11 +49,12 @@ struct SASConfirmViewModelFactory {
 
                 switch uri.type {
                 case .transfer:
-                    if let type = BuildInTransfer.matchType(uri: uri) {
-                        return type.viewModel.confirmInfo(uri: uri, tokenInfo: tokenInfo).map { ($0, tokenInfo) }
-                    } else {
-                        return SASConfirmViewModelTransferNormal().confirmInfo(uri: uri, tokenInfo: tokenInfo).map { ($0, tokenInfo) }
-                    }
+                    return SASConfirmViewModelTransferNormal().confirmInfo(uri: uri, tokenInfo: tokenInfo).map { ($0, tokenInfo) }
+//                    if let type = BuildInTransfer.matchType(uri: uri) {
+//                        return type.viewModel.confirmInfo(uri: uri, tokenInfo: tokenInfo).map { ($0, tokenInfo) }
+//                    } else {
+//                        return SASConfirmViewModelTransferNormal().confirmInfo(uri: uri, tokenInfo: tokenInfo).map { ($0, tokenInfo) }
+//                    }
                 case .contract:
                     let map = BuildInContract.toAddressAndDataPrefixMap
                     if let data = uri.data, data.count >= 4,
@@ -66,26 +67,26 @@ struct SASConfirmViewModelFactory {
             })
     }
 
-    enum BuildInTransfer: CaseIterable {
-
-        case viteStore
-
-        fileprivate var viewModel: SASConfirmViewModelTransfer {
-            switch self {
-            case .viteStore:
-                return SASConfirmViewModelTransferViteStore()
-            }
-        }
-
-        fileprivate static func matchType(uri: ViteURI) -> BuildInTransfer? {
-            for type in BuildInTransfer.allCases {
-                if type.viewModel.match(uri: uri) {
-                    return type
-                }
-            }
-            return nil
-        }
-    }
+//    enum BuildInTransfer: CaseIterable {
+//
+//        case viteStore
+//
+//        fileprivate var viewModel: SASConfirmViewModelTransfer {
+//            switch self {
+//            case .viteStore:
+//                return SASConfirmViewModelTransferViteStore()
+//            }
+//        }
+//
+//        fileprivate static func matchType(uri: ViteURI) -> BuildInTransfer? {
+//            for type in BuildInTransfer.allCases {
+//                if type.viewModel.match(uri: uri) {
+//                    return type
+//                }
+//            }
+//            return nil
+//        }
+//    }
 
 
     enum BuildInContract: CaseIterable {
