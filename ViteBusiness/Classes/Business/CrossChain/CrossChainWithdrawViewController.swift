@@ -315,7 +315,12 @@ class GatewayWithdrawViewController: BaseViewController {
         guard let withDrawAddress = addressView.textView.text else { return }
 
         let metalInfo = gateWayInfoService.getMetaInfo()
-        let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress)
+
+        var label: String? = nil
+        if let _ = self.withDrawInfo.labelName {
+            label = self.labelView.textView.text ?? ""
+        }
+        let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress, label: label)
         let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress)
         let fee = gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amount.amountFull(decimals: 0), containsFee: false)
 

@@ -68,9 +68,9 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
         }
     }
 
-    func verifyWithdrawAddress(for tokenId: String, withdrawAddress: String) -> Promise<Bool> {
+    func verifyWithdrawAddress(for tokenId: String, withdrawAddress: String, label: String?) -> Promise<Bool> {
         return Promise { seal in
-            sendRequest(api: .verifyWithdrawAddress(tokenId: tokenId, withdrawAddress: withdrawAddress), completion: { (ret) in
+            sendRequest(api: .verifyWithdrawAddress(tokenId: tokenId, withdrawAddress: withdrawAddress, label: label), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let isValidAddress = json["isValidAddress"] as? Bool {
