@@ -143,7 +143,7 @@ class GatewayDepositViewController: BaseViewController {
         labelView.button?.rx.tap.bind { [unowned self] in
             if let address = self.labelView.textLabel.text{
                 UIPasteboard.general.string = address
-                Toast.show(R.string.localizable.grinTxCopyId())
+                Toast.show(R.string.localizable.copyed())
             }
         }.disposed(by: rx.disposeBag)
 

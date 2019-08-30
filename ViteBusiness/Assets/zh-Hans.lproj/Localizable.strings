@@ -860,3 +860,5 @@
 "app.scheme.home.page.busy.content" = "请确认如下交易信息";
 "app.scheme.network.error" = "网络错误";
 "app.scheme.home.page.vite.store.function.title" = "Vite Store 下单";
+
+"copyed" = "复制成功";

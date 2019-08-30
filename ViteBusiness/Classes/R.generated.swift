@@ -1424,7 +1424,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 696 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 697 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3406,6 +3406,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let contactsEditPageSaveSuccessTip = Rswift.StringResource(key: "contacts.edit.page.save.success.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Successfully copied
+      /// 
+      /// Locales: en, zh-Hans
+      public static let copyed = Rswift.StringResource(key: "copyed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Successfully copied!
       /// 
       /// Locales: en, zh-Hans
@@ -7674,6 +7678,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func contactsEditPageSaveSuccessTip(_: Void = ()) -> String {
         return NSLocalizedString("contacts.edit.page.save.success.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Successfully copied
+      /// 
+      /// Locales: en, zh-Hans
+      public static func copyed(_: Void = ()) -> String {
+        return NSLocalizedString("copyed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Successfully copied!
