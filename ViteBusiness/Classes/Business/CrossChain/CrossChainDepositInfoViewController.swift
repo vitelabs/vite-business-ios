@@ -227,7 +227,7 @@ class GatewayDepositViewController: BaseViewController {
         $0.snp.makeConstraints { m in
             m.size.equalTo(CGSize(width: 170, height: 170))
         }
-        $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo, content: self.depositInfo.depositAddress)
+        $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken ??  self.gatewayInfoService.tokenInfo, content: self.depositInfo.depositAddress)
     }
 
     lazy var labelView = EthViteExchangeViteAddressView.addressView(style: .copyButton).then { labelView in

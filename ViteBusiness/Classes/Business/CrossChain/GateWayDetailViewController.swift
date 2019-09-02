@@ -50,8 +50,7 @@ class GateWayDetailViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let pageTitleView = PageTitleView.titleAndIcon(title: R.string.localizable.crosschainGatewaydetailTitle(), icon: tokenInfo.chainIcon)
-        pageTitleView.tokenInfo = tokenInfo
+        let pageTitleView = PageTitleView.onlyTitle(title: R.string.localizable.crosschainGatewaydetailTitle())
         navigationTitleView = pageTitleView
 
         view.addSubview(tableView)
