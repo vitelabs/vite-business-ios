@@ -131,9 +131,9 @@ public class ViteBusinessLanucher: NSObject {
             WKWebViewConfig.instance.isInvokingUri = true
             switch ViteURI.parser(string: uriString) {
             case .success(let uri):
-                if uri.address == ViteWalletConst.ContractAddress.dexFund.address ||
-                    uri.address == ViteWalletConst.ContractAddress.dexTrade.address {
+                if uri.address.isDexAddress {
                     callback(Response(code: .noJurisdiction, msg: "Not Allow Call Dex Contract", data: nil), callbackId)
+                    WKWebViewConfig.instance.isInvokingUri = false
                     return
                 }
                 HUD.show()

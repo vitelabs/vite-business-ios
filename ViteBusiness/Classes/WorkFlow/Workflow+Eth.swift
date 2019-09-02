@@ -44,7 +44,15 @@ public extension Workflow {
                                                      value: amount) else {
                                                         throw WalletError.unexpectedResult
                 }
-                return GatewayProvider.instance.bind(context).map { _ in wt }
+                return GatewayProvider.instance.bind(context)
+                    .recover({ (error) -> Promise<(Void)> in
+                        if let e = error as? GatewayProvider.GatewayError,
+                            e == GatewayProvider.GatewayError.repeatBinding {
+                            return Promise.value(Void())
+                        } else {
+                            return Promise(error: error)
+                        }
+                }).map { _ in wt }
             }).then({ (wt) -> Promise<TransactionSendingResult> in
                 EtherWallet.transaction.sendTransaction(wt)
             }).done({ (ret) in

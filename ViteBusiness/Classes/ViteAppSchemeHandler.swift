@@ -54,9 +54,8 @@ class ViteAppSchemeHandler {
             if let uriString = url.queryParameters["uri"]?.removingPercentEncoding {
                 if case .success(let uri) = ViteURI.parser(string: uriString) {
                     // not support dex contract now
-                    if uri.address == ViteWalletConst.ContractAddress.dexFund.address ||
-                        uri.address == ViteWalletConst.ContractAddress.dexTrade.address {
-                        return true
+                    if uri.address.isDexAddress {
+                        return false
                     }
                     let vc = SignAndSendConfirmViewController(uri: uri)
                     UIViewController.current?.navigationController?.pushViewController(vc, animated: true)

@@ -353,7 +353,7 @@ class BalanceInfoViteChainCardView: UIView {
 
         sendButton.rx.tap.bind { [weak self] in
             Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsSendClicked.rawValue, tokenInfo.statisticsId))
-            let sendViewController = SendViewController(tokenInfo: tokenInfo, address: nil, amount: nil, note: nil)
+            let sendViewController = SendViewController(tokenInfo: tokenInfo, address: nil, amount: nil, data: nil)
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
 

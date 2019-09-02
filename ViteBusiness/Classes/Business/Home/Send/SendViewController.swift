@@ -26,21 +26,14 @@ class SendViewController: BaseViewController {
 
     let address: ViteAddress?
     let amount: Amount?
-    let note: String?
+    let data: Data?
 
-    let noteCanEdit: Bool
-
-    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: Amount?, note: String?, noteCanEdit: Bool = true) {
+    init(tokenInfo: TokenInfo, address: ViteAddress?, amount: Amount?, data: Data?) {
         self.tokenInfo = tokenInfo
         self.token = tokenInfo.toViteToken()!
         self.address = address
-        if let amount = amount {
-            self.amount = amount
-        } else {
-            self.amount = nil
-        }
-        self.note = note
-        self.noteCanEdit = noteCanEdit
+        self.amount = amount
+        self.data = data
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -83,7 +76,7 @@ class SendViewController: BaseViewController {
 
     var addressView: SendAddressViewType!
     lazy var amountView = SendAmountView(amount: amount?.amountFull(decimals: token.decimals) ?? "", token: tokenInfo)
-    lazy var noteView = SendNoteView(note: note ?? "", canEdit: noteCanEdit)
+    var noteView: SendNoteView!
     let quotaView = SendQuotaItemView(utString: "--")
 
     private func setupView() {
@@ -107,6 +100,17 @@ class SendViewController: BaseViewController {
             view.textView.text = HDWalletManager.instance.account!.address
             amountView.textField.text = "0.1"
             #endif
+        }
+
+        if let data = self.data {
+            if let note = data.accountBlockDataToUTF8String(), self.address?.viteAddressType != .contract {
+                self.noteView = SendNoteView(note: note, canEdit: false)
+            } else {
+                self.noteView = SendNoteView(note: data.toHexString(), canEdit: false)
+                self.noteView.titleLabel.text = "Data"
+            }
+        } else {
+            self.noteView = SendNoteView(note: "", canEdit: true)
         }
 
         let sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle())
@@ -152,7 +156,7 @@ class SendViewController: BaseViewController {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: nil, action: nil)
-        if noteCanEdit {
+        if self.data == nil {
             toolbar.items = [flexSpace, next]
         } else {
             toolbar.items = [flexSpace, done]
@@ -176,6 +180,12 @@ class SendViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
+
+                guard !address.isDexAddress else {
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
+                    return
+                }
+
                 guard let amountString = self.amountView.textField.text,
                     !amountString.isEmpty,
                     let amount = amountString.toAmount(decimals: self.token.decimals) else {
@@ -190,17 +200,26 @@ class SendViewController: BaseViewController {
 
                 switch address.viteAddressType! {
                 case .user:
-                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, note: self.noteView.textField.text, utString: self.quotaView.utString, completion: { (r) in
+                    let data = self.data ?? self.noteView.textField.text?.utf8StringToAccountBlockData()
+                    Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             self.dismiss()
                         }
                     })
                 case .contract:
-                    let (data, errorMessage) = self.contractStringToData(text: self.noteView.textField.text)
-                    if let msg = errorMessage {
-                        Toast.show(msg)
-                        return
+
+                    let data: Data?
+                    if let d = self.data {
+                        data = d
+                    } else {
+                        let (d, errorMessage) = self.contractStringToData(text: self.noteView.textField.text)
+                        if let msg = errorMessage {
+                            Toast.show(msg)
+                            return
+                        }
+                        data = d
                     }
+
                     Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             self.dismiss()
