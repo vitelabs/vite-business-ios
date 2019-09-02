@@ -171,7 +171,8 @@ class ExchangeViewController: BaseViewController {
                  let restStr =  BigDecimalFormatter.format(bigDecimal: rest , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 self.label0.text = R.string.localizable.exchangeLimitOnetime(minStr, maxStr)
                 self.label1.text = R.string.localizable.exchangeLimitOneday(totalStr, restStr)
-                self.card.viteInfo.inputTextField.placeholder = minStr + " - " + maxStr
+                let placeholder = minStr + " - " + maxStr
+                self.card.viteInfo.inputTextField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
             }
 
         }.disposed(by: rx.disposeBag)
