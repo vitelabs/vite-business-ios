@@ -76,6 +76,8 @@ class HomeViewController: UITabBarController {
             .bind { tag in
                 if tag == 1001 {
                     Statistics.log(eventId: "instant_purchase")
+                } else if tag == 1002 {
+                    Statistics.log(eventId: "charts_home")
                 }
         }.disposed(by: rx.disposeBag)
     }
