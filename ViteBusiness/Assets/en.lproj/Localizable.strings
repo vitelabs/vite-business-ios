@@ -848,7 +848,7 @@
 "buildin.dex.cancel.vip.item1.title" = "Amount";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "交易确认";
+"app.scheme.home.page.busy.header" = "Transaction Confirmation";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";
 "app.scheme.network.error" = "Network Error";
 

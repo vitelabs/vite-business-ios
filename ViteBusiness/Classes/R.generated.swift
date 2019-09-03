@@ -3654,6 +3654,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinTransferUtf8stringItem0Title = Rswift.StringResource(key: "buildin.transfer.utf8string.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Confirmation
+      /// 
+      /// Locales: en, zh-Hans
+      public static let appSchemeHomePageBusyHeader = Rswift.StringResource(key: "app.scheme.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -4202,10 +4206,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易确认
-      /// 
-      /// Locales: en, zh-Hans
-      public static let appSchemeHomePageBusyHeader = Rswift.StringResource(key: "app.scheme.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -8106,6 +8106,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.transfer.utf8string.item0.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transaction Confirmation
+      /// 
+      /// Locales: en, zh-Hans
+      public static func appSchemeHomePageBusyHeader(_: Void = ()) -> String {
+        return NSLocalizedString("app.scheme.home.page.busy.header", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -9063,13 +9070,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 交易确认
-      /// 
-      /// Locales: en, zh-Hans
-      public static func appSchemeHomePageBusyHeader(_: Void = ()) -> String {
-        return NSLocalizedString("app.scheme.home.page.busy.header", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
