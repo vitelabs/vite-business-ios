@@ -245,7 +245,7 @@ class GatewayDepositViewController: BaseViewController {
         $0.snp.makeConstraints { m in
             m.size.equalTo(CGSize(width: 170, height: 170))
         }
-       $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo, content: self.depositInfo.label ?? "")
+       $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken ??  self.gatewayInfoService.tokenInfo, content: self.depositInfo.label ?? "")
     }
 
     lazy var descriptionLabel0 = UILabel().then {
