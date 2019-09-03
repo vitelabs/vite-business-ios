@@ -90,10 +90,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
     }
 
     fileprivate func handleNavBar() {
-        let color = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
-        self.navigationController?.navigationBar.tintColor = color
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.color(UIColor.white), for: .default)
+        NavigationBarStyle.configStyle(.default, viewController: self)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.title = self.titleStr
 
