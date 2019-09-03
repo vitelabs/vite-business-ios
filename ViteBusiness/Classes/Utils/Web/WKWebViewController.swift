@@ -68,7 +68,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
         self.handleNavBar()
 
-        self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 100))
+        self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 100))
 
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).bind {
             [weak self] _ in
@@ -155,7 +155,7 @@ extension WKWebViewController {
         if let url = webView.url {
             webView.reload()
         } else {
-            webView.load((URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 100)))
+            webView.load((URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 100)))
         }
     }
 
