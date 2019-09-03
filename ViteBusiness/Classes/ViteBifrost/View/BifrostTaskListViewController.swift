@@ -23,6 +23,10 @@ class BifrostTaskListViewController: BaseTableViewController {
     }
 
     fileprivate func setupView() {
+        navigationTitleView = NavigationTitleView(title: R.string.localizable.bifrostListPageTitle())
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_button_vb_disconnect(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onDisconnect))
+        
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = BifrostTaskCell.cellHeight
@@ -35,14 +39,30 @@ class BifrostTaskListViewController: BaseTableViewController {
         }
     }
 
+    @objc fileprivate func onDisconnect() {
+        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDis.rawValue)
+        Alert.show(title: R.string.localizable.bifrostAlertQuitTitle(),
+                   message: nil,
+                   actions: [
+                    (.cancel, nil),
+                    (.default(title: R.string.localizable.quit()), { _ in
+                        BifrostManager.instance.disConnectByUser()
+                        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDisConfirm.rawValue)
+                    })
+            ])
+    }
+
     fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
         let cell: BifrostTaskCell = tableView.dequeueReusableCell(for: indexPath)
-//        cell.bind(viewModel: item)
-        cell.textLabel?.text = "\(item.timestamp.format("yyyy.MM.dd HH:mm:ss")) \(item.info.title) \(item.status)"
+        cell.bind(task: item)
         return cell
     })
 
     fileprivate func bind() {
+
+        BifrostManager.instance.allTasksDriver.map({ $0.count > 0 }).drive(onNext: { [weak self] has in
+            self?.dataStatus = has ? .normal : .empty
+        }).disposed(by: rx.disposeBag)
 
         BifrostManager.instance.allTasksDriver.asObservable()
             .map { tasks in
@@ -56,10 +76,17 @@ class BifrostTaskListViewController: BaseTableViewController {
                 guard let `self` = self else { fatalError() }
                 if let task = (try? self.dataSource.model(at: indexPath)) as? BifrostViteSendTxTask {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-
-//                    self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
+                    let vc = BifrostTaskDetailViewController(task: task)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             .disposed(by: rx.disposeBag)
+    }
+}
+
+extension BifrostTaskListViewController: ViewControllerDataStatusable {
+
+    func emptyView() -> UIView {
+        return UIView.defaultPlaceholderView(text: "", image: R.image.empty())
     }
 }

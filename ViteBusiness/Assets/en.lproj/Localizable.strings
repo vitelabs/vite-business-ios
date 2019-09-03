@@ -728,10 +728,22 @@
 
 "bifrost.home.page.free.header" = "ViteConnect Connected";
 "bifrost.home.page.free.content" = "You have no transaction yet";
+"bifrost.home.page.free.address.title" = "地址";
+"bifrost.home.page.free.history.title" = "签名交易";
+"bifrost.home.page.free.auto.sign.title" = "自动签名交易";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
 "bifrost.toast.operation.success" = "Operation Successful";
+
+"bifrost.list.page.title" = "签名交易";
+"bifrost.list.page.status.pending" = "等待签名";
+"bifrost.list.page.status.processing" = "正在签名";
+"bifrost.list.page.status.failed" = "失败";
+"bifrost.list.page.status.finished" = "成功";
+"bifrost.list.page.status.canceled" = "已取消";
+
+"bifrost.task.detail.page.busy.header" = "签名交易详情";
 
 "bifrost.error.message.timeout" = "Connection time out, please try again later";
 "bifrost.error.message.unknown" = "Connection Error, please try again later";

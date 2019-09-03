@@ -147,6 +147,10 @@ public final class BifrostManager {
                     viewControllers.remove(at: index)
                     hasVC = true
                 }
+                for (index, vc) in viewControllers.enumerated() where vc is BifrostTaskDetailViewController {
+                    viewControllers.remove(at: index)
+                    hasVC = true
+                }
                 if hasVC {
                     current.navigationController?.setViewControllers(viewControllers, animated: true)
                 }

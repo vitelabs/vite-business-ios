@@ -735,10 +735,23 @@
 
 "bifrost.home.page.free.header" = "ViteConnect 已连接";
 "bifrost.home.page.free.content" = "当前暂无交易";
+"bifrost.home.page.free.address.title" = "地址";
+"bifrost.home.page.free.history.title" = "签名交易";
+"bifrost.home.page.free.auto.sign.title" = "自动签名交易";
 
 "bifrost.home.page.busy.header" = "您正在web端进行操作";
 "bifrost.home.page.busy.content" = "请确认如下交易信息";
 "bifrost.toast.operation.success" = "操作成功";
+
+"bifrost.list.page.title" = "签名交易";
+"bifrost.list.page.status.pending" = "等待签名";
+"bifrost.list.page.status.processing" = "正在签名";
+"bifrost.list.page.status.failed" = "失败";
+"bifrost.list.page.status.finished" = "成功";
+"bifrost.list.page.status.canceled" = "已取消";
+
+"bifrost.task.detail.page.busy.header" = "签名交易详情";
+
 
 "bifrost.error.message.timeout" = "连接超时，请稍后重试";
 "bifrost.error.message.unknown" = "连接错误，请稍后重试";

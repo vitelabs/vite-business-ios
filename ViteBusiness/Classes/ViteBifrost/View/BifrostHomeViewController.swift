@@ -28,7 +28,7 @@ class BifrostHomeViewController: BaseViewController {
 
         view.addSubview(freeView)
         freeView.snp.makeConstraints { (m) in
-            m.centerY.left.right.equalToSuperview()
+            m.edges.equalToSuperview()
         }
 
         #if DEBUG
@@ -38,12 +38,10 @@ class BifrostHomeViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIApplication.shared.isIdleTimerDisabled = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        UIApplication.shared.isIdleTimerDisabled = false
         Statistics.log(eventId: Statistics.Page.WalletHome.bifrostReturn.rawValue)
     }
 

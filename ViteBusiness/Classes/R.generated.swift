@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 200 images.
+  /// This `R.image` struct is generated, and contains static references to 201 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -212,6 +212,8 @@ public struct R: Rswift.Validatable {
     public static let icon_balance_detail_vote = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_detail_vote")
     /// Image `icon_balance_quota_arrows`.
     public static let icon_balance_quota_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_balance_quota_arrows")
+    /// Image `icon_bifrost_right_arrow`.
+    public static let icon_bifrost_right_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_bifrost_right_arrow")
     /// Image `icon_button_add`.
     public static let icon_button_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_add")
     /// Image `icon_button_address_add`.
@@ -904,6 +906,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_balance_quota_arrows, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_bifrost_right_arrow", bundle: ..., traitCollection: ...)`
+    public static func icon_bifrost_right_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_bifrost_right_arrow, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_button_add", bundle: ..., traitCollection: ...)`
     public static func icon_button_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_add, compatibleWith: traitCollection)
@@ -1424,7 +1431,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 714 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 724 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4238,10 +4245,26 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundVitexAvailable = Rswift.StringResource(key: "fund.vitex.available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostHomePageFreeAddressTitle = Rswift.StringResource(key: "bifrost.home.page.free.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 失败
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageStatusFailed = Rswift.StringResource(key: "bifrost.list.page.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已取消
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageStatusCanceled = Rswift.StringResource(key: "bifrost.list.page.status.canceled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 您输入的金额大于余额，请重新输入
       /// 
       /// Locales: en, zh-Hans
       public static let fundTooBig = Rswift.StringResource(key: "fund.tooBig", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageStatusFinished = Rswift.StringResource(key: "bifrost.list.page.status.finished", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的账户地址
       /// 
       /// Locales: en, zh-Hans
@@ -4258,6 +4281,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundWithdrawAmount = Rswift.StringResource(key: "fund.withdraw.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 正在签名
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageStatusProcessing = Rswift.StringResource(key: "bifrost.list.page.status.processing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 等待签名
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageStatusPending = Rswift.StringResource(key: "bifrost.list.page.status.pending", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostHomePageFreeHistoryTitle = Rswift.StringResource(key: "bifrost.home.page.free.history.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostListPageTitle = Rswift.StringResource(key: "bifrost.list.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 签名交易详情
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostTaskDetailPageBusyHeader = Rswift.StringResource(key: "bifrost.task.detail.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 自动签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostHomePageFreeAutoSignTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入充值金额
       /// 
       /// Locales: en, zh-Hans
@@ -9204,11 +9251,39 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.vitex.available", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostHomePageFreeAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 失败
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageStatusFailed(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.status.failed", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 已取消
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageStatusCanceled(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.status.canceled", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 您输入的金额大于余额，请重新输入
       /// 
       /// Locales: en, zh-Hans
       public static func fundTooBig(_: Void = ()) -> String {
         return NSLocalizedString("fund.tooBig", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageStatusFinished(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.status.finished", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 我的账户地址
@@ -9237,6 +9312,48 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func fundWithdrawAmount(_: Void = ()) -> String {
         return NSLocalizedString("fund.withdraw.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 正在签名
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageStatusProcessing(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.status.processing", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 等待签名
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageStatusPending(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.status.pending", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostHomePageFreeHistoryTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.history.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostListPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.list.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 签名交易详情
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostTaskDetailPageBusyHeader(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.task.detail.page.busy.header", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 自动签名交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostHomePageFreeAutoSignTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.auto.sign.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入充值金额
