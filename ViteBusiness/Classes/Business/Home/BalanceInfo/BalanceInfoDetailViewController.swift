@@ -21,7 +21,7 @@ class BalanceInfoDetailViewController: BaseViewController {
     init(tokenInfo: TokenInfo) {
         self.tokenInfo = tokenInfo
         super.init(nibName: nil, bundle: nil)
-        self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: headerView, tableView: tableView)
+        self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: headerView, tableView: tableView, vc: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +112,19 @@ class BalanceInfoDetailViewController: BaseViewController {
             let vc = GateWayDetailViewController.init(tokenInfo: self.tokenInfo)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
-    }
+
+        navView.helpButton.rx.tap.bind { _ in
+            var url: URL!
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                url = URL(string: "https://forum.vite.net/topic/1335/grin%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8vite%E9%92%B1%E5%8C%85%E6%94%B6%E8%BD%AC%E8%B4%A6%E6%95%99%E7%A8%8B")
+            } else {
+                url = URL(string: "https://forum.vite.net/topic/1334/a-tutorial-about-how-to-send-receive-a-grin-on-vite-mobile-wallet")
+            }
+            let webvc = WKWebViewController(url: url)
+            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+            }
+            .disposed(by: rx.disposeBag)
+    }   
 
     func bind() {
         navView.bind(tokenInfo: tokenInfo)

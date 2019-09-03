@@ -31,6 +31,13 @@ class BalanceInfoNavView: UIView {
 
     let gatewayInfoBtn = UIButton()
 
+    let helpButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.grin_help(), for: .normal)
+        button.isHidden == true
+        return button
+    }()
+
     let tokenIconView = TokenIconView()
 
     override init(frame: CGRect) {
@@ -44,6 +51,7 @@ class BalanceInfoNavView: UIView {
         addSubview(tokenIconView)
         addSubview(gatewayNamelabel)
         addSubview(gatewayInfoBtn)
+        addSubview(helpButton)
 
         backgroundColor = UIColor.white
 //        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
@@ -76,6 +84,12 @@ class BalanceInfoNavView: UIView {
         gatewayInfoBtn.snp.makeConstraints { (m) in
             m.edges.equalTo(gatewayNamelabel)
         }
+
+        helpButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(16)
+            m.centerY.equalTo(symbolLabel)
+            m.left.equalToSuperview().offset(86)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -92,6 +106,12 @@ class BalanceInfoNavView: UIView {
             gatewayNamelabel.isHidden = false
         } else {
             gatewayNamelabel.isHidden = true
+        }
+        if tokenInfo == GrinManager.tokenInfo {
+            helpButton.isHidden = false
+        } else {
+            helpButton.isHidden == true
+            helpButton.setImage(nil, for: .normal)
         }
     }
 }

@@ -158,8 +158,7 @@ class WalletHomeViewController: BaseTableViewController {
                             Toast.show(R.string.localizable.grinCreating())
                             return
                         } else {
-                            balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
-                                    .instantiateInitialViewController()!
+                            balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                         }
                     case .unsupport:
                         fatalError()

@@ -16,7 +16,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     var sourceView: UIView?
 
 
-    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
+    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView, vc: UIViewController? = nil) {
         let handler = TableViewHandler(tableView: tableView)
         let delegate = BalanceInfoViteChainTabelViewDelegate(tokenInfo: tokenInfo, tableViewHandler: handler)
         handler.delegate = delegate
