@@ -59,7 +59,9 @@ public class VBInteractor {
         self.session = session
         self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
         self.clientMeta = meta
-        self.socket = WebSocket.init(url: session.bridge)
+        var request = URLRequest(url: session.bridge)
+        request.timeoutInterval = 10
+        self.socket = WebSocket.init(request: request)
 
         socket.onConnect = { [weak self] in self?.onConnect() }
         socket.onDisconnect = { [weak self] error in self?.onDisconnect(error: error) }
