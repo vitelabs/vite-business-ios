@@ -20,7 +20,7 @@ class MyHomeListCellViewModel: Mappable {
     var type: ViewModelType = .custom
     fileprivate var title: StringWrapper = StringWrapper(string: "")
     fileprivate var icon: String = ""
-    fileprivate var url: String = ""
+    var url: String = ""
     fileprivate var build: Int?
 
     fileprivate(set) var name: StringWrapper = StringWrapper(string: "")

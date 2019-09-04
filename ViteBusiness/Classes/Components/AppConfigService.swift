@@ -18,8 +18,16 @@ public class AppConfigService {
     lazy var configDriver: Driver<AppConfig> = self.configBehaviorRelay.asDriver()
     fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
-    public var lastBuildNumber: Int?
+    fileprivate var lastBuildNumber: Int?
     public var pDelay: Int = 3
+
+    public var isOnlineVersion: Bool {
+        if let lastBuildNumber = lastBuildNumber, lastBuildNumber >= Bundle.main.buildNumberInt {
+            return true
+        } else {
+            return false
+        }
+    }
 
     private init() {
         if let (config, hash): (AppConfig, String) = readMappableAndHash() {
