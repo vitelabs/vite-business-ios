@@ -10,7 +10,7 @@ import ViteWallet
 
 class SignAndSendConfirmViewController: BaseViewController {
 
-    let busyView = BifrostBusyView()
+    let busyView = BifrostBusyView(showButton: true)
     let uri: ViteURI
     var info: BifrostConfirmInfo!
     var tokenInfo: TokenInfo!

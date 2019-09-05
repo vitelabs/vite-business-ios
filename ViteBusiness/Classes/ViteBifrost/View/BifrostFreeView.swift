@@ -156,6 +156,7 @@ extension BifrostFreeView {
             $0.transform = CGAffineTransform(scaleX: -1, y: 1)
             $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
             $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
+            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 40)
         }
 
         let autoConfirmSwitch = SwitchControl.createSwitchControl()
@@ -241,7 +242,7 @@ extension BifrostFreeView {
             }
 
             countButton.snp.makeConstraints { (m) in
-                m.centerY.equalToSuperview()
+                m.top.bottom.equalToSuperview()
                 m.right.equalToSuperview().offset(-24)
             }
 

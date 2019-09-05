@@ -22,8 +22,10 @@ class BifrostTaskDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let busyView = BifrostBusyView()
+        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
+        view.backgroundColor = UIColor(netHex: 0xF5FAFF)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_button_vb_disconnect(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onDisconnect))
+        let busyView = BifrostBusyView(showButton: false)
         busyView.headerLabel.text = R.string.localizable.bifrostTaskDetailPageBusyHeader()
         busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
         view.addSubview(busyView)
@@ -45,5 +47,18 @@ class BifrostTaskDetailViewController: BaseViewController {
                 busyView.set(task.info)
                 busyView.contentLabel.text = task.statusDescription
             }).disposed(by: rx.disposeBag)
+    }
+
+    @objc fileprivate func onDisconnect() {
+        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDis.rawValue)
+        Alert.show(title: R.string.localizable.bifrostAlertQuitTitle(),
+                   message: nil,
+                   actions: [
+                    (.cancel, nil),
+                    (.default(title: R.string.localizable.quit()), { _ in
+                        BifrostManager.instance.disConnectByUser()
+                        Statistics.log(eventId: Statistics.Page.WalletHome.bifrostDisConfirm.rawValue)
+                    })
+            ])
     }
 }

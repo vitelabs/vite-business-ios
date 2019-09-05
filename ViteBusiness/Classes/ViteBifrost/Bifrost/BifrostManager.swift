@@ -65,9 +65,11 @@ public final class BifrostManager {
     private func processNextTaskIfHas() -> BifrostViteSendTxTask? {
 
         if let task = currectProcessingTask {
-            if task.status == .failed {
+            if task.status == .waitingForRetry {
                 task.status = .processing
                 refreshAllTasks()
+                return task
+            } else if task.status == .processing {
                 return task
             } else {
                 return nil
@@ -82,25 +84,39 @@ public final class BifrostManager {
         return task
     }
 
-    private func setTaskStatusFailed(_ task: BifrostViteSendTxTask) {
+    private func setTaskStatusWaitingForRetry(_ task: BifrostViteSendTxTask) {
         guard status != .disconnect else { return }
 
         guard currectProcessingTask?.id == task.id else {
             fatalError()
         }
 
-        task.status = .failed
+        task.status = .waitingForRetry
         refreshAllTasks()
     }
 
-    private func processedTask(_ task: BifrostViteSendTxTask, isFinished: Bool) {
+    private enum ProcessedType {
+        case finished
+        case canceled
+        case failed
+    }
+
+    private func processedTask(_ task: BifrostViteSendTxTask, processedType: ProcessedType) {
         guard status != .disconnect else { return }
 
         guard currectProcessingTask?.id == task.id else {
             fatalError()
         }
 
-        task.status = isFinished ? .finished : .canceled
+        switch processedType {
+        case .finished:
+            task.status = .finished
+        case .canceled:
+            task.status = .canceled
+        case .failed:
+            task.status = .failedddddd
+        }
+
         currectProcessingTask = nil
         processedTasks.append(task)
         refreshAllTasks()
@@ -441,7 +457,7 @@ extension BifrostManager {
     // MARK: Public
     func showHomeVC() {
         let vc = self.showBifrostViewController()
-        if let task = self.processNextTaskIfHas(), !isAutoConfirmBehaviorRelay.value {
+        if let task = self.processNextTaskIfHas(), !(isAutoConfirmBehaviorRelay.value && canAutoConfirm(task: task)) {
             vc.showConfirm(task: task)
         }
     }
@@ -449,11 +465,12 @@ extension BifrostManager {
     // MARK: Private
     fileprivate func processTaskIfHave() {
 
-        if self.isAutoConfirmBehaviorRelay.value {
+        guard let task = self.processNextTaskIfHas() else { return }
+
+        if self.isAutoConfirmBehaviorRelay.value && canAutoConfirm(task: task) {
             guard isInBackgroundBehaviorRelay.value == false else { return }
 
             guard let account = HDWalletManager.instance.account else { return }
-            guard let task = self.processNextTaskIfHas() else { return }
 
             plog(level: .info, log: "[task] task: \(task.id) auto start sign", tag: .bifrost)
             Workflow.bifrostSendTx(needConfirm: false,
@@ -467,19 +484,30 @@ extension BifrostManager {
                                    completion: { (ret) in
                                     switch ret {
                                     case .success(let accountBlock):
-                                        self.processedTask(task, isFinished: true)
+                                        self.processedTask(task, processedType: .finished)
                                         self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
                                         plog(level: .info, log: "[task] task: \(task.id) auto finished sign", tag: .bifrost)
-                                        self.processTaskIfHave()
                                     case .failure(let error):
-                                        self.setTaskStatusFailed(task)
-                                        plog(level: .info, log: "[task] task: \(task.id) auto failed sign", tag: .bifrost)
+                                        if let e = error as? ViteError {
+                                            /// TODO:
+                                            if e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal ||
+                                                e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal {
+                                                self.setTaskStatusWaitingForRetry(task)
+                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
+                                            } else {
+                                                self.processedTask(task, processedType: .failed)
+                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then failed", tag: .bifrost)
+                                            }
+                                        } else {
+                                            self.setTaskStatusWaitingForRetry(task)
+                                            plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
+                                        }
                                         plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
-                                        GCD.delay(1) { self.processTaskIfHave() }
                                     }
+//                                    GCD.delay(1) { self.processTaskIfHave() }
+                                    self.processTaskIfHave()
             })
         } else {
-            guard let task = self.processNextTaskIfHas() else { return }
             let vc = self.showBifrostViewController()
             vc.showConfirm(task: task)
         }
@@ -500,6 +528,9 @@ extension BifrostManager {
 
             if let e = exist {
                 ret = e
+                if UIViewController.current !== ret {
+                    UIViewController.current?.navigationController?.popToViewController(e, animated: true)
+                }
             } else {
                 ret = BifrostHomeViewController(result: { [weak self] (ret, task, vc) in
                     guard let `self` = self else { return }
@@ -517,18 +548,18 @@ extension BifrostManager {
                                                completion: { (ret) in
                                                 switch ret {
                                                 case .success(let accountBlock):
-                                                    self.processedTask(task, isFinished: true)
+                                                    self.processedTask(task, processedType: .finished)
                                                     vc.hideConfirm()
                                                     self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
                                                     plog(level: .info, log: "[task] task: \(task.id) manual finished sign", tag: .bifrost)
                                                     self.processTaskIfHave()
                                                 case .failure(let error):
-                                                    plog(level: .info, log: "[task] task: \(task.id) manual failed sign", tag: .bifrost)
+                                                    plog(level: .info, log: "[task] task: \(task.id) manual failed sign, then manual retry", tag: .bifrost)
                                                     plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
                                                 }
                         })
                     } else {
-                        self.processedTask(task, isFinished: false)
+                        self.processedTask(task, processedType: .canceled)
                         vc.hideConfirm()
                         self.interactor?.cancelRequest(id: task.id).cauterize()
                         plog(level: .info, log: "[task] task: \(task.id) manual canceled sign", tag: .bifrost)
@@ -560,3 +591,9 @@ extension BifrostManager {
     }
 }
 
+
+extension BifrostManager {
+    fileprivate func canAutoConfirm(task: BifrostViteSendTxTask) -> Bool {
+        return true
+    }
+}

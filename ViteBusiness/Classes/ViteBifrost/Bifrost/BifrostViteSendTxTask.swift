@@ -12,8 +12,8 @@ class BifrostViteSendTxTask {
     enum Status {
         case pending
         case processing
-        case retry
-        case failed
+        case waitingForRetry
+        case failedddddd
         case finished
         case canceled
     }
@@ -38,9 +38,9 @@ class BifrostViteSendTxTask {
         switch status {
         case .pending:
             return R.string.localizable.bifrostListPageStatusPending()
-        case .processing, .retry:
+        case .processing, .waitingForRetry:
             return R.string.localizable.bifrostListPageStatusProcessing()
-        case .failed:
+        case .failedddddd:
             return R.string.localizable.bifrostListPageStatusFailed()
         case .finished:
             return R.string.localizable.bifrostListPageStatusFinished()

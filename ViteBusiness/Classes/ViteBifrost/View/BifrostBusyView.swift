@@ -32,8 +32,8 @@ class BifrostBusyView: UIView {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(showButton: Bool) {
+        super.init(frame: CGRect.zero)
 
         let imageView = UIImageView(image: R.image.icon_vb_placeholder_busy())
 
@@ -53,9 +53,6 @@ class BifrostBusyView: UIView {
 
         addSubview(whiteView)
         addSubview(scrollView)
-
-        addSubview(cancelButton)
-        addSubview(confirmButton)
 
         imageView.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(26)
@@ -86,23 +83,35 @@ class BifrostBusyView: UIView {
         headerLabel.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         contentLabel.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
 
-        scrollView.snp.makeConstraints { (m) in
-            m.top.equalTo(contentLabel.snp.bottom).offset(20)
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-        }
+        if showButton {
+            scrollView.snp.makeConstraints { (m) in
+                m.top.equalTo(contentLabel.snp.bottom).offset(20)
+                m.left.equalToSuperview().offset(24)
+                m.right.equalToSuperview().offset(-24)
+            }
 
-        cancelButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(scrollView.snp.bottom).offset(24)
-            make.left.equalToSuperview().offset(24)
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview().offset(-24)
-        }
+            addSubview(cancelButton)
+            addSubview(confirmButton)
 
-        confirmButton.snp.makeConstraints { (make) -> Void in
-            make.top.bottom.width.height.equalTo(cancelButton)
-            make.left.equalTo(cancelButton.snp.right).offset(23)
-            make.right.equalToSuperview().offset(-24)
+            cancelButton.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(scrollView.snp.bottom).offset(24)
+                make.left.equalToSuperview().offset(24)
+                make.height.equalTo(50)
+                make.bottom.equalToSuperview().offset(-24)
+            }
+
+            confirmButton.snp.makeConstraints { (make) -> Void in
+                make.top.bottom.width.height.equalTo(cancelButton)
+                make.left.equalTo(cancelButton.snp.right).offset(23)
+                make.right.equalToSuperview().offset(-24)
+            }
+        } else {
+            scrollView.snp.makeConstraints { (m) in
+                m.top.equalTo(contentLabel.snp.bottom).offset(20)
+                m.left.equalToSuperview().offset(24)
+                m.right.equalToSuperview().offset(-24)
+                m.bottom.equalToSuperview().offset(-24)
+            }
         }
     }
 

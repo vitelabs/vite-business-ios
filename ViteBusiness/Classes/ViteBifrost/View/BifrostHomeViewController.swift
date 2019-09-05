@@ -64,7 +64,7 @@ class BifrostHomeViewController: BaseViewController {
     func showConfirm(task: BifrostViteSendTxTask) {
         self.busyView?.removeFromSuperview()
 
-        let busyView = BifrostBusyView()
+        let busyView = BifrostBusyView(showButton: true)
         busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
         view.addSubview(busyView)
         busyView.snp.makeConstraints { (m) in
