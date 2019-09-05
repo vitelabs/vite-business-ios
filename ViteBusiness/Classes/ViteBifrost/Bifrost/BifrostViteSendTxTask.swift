@@ -13,7 +13,7 @@ class BifrostViteSendTxTask {
         case pending
         case processing
         case waitingForRetry
-        case failedddddd
+        case failed
         case finished
         case canceled
     }
@@ -40,7 +40,7 @@ class BifrostViteSendTxTask {
             return R.string.localizable.bifrostListPageStatusPending()
         case .processing, .waitingForRetry:
             return R.string.localizable.bifrostListPageStatusProcessing()
-        case .failedddddd:
+        case .failed:
             return R.string.localizable.bifrostListPageStatusFailed()
         case .finished:
             return R.string.localizable.bifrostListPageStatusFinished()

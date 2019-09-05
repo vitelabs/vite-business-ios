@@ -53,41 +53,37 @@ public final class BifrostManager {
     // MARK: Task
     private let isInBackgroundBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var allTasksBehaviorRelay: BehaviorRelay<[BifrostViteSendTxTask]> = BehaviorRelay(value: [BifrostViteSendTxTask]())
-    private var processedTasks = [BifrostViteSendTxTask]()
-    private var currectProcessingTask: BifrostViteSendTxTask? = nil
-    private var pendingTasks = [BifrostViteSendTxTask]()
+
+    private var currentIndex: Int = 0
+    private var tasks = [BifrostViteSendTxTask]()
+    private var isProcessing = false
 
     private func addTask(_ task: BifrostViteSendTxTask) {
-        pendingTasks.append(task)
+        tasks.append(task)
         refreshAllTasks()
     }
 
-    private func processNextTaskIfHas() -> BifrostViteSendTxTask? {
+    private var currentTask: BifrostViteSendTxTask? {
+        guard tasks.count > currentIndex else { return nil }
+        return tasks[currentIndex]
+    }
 
-        if let task = currectProcessingTask {
-            if task.status == .waitingForRetry {
-                task.status = .processing
-                refreshAllTasks()
-                return task
-            } else if task.status == .processing {
-                return task
-            } else {
-                return nil
-            }
+    private func setTaskStatusProcessing(_ task: BifrostViteSendTxTask) {
+        guard status != .disconnect else { return }
+
+        guard currentTask?.id == task.id else {
+            fatalError()
         }
 
-        guard var task = pendingTasks.first else { return nil }
-        pendingTasks.remove(at: 0)
+        isProcessing = true
         task.status = .processing
-        currectProcessingTask = task
         refreshAllTasks()
-        return task
     }
 
     private func setTaskStatusWaitingForRetry(_ task: BifrostViteSendTxTask) {
         guard status != .disconnect else { return }
 
-        guard currectProcessingTask?.id == task.id else {
+        guard currentTask?.id == task.id else {
             fatalError()
         }
 
@@ -104,7 +100,7 @@ public final class BifrostManager {
     private func processedTask(_ task: BifrostViteSendTxTask, processedType: ProcessedType) {
         guard status != .disconnect else { return }
 
-        guard currectProcessingTask?.id == task.id else {
+        guard currentTask?.id == task.id else {
             fatalError()
         }
 
@@ -114,27 +110,23 @@ public final class BifrostManager {
         case .canceled:
             task.status = .canceled
         case .failed:
-            task.status = .failedddddd
+            task.status = .failed
         }
 
-        currectProcessingTask = nil
-        processedTasks.append(task)
         refreshAllTasks()
+        currentIndex += 1
     }
 
     private func clearTasks() {
-        processedTasks = [BifrostViteSendTxTask]()
-        currectProcessingTask = nil
-        pendingTasks = [BifrostViteSendTxTask]()
+        tasks = [BifrostViteSendTxTask]()
+        currentIndex = 0
         refreshAllTasks()
+        isProcessing = false
+        isAutoConfirmBehaviorRelay.accept(false)
     }
 
     private func refreshAllTasks() {
-        if let c = currectProcessingTask {
-            allTasksBehaviorRelay.accept(processedTasks + [c] + pendingTasks)
-        } else {
-            allTasksBehaviorRelay.accept(processedTasks)
-        }
+        allTasksBehaviorRelay.accept(tasks)
     }
 
     // MARK: Init
@@ -457,21 +449,17 @@ extension BifrostManager {
     // MARK: Public
     func showHomeVC() {
         let vc = self.showBifrostViewController()
-        if let task = self.processNextTaskIfHas(), !(isAutoConfirmBehaviorRelay.value && canAutoConfirm(task: task)) {
+        if let task = currentTask, !(isAutoConfirmBehaviorRelay.value && canAutoConfirm(task: task)) {
             vc.showConfirm(task: task)
         }
     }
 
     // MARK: Private
-    fileprivate func processTaskIfHave() {
-
-        guard let task = self.processNextTaskIfHas() else { return }
-
+    fileprivate func processTask(_ task: BifrostViteSendTxTask) {
         if self.isAutoConfirmBehaviorRelay.value && canAutoConfirm(task: task) {
             guard isInBackgroundBehaviorRelay.value == false else { return }
-
             guard let account = HDWalletManager.instance.account else { return }
-
+            setTaskStatusProcessing(task)
             plog(level: .info, log: "[task] task: \(task.id) auto start sign", tag: .bifrost)
             Workflow.bifrostSendTx(needConfirm: false,
                                    title: task.info.title,
@@ -487,30 +475,39 @@ extension BifrostManager {
                                         self.processedTask(task, processedType: .finished)
                                         self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
                                         plog(level: .info, log: "[task] task: \(task.id) auto finished sign", tag: .bifrost)
+                                        self.delaySetIsProcessingFalseAndProcessTaskIfHave()
                                     case .failure(let error):
-                                        if let e = error as? ViteError {
-                                            /// TODO:
-                                            if e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal ||
-                                                e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal {
-                                                self.setTaskStatusWaitingForRetry(task)
-                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
-                                            } else {
-                                                self.processedTask(task, processedType: .failed)
-                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then failed", tag: .bifrost)
-                                            }
-                                        } else {
+                                        if self.retryMaybeRecover(error: error) {
                                             self.setTaskStatusWaitingForRetry(task)
                                             plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
+                                            GCD.delay(1) { self.processTask(task) }
+                                        } else {
+                                            self.processedTask(task, processedType: .failed)
+                                            plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then failed", tag: .bifrost)
+                                            self.delaySetIsProcessingFalseAndProcessTaskIfHave()
                                         }
                                         plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
                                     }
-//                                    GCD.delay(1) { self.processTaskIfHave() }
-                                    self.processTaskIfHave()
+
             })
         } else {
+            setTaskStatusProcessing(task)
             let vc = self.showBifrostViewController()
             vc.showConfirm(task: task)
         }
+    }
+
+    fileprivate func delaySetIsProcessingFalseAndProcessTaskIfHave() {
+        GCD.delay(1) {
+            self.isProcessing = false
+            self.processTaskIfHave()
+        }
+    }
+
+    fileprivate func processTaskIfHave() {
+        guard isProcessing == false else { return }
+        guard let task = currentTask else { return }
+        processTask(task)
     }
 
     fileprivate func showBifrostViewController() -> BifrostHomeViewController {
@@ -552,7 +549,7 @@ extension BifrostManager {
                                                     vc.hideConfirm()
                                                     self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
                                                     plog(level: .info, log: "[task] task: \(task.id) manual finished sign", tag: .bifrost)
-                                                    self.processTaskIfHave()
+                                                    self.delaySetIsProcessingFalseAndProcessTaskIfHave()
                                                 case .failure(let error):
                                                     plog(level: .info, log: "[task] task: \(task.id) manual failed sign, then manual retry", tag: .bifrost)
                                                     plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
@@ -563,7 +560,7 @@ extension BifrostManager {
                         vc.hideConfirm()
                         self.interactor?.cancelRequest(id: task.id).cauterize()
                         plog(level: .info, log: "[task] task: \(task.id) manual canceled sign", tag: .bifrost)
-                        self.processTaskIfHave()
+                        self.delaySetIsProcessingFalseAndProcessTaskIfHave()
                     }
                 })
                 UIViewController.current?.navigationController?.pushViewController(ret, animated: true)
@@ -593,7 +590,98 @@ extension BifrostManager {
 
 
 extension BifrostManager {
+
+    fileprivate func retryMaybeRecover(error: Error) -> Bool {
+        if let e = error as? ViteError {
+            /// TODO:
+            if e.code == ViteErrorCode.rpcRetryMaybeRecover ||
+                e.code == ViteErrorCode.rpcRefrenceSameSnapshootBlock ||
+                e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    }
+
     fileprivate func canAutoConfirm(task: BifrostViteSendTxTask) -> Bool {
-        return true
+
+        if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) {
+
+            switch type {
+            case .dexDeposit,
+                 .dexWithdraw,
+                 .dexVip,
+                 .pledge,
+                 .dexStakingAsMining,
+                 .vote,
+                 .dexNewInviter,
+                 .dexBindInviter,
+                 .dexCancel:
+                return true
+            case .dexPost:
+                let vite = ViteWalletConst.viteToken.id
+                let btc = "tti_b90c9baffffc9dae58d1f33f"
+                let pasc = "tti_22a818227bb47f072f92f428"
+                let bis = "tti_e80bcafb642ce4898857eccc"
+                let eth = "tti_687d8a93915393b219212c73"
+                let vfc = "tti_18823e6e0b95b7d77b3a1b3a"
+                let tera = "tti_60e20567a20282bfd25ab56c"
+                let erg = "tti_661d467c3f4d9c6d7b9e9dc9"
+                let grin = "tti_289ee0569c7d3d75eac1b100"
+                let dero = "tti_26472d9be08f8f2fdeb3030d"
+                let trtl = "tti_0570e763918b4355074661ac"
+                let usdt = "tti_80f3751485e4e83456059473"
+                let lrc = "tti_25e5f191cbb00a88a6267e0f"
+
+                let allowMarkets = [
+                    vite+btc,
+                    pasc+btc,
+                    bis+btc,
+                    eth+btc,
+                    vfc+btc,
+                    tera+btc,
+                    erg+btc,
+                    grin+btc,
+                    dero+btc,
+
+                    vite+eth,
+                    trtl+eth,
+                    grin+eth,
+
+                    bis+vite,
+                    erg+vite,
+                    trtl+vite,
+                    grin+vite,
+                    dero+vite,
+                    pasc+vite,
+                    tera+vite,
+
+                    eth+usdt,
+                    btc+usdt,
+                    vite+usdt,
+                    vfc+usdt,
+                    lrc+usdt,
+                ]
+
+                guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
+                    let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
+                        return false
+                }
+
+                if allowMarkets.contains(tradeTokenIdValue.toString()+quoteTokenIdValue.toString()) {
+                    return true
+                } else {
+                    return false
+                }
+
+            default:
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }
