@@ -20,13 +20,96 @@
             "decimal":18
         },
         {
-            "symbol":"VCP",
-            "name":"Vite Community Point",
-            "tokenCode":"1172",
+            "symbol":"ETH",
+            "decimal":18,
             "platform":"VITE",
-            "tokenAddress":"tti_251a3e67a41b5ea2373936c8",
-            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/37f59a9ce1b87eebe32e70994df8851f.png",
-            "decimal":0
+            "tokenCode":"1352",
+            "tokenIndex":0,
+            "gatewayInfo":{
+                "policy":{
+                    "en":"https://x.vite.net/privacy.html"
+                },
+                "isOfficial":true,
+                "mappedToken":{
+                    "symbol":"ETH",
+                    "decimal":18,
+                    "platform":"ETH",
+                    "tokenCode":"1",
+                    "tokenIndex":null,
+                    "tokenAddress":null,
+                    "name":"Ether",
+                    "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png"
+                },
+                "support":"gateway@vite.org",
+                "url":"https://crosschain.vite.net/gateway/eth",
+                "level":null,
+                "links":{
+                    "website":[
+                        "https://vite.org"
+                    ],
+                    "whitepaper":[
+                        "https://github.com/vitelabs/whitepaper/"
+                    ],
+                    "explorer":[
+                        "https://explorer.vite.net"
+                    ]
+                },
+                "overview":{
+                    "en":"The gateway provided by Vite Labs, running cross-chain services for four coins: BTC, ETH, USDT(ERC20)",
+                    "zh":"Vite Labs官方网关，负责BTC、ETH、USDT(ERC20)、GRIN四种代币跨链服务"
+                },
+                "name":"Vite Labs",
+                "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png"
+            },
+            "tokenAddress":"tti_687d8a93915393b219212c73",
+            "name":"Ethereum",
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png"
+        },
+        {
+            "symbol":"USDT",
+            "decimal":6,
+            "platform":"VITE",
+            "tokenCode":"1353",
+            "tokenIndex":0,
+            "gatewayInfo":{
+                "policy":{
+                    "en":"https://x.vite.net/privacy.html"
+                },
+                "isOfficial":true,
+                "mappedToken":{
+                    "symbol":"USDT",
+                    "decimal":6,
+                    "platform":"ETH",
+                    "tokenCode":"286",
+                    "tokenIndex":null,
+                    "tokenAddress":"0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                    "name":"Tether USD",
+                    "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/c746e8a95dff8ce193c462554feb61bf.png"
+                },
+                "support":"gateway@vite.org",
+                "url":"https://crosschain.vite.net/gateway/eth",
+                "level":null,
+                "links":{
+                    "website":[
+                        "https://vite.org"
+                    ],
+                    "whitepaper":[
+                        "https://github.com/vitelabs/whitepaper/"
+                    ],
+                    "explorer":[
+                        "https://explorer.vite.net"
+                    ]
+                },
+                "overview":{
+                    "en":"The gateway provided by Vite Labs, running cross-chain services for four coins: BTC, ETH, USDT(ERC20)",
+                    "zh":"Vite Labs官方网关，负责BTC、ETH、USDT(ERC20)、GRIN四种代币跨链服务"
+                },
+                "name":"Vite Labs",
+                "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png"
+            },
+            "tokenAddress":"tti_80f3751485e4e83456059473",
+            "name":"Tether USD",
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/c746e8a95dff8ce193c462554feb61bf.png"
         },
         {
             "symbol":"ETH",
@@ -47,13 +130,13 @@
             "decimal":18
         },
         {
-            "symbol": "GRIN",
-            "name": "GRIN",
-            "tokenCode": "1174",
-            "platform": "GRIN",
-            "tokenAddress": null,
-            "icon": "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
-            "decimal": 9
+            "symbol":"GRIN",
+            "name":"GRIN",
+            "tokenCode":"1174",
+            "platform":"GRIN",
+            "tokenAddress":null,
+            "icon":"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
+            "decimal":9
         }
     ]
 }

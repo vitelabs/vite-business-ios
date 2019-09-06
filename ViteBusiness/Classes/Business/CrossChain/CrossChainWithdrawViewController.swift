@@ -271,7 +271,11 @@ class GatewayWithdrawViewController: BaseViewController {
                     guard let `self` = self else { return }
                     guard let feeAmount = Amount(fee) else {return }
                     self.feeView.contentLabel.text = feeAmount.amountShort(decimals: self.token.decimals)
-                    self.amountView.textField.text = (self.balance - feeAmount).amount(decimals: self.gateWayInfoService.tokenInfo.decimals, count: min(8, self.gateWayInfoService.tokenInfo.decimals))
+                    if self.balance <= feeAmount {
+                        self.amountView.textField.text = "0"
+                    } else {
+                        self.amountView.textField.text = (self.balance - feeAmount).amountFull(decimals: self.gateWayInfoService.tokenInfo.decimals)
+                    }
                 }.catch({ (error) in
                     Toast.show(error.localizedDescription)
                 })
@@ -284,6 +288,12 @@ class GatewayWithdrawViewController: BaseViewController {
 
     func withdraw()  {
 
+        guard let theFee = self.feeView.contentLabel.text?.toAmount(decimals: self.token.decimals),
+            self.balance > theFee else {
+                Toast.show(R.string.localizable.sendPageToastAmountError())
+                return
+        }
+        
         let address = self.addressView.textView.text ?? ""
 
         guard let amountString = self.amountView.textField.text, !amountString.isEmpty,

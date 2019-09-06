@@ -166,7 +166,9 @@ extension VBInteractor {
     private func encryptAndSend(data: Data) -> Promise<Void> {
         print("==> encrypt: \(String(data: data, encoding: .utf8)!) ")
         let encoder = JSONEncoder()
-        let payload = try! VBEncryptor.encrypt(data: data, with: session.key)
+        guard let payload = try? VBEncryptor.encrypt(data: data, with: session.key) else {
+            return Promise(error: VBError.unknown)
+        }
         let payloadString = encoder.encodeAsUTF8(payload)
         let message = VBSocketMessage(topic: peerId ?? session.topic, type: .pub, payload: payloadString)
         let data = message.encoded
