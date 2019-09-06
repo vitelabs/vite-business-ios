@@ -25,7 +25,10 @@ extension BalanceInfo: WalletHomeBalanceInfo {
 extension ETHBalanceInfo: WalletHomeBalanceInfo {}
 
 final class WalletHomeBalanceInfoTableViewModel {
+
     var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
+    var  viteXBalanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
+
 
     init(isHidePriceDriver: Driver<Bool>) {
         balanceInfosDriver = Driver.combineLatest(
@@ -52,6 +55,12 @@ final class WalletHomeBalanceInfoTableViewModel {
                         return WalletHomeBalanceInfoViewModel(balanceInfo: balanceInfo, isHidePrice: isHidePrice)
                         })
             })
+
+        viteXBalanceInfosDriver = balanceInfosDriver.map { (vms) -> [WalletHomeBalanceInfoViewModel] in
+            return vms.filter({ (vm) -> Bool in
+                return vm.tokenInfo.coinType == .vite
+            })
+        }
     }
 
     func registerFetchAll() {
@@ -65,3 +74,5 @@ final class WalletHomeBalanceInfoTableViewModel {
         ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
     }
 }
+
+

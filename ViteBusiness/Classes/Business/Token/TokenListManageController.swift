@@ -17,6 +17,7 @@ import MLeaksFinder
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
 class TokenListManageController: BaseViewController {
+    var onlyShowVite = false
     var viewModel : TokenListManageViewModel
 
     init() {
@@ -58,7 +59,9 @@ class TokenListManageController: BaseViewController {
         print("======= TokenListManageController deinit")
     }
 
-    fileprivate lazy var searchResultVC = TokenListSearchViewController()
+    fileprivate lazy var searchResultVC = TokenListSearchViewController().then {
+        $0.onlyShowVite = self.onlyShowVite
+    }
 
     fileprivate lazy var placeholderAttributes = [NSAttributedString.Key.font: Fonts.Font13,
                                  NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x24272B, alpha: 0.31)]
@@ -131,7 +134,15 @@ class TokenListManageController: BaseViewController {
                         sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                     }
                 }
-                return sectionModels
+            return sectionModels.filter({ (sectionModel) -> Bool in
+                if self?.onlyShowVite == true {
+                   return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
+                        tokenInfo.coinType == .vite
+                    })
+                } else {
+                    return true
+                }
+            })
             }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
 
         tableView.rx

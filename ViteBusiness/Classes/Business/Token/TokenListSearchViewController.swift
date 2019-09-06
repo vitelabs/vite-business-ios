@@ -13,6 +13,7 @@ import RxDataSources
 
 class TokenListSearchViewController: UIViewController {
     let viewModel = TokenListSearchViewModel()
+    var onlyShowVite = false
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -82,7 +83,15 @@ class TokenListSearchViewController: UIViewController {
                 for item in data {
                     sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                 }
-                return sectionModels
+             return sectionModels.filter({ (sectionModel) -> Bool in
+                if self?.onlyShowVite == true {
+                    return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
+                        tokenInfo.coinType == .vite
+                    })
+                } else {
+                    return true
+                }
+            })
         }.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
         
 

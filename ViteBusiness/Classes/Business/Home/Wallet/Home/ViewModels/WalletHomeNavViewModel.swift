@@ -10,9 +10,15 @@ import RxSwift
 import RxCocoa
 
 class WalletHomeNavViewModel {
+
+    enum InfoType {
+        case wallet
+        case viteX
+    }
     let walletNameDriver: Driver<String>
     let priceDriver: Driver<String>
     let isHidePriceDriver: Driver<Bool>
+    var infoTypeBehaviorRelay = BehaviorRelay<InfoType>(value: InfoType.wallet)
 
     init(isHidePriceDriver: Driver<Bool>, walletHomeBalanceInfoTableViewModel: WalletHomeBalanceInfoTableViewModel) {
         self.isHidePriceDriver = isHidePriceDriver
