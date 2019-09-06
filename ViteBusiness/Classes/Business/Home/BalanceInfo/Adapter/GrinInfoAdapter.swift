@@ -187,7 +187,9 @@ extension GrinInfoTableViewDelegate: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.infoVc.parent?.view.displayLoading()
-        let fullInfo = self.infoVc.walletInfoVM.txs.value[indexPath.row]
-        self.infoVc.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
+        GCD.delay(0) {
+            let fullInfo = self.infoVc.walletInfoVM.txs.value[indexPath.row]
+            self.infoVc.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
+        }
     }
 }
