@@ -70,7 +70,8 @@ class HomeViewController: UITabBarController {
 
         GCD.delay(1) { AppUpdateService.checkUpdate() }
 
-        self.rx.observe(UIViewController.self, #keyPath(UITabBarController.selectedViewController))
+        
+        self.rx.observeWeakly(UIViewController.self, #keyPath(UITabBarController.selectedViewController))
             .map{ $0?.tabBarItem.tag }
             .filterNil()
             .bind { tag in
