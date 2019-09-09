@@ -854,3 +854,23 @@
 
 
 "copyed" = "Successfully copied";
+
+"fund.title.wallet" = "钱包资产";
+"fund.title.vitex" = "交易所资产";
+"fund.title.toWallet" = "提现至钱包";
+"fund.title.toVitex" =  "充值至交易所";
+"fund.walletAddress" = "我的账户地址";
+"fund.walletFound" = "钱包余额";
+"fund.quotaInfo" = "配额余额/上限";
+"fund.deposit.amount" =  "充值金额";
+"fund.deposit.all" =  "全部";
+"fund.quotaSpend" =  "配额";
+"fund.deposite" =  "充值";
+"fund.vitexFound" = "可提现余额";
+"fund.withdraw.amount" =  "提现金额";
+"fund.withdraw" =  "提现";
+"fund.vitex.all" =  "全部余额";
+"fund.vitex.available" =  "可用余额";
+"fund.tooBig" =  "您输入的金额大于余额，请重新输入";
+"fund.withdraw.placeholder" =  "请输入提现金额";
+"fund.deposite.placeholder" =  "请输入充值金额";

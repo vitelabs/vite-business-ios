@@ -20,7 +20,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
     fileprivate let iconImageView = TokenIconView()
 
     fileprivate let  availableTitleLabel = UILabel().then { label in
-        label.text = "可用余额"
+        label.text = R.string.localizable.fundVitexAvailable()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.45)
     }
@@ -31,7 +31,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
     }
 
     fileprivate let  totalTitleLabel = UILabel().then { label in
-        label.text = "全部余额"
+        label.text = R.string.localizable.fundVitexAll()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.45)
     }
@@ -41,8 +41,8 @@ class VitexBalanceInfoCell: BaseTableViewCell {
         label.textColor = UIColor.init(netHex: 0x24272B)
     }
 
-    fileprivate let seperator = UIView().then { s in
-        s.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+    fileprivate let seperator = UIImageView().then { s in
+        s.image = R.image.exchange_middle_line()?.resizableImage(withCapInsets: .zero, resizingMode: .tile)
     }
 
     fileprivate let symbolLabel = UILabel().then {

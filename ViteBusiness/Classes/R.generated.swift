@@ -1424,7 +1424,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 695 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 714 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4206,6 +4206,82 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundTitleVitex = Rswift.StringResource(key: "fund.title.vitex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundDeposite = Rswift.StringResource(key: "fund.deposite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值至交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundTitleToVitex = Rswift.StringResource(key: "fund.title.toVitex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundDepositAmount = Rswift.StringResource(key: "fund.deposit.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全部
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundDepositAll = Rswift.StringResource(key: "fund.deposit.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 全部余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundVitexAll = Rswift.StringResource(key: "fund.vitex.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 可提现余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundVitexFound = Rswift.StringResource(key: "fund.vitexFound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundVitexAvailable = Rswift.StringResource(key: "fund.vitex.available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 您输入的金额大于余额，请重新输入
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundTooBig = Rswift.StringResource(key: "fund.tooBig", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的账户地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundWalletAddress = Rswift.StringResource(key: "fund.walletAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundWithdraw = Rswift.StringResource(key: "fund.withdraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现至钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundTitleToWallet = Rswift.StringResource(key: "fund.title.toWallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundWithdrawAmount = Rswift.StringResource(key: "fund.withdraw.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入充值金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundDepositePlaceholder = Rswift.StringResource(key: "fund.deposite.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入提现金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundWithdrawPlaceholder = Rswift.StringResource(key: "fund.withdraw.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundQuotaSpend = Rswift.StringResource(key: "fund.quotaSpend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 配额余额/上限
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundQuotaInfo = Rswift.StringResource(key: "fund.quotaInfo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 钱包余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundWalletFound = Rswift.StringResource(key: "fund.walletFound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 钱包资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundTitleWallet = Rswift.StringResource(key: "fund.title.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -9070,6 +9146,139 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundTitleVitex(_: Void = ()) -> String {
+        return NSLocalizedString("fund.title.vitex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundDeposite(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 充值至交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundTitleToVitex(_: Void = ()) -> String {
+        return NSLocalizedString("fund.title.toVitex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 充值金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundDepositAmount(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposit.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 全部
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundDepositAll(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposit.all", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 全部余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundVitexAll(_: Void = ()) -> String {
+        return NSLocalizedString("fund.vitex.all", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 可提现余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundVitexFound(_: Void = ()) -> String {
+        return NSLocalizedString("fund.vitexFound", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundVitexAvailable(_: Void = ()) -> String {
+        return NSLocalizedString("fund.vitex.available", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 您输入的金额大于余额，请重新输入
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundTooBig(_: Void = ()) -> String {
+        return NSLocalizedString("fund.tooBig", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我的账户地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundWalletAddress(_: Void = ()) -> String {
+        return NSLocalizedString("fund.walletAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundWithdraw(_: Void = ()) -> String {
+        return NSLocalizedString("fund.withdraw", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提现至钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundTitleToWallet(_: Void = ()) -> String {
+        return NSLocalizedString("fund.title.toWallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提现金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundWithdrawAmount(_: Void = ()) -> String {
+        return NSLocalizedString("fund.withdraw.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入充值金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundDepositePlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposite.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入提现金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundWithdrawPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("fund.withdraw.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 配额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundQuotaSpend(_: Void = ()) -> String {
+        return NSLocalizedString("fund.quotaSpend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 配额余额/上限
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundQuotaInfo(_: Void = ()) -> String {
+        return NSLocalizedString("fund.quotaInfo", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 钱包余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundWalletFound(_: Void = ()) -> String {
+        return NSLocalizedString("fund.walletFound", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 钱包资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundTitleWallet(_: Void = ()) -> String {
+        return NSLocalizedString("fund.title.wallet", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

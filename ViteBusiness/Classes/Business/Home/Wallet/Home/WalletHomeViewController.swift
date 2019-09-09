@@ -58,7 +58,7 @@ class WalletHomeViewController: BaseViewController {
         vitexTable.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
-        let m = DNSPageViewManager(style: pageStyle, titles: ["钱包资产","交易所资产"], childViewControllers: [vc0, vc1])
+        let m = DNSPageViewManager(style: pageStyle, titles: [R.string.localizable.fundTitleWallet(),R.string.localizable.fundTitleVitex()], childViewControllers: [vc0, vc1])
         return m
     }()
 
@@ -273,12 +273,14 @@ class WalletHomeViewController: BaseViewController {
     }
 
     func vitexTableAccessoryButton(_ accessoryButton: UIButton, didTappedForRowWith indexPath: IndexPath) {
-
-        let a0 = UIAlertAction.init(title: "充值至交易所", style: .default) { (_) in
-
+        let tokenInfo = self.tableViewModel.viteXBalanceInfosDriver
+        let a0 = UIAlertAction.init(title: R.string.localizable.fundTitleToVitex(), style: .default) { [unowned self] (_) in
+            let vc = ManageViteXBanlaceViewController(tokenInfo: TokenInfo.viteCoin,actionType: .toVitex)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        let a1 = UIAlertAction.init(title: "提现至钱包", style: .default) { (_) in
-
+        let a1 = UIAlertAction.init(title: R.string.localizable.fundTitleToWallet(), style: .default) { [unowned self] (_) in
+            let vc = ManageViteXBanlaceViewController(tokenInfo: TokenInfo.viteCoin, actionType: .toWallet)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)

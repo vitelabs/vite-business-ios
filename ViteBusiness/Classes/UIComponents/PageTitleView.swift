@@ -24,6 +24,8 @@ class PageTitleView: UIView {
 
     var tokenIconView: TokenIconView?
 
+    var iconView: UIImageView?
+
     var infoButton = UIButton.init() .then {
         $0.setImage(R.image.infor_white(), for: .normal)
     }
@@ -64,6 +66,19 @@ extension PageTitleView {
 
     class func titleAndIcon(title: String? = nil, icon: UIImage? = nil) -> PageTitleView {
         let view = PageTitleView.onlyTitle(title: title)
+        view.iconView = UIImageView()
+        view.addSubview(view.iconView!)
+        view.iconView!.snp.makeConstraints { (m) in
+            m.right.equalToSuperview().offset(-22)
+            m.top.equalToSuperview().offset(0.5)
+            m.size.equalTo(CGSize(width: 50, height: 50))
+        }
+        view.iconView!.image = icon
+        return view
+    }
+
+    class func titleAndTokenIcon(title: String? = nil, tokenInfo: TokenInfo? = nil) -> PageTitleView {
+        let view = PageTitleView.onlyTitle(title: title)
         view.tokenIconView = TokenIconView.init()
         view.addSubview(view.tokenIconView!)
         view.tokenIconView!.snp.makeConstraints { (m) in
@@ -71,6 +86,7 @@ extension PageTitleView {
             m.top.equalToSuperview().offset(0.5)
             m.size.equalTo(CGSize(width: 50, height: 50))
         }
+        view.tokenIconView?.tokenInfo = tokenInfo
         return view
     }
 
