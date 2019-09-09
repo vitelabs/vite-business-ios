@@ -485,7 +485,12 @@
 "confirm.transaction.page.vite.vote.node.name" = "Node Name";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
-// vote call contract
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.desposit.transfer.title" = "充值到交易所";
+"confirm.transaction.page.vite.dex.desposit.confirm.button" = "确认";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "提币至钱包";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "确认";
+// vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
 // eth transfer

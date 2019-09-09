@@ -185,12 +185,14 @@ class VitexBalanceInfoCell: BaseTableViewCell {
 //        highlightedMaskView.isHidden = !selected
 //    }
 
-    func bind(viewModel: WalletHomeBalanceInfoViewModel) {
+    func bind(viewModel: WalletHomeViteXBalanceInfoViewModel) {
 
         iconImageView.tokenInfo = viewModel.tokenInfo
 
         symbolLabel.text = viewModel.symbol
         symbolLabel.textColor = UIColor.init(netHex: 0x24272B)
         colorView.backgroundColor = viewModel.tokenInfo.mainColor
+        totalLabel.text = viewModel.totalString
+        availableLabel.text = viewModel.availableString
     }
 }

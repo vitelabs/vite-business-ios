@@ -27,7 +27,7 @@ extension ETHBalanceInfo: WalletHomeBalanceInfo {}
 final class WalletHomeBalanceInfoTableViewModel {
 
     var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
-    var  viteXBalanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
+    var  viteXBalanceInfosDriver: Driver<[WalletHomeViteXBalanceInfoViewModel]>
 
 
     init(isHidePriceDriver: Driver<Bool>) {
@@ -48,7 +48,7 @@ final class WalletHomeBalanceInfoTableViewModel {
                             return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
                         case .grin:
                             return grinBalance
-                        default:
+                        case .unsupport:
                             fatalError()
                         }
                     }).map({ (balanceInfo) -> WalletHomeBalanceInfoViewModel in
@@ -56,11 +56,30 @@ final class WalletHomeBalanceInfoTableViewModel {
                         })
             })
 
-        viteXBalanceInfosDriver = balanceInfosDriver.map { (vms) -> [WalletHomeBalanceInfoViewModel] in
-            return vms.filter({ (vm) -> Bool in
-                return vm.tokenInfo.coinType == .vite
-            })
+        viteXBalanceInfosDriver =
+            Driver.combineLatest(
+                isHidePriceDriver,
+                ViteBalanceInfoManager.instance.dexBalanceInfosDriver)
+                .map { (arg) -> [WalletHomeViteXBalanceInfoViewModel] in
+                    let (isHidePrice, viteXMap) = arg
+                    return MyTokenInfosService.instance.tokenInfos
+                        .filter { $0.coinType == .vite }
+                        .map { (tokenInfo) -> WalletHomeViteXBalanceInfoViewModel in
+                            let balanceInfo = viteXMap[tokenInfo.viteTokenId] ?? DexBalanceInfo(token: tokenInfo.toViteToken()!)
+                            return WalletHomeViteXBalanceInfoViewModel(tokenInfo: tokenInfo, balanceInfo: balanceInfo, isHidePrice: isHidePrice)
+                    }
         }
+
+
+
+
+
+
+//            viteXBalanceInfosDriver = balanceInfosDriver.map { (vms) -> [WalletHomeBalanceInfoViewModel] in
+//            return vms.filter({ (vm) -> Bool in
+//                return vm.tokenInfo.coinType == .vite
+//            })
+//        }
     }
 
     func registerFetchAll() {

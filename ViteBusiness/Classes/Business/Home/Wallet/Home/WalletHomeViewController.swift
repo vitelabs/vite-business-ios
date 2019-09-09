@@ -68,7 +68,8 @@ class WalletHomeViewController: BaseViewController {
     lazy var isHidePriceDriver: Driver<Bool> = self.isHidePriceBehaviorRelay.asDriver()
     var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
+    typealias WalletDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
+    typealias viteXDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeViteXBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,14 +150,14 @@ class WalletHomeViewController: BaseViewController {
 
     }
 
-    fileprivate let walletDataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+    fileprivate let walletDataSource = WalletDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
         let cell: WalletHomeBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(viewModel: item)
 
         return cell
     })
 
-    fileprivate lazy var vitexDataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+    fileprivate lazy var vitexDataSource = viteXDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
         let cell: VitexBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(viewModel: item)
         cell.handler = { [unowned self] button in

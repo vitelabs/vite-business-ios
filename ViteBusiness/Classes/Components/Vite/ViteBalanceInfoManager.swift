@@ -7,6 +7,7 @@
 
 import ViteWallet
 import PromiseKit
+import ObjectMapper
 
 import BigInt
 import enum Alamofire.Result
@@ -14,6 +15,7 @@ import RxSwift
 import RxCocoa
 
 public typealias ViteBalanceInfoMap = [String: BalanceInfo]
+public typealias DexBalanceInfoMap = [String: DexBalanceInfo]
 
 extension ViteBalanceInfoManager: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -28,7 +30,10 @@ public class ViteBalanceInfoManager {
     fileprivate let disposeBag = DisposeBag()
     fileprivate var appending = "noAddress"
 
-    lazy var  balanceInfosDriver: Driver<ViteBalanceInfoMap> = self.balanceInfos.asDriver()
+    lazy var dexBalanceInfosDriver: Driver<DexBalanceInfoMap> = self.dexBalanceInfosBehaviorRelay.asDriver()
+    fileprivate var dexBalanceInfosBehaviorRelay: BehaviorRelay<DexBalanceInfoMap>! = nil
+
+    lazy var balanceInfosDriver: Driver<ViteBalanceInfoMap> = self.balanceInfos.asDriver()
     fileprivate var balanceInfos: BehaviorRelay<ViteBalanceInfoMap>! = nil
 
     lazy var unselectBalanceInfoVMsDriver: Driver<[WalletHomeBalanceInfoViewModel]> = self.unselectBalanceInfos.asDriver()
@@ -62,15 +67,23 @@ public class ViteBalanceInfoManager {
         HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
-            var map = ViteBalanceInfoMap()
+            let storage: Storage
             if let account = a {
-                map = self.read(address: account.address)
+                storage = self.read(address: account.address)
+            } else {
+                storage = Storage()
             }
 
             if self.balanceInfos == nil {
-                self.balanceInfos = BehaviorRelay<ViteBalanceInfoMap>(value: map)
+                self.balanceInfos = BehaviorRelay<ViteBalanceInfoMap>(value: storage.walletBalanceInfoMap)
             } else {
-                self.balanceInfos.accept(map)
+                self.balanceInfos.accept(storage.walletBalanceInfoMap)
+            }
+
+            if self.dexBalanceInfosBehaviorRelay == nil {
+                self.dexBalanceInfosBehaviorRelay = BehaviorRelay<DexBalanceInfoMap>(value: storage.dexBalanceInfoMap)
+            } else {
+                self.dexBalanceInfosBehaviorRelay.accept(storage.dexBalanceInfoMap)
             }
 
             self.unselectBalanceInfos = BehaviorRelay(value: [])
@@ -93,25 +106,35 @@ public class ViteBalanceInfoManager {
                 guard let `self` = self else { return }
 
                 switch r {
-                case .success(let balanceInfos):
+                case .success(let balanceInfos, let dexBalanceInfos):
 
                     plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
 
-                    let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
-                        var map = m
-                        map[balanceInfo.token.id] = balanceInfo
-                        return map
-                    })
+                    let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos)
+
+//                    let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
+//                        var map = m
+//                        map[balanceInfo.token.id] = balanceInfo
+//                        return map
+//                    })
 
                     let tokenInfos = MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite })
-                    let ret = tokenInfos.reduce(ViteBalanceInfoMap(), { (m, tokenInfo) -> ViteBalanceInfoMap in
-                        var ret = m
-                        if let balanceInfo = map[tokenInfo.viteTokenId] {
-                            ret[tokenInfo.viteTokenId] = balanceInfo
+                    let (wBalanceInfoMap, dBalanceInfoMap) = tokenInfos.reduce((ViteBalanceInfoMap(), DexBalanceInfoMap()), { (m, tokenInfo) -> (ViteBalanceInfoMap, DexBalanceInfoMap) in
+                        var wm = m.0
+                        var dm = m.1
+
+                        if let wdi = storage.walletBalanceInfoMap[tokenInfo.viteTokenId] {
+                            wm[tokenInfo.viteTokenId] = wdi
                         } else {
-                            ret[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
+                            wm[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!)
                         }
-                        return ret
+
+                        if let dbi = storage.dexBalanceInfoMap[tokenInfo.viteTokenId] {
+                            dm[tokenInfo.viteTokenId] = dbi
+                        } else {
+                            dm[tokenInfo.viteTokenId] = DexBalanceInfo(token: tokenInfo.toViteToken()!)
+                        }
+                        return (wm, dm)
                     })
 
                     let viteTokenIdSet = Set(tokenInfos.map { $0.viteTokenId })
@@ -119,8 +142,9 @@ public class ViteBalanceInfoManager {
                         .filter { !viteTokenIdSet.contains($0.token.id)}
                         .filter { $0.balance > 0 }
 
-                    self.save(mappable: balanceInfos)
-                    self.balanceInfos.accept(ret)
+                    self.save(mappable: storage)
+                    self.balanceInfos.accept(wBalanceInfoMap)
+                    self.dexBalanceInfosBehaviorRelay.accept(dBalanceInfoMap)
 
                     let viteTokenIds = unselectBalanceInfos.map { $0.token.id }
                     self.updateUnselectTokenInfoCacheIfNeeded(viteTokenIds: viteTokenIds, completion: { [weak self] (ret) in
@@ -154,17 +178,42 @@ public class ViteBalanceInfoManager {
         }
     }
 
-    private func read(address: ViteAddress) -> ViteBalanceInfoMap {
-
+    private func read(address: ViteAddress) -> Storage {
         self.appending = address
-        var map = ViteBalanceInfoMap()
-
         if let jsonString = self.readString(),
-            let balanceInfos = [BalanceInfo](JSONString: jsonString) {
-            balanceInfos.forEach { balanceInfo in map[balanceInfo.token.id] = balanceInfo }
+            let storage = Storage(JSONString: jsonString) {
+            return storage
+        } else {
+            return Storage()
+        }
+    }
+}
+
+extension ViteBalanceInfoManager {
+    struct Storage: Mappable {
+        var walletBalanceInfoMap: ViteBalanceInfoMap = [:]
+        var dexBalanceInfoMap: DexBalanceInfoMap = [:]
+
+        init?(map: Map) { }
+        mutating func mapping(map: Map) {
+            walletBalanceInfoMap <- map["walletBalanceInfoMap"]
+            dexBalanceInfoMap <- map["dexBalanceInfoMap"]
         }
 
-        return map
+        init(walletBalanceInfos: [BalanceInfo] = [], dexBalanceInfos: [DexBalanceInfo] = []) {
+            self.walletBalanceInfoMap = walletBalanceInfos
+                .reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
+                    var map = m
+                    map[balanceInfo.token.id] = balanceInfo
+                    return map
+                })
+            self.dexBalanceInfoMap = dexBalanceInfos
+                .reduce(DexBalanceInfoMap(), { (m, balanceInfo) -> DexBalanceInfoMap in
+                    var map = m
+                    map[balanceInfo.token.id] = balanceInfo
+                    return map
+                })
+        }
     }
 }
 

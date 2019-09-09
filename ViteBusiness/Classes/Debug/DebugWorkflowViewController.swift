@@ -45,6 +45,30 @@ class DebugWorkflowViewController: FormViewController {
                         Toast.show("Login firstly")
                     }
                 })
+            <<< LabelRow("Desposit") {
+                $0.title =  "Desposit"
+                }.onCellSelection({ _, _  in
+                    if let account = HDWalletManager.instance.account {
+                        Workflow.dexDepositWithConfirm(account: account, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
+                            print(r)
+
+                        })
+                    } else {
+                        Toast.show("Login firstly")
+                    }
+                })
+            <<< LabelRow("Withdraw") {
+                $0.title =  "Withdraw"
+                }.onCellSelection({ _, _  in
+                    if let account = HDWalletManager.instance.account {
+                        Workflow.dexWithdrawWithConfirm(account: account, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
+                            print(r)
+
+                        })
+                    } else {
+                        Toast.show("Login firstly")
+                    }
+                })
     }
 }
 #endif

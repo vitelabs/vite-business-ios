@@ -1431,7 +1431,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 724 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 728 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4221,6 +4221,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundDeposite = Rswift.StringResource(key: "fund.deposite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值到交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexDespositTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.desposit.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 充值至交易所
       /// 
       /// Locales: en, zh-Hans
@@ -4269,6 +4273,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundWalletAddress = Rswift.StringResource(key: "fund.walletAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提币至钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexWithdrawTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.withdraw.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 提现
       /// 
       /// Locales: en, zh-Hans
@@ -4285,6 +4293,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostListPageStatusProcessing = Rswift.StringResource(key: "bifrost.list.page.status.processing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexDespositConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.desposit.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexWithdrawConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.withdraw.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 等待签名
       /// 
       /// Locales: en, zh-Hans
@@ -9209,6 +9225,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.deposite", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 充值到交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexDespositTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.desposit.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 充值至交易所
       /// 
       /// Locales: en, zh-Hans
@@ -9293,6 +9316,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.walletAddress", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 提币至钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexWithdrawTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.withdraw.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 提现
       /// 
       /// Locales: en, zh-Hans
@@ -9319,6 +9349,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostListPageStatusProcessing(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.list.page.status.processing", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexDespositConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.desposit.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexWithdrawConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.withdraw.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 等待签名
