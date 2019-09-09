@@ -12,6 +12,7 @@ import web3swift
 public struct ViteConst {
     public static let instance = ViteConst()
 
+    public let envType: Env.EnvType
     public let tokenCode: TokenCode
     public let cos: Cos
     public let vite: Vite
@@ -39,6 +40,7 @@ public struct ViteConst {
         #endif
 
         // set
+        envType = currentEnv.type
         tokenCode = currentEnv.tokenCode
         cos = currentEnv.cos
         vite = currentEnv.vite
@@ -96,6 +98,14 @@ public extension ViteConst {
     }
 
     public struct Env {
+
+        public enum EnvType {
+            case test
+            case stage
+            case premainnet
+        }
+
+        public let type: EnvType
         public let tokenCode: TokenCode
         public let cos: Cos
         public let vite: Vite
@@ -104,7 +114,8 @@ public extension ViteConst {
         public let crossChain: CrossChain
 
         public static let premainnet =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
+            Env(type: .premainnet,
+                tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
                                      grinCoin: "1174"),
@@ -117,7 +128,7 @@ public extension ViteConst {
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com"),
-                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
+                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
@@ -129,7 +140,8 @@ public extension ViteConst {
         )
 
         public static let testEnv =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
+            Env(type: .test,
+                tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
                                      grinCoin: "1174"),
@@ -154,7 +166,8 @@ public extension ViteConst {
         )
 
         public static let stageEnv =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
+            Env(type: .stage,
+                tokenCode: TokenCode(viteCoin: "1171",
                                      etherCoin: "1",
                                      viteERC20: "41",
                                      grinCoin: "1174"),
@@ -167,7 +180,7 @@ public extension ViteConst {
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com"),
-                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
+                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",

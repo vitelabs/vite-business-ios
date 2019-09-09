@@ -11,15 +11,7 @@ import SwiftyJSON
 
 struct BuildInTransferNormal: BuildInTransferProtocol {
 
-    let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Transfer\",\"zh\":\"转账\"}},\"inputs\":[{\"name\":{\"base\":\"Transaction Address\",\"zh\":\"交易地址\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"交易金额\"},\"style\":{\"textColor\":\"007AFF\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Comment\",\"zh\":\"备注信息\"}}]}")!
-
     func match(_ sendTx: VBViteSendTx) -> Bool {
-
-        if let data = sendTx.block.data, !data.isEmpty {
-            guard data.contentTypeInUInt16 == AccountBlockDataContentType.utf8string.rawValue else {
-                return false
-            }
-        }
 
         if let e = sendTx.extend {
             guard let json = try? JSON(e) else {
@@ -35,12 +27,31 @@ struct BuildInTransferNormal: BuildInTransferProtocol {
     }
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
-        let title = description.function.title ?? ""
+
+        let note: String?
+        if let data = sendTx.block.data {
+            if let n = data.accountBlockDataToUTF8String() {
+                note  = n
+            } else {
+                note = nil
+            }
+        } else {
+            note  = ""
+        }
+
         let amount = "\(sendTx.block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let items = [description.inputs[0].confirmItemInfo(text: sendTx.block.toAddress),
-                     description.inputs[1].confirmItemInfo(text: amount),
-                     description.inputs[2].confirmItemInfo(text: sendTx.block.data?.toAccountBlockNote ?? "")
-        ]
-        return Promise.value(BifrostConfirmInfo(title: title, items: items))
+        let addressItem = BifrostConfirmItemInfo(title: R.string.localizable.buildinTransferUtf8stringItem0Title(),
+                                                 text: sendTx.block.toAddress)
+        let amountItem = BifrostConfirmItemInfo(title: R.string.localizable.buildinTransferUtf8stringItem1Title(),
+                                                 text: amount)
+        let dataItem: BifrostConfirmItemInfo
+        if let note = note {
+            dataItem = BifrostConfirmItemInfo(title: R.string.localizable.buildinTransferUtf8stringItem2Title(),
+                                              text: note)
+        } else {
+            dataItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleData(),
+                                              text: sendTx.block.data?.toHexString() ?? "")
+        }
+        return Promise.value(BifrostConfirmInfo(title: R.string.localizable.buildinTransferUtf8stringFunctionTitle(), items: [addressItem, amountItem, dataItem]))
     }
 }

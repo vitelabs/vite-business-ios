@@ -31,6 +31,7 @@ extension EtherWallet: TransactionService {
 
                 var options = TransactionOptions.defaultOptions
                 options.from = walletAddress
+                options.callOnBlock = .latest
                 if let g = gasPrice {
                     options.gasPrice = .manual(BigUInt(g))
                 } else {
@@ -102,6 +103,7 @@ extension EtherWallet: TransactionService {
                 var options = TransactionOptions.defaultOptions
                 options.value = BigUInt(amount)
                 options.from = walletAddress
+                options.callOnBlock = .latest
 
                 if let g = gasPrice {
                     options.gasPrice = .manual(BigUInt(g))

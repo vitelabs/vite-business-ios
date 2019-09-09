@@ -101,12 +101,41 @@ class CrossChainStatementViewController: BaseViewController {
             vcs.removeLast()
             var vc: UIViewController!
             if self.isWithDraw {
-                vc = GatewayWithdrawViewController.init(gateWayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+                let service = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
+                guard let address = HDWalletManager.instance.account?.address else {
+                    return
+                }
+                self.view.displayLoading()
+                service.withdrawInfo(viteAddress: address)
+                    .done { [weak self] (info) in
+                        self?.view.hideLoading()
+                        vc = GatewayWithdrawViewController.init(gateWayInfoService: service, withdrawInfo: info)
+                        vcs.append(vc)
+                        self?.navigationController?.setViewControllers(vcs, animated: true)
+                    }.catch({ [weak self] (e) in
+                        self?.view.hideLoading()
+                        Toast.show(e.localizedDescription)
+                    })
+
             } else {
-                vc = GatewayDepositViewController.init(gatewayInfoService: CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo))
+
+                let service = CrossChainGatewayInfoService.init(tokenInfo: self.tokenInfo)
+
+                self.view.displayLoading()
+
+                service.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
+                    .done { [weak self] (info) in
+                        self?.view.hideLoading()
+                        vc = GatewayDepositViewController.init(gatewayInfoService:service, depositInfo: info)
+                        vcs.append(vc)
+                        self?.navigationController?.setViewControllers(vcs, animated: true)
+                    }.catch { [weak self] (error) in
+                        self?.view.hideLoading()
+                        Toast.show(error.localizedDescription)
+                }
+
             }
-            vcs.append(vc)
-            self.navigationController?.setViewControllers(vcs, animated: true)
+
         }
     }
 

@@ -151,7 +151,7 @@ public extension Amount {
 
 extension ExchangeRateManager {
      func calculateBalanceWithEthRate(_ balance: Amount) -> String? {
-        let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, name: "", symbol: "", decimals: 18, index: 0, icon: "", id: "")
+        let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, rawChainName: CoinType.eth.name, name: "", symbol: "", decimals: 18, index: 0, icon: "", id: "")
 
         if self.rateMap[TokenCode.etherCoin] == nil{
             return nil

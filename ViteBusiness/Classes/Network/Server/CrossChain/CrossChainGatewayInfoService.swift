@@ -50,8 +50,8 @@ class CrossChainGatewayInfoService {
         return provider.withdrawInfo(for: tokenId, viteAddress: viteAddress)
     }
 
-    func verifyWithdrawAddress(withdrawAddress: String) -> Promise<Bool> {
-        return provider.verifyWithdrawAddress(for: tokenId, withdrawAddress: withdrawAddress)
+    func verifyWithdrawAddress(withdrawAddress: String, label: String?) -> Promise<Bool> {
+        return provider.verifyWithdrawAddress(for: tokenId, withdrawAddress: withdrawAddress, label: label)
     }
 
     func withdrawFee(viteAddress: String,amount: String,containsFee: Bool) -> Promise<String> {

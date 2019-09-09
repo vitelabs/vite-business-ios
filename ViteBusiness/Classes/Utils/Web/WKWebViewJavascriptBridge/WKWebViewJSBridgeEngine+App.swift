@@ -11,7 +11,7 @@ import Foundation
 public extension  WKWebViewJSBridgeEngine {
     //bridgeVersion
     @objc func jsapi_bridgeVersion(parameters: [String: String], callbackID: String) {
-        var response = Response(code:.success,msg: "ok",data: ["versionName":"1.1.0","versionCode":2])
+        var response = Response(code:.success,msg: "ok",data: ["versionName":"1.2.0","versionCode":3])
 
         let responseData = response.toJSONString(prettyPrint: true)
         let message = ["responseID": callbackID, "responseData": responseData]
@@ -70,7 +70,8 @@ public extension  WKWebViewJSBridgeEngine {
             guard let imgNSData = Data(base64Encoded: imgBase64Str) else {
                 return
             }
-            guard let codeImage = UIImage(data: imgNSData) else {
+             
+            guard let codeImage = UIImage(data: imgNSData, scale: 3) else {
                 return
             }
             self.delegate?.changeWebRRBtn(itemTitle: nil, itemImg: codeImage)

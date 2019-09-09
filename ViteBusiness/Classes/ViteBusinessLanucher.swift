@@ -79,7 +79,7 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func handleWebWalletBridgeConfig()  {
-        WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
+        WKWebViewConfig.instance.fetchViteAddress = { (_ data: [String: Any]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
             guard let account = HDWalletManager.instance.account else {
                 callback(Response(code: .notLogin, msg: "not login", data: nil), callbackId)
@@ -89,26 +89,26 @@ public class ViteBusinessLanucher: NSObject {
             callback(Response(code:.success,msg: "",data: account.address),callbackId)
         }
 
-        WKWebViewConfig.instance.invokeUri = { (_ data: [String: String]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
+        enum ErrorCode: Int {
+            case lastTransactionNotCompleted = 4001
+            case tokenInfoNotFound = 4002
+            case amountError = 4003
+            case userCancel = 4004
+        }
 
-            enum ErrorCode: Int {
-                case lastTransactionNotCompleted = 4001
-                case tokenInfoNotFound = 4002
-                case amountError = 4003
-                case userCancel = 4004
-            }
+        WKWebViewConfig.instance.invokeUri = { (_ data: [String: Any]?,_ callbackId:String, _ callback:@escaping WKWebViewConfig.NativeCallback)  in
 
             guard let data = data else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: data", data: nil), callbackId)
                 return
             }
 
-            guard let addressString = data["address"], addressString.isViteAddress else {
+            guard let addressString = data["address"] as? ViteAddress, addressString.isViteAddress else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: address", data: nil), callbackId)
                 return
             }
 
-            guard let uriString = data["uri"] else {
+            guard let uriString = data["uri"] as? String else {
                 callback(Response(code: .invalidParameter, msg: "invalid parameter: uri", data: nil), callbackId)
                 return
             }
@@ -131,6 +131,11 @@ public class ViteBusinessLanucher: NSObject {
             WKWebViewConfig.instance.isInvokingUri = true
             switch ViteURI.parser(string: uriString) {
             case .success(let uri):
+                if uri.address.isDexAddress {
+                    callback(Response(code: .noJurisdiction, msg: "Not Allow Call Dex Contract", data: nil), callbackId)
+                    WKWebViewConfig.instance.isInvokingUri = false
+                    return
+                }
                 HUD.show()
                 MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
@@ -168,7 +173,7 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     func handleWebAppBridgeConfig()  {
-        WKWebViewConfig.instance.share = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.share = { (_ data: [String: Any]?) -> Response? in
             if let url = data?["url"] as? String {
                 let shareUrl = URL.init(string: url)
                 Workflow.share(activityItems: [shareUrl])
@@ -176,11 +181,11 @@ public class ViteBusinessLanucher: NSObject {
             return nil
         }
 
-        WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.fetchLanguage = { (_ data: [String: Any]?) -> Response? in
             return Response(code:.success,msg: "ok",data: LocalizationService.sharedInstance.currentLanguage.code)
         }
 
-        WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: String]?) -> Response? in
+        WKWebViewConfig.instance.fetchAppInfo = { (_ data: [String: Any]?) -> Response? in
             #if DEBUG || TEST
             var env: String!
             switch DebugService.instance.config.appEnvironment {
@@ -211,9 +216,9 @@ public class ViteBusinessLanucher: NSObject {
             WKWebViewConfig.instance.closeStr = R.string.localizable.close()
         }.disposed(by: rx.disposeBag)
 
-        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
-        WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()?.tintColor( UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)).resizable
-        WKWebViewConfig.instance.closeStr = R.string.localizable.close()
+        WKWebViewConfig.instance.backImg = R.image.icon_nav_back_black()
+        WKWebViewConfig.instance.shareImg = R.image.icon_nav_share_black()
+        WKWebViewConfig.instance.closeStr  = R.string.localizable.close()
     }
 
     func handleNotification() {
@@ -303,26 +308,9 @@ public class ViteBusinessLanucher: NSObject {
     }
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme == AppScheme.value {
-            guard let _ = HDWalletManager.instance.account else { return false }
-            if let ret = AppScheme(rawValue: url.host ?? "") {
-                switch ret {
-                case .open:
-                    if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
-                        let url = URL(string: urlString) {
-                        NavigatorManager.instance.push(url)
-                    }
-                }
-            }
-        } else {
-            GrinManager.default.handle(url: url)
-        }
+        ViteAppSchemeHandler.instance.handle(url)
         return true
     }
 }
 
-enum AppScheme: String {
-    static let value = "viteapp"
 
-    case open
-}

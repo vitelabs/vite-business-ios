@@ -16,8 +16,9 @@ import RxCocoa
 
 class GatewayWithdrawViewController: BaseViewController {
 
-    init(gateWayInfoService: CrossChainGatewayInfoService) {
+    init(gateWayInfoService: CrossChainGatewayInfoService, withdrawInfo: WithdrawInfo) {
         self.gateWayInfoService =  gateWayInfoService
+        self.withDrawInfo = withdrawInfo
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -26,6 +27,7 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     var gateWayInfoService: CrossChainGatewayInfoService
+    var withDrawInfo: WithdrawInfo
 
     var token: TokenInfo {
         return gateWayInfoService.tokenInfo
@@ -54,7 +56,16 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     let abstractView = WalletAbstractView()
-    var addressView: AddressTextViewView =  AddressTextViewView()
+
+    lazy var addressView: AddressTextViewView =  AddressTextViewView().then {
+        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType != .eth {
+            $0.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
+        }
+    }
+
+    let labelView = AddressTextViewView().then { labelView in
+        labelView.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
+    }
 
     lazy var amountView = EthViteExchangeAmountView().then { amountView in
         amountView.textField.keyboardType = .decimalPad
@@ -80,7 +91,7 @@ class GatewayWithdrawViewController: BaseViewController {
         super.viewDidLoad()
         setUpview()
         bind()
-        withDrawInfo()
+        self.configWithdrawInfo()
     }
 
     func setUpview()  {
@@ -92,19 +103,30 @@ class GatewayWithdrawViewController: BaseViewController {
         amountView.textField.keyboardType = .decimalPad
 
         view.addSubview(scrollView)
+        view.addSubview(withdrawButton)
+
 
         scrollView.snp.makeConstraints { (m) in
             m.top.equalTo(navigationTitleView!.snp.bottom)
             m.left.right.equalTo(view)
+            m.bottom.equalTo(withdrawButton.snp.top)
         }
 
 
         scrollView.stackView.addArrangedSubview(abstractView)
         scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(addressView)
+
+        if let labelname = self.withDrawInfo.labelName {
+            scrollView.stackView.addPlaceholder(height: 10)
+            scrollView.stackView.addArrangedSubview(labelView)
+            labelView.snp.makeConstraints { (m) in
+                m.height.equalTo(78)
+            }
+            labelView.titleLabel.text = labelname
+        }
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addArrangedSubview(feeView)
-        view.addSubview(withdrawButton)
 
         abstractView.tl0.text = R.string.localizable.sendPageMyAddressTitle()
         abstractView.cl0.text = HDWalletManager.instance.account?.address
@@ -140,20 +162,46 @@ class GatewayWithdrawViewController: BaseViewController {
         toolbar.sizeToFit()
         done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
         amountView.textField.inputAccessoryView = toolbar
-
-        addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
         amountView.textField.delegate = self
+
+        if withDrawInfo.labelName != nil {
+            addressView.textView.kas_setReturnAction(.next(responder: labelView.textView))
+            labelView.textView.kas_setReturnAction(.next(responder: amountView.textField))
+        } else {
+            addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
+        }
 
     }
 
     func bind() {
         addressView.addButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
-                [R.string.localizable.crosschainWithdrawEthMyAddress(),
-                 R.string.localizable.ethSendPageEthContactsButtonTitle(),
-                 R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+            if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
+                FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
+                    [R.string.localizable.crosschainWithdrawEthMyAddress(),
+                     R.string.localizable.ethSendPageEthContactsButtonTitle(),
+                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
+
+            } else {
+                self.scanAddress()
+            }
             }.disposed(by: rx.disposeBag)
+
+        labelView.addButton.rx.tap.bind { [weak self] in
+            let scanViewController = ScanViewController()
+            scanViewController.reactor = ScanViewReactor()
+            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+                if case .success(let uri) = ViteURI.parser(string: result) {
+                    self?.labelView.textView.text = uri.address
+                } else if case .success(let uri) = ETHURI.parser(string: result) {
+                    self?.labelView.textView.text = uri.address
+                } else {
+                    self?.labelView.textView.text = result
+                }
+                scanViewController.navigationController?.popViewController(animated: true)
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }.disposed(by: rx.disposeBag)
 
         rightBarItemBtn.rx.tap.bind { [unowned self] in
             let vc = CrossChainHistoryViewController()
@@ -223,7 +271,11 @@ class GatewayWithdrawViewController: BaseViewController {
                     guard let `self` = self else { return }
                     guard let feeAmount = Amount(fee) else {return }
                     self.feeView.contentLabel.text = feeAmount.amountShort(decimals: self.token.decimals)
-                    self.amountView.textField.text = (self.balance - feeAmount).amount(decimals: self.gateWayInfoService.tokenInfo.decimals, count: min(8, self.gateWayInfoService.tokenInfo.decimals))
+                    if self.balance <= feeAmount {
+                        self.amountView.textField.text = "0"
+                    } else {
+                        self.amountView.textField.text = (self.balance - feeAmount).amountFull(decimals: self.gateWayInfoService.tokenInfo.decimals)
+                    }
                 }.catch({ (error) in
                     Toast.show(error.localizedDescription)
                 })
@@ -236,6 +288,12 @@ class GatewayWithdrawViewController: BaseViewController {
 
     func withdraw()  {
 
+        guard let theFee = self.feeView.contentLabel.text?.toAmount(decimals: self.token.decimals),
+            self.balance > theFee else {
+                Toast.show(R.string.localizable.sendPageToastAmountError())
+                return
+        }
+        
         let address = self.addressView.textView.text ?? ""
 
         guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
@@ -267,7 +325,12 @@ class GatewayWithdrawViewController: BaseViewController {
         guard let withDrawAddress = addressView.textView.text else { return }
 
         let metalInfo = gateWayInfoService.getMetaInfo()
-        let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress)
+
+        var label: String? = nil
+        if let _ = self.withDrawInfo.labelName {
+            label = self.labelView.textView.text ?? ""
+        }
+        let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress, label: label)
         let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress)
         let fee = gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amount.amountFull(decimals: 0), containsFee: false)
 
@@ -307,13 +370,34 @@ class GatewayWithdrawViewController: BaseViewController {
                 let amountWithFee = amount + (Amount(feeStr) ?? Amount(0))
 
                 let veptype: UInt16 = 3011
-                let tpye: UInt8 = 0
-                let withDrawAddressData = withDrawAddress.data(using: .utf8)
+                var tpye: UInt8 = UInt8(metalInfo.type.rawValue)
+                let withDrawAddressData = withDrawAddress.data(using: .utf8) ?? Data()
 
                 var data = Data()
-                data.append(Data(veptype.toBytes))
-                data.append(Data(tpye.toBytes))
-                data.append(withDrawAddressData!)
+
+                if tpye == 1 {
+                    data.append(Data(veptype.toBytes))
+                    data.append(Data(tpye.toBytes))
+
+                    let addressSize: UInt8  = UInt8(withDrawAddressData.count)
+                    data.append(Data(addressSize.toBytes))
+                    data.append(withDrawAddressData)
+
+
+                    let label = self.labelView.textView.text ?? ""
+                    let labelData = label.data(using: .utf8) ?? Data()
+
+                    var labelSize: UInt8 = UInt8(labelData.count)
+
+                    data.append(Data(labelSize.toBytes))
+                    data.append(labelData )
+
+                } else {
+                    data.append(Data(veptype.toBytes))
+                    data.append(Data(tpye.toBytes))
+                    data.append(withDrawAddressData)
+                }
+
 
                 Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, utString:nil,  completion: { (result) in
                     switch result {
@@ -333,49 +417,49 @@ class GatewayWithdrawViewController: BaseViewController {
         }
     }
 
+    func scanAddress() {
+        let scanViewController = ScanViewController()
+        scanViewController.reactor = ScanViewReactor()
+        _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
+            if case .success(let uri) = ViteURI.parser(string: result) {
+                self?.addressView.textView.text = uri.address
+            } else if case .success(let uri) = ETHURI.parser(string: result) {
+                self?.addressView.textView.text = uri.address
+            } else {
+                self?.addressView.textView.text = result
+            }
+            scanViewController.navigationController?.popViewController(animated: true)
+        }
+        UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+    }
+
 }
 
 
 extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int) {
-        if index == 0 {
-            addressView.textView.text = EtherWallet.shared.ethereumAddress?.address
-        } else if index == 1 {
-            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
-            let vc = AddressListViewController(viewModel: viewModel)
-            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        } else if index == 2 {
-            let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
-            _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
-                if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address
-                } else if case .success(let uri) = ETHURI.parser(string: result) {
-                    self?.addressView.textView.text = uri.address
-                } else {
-                    self?.addressView.textView.text = result
-                }
-                scanViewController.navigationController?.popViewController(animated: true)
+        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
+            if index == 0 {
+                addressView.textView.text = EtherWallet.shared.ethereumAddress?.address
+            } else if index == 1 {
+                let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
+                let vc = AddressListViewController(viewModel: viewModel)
+                vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            } else if index == 2 {
+                scanAddress()
             }
-            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
         }
     }
 
-
-    func withDrawInfo() {
-        guard let address = HDWalletManager.instance.account?.address else {
-            return
-        }
-        gateWayInfoService.withdrawInfo(viteAddress: address)
-            .done { [weak self] (info) in
-                guard let `self` = self,
-                    let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
-                let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
-                if !info.minimumWithdrawAmount.isEmpty,
-                let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: decimals) {
-                    self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
-                }
+    func configWithdrawInfo()  {
+        let info = self.withDrawInfo
+        guard
+            let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
+            let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
+        if !info.minimumWithdrawAmount.isEmpty,
+            let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: decimals) {
+            self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
         }
 
     }

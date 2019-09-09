@@ -59,7 +59,9 @@ public class VBInteractor {
         self.session = session
         self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
         self.clientMeta = meta
-        self.socket = WebSocket.init(url: session.bridge)
+        var request = URLRequest(url: session.bridge)
+        request.timeoutInterval = 10
+        self.socket = WebSocket.init(request: request)
 
         socket.onConnect = { [weak self] in self?.onConnect() }
         socket.onDisconnect = { [weak self] error in self?.onDisconnect(error: error) }
@@ -164,7 +166,9 @@ extension VBInteractor {
     private func encryptAndSend(data: Data) -> Promise<Void> {
         print("==> encrypt: \(String(data: data, encoding: .utf8)!) ")
         let encoder = JSONEncoder()
-        let payload = try! VBEncryptor.encrypt(data: data, with: session.key)
+        guard let payload = try? VBEncryptor.encrypt(data: data, with: session.key) else {
+            return Promise(error: VBError.unknown)
+        }
         let payloadString = encoder.encodeAsUTF8(payload)
         let message = VBSocketMessage(topic: peerId ?? session.topic, type: .pub, payload: payloadString)
         let data = message.encoded

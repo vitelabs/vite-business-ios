@@ -186,7 +186,7 @@ class CrossChainHistoryCell: UITableViewCell {
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
         let viteSymble = "VITE"
-        let othenPlatform = tokenInfo.gatewayInfo?.mappedToken.coinType.rawValue ?? ""
+        let othenPlatform = tokenInfo.gatewayInfo?.mappedToken.rawChainName ?? ""
 
         symbleLabel.text = tokenInfo.gatewayInfo?.mappedToken.symbol
 
@@ -248,6 +248,9 @@ class CrossChainHistoryCell: UITableViewCell {
                 iconImageView.image = R.image.crosschain_status_failure()
             case .TOT_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(viteSymble)
+                if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
+                    statusString = statusString + " (\(current)/\(total))"
+                }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .TOT_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()
@@ -294,6 +297,9 @@ class CrossChainHistoryCell: UITableViewCell {
             switch record.state {
             case .OPPOSITE_PROCESSING:
                 statusString = R.string.localizable.crosschainStatusWaitToConfirm(othenPlatform)
+                if let current = record.inTxConfirmedCount, let total = record.inTxConfirmationCount {
+                    statusString = statusString + " (\(current)/\(total))"
+                }
                 iconImageView.image = R.image.crosschain_status_vite()
             case .OPPOSITE_CONFIRMED:
                 statusString = R.string.localizable.crosschainStatusGatewayReceived()

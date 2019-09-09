@@ -158,11 +158,10 @@ class WalletHomeViewController: BaseTableViewController {
                             Toast.show(R.string.localizable.grinCreating())
                             return
                         } else {
-                            let storyboard =
-                                balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
+                            balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
                                     .instantiateInitialViewController()!
                         }
-                    case .btc:
+                    case .unsupport:
                         fatalError()
                     }
                     self.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
@@ -185,7 +184,7 @@ class WalletHomeViewController: BaseTableViewController {
         let scanViewController = ScanViewController()
         scanViewController.reactor = ScanViewReactor.init()
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
-            if case .success(let uri) = ViteURI.parser(string: result) {
+            if case .success(let uri) = ViteURI.parser(string: result), !uri.address.isDexAddress {
                 self.handleScanResult(with: uri, scanViewController: scanViewController)
             } else if case .success(let uri) = ETHURI.parser(string: result) {
                 self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
@@ -194,7 +193,11 @@ class WalletHomeViewController: BaseTableViewController {
             } else if case .success(let uri) = BifrostURI.parser(string: result) {
                 self.handleScanResultForBifrost(with: uri, scanViewController: scanViewController)
             } else {
-                scanViewController?.showAlertMessage(result)
+                if let url = URL(string: result), ViteAppSchemeHandler.instance.handleViteScheme(url) {
+                    // do nothing
+                } else {
+                    scanViewController?.showAlertMessage(result)
+                }
             }
         }
         self.navigationController?.pushViewController(scanViewController, animated: true)
@@ -219,33 +222,9 @@ class WalletHomeViewController: BaseTableViewController {
                 if !tokenInfo.isContains {
                     MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
                 }
-                
-                switch uri.type {
-                case .transfer:
-                    if let data = uri.data {
-                        if data.contentType == .utf8string,
-                            let contentData = data.rawContent,
-                            let note = String(bytes: contentData, encoding: .utf8) {
-                            let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: note)
-                            scanViewController?.popSelfAndPush(sendViewController)
-                        } else {
-                            self.navigationController?.popViewController(animated: true)
-                            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: uri.address, tokenInfo: tokenInfo, amount: amount, data: uri.data, utString: nil, completion: { _ in })
-                        }
-                    } else {
-                        let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, note: nil)
-                        scanViewController?.popSelfAndPush(sendViewController)
-                    }
-                case .contract:
-                    self.navigationController?.popViewController(animated: true)
-                    Workflow.callContractWithConfirm(account: HDWalletManager.instance.account!,
-                                                     toAddress: uri.address,
-                                                     tokenInfo: tokenInfo,
-                                                     amount: amount,
-                                                     fee: fee,
-                                                     data: uri.data,
-                                                     completion: { _ in })
-                }
+
+                let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, data: uri.data)
+                UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)
             }
@@ -270,7 +249,7 @@ class WalletHomeViewController: BaseTableViewController {
                 }
 
                 let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
-                scanViewController?.popSelfAndPush(sendViewController)
+                UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)
             }
@@ -281,7 +260,7 @@ class WalletHomeViewController: BaseTableViewController {
 
         func goWeb() {
             let webvc = WKWebViewController.init(url: url)
-            scanViewController?.popSelfAndPush(webvc)
+            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
         }
 
         var showAlert = true

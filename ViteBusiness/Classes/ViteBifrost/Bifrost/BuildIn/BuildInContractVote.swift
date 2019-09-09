@@ -11,7 +11,12 @@ import PromiseKit
 struct BuildInContractVote: BuildInContractProtocol {
 
     let abi = ABI.BuildIn.vote
-    let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Vote\",\"zh\":\"投票\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Candidates\",\"zh\":\"投票节点名称\"}},{\"name\":{\"base\":\"Votes\",\"zh\":\"投票量\"}}]}")!
+    let description = VBViteSendTx.Description(
+        function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteFunctionTitle()),
+        inputs: [
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteItem0Title()),
+            VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteItem1Title()),
+        ])
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }

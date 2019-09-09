@@ -380,3 +380,10 @@ extension BigInt {
         return ret
     }
 }
+
+extension ViteAddress {
+    var isDexAddress: Bool {
+        return self == ViteWalletConst.ContractAddress.dexFund.address ||
+            self == ViteWalletConst.ContractAddress.dexTrade.address
+    }
+}

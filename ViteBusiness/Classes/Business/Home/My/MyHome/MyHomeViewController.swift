@@ -74,7 +74,17 @@ class MyHomeViewController: BaseTableViewController {
             #if DAPP
             let items = configViewModel.items.filter({ $0.isValid && $0.type != .custom })
             #else
-            let items = configViewModel.items.filter({ $0.isValid })
+            let items = configViewModel.items.filter({ $0.isValid }).filter({ item in
+                if AppConfigService.instance.isOnlineVersion {
+                    return true
+                } else {
+                    if item.url.hasPrefix("https://growth.vite.net/invite") {
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+            })
             #endif
             return [SectionModel(model: "item", items: items)]
         }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)

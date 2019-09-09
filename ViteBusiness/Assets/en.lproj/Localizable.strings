@@ -638,14 +638,18 @@
 "crosschain.deposit.otherwallet" = "Receive from Another Wallet";
 "crosschain.deposit.history" = "Receive History";
 "crosschain.withdraw.history" = "Transfer History";
-"crosschain.deposit.minAmountDesc" = "The required minimum receive amount is %@. If you try to receive an amount less than this threshold, the transaction will fail.";
+"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
+"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
 "crosschain.deposit.address" = "Receive Address";
-"crosschain.deposit.scanAddress" = "Scan QR Code to Receive";
+"crosschain.deposit.scanAddress" = "Please scan the address QR code";
+"crosschain.deposit.scanLabel" = "Please scan the %@ code";
+"crosschain.deposit.labelDesc" = "Please do use %@ together with the Receive Address, or you will lose the token(s).";
+
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
 "crosschain.deposit.min" = "Minimum Receive Amount ";
-"crosschain.withdraw.min" = "Minimum Send Amount";
+"crosschain.withdraw.min" = "Minimum Send Amount ";
 "crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
 "crosschain.deposit.all" = "Receive All";
 "crosschain.deposit.amount" = "Receive Amount";
@@ -670,7 +674,7 @@
 "crosschain.status.gatewayReceived" = "Received by Gateway";
 "crosschain.status.withdraw.failed" = "Withdraw Failed";
 "crosschain.status.failedBecausePoor" = "Too less amount";
-"crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
+"crosschain.withdraw.fee.desc" = "This fee is charged by the gateway.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
@@ -706,7 +710,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE\n\n\n";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
@@ -752,16 +756,25 @@
 
 "bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
 // Buildin
+
+"buildin.transfer.utf8string.function.title" = "Transfer";
+"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item2.title" = "Comment";
 
 "buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
 "buildin.transfer.cross.chain.item0.title" = "Amount";
 "buildin.transfer.cross.chain.item1.title" = "Fee";
 "buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
+"buildin.vote.function.title" = "Vote";
+"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item1.title" = "Votes";
 
 "buildin.coin.issuance.function.title" = "Token Issuance";
 "buildin.coin.issuance.item0.title" = "Issuance Address";
@@ -833,3 +846,11 @@
 "buildin.dex.cancel.vip.function.title" = "Cancel VIP";
 "buildin.dex.cancel.vip.item0.title" = "Current Address";
 "buildin.dex.cancel.vip.item1.title" = "Amount";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "Transaction Confirmation";
+"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.network.error" = "Network Error";
+
+
+"copyed" = "Successfully copied";

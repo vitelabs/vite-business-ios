@@ -12,20 +12,11 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
-    case btc = "BTC"
+    case unsupport = "unsupport"
 
 
     var name: String {
-        switch self {
-        case .vite:
-            return "VITE"
-        case .eth:
-            return "ETH"
-        case .grin:
-            return "GRIN"
-        case .btc:
-            return "BTC"
-        }
+        return rawValue
     }
 
     static var allTypes: [CoinType] = [.vite, .eth, .grin]
@@ -51,8 +42,8 @@ public enum CoinType: String {
                 UIColor(netHex: 0xFF5C00),
                 UIColor(netHex: 0xFFC800)
             ]
-        default:
-            fatalError()
+        case .unsupport:
+            return [UIColor.white]
         }
     }
 
@@ -64,8 +55,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x5BC500)
         case .grin:
             return UIColor(netHex: 0xFF9C00)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -77,8 +68,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0x5BC500)
         case .grin:
             return UIColor(netHex: 0xFF9C00)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -90,8 +81,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF8FFF2)
         case .grin:
             return UIColor(netHex: 0xFFF9E1)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -103,8 +94,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF1FFE6)
         case .grin:
             return UIColor(netHex: 0xFFF7DD)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 }
@@ -121,7 +112,8 @@ extension TokenCode {
 public struct TokenInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
-    public fileprivate(set)  var coinType: CoinType = .vite
+    public fileprivate(set)  var coinType: CoinType = .unsupport
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var decimals: Int = 0
@@ -129,6 +121,8 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var icon: String = ""
     public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
+
+
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
@@ -154,8 +148,8 @@ public struct TokenInfo: Mappable {
             }
         case .grin:
              return "Grin Coin"
-        default:
-            fatalError()
+        case .unsupport:
+            return "unsupport"
         }
     }
 
@@ -176,6 +170,7 @@ public struct TokenInfo: Mappable {
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
         coinType <- (map["platform"], coinTypeTransform)
+        rawChainName <- map["platform"]
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimal"]
@@ -193,9 +188,10 @@ public struct TokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
         self.tokenCode = tokenCode
         self.coinType = coinType
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
@@ -237,18 +233,26 @@ extension TokenInfo: Equatable {
 
 extension TokenInfo {
     static var viteCoin: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!
+        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"Vite Token\",\"tokenCode\":\"1171\",\"platform\":\"VITE\",\"tokenAddress\":\"tti_5649544520544f4b454e6e40\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
+        let info = TokenInfo(JSONString: jsonString)!
+        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id) ?? info
     }
 
     static var viteERC20: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20)!
+        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"ViteToken\",\"tokenCode\":\"41\",\"platform\":\"ETH\",\"tokenAddress\":\"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
+        let info = TokenInfo(JSONString: jsonString)!
+        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20) ?? info
     }
 
     static var eth: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin)!
+        let jsonString = "{\"symbol\":\"ETH\",\"name\":\"Ether\",\"tokenCode\":\"1\",\"platform\":\"ETH\",\"tokenAddress\":null,\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\",\"decimal\":18}"
+        let info = TokenInfo(JSONString: jsonString)!
+        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin) ?? info
     }
     static var eth000: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: "1352")!
+        let jsonString = "{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"VITE\",\"tokenCode\":\"1352\",\"tokenIndex\":0,\"gatewayInfo\":{\"policy\":{\"en\":\"https://x.vite.net/privacy.html\"},\"isOfficial\":true,\"mappedToken\":{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"ETH\",\"tokenCode\":\"1\",\"tokenIndex\":null,\"tokenAddress\":null,\"name\":\"Ether\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"},\"support\":\"gateway@vite.org\",\"url\":\"https://crosschain.vite.net/gateway/eth\",\"level\":null,\"links\":{\"website\":[\"https://vite.org\"],\"whitepaper\":[\"https://github.com/vitelabs/whitepaper/\"],\"explorer\":[\"https://explorer.vite.net\"]},\"overview\":{\"en\":\"The gateway provided by Vite Labs, running cross-chain services for four coins: BTC, ETH, USDT(ERC20)\",\"zh\":\"Vite Labs官方网关，负责BTC、ETH、USDT(ERC20)、GRIN四种代币跨链服务\"},\"name\":\"Vite Labs\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\"},\"tokenAddress\":\"tti_687d8a93915393b219212c73\",\"name\":\"Ethereum\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"}"
+        let info = TokenInfo(JSONString: jsonString)!
+        return MyTokenInfosService.instance.tokenInfo(for: "1352") ?? info
     }
 }
 
@@ -305,7 +309,7 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.coinType == .eth
+        return self.gatewayInfo != nil
     }
 
     public var gatewayName: String? {
@@ -355,7 +359,7 @@ public struct GatewayInfo: Mappable {
 
     var mappedToken: TokenInfo {
         let mapped = mappedTokenInfo
-        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
+        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, rawChainName: mapped.rawChainName, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
     }
 }
 
@@ -364,7 +368,8 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
-    public fileprivate(set)  var coinType: CoinType = .vite
+    public fileprivate(set)  var coinType: CoinType = .unsupport
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
@@ -391,6 +396,7 @@ public struct MappedTokenInfo: Mappable {
         name <- map["name"]
         symbol <- map["symbol"]
         coinType <- (map["platform"], coinTypeTransform)
+        rawChainName <- map["platform"]
         decimals <- map["decimal"]
         index <- map["tokenIndex"]
         icon <- map["icon"]
@@ -405,9 +411,10 @@ public struct MappedTokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
         self.tokenCode = tokenCode
         self.coinType = coinType
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals

@@ -68,7 +68,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
         self.handleNavBar()
 
-        self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 100))
+        self.webView.load(URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 100))
 
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).bind {
             [weak self] _ in
@@ -90,37 +90,12 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
     }
 
     fileprivate func handleNavBar() {
-        let color = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
-        self.navigationController?.navigationBar.tintColor = color
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.color(UIColor.white), for: .default)
-        let textAttributes = [
-            NSAttributedString.Key.foregroundColor: color,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
-        ]
-
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        NavigationBarStyle.configStyle(.default, viewController: self)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.title = self.titleStr
 
-        #if DAPP
-        if #available(iOS 11.0, *) {
-            let spaceItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            spaceItem.width = -15
-            self.navigationItem.leftBarButtonItems = [spaceItem,self.backItem, self.closeItem, self.refreshItem]
-        } else {
-            self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem, self.refreshItem]
-        }
-        #else
-        if #available(iOS 11.0, *) {
-            let spaceItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            spaceItem.width = -15
-            self.navigationItem.leftBarButtonItems = [spaceItem,self.backItem, self.closeItem]
-        } else {
-              self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem]
-        }
-        #endif
-        self.navigationItem.rightBarButtonItem = self.shareItem
+        self.navigationItem.leftBarButtonItems = [self.backItem, self.closeItem]
+        self.navigationItem.rightBarButtonItems = [self.shareItem, self.refreshItem]
     }
 
     lazy var webProgressView: UIProgressView = {
@@ -153,62 +128,14 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         return webView
     }()
 
-    lazy var shareItem: UIBarButtonItem = {
-        let btn = UIButton(type: .custom)
-        btn.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
-        btn.setImage(WKWebViewConfig.instance.shareImg, for: .normal)
-        btn.addTarget(self, action: #selector(shareWebView), for: .touchUpInside)
+    lazy var shareItem: UIBarButtonItem = UIBarButtonItem(image: WKWebViewConfig.instance.shareImg, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(shareWebView))
 
-        let btnView = UIView(frame: btn.bounds)
-        btnView.addSubview(btn)
-        let backItem =  UIBarButtonItem(customView: btnView)
-        return backItem
-    }()
 
-    lazy var backItem: UIBarButtonItem = {
-        let btn = UIButton(type: .custom)
-        btn.frame = CGRect.init(x: -15, y: -3, width: 40, height: 40)
-        btn.setImage(WKWebViewConfig.instance.backImg, for: .normal)
-        btn.addTarget(self, action: #selector(goBackBtnAction), for: .touchUpInside)
-        btn.backgroundColor = .clear
+    lazy var backItem = UIBarButtonItem(image: WKWebViewConfig.instance.backImg, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(goBackBtnAction))
 
-        let btnView = UIView(frame: btn.bounds)
-        btnView.addSubview(btn)
-        let backItem =  UIBarButtonItem(customView: btnView)
-        return backItem
-    }()
+    lazy var refreshItem = UIBarButtonItem(image: R.image.icon_nav_refresh(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(refreshVCAction))
 
-    lazy var refreshItem: UIBarButtonItem = {
-        let btn = UIButton(type: .custom)
-        btn.backgroundColor = .clear
-        btn.setTitle("Refresh", for: .normal)
-        btn.addTarget(self, action: #selector(refreshVCAction), for: .touchUpInside)
-        btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.sizeToFit()
-        btn.frame.origin = CGPoint(x: -18, y: 0)
-
-        let btnView = UIView(frame: btn.bounds)
-        btnView.addSubview(btn)
-        let closeItem =   UIBarButtonItem(customView: btnView)
-        return closeItem
-    }()
-
-    lazy var closeItem: UIBarButtonItem = {
-        let btn = UIButton(type: .custom)
-        btn.backgroundColor = .clear
-        btn.setTitle(WKWebViewConfig.instance.closeStr, for: .normal)
-        btn.addTarget(self, action: #selector(closeVCAction), for: .touchUpInside)
-        btn.setTitleColor(UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.sizeToFit()
-        btn.frame.origin = CGPoint(x: -18, y: 0)
-
-        let btnView = UIView(frame: btn.bounds)
-        btnView.addSubview(btn)
-        let closeItem =   UIBarButtonItem(customView: btnView)
-        return closeItem
-    }()
+    lazy var closeItem = UIBarButtonItem(title: WKWebViewConfig.instance.closeStr, style: .plain, target: self, action: #selector(closeVCAction))
 }
 
 extension WKWebViewController : UIGestureRecognizerDelegate{
@@ -225,7 +152,11 @@ extension WKWebViewController {
     }
 
     @objc func refreshVCAction() {
-        webView.reload()
+        if let url = webView.url {
+            webView.reload()
+        } else {
+            webView.load((URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 100)))
+        }
     }
 
     @objc func goNextBtnAction() {

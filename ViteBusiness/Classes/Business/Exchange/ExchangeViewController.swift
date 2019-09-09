@@ -84,7 +84,7 @@ class ExchangeViewController: BaseViewController {
 
         scrollView.snp.makeConstraints { (m) in
             m.left.right.top.equalToSuperview()
-            m.bottom.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
 
         topBackgroundView.snp.makeConstraints { (m) in
@@ -163,20 +163,22 @@ class ExchangeViewController: BaseViewController {
             self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1 VITE = " + (String(info.rightRate) ?? "-") + " ETH"
             if let total = BigDecimal(String(info.quota.quotaTotal) ),
                 let min = BigDecimal(String(info.quota.unitQuotaMin)),
-            let max = BigDecimal(String(info.quota.unitQuotaMax)),
-            let rest = BigDecimal(String(info.quota.quotaRest)) {
+                let max = BigDecimal(String(info.quota.unitQuotaMax)),
+                let rest = BigDecimal(String(info.quota.quotaRest)) {
                 let totalStr =  BigDecimalFormatter.format(bigDecimal: total , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 let minStr =  BigDecimalFormatter.format(bigDecimal: min , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 let maxStr =  BigDecimalFormatter.format(bigDecimal: max , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
-                 let restStr =  BigDecimalFormatter.format(bigDecimal: rest , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+                let restStr =  BigDecimalFormatter.format(bigDecimal: rest , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 self.label0.text = R.string.localizable.exchangeLimitOnetime(minStr, maxStr)
                 self.label1.text = R.string.localizable.exchangeLimitOneday(totalStr, restStr)
-                self.card.viteInfo.inputTextField.placeholder = minStr + " - " + maxStr
+                let placeholder = minStr + " - " + maxStr
+                self.card.viteInfo.inputTextField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
             }
 
         }.disposed(by: rx.disposeBag)
 
-        card.viteInfo.inputTextField.rx.text.bind { text in
+        card.viteInfo.inputTextField.rx.text.bind {[weak self] text in
+            guard let `self` = self else { return }
             guard let count = Double(text ?? "") else {
                 self.card.ethInfo.inputTextField.text = nil
                 return
@@ -200,7 +202,8 @@ class ExchangeViewController: BaseViewController {
 
         }.disposed(by: rx.disposeBag)
 
-        card.ethInfo.inputTextField.rx.text.bind { text in
+        card.ethInfo.inputTextField.rx.text.bind {[weak self] text in
+            guard let `self` = self else { return }
             guard let count = Double(text ?? "") else {
                 self.card.viteInfo.inputTextField.text = nil
                 return
@@ -222,7 +225,9 @@ class ExchangeViewController: BaseViewController {
 
             }.disposed(by: rx.disposeBag)
 
-        exchangeButton.rx.tap.bind{ [unowned self] in
+        exchangeButton.rx.tap.bind{ [weak self] in
+            guard let `self` = self else { return }
+            Statistics.log(eventId: "instant_purchase_buy")
 
             guard let viteAmount = Double(self.card.viteInfo.inputTextField.text ?? "")  else  {
                 Toast.show(R.string.localizable.grinSendIllegalAmmount())
@@ -248,7 +253,8 @@ class ExchangeViewController: BaseViewController {
                     return
             }
 
-            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: address, tokenInfo: TokenInfo.eth000, amount:amount, data: nil, utString: nil) { (block) in
+            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: address, tokenInfo: TokenInfo.eth000, amount:amount, data: nil, utString: nil) { [weak self] (block) in
+                guard let `self` = self else { return }
                 switch block {
                 case .success(let b):
                     self.vm.action.onNext(.report(hash:b.hash ?? ""))

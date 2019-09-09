@@ -644,9 +644,12 @@
 "crosschain.deposit.otherwallet" = "其他钱包转入";
 "crosschain.deposit.history" = "转入记录";
 "crosschain.withdraw.history" = "转出记录";
-"crosschain.deposit.minAmountDesc" = "最小转入金额为%@ ，若转入金额小于最小转入金额，将导致转入失败。";
+"crosschain.deposit.minAmountDesc" = "通过下方转入地址只能转入%@，且金额不得低于%@";
+"crosschain.deposit.minComfirm" = "%@个网络确认之后到账，请耐心等待";
 "crosschain.deposit.address" = "转入地址";
-"crosschain.deposit.scanAddress" = "请扫描二维码转入";
+"crosschain.deposit.scanAddress" = "请扫描地址二维码";
+"crosschain.deposit.scanLabel" = "请扫描%@二维码";
+"crosschain.deposit.labelDesc" = "请将%@与充值地址同时使用，否则币会丢失";
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。Vite钱包跨链转入是使用Vite钱包%@余额进行转入。</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。</p>";
 "crosschain.withdraw.eth.myAddress" = "我的ETH地址";
@@ -676,7 +679,7 @@
 "crosschain.status.gatewayReceived" = "网关已接收";
 "crosschain.status.withdraw.failed" = "转出失败";
 "crosschain.status.failedBecausePoor" = "转入金额过小";
-"crosschain.withdraw.fee.desc" = "此手续费包含以太矿工费用";
+"crosschain.withdraw.fee.desc" = "此手续费为网关收取。";
 "crosschain.withdraw.aboutfee" = "关于手续费";
 "crosschain.status.failed" = "转入失败";
 "crosschain.beta.alert" = "当前网关为beta版，请不要转入大额资产";
@@ -715,7 +718,7 @@
 "exchange.price" = "价格：";
 "exchange.amount" = "数量：";
 "exchange.limit.onetime" = "单次购买限额：%@ - %@ VITE";
-"exchange.limit.oneday" = "单日总限额：%@ VITE；剩余额度：%@ VITE";
+"exchange.limit.oneday" = "单日总限额：%@ VITE；剩余额度：%@ VITE\n\n\n";
 "exchange.limit.alert" = "您输入的金额超出限制范围，单次购买限额%@-%@VITE，单日限额%@VITE";
 
 /* ViteConnect */
@@ -760,16 +763,25 @@
 
 "bifrost.operation.function.title" = "合约调用";
 "bifrost.operation.title.contract.address" = "合约地址";
-"bifrost.operation.title.token.symbol" = "币种";
 "bifrost.operation.title.amount" = "金额";
+"bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
 // Buildin
+
+"buildin.transfer.utf8string.function.title" = "转账";
+"buildin.transfer.utf8string.item0.title" = "交易地址";
+"buildin.transfer.utf8string.item1.title" = "交易金额";
+"buildin.transfer.utf8string.item2.title" = "备注信息";
 
 "buildin.transfer.cross.chain.function.title" = "跨链转出";
 "buildin.transfer.cross.chain.item0.title" = "转出金额";
 "buildin.transfer.cross.chain.item1.title" = "手续费";
 "buildin.transfer.cross.chain.item2.title" = "收款地址";
+
+"buildin.vote.function.title" = "投票";
+"buildin.vote.item0.title" = "投票节点名称";
+"buildin.vote.item1.title" = "投票量";
 
 "buildin.coin.issuance.function.title" = "铸币";
 "buildin.coin.issuance.item0.title" = "铸币地址";
@@ -841,3 +853,11 @@
 "buildin.dex.cancel.vip.function.title" = "撤销VIP";
 "buildin.dex.cancel.vip.item0.title" = "当前地址";
 "buildin.dex.cancel.vip.item1.title" = "抵押金额";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "交易确认";
+"app.scheme.home.page.busy.content" = "请确认如下交易信息";
+"app.scheme.network.error" = "网络错误";
+
+
+"copyed" = "复制成功";

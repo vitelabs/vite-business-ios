@@ -17,10 +17,12 @@ struct BuildInContractOthers {
         do {
             let addressItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleContractAddress(),
                                                      text: sendTx.block.toAddress)
-            let tokenItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleTokenSymbol(),
-                                                   text: tokenInfo.uniqueSymbol)
+
+            let amountString = "\(sendTx.block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
             let amountItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleAmount(),
-                                                    text: sendTx.block.amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals))
+                                                    text: amountString,
+                                                    textColor: VBViteSendTx.InputDescription.Style.blue.textColor,
+                                                    backgroundColor: VBViteSendTx.InputDescription.Style.blue.backgroundColor)
             let dataItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationTitleData(),
                                                   text: sendTx.block.data?.toHexString() ?? "")
 
@@ -29,7 +31,7 @@ struct BuildInContractOthers {
 
                 if let des = sendTx.description {
                     guard values.count == des.inputs.count else { return Promise(error: ConfirmError.InvalidParameters) }
-                    var items: [BifrostConfirmItemInfo] = [addressItem, tokenItem, amountItem]
+                    var items: [BifrostConfirmItemInfo] = [addressItem, amountItem]
 
                     for i in 0..<values.count {
                         let input = des.inputs[i]
@@ -43,7 +45,7 @@ struct BuildInContractOthers {
                         return Promise(error: ConfirmError.InvalidAbi)
                     }
 
-                    var items: [BifrostConfirmItemInfo] = [addressItem, tokenItem, amountItem]
+                    var items: [BifrostConfirmItemInfo] = [addressItem, amountItem]
                     for i in 0..<values.count {
                         let info = BifrostConfirmItemInfo(title: abiRecord.inputs?[i].name ?? "",
                                                           text: values[i].toString())
@@ -53,7 +55,7 @@ struct BuildInContractOthers {
                     return Promise.value(BifrostConfirmInfo(title: title, items: items))
                 }
             } else {
-                return Promise.value(BifrostConfirmInfo(title: title, items: [addressItem, tokenItem, amountItem, dataItem]))
+                return Promise.value(BifrostConfirmInfo(title: title, items: [addressItem, amountItem, dataItem]))
             }
         } catch {
             return Promise(error: ConfirmError.InvalidData)
