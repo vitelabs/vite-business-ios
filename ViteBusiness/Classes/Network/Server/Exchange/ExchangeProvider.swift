@@ -94,8 +94,8 @@ extension ExchangeProvider {
     }
 
     @discardableResult
-    func getTokenInfo(tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) -> Cancellable {
-        return sendRequest(api: .getTokenInfo(tokenCode), completion: { (ret) in
+    func getTokenInfos(tokenCodes: [TokenCode], completion: @escaping (Alamofire.Result<[TokenInfo]>) -> Void) -> Cancellable {
+        return sendRequest(api: .getTokenInfos(tokenCodes), completion: { (ret) in
             switch ret {
             case .success(let json):
                 var map = [TokenCode: TokenInfo]()
@@ -106,11 +106,30 @@ extension ExchangeProvider {
                     })
                 }
 
-                if let tokenInfo = map[tokenCode] {
-                    completion(Alamofire.Result.success(tokenInfo))
+                var tokenInfos = [TokenInfo]()
+                for tokenCode in tokenCodes {
+                    if let tokenInfo = map[tokenCode] {
+                        tokenInfos.append(tokenInfo)
+                    }
+                }
+
+                if tokenInfos.count == tokenCodes.count {
+                    completion(Alamofire.Result.success(tokenInfos))
                 } else {
                     completion(Alamofire.Result.failure(ExchangeError.notFound))
                 }
+            case .failure(let error):
+                completion(Alamofire.Result.failure(error))
+            }
+        })
+    }
+
+    @discardableResult
+    func getTokenInfo(tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) -> Cancellable {
+        return getTokenInfos(tokenCodes: [tokenCode], completion: { (ret) in
+            switch ret {
+            case .success(let tokenInfos):
+                completion(Alamofire.Result.success(tokenInfos[0]))
             case .failure(let error):
                 completion(Alamofire.Result.failure(error))
             }

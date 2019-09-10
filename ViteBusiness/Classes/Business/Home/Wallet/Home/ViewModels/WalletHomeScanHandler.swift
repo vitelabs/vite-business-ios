@@ -47,7 +47,7 @@ class WalletHomeScanHandler {
 
     func handleScanResult(with uri: ViteURI, scanViewController: ScanViewController?) {
         scanViewController?.view.displayLoading(text: "")
-        MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId) {[weak scanViewController] (result) in
+        TokenInfoCacheService.instance.tokenInfo(forViteTokenId: uri.tokenId) {[weak scanViewController] (result) in
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let tokenInfo):

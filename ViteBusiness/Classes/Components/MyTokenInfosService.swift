@@ -105,9 +105,9 @@ public final class MyTokenInfosService: NSObject {
     public func updateTokenInfoIfNeeded(for tokenCode: TokenCode) {
         guard needUpdateTokenInfo.contains(tokenCode) else { return }
 
-        ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode) { (r) in
-            switch r {
-            case .success(let tokenInfo):
+        TokenInfoCacheService.instance.forceUpdateTokenInfo(for: [tokenCode])
+            .done { (array) in
+                let tokenInfo = array[0]
                 self.needUpdateTokenInfo.remove(tokenCode)
                 var tokenInfos = self.tokenInfosBehaviorRelay.value
                 var index: Int?
@@ -121,10 +121,8 @@ public final class MyTokenInfosService: NSObject {
                     self.tokenInfosBehaviorRelay.accept(tokenInfos)
                     self.pri_save()
                 }
-
-            case .failure(let error):
+            }.catch { (error) in
                 plog(level: .warning, log: "update tokenInfo error: \(error.localizedDescription)", tag: .exchange)
-            }
         }
     }
 
@@ -136,6 +134,7 @@ public final class MyTokenInfosService: NSObject {
     }
 
     public func append(tokenInfo: TokenInfo) {
+        TokenInfoCacheService.instance.updateTokenInfos([tokenInfo])
         guard containsTokenInfo(for: tokenInfo.tokenCode) == false else { return }
 
         var tokenInfos = tokenInfosBehaviorRelay.value
@@ -185,39 +184,14 @@ extension MyTokenInfosService {
         return nil
     }
 
-    func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-
-        if let tokenInfo = tokenInfo(for: tokenCode) {
-            completion(Alamofire.Result.success(tokenInfo))
-        } else {
-            ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode, completion: completion)
-        }
-    }
-
-    func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-
-        if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
-            completion(Alamofire.Result.success(tokenInfo))
-        } else {
-            #if DAPP
-            ViteNode.mintage.getToken(tokenId: viteTokenId)
-            .done({
-                let tokenInfo = TokenInfo(tokenCode: $0.id,
-                                          coinType: .vite,
-                                          name: $0.name,
-                                          symbol: $0.symbol,
-                                          decimals: $0.decimals,
-                                          icon: "",
-                                          id: $0.id)
-                completion(Result.success(tokenInfo))
-            }).catch({ error in
-                completion(Result.failure(error))
-            })
-            #else
-            ExchangeProvider.instance.getTokenInfo(chain: "VITE", id: viteTokenId, completion: completion)
-            #endif
-        }
-    }
+//    func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
+//
+//        if let tokenInfo = tokenInfo(for: tokenCode) {
+//            completion(Alamofire.Result.success(tokenInfo))
+//        } else {
+//            ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode, completion: completion)
+//        }
+//    }
 
     func tokenInfo(forEthContractAddress address: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
 

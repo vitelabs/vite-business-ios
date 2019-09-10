@@ -27,7 +27,7 @@ class DebugWorkflowViewController: FormViewController {
                 $0.title =  "Transaction"
                 }.onCellSelection({ _, _  in
                     if let account = HDWalletManager.instance.account {
-                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("10000000000000000000")!, note: "haha", utString: "--") { (r) in
+                        Workflow.sendTransactionWithConfirm(account: account, toAddress: account.address, tokenInfo: TokenInfoCacheService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("10000000000000000000")!, note: "haha", utString: "--") { (r) in
                             print(r)
                         }
                     } else {
@@ -49,7 +49,7 @@ class DebugWorkflowViewController: FormViewController {
                 $0.title =  "Desposit"
                 }.onCellSelection({ _, _  in
                     if let account = HDWalletManager.instance.account {
-                        Workflow.dexDepositWithConfirm(account: account, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
+                        Workflow.dexDepositWithConfirm(account: account, tokenInfo: TokenInfoCacheService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
                             print(r)
 
                         })
@@ -61,7 +61,7 @@ class DebugWorkflowViewController: FormViewController {
                 $0.title =  "Withdraw"
                 }.onCellSelection({ _, _  in
                     if let account = HDWalletManager.instance.account {
-                        Workflow.dexWithdrawWithConfirm(account: account, tokenInfo: MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
+                        Workflow.dexWithdrawWithConfirm(account: account, tokenInfo: TokenInfoCacheService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!, amount: Amount("1000000000000000000"), completion: { (r) in
                             print(r)
 
                         })

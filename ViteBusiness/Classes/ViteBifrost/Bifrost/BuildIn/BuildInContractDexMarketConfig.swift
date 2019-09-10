@@ -50,25 +50,27 @@ struct BuildInContractDexMarketConfig: BuildInContractProtocol {
                 return Promise(error: ConfirmError.unknown("not logon"))
             }
 
-            return when(fulfilled: ViteNode.mintage.getToken(tokenId: tradeTokenIdValue.toString()),
-                        ViteNode.mintage.getToken(tokenId: quoteTokenIdValue.toString())).then { (tradeToken, quoteToken) -> Promise<BifrostConfirmInfo> in
+            return TokenInfoCacheService.instance.tokenInfos(forViteTokenIds: [tradeTokenIdValue.toString(),
+                                                                               quoteTokenIdValue.toString()])
+                .then { tokenInfos -> Promise<BifrostConfirmInfo> in
+                    let tradeToken = tokenInfos[0].toViteToken()!
+                    let quoteToken = tokenInfos[1].toViteToken()!
+                    let code = operationCodeValue.toBigUInt()
+                    let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
 
-                            let code = operationCodeValue.toBigUInt()
-                            let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
-
-                            if code == 1 {
-                                return self.transferPairConfirmInfo(market: market, ownerAddress: ownerAddressValue.toString())
-                            } else if code == 2 || code == 4 || code == 6 {
-                                return self.adjustFeesConfirmInfo(market: market,
-                                                                  currentAddress: account.address,
-                                                                  code: code,
-                                                                  takerFeeRate: takerFeeRateValue.toBigInt(),
-                                                                  makerFeeRate: makerFeeRateValue.toBigInt())
-                            } else if code == 8 {
-                                return self.stopMarketConfirmInfo(market: market, currentAddress: account.address, isStop: stopMarketValue.toBool())
-                            } else {
-                                return Promise(error: ConfirmError.InvalidData)
-                            }
+                    if code == 1 {
+                        return self.transferPairConfirmInfo(market: market, ownerAddress: ownerAddressValue.toString())
+                    } else if code == 2 || code == 4 || code == 6 {
+                        return self.adjustFeesConfirmInfo(market: market,
+                                                          currentAddress: account.address,
+                                                          code: code,
+                                                          takerFeeRate: takerFeeRateValue.toBigInt(),
+                                                          makerFeeRate: makerFeeRateValue.toBigInt())
+                    } else if code == 8 {
+                        return self.stopMarketConfirmInfo(market: market, currentAddress: account.address, isStop: stopMarketValue.toBool())
+                    } else {
+                        return Promise(error: ConfirmError.InvalidData)
+                    }
             }
         } catch {
             return Promise(error: ConfirmError.InvalidData)
