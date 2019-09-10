@@ -28,7 +28,8 @@ final class WalletHomeBalanceInfoTableViewModel {
 
     var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
     var  viteXBalanceInfosDriver: Driver<[WalletHomeViteXBalanceInfoViewModel]>
-
+    var lastViteXBalanceInfos = [WalletHomeViteXBalanceInfoViewModel]()
+    let bag = DisposeBag()
 
     init(isHidePriceDriver: Driver<Bool>) {
         balanceInfosDriver = Driver.combineLatest(
@@ -70,16 +71,11 @@ final class WalletHomeBalanceInfoTableViewModel {
                     }
         }
 
+        viteXBalanceInfosDriver.asObservable() .bind{ [weak self] viteXBalanceInfos in
+            self?.lastViteXBalanceInfos = viteXBalanceInfos
+            }.disposed(by: bag)
 
 
-
-
-
-//            viteXBalanceInfosDriver = balanceInfosDriver.map { (vms) -> [WalletHomeBalanceInfoViewModel] in
-//            return vms.filter({ (vm) -> Bool in
-//                return vm.tokenInfo.coinType == .vite
-//            })
-//        }
     }
 
     func registerFetchAll() {

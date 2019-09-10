@@ -14,7 +14,7 @@ public class AppSettingsService {
     public static let instance = AppSettingsService()
 
     public lazy var currencyDriver: Driver<CurrencyCode> = self.currencyBehaviorRelay.asDriver()
-    fileprivate var currencyBehaviorRelay: BehaviorRelay<CurrencyCode>!
+    var currencyBehaviorRelay: BehaviorRelay<CurrencyCode>!
 
     private init() {
         if let settings:AppSettings = readMappable() {

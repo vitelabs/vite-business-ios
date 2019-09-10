@@ -891,3 +891,6 @@
 "fund.tooBig" =  "您输入的金额大于余额，请重新输入";
 "fund.withdraw.placeholder" =  "请输入提现金额";
 "fund.deposite.placeholder" =  "请输入充值金额";
+"fund.cannotDeposite" =  "钱包余额为0，无法充值";
+"fund.cannotWithDraw" =  "交易所余额为0，无法提现";
+"fund.DepositeSuccess" =  "充值至交易所成功，是否去交易所查看？";

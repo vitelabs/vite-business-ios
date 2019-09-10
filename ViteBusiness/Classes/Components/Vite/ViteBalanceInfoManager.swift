@@ -225,8 +225,18 @@ extension ViteBalanceInfoManager {
         }
     }
 
+    func dexBalanceInfoDriver(forViteTokenId id: String) -> Driver<DexBalanceInfo?> {
+        return dexBalanceInfosDriver.map { map -> DexBalanceInfo? in
+            return map[id]
+        }
+    }
+
     func balanceInfo(forViteTokenId id: String) -> BalanceInfo? {
         return balanceInfos.value[id]
+    }
+
+    func dexBalanceInfo(forViteTokenId id: String) -> DexBalanceInfo? {
+        return dexBalanceInfosBehaviorRelay.value[id]
     }
 }
 

@@ -23,6 +23,8 @@ extension Reactive where Base: ScanViewController {
 
 class ScanViewController: BaseViewController, View {
 
+    var reactor = ScanViewReactor.init()
+    
     private var pickingImage = false
 
     fileprivate var result: PublishSubject<String> = PublishSubject<String>()

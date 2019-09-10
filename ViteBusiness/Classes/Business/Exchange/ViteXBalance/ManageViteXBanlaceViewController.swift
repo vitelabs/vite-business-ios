@@ -141,14 +141,19 @@ class ManageViteXBanlaceViewController: BaseViewController {
             }.disposed(by: rx.disposeBag)
 
         if actionType == .toVitex {
-            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: TokenInfo.viteCoin.id)
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: token.id)
                 .drive(onNext: { [weak self] balanceInfo in
                     guard let `self` = self else { return }
                     self.balance = balanceInfo?.balance ?? Amount(0)
                     self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
                 }).disposed(by: rx.disposeBag)
         } else if actionType == .toWallet {
-
+            ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)
+                .drive(onNext: { [weak self] dexBalanceInfo in
+                    guard let `self` = self else { return }
+                    self.balance = dexBalanceInfo?.available ?? Amount(0)
+                    self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
+                }).disposed(by: rx.disposeBag)
         }
 
         handleButton.rx.tap.bind { [weak self] _ in
@@ -170,9 +175,9 @@ class ManageViteXBanlaceViewController: BaseViewController {
             }
 
             if self.actionType == .toVitex {
-                self.fundFromWalletToVitex()
+                self.fundFromWalletToVitex(amount:amount)
             } else if self.actionType == .toWallet {
-                self.fundFromVitexToWallet()
+                self.fundFromVitexToWallet(amount:amount)
             }
 
         }.disposed(by: rx.disposeBag)
@@ -180,13 +185,49 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
     }
 
-    func fundFromWalletToVitex() {
+    func fundFromWalletToVitex(amount: Amount) {
+        guard let amout = HDWalletManager.instance.account else { return }
+        Workflow.dexDepositWithConfirm(account: amout, tokenInfo: token, amount: amount) { [weak self] (result) in
+            switch result {
+            case .success(_):
+                Alert.show(title: R.string.localizable.fundDepositeSuccess(), message: nil, actions: [
+                    (.default(title: R.string.localizable.confirm()), { _ in
+                        guard let `self` = self else { return }
+                        let webvc = WKWebViewController(url: self.vitexPageUrl())
+                        var vcs = self.navigationController?.viewControllers
+                        vcs?.popLast()
+                        vcs?.append(webvc)
+                        if let vcs = vcs {
+                            self.navigationController?.setViewControllers(vcs, animated: true)
+                        }
+                    }),
+                    (.default(title: R.string.localizable.cancel()), { _ in
+                        self?.navigationController?.popViewController(animated: true)
+                    })])
 
+            case .failure(let e):
+                Toast.show(e.localizedDescription)
+            }
+        }
     }
 
-    func fundFromVitexToWallet() {
-
+    func fundFromVitexToWallet(amount: Amount) {
+        guard let amout = HDWalletManager.instance.account else { return }
+        Workflow.dexWithdrawWithConfirm(account: amout, tokenInfo: token, amount: amount) { [weak self] (result) in
+            switch result {
+            case .success(_):
+                self?.navigationController?.popViewController(animated: true)
+            case .failure(let e):
+                Toast.show(e.localizedDescription)
+            }
+        }
     }
 
+    func vitexPageUrl() -> URL {
+        var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
+            + "?address=" + (HDWalletManager.instance.account?.address ?? "")
+            + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+        return URL.init(string:urlStr)!
+    }
 
 }

@@ -1431,7 +1431,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 728 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 731 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4213,6 +4213,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所余额为0，无法提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundCannotWithDraw = Rswift.StringResource(key: "fund.cannotWithDraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易所资产
       /// 
       /// Locales: en, zh-Hans
@@ -4229,6 +4233,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundTitleToVitex = Rswift.StringResource(key: "fund.title.toVitex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值至交易所成功，是否去交易所查看？
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundDepositeSuccess = Rswift.StringResource(key: "fund.DepositeSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 充值金额
       /// 
       /// Locales: en, zh-Hans
@@ -4341,6 +4349,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundWalletFound = Rswift.StringResource(key: "fund.walletFound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 钱包余额为0，无法充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static let fundCannotDeposite = Rswift.StringResource(key: "fund.cannotDeposite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 钱包资产
       /// 
       /// Locales: en, zh-Hans
@@ -9211,6 +9223,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易所余额为0，无法提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundCannotWithDraw(_: Void = ()) -> String {
+        return NSLocalizedString("fund.cannotWithDraw", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易所资产
       /// 
       /// Locales: en, zh-Hans
@@ -9237,6 +9256,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func fundTitleToVitex(_: Void = ()) -> String {
         return NSLocalizedString("fund.title.toVitex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 充值至交易所成功，是否去交易所查看？
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundDepositeSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("fund.DepositeSuccess", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 充值金额
@@ -9433,6 +9459,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func fundWalletFound(_: Void = ()) -> String {
         return NSLocalizedString("fund.walletFound", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 钱包余额为0，无法充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static func fundCannotDeposite(_: Void = ()) -> String {
+        return NSLocalizedString("fund.cannotDeposite", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 钱包资产

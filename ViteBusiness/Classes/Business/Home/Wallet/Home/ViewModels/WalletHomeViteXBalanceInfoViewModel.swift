@@ -17,12 +17,13 @@ final class WalletHomeViteXBalanceInfoViewModel {
     let symbol: String
     let totalString: String
     let availableString: String
+    let balanceInfo: DexBalanceInfo
 
 
     init(tokenInfo: TokenInfo, balanceInfo: DexBalanceInfo, isHidePrice: Bool) {
         self.tokenInfo = tokenInfo
         self.symbol = tokenInfo.uniqueSymbol
-
+        self.balanceInfo = balanceInfo
         if isHidePrice {
             self.totalString = "****"
             self.availableString = "****"
