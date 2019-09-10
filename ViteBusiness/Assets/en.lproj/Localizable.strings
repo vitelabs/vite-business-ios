@@ -639,7 +639,7 @@
 "crosschain.withdraw" = "Cross-Chain Send";
 "crosschain.withdraw.btnTitle" = "Send";
 "crosschain.deposit.btnTitle" = "Receive";
-"crosschain.deposit.vitewallet" = "Deposit through Vite Wallet";
+"crosschain.deposit.vitewallet" = "Receive from Vite Wallet";
 "crosschain.deposit.otherwallet" = "Receive from Another Wallet";
 "crosschain.deposit.history" = "Receive History";
 "crosschain.withdraw.history" = "Transfer History";

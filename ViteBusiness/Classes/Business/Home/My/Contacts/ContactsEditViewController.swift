@@ -143,7 +143,6 @@ class ContactsEditViewController: BaseViewController {
 
         addressView.scanButton.rx.tap.bind { [weak self] in
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {

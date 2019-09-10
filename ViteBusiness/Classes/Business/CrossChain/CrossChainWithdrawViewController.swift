@@ -189,7 +189,6 @@ class GatewayWithdrawViewController: BaseViewController {
 
         labelView.addButton.rx.tap.bind { [weak self] in
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
                     self?.labelView.textView.text = uri.address
@@ -419,7 +418,6 @@ class GatewayWithdrawViewController: BaseViewController {
 
     func scanAddress() {
         let scanViewController = ScanViewController()
-        scanViewController.reactor = ScanViewReactor()
         _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
             if case .success(let uri) = ViteURI.parser(string: result) {
                 self?.addressView.textView.text = uri.address

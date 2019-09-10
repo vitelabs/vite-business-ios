@@ -77,7 +77,6 @@ Pod::Spec.new do |s|
   s.dependency 'Toast-Swift', '~> 4.0.1'
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
-  s.dependency 'DNSPageView'
   s.dependency 'ActiveLabel', '1.0.1'
   s.dependency 'PPBadgeViewSwift', '3.1.0'
 

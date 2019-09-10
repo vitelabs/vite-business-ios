@@ -14,7 +14,7 @@ import Vite_HDWalletKit
 import ViteWallet
 import BigInt
 import web3swift
-import DNSPageView
+
 import Then
 
 class WalletHomeScanHandler {

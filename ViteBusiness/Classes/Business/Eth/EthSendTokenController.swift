@@ -216,7 +216,6 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ETHURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address

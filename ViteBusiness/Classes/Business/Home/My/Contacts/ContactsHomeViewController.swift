@@ -12,7 +12,6 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 import SnapKit
-import DNSPageView
 
 class ContactsHomeViewController: BaseViewController {
 

@@ -211,7 +211,6 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 2 {
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address

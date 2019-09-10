@@ -15,7 +15,7 @@ import Vite_HDWalletKit
 import ViteWallet
 import BigInt
 import web3swift
-import DNSPageView
+
 import Then
 
 class WalletHomeViewController: BaseViewController {
@@ -41,6 +41,7 @@ class WalletHomeViewController: BaseViewController {
     lazy var pageManager = { () -> DNSPageViewManager in
         var pageStyle = DNSPageStyle()
         pageStyle.isShowBottomLine = true
+        pageStyle.bottomLineRadius = 0
         pageStyle.isTitleViewScrollEnabled = true
         pageStyle.titleViewBackgroundColor = UIColor.clear
         pageStyle.titleSelectedColor = UIColor.init(netHex: 0x3E4A59)
@@ -48,6 +49,7 @@ class WalletHomeViewController: BaseViewController {
         pageStyle.titleFont = UIFont.boldSystemFont(ofSize: 13)
         pageStyle.bottomLineColor = Colors.blueBg
         pageStyle.bottomLineHeight = 3
+        pageStyle.bottomLineWidth = 20
 
         let vc0 = UIViewController()
         let vc1 = UIViewController()
@@ -62,6 +64,14 @@ class WalletHomeViewController: BaseViewController {
         let m = DNSPageViewManager(style: pageStyle, titles: [R.string.localizable.fundTitleWallet(),R.string.localizable.fundTitleVitex()], childViewControllers: [vc0, vc1])
         return m
     }()
+
+    lazy var bottomLine: UIView = {
+        let bottomLine = UIView()
+        bottomLine.backgroundColor = self.pageManager.style.bottomLineColor
+        bottomLine.layer.cornerRadius = self.pageManager.style.bottomLineRadius
+        return bottomLine
+    }()
+
     let scanHandler = WalletHomeScanHandler()
     let walletDriver = HDWalletManager.instance.walletDriver
     var tableViewModel: WalletHomeBalanceInfoTableViewModel!
