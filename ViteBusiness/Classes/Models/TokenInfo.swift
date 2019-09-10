@@ -102,13 +102,6 @@ public enum CoinType: String {
 
 public typealias TokenCode = String
 
-extension TokenCode {
-    public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
-    public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
-    public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
-    public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
-}
-
 public struct TokenInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
@@ -207,9 +200,9 @@ extension TokenInfo: Equatable {
         return lhs.tokenCode == rhs.tokenCode
     }
 
-    var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
-    var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
-    var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
+    var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
+    var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
+    var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
 
     static var viteERC20ContractAddress: String {
         #if DEBUG || TEST
@@ -228,31 +221,6 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionGrinHeader()
         }
         return ""
-    }
-}
-
-extension TokenInfo {
-    static var viteCoin: TokenInfo {
-        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"Vite Token\",\"tokenCode\":\"1171\",\"platform\":\"VITE\",\"tokenAddress\":\"tti_5649544520544f4b454e6e40\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id) ?? info
-    }
-
-    static var viteERC20: TokenInfo {
-        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"ViteToken\",\"tokenCode\":\"41\",\"platform\":\"ETH\",\"tokenAddress\":\"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20) ?? info
-    }
-
-    static var eth: TokenInfo {
-        let jsonString = "{\"symbol\":\"ETH\",\"name\":\"Ether\",\"tokenCode\":\"1\",\"platform\":\"ETH\",\"tokenAddress\":null,\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin) ?? info
-    }
-    static var eth000: TokenInfo {
-        let jsonString = "{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"VITE\",\"tokenCode\":\"1352\",\"tokenIndex\":0,\"gatewayInfo\":{\"policy\":{\"en\":\"https://x.vite.net/privacy.html\"},\"isOfficial\":true,\"mappedToken\":{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"ETH\",\"tokenCode\":\"1\",\"tokenIndex\":null,\"tokenAddress\":null,\"name\":\"Ether\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"},\"support\":\"gateway@vite.org\",\"url\":\"https://crosschain.vite.net/gateway/eth\",\"level\":null,\"links\":{\"website\":[\"https://vite.org\"],\"whitepaper\":[\"https://github.com/vitelabs/whitepaper/\"],\"explorer\":[\"https://explorer.vite.net\"]},\"overview\":{\"en\":\"The gateway provided by Vite Labs, running cross-chain services for four coins: BTC, ETH, USDT(ERC20)\",\"zh\":\"Vite Labs官方网关，负责BTC、ETH、USDT(ERC20)、GRIN四种代币跨链服务\"},\"name\":\"Vite Labs\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\"},\"tokenAddress\":\"tti_687d8a93915393b219212c73\",\"name\":\"Ethereum\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: "1352") ?? info
     }
 }
 
@@ -285,8 +253,6 @@ extension TokenInfo {
             return nil
         }
     }
-
-
 
     var coinBackgroundGradientColors: [UIColor] {
         return coinType.backgroundGradientColors
@@ -422,5 +388,4 @@ public struct MappedTokenInfo: Mappable {
         self.icon = icon
         self.id = id
     }
-
 }

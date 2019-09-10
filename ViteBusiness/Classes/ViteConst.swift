@@ -13,7 +13,6 @@ public struct ViteConst {
     public static let instance = ViteConst()
 
     public let envType: Env.EnvType
-    public let tokenCode: TokenCode
     public let cos: Cos
     public let vite: Vite
     public let eth: Eth
@@ -41,7 +40,6 @@ public struct ViteConst {
 
         // set
         envType = currentEnv.type
-        tokenCode = currentEnv.tokenCode
         cos = currentEnv.cos
         vite = currentEnv.vite
         eth = currentEnv.eth
@@ -106,7 +104,6 @@ public extension ViteConst {
         }
 
         public let type: EnvType
-        public let tokenCode: TokenCode
         public let cos: Cos
         public let vite: Vite
         public let eth: Eth
@@ -115,10 +112,6 @@ public extension ViteConst {
 
         public static let premainnet =
             Env(type: .premainnet,
-                tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174"),
                 cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
                          discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
@@ -142,10 +135,6 @@ public extension ViteConst {
 
         public static let testEnv =
             Env(type: .test,
-                tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174"),
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
                          discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
@@ -168,10 +157,6 @@ public extension ViteConst {
 
         public static let stageEnv =
             Env(type: .stage,
-                tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174"),
                 cos: Cos(config: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com", // stage
                          discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com"), // stage
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
