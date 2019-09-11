@@ -75,7 +75,7 @@ class WalletHomeScanHandler {
 
     func handleScanResultForETH(with uri: ETHURI, scanViewController: ScanViewController?) {
         scanViewController?.view.displayLoading(text: "")
-        MyTokenInfosService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
+        TokenInfoCacheService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
             scanViewController?.view.hideLoading()
             switch result {
             case .success(let tokenInfo):
