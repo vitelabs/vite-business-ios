@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 201 images.
+  /// This `R.image` struct is generated, and contains static references to 203 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -84,6 +84,10 @@ public struct R: Rswift.Validatable {
     public static let fingerprint = Rswift.ImageResource(bundle: R.hostingBundle, name: "fingerprint")
     /// Image `gasSlider`.
     public static let gasSlider = Rswift.ImageResource(bundle: R.hostingBundle, name: "gasSlider")
+    /// Image `gateway_label_layer`.
+    public static let gateway_label_layer = Rswift.ImageResource(bundle: R.hostingBundle, name: "gateway_label_layer")
+    /// Image `gateway`.
+    public static let gateway = Rswift.ImageResource(bundle: R.hostingBundle, name: "gateway")
     /// Image `gift`.
     public static let gift = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift")
     /// Image `grin_detail_cancled_gray`.
@@ -584,6 +588,16 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "gasSlider", bundle: ..., traitCollection: ...)`
     public static func gasSlider(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gasSlider, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "gateway", bundle: ..., traitCollection: ...)`
+    public static func gateway(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.gateway, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "gateway_label_layer", bundle: ..., traitCollection: ...)`
+    public static func gateway_label_layer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.gateway_label_layer, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "gift", bundle: ..., traitCollection: ...)`
@@ -2181,10 +2195,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatusFailed = Rswift.StringResource(key: "crosschain.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Deposit through Vite Wallet
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositVitewallet = Rswift.StringResource(key: "crosschain.deposit.vitewallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Description
       /// 
       /// Locales: en, zh-Hans
@@ -3053,6 +3063,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainDepositOtherwallet = Rswift.StringResource(key: "crosschain.deposit.otherwallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Receive from Vite Wallet
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositVitewallet = Rswift.StringResource(key: "crosschain.deposit.vitewallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Received
       /// 
       /// Locales: en, zh-Hans
@@ -5667,13 +5681,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.status.failed", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Deposit through Vite Wallet
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositVitewallet(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.deposit.vitewallet", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Description
       /// 
       /// Locales: en, zh-Hans
@@ -7191,6 +7198,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainDepositOtherwallet(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.deposit.otherwallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Receive from Vite Wallet
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositVitewallet(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.deposit.vitewallet", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Received

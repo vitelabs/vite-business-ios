@@ -16,8 +16,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
 
     var handler : ((UIButton) -> ())?
 
-    fileprivate let colorView = UIImageView()
-    fileprivate let iconImageView = TokenIconView()
+    fileprivate let iconImageView = TokenIconView(showGateWayIcon: true)
 
     fileprivate let  availableTitleLabel = UILabel().then { label in
         label.text = R.string.localizable.fundVitexAvailable()
@@ -25,7 +24,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
         label.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.45)
     }
     fileprivate let  availableLabel = UILabel().then { label in
-        label.text = "label"
+        label.text = " "
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.init(netHex: 0x24272B)
     }
@@ -36,7 +35,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
         label.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.45)
     }
     fileprivate let  totalLabel = UILabel().then { label in
-        label.text = "label"
+        label.text = " "
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.init(netHex: 0x24272B)
     }
@@ -92,7 +91,6 @@ class VitexBalanceInfoCell: BaseTableViewCell {
         contentView.addSubview(shadowView)
         whiteView.addSubview(iconImageView)
         whiteView.addSubview(symbolLabel)
-        whiteView.addSubview(colorView)
         whiteView.addSubview(highlightedMaskView)
         whiteView.addSubview(seperator)
         whiteView.addSubview(availableTitleLabel)
@@ -114,10 +112,6 @@ class VitexBalanceInfoCell: BaseTableViewCell {
             m.edges.equalTo(shadowView)
         }
 
-        colorView.snp.makeConstraints { (m) in
-            m.top.left.bottom.equalTo(whiteView)
-            m.width.equalTo(3)
-        }
 
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
         iconImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -191,7 +185,6 @@ class VitexBalanceInfoCell: BaseTableViewCell {
 
         symbolLabel.text = viewModel.symbol
         symbolLabel.textColor = UIColor.init(netHex: 0x24272B)
-        colorView.backgroundColor = viewModel.tokenInfo.mainColor
         totalLabel.text = viewModel.totalString
         availableLabel.text = viewModel.availableString
     }

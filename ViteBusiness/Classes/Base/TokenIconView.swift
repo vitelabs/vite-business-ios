@@ -14,20 +14,22 @@ class TokenIconView: UIView {
 
     let tokenIconImageView = UIImageView()
     let tokenIconFrameImageView = UIImageView(image: R.image.icon_token_info_frame())
-    let chainIconImageView = UIImageView()
+    let gatewayIconImageView = UIImageView(image: R.image.gateway())
+    let showGateWayIcon: Bool
 
     func set(tokenIconImage: UIImage?) {
         tokenIconImageView.kf.cancelDownloadTask()
         tokenIconImageView.image = tokenIconImage
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(showGateWayIcon: Bool = false) {
+        self.showGateWayIcon = showGateWayIcon
+        super.init(frame: CGRect.init(x: 0, y: 0, width: 1, height: 1))
 
         tokenIconImageView.backgroundColor = UIColor.white
         addSubview(tokenIconImageView)
         addSubview(tokenIconFrameImageView)
-        addSubview(chainIconImageView)
+        addSubview(gatewayIconImageView)
 
         tokenIconImageView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
@@ -37,7 +39,7 @@ class TokenIconView: UIView {
             m.edges.equalToSuperview()
         }
 
-        chainIconImageView.snp.makeConstraints { (m) in
+        gatewayIconImageView.snp.makeConstraints { (m) in
             m.bottom.right.equalToSuperview()
             m.width.height.equalToSuperview().multipliedBy(18.0/40.0)
         }
@@ -65,9 +67,9 @@ class TokenIconView: UIView {
         didSet {
             tokenIconImageView.kf.cancelDownloadTask()
             tokenIconImageView.image = UIImage.color(UIColor(netHex: 0xF8F8F8))
-            chainIconImageView.image = tokenInfo?.chainIcon
-            chainIconImageView.isHidden = tokenInfo?.chainIcon == nil
             updateLayer()
+            gatewayIconImageView.isHidden = !showGateWayIcon || tokenInfo?.gatewayInfo == nil
+            self.bringSubviewToFront(gatewayIconImageView)
             guard let tokenInfo = tokenInfo else { return }
             guard let url = URL(string: tokenInfo.icon) else { return }
             tokenIconImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
@@ -80,7 +82,7 @@ class TokenIconView: UIView {
     }
 
     var shapeLayer: CAShapeLayer! = nil
-    func updateLayer(_ color: UIColor? = nil) {
+    func updateLayer() {
 
         if self.shapeLayer == nil {
             self.shapeLayer = CAShapeLayer()
@@ -90,7 +92,7 @@ class TokenIconView: UIView {
         }
 
         let view = self.tokenIconImageView
-        self.shapeLayer.strokeColor = color?.cgColor ?? self.tokenInfo?.strokeColor.cgColor ?? UIColor.clear.cgColor
+        self.shapeLayer.strokeColor = UIColor.init(netHex: 0xE5E5EA).cgColor
         self.shapeLayer.path = UIBezierPath(arcCenter: view.center, radius: view.frame.width / 2, startAngle: 0, endAngle: CGFloat(2.0 * Double.pi), clockwise: false).cgPath
     }
 }
