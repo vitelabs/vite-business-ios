@@ -44,16 +44,19 @@ struct BuildInContractDexNewMarket: BuildInContractProtocol {
                 return Promise(error: ConfirmError.unknown("not logon"))
             }
 
-            return when(fulfilled: ViteNode.mintage.getToken(tokenId: tradeTokenIdValue.toString()),
-                        ViteNode.mintage.getToken(tokenId: quoteTokenIdValue.toString())).then { (tradeToken, quoteToken) -> Promise<BifrostConfirmInfo> in
+            return TokenInfoCacheService.instance.tokenInfos(forViteTokenIds: [tradeTokenIdValue.toString(),
+                                                                               quoteTokenIdValue.toString()])
+                .then { tokenInfos -> Promise<BifrostConfirmInfo> in
+                    let tradeToken = tokenInfos[0].toViteToken()!
+                    let quoteToken = tokenInfos[1].toViteToken()!
+                    let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
+                    let items = [
+                        self.description.inputs[0].confirmItemInfo(text: market),
+                        self.description.inputs[1].confirmItemInfo(text: account.address),
+                        self.description.inputs[2].confirmItemInfo(text: fee),
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
 
-                            let market = "\(tradeToken.uniqueSymbol)/\(quoteToken.uniqueSymbol)"
-                            let items = [
-                                self.description.inputs[0].confirmItemInfo(text: market),
-                                self.description.inputs[1].confirmItemInfo(text: account.address),
-                                self.description.inputs[2].confirmItemInfo(text: fee),
-                            ]
-                            return Promise.value(BifrostConfirmInfo(title: title, items: items))
             }
         } catch {
             return Promise(error: ConfirmError.InvalidData)

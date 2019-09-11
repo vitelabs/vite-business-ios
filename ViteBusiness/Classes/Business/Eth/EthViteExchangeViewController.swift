@@ -41,7 +41,7 @@ class EthViteExchangeViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteERC20])
+        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.BuildIn.eth_vite.value])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
         let key = "tipShowed"
@@ -59,7 +59,7 @@ class EthViteExchangeViewController: BaseViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.viteERC20])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.BuildIn.eth_vite.value])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
@@ -177,7 +177,7 @@ class EthViteExchangeViewController: BaseViewController {
                 return
             }
 
-            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : (self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.decimals)!
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.BuildIn.eth_vite.value.decimals : (self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.decimals)!
             guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
                 let a = amountString.toAmount(decimals: decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
@@ -219,11 +219,11 @@ class EthViteExchangeViewController: BaseViewController {
 
 
         if exchangeType == .erc20ViteTokenToViteCoin {
-            ETHBalanceInfoManager.instance.balanceInfoDriver(for: TokenInfo.viteERC20.tokenCode)
+            ETHBalanceInfoManager.instance.balanceInfoDriver(for: TokenInfo.BuildIn.eth_vite.value.tokenCode)
                 .drive(onNext: { [weak self] ret in
                     guard let `self` = self else { return }
                     self.balance = ret?.balance ?? self.balance
-                    let text = self.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteERC20.decimals)
+                    let text = self.balance.amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth_vite.value.decimals)
                     self.headerView.balanceLabel.text = text
                     self.amountView.textField.placeholder = R.string.localizable.ethViteExchangePageAmountPlaceholder(text)
                     if self.exchangeAll  {
@@ -271,7 +271,7 @@ class EthViteExchangeViewController: BaseViewController {
             }.disposed(by: rx.disposeBag)
 
 
-        var decimals = TokenInfo.viteERC20.decimals
+        var decimals = TokenInfo.BuildIn.eth_vite.value.decimals
         if self.exchangeType == .ethChainToViteToken {
             decimals = self.gatewayInfoService!.tokenInfo.decimals
         }
@@ -292,7 +292,7 @@ class EthViteExchangeViewController: BaseViewController {
 
         var tokenInfo: TokenInfo
         if self.exchangeType == .erc20ViteTokenToViteCoin {
-            tokenInfo = TokenInfo.viteERC20
+            tokenInfo = TokenInfo.BuildIn.eth_vite.value
         } else {
             tokenInfo = self.gatewayInfoService!.tokenInfo.gatewayInfo!.mappedToken
         }
@@ -390,8 +390,8 @@ class EthViteExchangeViewController: BaseViewController {
     }
 
     func trueAmout(for amount: Amount) -> Amount {
-        if self.exchangeAll && self.exchangeType == .ethChainToViteToken &&  self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode {
-            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.viteERC20.decimals : ( self.gatewayInfoService!.tokenInfo.gatewayInfo!.mappedToken.decimals)
+        if self.exchangeAll && self.exchangeType == .ethChainToViteToken &&  self.gatewayInfoService?.tokenInfo.gatewayInfo?.mappedToken.tokenCode == TokenInfo.BuildIn.eth.value.tokenCode {
+            let decimals = self.exchangeType == .erc20ViteTokenToViteCoin ? TokenInfo.BuildIn.eth_vite.value.decimals : ( self.gatewayInfoService!.tokenInfo.gatewayInfo!.mappedToken.decimals)
             var ethStr = self.gasSliderView.ethStr
             let trueAmout = amount - (ethStr.toAmount(decimals: decimals) ?? Amount(0))
             if trueAmout <= Amount(0) {
@@ -437,7 +437,7 @@ extension EthViteExchangeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         if textField == amountView.textField {
-            var decimals = TokenInfo.viteERC20.decimals
+            var decimals = TokenInfo.BuildIn.eth_vite.value.decimals
             if let d =   self.gatewayInfoService?.tokenInfo.decimals {
                 decimals = d
             }

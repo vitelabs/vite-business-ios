@@ -58,16 +58,8 @@ struct BifrostConfirmInfoFactory {
             return Promise(error: ConfirmError.InvalidToAddress)
         }
 
-        return Promise<TokenInfo> { seal in
-            MyTokenInfosService.instance.tokenInfo(forViteTokenId: block.tokenId) { result in
-                switch result {
-                case .success(let r):
-                    seal.fulfill(r)
-                case .failure(let e):
-                    seal.reject(e)
-                }
-            }
-            }.then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
+        return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: block.tokenId)
+            .then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
 
                 switch addressType {
                 case .user:

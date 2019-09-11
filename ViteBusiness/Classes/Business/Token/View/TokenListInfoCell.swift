@@ -81,7 +81,7 @@ class TokenListInfoCell: UITableViewCell {
         }
         
         self.tokenLogoImg.tokenInfo = token
-        self.switchControl.isHidden = token.isDefault
+        self.switchControl.isHidden = !token.canRemove
         self.switchControl.setOn(token.isContains, animated: false)
 
         if token.isGateway {

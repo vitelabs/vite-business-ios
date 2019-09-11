@@ -275,7 +275,7 @@ public extension Workflow {
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.pledge.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
@@ -297,7 +297,7 @@ public extension Workflow {
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
@@ -319,7 +319,7 @@ public extension Workflow {
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.vote.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
@@ -339,7 +339,7 @@ public extension Workflow {
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelVote.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }

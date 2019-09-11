@@ -37,16 +37,18 @@ struct BuildInContractCoinIssue: BuildInContractProtocol {
                 return Promise(error: ConfirmError.InvalidData)
             }
 
-            return ViteNode.mintage.getToken(tokenId: tokenIdValue.toString()).then({ (token) -> Promise<BifrostConfirmInfo> in
-                let amount = "\(Amount(amountValue.toBigUInt()).amountFullWithGroupSeparator(decimals: token.decimals)) \(token.symbol)"
-                let items = [
-                    self.description.inputs[0].confirmItemInfo(text: token.name),
-                    self.description.inputs[1].confirmItemInfo(text: token.uniqueSymbol),
-                    self.description.inputs[2].confirmItemInfo(text: addressValue.toString()),
-                    self.description.inputs[3].confirmItemInfo(text: amount),
-                ]
-                return Promise.value(BifrostConfirmInfo(title: title, items: items))
-            })
+            return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: tokenIdValue.toString())
+                .then { tokenInfo -> Promise<BifrostConfirmInfo> in
+                    let token = tokenInfo.toViteToken()!
+                    let amount = "\(Amount(amountValue.toBigUInt()).amountFullWithGroupSeparator(decimals: token.decimals)) \(token.symbol)"
+                    let items = [
+                        self.description.inputs[0].confirmItemInfo(text: token.name),
+                        self.description.inputs[1].confirmItemInfo(text: token.uniqueSymbol),
+                        self.description.inputs[2].confirmItemInfo(text: addressValue.toString()),
+                        self.description.inputs[3].confirmItemInfo(text: amount),
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
+            }
         } catch {
             return Promise(error: ConfirmError.InvalidData)
         }

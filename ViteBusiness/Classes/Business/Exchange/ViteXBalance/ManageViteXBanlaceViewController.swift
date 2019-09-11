@@ -93,7 +93,7 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
     func setUpView() {
         let  tilte = self.actionType == .toVitex ? R.string.localizable.fundTitleToVitex() : R.string.localizable.fundTitleToWallet()
-        navigationTitleView = PageTitleView.titleAndTokenIcon(title: tilte, tokenInfo: TokenInfo.viteCoin)
+        navigationTitleView = PageTitleView.titleAndTokenIcon(title: tilte, tokenInfo: TokenInfo.BuildIn.vite.value)
         navigationTitleView?.backgroundColor = UIColor.white
 
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)

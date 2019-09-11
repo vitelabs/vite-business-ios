@@ -248,12 +248,12 @@ class ExchangeViewController: BaseViewController {
 
             guard let amountString = self.card.ethInfo.inputTextField.text,
                 !amountString.isEmpty,
-                let amount = amountString.toAmount(decimals: TokenInfo.eth000.decimals) else {
+                let amount = amountString.toAmount(decimals: TokenInfo.BuildIn.vite_eth_000.value.decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                     return
             }
 
-            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: address, tokenInfo: TokenInfo.eth000, amount:amount, data: nil, utString: nil) { [weak self] (block) in
+            Workflow.sendTransactionWithConfirm(account: HDWalletManager.instance.account!, toAddress: address, tokenInfo: TokenInfo.BuildIn.vite_eth_000.value, amount:amount, data: nil, utString: nil) { [weak self] (block) in
                 guard let `self` = self else { return }
                 switch block {
                 case .success(let b):
@@ -310,11 +310,11 @@ class ExchangeViewController: BaseViewController {
 extension ExchangeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == card.ethInfo.inputTextField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.eth.decimals)
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.eth.value.decimals)
             textField.text = text
             return ret
         } else if textField == card.viteInfo.inputTextField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.viteCoin.decimals)
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.vite.value.decimals)
             textField.text = text
             return ret
         } else {

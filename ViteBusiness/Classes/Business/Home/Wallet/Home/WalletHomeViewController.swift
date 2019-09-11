@@ -242,7 +242,7 @@ class WalletHomeViewController: BaseViewController {
                 guard let `self` = self else { fatalError() }
                 if let viewModel = (try? self.walletDataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
                     self.walletTable.deselectRow(at: indexPath, animated: true)
-                    MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
+                    TokenInfoCacheService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
                     case .eth, .vite:

@@ -15,10 +15,14 @@ import ObjectMapper
 public class AppConfigService {
     public static let instance = AppConfigService()
 
+    lazy var defaultTokenInfosDriver: Driver<[TokenInfo]> = self.defaultTokenInfosBehaviorRelay.asDriver().filterNil()
     lazy var configDriver: Driver<AppConfig> = self.configBehaviorRelay.asDriver()
+
+    fileprivate let defaultTokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]?> = BehaviorRelay(value: nil)
     fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
     fileprivate var lastBuildNumber: Int?
+    fileprivate let disposeBag = DisposeBag()
     public var pDelay: Int = 3
 
     public var isOnlineVersion: Bool {
@@ -30,6 +34,7 @@ public class AppConfigService {
     }
 
     private init() {
+
         if let (config, hash): (AppConfig, String) = readMappableAndHash() {
             appConfigHash = hash
             configBehaviorRelay = BehaviorRelay(value: config)
@@ -40,6 +45,10 @@ public class AppConfigService {
         } else {
             fatalError("app file not found in bundle")
         }
+
+        configBehaviorRelay.asDriver().drive(onNext: { [weak self] (config) in
+            self?.fetchTokenInfos(tokenCodes: config.defaultTokenCodes)
+        }).disposed(by: disposeBag)
     }
 
     public func start() {
@@ -88,19 +97,28 @@ public class AppConfigService {
             }
         }
     }
+
+    fileprivate func fetchTokenInfos(tokenCodes: [TokenCode]) {
+        TokenInfoCacheService.instance.tokenInfos(for: tokenCodes).done { (tokenInfos) in
+            self.defaultTokenInfosBehaviorRelay.accept(tokenInfos)
+            }.catch { (error) in
+                plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
+                GCD.delay(2, task: { self.fetchTokenInfos(tokenCodes: tokenCodes) })
+        }
+    }
 }
 
 extension AppConfigService {
 
     public struct AppConfig: Mappable {
         fileprivate(set) var myPage: [String: Any] = [:]
-        fileprivate(set) var defaultTokenInfos: [[String: Any]] = []
+        fileprivate(set) var defaultTokenCodes: [TokenCode] = []
 
         public init?(map: Map) { }
 
         public mutating func mapping(map: Map) {
             myPage <- map["my_page"]
-            defaultTokenInfos <- map["default_tokenInfos"]
+            defaultTokenCodes <- map["default_tokenCodes"]
         }
     }
 

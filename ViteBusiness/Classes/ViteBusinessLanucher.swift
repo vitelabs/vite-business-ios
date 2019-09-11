@@ -137,7 +137,7 @@ public class ViteBusinessLanucher: NSObject {
                     return
                 }
                 HUD.show()
-                MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
+                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
                     switch r {
                     case .success(let tokenInfo):

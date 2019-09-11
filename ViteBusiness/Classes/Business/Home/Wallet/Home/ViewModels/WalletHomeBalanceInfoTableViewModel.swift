@@ -18,7 +18,19 @@ protocol WalletHomeBalanceInfo {
 
 extension BalanceInfo: WalletHomeBalanceInfo {
     var tokenInfo: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: token.id)!
+        return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: token.id) ?? {
+            assert(false)
+            return TokenInfo(tokenCode: token.id,
+                             coinType: .vite,
+                             rawChainName: CoinType.vite.rawValue,
+                             name: token.name,
+                             symbol: token.symbol,
+                             decimals: token.decimals,
+                             index: token.index,
+                             icon: "",
+                             id: token.id,
+                             gatewayInfo: nil)
+        }()
     }
 }
 

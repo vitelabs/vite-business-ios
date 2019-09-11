@@ -36,16 +36,8 @@ extension SASConfirmViewModelTransfer {
 struct SASConfirmViewModelFactory {
 
     static public func generateViewModel(_ uri: ViteURI) -> Promise<(BifrostConfirmInfo, TokenInfo)> {
-        return Promise<TokenInfo> { seal in
-            MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId) { result in
-                switch result {
-                case .success(let r):
-                    seal.fulfill(r)
-                case .failure(let e):
-                    seal.reject(e)
-                }
-            }
-            }.then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
+        return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: uri.tokenId)
+            .then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
 
                 switch uri.type {
                 case .transfer:
