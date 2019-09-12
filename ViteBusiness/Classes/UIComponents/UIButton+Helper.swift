@@ -55,10 +55,14 @@ extension UIButton {
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_white()?.tintColor(UIColor(netHex: 0xFAFAFA)).resizable, for: .highlighted)
+            setTitleColor(UIColor.white, for: .disabled)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
         case .whiteWithShadow:
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_white()?.tintColor(UIColor(netHex: 0xFAFAFA)).resizable, for: .highlighted)
+            setTitleColor(UIColor.white, for: .disabled)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
             backgroundColor = nil
             layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
             layer.shadowOpacity = 1

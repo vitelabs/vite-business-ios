@@ -201,8 +201,8 @@ extension BifrostManager {
     // MARK: Const
     static let maxTryTimes = 10
     static let retryDelay: TimeInterval = 2
-    static let waitForRequestTimeout: TimeInterval = 5
-    static let waitForPongTimeout: TimeInterval = 5
+    static let waitForRequestTimeout: TimeInterval = 10
+    static let waitForPongTimeout: TimeInterval = 10
 
     // MARK: Public Operation
     func tryConnect(uri: BifrostURI) {
@@ -213,7 +213,7 @@ extension BifrostManager {
             let clientMeta = VBClientMeta(name: Bundle.main.appName,
                                           version: Bundle.main.versionNumber,
                                           versionCode: Bundle.main.buildNumber,
-                                          vbVersion: "1.0.0",
+                                          vbVersion: "2",
                                           bundleId: Bundle.main.bundleIdentifier ?? "",
                                           platform: "ios",
                                           language: LocalizationService.sharedInstance.currentLanguage.code)

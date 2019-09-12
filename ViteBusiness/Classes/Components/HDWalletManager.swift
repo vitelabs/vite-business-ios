@@ -63,6 +63,7 @@ public final class HDWalletManager {
 
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
+    fileprivate(set) var language: MnemonicCodeBook?
     public fileprivate(set) var encryptedKey: String?
 
     public internal(set) var locked = false
@@ -168,32 +169,35 @@ extension HDWalletManager {
         return nil
     }
 
-    func addAndLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String, isBackedUp: Bool) {
+    func addAndLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String, isBackedUp: Bool) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false, isBackedUp: isBackedUp)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false, isBackedUp: isBackedUp)
         self.mnemonic = mnemonic
+        self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
-    func importAddLoginWallet(uuid: String, name: String, mnemonic: String, encryptKey: String) {
+    func importAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true, isBackedUp: true)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true, isBackedUp: true)
         self.mnemonic = mnemonic
+        self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
     func loginWithUuid(_ uuid: String, encryptKey: String) -> Bool {
         guard let (wallet, mnemonic) = storage.login(encryptKey: encryptKey, uuid: uuid) else { return false }
         self.mnemonic = mnemonic
+        self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -201,9 +205,10 @@ extension HDWalletManager {
     func loginCurrent(encryptKey: String) -> Bool {
         guard let (wallet, mnemonic) = storage.login(encryptKey: encryptKey) else { return false }
         self.mnemonic = mnemonic
+        self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey)
+        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -211,6 +216,7 @@ extension HDWalletManager {
     func logout() {
         storage.logout()
         mnemonic = nil
+        language = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
 
@@ -276,9 +282,9 @@ extension HDWalletManager {
     }
 
     // ETH
-    fileprivate func pri_LoginEthWallet(mnemonic: String, encryptKey: String) {
+    fileprivate func pri_LoginEthWallet(mnemonic: String, encryptKey: String, language: MnemonicCodeBook) {
         do {
-            try EtherWallet.account.importAccount(mnemonics: mnemonic, password: encryptKey)
+            try EtherWallet.account.importAccount(mnemonics: mnemonic, password: encryptKey, language: language)
             self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
         } catch let error {
             plog(level: .severe, log: "\(error)", tag: .wallet)
@@ -297,6 +303,7 @@ extension HDWalletManager {
     func deleteAllWallets() {
         storage.deleteAllWallets()
         mnemonic = nil
+        language = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
     }

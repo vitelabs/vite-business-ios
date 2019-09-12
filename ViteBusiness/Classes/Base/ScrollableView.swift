@@ -69,6 +69,16 @@ extension UIView {
         return view
     }
 
+    func centerX() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(self)
+        self.snp.makeConstraints { (m) in
+            m.top.bottom.centerX.equalToSuperview()
+        }
+        return view
+    }
+
     func padding(horizontal: CGFloat) -> UIView {
         return padding(UIEdgeInsets(top: 0, left: horizontal, bottom: 0, right: horizontal))
     }

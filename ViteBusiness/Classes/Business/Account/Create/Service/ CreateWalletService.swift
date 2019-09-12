@@ -6,19 +6,43 @@
 //  Copyright © 2018年 vite labs. All rights reserved.
 //
 import Vite_HDWalletKit
+import RxSwift
+import RxCocoa
 
 class CreateWalletService {
     static let sharedInstance = CreateWalletService()
 
-    var name: String = ""
-    var mnemonic: String = ""
-    var password: String = ""
-    var needBackup = true
+    lazy var mnemonicDriver: Driver<String> = self.mnemonicBehaviorRelay.asDriver().filter { $0.count > 0 }
+    private var mnemonicBehaviorRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
+
+    fileprivate(set) var name: String = ""
+    fileprivate(set) var password: String = ""
+    fileprivate(set) var needBackup = true
+    fileprivate(set) var language: MnemonicCodeBook = .english
+
+    var mnemonic: String {
+        return mnemonicBehaviorRelay.value
+    }
+
+    func set(name: String, password: String) {
+        self.name = name
+        self.password = password
+    }
+
+    func generateMnemonic(strength: Mnemonic.Strength = .weak, language: MnemonicCodeBook = .english) {
+        self.language = language
+        mnemonicBehaviorRelay.accept(Mnemonic.randomGenerator(strength: strength, language: language))
+        plog(level: .debug, log: "nnnnnn: \(self.mnemonicBehaviorRelay.value)")
+    }
+
+    func setNeedBackup() {
+        needBackup = true
+    }
 
     func clearData() {
         name = ""
-        mnemonic = ""
         password = ""
+        mnemonicBehaviorRelay.accept("")
     }
 
     func createWallet(isBackedUp: Bool, completion: @escaping () -> () = {}) {
@@ -29,7 +53,7 @@ class CreateWalletService {
                 let uuid = UUID().uuidString
                 let encryptKey = self.password.toEncryptKey(salt: uuid)
                 KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: encryptKey)
-                HDWalletManager.instance.addAndLoginWallet(uuid: uuid, name: self.name, mnemonic: self.mnemonic, encryptKey: encryptKey, isBackedUp: isBackedUp)
+                HDWalletManager.instance.addAndLoginWallet(uuid: uuid, name: self.name, mnemonic: self.mnemonic, language: self.language, encryptKey: encryptKey, isBackedUp: isBackedUp)
                 DispatchQueue.main.async {
                     HUD.hide()
                     NotificationCenter.default.post(name: .createAccountSuccess, object: nil)

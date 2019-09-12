@@ -79,17 +79,27 @@
 "create.page.pw.repeate.title" = "重复输入密码";
 "create.page.submit.btn.title" = "创建";
 
-"create.page.tip.title" = "备份钱包账户";
-"create.page.tip.content" = "请备份助记词，没有妥善备份就无法保障您的资产安全。更换手机或删除 App 后，您需要通过备份助记词来恢复钱包。";
-"create.page.tip.nextBtn" = "备份助记词";
+"create.page.tip.title" = "备份须知";
+"create.page.tip.content1" = "拥有助记词等于拥有所有资产。";
+"create.page.tip.content2" = "助记词是恢复账户的唯一手段，更新或删除App后，您需要通过助记词来恢复钱包。";
+"create.page.tip.content3" = "请谨慎记录并保管助记词。";
+"create.page.tip.button.skip.title" = "以后备份";
+"create.page.tip.button.next.title" = "备份助记词";
+
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "备份助记词";
-"mnemonic.backup.page.tip.title" = "助记词是您恢复账户的唯一手段，请谨慎记录，以防丢失。";
+"mnemonic.backup.page.tip1" = "我们提供两种备份助记词的方式：";
+"mnemonic.backup.page.tip2" = "使用纸笔抄写下来，妥善保管至隔离网络的安全地方。";
+"mnemonic.backup.page.tip3" = "使用另一个手机上的Vite钱包扫描下方二维码。";
+"mnemonic.backup.language.zh" = "中文";
+"mnemonic.backup.language.en" = "英文";
+
 "mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
 "mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";
 "mnemonic.backup.page.check.button3.title" = "我已阅读，理解并同意";
 "mnemonic.backup.page.clause.button.title" = "使用条款";
+
 "mnemonic.backup.page.tip.lab.title" = "助记词";
 "mnemonic.backup.page.tip.anewBtn.title" = "重新生成";
 "mnemonic.backup.page.tip.nextBtn.title" = "已备份";

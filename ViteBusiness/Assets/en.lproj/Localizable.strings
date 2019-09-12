@@ -77,13 +77,21 @@
 "create.page.pw.repeate.title" = "Please input your password again";
 "create.page.submit.btn.title" = "Create";
 
-"create.page.tip.title" = "Backup Wallet Account";
-"create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
-"create.page.tip.nextBtn" = "Generate Seed Phrase";
+"create.page.tip.title" = "备份须知";
+"create.page.tip.content1" = "拥有助记词等于拥有所有资产。";
+"create.page.tip.content2" = "助记词是恢复账户的唯一手段，更新或删除App后，您需要通过助记词来恢复钱包。";
+"create.page.tip.content3" = "请谨慎记录并保管助记词。";
+"create.page.tip.button.skip.title" = "Back Up Later";
+"create.page.tip.button.next.title" = "Backed Up";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
+"mnemonic.backup.page.title" = "备份助记词";
+"mnemonic.backup.page.tip1" = "我们提供两种备份助记词的方式：";
+"mnemonic.backup.page.tip2" = "使用纸笔抄写下来，妥善保管至隔离网络的安全地方。";
+"mnemonic.backup.page.tip3" = "使用另一个手机上的Vite钱包扫描下方二维码。";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
+
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";

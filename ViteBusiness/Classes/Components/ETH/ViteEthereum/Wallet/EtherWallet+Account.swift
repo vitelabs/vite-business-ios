@@ -1,10 +1,11 @@
 import web3swift
 import CryptoSwift
+import Vite_HDWalletKit
 
 public protocol AccountService {
     var address: String? { get }
     var privateKey: Data? { get }
-    func importAccount(mnemonics: String, password: String) throws
+    func importAccount(mnemonics: String, password: String, language: MnemonicCodeBook) throws
     func logout()
 }
 
@@ -24,9 +25,29 @@ extension EtherWallet: AccountService {
         return privateKey
     }
     
-    public func importAccount(mnemonics: String, password: String) throws {
+    public func importAccount(mnemonics: String, password: String, language: MnemonicCodeBook) throws {
 
-        guard let keystore = (try? BIP32Keystore(mnemonics: mnemonics, password: password)) ?? nil else {
+        let l: BIP39Language
+        switch language {
+        case .english:
+            l = BIP39Language.english
+        case .simplifiedChinese:
+            l = BIP39Language.chinese_simplified
+        case .traditionalChinese:
+            l = BIP39Language.chinese_traditional
+        case .japanese:
+            l = BIP39Language.japanese
+        case .korean:
+            l = BIP39Language.korean
+        case .spanish:
+            l = BIP39Language.spanish
+        case .french:
+            l = BIP39Language.french
+        case .italian:
+            l = BIP39Language.italian
+        }
+
+        guard let keystore = (try? BIP32Keystore(mnemonics: mnemonics, password: password, mnemonicsPassword: "", language: l)) ?? nil else {
             throw WalletError.invalidMnemonics
         }
         

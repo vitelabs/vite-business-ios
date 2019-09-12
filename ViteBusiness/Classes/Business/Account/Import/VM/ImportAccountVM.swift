@@ -13,28 +13,35 @@ import RxSwift
 import Vite_HDWalletKit
 
 final class ImportAccountVM {
+
+
+    var language: MnemonicCodeBook?
     let submitBtnEnable: Driver<Bool>
-    let submitAction: Action<(String, String, String, String), CreateWalletResult> = Action {(content, name, pwd, rePwd) in
+    lazy var submitAction: Action<(String, String, String, String), CreateWalletResult> = Action {(content, name, pwd, rePwd) in
 
         if content.isEmpty || name.isEmpty || pwd.isEmpty || rePwd.isEmpty {
-            return Observable.just(.empty(message:         R.string.localizable.mnemonicBackupPageErrorTypeName()))
+            return Observable.just(.empty(message: R.string.localizable.mnemonicBackupPageErrorTypeName()))
         }
 
         var contentMnemonic =  ViteInputValidator.handleMnemonicStrSpacing(content)
-        if !Mnemonic.mnemonic_check(contentMnemonic) {
+
+        guard let language = Mnemonic.mnemonic_check(contentMnemonic) else {
+            self.language = nil
             return Observable.just(.empty(message:R.string.localizable.importPageSubmitInvalidMnemonic()))
         }
 
-        if  !ViteInputValidator.isValidWalletName(str: name  ) {
-            return Observable.just(.failed(message:         R.string.localizable.mnemonicBackupPageErrorTypeNameValid()))
+        self.language = language
+
+        if !ViteInputValidator.isValidWalletName(str: name) {
+            return Observable.just(.failed(message: R.string.localizable.mnemonicBackupPageErrorTypeNameValid()))
         }
-        if  !ViteInputValidator.isValidWalletNameCount(str: name) {
+        if !ViteInputValidator.isValidWalletNameCount(str: name) {
             return Observable.just(.failed(message: R.string.localizable.mnemonicBackupPageErrorTypeValidWalletNameCount()))
         }
-        if  pwd != rePwd {
+        if pwd != rePwd {
             return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypeDifference()))
         }
-        if  ViteInputValidator.isValidWalletPassword(str: pwd) {
+        if ViteInputValidator.isValidWalletPassword(str: pwd) {
             return Observable.just(.empty(message:R.string.localizable.mnemonicBackupPageErrorTypePwdIllegal()))
         }
 

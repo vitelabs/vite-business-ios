@@ -1445,7 +1445,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 731 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 738 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1726,6 +1726,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Back Up Later
       /// 
       /// Locales: en, zh-Hans
+      public static let createPageTipButtonSkipTitle = Rswift.StringResource(key: "create.page.tip.button.skip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Back Up Later
+      /// 
+      /// Locales: en, zh-Hans
       public static let mnemonicBackupPageTipSkipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.skip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Back Up Later
       /// 
@@ -1738,11 +1742,11 @@ public struct R: Rswift.Validatable {
       /// en translation: Backed Up
       /// 
       /// Locales: en, zh-Hans
-      public static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Backup Wallet Account
+      public static let createPageTipButtonNextTitle = Rswift.StringResource(key: "create.page.tip.button.next.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Backed Up
       /// 
       /// Locales: en, zh-Hans
-      public static let createPageTipTitle = Rswift.StringResource(key: "create.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let mnemonicBackupPageTipNextBtnTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.nextBtn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Balance
       /// 
       /// Locales: en, zh-Hans
@@ -2215,6 +2219,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: EN
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupLanguageEn = Rswift.StringResource(key: "mnemonic.backup.language.en", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -2339,14 +2347,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailHost = Rswift.StringResource(key: "crosschain.gatewaydetail.host", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Generate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      public static let createPageTipNextBtn = Rswift.StringResource(key: "create.page.tip.nextBtn", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Generate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Generate Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -2627,14 +2627,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupTipAlertTitle = Rswift.StringResource(key: "mnemonic.backup.tip.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let createPageTipContent = Rswift.StringResource(key: "create.page.tip.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mnemonic words is the only way to recover your account, please do keep them well in case of lost.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupPageTipTitle = Rswift.StringResource(key: "mnemonic.backup.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -4227,6 +4219,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 中
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易所余额为0，无法提现
       /// 
       /// Locales: en, zh-Hans
@@ -4235,6 +4231,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundTitleVitex = Rswift.StringResource(key: "fund.title.vitex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用另一个手机上的Vite钱包扫描下方二维码。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTip3 = Rswift.StringResource(key: "mnemonic.backup.page.tip3", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTip2 = Rswift.StringResource(key: "mnemonic.backup.page.tip2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 充值
       /// 
       /// Locales: en, zh-Hans
@@ -4263,6 +4267,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundVitexAll = Rswift.StringResource(key: "fund.vitex.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 助记词是恢复账户的唯一手段，更新或删除App后，您需要通过助记词来恢复钱包。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageTipContent2 = Rswift.StringResource(key: "create.page.tip.content2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 可提现余额
       /// 
       /// Locales: en, zh-Hans
@@ -4275,6 +4283,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageFreeAddressTitle = Rswift.StringResource(key: "bifrost.home.page.free.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 备份助记词
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTitle = Rswift.StringResource(key: "mnemonic.backup.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 备份须知
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageTipTitle = Rswift.StringResource(key: "create.page.tip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 失败
       /// 
       /// Locales: en, zh-Hans
@@ -4291,10 +4307,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostListPageStatusFinished = Rswift.StringResource(key: "bifrost.list.page.status.finished", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我们提供两种备份助记词的方式：
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTip1 = Rswift.StringResource(key: "mnemonic.backup.page.tip1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的账户地址
       /// 
       /// Locales: en, zh-Hans
       public static let fundWalletAddress = Rswift.StringResource(key: "fund.walletAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 拥有助记词等于拥有所有资产。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageTipContent1 = Rswift.StringResource(key: "create.page.tip.content1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 提币至钱包
       /// 
       /// Locales: en, zh-Hans
@@ -4343,6 +4367,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostHomePageFreeAutoSignTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请谨慎记录并保管助记词。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageTipContent3 = Rswift.StringResource(key: "create.page.tip.content3", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入充值金额
       /// 
       /// Locales: en, zh-Hans
@@ -4858,6 +4886,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Back Up Later
       /// 
       /// Locales: en, zh-Hans
+      public static func createPageTipButtonSkipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.button.skip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Back Up Later
+      /// 
+      /// Locales: en, zh-Hans
       public static func mnemonicBackupPageTipSkipTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.tip.skip.title", bundle: R.hostingBundle, comment: "")
       }
@@ -4879,15 +4914,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Backed Up
       /// 
       /// Locales: en, zh-Hans
-      public static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
+      public static func createPageTipButtonNextTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.button.next.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Backup Wallet Account
+      /// en translation: Backed Up
       /// 
       /// Locales: en, zh-Hans
-      public static func createPageTipTitle(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.tip.title", bundle: R.hostingBundle, comment: "")
+      public static func mnemonicBackupPageTipNextBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip.nextBtn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Balance
@@ -5716,6 +5751,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: EN
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupLanguageEn(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.language.en", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -5931,20 +5973,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainGatewaydetailHost(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.gatewaydetail.host", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Generate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      public static func createPageTipNextBtn(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.tip.nextBtn", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Generate Seed Phrase
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Generate Transaction File
@@ -6435,20 +6463,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupTipAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.tip.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func createPageTipContent(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.tip.content", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Mnemonic words is the only way to recover your account, please do keep them well in case of lost.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupPageTipTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My ETH Address
@@ -9237,6 +9251,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 中
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易所余额为0，无法提现
       /// 
       /// Locales: en, zh-Hans
@@ -9249,6 +9270,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func fundTitleVitex(_: Void = ()) -> String {
         return NSLocalizedString("fund.title.vitex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用另一个手机上的Vite钱包扫描下方二维码。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTip3(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip3", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTip2(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 充值
@@ -9300,6 +9335,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.vitex.all", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 助记词是恢复账户的唯一手段，更新或删除App后，您需要通过助记词来恢复钱包。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageTipContent2(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.content2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 可提现余额
       /// 
       /// Locales: en, zh-Hans
@@ -9319,6 +9361,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostHomePageFreeAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.home.page.free.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 备份助记词
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 备份须知
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageTipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 失败
@@ -9349,11 +9405,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.list.page.status.finished", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 我们提供两种备份助记词的方式：
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTip1(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip1", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的账户地址
       /// 
       /// Locales: en, zh-Hans
       public static func fundWalletAddress(_: Void = ()) -> String {
         return NSLocalizedString("fund.walletAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 拥有助记词等于拥有所有资产。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageTipContent1(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.content1", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 提币至钱包
@@ -9438,6 +9508,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostHomePageFreeAutoSignTitle(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.home.page.free.auto.sign.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请谨慎记录并保管助记词。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageTipContent3(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.tip.content3", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入充值金额
