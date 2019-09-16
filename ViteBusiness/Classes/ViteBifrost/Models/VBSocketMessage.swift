@@ -26,6 +26,7 @@ public struct VBSocketMessage<T: Codable>: Codable {
         case pub
         case sub
     }
+    public let bridgeVersion: String?
     public let topic: String
     public let offset: UInt64?
     public let type: MessageType

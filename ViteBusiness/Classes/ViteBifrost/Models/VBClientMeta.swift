@@ -11,7 +11,7 @@ public struct VBClientMeta: Codable {
     public let name: String
     public let version: String
     public let versionCode: String
-    public let vbVersion: String
+    public let bridgeVersion: String
     public let bundleId: String
     public let platform: String
     public let language: String

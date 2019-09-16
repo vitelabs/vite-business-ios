@@ -183,7 +183,7 @@ extension VBInteractor {
     }
 
     private func subscribe(topic: String) {
-        let message = VBSocketMessage(topic: topic, offset: self.offsetMap[topic], type: .sub, payload: "")
+        let message = VBSocketMessage(bridgeVersion: BifrostManager.bridgeVersion, topic: topic, offset: self.offsetMap[topic], type: .sub, payload: "")
         let data = try! JSONEncoder().encode(message)
         socket.write(data: data)
         print("==> subscribe: \(String(data: data, encoding: .utf8)!)")
@@ -196,7 +196,7 @@ extension VBInteractor {
             return Promise(error: VBError.unknown)
         }
         let payloadString = encoder.encodeAsUTF8(payload)
-        let message = VBSocketMessage(topic: peerId ?? session.topic, offset: nil, type: .pub, payload: payloadString)
+        let message = VBSocketMessage(bridgeVersion: BifrostManager.bridgeVersion, topic: peerId ?? session.topic, offset: nil, type: .pub, payload: payloadString)
         let data = message.encoded
         return Promise { seal in
             socket.write(data: data) {

@@ -197,6 +197,7 @@ public final class BifrostManager {
 
 // Operation
 extension BifrostManager {
+    static let bridgeVersion = "2"
 
     // MARK: Const
     static let maxTryTimes = 10
@@ -213,7 +214,7 @@ extension BifrostManager {
             let clientMeta = VBClientMeta(name: Bundle.main.appName,
                                           version: Bundle.main.versionNumber,
                                           versionCode: Bundle.main.buildNumber,
-                                          vbVersion: "2",
+                                          bridgeVersion: BifrostManager.bridgeVersion,
                                           bundleId: Bundle.main.bundleIdentifier ?? "",
                                           platform: "ios",
                                           language: LocalizationService.sharedInstance.currentLanguage.code)
