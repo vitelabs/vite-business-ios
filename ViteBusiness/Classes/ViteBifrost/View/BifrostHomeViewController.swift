@@ -30,10 +30,6 @@ class BifrostHomeViewController: BaseViewController {
         freeView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
-
-        #if DEBUG
-        debugView()
-        #endif
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -91,22 +87,5 @@ class BifrostHomeViewController: BaseViewController {
     func hideConfirm() {
         self.busyView?.removeFromSuperview()
         self.busyView = nil
-    }
-}
-
-extension BifrostHomeViewController {
-
-    func debugView() {
-        let statusLabel = UILabel().then {
-            $0.backgroundColor = .red
-        }
-
-        view.addSubview(statusLabel)
-        statusLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
-            m.centerX.equalToSuperview()
-        }
-
-        BifrostManager.instance.statusDriver.map{ "\($0)" }.drive(statusLabel.rx.text).disposed(by: rx.disposeBag)
     }
 }

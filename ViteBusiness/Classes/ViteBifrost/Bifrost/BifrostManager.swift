@@ -593,9 +593,9 @@ extension BifrostManager {
 extension BifrostManager {
 
     fileprivate func retryMaybeRecover(error: Error) -> Bool {
-        if let e = error as? ViteError {
-            /// TODO:
+        if let e = error as? ViteError, e.code.type == .rpc {
             if e.code == ViteErrorCode.rpcRetryMaybeRecover ||
+                e.code == ViteErrorCode.rpcNotEnoughQuota ||
                 e.code == ViteErrorCode.rpcRefrenceSameSnapshootBlock ||
                 e.code == ViteErrorCode.rpcRefrenceSnapshootBlockIllegal {
                 return true
