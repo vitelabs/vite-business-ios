@@ -45,14 +45,14 @@ class EthSendTokenController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 

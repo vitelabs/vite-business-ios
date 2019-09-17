@@ -43,20 +43,20 @@ public class ViteBalanceInfoManager {
     fileprivate var service: FetchBalanceInfoService?
 
     fileprivate var address: ViteAddress?
-    fileprivate var tokenInfos: [TokenInfo] = []
+    fileprivate var tokenCodes: [TokenCode] = []
 
-    func registerFetch(tokenInfos: [TokenInfo]) {
+    func registerFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            self.tokenInfos.append(contentsOf: tokenInfos)
+            self.tokenCodes.append(contentsOf: tokenCodes)
             self.triggerService()
         }
     }
 
-    func unregisterFetch(tokenInfos: [TokenInfo]) {
+    func unregisterFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            tokenInfos.forEach({ id in
-                if let index = self.tokenInfos.firstIndex(of: id) {
-                    self.tokenInfos.remove(at: index)
+            tokenCodes.forEach({ tokenCode in
+                if let index = self.tokenCodes.firstIndex(of: tokenCode) {
+                    self.tokenCodes.remove(at: index)
                 }
             })
             self.triggerService()
@@ -96,6 +96,11 @@ public class ViteBalanceInfoManager {
 
     private func triggerService() {
 
+        let tokenInfos: [TokenInfo] = self.tokenCodes
+            .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+            .compactMap { $0 }
+            .filter{ $0.coinType == .vite }
+
         if let address = self.address,
             !tokenInfos.isEmpty {
 
@@ -111,12 +116,6 @@ public class ViteBalanceInfoManager {
                     plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
 
                     let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos)
-
-//                    let map = balanceInfos.reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
-//                        var map = m
-//                        map[balanceInfo.token.id] = balanceInfo
-//                        return map
-//                    })
 
                     let tokenInfos = MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite })
                     let (wBalanceInfoMap, dBalanceInfoMap) = tokenInfos.reduce((ViteBalanceInfoMap(), DexBalanceInfoMap()), { (m, tokenInfo) -> (ViteBalanceInfoMap, DexBalanceInfoMap) in
@@ -172,9 +171,15 @@ public class ViteBalanceInfoManager {
             self.service = service
             self.service?.startPoll()
         } else {
-            plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
-            self.service?.stopPoll()
-            self.service = nil
+            if tokenCodes.isEmpty {
+                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+                self.service?.stopPoll()
+                self.service = nil
+            } else {
+                GCD.delay(1) {
+                    self.triggerService()
+                }
+            }
         }
     }
 

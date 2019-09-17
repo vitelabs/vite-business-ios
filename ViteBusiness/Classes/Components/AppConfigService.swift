@@ -15,10 +15,7 @@ import ObjectMapper
 public class AppConfigService {
     public static let instance = AppConfigService()
 
-    lazy var defaultTokenInfosDriver: Driver<[TokenInfo]> = self.defaultTokenInfosBehaviorRelay.asDriver().filterNil()
     lazy var configDriver: Driver<AppConfig> = self.configBehaviorRelay.asDriver()
-
-    fileprivate let defaultTokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]?> = BehaviorRelay(value: nil)
     fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
     fileprivate var lastBuildNumber: Int?
@@ -45,10 +42,6 @@ public class AppConfigService {
         } else {
             fatalError("app file not found in bundle")
         }
-
-        configBehaviorRelay.asDriver().drive(onNext: { [weak self] (config) in
-            self?.fetchTokenInfos(tokenCodes: config.defaultTokenCodes)
-        }).disposed(by: disposeBag)
     }
 
     public func start() {
@@ -95,15 +88,6 @@ public class AppConfigService {
                 plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
                 GCD.delay(2, task: { self.getAppSettingsConfig(hash: hash) })
             }
-        }
-    }
-
-    fileprivate func fetchTokenInfos(tokenCodes: [TokenCode]) {
-        TokenInfoCacheService.instance.tokenInfos(for: tokenCodes).done { (tokenInfos) in
-            self.defaultTokenInfosBehaviorRelay.accept(tokenInfos)
-            }.catch { (error) in
-                plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
-                GCD.delay(2, task: { self.fetchTokenInfos(tokenCodes: tokenCodes) })
         }
     }
 }

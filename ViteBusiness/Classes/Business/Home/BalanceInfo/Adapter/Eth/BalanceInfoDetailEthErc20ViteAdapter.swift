@@ -23,11 +23,11 @@ class BalanceInfoDetailEthErc20ViteAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
     }
 
     func viewDidDisappear() {
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
     }
 
     func setup(headerView: UIStackView) {

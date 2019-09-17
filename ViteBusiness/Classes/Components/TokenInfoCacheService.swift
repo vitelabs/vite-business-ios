@@ -26,6 +26,10 @@ public class TokenInfoCacheService {
                 keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
                 needUpdateTokenInfo.insert(tokenInfo.tokenCode)
             }
+        } else {
+            let tokenInfo = TokenInfo.BuildIn.vite.value
+            tokenCodeMap[tokenInfo.tokenCode] = tokenInfo
+            keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
         }
     }
 }

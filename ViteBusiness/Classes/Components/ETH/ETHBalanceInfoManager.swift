@@ -29,20 +29,20 @@ public class ETHBalanceInfoManager {
     fileprivate var serviceMap: [TokenCode: ETHBalanceInfoService] = [:]
 
     fileprivate var address: String?
-    fileprivate var tokenInfos: [TokenInfo] = []
+    fileprivate var tokenCodes: [TokenCode] = []
 
-    func registerFetch(tokenInfos: [TokenInfo]) {
+    func registerFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            self.tokenInfos.append(contentsOf: tokenInfos)
+            self.tokenCodes.append(contentsOf: tokenCodes)
             self.triggerService()
         }
     }
 
-    func unregisterFetch(tokenInfos: [TokenInfo]) {
+    func unregisterFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            tokenInfos.forEach({ tokenInfo in
-                if let index = self.tokenInfos.firstIndex(of: tokenInfo) {
-                    self.tokenInfos.remove(at: index)
+            tokenCodes.forEach({ tokenCode in
+                if let index = self.tokenCodes.firstIndex(of: tokenCode) {
+                    self.tokenCodes.remove(at: index)
                 }
             })
             self.triggerService()
@@ -70,6 +70,11 @@ public class ETHBalanceInfoManager {
     }
 
     private func triggerService() {
+
+        let tokenInfos: [TokenInfo] = self.tokenCodes
+            .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+            .compactMap { $0 }
+            .filter{ $0.coinType == .eth }
 
         if let address = self.address, !tokenInfos.isEmpty {
 
@@ -115,8 +120,15 @@ public class ETHBalanceInfoManager {
             }
 
         } else {
-            plog(level: .debug, log: "stop All fetch", tag: .transaction)
-            self.serviceMap = [:]
+            if tokenCodes.isEmpty {
+                plog(level: .debug, log: "stop All fetch", tag: .transaction)
+                self.serviceMap = [:]
+            } else {
+                GCD.delay(1) {
+                    self.triggerService()
+                }
+            }
+
         }
     }
 
@@ -130,7 +142,7 @@ public class ETHBalanceInfoManager {
             let balanceInfos = [ETHBalanceInfo](JSONString: jsonString) {
 
             // filter deleted balanceInfo
-            for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.tokenCode) {
+            for balanceInfo in balanceInfos where MyTokenInfosService.instance.contains(for: balanceInfo.tokenCode) {
                 map[balanceInfo.tokenCode] = balanceInfo
             }
         }

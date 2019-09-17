@@ -81,14 +81,14 @@ class ManageViteXBanlaceViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [token])
+        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [token.tokenCode])
         FetchQuotaManager.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaManager.instance.releaseQuota()
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [token])
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [token.tokenCode])
     }
 
     func setUpView() {

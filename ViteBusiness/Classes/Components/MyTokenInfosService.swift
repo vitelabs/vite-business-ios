@@ -24,7 +24,7 @@ public final class MyTokenInfosService: NSObject {
 
     private override init() {}
     private func pri_save() {
-        let myTokenCodes = tokenInfosBehaviorRelay.value.map{ $0.tokenCode }
+        let myTokenCodes = tokenCodesBehaviorRelay.value
         let removedTokenCodes = Array(self.removedTokenCodes)
         let storager = Storager(myTokenCodes: myTokenCodes, removedTokenCodes: removedTokenCodes)
         save(mappable: storager)
@@ -32,21 +32,23 @@ public final class MyTokenInfosService: NSObject {
 
     fileprivate(set) var removedTokenCodes = Set<TokenCode>()
 
+    private var tokenCodesBehaviorRelay: BehaviorRelay<[TokenCode]> = BehaviorRelay(value: [])
     private var tokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
 
     //MARK: Launch
     func start() {
 
         Observable.combineLatest(
-            AppConfigService.instance.defaultTokenInfosDriver.asObservable(),
+            AppConfigService.instance.configDriver.asObservable(),
             HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().asObservable())
-            .bind { [weak self] (defaultTokenInfos, uuid) in
+            .bind { [weak self] (config, uuid) in
                 guard let `self` = self else { return }
                 if let _ = uuid {
                     #if DAPP
                     self.tokenInfosBehaviorRelay.accept([TokenInfo.BuildIn.vite.value])
                     #else
 
+                    let defaultTokenCodes = config.defaultTokenCodes
                     let myTokenCodes: [TokenCode]
                     if let jsonString = self.readString() {
                         // Compatible with older versions(2.7.0)
@@ -63,30 +65,44 @@ public final class MyTokenInfosService: NSObject {
                         myTokenCodes = [TokenInfo.BuildIn.vite.value.tokenCode]
                     }
 
-                    if let myTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: myTokenCodes) {
-                        let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: myTokenInfos)
-                        self.tokenInfosBehaviorRelay.accept(tokenInfos)
+                    self.tokenCodesBehaviorRelay.accept(myTokenCodes)
+
+                    let myTokenInfos = myTokenCodes
+                        .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+                        .compactMap { $0 }
+                    let defaultTokenInfos = defaultTokenCodes
+                        .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+                        .compactMap { $0 }
+
+                    let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: myTokenInfos)
+                    self.tokenInfosBehaviorRelay.accept(tokenInfos)
+
+                    if myTokenCodes.count == myTokenInfos.count && defaultTokenCodes.count == defaultTokenInfos.count {
                         self.pri_save()
                     } else {
-                        self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
-                        self.fetchMyTokenInfos(defaultTokenInfos: defaultTokenInfos, tokenCodes: myTokenCodes)
+                        self.fetchTokenInfos(defaultTokenCodes: defaultTokenCodes, myTokenCodes: myTokenCodes)
                     }
+
                     #endif
                 } else {
+                    self.tokenCodesBehaviorRelay.accept([])
                     self.tokenInfosBehaviorRelay.accept([])
                 }
         }.disposed(by: rx.disposeBag)
     }
 
-    private func fetchMyTokenInfos(defaultTokenInfos: [TokenInfo], tokenCodes: [TokenCode]) {
-        TokenInfoCacheService.instance.tokenInfos(for: tokenCodes)
-            .done { tokenInfos in
-                let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: tokenInfos)
+    private func fetchTokenInfos(defaultTokenCodes: [TokenCode], myTokenCodes: [TokenCode]) {
+        let set = Set(defaultTokenCodes).intersection(Set(myTokenCodes))
+        TokenInfoCacheService.instance.tokenInfos(for: Array(set))
+            .done { _ in
+                let defaultTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: defaultTokenCodes)!
+                let myTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: myTokenCodes)!
+                let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: myTokenInfos)
                 self.tokenInfosBehaviorRelay.accept(tokenInfos)
                 self.pri_save()
             }.catch{ error in
                 plog(level: .warning, log: "fetch my tokenInfos error: \(error.localizedDescription)", tag: .exchange)
-                GCD.delay(1) { self.fetchMyTokenInfos(defaultTokenInfos: defaultTokenInfos, tokenCodes: tokenCodes) }
+                GCD.delay(1) { self.fetchTokenInfos(defaultTokenCodes: defaultTokenCodes, myTokenCodes: myTokenCodes) }
         }
     }
 
@@ -133,6 +149,7 @@ public final class MyTokenInfosService: NSObject {
 
     //MARK: public func
     public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
+    public var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
 
     public func tokenInfo(for tokenCode: TokenCode) -> TokenInfo? {
@@ -144,45 +161,48 @@ public final class MyTokenInfosService: NSObject {
 
     public func append(tokenInfo: TokenInfo) {
         TokenInfoCacheService.instance.updateTokenInfos([tokenInfo])
-        guard containsTokenInfo(for: tokenInfo.tokenCode) == false else { return }
+        guard contains(for: tokenInfo.tokenCode) == false else { return }
 
+        removedTokenCodes.remove(tokenInfo.tokenCode)
         var tokenInfos = tokenInfosBehaviorRelay.value
         tokenInfos.append(tokenInfo)
-        tokenInfosBehaviorRelay.accept(sortTokenInfos(defaultTokenInfos: [], myTokenInfos: tokenInfos))
-        removedTokenCodes.remove(tokenInfo.tokenCode)
+        let ret = sortTokenInfos(defaultTokenInfos: [], myTokenInfos: tokenInfos)
+        tokenCodesBehaviorRelay.accept(ret.map { $0.tokenCode })
+        tokenInfosBehaviorRelay.accept(ret)
         pri_save()
         ExchangeRateManager.instance.getRateImmediately(for: tokenInfo.tokenCode)
     }
 
     public func removeToken(for tokenCode: TokenCode) {
-        guard containsTokenInfo(for: tokenCode) else { return }
-        guard canRemoveTokenInfo(for: tokenCode) else { return }
+        guard contains(for: tokenCode) else { return }
+        guard canRemove(for: tokenCode) else { return }
 
         let tokenInfos = tokenInfosBehaviorRelay.value.filter { $0.tokenCode != tokenCode }
+        tokenCodesBehaviorRelay.accept(tokenInfos.map { $0.tokenCode })
         tokenInfosBehaviorRelay.accept(tokenInfos)
         removedTokenCodes.insert(tokenCode)
         pri_save()
     }
 
-    public func containsTokenInfo(for tokenCode: TokenCode) -> Bool {
-        for tokenInfo in tokenInfos where tokenInfo.tokenCode == tokenCode {
+    public func contains(for tokenCode: TokenCode) -> Bool {
+        for code in tokenCodes where code == tokenCode {
             return true
         }
         return false
     }
 
-    public func canRemoveTokenInfo(for tokenCode: TokenCode) -> Bool {
+    public func canRemove(for tokenCode: TokenCode) -> Bool {
         return tokenCode != TokenInfo.BuildIn.vite.value.tokenCode
     }
 }
 
 extension TokenInfo {
     var canRemove: Bool {
-        return MyTokenInfosService.instance.canRemoveTokenInfo(for: tokenCode)
+        return MyTokenInfosService.instance.canRemove(for: tokenCode)
     }
 
     var isContains: Bool {
-        return MyTokenInfosService.instance.containsTokenInfo(for: tokenCode)
+        return MyTokenInfosService.instance.contains(for: tokenCode)
     }
 }
 
@@ -211,6 +231,7 @@ extension MyTokenInfosService {
 extension MyTokenInfosService {
     // for debug
     func clear() {
+        tokenCodesBehaviorRelay.accept([])
         tokenInfosBehaviorRelay.accept([])
         removedTokenCodes = []
         pri_save()

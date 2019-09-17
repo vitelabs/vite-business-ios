@@ -91,14 +91,14 @@ final class WalletHomeBalanceInfoTableViewModel {
     }
 
     func registerFetchAll() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite }))
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
+        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
         GrinManager.default.getBalance()
     }
 
     func unregisterFetchAll() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite }))
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .eth }))
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
     }
 }
 

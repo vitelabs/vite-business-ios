@@ -36,7 +36,7 @@ class EthViteExchangeViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.BuildIn.eth_vite.value])
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: [TokenInfo.BuildIn.eth_vite.value.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
         let key = "tipShowed"
@@ -54,7 +54,7 @@ class EthViteExchangeViewController: BaseViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.BuildIn.eth_vite.value])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: [TokenInfo.BuildIn.eth_vite.value.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 

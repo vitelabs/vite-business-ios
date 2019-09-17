@@ -264,24 +264,21 @@ extension BackupMnemonicViewController {
             scrollView.stackView.addArrangedSubview(mnemonicSwitchView)
         }
 
-        let tipView = TipTextView(text: R.string.localizable.mnemonicBackupPageTip1()).then {
-            $0.label.textColor = UIColor(netHex: 0x24272B)
-            $0.label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        }
-
-        let tip2Label = UILabel().then {
+        let tip1Label = UILabel().then {
             $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
             $0.numberOfLines = 0
-            $0.text = R.string.localizable.mnemonicBackupPageTip2()
+            $0.text = R.string.localizable.mnemonicBackupPageTip1()
         }
 
-        let tip3Label = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.numberOfLines = 0
-            $0.text = R.string.localizable.mnemonicBackupPageTip3()
+        let tip1View = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x24272B)
+            $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+            $0.text = R.string.localizable.mnemonicBackupPageTip1()
         }
+
+        let tip2View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip2())
+        let tip3View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip3())
 
         qrImageView.snp.makeConstraints { (m) in
             m.size.equalTo(CGSize(width: 140, height: 140))
@@ -290,11 +287,11 @@ extension BackupMnemonicViewController {
         scrollView.stackView.addPlaceholder(height: 8)
         scrollView.stackView.addArrangedSubview(mnemonicCollectionView)
         scrollView.stackView.addPlaceholder(height: 16)
-        scrollView.stackView.addArrangedSubview(tipView)
+        scrollView.stackView.addArrangedSubview(tip1View)
         scrollView.stackView.addPlaceholder(height: 10)
-        scrollView.stackView.addArrangedSubview(tip2Label)
+        scrollView.stackView.addArrangedSubview(tip2View)
         scrollView.stackView.addPlaceholder(height: 4)
-        scrollView.stackView.addArrangedSubview(tip3Label)
+        scrollView.stackView.addArrangedSubview(tip3View)
         scrollView.stackView.addPlaceholder(height: 20)
         scrollView.stackView.addArrangedSubview(qrImageView.centerX())
 
