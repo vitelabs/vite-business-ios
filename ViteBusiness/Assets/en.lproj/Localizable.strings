@@ -92,6 +92,11 @@
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
+"mnemonic.backup.scan.alert.title" = "通知";
+"mnemonic.backup.scan.alert.message" = "请确认是否使用此助记词生成账户";
+"mnemonic.backup.scan.alert.ok.title" = "确认";
+"mnemonic.backup.scan.alert.cancel.title" = "取消";
+
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";

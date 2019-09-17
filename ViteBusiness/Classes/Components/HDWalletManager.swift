@@ -119,6 +119,20 @@ public final class HDWalletManager {
     }
 }
 
+// MARK: - Grin {
+extension HDWalletManager {
+    var mnemonicForGrin: String? {
+        guard let l = language, let m = mnemonic else { return nil }
+        if l == MnemonicCodeBook.english {
+            return m
+        } else {
+            guard let entropy = Mnemonic.mnemonicsToEntropy(m, language: l) else { return nil }
+            let ret = Mnemonic.generator(entropy: entropy, language: .english)
+            return ret
+        }
+    }
+}
+
 // MARK: - Settings
 extension HDWalletManager {
     func setIsRequireAuthentication(_ isRequireAuthentication: Bool) {
@@ -161,7 +175,46 @@ extension HDWalletManager {
 // MARK: - login & logout
 extension HDWalletManager {
 
-    func isExist(mnemonic: String) -> String? {
+    func importAndLoginWallet(name: String, mnemonic: String, language: MnemonicCodeBook, password: String, completion: @escaping (Bool) -> ()) {
+        let uuid = UUID().uuidString
+        let encryptKey = password.toEncryptKey(salt: uuid)
+        let importBlock = {
+            DispatchQueue.global().async {
+                KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: encryptKey)
+                HDWalletManager.instance.importAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptKey: encryptKey)
+                DispatchQueue.main.async {
+                    HUD.hide()
+                    completion(true)
+                    NotificationCenter.default.post(name: .createAccountSuccess, object: nil)
+                    DispatchQueue.main.async {
+                        Toast.show(R.string.localizable.importPageSubmitSuccess())
+                    }
+                }
+            }
+        }
+
+        HUD.show(R.string.localizable.importPageSubmitLoading())
+        DispatchQueue.global().async {
+            if let name = HDWalletManager.instance.isExist(mnemonic: mnemonic) {
+                DispatchQueue.main.async {
+                    HUD.hide()
+                    Alert.show(title: R.string.localizable.importPageAlertExistTitle(name), message: nil, actions: [
+                        (.default(title: R.string.localizable.importPageAlertExistOk()), { alertController in
+                            HUD.show(R.string.localizable.importPageSubmitLoading())
+                            importBlock()
+                        }),
+                        (.default(title: R.string.localizable.importPageAlertExistCancel()), { _ in
+                            completion(false)
+                        })])
+                }
+            } else {
+                importBlock()
+            }
+
+        }
+    }
+
+    fileprivate func isExist(mnemonic: String) -> String? {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
         for wallet in storage.wallets where hash == wallet.hash {
             return wallet.name
@@ -180,7 +233,7 @@ extension HDWalletManager {
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
-    func importAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String) {
+    fileprivate func importAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
         let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true, isBackedUp: true)
         self.mnemonic = mnemonic

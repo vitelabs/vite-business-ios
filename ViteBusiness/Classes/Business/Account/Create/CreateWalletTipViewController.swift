@@ -108,7 +108,7 @@ extension CreateWalletTipViewController {
         }.disposed(by: rx.disposeBag)
 
         backupButton.rx.tap.bind {
-            let backupMnemonicCashVC = BackupMnemonicViewController(forCreate: true)
+            let backupMnemonicCashVC = BackupMnemonicViewController(password: nil)
             UIViewController.current?.navigationController?.pushViewController(backupMnemonicCashVC, animated: true)
         }.disposed(by: rx.disposeBag)
 

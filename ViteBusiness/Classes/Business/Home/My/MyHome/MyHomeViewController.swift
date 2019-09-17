@@ -111,10 +111,10 @@ extension MyHomeViewController: MyHomeListHeaderViewDelegate {
     }
     func mnemonicBtnAction() {
         Statistics.log(eventId: Statistics.Page.MyHome.mnemonicClicked.rawValue)
-        self.verifyWalletPassword(callback: {
+        self.verifyWalletPassword(callback: { password in
 
             if !HDWalletManager.instance.isBackedUp {
-                let vc = BackupMnemonicViewController(forCreate: false)
+                let vc = BackupMnemonicViewController(password: password)
                 let nav = BaseNavigationController(rootViewController: vc)
                 UIViewController.current?.present(nav, animated: true, completion: nil)
             } else {

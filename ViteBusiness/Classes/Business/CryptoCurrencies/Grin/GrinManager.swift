@@ -108,7 +108,7 @@ class GrinManager: GrinBridge {
             return
         }
         self.walletCreated.accept(false)
-        guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+        guard let mnemonic = HDWalletManager.instance.mnemonicForGrin else { return }
         grin_async({ ()  in
             self.walletRecovery(mnemonic)
         },  { (result) in

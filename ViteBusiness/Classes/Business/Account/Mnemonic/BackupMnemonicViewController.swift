@@ -12,17 +12,20 @@ import Vite_HDWalletKit
 import ActiveLabel
 import RxSwift
 import RxCocoa
+import ObjectMapper
 
 class BackupMnemonicViewController: BaseViewController {
 //    fileprivate var viewModel: BackupMnemonicVM
 
     fileprivate let forCreate: Bool
+    fileprivate let password: String?
     fileprivate var isFirstShow = true
 
     fileprivate let refreshMnemonicBehaviorRelay: BehaviorRelay<Void> = BehaviorRelay(value: ())
 
-    init(forCreate: Bool) {
-        self.forCreate = forCreate
+    init(password: String?) {
+        self.password = password
+        self.forCreate = (password == nil)
 //        self.viewModel = BackupMnemonicVM()
         super.init(nibName: nil, bundle: nil)
     }
@@ -98,6 +101,8 @@ class BackupMnemonicViewController: BaseViewController {
         return contentView
     }()
 
+    let qrImageView = UIImageView()
+
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 0, left: 24, bottom: 10, right: 24)).then {
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
@@ -108,6 +113,21 @@ class BackupMnemonicViewController: BaseViewController {
 }
 
 extension BackupMnemonicViewController {
+
+
+
+    func updateQRImageView(name: String, mnemonic: String, language: MnemonicCodeBook, password: String) {
+        guard let uri = CreateWalletService.BackupWalletURI(name: name,
+                                                            mnemonic: mnemonic,
+                                                            language: language,
+                                                            password: password) else {
+                                                                return
+
+        }
+        QRCodeHelper.createQRCode(string: uri.uri) { [weak self] image in
+            self?.qrImageView.image = image
+        }
+    }
     private func _bindViewModel() {
 
         if forCreate {
@@ -154,11 +174,19 @@ extension BackupMnemonicViewController {
                 })
 
                 self.mnemonicCollectionView.dataList = array
+                self.updateQRImageView(name: CreateWalletService.sharedInstance.name,
+                                       mnemonic: CreateWalletService.sharedInstance.mnemonic,
+                                       language: CreateWalletService.sharedInstance.language,
+                                       password: CreateWalletService.sharedInstance.password)
             }).disposed(by: rx.disposeBag)
         } else {
-            guard let mnemonic = HDWalletManager.instance.mnemonic else {
+            guard let mnemonic = HDWalletManager.instance.mnemonic,
+            let name = HDWalletManager.instance.wallet?.name,
+            let language = HDWalletManager.instance.language,
+            let password = self.password else {
                 return
             }
+
             let list = mnemonic.components(separatedBy: " ")
             if list.count == 12 {
                 self.mnemonicCollectionView.snp.updateConstraints { (make) -> Void in
@@ -171,6 +199,8 @@ extension BackupMnemonicViewController {
                 }
                 self.mnemonicCollectionView.h_num =  CGFloat(6.0)
             }
+            self.mnemonicCollectionView.dataList = list
+            self.updateQRImageView(name: name, mnemonic: mnemonic, language: language, password: password)
         }
 
         NotificationCenter.default.rx
@@ -190,19 +220,6 @@ extension BackupMnemonicViewController {
         self.view.backgroundColor = .white
         navigationTitleView = NavigationTitleView(title: R.string.localizable.mnemonicBackupPageTitle())
         self._addViewConstraint()
-//        let rightItem = UIBarButtonItem(title: R.string.localizable.mnemonicBackupPageTipSkipTitle(), style: .plain, target: self, action: nil)
-//        rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .normal)
-//        rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
-//        self.navigationItem.rightBarButtonItem = rightItem
-//        self.navigationItem.rightBarButtonItem?.rx.tap.bind {[weak self] in
-//            guard let `self` = self else { return }
-//            if self.forCreate {
-//                CreateWalletService.sharedInstance.mnemonic = self.viewModel.mnemonicWordsStr.value
-//                CreateWalletService.sharedInstance.createWallet(isBackedUp: false)
-//            } else {
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//            }.disposed(by: rx.disposeBag)
     }
 
 
@@ -221,7 +238,7 @@ extension BackupMnemonicViewController {
             view.addSubview(nextMnemonicBtn)
             view.addSubview(afreshMnemonicBtn)
             afreshMnemonicBtn.snp.makeConstraints { (make) -> Void in
-                make.top.equalTo(scrollView.snp.bottom)
+                make.top.equalTo(scrollView.snp.bottom).offset(20)
                 make.left.equalTo(view).offset(24)
                 make.height.equalTo(50)
                 make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
@@ -243,33 +260,48 @@ extension BackupMnemonicViewController {
             }
         }
 
-
-
-
-
         if forCreate {
-            scrollView.stackView.addPlaceholder(height: 16)
             scrollView.stackView.addArrangedSubview(mnemonicSwitchView)
         }
+
+        let tipView = TipTextView(text: R.string.localizable.mnemonicBackupPageTip1()).then {
+            $0.label.textColor = UIColor(netHex: 0x24272B)
+            $0.label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        }
+
+        let tip2Label = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.numberOfLines = 0
+            $0.text = R.string.localizable.mnemonicBackupPageTip2()
+        }
+
+        let tip3Label = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.numberOfLines = 0
+            $0.text = R.string.localizable.mnemonicBackupPageTip3()
+        }
+
+        qrImageView.snp.makeConstraints { (m) in
+            m.size.equalTo(CGSize(width: 140, height: 140))
+        }
+
         scrollView.stackView.addPlaceholder(height: 8)
         scrollView.stackView.addArrangedSubview(mnemonicCollectionView)
-        scrollView.stackView.addPlaceholder(height: 20)
-        scrollView.stackView.addArrangedSubview(TipTextView(text: R.string.localizable.mnemonicBackupPageTip1()))
-        scrollView.stackView.addPlaceholder(height: 6)
-        scrollView.stackView.addArrangedSubview(TipTextView(text: R.string.localizable.mnemonicBackupPageTip2()))
-        scrollView.stackView.addPlaceholder(height: 6)
-        scrollView.stackView.addArrangedSubview(TipTextView(text: R.string.localizable.mnemonicBackupPageTip3()))
         scrollView.stackView.addPlaceholder(height: 16)
+        scrollView.stackView.addArrangedSubview(tipView)
+        scrollView.stackView.addPlaceholder(height: 10)
+        scrollView.stackView.addArrangedSubview(tip2Label)
+        scrollView.stackView.addPlaceholder(height: 4)
+        scrollView.stackView.addArrangedSubview(tip3Label)
+        scrollView.stackView.addPlaceholder(height: 20)
+        scrollView.stackView.addArrangedSubview(qrImageView.centerX())
 
 
         mnemonicSwitchView.typeDriver.drive(onNext: { (length, language) in
             plog(level: .debug, log: "\(length) \(language)")
         }).disposed(by: rx.disposeBag)
-
-
-//        self.switchTipView.snp.makeConstraints { (make) -> Void in
-//            make.height.equalTo(20)
-//        }
 
         self.mnemonicCollectionView.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(kScreenH * (186.0/667.0))

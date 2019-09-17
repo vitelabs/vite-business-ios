@@ -111,7 +111,20 @@ class LoginViewController: BaseViewController {
 extension LoginViewController {
     private func _setupView() {
         self.view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(scan))
         self._addViewConstraint()
+    }
+
+    @objc private func scan() {
+        let scanViewController = ScanViewController()
+        _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
+            if let url = URL(string: result), ViteAppSchemeHandler.instance.handleViteScheme(url, allowActions: [.backupWallet]) {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                scanViewController?.showAlertMessage(result)
+            }
+        }
+        self.navigationController?.pushViewController(scanViewController, animated: true)
     }
 
     private func _addViewConstraint() {

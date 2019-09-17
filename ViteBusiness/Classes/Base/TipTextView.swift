@@ -9,6 +9,12 @@ import UIKit
 
 class TipTextView: UIView {
 
+    let label = UILabel().then {
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.numberOfLines = 0
+    }
+
     init(text: String) {
         super.init(frame: CGRect.zero)
 
@@ -18,12 +24,7 @@ class TipTextView: UIView {
             $0.layer.cornerRadius = 3
         }
 
-        let label = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.numberOfLines = 0
-            $0.text = text
-        }
+        label.text = text
 
         addSubview(pointView)
         addSubview(label)

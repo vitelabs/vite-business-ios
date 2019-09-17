@@ -92,8 +92,13 @@
 "mnemonic.backup.page.tip1" = "我们提供两种备份助记词的方式：";
 "mnemonic.backup.page.tip2" = "使用纸笔抄写下来，妥善保管至隔离网络的安全地方。";
 "mnemonic.backup.page.tip3" = "使用另一个手机上的Vite钱包扫描下方二维码。";
-"mnemonic.backup.language.zh" = "中文";
-"mnemonic.backup.language.en" = "英文";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
+
+"mnemonic.backup.scan.alert.title" = "通知";
+"mnemonic.backup.scan.alert.message" = "请确认是否使用此助记词生成账户";
+"mnemonic.backup.scan.alert.ok.title" = "确认";
+"mnemonic.backup.scan.alert.cancel.title" = "取消";
 
 "mnemonic.backup.page.check.button1.title" = "我理解如果我丢失了助记词，我将永远无法找回我的资产";
 "mnemonic.backup.page.check.button2.title" = "我理解如果我忘记或丢失了助记词，将没有任何人能够帮助我恢复";

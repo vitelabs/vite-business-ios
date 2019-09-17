@@ -82,6 +82,9 @@ class WalletHomeViewController: BaseViewController {
         if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
             CreateWalletService.sharedInstance.showBackUpTipAlert()
         }
+        GCD.delay(1) {
+            CreateWalletService.sharedInstance.GoExportMnemonicIfNeeded()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

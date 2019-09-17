@@ -128,41 +128,9 @@ extension ImportAccountViewController {
 
     func goNextVC() {
         guard let language = self.importAccountVM?.language else { return }
-        let uuid = UUID().uuidString
         let name  = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
         let password = self.createNameAndPwdView.passwordRepeateTF.textField.text ?? ""
-        let encryptKey = password.toEncryptKey(salt: uuid)
         let mnemonic = ViteInputValidator.handleMnemonicStrSpacing(self.contentTextView.text)
-        let importBlock = {
-            DispatchQueue.global().async {
-                KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: encryptKey)
-                HDWalletManager.instance.importAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptKey: encryptKey)
-                DispatchQueue.main.async {
-                    HUD.hide()
-                    NotificationCenter.default.post(name: .createAccountSuccess, object: nil)
-                    DispatchQueue.main.async {
-                        Toast.show(R.string.localizable.importPageSubmitSuccess())
-                    }
-                }
-            }
-        }
-
-        HUD.show(R.string.localizable.importPageSubmitLoading())
-        DispatchQueue.global().async {
-            if let name = HDWalletManager.instance.isExist(mnemonic: mnemonic) {
-                DispatchQueue.main.async {
-                    HUD.hide()
-                    Alert.show(into: self, title: R.string.localizable.importPageAlertExistTitle(name), message: nil, actions: [
-                        (.default(title: R.string.localizable.importPageAlertExistOk()), { alertController in
-                            HUD.show(R.string.localizable.importPageSubmitLoading())
-                            importBlock()
-                        }),
-                        (.default(title: R.string.localizable.importPageAlertExistCancel()), nil)])
-                }
-            } else {
-                importBlock()
-            }
-
-        }
+        HDWalletManager.instance.importAndLoginWallet(name: name, mnemonic: mnemonic, language: language, password: password, completion: { _ in })
     }
 }

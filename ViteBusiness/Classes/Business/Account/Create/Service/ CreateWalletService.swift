@@ -8,6 +8,7 @@
 import Vite_HDWalletKit
 import RxSwift
 import RxCocoa
+import ObjectMapper
 
 class CreateWalletService {
     static let sharedInstance = CreateWalletService()
@@ -19,6 +20,7 @@ class CreateWalletService {
     fileprivate(set) var password: String = ""
     fileprivate(set) var needBackup = true
     fileprivate(set) var language: MnemonicCodeBook = .english
+    fileprivate(set) var createFromScan = false
 
     var mnemonic: String {
         return mnemonicBehaviorRelay.value
@@ -32,11 +34,21 @@ class CreateWalletService {
     func generateMnemonic(strength: Mnemonic.Strength = .weak, language: MnemonicCodeBook = .english) {
         self.language = language
         mnemonicBehaviorRelay.accept(Mnemonic.randomGenerator(strength: strength, language: language))
-        plog(level: .debug, log: "nnnnnn: \(self.mnemonicBehaviorRelay.value)")
     }
 
     func setNeedBackup() {
         needBackup = true
+    }
+
+    func setCreateFromScan() {
+        createFromScan = true
+    }
+
+    func GoExportMnemonicIfNeeded() {
+        guard createFromScan else { return }
+        createFromScan = false
+        let vc = ExportMnemonicViewController()
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 
     func clearData() {
@@ -71,7 +83,7 @@ class CreateWalletService {
         let okAction = AlertAction(title: R.string.localizable.mnemonicBackupTipAlertOkTitle(), style: .light) { controller in
             let textField = (controller.textFields?.first)! as UITextField
             if HDWalletManager.instance.verifyPassword(textField.text ?? "") {
-                let vc = BackupMnemonicViewController(forCreate: false)
+                let vc = BackupMnemonicViewController(password: textField.text ?? "")
                 let nav = BaseNavigationController(rootViewController: vc)
                 UIViewController.current?.present(nav, animated: true, completion: nil)
             } else {
@@ -87,5 +99,69 @@ class CreateWalletService {
         controller.addAction(cancelAction)
         controller.addAction(okAction)
         controller.show()
+    }
+}
+
+extension CreateWalletService {
+    struct BackupWalletURI {
+        let name: String
+        let entropy: String
+        let languageString: String
+        let password: String
+
+        let mnemonic: String
+
+        init?(name: String, mnemonic: String, language: MnemonicCodeBook, password: String) {
+            switch language {
+            case .english:
+                self.languageString = "en"
+            case .simplifiedChinese:
+                self.languageString = "zh-Hans"
+            default:
+                return nil
+            }
+
+            guard let entropy = Mnemonic.mnemonicsToEntropy(mnemonic, language: language) else { return nil }
+
+            self.name = name
+            self.entropy = entropy.toHexString()
+            self.password = password
+            self.mnemonic = mnemonic
+        }
+
+        init?(name: String, entropy: String, languageString: String, password: String) {
+            let language: MnemonicCodeBook = {
+                if languageString == "zh-Hans" {
+                    return .simplifiedChinese
+                } else {
+                    return .english
+                }
+            }()
+            guard languageString == "en" || languageString == "zh-Hans" else { return nil }
+            let mnemonic = Mnemonic.generator(entropy: Data(bytes: entropy.hex2Bytes), language: language)
+            guard mnemonic.count > 0 else { return nil}
+            self.name = name
+            self.entropy = entropy
+            self.languageString = languageString
+            self.password = password
+            self.mnemonic = mnemonic
+        }
+
+        var language: MnemonicCodeBook {
+            if languageString == "zh-Hans" {
+                return .simplifiedChinese
+            } else {
+                return .english
+            }
+        }
+
+        var uri: String {
+            return ViteAppSchemeHandler.AppScheme.makeURI(action: .backupWallet,
+                                                          keyAndValue: [
+                                                            ("name", name),
+                                                            ("entropy", entropy),
+                                                            ("language", languageString),
+                                                            ("password", password)])
+        }
     }
 }
