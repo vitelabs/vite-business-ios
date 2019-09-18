@@ -65,13 +65,6 @@ class WalletHomeViewController: BaseViewController {
         return m
     }()
 
-    lazy var bottomLine: UIView = {
-        let bottomLine = UIView()
-        bottomLine.backgroundColor = self.pageManager.style.bottomLineColor
-        bottomLine.layer.cornerRadius = self.pageManager.style.bottomLineRadius
-        return bottomLine
-    }()
-
     let scanHandler = WalletHomeScanHandler()
     let walletDriver = HDWalletManager.instance.walletDriver
     var tableViewModel: WalletHomeBalanceInfoTableViewModel!

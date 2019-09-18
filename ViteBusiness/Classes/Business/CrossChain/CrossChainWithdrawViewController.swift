@@ -29,13 +29,21 @@ class GatewayWithdrawViewController: BaseViewController {
     var gateWayInfoService: CrossChainGatewayInfoService
     var withDrawInfo: WithdrawInfo
 
-    var token: TokenInfo {
+    var tokenInfo: TokenInfo {
         return gateWayInfoService.tokenInfo
     }
 
-    var withTokenInfo: TokenInfo {
+    var mappedTokenInfo: TokenInfo {
         return gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken
     }
+
+    var viteChainTokenDecimals: Int {
+        return gateWayInfoService.tokenInfo.decimals
+    }
+
+//    var mappedChainTokenDecimals: Int {
+//        return gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals ?? viteChainTokenDecimals
+//    }
 
     var balance: Amount = Amount(0)
 
@@ -78,7 +86,7 @@ class GatewayWithdrawViewController: BaseViewController {
     lazy var feeView: TitleTipContentSymbleItemView = {
         let feeView = TitleTipContentSymbleItemView()
         feeView.titleLabel.text = R.string.localizable.confirmTransactionFeeTitle()
-        feeView.symbolLabel.text = self.withTokenInfo.symbol
+        feeView.symbolLabel.text = self.mappedTokenInfo.symbol
         feeView.contentLabel.text = ""
         return feeView
     }()
@@ -219,11 +227,11 @@ class GatewayWithdrawViewController: BaseViewController {
                 ])
         }
 
-        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.token.id)
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: self.tokenInfo.id)
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
                 self.balance = balanceInfo?.balance ?? self.balance
-                self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
+                self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.viteChainTokenDecimals)
             }).disposed(by: rx.disposeBag)
 
 
@@ -239,10 +247,8 @@ class GatewayWithdrawViewController: BaseViewController {
                     return
                 }
 
-                let decimals = self.withTokenInfo.decimals
-
                 guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-                    let amount = amountString.toAmount(decimals: decimals) else {
+                    let amount = amountString.toAmount(decimals: self.viteChainTokenDecimals) else {
                         Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                         return
                 }
@@ -251,7 +257,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 self.gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amountStr, containsFee: false)
                 .done { [weak self] fee in
                     guard let `self` = self else { return }
-                    self.feeView.contentLabel.text = Amount(fee)?.amountShort(decimals: self.token.decimals)
+                    self.feeView.contentLabel.text = Amount(fee)?.amountShort(decimals: self.viteChainTokenDecimals)
                 }.catch({ (error) in
                     Toast.show(error.localizedDescription)
                 })
@@ -269,11 +275,11 @@ class GatewayWithdrawViewController: BaseViewController {
                 .done { [weak self] fee in
                     guard let `self` = self else { return }
                     guard let feeAmount = Amount(fee) else {return }
-                    self.feeView.contentLabel.text = feeAmount.amountShort(decimals: self.token.decimals)
+                    self.feeView.contentLabel.text = feeAmount.amountShort(decimals: self.viteChainTokenDecimals)
                     if self.balance <= feeAmount {
                         self.amountView.textField.text = "0"
                     } else {
-                        self.amountView.textField.text = (self.balance - feeAmount).amountFull(decimals: self.gateWayInfoService.tokenInfo.decimals)
+                        self.amountView.textField.text = (self.balance - feeAmount).amountFull(decimals: self.viteChainTokenDecimals)
                     }
                 }.catch({ (error) in
                     Toast.show(error.localizedDescription)
@@ -287,7 +293,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
     func withdraw()  {
 
-        guard let theFee = self.feeView.contentLabel.text?.toAmount(decimals: self.token.decimals),
+        guard let theFee = self.feeView.contentLabel.text?.toAmount(decimals: self.viteChainTokenDecimals),
             self.balance > theFee else {
                 Toast.show(R.string.localizable.sendPageToastAmountError())
                 return
@@ -296,8 +302,7 @@ class GatewayWithdrawViewController: BaseViewController {
         let address = self.addressView.textView.text ?? ""
 
         guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-            let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
-            let a = amountString.toAmount(decimals: decimals) else {
+            let a = amountString.toAmount(decimals: self.viteChainTokenDecimals) else {
                 Toast.show(R.string.localizable.sendPageToastAmountEmpty())
                 return
         }
@@ -351,7 +356,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
                 if !info.minimumWithdrawAmount.isEmpty,
                     let min = Amount(info.minimumWithdrawAmount) {
-                guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.decimals))")
+                guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: self.viteChainTokenDecimals))")
                         return
                     }
                 }
@@ -359,7 +364,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 if !info.maximumWithdrawAmount.isEmpty,
                     let max = Amount(info.maximumWithdrawAmount) {
                     guard amount <= max else {
-                        let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.decimals
+                        let decimals = self.viteChainTokenDecimals
                         let numString = max.amount(decimals: decimals, count: min(8,decimals), groupSeparator: true)
                         Toast.show(R.string.localizable.crosschainWithdrawGatewayispoor(numString, self.gateWayInfoService.tokenInfo.gatewayInfo!.mappedToken.symbol))
                         return
@@ -398,7 +403,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 }
 
 
-                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.token, amount: amountWithFee, data: data, utString:nil,  completion: { (result) in
+                Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.tokenInfo, amount: amountWithFee, data: data, utString:nil,  completion: { (result) in
                     switch result {
                     case .success(_):
                         let vc = CrossChainHistoryViewController()
@@ -452,11 +457,9 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
 
     func configWithdrawInfo()  {
         let info = self.withDrawInfo
-        guard
-            let decimals = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals,
-            let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
+        guard let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
         if !info.minimumWithdrawAmount.isEmpty,
-            let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: decimals) {
+            let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals) {
             self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
         }
 
@@ -467,7 +470,7 @@ extension GatewayWithdrawViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, gateWayInfoService.tokenInfo.decimals))
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, self.viteChainTokenDecimals))
             textField.text = text
             return ret
         } else {

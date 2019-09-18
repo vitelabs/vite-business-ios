@@ -126,7 +126,7 @@ class CrossChainStatementViewController: BaseViewController {
                 service.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
                     .done { [weak self] (info) in
                         self?.view.hideLoading()
-                        vc = GatewayDepositViewController.init(gatewayInfoService:service, depositInfo: info)
+                        vc = GatewayDepositInfoViewController.init(gatewayInfoService:service, depositInfo: info)
                         vcs.append(vc)
                         self?.navigationController?.setViewControllers(vcs, animated: true)
                     }.catch { [weak self] (error) in

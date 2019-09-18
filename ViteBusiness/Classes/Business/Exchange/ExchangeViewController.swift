@@ -160,11 +160,16 @@ class ExchangeViewController: BaseViewController {
     func bind()  {
         vm.rateInfo.bind { [weak self] info in
             guard let `self` = self else { return }
-            self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1 VITE = " + (String(info.rightRate) ?? "-") + " ETH"
-            if let total = BigDecimal(String(info.quota.quotaTotal) ),
-                let min = BigDecimal(String(info.quota.unitQuotaMin)),
-                let max = BigDecimal(String(info.quota.unitQuotaMax)),
-                let rest = BigDecimal(String(info.quota.quotaRest)) {
+            var rateStr = "-"
+            if  let rate = BigDecimal(String(format: "%lf", info.rightRate)) {
+                rateStr = BigDecimalFormatter.format(bigDecimal: rate , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
+            }
+            self.card.priceLabel.text = R.string.localizable.exchangePrice() + "1 VITE = " + rateStr + " ETH"
+
+            if let total = BigDecimal(String(format: "%lf",info.quota.quotaTotal) ),
+                let min = BigDecimal(String(format: "%lf",info.quota.unitQuotaMin)),
+                let max = BigDecimal(String(format: "%lf",info.quota.unitQuotaMax)),
+                let rest = BigDecimal(String(format: "%lf",info.quota.quotaRest)) {
                 let totalStr =  BigDecimalFormatter.format(bigDecimal: total , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 let minStr =  BigDecimalFormatter.format(bigDecimal: min , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])
                 let maxStr =  BigDecimalFormatter.format(bigDecimal: max , style: .decimalTruncation(8), padding: .none, options:  [.groupSeparator])

@@ -12,16 +12,13 @@ import BigInt
 import PromiseKit
 import ViteWallet
 
-class GatewayDepositViewController: BaseViewController {
+class GatewayDepositInfoViewController: BaseViewController {
 
     init(gatewayInfoService: CrossChainGatewayInfoService, depositInfo: DepositInfo) {
         self.gatewayInfoService = gatewayInfoService
         self.depositInfo = depositInfo
-//        self.depositInfo.labelName = "labelName"
-//        self.depositInfo.label = "label"
         super.init(nibName: nil, bundle: nil)
     }
-    
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -30,6 +27,22 @@ class GatewayDepositViewController: BaseViewController {
     var depositInfo: DepositInfo
 
     let gatewayInfoService: CrossChainGatewayInfoService
+
+    var tokenInfo: TokenInfo {
+        return gatewayInfoService.tokenInfo
+    }
+
+    var mappedTokenInfo: TokenInfo {
+        return gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
+    }
+
+    var viteChainTokenDecimals: Int {
+        return gatewayInfoService.tokenInfo.decimals
+    }
+
+    var mappedChainTokenDecimals: Int {
+        return gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals ?? viteChainTokenDecimals
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -256,7 +269,7 @@ class GatewayDepositViewController: BaseViewController {
 
         let info = self.depositInfo
         let mapped = self.gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
-        if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: mapped.decimals)  {
+        if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
             let subStirng = minimumDepositAmountStr +  " " + mapped.symbol
             let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(mapped.symbol, minimumDepositAmountStr)
             let range = NSString.init(string: fullString).range(of: minimumDepositAmountStr)
