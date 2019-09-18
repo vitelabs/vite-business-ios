@@ -92,7 +92,7 @@ public final class MyTokenInfosService: NSObject {
     }
 
     private func fetchTokenInfos(defaultTokenCodes: [TokenCode], myTokenCodes: [TokenCode]) {
-        let set = Set(defaultTokenCodes).intersection(Set(myTokenCodes))
+        let set = Set(defaultTokenCodes).union(Set(myTokenCodes))
         TokenInfoCacheService.instance.tokenInfos(for: Array(set))
             .done { _ in
                 let defaultTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: defaultTokenCodes)!
