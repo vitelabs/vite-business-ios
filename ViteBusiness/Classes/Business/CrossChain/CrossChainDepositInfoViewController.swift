@@ -161,7 +161,7 @@ class GatewayDepositInfoViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
 
         useViteWalletButton.rx.tap.bind { [unowned self] in
-            let vc = EthViteExchangeViewController()
+            let vc = CrossChainDepositViewController()
             vc.gatewayInfoService = self.gatewayInfoService
             vc.exchangeType = .ethChainToViteToken
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
