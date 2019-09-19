@@ -27,7 +27,8 @@ public class TokenInfoCacheService {
                 needUpdateTokenInfo.insert(tokenInfo.tokenCode)
             }
         } else {
-            let tokenInfo = TokenInfo.BuildIn.vite.value
+            let jsonString = TokenInfo.BuildIn.vite.jsonString
+            let tokenInfo = TokenInfo(JSONString: jsonString)!
             tokenCodeMap[tokenInfo.tokenCode] = tokenInfo
             keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
         }

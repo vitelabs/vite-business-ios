@@ -25,7 +25,7 @@ extension TokenInfo {
 
         case grin
 
-        private var jsonString: String {
+        var jsonString: String {
             switch self {
             case .vite:
                 return "{\"symbol\":\"VITE\",\"name\":\"Vite Token\",\"tokenCode\":\"1171\",\"platform\":\"VITE\",\"tokenAddress\":\"tti_5649544520544f4b454e6e40\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
