@@ -203,9 +203,13 @@ extension WKWebViewController {
         if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
             decisionHandler(.cancel)
-        } else if let url = navigationAction.request.url, let scheme = url.scheme, (scheme != "http" && scheme != "https") {
-            UIApplication.shared.open(url)
-            decisionHandler(.cancel)
+        } else if let url = navigationAction.request.url, let scheme = url.scheme {
+            if scheme != "http" && scheme != "https" {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
         } else {
             decisionHandler(.allow)
         }

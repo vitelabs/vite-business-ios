@@ -416,7 +416,9 @@ extension BifrostManager {
         interactor.sendPing(timeout: type(of: self).waitForPongTimeout)
             .done { [weak self] in
                 guard let `self` = self else { return }
+                plog(level: .info, log: "[peer] received pong", tag: .bifrost)
                 self.statusBehaviorRelay.accept(.connected)
+                self.processTaskIfHave()
             }.catch { [weak self] (error) in
                 guard let `self` = self else { return }
                 self.statusBehaviorRelay.accept(.disconnect)
@@ -435,6 +437,7 @@ extension BifrostManager {
     }
 
     fileprivate func disConnectByPeer() {
+        plog(level: .info, log: "[peer] canceled session, exit bifrost", tag: .bifrost)
         self.statusBehaviorRelay.accept(.disconnect)
         self.clearTasks()
         if let i = interactor, i.connected {
@@ -505,6 +508,7 @@ extension BifrostManager {
     }
 
     fileprivate func processTaskIfHave() {
+        guard status == .connected else { return }
         guard isProcessing == false else { return }
         guard let task = currentTask else { return }
         processTask(task)
