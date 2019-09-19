@@ -1445,7 +1445,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 742 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 743 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1503,14 +1503,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 1、使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupPageTip2 = Rswift.StringResource(key: "mnemonic.backup.page.tip2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 2、使用另一个手机上的Vite钱包扫描下方二维码。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupPageTip3 = Rswift.StringResource(key: "mnemonic.backup.page.tip3", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -4239,6 +4231,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundTitleVitex = Rswift.StringResource(key: "fund.title.vitex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用另一个手机上的Vite钱包扫描下方二维码。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTip3 = Rswift.StringResource(key: "mnemonic.backup.page.tip3", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupPageTip2 = Rswift.StringResource(key: "mnemonic.backup.page.tip2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 充值
       /// 
       /// Locales: en, zh-Hans
@@ -4299,6 +4299,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostListPageStatusFailed = Rswift.StringResource(key: "bifrost.list.page.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 密码确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostHomePageFreeAutoSignConfrimTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.confrim.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已取消
       /// 
       /// Locales: en, zh-Hans
@@ -4512,20 +4516,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func balanceInfoDetailPledgeNoneTip(_: Void = ()) -> String {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 1、使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupPageTip2(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip2", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 2、使用另一个手机上的Vite钱包扫描下方二维码。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupPageTip3(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.page.tip3", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Receive</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>
@@ -9302,6 +9292,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.title.vitex", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 使用另一个手机上的Vite钱包扫描下方二维码。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTip3(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip3", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 使用纸笔抄写下来，妥善保管至隔离网络的安全地方。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupPageTip2(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.page.tip2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 充值
       /// 
       /// Locales: en, zh-Hans
@@ -9405,6 +9409,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func bifrostListPageStatusFailed(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.list.page.status.failed", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 密码确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostHomePageFreeAutoSignConfrimTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.auto.sign.confrim.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 已取消

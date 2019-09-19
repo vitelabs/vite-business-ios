@@ -31,7 +31,6 @@ PODS:
   - CryptoSwift (1.0.0)
   - DACircularProgress (2.3.1)
   - Differentiator (3.1.0)
-  - DNSPageView (1.1.6)
   - Eureka (4.3.1)
   - Fabric (1.10.2)
   - FBRetainCycleDetector (0.1.4)
@@ -175,7 +174,6 @@ PODS:
     - Crashlytics
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
-    - DNSPageView
     - Eureka (~> 4.3.0)
     - Fabric
     - Firebase/Core
@@ -255,7 +253,6 @@ SPEC REPOS:
     - CryptoSwift
     - DACircularProgress
     - Differentiator
-    - DNSPageView
     - Eureka
     - Fabric
     - FBRetainCycleDetector
@@ -343,7 +340,6 @@ SPEC CHECKSUMS:
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  DNSPageView: df84b178394ddf4a73b2d19baf4deb24b4a4ba33
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
@@ -393,7 +389,7 @@ SPEC CHECKSUMS:
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: d785d91005e353af8e9df13cfeb0f366f5803b9f
+  ViteBusiness: 8c15dd6724cc0353053fa828a95ebcffb20ab043
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 54e02dfe2807ed2cb04c85575713500e6f440822
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd

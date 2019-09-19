@@ -749,6 +749,7 @@
 "bifrost.home.page.free.address.title" = "地址";
 "bifrost.home.page.free.history.title" = "签名交易";
 "bifrost.home.page.free.auto.sign.title" = "自动签名交易";
+"bifrost.home.page.free.auto.sign.confrim.title" = "密码确认";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
