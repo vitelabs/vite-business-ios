@@ -201,7 +201,6 @@ extension BifrostManager {
 
     // MARK: Const
     static let maxTryTimes = 10
-    static let retryDelay: TimeInterval = 2
     static let waitForRequestTimeout: TimeInterval = 10
     static let waitForPongTimeout: TimeInterval = 10
 
@@ -359,7 +358,7 @@ extension BifrostManager {
             connect()
         } else if case .connecting(let times) = self.status {
             if times < type(of: self).maxTryTimes {
-                GCD.delay(type(of: self).retryDelay) {
+                GCD.delay(reConnectingDelay(times: times)) {
                     self.statusBehaviorRelay.accept(.connecting(times: times + 1))
                     connect()
                 }
@@ -370,6 +369,10 @@ extension BifrostManager {
         } else {
             fatalError()
         }
+    }
+
+    fileprivate func reConnectingDelay(times: Int) -> TimeInterval {
+        return TimeInterval(min(max(pow(Double(2), Double(times)), Double(1)), Double(16)))
     }
 
     fileprivate func reConnecting() {
@@ -392,13 +395,9 @@ extension BifrostManager {
         }
 
         if case .reConnecting(let times) = self.status {
-            if times < type(of: self).maxTryTimes {
-                GCD.delay(type(of: self).retryDelay) {
-                    self.statusBehaviorRelay.accept(.reConnecting(times: times + 1))
-                    connect()
-                }
-            } else {
-                self.disConnectProactive()
+            GCD.delay(reConnectingDelay(times: times)) {
+                self.statusBehaviorRelay.accept(.reConnecting(times: times + 1))
+                connect()
             }
         } else {
             self.statusBehaviorRelay.accept(.reConnecting(times: 1))
