@@ -30,12 +30,14 @@ class WalletHomeViewController: BaseViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
+        tableView.contentInset = UIEdgeInsets.init(top: 9, left: 0, bottom: 0, right: 0)
     }
     lazy var vitexTable = UITableView().then { tableView in
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = VitexBalanceInfoCell.cellHeight
         tableView.estimatedRowHeight = VitexBalanceInfoCell.cellHeight
+        tableView.contentInset = UIEdgeInsets.init(top: 9, left: 0, bottom: 0, right: 0)
     }
 
     lazy var pageManager = { () -> DNSPageViewManager in
@@ -148,7 +150,7 @@ class WalletHomeViewController: BaseViewController {
         }
 
         pageManager.contentView.snp.makeConstraints { (make) in
-            make.top.equalTo(pageManager.titleView.snp.bottom).offset(9)
+            make.top.equalTo(pageManager.titleView.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
