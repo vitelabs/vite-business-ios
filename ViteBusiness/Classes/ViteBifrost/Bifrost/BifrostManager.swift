@@ -619,8 +619,10 @@ extension BifrostManager {
                  .dexWithdraw,
                  .dexVip,
                  .pledge,
+                 .cancelPledge,
                  .dexStakingAsMining,
                  .vote,
+                 .cancelVote,
                  .dexNewInviter,
                  .dexBindInviter,
                  .dexCancel:
