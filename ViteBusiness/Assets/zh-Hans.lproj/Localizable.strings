@@ -86,14 +86,13 @@
 "create.page.tip.button.skip.title" = "以后备份";
 "create.page.tip.button.next.title" = "备份助记词";
 
-
 /* mnemonic */
 "mnemonic.backup.page.title" = "备份助记词";
-"mnemonic.backup.page.tip1" = "我们提供两种备份助记词的方式：";
+"mnemonic.backup.page.tip1" = "我们建议用以下方式备份助记词：";
 "mnemonic.backup.page.tip2" = "使用纸笔抄写下来，妥善保管至隔离网络的安全地方。";
 "mnemonic.backup.page.tip3" = "使用另一个手机上的Vite钱包扫描下方二维码。";
 "mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.language.en" = "英";
 
 "mnemonic.backup.scan.alert.title" = "通知";
 "mnemonic.backup.scan.alert.message" = "请确认是否使用此助记词生成账户";
@@ -764,7 +763,7 @@
 "bifrost.home.page.busy.content" = "请确认如下交易信息";
 "bifrost.toast.operation.success" = "操作成功";
 
-"bifrost.list.page.title" = "签名交易";
+"bifrost.list.page.title" = "签名交易列表";
 "bifrost.list.page.status.pending" = "等待签名";
 "bifrost.list.page.status.processing" = "正在签名";
 "bifrost.list.page.status.failed" = "失败";
