@@ -80,7 +80,7 @@ class VitexBalanceInfoCell: BaseTableViewCell {
             $0.layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-            $0.layer.shadowRadius = 20
+            $0.layer.shadowRadius = 5
         }
 
         shadowView.addSubview(whiteView)
