@@ -125,7 +125,7 @@ class TokenListInfoCell: UITableViewCell {
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
             m.bottom.equalToSuperview()
-            m.height.equalTo(1)
+            m.height.equalTo(0.5)
         }
 
         self.contentView.addSubview(rightContentView)

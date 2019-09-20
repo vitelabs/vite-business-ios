@@ -329,7 +329,7 @@
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Stake to Speed";
+"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
@@ -586,10 +586,10 @@
 "grin.vite.address" = "VITE Address";
 "grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
 "grin.canceled" = "Canceled";
-"grin.makeSureToShare" = "Plese make sure to share the transaction file with sender";
+"grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
-"grin.txbyfile.shareReceiveFileDesc" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txbyfile.initStatus.sender" = "Created";
 "grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
@@ -705,13 +705,13 @@
 "crosschain.gatewaydetail.statement" = "Terms of Service";
 "crosschain.gatewaydetail.host" = "Gateway URL";
 "crosschain.gatewaydetail.abstract" = "Introduction";
-"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
-"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
 "crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc0" = "This Service is provided by %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
 "crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
