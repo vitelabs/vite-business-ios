@@ -372,7 +372,7 @@ extension BifrostManager {
     }
 
     fileprivate func reConnectingDelay(times: Int) -> TimeInterval {
-        return TimeInterval(min(max(pow(Double(2), Double(times)), Double(1)), Double(16)))
+        return 2
     }
 
     fileprivate func reConnecting() {
