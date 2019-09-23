@@ -149,19 +149,12 @@ class WalletHomeViewController: BaseViewController {
             make.height.equalTo(35)
         }
 
-        pageManager.titleView.layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
-        pageManager.titleView.layer.shadowOpacity = 1
-        pageManager.titleView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        pageManager.titleView.layer.shadowRadius = 5
-
         pageManager.contentView.snp.makeConstraints { (make) in
             make.top.equalTo(pageManager.titleView.snp.bottom).offset(9)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
-
         pageManager.contentView.delegate = self
-
     }
 
     fileprivate let walletDataSource = WalletDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
@@ -180,6 +173,10 @@ class WalletHomeViewController: BaseViewController {
     })
 
     fileprivate func bind() {
+
+        pageManager.titleView.clickHandler = { [unowned self] (titleView, index) in
+            self.refreshNavInfo(index)
+        }
 
         ViteBalanceInfoManager.instance.unselectBalanceInfoVMsDriver.drive(onNext: { (vms) in
             plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.uniqueSymbol + " " }))")
@@ -287,6 +284,11 @@ class WalletHomeViewController: BaseViewController {
         }).disposed(by: rx.disposeBag)
     }
 
+    func refreshNavInfo(_ index: Int) {
+        let infoType = [WalletHomeNavViewModel.InfoType.wallet,WalletHomeNavViewModel.InfoType.viteX][index]
+        self.navViewModel.infoTypeBehaviorRelay.accept(infoType)
+    }
+
     func vitexTableAccessoryButton(_ accessoryButton: UIButton, didTappedForRowWith indexPath: IndexPath) {
         guard indexPath.row <= (self.tableViewModel.lastViteXBalanceInfos.count - 1) else {
             return
@@ -335,8 +337,7 @@ extension WalletHomeViewController: DNSPageContentViewDelegate {
                 label.textColor = self.pageManager.titleView.style.titleColor
             }
         }
-        let infoType = [WalletHomeNavViewModel.InfoType.wallet,WalletHomeNavViewModel.InfoType.viteX][index]
-        self.navViewModel.infoTypeBehaviorRelay.accept(infoType)
+        self.refreshNavInfo(index)
     }
 
     func contentView(_ contentView: DNSPageContentView, scrollingWith sourceIndex: Int, targetIndex: Int, progress: CGFloat) {

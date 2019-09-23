@@ -109,18 +109,17 @@ class ManageViteXBanlaceViewController: BaseViewController {
         }
 
         scrollView.stackView.addArrangedSubview(abstractView)
-        scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(quotaView)
 
         abstractView.snp.makeConstraints { (m) in
-            m.height.equalTo(216)
+            m.height.equalTo(198)
         }
 
-        amountView.snp.makeConstraints { (m) in
-            m.height.equalTo(78)
-        }
+//        amountView.snp.makeConstraints { (m) in
+//            m.height.equalTo(68)
+//        }
 
         handleButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
@@ -137,7 +136,7 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            self.amountView.textField.text = self.balance.amount(decimals: self.token.decimals, count: min(8,self.token.decimals))
+            self.amountView.textField.text = self.balance.amount(decimals: self.token.decimals, count: min(8,self.token.decimals),groupSeparator: false)
             }.disposed(by: rx.disposeBag)
 
         if actionType == .toVitex {
@@ -181,8 +180,6 @@ class ManageViteXBanlaceViewController: BaseViewController {
             }
 
         }.disposed(by: rx.disposeBag)
-
-
     }
 
     func fundFromWalletToVitex(amount: Amount) {

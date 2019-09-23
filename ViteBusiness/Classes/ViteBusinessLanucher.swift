@@ -39,6 +39,11 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
+
+        if #available(iOS 13.0,*) {
+            self.window.overrideUserInterfaceStyle = .light
+        }
+
         //config
         #if DAPP
         let url: URL

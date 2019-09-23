@@ -73,9 +73,14 @@ class TokenListManageController: BaseViewController {
         searchVC = ViteSearchController(searchResultsController:self?.searchResultVC)
         searchVC.searchResultsUpdater = self?.searchResultVC
 
-        let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
-        cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
-        cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
+        if #available(iOS 13.0, *) {
+
+        } else {
+            let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
+            cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
+            cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
+        }
+
 
         let searchField = searchVC.searchBar.value(forKey: "searchField") as? UITextField
         searchField?.attributedPlaceholder = attributedPlaceholder
