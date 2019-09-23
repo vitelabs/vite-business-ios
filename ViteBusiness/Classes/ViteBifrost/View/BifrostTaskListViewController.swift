@@ -66,7 +66,7 @@ class BifrostTaskListViewController: BaseTableViewController {
 
         BifrostManager.instance.allTasksDriver.asObservable()
             .map { tasks in
-                [SectionModel(model: "task", items: tasks)]
+                [SectionModel(model: "task", items: tasks.reversed())]
             }
             .bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
 
