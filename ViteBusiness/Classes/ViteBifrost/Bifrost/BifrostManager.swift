@@ -162,6 +162,7 @@ public final class BifrostManager {
                 if hasVC {
                     current.navigationController?.setViewControllers(viewControllers, animated: true)
                 }
+                HUD.hide()
                 self.clearTasks()
             }
         }).disposed(by: disposeBag)
@@ -433,6 +434,8 @@ extension BifrostManager {
                 self.interactor = nil
                 if let f = finished { f() }
             }
+        } else {
+            if let f = finished { f() }
         }
     }
 
@@ -581,6 +584,7 @@ extension BifrostManager {
             scanViewController = nil
         }
 
+        self.clearTasks()
         interactor?.onSessionRequest = nil
         interactor?.killSession().cauterize()
         scanViewController?.startCaptureSession()
