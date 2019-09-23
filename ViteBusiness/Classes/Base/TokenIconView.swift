@@ -86,7 +86,7 @@ class TokenIconView: UIView {
 
         if self.shapeLayer == nil {
             self.shapeLayer = CAShapeLayer()
-            self.shapeLayer.lineWidth = 1
+            self.shapeLayer.lineWidth = 0.5
             self.shapeLayer.fillColor = UIColor.clear.cgColor
             self.layer.addSublayer(self.shapeLayer)
         }

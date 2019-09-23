@@ -59,7 +59,8 @@ class ManageViteXBanlaceViewController: BaseViewController {
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.button.setTitle(R.string.localizable.fundDepositAll(), for: .normal)
         amountView.titleLabel.text = self.actionType == .toVitex ? R.string.localizable.fundDepositAmount() : R.string.localizable.fundWithdrawAmount()
-        amountView.textField.placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositePlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
+        let placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositePlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
+        amountView.textField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
     }
 
     var quotaView = SendQuotaItemView(utString: ABI.BuildIn.dexDeposit.ut.utToString())
@@ -116,10 +117,6 @@ class ManageViteXBanlaceViewController: BaseViewController {
         abstractView.snp.makeConstraints { (m) in
             m.height.equalTo(198)
         }
-
-//        amountView.snp.makeConstraints { (m) in
-//            m.height.equalTo(68)
-//        }
 
         handleButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)

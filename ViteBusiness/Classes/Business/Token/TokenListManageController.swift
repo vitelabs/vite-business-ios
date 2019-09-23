@@ -74,13 +74,12 @@ class TokenListManageController: BaseViewController {
         searchVC.searchResultsUpdater = self?.searchResultVC
 
         if #available(iOS 13.0, *) {
-
+             UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = R.string.localizable.cancel()
         } else {
             let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
             cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
             cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
         }
-
 
         let searchField = searchVC.searchBar.value(forKey: "searchField") as? UITextField
         searchField?.attributedPlaceholder = attributedPlaceholder
@@ -175,6 +174,24 @@ extension TokenListManageController : UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
         self.searchVC?.isActive = true
     }
+
+//    func willPresentSearchController(_ searchController: UISearchController) {
+//        if #available(iOS 13.0, *) {
+//            func setCancleButtonTitiel(_ view: UIView) {
+//                   for v in view.subviews {
+//                       if let button = v as? UIButton {
+//                           button.setTitle(R.string.localizable.cancel(),for:.normal)
+//                           button.setTitle(R.string.localizable.cancel(),for:.highlighted)
+//                           button.sizeToFit()
+//                        button.setTitleColor(UIColor.clear, for: .normal)
+//                       } else {
+//                           setCancleButtonTitiel(v)
+//                    }
+//                }
+//            }
+//           setCancleButtonTitiel(searchController.searchBar)
+//        }
+//    }
 }
 
 extension TokenListManageController : UISearchBarDelegate {
