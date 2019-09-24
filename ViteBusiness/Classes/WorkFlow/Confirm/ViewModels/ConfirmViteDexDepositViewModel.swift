@@ -22,10 +22,10 @@ struct ConfirmViteDexDepositViewModel: ConfirmViewModelType {
     }
 
     var confirmTitle: String {
-        return R.string.localizable.confirmTransactionPageViteDexDespositTransferTitle()
+        return R.string.localizable.confirmTransactionPageViteDexDepositTransferTitle()
     }
     var biometryConfirmButtonTitle: String {
-        return R.string.localizable.confirmTransactionPageViteDexDespositConfirmButton()
+        return R.string.localizable.confirmTransactionPageViteDexDepositConfirmButton()
     }
 
     func createInfoView() -> UIView {

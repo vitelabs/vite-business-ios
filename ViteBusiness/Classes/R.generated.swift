@@ -1998,7 +1998,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
-      public static let confirmTransactionPageViteDexDespositConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.desposit.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let confirmTransactionPageViteDexDepositConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.deposit.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
@@ -2254,7 +2254,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Deposit
       /// 
       /// Locales: en, zh-Hans
-      public static let fundDeposite = Rswift.StringResource(key: "fund.deposite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let fundDeposit = Rswift.StringResource(key: "fund.deposit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Deposit Amount
       /// 
       /// Locales: en, zh-Hans
@@ -2266,11 +2266,11 @@ public struct R: Rswift.Validatable {
       /// en translation: Deposit successful. Check exchange balance?
       /// 
       /// Locales: en, zh-Hans
-      public static let fundDepositeSuccess = Rswift.StringResource(key: "fund.DepositeSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let fundDepositSuccess = Rswift.StringResource(key: "fund.DepositSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Deposit to Exchange
       /// 
       /// Locales: en, zh-Hans
-      public static let confirmTransactionPageViteDexDespositTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.desposit.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let confirmTransactionPageViteDexDepositTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.deposit.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Deposit to Exchange
       /// 
       /// Locales: en, zh-Hans
@@ -2914,7 +2914,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Password
       /// 
       /// Locales: en, zh-Hans
-      public static let bifrostHomePageFreeAutoSignConfrimTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.confrim.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let bifrostHomePageFreeAutoSignConfirmTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Payment
       /// 
       /// Locales: en, zh-Hans
@@ -2954,7 +2954,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Please enter deposit amount
       /// 
       /// Locales: en, zh-Hans
-      public static let fundDepositePlaceholder = Rswift.StringResource(key: "fund.deposite.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let fundDepositPlaceholder = Rswift.StringResource(key: "fund.deposit.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please enter password to back up the Mnemonic Words.
       /// 
       /// Locales: en, zh-Hans
@@ -3938,7 +3938,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Unable to deposit due to insufficient wallet balance
       /// 
       /// Locales: en, zh-Hans
-      public static let fundCannotDeposite = Rswift.StringResource(key: "fund.cannotDeposite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let fundCannotDeposit = Rswift.StringResource(key: "fund.cannotDeposit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, zh-Hans
@@ -5382,8 +5382,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
-      public static func confirmTransactionPageViteDexDespositConfirmButton(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.vite.dex.desposit.confirm.button", bundle: R.hostingBundle, comment: "")
+      public static func confirmTransactionPageViteDexDepositConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.deposit.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirm
@@ -5830,8 +5830,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Deposit
       /// 
       /// Locales: en, zh-Hans
-      public static func fundDeposite(_: Void = ()) -> String {
-        return NSLocalizedString("fund.deposite", bundle: R.hostingBundle, comment: "")
+      public static func fundDeposit(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposit", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Deposit Amount
@@ -5851,15 +5851,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Deposit successful. Check exchange balance?
       /// 
       /// Locales: en, zh-Hans
-      public static func fundDepositeSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("fund.DepositeSuccess", bundle: R.hostingBundle, comment: "")
+      public static func fundDepositSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("fund.DepositSuccess", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Deposit to Exchange
       /// 
       /// Locales: en, zh-Hans
-      public static func confirmTransactionPageViteDexDespositTransferTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.page.vite.dex.desposit.transfer.title", bundle: R.hostingBundle, comment: "")
+      public static func confirmTransactionPageViteDexDepositTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.deposit.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Deposit to Exchange
@@ -6985,8 +6985,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Password
       /// 
       /// Locales: en, zh-Hans
-      public static func bifrostHomePageFreeAutoSignConfrimTitle(_: Void = ()) -> String {
-        return NSLocalizedString("bifrost.home.page.free.auto.sign.confrim.title", bundle: R.hostingBundle, comment: "")
+      public static func bifrostHomePageFreeAutoSignConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.home.page.free.auto.sign.confirm.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Payment
@@ -7055,8 +7055,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Please enter deposit amount
       /// 
       /// Locales: en, zh-Hans
-      public static func fundDepositePlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("fund.deposite.placeholder", bundle: R.hostingBundle, comment: "")
+      public static func fundDepositPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("fund.deposit.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please enter password to back up the Mnemonic Words.
@@ -8777,8 +8777,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Unable to deposit due to insufficient wallet balance
       /// 
       /// Locales: en, zh-Hans
-      public static func fundCannotDeposite(_: Void = ()) -> String {
-        return NSLocalizedString("fund.cannotDeposite", bundle: R.hostingBundle, comment: "")
+      public static func fundCannotDeposit(_: Void = ()) -> String {
+        return NSLocalizedString("fund.cannotDeposit", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote

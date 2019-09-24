@@ -59,14 +59,14 @@ class ManageViteXBanlaceViewController: BaseViewController {
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.button.setTitle(R.string.localizable.fundDepositAll(), for: .normal)
         amountView.titleLabel.text = self.actionType == .toVitex ? R.string.localizable.fundDepositAmount() : R.string.localizable.fundWithdrawAmount()
-        let placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositePlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
+        let placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositPlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
         amountView.textField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
     }
 
     var quotaView = SendQuotaItemView(utString: ABI.BuildIn.dexDeposit.ut.utToString())
 
     lazy var handleButton = { () -> UIButton in
-        let title = self.actionType == .toVitex ? R.string.localizable.fundDeposite() : R.string.localizable.fundWithdraw()
+        let title = self.actionType == .toVitex ? R.string.localizable.fundDeposit() : R.string.localizable.fundWithdraw()
         return UIButton.init(style: .blue, title: title)
     }()
 
@@ -94,7 +94,7 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
     func setUpView() {
         let  tilte = self.actionType == .toVitex ? R.string.localizable.fundTitleToVitex() : R.string.localizable.fundTitleToWallet()
-        navigationTitleView = PageTitleView.titleAndTokenIcon(title: tilte, tokenInfo: TokenInfo.BuildIn.vite.value)
+        navigationTitleView = PageTitleView.titleAndTokenIcon(title: tilte, tokenInfo: token)
         navigationTitleView?.backgroundColor = UIColor.white
 
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
@@ -184,7 +184,10 @@ class ManageViteXBanlaceViewController: BaseViewController {
         Workflow.dexDepositWithConfirm(account: amout, tokenInfo: token, amount: amount) { [weak self] (result) in
             switch result {
             case .success(_):
-                Alert.show(title: R.string.localizable.fundDepositeSuccess(), message: nil, actions: [
+                Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
+                    (.default(title: R.string.localizable.cancel()), { _ in
+                        self?.navigationController?.popViewController(animated: true)
+                    }),
                     (.default(title: R.string.localizable.confirm()), { _ in
                         guard let `self` = self else { return }
                         let webvc = WKWebViewController(url: self.vitexPageUrl())
@@ -194,9 +197,6 @@ class ManageViteXBanlaceViewController: BaseViewController {
                         if let vcs = vcs {
                             self.navigationController?.setViewControllers(vcs, animated: true)
                         }
-                    }),
-                    (.default(title: R.string.localizable.cancel()), { _ in
-                        self?.navigationController?.popViewController(animated: true)
                     })])
 
             case .failure(let e):

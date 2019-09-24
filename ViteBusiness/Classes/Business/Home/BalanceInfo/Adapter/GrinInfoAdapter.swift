@@ -192,4 +192,9 @@ extension GrinInfoTableViewDelegate: UITableViewDelegate, UITableViewDataSource 
             self.infoVc.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
         }
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let a = max(min(scrollView.contentOffset.y, 64.0), 0.0) / 64.0
+        scrollView.ofViewController?.navigationItem.titleView?.alpha = a
+    }
 }

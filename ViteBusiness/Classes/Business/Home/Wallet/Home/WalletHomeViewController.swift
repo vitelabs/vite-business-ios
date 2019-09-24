@@ -298,7 +298,7 @@ class WalletHomeViewController: BaseViewController {
         let a0 = UIAlertAction.init(title: R.string.localizable.fundTitleToVitex(), style: .default) { [unowned self] (_) in
             guard let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.id),
                 balance.balance > 0 else {
-                    Toast.show(R.string.localizable.fundCannotDeposite())
+                    Toast.show(R.string.localizable.fundCannotDeposit())
                     return
             }
             let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toVitex)

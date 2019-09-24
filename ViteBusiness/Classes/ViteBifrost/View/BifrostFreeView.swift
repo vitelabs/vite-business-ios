@@ -99,7 +99,7 @@ class BifrostFreeView: UIView {
 
     func showConfirm(completion: @escaping (Bool) -> ()) {
         func showConfirm() {
-            BifrostConfirmView(title: R.string.localizable.bifrostHomePageFreeAutoSignConfrimTitle()) { (ret) in
+            BifrostConfirmView(title: R.string.localizable.bifrostHomePageFreeAutoSignConfirmTitle()) { (ret) in
                 switch ret {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedTitle(), message: nil,

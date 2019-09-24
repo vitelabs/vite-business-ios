@@ -499,8 +499,8 @@
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.desposit.transfer.title" = "Deposit to Exchange";
-"confirm.transaction.page.vite.dex.desposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
 // vite call contract
@@ -749,7 +749,7 @@
 "bifrost.home.page.free.address.title" = "Address";
 "bifrost.home.page.free.history.title" = "Transactions Signed";
 "bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confrim.title" = "Password";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
@@ -896,7 +896,7 @@
 "fund.deposit.amount" = "Deposit Amount";
 "fund.deposit.all" = "All";
 "fund.quotaSpend" = "Quota";
-"fund.deposite" = "Deposit";
+"fund.deposit" = "Deposit";
 "fund.vitexFound" = "Available Balance";
 "fund.withdraw.amount" = "Withdrawal Amount";
 "fund.withdraw" = "Withdraw";
@@ -904,7 +904,7 @@
 "fund.vitex.available" = "Exchange Available Balance";
 "fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
 "fund.withdraw.placeholder" = "Please enter withdrawal amount";
-"fund.deposite.placeholder" = "Please enter deposit amount";
-"fund.cannotDeposite" = "Unable to deposit due to insufficient wallet balance";
+"fund.deposit.placeholder" = "Please enter deposit amount";
+"fund.cannotDeposit" = "Unable to deposit due to insufficient wallet balance";
 "fund.cannotWithDraw" = "Unable to withdraw due to insufficient exchange balance";
-"fund.DepositeSuccess" = "Deposit successful. Check exchange balance?";
+"fund.DepositSuccess" = "Deposit successful. Check exchange balance?";

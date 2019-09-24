@@ -506,8 +506,8 @@
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "撤销投票";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "确认";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.desposit.transfer.title" = "充值到交易所";
-"confirm.transaction.page.vite.dex.desposit.confirm.button" = "确认";
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "充值到交易所";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "确认";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "提币至钱包";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "确认";
 // vite call contract
@@ -757,7 +757,7 @@
 "bifrost.home.page.free.address.title" = "地址";
 "bifrost.home.page.free.history.title" = "签名交易";
 "bifrost.home.page.free.auto.sign.title" = "自动签名交易";
-"bifrost.home.page.free.auto.sign.confrim.title" = "密码确认";
+"bifrost.home.page.free.auto.sign.confirm.title" = "密码确认";
 
 "bifrost.home.page.busy.header" = "您正在web端进行操作";
 "bifrost.home.page.busy.content" = "请确认如下交易信息";
@@ -905,7 +905,7 @@
 "fund.deposit.amount" =  "充值金额";
 "fund.deposit.all" =  "全部";
 "fund.quotaSpend" =  "配额";
-"fund.deposite" =  "充值";
+"fund.deposit" =  "充值";
 "fund.vitexFound" = "可提现余额";
 "fund.withdraw.amount" =  "提现金额";
 "fund.withdraw" =  "提现";
@@ -913,7 +913,7 @@
 "fund.vitex.available" =  "可用余额";
 "fund.tooBig" =  "您输入的金额大于余额，请重新输入";
 "fund.withdraw.placeholder" =  "请输入提现金额";
-"fund.deposite.placeholder" =  "请输入充值金额";
-"fund.cannotDeposite" =  "钱包余额为0，无法充值";
+"fund.deposit.placeholder" =  "请输入充值金额";
+"fund.cannotDeposit" =  "钱包余额为0，无法充值";
 "fund.cannotWithDraw" =  "交易所余额为0，无法提现";
-"fund.DepositeSuccess" =  "充值至交易所成功，是否去交易所查看？";
+"fund.DepositSuccess" =  "充值至交易所成功，是否去交易所查看？";
