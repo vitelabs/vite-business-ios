@@ -37,7 +37,7 @@ class DebugOperationViewController: FormViewController {
                             return wallet
                         }()
                         let account = try! genesisWallet.account(at: 1, encryptedKey: "123456")
-                        let amount = Amount("1000000000000000000")! * Amount("10000")!
+                        let amount = Amount("1000000000000000000")! * Amount("1000000")!
                         ViteNode.transaction.getPow(account: account, toAddress: address, tokenId: ViteWalletConst.viteToken.id, amount: amount, note: nil)
                             .then { context -> Promise<AccountBlock> in
                                 return ViteNode.rawTx.send.context(context)

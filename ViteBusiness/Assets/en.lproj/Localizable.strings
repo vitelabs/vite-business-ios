@@ -77,25 +77,25 @@
 "create.page.pw.repeate.title" = "Please input your password again";
 "create.page.submit.btn.title" = "Create";
 
-"create.page.tip.title" = "备份须知";
-"create.page.tip.content1" = "拥有助记词等于拥有所有资产。";
-"create.page.tip.content2" = "助记词是恢复账户的唯一手段，更新或删除App后，您需要通过助记词来恢复钱包。";
-"create.page.tip.content3" = "请谨慎记录并保管助记词。";
+"create.page.tip.title" = "Backup Instructions";
+"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
+"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
+"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
 "create.page.tip.button.skip.title" = "Back Up Later";
 "create.page.tip.button.next.title" = "Backed Up";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "备份助记词";
-"mnemonic.backup.page.tip1" = "我们提供两种备份助记词的方式：";
-"mnemonic.backup.page.tip2" = "使用纸笔抄写下来，妥善保管至隔离网络的安全地方。";
-"mnemonic.backup.page.tip3" = "使用另一个手机上的Vite钱包扫描下方二维码。";
-"mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.page.title" = "Mnemonic Words Backup";
+"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
+"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.language.zh" = "Chinese";
+"mnemonic.backup.language.en" = "English";
 
-"mnemonic.backup.scan.alert.title" = "通知";
-"mnemonic.backup.scan.alert.message" = "请确认是否使用此助记词生成账户";
-"mnemonic.backup.scan.alert.ok.title" = "确认";
-"mnemonic.backup.scan.alert.cancel.title" = "取消";
+"mnemonic.backup.scan.alert.title" = "Notice";
+"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
+"mnemonic.backup.scan.alert.ok.title" = "Confirm";
+"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
 
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
@@ -499,10 +499,10 @@
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.desposit.transfer.title" = "充值到交易所";
-"confirm.transaction.page.vite.dex.desposit.confirm.button" = "确认";
-"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "提币至钱包";
-"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "确认";
+"confirm.transaction.page.vite.dex.desposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.desposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
@@ -746,23 +746,23 @@
 
 "bifrost.home.page.free.header" = "ViteConnect Connected";
 "bifrost.home.page.free.content" = "You have no transaction yet";
-"bifrost.home.page.free.address.title" = "地址";
-"bifrost.home.page.free.history.title" = "签名交易";
-"bifrost.home.page.free.auto.sign.title" = "自动签名交易";
-"bifrost.home.page.free.auto.sign.confrim.title" = "密码确认";
+"bifrost.home.page.free.address.title" = "Address";
+"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.confrim.title" = "Password";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
 "bifrost.toast.operation.success" = "Operation Successful";
 
-"bifrost.list.page.title" = "签名交易";
-"bifrost.list.page.status.pending" = "等待签名";
-"bifrost.list.page.status.processing" = "正在签名";
-"bifrost.list.page.status.failed" = "失败";
-"bifrost.list.page.status.finished" = "成功";
-"bifrost.list.page.status.canceled" = "已取消";
+"bifrost.list.page.title" = "Signing Transaction List";
+"bifrost.list.page.status.pending" = "Awaiting Signature";
+"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.status.failed" = "Failure";
+"bifrost.list.page.status.finished" = "Success";
+"bifrost.list.page.status.canceled" = "Canceled";
 
-"bifrost.task.detail.page.busy.header" = "签名交易详情";
+"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
 
 "bifrost.error.message.timeout" = "Connection time out, please try again later";
 "bifrost.error.message.unknown" = "Connection Error, please try again later";
@@ -886,25 +886,25 @@
 
 "copyed" = "Successfully copied";
 
-"fund.title.wallet" = "钱包资产";
-"fund.title.vitex" = "交易所资产";
-"fund.title.toWallet" = "提现至钱包";
-"fund.title.toVitex" =  "充值至交易所";
-"fund.walletAddress" = "我的账户地址";
-"fund.walletFound" = "钱包余额";
-"fund.quotaInfo" = "配额余额/上限";
-"fund.deposit.amount" =  "充值金额";
-"fund.deposit.all" =  "全部";
-"fund.quotaSpend" =  "配额";
-"fund.deposite" =  "充值";
-"fund.vitexFound" = "可提现余额";
-"fund.withdraw.amount" =  "提现金额";
-"fund.withdraw" =  "提现";
-"fund.vitex.all" =  "全部余额";
-"fund.vitex.available" =  "可用余额";
-"fund.tooBig" =  "您输入的金额大于余额，请重新输入";
-"fund.withdraw.placeholder" =  "请输入提现金额";
-"fund.deposite.placeholder" =  "请输入充值金额";
-"fund.cannotDeposite" =  "钱包余额为0，无法充值";
-"fund.cannotWithDraw" =  "交易所余额为0，无法提现";
-"fund.DepositeSuccess" =  "充值至交易所成功，是否去交易所查看？";
+"fund.title.wallet" = "Wallet Asset";
+"fund.title.vitex" = "Exchange Asset";
+"fund.title.toWallet" = "Withdraw to Wallet";
+"fund.title.toVitex" = "Deposit to Exchange";
+"fund.walletAddress" = "My Address";
+"fund.walletFound" = "Wallet Balance";
+"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.deposit.amount" = "Deposit Amount";
+"fund.deposit.all" = "All";
+"fund.quotaSpend" = "Quota";
+"fund.deposite" = "Deposit";
+"fund.vitexFound" = "Available Balance";
+"fund.withdraw.amount" = "Withdrawal Amount";
+"fund.withdraw" = "Withdraw";
+"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.available" = "Exchange Available Balance";
+"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.withdraw.placeholder" = "Please enter withdrawal amount";
+"fund.deposite.placeholder" = "Please enter deposit amount";
+"fund.cannotDeposite" = "Unable to deposit due to insufficient wallet balance";
+"fund.cannotWithDraw" = "Unable to withdraw due to insufficient exchange balance";
+"fund.DepositeSuccess" = "Deposit successful. Check exchange balance?";
