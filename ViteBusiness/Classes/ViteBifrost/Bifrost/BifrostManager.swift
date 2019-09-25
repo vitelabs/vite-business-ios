@@ -162,8 +162,16 @@ public final class BifrostManager {
                 if hasVC {
                     current.navigationController?.setViewControllers(viewControllers, animated: true)
                 }
-                HUD.hide()
-                self.clearTasks()
+
+
+                if let vc = current as? ScanViewController {
+                    self.approveFailed(message: R.string.localizable.bifrostErrorMessageUnknown())
+                } else {
+                    HUD.hide()
+                    self.clearTasks()
+                }
+
+
             }
         }).disposed(by: disposeBag)
 
@@ -587,11 +595,14 @@ extension BifrostManager {
         self.clearTasks()
         interactor?.onSessionRequest = nil
         interactor?.killSession().cauterize()
-        scanViewController?.startCaptureSession()
 
         HUD.hide()
         if let msg = message {
             Toast.show(msg)
+        }
+
+        GCD.delay(2) {
+            scanViewController?.startCaptureSession()
         }
     }
 }
