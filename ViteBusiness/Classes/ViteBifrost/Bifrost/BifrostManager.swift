@@ -165,7 +165,7 @@ public final class BifrostManager {
 
 
                 if let vc = current as? ScanViewController {
-                    self.approveFailed(message: R.string.localizable.bifrostErrorMessageUnknown())
+                    self.approveFailed(message: nil)
                 } else {
                     HUD.hide()
                     self.clearTasks()
