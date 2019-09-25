@@ -149,6 +149,10 @@ extension AboutUsViewController {
 
         if MFMailComposeViewController.canSendMail() {
             present(composerController, animated: true, completion: nil)
+        } else {
+            if #available(iOS 13.1, *) {
+                Toast.show("can not send mail")
+            }
         }
     }
     private func emailTemplate() -> String {

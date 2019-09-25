@@ -50,7 +50,7 @@ class WalletHomeViewController: BaseViewController {
         pageStyle.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
         pageStyle.titleFont = UIFont.boldSystemFont(ofSize: 13)
         pageStyle.bottomLineColor = Colors.blueBg
-        pageStyle.bottomLineHeight = 3
+        pageStyle.bottomLineHeight = 2
         pageStyle.bottomLineWidth = 20
 
         let vc0 = UIViewController()
