@@ -60,6 +60,7 @@ class BifrostHomeViewController: BaseViewController {
     func showConfirm(task: BifrostViteSendTxTask) {
         self.busyView?.removeFromSuperview()
 
+        freeView.isHidden = true
         let busyView = BifrostBusyView(showButton: true)
         busyView.backgroundColor = UIColor(netHex: 0xF5FAFF)
         view.addSubview(busyView)
@@ -87,5 +88,6 @@ class BifrostHomeViewController: BaseViewController {
     func hideConfirm() {
         self.busyView?.removeFromSuperview()
         self.busyView = nil
+        freeView.isHidden = false
     }
 }

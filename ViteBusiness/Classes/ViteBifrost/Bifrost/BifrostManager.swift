@@ -164,8 +164,18 @@ public final class BifrostManager {
                 }
 
 
+                if let alertHandler = self.alertHandler {
+                    alertHandler.disMiss(completion: nil)
+                    self.alertHandler = nil
+                }
+
                 if let vc = current as? ScanViewController {
-                    self.approveFailed(message: nil)
+                    if old == .waitForUserApprove {
+                        HUD.hide()
+                        self.clearTasks()
+                    } else {
+                        self.approveFailed(message: nil)
+                    }
                 } else {
                     HUD.hide()
                     self.clearTasks()
@@ -264,6 +274,7 @@ extension BifrostManager {
             case .waitForUserApprove:
                 if let alertHandler = self.alertHandler {
                     alertHandler.disMiss(completion: nil)
+                    self.alertHandler = nil
                 }
                 self.statusBehaviorRelay.accept(.disconnect)
                 self.approveFailed(message: BifrostManagerError.unknown.localizedDescription)
@@ -594,16 +605,16 @@ extension BifrostManager {
 
         self.clearTasks()
         interactor?.onSessionRequest = nil
-        interactor?.killSession().cauterize()
+        interactor?.killSession().done({ [weak self] _ in
+            self?.interactor = nil
+            scanViewController?.startCaptureSession()
+        })
 
         HUD.hide()
         if let msg = message {
             Toast.show(msg)
         }
 
-        GCD.delay(2) {
-            scanViewController?.startCaptureSession()
-        }
     }
 }
 
