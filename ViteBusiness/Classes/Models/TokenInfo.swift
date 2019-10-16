@@ -301,7 +301,9 @@ public struct GatewayInfo: Mappable {
 
 
     public init?(map: Map) {
-
+        guard let mapped = map.JSON["mappedToken"] as? [String: Any], let _ = mapped["tokenCode"] as? String else {
+                   return nil
+               }
     }
 
     init(name: String, url: String, mappedTokenInfo: MappedTokenInfo) {

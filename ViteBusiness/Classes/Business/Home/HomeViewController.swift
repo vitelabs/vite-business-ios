@@ -28,6 +28,8 @@ class HomeViewController: UITabBarController {
             $0.automaticallyShowDismissButton = false
         }
 
+        let marketVC = MarketViewController()
+
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {
             $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             $0.tabBarItem.image = R.image.icon_tabbar_wallet()?.withRenderingMode(.alwaysOriginal)
@@ -47,7 +49,21 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.tag = 1001
         }
 
-        var subViewControlles: [UIViewController] = [walletNav, exchangeNav, myNav]
+        let marketNav = BaseNavigationController(rootViewController: marketVC).then {
+            $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            $0.tabBarItem.image = ViteBusiness.R.image.icon_tabbar_market()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.selectedImage = ViteBusiness.R.image.icon_tabbar_market_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.tag = 1002
+            $0.interactivePopGestureRecognizer?.isEnabled = false
+            $0.tabBarItem.title = nil
+        }
+
+        #if DAPP
+            var subViewControlles: [UIViewController] = [walletNav, myNav, DebugHomeViewController.createNavVC()]
+        #else
+            var subViewControlles: [UIViewController] = [walletNav, exchangeNav, marketNav, myNav]
+        #endif
+
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {
             if subViewControlles.count <= index {
                 subViewControlles.append(viewController())

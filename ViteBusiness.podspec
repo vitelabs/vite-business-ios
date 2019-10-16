@@ -33,7 +33,6 @@ Pod::Spec.new do |s|
   s.dependency 'NSObject+Rx'
   s.dependency 'MBProgressHUD'
   s.dependency 'RxOptional'
-  s.dependency 'PromiseKit'
   s.dependency 'Vite_HDWalletKit'
   s.dependency 'Eureka'
   s.dependency 'KeychainSwift'
@@ -50,6 +49,7 @@ Pod::Spec.new do |s|
   s.dependency 'R.swift', '5.0.0.alpha.3'
   s.dependency 'JSONRPCKit', '~> 3.0.0'
   s.dependency 'PromiseKit', '~> 6.0'
+  s.dependency 'PromiseKit/Alamofire'
   s.dependency 'APIKit'
   s.dependency 'ObjectMapper'
   s.dependency 'MBProgressHUD'
@@ -64,6 +64,7 @@ Pod::Spec.new do |s|
   s.dependency 'NYXImagesKit', '2.3'
   s.dependency 'URLNavigator'
   s.dependency 'web3.swift.pod', '~> 2.2.0'
+  s.dependency 'ProtocolBuffers-Swift'
 
   #request
   s.dependency 'SwiftyJSON'

@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 203 images.
+  /// This `R.image` struct is generated, and contains static references to 209 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -398,6 +398,18 @@ public struct R: Rswift.Validatable {
     public static let login_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_bg")
     /// Image `login_logo`.
     public static let login_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_logo")
+    /// Image `market_ascend_default`.
+    public static let market_ascend_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_ascend_default")
+    /// Image `market_mining`.
+    public static let market_mining = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining")
+    /// Image `market_search`.
+    public static let market_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_search")
+    /// Image `market_top_bg`.
+    public static let market_top_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_top_bg")
+    /// Image `marketr_ascending`.
+    public static let marketr_ascending = Rswift.ImageResource(bundle: R.hostingBundle, name: "marketr_ascending")
+    /// Image `marketr_descending`.
+    public static let marketr_descending = Rswift.ImageResource(bundle: R.hostingBundle, name: "marketr_descending")
     /// Image `network_error`.
     public static let network_error = Rswift.ImageResource(bundle: R.hostingBundle, name: "network_error")
     /// Image `point`.
@@ -1375,6 +1387,36 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.login_logo, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "market_ascend_default", bundle: ..., traitCollection: ...)`
+    public static func market_ascend_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_ascend_default, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_mining", bundle: ..., traitCollection: ...)`
+    public static func market_mining(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_search", bundle: ..., traitCollection: ...)`
+    public static func market_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_search, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_top_bg", bundle: ..., traitCollection: ...)`
+    public static func market_top_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_top_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "marketr_ascending", bundle: ..., traitCollection: ...)`
+    public static func marketr_ascending(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.marketr_ascending, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "marketr_descending", bundle: ..., traitCollection: ...)`
+    public static func marketr_descending(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.marketr_descending, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "network_error", bundle: ..., traitCollection: ...)`
     public static func network_error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.network_error, compatibleWith: traitCollection)
@@ -1691,10 +1733,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let contactsEditPageDeleteAlertTitle = Rswift.StringResource(key: "contacts.edit.page.delete.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Arouse verify again
-      /// 
-      /// Locales: en, zh-Hans
-      public static let lockPageFingerprintBtnTitle = Rswift.StringResource(key: "lock.page.fingerprint.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.
       /// 
       /// Locales: en, zh-Hans
@@ -1807,6 +1845,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let airdropProfit = Rswift.StringResource(key: "airdrop.profit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Biometric Verification
+      /// 
+      /// Locales: en, zh-Hans
+      public static let lockPageFingerprintBtnTitle = Rswift.StringResource(key: "lock.page.fingerprint.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -4847,13 +4889,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("contacts.edit.page.delete.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Arouse verify again
-      /// 
-      /// Locales: en, zh-Hans
-      public static func lockPageFingerprintBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("lock.page.fingerprint.btn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.
       /// 
       /// Locales: en, zh-Hans
@@ -5048,6 +5083,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func airdropProfit(_: Void = ()) -> String {
         return NSLocalizedString("airdrop.profit", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Biometric Verification
+      /// 
+      /// Locales: en, zh-Hans
+      public static func lockPageFingerprintBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("lock.page.fingerprint.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Built-in contract error, please try again later(-35004)

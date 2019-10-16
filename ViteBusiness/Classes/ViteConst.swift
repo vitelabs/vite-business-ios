@@ -18,6 +18,7 @@ public struct ViteConst {
     public let eth: Eth
     public let grin: Grin
     public let crossChain: CrossChain
+    public let market: Market
 
 
     init() {
@@ -45,6 +46,7 @@ public struct ViteConst {
         eth = currentEnv.eth
         grin = currentEnv.grin
         crossChain = currentEnv.crossChain
+        market = currentEnv.market
     }
 }
 
@@ -95,6 +97,13 @@ public extension ViteConst {
 
     }
 
+    public struct Market {
+        public let baseWebUrl: String
+        public let vitexHost: String
+        public let vitexWS: String
+    }
+
+
     public struct Env {
 
         public enum EnvType {
@@ -109,6 +118,8 @@ public extension ViteConst {
         public let eth: Eth
         public let grin: Grin
         public let crossChain: CrossChain
+        public let market: Market
+
 
         public static let premainnet =
             Env(type: .premainnet,
@@ -130,7 +141,8 @@ public extension ViteConst {
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                tokenId: "tti_4d3a69b12962332e8df52701")),
+                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
         )
 
         public static let testEnv =
@@ -152,7 +164,8 @@ public extension ViteConst {
                            chainType: GrinChainType.usernet.rawValue,
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                           tokenId: "tti_4d3a69b12962332e8df52701")),
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
@@ -175,7 +188,8 @@ public extension ViteConst {
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                           tokenId: "tti_4d3a69b12962332e8df52701")),
+               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
         )
     }
 }
