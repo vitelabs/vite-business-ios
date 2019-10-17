@@ -81,4 +81,32 @@ class MarketCache {
         }
         fileHelper.writeData(data, relativePath: "favourite")
     }
+
+    class func saveSearchHistory(data: String) {
+        var favourite = self.readFavourite()
+        if !favourite.contains(data) {
+            favourite.append(data)
+            if favourite.count > 50 {
+                favourite.remove(at: 0)
+            }
+            guard let data = try? JSON(favourite).rawData() else {
+                return
+            }
+            fileHelper.writeData(data, relativePath: "searchhistory")
+        }
+    }
+
+    class func readSearchHistory() -> [String] {
+        guard let data = fileHelper.contentsAtRelativePath("searchhistory") else {
+            return []
+        }
+        return JSON(data).arrayObject as? [String] ?? []
+    }
+
+    class func deletSearchHistory() {
+        guard let data = try? JSON([String]()).rawData() else {
+            return
+        }
+        fileHelper.writeData(data, relativePath: "searchhistory")
+    }
 }

@@ -523,7 +523,7 @@ public extension Protocol {
         public fileprivate(set) var hasPriceChange:Bool = false
 
         ///变化率
-        public fileprivate(set) var priceChangePercent:Double! = nil
+        public fileprivate(set) var priceChangePercent:String! = nil
         public fileprivate(set) var hasPriceChangePercent:Bool = false
 
         ///价格
@@ -584,7 +584,7 @@ public extension Protocol {
                 try codedOutputStream.writeString(fieldNumber: 9, value:priceChange)
             }
             if hasPriceChangePercent {
-                try codedOutputStream.writeDouble(fieldNumber: 10, value: priceChangePercent)
+                try codedOutputStream.writeString(fieldNumber: 10, value:priceChangePercent)
             }
             if hasHighPrice {
                 try codedOutputStream.writeString(fieldNumber: 11, value:highPrice)
@@ -641,7 +641,7 @@ public extension Protocol {
                 serialize_size += priceChange.computeStringSize(fieldNumber: 9)
             }
             if hasPriceChangePercent {
-                serialize_size += priceChangePercent.computeDoubleSize(fieldNumber: 10)
+                serialize_size += priceChangePercent.computeStringSize(fieldNumber: 10)
             }
             if hasHighPrice {
                 serialize_size += highPrice.computeStringSize(fieldNumber: 11)
@@ -1106,7 +1106,7 @@ public extension Protocol {
                 return self
             }
             ///变化率
-            public var priceChangePercent:Double {
+            public var priceChangePercent:String {
                 get {
                     return builderResult.priceChangePercent
                 }
@@ -1121,7 +1121,7 @@ public extension Protocol {
                 }
             }
             @discardableResult
-            public func setPriceChangePercent(_ value:Double) -> Protocol.TickerStatisticsProto.Builder {
+            public func setPriceChangePercent(_ value:String) -> Protocol.TickerStatisticsProto.Builder {
                 self.priceChangePercent = value
                 return self
             }
@@ -1406,7 +1406,7 @@ public extension Protocol {
                         priceChange = try codedInputStream.readString()
 
                     case 82:
-                        priceChangePercent = try codedInputStream.readDouble()
+                        priceChangePercent = try codedInputStream.readString()
 
                     case 90:
                         highPrice = try codedInputStream.readString()
@@ -1463,7 +1463,7 @@ public extension Protocol {
                 if let jsonValuePriceChange = jsonMap["priceChange"] as? String {
                     resultDecodedBuilder.priceChange = jsonValuePriceChange
                 }
-                if let jsonValuePriceChangePercent = jsonMap["priceChangePercent"] as? Double {
+                if let jsonValuePriceChangePercent = jsonMap["priceChangePercent"] as? String {
                     resultDecodedBuilder.priceChangePercent = jsonValuePriceChangePercent
                 }
                 if let jsonValueHighPrice = jsonMap["highPrice"] as? String {
@@ -5279,7 +5279,7 @@ extension Protocol.TickerStatisticsProto.Builder: GeneratedMessageBuilderProtoco
                 }
                 self.priceChange = newSubscriptValue
             case "priceChangePercent":
-                guard let newSubscriptValue = newSubscriptValue as? Double else {
+                guard let newSubscriptValue = newSubscriptValue as? String else {
                     return
                 }
                 self.priceChangePercent = newSubscriptValue

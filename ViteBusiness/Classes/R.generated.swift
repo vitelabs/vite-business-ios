@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 209 images.
+  /// This `R.image` struct is generated, and contains static references to 212 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -400,10 +400,16 @@ public struct R: Rswift.Validatable {
     public static let login_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_logo")
     /// Image `market_ascend_default`.
     public static let market_ascend_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_ascend_default")
+    /// Image `market_history_delet`.
+    public static let market_history_delet = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_history_delet")
     /// Image `market_mining`.
     public static let market_mining = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining")
     /// Image `market_search`.
     public static let market_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_search")
+    /// Image `market_star_gray`.
+    public static let market_star_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_star_gray")
+    /// Image `market_star_yellow`.
+    public static let market_star_yellow = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_star_yellow")
     /// Image `market_top_bg`.
     public static let market_top_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_top_bg")
     /// Image `marketr_ascending`.
@@ -1392,6 +1398,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.market_ascend_default, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "market_history_delet", bundle: ..., traitCollection: ...)`
+    public static func market_history_delet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_history_delet, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "market_mining", bundle: ..., traitCollection: ...)`
     public static func market_mining(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.market_mining, compatibleWith: traitCollection)
@@ -1400,6 +1411,16 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "market_search", bundle: ..., traitCollection: ...)`
     public static func market_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.market_search, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_star_gray", bundle: ..., traitCollection: ...)`
+    public static func market_star_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_star_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_star_yellow", bundle: ..., traitCollection: ...)`
+    public static func market_star_yellow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_star_yellow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "market_top_bg", bundle: ..., traitCollection: ...)`

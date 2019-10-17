@@ -128,7 +128,7 @@ class MarketPageCell: UITableViewCell {
         timeLabel.text = "24H"
         volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount ?? "0") ?? 0))
         rateLabel.text = info.rate
-        let priceChangePercent = info.statistic.priceChangePercent! * 100
+        let priceChangePercent = Double(info.statistic.priceChangePercent)! * 100
         var persentString = priceChangePercent >= 0.0 ? "+" : "-"
         persentString = persentString + String(format: "%.2f", abs(priceChangePercent)) + "%"
         persentLabel.text = persentString

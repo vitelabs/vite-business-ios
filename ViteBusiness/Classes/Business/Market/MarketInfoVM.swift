@@ -96,8 +96,8 @@ extension MarketInfoVM {
                 })
             } else  if config.1 != .normal{
                 datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
-                    let p0 = info0.statistic.priceChangePercent ?? 0
-                    let p1 = info1.statistic.priceChangePercent ?? 0
+                    let p0 = Double(info0.statistic.priceChangePercent) ?? 0
+                    let p1 = Double(info1.statistic.priceChangePercent) ?? 0
                     if config.1 == .ascending {
                         return p0 > p1
                     } else {
@@ -147,7 +147,6 @@ extension MarketInfoVM {
         }
     }
 
-
     func readCaches()  {
         let t = MarketCache.readTickerCache()
         let r = MarketCache.readRateCache()
@@ -180,7 +179,10 @@ extension MarketInfoVM {
         }
 
         let favourite = MarketCache.readFavourite()
-        for i in t {
+        for item in t {
+            var i = item
+            let json = JSON(i)["priceChangePercent"]
+            i["priceChangePercent"] = json.string ?? (String(json.double ?? 0) ?? "0")
             guard let statistic = try? Protocol.TickerStatisticsProto.decode(jsonMap: i) else {
                 continue
             }
@@ -218,6 +220,20 @@ class MarketInfo {
     var statistic: Protocol.TickerStatisticsProto!
     var mining: Bool = false
     var rate = ""
+
+    private(set) lazy var vitexURL: URL = {
+        let tickerStatistics =  self.statistic!
+        var url = ViteConst.instance.market.baseWebUrl + "#/index"
+              url = url  + "?address=" + (HDWalletManager.instance.account?.address ?? "")
+              url = url   + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+              url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
+               url = url   + "&category=" + (tickerStatistics.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
+              url = url    + "&symbol=" + tickerStatistics.symbol
+              url = url    + "&tradeTokenId=" + tickerStatistics.tradeToken
+              url = url    + "&quoteTokenId=" + tickerStatistics.quoteToken
+
+        return URL.init(string: url)!
+    }()
 }
 
 class MarketData {

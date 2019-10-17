@@ -82,21 +82,8 @@ extension MarketPairsViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
-        let tickerStatistics =  info.statistic!
-        let category = self.marketVM.sortedMarketDataBehaviorRelay.value[index].categary
-
-        var url = ViteConst.instance.market.baseWebUrl + "#/index"
-       url = url  + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-       url = url   + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
-       url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
-        url = url   + "&category=" + (tickerStatistics.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
-       url = url    + "&symbol=" + tickerStatistics.symbol
-       url = url    + "&tradeTokenId=" + tickerStatistics.tradeToken
-       url = url    + "&quoteTokenId=" + tickerStatistics.quoteToken
-
-        let webvc = WKWebViewController(url: URL.init(string: url)!)
+        let webvc = WKWebViewController(url: info.vitexURL)
         self.navigationController?.pushViewController(webvc, animated: true)
 
     }

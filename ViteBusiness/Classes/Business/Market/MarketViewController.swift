@@ -266,14 +266,21 @@ class MarketViewController: BaseViewController {
         }
 
         marketVM.sortedMarketDataBehaviorRelay.asObservable()
-            .bind { _ in
-                self.configSortStatus()
+            .bind { [weak self] _ in
+                self?.configSortStatus()
         }
 
     }
 
-    @objc func goToSearchVC() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.marketVM.requestPageList()
+    }
 
+    @objc func goToSearchVC() {
+        let vc = MarketSearchViewController()
+        vc.originalData = Array(self.marketVM.sortedMarketDataBehaviorRelay.value.dropFirst())
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func tappedBanner() {
