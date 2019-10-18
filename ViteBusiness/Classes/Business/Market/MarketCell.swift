@@ -151,3 +151,106 @@ class MarketPageCell: UITableViewCell {
     }
 
 }
+
+
+class SelectMarketPairCell: UITableViewCell {
+
+    let tradeSymbolLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3e4a59)
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+
+    let quoteSymbolLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+
+    let priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+
+    let persentLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+
+    let operatorNameLabel: UILabel = {
+         let label = UILabel()
+          label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
+          label.font = UIFont.systemFont(ofSize: 14)
+          return label
+    }()
+
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        contentView.addSubview(tradeSymbolLabel)
+        contentView.addSubview(quoteSymbolLabel)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(persentLabel)
+        contentView.addSubview(operatorNameLabel)
+
+        tradeSymbolLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(contentView).offset(24)
+            make.centerY.equalTo(contentView)
+        }
+
+        quoteSymbolLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(tradeSymbolLabel.snp.right).offset(2)
+            make.centerY.equalTo(tradeSymbolLabel)
+        }
+
+        priceLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(contentView).offset(-(kScreenW - 48)*0.55)
+            make.centerY.equalTo(tradeSymbolLabel)
+        }
+
+        operatorNameLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(contentView).offset(-24)
+            make.centerY.equalTo(contentView)
+        }
+
+        persentLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(priceLabel.snp.right).offset(28)
+            make.centerY.equalTo(contentView)
+        }
+
+    }
+
+    func bind(info: MarketInfo)  {
+        tradeSymbolLabel.text = info.statistic.tradeTokenSymbol.components(separatedBy: "-").first
+        let quoteTokenSymbol = (info.statistic.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
+        quoteSymbolLabel.text = "/" + quoteTokenSymbol
+        priceLabel.text = info.statistic.closePrice
+        operatorNameLabel.text = info.operatorName
+        let priceChangePercent = Double(info.statistic.priceChangePercent)! * 100
+        var persentString = priceChangePercent >= 0.0 ? "+" : "-"
+        persentString = persentString + String(format: "%.2f", abs(priceChangePercent)) + "%"
+        persentLabel.text = persentString
+        persentLabel.textColor = priceChangePercent >= 0.0 ? UIColor.init(netHex: 0x01D764) : UIColor.init(netHex: 0xE5494D)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}

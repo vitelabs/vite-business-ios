@@ -1,9 +1,11 @@
 //
-//  MarketViewController.swift
+//  SeletcMarketPairCard.swift
 //  Action
 //
-//  Created by haoshenyang on 2019/10/8.
+//  Created by haoshenyang on 2019/10/17.
 //
+
+import UIKit
 
 private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
 
@@ -13,22 +15,26 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 
-class MarketViewController: BaseViewController {
+class SeletcMarketPairCard: BaseViewController {
 
     let marketVM = MarketInfoService.shared
 
     let navTitleView: UILabel = {
         let label = UILabel()
-        label.text = "交易所"
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.alpha = 0
+        label.text = "切换交易对"
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
     }()
 
     let navSearchButton: UIButton = {
         let searchButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
         searchButton.setBackgroundImage(R.image.market_search(), for: .normal)
-        searchButton.alpha = 0
+        return searchButton
+    }()
+
+    let navCloseButton: UIButton = {
+        let searchButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
+        searchButton.setBackgroundImage(R.image.icon_quota_close(), for: .normal)
         return searchButton
     }()
 
@@ -59,10 +65,10 @@ class MarketViewController: BaseViewController {
             return data.categary
         }
 
-        let viewControllers: [MarketPairsViewController] = {
-            var vcs = [MarketPairsViewController]()
+        let viewControllers: [SelectMarketPairSubViewController] = {
+            var vcs = [SelectMarketPairSubViewController]()
             for (index, _) in titles.enumerated() {
-                let pairsVC = MarketPairsViewController()
+                let pairsVC = SelectMarketPairSubViewController()
                 pairsVC.marketVM = marketVM
                 pairsVC.index = index
                 vcs.append(pairsVC)
@@ -114,49 +120,7 @@ class MarketViewController: BaseViewController {
     }()
 
     lazy var headerView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
-
-        let titleLabel = UILabel()
-        titleLabel.text = "交易所"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.left.equalToSuperview().offset(24)
-        }
-
-        let searchButton = UIButton()
-        searchButton.setBackgroundImage(R.image.market_search(), for: .normal)
-        headerView.addSubview(searchButton)
-        searchButton.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.right.equalToSuperview().offset(-16)
-            m.width.height.equalTo(28)
-        }
-        searchButton.addTarget(self, action: #selector(goToSearchVC), for: .touchUpInside)
-
-        let imageView = UIImageView()
-        imageView.image = R.image.market_top_bg()
-        headerView.addSubview(imageView)
-        imageView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalToSuperview().offset(-10)
-            m.top.equalTo(searchButton.snp.bottom).offset(20)
-        }
-
-        let tapGes = UITapGestureRecognizer(target: self, action: #selector(tappedBanner))
-        imageView.addGestureRecognizer(tapGes)
-        imageView.isUserInteractionEnabled = true
-
-        let bannerLabel = UILabel()
-        bannerLabel.text = "一分钟玩转Vitex"
-        bannerLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        bannerLabel.textColor = .white
-        imageView.addSubview(bannerLabel)
-        bannerLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
-            m.left.equalToSuperview().offset(16)
-        }
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 1))
         return headerView
     }()
 
@@ -187,6 +151,14 @@ class MarketViewController: BaseViewController {
              return label
          }()
 
+        let operatorTitleLabel: UILabel = {
+              let label = UILabel()
+              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
+              label.font = UIFont.systemFont(ofSize: 12)
+              label.text = "运营商"
+              return label
+          }()
+
          sortView.addSubview(symbleTitleLabel)
          sortView.addSubview(priceTitleLabel)
          sortView.addSubview(percentTitleLabel)
@@ -194,6 +166,8 @@ class MarketViewController: BaseViewController {
         sortView.addSubview(self.sortByPercenteStatusImg)
          sortView.addSubview(self.sortByPriceButton)
          sortView.addSubview(self.sortByPercentButton)
+        sortView.addSubview(operatorTitleLabel)
+
 
          symbleTitleLabel.snp.makeConstraints { (make) -> Void in
              make.left.equalToSuperview().offset(24)
@@ -201,16 +175,14 @@ class MarketViewController: BaseViewController {
          }
 
          self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-(kScreenW - 48)*0.33)
+             make.right.equalToSuperview().offset(-(kScreenW - 48)*0.55)
              make.centerY.equalToSuperview()
-//            make.width.height.equalTo(12)`
 
          }
 
          self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-24)
              make.centerY.equalToSuperview()
-//            make.width.height.equalTo(12)
+            make.left.equalTo(percentTitleLabel.snp.right)
 
          }
 
@@ -220,7 +192,12 @@ class MarketViewController: BaseViewController {
         }
 
         percentTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self.sortByPercenteStatusImg.snp.left)
+            make.centerY.equalToSuperview()
+            make.left.equalTo(self.sortByPriceStatusImg.snp.right).offset(28)
+        }
+
+        operatorTitleLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalToSuperview().offset(-24)
             make.centerY.equalToSuperview()
         }
 
@@ -248,8 +225,10 @@ class MarketViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: navSearchButton)
         navSearchButton.addTarget(self, action: #selector(goToSearchVC), for: .touchUpInside)
 
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: navCloseButton)
+        navCloseButton.addTarget(SeletcMarketPairManager.shared, action: #selector(SeletcMarketPairManager.closeCard), for: .touchUpInside)
+
         view.addSubview(contentView)
-        contentView.delegate = self
 
         contentView.didSelectIndexHandle { [unowned self] (index) in
             self.configSortStatus()
@@ -277,24 +256,8 @@ class MarketViewController: BaseViewController {
         self.marketVM.requestPageList()
     }
 
-    var vcsss: UIViewController?
     @objc func goToSearchVC() {
-
-        let vc = MarketSearchViewController()
-        vc.originalData = Array(self.marketVM.sortedMarketDataBehaviorRelay.value.dropFirst())
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        vc.onSelectInfo = { [unowned self] info in
-            let webvc = WKWebViewController(url: info.vitexURL)
-            self.navigationController?.pushViewController(webvc, animated: true)
-        }
-    }
-
-    @objc func tappedBanner() {
-        if (LocalizationService.sharedInstance.currentLanguage == .chinese){
-            WebHandler.open("https://forum.vite.net/topic/2655/vitex-%E4%BA%A4%E6%98%93%E6%89%80%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97")
-          } else {
-            WebHandler.open("https://forum.vite.net/topic/2654/vitex-mobile-terminal-operation-guide")
-          }
+        SeletcMarketPairManager.shared.showSearch()
     }
 
     func configSortStatus() {
@@ -307,25 +270,80 @@ class MarketViewController: BaseViewController {
     }
 }
 
+class SelectMarketPairSubViewController : UIViewController, LTTableViewProtocal, UITableViewDelegate, UITableViewDataSource  {
 
-extension MarketViewController: LTSimpleScrollViewDelegate {
+    var marketVM = MarketInfoService.shared
+    var index: Int = 0
 
-    func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let alpha = max(min(scrollView.contentOffset.y, 64.0), 0.0) / 64.0
-        navTitleView.alpha = alpha
-        navSearchButton.alpha = alpha
+    lazy var tableView: UITableView = {
+
+        let statusBarH = UIApplication.shared.statusBarFrame.size.height
+        let tabBarH = self.tabBarController?.tabBar.frame.size.height ?? 0
+        let Y: CGFloat = 0
+        var H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
+        H = H - tabBarH - 44 - 70
+        let tableView = UITableView.listView()
+        tableView.frame = CGRect(x: 0, y:44, width: view.bounds.width, height: H)
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.white
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (m) in
+            m.left.right.bottom.equalToSuperview()
+            m.top.equalToSuperview().offset(80)
+        }
+        glt_scrollView = tableView
+        reftreshData()
+        if #available(iOS 11.0, *) {
+            glt_scrollView?.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+
+        marketVM.sortedMarketDataBehaviorRelay.asObservable().bind{ _ in
+            self.tableView.reloadData()
+        }
+
+        tableView.register(SelectMarketPairCell.self, forCellReuseIdentifier: "identifier")
     }
 
-    func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int) {
-        scrollView.mj_header = MJRefreshNormalHeader {[weak scrollView] in
-            self.marketVM.requestPageList()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                scrollView?.mj_header.endRefreshing()
-            })
-        }
+    func vitexPageUrl() -> URL {
+        var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
+            + "?address=" + (HDWalletManager.instance.account?.address ?? "")
+            + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+        return URL.init(string:urlStr)!
+    }
+
+    fileprivate func reftreshData()  {
+
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "identifier", for: indexPath) as! SelectMarketPairCell
+        let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
+        cell.bind(info: info)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
+        SeletcMarketPairManager.shared.closeCard()
+        SeletcMarketPairManager.shared.onSelectInfo?(info)
+
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
-
-
-
 

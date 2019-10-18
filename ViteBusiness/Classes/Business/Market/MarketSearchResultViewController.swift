@@ -11,7 +11,8 @@ class MarketSearchResultViewController: UIViewController, UISearchResultsUpdatin
 
     var originalData: [MarketData]!
     var result: [(MarketInfo, Bool)] = []
-    var gotoURL: ((URL) -> ())?
+    var onSelectInfo: ((MarketInfo) -> ())?
+
 
     lazy var tableView = UITableView.listView().then { (tableView) in
         view.addSubview(tableView)
@@ -85,7 +86,7 @@ extension MarketSearchResultViewController: UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: true)
         let (info, _) = self.result[indexPath.row]
         MarketCache.saveSearchHistory(data: info.statistic.symbol)
-        self.gotoURL?(info.vitexURL)
+        self.onSelectInfo?(info)
     }
 
 }

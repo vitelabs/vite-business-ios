@@ -18,9 +18,13 @@ enum SortStatus: Int {
     case descending = 2
 }
 
-class MarketInfoVM: NSObject {
+class MarketInfoService: NSObject {
+
+    static let shared = MarketInfoService()
 
     let marketSocket = MarketWebSocket()
+
+    var operatorValue: [String: Any]?
 
     lazy var sortedMarketDataBehaviorRelay = { () -> BehaviorRelay<[MarketData]> in
         var orignialMarketData = [
@@ -58,7 +62,7 @@ class MarketInfoVM: NSObject {
 
 }
 
-extension MarketInfoVM {
+extension MarketInfoService {
 
     func sortByPrice(index: Int) {
         sortStatuses[index].1 = .normal
@@ -111,7 +115,7 @@ extension MarketInfoVM {
 
 }
 
-extension MarketInfoVM {
+extension MarketInfoService {
 
     func requestPageList()  {
         let ticker = Alamofire
@@ -143,6 +147,7 @@ extension MarketInfoVM {
                 MarketCache.saveTickerCache(data: t)
                 MarketCache.saveRateCache(data: r)
                 MarketCache.saveMiningCache(data: m)
+                self?.loadOperatorIfNeeded()
                 self?.handleData(t,r,m)
         }
     }
@@ -193,6 +198,7 @@ extension MarketInfoVM {
             if let rate = rateMap[info.statistic.quoteTokenSymbol] {
                 info.rate = rateString(price: info.statistic.closePrice, rate: rate, currency: currency)
             }
+            info.operatorName = self.operatorValue?[info.statistic.symbol] as? String ?? "--"
 
            let indexs = ["BTC-000": 1, "ETH-000": 2, "VITE":3, "USDT-000":4]
             if statistic.hasQuoteTokenSymbol, let index = indexs[statistic.quoteTokenSymbol] {
@@ -214,12 +220,49 @@ extension MarketInfoVM {
         let money = price * rate
         return String(format: "\(currencySymble)%.6f", money)
     }
+
+
+    func loadOperatorIfNeeded() {
+        if self.operatorValue != nil { return }
+        let pairs = self.sortedMarketDataBehaviorRelay.value.dropFirst().reduce([]) { (result, marekData) -> [String] in
+            let arr = marekData.infos.map { $0.statistic.symbol ?? "" }
+            return result + arr
+        }
+        var request = URLRequest(url: URL.init(string: ViteConst.instance.market.vitexHost + "/api/v1/operator/tradepair")!)
+               request.httpMethod = "POST"
+               request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+               let values = pairs
+               request.httpBody = try! JSONSerialization.data(withJSONObject: values)
+
+        let operate = Alamofire
+            .request(request)
+           .responseJSON()
+           .map(on: .main) { (arg) -> [String: Any] in
+               let (_, response) = arg
+               return JSON(response.data)["data"].dictionaryObject as? [String: Any] ?? [:]
+            }
+        .done {
+            self.operatorValue = $0.mapValues({ (json) -> String in
+                return JSON(json)["name"].string ?? "--"
+            })
+            var relayValue = self.sortedMarketDataBehaviorRelay.value
+            relayValue = relayValue.map { (data) -> MarketData in
+                 data.infos = data.infos.map { info -> MarketInfo in
+                    info.operatorName = self.operatorValue?[info.statistic.symbol] as? String ?? "--"
+                    return info
+                }
+                return data
+            }
+            self.sortedMarketDataBehaviorRelay.accept(relayValue)
+        }
+    }
 }
 
-class MarketInfo {
-    var statistic: Protocol.TickerStatisticsProto!
+public class MarketInfo {
+    public var statistic: Protocol.TickerStatisticsProto!
     var mining: Bool = false
     var rate = ""
+    var operatorName = "--"
 
     private(set) lazy var vitexURL: URL = {
         let tickerStatistics =  self.statistic!

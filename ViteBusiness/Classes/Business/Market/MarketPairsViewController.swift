@@ -12,7 +12,7 @@ private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
 
 class MarketPairsViewController : UIViewController, LTTableViewProtocal {
 
-    var marketVM: MarketInfoVM!
+    var marketVM = MarketInfoService.shared
     var index: Int = 0
 
     lazy var tableView: UITableView = {
@@ -85,7 +85,6 @@ extension MarketPairsViewController: UITableViewDelegate, UITableViewDataSource 
         let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
         let webvc = WKWebViewController(url: info.vitexURL)
         self.navigationController?.pushViewController(webvc, animated: true)
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

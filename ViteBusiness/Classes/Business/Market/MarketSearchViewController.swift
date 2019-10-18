@@ -13,12 +13,11 @@ import RxDataSources
 
 class MarketSearchViewController: UIViewController {
 
+    var onSelectInfo: ((MarketInfo) -> ())?
+
     lazy var searchResultVC = MarketSearchResultViewController().then {
         $0.originalData = self.originalData
-        $0.gotoURL = { [weak self] url in
-           let webvc = WKWebViewController(url: url)
-        self?.navigationController?.pushViewController(webvc, animated: true)
-        }
+        $0.onSelectInfo = self.onSelectInfo
     }
 
     lazy var searchVC : UISearchController? = {[weak self] in
@@ -115,7 +114,7 @@ class MarketSearchViewController: UIViewController {
         deletHistoryButton.rx.tap.bind{ [unowned self] _ in
             MarketCache.deletSearchHistory()
             self.reloadHistory()
-        }
+        }.disposed(by: rx.disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -178,8 +177,7 @@ extension MarketSearchViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let (info, _) = self.history[indexPath.row]
-        let webvc = WKWebViewController(url: info.vitexURL)
-        self.navigationController?.pushViewController(webvc, animated: true)
+        self.onSelectInfo?(info)
     }
 }
 
