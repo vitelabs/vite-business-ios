@@ -249,6 +249,7 @@
 "send.page.not.enough.balance.alert.button" = "Cancel";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "Network failure, please check the transaction history before trying again";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "VITE Conversion";
@@ -908,3 +909,22 @@
 "fund.cannotDeposit" = "Unable to deposit due to insufficient wallet balance";
 "fund.cannotWithDraw" = "Unable to withdraw due to insufficient exchange balance";
 "fund.DepositSuccess" = "Deposit successful. Check exchange balance?";
+
+"transfer.from" =  "从";
+"transfer.wallet.account" =  "钱包账户";
+"transfer.to" =  "到";
+"transfer.dex.account" =  "交易所账户";
+"transfer.amount" =  "数量";
+"transfer.available" =  "可用: ";
+"transfer.title" =  "划转";
+
+"market.favourite" =  "自选";
+"market.searchhistory" =  "搜索记录";
+"market.title" =  "交易所";
+"market.about" =  "一分钟玩转Vitex";
+"market.name" =  "名称";
+"market.price" =  "最新价";
+"market.percent" =  "涨跌幅";
+"market.operator" =  "运营商";
+"market.switch" =  "切换交易对";
+

@@ -28,7 +28,7 @@ class MarketInfoService: NSObject {
 
     lazy var sortedMarketDataBehaviorRelay = { () -> BehaviorRelay<[MarketData]> in
         var orignialMarketData = [
-            MarketData.init(categary: "自选", infos: []),
+            MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
             MarketData.init(categary: "BTC", infos: []),
             MarketData.init(categary: "ETH", infos: []),
             MarketData.init(categary: "VITE", infos: []),
@@ -165,7 +165,7 @@ extension MarketInfoService {
         let miningSymbols = tradeMiningSymbols + orderMiningSymbols
 
         let marketDatas = [
-            MarketData.init(categary: "自选", infos: []),
+            MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
             MarketData.init(categary: "BTC", infos: []),
             MarketData.init(categary: "ETH", infos: []),
             MarketData.init(categary: "VITE", infos: []),

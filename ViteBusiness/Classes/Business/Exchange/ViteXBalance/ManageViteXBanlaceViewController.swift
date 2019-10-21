@@ -22,7 +22,7 @@ class ManageViteXBanlaceViewController: BaseViewController {
         case toWallet
     }
 
-    let actionType: ManageViteXBanlaceViewController.ActionType
+    var actionType = ActionType.toVitex
 
     init(tokenInfo: TokenInfo,actionType: ManageViteXBanlaceViewController.ActionType) {
         self.token = tokenInfo
@@ -34,44 +34,94 @@ class ManageViteXBanlaceViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    lazy var abstractView = WalletAbstractView().then { abstractView in
-        abstractView.tl0.text = R.string.localizable.fundWalletAddress()
-        abstractView.cl0.text = HDWalletManager.instance.account?.address
-        abstractView.tl1.text = self.actionType == .toVitex ? R.string.localizable.fundWalletFound() : R.string.localizable.fundVitexFound()
-        abstractView.cl1.text = " "
-        abstractView.tl2.text = R.string.localizable.fundQuotaInfo()
-        abstractView.cl2.text = " "
+    lazy var topContainerView = UIView().then { view in
+        view.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
     }
 
-    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
-        $0.layer.masksToBounds = false
-        $0.stackView.spacing = 10
-        if #available(iOS 11.0, *) {
-            $0.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
-    }
+    let leftImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.vitex_balance_left()
+        return imageView
+    }()
+
+    let fromTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = R.string.localizable.transferFrom()
+        return label
+    }()
+
+    let fromLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3e4a59)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = R.string.localizable.transferWalletAccount()
+        return label
+    }()
+
+    let destTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = R.string.localizable.transferTo()
+        return label
+    }()
+
+    let destLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3e4a59)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = R.string.localizable.transferDexAccount()
+        return label
+    }()
+
+    let seperator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        return view
+    }()
+
+    let switchButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(R.image.vitex_balance_switch(), for: .normal)
+        return button
+    }()
 
     lazy var amountView = EthViteExchangeAmountView().then { amountView in
         amountView.textField.keyboardType = .decimalPad
-        amountView.symbolLabel.text = ""
+        amountView.symbolLabel.text = self.token.symbol
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.button.setTitle(R.string.localizable.fundDepositAll(), for: .normal)
-        amountView.titleLabel.text = self.actionType == .toVitex ? R.string.localizable.fundDepositAmount() : R.string.localizable.fundWithdrawAmount()
+        amountView.titleLabel.text = R.string.localizable.transferAmount()
         let placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositPlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
         amountView.textField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
     }
 
-    var quotaView = SendQuotaItemView(utString: ABI.BuildIn.dexDeposit.ut.utToString())
+    lazy var balanceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.45)
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "\(R.string.localizable.transferAvailable())--\(self.token.symbol)"
+        return label
+    }()
 
     lazy var handleButton = { () -> UIButton in
-        let title = self.actionType == .toVitex ? R.string.localizable.fundDeposit() : R.string.localizable.fundWithdraw()
+        let title = R.string.localizable.transferTitle()
         return UIButton.init(style: .blue, title: title)
     }()
 
     let token: TokenInfo
-    var balance = Amount(0)
+    var walletBalance = Amount(0)
+    var vitexBalance = Amount(0)
+
+    var balance: Amount {
+        if self.actionType == .toVitex {
+            return walletBalance
+        } else {
+            return vitexBalance
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +131,7 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(scrollView)
+        kas_activateAutoScrollingForView(view)
         ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [token.tokenCode])
         FetchQuotaManager.instance.retainQuota()
     }
@@ -93,67 +143,122 @@ class ManageViteXBanlaceViewController: BaseViewController {
     }
 
     func setUpView() {
-        let  tilte = self.actionType == .toVitex ? R.string.localizable.fundTitleToVitex() : R.string.localizable.fundTitleToWallet()
-        navigationTitleView = PageTitleView.titleAndTokenIcon(title: tilte, tokenInfo: token)
+        navigationTitleView = PageTitleView.onlyTitle(title: R.string.localizable.transferTitle())
         navigationTitleView?.backgroundColor = UIColor.white
 
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.textField.keyboardType = .decimalPad
 
-        view.addSubview(scrollView)
         view.addSubview(handleButton)
+        view.addSubview(topContainerView)
+        topContainerView.addSubview(leftImageView)
+        topContainerView.addSubview(fromTitleLabel)
+        topContainerView.addSubview(fromLabel)
+        topContainerView.addSubview(destTitleLabel)
+        topContainerView.addSubview(destLabel)
+        topContainerView.addSubview(seperator)
+        topContainerView.addSubview(switchButton)
 
-        scrollView.snp.makeConstraints { (m) in
+        view.addSubview(amountView)
+        view.addSubview(balanceLabel)
+
+        topContainerView.snp.makeConstraints { (m) in
+            m.height.equalTo(157)
+            m.left.right.equalToSuperview()
             m.top.equalTo(navigationTitleView!.snp.bottom)
-            m.left.right.equalTo(view)
-            m.bottom.equalTo(handleButton.snp.top)
         }
 
-        scrollView.stackView.addArrangedSubview(abstractView)
-        scrollView.stackView.addArrangedSubview(amountView)
-        scrollView.stackView.addPlaceholder(height: 10)
-        scrollView.stackView.addArrangedSubview(quotaView)
-
-        abstractView.snp.makeConstraints { (m) in
-            m.height.equalTo(198)
+        leftImageView.snp.makeConstraints { (m) in
+            m.width.equalTo(6)
+            m.height.equalTo(72)
+            m.centerY.equalToSuperview()
+            m.left.equalToSuperview().inset(24)
         }
+
+        seperator.snp.makeConstraints { (m) in
+            m.height.equalTo(1)
+            m.centerY.equalToSuperview()
+            m.left.equalToSuperview().offset(46)
+            m.right.equalToSuperview().offset(-2)
+        }
+
+        switchButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(30)
+            m.centerY.equalToSuperview()
+            m.right.equalToSuperview().inset(024)
+        }
+
+
+        fromLabel.snp.makeConstraints { (m) in
+            m.bottom.equalTo(seperator.snp.top).offset(-13)
+            m.left.equalToSuperview().offset(46)
+        }
+
+        fromTitleLabel.snp.makeConstraints { (m) in
+            m.bottom.equalTo(fromLabel.snp.top).offset(-11)
+            m.left.equalToSuperview().offset(46)
+        }
+
+
+
+        destTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(seperator.snp.bottom).offset(14)
+            m.left.equalToSuperview().offset(46)
+        }
+
+        destLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(destTitleLabel.snp.bottom).offset(11)
+            m.left.equalToSuperview().offset(46)
+        }
+
+        amountView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.top.equalTo(topContainerView.snp.bottom)
+         }
 
         handleButton.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
+
+        balanceLabel.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.top.equalTo(amountView.snp.bottom).offset(11)
+        }
     }
 
     func bind() {
-        FetchQuotaManager.instance.quotaDriver
-            .drive(onNext: { [weak self] (quota) in
-                guard let `self` = self else { return }
-                self.abstractView.cl2.text = "\(quota.currentUt.utToString())/\(quota.utpe.utToString()) UT"
-            }).disposed(by: rx.disposeBag)
 
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.amountView.textField.text = self.balance.amount(decimals: self.token.decimals, count: min(8,self.token.decimals),groupSeparator: false)
             }.disposed(by: rx.disposeBag)
 
-        if actionType == .toVitex {
-            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: token.id)
-                .drive(onNext: { [weak self] balanceInfo in
-                    guard let `self` = self else { return }
-                    self.balance = balanceInfo?.balance ?? Amount(0)
-                    self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
-                }).disposed(by: rx.disposeBag)
-        } else if actionType == .toWallet {
-            ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)
-                .drive(onNext: { [weak self] dexBalanceInfo in
-                    guard let `self` = self else { return }
-                    self.balance = dexBalanceInfo?.available ?? Amount(0)
-                    self.abstractView.cl1.text = self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals)
-                }).disposed(by: rx.disposeBag)
-        }
+        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: token.id)
+            .drive(onNext: { [weak self] balanceInfo in
+                guard let `self` = self else { return }
+                self.walletBalance = balanceInfo?.balance ?? Amount(0)
+                if self.actionType == .toVitex {
+                    self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                }
+            }).disposed(by: rx.disposeBag)
+        ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)
+            .drive(onNext: { [weak self] dexBalanceInfo in
+                guard let `self` = self else { return }
+                self.vitexBalance = dexBalanceInfo?.available ?? Amount(0)
+                if self.actionType == .toWallet {
+                    self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                }
+            }).disposed(by: rx.disposeBag)
 
         handleButton.rx.tap.bind { [weak self] _ in
             guard let `self` = self else { return }
+
+            guard self.balance > 0 else {
+                Toast.show(self.actionType == .toVitex ? R.string.localizable.fundCannotDeposit() : R.string.localizable.fundCannotWithDraw())
+                   return
+           }
+
             guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
                 let amount = amountString.toAmount(decimals: self.token.decimals) else {
                     Toast.show(R.string.localizable.sendPageToastAmountEmpty())
@@ -174,6 +279,22 @@ class ManageViteXBanlaceViewController: BaseViewController {
                 self.fundFromWalletToVitex(amount:amount)
             } else if self.actionType == .toWallet {
                 self.fundFromVitexToWallet(amount:amount)
+            }
+
+        }.disposed(by: rx.disposeBag)
+
+        switchButton.rx.tap.bind {  [weak self] _ in
+            guard let `self` = self else { return }
+            if self.actionType == .toVitex {
+                self.actionType = .toWallet
+                self.fromLabel.text = R.string.localizable.transferDexAccount()
+                self.destLabel.text = R.string.localizable.transferWalletAccount()
+                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+            } else {
+                self.actionType = .toVitex
+                self.destLabel.text = R.string.localizable.transferDexAccount()
+                self.fromLabel.text = R.string.localizable.transferWalletAccount()
+                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
             }
 
         }.disposed(by: rx.disposeBag)

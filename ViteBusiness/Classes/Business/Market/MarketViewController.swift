@@ -19,7 +19,7 @@ class MarketViewController: BaseViewController {
 
     let navTitleView: UILabel = {
         let label = UILabel()
-        label.text = "交易所"
+        label.text = R.string.localizable.marketTitle()
         label.font = UIFont.systemFont(ofSize: 17)
         label.alpha = 0
         return label
@@ -117,7 +117,7 @@ class MarketViewController: BaseViewController {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
 
         let titleLabel = UILabel()
-        titleLabel.text = "交易所"
+        titleLabel.text = R.string.localizable.marketTitle()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (m) in
@@ -149,7 +149,7 @@ class MarketViewController: BaseViewController {
         imageView.isUserInteractionEnabled = true
 
         let bannerLabel = UILabel()
-        bannerLabel.text = "一分钟玩转Vitex"
+        bannerLabel.text = R.string.localizable.marketAbout()
         bannerLabel.font = UIFont.boldSystemFont(ofSize: 18)
         bannerLabel.textColor = .white
         imageView.addSubview(bannerLabel)
@@ -167,7 +167,7 @@ class MarketViewController: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "名称"
+             label.text = R.string.localizable.marketName()
              return label
          }()
 
@@ -175,7 +175,7 @@ class MarketViewController: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "最新价"
+             label.text = R.string.localizable.marketPrice()
              return label
          }()
 
@@ -183,7 +183,7 @@ class MarketViewController: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "涨跌幅"
+             label.text = R.string.localizable.marketPercent()
              return label
          }()
 

@@ -253,6 +253,7 @@
 "send.page.not.enough.balance.alert.button" = "取消交易";
 "send.page.token.info.error" = "代币信息错误";
 "send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "网络错误，重试之前请先确认交易记录";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "置换 VITE";
@@ -655,8 +656,8 @@
 
 // CrossChain Deposit & Withdraw
 "crosschain.tokendetail" = "代币详情";
-"crosschain.deposit" = "跨链转入";
-"crosschain.withdraw" = "跨链转出";
+"crosschain.deposit" = "跨链充值";
+"crosschain.withdraw" = "跨链提现";
 "crosschain.withdraw.btnTitle" = "转出";
 "crosschain.deposit.btnTitle" = "转入";
 "crosschain.deposit.vitewallet" = "Vite钱包转入";
@@ -669,8 +670,8 @@
 "crosschain.deposit.scanAddress" = "请扫描地址二维码";
 "crosschain.deposit.scanLabel" = "请扫描%@二维码";
 "crosschain.deposit.labelDesc" = "请将%@与充值地址同时使用，否则币会丢失";
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。Vite钱包跨链转入是使用Vite钱包%@余额进行转入。</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链转入</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链转入操作是将%@跨链映射至Vite网络，转入后您可以通过跨链转出。</p>";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链充值</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链充值操作是将%@跨链映射至Vite网络，转入后您可以通过跨链提现。Vite钱包跨链充值是使用Vite钱包%@余额进行转入。</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">关于跨链充值</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">跨链充值操作是将%@跨链映射至Vite网络，转入后您可以通过跨链提现。</p>";
 "crosschain.withdraw.eth.myAddress" = "我的ETH地址";
 "crosschain.deposit.min" = "最少转入";
 "crosschain.withdraw.min" = "最少转出";
@@ -790,7 +791,7 @@
 "bifrost.operation.transfer" = "转账";
 "bifrost.operation.vx.deposit" = "交易所充值";
 "bifrost.operation.vx.withdraw" = "交易所提现";
-"bifrost.operation.across.chain.withdraw" = "跨链转出";
+"bifrost.operation.across.chain.withdraw" = "跨链提现";
 "bifrost.operation.vx.order" = "交易所挂单";
 "bifrost.operation.vx.cancel.order" = "交易所撤单";
 
@@ -807,7 +808,7 @@
 "buildin.transfer.utf8string.item1.title" = "交易金额";
 "buildin.transfer.utf8string.item2.title" = "备注信息";
 
-"buildin.transfer.cross.chain.function.title" = "跨链转出";
+"buildin.transfer.cross.chain.function.title" = "跨链提现";
 "buildin.transfer.cross.chain.item0.title" = "转出金额";
 "buildin.transfer.cross.chain.item1.title" = "手续费";
 "buildin.transfer.cross.chain.item2.title" = "收款地址";
@@ -917,3 +918,23 @@
 "fund.cannotDeposit" =  "钱包余额为0，无法充值";
 "fund.cannotWithDraw" =  "交易所余额为0，无法提现";
 "fund.DepositSuccess" =  "充值至交易所成功，是否去交易所查看？";
+
+"transfer.from" =  "从";
+"transfer.wallet.account" =  "钱包账户";
+"transfer.to" =  "到";
+"transfer.dex.account" =  "交易所账户";
+"transfer.amount" =  "数量";
+"transfer.available" =  "可用: ";
+"transfer.title" =  "划转";
+
+"market.favourite" =  "自选";
+"market.searchhistory" =  "搜索记录";
+"market.title" =  "交易所";
+"market.about" =  "一分钟玩转Vitex";
+"market.name" =  "名称";
+"market.price" =  "最新价";
+"market.percent" =  "涨跌幅";
+"market.operator" =  "运营商";
+"market.switch" =  "运营商";
+
+

@@ -21,7 +21,7 @@ class SeletcMarketPairCard: BaseViewController {
 
     let navTitleView: UILabel = {
         let label = UILabel()
-        label.text = "切换交易对"
+        label.text = R.string.localizable.marketSwitch()
         label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
     }()
@@ -98,7 +98,7 @@ class SeletcMarketPairCard: BaseViewController {
         let frame: CGRect =  {
             let statusBarH = UIApplication.shared.statusBarFrame.size.height
             let tabBarH = self.tabBarController?.tabBar.frame.size.height ?? 0
-            var H: CGFloat = kScreenH - statusBarH - tabBarH - 44
+            var H: CGFloat = 600 - statusBarH - tabBarH - 44
             return CGRect(x: 0, y: 0, width: view.bounds.width, height: H)
         }()
 
@@ -131,7 +131,7 @@ class SeletcMarketPairCard: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "名称"
+             label.text = R.string.localizable.marketName()
              return label
          }()
 
@@ -139,7 +139,7 @@ class SeletcMarketPairCard: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "最新价"
+             label.text = R.string.localizable.marketPrice()
              return label
          }()
 
@@ -147,7 +147,7 @@ class SeletcMarketPairCard: BaseViewController {
              let label = UILabel()
              label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
              label.font = UIFont.systemFont(ofSize: 12)
-             label.text = "涨跌幅"
+             label.text = R.string.localizable.marketPercent()
              return label
          }()
 
@@ -155,7 +155,7 @@ class SeletcMarketPairCard: BaseViewController {
               let label = UILabel()
               label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
               label.font = UIFont.systemFont(ofSize: 12)
-              label.text = "运营商"
+            label.text = R.string.localizable.marketOperator()
               return label
           }()
 
@@ -280,7 +280,7 @@ class SelectMarketPairSubViewController : UIViewController, LTTableViewProtocal,
         let statusBarH = UIApplication.shared.statusBarFrame.size.height
         let tabBarH = self.tabBarController?.tabBar.frame.size.height ?? 0
         let Y: CGFloat = 0
-        var H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
+        var H: CGFloat = 600
         H = H - tabBarH - 44 - 70
         let tableView = UITableView.listView()
         tableView.frame = CGRect(x: 0, y:44, width: view.bounds.width, height: H)

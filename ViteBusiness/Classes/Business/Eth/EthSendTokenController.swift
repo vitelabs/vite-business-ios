@@ -190,7 +190,13 @@ class EthSendTokenController: BaseViewController {
                         if let e = error as? DisplayableError {
                             Toast.show(e.errorMessage)
                         } else {
-                            Toast.show((error as NSError).localizedDescription)
+                            Alert.show(title: R.string.localizable.sendPageEthFailed(),
+                                                  message: nil,
+                                                  actions: [
+                                                   (.cancel, nil),
+                                                   (.default(title: R.string.localizable.confirm()), { _ in
+                                                   })
+                                           ])
                         }
                     }
                 })

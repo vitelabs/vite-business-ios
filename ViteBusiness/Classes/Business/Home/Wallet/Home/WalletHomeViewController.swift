@@ -295,35 +295,8 @@ class WalletHomeViewController: BaseViewController {
         }
         let viteXBalanceInfo = self.tableViewModel.lastViteXBalanceInfos[indexPath.row]
         let tokenInfo = viteXBalanceInfo.tokenInfo
-        let a0 = UIAlertAction.init(title: R.string.localizable.fundTitleToVitex(), style: .default) { [unowned self] (_) in
-            guard let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.id),
-                balance.balance > 0 else {
-                    Toast.show(R.string.localizable.fundCannotDeposit())
-                    return
-            }
-            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toVitex)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        let a1 = UIAlertAction.init(title: R.string.localizable.fundTitleToWallet(), style: .default) { [unowned self] (_) in
-            let balance = viteXBalanceInfo.balanceInfo.available
-            guard balance > 0 else {
-                Toast.show(R.string.localizable.fundCannotWithDraw())
-                return
-            }
-            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toWallet)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        let a2 = UIAlertAction.init(title: R.string.localizable.cancel(), style: .cancel) { _ in }
-        let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(a0)
-        alert.addAction(a1)
-        alert.addAction(a2)
-        if let popover = alert.popoverPresentationController {
-            popover.sourceView = accessoryButton;
-            popover.sourceRect = accessoryButton.bounds;
-            popover.permittedArrowDirections = .any;
-        }
-        self.present(alert, animated: true, completion: nil)
+        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toVitex)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

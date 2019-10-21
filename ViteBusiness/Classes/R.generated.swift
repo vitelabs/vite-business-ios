@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 212 images.
+  /// This `R.image` struct is generated, and contains static references to 214 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -436,6 +436,10 @@ public struct R: Rswift.Validatable {
     public static let unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "unselected")
     /// Image `vite`.
     public static let vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "vite")
+    /// Image `vitex_balance_left`.
+    public static let vitex_balance_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "vitex_balance_left")
+    /// Image `vitex_balance_switch`.
+    public static let vitex_balance_switch = Rswift.ImageResource(bundle: R.hostingBundle, name: "vitex_balance_switch")
     /// Image `vote_info_bg`.
     public static let vote_info_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "vote_info_bg")
     /// Image `vote_info_dot`.
@@ -1488,6 +1492,16 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.vite, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "vitex_balance_left", bundle: ..., traitCollection: ...)`
+    public static func vitex_balance_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.vitex_balance_left, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "vitex_balance_switch", bundle: ..., traitCollection: ...)`
+    public static func vitex_balance_switch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.vitex_balance_switch, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "vote_info_bg", bundle: ..., traitCollection: ...)`
     public static func vote_info_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.vote_info_bg, compatibleWith: traitCollection)
@@ -1508,7 +1522,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 743 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 760 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2862,6 +2876,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let appSchemeNetworkError = Rswift.StringResource(key: "app.scheme.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Network failure, please check the transaction history before trying again
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageEthFailed = Rswift.StringResource(key: "send.page.eth.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, zh-Hans
@@ -4482,6 +4500,70 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 一分钟玩转Vitex
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketAbout = Rswift.StringResource(key: "market.about", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketTitle = Rswift.StringResource(key: "market.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferDexAccount = Rswift.StringResource(key: "transfer.dex.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 从
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferFrom = Rswift.StringResource(key: "transfer.from", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 划转
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferTitle = Rswift.StringResource(key: "transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 到
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferTo = Rswift.StringResource(key: "transfer.to", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 可用: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferAvailable = Rswift.StringResource(key: "transfer.available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 名称
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketName = Rswift.StringResource(key: "market.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 搜索记录
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketSearchhistory = Rswift.StringResource(key: "market.searchhistory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferAmount = Rswift.StringResource(key: "transfer.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 最新价
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketPrice = Rswift.StringResource(key: "market.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 涨跌幅
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketPercent = Rswift.StringResource(key: "market.percent", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 自选
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketFavourite = Rswift.StringResource(key: "market.favourite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 运营商
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketOperator = Rswift.StringResource(key: "market.operator", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 运营商
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketSwitch = Rswift.StringResource(key: "market.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 钱包账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferWalletAccount = Rswift.StringResource(key: "transfer.wallet.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6847,6 +6929,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func appSchemeNetworkError(_: Void = ()) -> String {
         return NSLocalizedString("app.scheme.network.error", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Network failure, please check the transaction history before trying again
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageEthFailed(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.eth.failed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Next
@@ -9682,6 +9771,118 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 一分钟玩转Vitex
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketAbout(_: Void = ()) -> String {
+        return NSLocalizedString("market.about", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易所
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易所账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferDexAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.dex.account", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 从
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferFrom(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.from", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 划转
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 到
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferTo(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.to", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 可用: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferAvailable(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.available", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 名称
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketName(_: Void = ()) -> String {
+        return NSLocalizedString("market.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 搜索记录
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketSearchhistory(_: Void = ()) -> String {
+        return NSLocalizedString("market.searchhistory", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferAmount(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最新价
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketPrice(_: Void = ()) -> String {
+        return NSLocalizedString("market.price", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 涨跌幅
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketPercent(_: Void = ()) -> String {
+        return NSLocalizedString("market.percent", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 自选
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketFavourite(_: Void = ()) -> String {
+        return NSLocalizedString("market.favourite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 运营商
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketOperator(_: Void = ()) -> String {
+        return NSLocalizedString("market.operator", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 运营商
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketSwitch(_: Void = ()) -> String {
+        return NSLocalizedString("market.switch", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 钱包账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferWalletAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.wallet.account", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
