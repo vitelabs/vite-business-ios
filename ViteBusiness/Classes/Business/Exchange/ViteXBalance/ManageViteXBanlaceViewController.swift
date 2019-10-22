@@ -15,7 +15,7 @@ import JSONRPCKit
 import RxCocoa
 import RxSwift
 
-class ManageViteXBanlaceViewController: BaseViewController {
+public class ManageViteXBanlaceViewController: BaseViewController {
 
     enum ActionType {
         case toVitex
@@ -24,9 +24,8 @@ class ManageViteXBanlaceViewController: BaseViewController {
 
     var actionType = ActionType.toVitex
 
-    init(tokenInfo: TokenInfo,actionType: ManageViteXBanlaceViewController.ActionType) {
+    public init(tokenInfo: TokenInfo) {
         self.token = tokenInfo
-        self.actionType = actionType
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -123,20 +122,20 @@ class ManageViteXBanlaceViewController: BaseViewController {
         }
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         bind()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(view)
         ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [token.tokenCode])
         FetchQuotaManager.instance.retainQuota()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaManager.instance.releaseQuota()
         ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [token.tokenCode])

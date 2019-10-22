@@ -295,7 +295,7 @@ class WalletHomeViewController: BaseViewController {
         }
         let viteXBalanceInfo = self.tableViewModel.lastViteXBalanceInfos[indexPath.row]
         let tokenInfo = viteXBalanceInfo.tokenInfo
-        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toVitex)
+        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

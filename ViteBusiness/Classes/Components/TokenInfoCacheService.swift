@@ -216,7 +216,7 @@ extension TokenInfoCacheService {
     }
 
     // MARK: async
-    func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
+    public func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
         tokenInfo(for: tokenCode).promiseTo(completion: completion)
     }
 
