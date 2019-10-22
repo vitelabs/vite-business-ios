@@ -910,21 +910,21 @@
 "fund.cannotWithDraw" = "Unable to withdraw due to insufficient exchange balance";
 "fund.DepositSuccess" = "Deposit successful. Check exchange balance?";
 
-"transfer.from" =  "从";
-"transfer.wallet.account" =  "钱包账户";
-"transfer.to" =  "到";
-"transfer.dex.account" =  "交易所账户";
-"transfer.amount" =  "数量";
-"transfer.available" =  "可用: ";
-"transfer.title" =  "划转";
+"transfer.from" =  "From";
+"transfer.wallet.account" =  "Wallet Account";
+"transfer.to" =  "To";
+"transfer.dex.account" =  "Exchange Account";
+"transfer.amount" =  "Amount";
+"transfer.available" =  "Balance: ";
+"transfer.title" =  "Transfer";
 
-"market.favourite" =  "自选";
-"market.searchhistory" =  "搜索记录";
-"market.title" =  "交易所";
-"market.about" =  "一分钟玩转Vitex";
-"market.name" =  "名称";
-"market.price" =  "最新价";
-"market.percent" =  "涨跌幅";
-"market.operator" =  "运营商";
-"market.switch" =  "切换交易对";
+"market.favourite" =  "Favorites";
+"market.searchhistory" =  "Search History";
+"market.title" =  "Exchange";
+"market.about" =  "Get Started with ViteX";
+"market.name" =  "Name";
+"market.price" =  "Last Price";
+"market.percent" =  "%Change";
+"market.operator" =  "Operators";
+"market.switch" =  "Switch";
 
