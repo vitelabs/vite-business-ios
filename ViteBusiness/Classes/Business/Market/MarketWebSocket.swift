@@ -27,7 +27,7 @@ class MarketWebSocket: NSObject {
     override init() {
         socket = WebSocket(url: URL.init(string: ViteConst.instance.market.vitexWS)!)
         super.init()
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ping), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ping), userInfo: nil, repeats: true)
         socket.delegate = self
         socket.pongDelegate = self
     }

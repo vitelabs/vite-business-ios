@@ -86,7 +86,7 @@ class MarketSearchViewController: UIViewController {
              lab.numberOfLines = 0
              lab.textAlignment = .left
              lab.textColor = UIColor.init(netHex: 0x3E4A59)
-//            lab.text =  R.string.localizable.marketSearchHistroy()
+            lab.text =  R.string.localizable.marketSearchhistory()
          }
 
          contentView.addSubview(lab)

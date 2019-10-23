@@ -85,7 +85,7 @@
     
     var titleView: LTPageTitleView!
     
-    private lazy var tableView: LTTableView = {
+    lazy var tableView: LTTableView = {
         let tableView = LTTableView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height), style:.plain)
         tableView.delegate = self
         tableView.dataSource = self

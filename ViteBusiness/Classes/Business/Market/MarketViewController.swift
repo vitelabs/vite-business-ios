@@ -54,7 +54,7 @@ class MarketViewController: BaseViewController {
         return button
     }()
 
-   lazy var contentView: LTSimpleManager! = {
+   lazy var contentView: LTSimpleManager = {
         let titles: [String] = self.marketVM.sortedMarketDataBehaviorRelay.value.map { (data) -> String in
             return data.categary
         }
@@ -97,7 +97,6 @@ class MarketViewController: BaseViewController {
         }()
 
         let contentView = LTSimpleManager(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
-
 
         contentView.configHeaderView {[weak self] in
             guard let strongSelf = self else { return nil }
@@ -265,11 +264,18 @@ class MarketViewController: BaseViewController {
 
         }.disposed(by:rx.disposeBag)
 
+        contentView.tableView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
+            self?.marketVM.requestPageList()
+        })
+
         marketVM.sortedMarketDataBehaviorRelay.asObservable()
             .bind { [weak self] _ in
                 self?.configSortStatus()
+                if self?.contentView.tableView.mj_header.isRefreshing ?? false {
+                    self?.contentView.tableView.mj_header.endRefreshing()
+                }
         }.disposed(by:rx.disposeBag)
-
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -277,9 +283,7 @@ class MarketViewController: BaseViewController {
         self.marketVM.requestPageList()
     }
 
-    var vcsss: UIViewController?
     @objc func goToSearchVC() {
-
         let vc = MarketSearchViewController()
         vc.originalData = Array(self.marketVM.sortedMarketDataBehaviorRelay.value.dropFirst())
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
@@ -317,14 +321,10 @@ extension MarketViewController: LTSimpleScrollViewDelegate {
     }
 
     func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int) {
-        scrollView.mj_header = MJRefreshNormalHeader {[weak scrollView] in
-            self.marketVM.requestPageList()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                scrollView?.mj_header.endRefreshing()
-            })
-        }
+
     }
 }
+
 
 
 
