@@ -126,9 +126,18 @@ extension MarketInfoService {
                 return JSON(response.data)["data"].arrayObject as? [[String: Any]] ?? []
             }
 
+        var tokenIDs = "tti_b90c9baffffc9dae58d1f33f,tti_687d8a93915393b219212c73,tti_5649544520544f4b454e6e40,tti_80f3751485e4e83456059473"
+        #if DEBUG || TEST
+           switch DebugService.instance.config.appEnvironment {
+           case .test, .custom:
+               tokenIDs = "tti_322862b3f8edae3b02b110b1,tti_06822f8d096ecdf9356b666c,tti_5649544520544f4b454e6e40,tti_973afc9ffd18c4679de42e93"
+           case .stage, .online:
+               break
+           }
+        #endif
         let rate = Alamofire
              .request(ViteConst.instance.market.vitexHost +  "/api/v1/exchange-rate",
-                      parameters: ["tokenIds":"tti_b90c9baffffc9dae58d1f33f,tti_687d8a93915393b219212c73,tti_5649544520544f4b454e6e40,tti_80f3751485e4e83456059473"])
+                      parameters: ["tokenIds":tokenIDs])
             .responseJSON()
             .map(on: .main) { data, response -> [[String: Any]] in
                  return JSON(response.data)["data"].arrayObject as? [[String: Any]] ?? []

@@ -42,12 +42,18 @@ open class SeletcMarketPairManager {
     }
 
     @objc public  func closeCard() {
+        self.hideCard()
+        self.card = nil
+        self.carNav = nil
+    }
+
+    @objc public  func hideCard() {
         self.card?.navigationController?.view.removeFromSuperview()
         self.background?.removeFromSuperview()
     }
 
     @objc public  func showSearch() {
-        closeCard()
+        hideCard()
         if searchVC == nil {
             searchVC = MarketSearchViewController()
         }
