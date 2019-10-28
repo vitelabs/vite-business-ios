@@ -219,7 +219,7 @@ class SelectMarketPairCell: UITableViewCell {
         }
 
         persentLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(priceLabel.snp.right).offset(28)
+            make.right.equalTo(priceLabel.snp.right).offset(80)
             make.centerY.equalTo(contentView)
         }
 

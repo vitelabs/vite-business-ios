@@ -79,17 +79,17 @@ public class MarketCache {
         guard let data = try? JSON(favourite).rawData() else {
             return
         }
-        fileHelper.writeData(data, relativePath: "favourite")
+        let e = fileHelper.writeData(data, relativePath: "favourite")
     }
 
     public class func saveSearchHistory(data: String) {
-        var favourite = self.readFavourite()
+        var favourite = self.readSearchHistory()
         if !favourite.contains(data) {
             favourite.append(data)
             if favourite.count > 50 {
                 favourite.remove(at: 0)
             }
-            guard let data = try? JSON(favourite).rawData() else {
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: favourite) else {
                 return
             }
             fileHelper.writeData(data, relativePath: "searchhistory")
@@ -100,11 +100,16 @@ public class MarketCache {
         guard let data = fileHelper.contentsAtRelativePath("searchhistory") else {
             return []
         }
-        return JSON(data).arrayObject as? [String] ?? []
+        do {
+            let array = try NSKeyedUnarchiver.unarchiveObject(with: data) as? [String]
+            return array ?? [String]()
+        } catch {
+            return [String]()
+        }
     }
 
     public class func deletSearchHistory() {
-        guard let data = try? JSON([String]()).rawData() else {
+        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: [String]()) else {
             return
         }
         fileHelper.writeData(data, relativePath: "searchhistory")

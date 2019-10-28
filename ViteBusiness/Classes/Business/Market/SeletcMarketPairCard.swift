@@ -84,8 +84,8 @@ class SeletcMarketPairCard: BaseViewController {
             layout.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
             layout.titleSelectColor = UIColor.init(netHex: 0x3E4A59)
             layout.pageBottomLineColor = UIColor.white
-            layout.sliderHeight = 80
-            layout.pageBottomLineHeight = 40
+            layout.sliderHeight = 68
+            layout.pageBottomLineHeight = 38
             layout.scale = 1
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
             layout.lrMargin = 24
@@ -212,6 +212,15 @@ class SeletcMarketPairCard: BaseViewController {
              make.left.bottom.top.equalTo(percentTitleLabel)
 
          }
+
+        let line = UIView()
+        line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        sortView.addSubview(line)
+        line.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+        }
         return sortView
     }()
 

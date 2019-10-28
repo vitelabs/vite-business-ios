@@ -21,7 +21,7 @@ class MarketSearchResultViewController: UIViewController, UISearchResultsUpdatin
         tableView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview()
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
-            m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
+            m.top.equalTo(view.snp.top).offset(-44)
         }
         tableView.register(MarketSearchResultTableViewCell.self, forCellReuseIdentifier: "MarketSearchResultTableViewCell")
         tableView.delegate = self
@@ -69,6 +69,7 @@ class MarketSearchResultViewController: UIViewController, UISearchResultsUpdatin
 extension MarketSearchResultViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.set(empty: result.count == 0)
         return result.count
     }
 

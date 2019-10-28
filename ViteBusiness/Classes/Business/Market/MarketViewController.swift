@@ -78,8 +78,8 @@ class MarketViewController: BaseViewController {
             layout.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
             layout.titleSelectColor = UIColor.init(netHex: 0x3E4A59)
             layout.pageBottomLineColor = UIColor.white
-            layout.sliderHeight = 80
-            layout.pageBottomLineHeight = 40
+            layout.sliderHeight = 68
+            layout.pageBottomLineHeight = 38
             layout.scale = 1
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
             layout.lrMargin = 24
@@ -114,11 +114,11 @@ class MarketViewController: BaseViewController {
     }()
 
     lazy var headerView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 160))
 
         let titleLabel = UILabel()
         titleLabel.text = R.string.localizable.marketTitle()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        titleLabel.font = UIFont.systemFont(ofSize: 24)
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -139,8 +139,9 @@ class MarketViewController: BaseViewController {
         imageView.image = R.image.market_top_bg()
         headerView.addSubview(imageView)
         imageView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalToSuperview().offset(-10)
+            m.width.equalTo(327)
+            m.height.equalTo(94)
+            m.centerX.equalToSuperview()
             m.top.equalTo(searchButton.snp.bottom).offset(20)
         }
 
@@ -234,6 +235,16 @@ class MarketViewController: BaseViewController {
              make.left.bottom.top.equalTo(percentTitleLabel)
 
          }
+
+        let line = UIView()
+        line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        sortView.addSubview(line)
+        line.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+        }
+
         return sortView
     }()
 

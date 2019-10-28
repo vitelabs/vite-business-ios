@@ -175,7 +175,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         }
 
         seperator.snp.makeConstraints { (m) in
-            m.height.equalTo(1)
+            m.height.equalTo(0.5)
             m.centerY.equalToSuperview()
             m.left.equalToSuperview().offset(46)
             m.right.equalToSuperview().offset(-2)
@@ -238,7 +238,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.walletBalance = balanceInfo?.balance ?? Amount(0)
                 if self.actionType == .toVitex {
-                    self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                    self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + " " + self.token.symbol
                 }
             }).disposed(by: rx.disposeBag)
         ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)

@@ -68,10 +68,11 @@ open class SeletcMarketPairManager {
                 self.showCard()
         }
 
-        self.searchVC.onSelectInfo = { info in
+        self.searchVC.onSelectInfo = { [weak self] info in
             SeletcMarketPairManager.shared.searchVC?.navigationController?.popViewController(animated: false)
             SeletcMarketPairManager.shared.closeCard()
-            self.onSelectInfo?(info)
+            self?.onSelectInfo?(info)
+            self?.searchVC = nil
         }
         UIViewController.current?.navigationController?.pushViewController(searchVC, animated: true)
     }
