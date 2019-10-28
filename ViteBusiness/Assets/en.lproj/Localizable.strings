@@ -249,7 +249,7 @@
 "send.page.not.enough.balance.alert.button" = "Cancel";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "Network failure, please check the transaction history before trying again";
+"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "VITE Conversion";
@@ -924,7 +924,7 @@
 "market.about" =  "Get Started with ViteX";
 "market.name" =  "Name";
 "market.price" =  "Last Price";
-"market.percent" =  "%Change";
+"market.percent" =  "Change";
 "market.operator" =  "Operators";
 "market.switch" =  "Switch";
 

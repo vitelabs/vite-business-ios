@@ -250,11 +250,13 @@ class EthViteExchangeViewController: BaseViewController {
                 GCD.delay(1) { self.dismiss() }
             } else if case .failure(let error) = r {
                 guard ViteError.conversion(from: error) != ViteError.cancel else { return }
-                if let e = error as? DisplayableError {
-                    Toast.show(e.errorMessage)
-                } else {
-                    Toast.show((error as NSError).localizedDescription)
-                }
+                Alert.show(title: R.string.localizable.sendPageEthFailed(error.localizedDescription),
+                       message: nil,
+                       actions: [
+                        (.cancel, nil),
+                        (.default(title: R.string.localizable.confirm()), { _ in
+                        })
+                ])
             }
         })
     }

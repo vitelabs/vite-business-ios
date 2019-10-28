@@ -253,7 +253,7 @@
 "send.page.not.enough.balance.alert.button" = "取消交易";
 "send.page.token.info.error" = "代币信息错误";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "网络错误，重试之前请先确认交易记录";
+"send.page.eth.failed" = "(%@), 重试之前请先确认交易记录";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "置换 VITE";

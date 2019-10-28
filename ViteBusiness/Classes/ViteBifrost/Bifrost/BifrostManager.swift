@@ -667,6 +667,8 @@ extension BifrostManager {
                 let trtl = "tti_0570e763918b4355074661ac"
                 let usdt = "tti_80f3751485e4e83456059473"
                 let lrc = "tti_25e5f191cbb00a88a6267e0f"
+                let vx = "tti_564954455820434f494e69b5"
+
 
                 let allowMarkets = [
                     vite+btc,
@@ -705,9 +707,11 @@ extension BifrostManager {
 
                 if allowMarkets.contains(tradeTokenIdValue.toString()+quoteTokenIdValue.toString()) {
                     return true
-                } else {
-                    return false
-                }
+                } else if tradeTokenIdValue.toString() == vx {
+                    return true
+                }  else {
+                   return false
+               }
 
             default:
                 return false
