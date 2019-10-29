@@ -130,16 +130,18 @@ class TokenListManageController: BaseViewController {
                 return dataSource[sectionIndex].model
         })
         self.viewModel.tokenListRefreshDriver.asObservable().filterEmpty().map {
-                [weak self](data) in
-                self?.tokenListArray = data
+                [weak self] (data) in
+                guard let `self` = self else { return Array<SectionModel<String,TokenInfo>>() }
+                self.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 for item in data {
                     if !item.isEmpty {
                         sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                     }
                 }
-            return sectionModels.filter({ (sectionModel) -> Bool in
-                if self?.onlyShowVite == true {
+            return sectionModels.filter({ [weak self] (sectionModel) -> Bool in
+                guard let `self` = self else { return false }
+                if self.onlyShowVite == true {
                    return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
                         tokenInfo.coinType == .vite
                     })
@@ -174,24 +176,6 @@ extension TokenListManageController : UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
         self.searchVC?.isActive = true
     }
-
-//    func willPresentSearchController(_ searchController: UISearchController) {
-//        if #available(iOS 13.0, *) {
-//            func setCancleButtonTitiel(_ view: UIView) {
-//                   for v in view.subviews {
-//                       if let button = v as? UIButton {
-//                           button.setTitle(R.string.localizable.cancel(),for:.normal)
-//                           button.setTitle(R.string.localizable.cancel(),for:.highlighted)
-//                           button.sizeToFit()
-//                        button.setTitleColor(UIColor.clear, for: .normal)
-//                       } else {
-//                           setCancleButtonTitiel(v)
-//                    }
-//                }
-//            }
-//           setCancleButtonTitiel(searchController.searchBar)
-//        }
-//    }
 }
 
 extension TokenListManageController : UISearchBarDelegate {

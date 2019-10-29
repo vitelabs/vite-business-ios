@@ -75,7 +75,8 @@ class TokenListSearchViewController: UIViewController {
     func bindData() {
         self.viewModel.tokenListSearchDriver.map {
                 [weak self] (data) in
-                self?.tokenListArray = data
+                guard let `self` = self else { return Array<SectionModel<String,TokenInfo>>() }
+                self.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 if data.count == 0 {
                      return sectionModels
@@ -83,8 +84,9 @@ class TokenListSearchViewController: UIViewController {
                 for item in data {
                     sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                 }
-             return sectionModels.filter({ (sectionModel) -> Bool in
-                if self?.onlyShowVite == true {
+             return sectionModels.filter({ [weak self] (sectionModel) -> Bool in
+                guard let `self` = self else { return false }
+                if self.onlyShowVite == true {
                     return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
                         tokenInfo.coinType == .vite
                     })
@@ -98,6 +100,10 @@ class TokenListSearchViewController: UIViewController {
         tableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+    }
+    
+    deinit {
+        print("======= TokenListSearchViewController deinit")
     }
 }
 
