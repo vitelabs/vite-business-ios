@@ -114,7 +114,7 @@ class MarketViewController: BaseViewController {
     }()
 
     lazy var headerView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 65 + 94.0 * kScreenW/375))
 
         let titleLabel = UILabel()
         titleLabel.text = R.string.localizable.marketTitle()
@@ -140,8 +140,8 @@ class MarketViewController: BaseViewController {
         headerView.addSubview(imageView)
         imageView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
-            m.bottom.equalToSuperview().offset(-10)
             m.top.equalTo(searchButton.snp.bottom).offset(20)
+            m.height.equalTo(94.0 * kScreenW/375)
         }
 
         let tapGes = UITapGestureRecognizer(target: self, action: #selector(tappedBanner))

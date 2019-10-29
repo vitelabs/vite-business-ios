@@ -94,11 +94,11 @@ class MarketSearchViewController: UIViewController {
 
          lab.snp.makeConstraints { (m) in
             m.centerY.equalToSuperview()
-            m.left.equalToSuperview().offset(18)
+            m.left.equalToSuperview().offset(24)
         }
 
          deletHistoryButton.snp.makeConstraints { (m) in
-            m.right.equalToSuperview().offset(-18)
+            m.right.equalToSuperview().offset(-24)
             m.centerY.equalToSuperview()
         }
          return contentView
