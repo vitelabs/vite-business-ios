@@ -176,14 +176,14 @@ class SeletcMarketPairCard: BaseViewController {
          }
 
          self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-(kScreenW - 48)*0.55)
+             make.right.equalToSuperview().offset(-188.0 * (kScreenW )/(375.0 ))
              make.centerY.equalToSuperview()
 
          }
 
          self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
              make.centerY.equalToSuperview()
-            make.left.equalTo(percentTitleLabel.snp.right)
+            make.right.equalToSuperview().offset(-110.0 * (kScreenW )/(375.0 ))
 
          }
 
@@ -194,7 +194,7 @@ class SeletcMarketPairCard: BaseViewController {
 
         percentTitleLabel.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.left.equalTo(self.sortByPriceStatusImg.snp.right).offset(28)
+            make.right.equalTo(self.sortByPercenteStatusImg.snp.left)
         }
 
         operatorTitleLabel.snp.makeConstraints { (make) -> Void in

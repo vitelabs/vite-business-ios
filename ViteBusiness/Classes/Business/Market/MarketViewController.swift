@@ -114,7 +114,7 @@ class MarketViewController: BaseViewController {
     }()
 
     lazy var headerView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 160))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
 
         let titleLabel = UILabel()
         titleLabel.text = R.string.localizable.marketTitle()
@@ -139,9 +139,8 @@ class MarketViewController: BaseViewController {
         imageView.image = R.image.market_top_bg()
         headerView.addSubview(imageView)
         imageView.snp.makeConstraints { (m) in
-            m.width.equalTo(327)
-            m.height.equalTo(94)
-            m.centerX.equalToSuperview()
+            m.left.right.equalToSuperview().inset(24)
+            m.bottom.equalToSuperview().offset(-10)
             m.top.equalTo(searchButton.snp.bottom).offset(20)
         }
 

@@ -63,7 +63,6 @@ class CrossChainDepositETH {
                         Alert.show(title: R.string.localizable.sendPageEthFailed(error.localizedDescription),
                                message: nil,
                                actions: [
-                                (.cancel, nil),
                                 (.default(title: R.string.localizable.confirm()), { _ in
                                 })
                         ])

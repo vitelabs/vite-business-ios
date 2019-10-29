@@ -209,8 +209,9 @@ class SelectMarketPairCell: UITableViewCell {
         }
 
         priceLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-(kScreenW - 48)*0.55)
+            make.right.equalTo(contentView).offset(-188.0 * (kScreenW )/(375.0 ))
             make.centerY.equalTo(tradeSymbolLabel)
+            make.left.greaterThanOrEqualTo(quoteSymbolLabel.snp.right)
         }
 
         operatorNameLabel.snp.makeConstraints { (make) -> Void in
@@ -219,8 +220,9 @@ class SelectMarketPairCell: UITableViewCell {
         }
 
         persentLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(priceLabel.snp.right).offset(80)
+            make.right.equalTo(contentView).offset(-110.0 * (kScreenW )/(375.0 ))
             make.centerY.equalTo(contentView)
+            make.left.greaterThanOrEqualTo(priceLabel.snp.right)
         }
 
     }

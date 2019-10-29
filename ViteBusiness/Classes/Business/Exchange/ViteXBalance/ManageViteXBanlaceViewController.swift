@@ -101,7 +101,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.45)
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = "\(R.string.localizable.transferAvailable())--\(self.token.symbol)"
+        label.text = "\(R.string.localizable.transferAvailable())-- \(self.token.symbol)"
         return label
     }()
 
@@ -246,7 +246,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.vitexBalance = dexBalanceInfo?.available ?? Amount(0)
                 if self.actionType == .toWallet {
-                    self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                    self.balanceLabel.text =  R.string.localizable.transferAvailable() +   self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
                 }
             }).disposed(by: rx.disposeBag)
 
@@ -288,12 +288,12 @@ public class ManageViteXBanlaceViewController: BaseViewController {
                 self.actionType = .toWallet
                 self.fromLabel.text = R.string.localizable.transferDexAccount()
                 self.destLabel.text = R.string.localizable.transferWalletAccount()
-                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
             } else {
                 self.actionType = .toVitex
                 self.destLabel.text = R.string.localizable.transferDexAccount()
                 self.fromLabel.text = R.string.localizable.transferWalletAccount()
-                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + self.token.symbol
+                self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
             }
 
         }.disposed(by: rx.disposeBag)

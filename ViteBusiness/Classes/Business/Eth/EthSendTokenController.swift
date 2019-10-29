@@ -188,12 +188,16 @@ class EthSendTokenController: BaseViewController {
                     } else if case .failure(let error) = r {
                         guard ViteError.conversion(from: error) != ViteError.cancel else { return }
                         if let e = error as? DisplayableError {
-                            Toast.show(e.errorMessage)
+                            Alert.show(title: R.string.localizable.sendPageEthFailed(e.errorMessage),
+                                                  message: nil,
+                                                  actions: [
+                                                   (.default(title: R.string.localizable.confirm()), { _ in
+                                                   })
+                                           ])
                         } else {
                             Alert.show(title: R.string.localizable.sendPageEthFailed(error.localizedDescription),
                                                   message: nil,
                                                   actions: [
-                                                   (.cancel, nil),
                                                    (.default(title: R.string.localizable.confirm()), { _ in
                                                    })
                                            ])
