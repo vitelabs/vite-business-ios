@@ -935,6 +935,6 @@
 "market.price" =  "最新价";
 "market.percent" =  "涨跌幅";
 "market.operator" =  "运营商";
-"market.switch" =  "运营商";
+"market.switch" =  "切换交易对";
 
 

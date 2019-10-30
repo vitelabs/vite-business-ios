@@ -118,23 +118,6 @@ public class ViteBalanceInfoManager {
                     let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos)
 
                     let tokenInfos = MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite })
-                    let (wBalanceInfoMap, dBalanceInfoMap) = tokenInfos.reduce((ViteBalanceInfoMap(), DexBalanceInfoMap()), { (m, tokenInfo) -> (ViteBalanceInfoMap, DexBalanceInfoMap) in
-                        var wm = m.0
-                        var dm = m.1
-
-                        if let wdi = storage.walletBalanceInfoMap[tokenInfo.viteTokenId] {
-                            wm[tokenInfo.viteTokenId] = wdi
-                        } else {
-                            wm[tokenInfo.viteTokenId] = BalanceInfo(token: tokenInfo.toViteToken()!)
-                        }
-
-                        if let dbi = storage.dexBalanceInfoMap[tokenInfo.viteTokenId] {
-                            dm[tokenInfo.viteTokenId] = dbi
-                        } else {
-                            dm[tokenInfo.viteTokenId] = DexBalanceInfo(token: tokenInfo.toViteToken()!)
-                        }
-                        return (wm, dm)
-                    })
 
                     let viteTokenIdSet = Set(tokenInfos.map { $0.viteTokenId })
                     let unselectBalanceInfos = balanceInfos
@@ -142,8 +125,8 @@ public class ViteBalanceInfoManager {
                         .filter { $0.balance > 0 }
 
                     self.save(mappable: storage)
-                    self.balanceInfos.accept(wBalanceInfoMap)
-                    self.dexBalanceInfosBehaviorRelay.accept(dBalanceInfoMap)
+                    self.balanceInfos.accept(storage.walletBalanceInfoMap)
+                    self.dexBalanceInfosBehaviorRelay.accept(storage.dexBalanceInfoMap)
 
                     let viteTokenIds = unselectBalanceInfos.map { $0.token.id }
                     self.updateUnselectTokenInfoCacheIfNeeded(viteTokenIds: viteTokenIds, completion: { [weak self] (ret) in
