@@ -86,7 +86,7 @@ public class ViteBalanceInfoManager {
                 self.dexBalanceInfosBehaviorRelay.accept(storage.dexBalanceInfoMap)
             }
 
-            self.unselectBalanceInfos = BehaviorRelay(value: [])
+            self.unselectBalanceInfos.accept([])
             self.unselectTokenInfoCache = [TokenInfo]()
 
             self.address = a?.address

@@ -115,9 +115,9 @@ public extension ViteConst {
     }
 
     public struct Market {
-        public let baseWebUrl: String
-        public let vitexHost: String
-        public let vitexWS: String
+        public var baseWebUrl: String
+        public var vitexHost: String
+        public var vitexWS: String
     }
 
 
@@ -168,7 +168,7 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
+                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net/api", vitexWS: "wss://vitex.vite.net/websocket")
         )
 
         public static let testEnv =
@@ -191,7 +191,7 @@ public extension ViteConst {
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://vitewalletdev.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
+                 market: Market.init(baseWebUrl: "https://vitewalletdev.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test/api", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
@@ -215,7 +215,7 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
+               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net/api", vitexWS: "wss://vitex.vite.net/websocket")
         )
     }
 }

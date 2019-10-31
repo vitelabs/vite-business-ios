@@ -17,7 +17,7 @@ class MarketWebSocket: NSObject {
         static let usdt = "market.quoteTokenCategory.USDT.tickers"
     }
 
-    private let socket: WebSocket
+    private var socket: WebSocket
     private var timer: Timer!
     private let clientId = "vx_i_\(UUID().uuidString)"
     private let topices = [Topic.btc, Topic.eth, Topic.vite, Topic.usdt]
@@ -31,6 +31,16 @@ class MarketWebSocket: NSObject {
         socket.delegate = self
         socket.pongDelegate = self
     }
+
+    func reStart() {
+        socket.disconnect()
+        socket = WebSocket(url: URL.init(string: ViteConst.instance.market.vitexWS)!)
+        socket.delegate = self
+        socket.pongDelegate = self
+        socket.connect()
+    }
+
+
 
     func start() {
         socket.connect()
@@ -89,20 +99,14 @@ class MarketWebSocket: NSObject {
             print(error.localizedDescription)
         }
     }
-
-    deinit {
-        socket.disconnect()
-    }
 }
 
 extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
         plog(level: .debug, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
-        GCD.delay(2) {
-            self.ping()
-            self.sub()
-        }
+        self.ping()
+        self.sub()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {

@@ -82,13 +82,10 @@ public class ViteBusinessLanucher: NSObject {
         } else {
             url = URL(string: ViteConst.Env.premainnet.vite.nodeHttp)!
         }
-        //todo
         Provider.default.update(server: ViteWallet.RPCServer(url: url))
         #else
-        //todo
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
         #endif
-        //todo
         EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
     }
 
@@ -341,15 +338,34 @@ class HostManager {
         Alamofire.request("https://api.vitewallet.com/dns/hostips")
             .responseJSON()
             .done { (json, resp) in
-                if let ethNode = JSON(json)["data"]["ETH_NODE"]["hostNameList"].array?.first?.string,
-                    let walletApi = JSON(json)["data"]["WALLETAPI"]["hostNameList"].array?.first?.string,
-                    let _ = URL.init(string:ethNode),
-                    let _ = URL.init(string:walletApi) {
 
-                    ViteConst.Env.premainnet.eth.nodeHttp = ethNode
-                    ViteConst.Env.premainnet.vite.nodeHttp = walletApi
-                     ViteBusinessLanucher.instance.configProvider()
+                let data = JSON(json)["data"]
+
+                do {
+                    if let ethNode = data["ETH_NODE"]["hostNameList"].array?.first?.string,
+                        let _ = URL.init(string:ethNode) {
+                        ViteConst.Env.premainnet.eth.nodeHttp = ethNode
+                    }
+
+                    if let walletApi = data["WALLETAPI"]["hostNameList"].array?.first?.string,
+                        let _ = URL.init(string:walletApi) {
+                        ViteConst.Env.premainnet.vite.nodeHttp = walletApi
+                    }
+
+                    ViteBusinessLanucher.instance.configProvider()
                 }
+
+                if let dexApi = data["DEXAPI"]["hostNameList"].array?.first?.string,
+                    let _ = URL.init(string:dexApi) {
+                    ViteConst.Env.premainnet.market.vitexHost = dexApi
+                }
+
+                if let wss = data["DEXPUSHSERVER"]["hostNameList"].array?.first?.string,
+                    let _ = URL.init(string:wss) {
+                    ViteConst.Env.premainnet.market.vitexWS = wss
+                    MarketInfoService.shared.marketSocket.reStart()
+                }
+
         }
         .catch { (error) in
             tryAgain()
