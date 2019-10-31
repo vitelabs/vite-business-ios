@@ -43,21 +43,10 @@ public class ViteBusinessLanucher: NSObject {
         if #available(iOS 13.0,*) {
             UIView.appearance().overrideUserInterfaceStyle = .light
         }
+
+        configProvider()
+        HostManager.fetchAndConfigHostInfo()
         
-        //config
-        #if DAPP
-        let url: URL
-        if !DebugService.instance.config.rpcCustomUrl.isEmpty,
-            let u = URL(string: DebugService.instance.config.rpcCustomUrl) {
-            url = u
-        } else {
-            url = URL(string: ViteConst.Env.premainnet.vite.nodeHttp)!
-        }
-        Provider.default.update(server: ViteWallet.RPCServer(url: url))
-        #else
-        Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
-        #endif
-        EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
         VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
         Statistics.initializeConfig()
         handleNotification()
@@ -81,6 +70,26 @@ public class ViteBusinessLanucher: NSObject {
         self.handleWebWalletBridgeConfig()
 
 
+    }
+
+    func configProvider() {
+        //config
+        #if DAPP
+        let url: URL
+        if !DebugService.instance.config.rpcCustomUrl.isEmpty,
+            let u = URL(string: DebugService.instance.config.rpcCustomUrl) {
+            url = u
+        } else {
+            url = URL(string: ViteConst.Env.premainnet.vite.nodeHttp)!
+        }
+        //todo
+        Provider.default.update(server: ViteWallet.RPCServer(url: url))
+        #else
+        //todo
+        Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
+        #endif
+        //todo
+        EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
     }
 
     func handleWebWalletBridgeConfig()  {
@@ -316,6 +325,37 @@ public class ViteBusinessLanucher: NSObject {
         ViteAppSchemeHandler.instance.handle(url)
         return true
     }
+}
+
+import Alamofire
+import SwiftyJSON
+
+class HostManager {
+
+    static func fetchAndConfigHostInfo() {
+
+        func tryAgain() {
+            GCD.delay(8) { HostManager.fetchAndConfigHostInfo() }
+        }
+
+        Alamofire.request("https://api.vitewallet.com/dns/hostips")
+            .responseJSON()
+            .done { (json, resp) in
+                if let ethNode = JSON(json)["data"]["ETH_NODE"]["hostNameList"].array?.first?.string,
+                    let walletApi = JSON(json)["data"]["WALLETAPI"]["hostNameList"].array?.first?.string,
+                    let _ = URL.init(string:ethNode),
+                    let _ = URL.init(string:walletApi) {
+
+                    ViteConst.Env.premainnet.eth.nodeHttp = ethNode
+                    ViteConst.Env.premainnet.vite.nodeHttp = walletApi
+                     ViteBusinessLanucher.instance.configProvider()
+                }
+        }
+        .catch { (error) in
+            tryAgain()
+        }
+    }
+
 }
 
 

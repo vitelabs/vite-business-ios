@@ -12,17 +12,38 @@ import web3swift
 public struct ViteConst {
     public static let instance = ViteConst()
 
-    public let envType: Env.EnvType
-    public let cos: Cos
-    public let vite: Vite
-    public let eth: Eth
-    public let grin: Grin
-    public let crossChain: CrossChain
-    public let market: Market
+    public var envType: Env.EnvType {
+        return currentEnv.type
+       }
+
+    public var cos: Cos {
+        return currentEnv.cos
+       }
+
+    public var vite: Vite {
+        return currentEnv.vite
+       }
+
+    public var eth: Eth {
+        return currentEnv.eth
+       }
 
 
-    init() {
+    public var grin: Grin {
+        return currentEnv.grin
+       }
 
+
+    public var crossChain: CrossChain {
+        return currentEnv.crossChain
+    }
+
+    public var market: Market {
+        return currentEnv.market
+    }
+
+
+    public var currentEnv: Env {
         #if DEBUG || TEST
         let currentEnv: Env
         switch DebugService.instance.config.appEnvironment {
@@ -38,15 +59,11 @@ public struct ViteConst {
         #else
         let currentEnv = Env.premainnet
         #endif
+        return currentEnv
+    }
 
-        // set
-        envType = currentEnv.type
-        cos = currentEnv.cos
-        vite = currentEnv.vite
-        eth = currentEnv.eth
-        grin = currentEnv.grin
-        crossChain = currentEnv.crossChain
-        market = currentEnv.market
+
+    init() {
     }
 }
 
@@ -65,7 +82,7 @@ public extension ViteConst {
     }
 
     public struct Vite {
-        public let nodeHttp: String
+        public var nodeHttp: String
         public let explorer: String
         public let growth: String
         public let x: String
@@ -76,7 +93,7 @@ public extension ViteConst {
     }
 
     public struct Eth {
-        public let nodeHttp: String
+        public var nodeHttp: String
         public let chainType: web3swift.Networks
         public let explorer: String
     }
@@ -104,7 +121,7 @@ public extension ViteConst {
     }
 
 
-    public struct Env {
+    public class Env {
 
         public enum EnvType {
             case test
@@ -112,16 +129,25 @@ public extension ViteConst {
             case premainnet
         }
 
-        public let type: EnvType
-        public let cos: Cos
-        public let vite: Vite
-        public let eth: Eth
-        public let grin: Grin
-        public let crossChain: CrossChain
-        public let market: Market
+        init(type: EnvType,cos:Cos,vite:Vite,eth:Eth,grin:Grin, crossChain: CrossChain,market: Market ) {
+            self.type = type
+            self.cos = cos
+            self.vite = vite
+            self.eth = eth
+            self.grin = grin
+            self.crossChain = crossChain
+            self.market = market
+        }
 
+        public var type: EnvType
+        public var cos: Cos
+        public var vite: Vite
+        public var eth: Eth
+        public var grin: Grin
+        public var crossChain: CrossChain
+        public var market: Market
 
-        public static let premainnet =
+        public static var premainnet =
             Env(type: .premainnet,
                 cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
                          discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com"),
