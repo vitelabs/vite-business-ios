@@ -335,7 +335,7 @@ class HostManager {
             GCD.delay(8) { HostManager.fetchAndConfigHostInfo() }
         }
 
-        Alamofire.request("https://api.vitewallet.com/dns/hostips")
+        Alamofire.request("https://config.vitewallet.com/dns/hostips")
             .responseJSON()
             .done { (json, resp) in
 
