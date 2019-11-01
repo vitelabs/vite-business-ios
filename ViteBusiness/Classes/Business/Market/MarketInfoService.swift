@@ -55,6 +55,14 @@ class MarketInfoService: NSObject {
             }
             self.sortedMarketDataBehaviorRelay.accept(relay)
         }
+
+        NotificationCenter.default.rx.notification(.languageChanged).asObservable()
+            .bind {[unowned self] _ in
+                let values = self.sortedMarketDataBehaviorRelay.value
+                values.first?.categary = R.string.localizable.marketFavourite()
+                self.sortedMarketDataBehaviorRelay.accept(values)
+        }.disposed(by: rx.disposeBag)
+
         readCaches()
         requestPageList()
         marketSocket.start()
@@ -143,13 +151,21 @@ extension MarketInfoService {
                  return JSON(response.data)["data"].arrayObject as? [[String: Any]] ?? []
             }
 
-        let mining = Alamofire
-            .request(ViteConst.instance.market.vitexHost + "/v1/mining/setting")
+        let mining = Promise<[String: Any]> { seal in
+            Alamofire
+            .request(ViteConst.instance.market.vitexHost + "/api/v1/mining/setting")
             .responseJSON()
             .map(on: .main) { (arg) -> [String: Any] in
                 let (_, response) = arg
-                return JSON(response.data)["data"].dictionaryObject as? [String: Any] ?? [:]
+                return JSON(response.data)["data"].dictionaryObject as? [String: Any] ?? MarketCache.readMiningCache()
              }
+            .done { (dict) in
+                seal.fulfill(dict)
+            }
+            .catch { (e) in
+                seal.fulfill(MarketCache.readMiningCache())
+            }
+        }
 
         when(fulfilled: ticker, rate, mining)
             .done { [weak self] t, r, m in
@@ -159,6 +175,10 @@ extension MarketInfoService {
                 self?.loadOperatorIfNeeded()
                 self?.handleData(t,r,m)
         }
+        .catch { (e) in
+
+        }
+
     }
 
     func readCaches()  {
@@ -230,7 +250,6 @@ extension MarketInfoService {
         return String(format: "\(currencySymble)%.6f", money)
     }
 
-
     func loadOperatorIfNeeded() {
         if self.operatorValue != nil { return }
         let pairs = self.sortedMarketDataBehaviorRelay.value.dropFirst().reduce([]) { (result, marekData) -> [String] in
@@ -238,10 +257,10 @@ extension MarketInfoService {
             return result + arr
         }
         var request = URLRequest(url: URL.init(string: ViteConst.instance.market.vitexHost + "/api/v1/operator/tradepair")!)
-               request.httpMethod = "POST"
-               request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-               let values = pairs
-               request.httpBody = try! JSONSerialization.data(withJSONObject: values)
+       request.httpMethod = "POST"
+       request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+       let values = pairs
+       request.httpBody = try! JSONSerialization.data(withJSONObject: values)
 
         let operate = Alamofire
             .request(request)
@@ -276,13 +295,13 @@ public class MarketInfo {
     private(set) lazy var vitexURL: URL = {
         let tickerStatistics =  self.statistic!
         var url = ViteConst.instance.market.baseWebUrl + "#/index"
-              url = url  + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-              url = url   + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
-              url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
-               url = url   + "&category=" + (tickerStatistics.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
-              url = url    + "&symbol=" + tickerStatistics.symbol
-              url = url    + "&tradeTokenId=" + tickerStatistics.tradeToken
-              url = url    + "&quoteTokenId=" + tickerStatistics.quoteToken
+          url = url  + "?address=" + (HDWalletManager.instance.account?.address ?? "")
+          url = url   + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+          url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
+           url = url   + "&category=" + (tickerStatistics.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
+          url = url    + "&symbol=" + tickerStatistics.symbol
+          url = url    + "&tradeTokenId=" + tickerStatistics.tradeToken
+          url = url    + "&quoteTokenId=" + tickerStatistics.quoteToken
 
         return URL.init(string: url)!
     }()
