@@ -291,6 +291,10 @@
 "system.page.cell.transfer.faceId" = "使用 Face ID 转账";
 "system.page.cell.transfer.touchId" = "使用 Touch ID 转账";
 "system.page.cell.logout.title" = "退出并切换钱包";
+"system.page.cell.upload.log.title" = "日志回传";
+"system.page.cell.upload.log.toast.success" = "日志已上传";
+"system.page.cell.delete.wallet.title" = "删除当前账户";
+"system.page.cell.delete.wallet.alert.title" = "删除账户后只能通过助记词恢复账户，确认删除该账户吗？";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "当前区块高度";

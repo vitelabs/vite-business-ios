@@ -118,7 +118,7 @@ extension MyHomeViewController: MyHomeListHeaderViewDelegate {
                 let nav = BaseNavigationController(rootViewController: vc)
                 UIViewController.current?.present(nav, animated: true, completion: nil)
             } else {
-                let vc = ExportMnemonicViewController()
+                let vc = ExportMnemonicViewController(password: password)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
         })

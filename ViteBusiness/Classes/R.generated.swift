@@ -1536,7 +1536,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 760 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 764 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4578,6 +4578,22 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 删除当前账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellDeleteWalletTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 删除账户后只能通过助记词恢复账户，确认删除该账户吗？
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellDeleteWalletAlertTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 日志回传
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellUploadLogTitle = Rswift.StringResource(key: "system.page.cell.upload.log.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 日志已上传
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellUploadLogToastSuccess = Rswift.StringResource(key: "system.page.cell.upload.log.toast.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -9897,6 +9913,34 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 删除当前账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellDeleteWalletTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.delete.wallet.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 删除账户后只能通过助记词恢复账户，确认删除该账户吗？
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellDeleteWalletAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.delete.wallet.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 日志回传
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellUploadLogTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.upload.log.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 日志已上传
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellUploadLogToastSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.upload.log.toast.success", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

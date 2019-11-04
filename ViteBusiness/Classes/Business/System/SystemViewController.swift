@@ -152,6 +152,18 @@ class SystemViewController: FormViewController {
                     guard let enabled = row.value else { return }
                     self.showBiometricAuth("systemPageCellTransferFaceId", value: enabled)
             }
+            <<< LabelRow("uploadLog") {
+                $0.title = R.string.localizable.systemPageCellUploadLogTitle()
+            }.onCellSelection { [weak self] _, _ in
+
+
+            }
+            <<< LabelRow("deleteWallet") {
+                $0.title = R.string.localizable.systemPageCellDeleteWalletTitle()
+            }.onCellSelection { [weak self] _, _ in
+
+
+            }
 
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo((self.navigationTitleView?.snp.bottom)!)

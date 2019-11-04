@@ -87,7 +87,7 @@ class ViteAppSchemeHandler {
                     (.default(title: R.string.localizable.mnemonicBackupScanAlertOkTitle()), {[weak self] _ in
                         HDWalletManager.instance.importAndLoginWallet(name: uri.name, mnemonic: uri.mnemonic, language: uri.language, password: uri.password, completion: { success in
                             if success {
-                                CreateWalletService.sharedInstance.setCreateFromScan()
+                                CreateWalletService.sharedInstance.setCreateFromScan(password: uri.password)
                             }
                         })
                     }),

@@ -40,14 +40,15 @@ class CreateWalletService {
         needBackup = true
     }
 
-    func setCreateFromScan() {
+    func setCreateFromScan(password: String) {
         createFromScan = true
+        self.password = password
     }
 
     func GoExportMnemonicIfNeeded() {
         guard createFromScan else { return }
         createFromScan = false
-        let vc = ExportMnemonicViewController()
+        let vc = ExportMnemonicViewController(password: password)
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 

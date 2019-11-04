@@ -287,6 +287,10 @@
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
 "system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
 "system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.upload.log.title" = "日志回传";
+"system.page.cell.upload.log.toast.success" = "日志已上传";
+"system.page.cell.delete.wallet.title" = "删除当前账户";
+"system.page.cell.delete.wallet.alert.title" = "删除账户后只能通过助记词恢复账户，确认删除该账户吗？";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";

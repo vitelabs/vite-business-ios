@@ -109,7 +109,7 @@ class MarketViewController: BaseViewController {
          self.sortView.snp.makeConstraints { (m) in
              m.edges.equalToSuperview()
          }
-        contentView.scrollToIndex(index: 1)
+        contentView.scrollToIndex(index: 0)
         return contentView
     }()
 
