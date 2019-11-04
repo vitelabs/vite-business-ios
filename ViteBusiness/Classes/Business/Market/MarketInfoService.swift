@@ -189,9 +189,9 @@ extension MarketInfoService {
     }
 
     func handleData(_ t: [[String: Any]], _ r: [[String: Any]], _ m: [String: Any])  {
-        let tradeMiningSymbols = m["tradeSymbols"] as? [String] ?? []
-        let orderMiningSymbols = m["orderSymbols"] as? [String] ?? []
-        let miningSymbols = tradeMiningSymbols + orderMiningSymbols
+        let tradeMiningSymbols = Set(m["tradeSymbols"] as? [String] ?? [])
+        let orderMiningSymbols = Set(m["orderSymbols"] as? [String] ?? [])
+        let bothMiningSymbols = tradeMiningSymbols.intersection(orderMiningSymbols)
 
         let marketDatas = [
             MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
@@ -222,7 +222,16 @@ extension MarketInfoService {
             }
             let info = MarketInfo()
             info.statistic = statistic
-            info.mining = miningSymbols.contains { $0 == statistic.symbol }
+
+            if bothMiningSymbols.contains(statistic.symbol) {
+                info.miningType = .both
+            } else if tradeMiningSymbols.contains(statistic.symbol) {
+                    info.miningType = .trade
+            } else if orderMiningSymbols.contains(statistic.symbol) {
+                info.miningType = .order
+            } else {
+                info.miningType = .none
+            }
 
             if let rate = rateMap[info.statistic.quoteTokenSymbol] {
                 info.rate = rateString(price: info.statistic.closePrice, rate: rate, currency: currency)
@@ -287,8 +296,16 @@ extension MarketInfoService {
 }
 
 public class MarketInfo {
+
+    enum MiningType {
+        case none
+        case trade
+        case order
+        case both
+    }
+
     public var statistic: Protocol.TickerStatisticsProto!
-    var mining: Bool = false
+    var miningType: MiningType = .none
     var rate = ""
     var operatorName = "--"
 

@@ -26,7 +26,6 @@ class MarketPageCell: UITableViewCell {
     let miningImgView: UIImageView = {
         let miningImgView = UIImageView()
         miningImgView.backgroundColor = .clear
-        miningImgView.image = R.image.market_mining()
         return miningImgView
     }()
 
@@ -123,7 +122,19 @@ class MarketPageCell: UITableViewCell {
         tradeSymbolLabel.text = info.statistic.tradeTokenSymbol.components(separatedBy: "-").first
         let quoteTokenSymbol = (info.statistic.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
         quoteSymbolLabel.text = "/" + quoteTokenSymbol
-        miningImgView.isHidden = !info.mining
+        switch info.miningType {
+            case .trade:
+                miningImgView.image = R.image.market_mining_trade()
+                miningImgView.isHidden = false
+            case .order:
+                miningImgView.image = R.image.market_mining_order()
+                miningImgView.isHidden = false
+            case .both:
+                miningImgView.image = R.image.market_mining_both()
+                miningImgView.isHidden = false
+            case .none:
+                miningImgView.isHidden = true
+        }
         priceLabel.text = info.statistic.closePrice
         timeLabel.text = "24H"
         volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount ?? "0") ?? 0))

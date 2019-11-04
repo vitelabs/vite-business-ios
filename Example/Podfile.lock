@@ -116,11 +116,15 @@ PODS:
     - PromiseKit/CorePromise (= 6.8.5)
     - PromiseKit/Foundation (= 6.8.5)
     - PromiseKit/UIKit (= 6.8.5)
+  - PromiseKit/Alamofire (6.8.5):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
   - PromiseKit/CorePromise (6.8.5)
   - PromiseKit/Foundation (6.8.5):
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.5):
     - PromiseKit/CorePromise
+  - ProtocolBuffers-Swift (4.0.6)
   - R.swift (5.0.0.alpha.3):
     - R.swift.Library (~> 5.0.0.alpha.2)
   - R.swift.Library (5.0.1)
@@ -191,6 +195,8 @@ PODS:
     - pop (~> 1.0)
     - PPBadgeViewSwift (= 3.1.0)
     - PromiseKit (~> 6.0)
+    - PromiseKit/Alamofire
+    - ProtocolBuffers-Swift
     - R.swift (= 5.0.0.alpha.3)
     - RazzleDazzle
     - ReactorKit
@@ -279,6 +285,7 @@ SPEC REPOS:
     - pop
     - PPBadgeViewSwift
     - PromiseKit
+    - ProtocolBuffers-Swift
     - R.swift
     - R.swift.Library
     - RazzleDazzle
@@ -366,6 +373,7 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PPBadgeViewSwift: 18a219a9897f418342c22dd1a54f7b18ac56546b
   PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
+  ProtocolBuffers-Swift: 09b5cfcc641ab512d6aaa1d2cc3879a40432052c
   R.swift: ca4207ecc94545a1611ca0b2ae1197458b6ba30a
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
@@ -389,7 +397,7 @@ SPEC CHECKSUMS:
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: 8c15dd6724cc0353053fa828a95ebcffb20ab043
+  ViteBusiness: 580638cb6520983ba58b40a9fc701da739833c33
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 54e02dfe2807ed2cb04c85575713500e6f440822
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd

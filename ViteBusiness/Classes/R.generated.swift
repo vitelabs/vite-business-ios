@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 214 images.
+  /// This `R.image` struct is generated, and contains static references to 216 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -402,8 +402,12 @@ public struct R: Rswift.Validatable {
     public static let market_ascend_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_ascend_default")
     /// Image `market_history_delet`.
     public static let market_history_delet = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_history_delet")
-    /// Image `market_mining`.
-    public static let market_mining = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining")
+    /// Image `market_mining_both`.
+    public static let market_mining_both = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_both")
+    /// Image `market_mining_order`.
+    public static let market_mining_order = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_order")
+    /// Image `market_mining_trade`.
+    public static let market_mining_trade = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_trade")
     /// Image `market_search`.
     public static let market_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_search")
     /// Image `market_star_gray`.
@@ -1407,9 +1411,19 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.market_history_delet, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "market_mining", bundle: ..., traitCollection: ...)`
-    public static func market_mining(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.market_mining, compatibleWith: traitCollection)
+    /// `UIImage(named: "market_mining_both", bundle: ..., traitCollection: ...)`
+    public static func market_mining_both(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining_both, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_mining_order", bundle: ..., traitCollection: ...)`
+    public static func market_mining_order(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining_order, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_mining_trade", bundle: ..., traitCollection: ...)`
+    public static func market_mining_trade(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining_trade, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "market_search", bundle: ..., traitCollection: ...)`
@@ -2456,6 +2470,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatusTotExceedLimit = Rswift.StringResource(key: "crosschain.status.tot.exceed.limit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Exchange
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketSwitch = Rswift.StringResource(key: "market.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Exchange
       /// 
       /// Locales: en, zh-Hans
@@ -3708,10 +3726,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethViteExchangePageAddressChangeButtonTitle = Rswift.StringResource(key: "eth.vite.exchange.page.address.change.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Switch
-      /// 
-      /// Locales: en, zh-Hans
-      public static let marketSwitch = Rswift.StringResource(key: "market.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Switch Account
       /// 
       /// Locales: en, zh-Hans
@@ -6199,6 +6213,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Exchange
       /// 
       /// Locales: en, zh-Hans
+      public static func marketSwitch(_: Void = ()) -> String {
+        return NSLocalizedString("market.switch", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Exchange
+      /// 
+      /// Locales: en, zh-Hans
       public static func marketTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.title", bundle: R.hostingBundle, comment: "")
       }
@@ -8385,13 +8406,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func ethViteExchangePageAddressChangeButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.vite.exchange.page.address.change.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Switch
-      /// 
-      /// Locales: en, zh-Hans
-      public static func marketSwitch(_: Void = ()) -> String {
-        return NSLocalizedString("market.switch", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Switch Account
