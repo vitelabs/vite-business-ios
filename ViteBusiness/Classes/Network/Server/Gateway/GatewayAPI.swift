@@ -19,7 +19,7 @@ enum GatewayAPI {
 extension GatewayAPI: TargetType {
 
     var baseURL: URL {
-        return GatewayServer.baseURL
+        return URL(string: ViteConst.instance.vite.gateway)!
     }
 
     var path: String {
