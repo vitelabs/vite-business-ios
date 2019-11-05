@@ -98,6 +98,15 @@ class HostManager {
             let _ = URL.init(string:buyCoin) {
             ViteConst.Env.premainnet.vite.exchange = buyCoin
         }
+
+        let wihteList = data.dictionaryObject?.values.reduce([String](), { (result, value) -> [String] in
+            var r = result
+            if JSON(value)["inWhite"].bool == true {
+                r.append(contentsOf: JSON(value)["hostNameList"].arrayObject as? [String] ?? [])
+            }
+            return r
+        }) ?? []
+        
     }
 
 }
