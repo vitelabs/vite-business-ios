@@ -18,17 +18,17 @@ protocol WKWebViewJSBridgeEngineDelegate: AnyObject {
 public class WKWebViewJSBridgeEngine: NSObject {
     public typealias Callback = (_ responseData: Any?) -> Void
     public typealias Handler = (_ parameters: [String: Any]?, _ callback: Callback?) -> Void
-    public typealias FuncJurisdiction = (String, [String])
+    public typealias NeedPrivate = (String, Bool)
     public typealias Message = [String: Any]
-    public static var keys : [String : FuncJurisdiction] = [
-    "bridge.version":("bridgeVersion",[]),
-    "app.info":("fetchAppInfo",[]),
-    "app.language":("fetchLanguage",[]),
-    "app.setWebTitle":("setWebTitle",[]),
-    "app.share":("goToshare",[]),
-    "app.setRRButton":("setRRButton",[]),
-    "wallet.currentAddress":("fetchViteAddress",[]),
-    "wallet.sendTxByURI":("invokeUri",[]),
+    public static var keys : [String : NeedPrivate] = [
+    "bridge.version":("bridgeVersion",false),
+    "app.info":("fetchAppInfo",false),
+    "app.language":("fetchLanguage",false),
+    "app.setWebTitle":("setWebTitle",false),
+    "app.share":("goToshare",false),
+    "app.setRRButton":("setRRButton",false),
+    "wallet.currentAddress":("fetchViteAddress",false),
+    "wallet.sendTxByURI":("invokeUri",false),
     ]
 
     weak var delegate: WKWebViewJSBridgeEngineDelegate?
@@ -94,17 +94,28 @@ public class WKWebViewJSBridgeEngine: NSObject {
 
                 guard let key = message["handlerName"] as? String else { return }
 
-                guard let handlerFuncJurisdiction = self.mapFunName(key) as? FuncJurisdiction else {
+                guard let handlerNeedPrivate = WKWebViewJSBridgeEngine.keys[key] as? NeedPrivate,
+                        let u = URL(string: url) else {
                     self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no func"))
                     return
                 }
-                let handlerName = handlerFuncJurisdiction.0
-                let jurisdiction = handlerFuncJurisdiction.1
-                //check url has this func jurisdiction
-                if !self.checkUrlHasJurisdiction(url: url,jurisdictions: jurisdiction) {
+
+                let handlerName = handlerNeedPrivate.0
+                let needPrivate = handlerNeedPrivate.1
+
+                #if DEBUG || TEST
+                if DebugService.instance.config.ignoreWhiteList == false {
+                    if needPrivate && AppConfigService.instance.isInWhiteList(url: u) == false {
+                        self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no jurisdiction"))
+                        return
+                    }
+                }
+                #else
+                if needPrivate && AppConfigService.instance.isInWhiteList(url: u) == false {
                     self.sendErrorRequest(responseID: message["callbackID"], responseData: ResponseCode.noJurisdictionResult(msg: "no jurisdiction"))
                     return
                 }
+                #endif
 
                 let aSel: Selector = NSSelectorFromString("jsapi_" + handlerName+("WithParameters:callbackID:"))//
                 let isResponds = self.responds(to: aSel)
@@ -124,10 +135,6 @@ public class WKWebViewJSBridgeEngine: NSObject {
                 }
             }
         }
-    }
-
-    func mapFunName(_ key:String) -> FuncJurisdiction? {
-        return WKWebViewJSBridgeEngine.keys[key]
     }
 
     func injectJavascriptFile() {
@@ -202,23 +209,5 @@ extension WKWebViewJSBridgeEngine {
     func sendErrorRequest(responseID:Any?,responseData:String?) {
         let message = ["responseID": responseID, "responseData": responseData]
         self.sendResponds(message)
-    }
-}
-
-extension WKWebViewJSBridgeEngine {
-    func checkUrlHasJurisdiction(url:String,jurisdictions:[String])->Bool {
-        if jurisdictions.count == 0 {
-            return true
-        } else {
-            guard let u = URL(string: url) else { return false }
-            var ret = false
-            for string in jurisdictions {
-                if u.host?.lowercased() == string || (u.host?.lowercased() ?? "").hasSuffix("." + string) {
-                    ret = true
-                    break
-                }
-            }
-            return  ret
-        }
     }
 }

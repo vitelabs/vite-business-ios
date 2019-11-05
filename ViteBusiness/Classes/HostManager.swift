@@ -99,14 +99,17 @@ class HostManager {
             ViteConst.Env.premainnet.vite.exchange = buyCoin
         }
 
-        let wihteList = data.dictionaryObject?.values.reduce([String](), { (result, value) -> [String] in
+        let urlStrings = data.dictionaryObject?.values.reduce([String](), { (result, value) -> [String] in
             var r = result
             if JSON(value)["inWhite"].bool == true {
                 r.append(contentsOf: JSON(value)["hostNameList"].arrayObject as? [String] ?? [])
             }
             return r
         }) ?? []
-        
+
+        let whiteList = urlStrings.compactMap { URL(string: $0)?.host }
+
+        AppConfigService.instance.addToWhiteList(list: whiteList)
     }
 
 }
