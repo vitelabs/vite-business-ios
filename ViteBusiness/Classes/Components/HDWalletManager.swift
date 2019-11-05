@@ -277,6 +277,16 @@ extension HDWalletManager {
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 
+    func deleteWallet() {
+        mnemonic = nil
+        language = nil
+        encryptedKey = nil
+        walletBehaviorRelay.accept(nil)
+        pri_LogoutEthWallet()
+        storage.deleteCurrentWallet()
+        plog(level: .info, log: "wallet delete", tag: .wallet)
+    }
+
     func verifyPassword(_ password: String) -> Bool {
         guard let uuid = storage.currentWallet?.uuid else { return false }
         let encryptKey = password.toEncryptKey(salt: uuid)

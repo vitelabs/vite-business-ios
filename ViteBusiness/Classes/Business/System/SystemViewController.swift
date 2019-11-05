@@ -54,6 +54,28 @@ class SystemViewController: FormViewController {
         self._setupView()
     }
 
+    lazy var deleteBtn: UIButton = {
+        let deleteBtn = UIButton(style: .lightBlue)
+        deleteBtn.setTitle(R.string.localizable.systemPageCellDeleteWalletTitle(), for: .normal)
+        deleteBtn.addTarget(self, action: #selector(deleteBtnAction), for: .touchUpInside)
+        return deleteBtn
+    }()
+
+    @objc func deleteBtnAction() {
+
+        self.verifyWalletPassword { (_) in
+            HUD.show()
+            DispatchQueue.global().async {
+                HDWalletManager.instance.deleteWallet()
+                KeychainService.instance.clearCurrentWallet()
+                DispatchQueue.main.async {
+                    HUD.hide()
+                    NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+                }
+            }
+        }
+    }
+
     private func _setupView() {
         navigationTitleView = NavigationTitleView(title: R.string.localizable.myPageSystemCellTitle())
         self.view.backgroundColor = .white
@@ -66,6 +88,21 @@ class SystemViewController: FormViewController {
         self.tableView.backgroundColor = .white
         self.tableView.separatorStyle = .none
         self.tableView.alwaysBounceVertical = false
+
+        tableView.snp.remakeConstraints { (m) in
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.left.right.equalTo(view)
+
+        }
+
+        view.addSubview(deleteBtn)
+        deleteBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(tableView.snp.bottom).offset(24)
+            make.left.equalTo(view).offset(24)
+            make.right.equalTo(view).offset(-24)
+            make.height.equalTo(50)
+            make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
+        }
 
         ViteSwitchRow.defaultCellSetup = { cell, row in
             cell.preservesSuperviewLayoutMargins = false
@@ -152,18 +189,13 @@ class SystemViewController: FormViewController {
                     guard let enabled = row.value else { return }
                     self.showBiometricAuth("systemPageCellTransferFaceId", value: enabled)
             }
-            <<< LabelRow("uploadLog") {
-                $0.title = R.string.localizable.systemPageCellUploadLogTitle()
-            }.onCellSelection { [weak self] _, _ in
+            <<< ImageRow("uploadLog") {
+                $0.cell.titleLab.text = R.string.localizable.systemPageCellUploadLogTitle()
+                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
+                $0.cell.bottomSeparatorLine.isHidden = false
+            }.onCellSelection({ [unowned self] _, _  in
 
-
-            }
-            <<< LabelRow("deleteWallet") {
-                $0.title = R.string.localizable.systemPageCellDeleteWalletTitle()
-            }.onCellSelection { [weak self] _, _ in
-
-
-            }
+            })
 
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo((self.navigationTitleView?.snp.bottom)!)

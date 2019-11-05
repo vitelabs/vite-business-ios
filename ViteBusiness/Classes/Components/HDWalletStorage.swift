@@ -103,6 +103,18 @@ extension HDWalletStorage {
         pri_save()
     }
 
+    func deleteCurrentWallet() {
+        var i: Int? = nil
+        for (index, wallet) in wallets.enumerated() where wallet.uuid == currentWalletUuid {
+            i = index
+        }
+        currentWalletUuid = nil
+        isLogin = false
+        guard let index = i else { fatalError() }
+        wallets.remove(at: index)
+        pri_save()
+    }
+
     func deleteAllWallets() {
         currentWalletUuid = nil
         isLogin = false
