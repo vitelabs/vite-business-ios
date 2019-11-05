@@ -127,7 +127,7 @@ extension MarketInfoService {
 
     func requestPageList()  {
         let ticker = Alamofire
-            .request( ViteConst.instance.market.vitexHost + "/api/v1/ticker/24hr",
+            .request( ViteConst.instance.market.vitexHost + "/api/v2/ticker/24hr",
                          parameters: ["quoteTokenCategory":"VITE,ETH,BTC,USDT"])
             .responseJSON()
             .map(on: .main) { data, response -> [[String: Any]] in
