@@ -105,16 +105,7 @@ class WalletHomeScanHandler {
             UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
         }
 
-        var showAlert = true
-        for string in Constants.whiteList {
-            if url.host?.lowercased() == string ||
-                (url.host?.lowercased() ?? "").hasSuffix("." + string) {
-                showAlert = false
-                break
-            }
-        }
-
-        if showAlert {
+        if AppConfigService.instance.isInWhiteList(url: url) == false {
             Alert.show(title: R.string.localizable.walletHomeScanUrlAlertTitle(),
                        message: R.string.localizable.walletHomeScanUrlAlertMessage(),
                        actions: [

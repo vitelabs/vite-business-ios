@@ -20,6 +20,11 @@ public class AppConfigService {
     fileprivate var appConfigHash: String?
     fileprivate var lastBuildNumber: Int?
     fileprivate let disposeBag = DisposeBag()
+    public fileprivate(set) var whiteList = ["vite.org",
+                                            "vite.net",
+                                            "vite.store",
+                                            "vite.wiki",
+                                            "vite.blog"]
     public var pDelay: Int = 3
 
     public var isOnlineVersion: Bool {
@@ -126,5 +131,23 @@ extension AppConfigService {
 extension AppConfigService: Storageable {
     public func getStorageConfig() -> StorageConfig {
         return StorageConfig(name: "AppConfig", path: .app)
+    }
+}
+
+
+// white list
+extension AppConfigService {
+
+    func addToWhiteList(list: [String]) {
+        whiteList.append(contentsOf: list)
+    }
+
+    func isInWhiteList(url: URL) -> Bool {
+        for string in whiteList {
+            if url.host?.lowercased() == string || (url.host?.lowercased() ?? "").hasSuffix("." + string) {
+                return true
+            }
+        }
+        return false
     }
 }

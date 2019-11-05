@@ -14,24 +14,24 @@ public struct ViteConst {
 
     public var envType: Env.EnvType {
         return currentEnv.type
-       }
+    }
 
     public var cos: Cos {
         return currentEnv.cos
-       }
+    }
 
     public var vite: Vite {
         return currentEnv.vite
-       }
+    }
 
     public var eth: Eth {
         return currentEnv.eth
-       }
+    }
 
 
     public var grin: Grin {
         return currentEnv.grin
-       }
+    }
 
 
     public var crossChain: CrossChain {
@@ -43,7 +43,7 @@ public struct ViteConst {
     }
 
 
-    public var currentEnv: Env {
+    public let currentEnv: Env = {
         #if DEBUG || TEST
         let currentEnv: Env
         switch DebugService.instance.config.appEnvironment {
@@ -60,11 +60,10 @@ public struct ViteConst {
         let currentEnv = Env.premainnet
         #endif
         return currentEnv
-    }
+    }()
 
 
-    init() {
-    }
+    init() { }
 }
 
 public extension ViteConst {
@@ -77,40 +76,40 @@ public extension ViteConst {
     }
 
     public struct Cos {
-        public let config: String
-        public let discover: String
+        public var config: String
+        public var discover: String
     }
 
     public struct Vite {
         public var nodeHttp: String
-        public let explorer: String
-        public let growth: String
-        public let x: String
-        public let genesisPageUrl: String
-        public let gateway: String
-        public let exchange: String
-        public let viteXUrl: String
+        public var explorer: String
+        public var growth: String
+        public var x: String
+        public var genesisPageUrl: String
+        public var gateway: String
+        public var exchange: String
+        public var viteXUrl: String
     }
 
     public struct Eth {
         public var nodeHttp: String
-        public let chainType: web3swift.Networks
-        public let explorer: String
+        public var chainType: web3swift.Networks
+        public var explorer: String
     }
 
     public struct Grin {
-        public let nodeHttp: String
-        public let apiSecret: String
-        public let chainType: String
-        public let x: String
+        public var nodeHttp: String
+        public var apiSecret: String
+        public var chainType: String
+        public var x: String
     }
 
     public struct CrossChain {
         public struct ETH {
-            public let gateway: String
-            public let tokenId: String
+            public var gateway: String
+            public var tokenId: String
         }
-        let eth: CrossChain.ETH
+        var eth: CrossChain.ETH
 
     }
 

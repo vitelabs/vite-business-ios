@@ -6,9 +6,3 @@
 //
 
 import Foundation
-
-public struct COSServer {
-    public static var baseURL: URL {
-        return URL(string: ViteConst.instance.cos.config)!
-    }
-}
