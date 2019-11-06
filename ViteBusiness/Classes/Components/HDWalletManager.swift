@@ -195,13 +195,16 @@ extension HDWalletManager {
 
         HUD.show(R.string.localizable.importPageSubmitLoading())
         DispatchQueue.global().async {
-            if let name = HDWalletManager.instance.isExist(mnemonic: mnemonic) {
+            if let wallet = HDWalletManager.instance.isExist(mnemonic: mnemonic) {
                 DispatchQueue.main.async {
                     HUD.hide()
-                    Alert.show(title: R.string.localizable.importPageAlertExistTitle(name), message: nil, actions: [
+                    Alert.show(title: R.string.localizable.importPageAlertExistTitle(wallet.name), message: nil, actions: [
                         (.default(title: R.string.localizable.importPageAlertExistOk()), { alertController in
                             HUD.show(R.string.localizable.importPageSubmitLoading())
                             importBlock()
+                            DispatchQueue.global().async {
+                                FileHelper.deleteWalletDirectory(uuid: wallet.uuid)
+                            }
                         }),
                         (.default(title: R.string.localizable.importPageAlertExistCancel()), { _ in
                             completion(false)
@@ -214,10 +217,10 @@ extension HDWalletManager {
         }
     }
 
-    fileprivate func isExist(mnemonic: String) -> String? {
+    fileprivate func isExist(mnemonic: String) -> Wallet? {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
         for wallet in storage.wallets where hash == wallet.hash {
-            return wallet.name
+            return wallet
         }
         return nil
     }

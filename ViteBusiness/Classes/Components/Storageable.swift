@@ -110,27 +110,23 @@ public extension Storageable {
 
 public extension FileHelper {
 
-    #if DAPP
-    static var appPathComponent = "app"
-    static var walletPathComponent: String {
-        return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
-    }
-    #elseif DEBUG || TEST
-    static func path() -> String {
+    static private func basePath() -> String {
+        #if DAPP
+        return ""
+        #elseif DEBUG || TEST
+        return (DebugService.instance.config.appEnvironment == .online) ? "" : DebugService.instance.config.appEnvironment.name + "/"
+        #else
+        return ""
+        #endif
         return (DebugService.instance.config.appEnvironment == .online) ? "" : DebugService.instance.config.appEnvironment.name + "/"
     }
-    static var appPathComponent: String {
-        return path() + "app"
+
+    static private var appPathComponent: String {
+        return basePath() + "app"
     }
-    static var walletPathComponent: String {
-        return path() + (HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid")
+    static private var walletPathComponent: String {
+        return basePath() + (HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid")
     }
-    #else
-    static var appPathComponent = "app"
-    static var walletPathComponent: String {
-        return HDWalletManager.instance.walletBehaviorRelay.value?.uuid ?? "uuid"
-    }
-    #endif
 
     static func createForApp(appending: String? = nil) -> FileHelper {
         var path = FileHelper.appPathComponent
@@ -146,6 +142,10 @@ public extension FileHelper {
             path = path + "/" + appending
         }
         return FileHelper(.library, appending: path)
+    }
+
+    static func deleteWalletDirectory(uuid: String) {
+        FileHelper(.library, appending: basePath()).deleteFileAtRelativePath(uuid)
     }
 }
 
