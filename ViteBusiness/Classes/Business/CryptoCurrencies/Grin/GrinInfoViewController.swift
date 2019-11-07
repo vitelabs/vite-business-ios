@@ -265,19 +265,6 @@ class GrinInfoViewController: BaseViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
-
-    private var tapCount = 0
-    @IBAction func uploadLog(_ sender: Any) {
-        if tapCount <= 2 {
-            tapCount += 1
-            return
-        }
-        tapCount = 0
-        let cachePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-        let logURL = cachePath.appendingPathComponent("logger.log")
-        let activityViewController = UIActivityViewController(activityItems: [logURL], applicationActivities: nil)
-        UIViewController.current?.present(activityViewController, animated: true)
-    }
 }
 
 extension GrinInfoViewController: FloatButtonsViewDelegate {

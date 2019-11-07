@@ -200,7 +200,12 @@ class SystemViewController: FormViewController {
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
                 $0.cell.bottomSeparatorLine.isHidden = false
             }.onCellSelection({ [unowned self] _, _  in
-
+                let cachePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+                let logURL = cachePath.appendingPathComponent("logger.log")
+                let activityViewController = UIActivityViewController(activityItems: [logURL], applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = UIViewController.current!.view
+                activityViewController.popoverPresentationController?.sourceRect = UIViewController.current!.view.bounds
+                UIViewController.current?.present(activityViewController, animated: true)
             })
 
         self.tableView.snp.makeConstraints { (make) in
