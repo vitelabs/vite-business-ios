@@ -135,27 +135,11 @@ class MarketViewController: BaseViewController {
         }
         searchButton.addTarget(self, action: #selector(goToSearchVC), for: .touchUpInside)
 
-        let imageView = UIImageView()
-        imageView.image = R.image.market_top_bg()
-        headerView.addSubview(imageView)
-        imageView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
+        let bannerView = MarketBannerView()
+        headerView.addSubview(bannerView)
+        bannerView.snp.makeConstraints { (m) in
             m.top.equalTo(searchButton.snp.bottom).offset(20)
-            m.height.equalTo(94.0 * kScreenW/375)
-        }
-
-        let tapGes = UITapGestureRecognizer(target: self, action: #selector(tappedBanner))
-        imageView.addGestureRecognizer(tapGes)
-        imageView.isUserInteractionEnabled = true
-
-        let bannerLabel = UILabel()
-        bannerLabel.text = R.string.localizable.marketAbout()
-        bannerLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        bannerLabel.textColor = .white
-        imageView.addSubview(bannerLabel)
-        bannerLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(20)
-            m.left.equalToSuperview().offset(16)
+            m.left.right.equalToSuperview()
         }
         return headerView
     }()
