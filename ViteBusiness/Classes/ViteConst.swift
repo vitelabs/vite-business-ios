@@ -89,6 +89,9 @@ public extension ViteConst {
         public var gateway: String
         public var exchange: String
         public var viteXUrl: String
+        public var pushReportConfig: String
+        public var pushReportBussness: String
+
     }
 
     public struct Eth {
@@ -157,7 +160,9 @@ public extension ViteConst {
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com",
-                           viteXUrl: "https://x.vite.net/mobiledex"),
+                           viteXUrl: "https://x.vite.net/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8086/test"),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
@@ -180,7 +185,9 @@ public extension ViteConst {
                            x: "http://132.232.65.121:8080/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001",
-                           exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex"),
+                           exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8086/test"),
                 eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
@@ -204,7 +211,9 @@ public extension ViteConst {
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com",
-                           viteXUrl: "https://x.vite.net/mobiledex"),
+                           viteXUrl: "https://x.vite.net/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8086/test"),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),

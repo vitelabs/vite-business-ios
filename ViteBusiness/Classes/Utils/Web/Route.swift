@@ -45,4 +45,22 @@ public struct Route {
             return VC
         }
     }
+
+    public static func gotoTokenHomeVC(with tokenInfo: TokenInfo)  {
+       let balanceInfoDetailViewController : UIViewController
+        switch tokenInfo.coinType {
+        case .eth, .vite:
+            balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
+        case .grin:
+            if !GrinManager.default.walletCreated.value {
+                Toast.show(R.string.localizable.grinCreating())
+                return
+            } else {
+                balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
+            }
+        case .unsupport:
+            fatalError()
+        }
+       Route.getTopVC()?.navigationController?.pushViewController(balanceInfoDetailViewController, animated: true)
+    }
 }
