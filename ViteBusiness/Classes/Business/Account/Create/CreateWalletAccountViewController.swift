@@ -69,6 +69,7 @@ class CreateWalletAccountViewController: BaseViewController {
         self.checkButton.checkButton.isSelected = true
         #endif
         self._bindViewModel()
+        self.createNameAndPwdView.inviteCodeTF.textField.text = CreateWalletService.sharedInstance.vitexInviteCode
     }
 
     let contentView = UIView()

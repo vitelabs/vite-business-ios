@@ -11,7 +11,7 @@ import Foundation
 public extension  WKWebViewJSBridgeEngine {
     //bridgeVersion
     @objc func jsapi_bridgeVersion(parameters: [String: String], callbackID: String) {
-        var response = Response(code:.success,msg: "ok",data: ["versionName":"1.3.0","versionCode":4])
+        var response = Response(code:.success,msg: "ok",data: ["versionName":WKWebViewJSBridge.versionName,"versionCode":WKWebViewJSBridge.versionCode])
 
         let responseData = response.toJSONString(prettyPrint: true)
         let message = ["responseID": callbackID, "responseData": responseData]

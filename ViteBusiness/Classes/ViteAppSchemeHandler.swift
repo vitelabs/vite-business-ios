@@ -31,12 +31,18 @@ class ViteAppSchemeHandler {
     }
 
     func handle(_ url: URL) {
+        if let code = url.queryParameters["vitex_invite_code"], !code.isEmpty {
+            CreateWalletService.sharedInstance.vitexInviteCode = code
+        }
+
         guard let account = HDWalletManager.instance.account else {
             self.url = url
             return
         }
 
-        if handleViteScheme(url) == false {
+        if url.scheme == "http" || url.scheme == "https" {
+            NavigatorManager.instance.route(url: url)
+        } else if handleViteScheme(url) == false {
             GrinManager.default.handle(url: url)
         }
     }
@@ -50,7 +56,7 @@ class ViteAppSchemeHandler {
         case .open:
             if let urlString = url.queryParameters["url"]?.removingPercentEncoding,
                 let url = URL(string: urlString) {
-                NavigatorManager.instance.push(url)
+                NavigatorManager.instance.route(url: url)
             }
         case .sendTx:
             if let uriString = url.queryParameters["uri"]?.removingPercentEncoding {

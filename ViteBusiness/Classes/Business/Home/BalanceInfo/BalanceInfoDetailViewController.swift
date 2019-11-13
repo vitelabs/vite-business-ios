@@ -15,13 +15,24 @@ import NSObject_Rx
 import MJRefresh
 
 class BalanceInfoDetailViewController: BaseViewController {
-    let tokenInfo: TokenInfo
-    var adapter: BalanceInfoDetailAdapter!
+    var tokenInfo: TokenInfo? = nil
+    var adapter: BalanceInfoDetailAdapter? = nil
 
     init(tokenInfo: TokenInfo) {
-        self.tokenInfo = tokenInfo
         super.init(nibName: nil, bundle: nil)
+        self.tokenInfo = tokenInfo
         self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: headerView, tableView: tableView, vc: self)
+    }
+
+    var tokenCode: TokenCode? = nil
+    init(tokenCode: TokenCode) {
+        super.init(nibName: nil, bundle: nil)
+        if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(for: tokenCode) {
+            self.tokenInfo = tokenInfo
+            self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: headerView, tableView: tableView, vc: self)
+        } else {
+            self.tokenCode = tokenCode
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,24 +64,49 @@ class BalanceInfoDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        bind()
+        view.backgroundColor = .white
+        navigationBarStyle = .default
+
+        if let tokenInfo = self.tokenInfo {
+            setupView(tokenInfo: tokenInfo)
+            bind(tokenInfo: tokenInfo)
+        } else {
+            getTokenInfo()
+        }
+    }
+
+    private func getTokenInfo() {
+        self.dataStatus = .loading
+        TokenInfoCacheService.instance.tokenInfo(for: tokenCode!) { [weak self] (ret) in
+            guard let `self` = self else { return }
+            switch ret {
+            case .success(let tokenInfo):
+                self.dataStatus = .normal
+                self.tokenInfo = tokenInfo
+                self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: self.headerView, tableView: self.tableView, vc: self)
+                self.setupView(tokenInfo: tokenInfo)
+                self.bind(tokenInfo: tokenInfo)
+                self.adapter?.viewDidAppear()
+            case .failure(let error):
+                self.dataStatus = .networkError(error, { [weak self] in
+                    self?.getTokenInfo()
+                })
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        adapter.viewDidAppear()
+        adapter?.viewDidAppear()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        adapter.viewDidDisappear()
+        adapter?.viewDidDisappear()
     }
 
-    func setupView() {
+    func setupView(tokenInfo: TokenInfo) {
 
-        view.backgroundColor = .white
-        navigationBarStyle = .default
         navigationItem.titleView = titleLabel
         titleLabel.text = tokenInfo.uniqueSymbol
 
@@ -103,12 +139,12 @@ class BalanceInfoDetailViewController: BaseViewController {
         let tapGestureRecognizer = UITapGestureRecognizer()
         navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
         tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
-           NotificationCenter.default.post(name: .goTokenInfoVC, object: ["tokenCode": self.tokenInfo.tokenCode])
+           NotificationCenter.default.post(name: .goTokenInfoVC, object: ["tokenCode": tokenInfo.tokenCode])
         }).disposed(by: rx.disposeBag)
 
-        navView.gatewayInfoBtn.button.rx.tap.bind { [unowned self] _ in
-            guard self.tokenInfo.isGateway else { return }
-           NotificationCenter.default.post(name: .goGateWayVC, object: ["gateway": self.tokenInfo.gatewayInfo?.toJSONString()])
+        navView.gatewayInfoBtn.button.rx.tap.bind { _ in
+            guard tokenInfo.isGateway else { return }
+           NotificationCenter.default.post(name: .goGateWayVC, object: ["gateway": tokenInfo.gatewayInfo?.toJSONString()])
         }.disposed(by: rx.disposeBag)
 
         navView.helpButton.rx.tap.bind { _ in
@@ -124,12 +160,22 @@ class BalanceInfoDetailViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
     }   
 
-    func bind() {
+    func bind(tokenInfo: TokenInfo) {
         navView.bind(tokenInfo: tokenInfo)
 
         tableView.rx.contentOffset
             .map { max(min($0.y, 64.0), 0.0) / 64.0 }
             .bind(to: titleLabel.rx.alpha)
             .disposed(by: rx.disposeBag)
+    }
+}
+
+extension BalanceInfoDetailViewController: ViewControllerDataStatusable {
+
+    public func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
+        return UIView.defaultNetworkErrorView(error: error) { [weak self] in
+            self?.dataStatus = .loading
+            retry()
+        }
     }
 }

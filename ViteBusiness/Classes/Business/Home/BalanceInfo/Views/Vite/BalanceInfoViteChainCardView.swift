@@ -357,8 +357,6 @@ class BalanceInfoViteChainCardView: UIView {
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
 
-        DispatchQueue.main.async {
-            self.colorBackgroundView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: tokenInfo.coinBackgroundGradientColors)
-        }
+        self.colorBackgroundView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 48, height: 308), colors: tokenInfo.coinBackgroundGradientColors)
     }
 }

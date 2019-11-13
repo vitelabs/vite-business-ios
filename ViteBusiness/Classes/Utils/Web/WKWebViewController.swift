@@ -126,6 +126,9 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         webView.uiDelegate = self as WKUIDelegate
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: NSKeyValueObservingOptions.new, context: nil)
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: NSKeyValueObservingOptions.new, context: nil)
+        if let defalutUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent") {
+            webView.customUserAgent = "\(defalutUserAgent) Vite/\(String(WKWebViewJSBridge.versionCode))/Wallet/\(Bundle.main.buildNumber)/\(LocalizationService.sharedInstance.currentLanguage.rawValue)"
+        }
         return webView
     }()
 

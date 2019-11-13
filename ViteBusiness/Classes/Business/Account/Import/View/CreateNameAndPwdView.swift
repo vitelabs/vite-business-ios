@@ -40,6 +40,15 @@ class CreateNameAndPwdView: UIView {
         return passwordTF
     }()
 
+    lazy var inviteCodeTF: TitleTextFieldView = {
+        let walletNameTF = TitleTextFieldView(title: R.string.localizable.createPageTfTitle(), placeholder: "", text: "")
+        walletNameTF.titleLabel.textColor = Colors.titleGray
+        walletNameTF.textField.font = AppStyle.inputDescWord.font
+        walletNameTF.textField.textColor = Colors.descGray
+        walletNameTF.titleLabel.font = AppStyle.formHeader.font
+        return walletNameTF
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -69,6 +78,13 @@ class CreateNameAndPwdView: UIView {
         self.addSubview(self.passwordRepeateTF)
         self.passwordRepeateTF.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self.passwordTF.snp.bottom).offset(30)
+            make.left.right.equalTo(self)
+            make.height.equalTo(60)
+        }
+
+        self.addSubview(self.inviteCodeTF)
+        self.inviteCodeTF.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.passwordRepeateTF.snp.bottom).offset(30)
             make.left.right.equalTo(self)
             make.height.equalTo(60)
             make.bottom.equalTo(self)

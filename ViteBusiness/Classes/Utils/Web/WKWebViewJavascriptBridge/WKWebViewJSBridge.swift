@@ -11,6 +11,10 @@ import WebKit
 
 @available(iOS 9.0, *)
 public class WKWebViewJSBridge: NSObject {
+
+    static let versionName = "1.4.0"
+    static let versionCode = 5
+
     private let iOS_Native_InjectJavascript = "iOS_Native_InjectJavascript"
     private let iOS_Native_FlushMessageQueue = "iOS_Native_FlushMessageQueue"
 

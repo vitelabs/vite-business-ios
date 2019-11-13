@@ -322,5 +322,7 @@ public class ViteBusinessLanucher: NSObject {
         ViteAppSchemeHandler.instance.handle(url)
         return true
     }
+
+    
 }
 

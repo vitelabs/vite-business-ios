@@ -18,7 +18,9 @@ extension UIViewController {
             Statistics.log(eventId: Statistics.Page.MyHome.mnemonicDeriveClicked.rawValue)
             let textField = (controller.textFields?.first)! as UITextField
             if HDWalletManager.instance.verifyPassword(textField.text ?? "") {
-                callback(textField.text ?? "")
+                DispatchQueue.main.async {
+                    callback(textField.text ?? "")
+                }
             } else {
                 self.view.showToast(str: R.string.localizable.exportPageAlterPasswordError())
             }

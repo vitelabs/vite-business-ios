@@ -22,6 +22,8 @@ class CreateWalletService {
     fileprivate(set) var language: MnemonicCodeBook = .english
     fileprivate(set) var createFromScan = false
 
+    var vitexInviteCode: String?
+
     var mnemonic: String {
         return mnemonicBehaviorRelay.value
     }
