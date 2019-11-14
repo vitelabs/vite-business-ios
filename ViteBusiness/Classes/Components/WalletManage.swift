@@ -12,6 +12,7 @@ import NSObject_Rx
 import Alamofire
 import ViteWallet
 import ObjectMapper
+import PromiseKit
 
 extension WalletManager: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -21,9 +22,11 @@ extension WalletManager: Storageable {
     public struct Storager: Mappable {
 
         public fileprivate(set) var vitexInviteCode: String?
+        fileprivate var invitedAddresses: [ViteAddress] = []
 
-        public init(vitexInviteCode: String? = nil) {
+        public init(vitexInviteCode: String? = nil, invitedAddresses: [ViteAddress] = []) {
             self.vitexInviteCode = vitexInviteCode
+            self.invitedAddresses = invitedAddresses
         }
 
         public init?(map: Map) {
@@ -32,6 +35,7 @@ extension WalletManager: Storageable {
 
         public mutating func mapping(map: Map) {
             vitexInviteCode <- map["vitexInviteCode"]
+            invitedAddresses <- map["invitedAddresses"]
         }
     }
 }
@@ -55,11 +59,76 @@ public final class WalletManager: NSObject {
         }).disposed(by: rx.disposeBag)
     }
 
+
+}
+
+// MARK: vitex invite
+extension WalletManager {
+
     func update(vitexInviteCode: String) {
         if var storager = storagerBehaviorRelay.value {
             storager.vitexInviteCode = vitexInviteCode
             storagerBehaviorRelay.accept(storager)
             save(mappable: storager)
         }
+    }
+
+
+    func bindInviteIfNeeded() {
+
+        func append(invitedAddress: ViteAddress) {
+            if var storager = storagerBehaviorRelay.value {
+                storager.invitedAddresses.append(invitedAddress)
+                storagerBehaviorRelay.accept(storager)
+                save(mappable: storager)
+            }
+        }
+
+        func tryBind(account: Wallet.Account) {
+            guard HDWalletManager.instance.account?.address == account.address else { return }
+            guard let code = storager?.vitexInviteCode else { return }
+
+            ViteNode.dex.info.getDexInviteCodeBinding(address: account.address).then { (c) -> Promise<Void> in
+                if let _ = c {
+                    return Promise.value(Void())
+                } else {
+                    return ViteNode.rawTx.send.block(account: account, toAddress: ABI.BuildIn.dexBindInviter.toAddress, tokenId: ViteWalletConst.viteToken.id, amount: Amount(0), fee: nil, data: ABI.BuildIn.getDexBindInviterData(code: code)).asVoid()
+                }
+            }.done {
+                append(invitedAddress: account.address)
+            }.catch { (error) in
+                GCD.delay(2) { tryBind(account: account) }
+            }
+        }
+
+        func checkAccountBlock(account: Wallet.Account) {
+            guard HDWalletManager.instance.account?.address == account.address else { return }
+
+            ViteNode.ledger.getLatestAccountBlock(address: account.address).done { (accountBlock) in
+                if let _ = accountBlock {
+                    tryBind(account: account)
+                } else {
+                    GCD.delay(2) { checkAccountBlock(account: account) }
+                }
+            }.catch { (_) in
+                GCD.delay(2) { checkAccountBlock(account: account) }
+            }
+        }
+
+        func accountInit(account: Wallet.Account) {
+            guard HDWalletManager.instance.account?.address == account.address else { return }
+
+            UnifyProvider.accountInit(address: account.address).done { (_)  in
+                GCD.delay(2) { checkAccountBlock(account: account) }
+            }.catch { (_) in
+                GCD.delay(2) { accountInit(account: account) }
+            }
+        }
+
+        guard let account = HDWalletManager.instance.account else { return }
+        guard let s = storager else { return }
+        guard let _ = s.vitexInviteCode else { return }
+        guard !s.invitedAddresses.contains(account.address) else { return }
+        accountInit(account: account)
     }
 }

@@ -86,6 +86,7 @@ class WalletHomeViewController: BaseViewController {
         }
         GCD.delay(1) {
             CreateWalletService.sharedInstance.GoExportMnemonicIfNeeded()
+            WalletManager.instance.bindInviteIfNeeded()
         }
     }
 

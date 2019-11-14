@@ -378,7 +378,7 @@ public extension Workflow {
                  tokenId: tokenInfo.viteTokenId,
                  amount: amount,
                  fee: nil,
-                 data: ABI.BuildIn.getDexDeposit(),
+                 data: ABI.BuildIn.getDexDepositData(),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)
@@ -399,7 +399,7 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: 0,
                  fee: nil,
-                 data: ABI.BuildIn.getDexWithdraw(tokenId: tokenInfo.viteTokenId, amount: amount),
+                 data: ABI.BuildIn.getDexWithdrawData(tokenId: tokenInfo.viteTokenId, amount: amount),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)
