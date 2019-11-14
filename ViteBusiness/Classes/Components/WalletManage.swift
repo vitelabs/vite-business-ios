@@ -65,7 +65,7 @@ public final class WalletManager: NSObject {
 // MARK: vitex invite
 extension WalletManager {
 
-    func update(vitexInviteCode: String) {
+    public func update(vitexInviteCode: String) {
         if var storager = storagerBehaviorRelay.value {
             storager.vitexInviteCode = vitexInviteCode
             storagerBehaviorRelay.accept(storager)

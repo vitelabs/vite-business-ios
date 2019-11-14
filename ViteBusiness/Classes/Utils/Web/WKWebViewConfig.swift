@@ -96,6 +96,8 @@ public struct Response : Mappable {
     public var invokeUri: AsyncWebViewConfigClosure?
     public var isInvokingUri: Bool = false
 
+    public var scan: AsyncWebViewConfigClosure?
+
     // Market
 
     public var addFavPair: WebViewConfigClosure?
@@ -126,5 +128,20 @@ public struct Response : Mappable {
             print(data)
         }
 
+        scan = { (_ data: [String: Any]?,_ callbackId: String,_ callback: @escaping NativeCallback)  in
+
+            var ret: String? = nil
+            let scanViewController = ScanViewController()
+            scanViewController.rx.result.subscribe(onNext: { [weak scanViewController] (text) in
+                ret = text
+                scanViewController?.navigationController?.popViewController(animated: true)
+                }, onCompleted: {
+                    callback(Response(code: .success, msg: "", data: ["text": ret]), callbackId)
+            }, onDisposed: {
+                print("")
+            })
+
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }
     }
 }

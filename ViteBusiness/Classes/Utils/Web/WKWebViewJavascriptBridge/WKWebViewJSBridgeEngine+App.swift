@@ -25,6 +25,18 @@ public extension  WKWebViewJSBridgeEngine {
         handler(parameters)
     }
 
+    @objc func jsapi_scan(parameters: [String: String]?, callbackID: String) {
+        guard let handler =  WKWebViewConfig.instance.scan else {
+            return
+        }
+        let callback = { (_ response: Response, _ callbackId: String) -> Void in
+            let responseData = response.toJSONString(prettyPrint: true)
+            let message = ["responseID": callbackId, "responseData": responseData]
+            self.sendResponds(message)
+        }
+        handler(parameters,callbackID, callback)
+    }
+
     //fetch app info
     @objc func jsapi_fetchAppInfo(parameters: [String: String], callbackID: String) {
         guard let handler =  WKWebViewConfig.instance.fetchAppInfo else {

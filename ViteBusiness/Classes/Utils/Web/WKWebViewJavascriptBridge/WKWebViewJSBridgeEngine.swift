@@ -27,6 +27,7 @@ public class WKWebViewJSBridgeEngine: NSObject {
     "app.setWebTitle":("setWebTitle",false),
     "app.share":("goToshare",false),
     "app.setRRButton":("setRRButton",false),
+    "app.scan":("scan",false),
     "wallet.currentAddress":("fetchViteAddress",false),
     "wallet.sendTxByURI":("invokeUri",false),
     ]
