@@ -39,7 +39,7 @@ public final class NavigatorManager {
     }
 
     private func matchDomain(url: URL) -> Bool {
-        if url.absoluteString.hasPrefix("https://app.view.net/") ||
+        if url.absoluteString.hasPrefix("https://app.vite.net/") ||
             url.absoluteString.hasPrefix("https://vite-wallet-test.netlify.com/") {
             return true
         } else {

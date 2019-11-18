@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 216 images.
+  /// This `R.image` struct is generated, and contains static references to 217 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -246,6 +246,8 @@ public struct R: Rswift.Validatable {
     public static let icon_button_paste_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_paste_white")
     /// Image `icon_button_reddit`.
     public static let icon_button_reddit = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_reddit")
+    /// Image `icon_button_scan_gray`.
+    public static let icon_button_scan_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_scan_gray")
     /// Image `icon_button_telegram`.
     public static let icon_button_telegram = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_telegram")
     /// Image `icon_button_tip`.
@@ -1021,6 +1023,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_button_reddit, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_button_scan_gray", bundle: ..., traitCollection: ...)`
+    public static func icon_button_scan_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_scan_gray, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_button_telegram", bundle: ..., traitCollection: ...)`
     public static func icon_button_telegram(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_telegram, compatibleWith: traitCollection)
@@ -1536,7 +1543,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 764 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 766 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4586,6 +4593,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let systemPageCellDeleteWalletAlertTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 填写邀请码或扫描邀请二维码，享交易9折，挖矿升级
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageInviteCodeTitle = Rswift.StringResource(key: "create.page.invite.code.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 填写邀请码（可选）
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageInviteCodePlaceholder = Rswift.StringResource(key: "create.page.invite.code.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 日志回传
       /// 
       /// Locales: en, zh-Hans
@@ -9927,6 +9942,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func systemPageCellDeleteWalletAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.delete.wallet.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 填写邀请码或扫描邀请二维码，享交易9折，挖矿升级
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageInviteCodeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.invite.code.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 填写邀请码（可选）
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageInviteCodePlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.invite.code.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 日志回传

@@ -77,6 +77,8 @@
 "create.page.tf.title" = "账户名";
 "create.page.pw.title" = "请输入密码";
 "create.page.pw.repeate.title" = "重复输入密码";
+"create.page.invite.code.title" = "填写邀请码或扫描邀请二维码，享交易9折，挖矿升级";
+"create.page.invite.code.placeholder" = "填写邀请码（可选）";
 "create.page.submit.btn.title" = "创建";
 
 "create.page.tip.title" = "备份须知";

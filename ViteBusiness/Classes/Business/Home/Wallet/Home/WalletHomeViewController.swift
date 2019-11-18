@@ -84,6 +84,10 @@ class WalletHomeViewController: BaseViewController {
         if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
             CreateWalletService.sharedInstance.showBackUpTipAlert()
         }
+        if let code = CreateWalletService.sharedInstance.vitexInviteCode {
+            WalletManager.instance.update(vitexInviteCode: code)
+        }
+
         GCD.delay(1) {
             CreateWalletService.sharedInstance.GoExportMnemonicIfNeeded()
             WalletManager.instance.bindInviteIfNeeded()

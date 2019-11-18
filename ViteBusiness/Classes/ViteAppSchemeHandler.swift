@@ -31,19 +31,28 @@ class ViteAppSchemeHandler {
     }
 
     func handle(_ url: URL) {
+
+        func route() {
+            if url.scheme == "http" || url.scheme == "https" {
+                NavigatorManager.instance.route(url: url)
+            } else if handleViteScheme(url) == false {
+                GrinManager.default.handle(url: url)
+            }
+        }
+
         if let code = url.queryParameters["vitex_invite_code"], !code.isEmpty {
-            CreateWalletService.sharedInstance.vitexInviteCode = code
-        }
+            if let _ = HDWalletManager.instance.account {
+                route()
+            } else {
+                CreateWalletService.sharedInstance.vitexInviteCode = code
+            }
+        } else {
+            guard let account = HDWalletManager.instance.account else {
+                self.url = url
+                return
+            }
 
-        guard let account = HDWalletManager.instance.account else {
-            self.url = url
-            return
-        }
-
-        if url.scheme == "http" || url.scheme == "https" {
-            NavigatorManager.instance.route(url: url)
-        } else if handleViteScheme(url) == false {
-            GrinManager.default.handle(url: url)
+            route()
         }
     }
 
