@@ -144,6 +144,13 @@ struct BifrostConfirmInfoFactory {
         case dexStakingAsMining
         case dexVip
 
+        case registerSBP
+        case voteForSBP
+        case CancelSBPVoting
+        case StakeForQuota
+        case CancelQuotaStaking
+        
+
         fileprivate var info: BuildInContractProtocol {
 
             switch self {
@@ -193,6 +200,17 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractDexStakingAsMining()
             case .dexVip:
                 return BuildInContractDexVip()
+
+            case .registerSBP:
+                return BuildInContractRegisterSBP()
+            case .voteForSBP:
+                return BuildInContractVoteForSBP()
+            case .CancelSBPVoting:
+                return BuildInContractCancelSBPVoting()
+            case .StakeForQuota:
+                return BuildInContractStakeForQuota()
+            case .CancelQuotaStaking:
+                return BuildInContractCancelQuotaStaking()
             }
         }
     }

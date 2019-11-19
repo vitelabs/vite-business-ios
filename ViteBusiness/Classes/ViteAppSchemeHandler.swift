@@ -71,8 +71,7 @@ class ViteAppSchemeHandler {
             }
         case .vote:
             if let name = url.queryParameters["name"]?.removingPercentEncoding {
-                let gid = url.queryParameters["gid"]?.removingPercentEncoding ?? ViteWalletConst.ConsensusGroup.snapshot.id
-                let uri = SASConfirmViewModelContractVote.makeURIBy(name: name, gid: gid)
+                let uri = SASConfirmViewModelContractVote.makeURIBy(name: name)
                 let vc = SignAndSendConfirmViewController(uri: uri)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }

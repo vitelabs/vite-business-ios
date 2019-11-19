@@ -109,17 +109,30 @@ class PledgeHistoryViewController: BaseViewController, View {
                     }
 
                     let account = HDWalletManager.instance.account!
-                    Workflow.cancelPledgeWithConfirm(account: account, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount, completion: { (ret) in
-                        switch ret {
-                        case .success:
-                            self?.withdrawingAddressSet.insert(pledge.beneficialAddress)
-                            cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
-                            cell?.cancelButton.isEnabled = false
-                        case .failure:
-                            break
-                        }
-                    })
 
+                    if let id = pledge.id {
+                        Workflow.CancelQuotaStakingWithConfirm(account: account, id:id, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount) { (ret) in
+                            switch ret {
+                            case .success:
+                                self?.withdrawingAddressSet.insert(pledge.beneficialAddress)
+                                cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
+                                cell?.cancelButton.isEnabled = false
+                            case .failure:
+                                break
+                            }
+                        }
+                    } else {
+                        Workflow.cancelPledgeWithConfirm(account: account, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount, completion: { (ret) in
+                            switch ret {
+                            case .success:
+                                self?.withdrawingAddressSet.insert(pledge.beneficialAddress)
+                                cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
+                                cell?.cancelButton.isEnabled = false
+                            case .failure:
+                                break
+                            }
+                        })
+                    }
                 }.disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)

@@ -40,15 +40,15 @@ struct SASConfirmViewModelContractVote: SASConfirmViewModelContract {
 }
 
 extension SASConfirmViewModelContractVote {
-    static func makeURIBy(name: String, gid: String) -> ViteURI {
+    static func makeURIBy(name: String) -> ViteURI {
         return ViteURI(address: ABI.BuildIn.vote.toAddress,
                        chainId: nil,
                        type: .contract,
-                       functionName: ABI.BuildIn.vote.abiRecord.name!,
+                       functionName: ABI.BuildIn.voteForSBP.abiRecord.name!,
                        tokenId: ViteWalletConst.viteToken.id,
                        amount: nil,
                        fee: nil,
-                       data: ABI.BuildIn.getVoteData(gid: gid, name: name),
+                       data: ABI.BuildIn.getVoteForSBPData(name: name),
                        parameters: nil)
     }
 }

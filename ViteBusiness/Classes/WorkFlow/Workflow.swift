@@ -269,7 +269,7 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: amount,
                  fee: Amount(0),
-                 data: ABI.BuildIn.getPledgeData(beneficialAddress: beneficialAddress),
+                 data: ABI.BuildIn.getStakeForQuota(beneficialAddress: beneficialAddress),
                  successToast: R.string.localizable.workflowToastSubmitSuccess(),
                  type: .pledge(beneficialAddress: beneficialAddress),
                  completion: completion)
@@ -303,6 +303,29 @@ public extension Workflow {
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
+    static func CancelQuotaStakingWithConfirm(account: Wallet.Account,
+                                        id: String,
+                                        beneficialAddress: ViteAddress,
+                                        amount: Amount,
+                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.pledge.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getCancelQuotaStakingData(id: id),
+                 successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let tokenInfo = TokenInfo.BuildIn.vite.value
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
     static func voteWithConfirm(account: Wallet.Account,
                                 name: String,
                                 completion: @escaping (Result<AccountBlock>) -> ()) {
@@ -313,7 +336,7 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: Amount(0),
                  fee: Amount(0),
-                 data: ABI.BuildIn.getVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name),
+                 data: ABI.BuildIn.getVoteForSBPData(name: name),
                  successToast: R.string.localizable.workflowToastVoteSuccess(),
                  type: .vote,
                  completion: completion)
@@ -333,7 +356,7 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: Amount(0),
                  fee: Amount(0),
-                 data: ABI.BuildIn.getCancelVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id),
+                 data: ABI.BuildIn.getCancelSBPVotingData(),
                  successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
                  type: .vote,
                  completion: completion)
