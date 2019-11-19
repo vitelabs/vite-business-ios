@@ -340,7 +340,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
     func vitexPageUrl() -> URL {
         var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
             + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-            + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+            + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
         return URL.init(string:urlStr)!
     }
 

@@ -140,7 +140,7 @@ class SystemViewController: FormViewController {
                 $0.cell.titleLab.text = R.string.localizable.systemPageCellChangeCurrency()
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
                 $0.cell.bottomSeparatorLine.isHidden = false
-                $0.cell.rightLab.text = AppSettingsService.instance.currency.name
+                $0.cell.rightLab.text = AppSettingsService.instance.appSettings.currency.name
                 }.onCellSelection({ [unowned self] _, _  in
                     guard let cell = self.form.rowBy(tag: "systemPageCellChangeCurrency") as? ImageRow else { return }
                     let vc = CurrencyViewController()

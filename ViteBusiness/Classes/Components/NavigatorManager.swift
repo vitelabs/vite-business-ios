@@ -14,7 +14,11 @@ public final class NavigatorManager {
 
     @discardableResult
     public func route(url: URL) -> UIViewController? {
+        #if DEBUG || TEST
+        guard let vc = parse(url: testUrl(for: url)) else { return nil }
+        #else
         guard let vc = parse(url: url) else { return nil }
+        #endif
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         return vc
     }
@@ -68,3 +72,32 @@ public final class NavigatorManager {
         }
     }
 }
+
+#if DEBUG || TEST
+extension NavigatorManager {
+
+    struct HostPair {
+        let source: String
+        let target: String
+    }
+
+    func testUrl(for url: URL) -> URL {
+
+        let hostPairs = [HostPair(source: "https://app.vite.net/webview/vitex_invite_inner/index.html",
+                                  target: "https://vite-wallet-test.netlify.com/webview/vitex_invite_inner/index.html"),
+        ]
+
+        if DebugService.instance.config.appEnvironment == .test {
+            for pair in hostPairs {
+                if url.absoluteString.hasPrefix(pair.source) {
+                    let string = url.absoluteString.replacingOccurrences(of: pair.source, with: pair.target)
+                    return URL(string: string)!
+                }
+            }
+            return url
+        } else {
+            return url
+        }
+    }
+}
+#endif

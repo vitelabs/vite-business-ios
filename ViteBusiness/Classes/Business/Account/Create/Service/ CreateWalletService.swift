@@ -22,7 +22,28 @@ class CreateWalletService {
     fileprivate(set) var language: MnemonicCodeBook = .english
     fileprivate(set) var createFromScan = false
 
-    var vitexInviteCode: String?
+    fileprivate var _vitexInviteCode: String?
+
+    var vitexInviteCode: String? {
+        set {
+            _vitexInviteCode = newValue
+        }
+
+        get {
+            if let code = _vitexInviteCode {
+                return code
+            } else {
+                if let text = UIPasteboard.general.string,
+                    let url = URL(string: text),
+                    let code = url.queryParameters["vitex_invite_code"], !code.isEmpty {
+                    _vitexInviteCode = code
+                    return code
+                } else {
+                    return nil
+                }
+            }
+        }
+    }
 
     var mnemonic: String {
         return mnemonicBehaviorRelay.value

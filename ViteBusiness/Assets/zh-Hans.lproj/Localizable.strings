@@ -179,6 +179,9 @@
 "my.page.contacts.cell.title" = "联系地址";
 "my.page.mnemonic.cell.title" = "助记词";
 "my.page.system.cell.title" = "使用设置";
+"my.page.invite.cell.title" = "组建矿队，升级挖矿";
+"my.page.reward.cell.title" = "奖励查询";
+"my.page.forum.cell.title" = "官方论坛";
 "my.page.aboutUs.cell.title" = "关于我们";
 "my.page.change.wallet.name.alter.title" = "修改账户名";
 

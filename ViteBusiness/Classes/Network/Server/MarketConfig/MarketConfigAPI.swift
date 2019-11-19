@@ -16,7 +16,7 @@ enum MarketConfigAPI {
 extension MarketConfigAPI: TargetType {
 
     var baseURL: URL {
-        return URL(string: "http://129.226.74.210:1337")!
+        return URL(string: ViteConst.Env.premainnet.cos.strapi)!
     }
 
     var path: String {

@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 217 images.
+  /// This `R.image` struct is generated, and contains static references to 220 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -286,6 +286,12 @@ public struct R: Rswift.Validatable {
     public static let icon_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo")
     /// Image `icon_mnemonic`.
     public static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
+    /// Image `icon_my_home_forum`.
+    public static let icon_my_home_forum = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_forum")
+    /// Image `icon_my_home_invite`.
+    public static let icon_my_home_invite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_invite")
+    /// Image `icon_my_home_reward`.
+    public static let icon_my_home_reward = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_reward")
     /// Image `icon_nav_add`.
     public static let icon_nav_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_add")
     /// Image `icon_nav_back_black_offset`.
@@ -1123,6 +1129,21 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_my_home_forum", bundle: ..., traitCollection: ...)`
+    public static func icon_my_home_forum(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_my_home_forum, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_my_home_invite", bundle: ..., traitCollection: ...)`
+    public static func icon_my_home_invite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_my_home_invite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_my_home_reward", bundle: ..., traitCollection: ...)`
+    public static func icon_my_home_reward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_my_home_reward, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_nav_add", bundle: ..., traitCollection: ...)`
     public static func icon_nav_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_add, compatibleWith: traitCollection)
@@ -1543,7 +1564,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 766 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 769 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3049,6 +3070,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageNewsCellTimeMinute = Rswift.StringResource(key: "discover.page.news.cell.time.minute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Official Forum
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageForumCellTitle = Rswift.StringResource(key: "my.page.forum.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Official Website
       /// 
       /// Locales: en, zh-Hans
@@ -3453,6 +3478,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let votePageVoteStatusCancelVoting = Rswift.StringResource(key: "vote.page.voteStatus.cancelVoting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Rewards Enquiry
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageRewardCellTitle = Rswift.StringResource(key: "my.page.reward.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Run PoW
       /// 
       /// Locales: en, zh-Hans
@@ -4609,6 +4638,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let systemPageCellUploadLogToastSuccess = Rswift.StringResource(key: "system.page.cell.upload.log.toast.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 组建矿队，升级挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -7242,6 +7275,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.news.cell.time.minute", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Official Forum
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageForumCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.forum.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Official Website
       /// 
       /// Locales: en, zh-Hans
@@ -7947,6 +7987,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func votePageVoteStatusCancelVoting(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteStatus.cancelVoting", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Rewards Enquiry
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageRewardCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.reward.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Run PoW
@@ -9970,6 +10017,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func systemPageCellUploadLogToastSuccess(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.upload.log.toast.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 组建矿队，升级挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageInviteCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

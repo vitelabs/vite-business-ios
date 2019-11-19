@@ -39,7 +39,7 @@ class WalletHomeNavViewModel {
                             let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
                             allPrice = allPrice + price
                         }
-                        let currency = AppSettingsService.instance.currency
+                        let currency = AppSettingsService.instance.appSettings.currency
                         return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
                     } else if infoType == .viteX {
                         var allPrice = BigDecimal()
@@ -47,7 +47,7 @@ class WalletHomeNavViewModel {
                             let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balanceInfo.total)
                             allPrice = allPrice + price
                         }
-                        let currency = AppSettingsService.instance.currency
+                        let currency = AppSettingsService.instance.appSettings.currency
                         return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
                     } else {
                         return ""
