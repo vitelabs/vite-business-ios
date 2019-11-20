@@ -104,6 +104,7 @@ fileprivate final class KeyboardAutoScrollingObserver {
         } else {
             rect = firstResponderView.convert(firstResponderView.bounds, to: UIApplication.shared.keyWindow)
             rect.size.height += viewController.bottomInset
+            rect.origin.y -= targetView.transform.ty
 
             let dy = rect.maxY - ( UIScreen.main.bounds.height - keyboardHeight )
 
