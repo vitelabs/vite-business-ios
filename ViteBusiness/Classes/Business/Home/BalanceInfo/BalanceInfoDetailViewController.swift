@@ -81,6 +81,12 @@ class BalanceInfoDetailViewController: BaseViewController {
             guard let `self` = self else { return }
             switch ret {
             case .success(let tokenInfo):
+
+                if !GrinManager.default.walletCreated.value {
+                    Toast.show(R.string.localizable.grinCreating())
+                    self.dismiss()
+                }
+
                 self.dataStatus = .normal
                 self.tokenInfo = tokenInfo
                 self.adapter = tokenInfo.createBalanceInfoDetailAdapter(headerView: self.headerView, tableView: self.tableView, vc: self)
