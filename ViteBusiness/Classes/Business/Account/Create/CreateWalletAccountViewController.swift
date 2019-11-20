@@ -153,6 +153,9 @@ extension CreateWalletAccountViewController {
     }
 
     func goNextVC() {
+        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.createWithInviteCode.rawValue)
+        }
         let name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
         let password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
         CreateWalletService.sharedInstance.set(name: name, password: password)

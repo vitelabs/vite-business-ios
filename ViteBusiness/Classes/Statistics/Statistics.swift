@@ -21,6 +21,10 @@ public class Statistics: NSObject {
         stat.start(withAppId: Constants.baiduMobileStat)
     }
 
+    public static func logWithUUIDAndAddress(eventId: String) {
+        log(eventId: eventId, attributes: ["uuid": UUID.stored, "address": HDWalletManager.instance.account?.address ?? ""])
+    }
+
     public static func log(eventId: String, attributes: [String: String] = [:]) {
         #if DEBUG || TEST
         let toast: String

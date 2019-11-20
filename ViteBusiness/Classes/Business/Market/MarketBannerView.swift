@@ -78,7 +78,10 @@ extension MarketBannerView: FSPagerViewDataSource, FSPagerViewDelegate {
         guard item.linkUrl != "", let url = URL(string: item.linkUrl) else {
             return
         }
-        let vc = WKWebViewController("", url: url)
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+
+        NavigatorManager.instance.route(url: url)
+        if url.absoluteString.hasPrefix("https://app.vite.net/webview/vitex_invite_inner/index.html") {
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MarketHome.inviteClicked.rawValue)
+        }
     }
 }

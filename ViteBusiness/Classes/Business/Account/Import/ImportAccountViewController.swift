@@ -169,6 +169,9 @@ extension ImportAccountViewController {
     }
 
     func goNextVC() {
+        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.importWithInviteCode.rawValue)
+        }
         guard let language = self.importAccountVM?.language else { return }
         let name  = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
         let password = self.createNameAndPwdView.passwordRepeateTF.textField.text ?? ""

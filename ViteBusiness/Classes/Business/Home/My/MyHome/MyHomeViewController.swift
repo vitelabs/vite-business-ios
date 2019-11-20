@@ -114,6 +114,7 @@ extension MyHomeViewController {
         model.clicked(viewController: self)
         if indexPath.row == 1 {
             AppSettingsService.instance.setVitexInviteFalse()
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MyHome.inviteClicked.rawValue)
         }
     }
 }

@@ -85,6 +85,7 @@ extension MarketPairsViewController: UITableViewDelegate, UITableViewDataSource 
         let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
         let webvc = WKWebViewController(url: info.vitexURL)
         self.navigationController?.pushViewController(webvc, animated: true)
+        Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MarketHome.pairClicked.rawValue)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
