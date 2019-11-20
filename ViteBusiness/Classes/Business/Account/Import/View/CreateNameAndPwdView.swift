@@ -48,6 +48,7 @@ class CreateNameAndPwdView: UIView {
         walletNameTF.titleLabel.font = AppStyle.formHeader.font
         walletNameTF.textField.rightView = self.scanButton
         walletNameTF.textField.rightViewMode = .always
+        walletNameTF.textField.keyboardType = .numberPad
         return walletNameTF
     }()
 

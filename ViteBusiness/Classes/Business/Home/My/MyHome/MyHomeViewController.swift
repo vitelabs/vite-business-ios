@@ -248,6 +248,7 @@ extension MyHomeViewController {
                 HDWalletManager.instance.logout()
                 KeychainService.instance.clearCurrentWallet()
                 DispatchQueue.main.async {
+                    CreateWalletService.sharedInstance.vitexInviteCode = nil
                     self.view.hideLoading()
                     NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
                 }

@@ -13,6 +13,7 @@ import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
 import ActiveLabel
+import ViteWallet
 
 extension ImportAccountViewController {
     private func _bindViewModel() {
@@ -55,6 +56,8 @@ class ImportAccountViewController: BaseViewController {
 
         self._setupView()
         self._bindViewModel()
+
+        self.createNameAndPwdView.inviteCodeTF.textField.text = CreateWalletService.sharedInstance.vitexInviteCode
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -169,13 +172,32 @@ extension ImportAccountViewController {
     }
 
     func goNextVC() {
-        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
-            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.importWithInviteCode.rawValue)
+
+        func go() {
+            guard let language = self.importAccountVM?.language else { return }
+            let name  = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
+            let password = self.createNameAndPwdView.passwordRepeateTF.textField.text ?? ""
+            let mnemonic = ViteInputValidator.handleMnemonicStrSpacing(self.contentTextView.text)
+            HDWalletManager.instance.importAndLoginWallet(name: name, mnemonic: mnemonic, language: language, password: password, completion: { _ in })
         }
-        guard let language = self.importAccountVM?.language else { return }
-        let name  = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
-        let password = self.createNameAndPwdView.passwordRepeateTF.textField.text ?? ""
-        let mnemonic = ViteInputValidator.handleMnemonicStrSpacing(self.contentTextView.text)
-        HDWalletManager.instance.importAndLoginWallet(name: name, mnemonic: mnemonic, language: language, password: password, completion: { _ in })
+
+        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
+            HUD.show()
+            WalletManager.instance.checkVitexInviteCode(vitexInviteCode: text).always {
+                HUD.hide()
+            }.done { (ret) in
+                if ret {
+                    CreateWalletService.sharedInstance.vitexInviteCode = text
+                    Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.importWithInviteCode.rawValue)
+                    go()
+                } else {
+                    Toast.show(R.string.localizable.createPageToastErrorInviteCode())
+                }
+            }.catch { (error) in
+                Toast.show(ViteError.conversion(from: error).viteErrorMessage)
+            }
+        } else {
+            go()
+        }
     }
 }

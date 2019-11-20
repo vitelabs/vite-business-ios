@@ -78,6 +78,7 @@
 "create.page.invite.code.title" = "填写邀请码或扫描邀请二维码，享交易9折，挖矿升级";
 "create.page.invite.code.placeholder" = "填写邀请码（可选）";
 "create.page.submit.btn.title" = "Create";
+"create.page.toast.error.invite.code" = "邀请码错误";
 
 "create.page.tip.title" = "Backup Instructions";
 "create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";

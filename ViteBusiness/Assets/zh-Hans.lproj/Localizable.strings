@@ -80,6 +80,7 @@
 "create.page.invite.code.title" = "填写邀请码或扫描邀请二维码，享交易9折，挖矿升级";
 "create.page.invite.code.placeholder" = "填写邀请码（可选）";
 "create.page.submit.btn.title" = "创建";
+"create.page.toast.error.invite.code" = "邀请码错误";
 
 "create.page.tip.title" = "备份须知";
 "create.page.tip.content1" = "拥有助记词等于拥有所有资产。";

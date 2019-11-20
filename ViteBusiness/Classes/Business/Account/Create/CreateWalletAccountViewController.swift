@@ -13,6 +13,7 @@ import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
 import ActiveLabel
+import ViteWallet
 
 extension CreateWalletAccountViewController {
 
@@ -153,13 +154,33 @@ extension CreateWalletAccountViewController {
     }
 
     func goNextVC() {
-        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
-            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.createWithInviteCode.rawValue)
+
+        func go() {
+            let name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
+            let password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
+            CreateWalletService.sharedInstance.set(name: name, password: password)
+            let vc = CreateWalletTipViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        let name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
-        let password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
-        CreateWalletService.sharedInstance.set(name: name, password: password)
-        let vc = CreateWalletTipViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
+            HUD.show()
+            WalletManager.instance.checkVitexInviteCode(vitexInviteCode: text).always {
+                HUD.hide()
+            }.done { (ret) in
+                if ret {
+                    CreateWalletService.sharedInstance.vitexInviteCode = text
+                    Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.createWithInviteCode.rawValue)
+                    go()
+                } else {
+                    Toast.show(R.string.localizable.createPageToastErrorInviteCode())
+                }
+            }.catch { (error) in
+                Toast.show(ViteError.conversion(from: error).viteErrorMessage)
+            }
+        } else {
+            go()
+        }
+
     }
 }

@@ -65,12 +65,27 @@ public final class WalletManager: NSObject {
 // MARK: vitex invite
 extension WalletManager {
 
-    public func update(vitexInviteCode: String) {
+    public func update(vitexInviteCode: String?) {
         if var storager = storagerBehaviorRelay.value {
             storager.vitexInviteCode = vitexInviteCode
             storagerBehaviorRelay.accept(storager)
             save(mappable: storager)
         }
+    }
+
+    public func checkVitexInviteCodeAndUpdate(vitexInviteCode: String) {
+        checkVitexInviteCode(vitexInviteCode: vitexInviteCode).done { [weak self] (ret) in
+            if ret {
+                self?.update(vitexInviteCode: vitexInviteCode)
+            }
+        }.catch {[weak self] _ in
+            self?.checkVitexInviteCodeAndUpdate(vitexInviteCode: vitexInviteCode)
+        }
+    }
+
+    public func checkVitexInviteCode(vitexInviteCode: String) -> Promise<Bool> {
+        guard let code = Int64(vitexInviteCode) else { return Promise.value(false) }
+        return ViteNode.dex.info.checkDexInviteCode(inviteCode: code)
     }
 
 
@@ -125,10 +140,25 @@ extension WalletManager {
             }
         }
 
+        func checkInviteCode(account: Wallet.Account) {
+            guard HDWalletManager.instance.account?.address == account.address else { return }
+            guard let code = storager?.vitexInviteCode else { return }
+
+            checkVitexInviteCode(vitexInviteCode: code).done {[weak self] (ret) in
+                if ret {
+                    accountInit(account: account)
+                } else {
+                    self?.update(vitexInviteCode: nil)
+                }
+            }.catch { (_) in
+                GCD.delay(2) { checkInviteCode(account: account) }
+            }
+        }
+
         guard let account = HDWalletManager.instance.account else { return }
         guard let s = storager else { return }
         guard let _ = s.vitexInviteCode else { return }
         guard !s.invitedAddresses.contains(account.address) else { return }
-        accountInit(account: account)
+        checkInviteCode(account: account)
     }
 }

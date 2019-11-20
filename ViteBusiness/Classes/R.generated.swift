@@ -1564,7 +1564,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 769 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 770 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4642,6 +4642,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请码错误
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageToastErrorInviteCode = Rswift.StringResource(key: "create.page.toast.error.invite.code", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -10024,6 +10028,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func myPageInviteCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请码错误
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageToastErrorInviteCode(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.toast.error.invite.code", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

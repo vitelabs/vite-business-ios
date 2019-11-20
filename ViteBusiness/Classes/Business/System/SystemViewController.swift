@@ -70,6 +70,7 @@ class SystemViewController: FormViewController {
                 HDWalletManager.instance.deleteWallet()
                 KeychainService.instance.clearCurrentWallet()
                 DispatchQueue.main.async {
+                    CreateWalletService.sharedInstance.vitexInviteCode = nil
                     HUD.hide()
                     NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
                     DispatchQueue.global().async {

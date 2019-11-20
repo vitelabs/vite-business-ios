@@ -12,7 +12,6 @@ import RxSwift
 import SnapKit
 import NSObject_Rx
 import RxDataSources
-import MLeaksFinder
 
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
@@ -27,10 +26,6 @@ class TokenListManageController: BaseViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func willDealloc() -> Bool {
-        return false
     }
 
     fileprivate lazy var tableView = UITableView().then { (tableView) in
