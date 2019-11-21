@@ -22,6 +22,27 @@ public class AppContentService {
         if let storage: Storage = readMappable() {
             storageBehaviorRelay = BehaviorRelay(value: storage)
         } else {
+            let items: [MarketBannerItem]
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                items = [
+                    MarketBannerItem(
+                    imageUrl: "https://wallet-config.toujinshe.com/uploads/3397c325ad5c4243ade8f82f4e061b40.jpg",
+                    linkUrl: "https://app.vite.net/webview/vitex_invite_inner/index.html"),
+                    MarketBannerItem(
+                    imageUrl: "https://wallet-config.toujinshe.com/uploads/02258b6328ea40c394fd69de7c20cd7a.jpg",
+                    linkUrl: "https://forum.vite.net/topic/2655/vitex-%E4%BA%A4%E6%98%93%E6%89%80%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97"),
+                ]
+            } else {
+                items = [
+                    MarketBannerItem(
+                    imageUrl: "https://wallet-config.toujinshe.com/uploads/f0ee07523a1b42dba96ee49e3c509b46.jpg",
+                    linkUrl: "https://app.vite.net/webview/vitex_invite_inner/index.html"),
+                    MarketBannerItem(
+                    imageUrl: "https://wallet-config.toujinshe.com/uploads/479afd767ae54d3cb30c81666540aeb5.jpg",
+                    linkUrl: "https://forum.vite.net/topic/2654/vitex-mobile-terminal-operation-guide"),
+                ]
+            }
+
             let item = MarketBannerItem(imageUrl: "http://129.226.74.210:1337/uploads/7a9a23cc0b2447f3913fd6792b5a7ba4.png", linkUrl: "https://forum.vite.net/topic/2655/vitex-%E4%BA%A4%E6%98%93%E6%89%80%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97")
             storageBehaviorRelay = BehaviorRelay(value: Storage(marketBannerItems: [item]))
         }
