@@ -1938,6 +1938,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let lockPageFingerprintBtnTitle = Rswift.StringResource(key: "lock.page.fingerprint.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Build Your Mining Team, Enjoy Premiere Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -2386,6 +2390,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let delete = Rswift.StringResource(key: "Delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Delete Current Account
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellDeleteWalletTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Deposit
       /// 
       /// Locales: en, zh-Hans
@@ -2490,6 +2498,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageEn = Rswift.StringResource(key: "mnemonic.backup.language.en", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageInviteCodeTitle = Rswift.StringResource(key: "create.page.invite.code.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Ethereum Network
       /// 
       /// Locales: en, zh-Hans
@@ -2798,6 +2810,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let votePageVoteStatusVoteInvalid = Rswift.StringResource(key: "vote.page.voteStatus.voteInvalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Invitation Code(Optional)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageInviteCodePlaceholder = Rswift.StringResource(key: "create.page.invite.code.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Issuance Address
       /// 
       /// Locales: en, zh-Hans
@@ -2850,6 +2866,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinBalanceLocked = Rswift.StringResource(key: "grin.balance.locked", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Log Uploaded
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellUploadLogToastSuccess = Rswift.StringResource(key: "system.page.cell.upload.log.toast.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Login
       /// 
       /// Locales: en, zh-Hans
@@ -4190,6 +4210,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostOperationRegisterUpdateSbp = Rswift.StringResource(key: "bifrost.operation.register.update.sbp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Upload Log
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellUploadLogTitle = Rswift.StringResource(key: "system.page.cell.upload.log.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Use Face ID For Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -4494,6 +4518,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageTip2 = Rswift.StringResource(key: "mnemonic.backup.page.tip2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Wrong Invitation Code
+      /// 
+      /// Locales: en, zh-Hans
+      public static let createPageToastErrorInviteCode = Rswift.StringResource(key: "create.page.toast.error.invite.code", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wrong Password!
       /// 
       /// Locales: en, zh-Hans
@@ -4546,6 +4574,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaTip = Rswift.StringResource(key: "workflow.fast.get.quota.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellDeleteWalletAlertTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
       /// 
       /// Locales: en, zh-Hans
@@ -4614,38 +4646,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 删除当前账户
-      /// 
-      /// Locales: en, zh-Hans
-      public static let systemPageCellDeleteWalletTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 删除账户后只能通过助记词恢复账户，确认删除该账户吗？
-      /// 
-      /// Locales: en, zh-Hans
-      public static let systemPageCellDeleteWalletAlertTitle = Rswift.StringResource(key: "system.page.cell.delete.wallet.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 填写邀请码或扫描邀请二维码，享交易9折，挖矿升级
-      /// 
-      /// Locales: en, zh-Hans
-      public static let createPageInviteCodeTitle = Rswift.StringResource(key: "create.page.invite.code.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 填写邀请码（可选）
-      /// 
-      /// Locales: en, zh-Hans
-      public static let createPageInviteCodePlaceholder = Rswift.StringResource(key: "create.page.invite.code.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 日志回传
-      /// 
-      /// Locales: en, zh-Hans
-      public static let systemPageCellUploadLogTitle = Rswift.StringResource(key: "system.page.cell.upload.log.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 日志已上传
-      /// 
-      /// Locales: en, zh-Hans
-      public static let systemPageCellUploadLogToastSuccess = Rswift.StringResource(key: "system.page.cell.upload.log.toast.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 组建矿队，升级挖矿
-      /// 
-      /// Locales: en, zh-Hans
-      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 邀请码错误
-      /// 
-      /// Locales: en, zh-Hans
-      public static let createPageToastErrorInviteCode = Rswift.StringResource(key: "create.page.toast.error.invite.code", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -5296,6 +5296,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func lockPageFingerprintBtnTitle(_: Void = ()) -> String {
         return NSLocalizedString("lock.page.fingerprint.btn.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Build Your Mining Team, Enjoy Premiere Mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageInviteCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Built-in contract error, please try again later(-35004)
@@ -6082,6 +6089,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("Delete", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Delete Current Account
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellDeleteWalletTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.delete.wallet.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Deposit
       /// 
       /// Locales: en, zh-Hans
@@ -6262,6 +6276,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageEn(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.en", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageInviteCodeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.invite.code.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Ethereum Network
@@ -6803,6 +6824,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.voteStatus.voteInvalid", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Invitation Code(Optional)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageInviteCodePlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.invite.code.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Issuance Address
       /// 
       /// Locales: en, zh-Hans
@@ -6892,6 +6920,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinBalanceLocked(_: Void = ()) -> String {
         return NSLocalizedString("grin.balance.locked", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Log Uploaded
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellUploadLogToastSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.upload.log.toast.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Login
@@ -9239,6 +9274,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.register.update.sbp", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Upload Log
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellUploadLogTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.upload.log.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Use Face ID For Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -9771,6 +9813,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.tip2", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Wrong Invitation Code
+      /// 
+      /// Locales: en, zh-Hans
+      public static func createPageToastErrorInviteCode(_: Void = ()) -> String {
+        return NSLocalizedString("create.page.toast.error.invite.code", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Wrong Password!
       /// 
       /// Locales: en, zh-Hans
@@ -9860,6 +9909,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaTip(_ value1: String) -> String {
         return String(format: NSLocalizedString("workflow.fast.get.quota.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellDeleteWalletAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.delete.wallet.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.
@@ -9979,62 +10035,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 删除当前账户
-      /// 
-      /// Locales: en, zh-Hans
-      public static func systemPageCellDeleteWalletTitle(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.delete.wallet.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 删除账户后只能通过助记词恢复账户，确认删除该账户吗？
-      /// 
-      /// Locales: en, zh-Hans
-      public static func systemPageCellDeleteWalletAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.delete.wallet.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 填写邀请码或扫描邀请二维码，享交易9折，挖矿升级
-      /// 
-      /// Locales: en, zh-Hans
-      public static func createPageInviteCodeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.invite.code.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 填写邀请码（可选）
-      /// 
-      /// Locales: en, zh-Hans
-      public static func createPageInviteCodePlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.invite.code.placeholder", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 日志回传
-      /// 
-      /// Locales: en, zh-Hans
-      public static func systemPageCellUploadLogTitle(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.upload.log.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 日志已上传
-      /// 
-      /// Locales: en, zh-Hans
-      public static func systemPageCellUploadLogToastSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.upload.log.toast.success", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 组建矿队，升级挖矿
-      /// 
-      /// Locales: en, zh-Hans
-      public static func myPageInviteCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 邀请码错误
-      /// 
-      /// Locales: en, zh-Hans
-      public static func createPageToastErrorInviteCode(_: Void = ()) -> String {
-        return NSLocalizedString("create.page.toast.error.invite.code", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
