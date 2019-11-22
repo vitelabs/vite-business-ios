@@ -99,6 +99,7 @@ extension CreateWalletTipViewController {
         scrollView.stackView.addArrangedSubview(UIImageView(image: R.image.beifen()).centerX())
         scrollView.stackView.addPlaceholder(height: 30)
         scrollView.stackView.addArrangedSubview(checkButton1)
+        scrollView.stackView.addPlaceholder(height: 6)
         scrollView.stackView.addArrangedSubview(checkButton2)
 
 

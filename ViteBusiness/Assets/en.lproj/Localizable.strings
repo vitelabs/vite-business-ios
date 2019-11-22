@@ -92,8 +92,8 @@
 "mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
 "mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
 "mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
-"mnemonic.backup.language.zh" = "Chinese";
-"mnemonic.backup.language.en" = "English";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
 
 "mnemonic.backup.scan.alert.title" = "Notice";
 "mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";

@@ -83,7 +83,7 @@ class ImportAccountViewController: BaseViewController {
         return confirmBtn
     }()
 
-    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)).then {
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 24, right: 24)).then {
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
