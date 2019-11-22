@@ -35,7 +35,7 @@ public class AppContentService {
             } else {
                 items = [
                     MarketBannerItem(
-                    imageUrl: "https://wallet-config.toujinshe.com/uploads/f0ee07523a1b42dba96ee49e3c509b46.jpg",
+                    imageUrl: "https://wallet-config.toujinshe.com/uploads/c64ee76e76ed42a8a898f3a5982fcfc1.jpg",
                     linkUrl: "https://app.vite.net/webview/vitex_invite_inner/index.html"),
                     MarketBannerItem(
                     imageUrl: "https://wallet-config.toujinshe.com/uploads/479afd767ae54d3cb30c81666540aeb5.jpg",
