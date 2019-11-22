@@ -41,7 +41,7 @@ public class LocalizationService {
     }
 
     fileprivate var localizationHash: [String: Any] = [:]
-    fileprivate var cacheTextDic: [String: String] = [:]
+    public fileprivate(set) var cacheTextDic: [String: String] = [:]
     fileprivate let fileHelper = FileHelper.createForApp(appending: "Localization")
 
     public func updateLocalizableIfNeeded(localizationHash: [String: Any]) {
