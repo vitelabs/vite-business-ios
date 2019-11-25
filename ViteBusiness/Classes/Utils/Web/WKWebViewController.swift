@@ -81,6 +81,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NavigationBarStyle.configStyle(.default, viewController: self)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
