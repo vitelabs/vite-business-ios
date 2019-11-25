@@ -24,8 +24,10 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
     var actionType = ActionType.toVitex
 
-    public init(tokenInfo: TokenInfo) {
+    let autoDismiss: Bool
+    public init(tokenInfo: TokenInfo, autoDismiss: Bool) {
         self.token = tokenInfo
+        self.autoDismiss = autoDismiss
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -302,14 +304,17 @@ public class ManageViteXBanlaceViewController: BaseViewController {
     func fundFromWalletToVitex(amount: Amount) {
         guard let amout = HDWalletManager.instance.account else { return }
         Workflow.dexDepositWithConfirm(account: amout, tokenInfo: token, amount: amount) { [weak self] (result) in
+            guard let `self` = self else { return }
             switch result {
             case .success(_):
-                Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
+                if self.autoDismiss {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
                     (.default(title: R.string.localizable.cancel()), { _ in
-                        self?.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }),
                     (.default(title: R.string.localizable.confirm()), { _ in
-                        guard let `self` = self else { return }
                         let webvc = WKWebViewController(url: self.vitexPageUrl())
                         var vcs = self.navigationController?.viewControllers
                         vcs?.popLast()
@@ -318,7 +323,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
                             self.navigationController?.setViewControllers(vcs, animated: true)
                         }
                     })])
-
+                }
             case .failure(let e):
                 Toast.show(e.localizedDescription)
             }
