@@ -63,24 +63,29 @@ class SystemViewController: FormViewController {
 
     @objc func deleteBtnAction() {
 
-        self.verifyWalletPassword { (_) in
-            HUD.show()
-            let uuid = HDWalletManager.instance.wallet?.uuid
-            DispatchQueue.global().async {
-                HDWalletManager.instance.deleteWallet()
-                KeychainService.instance.clearCurrentWallet()
-                DispatchQueue.main.async {
-                    CreateWalletService.sharedInstance.vitexInviteCode = nil
-                    HUD.hide()
-                    NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
-                    DispatchQueue.global().async {
-                        if let uuid = uuid {
-                            FileHelper.deleteWalletDirectory(uuid: uuid)
+        Alert.show(title: R.string.localizable.systemPageCellDeleteWalletAlertTitle(), message: nil, actions: [
+        (.default(title: R.string.localizable.cancel()), nil),
+        (.default(title: R.string.localizable.delete()), {[weak self] _ in
+            self?.verifyWalletPassword { (_) in
+                HUD.show()
+                let uuid = HDWalletManager.instance.wallet?.uuid
+                DispatchQueue.global().async {
+                    HDWalletManager.instance.deleteWallet()
+                    KeychainService.instance.clearCurrentWallet()
+                    DispatchQueue.main.async {
+                        CreateWalletService.sharedInstance.vitexInviteCode = nil
+                        HUD.hide()
+                        NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+                        DispatchQueue.global().async {
+                            if let uuid = uuid {
+                                FileHelper.deleteWalletDirectory(uuid: uuid)
+                            }
                         }
                     }
                 }
             }
-        }
+        }),
+        ])
     }
 
     private func _setupView() {

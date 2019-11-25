@@ -200,7 +200,7 @@ public extension ViteConst {
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://vitewalletdev.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
