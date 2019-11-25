@@ -2066,10 +2066,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailShowTransactionsButtonTitle = Rswift.StringResource(key: "balance.info.detail.show.transactions.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Chinese
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Claim Rewards
       /// 
       /// Locales: en, zh-Hans
@@ -2458,6 +2454,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: EN
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupLanguageEn = Rswift.StringResource(key: "mnemonic.backup.language.en", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -2494,10 +2494,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let transactionListPageEmpty = Rswift.StringResource(key: "transaction.list.page.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: English
-      /// 
-      /// Locales: en, zh-Hans
-      public static let mnemonicBackupLanguageEn = Rswift.StringResource(key: "mnemonic.backup.language.en", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining
       /// 
       /// Locales: en, zh-Hans
@@ -4646,6 +4642,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 中
+      /// 
+      /// Locales: en, zh-Hans
+      public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -5522,13 +5522,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.show.transactions.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Chinese
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Claim Rewards
       /// 
       /// Locales: en, zh-Hans
@@ -6208,6 +6201,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: EN
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupLanguageEn(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.language.en", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: ETH Address
       /// 
       /// Locales: en, zh-Hans
@@ -6269,13 +6269,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func transactionListPageEmpty(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.page.empty", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: English
-      /// 
-      /// Locales: en, zh-Hans
-      public static func mnemonicBackupLanguageEn(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.language.en", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining
@@ -10035,6 +10028,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 中
+      /// 
+      /// Locales: en, zh-Hans
+      public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

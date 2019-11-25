@@ -55,6 +55,7 @@ class CreateNameAndPwdView: UIView {
     let scanButton = UIButton().then {
         $0.setImage(R.image.icon_button_scan_gray(), for: .normal)
         $0.setImage(R.image.icon_button_scan_gray()?.highlighted, for: .highlighted)
+        $0.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
     }
 
     override init(frame: CGRect) {
