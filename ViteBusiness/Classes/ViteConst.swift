@@ -78,6 +78,7 @@ public extension ViteConst {
     public struct Cos {
         public var config: String
         public var discover: String
+        public var strapi: String
     }
 
     public struct Vite {
@@ -152,7 +153,8 @@ public extension ViteConst {
         public static var premainnet =
             Env(type: .premainnet,
                 cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
-                         discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com"),
+                         discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
+                         strapi: "https://wallet-config.vitewallet.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",
@@ -178,7 +180,8 @@ public extension ViteConst {
         public static let testEnv =
             Env(type: .test,
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
-                         discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com"),
+                         discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
+                         strapi: "http://129.226.74.210:1337"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
@@ -197,13 +200,14 @@ public extension ViteConst {
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://vitewalletdev.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
             Env(type: .stage,
                 cos: Cos(config: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com", // stage
-                         discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com"), // stage
+                         discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com",// stage
+                         strapi: "https://wallet-config.vitewallet.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",

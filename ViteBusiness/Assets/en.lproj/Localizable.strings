@@ -75,7 +75,10 @@
 "create.page.tf.title" = "Account Name";
 "create.page.pw.title" = "Please input password";
 "create.page.pw.repeate.title" = "Please input your password again";
+"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
+"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
 "create.page.submit.btn.title" = "Create";
+"create.page.toast.error.invite.code" = "Wrong Invitation Code";
 
 "create.page.tip.title" = "Backup Instructions";
 "create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
@@ -89,8 +92,8 @@
 "mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
 "mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
 "mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
-"mnemonic.backup.language.zh" = "Chinese";
-"mnemonic.backup.language.en" = "English";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
 
 "mnemonic.backup.scan.alert.title" = "Notice";
 "mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
@@ -174,6 +177,9 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
+"my.page.invite.cell.title" = "Mining Invitaion, Premiere Mining";
+"my.page.reward.cell.title" = "Rewards Enquiry";
+"my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 
@@ -287,10 +293,10 @@
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
 "system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
 "system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "日志回传";
-"system.page.cell.upload.log.toast.success" = "日志已上传";
-"system.page.cell.delete.wallet.title" = "删除当前账户";
-"system.page.cell.delete.wallet.alert.title" = "删除账户后只能通过助记词恢复账户，确认删除该账户吗？";
+"system.page.cell.upload.log.title" = "Upload Log";
+"system.page.cell.upload.log.toast.success" = "Log Uploaded";
+"system.page.cell.delete.wallet.title" = "Delete Current Account";
+"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";

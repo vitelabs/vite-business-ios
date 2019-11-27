@@ -209,22 +209,54 @@ extension ViteBalanceInfoManager {
 
     func balanceInfoDriver(forViteTokenId id: String) -> Driver<BalanceInfo?> {
         return balanceInfosDriver.map { map -> BalanceInfo? in
-            return map[id]
+            if let ret = map[id] {
+                return ret
+            } else {
+                if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
+                    return BalanceInfo(token: tokenInfo.toViteToken()!)
+                } else {
+                    return nil
+                }
+            }
         }
     }
 
     func dexBalanceInfoDriver(forViteTokenId id: String) -> Driver<DexBalanceInfo?> {
         return dexBalanceInfosDriver.map { map -> DexBalanceInfo? in
-            return map[id]
+            if let ret = map[id] {
+                return ret
+            } else {
+                if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
+                    return DexBalanceInfo(token: tokenInfo.toViteToken()!)
+                } else {
+                    return nil
+                }
+            }
         }
     }
 
     func balanceInfo(forViteTokenId id: String) -> BalanceInfo? {
-        return balanceInfos.value[id]
+        if let ret = balanceInfos.value[id] {
+            return ret
+        } else {
+            if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
+                return BalanceInfo(token: tokenInfo.toViteToken()!)
+            } else {
+                return nil
+            }
+        }
     }
 
     func dexBalanceInfo(forViteTokenId id: String) -> DexBalanceInfo? {
-        return dexBalanceInfosBehaviorRelay.value[id]
+        if let ret = dexBalanceInfosBehaviorRelay.value[id] {
+            return ret
+        } else {
+            if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
+                return DexBalanceInfo(token: tokenInfo.toViteToken()!)
+            } else {
+                return nil
+            }
+        }
     }
 }
 

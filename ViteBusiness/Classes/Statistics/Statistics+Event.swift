@@ -20,6 +20,11 @@ public extension Statistics {
         enum Common {
         }
 
+        enum CreateWallet: String {
+            case createWithInviteCode = "受邀新用户"
+            case importWithInviteCode = "恢复账户接受邀请"
+        }
+
         enum WalletHome: String {
             static var name = "wallet_home_page"
 
@@ -39,6 +44,14 @@ public extension Statistics {
             case bifrostDisConfirm = "home_ViteBifrost_dis_confirm"
         }
 
+        enum MarketHome: String {
+            static var name = "market_home_page"
+
+            case pairClicked = "交易对点击"
+            case inviteClicked = "交易所进入邀请活动页"
+
+        }
+
         enum MyHome: String {
             static var name = "my_home_page"
 
@@ -49,7 +62,7 @@ public extension Statistics {
             case mnemonicDeriveClicked = "personal_mnemonic_derive"
             case mnemonicConfirmClicked = "personal_mnemonic_confirm"
             case settingClicked = "personal_setting"
-            case inviteClicked = "personal_invite"
+            case inviteClicked = "我的进入交易活动页"
             case forumClicked = "personal_forum"
             case aboutClicked = "personal_about"
             case logoutClicked = "personal_logout"

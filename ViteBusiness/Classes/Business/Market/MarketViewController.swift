@@ -288,14 +288,6 @@ class MarketViewController: BaseViewController {
         }
     }
 
-    @objc func tappedBanner() {
-        if (LocalizationService.sharedInstance.currentLanguage == .chinese){
-            WebHandler.open("https://forum.vite.net/topic/2655/vitex-%E4%BA%A4%E6%98%93%E6%89%80%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97")
-          } else {
-            WebHandler.open("https://forum.vite.net/topic/2654/vitex-mobile-terminal-operation-guide")
-          }
-    }
-
     func configSortStatus() {
         let configs = self.marketVM.sortedMarketDataBehaviorRelay.value.map { $0.sortStatus }
         let index = self.contentView.pageView.currentIndex()

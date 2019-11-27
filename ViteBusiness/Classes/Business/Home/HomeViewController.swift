@@ -97,6 +97,17 @@ class HomeViewController: UITabBarController {
                     Statistics.log(eventId: "charts_home")
                 }
         }.disposed(by: rx.disposeBag)
+
+        DispatchQueue.main.async {
+            AppSettingsService.instance.appSettingsDriver.map{ $0.guide.vitexInvite}.distinctUntilChanged().drive(onNext: { [weak self] (ret) in
+                if ret {
+                    self?.tabBar.showBadgeDot(at: 4)
+                } else {
+                    self?.tabBar.hideBadgeDot(at: 4)
+                }
+            }).disposed(by: self.rx.disposeBag)
+
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -109,4 +120,41 @@ class HomeViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+
+extension UITabBar {
+    static let baseTag = 1234
+    func showBadgeDot(at index: Int) {
+        let tag = UITabBar.baseTag+index
+        let count = items?.count ?? 0
+        guard count > 0 else { return }
+
+        let view: UIView
+        if let v = self.viewWithTag(tag) {
+            view = v
+            view.isHidden = false
+        } else {
+            view = UIView().then {
+                $0.isUserInteractionEnabled = false
+                $0.backgroundColor = UIColor(netHex: 0xFF0008)
+                $0.layer.masksToBounds = true
+                $0.layer.cornerRadius = 3.5
+                $0.tag = tag
+            }
+
+            addSubview(view)
+            view.snp.makeConstraints { (m) in
+                m.size.equalTo(CGSize(width: 7, height: 7))
+                m.top.equalToSuperview().offset(10)
+                m.left.equalToSuperview().offset(kScreenW * (CGFloat(index)+0.5) / CGFloat(count) + 10)
+            }
+        }
+    }
+
+    func hideBadgeDot(at index: Int) {
+        let tag = UITabBar.baseTag+index
+        guard let view = self.viewWithTag(tag) else { return }
+        view.isHidden = true
+    }
 }

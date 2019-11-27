@@ -201,7 +201,7 @@ extension MarketInfoService {
             MarketData.init(categary: "USDT", infos: []),
         ]
 
-        let currency = AppSettingsService.instance.currencyBehaviorRelay.value?.value
+        let currency = AppSettingsService.instance.appSettings.currency
         var rateMap = [String: Double]()
         for i in r {
             guard let key = JSON(i)["tokenSymbol"].string else { return }
@@ -313,7 +313,7 @@ public class MarketInfo {
         let tickerStatistics =  self.statistic!
         var url = ViteConst.instance.market.baseWebUrl + "#/index"
           url = url  + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-          url = url   + "&currency=" + AppSettingsService.instance.currencyBehaviorRelay.value.rawValue
+          url = url   + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
           url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
            url = url   + "&category=" + (tickerStatistics.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
           url = url    + "&symbol=" + tickerStatistics.symbol

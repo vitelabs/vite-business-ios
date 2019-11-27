@@ -77,7 +77,10 @@
 "create.page.tf.title" = "账户名";
 "create.page.pw.title" = "请输入密码";
 "create.page.pw.repeate.title" = "重复输入密码";
+"create.page.invite.code.title" = "填写邀请码或扫描邀请二维码，享交易9折，挖矿升级";
+"create.page.invite.code.placeholder" = "填写邀请码（可选）";
 "create.page.submit.btn.title" = "创建";
+"create.page.toast.error.invite.code" = "邀请码错误";
 
 "create.page.tip.title" = "备份须知";
 "create.page.tip.content1" = "拥有助记词等于拥有所有资产。";
@@ -177,6 +180,9 @@
 "my.page.contacts.cell.title" = "联系地址";
 "my.page.mnemonic.cell.title" = "助记词";
 "my.page.system.cell.title" = "使用设置";
+"my.page.invite.cell.title" = "组建矿队，升级挖矿";
+"my.page.reward.cell.title" = "奖励查询";
+"my.page.forum.cell.title" = "官方论坛";
 "my.page.aboutUs.cell.title" = "关于我们";
 "my.page.change.wallet.name.alter.title" = "修改账户名";
 

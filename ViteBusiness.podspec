@@ -106,7 +106,7 @@ Pod::Spec.new do |s|
   s.dependency 'Crashlytics'
   s.dependency 'Firebase/Core'
 
-  s.dependency 'MLeaksFinder'
+#  s.dependency 'MLeaksFinder'
 
   s.dependency 'ViteWallet'
   #s.dependency 'ViteEthereum'

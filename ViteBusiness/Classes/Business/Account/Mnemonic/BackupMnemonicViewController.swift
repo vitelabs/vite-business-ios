@@ -341,7 +341,7 @@ extension BackupMnemonicViewController {
             addSubview(checkButton)
             addSubview(label)
             checkButton.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(2)
+                m.top.equalToSuperview().offset(3)
                 m.left.equalToSuperview()
                 m.size.equalTo(CGSize(width: 12, height: 12))
             }

@@ -84,6 +84,10 @@ class WalletHomeViewController: BaseViewController {
         if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
             CreateWalletService.sharedInstance.showBackUpTipAlert()
         }
+        if let code = CreateWalletService.sharedInstance.vitexInviteCode {
+            WalletManager.instance.update(vitexInviteCode: code)
+        }
+
         GCD.delay(1) {
             CreateWalletService.sharedInstance.GoExportMnemonicIfNeeded()
             WalletManager.instance.bindInviteIfNeeded()
@@ -296,7 +300,7 @@ class WalletHomeViewController: BaseViewController {
         }
         let viteXBalanceInfo = self.tableViewModel.lastViteXBalanceInfos[indexPath.row]
         let tokenInfo = viteXBalanceInfo.tokenInfo
-        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
+        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: false)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

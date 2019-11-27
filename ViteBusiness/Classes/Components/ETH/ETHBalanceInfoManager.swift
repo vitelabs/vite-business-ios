@@ -163,7 +163,11 @@ extension ETHBalanceInfoManager {
 
     func balanceInfoDriver(for tokenCode: TokenCode) -> Driver<ETHBalanceInfo?> {
         return balanceInfosDriver.map({ [weak self] map -> ETHBalanceInfo? in
-            return map[tokenCode]
+            if let ret = map[tokenCode] {
+                return ret
+            } else {
+                return ETHBalanceInfo(tokenCode: tokenCode, balance: Amount(0))
+            }
         })
     }
 }

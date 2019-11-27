@@ -34,7 +34,7 @@ class MarketBannerView: UIView {
 
         addSubview(pagerView)
         pagerView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
+            m.left.right.equalToSuperview()
             m.top.bottom.equalToSuperview()
             m.height.equalTo((kScreenW-48)*282/981)
         }
@@ -42,6 +42,9 @@ class MarketBannerView: UIView {
         pagerView.dataSource = self
         pagerView.delegate = self
         pagerView.automaticSlidingInterval = 3.0
+        pagerView.interitemSpacing = 10
+        pagerView.transformer = FSPagerViewTransformer(type: .linear)
+        pagerView.itemSize = CGSize(width: kScreenW-48, height: (kScreenW-48)*282/981)
         pagerView.register(MarketBannerCell.self, forCellWithReuseIdentifier: "MarketBannerCell")
 
         AppContentService.instance.storageDriver.map { $0.marketBannerItems }.drive(onNext: { [weak self] (items) in
@@ -75,7 +78,10 @@ extension MarketBannerView: FSPagerViewDataSource, FSPagerViewDelegate {
         guard item.linkUrl != "", let url = URL(string: item.linkUrl) else {
             return
         }
-        let vc = WKWebViewController("", url: url)
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+
+        NavigatorManager.instance.route(url: url)
+        if url.absoluteString.hasPrefix("https://app.vite.net/webview/vitex_invite_inner/index.html") {
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MarketHome.inviteClicked.rawValue)
+        }
     }
 }

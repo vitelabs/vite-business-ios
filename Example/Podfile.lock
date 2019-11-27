@@ -33,7 +33,6 @@ PODS:
   - Differentiator (3.1.0)
   - Eureka (4.3.1)
   - Fabric (1.10.2)
-  - FBRetainCycleDetector (0.1.4)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -60,6 +59,7 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
+  - FSPagerView (0.8.3)
   - GoogleAppMeasurement (6.0.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -91,8 +91,6 @@ PODS:
   - KMNavigationBarTransition (1.1.5)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.2.0)
-  - MLeaksFinder (1.0.0):
-    - FBRetainCycleDetector
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
@@ -163,7 +161,7 @@ PODS:
     - Result
     - SwiftyJSON
   - Vite_HDWalletKit (1.3.0):
-    - BigInt (~> 3.0)
+    - BigInt
     - CryptoSwift (= 1.0.0)
     - TrezorCryptoEd25519WithBlake2b (~> 0.0.1)
   - ViteBusiness (0.0.1):
@@ -181,13 +179,13 @@ PODS:
     - Eureka (~> 4.3.0)
     - Fabric
     - Firebase/Core
+    - FSPagerView
     - JSONRPCKit (~> 3.0.0)
     - KeychainSwift
     - Kingfisher (~> 4.0)
     - KMNavigationBarTransition
     - MBProgressHUD
     - MJRefresh
-    - MLeaksFinder
     - Moya
     - "NSObject+Rx"
     - NYXImagesKit (= 2.3)
@@ -240,10 +238,10 @@ PODS:
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
   - R.swift (= 5.0.0.alpha.3)
-  - Vite_GrinWallet (from `https://github.com/vitelabs/Vite_GrinWallet.git`, commit `5219021d0f7e0db3443500eca1a5146c3ed30163`)
-  - Vite_HDWalletKit (from `https://github.com/vitelabs/vite-keystore-ios.git`, commit `14d8e1d4f26e27e92439c688b8c65a029c8395f9`)
+  - Vite_GrinWallet (from `https://github.com/vitelabs/Vite_GrinWallet.git`, commit `1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd`)
+  - Vite_HDWalletKit (from `https://github.com/vitelabs/vite-keystore-ios.git`, commit `afd57479c20f6514fb20f47cb0c011db7d471457`)
   - ViteBusiness (from `../`)
-  - ViteWallet (from `https://github.com/vitelabs/vite-wallet-ios.git`, commit `363fcd9e3759aa9619f1a4d1ca8c6d0f23268cfc`)
+  - ViteWallet (from `https://github.com/vitelabs/vite-wallet-ios.git`, commit `5be504e2ecf9997b08bfb85164700a376ace35b9`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -261,12 +259,12 @@ SPEC REPOS:
     - Differentiator
     - Eureka
     - Fabric
-    - FBRetainCycleDetector
     - FBSnapshotTestCase
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
+    - FSPagerView
     - GoogleAppMeasurement
     - GoogleUtilities
     - JSONRPCKit
@@ -275,7 +273,6 @@ SPEC REPOS:
     - KMNavigationBarTransition
     - MBProgressHUD
     - MJRefresh
-    - MLeaksFinder
     - Moya
     - nanopb
     - "NSObject+Rx"
@@ -312,26 +309,26 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Vite_GrinWallet:
-    :commit: 5219021d0f7e0db3443500eca1a5146c3ed30163
+    :commit: 1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd
     :git: https://github.com/vitelabs/Vite_GrinWallet.git
   Vite_HDWalletKit:
-    :commit: 14d8e1d4f26e27e92439c688b8c65a029c8395f9
+    :commit: afd57479c20f6514fb20f47cb0c011db7d471457
     :git: https://github.com/vitelabs/vite-keystore-ios.git
   ViteBusiness:
     :path: "../"
   ViteWallet:
-    :commit: 363fcd9e3759aa9619f1a4d1ca8c6d0f23268cfc
+    :commit: 5be504e2ecf9997b08bfb85164700a376ace35b9
     :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 CHECKOUT OPTIONS:
   Vite_GrinWallet:
-    :commit: 5219021d0f7e0db3443500eca1a5146c3ed30163
+    :commit: 1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd
     :git: https://github.com/vitelabs/Vite_GrinWallet.git
   Vite_HDWalletKit:
-    :commit: 14d8e1d4f26e27e92439c688b8c65a029c8395f9
+    :commit: afd57479c20f6514fb20f47cb0c011db7d471457
     :git: https://github.com/vitelabs/vite-keystore-ios.git
   ViteWallet:
-    :commit: 363fcd9e3759aa9619f1a4d1ca8c6d0f23268cfc
+    :commit: 5be504e2ecf9997b08bfb85164700a376ace35b9
     :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 SPEC CHECKSUMS:
@@ -349,12 +346,12 @@ SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Firebase: 9445469655a98e9010737f4bc4720e5bda465873
   FirebaseAnalytics: 69fe25866d2ec87c6f02d72c3c9a82bce9c065a0
   FirebaseCore: 7ea99e200f0024262650be56623fbe6a7bef1707
   FirebaseInstanceID: 9782fcfb89e4d7da76cc28eac4b8543dc7be4a4b
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   GoogleAppMeasurement: 1e45fa601e6280c180880d57010390f6679cd971
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   JSONRPCKit: 50e0dc5e7f873e87f81562feb8836b7d1974da6d
@@ -363,7 +360,6 @@ SPEC CHECKSUMS:
   KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
@@ -396,12 +392,12 @@ SPEC CHECKSUMS:
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
-  Vite_HDWalletKit: 367effe02a337101d345fe54613a13cdb6971184
-  ViteBusiness: 580638cb6520983ba58b40a9fc701da739833c33
+  Vite_HDWalletKit: 75a0b78af01de2028e0a2fd8c2cbe04eea21ae86
+  ViteBusiness: 9aed839d0f366a82b7fecdeedd6447b236760d7c
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 54e02dfe2807ed2cb04c85575713500e6f440822
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: fce076cc7131de0a1bfd569f2d698d6e4248cb97
+PODFILE CHECKSUM: 6b8b5f55f69ca7822d72c4bb00bb86518372ae36
 
 COCOAPODS: 1.7.5

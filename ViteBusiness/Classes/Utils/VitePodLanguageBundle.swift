@@ -23,6 +23,18 @@ open class VitePodLocalizationService: NSObject {
 
     public override init() {
         super.init()
+
+        func update(language: ViteLanguage, cacheTextDic: [String: String]) {
+            let prefix = "\(self.bundleName)."
+            let dic = NSMutableDictionary()
+            for (key, value) in cacheTextDic where key.hasPrefix(prefix) {
+                dic[(key as NSString).substring(from: prefix.count) as String] = value
+            }
+            self.cacheTextDic = dic as! [String: String]
+            self.currentLanguage = language
+
+        }
+
         NotificationCenter.default.addObserver(forName: .localizedStringChanged, object: nil, queue: nil) { [weak self] notification in
             guard let `self` = self else { return }
             guard let userInfo = notification.userInfo,
@@ -31,14 +43,10 @@ open class VitePodLocalizationService: NSObject {
                     return
             }
 
-            let prefix = "\(self.bundleName)."
-            let dic = NSMutableDictionary()
-            for (key, value) in cacheTextDic where key.hasPrefix(prefix) {
-                dic[(key as NSString).substring(from: prefix.count) as String] = value
-            }
-            self.cacheTextDic = dic as! [String: String]
-            self.currentLanguage = language
+            update(language: language, cacheTextDic: cacheTextDic)
         }
+
+        update(language: LocalizationService.sharedInstance.currentLanguage, cacheTextDic: LocalizationService.sharedInstance.cacheTextDic)
     }
 }
 

@@ -13,6 +13,7 @@ import RxSwift
 import NSObject_Rx
 import Vite_HDWalletKit
 import ActiveLabel
+import ViteWallet
 
 extension CreateWalletAccountViewController {
 
@@ -72,7 +73,13 @@ class CreateWalletAccountViewController: BaseViewController {
         self.createNameAndPwdView.inviteCodeTF.textField.text = CreateWalletService.sharedInstance.vitexInviteCode
     }
 
-    let contentView = UIView()
+    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 24, right: 24)).then {
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+    }
 
     lazy var createNameAndPwdView: CreateNameAndPwdView = {
         let createNameAndPwdView = CreateNameAndPwdView()
@@ -123,42 +130,57 @@ extension CreateWalletAccountViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        kas_activateAutoScrollingForView(contentView)
+        kas_activateAutoScrollingForView(scrollView)
     }
 
     private func _addViewConstraint() {
-        view.insertSubview(contentView, at: 0)
-        contentView.snp.makeConstraints { (m) in
-            m.edges.equalTo(view)
+        view.insertSubview(scrollView, at: 0)
+        scrollView.snp.makeConstraints { (m) in
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.left.right.equalTo(view)
         }
-        contentView.addSubview(self.createNameAndPwdView)
-        self.createNameAndPwdView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(contentView).offset(24)
-            make.right.equalTo(contentView).offset(-24)
-            make.top.equalTo(contentView).offset(60)
-        }
+        scrollView.stackView.addArrangedSubview(createNameAndPwdView)
+        scrollView.stackView.addPlaceholder(height: 15)
+        scrollView.stackView.addArrangedSubview(checkButton)
 
-        contentView.addSubview(self.checkButton)
-        self.checkButton.snp.makeConstraints { (m) in
-            m.top.equalTo(self.createNameAndPwdView.snp.bottom).offset(15)
-            m.left.equalTo(contentView).offset(24)
-            m.right.equalTo(contentView).offset(-24)
-        }
-
-        contentView.addSubview(self.submitBtn)
+        view.addSubview(self.submitBtn)
         self.submitBtn.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(contentView).offset(24)
-            make.right.equalTo(contentView).offset(-24)
+            make.top.equalTo(scrollView.snp.bottom)
+            make.left.equalToSuperview().offset(24)
+            make.right.equalToSuperview().offset(-24)
             make.height.equalTo(50)
-            make.bottom.equalTo(contentView.safeAreaLayoutGuideSnpBottom).offset(-24)
+            make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
     }
 
     func goNextVC() {
-        let name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
-        let password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
-        CreateWalletService.sharedInstance.set(name: name, password: password)
-        let vc = CreateWalletTipViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        func go() {
+            let name = self.createNameAndPwdView.walletNameTF.textField.text!.trimmingCharacters(in: .whitespaces)
+            let password = self.createNameAndPwdView.passwordRepeateTF.textField.text!
+            CreateWalletService.sharedInstance.set(name: name, password: password)
+            let vc = CreateWalletTipViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+        if let text = self.createNameAndPwdView.inviteCodeTF.textField.text, !text.isEmpty {
+            HUD.show()
+            WalletManager.instance.checkVitexInviteCode(vitexInviteCode: text).always {
+                HUD.hide()
+            }.done { (ret) in
+                if ret {
+                    CreateWalletService.sharedInstance.vitexInviteCode = text
+                    Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.CreateWallet.createWithInviteCode.rawValue)
+                    go()
+                } else {
+                    Toast.show(R.string.localizable.createPageToastErrorInviteCode())
+                }
+            }.catch { (error) in
+                Toast.show(ViteError.conversion(from: error).viteErrorMessage)
+            }
+        } else {
+            go()
+        }
+
     }
 }
