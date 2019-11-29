@@ -938,3 +938,20 @@
 "market.operator" =  "Operators";
 "market.switch" =  "Exchange";
 
+// DeFi
+"defi.home.page.title" =  "DeFi";
+"defi.home.page.borrow.button.title" =  "我要借币";
+"defi.home.page.my.defi.button.title" =  "我的DeFi";
+"defi.home.page.all.product" =  "所有产品";
+"defi.home.page.sort.publish.time" =  "发布时间倒序";
+"defi.home.page.sort.remain.time" =  "剩余认购时间从短到长";
+"defi.home.page.sort.earnings" =  "年化收益率从高到底";
+"defi.home.page.sort.borrow.time" =  "借款期限从短到长";
+"defi.home.page.sort.progress" =  "认购进度从高到低";
+
+"defi.home.page.cell.end.time" =  "%@天%@后结束认购";
+"defi.home.page.cell.rate.title" =  "年化收益率";
+"defi.home.page.cell.total.amount" =  "借币金额";
+"defi.home.page.cell.each.amount" =  "每份金额";
+"defi.home.page.cell.borrow.time" =  "%@天借币期限";
+"defi.home.page.cell.buy.button.title" =  "立即抢购";
