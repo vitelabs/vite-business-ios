@@ -185,7 +185,7 @@ public extension ViteConst {
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
-                           x: "http://132.232.65.121:8080/test",
+                           x: "https://vitex.vite.net/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001",
                            exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex",

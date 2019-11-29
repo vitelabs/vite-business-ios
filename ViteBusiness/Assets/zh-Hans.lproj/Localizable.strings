@@ -668,8 +668,8 @@
 "crosschain.tokendetail" = "代币详情";
 "crosschain.deposit" = "跨链充值";
 "crosschain.withdraw" = "跨链提现";
-"crosschain.withdraw.btnTitle" = "充值";
-"crosschain.deposit.btnTitle" = "提现";
+"crosschain.withdraw.btnTitle" = "提现";
+"crosschain.deposit.btnTitle" = "充值";
 "crosschain.deposit.vitewallet" = "Vite钱包转入";
 "crosschain.deposit.otherwallet" = "其他钱包转入";
 "crosschain.deposit.history" = "充值记录";
@@ -947,4 +947,22 @@
 "market.operator" =  "运营商";
 "market.switch" =  "切换交易对";
 
+// DeFi
+"defi.home.page.title" =  "DeFi";
+"defi.home.page.borrow.button.title" =  "我要借币";
+"defi.home.page.my.defi.button.title" =  "我的DeFi";
+"defi.home.page.all.product" =  "所有产品";
+"defi.home.page.sort.title" =  "请选择排序";
+"defi.home.page.sort.publish.time" =  "发布时间倒序";
+"defi.home.page.sort.remain.time" =  "剩余认购时间从短到长";
+"defi.home.page.sort.earnings" =  "年化收益率从高到底";
+"defi.home.page.sort.borrow.time" =  "借款期限从短到长";
+"defi.home.page.sort.progress" =  "认购进度从高到低";
 
+"defi.home.page.cell.end.time.format" =  "%@天%@";
+"defi.home.page.cell.end.time" =  "%@后结束认购";
+"defi.home.page.cell.rate.title" =  "年化收益率";
+"defi.home.page.cell.total.amount" =  "借币金额";
+"defi.home.page.cell.each.amount" =  "每份金额";
+"defi.home.page.cell.borrow.time" =  "%@天借币期限";
+"defi.home.page.cell.buy.button.title" =  "立即抢购";

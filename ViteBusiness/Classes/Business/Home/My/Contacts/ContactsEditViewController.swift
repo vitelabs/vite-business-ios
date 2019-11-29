@@ -106,7 +106,8 @@ class ContactsEditViewController: BaseViewController {
             nameView.textField.rx.text.asDriver(),
             addressView.textView.rx.text.asDriver())
             .map { !(($0 ?? "").isEmpty || ($1 ?? "").isEmpty) }
-        .drive(saveButton.rx.isEnabled)
+            .drive(saveButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
 
         saveButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
