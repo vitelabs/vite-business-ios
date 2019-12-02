@@ -33,28 +33,29 @@ class ProgressView: UIView {
 
     private let maxView = UIView().then {
         $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = 2
     }
 
     private let currentView = UIView().then {
         $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = 2
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(height: CGFloat) {
+        super.init(frame: .zero)
 
         addSubview(maxView)
         addSubview(currentView)
 
         maxView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
-            m.height.equalTo(4)
+            m.height.equalTo(height)
         }
 
         currentView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
+
+        maxView.layer.cornerRadius = height / 2
+        currentView.layer.cornerRadius = height / 2
     }
 
     required init?(coder: NSCoder) {

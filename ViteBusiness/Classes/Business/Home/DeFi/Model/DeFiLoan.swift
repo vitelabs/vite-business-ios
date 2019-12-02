@@ -1,5 +1,5 @@
 //
-//  DeFiProduct.swift
+//  DeFiLoan.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/11/29.
@@ -10,7 +10,20 @@ import ObjectMapper
 import BigInt
 import ViteWallet
 
-struct DeFiProduct: Mappable {
+enum DeFiProductStatus: Int {
+    case onSale = 1
+    case failed = 2
+    case success = 3
+    case cancel = 4
+}
+
+enum DeFiRefundStatus: Int {
+    case invalid = 0
+    case refunding = 1
+    case refunded = 2
+}
+
+struct DeFiLoan: Mappable {
 
     enum Status: Int {
         case onSale = 1
@@ -18,19 +31,6 @@ struct DeFiProduct: Mappable {
         case success = 3
         case refunding = 4
         case refunded = 5
-    }
-
-    fileprivate enum ProductStatus: Int {
-        case onSale = 1
-        case failed = 2
-        case success = 3
-        case cancel = 4
-    }
-
-    fileprivate enum RefundStatus: Int {
-        case invalid = 0
-        case refunding = 1
-        case refunded = 2
     }
 
     fileprivate(set) var productHash: String!
@@ -42,8 +42,8 @@ struct DeFiProduct: Mappable {
     fileprivate(set) var loanDuration: UInt64!
     fileprivate(set) var subscribedAmount: Amount!
     fileprivate(set) var loanCompleteness: Double!
-    fileprivate var productStatus: ProductStatus!
-    fileprivate var refundStatus: RefundStatus!
+    fileprivate var productStatus: DeFiProductStatus!
+    fileprivate var refundStatus: DeFiRefundStatus!
 
     var status: Status {
         switch productStatus! {

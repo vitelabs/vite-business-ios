@@ -19,17 +19,17 @@ class DeFiListViewModel: ListViewModel<DeFiHomeProductCell> {
         tirggerRefresh()
     }
 
-    override func refresh() -> Promise<(items: [DeFiProduct], hasMore: Bool)> {
-        return UnifyProvider.defi.getAllOnSaleProducts(sortType: sortType, offset: 0, limit: type(of: self).limit)
+    override func refresh() -> Promise<(items: [DeFiLoan], hasMore: Bool)> {
+        return UnifyProvider.defi.getAllOnSaleLoans(sortType: sortType, offset: 0, limit: type(of: self).limit)
             .map { (items: $0, hasMore: $0.count >= type(of: self).limit) }
     }
 
-    override func loadMore() -> Promise<(items: [DeFiProduct], hasMore: Bool)> {
-        return UnifyProvider.defi.getAllOnSaleProducts(sortType: sortType, offset: items.count, limit: type(of: self).limit)
+    override func loadMore() -> Promise<(items: [DeFiLoan], hasMore: Bool)> {
+        return UnifyProvider.defi.getAllOnSaleLoans(sortType: sortType, offset: items.count, limit: type(of: self).limit)
             .map { (items: $0, hasMore: $0.count >= type(of: self).limit) }
     }
 
-    override func clicked(model: DeFiProduct) {
+    override func clicked(model: DeFiLoan) {
 
     }
 }
