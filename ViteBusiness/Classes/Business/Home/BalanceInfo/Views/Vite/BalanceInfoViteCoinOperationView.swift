@@ -18,25 +18,39 @@ class BalanceInfoViteCoinOperationView: UIView {
 
     let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote(), style: .single)
 
+     let buyCoinButton = OperationButton(icon: R.image.exchange_tabbar_icon(), title:  R.string.localizable.exchangeTitley(), style: .single)
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-
 
         clipsToBounds = false
         
         addSubview(voteButton)
+        addSubview(buyCoinButton)
+
 
         voteButton.snp.makeConstraints { (m) in
-            m.top.bottom.equalToSuperview()
-            m.left.equalToSuperview()
-            m.right.equalToSuperview()
-        }
+           m.top.bottom.equalToSuperview()
+           m.left.equalToSuperview()
+       }
+
+       buyCoinButton.snp.makeConstraints { (m) in
+           m.top.bottom.equalToSuperview()
+           m.left.equalTo(voteButton.snp.right).offset(15)
+           m.right.equalToSuperview()
+           m.width.equalTo(voteButton)
+       }
 
         voteButton.button.rx.tap.bind {
             Statistics.log(eventId: Statistics.Page.WalletHome.voteClicked.rawValue)
             let sendViewController = VoteHomeViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
+
+        buyCoinButton.button.rx.tap.bind {
+
+        UIViewController.current?.navigationController?.pushViewController(ExchangeViewController(), animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

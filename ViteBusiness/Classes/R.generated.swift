@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 225 images.
+  /// This `R.image` struct is generated, and contains static references to 226 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -56,6 +56,8 @@ public struct R: Rswift.Validatable {
     public static let crosschain_status_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_vite")
     /// Image `crosschain_withdrwa`.
     public static let crosschain_withdrwa = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_withdrwa")
+    /// Image `defi_lock`.
+    public static let defi_lock = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_lock")
     /// Image `dotted_line`.
     public static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
@@ -562,6 +564,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "crosschain_withdrwa", bundle: ..., traitCollection: ...)`
     public static func crosschain_withdrwa(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_withdrwa, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "defi_lock", bundle: ..., traitCollection: ...)`
+    public static func defi_lock(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.defi_lock, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
