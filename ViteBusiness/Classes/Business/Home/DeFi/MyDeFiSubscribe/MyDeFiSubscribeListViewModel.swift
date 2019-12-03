@@ -17,7 +17,7 @@ class MyDeFiSubscribeListViewModel: ListViewModel<MyDeFiSubscribeCell> {
     init(tableView: UITableView, status: DeFiAPI.ProductStatus) {
         self.status = status
         super.init(tableView: tableView)
-//        tirggerRefresh()
+        tirggerRefresh()
     }
 
     override func refresh() -> Promise<(items: [DeFiSubscription], hasMore: Bool)> {
