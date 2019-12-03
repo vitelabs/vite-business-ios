@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 226 images.
+  /// This `R.image` struct is generated, and contains static references to 230 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -56,6 +56,8 @@ public struct R: Rswift.Validatable {
     public static let crosschain_status_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_vite")
     /// Image `crosschain_withdrwa`.
     public static let crosschain_withdrwa = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_withdrwa")
+    /// Image `defi_alert_cn`.
+    public static let defi_alert_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_alert_cn")
     /// Image `defi_lock`.
     public static let defi_lock = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_lock")
     /// Image `dotted_line`.
@@ -348,6 +350,12 @@ public struct R: Rswift.Validatable {
     public static let icon_tabbar_debug_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug_select")
     /// Image `icon_tabbar_debug`.
     public static let icon_tabbar_debug = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug")
+    /// Image `icon_tabbar_defi_hot`.
+    public static let icon_tabbar_defi_hot = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi_hot")
+    /// Image `icon_tabbar_defi_unselected`.
+    public static let icon_tabbar_defi_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi_unselected")
+    /// Image `icon_tabbar_defi`.
+    public static let icon_tabbar_defi = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi")
     /// Image `icon_tabbar_market_select`.
     public static let icon_tabbar_market_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_market_select")
     /// Image `icon_tabbar_market`.
@@ -564,6 +572,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "crosschain_withdrwa", bundle: ..., traitCollection: ...)`
     public static func crosschain_withdrwa(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_withdrwa, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "defi_alert_cn", bundle: ..., traitCollection: ...)`
+    public static func defi_alert_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.defi_alert_cn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "defi_lock", bundle: ..., traitCollection: ...)`
@@ -1294,6 +1307,21 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_tabbar_debug_select", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_debug_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_debug_select, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_tabbar_defi", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_defi(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_defi, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_tabbar_defi_hot", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_defi_hot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_defi_hot, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_tabbar_defi_unselected", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_defi_unselected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_defi_unselected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_tabbar_market", bundle: ..., traitCollection: ...)`

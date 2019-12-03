@@ -16,9 +16,9 @@ class BalanceInfoViteCoinOperationView: UIView {
         return CGSize(width: 0, height: 44)
     }
 
-    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote(), style: .single)
+    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote())
 
-     let buyCoinButton = OperationButton(icon: R.image.exchange_tabbar_icon(), title:  R.string.localizable.exchangeTitley(), style: .single)
+     let buyCoinButton = OperationButton(icon: R.image.exchange_tabbar_icon(), title:  R.string.localizable.exchangeTitley())
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,7 +48,7 @@ class BalanceInfoViteCoinOperationView: UIView {
             }.disposed(by: rx.disposeBag)
 
         buyCoinButton.button.rx.tap.bind {
-
+            Statistics.log(eventId: "instant_purchase")
         UIViewController.current?.navigationController?.pushViewController(ExchangeViewController(), animated: true)
         }.disposed(by: rx.disposeBag)
     }
