@@ -105,6 +105,22 @@ class MyDeFiLoanHeaderView: UIView {
         self.bgView.layer.masksToBounds = true
         self.bgView.layer.cornerRadius = 2
         self.setShadow(width: 0, height: 2, radius: 10)
+
+
+        accountButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            FloatButtonsView(targetView: self.accountButton,
+                             delegate: self,
+                             titles: [R.string.localizable.defiMyPageMyLoanButtonTransferTitle(),
+                                      R.string.localizable.defiMyPageMyLoanButtonBilTitle()]).show()
+        }.disposed(by: rx.disposeBag)
+
+        loanButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            FloatButtonsView(targetView: self.loanButton,
+                             delegate: self,
+                             titles: [R.string.localizable.defiMyPageMyLoanButtonBilTitle()]).show()
+        }.disposed(by: rx.disposeBag)
     }
 
     override var intrinsicContentSize: CGSize {
@@ -115,4 +131,20 @@ class MyDeFiLoanHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+extension MyDeFiLoanHeaderView: FloatButtonsViewDelegate {
+    func didClick(at index: Int, targetView: UIView) {
+        if targetView === accountButton {
+            if index == 0 {
+
+            } else {
+                let vc = MyDeFiBillViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
+        } else if targetView === loanButton {
+            let vc = MyDeFiBillViewController()
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

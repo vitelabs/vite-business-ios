@@ -218,7 +218,7 @@ class EthSendTokenController: BaseViewController {
 
 // MARK: FloatButtonsViewDelegate
 extension EthSendTokenController: FloatButtonsViewDelegate {
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
             let vc = AddressListViewController(viewModel: viewModel)

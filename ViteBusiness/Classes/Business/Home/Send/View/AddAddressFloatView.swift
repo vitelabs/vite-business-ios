@@ -13,7 +13,7 @@ import RxCocoa
 import NSObject_Rx
 
 protocol FloatButtonsViewDelegate: class {
-    func didClick(at index: Int)
+    func didClick(at index: Int, targetView: UIView)
 }
 
 class FloatButtonsView: VisualEffectAnimationView {
@@ -57,7 +57,7 @@ class FloatButtonsView: VisualEffectAnimationView {
 
             button.rx.tap.bind { [weak self] in
                 self?.hide()
-                self?.delegate?.didClick(at: index)
+                self?.delegate?.didClick(at: index, targetView: targetView)
                 }.disposed(by: rx.disposeBag)
         }
 
