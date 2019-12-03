@@ -142,6 +142,7 @@ class MyDeFiViewController: BaseViewController {
             _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.defiHomePageSortTitle(), rows: statuss.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
                 guard let `self` = self else { return }
                 let status = statuss[index]
+                guard status != currentStatus else { return }
                 self.filtrateButton.setTitle(status.name, for: .normal)
                 if self.isLoan {
                     self.loanVC.status = status
