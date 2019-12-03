@@ -957,3 +957,29 @@
 "defi.home.page.cell.each.amount" =  "每份金额";
 "defi.home.page.cell.borrow.time" =  "%@天借币期限";
 "defi.home.page.cell.buy.button.title" =  "立即抢购";
+
+// My DeFi
+"defi.my.page.title" =  "我的DeFi";
+"defi.my.page.my.loan.account.amount" =  "基础余额";
+"defi.my.page.my.loan.loan.amount" =  "借币余额";
+"defi.my.page.my.loan.button.transfer.title" =  "划转";
+"defi.my.page.my.loan.button.bil.title" =  "查看流水";
+
+"defi.my.page.my.loan.title" =  "我的借币";
+"defi.my.page.my.loan.sort.all" =  "全部";
+"defi.my.page.my.loan.sort.on.sale" =  "认购中";
+"defi.my.page.my.loan.sort.failed" =  "到期未售罄";
+"defi.my.page.my.loan.sort.success" =  "成功售罄";
+"defi.my.page.my.loan.sort.cancel" =  "已取消";
+
+"defi.my.page.my.subscribe.issued.earnings" =  "已发放收益";
+"defi.my.page.my.subscribe.predict.amount" =  "预计总收益";
+"defi.my.page.my.subscribe.subscribe.amount" =  "已认购金额";
+"defi.my.page.my.subscribe.earnings.rate" =  "我的收益率";
+
+"defi.my.page.my.subscribe.title" =  "我的认购";
+"defi.my.page.my.subscribe.sort.all" =  "全部";
+"defi.my.page.my.subscribe.sort.on.sale" =  "认购中";
+"defi.my.page.my.subscribe.sort.failed" =  "到期未售罄";
+"defi.my.page.my.subscribe.sort.success" =  "成功售罄";
+"defi.my.page.my.subscribe.sort.cancel" =  "已取消";

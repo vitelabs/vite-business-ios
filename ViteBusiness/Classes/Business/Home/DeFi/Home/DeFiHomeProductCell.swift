@@ -9,7 +9,7 @@ import Foundation
 import ViteWallet
 
 class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
-    typealias Model = DeFiProduct
+    typealias Model = DeFiLoan
 
     static var cellHeight: CGFloat {
         return 145
@@ -45,7 +45,7 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         $0.text = R.string.localizable.defiHomePageCellRateTitle()
     }
 
-    fileprivate let progressView = ProgressView()
+    fileprivate let progressView = ProgressView(height: 4)
 
     fileprivate let progressLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -167,7 +167,7 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(_ item: DeFiProduct) {
+    func bind(_ item: DeFiLoan) {
 
         endTimeLabel.text = R.string.localizable.defiHomePageCellEndTime(item.countDownString)
         rateLabel.text = String(format: "%.2f%%", item.yearRate*100)

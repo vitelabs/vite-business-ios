@@ -78,7 +78,7 @@ class DeFiProductInfoCard: UIView {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59)
     }
-    let progressView =  ProgressView()
+    let progressView =  ProgressView(height: 4)
     let deadLineDescLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
     }

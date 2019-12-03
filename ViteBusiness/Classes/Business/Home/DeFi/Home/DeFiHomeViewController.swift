@@ -36,9 +36,7 @@ class DeFiHomeViewController: BaseViewController {
         $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
     }
 
-    let tableView = UITableView(frame: .zero, style: .plain).then {
-        $0.separatorStyle = .none
-    }
+    let tableView = UITableView(frame: .zero, style: .plain)
 
     lazy var buttonsView = UIView().then {
         $0.addSubview(self.borrowButton)
@@ -78,7 +76,7 @@ class DeFiHomeViewController: BaseViewController {
         }
     }
 
-    var sortTypeBehaviorRelay: BehaviorRelay<DeFiAPI.ProductSortType> = BehaviorRelay(value: .DEFAULT)
+    var sortTypeBehaviorRelay: BehaviorRelay<DeFiAPI.ProductSortType> = BehaviorRelay(value: .PUB_TIME_DESC)
     lazy var listViewModel = DeFiListViewModel(tableView: self.tableView, sortType: self.sortTypeBehaviorRelay.value)
 
     private func setupView() {
@@ -114,16 +112,38 @@ class DeFiHomeViewController: BaseViewController {
             for (i, type) in types.enumerated() where self.listViewModel.sortType == type {
                 index = i
             }
-            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.defiHomePageSortTitle(), rows: types.map({ $0.rawValue }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
+            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.defiHomePageSortTitle(), rows: types.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
                 self?.sortTypeBehaviorRelay.accept(types[index])
             }, cancel: { _ in return }, origin: self.view)
         }.disposed(by: rx.disposeBag)
 
         sortTypeBehaviorRelay.distinctUntilChanged().bind {[weak self] (sortType) in
             guard let `self` = self else { return }
-            self.filtrateButton.setTitle(sortType.rawValue, for: .normal)
+            self.filtrateButton.setTitle(sortType.name, for: .normal)
             self.listViewModel = DeFiListViewModel(tableView: self.tableView, sortType: sortType)
         }.disposed(by: rx.disposeBag)
 
+        myDefiButton.rx.tap.bind { [weak self] in
+            let vc = MyDeFiViewController()
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+    }
+}
+
+extension DeFiAPI.ProductSortType {
+    var name: String {
+        switch self {
+        case .PUB_TIME_DESC:
+            return R.string.localizable.defiHomePageSortPublishTime()
+        case .SUB_TIME_REMAINING_ASC:
+            return R.string.localizable.defiHomePageSortRemainTime()
+        case .YEAR_RATE_DESC:
+            return R.string.localizable.defiHomePageSortEarnings()
+        case .LOAN_DURATION_ASC:
+            return R.string.localizable.defiHomePageSortBorrowTime()
+        case .LOAN_COMPLETENESS_DESC:
+            return R.string.localizable.defiHomePageSortProgress()
+        }
     }
 }
