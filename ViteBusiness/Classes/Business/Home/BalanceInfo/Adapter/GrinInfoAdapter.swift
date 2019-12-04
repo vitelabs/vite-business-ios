@@ -4,8 +4,7 @@
 //
 //  Created by haoshenyang on 2019/9/2.
 //
-
-import UIKit
+ import UIKit
 import SnapKit
 import RxCocoa
 import RxSwift

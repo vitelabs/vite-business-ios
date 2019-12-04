@@ -14,6 +14,7 @@ import ObjectMapper
 import enum Alamofire.Result
 import ViteWallet
 import PromiseKit
+import Alamofire
 
 
 extension UnifyProvider {
@@ -98,6 +99,26 @@ extension UnifyProvider.defi {
                 case .success(let response):
                     print(response)
                     seal.fulfill([])
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+
+    static func getProductDetail(hash: String) -> Promise<DeFiProductDetail> {
+        return Promise { seal in
+            let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
+            p.request(.getProductDetail(hash: hash)) { (result) in
+                switch result {
+                case .success(let response):
+                    if let json = try? response.mapJSON(),
+                        let data = JSON(json)["data"].dictionaryObject,
+                        let detail = DeFiProductDetail.init(JSON: data){
+                        seal.fulfill(detail)
+                    } else {
+                        seal.reject(NSError())
+                    }
                 case .failure(let error):
                     seal.reject(error)
                 }

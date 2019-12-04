@@ -43,7 +43,7 @@ class DeFiProductInfoCard: UIView {
          progress: CGFloat = 0.0,
          deadLineDesc: NSAttributedString? = nil) {
         titleLabel.text = title
-        statusLabel.isHidden = status == .none
+        statusLabel.isHidden = status == .无
         statusLabel.titleLab.text = status.rawValue
         statusLabel.bgImg.image = R.image.btn_path_bg()?.tintColor(status.color()).resizable
         progressLabel.text = progressDesc
@@ -81,6 +81,7 @@ class DeFiProductInfoCard: UIView {
     let progressView =  ProgressView(height: 4)
     let deadLineDescLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59)
     }
 
     override init(frame: CGRect) {

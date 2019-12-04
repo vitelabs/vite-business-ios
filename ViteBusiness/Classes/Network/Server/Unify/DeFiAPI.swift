@@ -44,6 +44,8 @@ enum DeFiAPI: TargetType {
     case getDeFiLoans(sortType: ProductSortType, status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
     case getSubscriptions(status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
 
+    case getProductDetail(hash: String)
+
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
     }
@@ -54,6 +56,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/products/loan"
         case .getSubscriptions:
             return "api/v1/defi/products/subscription"
+        case .getProductDetail:
+            return "api/v1/defi/product/loan"
         }
     }
 
@@ -86,10 +90,26 @@ enum DeFiAPI: TargetType {
                 parameters["address"] = address
             }
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getProductDetail(hash):
+            var parameters: [String: String] = [
+                "productHash": hash,
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
 
     var sampleData: Data {
+        switch self {
+        case .getDeFiLoans:
+            return Data()
+        case .getSubscriptions:
+            return Data()
+        case .getProductDetail:
+            let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 1,   \"refundStatus\": 1  } }"
+            return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
+        default:
+            return Data()
+        }
         return Data()
     }
 

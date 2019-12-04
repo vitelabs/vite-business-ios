@@ -30,10 +30,12 @@ class DefiProductItemCell: UITableViewCell {
             m.centerY.equalToSuperview()
             m.left.equalToSuperview().offset(24)
         }
+        titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         contentLabel.snp.makeConstraints { (m) in
             m.centerY.equalToSuperview()
             m.right.equalToSuperview().offset(-24)
+            m.left.greaterThanOrEqualTo(titleLabel.snp.right).offset(10)
         }
 
     }
@@ -63,6 +65,7 @@ class DefiProductItemWithUnitCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(contentLabel)
@@ -72,6 +75,7 @@ class DefiProductItemWithUnitCell: UITableViewCell {
             m.centerY.equalToSuperview()
             m.left.equalToSuperview().offset(24)
         }
+        titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         unitLabel.snp.makeConstraints { (m) in
             m.centerY.equalToSuperview()
@@ -81,8 +85,8 @@ class DefiProductItemWithUnitCell: UITableViewCell {
         contentLabel.snp.makeConstraints { (m) in
             m.centerY.equalToSuperview()
             m.right.equalTo(unitLabel.snp.left).offset(-6)
+            m.left.greaterThanOrEqualTo(titleLabel.snp.right).offset(10)
         }
-
     }
 
     required init?(coder: NSCoder) {
@@ -115,6 +119,7 @@ class DefiProductItemWithSubContentCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(contentLabel)

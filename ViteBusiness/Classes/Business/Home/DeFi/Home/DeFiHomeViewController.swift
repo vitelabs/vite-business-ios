@@ -128,7 +128,11 @@ class DeFiHomeViewController: BaseViewController {
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
 
+
+
     }
+
+
 }
 
 extension DeFiAPI.ProductSortType {

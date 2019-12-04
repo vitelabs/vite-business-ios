@@ -30,6 +30,8 @@ class DeFiListViewModel: ListViewModel<DeFiHomeProductCell> {
     }
 
     override func clicked(model: DeFiLoan) {
-
+        let detail = DeFiProductDetailViewController()
+        detail.productHash = model.productHash
+        UIViewController.current?.navigationController?.pushViewController(detail, animated: true)
     }
 }
