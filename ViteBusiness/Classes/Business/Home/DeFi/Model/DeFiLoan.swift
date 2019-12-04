@@ -41,12 +41,15 @@ struct DeFiLoan: Mappable {
     fileprivate(set) var singleCopyAmount: Amount!
     fileprivate(set) var loanDuration: UInt64!
     fileprivate(set) var subscribedAmount: Amount!
+    fileprivate(set) var loanUsedAmount: Amount!
     fileprivate(set) var loanCompleteness: Double!
-    fileprivate var productStatus: DeFiProductStatus!
-    fileprivate var refundStatus: DeFiRefundStatus!
+    fileprivate(set) var productStatus: DeFiProductStatus = .onSale
+    fileprivate(set) var refundStatus: DeFiRefundStatus = .invalid
+
+    var remainAmount: Amount { return loanAmount - loanUsedAmount }
 
     var status: Status {
-        switch productStatus! {
+        switch productStatus {
         case .onSale:
             return .onSale
         case .failed:
@@ -54,7 +57,7 @@ struct DeFiLoan: Mappable {
         case .success:
             return .success
         case .cancel:
-            switch refundStatus! {
+            switch refundStatus {
             case .invalid, .refunding:
                 return .refunding
             case .refunded:
@@ -76,6 +79,7 @@ struct DeFiLoan: Mappable {
         singleCopyAmount <- (map["singleCopyAmount"], JSONTransformer.bigint)
         loanDuration <- map["loanDuration"]
         subscribedAmount <- (map["subscribedAmount"], JSONTransformer.bigint)
+        loanUsedAmount <- (map["loanUsedAmount"], JSONTransformer.bigint)
         loanCompleteness <- (map["loanCompleteness"], JSONTransformer.stringToDouble)
         productStatus <- map["productStatus"]
         refundStatus <- map["refundStatus"]
@@ -84,7 +88,15 @@ struct DeFiLoan: Mappable {
     var countDownString: String {
         let now = Date()
         let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: subscriptionEndTimestamp)
-        return R.string.localizable.defiHomePageCellEndTimeFormat("\(components.day!)", String(format: "%02d:%02d:%02d", components.hour!, components.minute!, components.second!))
+        return R.string.localizable.defiHomePageCellEndTimeFormat("\(max(components.day!, 0))", String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+    }
+
+    var yearRateString: String {
+        return String(format: "%.2f%%", yearRate*100)
+    }
+
+    var loanCompletenessString: String {
+        return String(format: "%.0f%%", loanCompleteness*100)
     }
 }
 

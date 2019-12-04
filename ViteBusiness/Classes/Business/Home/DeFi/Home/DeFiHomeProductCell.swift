@@ -28,7 +28,7 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.setTitleColor(.white, for: .normal)
         $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable, for: .normal)
-        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable.highlighted, for: .highlighted)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
         $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 
@@ -170,9 +170,9 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
     func bind(_ item: DeFiLoan) {
 
         endTimeLabel.text = R.string.localizable.defiHomePageCellEndTime(item.countDownString)
-        rateLabel.text = String(format: "%.2f%%", item.yearRate*100)
+        rateLabel.text = item.yearRateString
         progressView.progress = CGFloat(item.loanCompleteness)
-        progressLabel.text = String(format: "%.0f%%", item.loanCompleteness*100)
+        progressLabel.text = item.loanCompletenessString
 
 
         let timeString = R.string.localizable.defiHomePageCellBorrowTime(String(item.loanDuration))
@@ -242,13 +242,31 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
         ])
         eachLabel.attributedText = eachAttributedString
+
+        buyButton.rx.tap.bind {
+
+        }.disposed(by: disposeBag)
     }
 }
 
 extension NSMutableAttributedString {
     func addAttributes(text: String, attrs: [NSAttributedString.Key : Any]) {
-        guard let r = self.string.range(of: text) else { return }
-        let range = NSRange(r, in: self.string)
-        addAttributes(attrs, range: range)
+
+        func getRanges(ranges: [Range<String.Index>], source: String, sub: String) -> [Range<String.Index>] {
+            var array = ranges
+            if let r = source.range(of: sub, options: .backwards) {
+                array.append(r)
+                let newSource = String(source[source.startIndex..<r.lowerBound])
+                return getRanges(ranges: array, source: newSource, sub: sub)
+            } else {
+                return array
+            }
+        }
+
+        let ranges = getRanges(ranges: [], source: self.string, sub: text)
+        for r in ranges {
+            let range = NSRange(r, in: self.string)
+            addAttributes(attrs, range: range)
+        }
     }
 }

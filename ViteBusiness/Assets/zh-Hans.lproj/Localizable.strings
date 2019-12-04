@@ -992,3 +992,22 @@
 "defi.my.page.my.subscribe.sort.failed" =  "到期未售罄";
 "defi.my.page.my.subscribe.sort.success" =  "成功售罄";
 "defi.my.page.my.subscribe.sort.cancel" =  "已取消";
+
+// My DeFi Loan
+"defi.my.page.my.loan.cell.id.title" =  "产品Hash: ";
+"defi.my.page.my.loan.cell.header.end.time" =  "%@后结束认购";
+"defi.my.page.my.loan.cell.header.failed" =  "认购期结束";
+"defi.my.page.my.loan.cell.header.success" =  "%@售罄";
+"defi.my.page.my.loan.cell.header.cancel" =  "已取消";
+
+"defi.my.page.my.loan.cell.title.saled" =  "已认购";
+"defi.my.page.my.loan.cell.title.loan.amount" =  "借币金额";
+"defi.my.page.my.loan.cell.title.expire.time" =  "到期时间";
+"defi.my.page.my.loan.cell.title.rate" =  "日利率: %@";
+"defi.my.page.my.loan.cell.title.duration" =  "借币期限: %@天";
+"defi.my.page.my.loan.cell.title.used" =  "已使用: ";
+"defi.my.page.my.loan.cell.title.remain" =  "剩余金额: ";
+
+"defi.my.page.my.loan.cell.button.view.refund" =  "查看退款";
+"defi.my.page.my.loan.cell.button.cancel" =  "撤销借币";
+"defi.my.page.my.loan.cell.button.use" =  "去使用";
