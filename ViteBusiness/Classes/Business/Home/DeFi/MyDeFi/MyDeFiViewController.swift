@@ -6,13 +6,19 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class MyDeFiViewController: BaseViewController {
 
     private let loanHeaderView = MyDeFiLoanHeaderView()
     private let subscribeHeaderView = MyDeFiSubscribeHeaderView()
 
-    private let manager: DNSPageViewManager = {
+    private let loanVC = MyDeFiLoanViewController()
+    private let subscribeVC = MyDeFiSubscribeViewController()
+
+    private var isLoan = true
+
+    private lazy var manager: DNSPageViewManager = {
         let pageStyle = DNSPageStyle()
         pageStyle.isShowBottomLine = true
         pageStyle.isTitleViewScrollEnabled = true
@@ -30,8 +36,8 @@ class MyDeFiViewController: BaseViewController {
         ]
 
         let viewControllers = [
-            MyDeFiLoanViewController(),
-            MyDeFiSubscribeViewController()
+            self.loanVC,
+            self.subscribeVC
         ]
 
         return DNSPageViewManager(style: pageStyle, titles: titles, childViewControllers: viewControllers)
@@ -107,23 +113,60 @@ class MyDeFiViewController: BaseViewController {
     }
 
     private func bind() {
-        pageChanged(index: 0)
+        pageChanged()
         manager.contentView.delegate = self
         manager.titleView.clickHandler = { [weak self] (titleView, index) in
-            self?.pageChanged(index: index)
+            self?.isLoan = (index == 0)
+            self?.pageChanged()
         }
+
+
+        filtrateButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+
+
+            let statuss: [DeFiAPI.ProductStatus]
+            let currentStatus: DeFiAPI.ProductStatus
+            if self.isLoan {
+                statuss = [.all, .onSale, .failed, .success, .cancel]
+                currentStatus = self.loanVC.status
+            } else {
+                statuss = [.all, .onSale, .failed, .success]
+                currentStatus = self.subscribeVC.status
+            }
+
+            var index = 0
+            for (i, s) in statuss.enumerated() where s == currentStatus {
+                index = i
+            }
+            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.defiHomePageSortTitle(), rows: statuss.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
+                guard let `self` = self else { return }
+                let status = statuss[index]
+                guard status != currentStatus else { return }
+                self.filtrateButton.setTitle(status.name, for: .normal)
+                if self.isLoan {
+                    self.loanVC.status = status
+                } else {
+                    self.subscribeVC.status = status
+                }
+            }, cancel: { _ in return }, origin: self.view)
+        }.disposed(by: rx.disposeBag)
     }
 
-    private func pageChanged(index: Int) {
-        if index == 0 {
+    private func pageChanged() {
+        let status: DeFiAPI.ProductStatus
+        if isLoan {
             loanHeaderView.isHidden = false
             subscribeHeaderView.isHidden = true
+            status = loanVC.status
         } else {
             loanHeaderView.isHidden = true
             subscribeHeaderView.isHidden = false
+            status = subscribeVC.status
         }
-    }
 
+        filtrateButton.setTitle(status.name, for: .normal)
+    }
 }
 
 extension MyDeFiViewController: DNSPageContentViewDelegate {
@@ -136,7 +179,8 @@ extension MyDeFiViewController: DNSPageContentViewDelegate {
                 label.textColor = self.manager.titleView.style.titleColor
             }
         }
-        self.pageChanged(index: index)
+        self.isLoan = (index == 0)
+        self.pageChanged()
     }
 
     func contentView(_ contentView: DNSPageContentView, scrollingWith sourceIndex: Int, targetIndex: Int, progress: CGFloat) {

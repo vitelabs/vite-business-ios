@@ -346,7 +346,7 @@ extension CrossChainDepositViewController {
 
 extension CrossChainDepositViewController: FloatButtonsViewDelegate {
 
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let viewModel = AddressListViewModel.createMyAddressListViewModel()
             let vc = AddressListViewController(viewModel: viewModel)

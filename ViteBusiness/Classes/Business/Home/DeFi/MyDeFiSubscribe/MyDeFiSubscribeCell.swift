@@ -11,10 +11,10 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
     typealias Model = DeFiSubscription
 
     static var cellHeight: CGFloat {
-        return 145
+        return 150
     }
 
     func bind(_ item: DeFiSubscription) {
-
+        textLabel?.text = "456"
     }
 }

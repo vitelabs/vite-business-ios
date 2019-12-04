@@ -17,7 +17,7 @@ class MyDeFiLoanListViewModel: ListViewModel<MyDeFiLoanCell> {
     init(tableView: UITableView, status: DeFiAPI.ProductStatus) {
         self.status = status
         super.init(tableView: tableView)
-//        tirggerRefresh()
+        tirggerRefresh()
     }
 
     override func refresh() -> Promise<(items: [DeFiLoan], hasMore: Bool)> {

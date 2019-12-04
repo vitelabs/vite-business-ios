@@ -269,7 +269,7 @@ class GrinInfoViewController: BaseViewController {
 
 extension GrinInfoViewController: FloatButtonsViewDelegate {
 
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let selectVC = SelectGrinNodeViewController()
             self.navigationController?.pushViewController(selectVC, animated: true)

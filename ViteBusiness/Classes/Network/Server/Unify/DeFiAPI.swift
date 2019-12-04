@@ -24,24 +24,9 @@ enum DeFiAPI: TargetType {
         case failed = 2
         case success = 3
         case cancel = 4
-
-        var sortType: ProductSortType {
-            switch self {
-            case .all:
-                return .LOAN_DURATION_ASC
-            case .onSale:
-                return .SUB_TIME_REMAINING_ASC
-            case .failed:
-                return .PUB_TIME_DESC
-            case .success:
-                return .PUB_TIME_DESC
-            case .cancel:
-                return .PUB_TIME_DESC
-            }
-        }
     }
 
-    case getDeFiLoans(sortType: ProductSortType, status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
+    case getDeFiLoans(sortType: ProductSortType?, status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
     case getSubscriptions(status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
 
     case getProductDetail(hash: String)
@@ -69,11 +54,14 @@ enum DeFiAPI: TargetType {
         switch self {
         case let .getDeFiLoans(sortType, status, address, offset, limit):
             var parameters: [String: String] = [
-                "orderBy": sortType.rawValue,
                 "productStatus": String(status.rawValue),
                 "offset": String(offset),
                 "limit": String(limit)
             ]
+
+            if let sortType = sortType {
+                parameters["orderBy"] = sortType.rawValue
+            }
 
             if let address = address {
                 parameters["address"] = address

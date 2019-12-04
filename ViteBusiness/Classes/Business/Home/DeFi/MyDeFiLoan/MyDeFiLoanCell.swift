@@ -11,11 +11,11 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
     typealias Model = DeFiLoan
 
     static var cellHeight: CGFloat {
-        return 145
+        return 160
     }
 
     func bind(_ item: DeFiLoan) {
-
+        textLabel?.text = "123"
     }
 
 }

@@ -9,21 +9,19 @@ import UIKit
 
 class MyDeFiLoanViewController: BaseTableViewController {
 
+    var status: DeFiAPI.ProductStatus {
+        get {
+            return viewModel.status
+        }
+        set {
+            viewModel = MyDeFiLoanListViewModel(tableView: self.tableView, status: newValue)
+        }
+    }
+
+    lazy var viewModel = MyDeFiLoanListViewModel(tableView: self.tableView, status: .all)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        _ = viewModel
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
