@@ -1002,3 +1002,30 @@
 "defi.my.page.my.loan.cell.button.view.refund" =  "查看退款";
 "defi.my.page.my.loan.cell.button.cancel" =  "撤销借币";
 "defi.my.page.my.loan.cell.button.use" =  "去使用";
+
+// DeFi Loan
+"defi.loan.page.title" =  "发布借币";
+"defi.loan.page.slogan" =  "去中心化智能合约安全保障";
+
+"defi.loan.page.cell.each.amount.title" =  "每份金额";
+"defi.loan.page.cell.each.amount.placeholder" =  "最少%@ %@";
+"defi.loan.page.cell.number.title" =  "借币份数";
+"defi.loan.page.cell.number.placeholder" =  "请填写借币总份数";
+"defi.loan.page.cell.number.unit" =  "份";
+"defi.loan.page.cell.total.amount.title" =  "借币总额";
+"defi.loan.page.cell.total.amount.tip" =  "借币总额=每份金额*份数";
+"defi.loan.page.cell.rate.title" =  "日利率";
+"defi.loan.page.cell.duration.title" =  "借币期限";
+"defi.loan.page.cell.duration.approximate" =  "约";
+"defi.loan.page.cell.duration.day" =  "天";
+"defi.loan.page.cell.duration.block" =  "%@个快照块";
+"defi.loan.page.cell.duration.tip" =  "借币成功后需手动操作使用借款，请预留操作时间。例如获取配额需抵押至少约3天时间，借币期限至少4天才可能满足抵押获取配额。另外，预留时间需考虑节点丢块造成的时间和快照块之间的误差。";
+"defi.loan.page.cell.subscription.time.title" =  "认购期";
+"defi.loan.page.cell.subscription.time.unit" =  "天";
+"defi.loan.page.cell.interest.title" =  "应付利息";
+"defi.loan.page.loan.button.title" =  "支付利息发布借币";
+
+"defi.loan.page.tip1" =  "借币期限以快照块为准。";
+"defi.loan.page.tip2" =  "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.loan.page.tip3" =  "尚无认购时，您可以撤销借币。";
+"defi.loan.page.tip4" =  "认购期结束后，若未成功售罄，可重新发布借币。";

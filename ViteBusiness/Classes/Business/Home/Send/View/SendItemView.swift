@@ -16,7 +16,7 @@ class SendItemView: UIView {
         func createLabel() -> UILabel {
             return UILabel().then {
                 $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
-                $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
+                $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
                 switch self {
                 case .text(let string):
                     $0.text = string
@@ -61,8 +61,8 @@ class SendItemView: UIView {
     }
 
     let titleLabel = UILabel().then {
-        $0.textColor = Colors.titleGray
-        $0.font = AppStyle.formHeader.font
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
     let separatorLine = UIView().then {

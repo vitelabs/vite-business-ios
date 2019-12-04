@@ -18,7 +18,7 @@ class DeFiHomeViewController: BaseViewController {
         bind()
     }
 
-    let borrowButton = UIButton.topImage(R.image.icon_button_defi_borrow(), bottomTitle: R.string.localizable.defiHomePageBorrowButtonTitle())
+    let loanButton = UIButton.topImage(R.image.icon_button_defi_borrow(), bottomTitle: R.string.localizable.defiHomePageBorrowButtonTitle())
 
     let myDefiButton = UIButton.topImage(R.image.icon_button_my_defi(), bottomTitle: R.string.localizable.defiHomePageMyDefiButtonTitle())
 
@@ -39,10 +39,10 @@ class DeFiHomeViewController: BaseViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
 
     lazy var buttonsView = UIView().then {
-        $0.addSubview(self.borrowButton)
+        $0.addSubview(self.loanButton)
         $0.addSubview(self.myDefiButton)
 
-        self.borrowButton.snp.makeConstraints { (m) in
+        self.loanButton.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(10)
             m.left.equalToSuperview().offset(24)
             m.height.equalTo(77)
@@ -50,8 +50,8 @@ class DeFiHomeViewController: BaseViewController {
         }
 
         self.myDefiButton.snp.makeConstraints { (m) in
-            m.top.bottom.width.equalTo(self.borrowButton)
-            m.left.equalTo(self.borrowButton.snp.right).offset(15)
+            m.top.bottom.width.equalTo(self.loanButton)
+            m.left.equalTo(self.loanButton.snp.right).offset(15)
             m.right.equalToSuperview().offset(-24)
         }
     }
@@ -123,12 +123,15 @@ class DeFiHomeViewController: BaseViewController {
             self.listViewModel = DeFiListViewModel(tableView: self.tableView, sortType: sortType)
         }.disposed(by: rx.disposeBag)
 
+        loanButton.rx.tap.bind { [weak self] in
+            let vc = DeFiLoanViewController()
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
         myDefiButton.rx.tap.bind { [weak self] in
             let vc = MyDeFiViewController()
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
-
-
 
     }
 

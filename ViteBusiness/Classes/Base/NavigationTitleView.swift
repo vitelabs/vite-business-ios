@@ -23,14 +23,14 @@ public class NavigationTitleView: UIView {
         $0.adjustsFontSizeToFitWidth = true
     }
 
-    public init(title: String?, style: Style = .default) {
+    public init(title: String?, style: Style = .default, horizontal: CGFloat = 24) {
         super.init(frame: CGRect.zero)
         titleLabel.text = title
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(self).offset(6)
-            m.left.equalTo(self).offset(24)
-            m.right.equalTo(self).offset(-24)
+            m.left.equalTo(self).offset(horizontal)
+            m.right.equalTo(self).offset(-horizontal)
             m.bottom.equalTo(self).offset(-20)
             m.height.equalTo(29)
         }

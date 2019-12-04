@@ -10,7 +10,7 @@ import UIKit
 class TipTextView: UIView {
 
     let label = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.numberOfLines = 0
     }
