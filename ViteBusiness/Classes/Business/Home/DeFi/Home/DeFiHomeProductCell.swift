@@ -244,7 +244,8 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         eachLabel.attributedText = eachAttributedString
 
         buyButton.rx.tap.bind {
-
+            let vc = DeFiSubscriptionViewController(productHash: item.productHash)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
     }
 }

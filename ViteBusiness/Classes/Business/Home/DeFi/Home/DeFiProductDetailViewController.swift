@@ -100,6 +100,12 @@ class DeFiProductDetailViewController: BaseViewController {
             m.height.equalTo(50)
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
+
+        buyButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            let vc = DeFiSubscriptionViewController(productHash: self.productHash)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
         self.setNavTitle(title: "产品详情", bindTo: tableView)
 
         self.refresh()

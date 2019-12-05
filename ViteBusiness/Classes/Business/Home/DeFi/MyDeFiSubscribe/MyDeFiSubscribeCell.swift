@@ -335,7 +335,8 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMySubscriptionCellButtonSubscription(), for: .normal)
             button.rx.tap.bind {
-
+                let vc = DeFiSubscriptionViewController(productHash: item.productHash)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: disposeBag)
 
         case .failed:
