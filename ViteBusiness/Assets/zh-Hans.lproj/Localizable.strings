@@ -1019,8 +1019,8 @@
 "defi.my.page.my.subscription.cell.header.success" =  "%@售罄";
 
 "defi.my.page.my.subscription.cell.title.subscription.amount" =  "认购金额";
-"defi.my.page.my.subscription.cell.title.expire.time" =  "借币期限";
-"defi.my.page.my.subscription.cell.title.year.rate" =  "年化收益率";
+"defi.my.page.my.subscription.cell.title.duration" =  "借币期限: %@天";
+"defi.my.page.my.subscription.cell.title.year.rate" =  "年化收益率: %@";
 "defi.my.page.my.subscription.cell.title.total.earnings" =  "预计总收益";
 "defi.my.page.my.subscription.cell.title.saled" =  "已认购";
 "defi.my.page.my.subscription.cell.title.remain.amount" =  "剩余额度";

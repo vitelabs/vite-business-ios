@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ViteWallet
 
 class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
     typealias Model = DeFiSubscription
@@ -176,6 +177,189 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
     }
 
     func bind(_ item: DeFiSubscription) {
-        textLabel?.text = "456"
+
+        let token = ViteWalletConst.viteToken
+        idLabel.text = R.string.localizable.defiMyPageMySubscriptionCellIdTitle() + item.productHash
+        progressView.progress = CGFloat(item.loanCompleteness)
+        progressLabel.text = item.loanCompletenessString
+
+        bottomLabel.attributedText = {
+
+            let left = R.string.localizable.defiMyPageMySubscriptionCellTitleYearRate(item.yearRateString)
+            let right = R.string.localizable.defiMyPageMySubscriptionCellTitleDuration(String(item.loanDuration))
+
+            let leftA = NSMutableAttributedString(string: left)
+            let rightA = NSMutableAttributedString(string: right)
+
+            leftA.addAttributes(
+                text: left,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.45),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+            ])
+
+            leftA.addAttributes(
+                text: item.yearRateString,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+            ])
+
+            rightA.addAttributes(
+                text: right,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.45),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+            ])
+
+            rightA.addAttributes(
+                text: String(item.loanDuration),
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+            ])
+
+            let ret = leftA
+            ret.append(NSAttributedString(string: "   "))
+            ret.append(rightA)
+            return ret
+        }()
+
+        func showSubscribedAndLeft() {
+            leftTitleLabel.text = R.string.localizable.defiMyPageMySubscriptionCellTitleSaled()
+            rightTitleLabel.text = R.string.localizable.defiMyPageMySubscriptionCellTitleRemainAmount()
+
+            leftLabel.attributedText = {
+                let amount = item.mySubscribedAmount.amountShortWithGroupSeparator(decimals: token.decimals)
+                let symbol = token.symbol
+                let string = amount+symbol
+                let ret = NSMutableAttributedString(string: string)
+
+                ret.addAttributes(
+                    text: amount,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+                ])
+
+                ret.addAttributes(
+                    text: symbol,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.3),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+                ])
+
+                return ret
+            }()
+
+            rightLabel.attributedText = {
+                let amount = item.leftSubscriptionAmount.amountShortWithGroupSeparator(decimals: token.decimals)
+                let symbol = token.symbol
+                let string = amount+symbol
+                let ret = NSMutableAttributedString(string: string)
+
+                ret.addAttributes(
+                    text: amount,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+                ])
+
+                ret.addAttributes(
+                    text: symbol,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.3),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+                ])
+
+                return ret
+            }()
+        }
+
+        func showSubscribedAndProfits() {
+            leftTitleLabel.text = R.string.localizable.defiMyPageMySubscriptionCellTitleSubscriptionAmount()
+            rightTitleLabel.text = R.string.localizable.defiMyPageMySubscriptionCellTitleTotalEarnings()
+
+            leftLabel.attributedText = {
+                let amount = item.mySubscribedAmount.amountShortWithGroupSeparator(decimals: token.decimals)
+                let symbol = token.symbol
+                let string = amount+symbol
+                let ret = NSMutableAttributedString(string: string)
+
+                ret.addAttributes(
+                    text: amount,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+                ])
+
+                ret.addAttributes(
+                    text: symbol,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.3),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+                ])
+
+                return ret
+            }()
+
+            rightLabel.attributedText = {
+                let amount = item.totalProfits.amountShortWithGroupSeparator(decimals: token.decimals)
+                let symbol = token.symbol
+                let string = amount+symbol
+                let ret = NSMutableAttributedString(string: string)
+
+                ret.addAttributes(
+                    text: amount,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.8),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular)
+                ])
+
+                ret.addAttributes(
+                    text: symbol,
+                    attrs: [
+                        NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.3),
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+                ])
+
+                return ret
+            }()
+        }
+
+        switch item.productStatus {
+        case .onSale:
+            iconImageView.image = R.image.icon_cell_loan_on_sale()
+            statusLabel.text = R.string.localizable.defiMyPageMySubscriptionCellHeaderEndTime(item.countDownString)
+            showSubscribedAndLeft()
+            button.isHidden = false
+            button.setTitle(R.string.localizable.defiMyPageMySubscriptionCellButtonSubscription(), for: .normal)
+            button.rx.tap.bind {
+
+            }.disposed(by: disposeBag)
+
+        case .failed:
+            iconImageView.image = R.image.icon_cell_loan_failed()
+            statusLabel.text = R.string.localizable.defiMyPageMySubscriptionCellHeaderFailed()
+            showSubscribedAndLeft()
+            button.isHidden = false
+            button.setTitle(R.string.localizable.defiMyPageMySubscriptionCellButtonViewRefund(), for: .normal)
+            button.rx.tap.bind {
+
+            }.disposed(by: disposeBag)
+
+        case .success:
+            iconImageView.image = R.image.icon_cell_loan_sucess()
+            statusLabel.text = R.string.localizable.defiMyPageMySubscriptionCellHeaderSuccess(item.subscriptionFinishTimeString)
+            showSubscribedAndProfits()
+            button.isHidden = false
+            button.setTitle(R.string.localizable.defiMyPageMySubscriptionCellButtonViewEarnings(), for: .normal)
+            button.rx.tap.bind {
+
+            }.disposed(by: disposeBag)
+
+        case .cancel:
+            break
+        }
     }
 }
