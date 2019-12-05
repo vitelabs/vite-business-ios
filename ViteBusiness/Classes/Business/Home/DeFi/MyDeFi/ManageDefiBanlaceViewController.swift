@@ -1,9 +1,11 @@
 //
-//  ManageViteXBanlaceViewController.swift
+//  ManageDefiBanlaceViewController.swift
 //  Action
 //
-//  Created by haoshenyang on 2019/9/9.
+//  Created by haoshenyang on 2019/12/4.
 //
+
+import UIKit
 
 import UIKit
 import ViteWallet
@@ -15,25 +17,14 @@ import JSONRPCKit
 import RxCocoa
 import RxSwift
 
-public class ManageViteXBanlaceViewController: BaseViewController {
+public class ManageDefiBanlaceViewController: BaseViewController {
 
     enum ActionType {
-        case toVitex
+        case toDefi
         case toWallet
     }
 
-    var actionType = ActionType.toVitex
-
-    let autoDismiss: Bool
-    public init(tokenInfo: TokenInfo, autoDismiss: Bool) {
-        self.token = tokenInfo
-        self.autoDismiss = autoDismiss
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var actionType = ActionType.toDefi
 
     lazy var topContainerView = UIView().then { view in
         view.backgroundColor = UIColor.init(netHex: 0xF3F5F9)
@@ -73,7 +64,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59)
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = R.string.localizable.transferDexAccount()
+        label.text = "DeFi基础账户"
         return label
     }()
 
@@ -95,7 +86,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.button.setTitle(R.string.localizable.fundDepositAll(), for: .normal)
         amountView.titleLabel.text = R.string.localizable.transferAmount()
-        let placeholder = self.actionType == .toVitex ? R.string.localizable.fundDepositPlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
+        let placeholder = self.actionType == .toDefi ? R.string.localizable.fundDepositPlaceholder() : R.string.localizable.fundWithdrawPlaceholder()
         amountView.textField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x3E4A59, alpha: 0.45)])
     }
 
@@ -112,12 +103,12 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         return UIButton.init(style: .blue, title: title)
     }()
 
-    let token: TokenInfo
+    let token = TokenInfo.BuildIn.vite.value
     var walletBalance = Amount(0)
     var vitexBalance = Amount(0)
 
     var balance: Amount {
-        if self.actionType == .toVitex {
+        if self.actionType == .toDefi {
             return walletBalance
         } else {
             return vitexBalance
@@ -239,7 +230,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
             .drive(onNext: { [weak self] balanceInfo in
                 guard let `self` = self else { return }
                 self.walletBalance = balanceInfo?.balance ?? Amount(0)
-                if self.actionType == .toVitex {
+                if self.actionType == .toDefi {
                     self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + " " + self.token.symbol
                 }
             }).disposed(by: rx.disposeBag)
@@ -256,7 +247,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
             guard let `self` = self else { return }
 
             guard self.balance > 0 else {
-                Toast.show(self.actionType == .toVitex ? R.string.localizable.fundCannotDeposit() : R.string.localizable.fundCannotWithDraw())
+                Toast.show(self.actionType == .toDefi ? R.string.localizable.fundCannotDeposit() : R.string.localizable.fundCannotWithDraw())
                    return
            }
 
@@ -276,8 +267,8 @@ public class ManageViteXBanlaceViewController: BaseViewController {
                 return
             }
 
-            if self.actionType == .toVitex {
-                self.fundFromWalletToVitex(amount:amount)
+            if self.actionType == .toDefi {
+                self.fundFromWallettoDefi(amount:amount)
             } else if self.actionType == .toWallet {
                 self.fundFromVitexToWallet(amount:amount)
             }
@@ -286,13 +277,13 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
         switchButton.rx.tap.bind {  [weak self] _ in
             guard let `self` = self else { return }
-            if self.actionType == .toVitex {
+            if self.actionType == .toDefi {
                 self.actionType = .toWallet
                 self.fromLabel.text = R.string.localizable.transferDexAccount()
                 self.destLabel.text = R.string.localizable.transferWalletAccount()
                 self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
             } else {
-                self.actionType = .toVitex
+                self.actionType = .toDefi
                 self.destLabel.text = R.string.localizable.transferDexAccount()
                 self.fromLabel.text = R.string.localizable.transferWalletAccount()
                 self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
@@ -301,29 +292,13 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
     }
 
-    func fundFromWalletToVitex(amount: Amount) {
+    func fundFromWallettoDefi(amount: Amount) {
         guard let account = HDWalletManager.instance.account else { return }
         Workflow.dexDepositWithConfirm(account: account, tokenInfo: token, amount: amount) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .success(_):
-                if self.autoDismiss {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
-                    (.default(title: R.string.localizable.cancel()), { _ in
-                        self.navigationController?.popViewController(animated: true)
-                    }),
-                    (.default(title: R.string.localizable.confirm()), { _ in
-                        let webvc = WKWebViewController(url: self.vitexPageUrl())
-                        var vcs = self.navigationController?.viewControllers
-                        vcs?.popLast()
-                        vcs?.append(webvc)
-                        if let vcs = vcs {
-                            self.navigationController?.setViewControllers(vcs, animated: true)
-                        }
-                    })])
-                }
+                self.navigationController?.popViewController(animated: true)
             case .failure(let e):
                 Toast.show(e.localizedDescription)
             }
@@ -342,11 +317,5 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         }
     }
 
-    func vitexPageUrl() -> URL {
-        var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
-            + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-            + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
-        return URL.init(string:urlStr)!
-    }
-
 }
+

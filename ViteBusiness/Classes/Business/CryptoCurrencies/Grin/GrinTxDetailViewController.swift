@@ -293,7 +293,6 @@ class GrinTxDetailViewController: UIViewController {
             self?.fullInfo = detail
         }
             .disposed(by: rx.disposeBag)
-
     }
 
 }

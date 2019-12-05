@@ -143,4 +143,24 @@ extension UnifyProvider.defi {
             }
         }
     }
+
+    static func getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String? = nil, offset: Int, limit: Int) -> Promise<[DeFiBill]> {
+        return Promise { seal in
+            let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
+            p.request(.getBills(address: address,accountType: accountType,billType: billType,productHash: productHash, offset: offset, limit: limit)) { (result) in
+                switch result {
+                case .success(let response):
+                    if let json = try? response.mapJSON(),
+                        let data = JSON(json)["data"].arrayObject,
+                        let detail = Mapper<DeFiBill>().mapArray(JSONObject: data){
+                        seal.fulfill(detail)
+                    } else {
+                        seal.reject(NSError())
+                    }
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
 }

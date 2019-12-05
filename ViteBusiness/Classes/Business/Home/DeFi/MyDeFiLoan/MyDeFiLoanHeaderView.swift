@@ -137,7 +137,8 @@ extension MyDeFiLoanHeaderView: FloatButtonsViewDelegate {
     func didClick(at index: Int, targetView: UIView) {
         if targetView === accountButton {
             if index == 0 {
-
+                let vc = ManageDefiBanlaceViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             } else {
                 let vc = MyDeFiBillViewController()
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)

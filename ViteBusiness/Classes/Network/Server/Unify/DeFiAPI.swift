@@ -26,10 +26,42 @@ enum DeFiAPI: TargetType {
         case cancel = 4
     }
 
+
+    struct Bill {
+        enum BillType: Int, CaseIterable {
+            case 全部 = 0
+            case 已付利息 = 1
+            case 已付利息退款 = 2
+            case 认购金额 = 3
+            case 到期认购金额 = 4
+            case 认购收益 = 5
+            case 认购金额退款 = 6
+            case 注册SBP = 7
+            case 注册SBP退款 = 8
+            case 开通交易所SVIP = 9
+            case 开通交易所SVIP退款 = 10
+            case 获取配额 = 11
+           case 获取配额退款 = 12
+           case 抵押挖矿 = 13
+           case 抵押挖矿退款 = 14
+           case 划转收入 = 15
+            case 划转支出 = 16
+            case 成功借币 = 17
+        }
+
+        enum AccountType: Int, CaseIterable {
+            case 全部 = 0
+            case 基础账户 = 1
+            case 借币账户 = 2
+        }
+    }
+
     case getDeFiLoans(sortType: ProductSortType?, status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
     case getSubscriptions(status: ProductStatus, address: ViteAddress?, offset: Int, limit: Int)
 
     case getProductDetail(hash: String)
+
+    case getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String?, offset: Int, limit: Int)
 
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -43,6 +75,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/products/subscription"
         case .getProductDetail:
             return "api/v1/defi/product/loan"
+        case .getBills:
+            return "api/v1/defi/account/bills"
         }
     }
 
@@ -83,6 +117,18 @@ enum DeFiAPI: TargetType {
                 "productHash": hash,
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getBills(address, accountType, billType, productHash, offset, limit):
+            var parameters: [String: Any] = [
+                "address": address,
+                "accountType": accountType.rawValue,
+                "billType": billType.rawValue,
+                "offset": String(offset),
+                "limit": String(limit)
+            ]
+            if let productHash = productHash {
+                parameters["productHash"] = productHash
+            }
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
 
@@ -95,10 +141,12 @@ enum DeFiAPI: TargetType {
         case .getProductDetail:
             let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 1,   \"refundStatus\": 1  } }"
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
+        case .getBills:
+            let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": [{    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 2,    \"billType\": 3,    \"billAmount\": \"-1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   }  ] }"
+            return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         default:
             return Data()
         }
-        return Data()
     }
 
     var headers: [String: String]? {

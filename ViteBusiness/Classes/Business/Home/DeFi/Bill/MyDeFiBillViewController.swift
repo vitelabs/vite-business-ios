@@ -6,24 +6,238 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class MyDeFiBillViewController: BaseViewController {
 
+    private let loanHeaderView = MyDeFiLoanHeaderView().then {
+        $0.accountButton.isHidden = true
+        $0.loanButton.isHidden = true
+        $0.accountTitleLabel.text = "基础余额"
+        $0.loanTitleLabel.text = "已使用基础余额"
+    }
+
+    private let subscribeHeaderView = MyDeFiLoanHeaderView().then {
+        $0.accountButton.isHidden = true
+        $0.loanButton.isHidden = true
+        $0.accountTitleLabel.text = "借币总额"
+        $0.loanTitleLabel.text = "借币余额"
+    }
+
+    private let loanVC = DeFiBillBaseFundViewController()
+    private let subscribeVC = DeFiBillBorrowedFundViewController()
+
+    private var isLoan = true
+
+    private lazy var manager: DNSPageViewManager = {
+        let pageStyle = DNSPageStyle()
+        pageStyle.isShowBottomLine = true
+        pageStyle.isTitleViewScrollEnabled = true
+        pageStyle.titleViewBackgroundColor = .clear
+        pageStyle.titleSelectedColor = Colors.titleGray
+        pageStyle.titleColor = Colors.titleGray_61
+        pageStyle.titleFont = Fonts.Font13
+        pageStyle.bottomLineColor = Colors.blueBg
+        pageStyle.bottomLineHeight = 2
+        pageStyle.bottomLineWidth = 20
+
+        let titles = [
+            R.string.localizable.defiMyPageMyLoanTitle(),
+            R.string.localizable.defiMyPageMySubscribeTitle()
+        ]
+
+        let viewControllers = [
+            self.loanVC,
+            self.subscribeVC
+        ]
+
+        return DNSPageViewManager(style: pageStyle, titles: titles, childViewControllers: viewControllers)
+    }()
+
+    let filtrateButton = UIButton().then {
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_defi_home_down_button(), for: .normal)
+        $0.setImage(R.image.icon_defi_home_down_button()?.highlighted, for: .highlighted)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        $0.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: -1)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 7)
+        $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
+        $0.setTitle("ffff", for: .normal)
+    }
+
+    lazy var filtrateView = UIView().then {
+
+        $0.addSubview(self.manager.titleView)
+        self.manager.titleView.snp.makeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.equalToSuperview().offset(24 - 15)
+            m.right.equalToSuperview().offset(-24)
+            m.bottom.equalToSuperview()
+            m.height.equalTo(35)
+        }
+
+        $0.addSubview(self.filtrateButton)
+        self.filtrateButton.snp.makeConstraints { (m) in
+            m.centerY.equalToSuperview()
+            m.height.equalTo(28)
+            m.right.equalToSuperview().offset(-24)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupView()
+        bind()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func setupView() {
+        self.view.backgroundColor = .white
+        navigationTitleView = NavigationTitleView(title: "DeFi账单")
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        view.addSubview(loanHeaderView)
+        loanHeaderView.snp.makeConstraints { (m) in
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.left.right.equalToSuperview().inset(24)
+        }
+
+        view.addSubview(subscribeHeaderView)
+        subscribeHeaderView.snp.makeConstraints { (m) in
+            m.edges.equalTo(loanHeaderView)
+        }
+
+        view.addSubview(filtrateView)
+        filtrateView.snp.makeConstraints { (m) in
+            m.top.equalTo(loanHeaderView.snp.bottom).offset(8)
+            m.left.right.equalToSuperview()
+        }
+
+        view.addSubview(manager.contentView)
+        manager.contentView.snp.makeConstraints { (make) in
+            make.top.equalTo(filtrateView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+        }
     }
-    */
 
+    private func bind() {
+        pageChanged()
+        manager.contentView.delegate = self
+        manager.titleView.clickHandler = { [weak self] (titleView, index) in
+            self?.isLoan = (index == 0)
+            self?.pageChanged()
+        }
+
+
+        filtrateButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+
+
+            let statuss: [DeFiAPI.Bill.BillType]
+            let currentStatus: DeFiAPI.Bill.BillType
+            if self.isLoan {
+                statuss = [.全部, .已付利息, .已付利息退款, .认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
+                currentStatus = self.loanVC.status
+            } else {
+                statuss = [.全部,  .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .成功借币]
+                currentStatus = self.subscribeVC.status
+            }
+
+            var index = 0
+            for (i, s) in statuss.enumerated() where s == currentStatus {
+                index = i
+            }
+            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.defiHomePageSortTitle(), rows: statuss.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
+                guard let `self` = self else { return }
+                let status = statuss[index]
+                guard status != currentStatus else { return }
+                self.filtrateButton.setTitle(status.name, for: .normal)
+                if self.isLoan {
+                    self.loanVC.status = status
+                } else {
+                    self.subscribeVC.status = status
+                }
+            }, cancel: { _ in return }, origin: self.view)
+        }.disposed(by: rx.disposeBag)
+    }
+
+    private func pageChanged() {
+        let status: DeFiAPI.Bill.BillType
+        if isLoan {
+            loanHeaderView.isHidden = false
+            subscribeHeaderView.isHidden = true
+            status = loanVC.status
+        } else {
+            loanHeaderView.isHidden = true
+            subscribeHeaderView.isHidden = false
+            status = subscribeVC.status
+        }
+
+        filtrateButton.setTitle(status.name, for: .normal)
+    }
+}
+
+extension MyDeFiBillViewController: DNSPageContentViewDelegate {
+    func contentView(_ contentView: DNSPageContentView, didEndScrollAt index: Int) {
+        self.manager.titleView.contentView(contentView, didEndScrollAt: index)
+        for (i, label) in self.manager.titleView.titleLabels.enumerated() {
+            if i == index {
+                label.textColor = self.manager.titleView.style.titleSelectedColor
+            } else {
+                label.textColor = self.manager.titleView.style.titleColor
+            }
+        }
+        self.isLoan = (index == 0)
+        self.pageChanged()
+    }
+
+    func contentView(_ contentView: DNSPageContentView, scrollingWith sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
+        self.manager.titleView.contentView(contentView, scrollingWith: sourceIndex, targetIndex: targetIndex, progress: progress)
+    }
+}
+
+extension DeFiAPI.Bill.BillType {
+    var name: String {
+        switch self {
+        case .全部:
+            return "全部"
+        case .已付利息:
+            return "已付利息"
+        case .已付利息退款:
+            return "已付利息退款"
+        case .认购金额:
+            return "认购金额"
+        case .到期认购金额:
+            return "到期认购金额"
+        case .认购收益:
+            return "认购收益"
+        case .认购金额退款:
+            return "认购金额退款"
+        case .注册SBP:
+            return "注册SBP"
+        case .注册SBP退款:
+            return "注册SBP退款"
+        case .开通交易所SVIP:
+            return "开通交易所SVIP"
+        case .开通交易所SVIP退款:
+            return "开通交易所SVIP退款"
+        case .获取配额:
+            return "获取配额"
+        case .获取配额退款:
+            return "获取配额退款"
+        case .抵押挖矿:
+            return "抵押挖矿"
+        case .抵押挖矿退款:
+            return "抵押挖矿退款"
+        case .划转收入:
+            return "划转收入"
+        case .划转支出:
+            return "划转支出"
+        case .成功借币:
+            return "成功借币"
+        }
+    }
 }
