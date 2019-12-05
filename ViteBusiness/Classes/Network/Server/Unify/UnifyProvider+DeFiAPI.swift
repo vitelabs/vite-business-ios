@@ -124,7 +124,7 @@ extension UnifyProvider.defi {
 //        }
     }
 
-    static func getProductDetail(hash: String) -> Promise<DeFiProductDetail> {
+    static func getProductDetail(hash: String) -> Promise<DeFiLoan> {
         return Promise { seal in
             let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
             p.request(.getProductDetail(hash: hash)) { (result) in
@@ -132,7 +132,7 @@ extension UnifyProvider.defi {
                 case .success(let response):
                     if let json = try? response.mapJSON(),
                         let data = JSON(json)["data"].dictionaryObject,
-                        let detail = DeFiProductDetail.init(JSON: data){
+                        let detail = DeFiLoan.init(JSON: data){
                         seal.fulfill(detail)
                     } else {
                         seal.reject(NSError())

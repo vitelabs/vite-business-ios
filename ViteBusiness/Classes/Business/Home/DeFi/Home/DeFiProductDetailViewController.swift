@@ -11,7 +11,7 @@ import PromiseKit
 class DeFiProductDetailViewController: BaseViewController {
 
     var productHash: String!
-    var detail: DeFiProductDetail?
+    var detail: DeFiLoan?
     var timer: Timer?
     lazy var tableView = UITableView.listView()
 
@@ -123,21 +123,21 @@ class DeFiProductDetailViewController: BaseViewController {
         }
     }
 
-    func updateInfo(detail: DeFiProductDetail) {
+    func updateInfo(detail: DeFiLoan) {
         self.detail = detail
          content = [
             ("产品Hash",detail.productHash,nil),
             ("借币金额",detail.loanAmount.amountFull(decimals: 13),"VITE"),
             ("每份金额",detail.singleCopyAmount.amountFull(decimals: 13),"VITE"),
             ("总份数",String(detail.subscriptionCopies),"份"),
-            ("年化收益率",detail.yearRate.percentageString(),nil),
+            ("年化收益率",detail.yearRateString,nil),
             ("借币期限",String(detail.loanDuration),"天"),
-            ("认购开始时间",String(detail.subscriptionBeginTime),nil),
-            ("认购期限",String(detail.subscriptionFinishTime),"天"),
+            ("认购开始时间",detail.subscriptionBeginTimeString,nil),
+            ("认购期限",String(detail.subscriptionDuration),"天"),
         ]
         tableView.reloadData()
 
-        self.cardView.progressLabel.text = "认购进度：\(detail.loanCompleteness.percentageString())"
+        self.cardView.progressLabel.text = "认购进度：\(detail.loanCompletenessString)"
     }
 
     override func viewDidDisappear(_ animated: Bool) {

@@ -278,9 +278,6 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         }
 
         func showLoanAmountExpireTimeUsedAndRemain() {
-
-
-
             leftLabel.attributedText = {
                 let amount = item.loanAmount.amountShortWithGroupSeparator(decimals: token.decimals)
                 let symbol = token.symbol
@@ -305,7 +302,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             }()
 
             rightLabel.attributedText = {
-                let string = "2019/11/11 12:33:44"
+                let string = item.loanEndTimeString
                 let ret = NSMutableAttributedString(string: string)
 
                 ret.addAttributes(
@@ -405,10 +402,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
 
         case .success:
             iconImageView.image = R.image.icon_cell_loan_sucess()
-            statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderSuccess("xxxxx")
-
-
-
+            statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderSuccess(item.subscriptionFinishTimeString)
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonUse(), for: .normal)
             button.rx.tap.bind {

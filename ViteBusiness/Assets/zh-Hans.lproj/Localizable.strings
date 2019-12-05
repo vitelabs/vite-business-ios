@@ -1012,6 +1012,23 @@
 "defi.my.page.my.loan.cell.button.cancel" =  "撤销借币";
 "defi.my.page.my.loan.cell.button.use" =  "去使用";
 
+// My DeFi Subscription
+"defi.my.page.my.subscription.cell.id.title" =  "Hash: ";
+"defi.my.page.my.subscription.cell.header.end.time" =  "%@后结束认购";
+"defi.my.page.my.subscription.cell.header.failed" =  "认购期结束";
+"defi.my.page.my.subscription.cell.header.success" =  "%@售罄";
+
+"defi.my.page.my.subscription.cell.title.subscription.amount" =  "认购金额";
+"defi.my.page.my.subscription.cell.title.expire.time" =  "借币期限";
+"defi.my.page.my.subscription.cell.title.year.rate" =  "年化收益率";
+"defi.my.page.my.subscription.cell.title.total.earnings" =  "预计总收益";
+"defi.my.page.my.subscription.cell.title.saled" =  "已认购";
+"defi.my.page.my.subscription.cell.title.remain.amount" =  "剩余额度";
+
+"defi.my.page.my.subscription.cell.button.view.earnings" =  "查看收益";
+"defi.my.page.my.subscription.cell.button.subscription" =  "继续认购";
+"defi.my.page.my.subscription.cell.button.view.refund" =  "查看退款";
+
 // DeFi Loan
 "defi.loan.page.title" =  "发布借币";
 "defi.loan.page.slogan" =  "去中心化智能合约安全保障";
