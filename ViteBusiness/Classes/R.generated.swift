@@ -4837,14 +4837,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellDurationTitle = Rswift.StringResource(key: "defi.loan.page.cell.duration.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 借币期限
-      /// 
-      /// Locales: en, zh-Hans
-      public static let defiMyPageMySubscriptionCellTitleExpireTime = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.title.expire.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币期限: %@天
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanCellTitleDuration = Rswift.StringResource(key: "defi.my.page.my.loan.cell.title.duration", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 借币期限: %@天
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMySubscriptionCellTitleDuration = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.title.duration", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币期限以快照块为准。
       /// 
       /// Locales: en, zh-Hans
@@ -4965,7 +4965,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageCellRateTitle = Rswift.StringResource(key: "defi.home.page.cell.rate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 年化收益率
+      /// en translation: 年化收益率: %@
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscriptionCellTitleYearRate = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.title.year.rate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -10638,18 +10638,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.loan.page.cell.duration.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 借币期限
-      /// 
-      /// Locales: en, zh-Hans
-      public static func defiMyPageMySubscriptionCellTitleExpireTime(_: Void = ()) -> String {
-        return NSLocalizedString("defi.my.page.my.subscription.cell.title.expire.time", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 借币期限: %@天
       /// 
       /// Locales: en, zh-Hans
       public static func defiMyPageMyLoanCellTitleDuration(_ value1: String) -> String {
         return String(format: NSLocalizedString("defi.my.page.my.loan.cell.title.duration", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 借币期限: %@天
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMySubscriptionCellTitleDuration(_ value1: String) -> String {
+        return String(format: NSLocalizedString("defi.my.page.my.subscription.cell.title.duration", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 借币期限以快照块为准。
@@ -10862,11 +10862,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.cell.rate.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 年化收益率
+      /// en translation: 年化收益率: %@
       /// 
       /// Locales: en, zh-Hans
-      public static func defiMyPageMySubscriptionCellTitleYearRate(_: Void = ()) -> String {
-        return NSLocalizedString("defi.my.page.my.subscription.cell.title.year.rate", bundle: R.hostingBundle, comment: "")
+      public static func defiMyPageMySubscriptionCellTitleYearRate(_ value1: String) -> String {
+        return String(format: NSLocalizedString("defi.my.page.my.subscription.cell.title.year.rate", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 年化收益率从高到底

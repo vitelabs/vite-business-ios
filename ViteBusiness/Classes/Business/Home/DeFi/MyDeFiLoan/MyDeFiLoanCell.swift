@@ -403,6 +403,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         case .success:
             iconImageView.image = R.image.icon_cell_loan_sucess()
             statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderSuccess(item.subscriptionFinishTimeString)
+            showLoanAmountExpireTimeUsedAndRemain()
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonUse(), for: .normal)
             button.rx.tap.bind {
