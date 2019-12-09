@@ -1129,3 +1129,10 @@
 "defi.item.refund.paid.interest.title" =  "应退已支付利息";
 "defi.item.publish.time.title" =  "发布时间";
 "defi.item.success.time.title" =  "售罄时间";
+
+"defi.card.slogan" =  "去中心化智能合约安全保障";
+"defi.card.progress" =  "认购进度: ";
+"defi.card.end.time" =  "%@天%@后结束认购";
+"defi.card.status.on.sale" =  "认购中";
+"defi.card.status.failed" =  "到期未售罄";
+"defi.card.status.success" =  "成功售罄";

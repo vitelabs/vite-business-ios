@@ -134,6 +134,16 @@ class SendItemView: UIView {
     var rightView: UIView?
     var tipButton: UIButton?
 
+    var rightLabel: UILabel? {
+        guard let view = rightView as? UILabel else { return nil }
+        return view
+    }
+
+    var rightTopBottomLabelsView: TopBottomLabelsView? {
+        guard let view = rightView as? TopBottomLabelsView else { return nil }
+        return view
+    }
+
     let rightViewStyle: RightViewStyle
     let titleTipButtonStyle: TitleTipButtonStyle
 

@@ -52,7 +52,7 @@ class SendStaticItemView: SendItemView {
             rightView.snp.makeConstraints { (m) in
                 m.right.equalToSuperview()
                 m.centerY.equalTo(leftView)
-                m.left.greaterThanOrEqualTo(leftView).offset(6)
+                m.left.greaterThanOrEqualTo(leftView.snp.right).offset(6)
             }
             rightView.setContentHuggingPriority(.defaultLow, for: .horizontal)
             rightView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

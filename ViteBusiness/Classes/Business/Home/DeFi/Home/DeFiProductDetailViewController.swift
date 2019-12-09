@@ -17,7 +17,7 @@ class DeFiProductDetailViewController: BaseViewController {
 
     let bigNavTitleView = PageTitleView.onlyTitle(title: "产品详情")
 
-    let cardView = DeFiProductInfoCard.init(title: "去中心化智能合约安全保障", status: .无, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
+    let cardView = DeFiProductInfoCard.init(title: "去中心化智能合约安全保障", status: .none, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
 
     let buyButton = UIButton.init(style: .blue).then {
         $0.setTitle("立即抢购", for: .normal)

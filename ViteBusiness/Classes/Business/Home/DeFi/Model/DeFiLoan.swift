@@ -32,6 +32,8 @@ struct DeFiLoan: Mappable {
     fileprivate(set) var subscriptionCopies: UInt64 = 0
     fileprivate(set) var loanDuration: UInt64 = 0
     fileprivate(set) var yearRate: Double = 0
+    fileprivate(set) var dayRate: Double = 0
+    fileprivate(set) var loanPayable: Amount = Amount()
 
     // status
     fileprivate(set) var productStatus: DeFiProductStatus = .onSale
@@ -47,6 +49,9 @@ struct DeFiLoan: Mappable {
     fileprivate(set) var loanEndTime: Date = Date()
     fileprivate(set) var loanEndSnapshotHeight: UInt64 = 0
 
+    var loanSnapshotCount: UInt64 {
+        return loanDuration * 24 * 60 * 60
+    }
 
     var subscriptionDuration: UInt64 {
         let interval = UInt64(subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970)
@@ -66,6 +71,8 @@ struct DeFiLoan: Mappable {
         subscriptionCopies <- map["subscriptionCopies"]
         loanDuration <- map["loanDuration"]
         yearRate <- (map["yearRate"], JSONTransformer.stringToDouble)
+        dayRate <- (map["dayRate"], JSONTransformer.stringToDouble)
+        loanPayable <- (map["loanPayable"], JSONTransformer.bigint)
 
         productStatus <- map["productStatus"]
         refundStatus <- map["refundStatus"]
@@ -83,14 +90,31 @@ struct DeFiLoan: Mappable {
 
     }
 
+    func countDown(for date: Date) -> (day: String, time: String) {
+        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: date, to: subscriptionEndTime)
+        return (day: "\(max(components.day!, 0))", time: String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+    }
+
     var countDownString: String {
-        let now = Date()
-        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: subscriptionEndTime)
-        return R.string.localizable.defiHomePageCellEndTimeFormat("\(max(components.day!, 0))", String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+        let (day, time) = countDown(for: Date())
+        return R.string.localizable.defiHomePageCellEndTimeFormat(day, time)
     }
 
     var yearRateString: String {
         return String(format: "%.2f%%", yearRate*100)
+    }
+
+    var isExpire: Bool {
+        let now = UInt64(Date().timeIntervalSince1970)
+        return now >= loanEndSnapshotHeight
+    }
+
+    var isUsed: Bool {
+        return loanUsedAmount > 0
+    }
+
+    var dayRateString: String {
+        return String(format: "%.4f%%", dayRate*100)
     }
 
     var loanCompletenessString: String {

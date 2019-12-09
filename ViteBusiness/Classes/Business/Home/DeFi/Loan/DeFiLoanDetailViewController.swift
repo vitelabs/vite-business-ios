@@ -7,6 +7,9 @@
 
 import UIKit
 import ViteWallet
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class DeFiLoanDetailViewController: BaseScrollableViewController {
 
@@ -64,7 +67,9 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
     // failed
     let token = ViteWalletConst.viteToken
     let titleView = NavigationTitleView(title: R.string.localizable.defiLoanDetailPageTitle(), horizontal: 0)
-    let header = DeFiProductInfoCard.init(title: "去中心化智能合约安全保障", status: .无, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
+    let header = DeFiProductInfoCard.init(title: R.string.localizable.defiCardSlogan(),
+                                          status: .none,
+                                          porgressDesc: "\(R.string.localizable.defiCardProgress())--%", progress: 0)
 
     lazy var idView = SendStaticItemView(title: R.string.localizable.defiItemIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
     lazy var loanAmountView = SendStaticItemView(title: R.string.localizable.defiItemLoanAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
@@ -96,10 +101,10 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
 
     let failedTip1 = TipTextView(text: R.string.localizable.defiLoanDetailPageFailedTip1())
 
-    let cancelButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageOnSaleButtonCancelTitle())
 
     // on sale
     lazy var loanCopysView = SendStaticItemView(title: R.string.localizable.defiItemLoanCopysTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit:R.string.localizable.defiItemCopysUnit()))))
+    let cancelButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageOnSaleButtonCancelTitle())
 
     let onSaleTip1 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip1())
     let onSaleTip2 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip2())
@@ -148,21 +153,74 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
 
         scrollView.alwaysBounceVertical = true
         reloadView()
+
+        Observable<Int>.interval(0.1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
+            guard let loan = self?.loan else { return }
+            guard loan.productStatus == .onSale else { return }
+            self?.updateHeader()
+
+        }.disposed(by: rx.disposeBag)
+    }
+
+    func updateHeader() {
+        guard let loan = self.loan else { return }
+        let attributedString: NSMutableAttributedString = {
+            let (day, time) = loan.countDown(for: Date())
+            let string = R.string.localizable.defiCardEndTime(day, time)
+            let ret = NSMutableAttributedString(string: string)
+
+            ret.addAttributes(
+                text: string,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x000000),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            ret.addAttributes(
+                text: day,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            ret.addAttributes(
+                text: time,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            return ret
+        }()
+
+        let status: DeFiProductInfoCard.Status
+        switch loan.productStatus {
+        case .onSale:
+            status = .onSale
+        case .failed:
+            status = .failed
+        case .success:
+            status = .success
+        case .cancel:
+            status = .cancel
+        }
+        header.config(title: R.string.localizable.defiCardSlogan(), status: status,
+                      progressDesc: "\(R.string.localizable.defiCardProgress())\(loan.loanCompletenessString)",
+            progress: CGFloat(loan.loanCompleteness), deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
     }
 
     func reloadView() {
 
         let views = scrollView.stackView.arrangedSubviews
-        views.forEach {
-            scrollView.stackView.removeArrangedSubview($0)
-        }
+        views.forEach { $0.removeFromSuperview() }
 
         guard let loan = self.loan else { return }
+        updateHeader()
         switch loan.productStatus {
         case .onSale:
+            header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
-            header.snp.makeConstraints { $0.height.equalTo(132) }
             scrollView.stackView.addArrangedSubview(idView, topInset: 20)
             scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
             scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
@@ -182,9 +240,9 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(onSaleTip4, topInset: 4)
             scrollView.stackView.addPlaceholder(height: 26)
         case .failed, .cancel:
+            header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
-            header.snp.makeConstraints { $0.height.equalTo(132) }
             scrollView.stackView.addArrangedSubview(idView, topInset: 20)
             scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
             scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
@@ -199,9 +257,9 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(failedTip1, topInset: 14)
             scrollView.stackView.addPlaceholder(height: 26)
         case .success:
+            header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
-            header.snp.makeConstraints { $0.height.equalTo(132) }
             scrollView.stackView.addArrangedSubview(idView, topInset: 20)
             scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
             scrollView.stackView.addArrangedSubview(successTimeView, topInset: 20)
@@ -220,6 +278,33 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(successTip1, topInset: 14)
             scrollView.stackView.addPlaceholder(height: 26)
         }
+
+        idView.rightLabel?.text = loan.productHash
+        loanAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
+        eachAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.singleCopyAmount, token: token)
+        loanDurationView.rightTopBottomLabelsView?.topLabel.attributedText = DeFiFormater.loanDuration(text: String(loan.loanDuration))
+        loanDurationView.rightTopBottomLabelsView?.bottomLabel.text = R.string.localizable.defiSubscriptionPageDurationBlock(String(loan.loanSnapshotCount))
+        dayRateView.rightLabel?.text = loan.dayRateString
+        paidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanPayable, token: token)
+        subscriptionDurationView.rightLabel?.attributedText = DeFiFormater.subscriptionDuration(text: String(loan.subscriptionDuration))
+        subscribeAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.subscribedAmount, token: token)
+        refundPaidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanPayable, token: token)
+        publishTimeView.rightLabel?.text = loan.subscriptionBeginTimeString
+
+        refundButton.isEnabled = loan.refundStatus != .refunding
+        refundButton.setTitle(loan.refundStatus != .refunding ?
+            R.string.localizable.defiLoanDetailPageFailedButtonViewRefundTitle() :
+            R.string.localizable.defiLoanDetailPageFailedButtonRefundingTitle(), for: .normal)
+
+        loanCopysView.rightLabel?.attributedText = DeFiFormater.value(String(loan.subscriptionCopies), unit: R.string.localizable.defiItemCopysUnit())
+
+        successTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
+        usedAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanUsedAmount, token: token)
+        canUseAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.remainAmount, token: token)
+        endHeightView.rightLabel?.text = String(loan.loanEndSnapshotHeight)
+        endTimeView.rightLabel?.text = loan.loanEndTimeString
+        useButton.isEnabled = !loan.isExpire
+        viewUseButton.isEnabled = loan.isUsed
     }
 }
 
@@ -228,76 +313,5 @@ extension DeFiLoanDetailViewController: ViewControllerDataStatusable {
         return UIView.defaultNetworkErrorView(error: error) {
             retry()
         }
-    }
-}
-
-struct DeFiFormater {
-
-    static func value(_ value: String, unit: String) -> NSAttributedString {
-        let string = "\(value) \(unit)"
-        let ret = NSMutableAttributedString(string: string)
-
-        ret.addAttributes(
-            text: string,
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.7),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        ret.addAttributes(
-            text: unit,
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.45),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        return ret
-    }
-
-    static func loanDuration(text: String) -> NSAttributedString {
-        let string = R.string.localizable.defiItemLoanDurationFormat(
-            R.string.localizable.defiItemDurationPre(),
-            text,
-            R.string.localizable.defiItemDurationSuf())
-        let ret = NSMutableAttributedString(string: string)
-
-        ret.addAttributes(
-            text: string,
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.7),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        ret.addAttributes(
-            text: R.string.localizable.defiItemDurationSuf(),
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.45),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        return ret
-    }
-
-    static func subscriptionDuration(text: String) -> NSAttributedString {
-        let string = R.string.localizable.defiItemSubscriptionDurationFormat(
-            text,
-            R.string.localizable.defiItemDurationSuf())
-        let ret = NSMutableAttributedString(string: string)
-
-        ret.addAttributes(
-            text: string,
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.7),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        ret.addAttributes(
-            text: R.string.localizable.defiItemDurationSuf(),
-            attrs: [
-                NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.45),
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)
-        ])
-
-        return ret
     }
 }

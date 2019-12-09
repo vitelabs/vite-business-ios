@@ -8,28 +8,46 @@
 import UIKit
 
 class DeFiProductInfoCard: UIView {
-    enum Status: String {
-        case 无
-        case 认购中
-        case 到期未售罄
-        case 成功售罄
+    enum Status {
+        case none
+        case onSale
+        case failed
+        case success
+        case cancel
+
+        func name() -> String {
+            switch self {
+            case .none:
+                return ""
+             case .onSale:
+                return R.string.localizable.defiCardStatusOnSale()
+            case .failed:
+                return R.string.localizable.defiCardStatusFailed()
+            case .success:
+                return R.string.localizable.defiCardStatusSuccess()
+            case .cancel:
+                return R.string.localizable.defiCardStatusCancel()
+            }
+        }
 
         func color() -> UIColor {
             switch self {
-            case .无:
+            case .none:
                 return UIColor.init(netHex: 0xffffff)
-             case .认购中:
+             case .onSale:
                 return UIColor.init(netHex: 0x007AFF, alpha: 0.6)
-            case .到期未售罄:
+            case .failed:
                 return UIColor.init(netHex: 0xB5C8FF)
-            case .成功售罄:
+            case .success:
                 return UIColor.init(netHex: 0xFFC800)
+            case .cancel:
+                return UIColor.init(netHex: 0xB5C8FF)
             }
         }
     }
 
     convenience init(title: String? = nil,
-         status: DeFiProductInfoCard.Status = .无,
+         status: DeFiProductInfoCard.Status = .none,
          porgressDesc: String? = nil,
           progress: CGFloat = 0.0,
           deadLineDesc: NSAttributedString? = nil) {
@@ -38,13 +56,13 @@ class DeFiProductInfoCard: UIView {
     }
 
     func config(title: String? = nil,
-        status: DeFiProductInfoCard.Status = .无,
+        status: DeFiProductInfoCard.Status = .none,
         progressDesc: String? = nil,
          progress: CGFloat = 0.0,
          deadLineDesc: NSAttributedString? = nil) {
         titleLabel.text = title
-        statusLabel.isHidden = status == .无
-        statusLabel.titleLab.text = status.rawValue
+        statusLabel.isHidden = status == .none
+        statusLabel.titleLab.text = status.name()
         statusLabel.bgImg.image = R.image.btn_path_bg()?.tintColor(status.color()).resizable
         progressLabel.text = progressDesc
         progressView.progress = progress
