@@ -28,7 +28,7 @@ class DeFiBillBaseFundViewController: BaseTableViewController {
 
 }
 
-class MyDeFiBillBaseFundListViewModel: ListViewModel<DeFiBillCell> {
+class MyDeFiBillBaseFundListViewModel: ListViewModel<DeFiBill> {
 
     static let limit = 4
     let address = HDWalletManager.instance.account!.address
@@ -55,5 +55,15 @@ class MyDeFiBillBaseFundListViewModel: ListViewModel<DeFiBillCell> {
 
     override func clicked(model: DeFiBill) {
 
+    }
+
+    override func cellHeight(model: DeFiBill) -> CGFloat {
+        return DeFiBillCell.cellHeight
+    }
+
+    override func cellFor(model: DeFiBill, indexPath: IndexPath) -> UITableViewCell {
+        let cell: DeFiBillCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(model)
+        return cell
     }
 }

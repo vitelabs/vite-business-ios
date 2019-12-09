@@ -8,7 +8,7 @@
 import Foundation
 import PromiseKit
 
-class DeFiListViewModel: ListViewModel<DeFiHomeProductCell> {
+class DeFiListViewModel: ListViewModel<DeFiLoan> {
 
     static let limit = 4
 
@@ -33,5 +33,15 @@ class DeFiListViewModel: ListViewModel<DeFiHomeProductCell> {
         let detail = DeFiProductDetailViewController()
         detail.productHash = model.productHash
         UIViewController.current?.navigationController?.pushViewController(detail, animated: true)
+    }
+
+    override func cellHeight(model: DeFiLoan) -> CGFloat {
+        return DeFiHomeProductCell.cellHeight
+    }
+
+    override func cellFor(model: DeFiLoan, indexPath: IndexPath) -> UITableViewCell {
+        let cell: DeFiHomeProductCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(model)
+        return cell
     }
 }

@@ -17,7 +17,7 @@ protocol ListCellable where Self: UITableViewCell {
 }
 
 
-class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableViewDataSource {
+class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     public enum LoadStatus: Equatable {
         case normal
@@ -39,7 +39,7 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
 
     //MARK: pubilc
     let tableView: UITableView
-    fileprivate(set) var items: [Cell.Model] = []
+    fileprivate(set) var items: [Model] = []
     fileprivate(set) var hasMore: Bool = false
     fileprivate(set) var loadStatus: LoadStatus = .normal {
         didSet {
@@ -97,7 +97,7 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
     }
 
     @discardableResult
-    func tirggerRefresh(clear: Bool = false) -> Promise<(items: [Cell.Model], hasMore: Bool)> {
+    func tirggerRefresh(clear: Bool = false) -> Promise<(items: [Model], hasMore: Bool)> {
         if clear {
             items = []
             tableView.reloadData()
@@ -105,7 +105,7 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
 
         loadStatus = .refresh
         self.updateMJHeader()
-        return refresh().then {[weak self] (items, hasMore) -> Promise<(items: [Cell.Model], hasMore: Bool)> in
+        return refresh().then {[weak self] (items, hasMore) -> Promise<(items: [Model], hasMore: Bool)> in
             let ret = Promise.value((items: items, hasMore: hasMore))
             guard let `self` = self else { return ret }
             self.items = items
@@ -113,8 +113,8 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
             self.tableView.reloadData()
             self.loadStatus = items.isEmpty ? .empty : .normal
             return ret
-        }.recover {[weak self] (error) -> Promise<(items: [Cell.Model], hasMore: Bool)> in
-            let ret = Promise<(items: [Cell.Model], hasMore: Bool)>(error: error)
+        }.recover {[weak self] (error) -> Promise<(items: [Model], hasMore: Bool)> in
+            let ret = Promise<(items: [Model], hasMore: Bool)>(error: error)
             guard let `self` = self else { return ret }
             self.loadStatus = .error(message: error.localizedDescription)
             return ret
@@ -133,15 +133,15 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
     }
 
     @discardableResult
-    func tirggerLoadMore() -> Promise<(items: [Cell.Model], hasMore: Bool)> {
+    func tirggerLoadMore() -> Promise<(items: [Model], hasMore: Bool)> {
         loadStatus = .loadMore
-        return loadMore().then {[weak self] (items, hasMore) -> Promise<(items: [Cell.Model], hasMore: Bool)> in
+        return loadMore().then {[weak self] (items, hasMore) -> Promise<(items: [Model], hasMore: Bool)> in
             self?.items.append(contentsOf: items)
             self?.hasMore = hasMore
             self?.tableView.reloadData()
             self?.loadStatus = .normal
             return Promise.value((items: items, hasMore: hasMore))
-        }.recover {[weak self] (error) -> Promise<(items: [Cell.Model], hasMore: Bool)> in
+        }.recover {[weak self] (error) -> Promise<(items: [Model], hasMore: Bool)> in
             self?.loadStatus = .normal
             Toast.show(error.localizedDescription)
             return Promise.init(error: error)
@@ -158,15 +158,23 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
     }
 
     //MARK: must be override
-    func refresh() -> Promise<(items: [Cell.Model], hasMore: Bool)> {
+    func refresh() -> Promise<(items: [Model], hasMore: Bool)> {
         fatalError("must be override")
     }
 
-    func loadMore() -> Promise<(items: [Cell.Model], hasMore: Bool)> {
+    func loadMore() -> Promise<(items: [Model], hasMore: Bool)> {
         fatalError("must be override")
     }
 
-    func clicked(model: Cell.Model) {
+    func clicked(model: Model) {
+        fatalError("must be override")
+    }
+
+    func cellHeight(model: Model) -> CGFloat {
+        fatalError("must be override")
+    }
+
+    func cellFor(model: Model, indexPath: IndexPath) -> UITableViewCell {
         fatalError("must be override")
     }
 
@@ -305,13 +313,11 @@ class ListViewModel<Cell: ListCellable>: NSObject, UITableViewDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Cell.cellHeight
+        return self.cellHeight(model: items[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(items[indexPath.row])
-        return cell
+        return self.cellFor(model: items[indexPath.row], indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

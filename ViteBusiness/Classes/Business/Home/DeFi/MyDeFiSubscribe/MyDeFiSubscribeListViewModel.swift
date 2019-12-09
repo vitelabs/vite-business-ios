@@ -8,7 +8,7 @@
 import Foundation
 import PromiseKit
 
-class MyDeFiSubscribeListViewModel: ListViewModel<MyDeFiSubscribeCell> {
+class MyDeFiSubscribeListViewModel: ListViewModel<DeFiSubscription> {
 
     static let limit = 4
     let address = HDWalletManager.instance.account!.address
@@ -32,5 +32,15 @@ class MyDeFiSubscribeListViewModel: ListViewModel<MyDeFiSubscribeCell> {
 
     override func clicked(model: DeFiSubscription) {
 
+    }
+
+    override func cellHeight(model: DeFiSubscription) -> CGFloat {
+        return MyDeFiSubscribeCell.cellHeight
+    }
+
+    override func cellFor(model: DeFiSubscription, indexPath: IndexPath) -> UITableViewCell {
+        let cell: MyDeFiSubscribeCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(model)
+        return cell
     }
 }

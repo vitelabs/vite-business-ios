@@ -8,7 +8,7 @@
 import Foundation
 import PromiseKit
 
-class MyDeFiLoanListViewModel: ListViewModel<MyDeFiLoanCell> {
+class MyDeFiLoanListViewModel: ListViewModel<DeFiLoan> {
 
     static let limit = 4
     let address = HDWalletManager.instance.account!.address
@@ -33,5 +33,15 @@ class MyDeFiLoanListViewModel: ListViewModel<MyDeFiLoanCell> {
     override func clicked(model: DeFiLoan) {
         let vc = DeFiLoanDetailViewController(loan: model)
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    override func cellHeight(model: DeFiLoan) -> CGFloat {
+        return MyDeFiLoanCell.cellHeight
+    }
+
+    override func cellFor(model: DeFiLoan, indexPath: IndexPath) -> UITableViewCell {
+        let cell: MyDeFiLoanCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(model)
+        return cell
     }
 }
