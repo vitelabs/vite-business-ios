@@ -45,6 +45,13 @@ extension UIStackView {
     func addPlaceholder(height: CGFloat) {
         addArrangedSubview(UIView.placeholderView(height: height))
     }
+
+    func addArrangedSubview(_ view: UIView, topInset: CGFloat) {
+        if topInset > 0 {
+            addPlaceholder(height: topInset)
+        }
+        addArrangedSubview(view)
+    }
 }
 
 extension UIView {

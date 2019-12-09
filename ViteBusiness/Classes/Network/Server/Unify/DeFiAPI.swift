@@ -113,7 +113,7 @@ enum DeFiAPI: TargetType {
             }
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case let .getProductDetail(hash):
-            var parameters: [String: String] = [
+            let parameters: [String: String] = [
                 "productHash": hash,
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
@@ -132,6 +132,8 @@ enum DeFiAPI: TargetType {
         }
     }
 
+    static var testStatus = DeFiProductStatus.onSale
+
     var sampleData: Data {
         switch self {
         case .getDeFiLoans:
@@ -139,7 +141,23 @@ enum DeFiAPI: TargetType {
         case .getSubscriptions:
             return Data()
         case .getProductDetail:
-            let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 1,   \"refundStatus\": 1  } }"
+
+            let str: String
+            switch type(of: self).testStatus {
+            case .onSale:
+                type(of: self).testStatus = .failed
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 1,   \"refundStatus\": 1  } }"
+            case .failed:
+                type(of: self).testStatus = .success
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 2,   \"refundStatus\": 1  } }"
+            case .success:
+                type(of: self).testStatus = .cancel
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 3,   \"refundStatus\": 1  } }"
+            case .cancel:
+                type(of: self).testStatus = .onSale
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1554722699,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 4,   \"refundStatus\": 1  } }"
+            }
+
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         case .getBills:
             let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": [{    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 2,    \"billType\": 3,    \"billAmount\": \"-1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   }  ] }"

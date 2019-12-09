@@ -12,14 +12,7 @@ class SendStaticItemView: SendItemView {
     override init(title: String, rightViewStyle: RightViewStyle = .none, titleTipButtonStyle: TitleTipButtonStyle = .none) {
         super.init(title: title, rightViewStyle: rightViewStyle, titleTipButtonStyle: titleTipButtonStyle)
 
-        switch rightViewStyle {
-        case .none:
-            rightView = nil
-        case .label(let style):
-            rightView = style.createLabel()
-        case .button(let style):
-            rightView = style.createButton()
-        }
+        rightView = rightViewStyle.createRightView()
 
         switch titleTipButtonStyle {
         case .none:

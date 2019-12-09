@@ -1055,3 +1055,77 @@
 "defi.loan.page.tip2" =  "认购期内，若成功售罄，自动结束认购，开始计息。";
 "defi.loan.page.tip3" =  "尚无认购时，您可以撤销借币。";
 "defi.loan.page.tip4" =  "认购期结束后，若未成功售罄，可重新发布借币。";
+
+// DeFi Subscription
+"defi.subscription.page.title" =  "我要认购";
+"defi.subscription.page.id.title" =  "产品Hash";
+"defi.subscription.page.duration.title" =  "借币期限";
+"defi.subscription.page.duration.pre" =  "约";
+"defi.subscription.page.duration.suf" =  "天";
+"defi.subscription.page.duration.unit" =  "%@ %@ %@";
+"defi.subscription.page.duration.block" =  "%@个快照块";
+"defi.subscription.page.year.rate.title" =  "年化收益率";
+"defi.subscription.page.loan.amount.title" =  "借币金额";
+"defi.subscription.page.each.amount.title" =  "每份金额";
+"defi.subscription.page.left.copys.title" =  "剩余份数";
+"defi.subscription.page.left.copys.unit" =  "份";
+"defi.subscription.page.subscription.copys.title" =  "认购份数";
+"defi.subscription.page.subscription.copys.unit" =  "份";
+"defi.subscription.page.subscription.amount.title" =  "认购金额";
+"defi.subscription.page.earnings.title" =  "预计总收益/每日收益";
+"defi.subscription.page.subscription.button.title" =  "立即认购";
+"defi.subscription.page.tip1" =  "准确的借币期限以快照块高度为准。";
+"defi.subscription.page.tip2" =  "认购期结束后，若未成功售罄，会自动返还认购金额。";
+"defi.subscription.page.tip3" =  "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.subscription.page.tip4" =  "收益按日发放至DeFi基础余额。";
+
+// DeFi Loan Detail
+"defi.loan.detail.page.title" =  "借币详情";
+
+"defi.loan.detail.page.failed.button.reloan.title" =  "重新发布借币";
+"defi.loan.detail.page.failed.button.refunding.title" =  "退款中";
+"defi.loan.detail.page.failed.button.view.refund.title" =  "查看退款";
+"defi.loan.detail.page.failed.tip1" =  "借币期限以快照块高度为准。";
+
+"defi.loan.detail.page.on.sale.button.cancel.title" =  "撤销借币";
+"defi.loan.detail.page.on.sale.button.cancel.alert.title" =  "撤销借币";
+"defi.loan.detail.page.on.sale.button.cancel.alert.message" =  "正在火热认购中，确定撤销借币吗？";
+"defi.loan.detail.page.on.sale.button.cancel.alert.ok" =  "确定";
+"defi.loan.detail.page.on.sale.button.cancel.alert.cancel" =  "暂不取消";
+"defi.loan.detail.page.on.sale.tip1" =  "借币期限以快照块高度为准。";
+"defi.loan.detail.page.on.sale.tip2" =  "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.loan.detail.page.on.sale.tip3" =  "尚无认购时，您可以撤销借币。";
+"defi.loan.detail.page.on.sale.tip4" =  "认购期结束后，若未成功售罄，可重新发布借币。";
+
+"defi.loan.detail.page.success.button.use.title" =  "去使用";
+"defi.loan.detail.page.success.button.view.use.title" =  "查看使用记录";
+"defi.loan.detail.page.success.tip1" =  "借币期限以快照块高度为准。";
+
+// DeFi item
+"defi.item.id.title" =  "产品Hash";
+"defi.item.loan.duration.title" =  "借币期限";
+"defi.item.subscription.duration.title" =  "认购期限";
+"defi.item.duration.pre" =  "约";
+"defi.item.duration.suf" =  "天";
+"defi.item.subscription.duration.format" =  "%@ %@";
+"defi.item.loan.duration.format" =  "%@ %@ %@";
+"defi.item.loan.duration.block" =  "%@个快照块";
+"defi.item.year.rate.title" =  "年化收益率";
+"defi.item.day.rate.title" =  "日利率";
+"defi.item.loan.amount.title" =  "借币金额";
+"defi.item.loan.copys.title" =  "借币份数";
+"defi.item.each.amount.title" =  "每份金额";
+"defi.item.left.copys.title" =  "剩余份数";
+"defi.item.subscription.copys.title" =  "认购份数";
+"defi.item.copys.unit" =  "份";
+"defi.item.subscription.amount.title" =  "认购金额";
+
+"defi.item.paid.interest.title" =  "已支付利息";
+"defi.item.subscribe.amount.title" =  "已认购金额";
+"defi.item.used.amount.title" =  "已使用金额";
+"defi.item.can.use.amount.title" =  "可用借币余额";
+"defi.item.end.snapshoot.height.title" =  "到期快照块高度";
+"defi.item.end.time.title" =  "预计到期时间";
+"defi.item.refund.paid.interest.title" =  "应退已支付利息";
+"defi.item.publish.time.title" =  "发布时间";
+"defi.item.success.time.title" =  "售罄时间";

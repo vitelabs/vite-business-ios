@@ -31,6 +31,7 @@ class MyDeFiLoanListViewModel: ListViewModel<MyDeFiLoanCell> {
     }
 
     override func clicked(model: DeFiLoan) {
-
+        let vc = DeFiLoanDetailViewController(loan: model)
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 }

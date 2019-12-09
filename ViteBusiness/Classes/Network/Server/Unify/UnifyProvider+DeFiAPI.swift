@@ -30,7 +30,7 @@ extension UnifyProvider.defi {
 
         let jsonString = "{\"productHash\":\"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",\"subscriptionEndHeight\":1554722699,\"subscriptionEndTimestamp\":1575282558,\"yearRate\":\"0.02\",\"loanAmount\":\"1000000000000000000000\",\"singleCopyAmount\":\"10000000000000000000\",\"loanDuration\":3,\"subscribedAmount\":\"1000000000000000000000\",\"loanCompleteness\":\"0.10\",\"productStatus\":1,\"refundStatus\":1}"
 
-        return after(seconds: 1).then({ (Void) -> Promise<[DeFiLoan]> in
+        return after(seconds: 0.1).then({ (Void) -> Promise<[DeFiLoan]> in
             if sortType == .PUB_TIME_DESC {
                 if offset != 0 {
                     return Promise.value([
@@ -77,7 +77,7 @@ extension UnifyProvider.defi {
     }
 
     static func getMySubscriptions(status: DeFiAPI.ProductStatus, address: ViteAddress, offset: Int, limit: Int) -> Promise<[DeFiSubscription]> {
-        return after(seconds: 1).then({ (Void) -> Promise<[DeFiSubscription]> in
+        return after(seconds: 0.1).then({ (Void) -> Promise<[DeFiSubscription]> in
 
             return Promise.value([
                 DeFiSubscription(JSONString: "{}")!,
@@ -101,7 +101,7 @@ extension UnifyProvider.defi {
     }
 
     static func getMyLoans(status: DeFiAPI.ProductStatus, address: ViteAddress, offset: Int, limit: Int) -> Promise<[DeFiLoan]> {
-        return after(seconds: 1).then({ (Void) -> Promise<[DeFiLoan]> in
+        return after(seconds: 0.1).then({ (Void) -> Promise<[DeFiLoan]> in
             let jsonString = "{\"productHash\":\"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",\"subscriptionEndHeight\":1554722699,\"subscriptionEndTimestamp\":1575282558,\"yearRate\":\"0.02\",\"loanAmount\":\"1000000000000000000000\",\"singleCopyAmount\":\"10000000000000000000\",\"loanDuration\":3,\"subscribedAmount\":\"1000000000000000000000\",\"loanCompleteness\":\"0.10\",\"productStatus\":1,\"refundStatus\":1}"
             return Promise.value([
                 DeFiLoan(JSONString: jsonString)!,
