@@ -95,4 +95,9 @@ struct DeFiSubscription: Mappable {
     var subscriptionFinishTimeString: String {
         return subscriptionFinishTime.format("yyyy-MM-dd HH:mm:ss")
     }
+
+    func countDown(for date: Date) -> (day: String, time: String) {
+        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: date, to: subscriptionEndTime)
+        return (day: "\(max(components.day!, 0))", time: String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+    }
 }

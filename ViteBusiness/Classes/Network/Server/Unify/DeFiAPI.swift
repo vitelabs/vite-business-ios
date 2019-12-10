@@ -63,6 +63,8 @@ enum DeFiAPI: TargetType {
 
     case getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String?, offset: Int, limit: Int)
     case getUsage(address: ViteAddress,productHash: String?)
+    case getSubscriptionDetail(address: ViteAddress, productHash: String)
+
 
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -74,6 +76,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/products/loan"
         case .getSubscriptions:
             return "api/v1/defi/products/subscription"
+        case .getSubscriptionDetail:
+            return "/api/v1/defi/product/subscription"
         case .getProductDetail:
             return "api/v1/defi/product/loan"
         case .getBills:
@@ -141,6 +145,12 @@ enum DeFiAPI: TargetType {
            }
            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
 
+        case .getSubscriptionDetail(let address, let productHash):
+            var parameters: [String: Any] = [
+                "address": address,
+                "productHash": productHash
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
 
@@ -176,6 +186,9 @@ enum DeFiAPI: TargetType {
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         case .getUsage:
             let str = "{ \"code\": 0, \"msg\": \"ok\", \"data\": [{ \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 1, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"sbpName\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"blockProducingAddress\": \"vite_ssss\", \"rewardWithdrawAddress\": \"vite_aas\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 2, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"quotaAddress\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 3, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"sbpName\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"blockProducingAddress\": \"vite_ssss\", \"rewardWithdrawAddress\": \"vite_aas\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 4, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"pledgeAmount\": \"10000000000000\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 } ] }"
+            return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
+        case .getSubscriptionDetail:
+            let str = "{ \"code\": 0, \"msg\": \"ok\", \"data\": [{ \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"yearRate\": \"0.02\", \"loanAmount\": \"1000.000000000000000000\", \"subscribedAmount\": \"1000.000000000000000000\", \"subscriptionBeginTime\": 1, \"subscriptionEndTime\": 2, \"subscriptionFinishTime\": 3, \"singleCopyAmount\": \"10.000000000000000000\", \"subscriptionCopies\": 3, \"subscribedCopies\": 1, \"leftCopies\": 2, \"mySubscribedAmount\": \"1000.000000000000000000\", \"mySubscribedCopies\": 1, \"totalProfits\": \"10.000000000000000000\", \"dayProfits\": \"3.000000000000000000\", \"earnProfits\": \"3.000000000000000000\", \"loanDuration\": 3, \"loanCompleteness\": \"0.10\", \"productStatus\": 1, \"refundStatus\": 1 }] }"
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         default:
             return Data()

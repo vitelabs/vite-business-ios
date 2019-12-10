@@ -31,7 +31,8 @@ class MyDeFiSubscribeListViewModel: ListViewModel<DeFiSubscription> {
     }
 
     override func clicked(model: DeFiSubscription) {
-
+        let vc = DeFiSubscriptionDetailViewController.init(productHash: model.productHash)
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 
     override func cellHeight(model: DeFiSubscription) -> CGFloat {

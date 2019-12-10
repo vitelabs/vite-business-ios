@@ -183,4 +183,24 @@ extension UnifyProvider.defi {
             }
         }
     }
+
+    static func getSubscriptionDetail(address: ViteAddress, productHash: String) -> Promise<DeFiSubscription> {
+         return Promise { seal in
+             let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
+             p.request(.getSubscriptionDetail(address: address, productHash: productHash)) { (result) in
+                 switch result {
+                 case .success(let response):
+                     if let json = try? response.mapJSON(),
+                        let data = JSON(json)["data"].array?.first?.dictionaryObject,
+                        let detail = DeFiSubscription.init(JSON: data){
+                         seal.fulfill(detail)
+                     } else {
+                         seal.reject(NSError())
+                     }
+                 case .failure(let error):
+                     seal.reject(error)
+                 }
+             }
+         }
+     }
 }
