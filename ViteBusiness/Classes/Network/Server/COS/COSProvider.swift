@@ -33,7 +33,7 @@ extension COSProvider {
     }
 
     func getLocalizable(language: ViteLanguage, completion: @escaping (Result<String?>) -> Void) {
-        sendRequest(api: .getLocalizable(language.rawValue), completion: completion)
+        sendRequest(api: .getLocalizable(language.code), completion: completion)
     }
 
     func getAppConfig(completion: @escaping (Result<String?>) -> Void) {

@@ -6,6 +6,41 @@
   
 */
 
+/* ViteCommunity */
+
+"confirm.button.title" = "Confirm";
+"cancel.button.title" = "Cancel";
+"alter.title" = "NOTICE";
+
+"discover.page.title"="Discovery";
+"discover.page.game.cell.palyNum"="%@ players are playing";
+"discover.page.activity.page.title1"="Latest Events";
+"discover.page.activity.page.title2"="History";
+"discover.page.news.cell.official"="Vite";
+"discover.page.news.cell.time.minute"="Now";
+"discover.page.news.cell.time.hour"="%@h ago";
+"discover.page.news.cell.time.day"="%@d ago";
+"discover.page.headerTitle.activity"="Campaign Center";
+"discover.page.headerTitle.game"="Vite Games";
+"discover.page.headerTitle.news"="Vite News";
+"discover.page.VCWebTitle.activity"="Vite Events";
+"discover.page.VCWebTitle.game"="Vite Games";
+"discover.page.VCWebTitle.news"="Vite News";
+"discover.page.game.alter.title"="You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+
+//AirDrop
+"airdrop.help" = "Help";
+"airdrop.vpower" = "Winners";
+"airdrop.profit" = "Benefits";
+"airdrop.validationFailed" = "Verification Failed";
+"airdrop.enabled" = "Pick up 10~1000";
+"airdrop.leftTime" = "Countdown";
+
+"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
+"airdrop.error.tip.not.support" = "Your device not support airdrop.";
+"airdrop.error.tip.unknown.error" = "Unknown Error.";
+
+
 /* App */
 "Cancel" = "Cancel";
 "Finish" = "Done";
@@ -31,7 +66,7 @@
 
 /* Lock */
 "lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Arouse verify again";
+"lock.page.fingerprint.btn.title" = "Biometric Verification";
 "lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
 "lock.page.changeUser.btn.title" = "Switch Account";
 
@@ -40,22 +75,39 @@
 "create.page.tf.title" = "Account Name";
 "create.page.pw.title" = "Please input password";
 "create.page.pw.repeate.title" = "Please input your password again";
+"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
+"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
 "create.page.submit.btn.title" = "Create";
+"create.page.toast.error.invite.code" = "Wrong Invitation Code";
 
-"create.page.tip.title" = "Backup Wallet Account";
-"create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
-"create.page.tip.nextBtn" = "Generate Seed Phrase";
+"create.page.tip.title" = "Backup Instructions";
+"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
+"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
+"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
+"create.page.tip.button.skip.title" = "Back Up Later";
+"create.page.tip.button.next.title" = "Backed Up";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
+"mnemonic.backup.page.title" = "Mnemonic Words Backup";
+"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
+"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
+
+"mnemonic.backup.scan.alert.title" = "Notice";
+"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
+"mnemonic.backup.scan.alert.ok.title" = "Confirm";
+"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our";
+"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
 "mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
 "mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
+"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";
@@ -67,7 +119,12 @@
 "mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
-"mnemonic.affirm.page.title" = "Confirm your seed phrase";
+"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
+"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
+"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
+"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+
+"mnemonic.affirm.page.title" = "Confirm";
 "mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
 "mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
 "mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
@@ -120,6 +177,9 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
+"my.page.invite.cell.title" = "Mining Invitaion, Premiere Mining";
+"my.page.reward.cell.title" = "Rewards Enquiry";
+"my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 
@@ -147,15 +207,16 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
-"balance.info.detail.unconfirmed.count.title" = "%@ Unconfirmed";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Transfer";
+"balance.info.detail.send.button.title" = "Send";
 "balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Quota";
+"balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "Quota %@ UTPS";
-"balance.info.detail.onroad.amount.content" = "%@ On Road";
+"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 /* Address Manage Page */
 "address.manage.page.title" = "My VITE Address";
@@ -170,10 +231,11 @@
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
-"send.page.title" = "Transfer";
+"send.page.title" = "Send";
 "send.page.my.address.title" = "My VITE Address";
 "send.page.my.balance.title" = "Balance";
-"send.page.my.quota.title" = "Quota";
+"send.page.my.pledge.title" = "Benefited Stake";
+"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
 "send.page.add.my.address.button.title" = "Mine";
 "send.page.vite.contacts.button.title" = "VITE Contact Address";
@@ -193,6 +255,7 @@
 "send.page.not.enough.balance.alert.button" = "Cancel";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "VITE Conversion";
@@ -209,7 +272,7 @@
 /* Receive Page */
 "Receive.page.token.title" = "Receive";
 "Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and transfer %@";
+"Receive.page.token.name.label" = "Scan and Send %@";
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
@@ -230,6 +293,10 @@
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
 "system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
 "system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.upload.log.title" = "Upload Log";
+"system.page.cell.upload.log.toast.success" = "Log Uploaded";
+"system.page.cell.delete.wallet.title" = "Delete Current Account";
+"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";
@@ -247,11 +314,12 @@
 "toast.error.login" = "Login Error";
 
 /* quota manage */
-"quota.manage.page.title" = "Acquire Quota";
+"quota.manage.page.title" = "Get Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking freeze duration";
+"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
@@ -267,16 +335,22 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Running PoW for Quota";
-"quota.float.view.tip" = "You can stake VITE to skip the process of running PoW";
+"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction…";
+"quota.float.view.tip" = "This Transaction costs %@UT";
+"quota.pow.finished.float.view.title" = "Transaction Sent";
+"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
+"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
+"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
-"peldge.title" = "My Staking List";
+"peldge.title" = "Staking History";
+"peldge.address.title" = "Beneficiary";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
+"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
 /* Vote */
 "vote.page.title" = "Vote";
 "vote.page.info.nodata.title" = "No Vote";
@@ -311,15 +385,16 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.page.tip1.title" = "Cross-chain multiple token types";
-"introduction.page.tip2.title" = "Decentralized wallet";
-"introduction.page.tip3.title" = "Zero transaction fees";
-"introduction.page.tip4.title" = "Fast transactions";
-"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
-"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
-"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
-"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
-"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+//"introduction.page.tip1.title" = "Cross-chain multiple token types";
+//"introduction.page.tip2.title" = "Decentralized wallet";
+//"introduction.page.tip3.title" = "Zero transaction fees";
+//"introduction.page.tip4.title" = "Fast transactions";
+//"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+//"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+//"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+//"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+//"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 
 /* Error Message */
 "vite.error.network.error" = "Something went wrong with network, please try again later";
@@ -393,25 +468,39 @@
 "workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
 "workflow.confirm.page.toast.password.error" = "Wrong password!";
 
-"workflow.toast.transfer.success" = "Transfer Success";
+"workflow.toast.transfer.success" = "Send Success";
 "workflow.toast.submit.success" = "Submit Successful";
 "workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
 
+"workflow.congestion.without.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
+"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.without.pow.alert.ok" = "Transact Now";
+"workflow.congestion.with.pow.alert.title" = "Notice";
+"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
+"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
+
+"workflow.fast.get.quota.title" = "Instantly Getting Quota";
+"workflow.fast.get.quota.message" = "Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
+"workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
+"workflow.fast.get.quota.link" = "clicking here";
+
 /* Confirm Transaction Page */
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
 "confirm.transaction.address.title" = "Recipient";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.quota.title" = "Quota";
 "confirm.transaction.page.use.password" = "Use password";
 "confirm.transaction.page.pw.title" = "Please input password";
 // vite transfer
-"confirm.transaction.page.vite.transfer.title" = "Transfer";
+"confirm.transaction.page.vite.transfer.title" = "Send";
 "confirm.transaction.page.vite.confirm.button" = "Confirm";
 // vite pledge
-"confirm.transaction.page.vite.pledge.title" = "Acquire Quota";
+"confirm.transaction.page.vite.pledge.title" = "Get Quota";
 "confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
 "confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
 // vite vote & cancel
@@ -420,17 +509,22 @@
 "confirm.transaction.page.vite.vote.node.name" = "Node Name";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
-// vote call contract
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
+// vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Transfer";
+"confirm.transaction.page.eth.transfer.title" = "Send";
 "confirm.transaction.page.eth.confirm.button" = "Confirm";
 // eth vite exchange
 "confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
 "confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Transfer";
+"confirm.transaction.page.grin.transfer.title" = "Send";
 "confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
@@ -452,13 +546,13 @@
 "grin.tx.Repost" = "Repost";
 "grin.tx.copyId" = "Copy";
 "grin.tx.useVite" = "Use VITE Address";
-"grin.sent.useVite.desc" = "Transfer GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
+"grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
 "grin.sent.useHttp" = "Use HTTP Address";
 "grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
 "grin.sent.useFile" = "Use Transaction File";
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "GRIN Transfer";
+"grin.sent.title" = "Send GRIN";
 "grin.sent.amount" = "Amount";
 "grin.receive.ture.amount" = "Actual Amount";
 "grin.sent.fee" = "Fees";
@@ -467,7 +561,7 @@
 "grin.txFile.init.status" = "Created";
 "grin.txFile.id" = "Transaction ID";
 "grin.shareFile" = "Share Transaction File";
-"grin.finalize.title" = "GRIN Transfer";
+"grin.finalize.title" = "Send GRIN";
 "grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txFile.received.status" = "The receipt has been confirmed";
 "grin.finalize" = "Finalize and Broadcast";
@@ -486,27 +580,27 @@
 "grin.thisIsFirstViteAddress" = "This is your first VITE address";
 "grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
 "grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
-"grin.receive.title" = "GRIN Transfer";
+"grin.receive.title" = "Send GRIN";
 "grin.receive.sented" = "Created";
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Receive and Share";
-"grin.sent.btnTitle" = "Transfer";
+"grin.sent.btnTitle" = "Send";
 "grin.receive.BtnTitle" = "Receive";
 "grin.notice.title" = "Notice";
 "grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
 "grin.teach.http.receive.title" = "Receive GRIN though HTTP Address";
-"grin.teach.vite.sent.title" = "Transfer GRIN through VITE Address";
-"grin.teach.http.sent.title" = "Transfer GRIN though HTTP Address";
+"grin.teach.vite.sent.title" = "Send GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Send GRIN though HTTP Address";
 "grin.txid.title" = "Transaction ID";
 "grin.switchAddress" = "Switch Address";
 "grin.http.address" = "HTTP Address";
 "grin.vite.address" = "VITE Address";
 "grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
 "grin.canceled" = "Canceled";
-"grin.makeSureToShare" = "Plese make sure to share the transaction file with sender";
+"grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
-"grin.txbyfile.shareReceiveFileDesc" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txbyfile.initStatus.sender" = "Created";
 "grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
@@ -520,11 +614,11 @@
 
 "grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
 "grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
-"grin.teach.file.send.title" = "Transfer GRIN through Transaction File";
+"grin.teach.file.send.title" = "Send GRIN through Transaction File";
 "grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
 "grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
 "grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
-"grin.teach.vite.send.startSend" = "Start to Transfer";
+"grin.teach.vite.send.startSend" = "Start to Send";
 "grin.txMethod.http" = "HTTP Address";
 "grin.txMethod.vite" = "VITE Address";
 "grin.txMethod.file" = "File Transaction";
@@ -551,7 +645,7 @@
 "grin.detail.txisPostingPlsWait" = "Transaction is in broadcast, please wait for confirmation.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Please wait for the recipient to open Vite wallet and receive the transaction.";
 "grin.detail.pleaseReciveAndShare" = "Please sign the transaction and share the file with the sender, you can choose whichever way you prefer.";
-"grin.detail.gatewaysend" = "VITE Transaction Transfer";
+"grin.detail.gatewaysend" = "VITE Transaction Send";
 "grin.detail.repoat" = "Repost";
 "grin.node.configNode" = "Configurate Full Node.";
 "grin.node.addNode" = "Add New Full Node";
@@ -565,25 +659,31 @@
 // CrossChain Transfer & Receive
 
 "crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Receive";
-"crosschain.withdraw" = "Cross-Chain Transfer";
-"crosschain.withdraw.btnTitle" = "Transfer";
-"crosschain.deposit.btnTitle" = "Receive";
-"crosschain.deposit.vitewallet" = "Receive from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Receive from Another Wallet";
-"crosschain.deposit.history" = "Receive History";
-"crosschain.withdraw.history" = "Transfer History";
-"crosschain.deposit.minAmountDesc" = "The required minimum receive amount is %@. If you try to receive an amount less than this threshold, the transaction will fail.";
-"crosschain.deposit.address" = "Receive Address";
-"crosschain.deposit.scanAddress" = "Scan QR Code to Receive";
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
+"crosschain.deposit" = "Cross-Chain Deposit";
+"crosschain.withdraw" = "Cross-Chain Withdraw";
+"crosschain.withdraw.btnTitle" = "Withdraw";
+"crosschain.deposit.btnTitle" = "Deposit";
+"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
+"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
+"crosschain.deposit.history" = "Deposit History";
+"crosschain.withdraw.history" = "Withdrawal History";
+"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
+"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
+"crosschain.deposit.address" = "Deposit Address";
+"crosschain.deposit.scanAddress" = "Please scan the address QR code";
+"crosschain.deposit.scanLabel" = "Please scan the %@ code";
+"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Receive ";
-"crosschain.withdraw.min" = "Minimum Transfer ";
-"crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
-"crosschain.deposit.all" = "Receive All";
-"crosschain.deposit.amount" = "Receive Amount";
+"crosschain.deposit.min" = "Minimum Deposit Amount ";
+"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
+"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.all" = "Deposit All";
+"crosschain.deposit.amount" = "Deposit Amount";
+"crosschain.withdraw.all" = "Withdraw All";
+"crosschain.withdraw.amount" = "Withdrawal Amount";
 "crosschain.tokenDetail.shortname" = "Symbol";
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Token Name";
@@ -600,34 +700,80 @@
 "crosschain.status.confirmed" = "Confirmed";
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
 "crosschain.status.wrong.address" = "Wrong transfer address";
-"crosschain.status.gatewayReceived" = "Received by Gateway";
-"crosschain.status.withdraw.failed" = "Withdraw Failed";
-"crosschain.status.failedBecausePoor" = "Too less amount";
-"crosschain.withdraw.fee.desc" = "Ethereum transaction fee is included.";
+"crosschain.status.gatewayReceived" = "Deposit by Gateway";
+"crosschain.status.withdraw.failed" = "Withdrawal Failed";
+"crosschain.status.failedBecausePoor" = "Insufficient amount";
+"crosschain.withdraw.fee.desc" = "This fee is charged by the gateway.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
-"crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
+"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
 "crosschain.fee" = "Fee";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
+"crosschain.gatewaydetail.title" = "Gateway Details";
+"crosschain.gatewaydetail.name" =  "Gateway Name";
+"crosschain.gatewaydetail.webset" =  "Official Website";
+"crosschain.gatewaydetail.email" = "Service Mailbox";
+"crosschain.gatewaydetail.statement" = "Terms of Service";
+"crosschain.gatewaydetail.host" = "Gateway URL";
+"crosschain.gatewaydetail.abstract" = "Introduction";
+"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
+"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.detail" = "Terms of Service";
+"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
+"crosschain.statement.title" = "Important Notice";
 
-/* Vite Bifrost */
-"bifrost.connect.tip.in.wallet.home" = "ViteBifrost Connected";
+"unit.Million" = " Million";
+"unit.Billion" = " Billion";
+"unit.Trillion" = " Trillion";
+
+"exchange.history" = "Purchase History";
+"exchange.card.title" = "Buy VITE";
+"exchange.titley" = "Instant Purchase";
+"exchange.buy" = "Buy";
+"exchange.price" = "Rate: ";
+"exchange.amount" = "Amount: ";
+"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE\n\n\n";
+"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+
+
+/* ViteConnect */
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
 "bifrost.alert.tip.title" = "Notice";
 "bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
 "bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
 "bifrost.alert.approve.session.another.address.cancel" = "Back";
 
-"bifrost.alert.switch.address.message" = "ViteBifrost is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteBifrost?";
+"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
 
-"bifrost.home.page.free.header" = "ViteBifrost Connected";
+"bifrost.home.page.free.header" = "ViteConnect Connected";
 "bifrost.home.page.free.content" = "You have no transaction yet";
+"bifrost.home.page.free.address.title" = "Address";
+"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
 "bifrost.toast.operation.success" = "Operation Successful";
+
+"bifrost.list.page.title" = "Signing Transaction List";
+"bifrost.list.page.status.pending" = "Awaiting Signature";
+"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.status.failed" = "Failure";
+"bifrost.list.page.status.finished" = "Success";
+"bifrost.list.page.status.canceled" = "Canceled";
+
+"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
 
 "bifrost.error.message.timeout" = "Connection time out, please try again later";
 "bifrost.error.message.unknown" = "Connection Error, please try again later";
@@ -639,20 +785,22 @@
 "bifrost.operation.vote" = "Voting";
 "bifrost.operation.cancel.vote" = "Revoke Voting";
 "bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Acquire Quota";
+"bifrost.operation.pledge" = "Get Quota";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Transfer";
+"bifrost.operation.transfer" = "Send";
 "bifrost.operation.vx.deposit" = "ViteX Deposit";
 "bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Transfer";
+"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
 "bifrost.operation.vx.order" = "Place Order on ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
 
+"bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.token.symbol" = "Token Symbol";
 "bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.fee" = "Fee";
+"bifrost.operation.title.data" = "Data";
 
 //bnb
 "token.list.page.section.bnb.header" = "Binance Network";
@@ -671,3 +819,139 @@
 "bnb.txType.vote.title" = "Vote";
 "bnb.txType.mint.title" = "MintMsg";
 "bnb.txType.deposit.title" = "Deposit";
+
+// Buildin
+
+"buildin.transfer.utf8string.function.title" = "Transfer";
+"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item2.title" = "Comment";
+
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
+"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.item1.title" = "Fee";
+"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
+"buildin.vote.function.title" = "Vote";
+"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item1.title" = "Votes";
+
+"buildin.coin.issuance.function.title" = "Token Issuance";
+"buildin.coin.issuance.item0.title" = "Issuance Address";
+"buildin.coin.issuance.item1.title" = "Token Name";
+"buildin.coin.issuance.item2.title" = "Token Symbol";
+"buildin.coin.issuance.item3.title" = "Total Supply";
+"buildin.coin.issuance.item4.title" = "Decimals";
+"buildin.coin.issuance.item5.title" = "Re-issuable";
+"buildin.coin.issuance.item5.yes.value" = "YES";
+"buildin.coin.issuance.item5.no.value" = "NO";
+"buildin.coin.issuance.item6.title" = "Max Supply";
+"buildin.coin.issuance.item7.title" = "Issuance Fee";
+
+"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
+"buildin.coin.transfer.ownership.item0.title" = "Token Name";
+"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
+"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+
+"buildin.coin.reissue.token.function.title" = "Re-issue Token";
+"buildin.coin.reissue.token.item0.title" = "Token Name";
+"buildin.coin.reissue.token.item1.title" = "Token Symbol";
+"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
+"buildin.coin.reissue.token.item3.title" = "Amount";
+
+"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
+"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
+"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+
+"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
+"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
+"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
+"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+
+"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
+"buildin.dex.transfer.pair.item0.title" = "Name";
+"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+
+"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
+"buildin.dex.adjust.fees.item0.title" = "Name";
+"buildin.dex.adjust.fees.item1.title" = "Current Address";
+"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
+"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+
+"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
+"buildin.dex.open.trading.pair.item0.title" = "Name";
+"buildin.dex.open.trading.pair.item1.title" = "Current Address";
+"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+
+"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
+"buildin.dex.suspend.trading.pair.item0.title" = "Name";
+"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
+"buildin.dex.recover.trading.pair.item0.title" = "Name";
+"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
+"buildin.dex.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.become.vip.function.title" = "Become a VIP";
+"buildin.dex.become.vip.item0.title" = "Current Address";
+"buildin.dex.become.vip.item1.title" = "Amount";
+
+"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
+"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.item1.title" = "Amount";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "Transaction Confirmation";
+"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.network.error" = "Network Error";
+
+
+"copyed" = "Successfully copied";
+
+"fund.title.wallet" = "Wallet Asset";
+"fund.title.vitex" = "Exchange Asset";
+"fund.title.toWallet" = "Withdraw to Wallet";
+"fund.title.toVitex" = "Deposit to Exchange";
+"fund.walletAddress" = "My Address";
+"fund.walletFound" = "Wallet Balance";
+"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.deposit.amount" = "Transfer Amount";
+"fund.deposit.all" = "All";
+"fund.quotaSpend" = "Quota";
+"fund.deposit" = "Transfer";
+"fund.vitexFound" = "Available Balance";
+"fund.withdraw.amount" = "Transfer Amount";
+"fund.withdraw" = "Transfer";
+"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.available" = "Exchange Available Balance";
+"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.withdraw.placeholder" = "Please enter transfer amount";
+"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
+"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
+"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+
+"transfer.from" =  "From";
+"transfer.wallet.account" =  "Wallet Account";
+"transfer.to" =  "To";
+"transfer.dex.account" =  "Exchange Account";
+"transfer.amount" =  "Amount";
+"transfer.available" =  "Balance: ";
+"transfer.title" =  "Transfer";
+
+"market.favourite" =  "Favorites";
+"market.searchhistory" =  "Search History";
+"market.title" =  "Exchange";
+"market.about" =  "Get Started with ViteX";
+"market.name" =  "Name";
+"market.price" =  "Last Price";
+"market.percent" =  "Change";
+"market.operator" =  "Operators";
+"market.switch" =  "Exchange";

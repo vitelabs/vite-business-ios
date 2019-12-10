@@ -41,19 +41,19 @@ public class LocalizationService {
     }
 
     fileprivate var localizationHash: [String: Any] = [:]
-    fileprivate var cacheTextDic: [String: String] = [:]
+    public fileprivate(set) var cacheTextDic: [String: String] = [:]
     fileprivate let fileHelper = FileHelper.createForApp(appending: "Localization")
 
     public func updateLocalizableIfNeeded(localizationHash: [String: Any]) {
         let language = currentLanguage
         self.localizationHash = localizationHash
-        guard let hash = localizationHash[language.rawValue] as? String else { return }
+        guard let hash = localizationHash[language.code] as? String else { return }
         guard cacheFileHash(language: language) != hash else { return }
 
         COSProvider.instance.getLocalizable(language: language) { (result) in
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get \(language.rawValue) localizable finished", tag: .getConfig)
+                plog(level: .debug, log: "get \(language.code) localizable finished", tag: .getConfig)
                 if let string = jsonString,
                     let data = string.data(using: .utf8) {
                     if let error = self.fileHelper.writeData(data, relativePath: self.cacheFileName(language: language)) {
@@ -72,7 +72,7 @@ public class LocalizationService {
     public var currentLanguage: ViteLanguage = .base {
         didSet {
             guard currentLanguage != oldValue else { return }
-            UserDefaultsService.instance.setObject(currentLanguage.rawValue, forKey: Key.language.rawValue, inCollection: Key.collection.rawValue)
+            UserDefaultsService.instance.setObject(currentLanguage.code, forKey: Key.language.rawValue, inCollection: Key.collection.rawValue)
             reloadCacheLocalization()
             updateLocalizableIfNeeded(localizationHash: self.localizationHash)
         }
@@ -80,11 +80,11 @@ public class LocalizationService {
 
     private init() {
         if let string = UserDefaultsService.instance.objectForKey(Key.language.rawValue, inCollection: Key.collection.rawValue) as? String,
-            let l = ViteLanguage(rawValue: string) {
+            let l = ViteLanguage(rawValue: string == "zh-Hans" ? "zh" : string) {
             currentLanguage = l
         } else {
             currentLanguage = getSystemLanguage()
-            UserDefaultsService.instance.setObject(currentLanguage.rawValue, forKey: Key.language.rawValue, inCollection: Key.collection.rawValue)
+            UserDefaultsService.instance.setObject(currentLanguage.code, forKey: Key.language.rawValue, inCollection: Key.collection.rawValue)
         }
         reloadCacheLocalization()
     }
@@ -102,7 +102,7 @@ extension LocalizationService {
     }
 
     fileprivate func reloadCacheLocalization() {
-        let sandboxPath = fileHelper.rootPath + "/\(currentLanguage.rawValue).strings"
+        let sandboxPath = fileHelper.rootPath + "/\(cacheFileName(language: currentLanguage))"
         if FileManager.default.fileExists(atPath: sandboxPath),
             let ret = NSDictionary(contentsOfFile: sandboxPath) as? [String: String] {
             ret.forEach { (key, value) in
@@ -145,6 +145,6 @@ extension LocalizationService {
     }
 
     fileprivate func cacheFileName(language: ViteLanguage) -> String {
-        return "\(language.rawValue).strings"
+        return "\(language.code).strings"
     }
 }

@@ -80,8 +80,6 @@ extension AccountBlock.TransactionType {
             return R.string.localizable.transactionListTransactionTypeNameCancelPledge()
         case .coin:
             return R.string.localizable.transactionListTransactionTypeNameCoin()
-        case .cancelCoin:
-            return R.string.localizable.transactionListTransactionTypeNameCancelCoin()
         case .send, .receive:
             return R.string.localizable.transactionListTransactionTypeNameTransfer()
         }
@@ -97,7 +95,7 @@ extension AccountBlock.TransactionType {
             return R.image.icon_tx_vote()
         case .pledge, .cancelPledge:
             return R.image.icon_tx_pledge()
-        case .coin, .cancelCoin:
+        case .coin:
             return R.image.icon_tx_coin()
         case .send:
             return R.image.icon_tx_send()

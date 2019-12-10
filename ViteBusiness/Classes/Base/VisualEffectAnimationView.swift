@@ -8,9 +8,9 @@
 
 import UIKit
 
-class VisualEffectAnimationView: UIVisualEffectView {
+public class VisualEffectAnimationView: UIVisualEffectView {
 
-    enum BackgroundStyle {
+    public enum BackgroundStyle {
         case blurEffect(blurEffect: UIBlurEffect)
         case color(color: UIColor)
     }
@@ -19,11 +19,11 @@ class VisualEffectAnimationView: UIVisualEffectView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    var isEnableTapDismiss: Bool = true
-    var animateDuration: TimeInterval = 0.25
+    public var isEnableTapDismiss: Bool = true
+    public var animateDuration: TimeInterval = 0.25
     fileprivate let style: BackgroundStyle
 
-    init(superview: UIView, style: BackgroundStyle = .color(color: UIColor.black.withAlphaComponent(0.4))) {
+    public init(superview: UIView, style: BackgroundStyle = .color(color: UIColor.black.withAlphaComponent(0.4))) {
         self.style = style
         super.init(effect: nil)
 
@@ -51,7 +51,7 @@ class VisualEffectAnimationView: UIVisualEffectView {
         }
     }
 
-    func show(animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
+    public func show(animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: animateDuration, animations: {
             switch self.style {
             case .blurEffect(let blurEffect):
@@ -66,7 +66,7 @@ class VisualEffectAnimationView: UIVisualEffectView {
         })
     }
 
-    func hide(animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
+    public func hide(animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: animateDuration, animations: {
             self.effect = nil
             self.contentView.alpha = 0

@@ -11,43 +11,64 @@ import RxCocoa
 import ObjectMapper
 
 public class AppSettingsService {
-    static let instance = AppSettingsService()
+    public static let instance = AppSettingsService()
 
-    lazy var currencyDriver: Driver<CurrencyCode> = self.currencyBehaviorRelay.asDriver()
-    fileprivate var currencyBehaviorRelay: BehaviorRelay<CurrencyCode>!
+    public lazy var appSettingsDriver: Driver<AppSettings> = self.appSettingsBehaviorRelay.asDriver()
+    fileprivate var appSettingsBehaviorRelay: BehaviorRelay<AppSettings>!
+    var appSettings: AppSettings { return appSettingsBehaviorRelay.value }
+
 
     private init() {
-        if let settings:AppSettings = readMappable() {
-            currencyBehaviorRelay = BehaviorRelay(value: settings.currency)
+        if let appSettings:AppSettings = readMappable() {
+            appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)
         } else {
             let currency = LocalizationService.sharedInstance.currentLanguage == .chinese ? CurrencyCode.CNY : CurrencyCode.USD
-            currencyBehaviorRelay = BehaviorRelay(value: currency)
+            var appSettings = AppSettings()
+            appSettings.currency = currency
+            appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)
         }
     }
 
     func updateCurrency(_ currency: CurrencyCode) {
-        guard currency != currencyBehaviorRelay.value else { return }
-        currencyBehaviorRelay.accept(currency)
-        save(mappable: AppSettings(currency: currencyBehaviorRelay.value))
+        guard currency != appSettingsBehaviorRelay.value.currency else { return }
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        appSettings.currency = currency
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
     }
 
-    var currency: CurrencyCode {
-        return currencyBehaviorRelay.value
+    func setVitexInviteFalse() {
+        guard appSettingsBehaviorRelay.value.guide.vitexInvite else { return }
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        appSettings.guide.vitexInvite = false
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
     }
 }
 
 extension AppSettingsService {
-    struct AppSettings: Mappable {
-        var currency: CurrencyCode = .USD
+    public struct AppSettings: Mappable {
+        public var currency: CurrencyCode = .USD
+        public var guide = Guide()
 
-        init?(map: Map) { }
-        mutating func mapping(map: Map) {
+        public init?(map: Map) { }
+        public mutating func mapping(map: Map) {
             currency <- map["currency"]
+            guide <- map["guide"]
         }
 
-        init(currency: CurrencyCode) {
-            self.currency = currency
+        public init() {}
+    }
+
+    public struct Guide: Mappable {
+        public var vitexInvite = true
+
+        public init?(map: Map) { }
+        public mutating func mapping(map: Map) {
+            vitexInvite <- map["vitexInvite"]
         }
+
+        public init() {}
     }
 }
 

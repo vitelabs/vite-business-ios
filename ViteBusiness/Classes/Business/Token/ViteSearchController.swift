@@ -4,12 +4,8 @@
 //
 //  Created by Water on 2019/3/12.
 //
-import MLeaksFinder
 
 class ViteSearchController: UISearchController {
-    override func willDealloc() -> Bool {
-        return false
-    }
 
     fileprivate lazy var reallySearchBar = UISearchBar()
 

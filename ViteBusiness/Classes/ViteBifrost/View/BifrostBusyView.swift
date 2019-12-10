@@ -15,25 +15,27 @@ class BifrostBusyView: UIView {
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
+
+    let contentLabel = UILabel().then {
+        $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.6)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+    }
     
     let cancelButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.cancel())
     let confirmButton = UIButton(style: .blueWithShadow, title: R.string.localizable.confirm())
 
     let scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)).then {
-        $0.stackView.spacing = 0
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(showButton: Bool) {
+        super.init(frame: CGRect.zero)
 
         let imageView = UIImageView(image: R.image.icon_vb_placeholder_busy())
-
-        let contentLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x24272B, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.numberOfLines = 0
-            $0.textAlignment = .center
-        }
 
         let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
             $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
@@ -42,6 +44,7 @@ class BifrostBusyView: UIView {
             $0.layer.shadowRadius = 20
         }
 
+        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
         contentLabel.text = R.string.localizable.bifrostHomePageBusyContent()
 
         addSubview(imageView)
@@ -51,11 +54,8 @@ class BifrostBusyView: UIView {
         addSubview(whiteView)
         addSubview(scrollView)
 
-        addSubview(cancelButton)
-        addSubview(confirmButton)
-
         imageView.snp.makeConstraints { (m) in
-            m.top.equalTo(safeAreaLayoutGuideSnpTop).offset(26)
+            m.top.equalToSuperview().offset(26)
             m.centerX.equalToSuperview()
         }
 
@@ -83,23 +83,35 @@ class BifrostBusyView: UIView {
         headerLabel.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         contentLabel.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
 
-        scrollView.snp.makeConstraints { (m) in
-            m.top.equalTo(contentLabel.snp.bottom).offset(20)
-            m.left.equalToSuperview().offset(24)
-            m.right.equalToSuperview().offset(-24)
-        }
+        if showButton {
+            scrollView.snp.makeConstraints { (m) in
+                m.top.equalTo(contentLabel.snp.bottom).offset(20)
+                m.left.equalToSuperview().offset(24)
+                m.right.equalToSuperview().offset(-24)
+            }
 
-        cancelButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(scrollView.snp.bottom).offset(24)
-            make.left.equalToSuperview().offset(24)
-            make.height.equalTo(50)
-            make.bottom.equalTo(safeAreaLayoutGuideSnpBottom).offset(-24)
-        }
+            addSubview(cancelButton)
+            addSubview(confirmButton)
 
-        confirmButton.snp.makeConstraints { (make) -> Void in
-            make.top.bottom.width.height.equalTo(cancelButton)
-            make.left.equalTo(cancelButton.snp.right).offset(23)
-            make.right.equalToSuperview().offset(-24)
+            cancelButton.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(scrollView.snp.bottom).offset(24)
+                make.left.equalToSuperview().offset(24)
+                make.height.equalTo(50)
+                make.bottom.equalToSuperview().offset(-24)
+            }
+
+            confirmButton.snp.makeConstraints { (make) -> Void in
+                make.top.bottom.width.height.equalTo(cancelButton)
+                make.left.equalTo(cancelButton.snp.right).offset(23)
+                make.right.equalToSuperview().offset(-24)
+            }
+        } else {
+            scrollView.snp.makeConstraints { (m) in
+                m.top.equalTo(contentLabel.snp.bottom).offset(20)
+                m.left.equalToSuperview().offset(24)
+                m.right.equalToSuperview().offset(-24)
+                m.bottom.equalToSuperview().offset(-24)
+            }
         }
     }
 
@@ -112,8 +124,6 @@ class BifrostBusyView: UIView {
         scrollView.stackView.arrangedSubviews.forEach { (view) in
             view.removeFromSuperview()
         }
-
-        headerLabel.text = R.string.localizable.bifrostHomePageBusyHeader()
 
         let titleView = BifrostConfirmTitleView(title: info.title)
         scrollView.stackView.addArrangedSubview(titleView)

@@ -25,14 +25,24 @@ public class BaseNavigationController: UINavigationController {
         if children.count == 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
-        super.pushViewController(viewController, animated: animated)
+
+        // if currect vc is ScanViewController, remove it
+        if let _ = viewControllers.last as? ScanViewController {
+            var vcs = viewControllers
+            _ = vcs.popLast()
+            vcs.append(viewController)
+            self.setViewControllers(vcs, animated: animated)
+        } else {
+            super.pushViewController(viewController, animated: animated)
+        }
     }
 
     override public func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
-        viewControllers.last?.hidesBottomBarWhenPushed = true
+        if viewControllers.count > 1 {
+            viewControllers.last?.hidesBottomBarWhenPushed = true
+        }
         super.setViewControllers(viewControllers, animated: animated)
     }
-
 }
 
 extension BaseNavigationController: UINavigationControllerDelegate {

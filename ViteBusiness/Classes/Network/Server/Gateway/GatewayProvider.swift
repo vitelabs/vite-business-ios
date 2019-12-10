@@ -51,10 +51,23 @@ extension GatewayProvider {
         }
     }
 
-    enum GatewayError: Error {
+    enum GatewayError: Error, Equatable {
         case format
         case response(Int, String)
         case notFound
+
+        static let repeatBinding = GatewayError.response(201, "")
+
+        static func == (lhs: GatewayError, rhs: GatewayError) -> Bool {
+            switch (lhs, rhs) {
+            case (.format, .format), (.notFound, .notFound):
+                return true
+            case let (.response(codel, msgl), .response(coder, msgr)):
+                return codel == coder
+            default:
+                return false
+            }
+        }
     }
 
     struct ResponseBody: Mappable {

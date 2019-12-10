@@ -103,7 +103,12 @@ extension AboutUsViewController {
                 #if OFFICIAL
                 prefix = prefix + "A"
                 #endif
-                $0.value = "\(Bundle.main.versionNumber) (\(prefix)\(Bundle.main.buildNumber))"
+
+                if let flutterVersion = UserDefaults.standard.string(forKey: "flutter.flutter_version") {
+                    $0.value = "\(Bundle.main.versionNumber) (\(prefix)\(Bundle.main.buildNumber)-\(flutterVersion))"
+                } else {
+                    $0.value = "\(Bundle.main.versionNumber) (\(prefix)\(Bundle.main.buildNumber))"
+                }
                 $0.cell.height = { 60 }
                 $0.cell.bottomSeparatorLine.isHidden = false
             }.onCellSelection({ _, _  in
@@ -144,6 +149,10 @@ extension AboutUsViewController {
 
         if MFMailComposeViewController.canSendMail() {
             present(composerController, animated: true, completion: nil)
+        } else {
+            if #available(iOS 13.1, *) {
+                Toast.show("can not send mail")
+            }
         }
     }
     private func emailTemplate() -> String {

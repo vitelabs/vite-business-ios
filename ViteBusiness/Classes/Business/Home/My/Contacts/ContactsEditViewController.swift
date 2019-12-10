@@ -49,9 +49,7 @@ class ContactsEditViewController: BaseViewController {
         bind()
     }
 
-    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24)).then {
-        $0.stackView.spacing = 0
-    }
+    let scrollableView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
 
     let nameView = TitleTextFieldView(title: R.string.localizable.contactsEditPageNameTitle())
     let addressView = ContactAddressInputView()
@@ -137,8 +135,11 @@ class ContactsEditViewController: BaseViewController {
                         Toast.show(R.string.localizable.sendPageToastAddressError())
                         return
                 }
+            default:
+                     fatalError()
             }
 
+            Statistics.log(eventId: Statistics.Page.MyHome.contactAddSaveClicked.rawValue)
             if let contact = self.contact {
                 let c = Contact(id: contact.id, type: self.type.value, name: self.nameView.textField.text!, address: self.addressView.textView.text)
                 AddressManageService.instance.updateContact(c)
@@ -153,7 +154,6 @@ class ContactsEditViewController: BaseViewController {
 
         addressView.scanButton.rx.tap.bind { [weak self] in
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {

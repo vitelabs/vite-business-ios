@@ -110,18 +110,20 @@ extension AutoGatheringManager {
         }
 
         static func receive(onroadBlock: AccountBlock, account: Wallet.Account) -> Promise<(AccountBlock, AccountBlock, Wallet.Account)> {
-            return ViteNode.rawTx.receive.withoutPow(account: account, onroadBlock: onroadBlock)
-                .recover({ (e) -> Promise<AccountBlock> in
-                    if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                        return ViteNode.rawTx.receive.getPow(account: account, onroadBlock: onroadBlock)
-                        .then({ context -> Promise<AccountBlock> in
-                            return ViteNode.rawTx.receive.context(context)
-                        })
+            return ViteNode.rawTx.receive.prepare(account: account, onroadBlock: onroadBlock)
+                .then({ (context) -> Promise<ReceiveBlockContext> in
+                    if context.isNeedToCalcPoW {
+                        return ViteNode.rawTx.receive.getPow(context: context)
                     } else {
-                        return Promise(error: e)
+                        return Promise.value(context)
                     }
                 })
-                .map({ (onroadBlock, $0, account) })
+                .then({ (context) -> Promise<AccountBlock> in
+                    return ViteNode.rawTx.receive.context(context)
+                })
+                .map({ (block) -> (AccountBlock, AccountBlock, Wallet.Account) in
+                    return (onroadBlock, block, account)
+                })
         }
 
         static func getFirstOnroadIfHas(for accounts: [Wallet.Account]) -> Promise<[AccountBlock?]> {

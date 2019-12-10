@@ -15,7 +15,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
     }
 
     fileprivate let colorView = UIImageView()
-    fileprivate let iconImageView = TokenIconView()
+    fileprivate let iconImageView = TokenIconView(showGateWayIcon: true)
 
     fileprivate let symbolLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -26,12 +26,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
     let coinFamilyLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.numberOfLines = 1
-    }
-
-    let gatewayNameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x007AFF)
-        $0.numberOfLines = 1
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
     }
 
     fileprivate let balanceLabel = UILabel().then {
@@ -72,7 +67,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             $0.layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowOffset = CGSize(width: 0, height: 5)
-            $0.layer.shadowRadius = 20
+            $0.layer.shadowRadius = 5
         }
 
         shadowView.addSubview(whiteView)
@@ -85,7 +80,6 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
         whiteView.addSubview(iconImageView)
         whiteView.addSubview(symbolLabel)
         whiteView.addSubview(coinFamilyLabel)
-        whiteView.addSubview(gatewayNameLabel)
         whiteView.addSubview(balanceLabel)
         whiteView.addSubview(priceLabel)
         whiteView.addSubview(colorView)
@@ -105,7 +99,7 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         colorView.snp.makeConstraints { (m) in
             m.top.left.bottom.equalTo(whiteView)
-            m.width.equalTo(3)
+            m.width.equalTo(2)
         }
 
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
@@ -133,12 +127,6 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
             m.height.equalTo(16)
         }
 
-        gatewayNameLabel.snp.makeConstraints { (m) in
-            m.bottom.equalToSuperview().offset(-14)
-            m.left.equalTo(coinFamilyLabel.snp.right).offset(-0.5)
-            m.height.equalTo(16)
-        }
-
         priceLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(coinFamilyLabel)
             m.right.equalToSuperview().offset(-14)
@@ -146,7 +134,6 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         symbolLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         balanceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
         priceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
@@ -168,32 +155,15 @@ class WalletHomeBalanceInfoCell: BaseTableViewCell {
 
         symbolLabel.text = viewModel.symbol
         symbolLabel.textColor = UIColor.init(netHex: 0x24272B)
-        coinFamilyLabel.textColor = viewModel.tokenInfo.mainColor
         coinFamilyLabel.text = " \(viewModel.coinFamily) "
-        coinFamilyLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
         balanceLabel.text = viewModel.balanceString
         priceLabel.text = viewModel.price
         colorView.backgroundColor = viewModel.tokenInfo.mainColor
-
-        if viewModel.tokenInfo.isGateway {
-            gatewayNameLabel.isHidden = false
-            gatewayNameLabel.text = " Gateway "
-//            gatewayNameLabel.backgroundColor = viewModel.tokenInfo.coinType.labelBackgroundColor
-            coinFamilyLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
-            coinFamilyLabel.layer.borderWidth = 1
-            gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
-            gatewayNameLabel.layer.borderWidth = 1
-        } else {
-            coinFamilyLabel.layer.borderColor = nil
-            coinFamilyLabel.layer.borderWidth = 0
-            gatewayNameLabel.isHidden = true
-        }
 
         if viewModel.tokenInfo.coinType == .grin {
             if !GrinManager.default.walletCreated.value {
                 iconImageView.tokenInfo = viewModel.tokenInfo
                 iconImageView.set(tokenIconImage: R.image.grin_gray())
-                iconImageView.updateLayer(UIColor.init(netHex: 0x000000, alpha: 0.1))
                 coinFamilyLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
                 symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
                 balanceLabel.text = ""

@@ -5,7 +5,6 @@
 //  Created by Water on 2019/2/25.
 //
 
-import ViteEthereum
 import web3swift
 import ViteWallet
 import BigInt
@@ -18,7 +17,7 @@ public extension Workflow {
                                            amount: Amount,
                                            gasPrice: Float,
                                            completion: @escaping (Result<String>) -> ()) {
-        let tokenInfo = TokenInfo.viteERC20
+        let tokenInfo = TokenInfo.BuildIn.eth_vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let gasLimit = EtherWallet.defaultGasLimitForTokenTransfer
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
@@ -44,7 +43,15 @@ public extension Workflow {
                                                      value: amount) else {
                                                         throw WalletError.unexpectedResult
                 }
-                return GatewayProvider.instance.bind(context).map { _ in wt }
+                return GatewayProvider.instance.bind(context)
+                    .recover({ (error) -> Promise<(Void)> in
+                        if let e = error as? GatewayProvider.GatewayError,
+                            e == GatewayProvider.GatewayError.repeatBinding {
+                            return Promise.value(Void())
+                        } else {
+                            return Promise(error: error)
+                        }
+                }).map { _ in wt }
             }).then({ (wt) -> Promise<TransactionSendingResult> in
                 EtherWallet.transaction.sendTransaction(wt)
             }).done({ (ret) in

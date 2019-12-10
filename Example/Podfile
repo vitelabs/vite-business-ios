@@ -1,13 +1,13 @@
 platform :ios, '11.0'
 use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
-#  pod 'ViteUtils', :git => 'https://github.com/vitelabs/vite-utils-ios.git', :commit => '62af5410efd9368709b8fe6e4cfbf15616474ef5'
-  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => '363fcd9e3759aa9619f1a4d1ca8c6d0f23268cfc'
-  pod 'ViteEthereum', :git => 'https://github.com/vitelabs/vite-ethereum-ios.git',:commit => '6ddc0b795c65a7a34e84aa196c76f179e032ed97'
-  pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => '5219021d0f7e0db3443500eca1a5146c3ed30163'
-  pod 'Vite_HDWalletKit', :git => 'https://github.com/vitelabs/vite-keystore-ios.git', :commit => '14d8e1d4f26e27e92439c688b8c65a029c8395f9'
+
+  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => '5be504e2ecf9997b08bfb85164700a376ace35b9'
+  pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => '1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd'
+  pod 'Vite_HDWalletKit', :git => 'https://github.com/vitelabs/vite-keystore-ios.git', :commit => 'afd57479c20f6514fb20f47cb0c011db7d471457'
 
   pod 'BinanceChain', :git => 'https://github.com/buckcao/SwiftBinanceChain.git'
   

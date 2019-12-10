@@ -85,11 +85,12 @@ extension BnbWallet {
         if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
             let jsonString = String(data: data, encoding: .utf8),
             let balanceInfos = [Balance](JSONString: jsonString) {
+//TODO...
 
             // filter deleted balanceInfo
-            for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.symbol) {
-                map[balanceInfo.symbol] = balanceInfo
-            }
+//            for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.symbol) {
+//                map[balanceInfo.symbol] = balanceInfo
+//            }
         }
         return map
     }
@@ -112,8 +113,8 @@ public class BnbWallet {
     public lazy var balanceDriver: Driver<[Balance]> = self.balanceBehaviorRelay.asDriver()
     private var balanceBehaviorRelay: BehaviorRelay<[Balance]> = BehaviorRelay(value: [Balance]())
 
-    public lazy var commonBalanceInfoDriver: Driver<[CommonBalanceInfo]> = self.commonBalanceInfoBehaviorRelay.asDriver()
-    private var commonBalanceInfoBehaviorRelay: BehaviorRelay<[CommonBalanceInfo]> = BehaviorRelay(value: [CommonBalanceInfo]())
+    public lazy var commonBalanceInfoDriver: Driver<[ETHBalanceInfo]> = self.commonBalanceInfoBehaviorRelay.asDriver()
+    private var commonBalanceInfoBehaviorRelay: BehaviorRelay<[ETHBalanceInfo]> = BehaviorRelay(value: [ETHBalanceInfo]())
 
 
     private var webSocket: WebSocket?
@@ -170,15 +171,17 @@ public class BnbWallet {
             self.output("account", response.account, response.error)
 
             let balances = response.account.balances
-            var balanceInfos : [CommonBalanceInfo] = []
-            for b in balances {
-                if let temp = MyTokenInfosService.instance.tokenInfo(forBnbSymbol: b.symbol) {
-                    let bigDecimal =  b.free.toAmount(decimals: temp.decimals)
-                    var balanceInfo = CommonBalanceInfo.init(tokenCode: temp.tokenCode, balance: bigDecimal!)
-                    balanceInfos.append(balanceInfo)
-                }
-            }
-            self.commonBalanceInfoBehaviorRelay.accept(balanceInfos)
+            var balanceInfos : [ETHBalanceInfo] = []
+
+            //TODO...
+//            for b in balances {
+//                if let temp = MyTokenInfosService.instance.tokenInfo(forBnbSymbol: b.symbol) {
+//                    let bigDecimal =  b.free.toAmount(decimals: temp.decimals)
+//                    var balanceInfo = ETHBalanceInfo.init(tokenCode: temp.tokenCode, balance: bigDecimal!)
+//                    balanceInfos.append(balanceInfo)
+//                }
+//            }
+//            self.commonBalanceInfoBehaviorRelay.accept(balanceInfos)
         }
     }
 
@@ -194,19 +197,19 @@ public class BnbWallet {
         })
     }
 
-    func commonBalanceInfo(for tokenCode: String) -> CommonBalanceInfo {
-        let commonBalanceInfos = self.commonBalanceInfoBehaviorRelay.value
-        for model in commonBalanceInfos where model.tokenCode == tokenCode {
-            return model
-        }
-        return CommonBalanceInfo(tokenCode:tokenCode, balance: BigInt())
+    func commonBalanceInfo(for tokenCode: String) -> ETHBalanceInfo {
+//        let commonBalanceInfos = self.commonBalanceInfoBehaviorRelay.value
+//        for model in commonBalanceInfos where model.tokenCode == tokenCode {
+//            return model
+//        }
+        return ETHBalanceInfo(tokenCode:tokenCode, balance: BigInt())
     }
-    func commonBalanceInfoDriver(for tokenCode: String) -> Driver<CommonBalanceInfo> {
-        return commonBalanceInfoDriver.map({ [weak self] map -> CommonBalanceInfo in
+    func commonBalanceInfoDriver(for tokenCode: String) -> Driver<ETHBalanceInfo> {
+        return commonBalanceInfoDriver.map({ [weak self] map -> ETHBalanceInfo in
             for model in map where model.tokenCode == tokenCode {
                 return model
             }
-            return CommonBalanceInfo.init(tokenCode: tokenCode, balance: BigInt())
+            return ETHBalanceInfo.init(tokenCode: tokenCode, balance: BigInt())
         })
     }
     //fetch fee

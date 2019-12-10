@@ -40,6 +40,24 @@ class CreateNameAndPwdView: UIView {
         return passwordTF
     }()
 
+    lazy var inviteCodeTF: TitleTextFieldView = {
+        let walletNameTF = TitleTextFieldView(title: R.string.localizable.createPageInviteCodeTitle(), placeholder: R.string.localizable.createPageInviteCodePlaceholder(), text: "")
+        walletNameTF.titleLabel.textColor = Colors.titleGray
+        walletNameTF.textField.font = AppStyle.inputDescWord.font
+        walletNameTF.textField.textColor = Colors.descGray
+        walletNameTF.titleLabel.font = AppStyle.formHeader.font
+        walletNameTF.textField.rightView = self.scanButton
+        walletNameTF.textField.rightViewMode = .always
+        walletNameTF.textField.keyboardType = .numberPad
+        return walletNameTF
+    }()
+
+    let scanButton = UIButton().then {
+        $0.setImage(R.image.icon_button_scan_gray(), for: .normal)
+        $0.setImage(R.image.icon_button_scan_gray()?.highlighted, for: .highlighted)
+        $0.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -71,8 +89,29 @@ class CreateNameAndPwdView: UIView {
             make.top.equalTo(self.passwordTF.snp.bottom).offset(30)
             make.left.right.equalTo(self)
             make.height.equalTo(60)
+        }
+
+        self.addSubview(self.inviteCodeTF)
+        self.inviteCodeTF.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.passwordRepeateTF.snp.bottom).offset(30)
+            make.left.right.equalTo(self)
             make.bottom.equalTo(self)
         }
+
+        self.scanButton.rx.tap.bind { [weak self] in
+            let scanViewController = ScanViewController()
+            _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
+                if let url = URL(string: result),
+                    let code = url.queryParameters["vitex_invite_code"],
+                    !code.isEmpty {
+                    self?.inviteCodeTF.textField.text = code
+                    UIViewController.current?.navigationController?.popViewController(animated: true)
+                } else {
+                    scanViewController?.showAlertMessage(result)
+                }
+            }
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 }
 

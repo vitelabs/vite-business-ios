@@ -29,7 +29,7 @@ extension Amount {
     public func amount(decimals: Int, count: Int, groupSeparator: Bool = true) -> String {
         let bigDecimal = BigDecimal(number: (self as BigInt), digits: decimals)
         let options: [BigDecimalFormatter.Options] = groupSeparator ? [.groupSeparator] : []
-        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(Swift.min(decimals, count)), padding: .padding, options: options)
+        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(Swift.min(decimals, count)), padding: .none, options: options)
     }
 }
 

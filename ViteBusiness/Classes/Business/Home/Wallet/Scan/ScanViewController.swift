@@ -44,6 +44,7 @@ class ScanViewController: BaseViewController, View {
         super.viewDidLoad()
         setupAVComponents()
         setupUIComponents()
+        self.reactor = ScanViewReactor.init()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -200,10 +201,11 @@ class ScanViewController: BaseViewController, View {
     func bind(reactor: ScanViewReactor) {
         imagePicker.rx.didFinishPickingMediaWithInfo
             .map { ScanViewReactor.Action.pickeImage($0[UIImagePickerController.InfoKey.originalImage] as? UIImage) }
-            .do(onNext: { [unowned self] (_) in
-                self.imagePicker.dismiss(animated: true, completion: nil)
-            })
-            .bind(to: reactor.action)
+            .bind { action in
+                self.imagePicker.dismiss(animated: true, completion: {
+                    reactor.action.onNext(action)
+                })
+            }
             .disposed(by: disposeBag)
 
         captureMetadataOutput.rx.metadataOutput
@@ -247,12 +249,5 @@ class ScanViewController: BaseViewController, View {
         alertController.addAction(action)
         alertController.title = alertMessage
         self.present(alertController, animated: true, completion: nil)
-    }
-
-    func popSelfAndPush(_ vc: UIViewController) {
-        guard var viewControllers = self.navigationController?.viewControllers else { return }
-        _ = viewControllers.popLast()
-        viewControllers.append(vc)
-        self.navigationController?.setViewControllers(viewControllers, animated: true)
     }
 }

@@ -22,6 +22,15 @@ class AddressManageViewController: BaseTableViewController {
         bind()
     }
 
+    let currentAddress = HDWalletManager.instance.account?.address
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if currentAddress != HDWalletManager.instance.account?.address {
+            WalletManager.instance.bindInviteIfNeeded()
+        }
+    }
+
     let headerView = AddressManageHeaderView()
     let generateButton = UIButton().then {
         $0.setTitle(R.string.localizable.addressManageAddressGenerateButtonTitle(), for: .normal)

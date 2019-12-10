@@ -16,54 +16,33 @@ import enum Alamofire.Result
 
 public extension Workflow {
 
-    static func bifrostSendTxWithConfirm(title: String,
-                                         account: Wallet.Account,
-                                         toAddress: ViteAddress,
-                                         tokenInfo: TokenInfo,
-                                         amount: Amount,
-                                         data: Data?,
-                                         completion: @escaping (Result<AccountBlock>) -> ()) {
-        func send() {
-            HUD.show()
-            ViteNode.rawTx.send.withoutPow(account: account,
-                                           toAddress: toAddress,
-                                           tokenId: tokenInfo.viteTokenId,
-                                           amount: amount,
-                                           data: data)
-                .always {
-                    HUD.hide()
-                }.recover { (e) -> Promise<AccountBlock> in
-                    if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                        return sendRawTxWithPowWorkflow(getPowPromise: {
-                            return ViteNode.rawTx.send.getPow(account: account,
-                                                              toAddress: toAddress,
-                                                              tokenId: tokenInfo.viteTokenId,
-                                                              amount: amount,
-                                                              data: data)
-                        })
-                    } else {
-                        return Promise(error: e)
-                    }
-                }.done {
-                    AlertControl.showCompletion(R.string.localizable.bifrostToastOperationSuccess())
-                    completion(Result.success($0))
-                }
-                .catch { e in
-                    let error = ViteError.conversion(from: e)
-                    if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                        AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
-                                        titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
-                    } else if error != ViteError.cancel {
-                        Toast.show(error.viteErrorMessage)
-                    }
-                    completion(Result.failure(error))
-            }
+    static func bifrostSendTx(needConfirm: Bool,
+                              title: String,
+                              account: Wallet.Account,
+                              block: VBViteSendTx.Block,
+                              completion: @escaping (Result<AccountBlock>) -> ()) {
+        bifrostSendTx(needConfirm: needConfirm,
+                      title: title,
+                      account: account,
+                      toAddress: block.toAddress,
+                      tokenId: block.tokenId,
+                      amount: block.amount,
+                      fee: block.fee,
+                      data: block.data,
+                      completion: completion)
+    }
 
-        }
-
+    static func bifrostSendTx(needConfirm: Bool,
+                              title: String,
+                              account: Wallet.Account,
+                              toAddress: ViteAddress,
+                              tokenId: ViteTokenId,
+                              amount: Amount,
+                              fee: Amount?,
+                              data: Data?,
+                              completion: @escaping (Result<AccountBlock>) -> ()) {
         func showConfirm() {
             BifrostConfirmView(title: title) { (ret) in
-
                 switch ret {
                 case .biometryAuthFailed:
                     Alert.show(title: R.string.localizable.workflowConfirmPageBiometryAuthFailedTitle(), message: nil,
@@ -76,10 +55,29 @@ public extension Workflow {
                 case .cancelled:
                     completion(Result.failure(ViteError.cancel))
                 case .success:
-                    send()
+                    send(account: account,
+                         toAddress: toAddress,
+                         tokenId: tokenId,
+                         amount: amount,
+                         fee: fee,
+                         data: data,
+                         successToast: R.string.localizable.bifrostToastOperationSuccess(),
+                         type: .other,
+                         completion: completion)
                 }
                 }.show()
         }
-        showConfirm()
+
+        if needConfirm {
+            showConfirm()
+        } else {
+            sendSilently(account: account,
+                         toAddress: toAddress,
+                         tokenId: tokenId,
+                         amount: amount,
+                         fee: fee,
+                         data: data,
+                         completion: completion)
+        }
     }
 }

@@ -199,6 +199,7 @@ class BalanceInfoBnbChainCardView: UIView {
 
     func bind(tokenInfo: TokenInfo) {
 
+
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
              BnbWallet.shared.commonBalanceInfoDriver(for: tokenInfo.tokenCode)).map({ (rateMap, balanceInfo) -> String in

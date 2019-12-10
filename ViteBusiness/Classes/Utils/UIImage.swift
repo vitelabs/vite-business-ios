@@ -15,9 +15,9 @@ extension UIImage {
         let ctx = UIGraphicsGetCurrentContext()
         ctx?.setFillColor(color.cgColor)
         ctx?.fill(rect)
-        var image = UIGraphicsGetImageFromCurrentImageContext()!
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image ?? UIImage()
     }
 
     public static func image(withColor color: UIColor, cornerRadius: CGFloat = 0, borderColor: UIColor? = nil, borderWidth: CGFloat = 1) -> UIImage {
@@ -43,7 +43,7 @@ extension UIImage {
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image!
+        return image ?? UIImage()
     }
 
     public var highlighted: UIImage {
@@ -55,7 +55,7 @@ extension UIImage {
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage!
+        return newImage ?? self
     }
 
     public var resizable: UIImage {
@@ -88,6 +88,6 @@ extension UIImage {
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage!
+        return newImage ?? self
     }
 }

@@ -45,63 +45,98 @@ class MyHomeViewController: BaseTableViewController {
         tableView.snp.remakeConstraints { (m) in
             m.top.equalTo(navigationTitleView!.snp.bottom)
             m.left.right.equalTo(view)
-            m.bottom.equalTo(view).offset(-74)
         }
 
         let headerView = MyHomeListHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 116))
         headerView.delegate = self
+        tableView.separatorColor = UIColor.clear
         tableView.tableHeaderView = headerView
         tableView.alwaysBounceVertical = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.tableFooterView?.frame = CGRect(x: 0, y: 0, width: 0, height: 0.1)
 
         self.view.addSubview(self.logoutBtn)
         self.logoutBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(24)
             make.right.equalTo(self.view).offset(-24)
             make.height.equalTo(50)
+            make.top.equalTo(tableView.snp.bottom)
             make.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom).offset(-24)
         }
     }
 
-    fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell: MyHomeListCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(viewModel: item)
-        return cell
-    })
+    let models: [MyHomeListCellViewModel] = [
+        MyHomeListCellViewModel(type: .settings),
+        MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageInviteCellTitle(),
+                                              image: R.image.icon_my_home_invite(),
+                                              url: "https://app.vite.net/webview/vitex_invite_inner/index.html")),
+        MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageRewardCellTitle(),
+                                              image: R.image.icon_my_home_reward(),
+                                              url: "https://reward.vite.net")),
+        MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageForumCellTitle(),
+                                              image: R.image.icon_my_home_forum(),
+                                              url: "https://forum.vite.net")),
+        MyHomeListCellViewModel(type: .about)
+        ]
 
     fileprivate func bind() {
-        AppConfigService.instance.configDriver.asObservable().map { config -> [SectionModel<String, MyHomeListCellViewModel>] in
-            let configViewModel = MyHomeConfigViewModel(JSON: config.myPage)!
-            #if DAPP
-            let items = configViewModel.items.filter({ $0.isValid && $0.type != .custom })
-            #else
-            let items = configViewModel.items.filter({ $0.isValid })
-            #endif
-            return [SectionModel(model: "item", items: items)]
-        }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
-        tableView.separatorStyle = .none
-        tableView.rowHeight = MyHomeListCell.cellHeight
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        tableView.rx.itemSelected
-            .bind { [weak self] indexPath in
-                guard let `self` = self else { fatalError() }
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? MyHomeListCellViewModel {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                    viewModel.clicked(viewController: self)
-                }
-            }
-            .disposed(by: rx.disposeBag)
+        AppSettingsService.instance.appSettingsDriver.map{ $0.guide.vitexInvite}.distinctUntilChanged().drive(onNext: { [weak self] (_) in
+            self?.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension MyHomeViewController {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return models.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return MyHomeListCell.cellHeight
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MyHomeListCell = tableView.dequeueReusableCell(for: indexPath)
+        if indexPath.row == 1 {
+            cell.bind(viewModel: models[indexPath.row], showBadge: AppSettingsService.instance.appSettings.guide.vitexInvite)
+        } else {
+            cell.bind(viewModel: models[indexPath.row], showBadge: false)
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let model = models[indexPath.row]
+        model.clicked(viewController: self)
+        if indexPath.row == 1 {
+            AppSettingsService.instance.setVitexInviteFalse()
+            Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MyHome.inviteClicked.rawValue)
+        }
     }
 }
 
 extension MyHomeViewController: MyHomeListHeaderViewDelegate {
     func contactsBtnAction() {
+        Statistics.log(eventId: Statistics.Page.MyHome.contactClicked.rawValue)
         let vc = ContactsHomeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     func mnemonicBtnAction() {
-        self.verifyWalletPassword(callback: {
-            let vc = ExportMnemonicViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+        Statistics.log(eventId: Statistics.Page.MyHome.mnemonicClicked.rawValue)
+        self.verifyWalletPassword(callback: { password in
+
+            if !HDWalletManager.instance.isBackedUp {
+                let vc = BackupMnemonicViewController(password: password)
+                let nav = BaseNavigationController(rootViewController: vc)
+                UIViewController.current?.present(nav, animated: true, completion: nil)
+            } else {
+                let vc = ExportMnemonicViewController(password: password)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
         })
     }
 
@@ -205,14 +240,26 @@ extension UIViewController {
 
 extension MyHomeViewController {
     @objc func logoutBtnAction() {
-        self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
-        DispatchQueue.global().async {
-            HDWalletManager.instance.logout()
-            KeychainService.instance.clearCurrentWallet()
-            DispatchQueue.main.async {
-                self.view.hideLoading()
-                NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+        Statistics.log(eventId: Statistics.Page.MyHome.logoutClicked.rawValue)
+
+        func logout() {
+            self.view.displayLoading(text: R.string.localizable.systemPageLogoutLoading(), animated: true)
+            DispatchQueue.global().async {
+                HDWalletManager.instance.logout()
+                KeychainService.instance.clearCurrentWallet()
+                DispatchQueue.main.async {
+                    CreateWalletService.sharedInstance.vitexInviteCode = nil
+                    self.view.hideLoading()
+                    NotificationCenter.default.post(name: .logoutDidFinish, object: nil)
+                }
             }
+        }
+
+        if !HDWalletManager.instance.isBackedUp {
+            CreateWalletService.sharedInstance.setNeedBackup()
+            CreateWalletService.sharedInstance.showBackUpTipAlert(cancel: { })
+        } else {
+            logout()
         }
     }
 }

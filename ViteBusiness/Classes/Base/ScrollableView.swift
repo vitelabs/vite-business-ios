@@ -15,7 +15,7 @@ class ScrollableView: UIScrollView {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
-        $0.spacing = 10
+        $0.spacing = 0
     }
 
     init(insets: UIEdgeInsets = UIEdgeInsets.zero) {
@@ -53,5 +53,33 @@ extension UIView {
         view.backgroundColor = UIColor.clear
         view.snp.makeConstraints { $0.height.equalTo(height) }
         return view
+    }
+
+    func padding(_ insets: UIEdgeInsets) -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(self)
+        self.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(insets.top)
+            m.left.equalToSuperview().offset(insets.left)
+            m.right.equalToSuperview().offset(-insets.right)
+            m.bottom.equalToSuperview().offset(-insets.bottom)
+        }
+
+        return view
+    }
+
+    func centerX() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(self)
+        self.snp.makeConstraints { (m) in
+            m.top.bottom.centerX.equalToSuperview()
+        }
+        return view
+    }
+
+    func padding(horizontal: CGFloat) -> UIView {
+        return padding(UIEdgeInsets(top: 0, left: horizontal, bottom: 0, right: horizontal))
     }
 }

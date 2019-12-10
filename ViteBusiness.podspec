@@ -24,7 +24,6 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'R.swift'
-  s.dependency 'RxSwift'
   s.dependency 'SnapKit'
   s.dependency 'RxCocoa'
   s.dependency 'XCGLogger'
@@ -34,7 +33,6 @@ Pod::Spec.new do |s|
   s.dependency 'NSObject+Rx'
   s.dependency 'MBProgressHUD'
   s.dependency 'RxOptional'
-  s.dependency 'PromiseKit'
   s.dependency 'Vite_HDWalletKit'
   s.dependency 'Eureka'
   s.dependency 'KeychainSwift'
@@ -47,10 +45,11 @@ Pod::Spec.new do |s|
 
 
   s.dependency 'SnapKit', '~> 4.0.0'
-  s.dependency 'BigInt', '~> 3.0'
+  s.dependency 'BigInt'
   s.dependency 'R.swift', '5.0.0.alpha.3'
   s.dependency 'JSONRPCKit', '~> 3.0.0'
   s.dependency 'PromiseKit', '~> 6.0'
+  s.dependency 'PromiseKit/Alamofire'
   s.dependency 'APIKit'
   s.dependency 'ObjectMapper'
   s.dependency 'MBProgressHUD'
@@ -63,8 +62,10 @@ Pod::Spec.new do |s|
   s.dependency 'DACircularProgress', '2.3.1'
   s.dependency 'Kingfisher', '~> 4.0'
   s.dependency 'NYXImagesKit', '2.3'
+  s.dependency 'FSPagerView'
   s.dependency 'URLNavigator'
-
+  s.dependency 'web3.swift.pod', '~> 2.2.0'
+  s.dependency 'ProtocolBuffers-Swift'
 
   #request
   s.dependency 'SwiftyJSON'
@@ -78,7 +79,6 @@ Pod::Spec.new do |s|
   s.dependency 'Toast-Swift', '~> 4.0.1'
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
-  s.dependency 'DNSPageView'
   s.dependency 'ActiveLabel', '1.0.1'
   s.dependency 'PPBadgeViewSwift', '3.1.0'
 
@@ -106,10 +106,10 @@ Pod::Spec.new do |s|
   s.dependency 'Crashlytics'
   s.dependency 'Firebase/Core'
 
-  s.dependency 'MLeaksFinder'
+#  s.dependency 'MLeaksFinder'
 
   s.dependency 'ViteWallet'
-  s.dependency 'ViteEthereum'
+  #s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
   s.dependency 'BinanceChain'
 

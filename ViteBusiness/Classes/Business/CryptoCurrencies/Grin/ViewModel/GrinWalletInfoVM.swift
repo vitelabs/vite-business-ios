@@ -268,7 +268,7 @@ final class GrinWalletInfoVM {
 
     func getFullInfoDetail(fullInfo:GrinFullTxInfo) {
 
-        self.showLoading.accept(true)
+//        self.showLoading.accept(true)
         let gateWay = self.getGateWayDetail(fullInfo: fullInfo)
         let confirm = self.getConfirmInfo(fullInfo: fullInfo)
 
@@ -306,7 +306,7 @@ final class GrinWalletInfoVM {
 
         when(fulfilled: gateWay, confirm, txLogEntry, localInfo)
             .done { (arg0) in
-                self.showLoading.accept(false)
+//                self.showLoading.accept(false)
                 let (gateWayInfo, confirm, tx, l) = arg0
                 fullInfo.gatewayInfo = gateWayInfo
                 fullInfo.confirmInfo = confirm
@@ -315,7 +315,7 @@ final class GrinWalletInfoVM {
                 self.fullInfoDetail.onNext(fullInfo)
             }
             .catch { (error) in
-                self.showLoading.accept(false)
+//                self.showLoading.accept(false)
                 self.message.accept(error.localizedDescription)
             }
             .finally {

@@ -70,8 +70,8 @@ public struct Response : Mappable {
 
  public class WKWebViewConfig {
     public typealias  NativeCallback = (_ response: Response,_ callbackID:String) -> Void
-    public typealias  WebViewConfigClosure = (_ data: [String: String]?) -> Response?
-    public typealias  AsyncWebViewConfigClosure = (_ data: [String: String]?,_ callbackId: String, _ callback: @escaping NativeCallback) -> Void
+    public typealias  WebViewConfigClosure = (_ data: [String: Any]?) -> Response?
+    public typealias  AsyncWebViewConfigClosure = (_ data: [String: Any]?,_ callbackId: String, _ callback: @escaping NativeCallback) -> Void
 
     public static let instance = WKWebViewConfig()
 
@@ -96,25 +96,52 @@ public struct Response : Mappable {
     public var invokeUri: AsyncWebViewConfigClosure?
     public var isInvokingUri: Bool = false
 
+    public var scan: AsyncWebViewConfigClosure?
+
+    // Market
+
+    public var addFavPair: WebViewConfigClosure?
+    public var deleteFavPair: WebViewConfigClosure?
+    public var getAllFavPairs: WebViewConfigClosure?
+    public var switchPair: AsyncWebViewConfigClosure?
+
+
+
     private init() {
-        fetchAppInfo = { (_ data: [String: String]?) -> Response? in
+        fetchAppInfo = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
-        share = { (_ data: [String: String]?) -> Response? in
+        share = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
-        fetchLanguage = { (_ data: [String: String]?) -> Response? in
+        fetchLanguage = { (_ data: [String: Any]?) -> Response? in
             print(data)
             return nil
         }
 
-        fetchViteAddress = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
+        fetchViteAddress = { (_ data: [String: Any]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
         }
-        invokeUri = { (_ data: [String: String]?,_ callbackId: String,_ callback:NativeCallback)  in
+        invokeUri = { (_ data: [String: Any]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
+        }
+
+        scan = { (_ data: [String: Any]?,_ callbackId: String,_ callback: @escaping NativeCallback)  in
+
+            var ret: String? = nil
+            let scanViewController = ScanViewController()
+            scanViewController.rx.result.subscribe(onNext: { [weak scanViewController] (text) in
+                ret = text
+                scanViewController?.navigationController?.popViewController(animated: true)
+                }, onCompleted: {
+                    callback(Response(code: .success, msg: "", data: ["text": ret]), callbackId)
+            }, onDisposed: {
+                print("")
+            })
+
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
         }
     }
 }

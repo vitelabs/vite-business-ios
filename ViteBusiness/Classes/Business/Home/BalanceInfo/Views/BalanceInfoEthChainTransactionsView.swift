@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ViteEthereum
 
 class BalanceInfoEthChainTransactionsView: UIView {
 

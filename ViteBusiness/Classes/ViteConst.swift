@@ -12,16 +12,37 @@ import web3swift
 public struct ViteConst {
     public static let instance = ViteConst()
 
-    public let tokenCode: TokenCode
-    public let cos: Cos
-    public let vite: Vite
-    public let eth: Eth
-    public let grin: Grin
-    public let crossChain: CrossChain
+    public var envType: Env.EnvType {
+        return currentEnv.type
+    }
+
+    public var cos: Cos {
+        return currentEnv.cos
+    }
+
+    public var vite: Vite {
+        return currentEnv.vite
+    }
+
+    public var eth: Eth {
+        return currentEnv.eth
+    }
+
+    public var grin: Grin {
+        return currentEnv.grin
+    }
 
 
-    init() {
+    public var crossChain: CrossChain {
+        return currentEnv.crossChain
+    }
 
+    public var market: Market {
+        return currentEnv.market
+    }
+
+
+    public let currentEnv: Env = {
         #if DEBUG || TEST
         let currentEnv: Env
         switch DebugService.instance.config.appEnvironment {
@@ -37,15 +58,11 @@ public struct ViteConst {
         #else
         let currentEnv = Env.premainnet
         #endif
+        return currentEnv
+    }()
 
-        // set
-        tokenCode = currentEnv.tokenCode
-        cos = currentEnv.cos
-        vite = currentEnv.vite
-        eth = currentEnv.eth
-        grin = currentEnv.grin
-        crossChain = currentEnv.crossChain
-    }
+
+    init() { }
 }
 
 public extension ViteConst {
@@ -59,63 +76,96 @@ public extension ViteConst {
     }
 
     public struct Cos {
-        public let config: String
-        public let discover: String
+        public var config: String
+        public var discover: String
+        public var strapi: String
     }
 
     public struct Vite {
-        public let nodeHttp: String
-        public let explorer: String
-        public let growth: String
-        public let x: String
-        public let genesisPageUrl: String
-        public let gateway: String
+        public var nodeHttp: String
+        public var explorer: String
+        public var growth: String
+        public var x: String
+        public var genesisPageUrl: String
+        public var gateway: String
+        public var exchange: String
+        public var viteXUrl: String
+        public var pushReportConfig: String
+        public var pushReportBussness: String
+
     }
 
     public struct Eth {
-        public let nodeHttp: String
-        public let chainType: web3swift.Networks
-        public let explorer: String
+        public var nodeHttp: String
+        public var chainType: web3swift.Networks
+        public var explorer: String
     }
 
     public struct Grin {
-        public let nodeHttp: String
-        public let apiSecret: String
-        public let chainType: String
-        public let x: String
+        public var nodeHttp: String
+        public var apiSecret: String
+        public var chainType: String
+        public var x: String
     }
 
     public struct CrossChain {
         public struct ETH {
-            public let gateway: String
-            public let tokenId: String
+            public var gateway: String
+            public var tokenId: String
         }
-        let eth: CrossChain.ETH
+        var eth: CrossChain.ETH
 
     }
 
-    public struct Env {
-        public let tokenCode: TokenCode
-        public let cos: Cos
-        public let vite: Vite
-        public let eth: Eth
-        public let grin: Grin
-        public let crossChain: CrossChain
+    public struct Market {
+        public var baseWebUrl: String
+        public var vitexHost: String
+        public var vitexWS: String
+    }
 
-        public static let premainnet =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174", bnbCoin: "1354"),
+
+    public class Env {
+
+        public enum EnvType {
+            case test
+            case stage
+            case premainnet
+        }
+
+        init(type: EnvType,cos:Cos,vite:Vite,eth:Eth,grin:Grin, crossChain: CrossChain,market: Market ) {
+            self.type = type
+            self.cos = cos
+            self.vite = vite
+            self.eth = eth
+            self.grin = grin
+            self.crossChain = crossChain
+            self.market = market
+        }
+
+        public var type: EnvType
+        public var cos: Cos
+        public var vite: Vite
+        public var eth: Eth
+        public var grin: Grin
+        public var crossChain: CrossChain
+        public var market: Market
+
+        public static var premainnet =
+            Env(type: .premainnet,
                 cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
-                         discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com"),
+                         discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
+                         strapi: "https://wallet-config.vitewallet.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",
                            x: "https://vitex.vite.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "https://wallet.vite.net"),
-                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
+                           gateway: "https://wallet.vite.net",
+                           exchange: "https://buycoin.vitewallet.com",
+                           viteXUrl: "https://x.vite.net/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8079"),
+                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
@@ -123,23 +173,24 @@ public extension ViteConst {
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                tokenId: "tti_4d3a69b12962332e8df52701")),
+                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
         )
 
         public static let testEnv =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174",
-                                     bnbCoin: "1354"),
+            Env(type: .test,
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
-                         discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com"),
+                         discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
+                         strapi: "http://129.226.74.210:1337"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
-                           x: "http://132.232.65.121:8080/test",
+                           x: "https://vitex.vite.net/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "http://132.232.60.116:8001"),
+                           gateway: "http://132.232.60.116:8001",
+                           exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8079"),
                 eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
@@ -148,24 +199,26 @@ public extension ViteConst {
                            chainType: GrinChainType.usernet.rawValue,
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                           tokenId: "tti_4d3a69b12962332e8df52701")),
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
-            Env(tokenCode: TokenCode(viteCoin: "1171",
-                                     etherCoin: "1",
-                                     viteERC20: "41",
-                                     grinCoin: "1174",
-                                     bnbCoin: "1354"),
+            Env(type: .stage,
                 cos: Cos(config: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com", // stage
-                         discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com"), // stage
+                         discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com",// stage
+                         strapi: "https://wallet-config.vitewallet.com"),
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",
                            x: "https://vitex.vite.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "https://wallet.vite.net"),
-                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth/v3/90d6010c57c54cee887413c4c83d1cd8",
+                           gateway: "https://wallet.vite.net",
+                           exchange: "https://buycoin.vitewallet.com",
+                           viteXUrl: "https://x.vite.net/mobiledex",
+                           pushReportConfig: "http://150.109.40.169:8086/test",
+                           pushReportBussness: "http://150.109.40.169:8079"),
+                eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
                 grin: Grin(nodeHttp: "https://grin.vite.net/fullnode",
@@ -173,7 +226,8 @@ public extension ViteConst {
                            chainType: GrinChainType.mainnet.rawValue,
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
-                                                           tokenId: "tti_4d3a69b12962332e8df52701"))
+                                                           tokenId: "tti_4d3a69b12962332e8df52701")),
+               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
         )
     }
 }

@@ -68,16 +68,6 @@ class GrinManager: GrinBridge {
         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .bind{ [weak self] _ in self?.getBalance()}
             .disposed(by: self.bag)
-
-        NotificationCenter.default.rx.notification(NSNotification.Name.homePageDidAppear)
-            .bind { [weak self] n in
-                self?.gotoSlateVCIfNeed()
-                self?.getBalance()
-            }
-            .disposed(by: self.bag)
-
-        FMDatabase()
-
     }
 
 
@@ -118,7 +108,7 @@ class GrinManager: GrinBridge {
             return
         }
         self.walletCreated.accept(false)
-        guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+        guard let mnemonic = HDWalletManager.instance.mnemonicForGrin else { return }
         grin_async({ ()  in
             self.walletRecovery(mnemonic)
         },  { (result) in
@@ -458,15 +448,7 @@ extension GrinManager {
     }
 
     static var tokenInfo: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: .grinCoin) ??
-            TokenInfo(tokenCode: .grinCoin,
-                      coinType: .grin,
-                      name: "grin",
-                      symbol: "GRIN",
-                      decimals: 9,
-                      index: 0,
-                      icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
-                      id: "GRIN")
+        return TokenInfo.BuildIn.grin.value
     }
 
     fileprivate static func getPassword() -> String {

@@ -48,11 +48,16 @@ class PledgeHistoryViewController: BaseViewController, View {
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
             m.top.equalTo(navigationTitleView.snp.bottom).offset(12)
         }
-        tableView.rowHeight = 76
+        tableView.rowHeight = 100
         tableView.register(PledgeHistoryCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorColor = UIColor.init(netHex: 0xD3DFEF)
         tableView.tableFooterView = UIView()
         tableView.mj_header.beginRefreshing()
+    }
+
+    fileprivate func nameAndAddress(_ address: ViteAddress) -> String {
+        let name = AddressManageService.instance.contactName(for: address) ?? AddressManageService.instance.name(for: address)
+        return "\(name): \(address)"
     }
 
     func bind(reactor: PledgeHistoryViewReactor) {
@@ -65,12 +70,22 @@ class PledgeHistoryViewController: BaseViewController, View {
             reactor?.action.onNext(.loadMore)
         }
 
+        tableView.rx.itemSelected
+            .bind { [weak self] indexPath in
+                guard let `self` = self else { fatalError() }
+                if let pledge = self.reactor?.currentState.pledges[indexPath.row] {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    WebHandler.openAddressDetailPage(address: pledge.beneficialAddress)
+                }
+            }
+            .disposed(by: rx.disposeBag)
+
         reactor.state
             .map { $0.pledges }
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) {[weak self] _, pledge, cell in
                 guard let `self` = self else { return }
                 let cell = cell as! PledgeHistoryCell
-                cell.hashLabel.text = pledge.beneficialAddress
+                cell.addressLabel.text = self.nameAndAddress(pledge.beneficialAddress)
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
                 cell.balanceLabel.text =  pledge.amount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"
@@ -82,6 +97,11 @@ class PledgeHistoryViewController: BaseViewController, View {
                     cell.cancelButton.isEnabled = Date() > pledge.timestamp
                 }
                 cell.cancelButton.rx.tap.bind { [weak self, weak cell] in
+
+                    guard !pledge.agent else {
+                        Toast.show(R.string.localizable.peldgeCancelPledgeAgentErrorToast())
+                        return
+                    }
 
                     guard pledge.amount >= BigInt(134) * BigInt(10).power(ViteWalletConst.viteToken.decimals) else {
                         Toast.show(R.string.localizable.peldgeCancelPledgeAmountErrorToast())

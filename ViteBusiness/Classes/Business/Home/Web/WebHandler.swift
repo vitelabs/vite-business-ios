@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ViteWallet
 
 public struct WebHandler {
 
@@ -15,6 +16,20 @@ public struct WebHandler {
     static func open(_ url: URL) {
         let webvc = WKWebViewController(url: url)
         UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+    }
+
+    static func open(_ urlString: String) {
+        guard let url = URL.init(string: urlString) else {
+            return
+        }
+        self.open(url)
+    }
+
+    static func openAddressDetailPage(address: ViteAddress) {
+        let host = appendLanguagePath(urlString: browserUrlString)
+        guard let string = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+        guard let url = URL(string: "\(host)/account/\(string)") else { return }
+        open(url)
     }
 
     static func openTranscationDetailPage(hash: String) {
@@ -49,7 +64,7 @@ public struct WebHandler {
         let querys = ["version": Bundle.main.versionNumber,
                       "channel": Constants.appDownloadChannel.rawValue,
                       "address": HDWalletManager.instance.account?.address ?? "",
-                      "language": LocalizationService.sharedInstance.currentLanguage.rawValue]
+                      "language": LocalizationService.sharedInstance.currentLanguage.code]
 
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="

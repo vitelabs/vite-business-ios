@@ -12,11 +12,11 @@ import RxSwift
 import SnapKit
 import NSObject_Rx
 import RxDataSources
-import MLeaksFinder
 
 typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TokenInfo>>
 
 class TokenListManageController: BaseViewController {
+    var onlyShowVite = false
     var viewModel : TokenListManageViewModel
 
     init() {
@@ -26,10 +26,6 @@ class TokenListManageController: BaseViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func willDealloc() -> Bool {
-        return false
     }
 
     fileprivate lazy var tableView = UITableView().then { (tableView) in
@@ -58,7 +54,9 @@ class TokenListManageController: BaseViewController {
         print("======= TokenListManageController deinit")
     }
 
-    fileprivate lazy var searchResultVC = TokenListSearchViewController()
+    fileprivate lazy var searchResultVC = TokenListSearchViewController().then {
+        $0.onlyShowVite = self.onlyShowVite
+    }
 
     fileprivate lazy var placeholderAttributes = [NSAttributedString.Key.font: Fonts.Font13,
                                  NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x24272B, alpha: 0.31)]
@@ -70,9 +68,13 @@ class TokenListManageController: BaseViewController {
         searchVC = ViteSearchController(searchResultsController:self?.searchResultVC)
         searchVC.searchResultsUpdater = self?.searchResultVC
 
-        let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
-        cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
-        cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
+        if #available(iOS 13.0, *) {
+             UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = R.string.localizable.cancel()
+        } else {
+            let cancelButton = searchVC.searchBar.value(forKey: "cancelButtonText") as? UIButton
+            cancelButton?.setTitle(R.string.localizable.cancel(),for:.normal)
+            cancelButton?.setTitle(R.string.localizable.cancel(),for:.highlighted)
+        }
 
         let searchField = searchVC.searchBar.value(forKey: "searchField") as? UITextField
         searchField?.attributedPlaceholder = attributedPlaceholder
@@ -123,15 +125,25 @@ class TokenListManageController: BaseViewController {
                 return dataSource[sectionIndex].model
         })
         self.viewModel.tokenListRefreshDriver.asObservable().filterEmpty().map {
-                [weak self](data) in
-                self?.tokenListArray = data
+                [weak self] (data) in
+                guard let `self` = self else { return Array<SectionModel<String,TokenInfo>>() }
+                self.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 for item in data {
                     if !item.isEmpty {
                         sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                     }
                 }
-                return sectionModels
+            return sectionModels.filter({ [weak self] (sectionModel) -> Bool in
+                guard let `self` = self else { return false }
+                if self.onlyShowVite == true {
+                   return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
+                        tokenInfo.coinType == .vite
+                    })
+                } else {
+                    return true
+                }
+            })
             }.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
 
         tableView.rx

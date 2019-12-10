@@ -26,6 +26,6 @@ public struct StringWrapper: Mappable {
     }
 
     public var string: String {
-        return localized[LocalizationService.sharedInstance.currentLanguage.rawValue] ?? base
+        return localized[LocalizationService.sharedInstance.currentLanguage.resourceName] ?? base
     }
 }

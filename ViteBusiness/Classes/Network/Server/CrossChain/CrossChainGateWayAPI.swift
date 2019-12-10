@@ -15,7 +15,7 @@ enum CrossChainGateWayAPI {
     case metalInfo(tokenId: String)
     case depositInfo(tokenId: String, viteAddress: String)
     case withdrawInfo(tokenId: String, viteAddress: String)
-    case verifyWithdrawAddress(tokenId: String, withdrawAddress: String)
+    case verifyWithdrawAddress(tokenId: String, withdrawAddress: String, label: String?)
     case withdrawFee(tokenId: String, viteAddress: String, amount: String, containsFee: Bool)
     case depositRecords(tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
     case withdrawRecords(tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
@@ -82,13 +82,17 @@ extension CrossChainGateWayAPI: TargetType {
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": viteAddress],
                                       encoding: URLEncoding.queryString)
-        case .verifyWithdrawAddress(let tokenId, let withdrawAddress):
-            return .requestParameters(parameters: ["tokenId": tokenId,
-                                                   "withdrawAddress": withdrawAddress],
+        case .verifyWithdrawAddress(let tokenId, let withdrawAddress, let label):
+            var parameters = ["tokenId": tokenId,
+                              "withdrawAddress": withdrawAddress]
+            if let label = label {
+                parameters["label"] = label
+            }
+            return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.queryString)
-        case .withdrawFee(let tokenId, let withdrawAddress, let amount, let containsFee):
+        case .withdrawFee(let tokenId, let walletAddress, let amount, let containsFee):
             return .requestParameters(parameters: ["tokenId": tokenId,
-                                                   "withdrawAddress": withdrawAddress,
+                                                   "walletAddress": walletAddress,
                                                    "amount": amount,
                                                    "containsFee": containsFee],
                                       encoding: URLEncoding.queryString)

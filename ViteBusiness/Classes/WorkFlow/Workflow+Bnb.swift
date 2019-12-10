@@ -44,7 +44,7 @@ public extension Workflow {
 
         var feeStr = "\(fee)"
         var rateFee = ""
-        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(fee) {
+        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(Amount(fee)) {
             rateFee = String(format: "≈%@",rateFeeStr)
         }
         let feeString = String(format: "%@ BNB %@", feeStr,rateFee)

@@ -10,7 +10,6 @@ import SnapKit
 import BigInt
 import web3swift
 import ViteWallet
-import ViteEthereum
 
 public class BnbGasFeeView: UIView {
     lazy var totalGasFeeTitleLab = UILabel().then {(totalGasFeeTitleLab) in

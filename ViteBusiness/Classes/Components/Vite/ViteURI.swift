@@ -102,12 +102,7 @@ public struct ViteURI: URIType {
     var parameters: [(String, String)]?
 
     static func transferURI(address: ViteAddress, tokenId: ViteTokenId?, amount: String?, note: String?) -> ViteURI {
-        let data: Data?
-        if let note = note, !note.isEmpty {
-            data = AccountBlockDataFactory.generateUTF8StringData(string: note)
-        } else {
-            data = nil
-        }
+        let data = note?.utf8StringToAccountBlockData()
         return ViteURI(address: address, chainId: nil, type: .transfer, functionName: nil, tokenId: tokenId, amount: amount, fee: nil, data: data, parameters: nil)
     }
 
@@ -383,5 +378,12 @@ extension BigInt {
         }
 
         return ret
+    }
+}
+
+extension ViteAddress {
+    var isDexAddress: Bool {
+        return self == ViteWalletConst.ContractAddress.dexFund.address ||
+            self == ViteWalletConst.ContractAddress.dexTrade.address
     }
 }

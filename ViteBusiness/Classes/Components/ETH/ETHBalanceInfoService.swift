@@ -7,13 +7,13 @@
 
 import ViteWallet
 import PromiseKit
-import ViteEthereum
+
 import BigInt
 import enum Alamofire.Result
 
 public class ETHBalanceInfoService: PollService {
 
-    public typealias Ret = Result<CommonBalanceInfo>
+    public typealias Ret = Result<ETHBalanceInfo>
 
     deinit {
         printLog("")
@@ -33,16 +33,16 @@ public class ETHBalanceInfoService: PollService {
 
     public func handle(completion: @escaping (Ret) -> ()) {
 
-        let promise: Promise<CommonBalanceInfo>
+        let promise: Promise<ETHBalanceInfo>
         let tokenCode = tokenInfo.tokenCode
         if tokenInfo.isEtherCoin {
             promise = EtherWallet.balance.etherBalance().map {
-                CommonBalanceInfo(tokenCode: tokenCode, balance: $0)
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         } else {
             guard let token = tokenInfo.toETHToken() else { fatalError() }
             promise = EtherWallet.balance.tokenBalance(contractAddress: token.contractAddress).map {
-                CommonBalanceInfo(tokenCode: tokenCode, balance: $0)
+                ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         }
 

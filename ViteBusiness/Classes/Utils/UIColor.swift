@@ -112,8 +112,13 @@ public extension UIColor {
         }
 
         UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, UIScreen.main.scale)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return UIColor.white
+        }
+        gradientLayer.render(in: context)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return UIColor.white
+        }
         UIGraphicsEndImageContext()
         return UIColor(patternImage: image)
     }

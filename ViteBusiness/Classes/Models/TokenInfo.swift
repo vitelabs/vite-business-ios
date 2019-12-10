@@ -13,18 +13,10 @@ public enum CoinType: String {
     case eth = "ETH"
     case grin = "GRIN"
     case bnb = "BNB"
+    case unsupport = "unsupport"
 
     var name: String {
-        switch self {
-        case .vite:
-            return "VITE"
-        case .eth:
-            return "ETH"
-        case .grin:
-            return "GRIN"
-        case .bnb:
-            return "BNB"
-        }
+        return rawValue
     }
 
     static var allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
@@ -55,8 +47,8 @@ public enum CoinType: String {
                 UIColor(netHex: 0xFFCC24),
                 UIColor(netHex: 0xF38B01)
             ]
-        default:
-            fatalError()
+        case .unsupport:
+            return [UIColor.white]
         }
     }
 
@@ -70,8 +62,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xFFD900)
         case .bnb:
             return UIColor(netHex: 0xF5A500)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -85,8 +77,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xFFD900)
         case .bnb:
             return UIColor(netHex: 0xF5A500)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -100,8 +92,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xFFF9E1)
         case .bnb:
             return UIColor(netHex: 0xFFF9E1)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 
@@ -115,26 +107,19 @@ public enum CoinType: String {
             return UIColor(netHex: 0xFFF7DD)
         case .bnb:
             return UIColor(netHex: 0xFFFAEA)
-        default:
-            fatalError()
+        case .unsupport:
+            return UIColor.white
         }
     }
 }
 
 public typealias TokenCode = String
 
-extension TokenCode {
-    public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
-    public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
-    public static let bnbCoin = ViteConst.instance.tokenCode.bnbCoin
-    public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
-    public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
-}
-
 public struct TokenInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
-    public fileprivate(set)  var coinType: CoinType = .vite
+    public fileprivate(set)  var coinType: CoinType = .unsupport
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
     public fileprivate(set)  var decimals: Int = 0
@@ -142,6 +127,8 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var icon: String = ""
     public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
+
+
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
@@ -173,6 +160,8 @@ public struct TokenInfo: Mappable {
             } else {
                 return "Binance Token"
             }
+        case .unsupport:
+            return "unsupport"
         }
     }
 
@@ -193,6 +182,7 @@ public struct TokenInfo: Mappable {
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
         coinType <- (map["platform"], coinTypeTransform)
+        rawChainName <- map["platform"]
         name <- map["name"]
         symbol <- map["symbol"]
         decimals <- map["decimal"]
@@ -210,9 +200,10 @@ public struct TokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, gatewayInfo: GatewayInfo? = nil) {
         self.tokenCode = tokenCode
         self.coinType = coinType
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
@@ -228,10 +219,10 @@ extension TokenInfo: Equatable {
         return lhs.tokenCode == rhs.tokenCode
     }
 
-    var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
-    var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
-    var isBnbCoin: Bool { return tokenCode == TokenCode.bnbCoin }
-    var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
+    var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
+    var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
+    var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
+    var isBnbCoin: Bool { return tokenCode == TokenInfo.BuildIn.bnb.value.tokenCode }
 
     static var viteERC20ContractAddress: String {
         #if DEBUG || TEST
@@ -252,20 +243,6 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionBnbHeader()
         }
         return ""
-    }
-}
-
-extension TokenInfo {
-    static var viteCoin: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id)!
-    }
-
-    static var viteERC20: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20)!
-    }
-
-    static var eth: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin)!
     }
 }
 
@@ -301,8 +278,6 @@ extension TokenInfo {
         }
     }
 
-
-
     var coinBackgroundGradientColors: [UIColor] {
         return coinType.backgroundGradientColors
     }
@@ -324,18 +299,35 @@ extension TokenInfo {
 extension TokenInfo {
 
     public var isGateway: Bool {
-        return self.gatewayInfo != nil && self.gatewayInfo?.mappedToken.tokenCode == TokenInfo.eth.tokenCode
+        return self.gatewayInfo != nil
     }
 
     public var gatewayName: String? {
+        if !isGateway {
+            return nil
+        }
         return self.gatewayInfo?.name
     }
 }
 
 public struct GatewayInfo: Mappable {
 
-    public init?(map: Map) {
+    var name =  ""
+    var url = ""
+    var icon = ""
+    var website = ""
+    var overview = [String:String]()
+    var policy = [String:String]()
+    var support = ""
+    var isOfficial = false
 
+    private var mappedTokenInfo = MappedTokenInfo()
+
+
+    public init?(map: Map) {
+        guard let mapped = map.JSON["mappedToken"] as? [String: Any], let _ = mapped["tokenCode"] as? String else {
+                   return nil
+               }
     }
 
     init(name: String, url: String, mappedTokenInfo: MappedTokenInfo) {
@@ -347,16 +339,19 @@ public struct GatewayInfo: Mappable {
     public mutating func mapping(map: Map) {
         name <- map["name"]
         url <- map["url"]
+        icon <- map["icon"]
+        website <- map["website"]
+        overview <- map["overview"]
+        policy <- map["policy"]
+        support <- map["support"]
         mappedTokenInfo <- map["mappedToken"]
+        isOfficial <- map["isOfficial"]
     }
 
-    var name =  ""
-    var url = ""
-    private var mappedTokenInfo = MappedTokenInfo()
 
     var mappedToken: TokenInfo {
         let mapped = mappedTokenInfo
-        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
+        return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, rawChainName: mapped.rawChainName, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
     }
 }
 
@@ -365,7 +360,8 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var name: String = ""
     public fileprivate(set)  var symbol: String = ""
-    public fileprivate(set)  var coinType: CoinType = .eth
+    public fileprivate(set)  var coinType: CoinType = .unsupport
+    public fileprivate(set)  var rawChainName: String = ""
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
@@ -392,6 +388,7 @@ public struct MappedTokenInfo: Mappable {
         name <- map["name"]
         symbol <- map["symbol"]
         coinType <- (map["platform"], coinTypeTransform)
+        rawChainName <- map["platform"]
         decimals <- map["decimal"]
         index <- map["tokenIndex"]
         icon <- map["icon"]
@@ -406,9 +403,10 @@ public struct MappedTokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
         self.tokenCode = tokenCode
         self.coinType = coinType
+        self.rawChainName = rawChainName
         self.name = name
         self.symbol = symbol
         self.decimals = decimals
@@ -416,5 +414,4 @@ public struct MappedTokenInfo: Mappable {
         self.icon = icon
         self.id = id
     }
-
 }

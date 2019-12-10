@@ -128,7 +128,9 @@ class BnbWalletSendViewController: BaseViewController {
 
         var feeStr = "\(self.fee)"
         var rateFee = ""
-        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(self.fee) {
+
+        //TODO...
+        if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithBnbRate(Amount(self.fee)) {
             rateFee = String(format: "≈%@",rateFeeStr)
         }
         self.gasFeeView.totalGasFeeLab.text = String(format: "%@ BNB %@", feeStr,rateFee)

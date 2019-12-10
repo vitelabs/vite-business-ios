@@ -123,7 +123,7 @@ public extension Dictionary where Key == String, Value == [String: String] {
 
     func price(for tokenInfo: TokenInfo, balance: Amount) -> BigDecimal {
 
-        let currency = AppSettingsService.instance.currency
+        let currency = AppSettingsService.instance.appSettings.currency
         if let dic = self[tokenInfo.tokenCode] as? [String: String],
             let rate = dic[currency.rawValue] as? String,
             let price = balance.price(decimals: tokenInfo.decimals, rate: rate) {
@@ -134,7 +134,7 @@ public extension Dictionary where Key == String, Value == [String: String] {
     }
 
     func priceString(tokenCode: String, balance: Double) -> String {
-        let currency = AppSettingsService.instance.currency
+        let currency = AppSettingsService.instance.appSettings.currency
 
         if let dic = self[tokenCode] as? [String: String],
            let rate = dic[currency.rawValue] as? String{
@@ -145,7 +145,7 @@ public extension Dictionary where Key == String, Value == [String: String] {
     }
 
     func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
-        let currency = AppSettingsService.instance.currency
+        let currency = AppSettingsService.instance.appSettings.currency
         let p = price(for: tokenInfo, balance: balance)
         return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
     }
@@ -162,19 +162,17 @@ public extension Amount {
 
 extension ExchangeRateManager {
      func calculateBalanceWithEthRate(_ balance: Amount) -> String? {
-        let ethTokenInfo = TokenInfo(tokenCode: TokenCode.etherCoin, coinType: .eth, name: "", symbol: "", decimals: 18, index: 0, icon: "", id: "")
-
-        if self.rateMap[TokenCode.etherCoin] == nil{
+        if self.rateMap[TokenInfo.BuildIn.eth.value.tokenCode] == nil{
             return nil
         }
-        return self.rateMap.priceString(for: ethTokenInfo, balance: balance)
+        return self.rateMap.priceString(for: TokenInfo.BuildIn.eth.value, balance: balance)
     }
 
-    func calculateBalanceWithBnbRate(_ balance: Double) -> String? {
-        if self.rateMap[TokenCode.bnbCoin] == nil{
+    func calculateBalanceWithBnbRate(_ balance: Amount) -> String? {
+        if self.rateMap[TokenInfo.BuildIn.bnb.value.tokenCode] == nil{
             return nil
         }
-        return self.rateMap.priceString(tokenCode:         ViteConst.instance.tokenCode.bnbCoin, balance: balance)
+        return self.rateMap.priceString(for: TokenInfo.BuildIn.bnb.value, balance: balance)
     }
 }
 

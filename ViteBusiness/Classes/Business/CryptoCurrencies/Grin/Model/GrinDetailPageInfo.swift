@@ -18,7 +18,7 @@ class GrinDetailPageInfo {
 
     var cellInfo:[GrinDetailCellInfo] = []
 
-    var actions: [(String, ()->())] = []
+    var actions: [(String, ()->(), Bool)] = []
 
 }
 

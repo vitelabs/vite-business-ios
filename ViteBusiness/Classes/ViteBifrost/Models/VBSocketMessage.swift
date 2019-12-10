@@ -7,6 +7,7 @@
 
 
 import Foundation
+import SwiftyJSON
 
 public struct VBEncryptionPayload: Codable {
     public let data: String
@@ -25,24 +26,27 @@ public struct VBSocketMessage<T: Codable>: Codable {
         case pub
         case sub
     }
+    public let bridgeVersion: String?
     public let topic: String
+    public let offset: UInt64?
     public let type: MessageType
     public let payload: T
 }
 
 public extension VBEncryptionPayload {
-    static func extract(_ string: String) -> (topic: String, payload: VBEncryptionPayload)? {
+    static func extract(_ string: String) -> (offset: UInt64, topic: String, payload: VBEncryptionPayload)? {
         guard let data = string.data(using: .utf8) else {
             return nil
         }
         do {
+            guard let offset = try? JSON(data: data)["offset"].uInt64Value else { return nil }
             let decoder = JSONDecoder()
             if let message = try? decoder.decode(VBSocketMessage<VBEncryptionPayload>.self, from: data) {
-                return (message.topic, message.payload)
+                return (offset, message.topic, message.payload)
             } else {
                 let message = try decoder.decode(VBSocketMessage<String>.self, from: data)
                 let payloadData = message.payload.data(using: .utf8)
-                return  (message.topic, try decoder.decode(VBEncryptionPayload.self, from: payloadData!))
+                return  (offset, message.topic, try decoder.decode(VBEncryptionPayload.self, from: payloadData!))
             }
         } catch let error {
             print(error)

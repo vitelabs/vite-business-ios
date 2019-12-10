@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import ViteEthereum
+
 
 class TokenListAddressView: UILabel {
     init() {

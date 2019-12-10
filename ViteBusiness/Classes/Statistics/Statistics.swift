@@ -21,19 +21,28 @@ public class Statistics: NSObject {
         stat.start(withAppId: Constants.baiduMobileStat)
     }
 
+    public static func logWithUUIDAndAddress(eventId: String) {
+        log(eventId: eventId, attributes: ["uuid": UUID.stored, "address": HDWalletManager.instance.account?.address ?? ""])
+    }
+
     public static func log(eventId: String, attributes: [String: String] = [:]) {
         #if DEBUG || TEST
-        if DebugService.instance.config.showStatisticsToast {
-            if attributes.isEmpty {
-                Toast.show("Statistics Event Start: \(eventId)")
+        let toast: String
+        if attributes.isEmpty {
+            toast = "Statistics Event Start: \(eventId)"
+        } else {
+            if let data = try? JSONSerialization.data(withJSONObject: attributes, options: []),
+                let str = String(data: data, encoding: String.Encoding.utf8) {
+                toast = "Statistics Event Start: \(eventId)\nAttributes: \(str)"
             } else {
-                if let data = try? JSONSerialization.data(withJSONObject: attributes, options: []),
-                    let str = String(data: data, encoding: String.Encoding.utf8) {
-                    Toast.show("Statistics Event Start: \(eventId)\nAttributes: \(str)")
-                } else {
-                    Toast.show("Statistics Event Start: \(eventId)\nAttributes Invalid")
-                }
+                toast = "Statistics Event Start: \(eventId)\nAttributes Invalid"
             }
+        }
+
+        plog(level: .debug, log: toast, tag: .statistics)
+
+        if DebugService.instance.config.showStatisticsToast {
+            Toast.show(toast)
         }
 
         if DebugService.instance.config.reportEventInDebug {
@@ -64,6 +73,8 @@ public class Statistics: NSObject {
             Toast.show("Statistics Page Start: \(name)")
         }
 
+        plog(level: .debug, log: "Statistics Page Start: \(name)", tag: .statistics)
+
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
             stat.logEvent(name, eventLabel: name)
@@ -87,6 +98,8 @@ public class Statistics: NSObject {
         if DebugService.instance.config.showStatisticsToast {
             Toast.show("Statistics Page End: \(name)")
         }
+
+        plog(level: .debug, log: "Statistics Page End: \(name)", tag: .statistics)
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)

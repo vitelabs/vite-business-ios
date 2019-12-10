@@ -18,7 +18,7 @@ public struct BifrostURI: URIType {
         case InvalidKey
     }
 
-    static let scheme: String = "vb"
+    static let scheme: String = "vc"
     let topic: String
     let chainId: String
     let bridge: URL

@@ -21,6 +21,12 @@ class SendNoteView: UIView {
         $0.font = AppStyle.descWord.font
     }
 
+    let textLabel = UILabel().then {
+        $0.textColor = Colors.cellTitleGray
+        $0.font = AppStyle.descWord.font
+        $0.numberOfLines = 0
+    }
+
     let separatorLine = UIView().then {
         $0.backgroundColor = Colors.lineGray
     }
@@ -30,10 +36,12 @@ class SendNoteView: UIView {
 
         titleLabel.text = R.string.localizable.sendPageRemarkTitle()
         textField.text = note
-        textField.isUserInteractionEnabled = canEdit
+        textLabel.text = note
+
+        let noteView: UIView = (canEdit ? textField : textLabel)
 
         addSubview(titleLabel)
-        addSubview(textField)
+        addSubview(noteView)
         addSubview(separatorLine)
 
         titleLabel.snp.makeConstraints { (m) in
@@ -42,7 +50,7 @@ class SendNoteView: UIView {
             m.right.equalTo(self)
         }
 
-        textField.snp.makeConstraints { (m) in
+        noteView.snp.makeConstraints { (m) in
             m.left.right.equalTo(titleLabel)
             m.top.equalTo(titleLabel.snp.bottom).offset(10)
             m.bottom.equalTo(self).offset(-10)

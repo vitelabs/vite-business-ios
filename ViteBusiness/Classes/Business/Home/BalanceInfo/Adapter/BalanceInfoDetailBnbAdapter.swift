@@ -8,13 +8,15 @@
 import Foundation
 
 class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
+    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView, vc: UIViewController?) {
+        //TODO....
+        self.tokenInfo = tokenInfo
+              self.transactionsView = BalanceInfoBnbChainTransactionsView(tokenInfo: tokenInfo)
+    }
+
 
     let tokenInfo: TokenInfo
     let transactionsView : BalanceInfoBnbChainTransactionsView
-    required init(tokenInfo: TokenInfo) {
-        self.tokenInfo = tokenInfo
-        self.transactionsView = BalanceInfoBnbChainTransactionsView(tokenInfo: tokenInfo)
-    }
 
     func viewDidAppear() {
         BnbWallet.shared.fetchBalance()
