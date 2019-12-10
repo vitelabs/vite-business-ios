@@ -63,8 +63,7 @@ final class WalletHomeBalanceInfoTableViewModel {
                         case .grin:
                             return grinBalance
                         case .bnb:
-                           return grinBalance
-//                            return BnbWallet.shared.ETHBalanceInfo(for: tokenInfo.tokenCode)
+                            return BnbWallet.shared.commonBalanceInfo(for: tokenInfo.tokenCode)
                         case .unsupport:
                             fatalError()
                         }

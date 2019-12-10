@@ -149,13 +149,20 @@ public final class MyTokenInfosService: NSObject {
             }
         }
 
-        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo])
     }
 
     //MARK: public func
     public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
     public var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
+
+    public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.symbol == symbol {
+            return tokenInfo
+        }
+        return nil
+    }
 
     public func tokenInfo(for tokenCode: TokenCode) -> TokenInfo? {
         for tokenInfo in tokenInfos where tokenInfo.tokenCode == tokenCode {
