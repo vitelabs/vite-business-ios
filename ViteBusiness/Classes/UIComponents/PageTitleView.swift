@@ -61,6 +61,7 @@ extension PageTitleView {
             m.height.equalTo(29)
         }
         view.titleLabel.text = title
+        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 64)
         return view
     }
 

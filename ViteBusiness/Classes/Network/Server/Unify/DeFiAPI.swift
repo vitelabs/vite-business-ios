@@ -62,6 +62,7 @@ enum DeFiAPI: TargetType {
     case getProductDetail(hash: String)
 
     case getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String?, offset: Int, limit: Int)
+    case getUsage(address: ViteAddress,productHash: String?)
 
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -77,6 +78,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/product/loan"
         case .getBills:
             return "api/v1/defi/account/bills"
+        case .getUsage:
+            return "api/v1/defi/assets/usage"
         }
     }
 
@@ -129,6 +132,15 @@ enum DeFiAPI: TargetType {
                 parameters["productHash"] = productHash
             }
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getUsage(address, productHash):
+           var parameters: [String: String] = [
+               "address": address,
+           ]
+           if let productHash = productHash {
+               parameters["productHash"] = productHash
+           }
+           return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+
         }
     }
 
@@ -152,7 +164,7 @@ enum DeFiAPI: TargetType {
                 str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 2,   \"refundStatus\": 1  } }"
             case .success:
                 type(of: self).testStatus = .cancel
-                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 3,   \"refundStatus\": 1  } }"
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 3,   \"loanUsedAmount\": 3000000000000000000000, \"refundStatus\": 1  } }"
             case .cancel:
                 type(of: self).testStatus = .onSale
                 str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 4,   \"refundStatus\": 1  } }"
@@ -161,6 +173,9 @@ enum DeFiAPI: TargetType {
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         case .getBills:
             let str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": [{    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 2,    \"billType\": 3,    \"billAmount\": \"-1000.000000000000000000\",    \"billTime\": 1554722699   },   {    \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",    \"accountType\": 1,    \"billType\": 2,    \"billAmount\": \"1000.000000000000000000\",    \"billTime\": 1554722699   }  ] }"
+            return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
+        case .getUsage:
+            let str = "{ \"code\": 0, \"msg\": \"ok\", \"data\": [{ \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 1, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"sbpName\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"blockProducingAddress\": \"vite_ssss\", \"rewardWithdrawAddress\": \"vite_aas\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 2, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"quotaAddress\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 3, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"sbpName\": \"OK\", \"pledgeAmount\": \"10000000000000\", \"blockProducingAddress\": \"vite_ssss\", \"rewardWithdrawAddress\": \"vite_aas\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 }, { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"usageType\": 4, \"usageInfo\": { \"bsseAmount\": \"10000000000000\", \"loanAmount\": \"10000000000000\" }, \"amountInfo\": { \"pledgeAmount\": \"10000000000000\", \"pledgeTime\": 100200240, \"pledgeDueTime\": 100200240, \"pledgeDueHeight\": 100200240 }, \"usage_status\": 1, \"usageTime\": 1554722699 } ] }"
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         default:
             return Data()

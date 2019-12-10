@@ -41,6 +41,16 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         refresh()
     }
 
+    var a = false
+    override func viewDidAppear(_ animated: Bool) {
+        if a == true { return }
+        a = true
+        super.viewDidAppear(animated)
+        let usage = DefiUsageViewController()
+        usage.productHash = productHash
+        navigationController?.pushViewController(usage, animated: true)
+    }
+
     func refresh() {
         if self.loan == nil {
             self.dataStatus = .loading
