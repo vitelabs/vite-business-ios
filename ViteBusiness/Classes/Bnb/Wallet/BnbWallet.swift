@@ -225,7 +225,7 @@ public class BnbWallet {
             return
         }
         let endTime = NSDate().timeIntervalSince1970 * 1000
-        let startTime = endTime - 3600*24*30*3*1000
+        let startTime = endTime - 3600*24*30*1000
 
         binance.transactions(address: address, endTime: endTime,limit: limit,offset: offset,startTime:startTime,txAsset:txAsset) { (response) in
             completion(response.transactions,response.error)

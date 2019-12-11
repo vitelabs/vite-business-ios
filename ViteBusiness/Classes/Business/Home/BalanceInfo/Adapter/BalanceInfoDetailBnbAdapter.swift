@@ -22,12 +22,9 @@ class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
         self.setup(containerView: view);
     }
 
-
-
-
     func viewDidAppear() {
         BnbWallet.shared.fetchBalance()
-//        self.transactionsView.refreshData()
+        self.transactionsView.refreshData()
     }
 
     func viewDidDisappear() {

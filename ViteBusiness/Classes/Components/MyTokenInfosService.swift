@@ -158,7 +158,7 @@ public final class MyTokenInfosService: NSObject {
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
 
     public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.symbol == symbol {
+        for tokenInfo in tokenInfos where tokenInfo.id == symbol {
             return tokenInfo
         }
         return nil
