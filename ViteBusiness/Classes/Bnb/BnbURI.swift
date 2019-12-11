@@ -23,23 +23,23 @@ public struct BnbURI: URIType {
     }
 
     func string() -> String {
-        var string = ""
-        string.append(BnbURI.scheme)
-        string.append(":")
+//        var string = ""
+//        string.append(BnbURI.scheme)
+//        string.append(":")
+//
+//        string.append(address)
+//        string.append("?")
+//        if let amount = amount {
+//            string.append(key: "amount", value: amount)
+//        }
+//
+//        string.append(key: "symbol", value: bnbSymbol)
+//
+//        if string.hasSuffix("?") || string.hasSuffix("&") {
+//            string = String(string.dropLast())
+//        }
 
-        string.append(address)
-        string.append("?")
-        if let amount = amount {
-            string.append(key: "amount", value: amount)
-        }
-
-        string.append(key: "symbol", value: bnbSymbol)
-
-        if string.hasSuffix("?") || string.hasSuffix("&") {
-            string = String(string.dropLast())
-        }
-
-        return string
+        return address
     }
 
     private static func parserForRawAddress(string: String) -> Result<BnbURI, URIError> {
