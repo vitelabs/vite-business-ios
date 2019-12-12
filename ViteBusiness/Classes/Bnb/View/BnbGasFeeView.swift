@@ -34,14 +34,14 @@ public class BnbGasFeeView: UIView {
         self.addSubview(totalGasFeeTitleLab)
         totalGasFeeTitleLab.snp.makeConstraints({ (m) in
             m.left.top.equalToSuperview()
-            m.bottom.equalToSuperview().offset(-10)
+            m.bottom.equalToSuperview().offset(-6)
             m.height.equalTo(60)
         })
 
         self.addSubview(totalGasFeeLab)
         totalGasFeeLab.snp.makeConstraints({ (m) in
             m.right.top.equalToSuperview()
-            m.bottom.equalToSuperview().offset(-10)
+            m.bottom.equalToSuperview().offset(-6)
             m.height.equalTo(60)
         })
 

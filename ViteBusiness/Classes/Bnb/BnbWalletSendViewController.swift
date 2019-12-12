@@ -136,7 +136,7 @@ class BnbWalletSendViewController: BaseViewController {
         self.gasFeeView.totalGasFeeLab.text = String(format: "%@ BNB %@", feeStr,rateFee)
 
         scrollView.stackView.addArrangedSubview(headerView)
-        scrollView.stackView.addPlaceholder(height: 10)
+        scrollView.stackView.addPlaceholder(height: 40)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addArrangedSubview(gasFeeView)
