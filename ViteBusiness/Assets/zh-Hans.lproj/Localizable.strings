@@ -668,8 +668,8 @@
 "crosschain.tokendetail" = "代币详情";
 "crosschain.deposit" = "跨链充值";
 "crosschain.withdraw" = "跨链提现";
-"crosschain.withdraw.btnTitle" = "充值";
-"crosschain.deposit.btnTitle" = "提现";
+"crosschain.withdraw.btnTitle" = "提现";
+"crosschain.deposit.btnTitle" = "充值";
 "crosschain.deposit.vitewallet" = "Vite钱包转入";
 "crosschain.deposit.otherwallet" = "其他钱包转入";
 "crosschain.deposit.history" = "充值记录";
