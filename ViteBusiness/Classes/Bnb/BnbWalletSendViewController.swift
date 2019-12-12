@@ -198,7 +198,10 @@ class BnbWalletSendViewController: BaseViewController {
                 Toast.show(R.string.localizable.sendPageToastAmountError())
                 return
             }
-            Workflow.sendBnbTransactionWithConfirm(toAddress: toAddress, tokenInfo: self.tokenInfo, amount: amount, fee: self.fee, completion: {[weak self] (r) in
+
+            let noteViewString = self.noteView.textField.text ?? ""
+                
+                Workflow.sendBnbTransactionWithConfirm(toAddress: toAddress, tokenInfo: self.tokenInfo, amount: amount, fee: self.fee, memo:noteViewString, completion: {[weak self] (r) in
 
                 if case .success = r {
                     self?.dismiss()

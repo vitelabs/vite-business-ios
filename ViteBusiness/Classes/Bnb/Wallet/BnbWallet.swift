@@ -233,15 +233,15 @@ public class BnbWallet {
     }
 
     //send Transaction
-    public func sendTransactionPromise(toAddress:String,amount:Double,symbol:String) -> Promise<[Transaction]>{
+    public func sendTransactionPromise(toAddress:String,amount:Double,symbol:String,memo:String="") -> Promise<[Transaction]>{
         return Promise { seal in
-            sendTransaction(toAddress: toAddress, amount: amount,symbol: symbol) { result, error in
+            sendTransaction(toAddress: toAddress, amount: amount,symbol: symbol,memo: memo) { result, error in
                 seal.resolve(result, error)
             }
         }
     }
 
-    public func sendTransaction(toAddress:String,amount:Double,symbol:String,completion: @escaping ([Transaction]?, Error?) -> Void) {
+    public func sendTransaction(toAddress:String,amount:Double,symbol:String,memo:String,completion: @escaping ([Transaction]?, Error?) -> Void) {
         guard let wallet = self.wallet else {
             completion(nil, nil)
             return
@@ -253,7 +253,7 @@ public class BnbWallet {
             }
 
             guard let `self` = self else {return}
-            let msg = Message.transfer(symbol: symbol, amount: amount, to: toAddress, wallet: wallet)
+            let msg = Message.transfer(symbol: symbol, amount: amount, to: toAddress, memo: memo,wallet: wallet)
             self.binance.broadcast(message: msg) { (response) in
                 if let error = response.error {
                     completion(nil,error)

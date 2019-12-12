@@ -17,12 +17,13 @@ public extension Workflow {
                                               tokenInfo: TokenInfo,
                                               amount: Double,
                                               fee: Double,
+                                              memo:String,
                                               completion: @escaping (Result<String>) -> ()) {
         let sendBlock = {
             HUD.show()
             let promise: Promise<[Transaction]>
             //send
-            promise = BnbWallet.shared.sendTransactionPromise(toAddress: toAddress, amount: amount, symbol: tokenInfo.id)
+            promise = BnbWallet.shared.sendTransactionPromise(toAddress: toAddress, amount: amount, symbol: tokenInfo.id,memo: memo)
 
             promise
                 .always {
