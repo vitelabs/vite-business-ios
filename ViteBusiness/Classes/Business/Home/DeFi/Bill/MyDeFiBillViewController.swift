@@ -13,15 +13,15 @@ class MyDeFiBillViewController: BaseViewController {
     private let loanHeaderView = MyDeFiLoanHeaderView().then {
         $0.accountButton.isHidden = true
         $0.loanButton.isHidden = true
-        $0.accountTitleLabel.text = "基础余额"
-        $0.loanTitleLabel.text = "已使用基础余额"
+        $0.accountTitleLabel.text = R.string.localizable.defiBillPageBasedbalance()
+        $0.loanTitleLabel.text = R.string.localizable.defiBillPageUsedBasedbalance()
     }
 
     private let subscribeHeaderView = MyDeFiLoanHeaderView().then {
         $0.accountButton.isHidden = true
         $0.loanButton.isHidden = true
-        $0.accountTitleLabel.text = "借币总额"
-        $0.loanTitleLabel.text = "借币余额"
+        $0.accountTitleLabel.text = R.string.localizable.defiBillPageTotalamountofborrowedmoney()
+        $0.loanTitleLabel.text = R.string.localizable.defiBillPageBorrowmoneybalances()
     }
 
     private let loanVC = DeFiBillBaseFundViewController()
@@ -96,7 +96,7 @@ class MyDeFiBillViewController: BaseViewController {
 
     private func setupView() {
         self.view.backgroundColor = .white
-        navigationTitleView = NavigationTitleView(title: "DeFi账单")
+        navigationTitleView = NavigationTitleView(title:R.string.localizable.defiBillPageTitle())
 
         view.addSubview(loanHeaderView)
         loanHeaderView.snp.makeConstraints { (m) in
@@ -203,41 +203,41 @@ extension DeFiAPI.Bill.BillType {
     var name: String {
         switch self {
         case .全部:
-            return "全部"
+            return R.string.localizable.defiBillBillTypeTitleAll()
         case .已付利息:
-            return "已付利息"
+            return R.string.localizable.defiBillBillTypeTitlePaiedInterest()
         case .已付利息退款:
-            return "已付利息退款"
+            return R.string.localizable.defiBillBillTypeTitleRefundOfinterestPaid()
         case .认购金额:
-            return "认购金额"
+            return R.string.localizable.defiBillBillTypeTitleSubscriptionAmount()
         case .到期认购金额:
-            return "到期认购金额"
+            return R.string.localizable.defiBillBillTypeTitleSubscriptionAmountDue()
         case .认购收益:
-            return "认购收益"
+            return R.string.localizable.defiBillBillTypeTitleSubscriptionRevenuee()
         case .认购金额退款:
-            return "认购金额退款"
+            return R.string.localizable.defiBillBillTypeTitleRefundofsubscriptionamount()
         case .注册SBP:
-            return "注册SBP"
+            return R.string.localizable.defiBillBillTypeTitleRegisteredSBP()
         case .注册SBP退款:
-            return "注册SBP退款"
+            return R.string.localizable.defiBillBillTypeTitleRegisterforSBPrefund()
         case .开通交易所SVIP:
-            return "开通交易所SVIP"
+            return R.string.localizable.defiBillBillTypeTitleOpenSVIPexchange()
         case .开通交易所SVIP退款:
-            return "开通交易所SVIP退款"
+            return R.string.localizable.defiBillBillTypeTitleOpenexchangeSVIPrefund()
         case .获取配额:
-            return "获取配额"
+            return R.string.localizable.defiBillBillTypeTitleGetquota()
         case .获取配额退款:
-            return "获取配额退款"
+            return R.string.localizable.defiBillBillTypeTitleQuotarefund()
         case .抵押挖矿:
-            return "抵押挖矿"
+            return R.string.localizable.defiBillBillTypeTitleMinning()
         case .抵押挖矿退款:
-            return "抵押挖矿退款"
+            return  R.string.localizable.defiBillBillTypeTitleMinningrefund()
         case .划转收入:
-            return "划转收入"
+            return R.string.localizable.defiBillBillTypeTitleTransferincome()
         case .划转支出:
-            return "划转支出"
+            return R.string.localizable.defiBillBillTypeTitleTransferspending()
         case .成功借币:
-            return "成功借币"
+            return R.string.localizable.defiBillBillTypeTitleSuccessborrowmoney()
         }
     }
 }

@@ -14,12 +14,12 @@ class DefiUsageViewController: BaseTableViewController {
 
     lazy var viewModel = DefiUsageViewModel(tableView: self.tableView, productHash: "")
 
-    let titleView = PageTitleView.onlyTitle(title: "借币使用记录")
+    let titleView = PageTitleView.onlyTitle(title: R.string.localizable.defiUsePageTitle())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableHeaderView = titleView
-        self.setNavTitle(title: "借币使用记录", bindTo: self.tableView)
+        self.setNavTitle(title: R.string.localizable.defiUsePageTitle(), bindTo: self.tableView)
         _ = viewModel
     }
 

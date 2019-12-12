@@ -1128,3 +1128,99 @@
 "defi.card.status.failed" =  "到期未售罄";
 "defi.card.status.success" =  "成功售罄";
 "defi.card.status.cancel" =  "已取消";
+
+"defi.bill.billTypeTitle.all" = "全部";
+"defi.bill.billTypeTitle.paiedInterest" = "已付利息";
+"defi.bill.billTypeTitle.refundOfinterestPaid" = "已付利息退款";
+"defi.bill.billTypeTitle.subscriptionAmount" = "认购金额";
+"defi.bill.billTypeTitle.subscriptionAmountDue" = "到期认购金额";
+"defi.bill.billTypeTitle.subscriptionRevenuee" = "认购收益";
+"defi.bill.billTypeTitle.Refundofsubscriptionamount" = "认购金额退款";
+"defi.bill.billTypeTitle.RegisteredSBP" = "注册SBP";
+"defi.bill.billTypeTitle.RegisterforSBPrefund" = "注册SBP退款";
+"defi.bill.billTypeTitle.OpenSVIPexchange" = "开通交易所SVIP";
+"defi.bill.billTypeTitle.OpenexchangeSVIPrefund" = "开通交易所SVIP退款";
+"defi.bill.billTypeTitle.getquota" = "获取配额";
+"defi.bill.billTypeTitle.quotarefund" = "获取配额退款";
+"defi.bill.billTypeTitle.minning" = "抵押挖矿";
+"defi.bill.billTypeTitle.minningrefund" = "抵押挖矿退款";
+"defi.bill.billTypeTitle.Transferincome" = "划转收入";
+"defi.bill.billTypeTitle.Transferspending" = "划转支出";
+"defi.bill.billTypeTitle.Successborrowmoney" = "成功借币";
+
+"defi.bill.page.title" = "DeFi账单";
+"defi.bill.page.Basedbalance" = "基础余额";
+"defi.bill.page.UsedBasedbalance" = "已使用基础余额";
+"defi.bill.page.totalamountofborrowedmoney" = "借币总额";
+"defi.bill.page.Borrowmoneybalances" = "借币余额";
+
+"defi.subscription.detail.title" = "认购详情";
+
+"defi.manage.BasedBalanceTitle" = "DeFi基础账户";
+
+
+
+
+
+
+
+
+
+
+
+"defi.product.detail.title" = "产品详情";
+"defi.product.detail.buy" = "立即抢购";
+"defi.product.detail.desc0" = "准确的借币期限以快照块为准。";
+"defi.product.detail.desc1" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.product.detail.title.hash" = "产品Hash";
+"defi.product.detail.title.amount" = "借币金额";
+"defi.product.detail.title.pearamount" = "每份金额";
+"defi.product.detail.title.count" = "总份数";
+"defi.product.detail.title.rate" = "年化收益率";
+"defi.product.detail.title.borrowdeadline" = "借币期限";
+"defi.product.detail.title.beginTime" = "认购开始时间";
+"defi.product.detail.title.buydeadline" = "认购期限";
+"defi.product.detail.until.day" = "天";
+"defi.product.detail.until.pear" = "份";
+
+
+"defi.use.page.title" = "借币使用记录";
+"defi.use.page.used.basefund.title" = "已使用基础余额：";
+"defi.use.page.used.borrowed.fund.title" = "已使用借币余额：";
+"defi.use.page.deadline.block.height.title" = "到期快照高度：";
+"defi.use.page.useType.title.sbp" = "注册SBP";
+"defi.use.page.gussesed.deadline.time" = "预计到期时间";
+"defi.use.page.qouto.fund" = "抵押余额";
+"defi.use.page.deit" = "编辑";
+"defi.use.page.Revocation.SBP" = "撤销SBP";
+"defi.use.page.SBP.reward" = "请到网页端提取SBP奖励";
+"defi.use.page.view.minning.reward" = "查看收益";
+"defi.use.page.view.stop.minning" = "停止挖矿";
+"defi.use.page.cancle.qouto" = "取回抵押";
+"defi.use.page.get.qouto" = "获取配额";
+"defi.use.page.open.svip" = "开通交易所SVIP";
+"defi.use.page.close.svip" = "撤销交易所SVIP";
+"defi.use.page.regist.sbp" = "注册SBP";
+
+
+"defi.SubscriptionDetail.SubscriptionAmount" = "认购金额";
+"defi.SubscriptionDetail.TotalAmount" = "借币总金额";
+"defi.SubscriptionDetail.EstimatedTotalRevenuet" = "预计总收益/每日收益";
+"defi.SubscriptionDetail.Rate" = "年化利率";
+"defi.SubscriptionDetail.Paied" = "已发放收益";
+"defi.SubscriptionDetail.AmountShallRefunded" = "应退认购金额";
+"defi.SubscriptionDetail.RemainingUnsold" = "剩余未售出";
+"defi.SubscriptionDetail.Refunding" = "退款中";
+"defi.SubscriptionDetail.remaining.copies" = "剩余份数";
+"defi.SubscriptionDetail.buy" = "继续认购";
+"defi.SubscriptionDetail.onSaleTip1" = "借币期限以快照块高度为准.";
+"defi.SubscriptionDetail.onSaleTip2" = "认购期结束后，若未成功售罄，会自动返还认购金额。";
+"defi.SubscriptionDetail.onSaleTip3" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.SubscriptionDetail.onSaleTip4" = "收益按日发放至DeFi基础余额。";
+"defi.SubscriptionDetail.success.height" = "售罄快照块高度";
+"defi.SubscriptionDetail.success.time" = "售罄时间";
+"defi.SubscriptionDetail.end.time" = "到期快照块高度";
+"defi.SubscriptionDetail.Estimated.end.time" = "预计到期时间";
+"defi.SubscriptionDetail.Check.the.yield" = "查看收益";
+"defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
+"defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";

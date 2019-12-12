@@ -23,7 +23,7 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
 
     let token = ViteWalletConst.viteToken
     let titleView = NavigationTitleView(title: R.string.localizable.defiSubscriptionPageTitle(), horizontal: 0)
-    let header = DeFiProductInfoCard.init(title: "去中心化智能合约安全保障", status: .none, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
+    let header = DeFiProductInfoCard.init(title: R.string.localizable.defiCardSlogan(), status: .none, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
 
     lazy var idView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
 

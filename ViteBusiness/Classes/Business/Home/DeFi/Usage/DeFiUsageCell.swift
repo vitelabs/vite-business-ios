@@ -20,9 +20,9 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
         bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
-        borrowedFundLabel.text = "已使用借币余额：" + item.usageInfo.loanAmount.amountShort(decimals: decimals)
-        baseFundLabel.text = "已使用基础余额：" + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
-        chainHeightLabel.text = "到期快照高度：" + String(item.amountInfo.pledgeDueHeight)
+        borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
+        baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+        chainHeightLabel.text = R.string.localizable.defiUsePageDeadlineBlockHeightTitle() + String(item.amountInfo.pledgeDueHeight)
 
         self.editButton.rx.tap.bind { _ in
 
@@ -43,7 +43,7 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
     let titleLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
-        $0.text = "注册SBP"
+        $0.text = R.string.localizable.defiUsePageRegistSbp()
     }
     let bgColoredLable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
@@ -71,37 +71,37 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
     let amountTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "抵押余额"
+        $0.text = R.string.localizable.defiUsePageQoutoFund()
     }
     let timeTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "预计到期时间"
+        $0.text = R.string.localizable.defiUsePageGussesedDeadlineTime()
     }
     let borrowedFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用借币余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle()
     }
     let baseFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用基础余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
     let chainHeightLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "到期快照高度：--"
+        $0.text = R.string.localizable.defiUsePageDeadlineBlockHeightTitle()
     }
 
     let editButton = UIButton.init(style: .white).then {
-        $0.setTitle("编辑", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageDeit(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }
 
     let cancleButton = UIButton.init(style: .blue).then {
-        $0.setTitle("撤销SBP", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageRevocationSBP(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }
@@ -109,7 +109,7 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
     let getAwardLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.8)
-        $0.text = "请到网页端提取SBP奖励"
+        $0.text = R.string.localizable.defiUsePageSBPReward()
     }
 
 
@@ -224,11 +224,11 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
 class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-        bgColoredLable.text = "开通交易所SVIP：" + ": " + (item.amountInfo.blockProducingAddress  ?? "")
+       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
-        borrowedFundLabel.text = "已使用借币余额：" + item.usageInfo.loanAmount.amountShort(decimals: decimals)
-        baseFundLabel.text = "已使用基础余额：" + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+        borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
+        baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
 
         self.cancleButton.rx.tap.bind { _ in
 
@@ -245,7 +245,7 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
     let titleLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
-        $0.text = "开通交易所SVIP"
+        $0.text = R.string.localizable.defiUsePageOpenSvip()
     }
     let bgColoredLable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
@@ -273,26 +273,26 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
     let amountTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "抵押余额"
+        $0.text = R.string.localizable.defiUsePageQoutoFund()
     }
     let timeTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "预计到期时间"
+        $0.text = R.string.localizable.defiUsePageGussesedDeadlineTime()
     }
     let borrowedFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用借币余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle()
     }
     let baseFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用基础余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
 
     let cancleButton = UIButton.init(style: .blue).then {
-        $0.setTitle("撤销交易所SVIP", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageCloseSvip(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }
@@ -392,11 +392,11 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
 class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-        bgColoredLable.text = "收益地址" + ": " + (item.amountInfo.rewardWithdrawAddress  ?? "")
+       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
-        borrowedFundLabel.text = "已使用借币余额：" + item.usageInfo.loanAmount.amountShort(decimals: decimals)
-        baseFundLabel.text = "已使用基础余额：" + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+        borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
+        baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         self.cancleButton.rx.tap.bind { _ in
 
         }.disposed(by: rx.disposeBag)
@@ -413,7 +413,7 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
     let titleLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
-        $0.text = "获取配额"
+        $0.text = R.string.localizable.defiUsePageGetQouto()
     }
     let bgColoredLable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
@@ -441,27 +441,27 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
     let amountTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "抵押余额"
+        $0.text = R.string.localizable.defiUsePageQoutoFund()
     }
     let timeTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "预计到期时间"
+        $0.text = R.string.localizable.defiUsePageGussesedDeadlineTime()
     }
     let borrowedFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用借币余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle()
     }
     let baseFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用基础余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
 
 
     let cancleButton = UIButton.init(style: .blue).then {
-        $0.setTitle("取回抵押", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageCancleQouto(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }
@@ -562,11 +562,11 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
 class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-        bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
+       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
-        borrowedFundLabel.text = "已使用借币余额：" + item.usageInfo.loanAmount.amountShort(decimals: decimals)
-        baseFundLabel.text = "已使用基础余额：" + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+        borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
+        baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
     }
 
      static var cellHeight: CGFloat = 224
@@ -607,32 +607,32 @@ class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
     let amountTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "抵押余额"
+        $0.text = R.string.localizable.defiUsePageQoutoFund()
     }
     let timeTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "预计到期时间"
+        $0.text = R.string.localizable.defiUsePageGussesedDeadlineTime()
     }
     let borrowedFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用借币余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle()
     }
     let baseFundLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.45)
-        $0.text = "已使用基础余额：--"
+        $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
 
     let editButton = UIButton.init(style: .white).then {
-        $0.setTitle("查看收益", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageViewMinningReward(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }
 
     let cancleButton = UIButton.init(style: .blue).then {
-        $0.setTitle("停止挖矿", for: .normal)
+        $0.setTitle(R.string.localizable.defiUsePageViewStopMinning(), for: .normal)
         $0.layer.cornerRadius = 13
         $0.layer.masksToBounds = true
     }

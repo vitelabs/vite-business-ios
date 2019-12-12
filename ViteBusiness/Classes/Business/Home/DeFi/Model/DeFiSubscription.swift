@@ -21,7 +21,7 @@ struct DeFiSubscription: Mappable {
     fileprivate(set) var loanDuration: UInt64 = 0
     fileprivate(set) var yearRate: Double = 0
     // status
-    fileprivate(set) var productStatus: DeFiProductStatus = .onSale
+     var productStatus: DeFiProductStatus = .onSale
     fileprivate(set) var refundStatus: DeFiRefundStatus = .invalid
     fileprivate(set) var subscribedAmount: Amount = Amount()
     fileprivate(set) var loanCompleteness: Double = 0

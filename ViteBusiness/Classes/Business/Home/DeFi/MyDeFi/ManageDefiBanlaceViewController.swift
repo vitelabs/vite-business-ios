@@ -64,7 +64,7 @@ public class ManageDefiBanlaceViewController: BaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59)
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = "DeFi基础账户"
+        label.text = R.string.localizable.defiManageBasedBalanceTitle()
         return label
     }()
 
@@ -279,12 +279,12 @@ public class ManageDefiBanlaceViewController: BaseViewController {
             guard let `self` = self else { return }
             if self.actionType == .toDefi {
                 self.actionType = .toWallet
-                self.fromLabel.text = R.string.localizable.transferDexAccount()
+                self.fromLabel.text = R.string.localizable.defiManageBasedBalanceTitle()
                 self.destLabel.text = R.string.localizable.transferWalletAccount()
                 self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
             } else {
                 self.actionType = .toDefi
-                self.destLabel.text = R.string.localizable.transferDexAccount()
+                self.destLabel.text = R.string.localizable.defiManageBasedBalanceTitle()
                 self.fromLabel.text = R.string.localizable.transferWalletAccount()
                 self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
             }

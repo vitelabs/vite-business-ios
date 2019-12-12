@@ -15,12 +15,12 @@ class DeFiProductDetailViewController: BaseViewController {
     var timer: Timer?
     lazy var tableView = UITableView.listView()
 
-    let bigNavTitleView = PageTitleView.onlyTitle(title: "产品详情")
+    let bigNavTitleView = PageTitleView.onlyTitle(title: R.string.localizable.defiProductDetailTitle())
 
-    let cardView = DeFiProductInfoCard.init(title: "去中心化智能合约安全保障", status: .none, porgressDesc: "认购进度：--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
+    let cardView = DeFiProductInfoCard.init(title: R.string.localizable.defiCardSlogan(), status: .none, porgressDesc:  R.string.localizable.defiCardProgress() + "--", progress: 0, deadLineDesc: NSAttributedString.init(string: R.string.localizable.defiCardEndTime("-", "-")))
 
     let buyButton = UIButton.init(style: .blue).then {
-        $0.setTitle("立即抢购", for: .normal)
+        $0.setTitle(R.string.localizable.defiProductDetailBuy(), for: .normal)
     }
 
     lazy var tableHeaderView: UIView = {
@@ -50,12 +50,12 @@ class DeFiProductDetailViewController: BaseViewController {
         let label0 = PointLabel()
         label0.font = UIFont.systemFont(ofSize: 12)
         label0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.8)
-        label0.text = "准确的借币期限以快照块为准。"
+        label0.text = R.string.localizable.defiProductDetailDesc0()
 
         let label1 = PointLabel()
         label1.font = UIFont.systemFont(ofSize: 12)
         label1.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.8)
-        label1.text = "认购期内，若成功售罄，自动结束认购，开始计息。"
+        label1.text = R.string.localizable.defiProductDetailDesc1()
 
         view.addSubview(label0)
         view.addSubview(label1)
@@ -106,7 +106,7 @@ class DeFiProductDetailViewController: BaseViewController {
             let vc = DeFiSubscriptionViewController(productHash: self.productHash)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
-        self.setNavTitle(title: "产品详情", bindTo: tableView)
+        self.setNavTitle(title: R.string.localizable.defiProductDetailTitle(), bindTo: tableView)
 
         self.refresh()
 
@@ -132,18 +132,18 @@ class DeFiProductDetailViewController: BaseViewController {
     func updateInfo(detail: DeFiLoan) {
         self.detail = detail
          content = [
-            ("产品Hash",detail.productHash,nil),
-            ("借币金额",detail.loanAmount.amountFull(decimals: 13),"VITE"),
-            ("每份金额",detail.singleCopyAmount.amountFull(decimals: 13),"VITE"),
-            ("总份数",String(detail.subscriptionCopies),"份"),
-            ("年化收益率",detail.yearRateString,nil),
-            ("借币期限",String(detail.loanDuration),"天"),
-            ("认购开始时间",detail.subscriptionBeginTimeString,nil),
-            ("认购期限",String(detail.subscriptionDuration),"天"),
+            (R.string.localizable.defiProductDetailTitleHash(),detail.productHash,nil),
+            (R.string.localizable.defiProductDetailTitleAmount(),detail.loanAmount.amountFull(decimals: 13),"VITE"),
+            (R.string.localizable.defiProductDetailTitlePearamount(),detail.singleCopyAmount.amountFull(decimals: 13),"VITE"),
+            (R.string.localizable.defiProductDetailTitleCount(),String(detail.subscriptionCopies),R.string.localizable.defiProductDetailUntilPear()),
+            (R.string.localizable.defiProductDetailTitleRate(),detail.yearRateString,nil),
+            (R.string.localizable.defiProductDetailTitleBorrowdeadline(),String(detail.loanDuration),R.string.localizable.defiProductDetailUntilPear()),
+            (R.string.localizable.defiProductDetailTitleBeginTime(),detail.subscriptionBeginTimeString,nil),
+            (R.string.localizable.defiProductDetailTitleBuydeadline(),String(detail.subscriptionDuration),R.string.localizable.defiProductDetailUntilPear()),
         ]
         tableView.reloadData()
 
-        self.cardView.progressLabel.text = "认购进度：\(detail.loanCompletenessString)"
+        self.cardView.progressLabel.text = R.string.localizable.defiCardProgress() + "\(detail.loanCompletenessString)"
     }
 
     override func viewDidDisappear(_ animated: Bool) {

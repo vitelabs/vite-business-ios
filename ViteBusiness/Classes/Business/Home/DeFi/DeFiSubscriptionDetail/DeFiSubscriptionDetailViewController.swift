@@ -64,80 +64,62 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
     // failed
     let token = ViteWalletConst.viteToken
-    let titleView = NavigationTitleView(title: "认购详情", horizontal: 0)
+    let titleView = NavigationTitleView(title: R.string.localizable.defiSubscriptionDetailTitle(), horizontal: 0)
     let header = DeFiProductInfoCard.init(title: R.string.localizable.defiCardSlogan(),
                                           status: .none,
                                           porgressDesc: "\(R.string.localizable.defiCardProgress())--%", progress: 0)
 
+    //产品Hash
     lazy var idView = SendStaticItemView(title: R.string.localizable.defiItemIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
-    lazy var loanAmountView = SendStaticItemView(title: R.string.localizable.defiItemLoanAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //认购金额
+    lazy var loanAmountView = SendStaticItemView(title:R.string.localizable.defiSubscriptionDetailSubscriptionAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //借币总金额
+    lazy var totalAmountView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailTotalAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //每份金额
     lazy var eachAmountView = SendStaticItemView(title: R.string.localizable.defiItemEachAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //预计总收益/每日收益”
+    lazy var earningsView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailEstimatedTotalRevenuet(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //借币期限”，“约***
     lazy var loanDurationView = SendStaticItemView(title: R.string.localizable.defiItemLoanDurationTitle(), rightViewStyle: .labels(topStyle: .attributed(string: DeFiFormater.loanDuration(text: "--")), bottomStyle: .text(string: R.string.localizable.defiSubscriptionPageDurationBlock("--"))))
-    lazy var dayRateView = SendStaticItemView(title: R.string.localizable.defiItemDayRateTitle(), rightViewStyle: .label(style: .text(string: "--%")))
-    lazy var paidInterestView = SendStaticItemView(title: R.string.localizable.defiItemPaidInterestTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    //年化收益率
+    lazy var yearRateView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailRate(), rightViewStyle: .label(style: .text(string: "--%")))
+    lazy var paidInterestView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailPaied(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
     lazy var subscriptionDurationView = SendStaticItemView(title: R.string.localizable.defiItemSubscriptionDurationTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.subscriptionDuration(text: "--"))))
     lazy var subscribeAmountView = SendStaticItemView(title: R.string.localizable.defiItemSubscribeAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
-    lazy var refundPaidInterestView = SendStaticItemView(title: R.string.localizable.defiItemRefundPaidInterestTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    lazy var refundPaidInterestView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailAmountShallRefunded(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+        lazy var  remainingUnsoldView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailRemainingUnsold(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
     lazy var publishTimeView = SendStaticItemView(title: R.string.localizable.defiItemPublishTimeTitle(), rightViewStyle: .label(style: .text(string: "--")))
 
-    let reloanButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageFailedButtonReloanTitle())
-    let refundButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.defiLoanDetailPageFailedButtonViewRefundTitle())
-    lazy var failedButtonView = UIView().then {
-        $0.addSubview(self.refundButton)
-        $0.addSubview(self.reloanButton)
-
-        self.refundButton.snp.makeConstraints { (m) in
-            m.top.bottom.left.equalToSuperview()
-        }
-
-        self.reloanButton.snp.makeConstraints { (m) in
-            m.top.bottom.right.equalToSuperview()
-            m.width.equalTo(self.refundButton)
-            m.left.equalTo(self.refundButton.snp.right).offset(24)
-        }
-    }
-
-    let failedTip1 = TipTextView(text: R.string.localizable.defiLoanDetailPageFailedTip1())
+    let refundButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.defiSubscriptionDetailRefunding())
 
 
     // on sale
-    lazy var loanCopysView = SendStaticItemView(title: R.string.localizable.defiItemLoanCopysTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit:R.string.localizable.defiItemCopysUnit()))))
-    let cancelButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageOnSaleButtonCancelTitle())
+    lazy var loanCopysView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailRemainingCopies(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit:R.string.localizable.defiItemCopysUnit()))))
+    let buyButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiSubscriptionDetailBuy())
 
-    let onSaleTip1 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip1())
-    let onSaleTip2 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip2())
-    let onSaleTip3 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip3())
-    let onSaleTip4 = TipTextView(text: R.string.localizable.defiLoanDetailPageOnSaleTip4())
+    let onSaleTip1 = TipTextView(text: R.string.localizable.defiSubscriptionDetailOnSaleTip1())
+    let onSaleTip2 = TipTextView(text: R.string.localizable.defiSubscriptionDetailOnSaleTip2())
+    let onSaleTip3 = TipTextView(text: R.string.localizable.defiSubscriptionDetailOnSaleTip3())
+    let onSaleTip4 = TipTextView(text: R.string.localizable.defiSubscriptionDetailOnSaleTip4())
 
     // success
-    lazy var successTimeView = SendStaticItemView(title: R.string.localizable.defiItemSuccessTimeTitle(), rightViewStyle: .label(style: .text(string: "--")))
     lazy var usedAmountView = SendStaticItemView(title: R.string.localizable.defiItemUsedAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
     lazy var canUseAmountView = SendStaticItemView(title: R.string.localizable.defiItemCanUseAmountTitle(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
-    lazy var endHeightView = SendStaticItemView(title: R.string.localizable.defiItemEndSnapshootHeightTitle(), rightViewStyle: .label(style: .text(string: "--")))
-    lazy var endTimeView = SendStaticItemView(title: R.string.localizable.defiItemEndTimeTitle(), rightViewStyle: .label(style: .text(string: "--")))
 
-    let useButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageSuccessButtonUseTitle())
-    let viewUseButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.defiLoanDetailPageSuccessButtonViewUseTitle())
-    lazy var successButtonView = UIView().then {
-        $0.addSubview(self.useButton)
-        $0.addSubview(self.viewUseButton)
+    lazy var successHeightView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailSuccessHeight(), rightViewStyle: .label(style: .text(string: "--")))
+       lazy var successTimeView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailSuccessTime(), rightViewStyle: .label(style: .text(string: "--")))
+    lazy var endHeightView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailEndTime(), rightViewStyle: .label(style: .text(string: "--")))
+    lazy var estimatedEndTimeView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailEstimatedEndTime(), rightViewStyle: .label(style: .text(string: "--")))
 
-        self.useButton.snp.makeConstraints { (m) in
-            m.top.bottom.left.equalToSuperview()
-        }
 
-        self.viewUseButton.snp.makeConstraints { (m) in
-            m.top.bottom.right.equalToSuperview()
-            m.width.equalTo(self.useButton)
-            m.left.equalTo(self.useButton.snp.right).offset(24)
-        }
-    }
+    lazy var successButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiSubscriptionDetailCheckTheYield())
 
-    let successTip1 = TipTextView(text: R.string.localizable.defiLoanDetailPageSuccessTip1())
+    let successTip1 = TipTextView(text: R.string.localizable.defiSubscriptionDetailSuccessTip1())
+    let successTip2 = TipTextView(text: R.string.localizable.defiSubscriptionDetailSuccessTip2())
 
     func setupView() {
 
-        setNavTitle(title: "认购详情", bindTo: scrollView)
+        setNavTitle(title: R.string.localizable.defiSubscriptionDetailTitle(), bindTo: scrollView)
         scrollView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
             guard let `self` = self else { return }
 
@@ -212,26 +194,33 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
         let views = scrollView.stackView.arrangedSubviews
         views.forEach { $0.removeFromSuperview() }
 
-        guard let loan = self.loan else { return }
+        guard var loan = self.loan else { return }
         updateHeader()
+        loan.productStatus = .failed
         switch loan.productStatus {
         case .onSale:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
+            //产品Hash
             scrollView.stackView.addArrangedSubview(idView, topInset: 20)
+            //认购金额
             scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanCopysView, topInset: 20)
+            //年化收益率
+            scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+            //借币期限
             scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(dayRateView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(subscriptionDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(subscribeAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
-            if loan.subscribedAmount == 0 {
-                scrollView.stackView.addArrangedSubview(cancelButton, topInset: 26)
-            }
+            //预计收益
+            scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            //借币总金额”
+            scrollView.stackView.addArrangedSubview(totalAmountView, topInset: 20)
+            //每份金额”
+            scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
+            //剩余份数
+            scrollView.stackView.addArrangedSubview(loanCopysView, topInset: 20)
+
+            scrollView.stackView.addArrangedSubview(buyButton, topInset: 26)
+
             scrollView.stackView.addArrangedSubview(onSaleTip1, topInset: 14)
             scrollView.stackView.addArrangedSubview(onSaleTip2, topInset: 4)
             scrollView.stackView.addArrangedSubview(onSaleTip3, topInset: 4)
@@ -241,39 +230,56 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
-            scrollView.stackView.addArrangedSubview(idView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(dayRateView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(subscriptionDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(subscribeAmountView, topInset: 20)
+
+            //产品Hash
+              scrollView.stackView.addArrangedSubview(idView, topInset: 20)
+              //认购金额
+              scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+              //年化收益率
+              scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+              //借币期限
+              scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
+            //预计总收益/每日收益”
+               scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            //借币总金额”
+            scrollView.stackView.addArrangedSubview(totalAmountView, topInset: 20)
+            //剩余未售出
+            scrollView.stackView.addArrangedSubview(remainingUnsoldView, topInset: 20)
+            //应退认购金额
             scrollView.stackView.addArrangedSubview(refundPaidInterestView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(failedButtonView, topInset: 26)
-            scrollView.stackView.addArrangedSubview(failedTip1, topInset: 14)
+
+            scrollView.stackView.addArrangedSubview(refundButton, topInset: 26)
             scrollView.stackView.addPlaceholder(height: 26)
         case .success:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)
-            scrollView.stackView.addArrangedSubview(idView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
+
+            //产品Hash
+           scrollView.stackView.addArrangedSubview(idView, topInset: 20)
+           //认购金额
+           scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+           //年化收益率
+           scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+           //借币期限
+           scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
+            //“售罄快照块高度”
+            scrollView.stackView.addArrangedSubview(successHeightView, topInset: 20)
+            //售罄时间”
             scrollView.stackView.addArrangedSubview(successTimeView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanCopysView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(dayRateView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(subscriptionDurationView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(usedAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(canUseAmountView, topInset: 20)
+            //到期快照块高度
             scrollView.stackView.addArrangedSubview(endHeightView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(endTimeView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(successButtonView, topInset: 26)
+            //预计到期时间
+            scrollView.stackView.addArrangedSubview(estimatedEndTimeView, topInset: 20)
+            //预计总收益/每日收益”
+            scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            //已发放收益”
+            scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
+
+            scrollView.stackView.addArrangedSubview(successButton, topInset: 26)
             scrollView.stackView.addArrangedSubview(successTip1, topInset: 14)
+            scrollView.stackView.addArrangedSubview(successTip2, topInset: 14)
+
             scrollView.stackView.addPlaceholder(height: 26)
         }
 
