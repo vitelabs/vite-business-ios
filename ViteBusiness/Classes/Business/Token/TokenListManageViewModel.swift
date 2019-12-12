@@ -83,6 +83,14 @@ final class TokenListManageViewModel {
         }else {
             list.append(localViteToken)
         }
+        
+        if var bnb = map["BNB"] {
+            bnb.append(contentsOf: localBnbToken)
+            list.append(bnb)
+        }else {
+            list.append(localBnbToken)
+        }
+
         if var eth = map["ETH"] {
             eth.append(contentsOf: localEthToken)
             list.append(eth)
@@ -96,12 +104,7 @@ final class TokenListManageViewModel {
             list.append(localGrinToken)
         }
 
-        if var bnb = map["BNB"] {
-            bnb.append(contentsOf: localBnbToken)
-            list.append(bnb)
-        }else {
-            list.append(localBnbToken)
-        }
+
 
         tokenListRefreshRelay.accept(list)
     }

@@ -31,14 +31,14 @@ final class TokenListSearchViewModel {
                 if let vite = map["VITE"] {
                     list.append(vite)
                 }
+                if let bnb = map["BNB"] {
+                    list.append(bnb)
+                }
                 if let eth = map["ETH"] {
                     list.append(eth)
                 }
                 if let grin = map["GRIN"] {
                     list.append(grin)
-                }
-                if let bnb = map["BNB"] {
-                    list.append(bnb)
                 }
                 self.tokenListSearchRelay.accept(list)
             case .failure(let error): break

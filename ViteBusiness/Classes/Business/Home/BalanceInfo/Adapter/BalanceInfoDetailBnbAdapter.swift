@@ -31,18 +31,12 @@ class BalanceInfoDetailBnbAdapter: BalanceInfoDetailAdapter {
 
     }
 
-    func setup(headerView: UIStackView) {
-        let cardView = BalanceInfoBnbChainCardView()
-        cardView.bind(tokenInfo: tokenInfo)
-        headerView.addArrangedSubview(cardView.padding(horizontal: 24))
-    }
-
     func setup(containerView: UIView) {
 
         let cardView = BalanceInfoBnbChainCardView()
         containerView.addSubview(cardView)
         cardView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
+            m.top.equalToSuperview().offset(65)
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
             m.height.equalTo(188)
