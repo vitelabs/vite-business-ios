@@ -12,14 +12,14 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
+    case bnb = "BNB"
     case unsupport = "unsupport"
-
 
     var name: String {
         return rawValue
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth, .grin]
+    static var allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -39,8 +39,13 @@ public enum CoinType: String {
             ]
         case .grin:
             return [
-                UIColor(netHex: 0xFF5C00),
-                UIColor(netHex: 0xFFC800)
+                UIColor(netHex: 0xFAE52D),
+                UIColor(netHex: 0xFFBB00)
+            ]
+        case .bnb:
+            return [
+                UIColor(netHex: 0xFFCC24),
+                UIColor(netHex: 0xF38B01)
             ]
         case .unsupport:
             return [UIColor.white]
@@ -54,7 +59,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
+        case .bnb:
+            return UIColor(netHex: 0xF5A500)
         case .unsupport:
             return UIColor.white
         }
@@ -67,7 +74,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
+        case .bnb:
+            return UIColor(netHex: 0xF5A500)
         case .unsupport:
             return UIColor.white
         }
@@ -80,6 +89,8 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
         case .grin:
+            return UIColor(netHex: 0xFFF9E1)
+        case .bnb:
             return UIColor(netHex: 0xFFF9E1)
         case .unsupport:
             return UIColor.white
@@ -94,6 +105,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF1FFE6)
         case .grin:
             return UIColor(netHex: 0xFFF7DD)
+        case .bnb:
+            return UIColor(netHex: 0xFFFAEA)
         case .unsupport:
             return UIColor.white
         }
@@ -112,7 +125,7 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
-    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
+    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
 
 
@@ -141,6 +154,12 @@ public struct TokenInfo: Mappable {
             }
         case .grin:
              return "Grin Coin"
+        case .bnb:
+            if isBnbCoin {
+                return "Binance Coin"
+            } else {
+                return "Binance Token"
+            }
         case .unsupport:
             return "unsupport"
         }
@@ -203,6 +222,7 @@ extension TokenInfo: Equatable {
     var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
     var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
     var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
+    var isBnbCoin: Bool { return tokenCode == TokenInfo.BuildIn.bnb.value.tokenCode }
 
     static var viteERC20ContractAddress: String {
         #if DEBUG || TEST
@@ -219,6 +239,8 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionEthHeader()
         }else if self.coinType == .grin {
             return R.string.localizable.tokenListPageSectionGrinHeader()
+        }else if self.coinType == .bnb {
+            return R.string.localizable.tokenListPageSectionBnbHeader()
         }
         return ""
     }
@@ -249,7 +271,9 @@ extension TokenInfo {
             return R.image.icon_logo_chain_eth()
         } else if case .vite = coinType, !isViteCoin {
             return R.image.icon_logo_chain_vite()
-        } else {
+        } else if case .bnb = coinType, !isBnbCoin {
+            return R.image.icon_logo_chain_bnb()
+        }else {
             return nil
         }
     }

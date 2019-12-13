@@ -9,6 +9,22 @@ PODS:
   - BaiduMobStat (5.0.0)
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
+  - BinanceChain (1.0.0-beta):
+    - BinanceChain/Core (= 1.0.0-beta)
+  - BinanceChain/Core (1.0.0-beta):
+    - Alamofire (~> 4.8)
+    - BinanceChain/Libraries
+    - BinanceChain/Protobuf
+    - BinanceChain/Util
+    - HDWalletKit (~> 0.3.5)
+    - Starscream (~> 3.1)
+    - SwiftDate (~> 6.0.1)
+    - SwiftProtobuf (~> 1.4)
+    - SwiftyJSON (~> 4.3)
+    - XCGLogger (~> 7.0)
+  - BinanceChain/Libraries (1.0.0-beta)
+  - BinanceChain/Protobuf (1.0.0-beta)
+  - BinanceChain/Util (1.0.0-beta)
   - CHIPageControl (0.1.8):
     - CHIPageControl/Aji (= 0.1.8)
     - CHIPageControl/Aleppo (= 0.1.8)
@@ -84,6 +100,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.2.3):
     - GoogleUtilities/Logger
+  - HDWalletKit (0.3.5):
+    - CryptoSwift (~> 1.0.0)
+    - secp256k1.swift (~> 0.1.4)
   - JSONRPCKit (3.0.0):
     - Result (~> 3.2.0)
   - KeychainSwift (16.0.1)
@@ -147,11 +166,14 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.5.0)
   - secp256k1.c (0.1.2)
+  - secp256k1.swift (0.1.4)
   - SipHash (1.2.2)
   - SnapKit (4.0.1)
   - Starscream (3.1.0)
+  - SwiftDate (6.0.3)
   - SwiftLint (0.33.1)
-  - SwiftyJSON (5.0.0)
+  - SwiftProtobuf (1.7.0)
+  - SwiftyJSON (4.3.0)
   - Then (2.5.0)
   - Toast-Swift (4.0.1)
   - TrezorCryptoEd25519WithBlake2b (0.0.1)
@@ -172,6 +194,7 @@ PODS:
     - APIKit
     - BaiduMobStat
     - BigInt
+    - BinanceChain
     - CHIPageControl
     - Crashlytics
     - CryptoSwift
@@ -215,7 +238,7 @@ PODS:
     - Vite_HDWalletKit
     - ViteWallet
     - web3.swift.pod (~> 2.2.0)
-    - XCGLogger (~> 6.1.0)
+    - XCGLogger (~> 7.0)
   - ViteWallet (0.1.0):
     - APIKit
     - BigInt
@@ -230,12 +253,13 @@ PODS:
     - PromiseKit (~> 6.8.4)
     - secp256k1.c (~> 0.1)
     - Starscream (~> 3.1.0)
-  - XCGLogger (6.1.0):
-    - XCGLogger/Core (= 6.1.0)
-  - XCGLogger/Core (6.1.0):
+  - XCGLogger (7.0.0):
+    - XCGLogger/Core (= 7.0.0)
+  - XCGLogger/Core (7.0.0):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - BinanceChain (from `https://github.com/buckcao/SwiftBinanceChain.git`)
   - FBSnapshotTestCase (~> 2.1.4)
   - R.swift (= 5.0.0.alpha.3)
   - Vite_GrinWallet (from `https://github.com/vitelabs/Vite_GrinWallet.git`, commit `1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd`)
@@ -267,6 +291,7 @@ SPEC REPOS:
     - FSPagerView
     - GoogleAppMeasurement
     - GoogleUtilities
+    - HDWalletKit
     - JSONRPCKit
     - KeychainSwift
     - Kingfisher
@@ -295,10 +320,13 @@ SPEC REPOS:
     - RxOptional
     - RxSwift
     - secp256k1.c
+    - secp256k1.swift
     - SipHash
     - SnapKit
     - Starscream
+    - SwiftDate
     - SwiftLint
+    - SwiftProtobuf
     - SwiftyJSON
     - Then
     - Toast-Swift
@@ -308,6 +336,8 @@ SPEC REPOS:
     - XCGLogger
 
 EXTERNAL SOURCES:
+  BinanceChain:
+    :git: https://github.com/buckcao/SwiftBinanceChain.git
   Vite_GrinWallet:
     :commit: 1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd
     :git: https://github.com/vitelabs/Vite_GrinWallet.git
@@ -321,6 +351,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/vitelabs/vite-wallet-ios.git
 
 CHECKOUT OPTIONS:
+  BinanceChain:
+    :commit: b71de4cbc632bba469d31ff87d5d434115c68dfb
+    :git: https://github.com/buckcao/SwiftBinanceChain.git
   Vite_GrinWallet:
     :commit: 1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd
     :git: https://github.com/vitelabs/Vite_GrinWallet.git
@@ -339,6 +372,7 @@ SPEC CHECKSUMS:
   APIKit: b27d79b022733b2f50e7a092e67c4cb9ea30f968
   BaiduMobStat: 23910d0496fb881a1284dcdca5ef736ccdb11c6d
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  BinanceChain: 72bf401bc474845c37999ff2551ac3c56629e100
   CHIPageControl: 76b35c8309d8dd155e869c109cc6ffc0aaa465ff
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
@@ -354,6 +388,7 @@ SPEC CHECKSUMS:
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   GoogleAppMeasurement: 1e45fa601e6280c180880d57010390f6679cd971
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  HDWalletKit: 07e00d664bec925225418dd638bd86dc05fada6a
   JSONRPCKit: 50e0dc5e7f873e87f81562feb8836b7d1974da6d
   KeychainSwift: 4209611373ca4a098e09b1e547eebd87c544dcc4
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
@@ -382,22 +417,25 @@ SPEC CHECKSUMS:
   RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
+  SwiftDate: 8d4f14bf1ef68e95094511504856547bf9e3e1a6
   SwiftLint: 9fc1143bbacec37f94994a7d0d2a85b2154b6294
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SwiftProtobuf: 4fd9645e69b72cbae6ec8da5be0cdd20ca6565dd
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 75a0b78af01de2028e0a2fd8c2cbe04eea21ae86
-  ViteBusiness: 9aed839d0f366a82b7fecdeedd6447b236760d7c
+  ViteBusiness: 8fe091d2e68fe00842588938b874ad8b552de8ba
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 54e02dfe2807ed2cb04c85575713500e6f440822
-  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
+  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
 
-PODFILE CHECKSUM: ed7108bcdca18c4afb8db91c7fb55fc09f5bdedf
+PODFILE CHECKSUM: 63bdb2942a5c95b9793909f12db045d1b9fbaf7c
 
 COCOAPODS: 1.7.5

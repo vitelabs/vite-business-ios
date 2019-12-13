@@ -112,6 +112,7 @@ public final class MyTokenInfosService: NSObject {
 
         var viteTokenInfos: NSMutableArray = NSMutableArray()
         var ethTokenInfos: NSMutableArray = NSMutableArray()
+        var bnbTokenInfos: NSMutableArray = NSMutableArray()
         var grinTokenInfos: NSMutableArray = NSMutableArray()
 
         defaultTokenInfos.forEach { (tokenInfo) in
@@ -123,6 +124,8 @@ public final class MyTokenInfosService: NSObject {
                     ethTokenInfos.add(tokenInfo)
                 case .grin:
                     grinTokenInfos.add(tokenInfo)
+                case .bnb:
+                    bnbTokenInfos.add(tokenInfo)
                 case .unsupport:
                     break
                 }
@@ -136,6 +139,8 @@ public final class MyTokenInfosService: NSObject {
                     viteTokenInfos.add(tokenInfo)
                 case .eth:
                     ethTokenInfos.add(tokenInfo)
+                case .bnb:
+                    bnbTokenInfos.add(tokenInfo)
                 case .grin:
                     grinTokenInfos.add(tokenInfo)
                 case .unsupport:
@@ -144,13 +149,20 @@ public final class MyTokenInfosService: NSObject {
             }
         }
 
-        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+        return (viteTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
     }
 
     //MARK: public func
     public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
     public var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
+
+    public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.id == symbol {
+            return tokenInfo
+        }
+        return nil
+    }
 
     public func tokenInfo(for tokenCode: TokenCode) -> TokenInfo? {
         for tokenInfo in tokenInfos where tokenInfo.tokenCode == tokenCode {

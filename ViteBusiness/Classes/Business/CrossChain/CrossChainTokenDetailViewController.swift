@@ -19,7 +19,12 @@ class GatewayTokenDetailViewController: BaseViewController {
 
     var info = [String: Any]() {
         didSet {
-            let tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
+            let tokenDigit: String
+            if tokenInfo.coinType == .bnb {
+                tokenDigit = "--"
+            } else {
+                tokenDigit = JSON(info)["tokenDigit"].int != nil ? String(JSON(info)["tokenDigit"].int!) : "--"
+            }
 
             var total: String? = "--"
             if let totalStr = JSON(info)["total"].string,

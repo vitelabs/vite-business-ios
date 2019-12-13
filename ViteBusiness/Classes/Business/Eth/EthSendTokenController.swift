@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import BigInt
-
 import web3swift
 
 class EthSendTokenController: BaseViewController {

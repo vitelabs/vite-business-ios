@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 import web3swift
 import BigInt
 import PromiseKit

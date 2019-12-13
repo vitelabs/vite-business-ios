@@ -28,7 +28,6 @@ public struct ViteConst {
         return currentEnv.eth
     }
 
-
     public var grin: Grin {
         return currentEnv.grin
     }
@@ -73,6 +72,7 @@ public extension ViteConst {
         public let etherCoin: String
         public let viteERC20: String
         public let grinCoin: String
+        public let bnbCoin: String
     }
 
     public struct Cos {

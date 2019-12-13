@@ -25,6 +25,8 @@ extension TokenInfo {
 
         case grin
 
+        case bnb
+
         var jsonString: String {
             switch self {
             case .vite:
@@ -35,6 +37,8 @@ extension TokenInfo {
                 return "{\"symbol\":\"ETH\",\"name\":\"Ether\",\"tokenCode\":\"1\",\"platform\":\"ETH\",\"tokenAddress\":null,\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\",\"decimal\":18}"
             case .eth_vite:
                 return "{\"symbol\":\"VITE\",\"name\":\"ViteToken\",\"tokenCode\":\"41\",\"platform\":\"ETH\",\"tokenAddress\":\"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
+            case .bnb:
+                return "{  \"symbol\": \"BNB\", \"name\": \"Binance Coin\", \"tokenCode\": \"1354\", \"platform\": \"BNB\", \"tokenAddress\": \"BNB\", \"tokenIndex\": null, \"icon\": \"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon-test/34f0d2f4330ccb19de5b823718c61c0e.png\", \"decimal\": 8, \"gatewayInfo\": null  }"
             case .grin:
                 return "{\"symbol\":\"GRIN\",\"name\":\"Grin\",\"tokenCode\":\"1174\",\"platform\":\"GRIN\",\"tokenAddress\":null,\"tokenIndex\":null,\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/6044b64442aca22b70f53a244ef6f84b.png\",\"decimal\":9,\"gatewayInfo\":null}"
             }

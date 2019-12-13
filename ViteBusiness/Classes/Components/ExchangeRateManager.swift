@@ -133,6 +133,17 @@ public extension Dictionary where Key == String, Value == [String: String] {
         }
     }
 
+    func priceString(tokenCode: String, balance: Double) -> String {
+        let currency = AppSettingsService.instance.appSettings.currency
+
+        if let dic = self[tokenCode] as? [String: String],
+           let rate = dic[currency.rawValue] as? String{
+            let price = String.init(format: "%0.2f", balance *  Double(string: rate)!)
+            return "\(currency.symbol)\(price)"
+        }
+        return "0.00"
+    }
+
     func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.appSettings.currency
         let p = price(for: tokenInfo, balance: balance)
@@ -155,6 +166,13 @@ extension ExchangeRateManager {
             return nil
         }
         return self.rateMap.priceString(for: TokenInfo.BuildIn.eth.value, balance: balance)
+    }
+
+    func calculateBalanceWithBnbRate(_ balance: Amount) -> String? {
+        if self.rateMap[TokenInfo.BuildIn.bnb.value.tokenCode] == nil{
+            return nil
+        }
+        return self.rateMap.priceString(for: TokenInfo.BuildIn.bnb.value, balance: balance)
     }
 }
 

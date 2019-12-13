@@ -1,5 +1,6 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
@@ -11,8 +12,8 @@ target 'ViteBusiness_Example' do
   pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => '1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd'
   pod 'Vite_HDWalletKit', :git => 'https://github.com/vitelabs/vite-keystore-ios.git', :commit => 'afd57479c20f6514fb20f47cb0c011db7d471457'
 
+  pod 'BinanceChain', :git => 'https://github.com/buckcao/SwiftBinanceChain.git'
   
-
   target 'ViteBusiness_Tests' do
     inherit! :search_paths
     pod 'R.swift', '5.0.0.alpha.3'

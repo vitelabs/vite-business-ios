@@ -46,6 +46,8 @@ extension TokenInfo {
             return GrinInfoAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         case .unsupport:
             fatalError()
+        case .bnb:
+            return BalanceInfoDetailBnbAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         }
     }
 }

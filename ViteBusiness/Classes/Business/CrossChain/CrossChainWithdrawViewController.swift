@@ -10,7 +10,6 @@ import BigInt
 import ViteWallet
 import PromiseKit
 import web3swift
-
 import RxSwift
 import RxCocoa
 

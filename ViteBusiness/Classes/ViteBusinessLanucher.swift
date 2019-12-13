@@ -15,7 +15,6 @@ import ViteWallet
 import BigInt
 import web3swift
 
-
 public class ViteBusinessLanucher: NSObject {
 
     public static let instance = ViteBusinessLanucher()

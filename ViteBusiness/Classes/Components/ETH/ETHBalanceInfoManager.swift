@@ -98,7 +98,7 @@ public class ETHBalanceInfoManager {
                     case .success(let balanceInfo):
 
                         plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
-                        
+
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
 

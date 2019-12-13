@@ -61,6 +61,11 @@ public final class HDWalletManager {
     private var ethAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     public var ethAddress: String? { return self.ethAddressBehaviorRelay.value }
 
+    // BNB
+    public lazy var bnbAddressDriver: Driver<String?> = self.bnbAddressBehaviorRelay.asDriver()
+    private var bnbAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    public var bnbAddress: String? { return self.bnbAddressBehaviorRelay.value }
+
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
     fileprivate(set) var language: MnemonicCodeBook?
@@ -232,7 +237,9 @@ extension HDWalletManager {
         self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+
         pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
+        pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -243,7 +250,9 @@ extension HDWalletManager {
         self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+
         pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
+        pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -253,7 +262,10 @@ extension HDWalletManager {
         self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+
         pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
+        pri_LoginBnbWallet(mnemonic: mnemonic)
+
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -264,8 +276,12 @@ extension HDWalletManager {
         self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
+
         pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
+        pri_LoginBnbWallet(mnemonic: mnemonic)
+
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
+
         return true
     }
 
@@ -277,6 +293,7 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(nil)
 
         pri_LogoutEthWallet()
+        pri_LogoutBnbWallet()
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 
@@ -356,10 +373,22 @@ extension HDWalletManager {
             plog(level: .severe, log: "\(error)", tag: .wallet)
         }
     }
-    
+
     fileprivate func pri_LogoutEthWallet() {
         EtherWallet.account.logout()
     }
+
+    // bnb
+    fileprivate func pri_LoginBnbWallet(mnemonic: String) {
+        //login bnb
+        BnbWallet.shared.loginWallet(mnemonic)
+        self.bnbAddressBehaviorRelay.accept(BnbWallet.shared.fromAddress)
+    }
+
+    fileprivate func pri_LogoutBnbWallet() {
+        BnbWallet.shared.logoutWallet()
+    }
+
 }
 
 // MARK: - DEBUG function

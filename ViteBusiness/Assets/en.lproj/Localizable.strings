@@ -802,6 +802,24 @@
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
+//bnb
+"token.list.page.section.bnb.header" = "Binance Network";
+"bnb.send.page.feeView.titleLabel.title" = "Fee";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
+"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
+"bnb.txType.newOrder.title" = "Place Order";
+"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.listToken.title" = "Listing";
+"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.transfer.title" = "Transfer";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "Vote";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Deposit";
+
 // Buildin
 
 "buildin.transfer.utf8string.function.title" = "Transfer";
@@ -937,6 +955,7 @@
 "market.percent" =  "Change";
 "market.operator" =  "Operators";
 "market.switch" =  "Exchange";
+
 
 // DeFi
 "defi.home.page.title" =  "DeFi";
@@ -1224,3 +1243,4 @@
 "defi.SubscriptionDetail.Check.the.yield" = "查看收益";
 "defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
 "defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
+

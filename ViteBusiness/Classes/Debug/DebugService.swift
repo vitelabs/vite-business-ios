@@ -9,7 +9,6 @@
 import ViteWallet
 import Foundation
 import ObjectMapper
-
 import web3swift
 
 #if DEBUG || TEST

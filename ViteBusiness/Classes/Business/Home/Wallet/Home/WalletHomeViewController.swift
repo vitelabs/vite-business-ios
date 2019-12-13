@@ -250,7 +250,7 @@ class WalletHomeViewController: BaseViewController {
                     TokenInfoCacheService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
-                    case .eth, .vite:
+                    case .eth, .vite,.bnb:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     case .grin:
                         if !GrinManager.default.walletCreated.value {
@@ -326,4 +326,3 @@ extension WalletHomeViewController: DNSPageContentViewDelegate {
 extension WalletHomeViewController: UITableViewDelegate {
 
 }
-

@@ -29,7 +29,7 @@ class TokenListInfoCell: UITableViewCell {
         tokenNameLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
     }
 
-    lazy var tokenAddressLabel = EthAddressView().then { (tokenAddressLabel) in
+    lazy var tokenAddressLabel = TokenListAddressView().then { (tokenAddressLabel) in
         tokenAddressLabel.font = UIFont.systemFont(ofSize: 11)
         tokenAddressLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
     }

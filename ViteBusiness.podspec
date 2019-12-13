@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'haoshenyang' => 'shenyang@vite.org' }
   s.source           = { :git => 'https://github.com/vitelabs/vite-business-ios.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.static_framework = true
   s.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
   s.source_files = 'ViteBusiness/Classes/**/*.{h,m,swift,c}'
@@ -57,7 +57,7 @@ Pod::Spec.new do |s|
   s.dependency 'Moya'
   s.dependency 'MJRefresh'
   s.dependency 'KMNavigationBarTransition'
-  s.dependency 'XCGLogger', '~> 6.1.0'
+  s.dependency 'XCGLogger', '~> 7.0'
   s.dependency 'pop', '~> 1.0'
   s.dependency 'DACircularProgress', '2.3.1'
   s.dependency 'Kingfisher', '~> 4.0'
@@ -111,6 +111,7 @@ Pod::Spec.new do |s|
   s.dependency 'ViteWallet'
   #s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
+  s.dependency 'BinanceChain'
 
 
   # s.resource_bundles = {

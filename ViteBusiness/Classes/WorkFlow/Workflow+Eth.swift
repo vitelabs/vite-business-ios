@@ -5,7 +5,6 @@
 //  Created by Water on 2019/2/25.
 //
 
-
 import web3swift
 import ViteWallet
 import BigInt

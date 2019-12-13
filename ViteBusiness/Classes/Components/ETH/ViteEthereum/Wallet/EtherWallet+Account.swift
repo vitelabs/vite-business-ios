@@ -67,13 +67,27 @@ extension EtherWallet: AccountService {
         self.keystore = nil
     }
 
+    func fromHex(hex:String)->Data?{
+        let string = hex.lowercased().stripHexPrefix()
+               let array = Array<UInt8>(hex: string)
+               if (array.count == 0) {
+                   if (hex == "0x" || hex == "") {
+                       return Data()
+                   } else {
+                       return nil
+                   }
+               }
+        return Data(array)
+    }
+
     private func importAccount(privateKey: String, password: String) throws {
 
         self.password = password
 
-        guard let privateKeyData = Data.fromHex(privateKey) else {
+        guard let privateKeyData = self.fromHex(hex: privateKey) else {
             throw WalletError.invalidKey
         }
+
         guard let keystore = try EthereumKeystoreV3(privateKey: privateKeyData, password: password) else {
             throw WalletError.malformedKeystore
         }
