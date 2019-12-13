@@ -220,7 +220,7 @@ class BnbWalletSendViewController: BaseViewController {
 
 // MARK: FloatButtonsViewDelegate
 extension BnbWalletSendViewController: FloatButtonsViewDelegate {
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.bnb)
             let vc = AddressListViewController(viewModel: viewModel)
