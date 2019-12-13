@@ -171,6 +171,17 @@ public struct ViteURI: URIType {
 
     static func parser(string: String) -> Result<ViteURI, URIError> {
 
+        if string.isViteAddress {
+            return Result.success(ViteURI(address: string,
+                                    chainId: nil,
+                                    type: .transfer,
+                                    functionName: nil,
+                                    tokenId: nil,
+                                    amount: nil,
+                                    fee: nil, data: nil,
+                                    parameters: nil))
+        }
+
         guard let (prefix, suffix) = separate(string, by: ":") else {
             return Result(error: URIError.InvalidFormat(":"))
         }
