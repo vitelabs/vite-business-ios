@@ -12,7 +12,7 @@ import enum Alamofire.Result
 
 public class FetchBalanceInfoService: PollService {
 
-    public typealias Ret = Result<([BalanceInfo], [DexBalanceInfo])>
+    public typealias Ret = Result<([BalanceInfo], [DexBalanceInfo], [DefiBalanceInfo])>
 
     deinit {
         printLog("")
@@ -36,7 +36,11 @@ public class FetchBalanceInfoService: PollService {
              ViteNode.dex.info.getDexBalanceInfos(address: address, tokenId: nil)
                 .recover({ (_) -> Promise<[DexBalanceInfo]> in
                     return Promise.value([])
-                }))
+                }),
+             ViteNode.defi.info.getDefiAccountInfo(address: address, tokenId: nil)
+                .recover({ (_) -> Promise<[DefiBalanceInfo]> in
+                 return Promise.value([])
+             }))
             .done { (ret) in
                 completion(Result.success(ret))
             }.catch { (e) in

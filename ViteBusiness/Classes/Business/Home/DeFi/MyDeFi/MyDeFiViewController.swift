@@ -7,6 +7,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import ViteWallet
 
 class MyDeFiViewController: BaseViewController {
 
@@ -83,6 +84,16 @@ class MyDeFiViewController: BaseViewController {
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenCodes)
+    }
+
     private func setupView() {
         self.view.backgroundColor = .white
         navigationTitleView = NavigationTitleView(title: R.string.localizable.defiMyPageTitle())
@@ -120,6 +131,8 @@ class MyDeFiViewController: BaseViewController {
             self?.pageChanged()
         }
 
+        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.baseAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.accountLabel.rx.text).disposed(by: rx.disposeBag)
+        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.loanAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.loanLabel.rx.text).disposed(by: rx.disposeBag)
 
         filtrateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }

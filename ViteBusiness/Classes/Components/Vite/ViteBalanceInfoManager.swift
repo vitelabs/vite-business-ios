@@ -16,6 +16,7 @@ import RxCocoa
 
 public typealias ViteBalanceInfoMap = [String: BalanceInfo]
 public typealias DexBalanceInfoMap = [String: DexBalanceInfo]
+public typealias DefiBalanceInfoMap = [String: DefiBalanceInfo]
 
 extension ViteBalanceInfoManager: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -29,6 +30,9 @@ public class ViteBalanceInfoManager {
 
     fileprivate let disposeBag = DisposeBag()
     fileprivate var appending = "noAddress"
+
+    lazy var defiBalanceInfosDriver: Driver<DefiBalanceInfoMap> = self.defiBalanceInfosBehaviorRelay.asDriver()
+    fileprivate var defiBalanceInfosBehaviorRelay: BehaviorRelay<DefiBalanceInfoMap>! = nil
 
     lazy var dexBalanceInfosDriver: Driver<DexBalanceInfoMap> = self.dexBalanceInfosBehaviorRelay.asDriver()
     fileprivate var dexBalanceInfosBehaviorRelay: BehaviorRelay<DexBalanceInfoMap>! = nil
@@ -86,6 +90,12 @@ public class ViteBalanceInfoManager {
                 self.dexBalanceInfosBehaviorRelay.accept(storage.dexBalanceInfoMap)
             }
 
+            if self.defiBalanceInfosBehaviorRelay == nil {
+                self.defiBalanceInfosBehaviorRelay = BehaviorRelay<DefiBalanceInfoMap>(value: storage.defiBalanceInfoMap)
+            } else {
+                self.defiBalanceInfosBehaviorRelay.accept(storage.defiBalanceInfoMap)
+            }
+
             self.unselectBalanceInfos.accept([])
             self.unselectTokenInfoCache = [TokenInfo]()
 
@@ -111,11 +121,11 @@ public class ViteBalanceInfoManager {
                 guard let `self` = self else { return }
 
                 switch r {
-                case .success(let balanceInfos, let dexBalanceInfos):
+                case .success(let balanceInfos, let dexBalanceInfos, let defiBalanceInfos):
 
                     plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
 
-                    let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos)
+                    let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos, defiBalanceInfos: defiBalanceInfos)
 
                     let tokenInfos = MyTokenInfosService.instance.tokenInfos.filter({ $0.coinType == .vite })
 
@@ -127,6 +137,7 @@ public class ViteBalanceInfoManager {
                     self.save(mappable: storage)
                     self.balanceInfos.accept(storage.walletBalanceInfoMap)
                     self.dexBalanceInfosBehaviorRelay.accept(storage.dexBalanceInfoMap)
+                    self.defiBalanceInfosBehaviorRelay.accept(storage.defiBalanceInfoMap)
 
                     let viteTokenIds = unselectBalanceInfos.map { $0.token.id }
                     self.updateUnselectTokenInfoCacheIfNeeded(viteTokenIds: viteTokenIds, completion: { [weak self] (ret) in
@@ -181,14 +192,16 @@ extension ViteBalanceInfoManager {
     struct Storage: Mappable {
         var walletBalanceInfoMap: ViteBalanceInfoMap = [:]
         var dexBalanceInfoMap: DexBalanceInfoMap = [:]
+        var defiBalanceInfoMap: DefiBalanceInfoMap = [:]
 
         init?(map: Map) { }
         mutating func mapping(map: Map) {
             walletBalanceInfoMap <- map["walletBalanceInfoMap"]
             dexBalanceInfoMap <- map["dexBalanceInfoMap"]
+            defiBalanceInfoMap <- map["defiBalanceInfoMap"]
         }
 
-        init(walletBalanceInfos: [BalanceInfo] = [], dexBalanceInfos: [DexBalanceInfo] = []) {
+        init(walletBalanceInfos: [BalanceInfo] = [], dexBalanceInfos: [DexBalanceInfo] = [], defiBalanceInfos: [DefiBalanceInfo] = []) {
             self.walletBalanceInfoMap = walletBalanceInfos
                 .reduce(ViteBalanceInfoMap(), { (m, balanceInfo) -> ViteBalanceInfoMap in
                     var map = m
@@ -197,6 +210,12 @@ extension ViteBalanceInfoManager {
                 })
             self.dexBalanceInfoMap = dexBalanceInfos
                 .reduce(DexBalanceInfoMap(), { (m, balanceInfo) -> DexBalanceInfoMap in
+                    var map = m
+                    map[balanceInfo.token.id] = balanceInfo
+                    return map
+                })
+            self.defiBalanceInfoMap = defiBalanceInfos
+                .reduce(DefiBalanceInfoMap(), { (m, balanceInfo) -> DefiBalanceInfoMap in
                     var map = m
                     map[balanceInfo.token.id] = balanceInfo
                     return map
@@ -228,6 +247,30 @@ extension ViteBalanceInfoManager {
             } else {
                 if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
                     return DexBalanceInfo(token: tokenInfo.toViteToken()!)
+                } else {
+                    return nil
+                }
+            }
+        }
+    }
+
+    func defiViteBalanceInfoDriver() -> Driver<DefiBalanceInfo> {
+        return defiBalanceInfosDriver.map { map -> DefiBalanceInfo in
+            if let ret = map[ViteWalletConst.viteToken.id] {
+                return ret
+            } else {
+                return DefiBalanceInfo(token: ViteWalletConst.viteToken)
+            }
+        }
+    }
+
+    private func defiBalanceInfoDriver(forViteTokenId id: String) -> Driver<DefiBalanceInfo?> {
+        return defiBalanceInfosDriver.map { map -> DefiBalanceInfo? in
+            if let ret = map[id] {
+                return ret
+            } else {
+                if let tokenInfo = TokenInfoCacheService.instance.tokenInfo(forViteTokenId: id) {
+                    return DefiBalanceInfo(token: tokenInfo.toViteToken()!)
                 } else {
                     return nil
                 }
