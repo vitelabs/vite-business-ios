@@ -14,8 +14,8 @@ struct DefiUsageInfo: Mappable {
 
     struct UsageInfo: Mappable {
 
-        fileprivate(set) var bsseAmount: Amount!
-        fileprivate(set) var loanAmount: Amount!
+        fileprivate(set) var bsseAmount: Amount! = Amount(0)
+        fileprivate(set) var loanAmount: Amount! = Amount(0)
 
         public init?(map: Map) {
 
@@ -29,7 +29,7 @@ struct DefiUsageInfo: Mappable {
 
     struct AmountInfo: Mappable {
         fileprivate(set) var sbpName: String?
-        fileprivate(set) var pledgeAmount: Amount!
+        fileprivate(set) var pledgeAmount: Amount! = Amount(0)
         fileprivate(set) var blockProducingAddress: String?
         fileprivate(set) var rewardWithdrawAddress: String?
         fileprivate(set) var pledgeTime: Int!

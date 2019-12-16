@@ -67,6 +67,7 @@ class DeFiProductInfoCard: UIView {
         progressLabel.text = progressDesc
         progressView.progress = progress
         deadLineDescLabel.attributedText = deadLineDesc
+
     }
 
     var size: CGSize {

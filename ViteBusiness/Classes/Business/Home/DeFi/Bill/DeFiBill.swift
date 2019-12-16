@@ -10,10 +10,10 @@ import BigInt
 import ViteWallet
 
 struct DeFiBill: Mappable {
-    fileprivate(set) var productHash: String!
+    fileprivate(set) var productHash: String! = ""
     fileprivate(set) var accountType: DeFiAPI.Bill.AccountType!
     fileprivate(set) var billType: DeFiAPI.Bill.BillType!
-    fileprivate(set) var billAmount: Amount!
+    fileprivate(set) var billAmount: Amount! = Amount(0)
     fileprivate(set) var billTime: TimeInterval!
 
     public init?(map: Map) {
@@ -24,7 +24,7 @@ struct DeFiBill: Mappable {
         productHash <- map["productHash"]
         accountType <- map["accountType"]
         billType <- map["billType"]
-        billAmount <- (map["loanAmount"], JSONTransformer.bigint)
+        billAmount <- (map["billAmount"], JSONTransformer.bigint)
         billTime <- map["billTime"]
     }
 }

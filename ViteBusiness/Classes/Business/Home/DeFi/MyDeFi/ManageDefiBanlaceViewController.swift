@@ -105,13 +105,13 @@ public class ManageDefiBanlaceViewController: BaseViewController {
 
     let token = TokenInfo.BuildIn.vite.value
     var walletBalance = Amount(0)
-    var vitexBalance = Amount(0)
+    var deFiBalance = Amount(0)
 
     var balance: Amount {
         if self.actionType == .toDefi {
             return walletBalance
         } else {
-            return vitexBalance
+            return deFiBalance
         }
     }
 
@@ -234,14 +234,18 @@ public class ManageDefiBanlaceViewController: BaseViewController {
                     self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + " " + self.token.symbol
                 }
             }).disposed(by: rx.disposeBag)
-        ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)
-            .drive(onNext: { [weak self] dexBalanceInfo in
-                guard let `self` = self else { return }
-                self.vitexBalance = dexBalanceInfo?.available ?? Amount(0)
-                if self.actionType == .toWallet {
-                    self.balanceLabel.text =  R.string.localizable.transferAvailable() +   self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
-                }
-            }).disposed(by: rx.disposeBag)
+
+        ViteBalanceInfoManager.instance.defiBalanceInfosDriver
+        .drive(onNext: { [weak self] infoMap in
+            guard let `self` = self else { return }
+            guard let defiBalanceInfo = infoMap[TokenInfo.BuildIn.vite.value.id] else {
+                return
+            }
+            self.deFiBalance = defiBalanceInfo.baseAccount.available ?? Amount(0)
+            if self.actionType == .toWallet {
+                self.balanceLabel.text =  R.string.localizable.transferAvailable() +   self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
+            }
+        }).disposed(by: rx.disposeBag)
 
         handleButton.rx.tap.bind { [weak self] _ in
             guard let `self` = self else { return }

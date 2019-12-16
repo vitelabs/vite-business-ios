@@ -9,37 +9,42 @@ import UIKit
 
 class DeFiBillCell: BaseTableViewCell, ListCellable {
 
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm:ss"
+        return dateFormatter
+    }()
+
     func bind(_ item: DeFiBill) {
         titleLabel.text = item.billType.name
-
-        titleLabel.text = item.billType.name
-//        contentLabel.text = item.billAmount.amountFull(decimals: 13)
-        unitLabel.text = "VITE"
-
-        haahLabel.text = item.productHash
-        timeLabel.text = String(item.billTime)
-
+        contentLabel.text = item.billAmount.amount(decimals: TokenInfo.BuildIn.vite.value.decimals, count: 2)
+        if (item.billAmount >= 0) {
+            contentLabel.textColor = UIColor.init(netHex: 0x5BC500)
+        } else {
+            contentLabel.textColor = UIColor.init(netHex: 0xFF0008)
+        }
+        unitLabel.text = "VITE" 
+        haahLabel.text = R.string.localizable.defiMyPageMyLoanCellIdTitle() + item.productHash
+        timeLabel.text = DeFiBillCell.dateFormatter.string(from: Date.init(timeIntervalSince1970: item.billTime))
     }
 
     static var cellHeight: CGFloat = 70
-
 
     typealias Model = DeFiBill
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     let titleLabel = UILabel().then {
-             $0.font = UIFont.systemFont(ofSize: 14)
+             $0.font = UIFont.boldSystemFont(ofSize: 14)
              $0.textColor = UIColor.init(netHex: 0x3E4A59)
          }
 
       let contentLabel = UILabel().then {
-             $0.font = UIFont.systemFont(ofSize: 16)
+            $0.font = UIFont.boldSystemFont(ofSize: 16)
           $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
-         }
+        }
 
       let unitLabel = UILabel().then {
              $0.font = UIFont.systemFont(ofSize: 14)
@@ -47,7 +52,7 @@ class DeFiBillCell: BaseTableViewCell, ListCellable {
          }
 
     let haahLabel = UILabel().then {
-           $0.font = UIFont.systemFont(ofSize: 16)
+           $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
        }
 
@@ -95,6 +100,18 @@ class DeFiBillCell: BaseTableViewCell, ListCellable {
             m.bottom.equalToSuperview().offset(-10)
             m.right.equalToSuperview().offset(-24)
         }
+
+        let seperator = UIView().then { (view) in
+            view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        }
+        contentView.addSubview(seperator)
+        seperator.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+        }
+
       }
 
       required init?(coder: NSCoder) {

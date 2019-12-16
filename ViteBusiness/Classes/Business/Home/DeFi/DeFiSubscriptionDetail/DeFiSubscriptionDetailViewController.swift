@@ -184,9 +184,12 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
         case .cancel:
             status = .cancel
         }
-        header.config(title: R.string.localizable.defiCardSlogan(), status: status,
-                      progressDesc: "\(R.string.localizable.defiCardProgress())\(loan.loanCompletenessString)",
-            progress: CGFloat(loan.loanCompleteness), deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
+        header.config(
+            title: R.string.localizable.defiCardSlogan(),
+            status: status,
+            progressDesc: "\(R.string.localizable.defiCardProgress())\(loan.loanCompletenessString)",
+            progress: CGFloat(loan.loanCompleteness),
+            deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
     }
 
     func reloadView() {
@@ -196,7 +199,6 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
         guard var loan = self.loan else { return }
         updateHeader()
-        loan.productStatus = .failed
         switch loan.productStatus {
         case .onSale:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }

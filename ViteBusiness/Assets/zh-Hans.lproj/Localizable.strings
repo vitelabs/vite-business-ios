@@ -583,7 +583,7 @@
 "grin.sent.http.success" = "您的GRIN转账请求已成功发送。";
 "grin.sent.vite.success" = "您的转账交易已发送。";
 "grin.receiveByVite.addressCopyed" = "您的GRIN收款VITE地址已复制至剪贴板";
-"grin.receiveByVite.desc" = "请将您的VITE地址（底部复制）分享给转账人。请注意，若您登录除iOS钱包外的Vite钱包接受了GRIN转账VITE交易，您需联系转账人取消交易并重新转账。";
+"grin.receiveByVite.desc" = "请注意，网页钱包不支持原生GRIN，若您登录网页钱包接收了包含GRIN文件的VITE交易，您需联系转账人取消交易并重新转账。";
 "grin.iknow" = "我知道了";
 "grin.thisIsFirstViteAddress" = "这是您的第一个VITE地址。";
 "grin.receiveByHttp.addressCopyed" = "您的GRIN收款HTTP地址已复制至剪贴板";
@@ -621,7 +621,7 @@
 "grin.pay.title.finalize" = "敲定交易";
 
 "grin.teach.file.send.desc" = "使用Vite钱包转账，您只需将生成的交易文件分享给收款人，得到收款人返回的确认收款文件后使用Vite钱包将其打开并敲定交易。点击分享交易文件后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。";
-"grin.teach.file.receive.desc" = "使用Vite钱包收款，您只需选择使用Vite钱包打开收款文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开。";
+"grin.teach.file.receive.desc" = "使用Vite钱包收款，您只需选择使用Vite钱包打开文件，点击签收并分享按钮，将确认收款文件返还给转账人即可。点击签收并分享后，Vite钱包将会打开您手机中可用的App，您可以选择任何您想使用的分享方式，您也可以选择将文件保存至手机，自行分享。Vite钱包支持.grinslate文件和.json文件，只有当您收到的交易文件包含“response”，Vite钱包才能识别其为一个收款文件并成功打开。";
 "grin.teach.file.send.title" = "使用交易文件转账GRIN";
 "grin.teach.file.receive.title" = "使用交易文件接收GRIN";
 "grin.teach.http.receive.copyHttpAddress" = "复制HTTP地址";
@@ -1222,6 +1222,27 @@
 "defi.use.page.close.svip" = "撤销交易所SVIP";
 "defi.use.page.regist.sbp" = "注册SBP";
 
+"defi.use.page.edit.sbp.title" = "编辑SBP信息";
+"defi.use.page.edit.sbp.blockProducingAddressTitle" = "出块地址:";
+"defi.use.page.edit.sbp.rewardWithdrawAddressTitle" = "提取奖励地址:";
+"defi.use.page.edit.sbp.confirm" = "确认修改";
+"defi.use.page.edit.sbp.cancle" = "暂不修改";
+"defi.use.page.edit.sbp.cancle.title" = "撤销注册SBP";
+"defi.use.page.edit.can.cancle.Amount" = "可取回抵押金额:";
+"defi.use.page.edit.sbp.cancle.desc" = "撤销后，抵押金额将退回原路；若想成为SBP，您需重新提交注册申请。";
+"defi.use.page.edit.cancle.cancle" = "暂不撤销";
+"defi.use.page.edit.cancle.confirm" = "确认撤销";
+
+"defi.use.page.edit.svip.cancle.title" = "撤销交易所SVIP";
+"defi.use.page.edit.svip.cancle.desc" = "撤销后，将无法享受交易所SVIP特权；抵押金额将退回原路。";
+
+"defi.use.page.edit.quotal.cancle.title" = "取回获取配额抵押";
+"defi.use.page.edit.quotal.cancle.desc" = "取回抵押会影响交易速度；抵押金额将退回原路。确认撤销抵押吗？";
+
+"defi.use.page.edit.minning.cancle.title" = "停止挖矿";
+"defi.use.page.edit.minning.cancle.desc" = "停止挖矿后，需约7天退回抵押金额。停止挖矿将不会再分得VX收益，确定要停止挖矿吗？";
+"defi.use.page.edit.minning.cancle.cancle" = "暂不停止";
+"defi.use.page.edit.minningcancle.confirm" = "确认";
 
 "defi.SubscriptionDetail.SubscriptionAmount" = "认购金额";
 "defi.SubscriptionDetail.TotalAmount" = "借币总金额";

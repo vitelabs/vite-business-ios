@@ -10,18 +10,26 @@ import ActionSheetPicker_3_0
 
 class MyDeFiBillViewController: BaseViewController {
 
+    private let baseAccountHeadeView = MyDeFiSubscribeHeaderView().then {
+        $0.issuedTitleLabel.text = R.string.localizable.defiBillPageBasedbalance()
+        $0.issuedLabel.text = "-- VITE"
+
+        $0.predictTitleLabel.text = " "
+        $0.predictLabel.text = " "
+
+        $0.subscribeTitleLabel.text  = "已冻结基础余额"
+        $0.subscribeLabel.text = "-- VITE"
+
+        $0.rateTitleLabel.text = R.string.localizable.defiBillPageUsedBasedbalance()
+        $0.rateLabel.text = "-- VITE"
+
+    }
+
     private let loanHeaderView = MyDeFiLoanHeaderView().then {
         $0.accountButton.isHidden = true
         $0.loanButton.isHidden = true
-        $0.accountTitleLabel.text = R.string.localizable.defiBillPageBasedbalance()
-        $0.loanTitleLabel.text = R.string.localizable.defiBillPageUsedBasedbalance()
-    }
-
-    private let subscribeHeaderView = MyDeFiLoanHeaderView().then {
-        $0.accountButton.isHidden = true
-        $0.loanButton.isHidden = true
-        $0.accountTitleLabel.text = R.string.localizable.defiBillPageTotalamountofborrowedmoney()
-        $0.loanTitleLabel.text = R.string.localizable.defiBillPageBorrowmoneybalances()
+        $0.accountTitleLabel.text = R.string.localizable.defiBillPageBorrowmoneybalances()
+        $0.loanTitleLabel.text = R.string.localizable.defiBillPageTotalamountofborrowedmoney()
     }
 
     private let loanVC = DeFiBillBaseFundViewController()
@@ -98,20 +106,20 @@ class MyDeFiBillViewController: BaseViewController {
         self.view.backgroundColor = .white
         navigationTitleView = NavigationTitleView(title:R.string.localizable.defiBillPageTitle())
 
-        view.addSubview(loanHeaderView)
-        loanHeaderView.snp.makeConstraints { (m) in
+        view.addSubview(baseAccountHeadeView)
+        baseAccountHeadeView.snp.makeConstraints { (m) in
             m.top.equalTo(navigationTitleView!.snp.bottom)
             m.left.right.equalToSuperview().inset(24)
         }
 
-        view.addSubview(subscribeHeaderView)
-        subscribeHeaderView.snp.makeConstraints { (m) in
-            m.edges.equalTo(loanHeaderView)
+        view.addSubview(loanHeaderView)
+        loanHeaderView.snp.makeConstraints { (m) in
+            m.edges.equalTo(baseAccountHeadeView)
         }
 
         view.addSubview(filtrateView)
         filtrateView.snp.makeConstraints { (m) in
-            m.top.equalTo(loanHeaderView.snp.bottom).offset(8)
+            m.top.equalTo(baseAccountHeadeView.snp.bottom).offset(8)
             m.left.right.equalToSuperview()
         }
 
@@ -135,11 +143,10 @@ class MyDeFiBillViewController: BaseViewController {
         filtrateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
 
-
             let statuss: [DeFiAPI.Bill.BillType]
             let currentStatus: DeFiAPI.Bill.BillType
             if self.isLoan {
-                statuss = [.全部, .已付利息, .已付利息退款, .认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
+                statuss = [.全部, /*.已付利息, .已付利息退款, */.认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
                 currentStatus = self.loanVC.status
             } else {
                 statuss = [.全部,  .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .成功借币]
@@ -162,17 +169,36 @@ class MyDeFiBillViewController: BaseViewController {
                 }
             }, cancel: { _ in return }, origin: self.view)
         }.disposed(by: rx.disposeBag)
+
+        ViteBalanceInfoManager.instance.defiBalanceInfosDriver.drive(onNext: { [weak self] (infoMap) in
+            guard let `self` = self else { return }
+            guard let info = infoMap[TokenInfo.BuildIn.vite.value.id] else {
+                return
+            }
+            let baseStr = info.baseAccount.available.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)
+            let frozedStr = (info.baseAccount.subscribed + info.baseAccount.locked).amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)
+            let usedStr = info.baseAccount.invested.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)
+            self.baseAccountHeadeView.issuedLabel.text = baseStr + " VITE"
+            self.baseAccountHeadeView.subscribeLabel.text = frozedStr + " VITE"
+            self.baseAccountHeadeView.rateLabel.text = usedStr + " VITE"
+
+            let loanBalanceStr = (info.loanAccount.available).amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)
+            let loanTotalStr = (info.loanAccount.invested + info.loanAccount.available).amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)
+            self.loanHeaderView.accountLabel.text = loanBalanceStr + " VITE"
+            self.loanHeaderView.loanLabel.text = loanTotalStr + " VITE"
+
+        })
     }
 
     private func pageChanged() {
         let status: DeFiAPI.Bill.BillType
         if isLoan {
-            loanHeaderView.isHidden = false
-            subscribeHeaderView.isHidden = true
+            baseAccountHeadeView.isHidden = false
+            loanHeaderView.isHidden = true
             status = loanVC.status
         } else {
-            loanHeaderView.isHidden = true
-            subscribeHeaderView.isHidden = false
+            baseAccountHeadeView.isHidden = true
+            loanHeaderView.isHidden = false
             status = subscribeVC.status
         }
 

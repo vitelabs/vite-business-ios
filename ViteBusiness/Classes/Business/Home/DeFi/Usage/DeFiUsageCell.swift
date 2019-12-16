@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 let decimals = TokenInfo.BuildIn.vite.value.decimals
 let dateFormatter: DateFormatter = {
@@ -14,7 +16,7 @@ let dateFormatter: DateFormatter = {
     return dateFormatter
 }()
 
-class DefiUsageForSBPCell: UITableViewCell,ListCellable {
+class DefiUsageForSBPCell: BaseTableViewCell,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
         bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
@@ -26,11 +28,49 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
 
         self.editButton.rx.tap.bind { _ in
 
-        }.disposed(by: rx.disposeBag)
+            let alert = UIAlertController.init(title: R.string.localizable.defiUsePageEditSbpTitle(), message: nil, preferredStyle: .alert)
+
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.isEnabled = false
+                textField.text =  R.string.localizable.defiUsePageEditSbpBlockProducingAddressTitle()
+            })
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.clearButtonMode = .always
+                textField.text = item.amountInfo.blockProducingAddress
+            })
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.isEnabled = false
+                textField.text =  R.string.localizable.defiUsePageEditSbpRewardWithdrawAddressTitle()
+            })
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.clearButtonMode = .always
+                textField.text = item.amountInfo.rewardWithdrawAddress
+            })
+
+            let action0 = UIAlertAction.init(title: R.string.localizable.defiUsePageEditSbpConfirm(), style: .default) { (action) in
+
+            }
+
+            let action1 = UIAlertAction.init(title: R.string.localizable.defiUsePageEditSbpCancle(), style: .default) { (action) in
+
+            }
+
+            alert.addAction(action0)
+            alert.addAction(action1)
+
+
+            UIViewController.current?.present(alert, animated: true, completion: nil)
+
+        }.disposed(by: disposeBag)
 
         self.cancleButton.rx.tap.bind { _ in
+            Alert.show(title: R.string.localizable.defiUsePageEditSbpCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount()) \(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE。\n\(R.string.localizable.defiUsePageEditSbpCancleDesc())", actions: [
+                (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
+                (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
 
-        }.disposed(by: rx.disposeBag)
+                }),
+                ])
+        }.disposed(by: disposeBag)
     }
 
      static var cellHeight: CGFloat = 224
@@ -94,16 +134,31 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
         $0.text = R.string.localizable.defiUsePageDeadlineBlockHeightTitle()
     }
 
-    let editButton = UIButton.init(style: .white).then {
+    let editButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageDeit(), for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setBackgroundImage(UIImage.image(withColor: .white, cornerRadius: 13, borderColor: nil, borderWidth: 0).resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
         $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+
+        $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        $0.layer.shadowOpacity = 0.1
+        $0.layer.shadowOffset = CGSize(width: 5, height: 5)
+        $0.layer.shadowRadius = 5
     }
 
-    let cancleButton = UIButton.init(style: .blue).then {
+    let cancleButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageRevocationSBP(), for: .normal)
-        $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 
     let getAwardLabel = UILabel().then {
@@ -214,6 +269,18 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
             m.top.equalTo(cancleButton.snp.bottom).offset(15)
             m.leading.equalToSuperview().offset(23)
         }
+
+        let bottomseperator = UIView().then { (view) in
+            view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        }
+        contentView.addSubview(bottomseperator)
+        bottomseperator.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+        }
+
     }
 
     required init?(coder: NSCoder) {
@@ -221,21 +288,27 @@ class DefiUsageForSBPCell: UITableViewCell,ListCellable {
     }
 }
 
-class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
+class DefiUsageForSVIPCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
+        bgColoredLable.text = R.string.localizable.defiBillBillTypeTitleOpenSVIPexchange() + ": " + (item.amountInfo.svipAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
 
         self.cancleButton.rx.tap.bind { _ in
+            Alert.show(title: R.string.localizable.defiUsePageEditSvipCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount())\(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE\n\(R.string.localizable.defiUsePageEditSvipCancleDesc())", actions: [
+            (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
+            (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
 
-        }.disposed(by: rx.disposeBag)
+            }),
+            ])
+
+        }.disposed(by: disposeBag)
     }
 
-     static var cellHeight: CGFloat = 224
+     static var cellHeight: CGFloat = 162
 
      typealias Model = DefiUsageInfo
 
@@ -291,12 +364,15 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
         $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
 
-    let cancleButton = UIButton.init(style: .blue).then {
+    let cancleButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageCloseSvip(), for: .normal)
-        $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
-
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -381,6 +457,18 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
             m.height.equalTo(26)
         }
 
+        let bottomseperator = UIView().then { (view) in
+            view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        }
+        contentView.addSubview(bottomseperator)
+        bottomseperator.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+        }
+
+
     }
 
     required init?(coder: NSCoder) {
@@ -389,21 +477,31 @@ class DefiUsageForSVIPCell: UITableViewCell ,ListCellable {
 }
 
 
-class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
+class DefiUsageForQuotalCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
+        bgColoredLable.text = R.string.localizable.peldgeAddressTitle() + ": " + (item.amountInfo.quotaAddress  ?? "")
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+        disposeBag = DisposeBag()
         self.cancleButton.rx.tap.bind { _ in
 
-        }.disposed(by: rx.disposeBag)
+            Alert.show(title: R.string.localizable.defiUsePageEditQuotalCancleTitle(),
+                               message: "\(R.string.localizable.defiUsePageEditCanCancleAmount()) \(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE。\n\(R.string.localizable.defiUsePageEditQuotalCancleDesc())",
+                actions: [
+                       (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
+                       (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
+
+                       }),
+                       ])
+
+        }.disposed(by: disposeBag)
 
     }
 
-     static var cellHeight: CGFloat = 224
+     static var cellHeight: CGFloat = 162
 
      typealias Model = DefiUsageInfo
 
@@ -460,13 +558,15 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
     }
 
 
-    let cancleButton = UIButton.init(style: .blue).then {
+    let cancleButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageCancleQouto(), for: .normal)
-        $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
-
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -551,6 +651,18 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
             m.height.equalTo(26)
         }
 
+        let bottomseperator = UIView().then { (view) in
+            view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        }
+        contentView.addSubview(bottomseperator)
+        bottomseperator.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+        }
+
+
     }
 
     required init?(coder: NSCoder) {
@@ -559,17 +671,44 @@ class DefiUsageForQuotalCell: UITableViewCell ,ListCellable {
 }
 
 
-class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
+class DefiUsageForMinningCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
-       bgColoredLable.text = (item.amountInfo.sbpName ?? "") + ": " + (item.amountInfo.blockProducingAddress  ?? "")
+       bgColoredLable.text = " "
         amountLabel.text = item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.usageInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
+
+        self.editButton.rx.tap.bind { [unowned self] _ in
+            func vitexPageUrl() -> URL {
+                var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
+                    + "?address=" + (HDWalletManager.instance.account?.address ?? "")
+                    + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
+                urlStr += "&activeTab=miningStaking"
+                return URL.init(string:urlStr)!
+            }
+            let webvc = WKWebViewController(url: vitexPageUrl())
+            var vcs = UIViewController.current?.navigationController?.viewControllers
+            vcs?.append(webvc)
+            if let vcs = vcs {
+                UIViewController.current?.navigationController?.setViewControllers(vcs, animated: true)
+            }
+        }.disposed(by: disposeBag)
+
+        self.cancleButton.rx.tap.bind { _ in
+
+            Alert.show(title: R.string.localizable.defiUsePageEditMinningCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount()) \(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE。\n\(R.string.localizable.defiUsePageEditMinningCancleDesc())", actions: [
+                       (.default(title: R.string.localizable.defiUsePageEditMinningcancleConfirm()), nil),
+                       (.default(title: R.string.localizable.defiUsePageEditMinningCancleCancle()), {[weak self] _ in
+
+                       }),
+                       ])
+
+        }.disposed(by: disposeBag)
     }
 
-     static var cellHeight: CGFloat = 224
+     static var cellHeight: CGFloat = 162
 
      typealias Model = DefiUsageInfo
 
@@ -579,7 +718,7 @@ class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
     let titleLabel = UILabel().then {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x77808A)
-        $0.text = "抵押挖矿"
+        $0.text = R.string.localizable.defiBillBillTypeTitleMinning()
     }
     let bgColoredLable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
@@ -625,19 +764,31 @@ class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
         $0.text = R.string.localizable.defiUsePageUsedBasefundTitle()
     }
 
-    let editButton = UIButton.init(style: .white).then {
+    let editButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageViewMinningReward(), for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setBackgroundImage(UIImage.image(withColor: .white, cornerRadius: 13, borderColor: nil, borderWidth: 0).resizable, for: .normal)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
         $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+        
+        $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+        $0.layer.shadowOpacity = 0.1
+        $0.layer.shadowOffset = CGSize(width: 5, height: 5)
+        $0.layer.shadowRadius = 5
     }
 
-    let cancleButton = UIButton.init(style: .blue).then {
+    let cancleButton = UIButton().then {
         $0.setTitle(R.string.localizable.defiUsePageViewStopMinning(), for: .normal)
-        $0.layer.cornerRadius = 13
-        $0.layer.masksToBounds = true
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_button_frame_blue()?.highlighted.resizable, for: .highlighted)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
-
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -729,6 +880,18 @@ class DefiUsageForMinningCell: UITableViewCell ,ListCellable {
             m.width.equalTo(76)
             m.height.equalTo(26)
         }
+
+        let bottomseperator = UIView().then { (view) in
+            view.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
+        }
+        contentView.addSubview(bottomseperator)
+        bottomseperator.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview()
+            m.height.equalTo(0.5)
+            m.left.equalToSuperview().offset(24)
+            m.right.equalToSuperview().offset(-24)
+        }
+
 
     }
 

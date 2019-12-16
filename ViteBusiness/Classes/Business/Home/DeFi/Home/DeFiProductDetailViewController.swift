@@ -7,12 +7,13 @@
 
 import UIKit
 import PromiseKit
+import RxSwift
+import RxCocoa
 
 class DeFiProductDetailViewController: BaseViewController {
 
     var productHash: String!
     var detail: DeFiLoan?
-    var timer: Timer?
     lazy var tableView = UITableView.listView()
 
     let bigNavTitleView = PageTitleView.onlyTitle(title: R.string.localizable.defiProductDetailTitle())
@@ -26,7 +27,6 @@ class DeFiProductDetailViewController: BaseViewController {
     lazy var tableHeaderView: UIView = {
         let view = UIView()
         view.addSubview(self.bigNavTitleView)
-        view.addSubview(self.cardView)
 
         self.bigNavTitleView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -34,18 +34,13 @@ class DeFiProductDetailViewController: BaseViewController {
             m.right.equalToSuperview()
             m.height.equalTo(64)
         }
-        self.cardView.snp.makeConstraints { (m) in
-            m.top.equalTo(self.bigNavTitleView.snp.bottom)
-            m.left.right.equalToSuperview().inset(24)
-            m.height.equalTo(132)
-        }
-        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 200)
+        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 60)
         return view
     }()
 
     let tableFooterView: UIView = {
         let view = UIView()
-        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 76)
+        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 110)
 
         let label0 = PointLabel()
         label0.font = UIFont.systemFont(ofSize: 12)
@@ -89,6 +84,7 @@ class DeFiProductDetailViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(DefiProductItemCell.self, forCellReuseIdentifier: "DefiProductItemCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cardCell")
         tableView.register(DefiProductItemWithUnitCell.self, forCellReuseIdentifier: "DefiProductItemWithUnitCell")
         tableView.mj_header = RefreshHeader.init(refreshingBlock: { [unowned self] in
             self.refresh()
@@ -110,10 +106,9 @@ class DeFiProductDetailViewController: BaseViewController {
 
         self.refresh()
 
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] (timer) in
-            guard let detail = self?.detail else { return }
-            self?.cardView.deadLineDescLabel.text = detail.countDownString
-        }
+        Observable<Int>.interval(1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
+            self?.updateHeader()
+        }.disposed(by: rx.disposeBag)
     }
 
     func refresh() {
@@ -131,6 +126,8 @@ class DeFiProductDetailViewController: BaseViewController {
 
     func updateInfo(detail: DeFiLoan) {
         self.detail = detail
+        self.updateHeader()
+
          content = [
             (R.string.localizable.defiProductDetailTitleHash(),detail.productHash,nil),
             (R.string.localizable.defiProductDetailTitleAmount(),detail.loanAmount.amountFull(decimals: 13),"VITE"),
@@ -142,14 +139,57 @@ class DeFiProductDetailViewController: BaseViewController {
             (R.string.localizable.defiProductDetailTitleBuydeadline(),String(detail.subscriptionDuration),R.string.localizable.defiProductDetailUntilPear()),
         ]
         tableView.reloadData()
-
-        self.cardView.progressLabel.text = R.string.localizable.defiCardProgress() + "\(detail.loanCompletenessString)"
+        self.buyButton.isEnabled = detail.productStatus == .onSale
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        timer?.invalidate()
-        timer = nil
+    func updateHeader() {
+        guard let loan = self.detail else { return }
+        let attributedString: NSMutableAttributedString = {
+            let (day, time) = loan.countDown(for: Date())
+            let string = R.string.localizable.defiCardEndTime(day, time)
+            let ret = NSMutableAttributedString(string: string)
+
+            ret.addAttributes(
+                text: string,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x000000),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            ret.addAttributes(
+                text: day,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            ret.addAttributes(
+                text: time,
+                attrs: [
+                    NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x007AFF),
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)
+            ])
+
+            return ret
+        }()
+
+        let status: DeFiProductInfoCard.Status
+        switch loan.productStatus {
+        case .onSale:
+            status = .onSale
+        case .failed:
+            status = .failed
+        case .success:
+            status = .success
+        case .cancel:
+            status = .cancel
+        }
+        cardView.config(
+            title: R.string.localizable.defiCardSlogan(),
+            status: status,
+            progressDesc: "\(R.string.localizable.defiCardProgress())\(loan.loanCompletenessString)",
+            progress: CGFloat(loan.loanCompleteness),
+            deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
     }
 
 }
@@ -157,10 +197,24 @@ class DeFiProductDetailViewController: BaseViewController {
 extension DeFiProductDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return content.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell") as! UITableViewCell
+            if self.cardView.superview == nil {
+                cell.contentView.addSubview(self.cardView)
+                cardView.snp.makeConstraints { (m) in
+                    m.left.right.equalToSuperview().inset(24)
+                    m.top.bottom.equalToSuperview().inset(5)
+                }
+            }
+            return cell
+        }
         let info = self.content[indexPath.row]
         if info.2 != nil {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DefiProductItemWithUnitCell") as! DefiProductItemWithUnitCell
@@ -177,7 +231,13 @@ extension DeFiProductDetailViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return self.cardView.size.height + 10
+        }
         return 60
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
 }
 
