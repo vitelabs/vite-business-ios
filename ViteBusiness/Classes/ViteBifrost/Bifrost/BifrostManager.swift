@@ -11,6 +11,8 @@ import RxCocoa
 import ViteWallet
 import PromiseKit
 import Starscream
+import Alamofire
+import SwiftyJSON
 
 public final class BifrostManager {
     public static let instance = BifrostManager()
@@ -211,6 +213,9 @@ public final class BifrostManager {
                 plog(level: .info, log: "[user] disable auto confirm", tag: .bifrost)
             }
         }).disposed(by: disposeBag)
+
+        BifrostManager.fetchAutoSigConfig()
+
     }
 }
 
@@ -637,87 +642,175 @@ extension BifrostManager {
     }
 
     fileprivate func canAutoConfirm(task: BifrostViteSendTxTask) -> Bool {
+        guard let data = task.tx.block.data, data.count >= 4 else {
+            return false
+        }
+       if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) , type == .dexPost {
+             guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
+                 let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
+                     return false
+             }
+            let pairStr = tradeTokenIdValue.toString() + "/" + quoteTokenIdValue.toString()
+            let allowMarkets = BifrostManager.AutoSigInfo.dexPostContractPairs
+            let vx = "tti_564954455820434f494e69b5"
 
-        if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) {
-
-            switch type {
-            case .dexDeposit,
-                 .dexWithdraw,
-                 .dexVip,
-                 .pledge,
-                 .cancelPledge,
-                 .dexStakingAsMining,
-                 .vote,
-                 .cancelVote,
-                 .dexNewInviter,
-                 .dexBindInviter,
-                 .dexCancel:
-                return true
-            case .dexPost:
-                let vite = ViteWalletConst.viteToken.id
-                let btc = "tti_b90c9baffffc9dae58d1f33f"
-                let pasc = "tti_22a818227bb47f072f92f428"
-                let bis = "tti_e80bcafb642ce4898857eccc"
-                let eth = "tti_687d8a93915393b219212c73"
-                let vfc = "tti_18823e6e0b95b7d77b3a1b3a"
-                let tera = "tti_60e20567a20282bfd25ab56c"
-                let erg = "tti_661d467c3f4d9c6d7b9e9dc9"
-                let grin = "tti_289ee0569c7d3d75eac1b100"
-                let dero = "tti_26472d9be08f8f2fdeb3030d"
-                let trtl = "tti_0570e763918b4355074661ac"
-                let usdt = "tti_80f3751485e4e83456059473"
-                let lrc = "tti_25e5f191cbb00a88a6267e0f"
-                let vx = "tti_564954455820434f494e69b5"
-
-
-                let allowMarkets = [
-                    vite+btc,
-                    pasc+btc,
-                    bis+btc,
-                    eth+btc,
-                    vfc+btc,
-                    tera+btc,
-                    erg+btc,
-                    grin+btc,
-                    dero+btc,
-
-                    vite+eth,
-                    trtl+eth,
-                    grin+eth,
-
-                    bis+vite,
-                    erg+vite,
-                    trtl+vite,
-                    grin+vite,
-                    dero+vite,
-                    pasc+vite,
-                    tera+vite,
-
-                    eth+usdt,
-                    btc+usdt,
-                    vite+usdt,
-                    vfc+usdt,
-                    lrc+usdt,
-                ]
-
-                guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
-                    let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
-                        return false
-                }
-
-                if allowMarkets.contains(tradeTokenIdValue.toString()+quoteTokenIdValue.toString()) {
-                    return true
-                } else if tradeTokenIdValue.toString() == vx {
-                    return true
-                }  else {
-                   return false
-               }
-
-            default:
+            if allowMarkets.contains(pairStr) {
+                 return true
+            } else if tradeTokenIdValue.toString() == vx {
+                 return true
+            }  else {
                 return false
             }
+        } else if BifrostManager.AutoSigInfo.contract.contains("\(task.tx.block.toAddress).\(data[0..<4].toHexString())") {
+            return true
         } else {
             return false
+        }
+    }
+}
+
+extension BifrostManager {
+    static func fetchAutoSigConfig() {
+        Alamofire
+            .request(ViteConst.instance.cos.strapi + "/vcconfigs/1")
+            .responseJSON()
+            .done { (json, resp) in
+                if let dexPostContractPairs = JSON(json)["data"]["dexPostContractPairs"].arrayObject as? [String] {
+                    AutoSigInfo.netconfig_dexPostContractPairs = dexPostContractPairs
+                }
+                if let contract = JSON(json)["data"]["contract"].arrayObject as? [String] {
+                    AutoSigInfo.netconfig_contract = contract
+                }
+        }
+        .catch { (error) in
+            GCD.delay(8) {
+                BifrostManager.fetchAutoSigConfig()
+            }
+        }
+
+    }
+
+    struct AutoSigInfo {
+
+        static var contract: [String] {
+            return netconfig_contract ?? localconfig_contract
+        }
+         static var dexPostContractPairs: [String] {
+            return netconfig_dexPostContractPairs ?? localconfig_dexPostContractPairs
+        }
+
+        static var netconfig_contract: [String]?
+        static var netconfig_dexPostContractPairs: [String]?
+
+        static var localconfig_contract: [String] {
+            return [
+                "vite_0000000000000000000000000000000000000006e82b8ba657.9dfb67ff",
+                "ViteWallet.ABI.BuildIn.dexDeposit",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.cc329169",
+                "ViteWallet.ABI.BuildIn.dexWithdraw",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.7085778f",
+                "ViteWallet.ABI.BuildIn.dexVip",
+
+                "vite_0000000000000000000000000000000000000003f6af7459b9.8de7dcfd",
+                "ViteWallet.ABI.BuildIn.pledge",
+
+                "vite_0000000000000000000000000000000000000003f6af7459b9.9ff9c7b6",
+                "ViteWallet.ABI.BuildIn.cancelPledge",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.222ffc11",
+                "ViteWallet.ABI.BuildIn.dexStakingAsMining",
+
+                "vite_0000000000000000000000000000000000000004d28108e76b.fdc17f25",
+                "ViteWallet.ABI.BuildIn.vote",
+
+                "vite_0000000000000000000000000000000000000004d28108e76b.a629c531",
+                "ViteWallet.ABI.BuildIn.cancelVote",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.da85ec8a",
+                "ViteWallet.ABI.BuildIn.dexNewInviter",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.a562b706",
+                "ViteWallet.ABI.BuildIn.dexBindInviter",
+
+                "vite_00000000000000000000000000000000000000079710f19dc7.b251adc5",
+                "ViteWallet.ABI.BuildIn.dexCancel",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.147927ec",
+                "ViteWallet.ABI.BuildIn.dexPost",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.e7f03bc7",
+                "vx"
+            ]
+        }
+
+        static var localconfig_dexPostContractPairs: [String] {
+            let vite = ViteWalletConst.viteToken.id
+           let btc = "tti_b90c9baffffc9dae58d1f33f"
+           let pasc = "tti_22a818227bb47f072f92f428"
+           let bis = "tti_e80bcafb642ce4898857eccc"
+           let eth = "tti_687d8a93915393b219212c73"
+           let vfc = "tti_18823e6e0b95b7d77b3a1b3a"
+           let tera = "tti_60e20567a20282bfd25ab56c"
+           let erg = "tti_661d467c3f4d9c6d7b9e9dc9"
+           let grin = "tti_289ee0569c7d3d75eac1b100"
+           let dero = "tti_26472d9be08f8f2fdeb3030d"
+           let trtl = "tti_0570e763918b4355074661ac"
+           let usdt = "tti_80f3751485e4e83456059473"
+           let lrc = "tti_25e5f191cbb00a88a6267e0f"
+           let vx = "tti_564954455820434f494e69b5"
+
+            var allowMarkets = [
+                   vite+"/"+btc,
+                   pasc+"/"+btc,
+                   bis+"/"+btc,
+                   eth+"/"+btc,
+                   vfc+"/"+btc,
+                   tera+"/"+btc,
+                   erg+"/"+btc,
+                   grin+"/"+btc,
+                   dero+"/"+btc,
+
+                   vite+"/"+eth,
+                   trtl+"/"+eth,
+                   grin+"/"+eth,
+
+                   bis+"/"+vite,
+                   erg+"/"+vite,
+                   trtl+"/"+vite,
+                   grin+"/"+vite,
+                   dero+"/"+vite,
+                   pasc+"/"+vite,
+                   tera+"/"+vite,
+
+                   eth+"/"+usdt,
+                   btc+"/"+usdt,
+                   vite+"/"+usdt,
+                   vfc+"/"+usdt,
+                   lrc+"/"+usdt,
+               ]
+            allowMarkets.append(contentsOf: [
+               "tti_564954455820434f494e69b5/tti_b90c9baffffc9dae58d1f33f",
+                "tti_f7e187a151e9c74b81e87cce/tti_b90c9baffffc9dae58d1f33f",
+                "tti_9b8b779b0ca5b55464e1cfda/tti_b90c9baffffc9dae58d1f33f",
+                "tti_4a04203e28bb8f3dc3d8f9b1/tti_b90c9baffffc9dae58d1f33f",
+                "tti_3d3bd4c43620ad1a3bcc630a/tti_b90c9baffffc9dae58d1f33f",
+                "tti_c1968fde12be9bc60e56a055/tti_b90c9baffffc9dae58d1f33f",
+                "tti_dfa872e9f0fccb1cc08502dd/tti_b90c9baffffc9dae58d1f33f",
+                "tti_2f875c97d3a51b66a59c4411/tti_b90c9baffffc9dae58d1f33f",
+                "tti_22a818227bb47f072f92f428/tti_687d8a93915393b219212c73",
+                "tti_dfa872e9f0fccb1cc08502dd/tti_687d8a93915393b219212c73",
+                "tti_564954455820434f494e69b5/tti_687d8a93915393b219212c73",
+                "tti_c1968fde12be9bc60e56a055/tti_687d8a93915393b219212c73",
+                "tti_564954455820434f494e69b5/tti_5649544520544f4b454e6e40",
+                "tti_564954455820434f494e69b5/tti_80f3751485e4e83456059473",
+                "tti_c8c9ad17bc7b45e38eb88a44/tti_80f3751485e4e83456059473",
+                "tti_22a818227bb47f072f92f428/tti_80f3751485e4e83456059473",
+                "tti_c1968fde12be9bc60e56a055/tti_80f3751485e4e83456059473",
+                "tti_3d3bd4c43620ad1a3bcc630a/tti_80f3751485e4e83456059473",])
+
+            return allowMarkets
         }
     }
 }
