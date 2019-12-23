@@ -167,9 +167,18 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(_ item: DeFiLoan) {
+    var item: DeFiLoan?
 
-        endTimeLabel.text = R.string.localizable.defiHomePageCellEndTime(item.countDownString)
+    func updateEndTime(date: Date) {
+        if let item = item {
+            endTimeLabel.text = R.string.localizable.defiHomePageCellEndTime(item.countDownString(for: date))
+        }
+    }
+
+    func bind(_ item: DeFiLoan) {
+        self.item = item
+
+        endTimeLabel.text = R.string.localizable.defiHomePageCellEndTime(item.countDownString(for: Date()))
         rateLabel.text = item.yearRateString
         progressView.progress = CGFloat(item.loanCompleteness)
         progressLabel.text = item.loanCompletenessString
