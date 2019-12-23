@@ -72,7 +72,8 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
     //产品Hash
     lazy var idView = SendStaticItemView(title: R.string.localizable.defiItemIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
     //认购金额
-    lazy var loanAmountView = SendStaticItemView(title:R.string.localizable.defiSubscriptionDetailSubscriptionAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    lazy var mySubscribedAmountView = SendStaticItemView(title:R.string.localizable.defiSubscriptionDetailSubscriptionAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
+    lazy var loanAmountView = SendStaticItemView(title:R.string.localizable.defiSubscriptionDetailTotalAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
     //借币总金额
     lazy var totalAmountView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailTotalAmount(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit: self.token.symbol))))
     //每份金额
@@ -94,7 +95,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
 
     // on sale
-    lazy var loanCopysView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailRemainingCopies(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit:R.string.localizable.defiItemCopysUnit()))))
+    lazy var leftCopiesView = SendStaticItemView(title: R.string.localizable.defiSubscriptionDetailRemainingCopies(), rightViewStyle: .label(style: .attributed(string: DeFiFormater.value("--", unit:R.string.localizable.defiItemCopysUnit()))))
     let buyButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiSubscriptionDetailBuy())
 
     let onSaleTip1 = TipTextView(text: R.string.localizable.defiSubscriptionDetailOnSaleTip1())
@@ -133,8 +134,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
         scrollView.alwaysBounceVertical = true
         reloadView()
-
-        Observable<Int>.interval(0.1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
+        Observable<Int>.interval(1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
             guard let loan = self?.loan else { return }
             guard loan.productStatus == .onSale else { return }
             self?.updateHeader()
@@ -206,20 +206,31 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(header)
             //产品Hash
             scrollView.stackView.addArrangedSubview(idView, topInset: 20)
+            idView.rightLabel?.text = loan.productHash
             //认购金额
-            scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+            scrollView.stackView.addArrangedSubview(mySubscribedAmountView, topInset: 20)
+            mySubscribedAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.mySubscribedAmount, token: token)
+//            //认购金额
+//            scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+//            loanAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
             //年化收益率
             scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+            yearRateView.rightLabel?.text = loan.yearRateString
             //借币期限
+            loanDurationView = SendStaticItemView(title: R.string.localizable.defiItemLoanDurationTitle(), rightViewStyle: .labels(topStyle: .attributed(string: DeFiFormater.loanDuration(text: "\(loan.loanDuration)")), bottomStyle: .text(string: R.string.localizable.defiSubscriptionPageDurationBlock("\(loan.loanDuration*24*60*60)"))))
             scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
             //预计收益
             scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            earningsView.rightLabel?.attributedText = DeFiFormater.value(loan.totalProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals) + "/" + loan.dayProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals), unit: "VITE")
             //借币总金额”
             scrollView.stackView.addArrangedSubview(totalAmountView, topInset: 20)
+            totalAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
             //每份金额”
             scrollView.stackView.addArrangedSubview(eachAmountView, topInset: 20)
+            eachAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.singleCopyAmount, token: token)
             //剩余份数
-            scrollView.stackView.addArrangedSubview(loanCopysView, topInset: 20)
+            scrollView.stackView.addArrangedSubview(leftCopiesView, topInset: 20)
+            leftCopiesView.rightLabel?.attributedText = DeFiFormater.value(String(loan.leftCopies), unit: "VITE")
 
             scrollView.stackView.addArrangedSubview(buyButton, topInset: 26)
 
@@ -235,20 +246,32 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
             //产品Hash
               scrollView.stackView.addArrangedSubview(idView, topInset: 20)
-              //认购金额
-              scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+            idView.rightLabel?.text = loan.productHash
+            //认购金额
+            scrollView.stackView.addArrangedSubview(mySubscribedAmountView, topInset: 20)
+            mySubscribedAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.mySubscribedAmount, token: token)
+//              //认购金额
+//              scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+//            loanAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
               //年化收益率
               scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+            yearRateView.rightLabel?.text = loan.yearRateString
               //借币期限
+            loanDurationView = SendStaticItemView(title: R.string.localizable.defiItemLoanDurationTitle(), rightViewStyle: .labels(topStyle: .attributed(string: DeFiFormater.loanDuration(text: "\(loan.loanDuration)")), bottomStyle: .text(string: R.string.localizable.defiSubscriptionPageDurationBlock("\(loan.loanDuration*24*60*60)"))))
               scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
             //预计总收益/每日收益”
                scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            earningsView.rightLabel?.attributedText = DeFiFormater.value(loan.totalProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals) + "/" + loan.dayProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals), unit: "VITE")
+
             //借币总金额”
             scrollView.stackView.addArrangedSubview(totalAmountView, topInset: 20)
+            totalAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
             //剩余未售出
             scrollView.stackView.addArrangedSubview(remainingUnsoldView, topInset: 20)
+            remainingUnsoldView.rightLabel?.attributedText = DeFiFormater.value(String(loan.leftCopies), unit: "VITE")
             //应退认购金额
             scrollView.stackView.addArrangedSubview(refundPaidInterestView, topInset: 20)
+            refundPaidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.mySubscribedAmount, token: token)
 
             scrollView.stackView.addArrangedSubview(refundButton, topInset: 26)
             scrollView.stackView.addPlaceholder(height: 26)
@@ -259,24 +282,36 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
             //产品Hash
            scrollView.stackView.addArrangedSubview(idView, topInset: 20)
-           //认购金额
-           scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+            idView.rightLabel?.text = loan.productHash
+            //认购金额
+            scrollView.stackView.addArrangedSubview(mySubscribedAmountView, topInset: 20)
+            mySubscribedAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.mySubscribedAmount, token: token)
+//           //认购金额
+//           scrollView.stackView.addArrangedSubview(loanAmountView, topInset: 20)
+//            loanAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
            //年化收益率
            scrollView.stackView.addArrangedSubview(yearRateView, topInset: 20)
+            yearRateView.rightLabel?.text = loan.yearRateString
            //借币期限
+            loanDurationView = SendStaticItemView(title: R.string.localizable.defiItemLoanDurationTitle(), rightViewStyle: .labels(topStyle: .attributed(string: DeFiFormater.loanDuration(text: "\(loan.loanDuration)")), bottomStyle: .text(string: R.string.localizable.defiSubscriptionPageDurationBlock("\(loan.loanDuration*24*60*60)"))))
            scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
             //“售罄快照块高度”
             scrollView.stackView.addArrangedSubview(successHeightView, topInset: 20)
             //售罄时间”
             scrollView.stackView.addArrangedSubview(successTimeView, topInset: 20)
+            successTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
             //到期快照块高度
             scrollView.stackView.addArrangedSubview(endHeightView, topInset: 20)
             //预计到期时间
             scrollView.stackView.addArrangedSubview(estimatedEndTimeView, topInset: 20)
+            estimatedEndTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
             //预计总收益/每日收益”
             scrollView.stackView.addArrangedSubview(earningsView, topInset: 20)
+            earningsView.rightLabel?.attributedText = DeFiFormater.value(loan.totalProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals) + "/" + loan.dayProfits.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals), unit: "VITE")
+
             //已发放收益”
             scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
+            paidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.earnProfits, token: token)
 
             scrollView.stackView.addArrangedSubview(successButton, topInset: 26)
             scrollView.stackView.addArrangedSubview(successTip1, topInset: 14)
@@ -284,33 +319,6 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
             scrollView.stackView.addPlaceholder(height: 26)
         }
-
-        idView.rightLabel?.text = loan.productHash
-        loanAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanAmount, token: token)
-        eachAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.singleCopyAmount, token: token)
-        loanDurationView.rightTopBottomLabelsView?.topLabel.attributedText = DeFiFormater.loanDuration(text: String(loan.loanDuration))
-//        loanDurationView.rightTopBottomLabelsView?.bottomLabel.text = R.string.localizable.defiSubscriptionPageDurationBlock(String(loan.loanSnapshotCount))
-//        dayRateView.rightLabel?.text = loan.dayRateString
-//        paidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanPayable, token: token)
-        subscriptionDurationView.rightLabel?.attributedText = DeFiFormater.subscriptionDuration(text: String(loan.subscriptionDuration))
-        subscribeAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.subscribedAmount, token: token)
-//        refundPaidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanPayable, token: token)
-        publishTimeView.rightLabel?.text = loan.subscriptionBeginTimeString
-
-        refundButton.isEnabled = loan.refundStatus != .refunding
-        refundButton.setTitle(loan.refundStatus != .refunding ?
-            R.string.localizable.defiLoanDetailPageFailedButtonViewRefundTitle() :
-            R.string.localizable.defiLoanDetailPageFailedButtonRefundingTitle(), for: .normal)
-
-        loanCopysView.rightLabel?.attributedText = DeFiFormater.value(String(loan.subscriptionCopies), unit: R.string.localizable.defiItemCopysUnit())
-
-        successTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
-//        usedAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.loanUsedAmount, token: token)
-//        canUseAmountView.rightLabel?.attributedText = DeFiFormater.amount(loan.remainAmount, token: token)
-//        endHeightView.rightLabel?.text = String(loan.loanEndSnapshotHeight)
-//        endTimeView.rightLabel?.text = loan.loanEndTimeString
-//        useButton.isEnabled = !loan.isExpire
-//        viewUseButton.isEnabled = loan.isUsed
     }
 }
 

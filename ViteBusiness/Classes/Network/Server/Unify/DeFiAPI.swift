@@ -78,7 +78,7 @@ enum DeFiAPI: TargetType {
         case .getSubscriptions:
             return "api/v1/defi/products/subscription"
         case .getSubscriptionDetail:
-            return "/api/v1/defi/product/subscription"
+            return "api/v1/defi/product/subscription"
         case .getProductDetail:
             return "api/v1/defi/product/loan"
         case .getBills:
