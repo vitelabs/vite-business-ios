@@ -30,7 +30,7 @@ class DeFiBillBaseFundViewController: BaseTableViewController {
 
 class MyDeFiBillBaseFundListViewModel: ListViewModel<DeFiBill> {
 
-    static let limit = 4
+    static let limit = 20
     let address = HDWalletManager.instance.account!.address
 
     let status: DeFiAPI.Bill.BillType

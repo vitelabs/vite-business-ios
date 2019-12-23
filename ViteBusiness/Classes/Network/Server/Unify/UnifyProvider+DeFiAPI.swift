@@ -96,8 +96,13 @@ extension UnifyProvider.defi {
             p.request(.getSubscriptions(status: status, address: address, offset: offset, limit: limit)) { (result) in
                 switch result {
                 case .success(let response):
-                    print(response)
-                    seal.fulfill([])
+                    if let json = try? response.mapJSON(),
+                        let data = JSON(json)["data"].arrayObject,
+                        let detail = Mapper<DeFiSubscription>().mapArray(JSONObject: data){
+                        seal.fulfill(detail)
+                    } else {
+                        seal.reject(NSError())
+                    }
                 case .failure(let error):
                     seal.reject(error)
                 }
@@ -120,8 +125,13 @@ extension UnifyProvider.defi {
             p.request(.getDeFiLoans(sortType: nil, status: status, address: address, offset: offset, limit: limit)) { (result) in
                 switch result {
                 case .success(let response):
-                    print(response)
-                    seal.fulfill([])
+                    if let json = try? response.mapJSON(),
+                        let data = JSON(json)["data"].arrayObject,
+                        let detail = Mapper<DeFiLoan>().mapArray(JSONObject: data){
+                        seal.fulfill(detail)
+                    } else {
+                        seal.reject(NSError())
+                    }
                 case .failure(let error):
                     seal.reject(error)
                 }
@@ -196,7 +206,7 @@ extension UnifyProvider.defi {
                  switch result {
                  case .success(let response):
                      if let json = try? response.mapJSON(),
-                        let data = JSON(json)["data"].array?.first?.dictionaryObject,
+                        let data = JSON(json)["data"].dictionaryObject,
                         let detail = DeFiSubscription.init(JSON: data){
                          seal.fulfill(detail)
                      } else {

@@ -50,8 +50,8 @@ class MyDeFiBillViewController: BaseViewController {
         pageStyle.bottomLineWidth = 20
 
         let titles = [
-            R.string.localizable.defiMyPageMyLoanTitle(),
-            R.string.localizable.defiMyPageMySubscribeTitle()
+            R.string.localizable.defiMyPageMyLoanAccountAmount(),
+            R.string.localizable.defiMyPageMyLoanLoanAmount(),
         ]
 
         let viewControllers = [

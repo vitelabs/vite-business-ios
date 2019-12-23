@@ -125,6 +125,10 @@ class HomeViewController: UITabBarController {
         NotificationCenter.default.post(name: .homePageDidAppear, object: nil)
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -152,11 +156,23 @@ class HomeViewController: UITabBarController {
         deFiImageView.frame.origin = origin
         deFiImageView.frame.size = CGSize.init(width: 118, height: 41)
         UIApplication.shared.keyWindow?.addSubview(deFiImageView)
+        GCD.delay(5) {
+            if self.deFiImageView.superview != nil {
+                self.deFiImageView.removeFromSuperview()
+            }
+        }
+
+        for vc in self.viewControllers! {
+            vc.rx.methodInvoked(#selector(UINavigationController.pushViewController(_:animated:))).subscribe(onNext: {[weak self] (_) in
+            if self?.deFiImageView.superview != nil {
+                self?.deFiImageView.removeFromSuperview()
+            }
+            }).disposed(by: rx.disposeBag)
+        }
+
     }
 
 }
-
-
 
 
 

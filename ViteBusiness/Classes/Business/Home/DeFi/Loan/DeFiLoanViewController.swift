@@ -169,7 +169,4 @@ class DeFiLoanViewController: BaseScrollableViewController {
         }.disposed(by: rx.disposeBag)
     }
 
-    deinit {
-        print("sss")
-    }
 }
