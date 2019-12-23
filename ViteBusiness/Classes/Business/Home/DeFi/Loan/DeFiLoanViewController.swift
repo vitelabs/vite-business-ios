@@ -76,6 +76,7 @@ class DeFiLoanViewController: BaseScrollableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
 
     }
 
@@ -137,5 +138,38 @@ class DeFiLoanViewController: BaseScrollableViewController {
         subscriptionTimeView.textField.kas_setReturnAction(.done(block: { (textField) in
             textField.resignFirstResponder()
         }))
+    }
+
+    func bind() {
+        loanButton.rx.tap.bind {[weak self] _ in
+            guard let account = HDWalletManager.instance.account else { return }
+            let a = pow(10.0, Double(TokenInfo.BuildIn.vite.value.decimals)) * 100
+            let shareAmount = Amount(a)
+            let dayRate = 0.001
+            let shares = 100
+            let subscribeDays = 7
+            let expireDays = 30
+
+            Workflow.defiNewLoanWithConfirm(
+                account: account,
+                tokenInfo: TokenInfo.BuildIn.vite.value,
+                dayRate: dayRate,
+                shareAmount: shareAmount,
+                shares: shares,
+                subscribeDays: subscribeDays,
+                expireDays: expireDays) { [weak self] (result) in
+                    guard let `self` = self else { return }
+                    switch result {
+                    case .success(_):
+                        self.navigationController?.popViewController(animated: true)
+                    case .failure(let e):
+                        Toast.show(e.localizedDescription)
+                    }
+                }
+        }.disposed(by: rx.disposeBag)
+    }
+
+    deinit {
+        print("sss")
     }
 }

@@ -131,7 +131,9 @@ class MyDeFiViewController: BaseViewController {
             self?.pageChanged()
         }
 
-        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.baseAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.accountLabel.rx.text).disposed(by: rx.disposeBag)
+        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver()
+            .map { $0.baseAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }
+            .drive(loanHeaderView.accountLabel.rx.text).disposed(by: rx.disposeBag)
         ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.loanAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.loanLabel.rx.text).disposed(by: rx.disposeBag)
 
         filtrateButton.rx.tap.bind { [weak self] in

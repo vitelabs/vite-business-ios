@@ -19,7 +19,7 @@ class UnifyProvider {
     static func provider<Target: TargetType>() -> MoyaProvider<Target> {
 
         return MoyaProvider<Target>(
-            stubClosure: MoyaProvider<Target>.immediatelyStub,
+            stubClosure: MoyaProvider<Target>.neverStub,
             manager: Manager(
             configuration: {
                 var configuration = URLSessionConfiguration.default

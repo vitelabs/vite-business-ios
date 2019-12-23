@@ -298,7 +298,7 @@ public class ManageDefiBanlaceViewController: BaseViewController {
 
     func fundFromWallettoDefi(amount: Amount) {
         guard let account = HDWalletManager.instance.account else { return }
-        Workflow.dexDepositWithConfirm(account: account, tokenInfo: token, amount: amount) { [weak self] (result) in
+        Workflow.defiDepositWithConfirm(account: account, tokenInfo: token, amount: amount) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .success(_):
@@ -311,7 +311,7 @@ public class ManageDefiBanlaceViewController: BaseViewController {
 
     func fundFromVitexToWallet(amount: Amount) {
         guard let account = HDWalletManager.instance.account else { return }
-        Workflow.dexWithdrawWithConfirm(account: account, tokenInfo: token, amount: amount) { [weak self] (result) in
+        Workflow.defiWithdrawWithConfirm(account: account, tokenInfo: token, amount: amount) {[weak self] (result) in
             switch result {
             case .success(_):
                 self?.navigationController?.popViewController(animated: true)

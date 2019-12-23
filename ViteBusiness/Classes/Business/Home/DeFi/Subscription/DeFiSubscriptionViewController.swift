@@ -50,6 +50,7 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -144,5 +145,22 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
         subscriptionCopysView.textField.kas_setReturnAction(.done(block: { (textField) in
             textField.resignFirstResponder()
         }))
+    }
+
+    func bind() {
+        guard let account = HDWalletManager.instance.account else { return }
+        Workflow.defiSubscribeWithConfirm(
+            account: account,
+            tokenInfo:TokenInfo.BuildIn.vite.value,
+            loanId: UInt64(productHash)!,
+            shares: 100) { [weak self] (result) in
+                guard let `self` = self else { return }
+                switch result {
+                case .success(_):
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let e):
+                    Toast.show(e.localizedDescription)
+                }
+        }
     }
 }
