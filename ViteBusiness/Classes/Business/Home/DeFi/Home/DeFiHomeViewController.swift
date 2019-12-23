@@ -99,7 +99,7 @@ class DeFiHomeViewController: BaseViewController {
         tableView.snp.makeConstraints { (m) in
             m.top.equalTo(filtrateView.snp.bottom)
             m.left.right.equalToSuperview()
-            m.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            m.bottom.equalTo(self.view.safeAreaLayoutGuideSnpBottom)
         }
     }
 
@@ -131,6 +131,16 @@ class DeFiHomeViewController: BaseViewController {
         myDefiButton.rx.tap.bind { [weak self] in
             let vc = MyDeFiViewController()
             self?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+        Observable<Int>.interval(0.1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
+            guard let `self` = self else { return }
+            let date = Date()
+            for cell in self.tableView.visibleCells {
+                if let c = cell as? DeFiHomeProductCell {
+                    c.updateEndTime(date: date)
+                }
+            }
         }.disposed(by: rx.disposeBag)
 
     }

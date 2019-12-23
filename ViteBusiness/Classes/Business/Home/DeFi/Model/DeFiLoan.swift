@@ -95,6 +95,11 @@ struct DeFiLoan: Mappable {
         return (day: "\(max(components.day!, 0))", time: String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
     }
 
+    func countDownString(for date: Date) -> String {
+        let (day, time) = countDown(for: date)
+        return R.string.localizable.defiHomePageCellEndTimeFormat(day, time)
+    }
+
     var countDownString: String {
         let (day, time) = countDown(for: Date())
         return R.string.localizable.defiHomePageCellEndTimeFormat(day, time)

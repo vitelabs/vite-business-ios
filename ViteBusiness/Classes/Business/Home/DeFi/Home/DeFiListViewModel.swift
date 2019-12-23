@@ -10,7 +10,7 @@ import PromiseKit
 
 class DeFiListViewModel: ListViewModel<DeFiLoan> {
 
-    static let limit = 4
+    static let limit = 20
 
     let sortType: DeFiAPI.ProductSortType
     init(tableView: UITableView, sortType: DeFiAPI.ProductSortType) {
