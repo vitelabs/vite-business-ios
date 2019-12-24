@@ -13,6 +13,8 @@ import SwiftyJSON
 import ObjectMapper
 import enum Alamofire.Result
 import ViteWallet
+import APIKit
+import JSONRPCKit
 import PromiseKit
 import Alamofire
 
@@ -98,7 +100,7 @@ extension UnifyProvider.defi {
             .compactMap {$0}
     }
 
-    static func getUsage(address: ViteAddress,productHash: String? = nil) -> Promise<[DefiUsageInfo]> {
+    static func getUsage(address: ViteAddress, productHash: String? = nil) -> Promise<[DefiUsageInfo]> {
         let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
         return p.requestPromise(.getUsage(address: address, productHash: productHash))
             .map { [DefiUsageInfo](JSONString: $0) }
@@ -116,4 +118,23 @@ extension UnifyProvider.defi {
                     }
             }
      }
+
+    static func getLoanUsageOptions(accountAddress: ViteAddress, loan: DeFiLoan) -> Promise<[DeFiLoanUsageOption]> {
+
+        let batch = BatchFactory().create(DefiAccountInfoRequest(address: accountAddress, tokenId: ViteWalletConst.viteToken.id),
+                                          GetSnapshotChainHeightRequest())
+        return RPCRequest(for: Provider.default.server, batch: batch).promise.map { (balanceInfos, height) -> (DefiBalanceInfo, UInt64) in
+            if let balanceInfo = balanceInfos.first, balanceInfo.token.id != ViteWalletConst.viteToken.id {
+                return (balanceInfo, height)
+            } else {
+                return (DefiBalanceInfo(token: ViteWalletConst.viteToken), height)
+            }
+        }.then { (balanceInfo, height) -> Promise<[DeFiLoanUsageOption]> in
+            let amount = balanceInfo.baseAccount.available + loan.remainAmount
+            let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
+            return p.requestPromise(.getLoanUsageOptions(hash: loan.productHash, userAmount: amount, currentSnapshotHeight: height, loanEndSnapshotHeight: loan.loanEndSnapshotHeight))
+            .map { [DeFiLoanUsageOption](JSONString: $0) }
+            .compactMap {$0}
+        }
+    }
 }

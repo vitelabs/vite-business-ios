@@ -83,8 +83,11 @@ extension NavigatorManager {
 
     func testUrl(for url: URL) -> URL {
 
-        let hostPairs = [HostPair(source: "https://app.vite.net/webview/vitex_invite_inner/index.html",
-                                  target: "https://vite-wallet-test.netlify.com/webview/vitex_invite_inner/index.html"),
+        let hostPairs = [
+            HostPair(source: "https://app.vite.net/webview/vitex_invite_inner/index.html",
+                     target: "https://vite-wallet-test.netlify.com/webview/vitex_invite_inner/index.html"),
+            HostPair(source: "https://app.vite.net/webview/defi_usage/index.html",
+                     target: "http://192.168.31.46:8080"),
         ]
 
         if DebugService.instance.config.appEnvironment == .test {

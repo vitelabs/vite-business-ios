@@ -64,7 +64,7 @@ enum DeFiAPI: TargetType {
     case getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String?, offset: Int, limit: Int)
     case getUsage(address: ViteAddress,productHash: String?)
     case getSubscriptionDetail(address: ViteAddress, productHash: String)
-
+    case getLoanUsageOptions(hash: String, userAmount: Amount, currentSnapshotHeight: UInt64, loanEndSnapshotHeight: UInt64)
 
     var baseURL: URL {
         return URL(string: "http://192.168.31.213:8081/dev/")!
@@ -85,6 +85,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/account/bills"
         case .getUsage:
             return "api/v1/defi/assets/usage"
+        case .getLoanUsageOptions:
+            return "api/v1/defi/usage/options"
         }
     }
 
@@ -147,9 +149,17 @@ enum DeFiAPI: TargetType {
            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
 
         case .getSubscriptionDetail(let address, let productHash):
-            var parameters: [String: Any] = [
+            let parameters: [String: Any] = [
                 "address": address,
                 "productHash": productHash
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getLoanUsageOptions(hash, userAmount, currentSnapshotHeight, loanEndSnapshotHeight):
+            let parameters: [String: Any] = [
+                "productHash": hash,
+                "userAmount": userAmount.description,
+                "currentSnapshotHeight": currentSnapshotHeight,
+                "loanEndSnapshotHeight": loanEndSnapshotHeight
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }

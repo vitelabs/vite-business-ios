@@ -182,7 +182,7 @@ public extension ViteConst {
                 cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
                          discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
                          strapi: "http://129.226.74.210:1337"),
-                vite: Vite(nodeHttp: "http://192.168.31.8:48132",
+                vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
                            x: "https://vitex.vite.net/test",

@@ -387,7 +387,17 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonCancel(), for: .normal)
             button.rx.tap.bind {
-
+                guard let account = HDWalletManager.instance.account else { return }
+                guard let id = UInt64(item.productHash) else { return }
+                let tokenInfo = TokenInfo.BuildIn.vite.value
+                Workflow.defiCancelLoanWithConfirm(account: account, tokenInfo: tokenInfo, loanId: id) { (ret) in
+                    switch ret {
+                    case .success(_):
+                        Toast.show("fdsfds")
+                    case .failure(let e):
+                        Toast.show(e.localizedDescription)
+                    }
+                }
             }.disposed(by: disposeBag)
 
         case .failed:
@@ -407,7 +417,17 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonUse(), for: .normal)
             button.rx.tap.bind {
-
+                guard let address = HDWalletManager.instance.account?.address else { return }
+                HUD.show()
+                UnifyProvider.defi.getLoanUsageOptions(accountAddress: address, loan: item).done { (options) in
+                    MyDeFiLoanUsageOptionsView(options: options, clicked: { option in
+                        WebHandler.openDeFiLoanUsagePage(productHash: item.productHash, optionCode: option.optionCode)
+                    }).show()
+                }.catch { (error) in
+                    Toast.show(error.localizedDescription)
+                }.finally {
+                    HUD.hide()
+                }
             }.disposed(by: disposeBag)
 
         case .cancel:
