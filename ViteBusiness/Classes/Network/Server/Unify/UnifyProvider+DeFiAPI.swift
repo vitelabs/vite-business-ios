@@ -119,9 +119,9 @@ extension UnifyProvider.defi {
             }
      }
 
-    static func getLoanUsageOptions(accountAddress: ViteAddress, loan: DeFiLoan) -> Promise<[DeFiLoanUsageOption]> {
+    static func getLoanUsageOptions(address: ViteAddress, loan: DeFiLoan) -> Promise<[DeFiLoanUsageOption]> {
 
-        let batch = BatchFactory().create(DefiAccountInfoRequest(address: accountAddress, tokenId: ViteWalletConst.viteToken.id),
+        let batch = BatchFactory().create(DefiAccountInfoRequest(address: address, tokenId: ViteWalletConst.viteToken.id),
                                           GetSnapshotChainHeightRequest())
         return RPCRequest(for: Provider.default.server, batch: batch).promise.map { (balanceInfos, height) -> (DefiBalanceInfo, UInt64) in
             if let balanceInfo = balanceInfos.first, balanceInfo.token.id != ViteWalletConst.viteToken.id {
@@ -136,5 +136,17 @@ extension UnifyProvider.defi {
             .map { [DeFiLoanUsageOption](JSONString: $0) }
             .compactMap {$0}
         }
+    }
+
+    static func getDefiProfits(address: ViteAddress) -> Promise<DeFiProfits> {
+        let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getDeFiProfits(address: address))
+            .map {
+                    if let ret = DeFiProfits(JSONString: $0) {
+                        return ret
+                    } else {
+                        throw UnifyProvider.BackendError.bodyFormat
+                    }
+            }
     }
 }

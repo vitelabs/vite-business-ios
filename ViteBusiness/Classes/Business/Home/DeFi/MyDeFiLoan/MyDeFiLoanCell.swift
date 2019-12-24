@@ -419,7 +419,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             button.rx.tap.bind {
                 guard let address = HDWalletManager.instance.account?.address else { return }
                 HUD.show()
-                UnifyProvider.defi.getLoanUsageOptions(accountAddress: address, loan: item).done { (options) in
+                UnifyProvider.defi.getLoanUsageOptions(address: address, loan: item).done { (options) in
                     MyDeFiLoanUsageOptionsView(options: options, clicked: { option in
                         WebHandler.openDeFiLoanUsagePage(productHash: item.productHash, optionCode: option.optionCode)
                         self.test(optionCode: option.optionCode)

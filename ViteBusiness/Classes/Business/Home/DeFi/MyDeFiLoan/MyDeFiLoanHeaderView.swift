@@ -112,14 +112,16 @@ class MyDeFiLoanHeaderView: UIView {
             FloatButtonsView(targetView: self.accountButton,
                              delegate: self,
                              titles: [R.string.localizable.defiMyPageMyLoanButtonTransferTitle(),
-                                      R.string.localizable.defiMyPageMyLoanButtonBilTitle()]).show()
+                                      R.string.localizable.defiMyPageMyLoanButtonBilTitle()],
+                             direction: .leftBottom).show()
         }.disposed(by: rx.disposeBag)
 
         loanButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             FloatButtonsView(targetView: self.loanButton,
                              delegate: self,
-                             titles: [R.string.localizable.defiMyPageMyLoanButtonBilTitle()]).show()
+                             titles: [R.string.localizable.defiMyPageMyLoanButtonBilTitle()],
+                             direction: .leftBottom).show()
         }.disposed(by: rx.disposeBag)
     }
 

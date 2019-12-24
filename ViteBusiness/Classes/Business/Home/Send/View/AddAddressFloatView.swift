@@ -18,6 +18,11 @@ protocol FloatButtonsViewDelegate: class {
 
 class FloatButtonsView: VisualEffectAnimationView {
 
+    enum Direction {
+        case leftTop
+        case leftBottom
+    }
+
     fileprivate func createButton(title: String) -> UIButton {
         return UIButton().then {
             $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -43,7 +48,7 @@ class FloatButtonsView: VisualEffectAnimationView {
     }
 
     fileprivate weak var delegate: FloatButtonsViewDelegate?
-    init(targetView: UIView, delegate: FloatButtonsViewDelegate, titles: [String]) {
+    init(targetView: UIView, delegate: FloatButtonsViewDelegate, titles: [String], direction: Direction = .leftTop) {
 
         self.delegate = delegate
         guard let superView = targetView.ofViewController?.navigationController?.view else { fatalError() }
@@ -61,21 +66,38 @@ class FloatButtonsView: VisualEffectAnimationView {
                 }.disposed(by: rx.disposeBag)
         }
 
-        containerView.layer.anchorPoint = CGPoint(x: 1, y: 1)
         let layoutGuide = UILayoutGuide()
         contentView.addLayoutGuide(layoutGuide)
-        layoutGuide.snp.makeConstraints { (m) in
-            m.size.equalTo(containerView).multipliedBy(0.5)
-            m.left.equalTo(contentView.safeAreaLayoutGuideSnpRight)
-            m.top.equalTo(contentView.safeAreaLayoutGuideSnpBottom)
-        }
-
         guard let targetSuperView = targetView.superview else { fatalError() }
         let frame = targetSuperView.convert(targetView.frame, to: superView)
 
-        containerView.snp.makeConstraints { (m) in
-            m.right.equalTo(layoutGuide).offset(frame.maxX - superView.frame.width)
-            m.bottom.equalTo(layoutGuide).offset(frame.minY - superView.frame.height)
+        let offset: CGFloat = 5.0
+
+        switch direction {
+        case .leftTop:
+            containerView.layer.anchorPoint = CGPoint(x: 1, y: 1)
+            containerView.snp.makeConstraints { (m) in
+                m.size.equalTo(layoutGuide)
+                m.centerX.equalTo(layoutGuide.snp.right)
+                m.centerY.equalTo(layoutGuide.snp.bottom)
+            }
+
+            layoutGuide.snp.makeConstraints { (m) in
+                m.right.equalTo(contentView).offset(frame.maxX - superView.frame.width)
+                m.bottom.equalTo(contentView).offset(frame.minY - superView.frame.height - offset)
+            }
+        case .leftBottom:
+            containerView.layer.anchorPoint = CGPoint(x: 1, y: 0)
+            containerView.snp.makeConstraints { (m) in
+                m.size.equalTo(layoutGuide)
+                m.centerX.equalTo(layoutGuide.snp.right)
+                m.centerY.equalTo(layoutGuide.snp.top)
+            }
+
+            layoutGuide.snp.makeConstraints { (m) in
+                m.right.equalTo(contentView).offset(frame.maxX - superView.frame.width)
+                m.top.equalTo(contentView).offset(frame.maxY + offset)
+            }
         }
     }
 

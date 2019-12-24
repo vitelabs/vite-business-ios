@@ -166,6 +166,15 @@ class MyDeFiViewController: BaseViewController {
                 }
             }, cancel: { _ in return }, origin: self.view)
         }.disposed(by: rx.disposeBag)
+
+        subscribeVC.viewModel.profitsDriver.drive(onNext: {[weak self] (profits) in
+            guard let `self` = self else { return }
+            let decimals = ViteWalletConst.viteToken.decimals
+            self.subscribeHeaderView.issuedLabel.text = profits.earnProfits.amountShortWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.predictLabel.text = profits.totalProfits.amountShortWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.subscribeLabel.text = profits.subscribedAmount.amountShortWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.rateLabel.text = profits.profitsRateString
+        }).disposed(by: rx.disposeBag)
     }
 
     private func pageChanged() {

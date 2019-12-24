@@ -65,9 +65,10 @@ enum DeFiAPI: TargetType {
     case getUsage(address: ViteAddress,productHash: String?)
     case getSubscriptionDetail(address: ViteAddress, productHash: String)
     case getLoanUsageOptions(hash: String, userAmount: Amount, currentSnapshotHeight: UInt64, loanEndSnapshotHeight: UInt64)
+    case getDeFiProfits(address: ViteAddress)
 
     var baseURL: URL {
-        return URL(string: "http://192.168.31.213:8081/dev/")!
+        return URL(string: "http://132.232.65.121:8081/test/")!
         return URL(string: ViteConst.instance.vite.x)!
     }
 
@@ -87,6 +88,8 @@ enum DeFiAPI: TargetType {
             return "api/v1/defi/assets/usage"
         case .getLoanUsageOptions:
             return "api/v1/defi/usage/options"
+        case .getDeFiProfits:
+            return "api/v1/defi/account/profits"
         }
     }
 
@@ -160,6 +163,11 @@ enum DeFiAPI: TargetType {
                 "userAmount": userAmount.description,
                 "currentSnapshotHeight": currentSnapshotHeight,
                 "loanEndSnapshotHeight": loanEndSnapshotHeight
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getDeFiProfits(address):
+            let parameters: [String: Any] = [
+                "address": address
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
