@@ -37,6 +37,9 @@ struct DeFiSubscription: Mappable {
     fileprivate(set) var subscriptionEndTime: Date = Date()
     fileprivate(set) var subscriptionFinishTime: Date = Date()
 
+    fileprivate(set) var subscriptionFinishHeight: UInt64 = 0
+    fileprivate(set) var loanEndSnapshotHeight: UInt64 = 0
+
     var subscriptionDuration: UInt64 {
         let interval = UInt64(subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970)
         return  interval / (60*60*24)
@@ -70,6 +73,10 @@ struct DeFiSubscription: Mappable {
         subscriptionBeginTime <- (map["subscriptionBeginTime"], JSONTransformer.timestamp)
         subscriptionEndTime <- (map["subscriptionEndTime"], JSONTransformer.timestamp)
         subscriptionFinishTime <- (map["subscriptionFinishTime"], JSONTransformer.timestamp)
+
+        subscriptionFinishHeight <- map["subscriptionFinishHeight"]
+        loanEndSnapshotHeight <- map["loanEndSnapshotHeight"]
+
     }
 
     var leftSubscriptionAmount: Amount { return loanAmount - subscribedAmount }

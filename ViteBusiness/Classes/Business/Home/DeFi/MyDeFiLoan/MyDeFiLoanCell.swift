@@ -176,9 +176,9 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         fatalError("init(coder:) has not been implemented")
     }
 
-
+    var DeFiLoan: DeFiLoan?
     func bind(_ item: DeFiLoan) {
-
+        self.DeFiLoan = item
         let token = ViteWalletConst.viteToken
         idLabel.text = R.string.localizable.defiMyPageMyLoanCellIdTitle() + item.productHash
         progressView.progress = CGFloat(item.loanCompleteness)
@@ -422,6 +422,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
                 UnifyProvider.defi.getLoanUsageOptions(accountAddress: address, loan: item).done { (options) in
                     MyDeFiLoanUsageOptionsView(options: options, clicked: { option in
                         WebHandler.openDeFiLoanUsagePage(productHash: item.productHash, optionCode: option.optionCode)
+                        self.test(optionCode: option.optionCode)
                     }).show()
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
@@ -435,6 +436,55 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderCancel()
             showSaledLoanAmountRateAndDuration()
             button.isHidden = true
+        }
+    }
+
+    func test(optionCode: String) {
+        if optionCode == "REGISTER_SBP" {
+            Workflow.defiRegisterSBPWithConfirm(
+            account: HDWalletManager.instance.account!,
+            tokenInfo: TokenInfo.BuildIn.vite.value,
+            loanId: UInt64(self.DeFiLoan!.productHash)!,
+            amount: 0,
+            sbpName: "sbpName",
+            blockProducingAddress: HDWalletManager.instance.account!.address,
+            rewardWithdrawAddress: HDWalletManager.instance.account!.address)
+            { (result) in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(let e):
+                    Toast.show(e.localizedDescription)
+                }
+            }
+        } else {
+            let bizType: UInt8
+            if optionCode == "OPEN_DEX_SVIP" {
+                bizType = 2
+            }
+            else if optionCode == "GET_QUOTA" {
+                bizType = 4
+            }
+            else if optionCode == "PLEDGE_MINING" {
+                bizType = 1
+            } else {
+                return
+            }
+
+            Workflow.defiInvestWithConfirm(
+                account: HDWalletManager.instance.account!,
+                tokenInfo: TokenInfo.BuildIn.vite.value,
+                loanId: UInt64(self.DeFiLoan!.productHash)!,
+                bizType: bizType,
+                amount: Amount(100000000000000),
+                beneficiaryAddress: HDWalletManager.instance.account!.address) { (result) in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(let e):
+                        Toast.show(e.localizedDescription)
+                    }
+            }
         }
     }
 

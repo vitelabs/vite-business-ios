@@ -26,7 +26,7 @@ class DefiUsageForSBPCell: BaseTableViewCell,ListCellable {
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.usageInfo.bsseAmount.amountShort(decimals: decimals)
         chainHeightLabel.text = R.string.localizable.defiUsePageDeadlineBlockHeightTitle() + String(item.amountInfo.pledgeDueHeight)
 
-        self.editButton.rx.tap.bind { _ in
+        self.editButton.rx.tap.bind { [unowned self] _ in
 
             let alert = UIAlertController.init(title: R.string.localizable.defiUsePageEditSbpTitle(), message: nil, preferredStyle: .alert)
 
@@ -47,7 +47,23 @@ class DefiUsageForSBPCell: BaseTableViewCell,ListCellable {
                 textField.text = item.amountInfo.rewardWithdrawAddress
             })
 
-            let action0 = UIAlertAction.init(title: R.string.localizable.defiUsePageEditSbpConfirm(), style: .default) { (action) in
+            let action0 = UIAlertAction.init(title: R.string.localizable.defiUsePageEditSbpConfirm(), style: .default) { [unowned alert] (action) in
+                let textFields = alert.textFields!
+                Workflow.defiUpdateSBPRegistrationWithConfirm(
+                    account: HDWalletManager.instance.account!,
+                    tokenInfo: TokenInfo.BuildIn.vite.value,
+                    investId: UInt64(item.usageHash)!,
+                    operationCode: 3,
+                    sbpName: "",
+                    blockProducingAddress: textFields[1].text ?? item.amountInfo.blockProducingAddress ?? "",
+                    rewardWithdrawAddress: textFields[3].text ?? item.amountInfo.rewardWithdrawAddress ?? "") { (result) in
+                        switch result {
+                        case .success(_):
+                            break
+                        case .failure(let e):
+                            Toast.show(e.localizedDescription)
+                        }
+                }
 
             }
 
@@ -63,7 +79,8 @@ class DefiUsageForSBPCell: BaseTableViewCell,ListCellable {
 
         }.disposed(by: disposeBag)
 
-        self.cancleButton.rx.tap.bind { _ in
+        self.cancleButton.rx.tap
+            .bind { _ in
             Alert.show(title: R.string.localizable.defiUsePageEditSbpCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount()) \(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE。\n\(R.string.localizable.defiUsePageEditSbpCancleDesc())", actions: [
                 (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
                 (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
@@ -301,7 +318,18 @@ class DefiUsageForSVIPCell: BaseTableViewCell ,ListCellable {
             Alert.show(title: R.string.localizable.defiUsePageEditSvipCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount())\(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE\n\(R.string.localizable.defiUsePageEditSvipCancleDesc())", actions: [
             (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
             (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
+                Workflow.defiCancelInvestWithConfirm(
+                    account: HDWalletManager.instance.account!,
+                    tokenInfo: TokenInfo.BuildIn.vite.value,
+                    investId: UInt64(item.usageHash)!) { (result) in
+                        switch result {
+                        case .success(_):
+                            break
+                        case .failure(let e):
+                            Toast.show(e.localizedDescription)
+                        }
 
+                }
             }),
             ])
 
@@ -493,7 +521,18 @@ class DefiUsageForQuotalCell: BaseTableViewCell ,ListCellable {
                 actions: [
                        (.default(title: R.string.localizable.defiUsePageEditCancleCancle()), nil),
                        (.default(title: R.string.localizable.defiUsePageEditCancleConfirm()), {[weak self] _ in
+                        Workflow.defiCancelInvestWithConfirm(
+                            account: HDWalletManager.instance.account!,
+                            tokenInfo: TokenInfo.BuildIn.vite.value,
+                            investId: UInt64(item.usageHash)!) { (result) in
+                                switch result {
+                                case .success(_):
+                                    break
+                                case .failure(let e):
+                                    Toast.show(e.localizedDescription)
+                                }
 
+                        }
                        }),
                        ])
 
@@ -701,7 +740,18 @@ class DefiUsageForMinningCell: BaseTableViewCell ,ListCellable {
             Alert.show(title: R.string.localizable.defiUsePageEditMinningCancleTitle(), message: "\(R.string.localizable.defiUsePageEditCanCancleAmount()) \(item.amountInfo.pledgeAmount.amountShort(decimals: TokenInfo.BuildIn.vite.value.decimals)) VITE。\n\(R.string.localizable.defiUsePageEditMinningCancleDesc())", actions: [
                        (.default(title: R.string.localizable.defiUsePageEditMinningcancleConfirm()), nil),
                        (.default(title: R.string.localizable.defiUsePageEditMinningCancleCancle()), {[weak self] _ in
+                            Workflow.defiCancelInvestWithConfirm(
+                                account: HDWalletManager.instance.account!,
+                                tokenInfo: TokenInfo.BuildIn.vite.value,
+                                investId: UInt64(item.usageHash)!) { (result) in
+                                    switch result {
+                                    case .success(_):
+                                        break
+                                    case .failure(let e):
+                                        Toast.show(e.localizedDescription)
+                                    }
 
+                            }
                        }),
                        ])
 

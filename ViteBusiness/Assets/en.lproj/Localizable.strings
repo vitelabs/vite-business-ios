@@ -580,7 +580,7 @@
 "grin.thisIsFirstViteAddress" = "This is your first VITE address";
 "grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
 "grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
-"grin.receive.title" = "Send GRIN";
+"grin.receive.title" = "Receive GRIN";
 "grin.receive.sented" = "Created";
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Receive and Share";

@@ -10,6 +10,8 @@ import ActionSheetPicker_3_0
 
 class MyDeFiBillViewController: BaseViewController {
 
+    var initStatus: DeFiAPI.Bill.BillType?
+
     private let baseAccountHeadeView = MyDeFiSubscribeHeaderView().then {
         $0.issuedTitleLabel.text = R.string.localizable.defiBillPageBasedbalance()
         $0.issuedLabel.text = "-- VITE"
@@ -100,6 +102,10 @@ class MyDeFiBillViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
+        if let initStatus = self.initStatus {
+            loanVC.status = initStatus
+            self.filtrateButton.setTitle(initStatus.name, for: .normal)
+        }
     }
 
     private func setupView() {

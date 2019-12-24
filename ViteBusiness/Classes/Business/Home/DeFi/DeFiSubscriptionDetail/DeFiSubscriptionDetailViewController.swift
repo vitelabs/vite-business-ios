@@ -39,6 +39,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
         super.viewDidLoad()
         setupView()
         refresh()
+        bind()
     }
 
     func refresh() {
@@ -274,6 +275,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
             refundPaidInterestView.rightLabel?.attributedText = DeFiFormater.amount(loan.mySubscribedAmount, token: token)
 
             scrollView.stackView.addArrangedSubview(refundButton, topInset: 26)
+            refundButton.isEnabled = loan.refundStatus == .refunded
             scrollView.stackView.addPlaceholder(height: 26)
         case .success:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
@@ -297,11 +299,14 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
            scrollView.stackView.addArrangedSubview(loanDurationView, topInset: 20)
             //“售罄快照块高度”
             scrollView.stackView.addArrangedSubview(successHeightView, topInset: 20)
+            successHeightView.rightLabel?.text = String(loan.subscriptionFinishHeight)
             //售罄时间”
             scrollView.stackView.addArrangedSubview(successTimeView, topInset: 20)
             successTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
             //到期快照块高度
             scrollView.stackView.addArrangedSubview(endHeightView, topInset: 20)
+            endHeightView.rightLabel?.text = String(loan.loanEndSnapshotHeight)
+
             //预计到期时间
             scrollView.stackView.addArrangedSubview(estimatedEndTimeView, topInset: 20)
             estimatedEndTimeView.rightLabel?.text = loan.subscriptionFinishTimeString
@@ -319,6 +324,26 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
             scrollView.stackView.addPlaceholder(height: 26)
         }
+    }
+
+    func bind() {
+        buyButton.rx.tap.bind {[weak self] (_)  in
+            guard let hash = self?.loan?.productHash else { return }
+            let vc = DeFiSubscriptionViewController.init(productHash: hash)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+        refundButton.rx.tap.bind { (_)  in
+            let vc = MyDeFiBillViewController.init()
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            vc.initStatus = .认购金额退款
+        }.disposed(by: rx.disposeBag)
+
+        successButton.rx.tap.bind { (_)  in
+            let vc = MyDeFiBillViewController.init()
+            vc.initStatus = .认购收益
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 }
 

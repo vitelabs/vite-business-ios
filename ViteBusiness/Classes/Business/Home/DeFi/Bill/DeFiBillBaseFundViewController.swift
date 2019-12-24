@@ -43,13 +43,13 @@ class MyDeFiBillBaseFundListViewModel: ListViewModel<DeFiBill> {
     }
 
     override func refresh() -> Promise<(items: [DeFiBill], hasMore: Bool)> {
-        return UnifyProvider.defi.getBills(address: address, accountType: .基础账户, billType: status, productHash: nil, offset: 0, limit: type(of: self).limit)
+        return UnifyProvider.defi.getBills(address: address, accountType: self.accountType, billType: status, productHash: nil, offset: 0, limit: type(of: self).limit)
         .map { (items: $0, hasMore: $0.count >= type(of: self).limit) }
 
     }
 
     override func loadMore() -> Promise<(items: [DeFiBill], hasMore: Bool)> {
-        return UnifyProvider.defi.getBills(address: address, accountType: .基础账户, billType: status, productHash: nil, offset: items.count, limit: type(of: self).limit)
+        return UnifyProvider.defi.getBills(address: address, accountType: self.accountType, billType: status, productHash: nil, offset: items.count, limit: type(of: self).limit)
             .map { (items: $0, hasMore: $0.count >= type(of: self).limit) }
     }
 

@@ -40,7 +40,7 @@ class DeFiProductDetailViewController: BaseViewController {
 
     let tableFooterView: UIView = {
         let view = UIView()
-        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 110)
+        view.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: 120)
 
         let label0 = PointLabel()
         label0.font = UIFont.systemFont(ofSize: 12)
@@ -68,7 +68,16 @@ class DeFiProductDetailViewController: BaseViewController {
         return view
     }()
 
-    var content: [(String,String,String?)] = []
+    var content: [(String,String,String?)] =  [
+        (R.string.localizable.defiProductDetailTitleHash(),"--",nil),
+        (R.string.localizable.defiProductDetailTitleAmount(),"--","VITE"),
+        (R.string.localizable.defiProductDetailTitlePearamount(),"--","VITE"),
+        (R.string.localizable.defiLoanPageCellNumberTitle(),"--",R.string.localizable.defiProductDetailUntilPear()),
+        (R.string.localizable.defiProductDetailTitleRate(),"--",nil),
+        (R.string.localizable.defiProductDetailTitleBorrowdeadline(),"--",R.string.localizable.defiProductDetailUntilDay()),
+        (R.string.localizable.defiProductDetailTitleBeginTime(),"--",nil),
+        (R.string.localizable.defiProductDetailTitleBuydeadline(),"--",R.string.localizable.defiProductDetailUntilDay()),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,13 +139,13 @@ class DeFiProductDetailViewController: BaseViewController {
 
          content = [
             (R.string.localizable.defiProductDetailTitleHash(),detail.productHash,nil),
-            (R.string.localizable.defiProductDetailTitleAmount(),detail.loanAmount.amountFull(decimals: 13),"VITE"),
-            (R.string.localizable.defiProductDetailTitlePearamount(),detail.singleCopyAmount.amountFull(decimals: 13),"VITE"),
-            (R.string.localizable.defiProductDetailTitleCount(),String(detail.subscriptionCopies),R.string.localizable.defiProductDetailUntilPear()),
+            (R.string.localizable.defiProductDetailTitleAmount(),detail.loanAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
+            (R.string.localizable.defiProductDetailTitlePearamount(),detail.singleCopyAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
+            (R.string.localizable.defiLoanPageCellNumberTitle(),String(detail.subscriptionCopies),R.string.localizable.defiProductDetailUntilPear()),
             (R.string.localizable.defiProductDetailTitleRate(),detail.yearRateString,nil),
-            (R.string.localizable.defiProductDetailTitleBorrowdeadline(),String(detail.loanDuration),R.string.localizable.defiProductDetailUntilPear()),
+            (R.string.localizable.defiProductDetailTitleBorrowdeadline(),String(detail.loanDuration),R.string.localizable.defiProductDetailUntilDay()),
             (R.string.localizable.defiProductDetailTitleBeginTime(),detail.subscriptionBeginTimeString,nil),
-            (R.string.localizable.defiProductDetailTitleBuydeadline(),String(detail.subscriptionDuration),R.string.localizable.defiProductDetailUntilPear()),
+            (R.string.localizable.defiProductDetailTitleBuydeadline(),String(detail.subscriptionDuration),R.string.localizable.defiProductDetailUntilDay()),
         ]
         tableView.reloadData()
         self.buyButton.isEnabled = detail.productStatus == .onSale

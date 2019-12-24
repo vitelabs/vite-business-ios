@@ -146,9 +146,9 @@ class DeFiLoanViewController: BaseScrollableViewController {
             let a = pow(10.0, Double(TokenInfo.BuildIn.vite.value.decimals)) * 100
             let shareAmount = Amount(a)
             let dayRate = 0.001
-            let shares = 100
+            let shares = 200
             let subscribeDays = 7
-            let expireDays = 30
+            let expireDays = 360
 
             Workflow.defiNewLoanWithConfirm(
                 account: account,

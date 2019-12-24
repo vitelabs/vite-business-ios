@@ -356,7 +356,9 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMySubscriptionCellButtonViewEarnings(), for: .normal)
             button.rx.tap.bind {
-
+                 let vc = MyDeFiBillViewController.init()
+                   vc.initStatus = .认购收益
+                   UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: disposeBag)
 
         case .cancel:
