@@ -15,30 +15,36 @@ class TipTextView: UIView {
         $0.numberOfLines = 0
     }
 
-    init(text: String) {
+    init(text: String, hasPoint: Bool = true) {
         super.init(frame: CGRect.zero)
 
-        let pointView = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0x007AFF)
-            $0.layer.masksToBounds = true
-            $0.layer.cornerRadius = 3
-        }
-
         label.text = text
-
-        addSubview(pointView)
         addSubview(label)
 
-        pointView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(6)
-            m.left.equalToSuperview()
-            m.size.equalTo(CGSize(width: 6, height: 6))
+        if hasPoint {
+            let pointView = UIView().then {
+                $0.backgroundColor = UIColor(netHex: 0x007AFF)
+                $0.layer.masksToBounds = true
+                $0.layer.cornerRadius = 3
+            }
+            addSubview(pointView)
+            pointView.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(6)
+                m.left.equalToSuperview()
+                m.size.equalTo(CGSize(width: 6, height: 6))
+            }
+
+            label.snp.makeConstraints { (m) in
+                m.top.bottom.right.equalToSuperview()
+                m.left.equalTo(pointView.snp.right).offset(6)
+            }
+        } else {
+            label.snp.makeConstraints { (m) in
+                m.top.bottom.left.right.equalToSuperview()
+            }
         }
 
-        label.snp.makeConstraints { (m) in
-            m.top.bottom.right.equalToSuperview()
-            m.left.equalTo(pointView.snp.right).offset(6)
-        }
+
     }
 
     required init?(coder aDecoder: NSCoder) {

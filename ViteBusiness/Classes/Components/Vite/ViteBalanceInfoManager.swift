@@ -254,6 +254,14 @@ extension ViteBalanceInfoManager {
         }
     }
 
+    func defiViteBalance() -> DefiBalanceInfo {
+        if let ret = defiBalanceInfosBehaviorRelay.value[ViteWalletConst.viteToken.id] {
+            return ret
+        } else {
+            return DefiBalanceInfo(token: ViteWalletConst.viteToken)
+        }
+    }
+
     func defiViteBalanceInfoDriver() -> Driver<DefiBalanceInfo> {
         return defiBalanceInfosDriver.map { map -> DefiBalanceInfo in
             if let ret = map[ViteWalletConst.viteToken.id] {

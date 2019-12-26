@@ -57,11 +57,11 @@ public extension Workflow {
 
     static func defiNewLoanWithConfirm(account: Wallet.Account,
                                        tokenInfo: TokenInfo,
-                                       dayRate: Double,
+                                       dayRate: Decimal,
                                        shareAmount: Amount,
-                                       shares: Int,
-                                       subscribeDays: Int,
-                                       expireDays: Int,
+                                       shares: UInt64,
+                                       subscribeDays: UInt64,
+                                       expireDays: UInt64,
                                        completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             send(account: account,

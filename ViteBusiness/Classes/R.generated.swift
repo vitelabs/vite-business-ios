@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1041 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1054 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3646,6 +3646,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinTransferCrossChainItem2Title = Rswift.StringResource(key: "buildin.transfer.cross.chain.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Receive GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      public static let grinReceiveTitle = Rswift.StringResource(key: "grin.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Receive GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
@@ -3874,10 +3878,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinFinalizeTitle = Rswift.StringResource(key: "grin.finalize.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Send GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      public static let grinReceiveTitle = Rswift.StringResource(key: "grin.receive.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Send GRIN
       /// 
       /// Locales: en, zh-Hans
@@ -5010,6 +5010,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageTitle = Rswift.StringResource(key: "defi.use.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 借币总份数不能为0
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellNumberErrorTooSmall = Rswift.StringResource(key: "defi.loan.page.cell.number.error.too.small", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币总金额
       /// 
       /// Locales: en, zh-Hans
@@ -5026,7 +5030,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellTotalAmountTip = Rswift.StringResource(key: "defi.loan.page.cell.total.amount.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 借币成功后需手动操作使用借款，请预留操作时间。例如获取配额需抵押至少约3天时间，借币期限至少4天才可能满足抵押获取配额。另外，预留时间需考虑节点丢块造成的时间和快照块之间的误差。
+      /// en translation: 借币成功后需手动操作使用借款，请预留操作时间。使用DeFi资产时，注册SBP需要剩余可用时间大于90天；抵押挖矿需要剩余可用时间大于11天，开通交易所SVIP需要剩余可用时间大于90天，获取配额需要剩余可用时间大于3天。需考虑节点丢块造成的时间和快照块之间的误差。
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellDurationTip = Rswift.StringResource(key: "defi.loan.page.cell.duration.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5078,6 +5082,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionDetailSuccessTip1 = Rswift.StringResource(key: "defi.SubscriptionDetail.successTip1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 借币期限必须大于0
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellDurationErrorTooSmall = Rswift.StringResource(key: "defi.loan.page.cell.duration.error.too.small", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币详情
       /// 
       /// Locales: en, zh-Hans
@@ -5130,6 +5138,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscribeSortAll = Rswift.StringResource(key: "defi.my.page.my.subscribe.sort.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 冻结利息发布借币
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageLoanButtonTitle = Rswift.StringResource(key: "defi.loan.page.loan.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 准确的借币期限以快照块为准。
       /// 
       /// Locales: en, zh-Hans
@@ -5234,6 +5246,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageTitle = Rswift.StringResource(key: "defi.loan.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 发布借币成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageLoanSuccessToast = Rswift.StringResource(key: "defi.loan.page.loan.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 发布时间
       /// 
       /// Locales: en, zh-Hans
@@ -5282,6 +5298,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanAccountAmount = Rswift.StringResource(key: "defi.my.page.my.loan.account.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 基础余额不足，无法支付利息
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellEachAmountErrorNotEnough = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.error.not.enough", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 天
       /// 
       /// Locales: en, zh-Hans
@@ -5410,7 +5430,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageSortEarnings = Rswift.StringResource(key: "defi.home.page.sort.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 应付利息
+      /// en translation: 应冻结利息
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellInterestTitle = Rswift.StringResource(key: "defi.loan.page.cell.interest.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5538,10 +5558,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpCancleTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.cancle.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 支付利息发布借币
-      /// 
-      /// Locales: en, zh-Hans
-      public static let defiLoanPageLoanButtonTitle = Rswift.StringResource(key: "defi.loan.page.loan.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 收益按日发放至DeFi基础余额。
       /// 
       /// Locales: en, zh-Hans
@@ -5566,6 +5582,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanCellTitleRate = Rswift.StringResource(key: "defi.my.page.my.loan.cell.title.rate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 日利率必须大于0%
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellRateErrorTooSmall = Rswift.StringResource(key: "defi.loan.page.cell.rate.error.too.small", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 日利率必须小于或等于100%
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellRateErrorTooBig = Rswift.StringResource(key: "defi.loan.page.cell.rate.error.too.big", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 暂不修改
       /// 
       /// Locales: en, zh-Hans
@@ -5582,6 +5606,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditCancleCancle = Rswift.StringResource(key: "defi.use.page.edit.cancle.cancle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 最少 10 Vite
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellEachAmountErrorTooSmall = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.error.too.small", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 最少%@ %@
       /// 
       /// Locales: en, zh-Hans
@@ -5778,6 +5806,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageTip3 = Rswift.StringResource(key: "defi.subscription.page.tip3", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 认购期只能是1-7天
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellSubscriptionTimeErrorIllegal = Rswift.StringResource(key: "defi.loan.page.cell.subscription.time.error.illegal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购期结束
       /// 
       /// Locales: en, zh-Hans
@@ -5854,6 +5886,26 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellNumberPlaceholder = Rswift.StringResource(key: "defi.loan.page.cell.number.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入借币总份数
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellNumberErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.number.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入借币期限
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellDurationErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.duration.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入日利率
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellRateErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.rate.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入每份金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellEachAmountErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入认购期
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiLoanPageCellSubscriptionTimeErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.subscription.time.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请选择排序
       /// 
       /// Locales: en, zh-Hans
@@ -9245,6 +9297,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.transfer.cross.chain.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Receive GRIN
+      /// 
+      /// Locales: en, zh-Hans
+      public static func grinReceiveTitle(_: Void = ()) -> String {
+        return NSLocalizedString("grin.receive.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Receive GRIN though HTTP Address
       /// 
       /// Locales: en, zh-Hans
@@ -9642,13 +9701,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinFinalizeTitle(_: Void = ()) -> String {
         return NSLocalizedString("grin.finalize.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Send GRIN
-      /// 
-      /// Locales: en, zh-Hans
-      public static func grinReceiveTitle(_: Void = ()) -> String {
-        return NSLocalizedString("grin.receive.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Send GRIN
@@ -11632,6 +11684,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.use.page.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 借币总份数不能为0
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellNumberErrorTooSmall(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.number.error.too.small", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 借币总金额
       /// 
       /// Locales: en, zh-Hans
@@ -11660,7 +11719,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.loan.page.cell.total.amount.tip", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 借币成功后需手动操作使用借款，请预留操作时间。例如获取配额需抵押至少约3天时间，借币期限至少4天才可能满足抵押获取配额。另外，预留时间需考虑节点丢块造成的时间和快照块之间的误差。
+      /// en translation: 借币成功后需手动操作使用借款，请预留操作时间。使用DeFi资产时，注册SBP需要剩余可用时间大于90天；抵押挖矿需要剩余可用时间大于11天，开通交易所SVIP需要剩余可用时间大于90天，获取配额需要剩余可用时间大于3天。需考虑节点丢块造成的时间和快照块之间的误差。
       /// 
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellDurationTip(_: Void = ()) -> String {
@@ -11749,6 +11808,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiSubscriptionDetailSuccessTip1(_: Void = ()) -> String {
         return NSLocalizedString("defi.SubscriptionDetail.successTip1", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 借币期限必须大于0
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellDurationErrorTooSmall(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.duration.error.too.small", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 借币详情
@@ -11840,6 +11906,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiMyPageMySubscribeSortAll(_: Void = ()) -> String {
         return NSLocalizedString("defi.my.page.my.subscribe.sort.all", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 冻结利息发布借币
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageLoanButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.loan.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 准确的借币期限以快照块为准。
@@ -12024,6 +12097,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.loan.page.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 发布借币成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageLoanSuccessToast(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.loan.success.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 发布时间
       /// 
       /// Locales: en, zh-Hans
@@ -12106,6 +12186,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiMyPageMyLoanAccountAmount(_: Void = ()) -> String {
         return NSLocalizedString("defi.my.page.my.loan.account.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 基础余额不足，无法支付利息
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellEachAmountErrorNotEnough(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.each.amount.error.not.enough", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 天
@@ -12332,7 +12419,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.sort.earnings", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 应付利息
+      /// en translation: 应冻结利息
       /// 
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellInterestTitle(_: Void = ()) -> String {
@@ -12556,13 +12643,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.use.page.edit.sbp.cancle.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 支付利息发布借币
-      /// 
-      /// Locales: en, zh-Hans
-      public static func defiLoanPageLoanButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("defi.loan.page.loan.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 收益按日发放至DeFi基础余额。
       /// 
       /// Locales: en, zh-Hans
@@ -12605,6 +12685,20 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("defi.my.page.my.loan.cell.title.rate", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: 日利率必须大于0%
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellRateErrorTooSmall(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.rate.error.too.small", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 日利率必须小于或等于100%
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellRateErrorTooBig(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.rate.error.too.big", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 暂不修改
       /// 
       /// Locales: en, zh-Hans
@@ -12631,6 +12725,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditCancleCancle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.cancle.cancle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最少 10 Vite
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellEachAmountErrorTooSmall(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.each.amount.error.too.small", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 最少%@ %@
@@ -12976,6 +13077,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.subscription.page.tip3", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 认购期只能是1-7天
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellSubscriptionTimeErrorIllegal(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.subscription.time.error.illegal", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 认购期结束
       /// 
       /// Locales: en, zh-Hans
@@ -13107,6 +13215,41 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellNumberPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.number.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入借币总份数
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellNumberErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.number.error.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入借币期限
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellDurationErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.duration.error.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入日利率
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellRateErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.rate.error.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入每份金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellEachAmountErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.each.amount.error.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入认购期
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiLoanPageCellSubscriptionTimeErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.loan.page.cell.subscription.time.error.empty", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请选择排序
