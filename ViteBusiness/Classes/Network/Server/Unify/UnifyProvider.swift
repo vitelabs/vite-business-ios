@@ -46,6 +46,7 @@ extension UnifyProvider {
         case format
         case response(Int, String)
         case bodyFormat
+        case invalidParameters
 
         var errorMessage: String {
             switch self {
@@ -57,6 +58,8 @@ extension UnifyProvider {
                 return "\(msg)(\(code))"
             case .bodyFormat:
                 return "bodyFormat"
+            case .invalidParameters:
+                return "Invalid Parameters"
             }
         }
     }

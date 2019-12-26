@@ -93,6 +93,19 @@ extension UnifyProvider.defi {
         }
     }
 
+    static func refreshProductDetailInChain(loan: DeFiLoan) -> Promise<DeFiLoan> {
+        guard let id = Int(loan.productHash) else {
+            return Promise(error: UnifyProvider.BackendError.invalidParameters)
+        }
+        return ViteNode.defi.info.getDefiLoanInfo(id: id).then { (info) -> Promise<DeFiLoan> in
+            if let info = info {
+                return Promise.value(DeFiLoan.merge(loan: loan, info: info))
+            } else {
+                return getProductDetail(hash: loan.productHash)
+            }
+        }
+    }
+
     static func getBills(address: ViteAddress,accountType: DeFiAPI.Bill.AccountType,billType: DeFiAPI.Bill.BillType,productHash: String? = nil, offset: Int, limit: Int) -> Promise<[DeFiBill]> {
         let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
         return p.requestPromise(.getBills(address: address,accountType: accountType,billType: billType,productHash: productHash, offset: offset, limit: limit))

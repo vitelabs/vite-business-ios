@@ -10,6 +10,7 @@ import ViteWallet
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import PromiseKit
 
 class DeFiLoanDetailViewController: BaseScrollableViewController {
 
@@ -39,28 +40,26 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         super.viewDidLoad()
         setupView()
         refresh()
-        viewUseButton.rx.tap.bind {[unowned self] _ in
-            let usage = DefiUsageViewController()
-            usage.productHash = self.productHash
-            self.navigationController?.pushViewController(usage, animated: true)
-        }.disposed(by: rx.disposeBag)
-    }
-
-    var a = false
-    override func viewDidAppear(_ animated: Bool) {
-        if a == true { return }
-        a = true
-        super.viewDidAppear(animated)
-        let usage = DefiUsageViewController()
-        usage.productHash = productHash
-        navigationController?.pushViewController(usage, animated: true)
+//        viewUseButton.rx.tap.bind {[unowned self] _ in
+//            let usage = DefiUsageViewController()
+//            usage.productHash = self.productHash
+//            self.navigationController?.pushViewController(usage, animated: true)
+//        }.disposed(by: rx.disposeBag)
     }
 
     func refresh() {
         if self.loan == nil {
             self.dataStatus = .loading
         }
-        UnifyProvider.defi.getProductDetail(hash: productHash).done { [weak self] (loan) in
+
+        let promise: Promise<DeFiLoan>
+        if let loan = self.loan {
+            promise = UnifyProvider.defi.refreshProductDetailInChain(loan: loan)
+        } else {
+            promise = UnifyProvider.defi.getProductDetail(hash: productHash)
+        }
+
+        promise.done { [weak self] (loan) in
             guard let `self` = self else { return }
             self.loan = loan
             if self.loan == nil {

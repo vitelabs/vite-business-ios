@@ -138,3 +138,30 @@ struct DeFiLoan: Mappable {
         return loanEndTime.format("yyyy/MM/dd HH:mm:ss")
     }
 }
+
+extension DeFiLoan {
+    static func merge(loan: DeFiLoan, info: DeFiLoanInfo) -> DeFiLoan {
+        var ret = loan
+        switch info.status {
+        case .raising:
+            ret.productStatus = .onSale
+            ret.refundStatus = .invalid
+        case .raised:
+            ret.productStatus = .success
+        case .failedAndWaitToRefund:
+            ret.refundStatus = .invalid
+            ret.productStatus = .success
+            ret.refundStatus = .refunding
+        }
+
+        ret.subscribedAmount = info.shareAmount * Amount(info.subscribedShares)
+        ret.loanCompleteness = Double(info.subscribedShares) / Double(info.shares)
+        ret.loanUsedAmount = info.invested
+        ret.subscriptionBeginTime = info.created
+        ret.subscriptionEndTime = Date(timeIntervalSince1970: info.created.timeIntervalSince1970 + TimeInterval(60*60*24*info.subscribeDays))
+        ret.subscriptionFinishTime = info.startTime
+        ret.loanEndTime = Date(timeIntervalSince1970: info.startTime.timeIntervalSince1970 + TimeInterval(60*60*24*info.expireDays))
+        ret.loanEndSnapshotHeight = UInt64(info.expireHeight)
+        return ret
+    }
+}

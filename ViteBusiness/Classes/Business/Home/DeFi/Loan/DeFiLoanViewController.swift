@@ -196,6 +196,17 @@ class DeFiLoanViewController: BaseScrollableViewController {
             return amount * Amount(duration) * rateBigInt / Amount(1000000)
         }.bind(to: interestAmount).disposed(by: rx.disposeBag)
 
+        duration.asDriver().drive(onNext: { [weak self] n in
+            guard let `self` = self else { return }
+            let ret: String
+            if let n = n {
+                ret = String(n * 60 * 60 * 24)
+            } else {
+                ret = "--"
+            }
+            self.durationView.rightLabel.text = R.string.localizable.defiItemLoanDurationBlock(ret)
+        }).disposed(by: rx.disposeBag)
+
         totalLoanAmount.asDriver().drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
             guard let label = self.totalAmountView.rightView as? UILabel else { return }
