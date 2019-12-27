@@ -1107,6 +1107,12 @@
 "defi.subscription.page.tip3" =  "认购期内，若成功售罄，自动结束认购，开始计息。";
 "defi.subscription.page.tip4" =  "收益按日发放至DeFi基础余额。";
 
+"defi.subscription.page.cell.copys.error.empty" =  "请输入认购份数";
+"defi.subscription.page.cell.copys.error.too.small" =  "认购不能为0";
+"defi.subscription.page.cell.copys.error.too.big" =  "认购份数不足";
+"defi.subscription.page.cell.amount.error.not.enough" =  "基础余额不足";
+"defi.subscription.page.subscription.success.toast" =  "认购成功";
+
 // DeFi Loan Detail
 "defi.loan.detail.page.title" =  "借币详情";
 

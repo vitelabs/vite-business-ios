@@ -81,6 +81,14 @@ extension UnifyProvider.defi {
             .compactMap {$0}
     }
 
+    static func getOrRefreshProductDetailInChain(hash: String, loan: DeFiLoan?) -> Promise<DeFiLoan> {
+        if let loan = loan {
+            return UnifyProvider.defi.refreshProductDetailInChain(loan: loan)
+        } else {
+            return UnifyProvider.defi.getProductDetail(hash: hash)
+        }
+    }
+
     static func getProductDetail(hash: String) -> Promise<DeFiLoan> {
         let p: MoyaProvider<DeFiAPI> = UnifyProvider.provider()
         return p.requestPromise(.getProductDetail(hash: hash))

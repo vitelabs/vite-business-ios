@@ -14,6 +14,7 @@ import PromiseKit
 
 class DeFiLoanDetailViewController: BaseScrollableViewController {
 
+    let token = ViteWalletConst.viteToken
     let productHash: String
     var loan: DeFiLoan? {
         didSet {
@@ -52,19 +53,12 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             self.dataStatus = .loading
         }
 
-        let promise: Promise<DeFiLoan>
-        if let loan = self.loan {
-            promise = UnifyProvider.defi.refreshProductDetailInChain(loan: loan)
-        } else {
-            promise = UnifyProvider.defi.getProductDetail(hash: productHash)
-        }
-
-        promise.done { [weak self] (loan) in
+        UnifyProvider.defi.getOrRefreshProductDetailInChain(hash: self.productHash, loan: self.loan).done { [weak self] (loan) in
             guard let `self` = self else { return }
-            self.loan = loan
             if self.loan == nil {
                 self.dataStatus = .normal
             }
+            self.loan = loan
         }.catch { [weak self] (error) in
             guard let `self` = self else { return }
             if self.loan == nil {
@@ -79,7 +73,6 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
     }
 
     // failed
-    let token = ViteWalletConst.viteToken
     let titleView = NavigationTitleView(title: R.string.localizable.defiLoanDetailPageTitle(), horizontal: 0)
     let header = DeFiProductInfoCard.init(title: R.string.localizable.defiCardSlogan(),
                                           status: .none,
@@ -156,7 +149,7 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         setNavTitle(title: R.string.localizable.defiLoanDetailPageTitle(), bindTo: scrollView)
         scrollView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
             guard let `self` = self else { return }
-            UnifyProvider.defi.getProductDetail(hash: self.productHash).ensure {
+            UnifyProvider.defi.getOrRefreshProductDetailInChain(hash: self.productHash, loan: self.loan).ensure {
                 self.scrollView.mj_header.endRefreshing()
             }.done { (loan) in
                 self.loan = loan

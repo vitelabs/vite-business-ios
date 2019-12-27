@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1054 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1059 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5298,6 +5298,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanAccountAmount = Rswift.StringResource(key: "defi.my.page.my.loan.account.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 基础余额不足
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiSubscriptionPageCellAmountErrorNotEnough = Rswift.StringResource(key: "defi.subscription.page.cell.amount.error.not.enough", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 基础余额不足，无法支付利息
       /// 
       /// Locales: en, zh-Hans
@@ -5754,6 +5758,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleQuotarefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.quotarefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 认购不能为0
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiSubscriptionPageCellCopysErrorTooSmall = Rswift.StringResource(key: "defi.subscription.page.cell.copys.error.too.small", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购中
       /// 
       /// Locales: en, zh-Hans
@@ -5774,10 +5782,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageSubscriptionCopysTitle = Rswift.StringResource(key: "defi.subscription.page.subscription.copys.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 认购份数不足
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiSubscriptionPageCellCopysErrorTooBig = Rswift.StringResource(key: "defi.subscription.page.cell.copys.error.too.big", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购开始时间
       /// 
       /// Locales: en, zh-Hans
       public static let defiProductDetailTitleBeginTime = Rswift.StringResource(key: "defi.product.detail.title.beginTime", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 认购成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiSubscriptionPageSubscriptionSuccessToast = Rswift.StringResource(key: "defi.subscription.page.subscription.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购收益
       /// 
       /// Locales: en, zh-Hans
@@ -5902,6 +5918,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellEachAmountErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入认购份数
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiSubscriptionPageCellCopysErrorEmpty = Rswift.StringResource(key: "defi.subscription.page.cell.copys.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入认购期
       /// 
       /// Locales: en, zh-Hans
@@ -12188,6 +12208,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.loan.account.amount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 基础余额不足
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiSubscriptionPageCellAmountErrorNotEnough(_: Void = ()) -> String {
+        return NSLocalizedString("defi.subscription.page.cell.amount.error.not.enough", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 基础余额不足，无法支付利息
       /// 
       /// Locales: en, zh-Hans
@@ -12986,6 +13013,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.bill.billTypeTitle.quotarefund", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 认购不能为0
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiSubscriptionPageCellCopysErrorTooSmall(_: Void = ()) -> String {
+        return NSLocalizedString("defi.subscription.page.cell.copys.error.too.small", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 认购中
       /// 
       /// Locales: en, zh-Hans
@@ -13021,11 +13055,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.subscription.page.subscription.copys.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 认购份数不足
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiSubscriptionPageCellCopysErrorTooBig(_: Void = ()) -> String {
+        return NSLocalizedString("defi.subscription.page.cell.copys.error.too.big", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 认购开始时间
       /// 
       /// Locales: en, zh-Hans
       public static func defiProductDetailTitleBeginTime(_: Void = ()) -> String {
         return NSLocalizedString("defi.product.detail.title.beginTime", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 认购成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiSubscriptionPageSubscriptionSuccessToast(_: Void = ()) -> String {
+        return NSLocalizedString("defi.subscription.page.subscription.success.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 认购收益
@@ -13243,6 +13291,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellEachAmountErrorEmpty(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.each.amount.error.empty", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入认购份数
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiSubscriptionPageCellCopysErrorEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("defi.subscription.page.cell.copys.error.empty", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入认购期

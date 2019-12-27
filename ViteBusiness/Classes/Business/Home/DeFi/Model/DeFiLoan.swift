@@ -53,6 +53,10 @@ struct DeFiLoan: Mappable {
         return loanDuration * 24 * 60 * 60
     }
 
+    var leftCopies: UInt64 {
+        return UInt64((loanAmount - subscribedAmount) / singleCopyAmount)
+    }
+
     var subscriptionDuration: UInt64 {
         let interval = UInt64(subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970)
         return  interval / (60*60*24)
