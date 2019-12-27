@@ -206,7 +206,6 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
             guard let loan = self?.loan else { return }
             guard loan.productStatus == .onSale else { return }
             self?.updateHeader()
-
         }.disposed(by: rx.disposeBag)
 
         subscriptionCopysView.textField.rx.text.map { t -> UInt64? in

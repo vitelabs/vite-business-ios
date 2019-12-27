@@ -335,6 +335,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
 
         refundButton.rx.tap.bind { (_)  in
             let vc = MyDeFiBillViewController.init()
+            vc.initStatus = .认购金额退款
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             vc.initStatus = .认购金额退款
         }.disposed(by: rx.disposeBag)

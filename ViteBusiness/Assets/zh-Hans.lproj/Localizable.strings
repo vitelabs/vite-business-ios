@@ -1182,12 +1182,12 @@
 "defi.card.status.success" =  "成功售罄";
 
 "defi.bill.billTypeTitle.all" = "全部";
-"defi.bill.billTypeTitle.paiedInterest" = "已付利息";
+"defi.bill.billTypeTitle.paiedInterest" = "认购成功利息扣款";
 "defi.bill.billTypeTitle.refundOfinterestPaid" = "已付利息退款";
 "defi.bill.billTypeTitle.subscriptionAmount" = "认购金额";
-"defi.bill.billTypeTitle.subscriptionAmountDue" = "到期认购金额";
+"defi.bill.billTypeTitle.subscriptionAmountDue" = "认购到期退款";
 "defi.bill.billTypeTitle.subscriptionRevenuee" = "认购收益";
-"defi.bill.billTypeTitle.Refundofsubscriptionamount" = "认购金额退款";
+"defi.bill.billTypeTitle.Refundofsubscriptionamount" = "认购失败退款";
 "defi.bill.billTypeTitle.RegisteredSBP" = "注册SBP";
 "defi.bill.billTypeTitle.RegisterforSBPrefund" = "注册SBP退款";
 "defi.bill.billTypeTitle.OpenSVIPexchange" = "开通交易所SVIP";
@@ -1199,6 +1199,7 @@
 "defi.bill.billTypeTitle.Transferincome" = "划转收入";
 "defi.bill.billTypeTitle.Transferspending" = "划转支出";
 "defi.bill.billTypeTitle.Successborrowmoney" = "成功借币";
+"defi.bill.billTypeTitle.loanisdueforrepayment" = "借币到期还款";
 
 "defi.bill.page.title" = "DeFi账单";
 "defi.bill.page.Basedbalance" = "基础余额";

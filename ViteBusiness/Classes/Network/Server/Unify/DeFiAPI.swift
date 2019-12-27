@@ -31,7 +31,7 @@ enum DeFiAPI: TargetType {
         enum BillType: Int, CaseIterable {
             case 全部 = 0
             case 已付利息 = 1
-            case 已付利息退款 = 2
+//            case 已付利息退款 = 2
             case 认购金额 = 3
             case 到期认购金额 = 4
             case 认购收益 = 5
@@ -47,6 +47,7 @@ enum DeFiAPI: TargetType {
            case 划转收入 = 15
             case 划转支出 = 16
             case 成功借币 = 17
+            case 借币到期还款 = 18
         }
 
         enum AccountType: Int, CaseIterable {
@@ -182,7 +183,8 @@ enum DeFiAPI: TargetType {
             let str = "{ \"code\": 0, \"msg\": \"ok\", \"data\": [ { \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\", \"subscriptionEndTime\": 1554722699, \"subscriptionFinishTime\": 1554722699, \"subscriptionFinishHeight\": 1554722699, \"loanEndSnapshotHeight\": 1554722699, \"loanEndTime\": 1554722699, \"yearRate\": \"0.02\", \"dayRate\": \"0.02\", \"loanAmount\": \"100000000000000000000\", \"loanPayable\": \"100000000000000000000\", \"loanUsedAmount\": \"100000000000000000000\", \"singleCopyAmount\": \"10.000000000000000000\", \"loanDuration\": 3, \"subscribedAmount\": \"100000000000000000000\", \"loanCompleteness\": \"0.10\", \"productStatus\": 1, \"refundStatus\": 1 } ] }"
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         case .getSubscriptions:
-            return Data()
+           let str =  "{ \"msg\" : \"success\", \"data\" : [ { \"singleCopyAmount\" : \"1000000000000000000000\", \"loanCompleteness\" : \"0.98\", \"productStatus\" : 2, \"loanAmount\" : \"2000000000000000000000000\", \"refundStatus\" : 0, \"subscribedAmount\" : \"1950000000000000000000000\", \"yearRate\" : \"0.182500\", \"mySubscribedAmount\" : \"1950000000000000000000000\", \"loanDuration\" : 12, \"productHash\" : \"1\", \"subscriptionEndTime\" : 259200 }, { \"singleCopyAmount\" : \"1000000000000000000000\", \"loanCompleteness\" : \"0.98\", \"productStatus\" : 1, \"loanAmount\" : \"2000000000000000000000000\", \"refundStatus\" : 0, \"subscribedAmount\" : \"1950000000000000000000000\", \"yearRate\" : \"0.182500\", \"mySubscribedAmount\" : \"1950000000000000000000000\", \"loanDuration\" : 12, \"productHash\" : \"1\", \"subscriptionEndTime\" : 259200 }, { \"singleCopyAmount\" : \"100000000000000000000\", \"loanCompleteness\" : \"1.00\", \"productStatus\" : 3, \"loanAmount\" : \"10000000000000000000000\", \"refundStatus\" : 0, \"subscribedAmount\" : \"10000000000000000000000\", \"yearRate\" : \"0.365000\", \"mySubscribedAmount\" : \"10000000000000000000000\", \"loanDuration\" : 360, \"productHash\" : \"3\", \"subscriptionEndTime\" : 604800 }, { \"singleCopyAmount\" : \"10000000000000000000\", \"loanCompleteness\" : \"1.00\", \"productStatus\" : 3, \"loanAmount\" : \"20000000000000000000\", \"refundStatus\" : 0, \"subscribedAmount\" : \"20000000000000000000\", \"yearRate\" : \"0.450410\", \"mySubscribedAmount\" : \"20000000000000000000\", \"loanDuration\" : 1, \"productHash\" : \"4\", \"subscriptionEndTime\" : 86400 } ], \"code\" : 0 }"
+            return str.data(using: .utf8, allowLossyConversion: false) ?? Data()
         case .getProductDetail:
 
             let str: String

@@ -152,10 +152,10 @@ class MyDeFiBillViewController: BaseViewController {
             let statuss: [DeFiAPI.Bill.BillType]
             let currentStatus: DeFiAPI.Bill.BillType
             if self.isLoan {
-                statuss = [.全部, /*.已付利息, .已付利息退款, */.认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
+                statuss = [.全部, .已付利息, /*.已付利息退款, */.认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
                 currentStatus = self.loanVC.status
             } else {
-                statuss = [.全部,  .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .成功借币]
+                statuss = [.全部,  .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .成功借币, .借币到期还款]
                 currentStatus = self.subscribeVC.status
             }
 
@@ -247,8 +247,8 @@ extension DeFiAPI.Bill.BillType {
             return R.string.localizable.defiBillBillTypeTitleAll()
         case .已付利息:
             return R.string.localizable.defiBillBillTypeTitlePaiedInterest()
-        case .已付利息退款:
-            return R.string.localizable.defiBillBillTypeTitleRefundOfinterestPaid()
+//        case .已付利息退款:
+//            return R.string.localizable.defiBillBillTypeTitleRefundOfinterestPaid()
         case .认购金额:
             return R.string.localizable.defiBillBillTypeTitleSubscriptionAmount()
         case .到期认购金额:
@@ -279,6 +279,8 @@ extension DeFiAPI.Bill.BillType {
             return R.string.localizable.defiBillBillTypeTitleTransferspending()
         case .成功借币:
             return R.string.localizable.defiBillBillTypeTitleSuccessborrowmoney()
+        case .借币到期还款:
+            return R.string.localizable.defiBillBillTypeTitleLoanisdueforrepayment()
         }
     }
 }

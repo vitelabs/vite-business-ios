@@ -21,7 +21,7 @@ class DefiUsageForSBPCell: BaseTableViewCell,ListCellable {
     func bind(_ item: DefiUsageInfo) {
 
         bgColoredLable.text = " \(item.usageInfo.sbpName ?? ""): \(item.usageInfo.blockProducingAddress  ?? "") "
-        amountLabel.text = item.amountInfo.baseAmount.amountShort(decimals: decimals)
+        amountLabel.text = item.usageInfo.pledgeAmount.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.amountInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.amountInfo.baseAmount.amountShort(decimals: decimals)
@@ -331,7 +331,7 @@ class DefiUsageForSVIPCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
         bgColoredLable.text = " " + R.string.localizable.defiBillBillTypeTitleOpenSVIPexchange() + ": " + (item.usageInfo.svipAddress  ?? "") + " "
-        amountLabel.text = item.amountInfo.baseAmount.amountShort(decimals: decimals)
+        amountLabel.text = item.usageInfo.pledgeAmount.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.amountInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.amountInfo.baseAmount.amountShort(decimals: decimals)
@@ -533,7 +533,7 @@ class DefiUsageForQuotalCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
         bgColoredLable.text = " " + R.string.localizable.peldgeAddressTitle() + ": " + (item.usageInfo.quotaAddress  ?? "") + " "
-        amountLabel.text = item.amountInfo.baseAmount.amountShort(decimals: decimals)
+        amountLabel.text = item.usageInfo.pledgeAmount.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.amountInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.amountInfo.baseAmount.amountShort(decimals: decimals)
@@ -740,7 +740,7 @@ class DefiUsageForMinningCell: BaseTableViewCell ,ListCellable {
 
     func bind(_ item: DefiUsageInfo) {
        bgColoredLable.text = " "
-        amountLabel.text = item.amountInfo.baseAmount.amountShort(decimals: decimals)
+        amountLabel.text = item.usageInfo.pledgeAmount.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
         timeLabel.text = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(item.usageTime)))
         borrowedFundLabel.text = R.string.localizable.defiUsePageUsedBorrowedFundTitle() + item.amountInfo.loanAmount.amountShort(decimals: decimals)
         baseFundLabel.text = R.string.localizable.defiUsePageUsedBasefundTitle() + item.amountInfo.baseAmount.amountShort(decimals: decimals)
@@ -775,9 +775,7 @@ class DefiUsageForMinningCell: BaseTableViewCell ,ListCellable {
                                         case .failure(let e):
                                             Toast.show(e.localizedDescription)
                                         }
-
                                 }
-
 
                        }),
                        (.default(title: R.string.localizable.defiUsePageEditMinningCancleCancle()), nil),
