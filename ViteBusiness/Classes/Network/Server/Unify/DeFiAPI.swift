@@ -35,7 +35,7 @@ enum DeFiAPI: TargetType {
             case 认购金额 = 3
             case 到期认购金额 = 4
             case 认购收益 = 5
-            case 认购金额退款 = 6
+            case 认购失败退款 = 6
             case 注册SBP = 7
             case 注册SBP退款 = 8
             case 开通交易所SVIP = 9

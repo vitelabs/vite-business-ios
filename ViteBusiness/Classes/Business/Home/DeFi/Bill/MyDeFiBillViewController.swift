@@ -152,7 +152,7 @@ class MyDeFiBillViewController: BaseViewController {
             let statuss: [DeFiAPI.Bill.BillType]
             let currentStatus: DeFiAPI.Bill.BillType
             if self.isLoan {
-                statuss = [.全部, .已付利息, /*.已付利息退款, */.认购金额, .到期认购金额, .认购收益, .认购金额退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
+                statuss = [.全部, .已付利息, /*.已付利息退款, */.认购金额, .到期认购金额, .认购收益, .认购失败退款, .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .划转收入, .划转支出]
                 currentStatus = self.loanVC.status
             } else {
                 statuss = [.全部,  .注册SBP, .注册SBP退款, .开通交易所SVIP, .开通交易所SVIP退款, .获取配额, .获取配额退款, .抵押挖矿, .抵押挖矿退款, .成功借币, .借币到期还款]
@@ -255,7 +255,7 @@ extension DeFiAPI.Bill.BillType {
             return R.string.localizable.defiBillBillTypeTitleSubscriptionAmountDue()
         case .认购收益:
             return R.string.localizable.defiBillBillTypeTitleSubscriptionRevenuee()
-        case .认购金额退款:
+        case .认购失败退款:
             return R.string.localizable.defiBillBillTypeTitleRefundofsubscriptionamount()
         case .注册SBP:
             return R.string.localizable.defiBillBillTypeTitleRegisteredSBP()
