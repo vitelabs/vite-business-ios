@@ -41,11 +41,10 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         super.viewDidLoad()
         setupView()
         refresh()
-//        viewUseButton.rx.tap.bind {[unowned self] _ in
-//            let usage = DefiUsageViewController()
-//            usage.productHash = self.productHash
-//            self.navigationController?.pushViewController(usage, animated: true)
-//        }.disposed(by: rx.disposeBag)
+        viewUseButton.rx.tap.bind {[unowned self] _ in
+            let usage = DefiUsageViewController.init(productHash: self.productHash)
+            UIViewController.current?.navigationController?.pushViewController(usage, animated: true)
+        }.disposed(by: rx.disposeBag)
     }
 
     func refresh() {

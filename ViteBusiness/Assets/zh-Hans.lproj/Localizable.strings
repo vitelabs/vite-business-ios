@@ -1289,4 +1289,4 @@
 "defi.SubscriptionDetail.Check.the.yield" = "查看收益";
 "defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
 "defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
-
+"defi.frozened.amount.title" = "已冻结基础余额";

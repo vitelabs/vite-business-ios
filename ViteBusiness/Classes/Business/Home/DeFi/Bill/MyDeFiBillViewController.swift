@@ -19,7 +19,7 @@ class MyDeFiBillViewController: BaseViewController {
         $0.predictTitleLabel.text = " "
         $0.predictLabel.text = " "
 
-        $0.subscribeTitleLabel.text  = "已冻结基础余额"
+        $0.subscribeTitleLabel.text  = R.string.localizable.defiFrozenedAmountTitle()
         $0.subscribeLabel.text = "-- VITE"
 
         $0.rateTitleLabel.text = R.string.localizable.defiBillPageUsedBasedbalance()
@@ -232,6 +232,15 @@ extension MyDeFiBillViewController: DNSPageContentViewDelegate {
 }
 
 extension DeFiAPI.Bill.BillType {
+
+    var itemName: String {
+        switch self {
+        case .全部:
+            return "Unknow Type"
+        default:
+            return self.name;
+        }
+    }
     var name: String {
         switch self {
         case .全部:

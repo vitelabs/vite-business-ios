@@ -12,9 +12,9 @@ import ViteWallet
 
 struct DefiUsageInfo: Mappable {
 
-    struct UsageInfo: Mappable {
+    struct AmountInfo: Mappable {
 
-        fileprivate(set) var bsseAmount: Amount! = Amount(0)
+        fileprivate(set) var baseAmount: Amount! = Amount(0)
         fileprivate(set) var loanAmount: Amount! = Amount(0)
 
         public init?(map: Map) {
@@ -22,12 +22,12 @@ struct DefiUsageInfo: Mappable {
         }
 
        public mutating func mapping(map: Map) {
-        bsseAmount <- (map["bsseAmount"], JSONTransformer.bigint)
+        baseAmount <- (map["baseAmount"], JSONTransformer.bigint)
         loanAmount <- (map["loanAmount"], JSONTransformer.bigint)
        }
     }
 
-    struct AmountInfo: Mappable {
+    struct UsageInfo: Mappable {
         fileprivate(set) var sbpName: String?
         fileprivate(set) var pledgeAmount: Amount! = Amount(0)
         fileprivate(set) var blockProducingAddress: String?
@@ -55,7 +55,7 @@ struct DefiUsageInfo: Mappable {
         pledgeDueHeight <- map["pledgeDueHeight"]
 
         svipAddress <- map["svipAddress"]
-        quotaAddress <- map["quotaAddress"]
+        quotaAddress <- map["quoteAddress"]
 
 
        }
@@ -79,8 +79,18 @@ struct DefiUsageInfo: Mappable {
         productHash <- map["productHash"]
         usageHash <- map["usageHash"]
         usageType <- map["usageType"]
-        usageInfo <- map["usageInfo"]
-        amountInfo <- map["amountInfo"]
+        usageInfo <- (map["usageInfo"], TransformOf<UsageInfo, String>(fromJSON: { (string) -> UsageInfo? in
+            let info = UsageInfo.init(JSONString: string ?? "")
+            return info
+        }, toJSON: { (amount) -> String? in
+            return nil
+        }))
+        amountInfo <- (map["amountInfo"], TransformOf<AmountInfo, String>(fromJSON: { (string) -> AmountInfo? in
+            let info = AmountInfo.init(JSONString: string ?? "")
+            return info
+        }, toJSON: { (amount) -> String? in
+            return nil
+        }))
         usage_status <- map["usage_status"]
         usageTime <- map["usageTime"]
 

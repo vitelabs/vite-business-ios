@@ -19,7 +19,18 @@ class UnifyProvider {
     static func provider<Target: TargetType>() -> MoyaProvider<Target> {
 
         return MoyaProvider<Target>(
-            stubClosure: MoyaProvider<Target>.neverStub,
+                   stubClosure: MoyaProvider<Target>.neverStub,
+                   manager: Manager(
+                   configuration: {
+                       var configuration = URLSessionConfiguration.default
+                       configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+                       return configuration
+               }(),
+                   serverTrustPolicyManager: ServerTrustPolicyManager(policies: [:])
+               ))
+
+        return MoyaProvider<Target>(
+            stubClosure: MoyaProvider<Target>.immediatelyStub,
             manager: Manager(
             configuration: {
                 var configuration = URLSessionConfiguration.default

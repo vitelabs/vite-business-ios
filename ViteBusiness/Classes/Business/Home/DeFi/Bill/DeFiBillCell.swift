@@ -16,7 +16,7 @@ class DeFiBillCell: BaseTableViewCell, ListCellable {
     }()
 
     func bind(_ item: DeFiBill) {
-        titleLabel.text = item.billType.name
+        titleLabel.text = item.billType.itemName
         contentLabel.text = item.billAmount.amount(decimals: TokenInfo.BuildIn.vite.value.decimals, count: 2)
         if (item.billAmount >= 0) {
             contentLabel.textColor = UIColor.init(netHex: 0x5BC500)

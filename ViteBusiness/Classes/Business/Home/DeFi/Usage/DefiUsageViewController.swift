@@ -10,9 +10,18 @@ import PromiseKit
 
 class DefiUsageViewController: BaseTableViewController {
 
-    var productHash = ""
+    var productHash: String
 
-    lazy var viewModel = DefiUsageViewModel(tableView: self.tableView, productHash: "")
+    init(productHash: String) {
+        self.productHash = productHash
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var viewModel = DefiUsageViewModel(tableView: self.tableView, productHash: self.productHash)
 
     let titleView = PageTitleView.onlyTitle(title: R.string.localizable.defiUsePageTitle())
 
@@ -37,30 +46,29 @@ class DefiUsageViewModel: ListViewModel<DefiUsageInfo> {
     }
 
     override func refresh() -> Promise<(items: [DefiUsageInfo], hasMore: Bool)> {
-        return UnifyProvider.defi.getUsage(address: "")
+        return UnifyProvider.defi.getUsage(address: HDWalletManager.instance.account!.address,productHash: productHash)
         .map { (items: $0, hasMore: false) }
     }
-
 
     override func clicked(model: DefiUsageInfo) {
 
     }
 
     override func cellHeight(model: DefiUsageInfo) -> CGFloat {
-       if model.usageType == 1{
+       if model.usageType == 3{
             return DefiUsageForSBPCell.cellHeight
        } else if  model.usageType == 2{
             return DefiUsageForSVIPCell.cellHeight
-       } else if  model.usageType == 3{
-            return DefiUsageForQuotalCell.cellHeight
        } else if  model.usageType == 4{
+            return DefiUsageForQuotalCell.cellHeight
+       } else if  model.usageType == 1{
             return DefiUsageForMinningCell.cellHeight
        }
         return 0
    }
 
    override func cellFor(model: DefiUsageInfo, indexPath: IndexPath) -> UITableViewCell {
-    if model.usageType == 1{
+    if model.usageType == 3{
         let cell: DefiUsageForSBPCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(model)
         return cell
@@ -68,11 +76,11 @@ class DefiUsageViewModel: ListViewModel<DefiUsageInfo> {
         let cell: DefiUsageForSVIPCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(model)
         return cell
-    } else if  model.usageType == 3{
+    } else if  model.usageType == 4{
         let cell: DefiUsageForQuotalCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(model)
         return cell
-    } else if  model.usageType == 4{
+    } else if  model.usageType == 1{
         let cell: DefiUsageForMinningCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(model)
         return cell

@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1059 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1060 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5362,6 +5362,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiItemUsedAmountTitle = Rswift.StringResource(key: "defi.item.used.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已冻结基础余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiFrozenedAmountTitle = Rswift.StringResource(key: "defi.frozened.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已发放收益
       /// 
       /// Locales: en, zh-Hans
@@ -12318,6 +12322,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiItemUsedAmountTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.item.used.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 已冻结基础余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiFrozenedAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("defi.frozened.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 已发放收益
