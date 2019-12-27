@@ -12,6 +12,16 @@ import RxCocoa
 
 class DeFiLoanViewController: BaseScrollableViewController {
 
+    let loan: DeFiLoan?
+    init(loan: DeFiLoan? = nil) {
+        self.loan = loan
+        super.init()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     let token = ViteWalletConst.viteToken
 
     let titleView = NavigationTitleView(title: R.string.localizable.defiLoanPageTitle(), horizontal: 0)
@@ -155,6 +165,14 @@ class DeFiLoanViewController: BaseScrollableViewController {
         subscriptionTimeView.textField.kas_setReturnAction(.done(block: { (textField) in
             textField.resignFirstResponder()
         }))
+
+        if let loan = loan {
+            eachAmountView.textField.text = loan.singleCopyAmount.amountShortStringForDeFiWithGroupSeparator(decimals: token.decimals)
+            numberView.textField.text = String(loan.subscriptionCopies)
+            rateView.textField.text = String(format: "%.4f", loan.dayRate*100)
+            durationView.textField.text = String(loan.loanDuration)
+            subscriptionTimeView.textField.text = String(loan.subscriptionDuration)
+        }
     }
 
     func bind() {

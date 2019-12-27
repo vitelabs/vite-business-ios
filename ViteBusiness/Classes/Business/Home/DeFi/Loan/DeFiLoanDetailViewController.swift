@@ -15,6 +15,7 @@ import PromiseKit
 class DeFiLoanDetailViewController: BaseScrollableViewController {
 
     let token = ViteWalletConst.viteToken
+    var hasCancel = false
     let productHash: String
     var loan: DeFiLoan? {
         didSet {
@@ -41,9 +42,59 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         super.viewDidLoad()
         setupView()
         refresh()
-        viewUseButton.rx.tap.bind {[unowned self] _ in
+        bind()
+    }
+
+    func bind() {
+
+        useButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let item = self.loan else { return }
+            guard let address = HDWalletManager.instance.account?.address else { return }
+            HUD.show()
+            UnifyProvider.defi.getLoanUsageOptions(address: address, loan: item).done { (options) in
+                MyDeFiLoanUsageOptionsView(options: options, clicked: { option in
+                    WebHandler.openDeFiLoanUsagePage(productHash: item.productHash, optionCode: option.optionCode)
+                }).show()
+            }.catch { (error) in
+                Toast.show(error.localizedDescription)
+            }.finally {
+                HUD.hide()
+            }
+        }.disposed(by: rx.disposeBag)
+
+        viewUseButton.rx.tap.bind { [weak self]  in
+            guard let `self` = self else { return }
             let usage = DefiUsageViewController.init(productHash: self.productHash)
             UIViewController.current?.navigationController?.pushViewController(usage, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+        cancelButton.rx.tap.bind {
+            Alert.show(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertTitle(), message: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertMessage(), actions: [
+            (.default(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertOk()), { [weak self] _ in
+                guard let `self` = self else { return }
+                guard let account = HDWalletManager.instance.account else { return }
+                guard let id = UInt64(self.productHash) else { return }
+                let tokenInfo = TokenInfo.BuildIn.vite.value
+                Workflow.defiCancelLoanWithConfirm(account: account, tokenInfo: tokenInfo, loanId: id) { [weak self] (ret) in
+                    switch ret {
+                    case .success(_):
+                        self?.hasCancel = true
+                        self?.reloadView()
+                        Toast.show(R.string.localizable.defiMyPageMyLoanCellButtonCancelSuccessToast())
+                    case .failure(let e):
+                        Toast.show(e.localizedDescription)
+                    }
+                }
+            }),
+            (.default(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertCancel()), nil)
+            ])
+        }.disposed(by: rx.disposeBag)
+
+        reloanButton.rx.tap.bind { [weak self] in
+            guard let loan = self?.loan else { return }
+            let vc = DeFiLoanViewController(loan: loan)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
     }
 
@@ -91,17 +142,21 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
     let reloanButton = UIButton(style: .blueWithShadow, title: R.string.localizable.defiLoanDetailPageFailedButtonReloanTitle())
     let refundButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.defiLoanDetailPageFailedButtonViewRefundTitle())
     lazy var failedButtonView = UIView().then {
-        $0.addSubview(self.refundButton)
+//        $0.addSubview(self.refundButton)
+//        $0.addSubview(self.reloanButton)
+//
+//        self.refundButton.snp.makeConstraints { (m) in
+//            m.top.bottom.left.equalToSuperview()
+//        }
+//
+//        self.reloanButton.snp.makeConstraints { (m) in
+//            m.top.bottom.right.equalToSuperview()
+//            m.width.equalTo(self.refundButton)
+//            m.left.equalTo(self.refundButton.snp.right).offset(24)
+//        }
         $0.addSubview(self.reloanButton)
-
-        self.refundButton.snp.makeConstraints { (m) in
-            m.top.bottom.left.equalToSuperview()
-        }
-
         self.reloanButton.snp.makeConstraints { (m) in
-            m.top.bottom.right.equalToSuperview()
-            m.width.equalTo(self.refundButton)
-            m.left.equalTo(self.refundButton.snp.right).offset(24)
+            m.top.bottom.right.left.equalToSuperview()
         }
     }
 
@@ -210,9 +265,11 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
         case .cancel:
             status = .cancel
         }
-        header.config(title: R.string.localizable.defiCardSlogan(), status: status,
+        header.config(title: R.string.localizable.defiCardSlogan(),
+                      status: status,
                       progressDesc: "\(R.string.localizable.defiCardProgress())\(loan.loanCompletenessString)",
-            progress: CGFloat(loan.loanCompleteness), deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
+                      progress: CGFloat(loan.loanCompleteness),
+                      deadLineDesc: loan.productStatus == .onSale ? attributedString : nil)
     }
 
     func reloadView() {
@@ -237,7 +294,7 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(subscriptionDurationView, topInset: 20)
             scrollView.stackView.addArrangedSubview(subscribeAmountView, topInset: 20)
             scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
-            if loan.subscribedAmount == 0 {
+            if loan.subscribedAmount == 0 && !self.hasCancel {
                 scrollView.stackView.addArrangedSubview(cancelButton, topInset: 26)
             }
             scrollView.stackView.addArrangedSubview(onSaleTip1, topInset: 14)
@@ -245,6 +302,7 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(onSaleTip3, topInset: 4)
             scrollView.stackView.addArrangedSubview(onSaleTip4, topInset: 4)
             scrollView.stackView.addPlaceholder(height: 26)
+            paidInterestView.titleLabel.text = R.string.localizable.defiItemPaidInterestTitle()
         case .failed, .cancel:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
@@ -257,11 +315,12 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(paidInterestView, topInset: 20)
             scrollView.stackView.addArrangedSubview(subscriptionDurationView, topInset: 20)
             scrollView.stackView.addArrangedSubview(subscribeAmountView, topInset: 20)
-            scrollView.stackView.addArrangedSubview(refundPaidInterestView, topInset: 20)
+//            scrollView.stackView.addArrangedSubview(refundPaidInterestView, topInset: 20)
             scrollView.stackView.addArrangedSubview(publishTimeView, topInset: 20)
             scrollView.stackView.addArrangedSubview(failedButtonView, topInset: 26)
             scrollView.stackView.addArrangedSubview(failedTip1, topInset: 14)
             scrollView.stackView.addPlaceholder(height: 26)
+            paidInterestView.titleLabel.text = R.string.localizable.defiItemPaidInterestTitle() + R.string.localizable.defiItemPaidInterestInvaildTitle()
         case .success:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
@@ -283,6 +342,7 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(successButtonView, topInset: 26)
             scrollView.stackView.addArrangedSubview(successTip1, topInset: 14)
             scrollView.stackView.addPlaceholder(height: 26)
+            paidInterestView.titleLabel.text = R.string.localizable.defiItemPaidInterestTitle()
         }
 
         idView.rightLabel?.text = loan.productHash

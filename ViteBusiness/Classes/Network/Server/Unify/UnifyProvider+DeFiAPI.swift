@@ -18,7 +18,6 @@ import JSONRPCKit
 import PromiseKit
 import Alamofire
 
-
 extension UnifyProvider {
     struct defi {}
 }

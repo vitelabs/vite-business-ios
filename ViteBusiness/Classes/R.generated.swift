@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1061 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1067 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1846,6 +1846,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageEthFailed = Rswift.StringResource(key: "send.page.eth.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: (已解冻)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiItemPaidInterestInvaildTitle = Rswift.StringResource(key: "defi.item.paid.interest.invaild.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 0 UT/0 UT
       /// 
       /// Locales: en, zh-Hans
@@ -5358,6 +5362,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiItemUsedAmountTitle = Rswift.StringResource(key: "defi.item.used.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 已冻结利息
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiItemPaidInterestTitle = Rswift.StringResource(key: "defi.item.paid.interest.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已冻结基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -5386,10 +5394,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscribeSortCancel = Rswift.StringResource(key: "defi.my.page.my.subscribe.sort.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已支付利息
-      /// 
-      /// Locales: en, zh-Hans
-      public static let defiItemPaidInterestTitle = Rswift.StringResource(key: "defi.item.paid.interest.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 已认购
       /// 
       /// Locales: en, zh-Hans
@@ -5550,6 +5554,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanCellButtonCancel = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 撤销借币
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonCancelAlertTitle = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 撤销借币成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonCancelSuccessToast = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 撤销后，将无法享受交易所SVIP特权；抵押金额将退回原路。
       /// 
       /// Locales: en, zh-Hans
@@ -5609,6 +5621,10 @@ public struct R: Rswift.Validatable {
       /// en translation: 暂不撤销
       /// 
       /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonCancelAlertCancel = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 暂不撤销
+      /// 
+      /// Locales: en, zh-Hans
       public static let defiUsePageEditCancleCancle = Rswift.StringResource(key: "defi.use.page.edit.cancle.cancle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 最少 10 Vite
       /// 
@@ -5618,6 +5634,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellEachAmountPlaceholder = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 查看余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonViewRefund = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.view.refund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 查看使用记录
       /// 
       /// Locales: en, zh-Hans
@@ -5645,15 +5665,15 @@ public struct R: Rswift.Validatable {
       /// en translation: 查看退款
       /// 
       /// Locales: en, zh-Hans
-      public static let defiMyPageMyLoanCellButtonViewRefund = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.view.refund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 查看退款
-      /// 
-      /// Locales: en, zh-Hans
       public static let defiMyPageMySubscriptionCellButtonViewRefund = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.button.view.refund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 正在火热认购中，确定撤销借币吗？
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanDetailPageOnSaleButtonCancelAlertMessage = Rswift.StringResource(key: "defi.loan.detail.page.on.sale.button.cancel.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 正在火热认购中，确定撤销借币吗？
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonCancelAlertMessage = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 每份金额
       /// 
       /// Locales: en, zh-Hans
@@ -5694,6 +5714,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanDetailPageOnSaleButtonCancelAlertOk = Rswift.StringResource(key: "defi.loan.detail.page.on.sale.button.cancel.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确定
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanCellButtonCancelAlertOk = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 确认
       /// 
       /// Locales: en, zh-Hans
@@ -6173,6 +6197,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func sendPageEthFailed(_ value1: String) -> String {
         return String(format: NSLocalizedString("send.page.eth.failed", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: (已解冻)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiItemPaidInterestInvaildTitle(_: Void = ()) -> String {
+        return NSLocalizedString("defi.item.paid.interest.invaild.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 0 UT/0 UT
@@ -12321,6 +12352,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.item.used.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 已冻结利息
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiItemPaidInterestTitle(_: Void = ()) -> String {
+        return NSLocalizedString("defi.item.paid.interest.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 已冻结基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -12368,13 +12406,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiMyPageMySubscribeSortCancel(_: Void = ()) -> String {
         return NSLocalizedString("defi.my.page.my.subscribe.sort.cancel", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 已支付利息
-      /// 
-      /// Locales: en, zh-Hans
-      public static func defiItemPaidInterestTitle(_: Void = ()) -> String {
-        return NSLocalizedString("defi.item.paid.interest.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 已认购
@@ -12657,6 +12688,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 撤销借币
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonCancelAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 撤销借币成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonCancelSuccessToast(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.success.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 撤销后，将无法享受交易所SVIP特权；抵押金额将退回原路。
       /// 
       /// Locales: en, zh-Hans
@@ -12758,6 +12803,13 @@ public struct R: Rswift.Validatable {
       /// en translation: 暂不撤销
       /// 
       /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonCancelAlertCancel(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 暂不撤销
+      /// 
+      /// Locales: en, zh-Hans
       public static func defiUsePageEditCancleCancle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.cancle.cancle", bundle: R.hostingBundle, comment: "")
       }
@@ -12774,6 +12826,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellEachAmountPlaceholder(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("defi.loan.page.cell.each.amount.placeholder", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: 查看余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonViewRefund(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.view.refund", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 查看使用记录
@@ -12821,13 +12880,6 @@ public struct R: Rswift.Validatable {
       /// en translation: 查看退款
       /// 
       /// Locales: en, zh-Hans
-      public static func defiMyPageMyLoanCellButtonViewRefund(_: Void = ()) -> String {
-        return NSLocalizedString("defi.my.page.my.loan.cell.button.view.refund", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 查看退款
-      /// 
-      /// Locales: en, zh-Hans
       public static func defiMyPageMySubscriptionCellButtonViewRefund(_: Void = ()) -> String {
         return NSLocalizedString("defi.my.page.my.subscription.cell.button.view.refund", bundle: R.hostingBundle, comment: "")
       }
@@ -12837,6 +12889,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanDetailPageOnSaleButtonCancelAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.detail.page.on.sale.button.cancel.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 正在火热认购中，确定撤销借币吗？
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonCancelAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 每份金额
@@ -12907,6 +12966,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanDetailPageOnSaleButtonCancelAlertOk(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.detail.page.on.sale.button.cancel.alert.ok", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确定
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanCellButtonCancelAlertOk(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.ok", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 确认

@@ -41,7 +41,7 @@ struct DeFiSubscription: Mappable {
     fileprivate(set) var loanEndSnapshotHeight: UInt64 = 0
 
     var subscriptionDuration: UInt64 {
-        let interval = UInt64(subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970)
+        let interval = UInt64(min(0, subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970))
         return  interval / (60*60*24)
     }
 
@@ -81,10 +81,20 @@ struct DeFiSubscription: Mappable {
 
     var leftSubscriptionAmount: Amount { return loanAmount - subscribedAmount }
 
+
+    func countDown(for date: Date) -> (day: String, time: String) {
+        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: date, to: subscriptionEndTime)
+        return (day: "\(max(components.day!, 0))", time: String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+    }
+
+    func countDownString(for date: Date) -> String {
+        let (day, time) = countDown(for: date)
+        return R.string.localizable.defiHomePageCellEndTimeFormat(day, time)
+    }
+
     var countDownString: String {
-        let now = Date()
-        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: subscriptionEndTime)
-        return R.string.localizable.defiHomePageCellEndTimeFormat("\(max(components.day!, 0))", String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
+        let (day, time) = countDown(for: Date())
+        return R.string.localizable.defiHomePageCellEndTimeFormat(day, time)
     }
 
     var yearRateString: String {
@@ -101,10 +111,5 @@ struct DeFiSubscription: Mappable {
 
     var subscriptionFinishTimeString: String {
         return subscriptionFinishTime.format("yyyy-MM-dd HH:mm:ss")
-    }
-
-    func countDown(for date: Date) -> (day: String, time: String) {
-        let components = NSCalendar.current.dateComponents([.day, .hour, .minute, .second], from: date, to: subscriptionEndTime)
-        return (day: "\(max(components.day!, 0))", time: String(format: "%02d:%02d:%02d", max(components.hour!, 0), max(components.minute!, 0), max(components.second!, 0)))
     }
 }

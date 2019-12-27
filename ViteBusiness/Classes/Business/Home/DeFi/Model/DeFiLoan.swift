@@ -58,7 +58,7 @@ struct DeFiLoan: Mappable {
     }
 
     var subscriptionDuration: UInt64 {
-        let interval = UInt64(subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970)
+        let interval = UInt64(min(0, subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970))
         return  interval / (60*60*24)
     }
     var remainAmount: Amount { return loanAmount - loanUsedAmount }
@@ -135,7 +135,7 @@ struct DeFiLoan: Mappable {
     }
 
     var subscriptionFinishTimeString: String {
-        return subscriptionFinishTime.format("yyyy-MM-dd HH:mm:ss")
+        return subscriptionFinishTime.format("yyyy/MM/dd HH:mm:ss")
     }
 
     var loanEndTimeString: String {

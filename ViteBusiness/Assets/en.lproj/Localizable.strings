@@ -1018,9 +1018,15 @@
 "defi.my.page.my.loan.cell.title.used" =  "已使用: ";
 "defi.my.page.my.loan.cell.title.remain" =  "剩余金额: ";
 
-"defi.my.page.my.loan.cell.button.view.refund" =  "查看退款";
+"defi.my.page.my.loan.cell.button.view.refund" =  "查看余额";
 "defi.my.page.my.loan.cell.button.cancel" =  "撤销借币";
 "defi.my.page.my.loan.cell.button.use" =  "去使用";
+
+"defi.my.page.my.loan.cell.button.cancel.alert.title" = "撤销借币";
+"defi.my.page.my.loan.cell.button.cancel.alert.message" = "正在火热认购中，确定撤销借币吗？";
+"defi.my.page.my.loan.cell.button.cancel.alert.ok" = "确定";
+"defi.my.page.my.loan.cell.button.cancel.alert.cancel" = "暂不撤销";
+"defi.my.page.my.loan.cell.button.cancel.success.toast" =  "撤销借币成功";
 
 // My DeFi Subscription
 "defi.my.page.my.subscription.cell.id.title" =  "Hash: ";
@@ -1154,7 +1160,8 @@
 "defi.item.copys.unit" =  "份";
 "defi.item.subscription.amount.title" =  "认购金额";
 
-"defi.item.paid.interest.title" =  "已支付利息";
+"defi.item.paid.interest.title" =  "已冻结利息";
+"defi.item.paid.interest.invaild.title" =  "(已解冻)";
 "defi.item.subscribe.amount.title" =  "已认购金额";
 "defi.item.used.amount.title" =  "已使用金额";
 "defi.item.can.use.amount.title" =  "可用借币余额";

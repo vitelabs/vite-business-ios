@@ -116,7 +116,12 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
         }.recover {[weak self] (error) -> Promise<(items: [Model], hasMore: Bool)> in
             let ret = Promise<(items: [Model], hasMore: Bool)>(error: error)
             guard let `self` = self else { return ret }
-            self.loadStatus = .error(message: error.localizedDescription)
+            if self.items.isEmpty {
+                self.loadStatus = .error(message: error.localizedDescription)
+            } else {
+                self.loadStatus = .normal
+                Toast.show(error.localizedDescription)
+            }
             return ret
         }.ensure { [weak self] in
             guard let `self` = self else { return }
@@ -261,6 +266,7 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
 
     private func placeholderView(text: String, image: UIImage) -> UIView {
         let view = UIView()
+        view.backgroundColor = .white
         let layoutGuide = UILayoutGuide()
         let imageView = UIImageView(image: R.image.empty())
         let label = UILabel().then {

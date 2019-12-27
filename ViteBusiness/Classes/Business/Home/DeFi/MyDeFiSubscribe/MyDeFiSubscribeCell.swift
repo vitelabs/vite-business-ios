@@ -117,7 +117,7 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
 
         statusLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(iconImageView)
-            m.left.equalTo(idLabel.snp.right).offset(6)
+            m.left.greaterThanOrEqualTo(idLabel.snp.right).offset(6)
             m.right.equalToSuperview().offset(-24)
         }
 
@@ -177,7 +177,7 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
     }
 
     func bind(_ item: DeFiSubscription) {
-
+        self.item = item
         let token = ViteWalletConst.viteToken
         idLabel.text = R.string.localizable.defiMyPageMySubscriptionCellIdTitle() + item.productHash
         progressView.progress = CGFloat(item.loanCompleteness)
@@ -366,5 +366,12 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
         case .cancel:
             break
         }
+    }
+
+    var item: DeFiSubscription?
+    func updateEndTime(date: Date) {
+        guard let item = self.item else { return }
+        guard item.productStatus == .onSale else { return }
+        statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderEndTime(item.countDownString(for: date))
     }
 }

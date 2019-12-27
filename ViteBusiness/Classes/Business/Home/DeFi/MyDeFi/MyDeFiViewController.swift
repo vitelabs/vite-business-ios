@@ -8,6 +8,8 @@
 import UIKit
 import ActionSheetPicker_3_0
 import ViteWallet
+import RxSwift
+import RxCocoa
 
 class MyDeFiViewController: BaseViewController {
 
@@ -132,9 +134,9 @@ class MyDeFiViewController: BaseViewController {
         }
 
         ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver()
-            .map { $0.baseAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }
+            .map { $0.baseAccount.available.amountShortStringForDeFiWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals) }
             .drive(loanHeaderView.accountLabel.rx.text).disposed(by: rx.disposeBag)
-        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.loanAccount.available.amountShort(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.loanLabel.rx.text).disposed(by: rx.disposeBag)
+        ViteBalanceInfoManager.instance.defiViteBalanceInfoDriver().map { $0.loanAccount.available.amountShortStringForDeFiWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals) }.drive(loanHeaderView.loanLabel.rx.text).disposed(by: rx.disposeBag)
 
         filtrateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
@@ -170,11 +172,26 @@ class MyDeFiViewController: BaseViewController {
         subscribeVC.viewModel.profitsDriver.drive(onNext: {[weak self] (profits) in
             guard let `self` = self else { return }
             let decimals = ViteWalletConst.viteToken.decimals
-            self.subscribeHeaderView.issuedLabel.text = profits.earnProfits.amountShortWithGroupSeparator(decimals: decimals)
-            self.subscribeHeaderView.predictLabel.text = profits.totalProfits.amountShortWithGroupSeparator(decimals: decimals)
-            self.subscribeHeaderView.subscribeLabel.text = profits.subscribedAmount.amountShortWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.issuedLabel.text = profits.earnProfits.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.predictLabel.text = profits.totalProfits.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
+            self.subscribeHeaderView.subscribeLabel.text = profits.subscribedAmount.amountShortStringForDeFiWithGroupSeparator(decimals: decimals)
             self.subscribeHeaderView.rateLabel.text = profits.profitsRateString
         }).disposed(by: rx.disposeBag)
+
+        Observable<Int>.interval(0.1, scheduler: MainScheduler.instance).bind { [weak self] (_) in
+            guard let `self` = self else { return }
+            let date = Date()
+            for cell in self.loanVC.tableView.visibleCells {
+                if let c = cell as? MyDeFiLoanCell {
+                    c.updateEndTime(date: date)
+                }
+            }
+            for cell in self.subscribeVC.tableView.visibleCells {
+                if let c = cell as? MyDeFiSubscribeCell {
+                    c.updateEndTime(date: date)
+                }
+            }
+        }.disposed(by: rx.disposeBag)
     }
 
     private func pageChanged() {

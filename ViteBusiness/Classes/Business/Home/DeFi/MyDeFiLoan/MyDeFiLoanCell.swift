@@ -117,7 +117,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
 
         statusLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(iconImageView)
-            m.left.equalTo(idLabel.snp.right).offset(6)
+            m.left.greaterThanOrEqualTo(idLabel.snp.right).offset(6)
             m.right.equalToSuperview().offset(-24)
         }
 
@@ -278,6 +278,8 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         }
 
         func showLoanAmountExpireTimeUsedAndRemain() {
+            leftTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleLoanAmount()
+            rightTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleExpireTime()
             leftLabel.attributedText = {
                 let amount = item.loanAmount.amountShortWithGroupSeparator(decimals: token.decimals)
                 let symbol = token.symbol
@@ -384,20 +386,25 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             iconImageView.image = R.image.icon_cell_loan_on_sale()
             statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderEndTime(item.countDownString)
             showSaledLoanAmountRateAndDuration()
-            button.isHidden = false
+            button.isHidden = item.subscribedAmount != 0
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonCancel(), for: .normal)
             button.rx.tap.bind {
-                guard let account = HDWalletManager.instance.account else { return }
-                guard let id = UInt64(item.productHash) else { return }
-                let tokenInfo = TokenInfo.BuildIn.vite.value
-                Workflow.defiCancelLoanWithConfirm(account: account, tokenInfo: tokenInfo, loanId: id) { (ret) in
-                    switch ret {
-                    case .success(_):
-                        Toast.show("fdsfds")
-                    case .failure(let e):
-                        Toast.show(e.localizedDescription)
+                Alert.show(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertTitle(), message: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertMessage(), actions: [
+                (.default(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertOk()), { _ in
+                    guard let account = HDWalletManager.instance.account else { return }
+                    guard let id = UInt64(item.productHash) else { return }
+                    let tokenInfo = TokenInfo.BuildIn.vite.value
+                    Workflow.defiCancelLoanWithConfirm(account: account, tokenInfo: tokenInfo, loanId: id) { (ret) in
+                        switch ret {
+                        case .success(_):
+                            Toast.show(R.string.localizable.defiMyPageMyLoanCellButtonCancelSuccessToast())
+                        case .failure(let e):
+                            Toast.show(e.localizedDescription)
+                        }
                     }
-                }
+                }),
+                (.default(title: R.string.localizable.defiMyPageMyLoanCellButtonCancelAlertCancel()), nil)
+                ])
             }.disposed(by: disposeBag)
 
         case .failed:
@@ -407,14 +414,15 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
             button.isHidden = false
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonViewRefund(), for: .normal)
             button.rx.tap.bind {
-
+                let vc = MyDeFiBillViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: disposeBag)
 
         case .success:
             iconImageView.image = R.image.icon_cell_loan_sucess()
             statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderSuccess(item.subscriptionFinishTimeString)
             showLoanAmountExpireTimeUsedAndRemain()
-            button.isHidden = false
+            button.isHidden = (item.remainAmount == 0 || item.isExpire)
             button.setTitle(R.string.localizable.defiMyPageMyLoanCellButtonUse(), for: .normal)
             button.rx.tap.bind {
                 guard let address = HDWalletManager.instance.account?.address else { return }
@@ -422,7 +430,6 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
                 UnifyProvider.defi.getLoanUsageOptions(address: address, loan: item).done { (options) in
                     MyDeFiLoanUsageOptionsView(options: options, clicked: { option in
                         WebHandler.openDeFiLoanUsagePage(productHash: item.productHash, optionCode: option.optionCode)
-                        self.test(optionCode: option.optionCode)
                     }).show()
                 }.catch { (error) in
                     Toast.show(error.localizedDescription)
@@ -439,53 +446,9 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         }
     }
 
-    func test(optionCode: String) {
-        if optionCode == "REGISTER_SBP" {
-            Workflow.defiRegisterSBPWithConfirm(
-            account: HDWalletManager.instance.account!,
-            tokenInfo: TokenInfo.BuildIn.vite.value,
-            loanId: UInt64(self.DeFiLoan!.productHash)!,
-            amount: 0,
-            sbpName: "sbpName",
-            blockProducingAddress: HDWalletManager.instance.account!.address,
-            rewardWithdrawAddress: HDWalletManager.instance.account!.address)
-            { (result) in
-                switch result {
-                case .success(_):
-                    break
-                case .failure(let e):
-                    Toast.show(e.localizedDescription)
-                }
-            }
-        } else {
-            let bizType: UInt8
-            if optionCode == "OPEN_DEX_SVIP" {
-                bizType = 2
-            }
-            else if optionCode == "GET_QUOTA" {
-                bizType = 4
-            }
-            else if optionCode == "PLEDGE_MINING" {
-                bizType = 1
-            } else {
-                return
-            }
-
-            Workflow.defiInvestWithConfirm(
-                account: HDWalletManager.instance.account!,
-                tokenInfo: TokenInfo.BuildIn.vite.value,
-                loanId: UInt64(self.DeFiLoan!.productHash)!,
-                bizType: bizType,
-                amount: Amount(100000000000000),
-                beneficiaryAddress: HDWalletManager.instance.account!.address) { (result) in
-                    switch result {
-                    case .success(_):
-                        break
-                    case .failure(let e):
-                        Toast.show(e.localizedDescription)
-                    }
-            }
-        }
+    func updateEndTime(date: Date) {
+        guard let item = self.DeFiLoan else { return }
+        guard item.productStatus == .onSale else { return }
+        statusLabel.text = R.string.localizable.defiMyPageMyLoanCellHeaderEndTime(item.countDownString(for: date))
     }
-
 }
