@@ -747,7 +747,7 @@ class DefiUsageForMinningCell: BaseTableViewCell ,ListCellable {
 
         self.editButton.rx.tap.bind { [unowned self] _ in
             func vitexPageUrl() -> URL {
-                var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
+                var urlStr = ViteConst.instance.vite.viteXUrl + "#/mining"
                     + "?address=" + (HDWalletManager.instance.account?.address ?? "")
                     + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
                 urlStr += "&activeTab=miningStaking"
