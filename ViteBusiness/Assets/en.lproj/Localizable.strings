@@ -1200,6 +1200,10 @@
 "defi.bill.billTypeTitle.Transferspending" = "划转支出";
 "defi.bill.billTypeTitle.Successborrowmoney" = "成功借币";
 "defi.bill.billTypeTitle.loanisdueforrepayment" = "借币到期还款";
+"defi.bill.billTypeTitle.Subscribefreeze" = "认购冻结";
+"defi.bill.billTypeTitle.Interestonloansisfrozen" = "借币利息冻结";
+"defi.bill.billTypeTitle.thefailedloanisthawedout" = "借币失败利息解冻";
+
 
 
 "defi.bill.page.title" = "DeFi账单";
@@ -1300,4 +1304,4 @@
 "defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
 "defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
 "defi.frozened.amount.title" = "已冻结基础余额";
-
+"defi.detail.Numberofremainingavailableforsubscription" = "剩余可认购份数";

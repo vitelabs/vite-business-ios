@@ -31,8 +31,8 @@ enum DeFiAPI: TargetType {
     struct Bill {
         enum BillType: Int, CaseIterable {
             case 全部 = 0
-            case 已付利息 = 1
-//            case 已付利息退款 = 2
+            case 认购成功利息扣款 = 1
+            case 认购冻结 = 2
             case 认购金额 = 3
             case 到期认购金额 = 4
             case 认购收益 = 5
@@ -49,6 +49,8 @@ enum DeFiAPI: TargetType {
             case 划转支出 = 16
             case 成功借币 = 17
             case 借币到期还款 = 18
+            case 借币利息冻结 = 19
+            case 借币失败利息解冻 = 20
         }
 
         enum AccountType: Int, CaseIterable {
