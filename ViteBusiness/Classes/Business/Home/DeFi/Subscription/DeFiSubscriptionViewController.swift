@@ -338,6 +338,8 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
             status = .success
         case .cancel:
             status = .cancel
+        case .successAndExpired:
+            status = .success
         }
         header.config(
             title: R.string.localizable.defiCardSlogan(),

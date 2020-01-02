@@ -67,7 +67,7 @@ public struct ViteConst {
 
 public extension ViteConst {
 
-    public struct TokenCode {
+    struct TokenCode {
         public let viteCoin: String
         public let etherCoin: String
         public let viteERC20: String
@@ -75,13 +75,13 @@ public extension ViteConst {
         public let bnbCoin: String
     }
 
-    public struct Cos {
+    struct Cos {
         public var config: String
         public var discover: String
         public var strapi: String
     }
 
-    public struct Vite {
+    struct Vite {
         public var nodeHttp: String
         public var explorer: String
         public var growth: String
@@ -92,23 +92,24 @@ public extension ViteConst {
         public var viteXUrl: String
         public var pushReportConfig: String
         public var pushReportBussness: String
+        public var snapshotChainHeightPerDay: UInt64
 
     }
 
-    public struct Eth {
+    struct Eth {
         public var nodeHttp: String
         public var chainType: web3swift.Networks
         public var explorer: String
     }
 
-    public struct Grin {
+    struct Grin {
         public var nodeHttp: String
         public var apiSecret: String
         public var chainType: String
         public var x: String
     }
 
-    public struct CrossChain {
+    struct CrossChain {
         public struct ETH {
             public var gateway: String
             public var tokenId: String
@@ -117,14 +118,14 @@ public extension ViteConst {
 
     }
 
-    public struct Market {
+    struct Market {
         public var baseWebUrl: String
         public var vitexHost: String
         public var vitexWS: String
     }
 
 
-    public class Env {
+    class Env {
 
         public enum EnvType {
             case test
@@ -164,7 +165,8 @@ public extension ViteConst {
                            exchange: "https://buycoin.vitewallet.com",
                            viteXUrl: "https://x.vite.net/mobiledex",
                            pushReportConfig: "https://wallet.vite.net",
-                           pushReportBussness: "https://wallet.vite.net"),
+                           pushReportBussness: "https://wallet.vite.net",
+                           snapshotChainHeightPerDay: 60 * 60 * 24),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),
@@ -190,7 +192,8 @@ public extension ViteConst {
                            gateway: "http://132.232.60.116:8001",
                            exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex",
                            pushReportConfig: "http://150.109.40.169:8086/test",
-                           pushReportBussness: "http://150.109.40.169:8079"),
+                           pushReportBussness: "http://150.109.40.169:8079",
+                           snapshotChainHeightPerDay: 200),
                 eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io"),
@@ -217,7 +220,8 @@ public extension ViteConst {
                            exchange: "https://buycoin.vitewallet.com",
                            viteXUrl: "https://x.vite.net/mobiledex",
                            pushReportConfig: "https://wallet.vite.net",
-                           pushReportBussness: "https://wallet.vite.net"),
+                           pushReportBussness: "https://wallet.vite.net",
+                           snapshotChainHeightPerDay: 60 * 60 * 24),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io"),

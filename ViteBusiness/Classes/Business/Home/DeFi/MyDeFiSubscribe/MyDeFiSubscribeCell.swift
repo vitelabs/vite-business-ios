@@ -351,7 +351,7 @@ class MyDeFiSubscribeCell: BaseTableViewCell, ListCellable {
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: disposeBag)
 
-        case .success:
+        case .success, .successAndExpired:
             iconImageView.image = R.image.icon_cell_loan_sucess()
             statusLabel.text = R.string.localizable.defiMyPageMySubscriptionCellHeaderSuccess(item.subscriptionFinishTimeString)
             showSubscribedAndProfits()

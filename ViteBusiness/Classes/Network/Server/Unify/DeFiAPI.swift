@@ -24,8 +24,9 @@ enum DeFiAPI: TargetType {
         case failed = 2
         case success = 3
         case cancel = 4
+        case successAndRefunding = 5
+        case successAndRefunded = 6
     }
-
 
     struct Bill {
         enum BillType: Int, CaseIterable {
@@ -103,7 +104,6 @@ enum DeFiAPI: TargetType {
         switch self {
         case let .getDeFiLoans(sortType, status, address, offset, limit):
             var parameters: [String: String] = [
-                "productStatus": String(status.rawValue),
                 "offset": String(offset),
                 "limit": String(limit)
             ]
@@ -115,6 +115,18 @@ enum DeFiAPI: TargetType {
             if let address = address {
                 parameters["address"] = address
             }
+
+            switch status {
+            case .all, .onSale, .failed, .success, .cancel:
+                parameters["productStatus"] = String(status.rawValue)
+            case .successAndRefunding:
+                parameters["productStatus"] = "5"
+                parameters["refundStatus"] = "1"
+            case .successAndRefunded:
+                parameters["productStatus"] = "5"
+                parameters["refundStatus"] = "2"
+            }
+
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case let .getSubscriptions(status, address, offset, limit):
             var parameters: [String: String] = [
@@ -199,8 +211,11 @@ enum DeFiAPI: TargetType {
                 type(of: self).testStatus = .cancel
                 str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 3,   \"loanUsedAmount\": 3000000000000000000000, \"refundStatus\": 1  } }"
             case .cancel:
-                type(of: self).testStatus = .onSale
+                type(of: self).testStatus = .successAndExpired
                 str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 4,   \"refundStatus\": 1  } }"
+            case .successAndExpired:
+                type(of: self).testStatus = .onSale
+                str = "{  \"code\": 0,  \"msg\": \"ok\",  \"data\": {   \"productHash\": \"ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a\",   \"subscriptionBeginTime\": 1554722699,   \"subscriptionEndTime\": 1585893380,   \"subscriptionFinishTime\": 1554722699,   \"yearRate\": \"0.02\",   \"loanAmount\": \"1000000000000000000000\",   \"subscriptionCopies\": 10000,   \"singleCopyAmount\": \"10000000000000000000\",   \"loanDuration\": 3,   \"subscribedAmount\": \"1000000000000000000000\",   \"loanCompleteness\": \"0.10\",   \"productStatus\": 5,   \"refundStatus\": 1  } }"
             }
 
             return str.data(using: .utf8, allowLossyConversion: false) ?? Data()

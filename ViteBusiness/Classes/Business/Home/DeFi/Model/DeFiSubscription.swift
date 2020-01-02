@@ -42,7 +42,7 @@ struct DeFiSubscription: Mappable {
 
     var subscriptionDuration: UInt64 {
         let interval = UInt64(min(0, subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970))
-        return  interval / (60*60*24)
+        return  interval / ViteConst.instance.vite.snapshotChainHeightPerDay
     }
 
     public init?(map: Map) {

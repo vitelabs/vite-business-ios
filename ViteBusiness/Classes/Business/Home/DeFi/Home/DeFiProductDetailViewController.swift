@@ -192,6 +192,8 @@ class DeFiProductDetailViewController: BaseViewController {
             status = .success
         case .cancel:
             status = .cancel
+        case .successAndExpired:
+            status = .success
         }
         cardView.config(
             title: R.string.localizable.defiCardSlogan(),

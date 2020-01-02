@@ -10,7 +10,7 @@ import PromiseKit
 
 class MyDeFiLoanListViewModel: ListViewModel<DeFiLoan> {
 
-    static let limit = 4
+    static let limit = 20
     let address = HDWalletManager.instance.account!.address
 
     let status: DeFiAPI.ProductStatus

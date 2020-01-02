@@ -104,12 +104,20 @@ extension UnifyProvider.defi {
         guard let id = Int(loan.productHash) else {
             return Promise(error: UnifyProvider.BackendError.invalidParameters)
         }
-        return ViteNode.defi.info.getDefiLoanInfo(id: id).then { (info) -> Promise<DeFiLoan> in
-            if let info = info {
-                return Promise.value(DeFiLoan.merge(loan: loan, info: info))
-            } else {
-                return getProductDetail(hash: loan.productHash)
-            }
+        return ViteNode.defi.info.getDefiLoanInfo(id: id)
+            .map({ (info) -> DeFiLoanInfo? in return info })
+            .recover { (error) -> Promise<DeFiLoanInfo?> in
+                if ViteError.conversion(from: error).code.id == -38001 {
+                    return Promise.value(nil)
+                } else {
+                    return Promise(error: error)
+                }
+            }.then { (info) -> Promise<DeFiLoan> in
+                if let info = info {
+                    return Promise.value(DeFiLoan.merge(loan: loan, info: info))
+                } else {
+                    return getProductDetail(hash: loan.productHash)
+                }
         }
     }
 

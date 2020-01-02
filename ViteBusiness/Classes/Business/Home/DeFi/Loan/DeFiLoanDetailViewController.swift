@@ -264,6 +264,8 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             status = .success
         case .cancel:
             status = .cancel
+        case .successAndExpired:
+            status = .success
         }
         header.config(title: R.string.localizable.defiCardSlogan(),
                       status: status,
@@ -321,7 +323,7 @@ class DeFiLoanDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(failedTip1, topInset: 14)
             scrollView.stackView.addPlaceholder(height: 26)
             paidInterestView.titleLabel.text = R.string.localizable.defiItemPaidInterestTitle() + R.string.localizable.defiItemPaidInterestInvaildTitle()
-        case .success:
+        case .success, .successAndExpired:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)

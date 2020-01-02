@@ -15,6 +15,7 @@ enum DeFiProductStatus: Int {
     case failed = 2
     case success = 3
     case cancel = 4
+    case successAndExpired = 5
 }
 
 enum DeFiRefundStatus: Int {
@@ -30,6 +31,7 @@ struct DeFiLoan: Mappable {
     fileprivate(set) var loanAmount: Amount = Amount()
     fileprivate(set) var singleCopyAmount: Amount = Amount()
     fileprivate(set) var subscriptionCopies: UInt64 = 0
+    fileprivate(set) var subscriptionDuration: UInt64 = 0
     fileprivate(set) var loanDuration: UInt64 = 0
     fileprivate(set) var yearRate: Double = 0
     fileprivate(set) var dayRate: Double = 0
@@ -50,17 +52,17 @@ struct DeFiLoan: Mappable {
     fileprivate(set) var loanEndSnapshotHeight: UInt64 = 0
 
     var loanSnapshotCount: UInt64 {
-        return loanDuration * 24 * 60 * 60
+        return loanDuration * ViteConst.instance.vite.snapshotChainHeightPerDay
     }
 
     var leftCopies: UInt64 {
         return UInt64((loanAmount - subscribedAmount) / singleCopyAmount)
     }
 
-    var subscriptionDuration: UInt64 {
-        let interval = UInt64(min(0, subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970))
-        return  interval / (60*60*24)
-    }
+//    var subscriptionDuration: UInt64 {
+//        let interval = UInt64(min(0, subscriptionEndTime.timeIntervalSince1970 - subscriptionBeginTime.timeIntervalSince1970))
+//        return  interval / ViteConst.instance.vite.snapshotChainHeightPerDay
+//    }
     var remainAmount: Amount { return loanAmount - loanUsedAmount }
 
     public init?(map: Map) {
@@ -73,6 +75,7 @@ struct DeFiLoan: Mappable {
         loanAmount <- (map["loanAmount"], JSONTransformer.bigint)
         singleCopyAmount <- (map["singleCopyAmount"], JSONTransformer.bigint)
         subscriptionCopies <- map["subscriptionCopies"]
+        subscriptionDuration <- map["subscriptionDuration"]
         loanDuration <- map["loanDuration"]
         yearRate <- (map["yearRate"], JSONTransformer.stringToDouble)
         dayRate <- (map["dayRate"], JSONTransformer.stringToDouble)
@@ -153,8 +156,7 @@ extension DeFiLoan {
         case .raised:
             ret.productStatus = .success
         case .failedAndWaitToRefund:
-            ret.refundStatus = .invalid
-            ret.productStatus = .success
+            ret.productStatus = .successAndExpired
             ret.refundStatus = .refunding
         }
 
@@ -162,9 +164,9 @@ extension DeFiLoan {
         ret.loanCompleteness = Double(info.subscribedShares) / Double(info.shares)
         ret.loanUsedAmount = info.invested
         ret.subscriptionBeginTime = info.created
-        ret.subscriptionEndTime = Date(timeIntervalSince1970: info.created.timeIntervalSince1970 + TimeInterval(60*60*24*info.subscribeDays))
+        ret.subscriptionEndTime = Date(timeIntervalSince1970: info.created.timeIntervalSince1970 + TimeInterval(ViteConst.instance.vite.snapshotChainHeightPerDay*UInt64(info.subscribeDays)))
         ret.subscriptionFinishTime = info.startTime
-        ret.loanEndTime = Date(timeIntervalSince1970: info.startTime.timeIntervalSince1970 + TimeInterval(60*60*24*info.expireDays))
+        ret.loanEndTime = Date(timeIntervalSince1970: info.startTime.timeIntervalSince1970 + TimeInterval(ViteConst.instance.vite.snapshotChainHeightPerDay*UInt64(info.expireDays)))
         ret.loanEndSnapshotHeight = UInt64(info.expireHeight)
         return ret
     }

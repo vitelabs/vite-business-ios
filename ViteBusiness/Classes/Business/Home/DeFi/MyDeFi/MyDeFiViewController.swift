@@ -145,7 +145,7 @@ class MyDeFiViewController: BaseViewController {
             let statuss: [DeFiAPI.ProductStatus]
             let currentStatus: DeFiAPI.ProductStatus
             if self.isLoan {
-                statuss = [.all, .onSale, .failed, .success, .cancel]
+                statuss = [.all, .onSale, .failed, .success, .cancel, .successAndRefunding, .successAndRefunded]
                 currentStatus = self.loanVC.status
             } else {
                 statuss = [.all, .onSale, .failed, .success]
@@ -200,10 +200,12 @@ class MyDeFiViewController: BaseViewController {
             loanHeaderView.isHidden = false
             subscribeHeaderView.isHidden = true
             status = loanVC.status
+            loanVC.tableView.reloadData()
         } else {
             loanHeaderView.isHidden = true
             subscribeHeaderView.isHidden = false
             status = subscribeVC.status
+            subscribeVC.tableView.reloadData()
         }
 
         filtrateButton.setTitle(status.name, for: .normal)
@@ -242,6 +244,10 @@ extension DeFiAPI.ProductStatus {
             return R.string.localizable.defiMyPageMyLoanSortSuccess()
         case .cancel:
             return R.string.localizable.defiMyPageMyLoanSortCancel()
+        case .successAndRefunding:
+            return R.string.localizable.defiMyPageMyLoanSortRefunding()
+        case .successAndRefunded:
+            return R.string.localizable.defiMyPageMyLoanSortRefunded()
         }
     }
 }

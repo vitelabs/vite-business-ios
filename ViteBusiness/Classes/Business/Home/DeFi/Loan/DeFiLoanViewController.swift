@@ -218,7 +218,7 @@ class DeFiLoanViewController: BaseScrollableViewController {
             guard let `self` = self else { return }
             let ret: String
             if let n = n {
-                ret = String(n * 60 * 60 * 24)
+                ret = String(n * ViteConst.instance.vite.snapshotChainHeightPerDay)
             } else {
                 ret = "--"
             }

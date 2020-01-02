@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1067 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1069 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5014,6 +5014,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageTitle = Rswift.StringResource(key: "defi.use.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 借币到期已还款
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanSortRefunded = Rswift.StringResource(key: "defi.my.page.my.loan.sort.refunded", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 借币到期待还款
+      /// 
+      /// Locales: en, zh-Hans
+      public static let defiMyPageMyLoanSortRefunding = Rswift.StringResource(key: "defi.my.page.my.loan.sort.refunding", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币到期还款
       /// 
       /// Locales: en, zh-Hans
@@ -11741,6 +11749,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 借币到期已还款
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanSortRefunded(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.sort.refunded", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 借币到期待还款
+      /// 
+      /// Locales: en, zh-Hans
+      public static func defiMyPageMyLoanSortRefunding(_: Void = ()) -> String {
+        return NSLocalizedString("defi.my.page.my.loan.sort.refunding", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 借币到期还款

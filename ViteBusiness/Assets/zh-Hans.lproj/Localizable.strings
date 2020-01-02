@@ -1000,6 +1000,8 @@
 "defi.my.page.my.loan.sort.failed" =  "到期未售罄";
 "defi.my.page.my.loan.sort.success" =  "成功售罄";
 "defi.my.page.my.loan.sort.cancel" =  "已取消";
+"defi.my.page.my.loan.sort.refunding" =  "借币到期待还款";
+"defi.my.page.my.loan.sort.refunded" =  "借币到期已还款";
 
 "defi.my.page.my.subscribe.issued.earnings" =  "已发放收益";
 "defi.my.page.my.subscribe.predict.amount" =  "预计总收益";

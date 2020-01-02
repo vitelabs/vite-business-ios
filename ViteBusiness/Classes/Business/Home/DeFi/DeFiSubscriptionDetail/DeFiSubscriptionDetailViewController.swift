@@ -184,6 +184,8 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
             status = .success
         case .cancel:
             status = .cancel
+        case .successAndExpired:
+            status = .success
         }
         header.config(
             title: R.string.localizable.defiCardSlogan(),
@@ -277,7 +279,7 @@ class DeFiSubscriptionDetailViewController: BaseScrollableViewController {
             scrollView.stackView.addArrangedSubview(refundButton, topInset: 26)
             refundButton.isEnabled = loan.refundStatus == .refunded
             scrollView.stackView.addPlaceholder(height: 26)
-        case .success:
+        case .success, .successAndExpired:
             header.snp.remakeConstraints { $0.height.equalTo(header.size.height) }
             scrollView.stackView.addArrangedSubview(titleView)
             scrollView.stackView.addArrangedSubview(header)

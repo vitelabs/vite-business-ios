@@ -12,7 +12,7 @@ import RxCocoa
 
 class MyDeFiSubscribeListViewModel: ListViewModel<DeFiSubscription> {
 
-    static let limit = 4
+    static let limit = 20
     let address = HDWalletManager.instance.account!.address
     lazy var profitsDriver: Driver<DeFiProfits> = self.profitsBehaviorRelay.asDriver().filterNil()
     private let profitsBehaviorRelay: BehaviorRelay<DeFiProfits?> = BehaviorRelay(value: nil)
