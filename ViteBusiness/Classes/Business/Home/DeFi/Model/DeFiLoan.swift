@@ -118,7 +118,7 @@ struct DeFiLoan: Mappable {
 
     var isExpire: Bool {
         let now = UInt64(Date().timeIntervalSince1970)
-        return now >= loanEndSnapshotHeight
+        return now >= UInt64(loanEndTime.timeIntervalSince1970)
     }
 
     var isUsed: Bool {
