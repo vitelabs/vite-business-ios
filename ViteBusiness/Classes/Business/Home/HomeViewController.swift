@@ -24,9 +24,9 @@ class HomeViewController: UITabBarController {
             $0.automaticallyShowDismissButton = false
         }
 
-        let defiVc = DeFiHomeViewController().then {
-            $0.automaticallyShowDismissButton = false
-        }
+//        let defiVc = DeFiHomeViewController().then {
+//            $0.automaticallyShowDismissButton = false
+//        }
 
         let marketVC = MarketViewController()
 
@@ -42,17 +42,17 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_me_select()?.withRenderingMode(.alwaysOriginal)
         }
 
-        let defiNav = BaseNavigationController(rootViewController: defiVc).then {
-            $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-
-            if UserDefaults.standard.bool(forKey: "defi_selected") == true {
-                $0.tabBarItem.image = R.image.icon_tabbar_defi_unselected()?.withRenderingMode(.alwaysOriginal)
-            } else {
-                $0.tabBarItem.image = R.image.icon_tabbar_defi_hot()?.withRenderingMode(.alwaysOriginal)
-            }
-            $0.tabBarItem.selectedImage = R.image.icon_tabbar_defi()?.withRenderingMode(.alwaysOriginal)
-            $0.tabBarItem.tag = 1001
-        }
+//        let defiNav = BaseNavigationController(rootViewController: defiVc).then {
+//            $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+//
+//            if UserDefaults.standard.bool(forKey: "defi_selected") == true {
+//                $0.tabBarItem.image = R.image.icon_tabbar_defi_unselected()?.withRenderingMode(.alwaysOriginal)
+//            } else {
+//                $0.tabBarItem.image = R.image.icon_tabbar_defi_hot()?.withRenderingMode(.alwaysOriginal)
+//            }
+//            $0.tabBarItem.selectedImage = R.image.icon_tabbar_defi()?.withRenderingMode(.alwaysOriginal)
+//            $0.tabBarItem.tag = 1001
+//        }
 
         let marketNav = BaseNavigationController(rootViewController: marketVC).then {
             $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
@@ -63,10 +63,22 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.title = nil
         }
 
+        let exchangeVC = ExchangeViewController().then {
+            $0.automaticallyShowDismissButton = false
+        }
+
+        let exchangeNav = BaseNavigationController(rootViewController: exchangeVC).then {
+            $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            $0.tabBarItem.image = R.image.exchange_tabbar_icon_unseleted()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.selectedImage = R.image.exchange_tabbar_icon()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.tag = 1001
+        }
+
+
         #if DAPP
             var subViewControlles: [UIViewController] = [walletNav, myNav, DebugHomeViewController.createNavVC()]
         #else
-            var subViewControlles: [UIViewController] = [walletNav, defiNav, marketNav, myNav]
+            var subViewControlles: [UIViewController] = [walletNav, exchangeVC, marketNav, myNav]
         #endif
 
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {
@@ -92,16 +104,27 @@ class HomeViewController: UITabBarController {
         GCD.delay(1) { AppUpdateService.checkUpdate() }
 
         
+//        self.rx.observeWeakly(UIViewController.self, #keyPath(UITabBarController.selectedViewController))
+//            .filterNil()
+//            .bind { [weak self] vc in
+//                if vc.tabBarItem.tag == 1001 {
+//                    UserDefaults.standard.set(true, forKey: "defi_selected")
+//                    vc.tabBarItem.image = R.image.icon_tabbar_defi_unselected()?.withRenderingMode(.alwaysOriginal)
+//                    if self?.deFiImageView.superview != nil {
+//                        self?.deFiImageView.removeFromSuperview()
+//                    }
+//                } else if  vc.tabBarItem.tag == 1002 {
+//                    Statistics.log(eventId: "charts_home")
+//                }
+//        }.disposed(by: rx.disposeBag)
+
         self.rx.observeWeakly(UIViewController.self, #keyPath(UITabBarController.selectedViewController))
+            .map{ $0?.tabBarItem.tag }
             .filterNil()
-            .bind { [weak self] vc in
-                if vc.tabBarItem.tag == 1001 {
-                    UserDefaults.standard.set(true, forKey: "defi_selected")
-                    vc.tabBarItem.image = R.image.icon_tabbar_defi_unselected()?.withRenderingMode(.alwaysOriginal)
-                    if self?.deFiImageView.superview != nil {
-                        self?.deFiImageView.removeFromSuperview()
-                    }
-                } else if  vc.tabBarItem.tag == 1002 {
+            .bind { tag in
+                if tag == 1001 {
+                    Statistics.log(eventId: "instant_purchase")
+                } else if tag == 1002 {
                     Statistics.log(eventId: "charts_home")
                 }
         }.disposed(by: rx.disposeBag)
@@ -114,7 +137,7 @@ class HomeViewController: UITabBarController {
                     self?.tabBar.hideBadgeDot(at: 4)
                 }
             }).disposed(by: self.rx.disposeBag)
-            self.showDefiAlertIfNeeded()
+//            self.showDefiAlertIfNeeded()
         }
 
 
@@ -140,6 +163,7 @@ class HomeViewController: UITabBarController {
     }
 
     func showDefiAlertIfNeeded() {
+        return
         if UserDefaults.standard.bool(forKey: "defi_selected") == true {
            return
        }
