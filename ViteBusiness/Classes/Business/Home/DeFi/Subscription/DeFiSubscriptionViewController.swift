@@ -36,13 +36,13 @@ class DeFiSubscriptionViewController: BaseScrollableViewController {
                                           status: .none,
                                           porgressDesc: "\(R.string.localizable.defiCardProgress())--%", progress: 0, deadLineDesc: NSAttributedString.init(string: "--后结束认购"))
 
-    lazy var idView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
+    lazy var idView = SendStaticItemView(title: R.string.localizable.defiItemIdTitle(), rightViewStyle: .label(style: .text(string: "--")))
 
     lazy var durationView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageDurationTitle(), rightViewStyle: .labels(topStyle: .attributed(string: self.updateDuration(text: "--")), bottomStyle: .text(string: R.string.localizable.defiSubscriptionPageDurationBlock("--"))))
 
-    lazy var rateView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageYearRateTitle(), rightViewStyle: .label(style: .text(string: "--%")))
-    lazy var loanAmountView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageLoanAmountTitle(), rightViewStyle: .label(style: .attributed(string: self.updateValue("--", unit: self.token.symbol))))
-    lazy var eachAmountView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageEachAmountTitle(), rightViewStyle: .label(style: .attributed(string: self.updateValue("--", unit: self.token.symbol))))
+    lazy var rateView = SendStaticItemView(title: R.string.localizable.defiItemYearRateTitle(), rightViewStyle: .label(style: .text(string: "--%")))
+    lazy var loanAmountView = SendStaticItemView(title: R.string.localizable.defiItemLoanAmountTitle(), rightViewStyle: .label(style: .attributed(string: self.updateValue("--", unit: self.token.symbol))))
+    lazy var eachAmountView = SendStaticItemView(title: R.string.localizable.defiItemEachAmountTitle(), rightViewStyle: .label(style: .attributed(string: self.updateValue("--", unit: self.token.symbol))))
     lazy var leftCopysView = SendStaticItemView(title: R.string.localizable.defiSubscriptionPageLeftCopysTitle(), rightViewStyle: .label(style: .attributed(string: self.updateValue("--", unit: R.string.localizable.defiSubscriptionPageLeftCopysUnit()))))
 
     lazy var subscriptionCopysView = SendTextFieldItemView(title: R.string.localizable.defiSubscriptionPageSubscriptionCopysTitle(), rightViewStyle: .label(style: .text(string: R.string.localizable.defiSubscriptionPageSubscriptionCopysUnit())))

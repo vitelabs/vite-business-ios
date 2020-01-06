@@ -69,11 +69,11 @@ class DeFiProductDetailViewController: BaseViewController {
     }()
 
     var content: [(String,String,String?)] =  [
-        (R.string.localizable.defiProductDetailTitleHash(),"--",nil),
-        (R.string.localizable.defiProductDetailTitleAmount(),"--","VITE"),
-        (R.string.localizable.defiProductDetailTitlePearamount(),"--","VITE"),
+        (R.string.localizable.defiItemIdTitle(),"--",nil),
+        (R.string.localizable.defiItemLoanAmountTitle(),"--","VITE"),
+        (R.string.localizable.defiItemEachAmountTitle(),"--","VITE"),
         (R.string.localizable.defiLoanPageCellNumberTitle(),"--",R.string.localizable.defiProductDetailUntilPear()),
-        (R.string.localizable.defiProductDetailTitleRate(),"--",nil),
+        (R.string.localizable.defiItemYearRateTitle(),"--",nil),
         (R.string.localizable.defiDetailNumberofremainingavailableforsubscription(),"--",R.string.localizable.defiProductDetailUntilPear()),
         (R.string.localizable.defiProductDetailTitleBorrowdeadline(),"--",R.string.localizable.defiProductDetailUntilDay()),
         (R.string.localizable.defiProductDetailTitleBeginTime(),"--",nil),
@@ -139,11 +139,11 @@ class DeFiProductDetailViewController: BaseViewController {
         self.updateHeader()
 
          content = [
-            (R.string.localizable.defiProductDetailTitleHash(),detail.productHash,nil),
-            (R.string.localizable.defiProductDetailTitleAmount(),detail.loanAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
-            (R.string.localizable.defiProductDetailTitlePearamount(),detail.singleCopyAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
+            (R.string.localizable.defiItemIdTitle(),detail.productHash,nil),
+            (R.string.localizable.defiItemLoanAmountTitle(),detail.loanAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
+            (R.string.localizable.defiItemEachAmountTitle(),detail.singleCopyAmount.amountFull(decimals: TokenInfo.BuildIn.vite.value.decimals),"VITE"),
             (R.string.localizable.defiLoanPageCellNumberTitle(),String(detail.subscriptionCopies),R.string.localizable.defiProductDetailUntilPear()),
-            (R.string.localizable.defiProductDetailTitleRate(),detail.yearRateString,nil),
+            (R.string.localizable.defiItemYearRateTitle(),detail.yearRateString,nil),
             (R.string.localizable.defiDetailNumberofremainingavailableforsubscription(),String(detail.leftCopies),R.string.localizable.defiProductDetailUntilPear()),
             (R.string.localizable.defiProductDetailTitleBorrowdeadline(),String(detail.loanDuration),R.string.localizable.defiProductDetailUntilDay()),
             (R.string.localizable.defiProductDetailTitleBeginTime(),detail.subscriptionBeginTimeString,nil),

@@ -42,7 +42,7 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
         $0.numberOfLines = 1
-        $0.text = R.string.localizable.defiHomePageCellRateTitle()
+        $0.text = R.string.localizable.defiItemYearRateTitle()
     }
 
     fileprivate let progressView = ProgressView(height: 4)
@@ -202,11 +202,11 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         ])
         timeLabel.attributedText = timeAttributedString
 
-        let totalString = "\(R.string.localizable.defiHomePageCellTotalAmount()) \(item.loanAmount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) VITE"
+        let totalString = "\(R.string.localizable.defiItemLoanAmountTitle()) \(item.loanAmount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) VITE"
         let totalAttributedString = NSMutableAttributedString(string: totalString)
 
         totalAttributedString.addAttributes(
-            text: R.string.localizable.defiHomePageCellTotalAmount(),
+            text: R.string.localizable.defiItemLoanAmountTitle(),
             attrs: [
                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.6),
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -227,11 +227,11 @@ class DeFiHomeProductCell: BaseTableViewCell, ListCellable {
         ])
         totalLabel.attributedText = totalAttributedString
 
-        let eachString = "\(R.string.localizable.defiHomePageCellEachAmount()) \(item.singleCopyAmount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) VITE"
+        let eachString = "\(R.string.localizable.defiItemEachAmountTitle()) \(item.singleCopyAmount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) VITE"
         let eachAttributedString = NSMutableAttributedString(string: eachString)
 
         eachAttributedString.addAttributes(
-            text: R.string.localizable.defiHomePageCellEachAmount(),
+            text: R.string.localizable.defiItemEachAmountTitle(),
             attrs: [
                 NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59, alpha: 0.6),
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)

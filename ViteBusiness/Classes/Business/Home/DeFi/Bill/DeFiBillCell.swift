@@ -24,7 +24,7 @@ class DeFiBillCell: BaseTableViewCell, ListCellable {
             contentLabel.textColor = UIColor.init(netHex: 0xFF0008)
         }
         unitLabel.text = "VITE" 
-        haahLabel.text = R.string.localizable.defiMyPageMyLoanCellIdTitle() + item.productHash
+        haahLabel.text = R.string.localizable.defiItemIdTitle() + ": " + item.productHash
         timeLabel.text = DeFiBillCell.dateFormatter.string(from: Date.init(timeIntervalSince1970: item.billTime))
     }
 

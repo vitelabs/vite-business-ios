@@ -971,9 +971,6 @@
 
 "defi.home.page.cell.end.time.format" =  "%@天%@";
 "defi.home.page.cell.end.time" =  "%@后结束认购";
-"defi.home.page.cell.rate.title" =  "年化收益率";
-"defi.home.page.cell.total.amount" =  "借币金额";
-"defi.home.page.cell.each.amount" =  "每份金额";
 "defi.home.page.cell.borrow.time" =  "%@天借币期限";
 "defi.home.page.cell.buy.button.title" =  "立即抢购";
 
@@ -1006,14 +1003,12 @@
 "defi.my.page.my.subscribe.sort.cancel" =  "已取消";
 
 // My DeFi Loan
-"defi.my.page.my.loan.cell.id.title" =  "产品Hash: ";
 "defi.my.page.my.loan.cell.header.end.time" =  "%@后结束认购";
 "defi.my.page.my.loan.cell.header.failed" =  "认购期结束";
 "defi.my.page.my.loan.cell.header.success" =  "%@售罄";
 "defi.my.page.my.loan.cell.header.cancel" =  "已取消";
 
 "defi.my.page.my.loan.cell.title.saled" =  "已认购";
-"defi.my.page.my.loan.cell.title.loan.amount" =  "借币金额";
 "defi.my.page.my.loan.cell.title.expire.time" =  "到期时间";
 "defi.my.page.my.loan.cell.title.rate" =  "日利率: %@";
 "defi.my.page.my.loan.cell.title.duration" =  "借币期限: %@天";
@@ -1051,7 +1046,6 @@
 "defi.loan.page.title" =  "发布借币";
 "defi.loan.page.slogan" =  "去中心化智能合约安全保障";
 
-"defi.loan.page.cell.each.amount.title" =  "每份金额";
 "defi.loan.page.cell.each.amount.placeholder" =  "最少%@ %@";
 "defi.loan.page.cell.number.title" =  "借币份数";
 "defi.loan.page.cell.number.placeholder" =  "请填写借币总份数";
@@ -1094,15 +1088,11 @@
 
 // DeFi Subscription
 "defi.subscription.page.title" =  "我要认购";
-"defi.subscription.page.id.title" =  "产品Hash";
 "defi.subscription.page.duration.title" =  "借币期限";
 "defi.subscription.page.duration.pre" =  "约";
 "defi.subscription.page.duration.suf" =  "天";
 "defi.subscription.page.duration.unit" =  "%@ %@ %@";
 "defi.subscription.page.duration.block" =  "%@个快照块";
-"defi.subscription.page.year.rate.title" =  "年化收益率";
-"defi.subscription.page.loan.amount.title" =  "借币金额";
-"defi.subscription.page.each.amount.title" =  "每份金额";
 "defi.subscription.page.left.copys.title" =  "剩余份数";
 "defi.subscription.page.left.copys.unit" =  "份";
 "defi.subscription.page.subscription.copys.title" =  "认购份数";
@@ -1173,13 +1163,14 @@
 "defi.item.publish.time.title" =  "发布时间";
 "defi.item.success.time.title" =  "售罄时间";
 
+"defi.item.status.on.sale" =  "认购中";
+"defi.item.status.failed" =  "到期未售罄";
+"defi.item.status.success" =  "成功售罄";
+"defi.item.status.cancel" =  "已取消";
+
 "defi.card.slogan" =  "去中心化智能合约安全保障";
 "defi.card.progress" =  "认购进度: ";
 "defi.card.end.time" =  "%@天%@后结束认购";
-"defi.card.status.on.sale" =  "认购中";
-"defi.card.status.failed" =  "到期未售罄";
-"defi.card.status.success" =  "成功售罄";
-"defi.card.status.cancel" =  "已取消";
 
 "defi.bill.billTypeTitle.all" = "全部";
 "defi.bill.billTypeTitle.paiedInterest" = "认购成功利息扣款";
@@ -1204,8 +1195,6 @@
 "defi.bill.billTypeTitle.Interestonloansisfrozen" = "借币利息冻结";
 "defi.bill.billTypeTitle.thefailedloanisthawedout" = "借币失败利息解冻";
 
-
-
 "defi.bill.page.title" = "DeFi账单";
 "defi.bill.page.Basedbalance" = "基础余额";
 "defi.bill.page.UsedBasedbalance" = "已使用基础余额";
@@ -1214,27 +1203,15 @@
 
 "defi.subscription.detail.title" = "认购详情";
 
+"defi.subscription.detail.title" = "认购详情";
+
 "defi.manage.BasedBalanceTitle" = "DeFi基础账户";
-
-
-
-
-
-
-
-
-
-
 
 "defi.product.detail.title" = "产品详情";
 "defi.product.detail.buy" = "立即抢购";
 "defi.product.detail.desc0" = "准确的借币期限以快照块为准。";
 "defi.product.detail.desc1" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.product.detail.title.hash" = "产品Hash";
-"defi.product.detail.title.amount" = "借币金额";
-"defi.product.detail.title.pearamount" = "每份金额";
 "defi.product.detail.title.count" = "总份数";
-"defi.product.detail.title.rate" = "年化收益率";
 "defi.product.detail.title.borrowdeadline" = "借币期限";
 "defi.product.detail.title.beginTime" = "认购开始时间";
 "defi.product.detail.title.buydeadline" = "认购期限";

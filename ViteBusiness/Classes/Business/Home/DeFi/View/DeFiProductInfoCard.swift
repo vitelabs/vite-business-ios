@@ -20,13 +20,13 @@ class DeFiProductInfoCard: UIView {
             case .none:
                 return ""
              case .onSale:
-                return R.string.localizable.defiCardStatusOnSale()
+                return R.string.localizable.defiItemStatusOnSale()
             case .failed:
-                return R.string.localizable.defiCardStatusFailed()
+                return R.string.localizable.defiItemStatusFailed()
             case .success:
-                return R.string.localizable.defiCardStatusSuccess()
+                return R.string.localizable.defiItemStatusSuccess()
             case .cancel:
-                return R.string.localizable.defiCardStatusCancel()
+                return R.string.localizable.defiItemStatusCancel()
             }
         }
 

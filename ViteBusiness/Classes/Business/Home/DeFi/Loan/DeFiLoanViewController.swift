@@ -55,7 +55,7 @@ class DeFiLoanViewController: BaseScrollableViewController {
         }
     }
 
-    lazy var eachAmountView = SendTextFieldItemView(title: R.string.localizable.defiLoanPageCellEachAmountTitle(), rightViewStyle: .label(style: .text(string: token.symbol))).then {
+    lazy var eachAmountView = SendTextFieldItemView(title: R.string.localizable.defiItemEachAmountTitle(), rightViewStyle: .label(style: .text(string: token.symbol))).then {
         $0.textField.placeholder = R.string.localizable.defiLoanPageCellEachAmountPlaceholder("10", self.token.symbol)
     }
 

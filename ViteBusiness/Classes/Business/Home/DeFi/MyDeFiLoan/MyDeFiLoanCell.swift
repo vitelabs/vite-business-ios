@@ -180,13 +180,13 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
     func bind(_ item: DeFiLoan) {
         self.DeFiLoan = item
         let token = ViteWalletConst.viteToken
-        idLabel.text = R.string.localizable.defiMyPageMyLoanCellIdTitle() + item.productHash
+        idLabel.text = R.string.localizable.defiItemIdTitle() + ": " + item.productHash
         progressView.progress = CGFloat(item.loanCompleteness)
         progressLabel.text = item.loanCompletenessString
 
         func showSaledLoanAmountRateAndDuration() {
             leftTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleSaled()
-            rightTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleLoanAmount()
+            rightTitleLabel.text = R.string.localizable.defiItemLoanAmountTitle()
 
             leftLabel.attributedText = {
                 let amount = item.subscribedAmount.amountShortWithGroupSeparator(decimals: token.decimals)
@@ -278,7 +278,7 @@ class MyDeFiLoanCell: BaseTableViewCell, ListCellable {
         }
 
         func showLoanAmountExpireTimeUsedAndRemain() {
-            leftTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleLoanAmount()
+            leftTitleLabel.text = R.string.localizable.defiItemLoanAmountTitle()
             rightTitleLabel.text = R.string.localizable.defiMyPageMyLoanCellTitleExpireTime()
             leftLabel.attributedText = {
                 let amount = item.loanAmount.amountShortWithGroupSeparator(decimals: token.decimals)
