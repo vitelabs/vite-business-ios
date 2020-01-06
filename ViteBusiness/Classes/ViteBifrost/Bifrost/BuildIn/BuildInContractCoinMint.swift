@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCoinMint: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.coinMint
+    let abi = ABI.BuildIn.coinIssueToken
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard let fee = sendTx.block.fee else { return Promise(error: ConfirmError.InvalidFee) }

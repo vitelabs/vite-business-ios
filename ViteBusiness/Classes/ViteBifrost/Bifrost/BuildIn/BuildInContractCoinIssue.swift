@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCoinIssue: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.coinIssue
+    let abi = ABI.BuildIn.coinReIssue
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinReissueTokenFunctionTitle()),
         inputs: [

@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractDexTransferTokenOwner: BuildInContractProtocol {
 
-    let abi =  ABI.BuildIn.dexTransferTokenOwner
+    let abi =  ABI.BuildIn.dexTransferTokenOwnership
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinDexTransferTokenOwnerFunctionTitle()),
         inputs: [

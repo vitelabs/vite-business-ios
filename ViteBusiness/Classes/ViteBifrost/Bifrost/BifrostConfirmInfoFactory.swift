@@ -70,7 +70,7 @@ struct BifrostConfirmInfoFactory {
                 case .contract:
                     let map = BuildInContract.toAddressAndDataPrefixMap
                     if let data = block.data, data.count >= 4,
-                        let type = map["\(block.toAddress!)_\(data[0..<4].toHexString())"] {
+                        let type = map["\(block.toAddress!).\(data[0..<4].toHexString())"] {
                         return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
                         return BuildInContractOthers.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
@@ -109,7 +109,7 @@ struct BifrostConfirmInfoFactory {
             BuildInContract.allCases.reduce([String: BuildInContract]()) { (r, c) -> [String: BuildInContract] in
                 var ret = r
                 let abi = c.info.abi
-                let key = "\(abi.toAddress)_\(abi.encodedFunctionSignature.toHexString())"
+                let key = "\(abi.toAddress).\(abi.encodedFunctionSignature.toHexString())"
                 ret[key] = c
                 return ret
         }
