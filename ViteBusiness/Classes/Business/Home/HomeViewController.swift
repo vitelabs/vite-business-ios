@@ -78,7 +78,7 @@ class HomeViewController: UITabBarController {
         #if DAPP
             var subViewControlles: [UIViewController] = [walletNav, myNav, DebugHomeViewController.createNavVC()]
         #else
-            var subViewControlles: [UIViewController] = [walletNav, exchangeVC, marketNav, myNav]
+            var subViewControlles: [UIViewController] = [walletNav, exchangeNav, marketNav, myNav]
         #endif
 
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {
@@ -162,39 +162,39 @@ class HomeViewController: UITabBarController {
         $0.image = R.image.defi_alert_cn()
     }
 
-    func showDefiAlertIfNeeded() {
-        return
-        if UserDefaults.standard.bool(forKey: "defi_selected") == true {
-           return
-       }
-        var items = tabBar.subviews
-            .filter { (view) -> Bool in
-                return view.isKind(of: UIControl.self)
-        }
-        .sorted { (v0, v1) -> Bool in
-            return v0.frame.origin.x < v1.frame.origin.x
-        }
-        let item = items[1]
-        let frame = item.convert(item.frame, to:  UIApplication.shared.keyWindow!)
-        let origin = CGPoint.init(x: item.frame.origin.x+item.frame.size.width/2-59, y: frame.origin.y-30)
-        deFiImageView.frame.origin = origin
-        deFiImageView.frame.size = CGSize.init(width: 118, height: 41)
-        UIApplication.shared.keyWindow?.addSubview(deFiImageView)
-        GCD.delay(5) {
-            if self.deFiImageView.superview != nil {
-                self.deFiImageView.removeFromSuperview()
-            }
-        }
-
-        for vc in self.viewControllers! {
-            vc.rx.methodInvoked(#selector(UINavigationController.pushViewController(_:animated:))).subscribe(onNext: {[weak self] (_) in
-            if self?.deFiImageView.superview != nil {
-                self?.deFiImageView.removeFromSuperview()
-            }
-            }).disposed(by: rx.disposeBag)
-        }
-
-    }
+//    func showDefiAlertIfNeeded() {
+//        return
+//        if UserDefaults.standard.bool(forKey: "defi_selected") == true {
+//           return
+//       }
+//        var items = tabBar.subviews
+//            .filter { (view) -> Bool in
+//                return view.isKind(of: UIControl.self)
+//        }
+//        .sorted { (v0, v1) -> Bool in
+//            return v0.frame.origin.x < v1.frame.origin.x
+//        }
+//        let item = items[1]
+//        let frame = item.convert(item.frame, to:  UIApplication.shared.keyWindow!)
+//        let origin = CGPoint.init(x: item.frame.origin.x+item.frame.size.width/2-59, y: frame.origin.y-30)
+//        deFiImageView.frame.origin = origin
+//        deFiImageView.frame.size = CGSize.init(width: 118, height: 41)
+//        UIApplication.shared.keyWindow?.addSubview(deFiImageView)
+//        GCD.delay(5) {
+//            if self.deFiImageView.superview != nil {
+//                self.deFiImageView.removeFromSuperview()
+//            }
+//        }
+//
+//        for vc in self.viewControllers! {
+//            vc.rx.methodInvoked(#selector(UINavigationController.pushViewController(_:animated:))).subscribe(onNext: {[weak self] (_) in
+//            if self?.deFiImageView.superview != nil {
+//                self?.deFiImageView.removeFromSuperview()
+//            }
+//            }).disposed(by: rx.disposeBag)
+//        }
+//
+//    }
 
 }
 
