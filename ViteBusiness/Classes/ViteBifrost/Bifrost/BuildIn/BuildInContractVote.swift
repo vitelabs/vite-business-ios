@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractVote: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.vote
+    let abi = ABI.BuildIn.voteForSBP
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteFunctionTitle()),
         inputs: [

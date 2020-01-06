@@ -11,7 +11,7 @@ import BigInt
 
 struct BuildInContractDexMarketConfig: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.dexMarketConfig
+    let abi = ABI.BuildIn.dexMarketAdminConfig
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard sendTx.block.amount == 0 else { return Promise(error: ConfirmError.InvalidAmount) }

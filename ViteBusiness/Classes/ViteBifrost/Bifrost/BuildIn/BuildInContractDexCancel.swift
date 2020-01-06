@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexCancel: BuildInContractProtocol {
 
-    let abi =  ABI.BuildIn.dexCancel
+    let abi =  ABI.BuildIn.dexCancelOrder
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Cancel Order on ViteX\",\"zh\":\"交易所撤单\"}},\"inputs\":[{\"name\":{\"base\":\"Order ID\",\"zh\":\"订单 ID\"}},{\"name\":{\"base\":\"Order Type\",\"zh\":\"订单类型\"},\"style\":{\"textColor\":\"5BC500\",\"backgroundColor\":\"007AFF0F\"}},{\"name\":{\"base\":\"Market\",\"zh\":\"市场\"}},{\"name\":{\"base\":\"Price\",\"zh\":\"价格\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

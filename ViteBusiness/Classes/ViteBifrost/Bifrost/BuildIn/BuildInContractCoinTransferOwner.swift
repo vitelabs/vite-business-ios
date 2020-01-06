@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCoinTransferOwner: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.coinTransferOwner
+    let abi = ABI.BuildIn.coinTransferOwnership
     let description =
         VBViteSendTx.Description(
             function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinTransferOwnershipFunctionTitle()),

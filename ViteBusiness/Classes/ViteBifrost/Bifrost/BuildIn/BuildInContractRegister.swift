@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractRegister: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.register
+    let abi = ABI.BuildIn.registerSBP
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Register SBP\",\"zh\":\"注册 SBP\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP 名称\"}},{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
