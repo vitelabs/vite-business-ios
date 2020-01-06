@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractExtractReward: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.extractReward
+    let abi = ABI.BuildIn.withdrawSBPReward
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Claim Rewards\",\"zh\":\"提取奖励\"}},\"inputs\":[{\"name\":{\"base\":\"Recipient Address\",\"zh\":\"收款地址\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

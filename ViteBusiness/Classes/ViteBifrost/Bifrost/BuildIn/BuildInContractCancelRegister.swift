@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCancelRegister: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.cancelRegister
+    let abi = ABI.BuildIn.old_cancelRegister
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Revoke SBP Registration\",\"zh\":\"撤销 SBP 注册\"}},\"inputs\":[{\"name\":{\"base\":\"SBP Name\",\"zh\":\"SBP名称\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

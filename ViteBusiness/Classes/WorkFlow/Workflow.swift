@@ -277,7 +277,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.pledge.ut.utToString())
+        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.stakeForQuota.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -299,7 +299,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.old_cancelStake.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -322,7 +322,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelQuotaStaking.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -343,7 +343,7 @@ public extension Workflow {
         }
 
         let tokenInfo = TokenInfo.BuildIn.vite.value
-        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.vote.ut.utToString())
+        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.voteForSBP.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -363,7 +363,7 @@ public extension Workflow {
         }
 
         let tokenInfo = TokenInfo.BuildIn.vite.value
-        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelVote.ut.utToString())
+        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelSBPVoting.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 

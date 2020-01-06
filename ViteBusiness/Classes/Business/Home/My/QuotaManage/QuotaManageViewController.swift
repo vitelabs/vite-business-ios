@@ -67,7 +67,7 @@ class QuotaManageViewController: BaseViewController {
     //snapshoot height
     lazy var pledgeView = SendPledgeItemView()
 
-    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.pledge.ut.utToString())
+    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.stakeForQuota.ut.utToString())
 
     lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()

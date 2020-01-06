@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCancelVote: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.cancelVote
+    let abi = ABI.BuildIn.cancelSBPVoting
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Revoke Voting\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"Votes Revoked\",\"zh\":\"撤销投票量\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -34,7 +34,7 @@ struct BuildInContractCancelVote: BuildInContractProtocol {
 
 struct BuildInContractCancelSBPVoting: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.CancelSBPVoting
+    let abi = ABI.BuildIn.cancelSBPVoting
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Revoke Voting\",\"zh\":\"撤销投票\"}},\"inputs\":[{\"name\":{\"base\":\"Votes Revoked\",\"zh\":\"撤销投票量\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

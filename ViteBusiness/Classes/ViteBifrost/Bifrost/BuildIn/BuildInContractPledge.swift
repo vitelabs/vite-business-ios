@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractPledge: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.pledge
+    let abi = ABI.BuildIn.stakeForQuota
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Acquire Quota\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"配额受益地址\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -34,7 +34,7 @@ struct BuildInContractPledge: BuildInContractProtocol {
 
 struct BuildInContractStakeForQuota: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.StakeForQuota
+    let abi = ABI.BuildIn.stakeForQuota
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Acquire Quota\",\"zh\":\"获取配额\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"抵押金额\"}},{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"配额受益地址\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
