@@ -10,7 +10,7 @@ import ViteWallet
 
 struct SASConfirmViewModelContractVote: SASConfirmViewModelContract {
 
-    let abi = ABI.BuildIn.vote
+    let abi = ABI.BuildIn.voteForSBP
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinVoteFunctionTitle()),
         inputs: [
@@ -41,7 +41,7 @@ struct SASConfirmViewModelContractVote: SASConfirmViewModelContract {
 
 extension SASConfirmViewModelContractVote {
     static func makeURIBy(name: String) -> ViteURI {
-        return ViteURI(address: ABI.BuildIn.vote.toAddress,
+        return ViteURI(address: ABI.BuildIn.voteForSBP.toAddress,
                        chainId: nil,
                        type: .contract,
                        functionName: ABI.BuildIn.voteForSBP.abiRecord.name!,

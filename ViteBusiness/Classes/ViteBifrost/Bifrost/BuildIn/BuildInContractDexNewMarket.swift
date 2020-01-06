@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexNewMarket: BuildInContractProtocol {
 
-    let abi =  ABI.BuildIn.dexNewMarket
+    let abi =  ABI.BuildIn.dexOpenNewMarket
     let description = VBViteSendTx.Description(
         function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinDexOpenTradingPairFunctionTitle()),
         inputs: [

@@ -107,7 +107,7 @@ extension WalletManager {
                 if let _ = c {
                     return Promise.value(Void())
                 } else {
-                    return ViteNode.rawTx.send.block(account: account, toAddress: ABI.BuildIn.dexBindInviter.toAddress, tokenId: ViteWalletConst.viteToken.id, amount: Amount(0), fee: nil, data: ABI.BuildIn.getDexBindInviterData(code: code)).asVoid()
+                    return ViteNode.rawTx.send.block(account: account, toAddress: ABI.BuildIn.dexBindInviteCode.toAddress, tokenId: ViteWalletConst.viteToken.id, amount: Amount(0), fee: nil, data: ABI.BuildIn.getDexBindInviterData(code: code)).asVoid()
                 }
             }.done {
                 append(invitedAddress: account.address)

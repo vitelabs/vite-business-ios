@@ -62,7 +62,7 @@ final class TransactionViewModel: TransactionViewModelType {
 extension AccountBlock.TransactionType {
     var name: String {
         switch self {
-        case .register, .registerSBP:
+        case .register:
             return R.string.localizable.transactionListTransactionTypeNameRegister()
         case .registerUpdate:
             return R.string.localizable.transactionListTransactionTypeNameRegisterUpdate()
@@ -70,13 +70,13 @@ extension AccountBlock.TransactionType {
             return R.string.localizable.transactionListTransactionTypeNameCancelRegister()
         case .extractReward:
             return R.string.localizable.transactionListTransactionTypeNameExtractReward()
-        case .vote, .voteForSBP:
+        case .vote:
             return R.string.localizable.transactionListTransactionTypeNameVote()
-        case .cancelVote, .CancelSBPVoting:
+        case .cancelVote:
             return R.string.localizable.transactionListTransactionTypeNameCancelVote()
-        case .pledge, .StakeForQuota:
+        case .pledge:
             return R.string.localizable.transactionListTransactionTypeNamePledge()
-        case .cancelPledge, .CancelQuotaStaking:
+        case .cancelPledge:
             return R.string.localizable.transactionListTransactionTypeNameCancelPledge()
         case .coin:
             return R.string.localizable.transactionListTransactionTypeNameCoin()
@@ -87,13 +87,13 @@ extension AccountBlock.TransactionType {
 
     var icon: UIImage! {
         switch self {
-        case .register, .registerUpdate, .cancelRegister, .registerSBP:
+        case .register, .registerUpdate, .cancelRegister:
             return R.image.icon_tx_register()
         case .extractReward:
             return R.image.icon_tx_reward()
-        case .vote, .cancelVote, .voteForSBP, .CancelSBPVoting:
+        case .vote, .cancelVote:
             return R.image.icon_tx_vote()
-        case .pledge, .cancelPledge, .StakeForQuota, .CancelQuotaStaking:
+        case .pledge, .cancelPledge:
             return R.image.icon_tx_pledge()
         case .coin:
             return R.image.icon_tx_coin()

@@ -645,7 +645,7 @@ extension BifrostManager {
         guard let data = task.tx.block.data, data.count >= 4 else {
             return false
         }
-       if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) , type == .dexPost {
+       if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) , type == .dexPlaceOrder {
              guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
                  let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
                      return false
@@ -704,44 +704,41 @@ extension BifrostManager {
 
         static var localconfig_contract: [String] {
             return [
-                "vite_0000000000000000000000000000000000000006e82b8ba657.9dfb67ff",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.319e46dd",
                 "ViteWallet.ABI.BuildIn.dexDeposit",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.cc329169",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.00365d82",
                 "ViteWallet.ABI.BuildIn.dexWithdraw",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.7085778f",
-                "ViteWallet.ABI.BuildIn.dexVip",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.21d811bc",
+                "ViteWallet.ABI.BuildIn.dexStakeForVIP",
 
-                "vite_0000000000000000000000000000000000000003f6af7459b9.8de7dcfd",
-                "ViteWallet.ABI.BuildIn.pledge",
+                "vite_0000000000000000000000000000000000000003f6af7459b9.d2fd352d",
+                "ViteWallet.ABI.BuildIn.stakeForQuota",
 
-                "vite_0000000000000000000000000000000000000003f6af7459b9.9ff9c7b6",
-                "ViteWallet.ABI.BuildIn.cancelPledge",
+                "vite_0000000000000000000000000000000000000003f6af7459b9.b7fb0919",
+                "ViteWallet.ABI.BuildIn.cancelQuotaStaking",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.222ffc11",
-                "ViteWallet.ABI.BuildIn.dexStakingAsMining",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.76db6cdd",
+                "ViteWallet.ABI.BuildIn.dexStakeForMining",
 
-                "vite_0000000000000000000000000000000000000004d28108e76b.fdc17f25",
-                "ViteWallet.ABI.BuildIn.vote",
+                "vite_0000000000000000000000000000000000000004d28108e76b.42f2eee4",
+                "ViteWallet.ABI.BuildIn.voteForSBP",
 
-                "vite_0000000000000000000000000000000000000004d28108e76b.a629c531",
-                "ViteWallet.ABI.BuildIn.cancelVote",
+                "vite_0000000000000000000000000000000000000004d28108e76b.30b3f2ad",
+                "ViteWallet.ABI.BuildIn.cancelSBPVoting",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.da85ec8a",
-                "ViteWallet.ABI.BuildIn.dexNewInviter",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.66156a25",
+                "ViteWallet.ABI.BuildIn.dexCreateInviteCode",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.a562b706",
-                "ViteWallet.ABI.BuildIn.dexBindInviter",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.f19ffbcb",
+                "ViteWallet.ABI.BuildIn.dexBindInviteCode",
 
-                "vite_00000000000000000000000000000000000000079710f19dc7.b251adc5",
-                "ViteWallet.ABI.BuildIn.dexCancel",
+                "vite_00000000000000000000000000000000000000079710f19dc7.2205eb17",
+                "ViteWallet.ABI.BuildIn.dexCancelOrder",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.147927ec",
-                "ViteWallet.ABI.BuildIn.dexPost",
-
-                "vite_0000000000000000000000000000000000000006e82b8ba657.e7f03bc7",
-                "vx"
+                "vite_0000000000000000000000000000000000000006e82b8ba657.0454f5ef",
+                "ViteWallet.ABI.BuildIn.dexPlaceOrder",
             ]
         }
 

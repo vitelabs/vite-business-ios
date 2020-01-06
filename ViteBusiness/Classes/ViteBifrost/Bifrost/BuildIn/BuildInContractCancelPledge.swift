@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCancelPledge: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.cancelPledge
+    let abi = ABI.BuildIn.old_cancelPledge
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Retrieve Staking for Quota\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"Amount\",\"zh\":\"取回抵押金额\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
@@ -38,7 +38,7 @@ struct BuildInContractCancelPledge: BuildInContractProtocol {
 
 struct BuildInContractCancelQuotaStaking: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.CancelQuotaStaking
+    let abi = ABI.BuildIn.cancelQuotaStaking
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Retrieve Staking for Quota\",\"zh\":\"取回配额抵押\"}},\"inputs\":[{\"name\":{\"base\":\"ID\",\"zh\":\"ID\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
