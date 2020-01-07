@@ -1,5 +1,5 @@
 //
-//  BuildInContractExtractReward.swift
+//  BuildInContractWithdrawSBPReward.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2019/7/24.
@@ -8,7 +8,7 @@
 import ViteWallet
 import PromiseKit
 
-struct BuildInContractExtractReward: BuildInContractProtocol {
+struct BuildInContractWithdrawSBPReward: BuildInContractProtocol {
 
     let abi = ABI.BuildIn.withdrawSBPReward
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Claim Rewards\",\"zh\":\"提取奖励\"}},\"inputs\":[{\"name\":{\"base\":\"Recipient Address\",\"zh\":\"收款地址\"}}]}")!
@@ -18,13 +18,10 @@ struct BuildInContractExtractReward: BuildInContractProtocol {
         let title = description.function.title ?? ""
         do {
             let values = try ABI.Decoding.decodeParameters(sendTx.block.data!, abiString: abi.rawValue)
-            guard let gidValue = values[0] as? ABIGIdValue else {
+            guard let nameValue = values[0] as? ABIStringValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }
-            guard let nameValue = values[1] as? ABIStringValue else {
-                return Promise(error: ConfirmError.InvalidData)
-            }
-            guard let addressValue = values[2] as? ABIAddressValue else {
+            guard let addressValue = values[1] as? ABIAddressValue else {
                 return Promise(error: ConfirmError.InvalidData)
             }
             let items = [description.inputs[0].confirmItemInfo(text: addressValue.toString())
