@@ -124,6 +124,9 @@ class GrinTxByViteService {
                 plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: responseSlate , type: .response, account: account)
             }
+            .then { fname -> Promise<String> in
+                return after(seconds: 1).map { fname }
+            }
             .then { fname -> Promise<Void> in
                 plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account)

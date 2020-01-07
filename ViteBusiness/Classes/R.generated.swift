@@ -3194,10 +3194,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawMin = Rswift.StringResource(key: "crosschain.withdraw.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Mining Invitation, Premiere Mining
-      /// 
-      /// Locales: en, zh-Hans
-      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: MintMsg
       /// 
       /// Locales: en, zh-Hans
@@ -3706,6 +3702,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinRecoverSyncronizing = Rswift.StringResource(key: "grin.recover.syncronizing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Refer for mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, zh-Hans
@@ -8526,13 +8526,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.withdraw.min", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Mining Invitation, Premiere Mining
-      /// 
-      /// Locales: en, zh-Hans
-      public static func myPageInviteCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: MintMsg
       /// 
       /// Locales: en, zh-Hans
@@ -9420,6 +9413,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinRecoverSyncronizing(_: Void = ()) -> String {
         return NSLocalizedString("grin.recover.syncronizing", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Refer for mining
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageInviteCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Refresh
