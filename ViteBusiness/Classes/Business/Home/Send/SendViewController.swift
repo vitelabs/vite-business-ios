@@ -134,9 +134,9 @@ class SendViewController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 40)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addPlaceholder(height: 10)
-        scrollView.stackView.addArrangedSubview(amountView)
-        scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(noteView)
+        scrollView.stackView.addPlaceholder(height: 10)
+        scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addPlaceholder(height: 40)
         scrollView.stackView.addArrangedSubview(quotaView)
 
@@ -152,23 +152,14 @@ class SendViewController: BaseViewController {
         amountView.textField.keyboardType = .decimalPad
         noteView.textField.keyboardType = .default
 
-        let toolbar = UIToolbar()
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: nil, action: nil)
         if self.data == nil {
-            toolbar.items = [flexSpace, next]
+            addressView.textView.kas_setReturnAction(.next(responder: noteView.textField))
+            noteView.textField.kas_setReturnAction(.next(responder: amountView.textField), delegate: self)
         } else {
-            toolbar.items = [flexSpace, done]
+            addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
         }
-        toolbar.sizeToFit()
-        next.rx.tap.bind { [weak self] in self?.noteView.textField.becomeFirstResponder() }.disposed(by: rx.disposeBag)
-        done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
-        amountView.textField.inputAccessoryView = toolbar
 
-        addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
-        amountView.textField.delegate = self
-        noteView.textField.kas_setReturnAction(.done(block: {
+        amountView.textField.kas_setReturnAction(.done(block: {
             $0.resignFirstResponder()
         }), delegate: self)
 
