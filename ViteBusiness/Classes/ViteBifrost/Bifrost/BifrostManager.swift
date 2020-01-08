@@ -645,23 +645,23 @@ extension BifrostManager {
         guard let data = task.tx.block.data, data.count >= 4 else {
             return false
         }
-       if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: task.tx.block.toAddress) , type == .dexPlaceOrder {
-             guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
-                 let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
-                     return false
-             }
+        guard let toAddress = task.tx.block.toAddress else {
+            return false
+        }
+        let toAddressAndDataPrefix = "\(toAddress).\(data[0..<4].toHexString())"
+        if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: toAddress) , type == .dexPlaceOrder {
+            guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
+                let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
+                    return false
+            }
             let pairStr = tradeTokenIdValue.toString() + "/" + quoteTokenIdValue.toString()
             let allowMarkets = BifrostManager.AutoSigInfo.dexPostContractPairs
-            let vx = "tti_564954455820434f494e69b5"
-
             if allowMarkets.contains(pairStr) {
-                 return true
-            } else if tradeTokenIdValue.toString() == vx {
                  return true
             }  else {
                 return false
             }
-        } else if BifrostManager.AutoSigInfo.contract.contains("\(task.tx.block.toAddress).\(data[0..<4].toHexString())") {
+        } else if BifrostManager.AutoSigInfo.contract.contains(toAddressAndDataPrefix) {
             return true
         } else {
             return false
