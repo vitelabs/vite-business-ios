@@ -742,6 +742,9 @@ extension BifrostManager {
 
                 "vite_0000000000000000000000000000000000000006e82b8ba657.0454f5ef",
                 "ViteWallet.ABI.BuildIn.dexPlaceOrder",
+
+                "vite_0000000000000000000000000000000000000006e82b8ba657.e7f03bc7",
+                "ViteWallet.ABI.BuildIn.dexLockVxForDividend",
             ]
         }
 

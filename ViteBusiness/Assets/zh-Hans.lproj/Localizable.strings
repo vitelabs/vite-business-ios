@@ -917,6 +917,14 @@
 "buildin.dex.cancel.vip.item0.title" = "当前地址";
 "buildin.dex.cancel.vip.item1.title" = "抵押金额";
 
+"buildin.dex.lock.vx.function.title" = "锁仓VX";
+"buildin.dex.lock.vx.item0.title" = "当前地址";
+"buildin.dex.lock.vx.item1.title" = "金额";
+
+"buildin.dex.un.lock.vx.function.title" = "取回锁仓VX";
+"buildin.dex.un.lock.vx.item0.title" = "当前地址";
+"buildin.dex.un.lock.vx.item1.title" = "金额";
+
 // app scheme
 "app.scheme.home.page.busy.header" = "交易确认";
 "app.scheme.home.page.busy.content" = "请确认如下交易信息";

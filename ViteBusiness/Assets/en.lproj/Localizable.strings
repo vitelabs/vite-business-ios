@@ -907,6 +907,14 @@
 "buildin.dex.cancel.vip.item0.title" = "Current Address";
 "buildin.dex.cancel.vip.item1.title" = "Amount";
 
+"buildin.dex.lock.vx.function.title" = "Stake";
+"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.un.lock.vx.function.title" = "Retrieve";
+"buildin.dex.un.lock.vx.item0.title" = "Current Address";
+"buildin.dex.un.lock.vx.item1.title" = "Amount";
+
 // app scheme
 "app.scheme.home.page.busy.header" = "Transaction Confirmation";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";
