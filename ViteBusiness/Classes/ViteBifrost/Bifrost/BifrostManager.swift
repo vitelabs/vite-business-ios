@@ -719,6 +719,9 @@ extension BifrostManager {
                 "vite_0000000000000000000000000000000000000003f6af7459b9.b7fb0919",
                 "ViteWallet.ABI.BuildIn.cancelQuotaStaking",
 
+                "vite_0000000000000000000000000000000000000003f6af7459b9.f19e3c6b",
+                "ViteWallet.ABI.BuildIn.old_cancelStake",
+
                 "vite_0000000000000000000000000000000000000006e82b8ba657.76db6cdd",
                 "ViteWallet.ABI.BuildIn.dexStakeForMining",
 
@@ -728,7 +731,7 @@ extension BifrostManager {
                 "vite_0000000000000000000000000000000000000004d28108e76b.30b3f2ad",
                 "ViteWallet.ABI.BuildIn.cancelSBPVoting",
 
-                "vite_0000000000000000000000000000000000000006e82b8ba657.66156a25",
+                "vite_0000000000000000000000000000000000000006e82b8ba657.d8088efc",
                 "ViteWallet.ABI.BuildIn.dexCreateInviteCode",
 
                 "vite_0000000000000000000000000000000000000006e82b8ba657.f19ffbcb",
