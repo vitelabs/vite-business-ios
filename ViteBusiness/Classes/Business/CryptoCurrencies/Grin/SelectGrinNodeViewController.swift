@@ -137,7 +137,7 @@ extension SelectGrinNodeViewController: UITableViewDelegate, UITableViewDataSour
         if selectedIndexPath == indexPath {
             return
         }
-        view.displayLoading()
+        UIApplication.shared.keyWindow?.displayLoading()
         DispatchQueue.global(qos: .default).async {
             if indexPath.section == 0 {
                 GrinLocalInfoService.shared.deSelect()
@@ -153,7 +153,7 @@ extension SelectGrinNodeViewController: UITableViewDelegate, UITableViewDataSour
             DispatchQueue.main.async {
                 self.updateNodes()
                 var shouldAlet = true
-                self.view.hideLoading()
+                UIApplication.shared.keyWindow?.hideLoading()
                 switch result {
                 case .success((let refreshed, let txs)):
                     if refreshed == true {
