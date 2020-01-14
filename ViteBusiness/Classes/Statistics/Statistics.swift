@@ -39,7 +39,7 @@ public class Statistics: NSObject {
             }
         }
 
-        plog(level: .debug, log: toast, tag: .statistics)
+        //plog(level: .debug, log: toast, tag: .statistics)
 
         if DebugService.instance.config.showStatisticsToast {
             Toast.show(toast)
@@ -73,7 +73,7 @@ public class Statistics: NSObject {
             Toast.show("Statistics Page Start: \(name)")
         }
 
-        plog(level: .debug, log: "Statistics Page Start: \(name)", tag: .statistics)
+        //plog(level: .debug, log: "Statistics Page Start: \(name)", tag: .statistics)
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
@@ -99,7 +99,7 @@ public class Statistics: NSObject {
             Toast.show("Statistics Page End: \(name)")
         }
 
-        plog(level: .debug, log: "Statistics Page End: \(name)", tag: .statistics)
+        //plog(level: .debug, log: "Statistics Page End: \(name)", tag: .statistics)
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)

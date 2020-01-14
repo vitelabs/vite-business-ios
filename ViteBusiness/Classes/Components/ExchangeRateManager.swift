@@ -45,14 +45,14 @@ public final class ExchangeRateManager {
         HDWalletManager.instance.walletDriver.map({ $0?.uuid }).distinctUntilChanged().drive(onNext: { [weak self] uuid in
             guard let `self` = self else { return }
             if let _ = uuid {
-                plog(level: .debug, log: "start fetch", tag: .exchange)
+                //plog(level: .debug, log: "start fetch", tag: .exchange)
                 self.rateMapBehaviorRelay.accept(self.read())
                 let tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
                 let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5 * 60, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
                     switch r {
                     case .success(let map):
-                        plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
+                        //plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
                         self.rateMapBehaviorRelay.accept(map)
                         self.pri_save()
                     case .failure(let error):
@@ -63,7 +63,7 @@ public final class ExchangeRateManager {
                 self.service = service
                 self.service?.startPoll()
             } else {
-                plog(level: .debug, log: "stop fetch", tag: .exchange)
+                //plog(level: .debug, log: "stop fetch", tag: .exchange)
                 self.rateMapBehaviorRelay.accept(ExchangeRateMap())
                 self.service?.stopPoll()
                 self.service = nil
@@ -78,7 +78,7 @@ public final class ExchangeRateManager {
             guard let `self` = self else { return }
             switch ret {
             case .success(let map):
-                plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
+                //plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
                 if let rate = map[tokenCode] {
                     var old = self.rateMapBehaviorRelay.value
                     old[tokenCode] = rate

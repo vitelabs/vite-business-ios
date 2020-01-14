@@ -102,9 +102,6 @@ class TokenListSearchViewController: UIViewController {
             .disposed(by: rx.disposeBag)
     }
     
-    deinit {
-        print("======= TokenListSearchViewController deinit")
-    }
 }
 
 extension TokenListSearchViewController : UISearchResultsUpdating {

@@ -184,7 +184,7 @@ class WalletHomeViewController: BaseViewController {
         }
 
         ViteBalanceInfoManager.instance.unselectBalanceInfoVMsDriver.drive(onNext: { (vms) in
-            plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.uniqueSymbol + " " }))")
+            //plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.uniqueSymbol + " " }))")
             var tokens = NewAssetService.instance.handleIsNewTipTokens(vms)
 
             if tokens.count > 0 {

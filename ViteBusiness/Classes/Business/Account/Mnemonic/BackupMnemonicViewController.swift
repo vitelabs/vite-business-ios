@@ -297,7 +297,7 @@ extension BackupMnemonicViewController {
 
 
         mnemonicSwitchView.typeDriver.drive(onNext: { (length, language) in
-            plog(level: .debug, log: "\(length) \(language)")
+            //plog(level: .debug, log: "\(length) \(language)")
         }).disposed(by: rx.disposeBag)
 
         self.mnemonicCollectionView.snp.makeConstraints { (make) -> Void in

@@ -337,12 +337,12 @@ extension BnbWallet : WebSocketDelegate {
 extension BnbWallet {
     // MARK: - Utils
     private func output(_ label: String, _ property: Any, _ error: Error? = nil) {
-        plog(level: .debug, log: String(format: "bnb===%@:", label), tag: .bnb)
+        //plog(level: .debug, log: String(format: "bnb===%@:", label), tag: .bnb)
         if let error = error {
-            plog(level: .debug, log:"error: \(error.localizedDescription)\n", tag: .bnb)
+            //plog(level: .debug, log:"error: \(error.localizedDescription)\n", tag: .bnb)
             return
         }
-        plog(level: .debug, log:property, tag: .bnb)
+        //plog(level: .debug, log:property, tag: .bnb)
     }
 }
 

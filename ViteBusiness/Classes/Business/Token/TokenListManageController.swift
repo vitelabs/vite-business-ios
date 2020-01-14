@@ -50,10 +50,6 @@ class TokenListManageController: BaseViewController {
         self.viewModel.refreshList()
     }
 
-    deinit {
-        print("======= TokenListManageController deinit")
-    }
-
     fileprivate lazy var searchResultVC = TokenListSearchViewController().then {
         $0.onlyShowVite = self.onlyShowVite
     }

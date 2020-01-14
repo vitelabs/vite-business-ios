@@ -151,6 +151,15 @@ class GrinManager: GrinBridge {
         }
     }
 
+    func redApiSecret() -> String {
+        let url =  walletUrl.appendingPathComponent(".api_secret")
+        do {
+            return String.init(data: FileManager.default.contents(atPath: url.path)!, encoding: .utf8) ?? ""
+        } catch {
+            return ""
+        }
+    }
+
     func getBalance() {
         guard self.walletCreated.value else { return }
         grin_async({ () in

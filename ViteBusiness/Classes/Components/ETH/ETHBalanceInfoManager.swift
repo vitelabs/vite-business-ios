@@ -79,7 +79,7 @@ public class ETHBalanceInfoManager {
         if let address = self.address, !tokenInfos.isEmpty {
 
             if address != EtherWallet.shared.address {
-                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+                //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
                 self.serviceMap = [:]
             }
 
@@ -90,14 +90,14 @@ public class ETHBalanceInfoManager {
                     return true
                 }
             }.forEach { (tokenInfo) in
-                plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
+                //plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
                 let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 5, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {
                     case .success(let balanceInfo):
 
-                        plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
+                        //plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
 
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
@@ -114,14 +114,14 @@ public class ETHBalanceInfoManager {
 
             serviceMap.forEach { (tokenCode, service) in
                 if !tokenInfos.contains(where: { $0.tokenCode == tokenCode }) {
-                    plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
+                    //plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
                     serviceMap[tokenCode] = nil
                 }
             }
 
         } else {
             if tokenCodes.isEmpty {
-                plog(level: .debug, log: "stop All fetch", tag: .transaction)
+                //plog(level: .debug, log: "stop All fetch", tag: .transaction)
                 self.serviceMap = [:]
             } else {
                 GCD.delay(1) {

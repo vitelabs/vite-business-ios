@@ -58,7 +58,7 @@ public class AppConfigService {
             guard let `self` = self else { return }
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get config hash finished", tag: .getConfig)
+                //plog(level: .debug, log: "get config hash finished", tag: .getConfig)
                 guard let string = jsonString else { return }
                 guard let configHash = ConfigHash(JSONString: string) else { return }
                 self.lastBuildNumber = configHash.lastBuildNumber
@@ -79,10 +79,10 @@ public class AppConfigService {
             guard let `self` = self else { return }
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get app config finished", tag: .getConfig)
+                //plog(level: .debug, log: "get app config finished", tag: .getConfig)
                 guard let string = jsonString else { return }
                 self.appConfigHash = string.md5()
-                plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
+                //plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
                 if let config = AppConfig(JSONString: string) {
                     self.configBehaviorRelay.accept(config)
                     // make sure md5 not change

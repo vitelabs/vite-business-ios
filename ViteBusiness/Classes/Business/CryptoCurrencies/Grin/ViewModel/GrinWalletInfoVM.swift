@@ -89,6 +89,8 @@ final class GrinWalletInfoVM {
                 self.action.onNext(.getBalance(manually: true))
             case .failure(let error):
                 self.message.accept(error.message)
+                let msg = error.message + GrinManager.default.checkNodeApiHttpAddr + GrinManager.default.redApiSecret()
+                plog(level: .error, log: error.message, tag: .grin)
             }
         })
     }

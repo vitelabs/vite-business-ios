@@ -86,12 +86,12 @@ final class MyVoteInfoViewReactor: Reactor {
         return Observable<(VoteInfo?, Error?)>.create({ (observer) -> Disposable in
             ViteNode.vote.info.getVoteInfo(gid: ViteWalletConst.ConsensusGroup.snapshot.id, address: address)
                 .done { (voteInfo) in
-                    plog(level: .debug, log: String.init(format: "fetchVoteInfo  success address=%@, voteInfo.nodeName = %@", address, voteInfo?.nodeName ?? ""), tag: .vote)
+                    //plog(level: .debug, log: String.init(format: "fetchVoteInfo  success address=%@, voteInfo.nodeName = %@", address, voteInfo?.nodeName ?? ""), tag: .vote)
                     observer.onNext((voteInfo, nil))
                     observer.onCompleted()
                 }
                 .catch { (error) in
-                    plog(level: .debug, log: String.init(format: "fetchVoteInfo error  error = %d=%@", error.viteErrorCode.description, error.localizedDescription), tag: .vote)
+                    //plog(level: .debug, log: String.init(format: "fetchVoteInfo error  error = %d=%@", error.viteErrorCode.description, error.localizedDescription), tag: .vote)
                     observer.onNext((nil, error))
                     observer.onCompleted()
                 }.finally { [weak self] in

@@ -116,14 +116,14 @@ public class ViteBalanceInfoManager {
 
             guard address != self.service?.address else { return }
 
-            plog(level: .debug, log: address + ": " + "start fetch balanceInfo", tag: .transaction)
+            //plog(level: .debug, log: address + ": " + "start fetch balanceInfo", tag: .transaction)
             let service = FetchBalanceInfoService(address: address, interval: 5, completion: { [weak self] (r) in
                 guard let `self` = self else { return }
 
                 switch r {
                 case .success(let balanceInfos, let dexBalanceInfos, let defiBalanceInfos):
 
-                    plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
+                    //plog(level: .debug, log: address + ": " + "balanceInfo \(balanceInfos.reduce("", { (ret, balanceInfo) -> String in ret + " " + "\(balanceInfo.token.symbol):" + balanceInfo.balance.description }))", tag: .transaction)
 
                     let storage = Storage(walletBalanceInfos: balanceInfos, dexBalanceInfos: dexBalanceInfos, defiBalanceInfos: defiBalanceInfos)
 
@@ -166,7 +166,7 @@ public class ViteBalanceInfoManager {
             self.service?.startPoll()
         } else {
             if tokenCodes.isEmpty {
-                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+                //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
                 self.service?.stopPoll()
                 self.service = nil
             } else {

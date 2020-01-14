@@ -59,7 +59,7 @@ class MarketWebSocket: NSObject {
             let jsonData = try original.data()
             socket.write(data: jsonData)
         } catch  {
-//            plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+//            //plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
         }
     }
 
@@ -76,9 +76,9 @@ class MarketWebSocket: NSObject {
                 let original = try originalBuilder.build()
                 let jsonData = try original.data()
                 socket.write(data: jsonData)
-//                plog(level: .debug, log: "websocketSendPing", tag: .market)
+//                //plog(level: .debug, log: "websocketSendPing", tag: .market)
             } catch  {
-//                plog(level: .debug, log: "websocketPingError:\(error.localizedDescription)", tag: .market)
+//                //plog(level: .debug, log: "websocketPingError:\(error.localizedDescription)", tag: .market)
             }
         } else {
             socket.connect()
@@ -104,26 +104,26 @@ class MarketWebSocket: NSObject {
 extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
-//        plog(level: .debug, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
+//        //plog(level: .debug, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
         self.ping()
         self.sub()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-//        plog(level: .debug, log: "websocketDidDisconnect, clientId:\(clientId),error: \(error?.localizedDescription)", tag: .market)
+//        //plog(level: .debug, log: "websocketDidDisconnect, clientId:\(clientId),error: \(error?.localizedDescription)", tag: .market)
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-//        plog(level: .debug, log: "websocketDidReceiveMessage", tag: .market)
+//        //plog(level: .debug, log: "websocketDidReceiveMessage", tag: .market)
     }
 
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-//        plog(level: .debug, log: "websocketDidReceiveData", tag: .market)
+//        //plog(level: .debug, log: "websocketDidReceiveData", tag: .market)
         self.handle(data)
     }
 
     func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-//        plog(level: .debug, log: "websocketDidReceivePong", tag: .market)
+//        //plog(level: .debug, log: "websocketDidReceivePong", tag: .market)
     }
 
 }

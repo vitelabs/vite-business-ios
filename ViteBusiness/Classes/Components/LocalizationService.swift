@@ -53,7 +53,7 @@ public class LocalizationService {
         COSProvider.instance.getLocalizable(language: language) { (result) in
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get \(language.code) localizable finished", tag: .getConfig)
+                //plog(level: .debug, log: "get \(language.code) localizable finished", tag: .getConfig)
                 if let string = jsonString,
                     let data = string.data(using: .utf8) {
                     if let error = self.fileHelper.writeData(data, relativePath: self.cacheFileName(language: language)) {

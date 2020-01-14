@@ -43,7 +43,6 @@ class MarketInfoService: NSObject {
         super.init()
 
         marketSocket.onNewTickerStatistics = { statistic in
-            print(statistic)
             let relay = self.sortedMarketDataBehaviorRelay.value
             for data in relay {
                 for info in data.infos {
