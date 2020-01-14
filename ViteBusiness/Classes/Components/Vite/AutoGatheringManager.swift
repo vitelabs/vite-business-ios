@@ -43,7 +43,7 @@ final class AutoGatheringManager {
                                 GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
                             }
                         }
-                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
+//                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
                     case .failure(let error):
                         plog(level: .warning, log: "getOnroad for \(accounts.count) address error: \(error.viteErrorMessage)", tag: .transaction)
                     }
