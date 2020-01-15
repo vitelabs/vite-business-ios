@@ -915,6 +915,9 @@
 "buildin.dex.un.lock.vx.item0.title" = "Current Address";
 "buildin.dex.un.lock.vx.item1.title" = "Amount";
 
+"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
+"buildin.dex.cancel.stake.item0.title" = "Current Address";
+
 // app scheme
 "app.scheme.home.page.busy.header" = "Transaction Confirmation";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";

@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1065 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1067 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2574,6 +2574,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexBecomeVipItem0Title = Rswift.StringResource(key: "buildin.dex.become.vip.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelStakeItem0Title = Rswift.StringResource(key: "buildin.dex.cancel.stake.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
@@ -3770,6 +3774,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let transactionListTransactionTypeNameExtractReward = Rswift.StringResource(key: "transaction.list.transaction.type.name.extractReward", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Retrieve Staking
+      /// 
+      /// Locales: en, zh-Hans
+      public static let buildinDexCancelStakeFunctionTitle = Rswift.StringResource(key: "buildin.dex.cancel.stake.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Retrieve Staking for Issuance
       /// 
       /// Locales: en, zh-Hans
@@ -7468,6 +7476,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
+      public static func buildinDexCancelStakeItem0Title(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.stake.item0.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
       public static func buildinDexCancelStakingAsMiningItem0Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.dex.cancel.staking.as.mining.item0.title", bundle: R.hostingBundle, comment: "")
       }
@@ -9556,6 +9571,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func transactionListTransactionTypeNameExtractReward(_: Void = ()) -> String {
         return NSLocalizedString("transaction.list.transaction.type.name.extractReward", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Retrieve Staking
+      /// 
+      /// Locales: en, zh-Hans
+      public static func buildinDexCancelStakeFunctionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("buildin.dex.cancel.stake.function.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Retrieve Staking for Issuance
