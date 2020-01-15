@@ -65,12 +65,12 @@ final class GrinWalletInfoVM {
         })
         .disposed(by: bag)
 
-        balance.asObservable()
-            .skip(1)
-            .distinctUntilChanged { $0.amountCurrentlySpendable == $1.amountCurrentlySpendable }
-            .map { _ in  Action.getTxs(manually: false) }
-            .bind(to: self.action)
-            .disposed(by: bag)
+//        balance.asObservable()
+//            .skip(1)
+//            .distinctUntilChanged { $0.amountCurrentlySpendable == $1.amountCurrentlySpendable }
+//            .map { _ in  Action.getTxs(manually: false) }
+//            .bind(to: self.action)
+//            .disposed(by: bag)
 
         GrinManager.default.balanceDriver.asObservable()
             .bind(to: self.balance)

@@ -76,8 +76,8 @@ class GrinInfoViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-        walletInfoVM.action.onNext(.getBalance(manually: true))
-        walletInfoVM.action.onNext(.getTxs(manually: true))
+//        walletInfoVM.action.onNext(.getBalance(manually: true))
+//        walletInfoVM.action.onNext(.getTxs(manually: true))
         GrinManager.default.handleSavedTx()
         GrinTxByViteService().reportViteAddress().done {_ in}
     }
