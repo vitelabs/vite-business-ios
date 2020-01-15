@@ -146,6 +146,7 @@ struct BifrostConfirmInfoFactory {
         case dexStakingAsMining
         case dexVip
         case dexLockVxForDividend
+        case dexCancelStakeById
 
         fileprivate var info: BuildInContractProtocol {
 
@@ -205,6 +206,8 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractDexVip()
             case .dexLockVxForDividend:
                 return BuildInContractDexLockVxForDividend()
+            case .dexCancelStakeById:
+                return BuildInContractDexCancelStakeById()
             }
         }
     }
