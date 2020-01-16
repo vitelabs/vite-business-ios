@@ -89,10 +89,10 @@ class GrinTransactVM {
         },  { (result) in
             self.showLoading.accept(false)
             switch result {
-            case .success(let sendSlate):
+            case .success((let sendSlate, let rawData)):
                 GrinLocalInfoService.shared.addSendInfo(slateId: sendSlate.id, method: "File", creatTime: Int(Date().timeIntervalSince1970))
                 do {
-                    let url = try self.save(slate: sendSlate, isResponse: false)
+                    let url = try self.save(slateId: sendSlate.id, isResponse: false, rawData: rawData)
                     self.sendSlateCreated.onNext((sendSlate, url))
                 } catch {
                     self.message.onNext(error.localizedDescription)
@@ -108,10 +108,10 @@ class GrinTransactVM {
             GrinManager.default.txReceive(slatePath: slateUrl.path, message: "Received")
         },  { (result) in
             switch result {
-            case .success(let receviedSlate):
+            case .success((let receviedSlate, let rawData)):
                 do {
                     GrinLocalInfoService.shared.set(receiveTime: Int(Date().timeIntervalSince1970), with: receviedSlate.id)
-                    let receviedSlateUrl =  try self.save(slate: receviedSlate, isResponse: true)
+                    let receviedSlateUrl =  try self.save(slateId: receviedSlate.id, isResponse: true,rawData: rawData)
                     self.receiveSlateCreated.onNext((receviedSlate, receviedSlateUrl))
                 } catch {
                     self.message.onNext(error.localizedDescription)
@@ -214,10 +214,19 @@ class GrinTransactVM {
         }
     }
 
-    func save(slate: Slate, isResponse: Bool) throws -> URL {
-        let slateUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: isResponse)
+    fileprivate func save(slateId: String, isResponse: Bool,rawData: Data?) throws -> URL {
+
+        let slateUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: isResponse)
         do {
-            try slate.toJSONString()?.write(to: slateUrl, atomically: true, encoding: .utf8)
+            if let rawData = rawData {
+                try rawData.write(to: slateUrl)
+                plog(level: .info, log: "save slate: \(String.init(data: rawData, encoding: .utf8))", tag: .grin)
+            } else {
+                plog(level: .error, log: "slatestring error\(slateId)", tag: .grin)
+            }
+//            else {
+//                try slate.toJSONString()?.write(to: slateUrl, atomically: true, encoding: .utf8)
+//            }
             return slateUrl
         } catch {
             throw error
