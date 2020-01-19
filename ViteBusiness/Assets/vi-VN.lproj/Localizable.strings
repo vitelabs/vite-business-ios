@@ -66,7 +66,7 @@
 
 /* Lock */
 "lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Arouse verify again";
+"lock.page.fingerprint.btn.title" = "Biometric Verification";
 "lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
 "lock.page.changeUser.btn.title" = "Switch Account";
 
@@ -75,15 +75,31 @@
 "create.page.tf.title" = "Account Name";
 "create.page.pw.title" = "Please input password";
 "create.page.pw.repeate.title" = "Please input your password again";
+"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
+"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
 "create.page.submit.btn.title" = "Create";
+"create.page.toast.error.invite.code" = "Wrong Invitation Code";
 
-"create.page.tip.title" = "Backup Wallet Account";
-"create.page.tip.content" = "Mnemonic seed phrase is the only way to restore your wallet when you switch devices or reinstall this app. You are strongly advised to write down the phrase and keep it in a safe place where only you have access.";
-"create.page.tip.nextBtn" = "Generate Seed Phrase";
+"create.page.tip.title" = "Backup Instructions";
+"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
+"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
+"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
+"create.page.tip.button.skip.title" = "Back Up Later";
+"create.page.tip.button.next.title" = "Backed Up";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Generate Seed Phrase";
-"mnemonic.backup.page.tip.title" = "Mnemonic words is the only way to recover your account, please do keep them well in case of lost.";
+"mnemonic.backup.page.title" = "Mnemonic Words Backup";
+"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
+"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
+
+"mnemonic.backup.scan.alert.title" = "Notice";
+"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
+"mnemonic.backup.scan.alert.ok.title" = "Confirm";
+"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
@@ -161,6 +177,9 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
+"my.page.invite.cell.title" = "Refer for mining";
+"my.page.reward.cell.title" = "Rewards Enquiry";
+"my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 
@@ -236,6 +255,7 @@
 "send.page.not.enough.balance.alert.button" = "Cancel";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
 
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "VITE Conversion";
@@ -273,6 +293,10 @@
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
 "system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
 "system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.upload.log.title" = "Upload Log";
+"system.page.cell.upload.log.toast.success" = "Log Uploaded";
+"system.page.cell.delete.wallet.title" = "Delete Current Account";
+"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";
@@ -316,7 +340,7 @@
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Stake to Speed";
+"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
@@ -485,7 +509,12 @@
 "confirm.transaction.page.vite.vote.node.name" = "Node Name";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
-// vote call contract
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
+// vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
 // eth transfer
@@ -546,12 +575,12 @@
 "grin.sent.http.success" = "You have successfully sent GRIN transfer request";
 "grin.sent.vite.success" = "Your transaction has sent.";
 "grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
-"grin.receiveByVite.desc" = "Please share your VITE address(Find it at the bottom) with the sender. Please notice if you open a Vite wallet other than iOS wallet and receive the VITE transaction, you will not be able to receive the transfer, please ask the sender to cancel the transaction and resend.";
+"grin.receiveByVite.desc" = "Please note that web wallet doesn't support native GRIN. If you receive the VITE transaction with GRIN file, you should contact the sender to cancel the transaction and resend GRIN.";
 "grin.iknow" = "I know";
 "grin.thisIsFirstViteAddress" = "This is your first VITE address";
 "grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
 "grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
-"grin.receive.title" = "Send GRIN";
+"grin.receive.title" = "Receive GRIN";
 "grin.receive.sented" = "Created";
 "grin.creatTime" = "Creation Time";
 "grin.signAndShare" = "Receive and Share";
@@ -568,10 +597,10 @@
 "grin.vite.address" = "VITE Address";
 "grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
 "grin.canceled" = "Canceled";
-"grin.makeSureToShare" = "Plese make sure to share the transaction file with sender";
+"grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
-"grin.txbyfile.shareReceiveFileDesc" = "Plese make sure to share the transaction file with sender";
+"grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txbyfile.initStatus.sender" = "Created";
 "grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
@@ -592,7 +621,7 @@
 "grin.teach.vite.send.startSend" = "Start to Send";
 "grin.txMethod.http" = "HTTP Address";
 "grin.txMethod.vite" = "VITE Address";
-"grin.txMethod.file" = "File Transaction";
+"grin.txMethod.file" = "Transaction File";
 
 "grin.detail.fromMine" = "Coinbase";
 "grin.detail.txStatus" = "Transaction State";
@@ -630,31 +659,31 @@
 // CrossChain Transfer & Receive
 
 "crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Receive";
-"crosschain.withdraw" = "Cross-Chain Send";
-"crosschain.withdraw.btnTitle" = "Send";
-"crosschain.deposit.btnTitle" = "Receive";
-"crosschain.deposit.vitewallet" = "Deposit through Vite Wallet";
-"crosschain.deposit.otherwallet" = "Receive from Another Wallet";
-"crosschain.deposit.history" = "Receive History";
-"crosschain.withdraw.history" = "Transfer History";
+"crosschain.deposit" = "Cross-Chain Deposit";
+"crosschain.withdraw" = "Cross-Chain Withdraw";
+"crosschain.withdraw.btnTitle" = "Withdraw";
+"crosschain.deposit.btnTitle" = "Deposit";
+"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
+"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
+"crosschain.deposit.history" = "Deposit History";
+"crosschain.withdraw.history" = "Withdrawal History";
 "crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
 "crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Receive Address";
+"crosschain.deposit.address" = "Deposit Address";
 "crosschain.deposit.scanAddress" = "Please scan the address QR code";
 "crosschain.deposit.scanLabel" = "Please scan the %@ code";
-"crosschain.deposit.labelDesc" = "Please do use %@ together with the Receive Address, or you will lose the token(s).";
+"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain receive from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Receive</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain receive allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain transfer.</p>";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Receive Amount ";
-"crosschain.withdraw.min" = "Minimum Send Amount ";
-"crosschain.deposit.min.alert" = "The receive amount cannot be less than ";
-"crosschain.deposit.all" = "Receive All";
-"crosschain.deposit.amount" = "Receive Amount";
+"crosschain.deposit.min" = "Minimum Deposit Amount ";
+"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
+"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.all" = "Deposit All";
+"crosschain.deposit.amount" = "Deposit Amount";
 "crosschain.withdraw.all" = "Withdraw All";
-"crosschain.withdraw.amount" = "Withdraw Amount";
+"crosschain.withdraw.amount" = "Withdrawal Amount";
 "crosschain.tokenDetail.shortname" = "Symbol";
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Token Name";
@@ -671,15 +700,15 @@
 "crosschain.status.confirmed" = "Confirmed";
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
 "crosschain.status.wrong.address" = "Wrong transfer address";
-"crosschain.status.gatewayReceived" = "Received by Gateway";
-"crosschain.status.withdraw.failed" = "Withdraw Failed";
-"crosschain.status.failedBecausePoor" = "Too less amount";
+"crosschain.status.gatewayReceived" = "Deposit by Gateway";
+"crosschain.status.withdraw.failed" = "Withdrawal Failed";
+"crosschain.status.failedBecausePoor" = "Insufficient amount";
 "crosschain.withdraw.fee.desc" = "This fee is charged by the gateway.";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
-"crosschain.beta.alert" = "Current is a beta version, Please don't transfer in large amount.";
+"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
 "crosschain.fee" = "Fee";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to transfer out.";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
 "crosschain.gatewaydetail.title" = "Gateway Details";
 "crosschain.gatewaydetail.name" = "Gateway Name";
 "crosschain.gatewaydetail.webset" = "Official Website";
@@ -687,13 +716,13 @@
 "crosschain.gatewaydetail.statement" = "Terms of Service";
 "crosschain.gatewaydetail.host" = "Gateway URL";
 "crosschain.gatewaydetail.abstract" = "Introduction";
-"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
-"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
 "crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, plesae refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc0" = "This Service is provided by %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, plesae refrain from using service from %@.";
+"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
 "crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
@@ -728,10 +757,23 @@
 
 "bifrost.home.page.free.header" = "ViteConnect Connected";
 "bifrost.home.page.free.content" = "You have no transaction yet";
+"bifrost.home.page.free.address.title" = "Address";
+"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
 "bifrost.toast.operation.success" = "Operation Successful";
+
+"bifrost.list.page.title" = "Signing Transaction List";
+"bifrost.list.page.status.pending" = "Awaiting Signature";
+"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.status.failed" = "Failure";
+"bifrost.list.page.status.finished" = "Success";
+"bifrost.list.page.status.canceled" = "Canceled";
+
+"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
 
 "bifrost.error.message.timeout" = "Connection time out, please try again later";
 "bifrost.error.message.unknown" = "Connection Error, please try again later";
@@ -759,6 +801,24 @@
 "bifrost.operation.title.amount" = "Amount";
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
+
+//bnb
+"token.list.page.section.bnb.header" = "Binance Network";
+"bnb.send.page.feeView.titleLabel.title" = "Fee";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
+"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
+"bnb.txType.newOrder.title" = "Place Order";
+"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.listToken.title" = "Listing";
+"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.transfer.title" = "Transfer";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "Vote";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Deposit";
 
 // Buildin
 
@@ -847,6 +907,17 @@
 "buildin.dex.cancel.vip.item0.title" = "Current Address";
 "buildin.dex.cancel.vip.item1.title" = "Amount";
 
+"buildin.dex.lock.vx.function.title" = "Stake";
+"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.un.lock.vx.function.title" = "Retrieve";
+"buildin.dex.un.lock.vx.item0.title" = "Current Address";
+"buildin.dex.un.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
+"buildin.dex.cancel.stake.item0.title" = "Current Address";
+
 // app scheme
 "app.scheme.home.page.busy.header" = "Transaction Confirmation";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";
@@ -854,3 +925,371 @@
 
 
 "copyed" = "Successfully copied";
+
+"fund.title.wallet" = "Wallet Asset";
+"fund.title.vitex" = "Exchange Asset";
+"fund.title.toWallet" = "Withdraw to Wallet";
+"fund.title.toVitex" = "Deposit to Exchange";
+"fund.walletAddress" = "My Address";
+"fund.walletFound" = "Wallet Balance";
+"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.deposit.amount" = "Transfer Amount";
+"fund.deposit.all" = "All";
+"fund.quotaSpend" = "Quota";
+"fund.deposit" = "Transfer";
+"fund.vitexFound" = "Available Balance";
+"fund.withdraw.amount" = "Transfer Amount";
+"fund.withdraw" = "Transfer";
+"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.available" = "Exchange Available Balance";
+"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.withdraw.placeholder" = "Please enter transfer amount";
+"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
+"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
+"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+
+"transfer.from" = "From";
+"transfer.wallet.account" = "Wallet Account";
+"transfer.to" = "To";
+"transfer.dex.account" = "Exchange Account";
+"transfer.amount" = "Amount";
+"transfer.available" = "Balance: ";
+"transfer.title" = "Transfer";
+
+"market.favourite" = "Favorites";
+"market.searchhistory" = "Search History";
+"market.title" = "Exchange";
+"market.about" = "Get Started with ViteX";
+"market.name" = "Name";
+"market.price" = "Last Price";
+"market.percent" = "Change";
+"market.operator" = "Operators";
+"market.switch" = "Exchange";
+
+
+// DeFi
+"defi.home.page.title" = "DeFi";
+"defi.home.page.borrow.button.title" = "我要借币";
+"defi.home.page.my.defi.button.title" = "我的DeFi";
+"defi.home.page.all.product" = "所有产品";
+"defi.home.page.sort.title" = "请选择排序";
+"defi.home.page.sort.publish.time" = "发布时间倒序";
+"defi.home.page.sort.remain.time" = "剩余认购时间从短到长";
+"defi.home.page.sort.earnings" = "年化收益率从高到底";
+"defi.home.page.sort.borrow.time" = "借款期限从短到长";
+"defi.home.page.sort.progress" = "认购进度从高到低";
+
+"defi.home.page.cell.end.time.format" = "%@天%@";
+"defi.home.page.cell.end.time" = "%@后结束认购";
+"defi.home.page.cell.borrow.time" = "%@天借币期限";
+"defi.home.page.cell.buy.button.title" = "立即抢购";
+
+// My DeFi
+"defi.my.page.title" = "我的DeFi";
+"defi.my.page.my.loan.account.amount" = "基础余额";
+"defi.my.page.my.loan.loan.amount" = "借币余额";
+"defi.my.page.my.loan.button.transfer.title" = "划转";
+"defi.my.page.my.loan.button.bil.title" = "查看流水";
+
+"defi.my.page.my.loan.title" = "我的借币";
+"defi.my.page.my.loan.sort.all" = "全部";
+"defi.my.page.my.loan.sort.on.sale" = "认购中";
+"defi.my.page.my.loan.sort.failed" = "到期未售罄";
+"defi.my.page.my.loan.sort.success" = "成功售罄";
+"defi.my.page.my.loan.sort.cancel" = "已取消";
+"defi.my.page.my.loan.sort.refunding" = "借币到期待还款";
+"defi.my.page.my.loan.sort.refunded" = "借币到期已还款";
+
+"defi.my.page.my.subscribe.issued.earnings" = "已发放收益";
+"defi.my.page.my.subscribe.predict.amount" = "预计总收益";
+"defi.my.page.my.subscribe.subscribe.amount" = "已认购金额";
+"defi.my.page.my.subscribe.earnings.rate" = "我的收益率";
+
+"defi.my.page.my.subscribe.title" = "我的认购";
+"defi.my.page.my.subscribe.sort.all" = "全部";
+"defi.my.page.my.subscribe.sort.on.sale" = "认购中";
+"defi.my.page.my.subscribe.sort.failed" = "到期未售罄";
+"defi.my.page.my.subscribe.sort.success" = "成功售罄";
+"defi.my.page.my.subscribe.sort.cancel" = "已取消";
+
+// My DeFi Loan
+"defi.my.page.my.loan.cell.header.end.time" = "%@后结束认购";
+"defi.my.page.my.loan.cell.header.failed" = "认购期结束";
+"defi.my.page.my.loan.cell.header.success" = "%@售罄";
+"defi.my.page.my.loan.cell.header.cancel" = "已取消";
+
+"defi.my.page.my.loan.cell.title.saled" = "已认购";
+"defi.my.page.my.loan.cell.title.expire.time" = "到期时间";
+"defi.my.page.my.loan.cell.title.rate" = "日利率: %@";
+"defi.my.page.my.loan.cell.title.duration" = "借币期限: %@天";
+"defi.my.page.my.loan.cell.title.used" = "已使用: ";
+"defi.my.page.my.loan.cell.title.remain" = "剩余金额: ";
+
+"defi.my.page.my.loan.cell.button.view.refund" = "查看余额";
+"defi.my.page.my.loan.cell.button.cancel" = "撤销借币";
+"defi.my.page.my.loan.cell.button.use" = "去使用";
+
+"defi.my.page.my.loan.cell.button.cancel.alert.title" = "撤销借币";
+"defi.my.page.my.loan.cell.button.cancel.alert.message" = "正在火热认购中，确定撤销借币吗？";
+"defi.my.page.my.loan.cell.button.cancel.alert.ok" = "确定";
+"defi.my.page.my.loan.cell.button.cancel.alert.cancel" = "暂不撤销";
+"defi.my.page.my.loan.cell.button.cancel.success.toast" = "撤销借币成功";
+
+// My DeFi Subscription
+"defi.my.page.my.subscription.cell.id.title" = "Hash: ";
+"defi.my.page.my.subscription.cell.header.end.time" = "%@后结束认购";
+"defi.my.page.my.subscription.cell.header.failed" = "认购期结束";
+"defi.my.page.my.subscription.cell.header.success" = "%@售罄";
+
+"defi.my.page.my.subscription.cell.title.subscription.amount" = "认购金额";
+"defi.my.page.my.subscription.cell.title.duration" = "借币期限: %@天";
+"defi.my.page.my.subscription.cell.title.year.rate" = "年化收益率: %@";
+"defi.my.page.my.subscription.cell.title.total.earnings" = "预计总收益";
+"defi.my.page.my.subscription.cell.title.saled" = "已认购";
+"defi.my.page.my.subscription.cell.title.remain.amount" = "剩余额度";
+
+"defi.my.page.my.subscription.cell.button.view.earnings" = "查看收益";
+"defi.my.page.my.subscription.cell.button.subscription" = "继续认购";
+"defi.my.page.my.subscription.cell.button.view.refund" = "查看退款";
+
+// DeFi Loan
+"defi.loan.page.title" = "发布借币";
+"defi.loan.page.slogan" = "去中心化智能合约安全保障";
+
+"defi.loan.page.cell.each.amount.placeholder" = "最少%@ %@";
+"defi.loan.page.cell.number.title" = "借币份数";
+"defi.loan.page.cell.number.placeholder" = "请填写借币总份数";
+"defi.loan.page.cell.number.unit" = "份";
+"defi.loan.page.cell.total.amount.title" = "借币总额";
+"defi.loan.page.cell.total.amount.tip" = "借币总额=每份金额*份数";
+"defi.loan.page.cell.rate.title" = "日利率";
+"defi.loan.page.cell.duration.title" = "借币期限";
+"defi.loan.page.cell.duration.approximate" = "约";
+"defi.loan.page.cell.duration.day" = "天";
+"defi.loan.page.cell.duration.block" = "%@个快照块";
+"defi.loan.page.cell.duration.tip" = "借币成功后需手动操作使用借款，请预留操作时间。使用DeFi资产时，注册SBP需要剩余可用时间大于90天；抵押挖矿需要剩余可用时间大于11天，开通交易所SVIP需要剩余可用时间大于90天，获取配额需要剩余可用时间大于3天。需考虑节点丢块造成的时间和快照块之间的误差。";
+"defi.loan.page.cell.subscription.time.title" = "认购期";
+"defi.loan.page.cell.subscription.time.unit" = "天";
+"defi.loan.page.cell.interest.title" = "应冻结利息";
+"defi.loan.page.loan.button.title" = "冻结利息发布借币";
+"defi.loan.page.loan.success.toast" = "发布借币成功";
+
+"defi.loan.page.tip1" = "借币期限以快照块为准。";
+"defi.loan.page.tip2" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.loan.page.tip3" = "尚无认购时，您可以撤销借币。";
+"defi.loan.page.tip4" = "认购期结束后，若未成功售罄，可重新发布借币。";
+
+"defi.loan.page.cell.each.amount.error.empty" = "请输入每份金额";
+"defi.loan.page.cell.each.amount.error.too.small" = "最少 10 Vite";
+"defi.loan.page.cell.each.amount.error.not.enough" = "基础余额不足，无法支付利息";
+
+"defi.loan.page.cell.number.error.empty" = "请输入借币总份数";
+"defi.loan.page.cell.number.error.too.small" = "借币总份数不能为0";
+
+"defi.loan.page.cell.rate.error.empty" = "请输入日利率";
+"defi.loan.page.cell.rate.error.too.small" = "日利率必须大于0%";
+"defi.loan.page.cell.rate.error.too.big" = "日利率必须小于或等于100%";
+
+"defi.loan.page.cell.duration.error.empty" = "请输入借币期限";
+"defi.loan.page.cell.duration.error.too.small" = "借币期限必须大于0";
+
+"defi.loan.page.cell.subscription.time.error.empty" = "请输入认购期";
+"defi.loan.page.cell.subscription.time.error.illegal" = "认购期只能是1-7天";
+
+// DeFi Subscription
+"defi.subscription.page.title" = "我要认购";
+"defi.subscription.page.duration.title" = "借币期限";
+"defi.subscription.page.duration.pre" = "约";
+"defi.subscription.page.duration.suf" = "天";
+"defi.subscription.page.duration.unit" = "%@ %@ %@";
+"defi.subscription.page.duration.block" = "%@个快照块";
+"defi.subscription.page.left.copys.title" = "剩余份数";
+"defi.subscription.page.left.copys.unit" = "份";
+"defi.subscription.page.subscription.copys.title" = "认购份数";
+"defi.subscription.page.subscription.copys.unit" = "份";
+"defi.subscription.page.subscription.amount.title" = "认购金额";
+"defi.subscription.page.earnings.title" = "预计总收益/每日收益";
+"defi.subscription.page.subscription.button.title" = "立即认购";
+"defi.subscription.page.tip1" = "准确的借币期限以快照块高度为准。";
+"defi.subscription.page.tip2" = "认购期结束后，若未成功售罄，会自动返还认购金额。";
+"defi.subscription.page.tip3" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.subscription.page.tip4" = "收益按日发放至DeFi基础余额。";
+
+"defi.subscription.page.cell.copys.error.empty" = "请输入认购份数";
+"defi.subscription.page.cell.copys.error.too.small" = "认购不能为0";
+"defi.subscription.page.cell.copys.error.too.big" = "认购份数不足";
+"defi.subscription.page.cell.amount.error.not.enough" = "基础余额不足";
+"defi.subscription.page.subscription.success.toast" = "认购成功";
+
+// DeFi Loan Detail
+"defi.loan.detail.page.title" = "借币详情";
+
+"defi.loan.detail.page.failed.button.reloan.title" = "重新发布借币";
+"defi.loan.detail.page.failed.button.refunding.title" = "退款中";
+"defi.loan.detail.page.failed.button.view.refund.title" = "查看退款";
+"defi.loan.detail.page.failed.tip1" = "借币期限以快照块高度为准。";
+
+"defi.loan.detail.page.on.sale.button.cancel.title" = "撤销借币";
+"defi.loan.detail.page.on.sale.button.cancel.alert.title" = "撤销借币";
+"defi.loan.detail.page.on.sale.button.cancel.alert.message" = "正在火热认购中，确定撤销借币吗？";
+"defi.loan.detail.page.on.sale.button.cancel.alert.ok" = "确定";
+"defi.loan.detail.page.on.sale.button.cancel.alert.cancel" = "暂不取消";
+"defi.loan.detail.page.on.sale.tip1" = "借币期限以快照块高度为准。";
+"defi.loan.detail.page.on.sale.tip2" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.loan.detail.page.on.sale.tip3" = "尚无认购时，您可以撤销借币。";
+"defi.loan.detail.page.on.sale.tip4" = "认购期结束后，若未成功售罄，可重新发布借币。";
+
+"defi.loan.detail.page.success.button.use.title" = "去使用";
+"defi.loan.detail.page.success.button.view.use.title" = "查看使用记录";
+"defi.loan.detail.page.success.tip1" = "借币期限以快照块高度为准。";
+
+// DeFi item
+"defi.item.id.title" = "产品Hash";
+"defi.item.loan.duration.title" = "借币期限";
+"defi.item.subscription.duration.title" = "认购期限";
+"defi.item.duration.pre" = "约";
+"defi.item.duration.suf" = "天";
+"defi.item.subscription.duration.format" = "%@ %@";
+"defi.item.loan.duration.format" = "%@ %@ %@";
+"defi.item.loan.duration.block" = "%@个快照块";
+"defi.item.year.rate.title" = "年化收益率";
+"defi.item.day.rate.title" = "日利率";
+"defi.item.loan.amount.title" = "借币金额";
+"defi.item.loan.copys.title" = "借币份数";
+"defi.item.each.amount.title" = "每份金额";
+"defi.item.left.copys.title" = "剩余份数";
+"defi.item.subscription.copys.title" = "认购份数";
+"defi.item.copys.unit" = "份";
+"defi.item.subscription.amount.title" = "认购金额";
+
+"defi.item.paid.interest.title" = "已冻结利息";
+"defi.item.paid.interest.invaild.title" = "(已解冻)";
+"defi.item.subscribe.amount.title" = "已认购金额";
+"defi.item.used.amount.title" = "已使用金额";
+"defi.item.can.use.amount.title" = "可用借币余额";
+"defi.item.end.snapshoot.height.title" = "到期快照块高度";
+"defi.item.end.time.title" = "预计到期时间";
+"defi.item.refund.paid.interest.title" = "应退已支付利息";
+"defi.item.publish.time.title" = "发布时间";
+"defi.item.success.time.title" = "售罄时间";
+
+"defi.item.status.on.sale" = "认购中";
+"defi.item.status.failed" = "到期未售罄";
+"defi.item.status.success" = "成功售罄";
+"defi.item.status.cancel" = "已取消";
+
+"defi.card.slogan" = "去中心化智能合约安全保障";
+"defi.card.progress" = "认购进度: ";
+"defi.card.end.time" = "%@天%@后结束认购";
+
+"defi.bill.billTypeTitle.all" = "全部";
+"defi.bill.billTypeTitle.paiedInterest" = "认购成功利息扣款";
+"defi.bill.billTypeTitle.refundOfinterestPaid" = "已付利息退款";
+"defi.bill.billTypeTitle.subscriptionAmount" = "认购金额";
+"defi.bill.billTypeTitle.subscriptionAmountDue" = "认购到期退款";
+"defi.bill.billTypeTitle.subscriptionRevenuee" = "认购收益";
+"defi.bill.billTypeTitle.Refundofsubscriptionamount" = "认购失败退款";
+"defi.bill.billTypeTitle.RegisteredSBP" = "注册SBP";
+"defi.bill.billTypeTitle.RegisterforSBPrefund" = "注册SBP退款";
+"defi.bill.billTypeTitle.OpenSVIPexchange" = "开通交易所SVIP";
+"defi.bill.billTypeTitle.OpenexchangeSVIPrefund" = "开通交易所SVIP退款";
+"defi.bill.billTypeTitle.getquota" = "获取配额";
+"defi.bill.billTypeTitle.quotarefund" = "获取配额退款";
+"defi.bill.billTypeTitle.minning" = "抵押挖矿";
+"defi.bill.billTypeTitle.minningrefund" = "抵押挖矿退款";
+"defi.bill.billTypeTitle.Transferincome" = "划转收入";
+"defi.bill.billTypeTitle.Transferspending" = "划转支出";
+"defi.bill.billTypeTitle.Successborrowmoney" = "成功借币";
+"defi.bill.billTypeTitle.loanisdueforrepayment" = "借币到期还款";
+"defi.bill.billTypeTitle.Subscribefreeze" = "认购冻结";
+"defi.bill.billTypeTitle.Interestonloansisfrozen" = "借币利息冻结";
+"defi.bill.billTypeTitle.thefailedloanisthawedout" = "借币失败利息解冻";
+
+"defi.bill.page.title" = "DeFi账单";
+"defi.bill.page.Basedbalance" = "基础余额";
+"defi.bill.page.UsedBasedbalance" = "已使用基础余额";
+"defi.bill.page.totalamountofborrowedmoney" = "借币总额";
+"defi.bill.page.Borrowmoneybalances" = "借币余额";
+
+"defi.subscription.detail.title" = "认购详情";
+
+"defi.subscription.detail.title" = "认购详情";
+
+"defi.manage.BasedBalanceTitle" = "DeFi基础账户";
+
+"defi.product.detail.title" = "产品详情";
+"defi.product.detail.buy" = "立即抢购";
+"defi.product.detail.desc0" = "准确的借币期限以快照块为准。";
+"defi.product.detail.desc1" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.product.detail.title.count" = "总份数";
+"defi.product.detail.title.borrowdeadline" = "借币期限";
+"defi.product.detail.title.beginTime" = "认购开始时间";
+"defi.product.detail.title.buydeadline" = "认购期限";
+"defi.product.detail.until.day" = "天";
+"defi.product.detail.until.pear" = "份";
+
+
+"defi.use.page.title" = "借币使用记录";
+"defi.use.page.used.basefund.title" = "已使用基础余额：";
+"defi.use.page.used.borrowed.fund.title" = "已使用借币余额：";
+"defi.use.page.deadline.block.height.title" = "到期快照高度：";
+"defi.use.page.useType.title.sbp" = "注册SBP";
+"defi.use.page.gussesed.deadline.time" = "预计到期时间";
+"defi.use.page.qouto.fund" = "抵押余额";
+"defi.use.page.deit" = "编辑";
+"defi.use.page.Revocation.SBP" = "撤销SBP";
+"defi.use.page.SBP.reward" = "请到网页端提取SBP奖励";
+"defi.use.page.view.minning.reward" = "查看收益";
+"defi.use.page.view.stop.minning" = "停止挖矿";
+"defi.use.page.cancle.qouto" = "取回抵押";
+"defi.use.page.get.qouto" = "获取配额";
+"defi.use.page.open.svip" = "开通交易所SVIP";
+"defi.use.page.close.svip" = "撤销交易所SVIP";
+"defi.use.page.regist.sbp" = "注册SBP";
+
+"defi.use.page.edit.sbp.title" = "编辑SBP信息";
+"defi.use.page.edit.sbp.blockProducingAddressTitle" = "出块地址:";
+"defi.use.page.edit.sbp.rewardWithdrawAddressTitle" = "提取奖励地址:";
+"defi.use.page.edit.sbp.confirm" = "确认修改";
+"defi.use.page.edit.sbp.cancle" = "暂不修改";
+"defi.use.page.edit.sbp.cancle.title" = "撤销注册SBP";
+"defi.use.page.edit.can.cancle.Amount" = "可取回抵押金额:";
+"defi.use.page.edit.sbp.cancle.desc" = "撤销后，抵押金额将退回原路；若想成为SBP，您需重新提交注册申请。";
+"defi.use.page.edit.cancle.cancle" = "暂不撤销";
+"defi.use.page.edit.cancle.confirm" = "确认撤销";
+
+"defi.use.page.edit.svip.cancle.title" = "撤销交易所SVIP";
+"defi.use.page.edit.svip.cancle.desc" = "撤销后，将无法享受交易所SVIP特权；抵押金额将退回原路。";
+
+"defi.use.page.edit.quotal.cancle.title" = "取回获取配额抵押";
+"defi.use.page.edit.quotal.cancle.desc" = "取回抵押会影响交易速度；抵押金额将退回原路。确认撤销抵押吗？";
+
+"defi.use.page.edit.minning.cancle.title" = "停止挖矿";
+"defi.use.page.edit.minning.cancle.desc" = "停止挖矿后，需约7天退回抵押金额。停止挖矿将不会再分得VX收益，确定要停止挖矿吗？";
+"defi.use.page.edit.minning.cancle.cancle" = "暂不停止";
+"defi.use.page.edit.minningcancle.confirm" = "确认";
+
+"defi.SubscriptionDetail.SubscriptionAmount" = "认购金额";
+"defi.SubscriptionDetail.TotalAmount" = "借币总金额";
+"defi.SubscriptionDetail.EstimatedTotalRevenuet" = "预计总收益/每日收益";
+"defi.SubscriptionDetail.Rate" = "年化利率";
+"defi.SubscriptionDetail.Paied" = "已发放收益";
+"defi.SubscriptionDetail.AmountShallRefunded" = "应退认购金额";
+"defi.SubscriptionDetail.RemainingUnsold" = "剩余未售出";
+"defi.SubscriptionDetail.Refunding" = "退款中";
+"defi.SubscriptionDetail.remaining.copies" = "剩余份数";
+"defi.SubscriptionDetail.buy" = "继续认购";
+"defi.SubscriptionDetail.onSaleTip1" = "借币期限以快照块高度为准.";
+"defi.SubscriptionDetail.onSaleTip2" = "认购期结束后，若未成功售罄，会自动返还认购金额。";
+"defi.SubscriptionDetail.onSaleTip3" = "认购期内，若成功售罄，自动结束认购，开始计息。";
+"defi.SubscriptionDetail.onSaleTip4" = "收益按日发放至DeFi基础余额。";
+"defi.SubscriptionDetail.success.height" = "售罄快照块高度";
+"defi.SubscriptionDetail.success.time" = "售罄时间";
+"defi.SubscriptionDetail.end.time" = "到期快照块高度";
+"defi.SubscriptionDetail.Estimated.end.time" = "预计到期时间";
+"defi.SubscriptionDetail.Check.the.yield" = "查看收益";
+"defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
+"defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
+"defi.frozened.amount.title" = "已冻结基础余额";
+"defi.detail.Numberofremainingavailableforsubscription" = "剩余可认购份数";
