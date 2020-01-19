@@ -31,6 +31,9 @@ final class TokenListSearchViewModel {
                 if let vite = map["VITE"] {
                     list.append(vite)
                 }
+                if let bnb = map["BNB"] {
+                    list.append(bnb)
+                }
                 if let eth = map["ETH"] {
                     list.append(eth)
                 }

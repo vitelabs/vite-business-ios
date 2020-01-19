@@ -15,7 +15,6 @@ import ViteWallet
 import BigInt
 import web3swift
 
-
 public class ViteBusinessLanucher: NSObject {
 
     public static let instance = ViteBusinessLanucher()
@@ -39,6 +38,41 @@ public class ViteBusinessLanucher: NSObject {
     
     public func start(with window: UIWindow) {
         self.window = window
+
+        if #available(iOS 13.0,*) {
+            UIView.appearance().overrideUserInterfaceStyle = .light
+        }
+
+        configProvider()
+        HostManager.fetchAndConfigHostInfo()
+        
+        VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
+        Statistics.initializeConfig()
+        handleNotification()
+        _ = LocalizationService.sharedInstance
+
+        goShowIntroViewPage()
+
+        AppConfigService.instance.start()
+        WalletManager.instance.start()
+        MyTokenInfosService.instance.start()
+        ExchangeRateManager.instance.start()
+        TokenListService.instance.fetchTokenListServerData()
+        AutoGatheringManager.instance.start()
+        ViteBalanceInfoManager.instance.start()
+        ETHBalanceInfoManager.instance.start()
+        FetchQuotaManager.instance.start()
+        AddressManageService.instance.start()
+        AppContentService.instance.start()
+        //web
+        self.handleWebUIConfig()
+        self.handleWebAppBridgeConfig()
+        self.handleWebWalletBridgeConfig()
+
+
+    }
+
+    func configProvider() {
         //config
         #if DAPP
         let url: URL
@@ -53,29 +87,6 @@ public class ViteBusinessLanucher: NSObject {
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
         #endif
         EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
-        VitePodRawLocalizationService.sharedInstance.setBundleName("ViteBusiness")
-        Statistics.initializeConfig()
-        handleNotification()
-        _ = LocalizationService.sharedInstance
-
-        goShowIntroViewPage()
-
-        AppConfigService.instance.start()
-        MyTokenInfosService.instance.start()
-        ExchangeRateManager.instance.start()
-        TokenListService.instance.fetchTokenListServerData()
-        AutoGatheringManager.instance.start()
-        ViteBalanceInfoManager.instance.start()
-        ETHBalanceInfoManager.instance.start()
-        FetchQuotaManager.instance.start()
-        AddressManageService.instance.start()
-
-        //web
-        self.handleWebUIConfig()
-        self.handleWebAppBridgeConfig()
-        self.handleWebWalletBridgeConfig()
-
-
     }
 
     func handleWebWalletBridgeConfig()  {
@@ -137,7 +148,7 @@ public class ViteBusinessLanucher: NSObject {
                     return
                 }
                 HUD.show()
-                MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
+                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: uri.tokenId, completion: { (r) in
                     HUD.hide()
                     switch r {
                     case .success(let tokenInfo):
@@ -311,6 +322,7 @@ public class ViteBusinessLanucher: NSObject {
         ViteAppSchemeHandler.instance.handle(url)
         return true
     }
-}
 
+    
+}
 

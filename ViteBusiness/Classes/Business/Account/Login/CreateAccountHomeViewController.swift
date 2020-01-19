@@ -30,19 +30,13 @@ class CreateAccountHomeViewController: BaseViewController {
         self._bindViewModel()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
     private func _bindViewModel() {
-        _ = self.viewModel.createAccountBtnStr.asObservable().bind(to: self.createAccountBtn.rx.title(for: .normal))
-        _ = self.viewModel.recoverAccountBtnStr.asObservable().bind(to: self.importAccountBtn.rx.title(for: .normal))
-        _ = self.viewModel.changeLanguageBtnStr.asObservable().bind(to: self.changeLanguageBtn.rx.title(for: .normal))
+        self.viewModel.createAccountBtnStr.asObservable().bind(to: self.createAccountBtn.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        self.viewModel.recoverAccountBtnStr.asObservable().bind(to: self.importAccountBtn.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        self.viewModel.changeLanguageBtnStr.asObservable().bind {[weak self] (text) in
+            guard let `self` = self else { return }
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: text, style: .plain, target: self, action: #selector(self.changeLanguageBtnAction))
+        }.disposed(by: rx.disposeBag)
     }
 
     lazy var createAccountBtn: UIButton = {
@@ -60,26 +54,26 @@ class CreateAccountHomeViewController: BaseViewController {
         importAccountBtn.addTarget(self, action: #selector(importAccountBtnAction), for: .touchUpInside)
         return importAccountBtn
     }()
-
-    lazy var changeLanguageBtn: UIButton = {
-        let changeLanguageBtn = UIButton()
-        changeLanguageBtn.contentHorizontalAlignment = .right
-        changeLanguageBtn.contentVerticalAlignment = .top
-        changeLanguageBtn.titleLabel?.adjustsFontSizeToFitWidth  = true
-        changeLanguageBtn.setTitleColor(.white, for: .normal)
-        changeLanguageBtn.backgroundColor = .clear
-        changeLanguageBtn.titleLabel?.font = AppStyle.descWord.font
-        changeLanguageBtn.addTarget(self, action: #selector(changeLanguageBtnAction), for: .touchUpInside)
-        return changeLanguageBtn
-    }()
 }
 
 extension CreateAccountHomeViewController {
     private func _setupView() {
         self.view.backgroundColor = .clear
-//        navigationBarStyle = .clear
-
+        navigationBarStyle = .clear
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_scan_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(scan))
         self._addViewConstraint()
+    }
+
+    @objc private func scan() {
+        let scanViewController = ScanViewController()
+        _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
+            if let url = URL(string: result), ViteAppSchemeHandler.instance.handleViteScheme(url, allowActions: [.backupWallet]) {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                scanViewController?.showAlertMessage(result)
+            }
+        }
+        self.navigationController?.pushViewController(scanViewController, animated: true)
     }
 
     private func _addViewConstraint() {
@@ -119,14 +113,10 @@ extension CreateAccountHomeViewController {
             make.height.equalTo(50)
             make.bottom.equalTo(self.importAccountBtn.snp.top).offset(-24)
         }
+    }
 
-        self.view.addSubview(self.changeLanguageBtn)
-        self.changeLanguageBtn.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
-            make.height.equalTo(50)
-            make.right.equalTo(self.view).offset(-24)
-            make.top.equalTo(self.view).offset(32)
-        }
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     @objc func createAccountBtnAction() {

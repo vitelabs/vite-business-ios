@@ -220,8 +220,6 @@ class BalanceInfoEthChainCardView: UIView {
             UIViewController.current?.navigationController?.pushViewController(EthSendTokenController(tokenInfo), animated: true)
             }.disposed(by: rx.disposeBag)
 
-        DispatchQueue.main.async {
-            self.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: self.frame, colors: tokenInfo.coinBackgroundGradientColors)
-        }
+        self.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 48, height: 188), colors: tokenInfo.coinBackgroundGradientColors)
     }
 }

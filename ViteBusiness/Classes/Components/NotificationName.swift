@@ -24,4 +24,7 @@ extension Notification.Name {
     public static let userVoteInfoChange = NSNotification.Name(rawValue: "Vite_userVoteInfoChange")
 
     public static let homePageDidAppear = NSNotification.Name(rawValue: "Vite_homePageDidAppear")
+
+    public static let goTokenInfoVC = NSNotification.Name(rawValue: "goTokenInfoVC")
+    public static let goGateWayVC = NSNotification.Name(rawValue: "goGateWayVC")
 }

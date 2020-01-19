@@ -48,13 +48,13 @@ class AddressManagerTableViewModel: AddressManagerTableViewModelType {
 
     func setDefaultAddressIndex(_ index: Int) {
 
-        if BifrostManager.instance.isConnectedAndApproved {
+        if BifrostManager.instance.status != .disconnect {
             Alert.show(title: R.string.localizable.bifrostAlertTipTitle(),
                        message: R.string.localizable.bifrostAlertSwitchAddressMessage(),
                        actions: [
                         (.cancel, nil),
                         (.default(title: R.string.localizable.confirm()), { _ in
-                            BifrostManager.instance.disConnect()
+                            BifrostManager.instance.disConnectByUser()
                             _ = HDWalletManager.instance.selectAccount(index: index)
                         })
                 ], config: { alert in

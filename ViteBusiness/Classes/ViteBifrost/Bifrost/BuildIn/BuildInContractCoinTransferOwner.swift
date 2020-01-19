@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractCoinTransferOwner: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.coinTransferOwner
+    let abi = ABI.BuildIn.coinTransferOwnership
     let description =
         VBViteSendTx.Description(
             function: VBViteSendTx.InputDescription(name: R.string.localizable.buildinCoinTransferOwnershipFunctionTitle()),
@@ -33,14 +33,16 @@ struct BuildInContractCoinTransferOwner: BuildInContractProtocol {
                 return Promise(error: ConfirmError.InvalidData)
             }
 
-            return ViteNode.mintage.getToken(tokenId: tokenIdValue.toString()).then({ (token) -> Promise<BifrostConfirmInfo> in
-                let items = [
-                    self.description.inputs[0].confirmItemInfo(text: token.name),
-                    self.description.inputs[1].confirmItemInfo(text: token.uniqueSymbol),
-                    self.description.inputs[2].confirmItemInfo(text: addressValue.toString()),
-                ]
-                return Promise.value(BifrostConfirmInfo(title: title, items: items))
-            })
+            return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: tokenIdValue.toString())
+                .then { tokenInfo -> Promise<BifrostConfirmInfo> in
+                    let token = tokenInfo.toViteToken()!
+                    let items = [
+                        self.description.inputs[0].confirmItemInfo(text: token.name),
+                        self.description.inputs[1].confirmItemInfo(text: token.uniqueSymbol),
+                        self.description.inputs[2].confirmItemInfo(text: addressValue.toString()),
+                    ]
+                    return Promise.value(BifrostConfirmInfo(title: title, items: items))
+            }
         } catch {
             return Promise(error: ConfirmError.InvalidData)
         }

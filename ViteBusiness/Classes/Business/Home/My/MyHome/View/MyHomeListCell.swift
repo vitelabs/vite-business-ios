@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PPBadgeViewSwift
 
 class MyHomeListCell: BaseTableViewCell {
 
@@ -60,14 +61,24 @@ class MyHomeListCell: BaseTableViewCell {
             m.right.equalTo(rightImageView)
             m.bottom.equalTo(self)
         }
+        
+        rightImageView.pp.addBadge(text: nil)
+        rightImageView.pp.setBadge(height: 4.0)
+        rightImageView.pp.base.badgeView.backgroundColor = UIColor(netHex: 0xFF0008)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(viewModel: MyHomeListCellViewModel) {
-        titleLab.text = viewModel.name.string
-        viewModel.image?.putIn(rightImageView)
+    func bind(viewModel: MyHomeListCellViewModel, showBadge: Bool) {
+        titleLab.text = viewModel.title
+        rightImageView.image = viewModel.image
+
+        if showBadge {
+            rightImageView.pp.showBadge()
+        } else {
+            rightImageView.pp.hiddenBadge()
+        }
     }
 }

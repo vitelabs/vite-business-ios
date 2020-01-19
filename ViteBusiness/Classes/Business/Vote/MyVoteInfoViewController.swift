@@ -89,7 +89,7 @@ class MyVoteInfoViewController: BaseViewController, View {
         //vote success
         _ = NotificationCenter.default.rx.notification(.userDidVote).takeUntil(self.rx.deallocated).observeOn(MainScheduler.instance).subscribe({[weak self] (notification)   in
             let nodeName = notification.element?.object
-             plog(level: .debug, log: String.init(format: "notification  userDidVote voteInfo.nodeName = %@",  nodeName as! String), tag: .vote)
+             //plog(level: .debug, log: String.init(format: "notification  userDidVote voteInfo.nodeName = %@",  nodeName as! String), tag: .vote)
             self?.reactor?.action.onNext(.voting(nodeName as! String, self?.balance))
         })
     }
@@ -183,7 +183,7 @@ extension MyVoteInfoViewController {
                         self?.oldVoteInfo = voteInfo
                     }
 
-                    plog(level: .debug, log: String.init(format: "self?.oldVoteInfo=%@  , voteInfo.nodeName = %@, voteStatus=%@ ", self?.oldVoteInfo?.nodeName ?? "", voteInfo.nodeName ?? "", voteStatus.display ), tag: .vote)
+                    //plog(level: .debug, log: String.init(format: "self?.oldVoteInfo=%@  , voteInfo.nodeName = %@, voteStatus=%@ ", self?.oldVoteInfo?.nodeName ?? "", voteInfo.nodeName ?? "", voteStatus.display ), tag: .vote)
                     self?.refreshVoteInfoView(voteInfo, voteStatus)
                     return
                 }

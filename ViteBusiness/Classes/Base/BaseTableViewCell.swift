@@ -18,4 +18,5 @@ class BaseTableViewCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
+    
 }

@@ -55,10 +55,14 @@ extension UIButton {
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_white()?.tintColor(UIColor(netHex: 0xFAFAFA)).resizable, for: .highlighted)
+            setTitleColor(UIColor.white, for: .disabled)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
         case .whiteWithShadow:
             setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             setBackgroundImage(R.image.background_button_white()?.resizable, for: .normal)
             setBackgroundImage(R.image.background_button_white()?.tintColor(UIColor(netHex: 0xFAFAFA)).resizable, for: .highlighted)
+            setTitleColor(UIColor.white, for: .disabled)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
             backgroundColor = nil
             layer.shadowColor = UIColor(netHex: 0x000000, alpha: 0.1).cgColor
             layer.shadowOpacity = 1
@@ -84,4 +88,41 @@ extension UIButton {
         }
     }
 
+    static func topImage(_ image: UIImage?, bottomTitle title: String) -> UIButton {
+        let icon = UIImageView(image: image)
+        let label = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12)
+            $0.textColor = UIColor(netHex: 0xA1A9CB)
+            $0.text = title
+        }
+
+        let button = UIButton()
+        button.setBackgroundImage(UIImage.color(.white), for: .normal)
+        button.setBackgroundImage(UIImage.color(UIColor.black.withAlphaComponent(0.1)), for: .highlighted)
+
+        let layoutGuide = UILayoutGuide()
+        button.addSubview(icon)
+        button.addSubview(label)
+        button.addLayoutGuide(layoutGuide)
+
+        layoutGuide.snp.makeConstraints { (m) in
+            m.center.equalToSuperview()
+            m.width.equalToSuperview()
+        }
+
+        icon.snp.makeConstraints { (m) in
+            m.top.equalTo(layoutGuide)
+            m.centerX.equalToSuperview()
+        }
+
+        label.snp.makeConstraints { (m) in
+            m.top.equalTo(icon.snp.bottom).offset(8)
+            m.centerX.equalToSuperview()
+            m.bottom.equalTo(layoutGuide)
+        }
+
+        button.setupShadow(CGSize(width: 0, height: 5))
+
+        return button
+    }
 }

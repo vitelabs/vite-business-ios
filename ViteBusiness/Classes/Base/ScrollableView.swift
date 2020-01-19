@@ -45,6 +45,13 @@ extension UIStackView {
     func addPlaceholder(height: CGFloat) {
         addArrangedSubview(UIView.placeholderView(height: height))
     }
+
+    func addArrangedSubview(_ view: UIView, topInset: CGFloat) {
+        if topInset > 0 {
+            addPlaceholder(height: topInset)
+        }
+        addArrangedSubview(view)
+    }
 }
 
 extension UIView {
@@ -66,6 +73,16 @@ extension UIView {
             m.bottom.equalToSuperview().offset(-insets.bottom)
         }
 
+        return view
+    }
+
+    func centerX() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(self)
+        self.snp.makeConstraints { (m) in
+            m.top.bottom.centerX.equalToSuperview()
+        }
         return view
     }
 

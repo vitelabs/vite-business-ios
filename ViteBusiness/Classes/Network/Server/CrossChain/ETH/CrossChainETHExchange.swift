@@ -60,11 +60,12 @@ class CrossChainDepositETH {
                         completion()
                     } else if case .failure(let error) = r {
                         guard ViteError.conversion(from: error) != ViteError.cancel else { return }
-                        if let e = error as? DisplayableError {
-                            Toast.show(e.errorMessage)
-                        } else {
-                            Toast.show((error as NSError).localizedDescription)
-                        }
+                        Alert.show(title: R.string.localizable.sendPageEthFailed(error.localizedDescription),
+                               message: nil,
+                               actions: [
+                                (.default(title: R.string.localizable.confirm()), { _ in
+                                })
+                        ])
                     }
                 })
         }

@@ -19,6 +19,12 @@ public class AppConfigService {
     fileprivate var configBehaviorRelay: BehaviorRelay<AppConfig>!
     fileprivate var appConfigHash: String?
     fileprivate var lastBuildNumber: Int?
+    fileprivate let disposeBag = DisposeBag()
+    public fileprivate(set) var whiteList = ["vite.org",
+                                            "vite.net",
+                                            "vite.store",
+                                            "vite.wiki",
+                                            "vite.blog"]
     public var pDelay: Int = 3
 
     public var isOnlineVersion: Bool {
@@ -30,6 +36,7 @@ public class AppConfigService {
     }
 
     private init() {
+
         if let (config, hash): (AppConfig, String) = readMappableAndHash() {
             appConfigHash = hash
             configBehaviorRelay = BehaviorRelay(value: config)
@@ -51,7 +58,7 @@ public class AppConfigService {
             guard let `self` = self else { return }
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get config hash finished", tag: .getConfig)
+                //plog(level: .debug, log: "get config hash finished", tag: .getConfig)
                 guard let string = jsonString else { return }
                 guard let configHash = ConfigHash(JSONString: string) else { return }
                 self.lastBuildNumber = configHash.lastBuildNumber
@@ -72,10 +79,10 @@ public class AppConfigService {
             guard let `self` = self else { return }
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get app config finished", tag: .getConfig)
+                //plog(level: .debug, log: "get app config finished", tag: .getConfig)
                 guard let string = jsonString else { return }
                 self.appConfigHash = string.md5()
-                plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
+                //plog(level: .debug, log: "md5: \(self.appConfigHash)", tag: .getConfig)
                 if let config = AppConfig(JSONString: string) {
                     self.configBehaviorRelay.accept(config)
                     // make sure md5 not change
@@ -94,13 +101,13 @@ extension AppConfigService {
 
     public struct AppConfig: Mappable {
         fileprivate(set) var myPage: [String: Any] = [:]
-        fileprivate(set) var defaultTokenInfos: [[String: Any]] = []
+        fileprivate(set) var defaultTokenCodes: [TokenCode] = []
 
         public init?(map: Map) { }
 
         public mutating func mapping(map: Map) {
             myPage <- map["my_page"]
-            defaultTokenInfos <- map["default_tokenInfos"]
+            defaultTokenCodes <- map["default_tokenCodes"]
         }
     }
 
@@ -124,5 +131,23 @@ extension AppConfigService {
 extension AppConfigService: Storageable {
     public func getStorageConfig() -> StorageConfig {
         return StorageConfig(name: "AppConfig", path: .app)
+    }
+}
+
+
+// white list
+extension AppConfigService {
+
+    func addToWhiteList(list: [String]) {
+        whiteList.append(contentsOf: list)
+    }
+
+    func isInWhiteList(url: URL) -> Bool {
+        for string in whiteList {
+            if url.host?.lowercased() == string || (url.host?.lowercased() ?? "").hasSuffix("." + string) {
+                return true
+            }
+        }
+        return false
     }
 }

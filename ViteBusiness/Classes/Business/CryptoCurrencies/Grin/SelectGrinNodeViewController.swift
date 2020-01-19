@@ -137,32 +137,36 @@ extension SelectGrinNodeViewController: UITableViewDelegate, UITableViewDataSour
         if selectedIndexPath == indexPath {
             return
         }
-        if indexPath.section == 0 {
-            GrinLocalInfoService.shared.deSelect()
-        } else {
-            let node = nodes.1[indexPath.row]
-            GrinLocalInfoService.shared.select(node: node)
-        }
-        GrinManager.default.checkNodeApiHttpAddr = GrinManager.default.currentNode.address
-        GrinManager.default.apiSecret = GrinManager.default.currentNode.apiSecret
-        GrinManager.default.resetApiSecret()
-        updateNodes()
-
-        var shouldAlet = true
-        view.displayLoading()
-        let result = GrinManager.default.txsGet(refreshFromNode: true)
-        view.hideLoading()
-        switch result {
-        case .success((let refreshed, let txs)):
-            if refreshed == true {
-                shouldAlet = false
+        UIApplication.shared.keyWindow?.displayLoading()
+        DispatchQueue.global(qos: .default).async {
+            if indexPath.section == 0 {
+                GrinLocalInfoService.shared.deSelect()
+            } else {
+                let node = self.nodes.1[indexPath.row]
+                GrinLocalInfoService.shared.select(node: node)
             }
-        case .failure(let error):
-            break
-        }
-        if shouldAlet {
-            Alert.show(into: self, title: R.string.localizable.grinNoticeTitle(), message: R.string.localizable.grinNodeSelectCanNotConnect(), actions: [
-                (.default(title: R.string.localizable.confirm()), nil)])
+            GrinManager.default.checkNodeApiHttpAddr = GrinManager.default.currentNode.address
+            GrinManager.default.apiSecret = GrinManager.default.currentNode.apiSecret
+            GrinManager.default.resetApiSecret()
+
+            let result = GrinManager.default.txsGet(refreshFromNode: true)
+            DispatchQueue.main.async {
+                self.updateNodes()
+                var shouldAlet = true
+                UIApplication.shared.keyWindow?.hideLoading()
+                switch result {
+                case .success((let refreshed, let txs)):
+                    if refreshed == true {
+                        shouldAlet = false
+                    }
+                case .failure(let error):
+                    break
+                }
+                if shouldAlet {
+                    Alert.show(into: self, title: R.string.localizable.grinNoticeTitle(), message: R.string.localizable.grinNodeSelectCanNotConnect(), actions: [
+                        (.default(title: R.string.localizable.confirm()), nil)])
+                }
+            }
         }
     }
 

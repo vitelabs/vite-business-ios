@@ -12,7 +12,7 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     let tokenInfo: TokenInfo
     let delegate: BalanceInfoDetailTableViewDelegate?
 
-    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
+    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView, vc: UIViewController? = nil) {
         let handler = TableViewHandler(tableView: tableView)
         let delegate = BalanceInfoViteChainTabelViewDelegate(tokenInfo: tokenInfo, tableViewHandler: handler)
         handler.delegate = delegate
@@ -23,12 +23,12 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
         FetchQuotaManager.instance.retainQuota()
     }
 
     func viewDidDisappear() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
         FetchQuotaManager.instance.releaseQuota()
     }
 

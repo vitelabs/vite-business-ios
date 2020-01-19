@@ -21,7 +21,9 @@ public enum Tag: String {
     case discover
     case exchange
     case grin
+    case bnb
     case bifrost
+    case market
 }
 
 public func plog(level: XCGLogger.Level, log: @escaping @autoclosure () -> Any?, tag: Tag, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
@@ -55,11 +57,11 @@ private let __log: XCGLogger = {
     let systemDestination = AppleSystemLogDestination(identifier: "advancedLogger.systemDestination")
 
     systemDestination.showLogIdentifier = false
-    systemDestination.showFunctionName = true
+    systemDestination.showFunctionName = false
     systemDestination.showThreadName = false
     systemDestination.showLevel = true
-    systemDestination.showFileName = true
-    systemDestination.showLineNumber = true
+    systemDestination.showFileName = false
+    systemDestination.showLineNumber = false
     systemDestination.showDate = true
     log.add(destination: systemDestination)
 

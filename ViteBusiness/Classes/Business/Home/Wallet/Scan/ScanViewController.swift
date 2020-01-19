@@ -44,6 +44,7 @@ class ScanViewController: BaseViewController, View {
         super.viewDidLoad()
         setupAVComponents()
         setupUIComponents()
+        self.reactor = ScanViewReactor.init()
     }
 
     override func viewWillAppear(_ animated: Bool) {

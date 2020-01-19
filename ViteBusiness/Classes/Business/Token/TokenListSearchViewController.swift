@@ -13,6 +13,7 @@ import RxDataSources
 
 class TokenListSearchViewController: UIViewController {
     let viewModel = TokenListSearchViewModel()
+    var onlyShowVite = false
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -74,7 +75,8 @@ class TokenListSearchViewController: UIViewController {
     func bindData() {
         self.viewModel.tokenListSearchDriver.map {
                 [weak self] (data) in
-                self?.tokenListArray = data
+                guard let `self` = self else { return Array<SectionModel<String,TokenInfo>>() }
+                self.tokenListArray = data
                 var sectionModels = Array<SectionModel<String,TokenInfo>>()
                 if data.count == 0 {
                      return sectionModels
@@ -82,7 +84,16 @@ class TokenListSearchViewController: UIViewController {
                 for item in data {
                     sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
                 }
-                return sectionModels
+             return sectionModels.filter({ [weak self] (sectionModel) -> Bool in
+                guard let `self` = self else { return false }
+                if self.onlyShowVite == true {
+                    return sectionModel.items.contains(where: { (tokenInfo) -> Bool in
+                        tokenInfo.coinType == .vite
+                    })
+                } else {
+                    return true
+                }
+            })
         }.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
         
 
@@ -90,6 +101,7 @@ class TokenListSearchViewController: UIViewController {
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
     }
+    
 }
 
 extension TokenListSearchViewController : UISearchResultsUpdating {

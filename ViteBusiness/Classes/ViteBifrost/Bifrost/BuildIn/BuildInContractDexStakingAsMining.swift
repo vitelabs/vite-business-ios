@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexStakingAsMining: BuildInContractProtocol {
 
-    let abi =  ABI.BuildIn.dexStakingAsMining
+    let abi =  ABI.BuildIn.dexStakeForMining
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard let account = HDWalletManager.instance.account else { return Promise(error: ConfirmError.unknown("not logon")) }

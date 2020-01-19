@@ -26,8 +26,6 @@ func businessBundle() -> Bundle {
 
 class GrinInfoViewController: BaseViewController {
 
-    @IBOutlet weak var transcationTiTleLabel: UILabel!
-    @IBOutlet weak var titleView: BalanceInfoNavView!
     @IBOutlet weak var grinCardBgView: UIImageView!
     @IBOutlet weak var spendableTitleLabel: UILabel!
     @IBOutlet weak var waitingTitleLabel: UILabel!
@@ -38,19 +36,12 @@ class GrinInfoViewController: BaseViewController {
     @IBOutlet weak var awaitingCountLable: UILabel!
     @IBOutlet weak var totalCountLabel: UILabel!
     @IBOutlet weak var lockedCountLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lineImageVIew: UIImageView!
     @IBOutlet weak var receiveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var finalizationTitleLabel: UILabel!
     @IBOutlet weak var finalizationCountLabel: UILabel!
     let rightBatItemCustombutton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
-
-    let helpButton: UIButton = {
-        let button = UIButton()
-        button.setImage(R.image.grin_help(), for: .normal)
-        return button
-    }()
 
     lazy var emptyView: UIView = {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 170))
@@ -85,8 +76,8 @@ class GrinInfoViewController: BaseViewController {
         super.viewDidLoad()
         setupView()
         bind()
-        walletInfoVM.action.onNext(.getBalance(manually: true))
-        walletInfoVM.action.onNext(.getTxs(manually: true))
+//        walletInfoVM.action.onNext(.getBalance(manually: true))
+//        walletInfoVM.action.onNext(.getTxs(manually: true))
         GrinManager.default.handleSavedTx()
         GrinTxByViteService().reportViteAddress().done {_ in}
     }
@@ -108,22 +99,10 @@ class GrinInfoViewController: BaseViewController {
             })
             .disposed(by: rx.disposeBag)
 
-        walletInfoVM.txsDriver
-            .drive(onNext:{  [weak self] txs in
-                self?.tableView.mj_header.endRefreshing()
-                self?.tableView.reloadData()
-                if txs.isEmpty {
-                    self?.emptyView.isHidden = false
-                } else  {
-                    self?.emptyView.isHidden = true
-                }
-            })
-            .disposed(by: rx.disposeBag)
-
         walletInfoVM.messageDriver
             .filterNil()
             .drive(onNext:{ [weak self] in
-                self?.view.hideLoading()
+                self?.parent?.view.hideLoading()
                 Toast.show($0)
             })
             .disposed(by: rx.disposeBag)
@@ -131,16 +110,16 @@ class GrinInfoViewController: BaseViewController {
         walletInfoVM.showLoadingDriver
             .drive(onNext:{ [weak self] showLoading in
                 if showLoading {
-                    self?.view.displayLoading()
+                    self?.parent?.view.displayLoading()
                 } else {
-                    self?.view.hideLoading()
+                    self?.parent?.view.hideLoading()
                 }
             })
             .disposed(by: rx.disposeBag)
 
         walletInfoVM.fullInfoDetail
             .bind { [weak self] fullInfo in
-                self?.view.hideLoading()
+                self?.parent?.view.hideLoading()
                 let detail = GrinTxDetailViewController()
                 detail.fullInfo = fullInfo
                 self?.navigationController?.pushViewController(detail, animated: true)
@@ -151,7 +130,7 @@ class GrinInfoViewController: BaseViewController {
         rightBatItemCustombutton.rx.tap.asObservable()
             .bind { [weak self] in
                 guard let `self` = self,
-                    let customView = self.navigationItem.rightBarButtonItem?.customView,
+                    let customView = self.parent?.navigationItem.rightBarButtonItem?.customView,
                     let spendableAcountLabel = self.spendableAcountLabel else {
                     return
                 }
@@ -161,25 +140,6 @@ class GrinInfoViewController: BaseViewController {
             }
             .disposed(by: rx.disposeBag)
 
-        helpButton.rx.tap.bind { _ in
-            var url: URL!
-            if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                url = URL(string: "https://forum.vite.net/topic/1335/grin%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8vite%E9%92%B1%E5%8C%85%E6%94%B6%E8%BD%AC%E8%B4%A6%E6%95%99%E7%A8%8B")
-            } else {
-                url = URL(string: "https://forum.vite.net/topic/1334/a-tutorial-about-how-to-send-receive-a-grin-on-vite-mobile-wallet")
-            }
-            let webvc = WKWebViewController(url: url)
-            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
-            }
-            .disposed(by: rx.disposeBag)
-
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        titleView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
-            let vc =  GatewayTokenDetailViewController.init(tokenInfo: GrinManager.tokenInfo)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-        }).disposed(by: rx.disposeBag)
-
     }
 
 
@@ -187,16 +147,8 @@ class GrinInfoViewController: BaseViewController {
         navigationBarStyle = .default
 
         rightBatItemCustombutton.setImage(R.image.icon_nav_more(), for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBatItemCustombutton)
+        parent?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBatItemCustombutton)
 
-        self.titleView.bind(tokenInfo: GrinManager.tokenInfo)
-
-        self.titleView.addSubview(helpButton)
-        helpButton.snp.makeConstraints { (m) in
-            m.width.height.equalTo(16)
-            m.centerY.equalTo(self.titleView.symbolLabel)
-            m.left.equalToSuperview().offset(86)
-        }
 
         grinCardBgView.backgroundColor =
             UIColor.gradientColor(style: .leftTop2rightBottom,
@@ -205,12 +157,6 @@ class GrinInfoViewController: BaseViewController {
         lineImageVIew.image =
             R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile)
 
-        let nib = UINib.init(nibName: "GrinTransactionCell", bundle: businessBundle())
-        tableView.register(nib, forCellReuseIdentifier: "GrinTransactionCell")
-        tableView.mj_header = RefreshHeader(refreshingBlock: { [unowned self] in
-            self.walletInfoVM.action.onNext(.getBalance(manually: true))
-            self.walletInfoVM.action.onNext(.getTxs(manually: true))
-        })
 
         spendableTitleLabel.text = " " + R.string.localizable.grinBalanceSpendable() + " "
         lockedTitleLabel.text = R.string.localizable.grinBalanceLocked()
@@ -218,17 +164,9 @@ class GrinInfoViewController: BaseViewController {
         waitingTitleLabel.text = R.string.localizable.grinBalanceAwaiting()
         sendBtn.setTitle(R.string.localizable.grinSentBtnTitle(), for: .normal)
         receiveBtn.setTitle(R.string.localizable.grinReceiveBtnTitle(), for: .normal)
-        transcationTiTleLabel.text = R.string.localizable.transactionListPageTitle()
-        finalizationTitleLabel.text = R.string.localizable.grinTxbyfileReceivedStatusSender() 
-        tableView.tableFooterView = UIView()
 
-        tableView.addSubview(emptyView)
-        emptyView.snp.makeConstraints { (m) in
-            m.centerX.equalToSuperview()
-            m.width.equalTo(130)
-            m.height.equalTo(170)
-            m.centerY.equalToSuperview().offset(-5)
-        }
+        finalizationTitleLabel.text = R.string.localizable.grinTxbyfileReceivedStatusSender() 
+
     }
 
     @IBAction func sendAciton(_ sender: Any) {
@@ -327,77 +265,11 @@ class GrinInfoViewController: BaseViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
-
-    private var tapCount = 0
-    @IBAction func uploadLog(_ sender: Any) {
-        if tapCount <= 2 {
-            tapCount += 1
-            return
-        }
-        tapCount = 0
-        let cachePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-        let logURL = cachePath.appendingPathComponent("logger.log")
-        let activityViewController = UIActivityViewController(activityItems: [logURL], applicationActivities: nil)
-        UIViewController.current?.present(activityViewController, animated: true)
-    }
-}
-
-extension GrinInfoViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.walletInfoVM.txs.value.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GrinTransactionCell", for: indexPath) as! GrinTransactionCell
-        let tx = self.walletInfoVM.txs.value[indexPath.row]
-        cell.bind(tx)
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let tx = self.walletInfoVM.txs.value[indexPath.row]
-        var action = [UITableViewRowAction]()
-        if let slateId = tx.txLogEntry?.txSlateId {
-            let copyAction = UITableViewRowAction.init(style: .default, title:  R.string.localizable.grinTxCopyId()) { (_, _) in
-                    UIPasteboard.general.string = slateId
-                }
-                .then { $0.backgroundColor = UIColor(netHex: 0x479FFF)}
-            action.append(copyAction)
-        }
-
-        if tx.txLogEntry?.canRepost == true {
-            let repostAction = UITableViewRowAction.init(style: .default, title: R.string.localizable.grinTxRepost()) { (_, _) in
-                self.walletInfoVM.action.onNext(.repost(tx.txLogEntry!))
-                }
-                .then { $0.backgroundColor = UIColor(netHex: 0xFFC900)}
-            action.append(repostAction)
-        }
-
-        if tx.txLogEntry?.canCancel == true {
-            let cancleAction = UITableViewRowAction(style: .default, title:  R.string.localizable.cancel()) { (_, _) in
-                self.walletInfoVM.action.onNext(.cancel(tx.txLogEntry!))
-                }
-                .then { $0.backgroundColor = UIColor(netHex: 0xDEDFE0)}
-            action.append(cancleAction)
-        }
-        return action
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.view.displayLoading()
-        let fullInfo = self.walletInfoVM.txs.value[indexPath.row]
-        self.walletInfoVM.action.onNext(.getFullInfoDetail(fullInfo))
-    }
 }
 
 extension GrinInfoViewController: FloatButtonsViewDelegate {
 
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let selectVC = SelectGrinNodeViewController()
             self.navigationController?.pushViewController(selectVC, animated: true)

@@ -21,6 +21,10 @@ public class Statistics: NSObject {
         stat.start(withAppId: Constants.baiduMobileStat)
     }
 
+    public static func logWithUUIDAndAddress(eventId: String) {
+        log(eventId: eventId, attributes: ["uuid": UUID.stored, "address": HDWalletManager.instance.account?.address ?? ""])
+    }
+
     public static func log(eventId: String, attributes: [String: String] = [:]) {
         #if DEBUG || TEST
         let toast: String
@@ -35,7 +39,7 @@ public class Statistics: NSObject {
             }
         }
 
-        plog(level: .debug, log: toast, tag: .statistics)
+        //plog(level: .debug, log: toast, tag: .statistics)
 
         if DebugService.instance.config.showStatisticsToast {
             Toast.show(toast)
@@ -69,7 +73,7 @@ public class Statistics: NSObject {
             Toast.show("Statistics Page Start: \(name)")
         }
 
-        plog(level: .debug, log: "Statistics Page Start: \(name)", tag: .statistics)
+        //plog(level: .debug, log: "Statistics Page Start: \(name)", tag: .statistics)
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
@@ -95,7 +99,7 @@ public class Statistics: NSObject {
             Toast.show("Statistics Page End: \(name)")
         }
 
-        plog(level: .debug, log: "Statistics Page End: \(name)", tag: .statistics)
+        //plog(level: .debug, log: "Statistics Page End: \(name)", tag: .statistics)
 
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewEnd(withName: name)

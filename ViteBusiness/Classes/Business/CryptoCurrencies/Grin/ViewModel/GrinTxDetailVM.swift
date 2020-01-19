@@ -591,7 +591,7 @@ class GrinTxDetailVM: NSObject {
                 if let tofee = fullInfo.gatewayInfo?.toFee {
                     let tofeeCount = Int(tofee) ?? 0
                     let tofeeStr = Amount(abs(tofeeCount)).amount(decimals: 9, count: 9)
-                    let str = "\(R.string.localizable.grinTxTypeWaitToSign())\n\(R.string.localizable.grinSentFee()): \(tofeeStr)"
+                    let str = "\(localInfo.getSendFileTime?.grinTimeString() ?? R.string.localizable.grinTxTypeWaitToSign())\n\(R.string.localizable.grinSentFee()): \(tofeeStr)"
                     cellInfo1.timeStr = str
                 }
             } else {

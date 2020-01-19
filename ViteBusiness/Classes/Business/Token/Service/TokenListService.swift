@@ -52,7 +52,7 @@ class TokenListService {
             guard let `self` = self else { return }
             switch result {
             case .success(let map):
-                plog(level: .debug, log: "get tokenList data  finished", tag: .exchange)
+                //plog(level: .debug, log: "get tokenList data  finished", tag: .exchange)
                 self.tokenListRefreshBehaviorRelay.accept(map)
                 self.pri_save()
             case .failure(let error):

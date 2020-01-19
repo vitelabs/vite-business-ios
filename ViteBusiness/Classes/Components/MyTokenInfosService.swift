@@ -11,6 +11,7 @@ import RxCocoa
 import NSObject_Rx
 import Alamofire
 import ViteWallet
+import ObjectMapper
 
 extension MyTokenInfosService: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -20,36 +21,19 @@ extension MyTokenInfosService: Storageable {
 
 public final class MyTokenInfosService: NSObject {
     public static let instance = MyTokenInfosService()
-    fileprivate var needUpdateTokenInfo: Set<TokenCode> = Set()
 
     private override init() {}
     private func pri_save() {
-        save(mappable: tokenInfosBehaviorRelay.value)
+        let myTokenCodes = tokenCodesBehaviorRelay.value
+        let removedTokenCodes = Array(self.removedTokenCodes)
+        let storager = Storager(myTokenCodes: myTokenCodes, removedTokenCodes: removedTokenCodes)
+        save(mappable: storager)
     }
 
+    fileprivate(set) var removedTokenCodes = Set<TokenCode>()
+
+    private var tokenCodesBehaviorRelay: BehaviorRelay<[TokenCode]> = BehaviorRelay(value: [])
     private var tokenInfosBehaviorRelay: BehaviorRelay<[TokenInfo]> = BehaviorRelay(value: [])
-
-    private func sortTokenInfos(tokenInfos: [TokenInfo]) -> [TokenInfo] {
-
-        var viteTokenInfos: NSMutableArray = NSMutableArray()
-        var ethTokenInfos: NSMutableArray = NSMutableArray()
-        var grinTokenInfos: NSMutableArray = NSMutableArray()
-
-        tokenInfos.forEach { (tokenInfo) in
-            switch tokenInfo.coinType {
-            case .vite:
-                viteTokenInfos.add(tokenInfo)
-            case .eth:
-                ethTokenInfos.add(tokenInfo)
-            case .grin:
-                grinTokenInfos.add(tokenInfo)
-            case .unsupport:
-                break
-            }
-        }
-
-        return (viteTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
-    }
 
     //MARK: Launch
     func start() {
@@ -61,71 +45,123 @@ public final class MyTokenInfosService: NSObject {
                 guard let `self` = self else { return }
                 if let _ = uuid {
                     #if DAPP
-                    self.tokenInfosBehaviorRelay.accept([
-                        TokenInfo(tokenCode: ViteConst.instance.tokenCode.viteCoin,
-                                  coinType: .vite,
-                                  name: ViteWalletConst.viteToken.name,
-                                  symbol: ViteWalletConst.viteToken.symbol,
-                                  decimals: ViteWalletConst.viteToken.decimals,
-                                  icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png",
-                                  id: ViteWalletConst.viteToken.id)])
-                    self.needUpdateTokenInfo = Set()
+                    self.tokenInfosBehaviorRelay.accept([TokenInfo.BuildIn.vite.value])
                     #else
-                    guard let array = config.defaultTokenInfos as? [[String: Any]] else { return }
-                    let defaultTokenInfos = [TokenInfo](JSONArray: array).compactMap { $0 }
-                    self.defaultTokenInfos = defaultTokenInfos
 
-                    if let jsonString = self.readString(),
-                        let tokenInfos = [TokenInfo](JSONString: jsonString) {
-                        let selected = tokenInfos.filter { !defaultTokenInfos.contains($0) }
-
-                        // update icon
-                        let def = defaultTokenInfos.map({ (old) -> TokenInfo in
-                            for tokenInfo in tokenInfos where tokenInfo.tokenCode == old.tokenCode { return tokenInfo }
-                            return old
-                        })
-                        self.tokenInfosBehaviorRelay.accept(self.sortTokenInfos(tokenInfos: def + selected))
+                    let defaultTokenCodes = config.defaultTokenCodes
+                    let myTokenCodes: [TokenCode]
+                    if let jsonString = self.readString() {
+                        // Compatible with older versions(2.7.0)
+                        if let tokenInfos = [TokenInfo](JSONString: jsonString) {
+                            TokenInfoCacheService.instance.addTokenInfosIfNotExist(tokenInfos)
+                            myTokenCodes = tokenInfos.map { $0.tokenCode }
+                        } else if let storager = Storager(JSONString: jsonString) {
+                            myTokenCodes = storager.myTokenCodes
+                            self.removedTokenCodes = Set(storager.removedTokenCodes)
+                        } else {
+                            myTokenCodes = [TokenInfo.BuildIn.vite.value.tokenCode]
+                        }
                     } else {
-                        self.tokenInfosBehaviorRelay.accept(defaultTokenInfos)
+                        myTokenCodes = [TokenInfo.BuildIn.vite.value.tokenCode]
                     }
-                    self.needUpdateTokenInfo = Set(self.tokenInfosBehaviorRelay.value.map({ $0.tokenCode }))
+
+                    self.tokenCodesBehaviorRelay.accept(myTokenCodes)
+
+                    let myTokenInfos = myTokenCodes
+                        .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+                        .compactMap { $0 }
+                    let defaultTokenInfos = defaultTokenCodes
+                        .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+                        .compactMap { $0 }
+
+                    let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: myTokenInfos)
+                    self.tokenInfosBehaviorRelay.accept(tokenInfos)
+
+                    if myTokenCodes.count == myTokenInfos.count && defaultTokenCodes.count == defaultTokenInfos.count {
+                        self.pri_save()
+                    } else {
+                        self.fetchTokenInfos(defaultTokenCodes: defaultTokenCodes, myTokenCodes: myTokenCodes)
+                    }
+
                     #endif
                 } else {
+                    self.tokenCodesBehaviorRelay.accept([])
                     self.tokenInfosBehaviorRelay.accept([])
-                    self.needUpdateTokenInfo = Set()
                 }
         }.disposed(by: rx.disposeBag)
     }
 
-    //MARK: public func
-    public fileprivate(set) var defaultTokenInfos: [TokenInfo] = []
-    public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
-    public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
+    private func fetchTokenInfos(defaultTokenCodes: [TokenCode], myTokenCodes: [TokenCode]) {
+        let set = Set(defaultTokenCodes).union(Set(myTokenCodes))
+        TokenInfoCacheService.instance.tokenInfos(for: Array(set))
+            .done { _ in
+                let defaultTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: defaultTokenCodes)!
+                let myTokenInfos = TokenInfoCacheService.instance.tokenInfos(for: myTokenCodes)!
+                let tokenInfos = self.sortTokenInfos(defaultTokenInfos: defaultTokenInfos, myTokenInfos: myTokenInfos)
+                self.tokenInfosBehaviorRelay.accept(tokenInfos)
+                self.pri_save()
+            }.catch{ error in
+                plog(level: .warning, log: "fetch my tokenInfos error: \(error.localizedDescription)", tag: .exchange)
+                GCD.delay(1) { self.fetchTokenInfos(defaultTokenCodes: defaultTokenCodes, myTokenCodes: myTokenCodes) }
+        }
+    }
 
-    public func updateTokenInfoIfNeeded(for tokenCode: TokenCode) {
-        guard needUpdateTokenInfo.contains(tokenCode) else { return }
+    private func sortTokenInfos(defaultTokenInfos: [TokenInfo], myTokenInfos: [TokenInfo]) -> [TokenInfo] {
 
-        ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode) { (r) in
-            switch r {
-            case .success(let tokenInfo):
-                self.needUpdateTokenInfo.remove(tokenCode)
-                var tokenInfos = self.tokenInfosBehaviorRelay.value
-                var index: Int?
-                for (i, t) in tokenInfos.enumerated() where t.tokenCode == tokenInfo.tokenCode {
-                    index = i
+        let set = Set(defaultTokenInfos.map{ $0.tokenCode })
+
+        var viteTokenInfos: NSMutableArray = NSMutableArray()
+        var ethTokenInfos: NSMutableArray = NSMutableArray()
+        var bnbTokenInfos: NSMutableArray = NSMutableArray()
+        var grinTokenInfos: NSMutableArray = NSMutableArray()
+
+        defaultTokenInfos.forEach { (tokenInfo) in
+            if !removedTokenCodes.contains(tokenInfo.tokenCode) {
+                switch tokenInfo.coinType {
+                case .vite:
+                    viteTokenInfos.add(tokenInfo)
+                case .eth:
+                    ethTokenInfos.add(tokenInfo)
+                case .grin:
+                    grinTokenInfos.add(tokenInfo)
+                case .bnb:
+                    bnbTokenInfos.add(tokenInfo)
+                case .unsupport:
+                    break
                 }
-
-                if let index = index {
-                    tokenInfos.remove(at: index)
-                    tokenInfos.insert(tokenInfo, at: index)
-                    self.tokenInfosBehaviorRelay.accept(tokenInfos)
-                    self.pri_save()
-                }
-
-            case .failure(let error):
-                plog(level: .warning, log: "update tokenInfo error: \(error.localizedDescription)", tag: .exchange)
             }
         }
+
+        myTokenInfos.forEach { (tokenInfo) in
+            if !removedTokenCodes.contains(tokenInfo.tokenCode) && !set.contains(tokenInfo.tokenCode) {
+                switch tokenInfo.coinType {
+                case .vite:
+                    viteTokenInfos.add(tokenInfo)
+                case .eth:
+                    ethTokenInfos.add(tokenInfo)
+                case .bnb:
+                    bnbTokenInfos.add(tokenInfo)
+                case .grin:
+                    grinTokenInfos.add(tokenInfo)
+                case .unsupport:
+                    break
+                }
+            }
+        }
+
+        return (viteTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+    }
+
+    //MARK: public func
+    public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
+    public var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
+    public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
+
+    public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
+        for tokenInfo in tokenInfos where tokenInfo.id == symbol {
+            return tokenInfo
+        }
+        return nil
     }
 
     public func tokenInfo(for tokenCode: TokenCode) -> TokenInfo? {
@@ -136,113 +172,80 @@ public final class MyTokenInfosService: NSObject {
     }
 
     public func append(tokenInfo: TokenInfo) {
-        guard containsTokenInfo(for: tokenInfo.tokenCode) == false else { return }
+        TokenInfoCacheService.instance.updateTokenInfos([tokenInfo])
+        guard contains(for: tokenInfo.tokenCode) == false else { return }
 
+        removedTokenCodes.remove(tokenInfo.tokenCode)
         var tokenInfos = tokenInfosBehaviorRelay.value
         tokenInfos.append(tokenInfo)
-        tokenInfosBehaviorRelay.accept(sortTokenInfos(tokenInfos: tokenInfos))
+        let ret = sortTokenInfos(defaultTokenInfos: [], myTokenInfos: tokenInfos)
+        tokenCodesBehaviorRelay.accept(ret.map { $0.tokenCode })
+        tokenInfosBehaviorRelay.accept(ret)
         pri_save()
         ExchangeRateManager.instance.getRateImmediately(for: tokenInfo.tokenCode)
     }
 
     public func removeToken(for tokenCode: TokenCode) {
-        guard containsTokenInfo(for: tokenCode) else { return }
-        guard isDefaultTokenInfo(for: tokenCode) == false else { return }
+        guard contains(for: tokenCode) else { return }
+        guard canRemove(for: tokenCode) else { return }
 
         let tokenInfos = tokenInfosBehaviorRelay.value.filter { $0.tokenCode != tokenCode }
+        tokenCodesBehaviorRelay.accept(tokenInfos.map { $0.tokenCode })
         tokenInfosBehaviorRelay.accept(tokenInfos)
+        removedTokenCodes.insert(tokenCode)
         pri_save()
     }
 
-    public func containsTokenInfo(for tokenCode: TokenCode) -> Bool {
-        for tokenInfo in tokenInfos where tokenInfo.tokenCode == tokenCode {
+    public func contains(for tokenCode: TokenCode) -> Bool {
+        for code in tokenCodes where code == tokenCode {
             return true
         }
         return false
     }
 
-    public func isDefaultTokenInfo(for tokenCode: TokenCode) -> Bool {
-        for tokenInfo in defaultTokenInfos where tokenInfo.tokenCode == tokenCode {
-            return true
-        }
-        return false
-    }
-}
-
-extension MyTokenInfosService {
-
-    public func tokenInfo(forViteTokenId viteTokenId: ViteTokenId) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.coinType == .vite && tokenInfo.viteTokenId == viteTokenId {
-            return tokenInfo
-        }
-        return nil
-    }
-
-    public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
-        for tokenInfo in tokenInfos where tokenInfo.coinType == .eth && tokenInfo.ethContractAddress.lowercased() == address.lowercased() {
-            return tokenInfo
-        }
-        return nil
-    }
-
-    func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-
-        if let tokenInfo = tokenInfo(for: tokenCode) {
-            completion(Alamofire.Result.success(tokenInfo))
-        } else {
-            ExchangeProvider.instance.getTokenInfo(tokenCode: tokenCode, completion: completion)
-        }
-    }
-
-    func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-
-        if let tokenInfo = tokenInfo(forViteTokenId: viteTokenId) {
-            completion(Alamofire.Result.success(tokenInfo))
-        } else {
-            #if DAPP
-            ViteNode.mintage.getToken(tokenId: viteTokenId)
-            .done({
-                let tokenInfo = TokenInfo(tokenCode: $0.id,
-                                          coinType: .vite,
-                                          name: $0.name,
-                                          symbol: $0.symbol,
-                                          decimals: $0.decimals,
-                                          icon: "",
-                                          id: $0.id)
-                completion(Result.success(tokenInfo))
-            }).catch({ error in
-                completion(Result.failure(error))
-            })
-            #else
-            ExchangeProvider.instance.getTokenInfo(chain: "VITE", id: viteTokenId, completion: completion)
-            #endif
-        }
-    }
-
-    func tokenInfo(forEthContractAddress address: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-
-        if let tokenInfo = tokenInfo(forEthContractAddress: address) {
-            completion(Alamofire.Result.success(tokenInfo))
-        } else {
-            ExchangeProvider.instance.getTokenInfo(chain: "ETH", id: address, completion: completion)
-        }
+    public func canRemove(for tokenCode: TokenCode) -> Bool {
+        return tokenCode != TokenInfo.BuildIn.vite.value.tokenCode
     }
 }
 
 extension TokenInfo {
-    var isDefault: Bool {
-        return MyTokenInfosService.instance.isDefaultTokenInfo(for: tokenCode)
+    var canRemove: Bool {
+        return MyTokenInfosService.instance.canRemove(for: tokenCode)
     }
 
     var isContains: Bool {
-        return MyTokenInfosService.instance.containsTokenInfo(for: tokenCode)
+        return MyTokenInfosService.instance.contains(for: tokenCode)
+    }
+}
+
+extension MyTokenInfosService {
+    fileprivate struct Storager: Mappable {
+
+        fileprivate(set) var myTokenCodes = [TokenCode]()
+        fileprivate(set) var removedTokenCodes = [TokenCode]()
+
+        init?(map: Map) {
+
+        }
+
+        mutating func mapping(map: Map) {
+            myTokenCodes <- map["myTokenCodes"]
+            removedTokenCodes <- map["removedTokenCodes"]
+        }
+
+        init(myTokenCodes: [TokenCode], removedTokenCodes: [TokenCode]) {
+            self.myTokenCodes = myTokenCodes
+            self.removedTokenCodes = removedTokenCodes
+        }
     }
 }
 
 extension MyTokenInfosService {
     // for debug
     func clear() {
+        tokenCodesBehaviorRelay.accept([])
         tokenInfosBehaviorRelay.accept([])
+        removedTokenCodes = []
         pri_save()
     }
 }

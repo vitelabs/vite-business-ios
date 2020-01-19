@@ -30,6 +30,32 @@ extension UITextField {
         self.delegate = kas_textFieldDelegateProxy
         kas_textFieldDelegateProxy.delegate = delegate
         kas_textFieldDelegateProxy.textField = self
+
+        if keyboardType == .numberPad || keyboardType == .decimalPad {
+            let toolbar = UIToolbar()
+            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: self, action: #selector(onNext))
+            let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: self, action: #selector(onDone))
+            if returnKeyType == .next {
+                toolbar.items = [flexSpace, next]
+            } else {
+                toolbar.items = [flexSpace, done]
+            }
+            toolbar.sizeToFit()
+            inputAccessoryView = toolbar
+        }
+    }
+
+    @objc func onNext() {
+        if case .next(let responder) = kas_returnAction {
+            responder.becomeFirstResponder()
+        }
+    }
+
+    @objc func onDone() {
+        if case .done(let block) = kas_returnAction {
+            block(self)
+        }
     }
 
     private var kas_returnAction: KASReturnAction? {

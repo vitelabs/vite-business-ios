@@ -41,20 +41,20 @@ class GrinTxByViteService {
         }
         var slateId: String!
         return creatSentSlate(amount: amount)
-            .map { (slate) -> (Slate, URL) in
+            .map { (slate, rawData) -> (Slate, URL,Data) in
                 plog(level: .info, log: "grin-0-sentGrin-creatSentSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address)", tag: .grin)
                 do {
                     GrinLocalInfoService.shared.addSendInfo(slateId: slate.id, method: "Vite", creatTime: Int(Date().timeIntervalSince1970))
                     slateId = slate.id
-                    let url = try self.save(slate: slate, isResponse: false)
-                    return (slate, url)
+                    let url = try self.save(slateId: slate.id, isResponse: false,rawData: rawData)
+                    return (slate, url, rawData)
                 } catch {
                     throw error
                 }
             }
-            .then { (sentSlate, url) ->  Promise<String> in
+            .then { (sentSlate, url, rawData) ->  Promise<String> in
                 plog(level: .info, log: "grin-1-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address)", tag: .grin)
-                return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent, account: account)
+                return self.encrypteAndUploadSlate(toAddress: toAddress, slate: sentSlate , type: .sent, account: account,rawData: rawData)
             }
             .then { (fname) ->  Promise<Void> in
                 plog(level: .info, log: "grin-2-sentGrin-saveSlateSuccess.amount:\(amount),toAddress:\(toAddress),accountAddress:\(account.address)", tag: .grin)
@@ -83,7 +83,7 @@ class GrinTxByViteService {
             let slate = Slate.init(JSONString: string) {
             plog(level: .info, log: "grin-4-handleSentFileStart-fromSavedResponseSlate.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
             return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: slate , type: .response, account:
-                    account)
+                    account, rawData: data)
                     .then { fname -> Promise<Void> in
                         plog(level: .info, log: "grin-9-handleSentFile-fromSavedResponseSlate-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                         return self.sentViteTx(toAddress: fromAddress, fileName: fname, account: account).map {
@@ -100,29 +100,32 @@ class GrinTxByViteService {
                 plog(level: .info, log: "grin-5-handleSentFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data, account: account)
             }
-            .then { (data) -> Promise<(Slate, URL)> in
+            .then { (data) -> Promise<(Slate, URL, Data)> in
                 plog(level: .info, log: "grin-6-handleSentFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
-            .then { (sentSlate, url) -> Promise<Slate> in
-                plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+            .then { (sentSlate, url, rawData) -> Promise<(Slate,Data)> in
+                plog(level: .info, log: "grin-7-handleSentFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address),slateString:\(String(data: rawData, encoding: .utf8))", tag: .grin)
                 GrinLocalInfoService.shared.addReceiveInfo(slateId: sentSlate.id, method: "Vite", getSendFileTime:  Int(Date().timeIntervalSince1970))
                 return self.receiveSentSlate(with: url)
             }
-            .then { (responseSlate) -> Promise<String> in
+            .then { (responseSlate,rawData) -> Promise<String> in
                 slateId = responseSlate.id
                 GrinLocalInfoService.shared.set(receiveTime: Int(Date().timeIntervalSince1970), with: responseSlate.id)
                 do {
-                    let url = try self.save(slate: responseSlate, isResponse: true)
+                    let url = try self.save(slateId: responseSlate.id, isResponse: true,rawData:rawData)
                     GrinManager.default.set_handleSendFileSuccess_createdResponeseFile(fileName: fileName, slateId: responseSlate.id)
-                    plog(level: .info, log: "grin-8-handleSentFile-createdResponeseFileSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address),url:\(responseSlate.id)", tag: .grin)
+                    plog(level: .info, log: "grin-8-handleSentFile-createdResponeseFileSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address),url:\(responseSlate.id) slateString:\(String(data: rawData, encoding: .utf8))", tag: .grin)
 
                 } catch {
                     plog(level: .info, log: "grin-8-handleSentFile-createdResponeseFileFailed.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 }
 
                 plog(level: .info, log: "grin-8-handleSentFile-receiveSentSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
-                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: responseSlate , type: .response, account: account)
+                return self.encrypteAndUploadSlate(toAddress: fromAddress, slate: responseSlate , type: .response, account: account, rawData: rawData)
+            }
+            .then { fname -> Promise<String> in
+                return after(seconds: 1).map { fname }
             }
             .then { fname -> Promise<Void> in
                 plog(level: .info, log: "grin-9-handleSentFile-encrypteAndUploadSlateSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
@@ -142,12 +145,12 @@ class GrinTxByViteService {
                 plog(level: .info, log: "grin-5-handleReceiveFile-downlodEncryptedSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
                 return self.cryptoAesCTRXOR(peerAddress: fromAddress, data: data, account: account)
             }
-            .then { (data) -> Promise<(Slate, URL)> in
-                plog(level: .info, log: "grin-6-handleReceiveFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+            .then { (data) -> Promise<(Slate, URL, Data)> in
+                plog(level: .info, log: "grin-6-handleReceiveFile-cryptoAesCTRXORSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address) ", tag: .grin)
                 return self.transformAndSaveSlateData(data, isResponse: isResponse)
             }
-            .then { (responseSlate, url) ->  Promise<Void> in
-                plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address)", tag: .grin)
+            .then { (responseSlate, url, rawData) ->  Promise<Void> in
+                plog(level: .info, log: "grin-7-handleReceiveFile-transformAndSaveSlateDataSuccess.fname:\(fileName),fromAddress:\(fromAddress),accountAddress:\(account.address) responseSlate:\(String(data: rawData, encoding: .utf8))", tag: .grin)
                 slateId = responseSlate.id
                 GrinLocalInfoService.shared.set(getResponseFileTime: Int(Date().timeIntervalSince1970), with: slateId)
                 return self.finalizeResponseSlate(with: url)
@@ -204,8 +207,8 @@ class GrinTxByViteService {
 }
 
 extension GrinTxByViteService {
-    fileprivate func encrypteAndUploadSlate(toAddress:String, slate: Slate, type: Int, account: Wallet.Account) -> Promise<String> {
-        return cryptoAesCTRXOR(peerAddress: toAddress, data: slate.toJSONString()?.data(using: .utf8), account: account)
+    fileprivate func encrypteAndUploadSlate(toAddress:String, slate: Slate, type: Int, account: Wallet.Account,rawData: Data) -> Promise<String> {
+        return cryptoAesCTRXOR(peerAddress: toAddress, data: rawData, account: account)
             .then({ (d) -> Promise<String> in
                 return self.uploadSlateData(d, slateId: slate.id, toAddress: toAddress, type: type, account: account)
             })
@@ -304,17 +307,23 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func save(slate: Slate, isResponse: Bool) throws -> URL {
-        let slateUrl = GrinManager.default.getSlateUrl(slateId: slate.id, isResponse: isResponse)
+    fileprivate func save(slateId: String, isResponse: Bool,rawData: Data?) throws -> URL {
+        
+        let slateUrl = GrinManager.default.getSlateUrl(slateId: slateId, isResponse: isResponse)
         do {
-            try slate.toJSONString()?.write(to: slateUrl, atomically: true, encoding: .utf8)
+            if let rawData = rawData {
+                try rawData.write(to: slateUrl)
+            }
+//            else {
+//                try slate.toJSONString()?.write(to: slateUrl, atomically: true, encoding: .utf8)
+//            }
             return slateUrl
         } catch {
             throw error
         }
     }
 
-    fileprivate func creatSentSlate(amount: UInt64) -> Promise<Slate> {
+    fileprivate func creatSentSlate(amount: UInt64) -> Promise<(Slate,Data)> {
         return Promise { seal in
             grin_async({ () in
                 GrinManager.default.txCreate(amount: amount, selectionStrategyIsUseAll: false, message: "Sent")
@@ -329,7 +338,7 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func receiveSentSlate(with url: URL) -> Promise<Slate> {
+    fileprivate func receiveSentSlate(with url: URL) -> Promise<(Slate,Data)> {
         return Promise { seal in
             grin_async({ () in
                 GrinManager.default.txReceive(slatePath: url.path, message: "Received")
@@ -365,7 +374,7 @@ extension GrinTxByViteService {
         }
     }
 
-    fileprivate func transformAndSaveSlateData(_ data: Data, isResponse: Bool) -> Promise<(Slate, URL)> {
+    fileprivate func transformAndSaveSlateData(_ data: Data, isResponse: Bool) -> Promise<(Slate, URL, Data)> {
         return Promise { seal in
             guard let slateString = String.init(data: data, encoding: .utf8),
                 let slate = Slate(JSONString: slateString) else {
@@ -373,8 +382,8 @@ extension GrinTxByViteService {
                     return
             }
             do {
-                let url = try self.save(slate: slate, isResponse: isResponse)
-                seal.fulfill((slate, url))
+                let url = try self.save(slateId: slate.id, isResponse: isResponse, rawData: data)
+                seal.fulfill((slate, url, data))
             } catch {
                 seal.reject(error)
             }

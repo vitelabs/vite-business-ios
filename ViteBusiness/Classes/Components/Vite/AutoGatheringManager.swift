@@ -28,9 +28,9 @@ final class AutoGatheringManager {
             if accounts.isEmpty {
                 self.service?.stopPoll()
                 self.service = nil
-                plog(level: .debug, log: "stop receive", tag: .transaction)
+                //plog(level: .debug, log: "stop receive", tag: .transaction)
             } else {
-                plog(level: .debug, log: "start receive for \(accounts.count) address", tag: .transaction)
+                //plog(level: .debug, log: "start receive for \(accounts.count) address", tag: .transaction)
                 let service = ReceiveAllTransactionService(accounts: accounts, interval: 5, completion: { (r) in
                     switch r {
                     case .success(let ret):
@@ -39,11 +39,11 @@ final class AutoGatheringManager {
                                 data.contentTypeInUInt16 == 0x8001,
                                 let viteData = data.rawContent {
                                 let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
-                                plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
+                                //plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
                                 GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
                             }
                         }
-                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
+//                        //plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
                     case .failure(let error):
                         plog(level: .warning, log: "getOnroad for \(accounts.count) address error: \(error.viteErrorMessage)", tag: .transaction)
                     }

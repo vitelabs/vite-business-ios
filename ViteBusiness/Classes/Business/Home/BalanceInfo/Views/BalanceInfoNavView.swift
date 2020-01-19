@@ -21,15 +21,14 @@ class BalanceInfoNavView: UIView {
         $0.numberOfLines = 1
     }
 
-    let gatewayNamelabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 11, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x007AFF)
-        $0.numberOfLines = 1
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
-    }
+    let gatewayInfoBtn = GateWayNameButton()
 
-    let gatewayInfoBtn = UIButton()
+    let helpButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.grin_help(), for: .normal)
+        button.isHidden == true
+        return button
+    }()
 
     let tokenIconView = TokenIconView()
 
@@ -42,8 +41,8 @@ class BalanceInfoNavView: UIView {
         addSubview(symbolLabel)
         addSubview(nameLabel)
         addSubview(tokenIconView)
-        addSubview(gatewayNamelabel)
         addSubview(gatewayInfoBtn)
+        addSubview(helpButton)
 
         backgroundColor = UIColor.white
 //        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
@@ -68,13 +67,17 @@ class BalanceInfoNavView: UIView {
             m.bottom.equalTo(nameLabel.snp.top).offset(-6)
         }
 
-        gatewayNamelabel.snp.makeConstraints { (m) in
-            m.left.equalTo(symbolLabel.snp.right).offset(6)
+        gatewayInfoBtn.snp.makeConstraints { (m) in
+            m.left.equalTo(symbolLabel.snp.right).offset(5)
             m.centerY.equalTo(symbolLabel)
             m.height.equalTo(16)
+            m.width.equalTo(200)
         }
-        gatewayInfoBtn.snp.makeConstraints { (m) in
-            m.edges.equalTo(gatewayNamelabel)
+
+        helpButton.snp.makeConstraints { (m) in
+            m.width.height.equalTo(16)
+            m.centerY.equalTo(symbolLabel)
+            m.left.equalToSuperview().offset(86)
         }
     }
 
@@ -84,14 +87,23 @@ class BalanceInfoNavView: UIView {
     }
 
     func bind(tokenInfo: TokenInfo) {
+        gatewayInfoBtn.isHidden = true
+
         symbolLabel.text = tokenInfo.uniqueSymbol
         nameLabel.text = tokenInfo.name
         tokenIconView.tokenInfo = tokenInfo
         if let gatewayName = tokenInfo.gatewayName {
-            gatewayNamelabel.text = " \(gatewayName) "
-            gatewayNamelabel.isHidden = false
+            gatewayInfoBtn.setText(gatewayName)
+            gatewayInfoBtn.isHidden = false
+            gatewayInfoBtn.layoutIfNeeded()
         } else {
-            gatewayNamelabel.isHidden = true
+            gatewayInfoBtn.isHidden = true
+        }
+        if tokenInfo == GrinManager.tokenInfo {
+            helpButton.isHidden = false
+        } else {
+            helpButton.isHidden == true
+            helpButton.setImage(nil, for: .normal)
         }
     }
 }
@@ -107,10 +119,77 @@ extension TokenInfo {
             } else {
                 return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
             }
+        case .bnb:
+            if isEtherCoin {
+                return nil
+            } else {
+                return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
+            }
         case .grin:
             return nil
         case .unsupport:
             return nil
         }
+    }
+}
+
+class GateWayNameButton: UIView {
+    
+    let gatewayIconImageView = UIImageView(image: R.image.gateway())
+    let bgImageView = UIImageView.init(image: R.image.gateway_label_layer()?.resizableImage(withCapInsets: UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 30), resizingMode: .stretch))
+    let label = UILabel().then {
+        $0.text = "Gateway"
+        $0.font = UIFont.systemFont(ofSize: 11)
+        $0.textColor = UIColor.init(netHex: 0x007AFF)
+    }
+
+    let button  = UIButton()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(gatewayIconImageView)
+        addSubview(bgImageView)
+        addSubview(label)
+        addSubview(button)
+
+        gatewayIconImageView.snp.makeConstraints { (m) in
+            m.left.equalToSuperview()
+            m.centerY.equalToSuperview()
+            m.width.height.equalTo(19)
+        }
+
+        label.snp.makeConstraints { (m) in
+            m.top.bottom.equalToSuperview()
+            m.left.equalTo(gatewayIconImageView.snp.right).offset(2)
+        }
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        bgImageView.snp.makeConstraints { (m) in
+            m.top.bottom.equalTo(gatewayIconImageView)
+            m.left.equalTo(gatewayIconImageView.snp.centerX)
+            m.right.equalTo(label.snp.right).offset(8)
+        }
+
+        button.snp.makeConstraints { (m) in
+            m.top.bottom.equalToSuperview()
+            m.left.equalTo(gatewayIconImageView)
+            m.right.equalTo(bgImageView)
+        }
+
+
+    }
+
+    func setText(_ text: String) {
+        label.text = text
+        label.snp.remakeConstraints { (m) in
+            m.top.bottom.equalToSuperview()
+            m.left.equalTo(gatewayIconImageView.snp.right).offset(2)
+            m.width.equalTo(label.sizeThatFits(CGSize(width: 100, height: 100)).width)
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

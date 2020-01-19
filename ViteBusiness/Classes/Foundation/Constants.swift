@@ -15,17 +15,11 @@ public struct Constants {
     }
 
     // support
-    public static let supportEmail = "info@vite.org"
+    public static let supportEmail = "vitewallet@vitex.zendesk.com"
     //baidu  statistics
     public static let baiduMobileStat = "e74c7f32c0"
     //app channel
     public static let appDownloadChannel = Channel.appstore
 
     public static let IntroductionPageVersion = "4"
-
-    public static let whiteList = ["vite.org",
-                                   "vite.net",
-                                   "vite.store",
-                                   "vite.wiki",
-                                   "vite.blog"]
 }

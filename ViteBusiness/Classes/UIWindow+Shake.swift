@@ -18,19 +18,18 @@ extension UIWindow {
 
         #if DAPP
         #else
-
-        #if DEBUG || TEST
-        guard let top = UIViewController.current else { return }
-        if top is DebugViewController {
-            top.dismiss(animated: true, completion: nil)
-        } else if top is WKWebViewController {
-            // do nothing
-        } else {
-            let vc = DebugViewController()
-            let nav = BaseNavigationController(rootViewController: vc)
-            top.present(nav, animated: true, completion: nil)
-        }
-        #endif
+            #if DEBUG || TEST
+            guard let top = UIViewController.current else { return }
+            if top is DebugViewController {
+                top.dismiss(animated: true, completion: nil)
+            } else if top is WKWebViewController {
+                // do nothing
+            } else {
+                let vc = DebugViewController()
+                let nav = BaseNavigationController(rootViewController: vc)
+                top.present(nav, animated: true, completion: nil)
+            }
+            #endif
         #endif
     }
 }

@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package protocol;
+
+message DexProtocol {
+    string client_id = 1; //Identify a single client
+    string topics = 2; //见下面
+    string op_type = 3; // sub,un_sub,ping,pong,push
+    bytes message = 4; //proto数据
+    int32 error_code = 5; //错误编码 0:normal, 1:illegal_client_id，2:illegal_topics，3:illegal_op_type,5:visit_limit
+}
+
+message TickerStatisticsProto {
+
+    //symbol
+    string symbol = 1;
+    //symbol
+    string tradeTokenSymbol = 2;
+    //symbol
+    string quoteTokenSymbol = 3;
+    //tokenId
+    string tradeToken = 4;
+    //tokenId
+    string quoteToken = 5;
+    //价格
+    string openPrice = 6;
+    //价格
+    string prevClosePrice = 7;
+    //价格
+    string closePrice = 8;
+    //价格
+    string priceChange = 9;
+    //变化率
+    string priceChangePercent = 10;
+    //价格
+    string highPrice = 11;
+    //价格
+    string lowPrice = 12;
+    //数量
+    string quantity = 13;
+    //成交额
+    string amount = 14;
+    //price精度
+    int32 pricePrecision = 15;
+    //quantity精度
+    int32 quantityPrecision = 16;
+}
+
+
+message TradeListProto {
+    repeated TradeProto trade = 1;
+}
+
+message TradeProto {
+
+    string tradeId = 1;
+    //symbol
+    string symbol = 2;
+    //symbol
+    string tradeTokenSymbol = 3;
+    //symbol
+    string quoteTokenSymbol = 4;
+    //tokenId
+    string tradeToken = 5;
+    //tokenId
+    string quoteToken = 6;
+    //price
+    string price = 7;
+    //quantity
+    string quantity = 8;
+    //amount
+    string amount = 9;
+    //time
+    int64 time = 10;
+    //side
+    int32 side = 11;
+    //orderId
+    string buyerOrderId = 12;
+    //orderId
+    string sellerOrderId = 13;
+    //fee
+    string buyFee = 14;
+    //fee
+    string sellFee = 15;
+    //height
+    int64 blockHeight = 16;
+}
+
+message KlineProto {
+
+    int64 t = 1;
+
+    double c = 2;
+
+    double o = 3;
+
+    double h = 4;
+
+    double l = 5;
+
+    double v = 6;
+}
+
+message OrderProto {
+
+    //订单ID
+    string orderId = 1;
+    //symbol
+    string symbol = 2;
+    //symbol
+    string tradeTokenSymbol = 3;
+    //symbol
+    string quoteTokenSymbol = 4;
+    //tokenId
+    string tradeToken = 5;
+    //tokenId
+    string quoteToken = 6;
+    //方向
+    int32 side = 7;
+    //价格
+    string price = 8;
+    //数量
+    string quantity = 9;
+    //交易量
+    string amount = 10;
+    //成交Quantity
+    string executedQuantity = 11;
+    //成交Amount
+    string executedAmount = 12;
+    //成交率
+    string executedPercent = 13;
+    //均价
+    string executedAvgPrice = 14;
+    //手续费
+    string fee = 15;
+    //状态
+    int32 status = 16;
+    //类型
+    int32 type = 17;
+    //时间
+    int64 createTime = 18;
+    //地址
+    string address = 19;
+}
+
+message DepthListProto {
+
+    repeated DepthProto asks = 1;
+
+    repeated DepthProto bids = 2;
+}
+
+message DepthProto {
+    //价格
+    string price = 1;
+    //数量
+    string quantity = 2;
+    //交易量
+    string amount = 3;
+}

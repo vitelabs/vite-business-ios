@@ -28,7 +28,7 @@ class AppNoticeService: NSObject {
         COSProvider.instance.getAppNotice { (result) in
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "get app notice finished", tag: .getConfig)
+                //plog(level: .debug, log: "get app notice finished", tag: .getConfig)
                 if let string = jsonString,
                     let info = NoticeInfo(JSONString: string) {
                     let title = info.title.string

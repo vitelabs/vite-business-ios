@@ -81,6 +81,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NavigationBarStyle.configStyle(.default, viewController: self)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -123,8 +124,12 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         webView.backgroundColor = .white
         webView.scrollView.backgroundColor = .clear
         webView.navigationDelegate = self as WKNavigationDelegate
+        webView.uiDelegate = self as WKUIDelegate
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: NSKeyValueObservingOptions.new, context: nil)
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: NSKeyValueObservingOptions.new, context: nil)
+        if let defalutUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent") {
+            webView.customUserAgent = "\(defalutUserAgent) Vite/\(String(WKWebViewJSBridge.versionCode))/Wallet/\(Bundle.main.buildNumber)/\(LocalizationService.sharedInstance.currentLanguage.rawValue)"
+        }
         return webView
     }()
 
@@ -179,6 +184,15 @@ extension WKWebViewController {
     }
 }
 
+extension WKWebViewController: WKUIDelegate {
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if let url = navigationAction.request.url {
+            webView.load(navigationAction.request)
+        }
+        return nil
+    }
+}
+
 extension WKWebViewController {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("webViewDidStartLoad: \(String(describing: webView.url?.absoluteString))")
@@ -192,8 +206,17 @@ extension WKWebViewController {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
+            decisionHandler(.cancel)
+        } else if let url = navigationAction.request.url, let scheme = url.scheme {
+            if scheme != "http" && scheme != "https" {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
+        } else {
+            decisionHandler(.allow)
         }
-        decisionHandler(.allow)
     }
 }
 
@@ -203,7 +226,11 @@ extension WKWebViewController {
             ((keyPathValue == "estimatedProgress") ) {
             let newProgress = change?[NSKeyValueChangeKey.newKey] as! NSNumber
             self.webProgressView.alpha = 1.0
-            self.webProgressView.setProgress(newProgress.floatValue, animated: true)
+            if newProgress.floatValue > self.webProgressView.progress {
+                self.webProgressView.setProgress(newProgress.floatValue, animated: true)
+            } else {
+                self.webProgressView.setProgress(newProgress.floatValue, animated: false)
+            }
 
             if newProgress.floatValue >= 1.0 {
                 UIView.animate(withDuration: 0.3, delay: 1.0, options: UIView.AnimationOptions.curveEaseOut, animations: {

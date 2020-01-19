@@ -56,11 +56,14 @@ sendMessageQueue.push(message);
 }
 
 function _fetchQueue() {
-    var messageQueueString = JSON.stringify(sendMessageQueue);
-    sendMessageQueue.shift();
-    return messageQueueString;
+    if (sendMessageQueue.length > 0) {
+        var first = sendMessageQueue.shift();
+        return JSON.stringify([first]);
+    } else {
+        return "[]"
+    }
 }
-
+ 
 function _dispatchMessageFromiOS(messageJSON) {
     var message = JSON.parse(messageJSON);
     var messageHandler;

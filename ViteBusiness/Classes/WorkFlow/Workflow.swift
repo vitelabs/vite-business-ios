@@ -165,93 +165,46 @@ public struct Workflow {
         }
     }
 
-    private static func sendRawTxWorkflow(withoutPowPromise: @escaping () -> Promise<AccountBlock>,
-                                          getPowPromise: @escaping () -> Promise<SendBlockContext>,
-                                          successToast: String,
-                                          type: workflowType,
-                                          completion: @escaping (Result<AccountBlock>) -> ()) {
-        HUD.show()
-        withoutPowPromise()
-            .always {
-                HUD.hide()
-            }
-            .recover { (e) -> Promise<AccountBlock> in
-                if ViteError.conversion(from: e).code == ViteErrorCode.rpcNotEnoughQuota {
-                    return sendRawTxWithPowWorkflow(getPowPromise: getPowPromise)
-                } else {
-                    return Promise(error: e)
-                }
-            }
-            .done {
-                AlertControl.showCompletion(successToast)
-                completion(Result.success($0))
-            }
-            .catch { e in
-                let error = ViteError.conversion(from: e)
-                if error.code == ViteErrorCode.rpcNotEnoughBalance {
-                    AlertSheet.show(title: R.string.localizable.sendPageNotEnoughBalanceAlertTitle(), message: nil,
-                                    titles: [.default(title: R.string.localizable.sendPageNotEnoughBalanceAlertButton())])
-                } else if error.code == ViteErrorCode.rpcNotEnoughQuota {
-                    switch type {
-                    case .other, .vote:
-                        AlertSheet.show(title: R.string.localizable.quotaAlertTitle(), message: R.string.localizable.quotaAlertNeedQuotaMessage(),
-                                        titles: [.default(title: R.string.localizable.quotaAlertQuotaButtonTitle()),
-                                                 .cancel],
-                                        handler: { (_, index) in
-                                            if index == 0 {
-                                                let vc = QuotaManageViewController()
-                                                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                                            }
-                        }, config: { alert in
-                            alert.preferredAction = alert.actions[0]
-                        })
-                    case .pledge:
-                        Toast.show(error.viteErrorMessage)
-                    }
-                } else if error != ViteError.cancel {
-                    if case .vote = type, error.code == ViteErrorCode.rpcNoTransactionBefore {
-                        Toast.show(R.string.localizable.voteListSearchNoTransactionBefore())
+    static func sendSilently(account: Wallet.Account,
+                             toAddress: ViteAddress,
+                             tokenId: ViteTokenId,
+                             amount: Amount,
+                             fee: Amount?,
+                             data: Data?,
+                             completion: @escaping (Result<AccountBlock>) -> ()) {
+        ViteNode.rawTx.send.prepare(account: account,
+                                    toAddress: toAddress,
+                                    tokenId: tokenId,
+                                    amount: amount,
+                                    fee: fee,
+                                    data: data)
+            .then { (context) -> Promise<SendBlockContext> in
+                if context.quota.isCongestion {
+                    if context.isNeedToCalcPoW {
+                        return Promise(error: ViteError.cancel)
                     } else {
-                        Toast.show(error.viteErrorMessage)
+                        return Promise(error: ViteError.cancel)
                     }
-                }
-                completion(Result.failure(error))
-        }
-    }
-
-    static func sendRawTxWithPowWorkflow(getPowPromise: @escaping () -> Promise<SendBlockContext>) -> Promise<AccountBlock> {
-        var cancelPow = false
-        let getPowFloatView = GetPowFloatView(superview: UIApplication.shared.keyWindow!, utString: "") {
-            cancelPow = true
-        }
-        getPowFloatView.show()
-        let waitAtLeast = after(seconds: 1.5)
-        return getPowPromise()
-            .recover { (e) -> Promise<SendBlockContext> in
-                getPowFloatView.hide()
-                return Promise(error: e)
-            }
-            .then { context -> Promise<SendBlockContext> in
-                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
-                    return .value(context)
-                })
-            }
-            .then { context -> Promise<SendBlockContext> in
-                if cancelPow {
-                    return Promise(error: ViteError.cancel)
                 } else {
-                    return Promise<SendBlockContext> { seal in
-                        getPowFloatView.finish { seal.fulfill(context) }
+                    if context.isNeedToCalcPoW {
+                        let waitAtLeast = after(seconds: TimeInterval(AppConfigService.instance.pDelay))
+                        return ViteNode.rawTx.send.getPow(context: context)
+                            .then { context -> Promise<SendBlockContext> in
+                                return waitAtLeast.then({ () -> Promise<SendBlockContext> in
+                                    return .value(context)
+                                })
+                        }
+                    } else {
+                        return Promise.value(context)
                     }
                 }
-            }
-            .always {
-                HUD.show()
-            }
-            .then { context -> Promise<AccountBlock> in
-                return ViteNode.rawTx.send.context(context)
-            }.always {
-                HUD.hide()
+            }.then { context -> Promise<(context: SendBlockContext, accountBlock: AccountBlock)> in
+                return ViteNode.rawTx.send.context(context).map { (context, $0) }
+            }.done { (context, accountBlock) in
+                completion(Result.success(accountBlock))
+            }.catch { (e) in
+                let error = ViteError.conversion(from: e)
+                completion(Result.failure(error))
         }
     }
 }
@@ -316,15 +269,15 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: amount,
                  fee: Amount(0),
-                 data: ABI.BuildIn.getPledgeData(beneficialAddress: beneficialAddress),
+                 data: ABI.BuildIn.getStakeForQuota(beneficialAddress: beneficialAddress),
                  successToast: R.string.localizable.workflowToastSubmitSuccess(),
                  type: .pledge(beneficialAddress: beneficialAddress),
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.pledge.ut.utToString())
+        let viewModel = ConfirmVitePledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.stakeForQuota.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -344,9 +297,32 @@ public extension Workflow {
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
+        let tokenInfo = TokenInfo.BuildIn.vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelPledge.ut.utToString())
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.old_cancelStake.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func CancelQuotaStakingWithConfirm(account: Wallet.Account,
+                                        id: String,
+                                        beneficialAddress: ViteAddress,
+                                        amount: Amount,
+                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.pledge.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: Amount(0),
+                 data: ABI.BuildIn.getCancelQuotaStakingData(id: id),
+                 successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let tokenInfo = TokenInfo.BuildIn.vite.value
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteCancelPledgeViewModel(tokenInfo: tokenInfo, beneficialAddressString: beneficialAddress, amountString: amountString, utString: ABI.BuildIn.cancelQuotaStaking.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -360,14 +336,14 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: Amount(0),
                  fee: Amount(0),
-                 data: ABI.BuildIn.getVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id, name: name),
+                 data: ABI.BuildIn.getVoteForSBPData(name: name),
                  successToast: R.string.localizable.workflowToastVoteSuccess(),
                  type: .vote,
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
-        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.vote.ut.utToString())
+        let tokenInfo = TokenInfo.BuildIn.vite.value
+        let viewModel = ConfirmViteVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.voteForSBP.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -380,14 +356,14 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: Amount(0),
                  fee: Amount(0),
-                 data: ABI.BuildIn.getCancelVoteData(gid: ViteWalletConst.ConsensusGroup.snapshot.id),
+                 data: ABI.BuildIn.getCancelSBPVotingData(),
                  successToast: R.string.localizable.workflowToastCancelVoteSuccess(),
                  type: .vote,
                  completion: completion)
         }
 
-        let tokenInfo = TokenInfo.viteCoin
-        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelVote.ut.utToString())
+        let tokenInfo = TokenInfo.BuildIn.vite.value
+        let viewModel = ConfirmViteCancelVoteViewModel(tokenInfo: tokenInfo, name: name, utString: ABI.BuildIn.cancelSBPVoting.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
@@ -412,6 +388,48 @@ public extension Workflow {
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let viewModel = ConfirmViteCallContractViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, utString: nil)
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func dexDepositWithConfirm(account: Wallet.Account,
+                                      tokenInfo: TokenInfo,
+                                      amount: Amount,
+                                      completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: tokenInfo.viteTokenId,
+                 amount: amount,
+                 fee: nil,
+                 data: ABI.BuildIn.getDexDepositData(),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteDexDepositViewModel(tokenInfo: tokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, amountString: amountString, utString: ABI.BuildIn.dexDeposit.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func dexWithdrawWithConfirm(account: Wallet.Account,
+                                       tokenInfo: TokenInfo,
+                                       amount: Amount,
+                                       completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: 0,
+                 fee: nil,
+                 data: ABI.BuildIn.getDexWithdrawData(tokenId: tokenInfo.viteTokenId, amount: amount),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
+        let viewModel = ConfirmViteDexWithdrawViewModel(tokenInfo: tokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, amountString: amountString, utString: ABI.BuildIn.dexWithdraw.ut.utToString())
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 

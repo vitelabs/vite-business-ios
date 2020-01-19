@@ -90,9 +90,9 @@ extension CrossChainGateWayAPI: TargetType {
             }
             return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.queryString)
-        case .withdrawFee(let tokenId, let withdrawAddress, let amount, let containsFee):
+        case .withdrawFee(let tokenId, let walletAddress, let amount, let containsFee):
             return .requestParameters(parameters: ["tokenId": tokenId,
-                                                   "withdrawAddress": withdrawAddress,
+                                                   "walletAddress": walletAddress,
                                                    "amount": amount,
                                                    "containsFee": containsFee],
                                       encoding: URLEncoding.queryString)

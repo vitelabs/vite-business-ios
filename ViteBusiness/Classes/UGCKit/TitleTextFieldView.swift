@@ -14,6 +14,7 @@ class TitleTextFieldView: UIView {
     let titleLabel = UILabel().then {
         $0.textColor = Colors.titleGray
         $0.font = AppStyle.formHeader.font
+        $0.numberOfLines = 0
     }
 
     let textField = UITextField().then {
@@ -29,7 +30,7 @@ class TitleTextFieldView: UIView {
         super.init(frame: CGRect.zero)
 
         let attributedString = NSMutableAttributedString(string: placeholder)
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.green,
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x9AAABE),
                                         NSAttributedString.Key.font: textField.font!, ], range: NSRange(location: 0, length: placeholder.count))
 
         titleLabel.text = title

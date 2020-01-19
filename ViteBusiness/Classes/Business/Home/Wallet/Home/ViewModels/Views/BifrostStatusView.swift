@@ -23,7 +23,7 @@ class BifrostStatusView: UIButton {
         backgroundColor = UIColor(netHex: 0xF5FAFF)
 
         rx.tap.bind {
-            BifrostManager.instance.showBifrostViewControllerIfNeeded()
+            BifrostManager.instance.showHomeVC()
         }.disposed(by: rx.disposeBag)
     }
 

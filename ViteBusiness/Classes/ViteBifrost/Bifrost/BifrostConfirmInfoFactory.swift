@@ -58,16 +58,8 @@ struct BifrostConfirmInfoFactory {
             return Promise(error: ConfirmError.InvalidToAddress)
         }
 
-        return Promise<TokenInfo> { seal in
-            MyTokenInfosService.instance.tokenInfo(forViteTokenId: block.tokenId) { result in
-                switch result {
-                case .success(let r):
-                    seal.fulfill(r)
-                case .failure(let e):
-                    seal.reject(e)
-                }
-            }
-            }.then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
+        return TokenInfoCacheService.instance.tokenInfo(forViteTokenId: block.tokenId)
+            .then({ (tokenInfo) -> Promise<(BifrostConfirmInfo, TokenInfo)> in
 
                 switch addressType {
                 case .user:
@@ -78,7 +70,7 @@ struct BifrostConfirmInfoFactory {
                 case .contract:
                     let map = BuildInContract.toAddressAndDataPrefixMap
                     if let data = block.data, data.count >= 4,
-                        let type = map["\(block.toAddress!)_\(data[0..<4].toHexString())"] {
+                        let type = map["\(block.toAddress!).\(data[0..<4].toHexString())"] {
                         return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
                         return BuildInContractOthers.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
@@ -117,20 +109,22 @@ struct BifrostConfirmInfoFactory {
             BuildInContract.allCases.reduce([String: BuildInContract]()) { (r, c) -> [String: BuildInContract] in
                 var ret = r
                 let abi = c.info.abi
-                let key = "\(abi.toAddress)_\(abi.encodedFunctionSignature.toHexString())"
+                let key = "\(abi.toAddress).\(abi.encodedFunctionSignature.toHexString())"
                 ret[key] = c
                 return ret
         }
 
-        case register
-        case registerUpdate
-        case cancelRegister
-        case extractReward
+        case registerSBP
+        case updateSBPBlockProducingAddress
+//        case updateSBPRewardWithdrawAddress
+        case revokeSBP
+        case withdrawSBPReward
 
-        case vote
-        case cancelVote
-        case pledge
-        case cancelPledge
+        case voteForSBP
+        case cancelSBPVoting
+        case stakeForQuota
+        case cancelQuotaStaking
+        case old_cancelStake
 
         case coinMint
         case coinIssue
@@ -151,26 +145,35 @@ struct BifrostConfirmInfoFactory {
 
         case dexStakingAsMining
         case dexVip
+        case dexLockVxForDividend
+        case dexCancelStakeById
 
         fileprivate var info: BuildInContractProtocol {
 
             switch self {
-            case .register:
-                return BuildInContractRegister()
-            case .registerUpdate:
-                return BuildInContractRegisterUpdate()
-            case .cancelRegister:
-                return BuildInContractCancelRegister()
-            case .extractReward:
-                return BuildInContractExtractReward()
-            case .vote:
-                return BuildInContractVote()
-            case .cancelVote:
-                return BuildInContractCancelVote()
-            case .pledge:
-                return BuildInContractPledge()
-            case .cancelPledge:
-                return BuildInContractCancelPledge()
+            case .registerSBP:
+                return BuildInContractRegisterSBP()
+            case .updateSBPBlockProducingAddress:
+                return BuildInContractUpdateSBPBlockProducingAddress()
+//            case .updateSBPRewardWithdrawAddress:
+//                return BuildInContractUpdateSBPRewardWithdrawAddress()
+            case .revokeSBP:
+                return BuildInContractRevokeSBP()
+            case .withdrawSBPReward:
+                return BuildInContractWithdrawSBPReward()
+
+            case .voteForSBP:
+                return BuildInContractVoteForSBP()
+            case .cancelSBPVoting:
+                return BuildInContractCancelSBPVoting()
+
+            case .stakeForQuota:
+                return BuildInContractStakeForQuota()
+            case .cancelQuotaStaking:
+                return BuildInContractCancelQuotaStaking()
+            case .old_cancelStake:
+                return BuildInContractOldCancelStake()
+
             case .coinMint:
                 return BuildInContractCoinMint()
             case .coinIssue:
@@ -201,6 +204,10 @@ struct BifrostConfirmInfoFactory {
                 return BuildInContractDexStakingAsMining()
             case .dexVip:
                 return BuildInContractDexVip()
+            case .dexLockVxForDividend:
+                return BuildInContractDexLockVxForDividend()
+            case .dexCancelStakeById:
+                return BuildInContractDexCancelStakeById()
             }
         }
     }

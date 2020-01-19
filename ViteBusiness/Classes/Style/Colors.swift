@@ -22,3 +22,9 @@ public struct Colors {
     public static let cellTitleGray = UIColor(hex: "24272B")
     public static let btnDisableGray = UIColor(hex: "EFF0F4")
 }
+
+extension UIColor {
+    open class var random: UIColor {
+        return UIColor(r: CGFloat(arc4random() % 255), g: CGFloat(arc4random() % 255), b: CGFloat(arc4random() % 255))
+    }
+}

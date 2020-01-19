@@ -29,20 +29,20 @@ public class ETHBalanceInfoManager {
     fileprivate var serviceMap: [TokenCode: ETHBalanceInfoService] = [:]
 
     fileprivate var address: String?
-    fileprivate var tokenInfos: [TokenInfo] = []
+    fileprivate var tokenCodes: [TokenCode] = []
 
-    func registerFetch(tokenInfos: [TokenInfo]) {
+    func registerFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            self.tokenInfos.append(contentsOf: tokenInfos)
+            self.tokenCodes.append(contentsOf: tokenCodes)
             self.triggerService()
         }
     }
 
-    func unregisterFetch(tokenInfos: [TokenInfo]) {
+    func unregisterFetch(tokenCodes: [TokenCode]) {
         DispatchQueue.main.async {
-            tokenInfos.forEach({ tokenInfo in
-                if let index = self.tokenInfos.firstIndex(of: tokenInfo) {
-                    self.tokenInfos.remove(at: index)
+            tokenCodes.forEach({ tokenCode in
+                if let index = self.tokenCodes.firstIndex(of: tokenCode) {
+                    self.tokenCodes.remove(at: index)
                 }
             })
             self.triggerService()
@@ -71,10 +71,15 @@ public class ETHBalanceInfoManager {
 
     private func triggerService() {
 
+        let tokenInfos: [TokenInfo] = self.tokenCodes
+            .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
+            .compactMap { $0 }
+            .filter{ $0.coinType == .eth }
+
         if let address = self.address, !tokenInfos.isEmpty {
 
             if address != EtherWallet.shared.address {
-                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+                //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
                 self.serviceMap = [:]
             }
 
@@ -85,15 +90,15 @@ public class ETHBalanceInfoManager {
                     return true
                 }
             }.forEach { (tokenInfo) in
-                plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
+                //plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
                 let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 5, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {
                     case .success(let balanceInfo):
 
-                        plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
-                        
+                        //plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
+
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
 
@@ -109,14 +114,21 @@ public class ETHBalanceInfoManager {
 
             serviceMap.forEach { (tokenCode, service) in
                 if !tokenInfos.contains(where: { $0.tokenCode == tokenCode }) {
-                    plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
+                    //plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
                     serviceMap[tokenCode] = nil
                 }
             }
 
         } else {
-            plog(level: .debug, log: "stop All fetch", tag: .transaction)
-            self.serviceMap = [:]
+            if tokenCodes.isEmpty {
+                //plog(level: .debug, log: "stop All fetch", tag: .transaction)
+                self.serviceMap = [:]
+            } else {
+                GCD.delay(1) {
+                    self.triggerService()
+                }
+            }
+
         }
     }
 
@@ -130,7 +142,7 @@ public class ETHBalanceInfoManager {
             let balanceInfos = [ETHBalanceInfo](JSONString: jsonString) {
 
             // filter deleted balanceInfo
-            for balanceInfo in balanceInfos where MyTokenInfosService.instance.containsTokenInfo(for: balanceInfo.tokenCode) {
+            for balanceInfo in balanceInfos where MyTokenInfosService.instance.contains(for: balanceInfo.tokenCode) {
                 map[balanceInfo.tokenCode] = balanceInfo
             }
         }
@@ -151,7 +163,11 @@ extension ETHBalanceInfoManager {
 
     func balanceInfoDriver(for tokenCode: TokenCode) -> Driver<ETHBalanceInfo?> {
         return balanceInfosDriver.map({ [weak self] map -> ETHBalanceInfo? in
-            return map[tokenCode]
+            if let ret = map[tokenCode] {
+                return ret
+            } else {
+                return ETHBalanceInfo(tokenCode: tokenCode, balance: Amount(0))
+            }
         })
     }
 }

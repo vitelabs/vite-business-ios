@@ -18,6 +18,18 @@ public struct WebHandler {
         UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
     }
 
+    static func open(_ urlString: String) {
+        guard let url = URL.init(string: urlString) else {
+            return
+        }
+        self.open(url)
+    }
+
+    static func openDeFiLoanUsagePage(productHash: String, optionCode: String) {
+        let url = URL(string: "https://app.vite.net/webview/defi_usage/index.html?id=\(productHash)&optionCode=\(optionCode)")!
+        NavigatorManager.instance.route(url: url)
+    }
+
     static func openAddressDetailPage(address: ViteAddress) {
         let host = appendLanguagePath(urlString: browserUrlString)
         guard let string = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }

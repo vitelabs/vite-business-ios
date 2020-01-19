@@ -170,7 +170,7 @@ class BalanceInfoViteChainQuotaView: UIView {
                 m.width.equalTo(maxImageView).multipliedBy(mu)
             }
 
-            DispatchQueue.main.async {
+            GCD.delay(0.01) {
                 self.currentImageView.backgroundColor = UIColor.gradientColor(style: .left2right,
                                                                               frame: self.frame,
                                                                               colors: [UIColor(netHex: 0x2A7FFF),

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct BuildInContractDexVip: BuildInContractProtocol {
 
-    let abi =  ABI.BuildIn.dexVip
+    let abi =  ABI.BuildIn.dexStakeForVIP
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {
         guard let account = HDWalletManager.instance.account else { return Promise(error: ConfirmError.unknown("not logon")) }

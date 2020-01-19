@@ -12,7 +12,7 @@ class BalanceInfoDetailEthErc20ViteAdapter: BalanceInfoDetailAdapter {
     let tokenInfo: TokenInfo
     let delegate: BalanceInfoDetailTableViewDelegate?
 
-    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView) {
+    required init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView, vc: UIViewController? = nil) {
         let handler = TableViewHandler(tableView: tableView)
         let delegate = BalanceInfoEthChainTabelViewDelegate(tokenInfo: tokenInfo, tableViewHandler: handler)
         handler.delegate = delegate
@@ -23,11 +23,11 @@ class BalanceInfoDetailEthErc20ViteAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
     }
 
     func viewDidDisappear() {
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
     }
 
     func setup(headerView: UIStackView) {

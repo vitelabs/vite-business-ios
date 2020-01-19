@@ -15,6 +15,10 @@ public let kScreenW = UIScreen.main.bounds.width
 //Adaptive iPhoneX
 let kNavibarH: CGFloat = UIDevice.current.isIPhoneX() ? 88.0 : 64.0
 
+let kStatusBarH: CGFloat = UIApplication.shared.statusBarFrame.size.height
+
+
+
 extension UIDevice {
     public func isIPhoneX() -> Bool {
         if kScreenH == 812 {

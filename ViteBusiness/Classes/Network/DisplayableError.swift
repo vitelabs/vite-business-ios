@@ -6,7 +6,6 @@
 //
 
 import web3swift
-
 import ViteWallet
 
 public protocol DisplayableError: Error {

@@ -36,11 +36,11 @@ class WalletHomeNavView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = UIColor.white
-        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 20
+//        backgroundColor = UIColor.white
+//        layer.shadowColor = UIColor(netHex: 0x000000).cgColor
+//        layer.shadowOpacity = 0.1
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+//        layer.shadowRadius = 20
 
         contentMode = .scaleToFill
         image = R.image.icon_wallet_home_nav_bg()

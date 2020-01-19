@@ -7,6 +7,41 @@
 
 import UIKit
 
+class TopBottomLabelsView : UIView {
+
+    let topLabel = UILabel().then {
+        $0.numberOfLines = 1
+        $0.textAlignment = .right
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+    }
+    let bottomLabel = UILabel().then {
+        $0.numberOfLines = 1
+        $0.textAlignment = .right
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(topLabel)
+        addSubview(bottomLabel)
+
+        topLabel.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
+        }
+
+        bottomLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(topLabel.snp.bottom).offset(4)
+            m.bottom.left.right.equalToSuperview()
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class SendItemView: UIView {
 
     enum TextStyle {
@@ -16,7 +51,7 @@ class SendItemView: UIView {
         func createLabel() -> UILabel {
             return UILabel().then {
                 $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
-                $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
+                $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
                 switch self {
                 case .text(let string):
                     $0.text = string
@@ -52,7 +87,34 @@ class SendItemView: UIView {
     enum RightViewStyle {
         case none
         case label(style: TextStyle)
+        case labels(topStyle: TextStyle, bottomStyle: TextStyle)
         case button(style: ButtonStyle)
+
+        func createRightView() -> UIView? {
+            switch self {
+            case .none:
+                return nil
+            case .label(let style):
+                return style.createLabel()
+            case .labels(let topStyle, let bottomStyle):
+                let view = TopBottomLabelsView()
+                switch topStyle {
+                case .text(let string):
+                    view.topLabel.text = string
+                case .attributed(let string):
+                    view.topLabel.attributedText = string
+                }
+                switch bottomStyle {
+                case .text(let string):
+                    view.bottomLabel.text = string
+                case .attributed(let string):
+                    view.bottomLabel.attributedText = string
+                }
+                return view
+            case .button(let style):
+                return style.createButton()
+            }
+        }
     }
 
     enum TitleTipButtonStyle {
@@ -61,8 +123,8 @@ class SendItemView: UIView {
     }
 
     let titleLabel = UILabel().then {
-        $0.textColor = Colors.titleGray
-        $0.font = AppStyle.formHeader.font
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
     let separatorLine = UIView().then {
@@ -71,6 +133,16 @@ class SendItemView: UIView {
 
     var rightView: UIView?
     var tipButton: UIButton?
+
+    var rightLabel: UILabel? {
+        guard let view = rightView as? UILabel else { return nil }
+        return view
+    }
+
+    var rightTopBottomLabelsView: TopBottomLabelsView? {
+        guard let view = rightView as? TopBottomLabelsView else { return nil }
+        return view
+    }
 
     let rightViewStyle: RightViewStyle
     let titleTipButtonStyle: TitleTipButtonStyle

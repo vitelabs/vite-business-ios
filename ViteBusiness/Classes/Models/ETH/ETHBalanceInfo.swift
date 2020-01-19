@@ -23,6 +23,7 @@ public struct ETHBalanceInfo: Mappable {
     public init?(map: Map) {
 
     }
+    public init() {}
 
     public init(tokenCode: String, balance: Amount) {
         self.tokenCode = tokenCode

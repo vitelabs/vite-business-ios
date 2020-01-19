@@ -19,12 +19,9 @@ class TokenListInfoCell: UITableViewCell {
         symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59)
     }
 
-    let gatewayNameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.numberOfLines = 1
-        $0.textColor = UIColor.init(netHex: 0x007AFF)
+    let gatewayNameLabel = GateWayNameButton().then {
+        $0.label.textColor = UIColor.init(netHex: 0x3E4A59, alpha:0.6)
     }
-
 
     lazy var tokenNameLabel = UILabel().then {(tokenNameLabel) in
         tokenNameLabel.font = UIFont.systemFont(ofSize: 11)
@@ -32,7 +29,7 @@ class TokenListInfoCell: UITableViewCell {
         tokenNameLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.6)
     }
 
-    lazy var tokenAddressLabel = EthAddressView().then { (tokenAddressLabel) in
+    lazy var tokenAddressLabel = TokenListAddressView().then { (tokenAddressLabel) in
         tokenAddressLabel.font = UIFont.systemFont(ofSize: 11)
         tokenAddressLabel.textColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.3)
     }
@@ -81,14 +78,12 @@ class TokenListInfoCell: UITableViewCell {
         }
         
         self.tokenLogoImg.tokenInfo = token
-        self.switchControl.isHidden = token.isDefault
+        self.switchControl.isHidden = !token.canRemove
         self.switchControl.setOn(token.isContains, animated: false)
 
         if token.isGateway {
             gatewayNameLabel.isHidden = false
-            gatewayNameLabel.text = " Gateway "
-            gatewayNameLabel.layer.borderColor = UIColor.init(netHex: 0xCCE5FF).cgColor
-            gatewayNameLabel.layer.borderWidth = 1
+            gatewayNameLabel.setText(tokenInfo?.gatewayName ?? "")
         } else {
             gatewayNameLabel.isHidden = true
         }
@@ -130,7 +125,7 @@ class TokenListInfoCell: UITableViewCell {
             m.left.equalToSuperview().offset(24)
             m.right.equalToSuperview().offset(-24)
             m.bottom.equalToSuperview()
-            m.height.equalTo(1)
+            m.height.equalTo(0.5)
         }
 
         self.contentView.addSubview(rightContentView)

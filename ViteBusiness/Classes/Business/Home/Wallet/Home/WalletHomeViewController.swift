@@ -16,17 +16,81 @@ import ViteWallet
 import BigInt
 import web3swift
 
-class WalletHomeViewController: BaseTableViewController {
+import Then
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
+class WalletHomeViewController: BaseViewController {
+
+    let navView = WalletHomeNavView(frame: CGRect.zero)
+    let bifrostStatusView = BifrostStatusView().then {
+        $0.isHidden = true
+    }
+    let headerView = WalletHomeHeaderView()
+    lazy var walletTable = UITableView().then { tableView in
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
+        tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
+        tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
+        tableView.contentInset = UIEdgeInsets.init(top: 5, left: 0, bottom: 0, right: 0)
+    }
+    lazy var vitexTable = UITableView().then { tableView in
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
+        tableView.rowHeight = VitexBalanceInfoCell.cellHeight
+        tableView.estimatedRowHeight = VitexBalanceInfoCell.cellHeight
+        tableView.contentInset = UIEdgeInsets.init(top: 5, left: 0, bottom: 0, right: 0)
+    }
+
+    lazy var pageManager = { () -> DNSPageViewManager in
+        var pageStyle = DNSPageStyle()
+        pageStyle.isShowBottomLine = true
+        pageStyle.bottomLineRadius = 0
+        pageStyle.isTitleViewScrollEnabled = true
+        pageStyle.titleViewBackgroundColor = UIColor.clear
+        pageStyle.titleSelectedColor = UIColor.init(netHex: 0x3E4A59)
+        pageStyle.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+        pageStyle.titleFont = UIFont.boldSystemFont(ofSize: 13)
+        pageStyle.bottomLineColor = Colors.blueBg
+        pageStyle.bottomLineHeight = 2
+        pageStyle.bottomLineWidth = 20
+
+        let vc0 = UIViewController()
+        let vc1 = UIViewController()
+        vc0.view.addSubview(walletTable)
+        vc1.view.addSubview(vitexTable)
+        walletTable.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+        vitexTable.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+        let m = DNSPageViewManager(style: pageStyle, titles: [R.string.localizable.fundTitleWallet(),R.string.localizable.fundTitleVitex()], childViewControllers: [vc0, vc1])
+        return m
+    }()
+
+    let scanHandler = WalletHomeScanHandler()
+    let walletDriver = HDWalletManager.instance.walletDriver
+    var tableViewModel: WalletHomeBalanceInfoTableViewModel!
+    var navViewModel: WalletHomeNavViewModel!
+    lazy var isHidePriceDriver: Driver<Bool> = self.isHidePriceBehaviorRelay.asDriver()
+    var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+
+    typealias WalletDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
+    typealias viteXDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeViteXBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         bind()
-
         if CreateWalletService.sharedInstance.needBackup && !HDWalletManager.instance.isBackedUp {
             CreateWalletService.sharedInstance.showBackUpTipAlert()
+        }
+        if let code = CreateWalletService.sharedInstance.vitexInviteCode {
+            WalletManager.instance.update(vitexInviteCode: code)
+        }
+
+        GCD.delay(1) {
+            CreateWalletService.sharedInstance.GoExportMnemonicIfNeeded()
+            WalletManager.instance.bindInviteIfNeeded()
         }
     }
 
@@ -50,21 +114,19 @@ class WalletHomeViewController: BaseTableViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
 
-    let walletDriver = HDWalletManager.instance.walletDriver
-    var tableViewModel: WalletHomeBalanceInfoTableViewModel!
-    var navViewModel: WalletHomeNavViewModel!
-
-    let navView = WalletHomeNavView(frame: CGRect.zero)
-    let headerView = WalletHomeHeaderView()
-
-    lazy var isHidePriceDriver: Driver<Bool> = self.isHidePriceBehaviorRelay.asDriver()
-    var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
     fileprivate func setupView() {
-
         statisticsPageName = Statistics.Page.WalletHome.name
+        if #available(iOS 11.0, *) {
+
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
 
         view.addSubview(navView)
+        view.addSubview(bifrostStatusView)
+        view.addSubview(pageManager.contentView)
+        view.addSubview(pageManager.titleView)
+        view.addSubview(headerView)
 
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -72,35 +134,57 @@ class WalletHomeViewController: BaseTableViewController {
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
         }
 
-
-        tableView.snp.remakeConstraints { (m) in
+        bifrostStatusView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom)
-            m.bottom.right.left.equalTo(view)
+            m.left.right.equalToSuperview()
+            m.height.equalTo(0)
         }
 
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.clear
-        tableView.rowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
-        tableView.tableHeaderView = headerView
-
-        if #available(iOS 11.0, *) {
-
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = false
+        headerView.snp.makeConstraints { (m) in
+            m.right.equalToSuperview()
+            m.centerY.equalTo(pageManager.titleView)
+            m.height.equalTo(60)
+            m.width.equalTo(100)
         }
+
+        pageManager.titleView.snp.makeConstraints { (make) in
+            make.top.equalTo(bifrostStatusView.snp.bottom).offset(9)
+            make.left.equalToSuperview().offset(9)
+            make.right.equalToSuperview().offset(-9)
+            make.height.equalTo(35)
+        }
+
+        pageManager.contentView.snp.makeConstraints { (make) in
+            make.top.equalTo(pageManager.titleView.snp.bottom).offset(9)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+        }
+        pageManager.contentView.delegate = self
     }
 
-    fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+    fileprivate let walletDataSource = WalletDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
         let cell: WalletHomeBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(viewModel: item)
         return cell
     })
 
+    fileprivate lazy var vitexDataSource = viteXDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+        let cell: VitexBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(viewModel: item)
+        cell.handler = { [unowned self] button in
+            self.vitexTableAccessoryButton(button, didTappedForRowWith: indexPath)
+        }
+        return cell
+    })
+
     fileprivate func bind() {
 
+        pageManager.titleView.clickHandler = { [unowned self] (titleView, index) in
+            self.refreshNavInfo(index)
+        }
+
         ViteBalanceInfoManager.instance.unselectBalanceInfoVMsDriver.drive(onNext: { (vms) in
-            plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.uniqueSymbol + " " }))")
+            //plog(level: .debug, log: "vm: \(vms.reduce("", { (ret, vm) -> String in ret + vm.tokenInfo.uniqueSymbol + " " }))")
             var tokens = NewAssetService.instance.handleIsNewTipTokens(vms)
 
             if tokens.count > 0 {
@@ -127,7 +211,7 @@ class WalletHomeViewController: BaseTableViewController {
         navView.bind(viewModel: navViewModel)
 
         navView.scanButton.rx.tap.bind { [weak self] in
-            self?.scan()
+            self?.scanHandler.scan()
             Statistics.log(eventId: Statistics.Page.WalletHome.scanClicked.rawValue)
             }.disposed(by: rx.disposeBag)
 
@@ -140,26 +224,40 @@ class WalletHomeViewController: BaseTableViewController {
             .map { balanceInfoViewModels in
                 [SectionModel(model: "balanceInfo", items: balanceInfoViewModels)]
             }
-            .bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+            .bind(to: walletTable.rx.items(dataSource: walletDataSource)).disposed(by: rx.disposeBag)
 
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        tableView.rx.itemSelected
+        tableViewModel.viteXBalanceInfosDriver.asObservable()
+            .map { balanceInfoViewModels in
+                [SectionModel(model: "balanceInfo", items: balanceInfoViewModels)]
+            }
+            .bind(to: vitexTable.rx.items(dataSource: vitexDataSource)).disposed(by: rx.disposeBag)
+
+        walletTable.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        vitexTable.rx.setDelegate(self).disposed(by: rx.disposeBag)
+
+        self.headerView.addButton.rx.tap.bind { [unowned self] in
+            let vc = TokenListManageController()
+            vc.onlyShowVite = self.pageManager.contentView.currentIndex == 1
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            Statistics.log(eventId: Statistics.Page.WalletHome.addTokenclicked.rawValue)
+            }.disposed(by: self.rx.disposeBag)
+
+        walletTable.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let `self` = self else { fatalError() }
-                if let viewModel = (try? self.dataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                    MyTokenInfosService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
+                if let viewModel = (try? self.walletDataSource.model(at: indexPath)) as? WalletHomeBalanceInfoViewModel {
+                    self.walletTable.deselectRow(at: indexPath, animated: true)
+                    TokenInfoCacheService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
-                    case .eth, .vite:
+                    case .eth, .vite,.bnb:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     case .grin:
                         if !GrinManager.default.walletCreated.value {
                             Toast.show(R.string.localizable.grinCreating())
                             return
                         } else {
-                            balanceInfoDetailViewController = UIStoryboard(name: "GrinInfo", bundle: businessBundle())
-                                    .instantiateInitialViewController()!
+                            balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                         }
                     case .unsupport:
                         fatalError()
@@ -170,125 +268,61 @@ class WalletHomeViewController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
 
-        BifrostManager.instance.isConnectedAndApprovedDriver.drive(onNext: { [weak self] (connected) in
-            if connected {
-                self?.headerView.showBifrostStatusView()
+        BifrostManager.instance.statusDriver.drive(onNext: { [weak self] (status) in
+            guard let `self` = self else { return }
+            if status == .disconnect {
+                self.bifrostStatusView.isHidden = true
+                self.bifrostStatusView.snp_remakeConstraints({ (m) in
+                    m.top.equalTo(self.navView.snp.bottom)
+                    m.left.right.equalToSuperview()
+                    m.height.equalTo(0)
+                })
             } else {
-                self?.headerView.hideBifrostStatusView()
+                self.bifrostStatusView.isHidden = false
+                self.bifrostStatusView.snp_remakeConstraints({ (m) in
+                    m.top.equalTo(self.navView.snp.bottom)
+                    m.left.right.equalToSuperview()
+                    m.height.equalTo(30)
+                })
             }
-            self?.tableView.reloadData()
+            self.walletTable.reloadData()
         }).disposed(by: rx.disposeBag)
     }
 
-    func scan() {
-        let scanViewController = ScanViewController()
-        scanViewController.reactor = ScanViewReactor.init()
-        _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
-            if case .success(let uri) = ViteURI.parser(string: result), !uri.address.isDexAddress {
-                self.handleScanResult(with: uri, scanViewController: scanViewController)
-            } else if case .success(let uri) = ETHURI.parser(string: result) {
-                self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
-            } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
-                self.handleScanResult(with: url, scanViewController: scanViewController)
-            } else if case .success(let uri) = BifrostURI.parser(string: result) {
-                self.handleScanResultForBifrost(with: uri, scanViewController: scanViewController)
+    func refreshNavInfo(_ index: Int) {
+        let infoType = [WalletHomeNavViewModel.InfoType.wallet,WalletHomeNavViewModel.InfoType.viteX][index]
+        self.navViewModel.infoTypeBehaviorRelay.accept(infoType)
+    }
+
+    func vitexTableAccessoryButton(_ accessoryButton: UIButton, didTappedForRowWith indexPath: IndexPath) {
+        guard indexPath.row <= (self.tableViewModel.lastViteXBalanceInfos.count - 1) else {
+            return
+        }
+        let viteXBalanceInfo = self.tableViewModel.lastViteXBalanceInfos[indexPath.row]
+        let tokenInfo = viteXBalanceInfo.tokenInfo
+        let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: false)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension WalletHomeViewController: DNSPageContentViewDelegate {
+    func contentView(_ contentView: DNSPageContentView, didEndScrollAt index: Int) {
+        self.pageManager.titleView.contentView(contentView, didEndScrollAt: index)
+        for (i, label) in self.pageManager.titleView.titleLabels.enumerated() {
+            if i == index {
+                label.textColor = self.pageManager.titleView.style.titleSelectedColor
             } else {
-                if let url = URL(string: result), ViteAppSchemeHandler.instance.handleViteScheme(url) {
-                    // do nothing
-                } else {
-                    scanViewController?.showAlertMessage(result)
-                }
+                label.textColor = self.pageManager.titleView.style.titleColor
             }
         }
-        self.navigationController?.pushViewController(scanViewController, animated: true)
+        self.refreshNavInfo(index)
     }
 
-    func handleScanResult(with uri: ViteURI, scanViewController: ScanViewController?) {
-        scanViewController?.view.displayLoading(text: "")
-        MyTokenInfosService.instance.tokenInfo(forViteTokenId: uri.tokenId) {[weak scanViewController] (result) in
-            scanViewController?.view.hideLoading()
-            switch result {
-            case .success(let tokenInfo):
-                guard let amount = uri.amountForSmallestUnit(decimals: tokenInfo.decimals) else {
-                    scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
-                    return
-                }
-
-                guard let fee = uri.feeForSmallestUnit(decimals: ViteWalletConst.viteToken.decimals) else {
-                    scanViewController?.showToast(string: R.string.localizable.viteUriAmountFormatError())
-                    return
-                }
-
-                if !tokenInfo.isContains {
-                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
-                }
-
-                let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, data: uri.data)
-                UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
-            case .failure(let error):
-                scanViewController?.showToast(string: error.viteErrorMessage)
-            }
-        }
+    func contentView(_ contentView: DNSPageContentView, scrollingWith sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
+        self.pageManager.titleView.contentView(contentView, scrollingWith: sourceIndex, targetIndex: targetIndex, progress: progress)
     }
+}
 
-    func handleScanResultForETH(with uri: ETHURI, scanViewController: ScanViewController?) {
-        scanViewController?.view.displayLoading(text: "")
-        MyTokenInfosService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
-            scanViewController?.view.hideLoading()
-            switch result {
-            case .success(let tokenInfo):
+extension WalletHomeViewController: UITableViewDelegate {
 
-                if !tokenInfo.isContains {
-                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
-                }
-
-                var balance: Amount? = nil
-                if let amount = uri.amount,
-                    let b = Amount(amount) {
-                    balance = b
-                }
-
-                let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
-                UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
-            case .failure(let error):
-                scanViewController?.showToast(string: error.viteErrorMessage)
-            }
-        }
-    }
-
-    func handleScanResult(with url: URL, scanViewController: ScanViewController?) {
-
-        func goWeb() {
-            let webvc = WKWebViewController.init(url: url)
-            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
-        }
-
-        var showAlert = true
-        for string in Constants.whiteList {
-            if url.host?.lowercased() == string ||
-                (url.host?.lowercased() ?? "").hasSuffix("." + string) {
-                showAlert = false
-                break
-            }
-        }
-
-        if showAlert {
-            Alert.show(title: R.string.localizable.walletHomeScanUrlAlertTitle(),
-                       message: R.string.localizable.walletHomeScanUrlAlertMessage(),
-                       actions: [
-                        (.cancel, { _ in
-                            scanViewController?.startCaptureSession()
-                        }),
-                        (.default(title: R.string.localizable.confirm()), { _ in
-                            goWeb()
-                        })
-                ])
-        } else {
-            goWeb()
-        }
-    }
-
-    func handleScanResultForBifrost(with uri: BifrostURI, scanViewController: ScanViewController?) {
-        BifrostManager.instance.tryConnect(uri: uri)
-    }
 }

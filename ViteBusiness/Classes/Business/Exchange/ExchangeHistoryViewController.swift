@@ -26,7 +26,8 @@ class ExchangeHistoryViewController: BaseViewController {
         view.addSubview(tableView)
 
         tableView.snp.makeConstraints { (m) in
-            m.left.right.bottom.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
             m.top.equalTo(navigationTitleView!.snp.bottom)
         }
         tableView.delegate = self

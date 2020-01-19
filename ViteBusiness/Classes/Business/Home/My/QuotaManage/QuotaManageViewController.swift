@@ -37,13 +37,13 @@ class QuotaManageViewController: BaseViewController {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
         FetchQuotaManager.instance.retainQuota()
-        ViteBalanceInfoManager.instance.registerFetch(tokenInfos: [TokenInfo.viteCoin])
+        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [TokenInfo.BuildIn.vite.value.tokenCode])
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaManager.instance.releaseQuota()
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenInfos: [TokenInfo.viteCoin])
+        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [TokenInfo.BuildIn.vite.value.tokenCode])
     }
 
     // View
@@ -67,7 +67,7 @@ class QuotaManageViewController: BaseViewController {
     //snapshoot height
     lazy var pledgeView = SendPledgeItemView()
 
-    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.pledge.ut.utToString())
+    let quotaView = SendQuotaItemView(utString: ABI.BuildIn.stakeForQuota.ut.utToString())
 
     lazy var addressView = AddressTextViewView(placeholder: R.string.localizable.quotaSubmitPageQuotaAddressPlaceholder()).then {
         $0.titleLabel.text = R.string.localizable.quotaManagePageInputAddressTitle()
@@ -198,7 +198,7 @@ extension QuotaManageViewController {
 }
 
 extension QuotaManageViewController: FloatButtonsViewDelegate {
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let viewModel = AddressListViewModel.createMyAddressListViewModel()
             let vc = AddressListViewController(viewModel: viewModel)
@@ -211,7 +211,6 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 2 {
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address

@@ -20,6 +20,8 @@ class ContactsEditViewController: BaseViewController {
     let contact: Contact?
     var type: BehaviorRelay<CoinType>
 
+    let allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
+
     init(contact: Contact) {
         self.contact = contact
         self.type = BehaviorRelay(value: contact.type)
@@ -97,7 +99,7 @@ class ContactsEditViewController: BaseViewController {
             for (i, type) in CoinType.allTypes.enumerated() where self.type.value == type {
                 index = i
             }
-            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.contactsEditPageTypeSelectTitle(), rows: CoinType.allTypes.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
+            _ =  ActionSheetStringPicker.show(withTitle: R.string.localizable.contactsEditPageTypeSelectTitle(), rows: self.allTypes.map({ $0.name }), initialSelection: index, doneBlock: {[weak self] _, index, _ in
                 self?.type.accept(CoinType.allTypes[index])
             }, cancel: { _ in return }, origin: self.view)
         }.disposed(by: rx.disposeBag)
@@ -106,7 +108,8 @@ class ContactsEditViewController: BaseViewController {
             nameView.textField.rx.text.asDriver(),
             addressView.textView.rx.text.asDriver())
             .map { !(($0 ?? "").isEmpty || ($1 ?? "").isEmpty) }
-        .drive(saveButton.rx.isEnabled)
+            .drive(saveButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
 
         saveButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
@@ -123,9 +126,18 @@ class ContactsEditViewController: BaseViewController {
                     return
                 }
             case .grin:
-                break
+                guard self.addressView.textView.text.isViteAddress || self.addressView.textView.text.hasPrefix("http") else {
+                    Toast.show(R.string.localizable.sendPageToastAddressError())
+                    return
+                }
+            case .bnb:
+                guard let toAddress : String = self.addressView.textView.text ?? "",
+                    toAddress.checkBnbAddressIsValid() else {
+                        Toast.show(R.string.localizable.sendPageToastAddressError())
+                        return
+                }
             default:
-                fatalError()
+                     fatalError()
             }
 
             Statistics.log(eventId: Statistics.Page.MyHome.contactAddSaveClicked.rawValue)
@@ -143,7 +155,6 @@ class ContactsEditViewController: BaseViewController {
 
         addressView.scanButton.rx.tap.bind { [weak self] in
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {
@@ -152,8 +163,12 @@ class ContactsEditViewController: BaseViewController {
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
                     self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
+                } else if case .success(let uri) = BnbURI.parser(string: result) {
+                    self.addressView.textView.text = uri.address
+                    scanViewController.navigationController?.popViewController(animated: true)
                 } else {
-                    scanViewController.showAlertMessage(result)
+                    self.addressView.textView.text = result
+                    scanViewController.navigationController?.popViewController(animated: true)
                 }
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)

@@ -8,6 +8,7 @@
 
 import UIKit
 import ViteBusiness
+import Bagel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
+        Bagel.start()
+        ViteBusinessLanucher.instance.start(with: window)
         return true
     }
 

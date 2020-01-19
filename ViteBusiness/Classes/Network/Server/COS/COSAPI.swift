@@ -20,7 +20,7 @@ enum COSAPI {
 extension COSAPI: TargetType {
 
     var baseURL: URL {
-        return COSServer.baseURL.appendingPathComponent("config")
+        return URL(string: ViteConst.instance.cos.config)!.appendingPathComponent("config")
     }
 
     var path: String {

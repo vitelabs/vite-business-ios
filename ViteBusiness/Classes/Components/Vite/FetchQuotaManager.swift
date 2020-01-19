@@ -78,7 +78,7 @@ final class FetchQuotaManager {
 
                     switch r {
                     case .success(let quota):
-                        plog(level: .debug, log: address + ": " + "currentUt \(String(quota.currentUt))", tag: .transaction)
+                        //plog(level: .debug, log: address + ": " + "currentUt \(String(quota.currentUt))", tag: .transaction)
 
                         self.quotaBehaviorRelay.accept(quota)
                         self.save(mappable: Storage(quota: self.quotaBehaviorRelay.value, pledgeAmount: self.pledgeAmountBehaviorRelay.value))
@@ -88,7 +88,7 @@ final class FetchQuotaManager {
                 })
 
                 if self.retainCount > 0 {
-                    plog(level: .debug, log: "start fetch quota", tag: .transaction)
+                    //plog(level: .debug, log: "start fetch quota", tag: .transaction)
                     service.startPoll()
                 }
 
@@ -122,21 +122,21 @@ final class FetchQuotaManager {
 
     func retainQuota() {
         retainCount += 1
-        plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
+        //plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
 
         guard let service = self.service else { return }
 
         if service.isPolling == false {
-            plog(level: .debug, log: "start fetch quota", tag: .transaction)
+            //plog(level: .debug, log: "start fetch quota", tag: .transaction)
             service.startPoll()
         }
     }
 
     func releaseQuota() {
         retainCount = max(0, retainCount - 1)
-        plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
+        //plog(level: .debug, log: "retainCount: \(self.retainCount)", tag: .transaction)
         if retainCount == 0 {
-            plog(level: .debug, log: "stop fetch quota", tag: .transaction)
+            //plog(level: .debug, log: "stop fetch quota", tag: .transaction)
             self.service?.stopPoll()
         }
     }

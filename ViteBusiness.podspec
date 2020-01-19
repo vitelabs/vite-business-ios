@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'haoshenyang' => 'shenyang@vite.org' }
   s.source           = { :git => 'https://github.com/vitelabs/vite-business-ios.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.static_framework = true
   s.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
   s.source_files = 'ViteBusiness/Classes/**/*.{h,m,swift,c}'
@@ -33,7 +33,6 @@ Pod::Spec.new do |s|
   s.dependency 'NSObject+Rx'
   s.dependency 'MBProgressHUD'
   s.dependency 'RxOptional'
-  s.dependency 'PromiseKit'
   s.dependency 'Vite_HDWalletKit'
   s.dependency 'Eureka'
   s.dependency 'KeychainSwift'
@@ -50,6 +49,7 @@ Pod::Spec.new do |s|
   s.dependency 'R.swift', '5.0.0.alpha.3'
   s.dependency 'JSONRPCKit', '~> 3.0.0'
   s.dependency 'PromiseKit', '~> 6.0'
+  s.dependency 'PromiseKit/Alamofire'
   s.dependency 'APIKit'
   s.dependency 'ObjectMapper'
   s.dependency 'MBProgressHUD'
@@ -57,13 +57,15 @@ Pod::Spec.new do |s|
   s.dependency 'Moya'
   s.dependency 'MJRefresh'
   s.dependency 'KMNavigationBarTransition'
-  s.dependency 'XCGLogger', '~> 6.1.0'
+  s.dependency 'XCGLogger', '~> 7.0'
   s.dependency 'pop', '~> 1.0'
   s.dependency 'DACircularProgress', '2.3.1'
   s.dependency 'Kingfisher', '~> 4.0'
   s.dependency 'NYXImagesKit', '2.3'
+  s.dependency 'FSPagerView'
   s.dependency 'URLNavigator'
   s.dependency 'web3.swift.pod', '~> 2.2.0'
+  s.dependency 'ProtocolBuffers-Swift'
 
   #request
   s.dependency 'SwiftyJSON'
@@ -77,7 +79,6 @@ Pod::Spec.new do |s|
   s.dependency 'Toast-Swift', '~> 4.0.1'
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
-  s.dependency 'DNSPageView'
   s.dependency 'ActiveLabel', '1.0.1'
   s.dependency 'PPBadgeViewSwift', '3.1.0'
 
@@ -105,11 +106,12 @@ Pod::Spec.new do |s|
   s.dependency 'Crashlytics'
   s.dependency 'Firebase/Core'
 
-  s.dependency 'MLeaksFinder'
+#  s.dependency 'MLeaksFinder'
 
   s.dependency 'ViteWallet'
   #s.dependency 'ViteEthereum'
   s.dependency 'Vite_GrinWallet'
+  s.dependency 'BinanceChain'
 
 
   # s.resource_bundles = {

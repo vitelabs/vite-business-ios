@@ -5,7 +5,6 @@
 //  Created by Water on 2019/2/25.
 //
 
-
 import web3swift
 import ViteWallet
 import BigInt
@@ -18,7 +17,7 @@ public extension Workflow {
                                            amount: Amount,
                                            gasPrice: Float,
                                            completion: @escaping (Result<String>) -> ()) {
-        let tokenInfo = TokenInfo.viteERC20
+        let tokenInfo = TokenInfo.BuildIn.eth_vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
         let gasLimit = EtherWallet.defaultGasLimitForTokenTransfer
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))

@@ -11,10 +11,10 @@ import Starscream
 import PromiseKit
 import ViteWallet
 
-public typealias SessionRequestClosure = (_ id: Int64, _ peer: VBPeerMeta) -> Void
-public typealias SessionPingTimeoutClosure = () -> Void
-public typealias DisconnectClosure = (Error?) -> Void
-public typealias ViteSendTxClosure = (_ id: Int64, _ viteSendTx: VBViteSendTx) -> Void
+public typealias SessionRequestClosure = (VBInteractor, _ id: Int64, _ peer: VBPeerMeta) -> Void
+public typealias DisconnectByPeerClosure = (VBInteractor) -> Void
+public typealias DisconnectClosure = (VBInteractor, Error?) -> Void
+public typealias ViteSendTxClosure = (VBInteractor, _ id: Int64, _ viteSendTx: VBViteSendTx) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -33,13 +33,10 @@ public class VBInteractor {
     public let clientId: String
     public let clientMeta: VBClientMeta
 
-    public private(set) var hasReceivedSessionRequest = false
-
     // incoming event handlers
     public var onSessionRequest: SessionRequestClosure?
     public var onDisconnect: DisconnectClosure?
-    public var onSessionPintTimeout: SessionPingTimeoutClosure?
-
+    public var onDisconnectByPeer: DisconnectByPeerClosure?
     public var onViteSendTx: ViteSendTxClosure?
 
     // outgoing promise resolvers
@@ -51,13 +48,11 @@ public class VBInteractor {
 
     private var peerId: String?
     private var peerMeta: VBPeerMeta?
-
-    private var sessionPingTimer: Timer?
-    private var lastSessionPingTimestamp: TimeInterval?
+    private var offsetMap: [String: UInt64] = [:]
 
     public init(session: VBSession, meta: VBClientMeta) {
         self.session = session
-        self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
+        self.clientId = UUID().description.lowercased()
         self.clientMeta = meta
         var request = URLRequest(url: session.bridge)
         request.timeoutInterval = 10
@@ -86,7 +81,6 @@ public class VBInteractor {
 
     public func disconnect() {
         pingTimer?.invalidate()
-        sessionPingTimer?.invalidate()
         socket.disconnect()
         connectResolver = nil
         handshakeId = -1
@@ -96,7 +90,7 @@ public class VBInteractor {
         guard handshakeId > 0 else {
             return Promise(error: VBError.invalidSession)
         }
-        updateLastSessionPingTimestamp()
+
         let result = VBApproveSessionResponse(
             approved: true,
             chainId: chainId,
@@ -125,10 +119,28 @@ public class VBInteractor {
         }
     }
 
+    enum SessionError: Error {
+        case pingTimeout
+    }
+
+    public func sendPing(timeout: TimeInterval) -> Promise<Void> {
+        return Promise { seal in
+            after(seconds: timeout).done {_ in
+                seal.reject(SessionError.pingTimeout)
+            }
+
+            self.send(event: VBEvent.sessionPeerPing, params: [VBSessionPingParam()]) { _ in
+                seal.fulfill(Void())
+            }
+        }
+    }
+
     public func approveViteTx(id: Int64, accountBlock: AccountBlock) -> Promise<Void> {
-        guard let data = VBJSONRPCResponse(id: id, result: accountBlock).toJSONString()?.data(using: .utf8) else {
+        guard let jsonString = VBJSONRPCResponse(id: id, result: accountBlock).toJSONString(),
+            let data = jsonString.data(using: .utf8) else {
             fatalError()
         }
+        plog(level: .info, log: "[bridge-s] viteSendTx result: \(jsonString)", tag: .bifrost)
         return encryptAndSend(data: data)
     }
 
@@ -146,6 +158,20 @@ public class VBInteractor {
         let response = JSONRPCErrorResponse(id: id, error: JSONRPCError(code: ErrorCode.cancelReject.rawValue, message: "User Canceled"))
         return encryptAndSend(data: response.encoded)
     }
+
+    private func send<T: Codable>(event: VBEvent, params: T, complete: EventCallBack? = nil) {
+        let id = generateId()
+        let request = JSONRPCRequest(id: id, method: event.rawValue, params: params)
+        encryptAndSend(data: request.encoded).cauterize()
+
+        if let c = complete {
+            callbackPair[id] = c
+        }
+    }
+
+    typealias EventCallBack = (Data) -> Void
+
+    var callbackPair = [Int64: EventCallBack]()
 }
 
 extension VBInteractor {
@@ -157,7 +183,7 @@ extension VBInteractor {
     }
 
     private func subscribe(topic: String) {
-        let message = VBSocketMessage(topic: topic, type: .sub, payload: "")
+        let message = VBSocketMessage(bridgeVersion: BifrostManager.bridgeVersion, topic: topic, offset: self.offsetMap[topic], type: .sub, payload: "")
         let data = try! JSONEncoder().encode(message)
         socket.write(data: data)
         print("==> subscribe: \(String(data: data, encoding: .utf8)!)")
@@ -170,7 +196,7 @@ extension VBInteractor {
             return Promise(error: VBError.unknown)
         }
         let payloadString = encoder.encodeAsUTF8(payload)
-        let message = VBSocketMessage(topic: peerId ?? session.topic, type: .pub, payload: payloadString)
+        let message = VBSocketMessage(bridgeVersion: BifrostManager.bridgeVersion, topic: peerId ?? session.topic, offset: nil, type: .pub, payload: payloadString)
         let data = message.encoded
         return Promise { seal in
             socket.write(data: data) {
@@ -185,44 +211,39 @@ extension VBInteractor {
             switch event {
             // topic == session.topic
             case .sessionRequest:
-                plog(level: .info, log: "session request event", tag: .bifrost)
-                hasReceivedSessionRequest = true
                 let request: JSONRPCRequest<[VBSessionRequestParam]> = try event.decode(decrypted)
                 guard let params = request.params.first else {
                     throw VBError.badJSONRPCRequest
                 }
+                plog(level: .info, log: "[bridge-r] session request event: \(params)", tag: .bifrost)
                 handshakeId = request.id
                 peerId = params.peerId
                 peerMeta = params.peerMeta
-                onSessionRequest?(request.id, params.peerMeta)
+                onSessionRequest?(self, request.id, params.peerMeta)
             // topic == clientId
-            case .sessionPeerPing:
-                plog(level: .info, log: "session peer ping event", tag: .bifrost)
-                updateLastSessionPingTimestamp()
-                let request: JSONRPCRequest<[VBSessionPingParam]> = try event.decode(decrypted)
-                let response = JSONRPCResponse(id: request.id, result: VBSessionPingResponse())
-                encryptAndSend(data: response.encoded).cauterize()
             case .sessionUpdate:
-                plog(level: .info, log: "session update event", tag: .bifrost)
                 let request: JSONRPCRequest<[VBSessionUpdateParam]> = try event.decode(decrypted)
                 guard let param = request.params.first else {
                     throw VBError.badJSONRPCRequest
                 }
+                plog(level: .info, log: "[bridge-r] session update event: \(param)", tag: .bifrost)
                 if param.approved == false {
-                    disconnect()
+                    onDisconnectByPeer?(self)
                 }
+            case .sessionPeerPing:
+                // do nothing App send event
+                break
             case .viteSendTx:
-                plog(level: .info, log: "vite send tx event", tag: .bifrost)
                 guard let jsonString = String(data: decrypted, encoding: .utf8),
                     let request = VBJSONRPCRequest<VBViteSendTx>(JSONString: jsonString),
                     let viteSendTx = request.params.first else {
                         throw VBError.badJSONRPCRequest
                 }
-                onViteSendTx?(request.id, viteSendTx)
-            default:
-                break
+                plog(level: .info, log: "[bridge-r] viteSendTx event: \(jsonString)", tag: .bifrost)
+                onViteSendTx?(self, request.id, viteSendTx)
             }
         } catch let error {
+            plog(level: .severe, log: "error.localizedDescription", tag: .bifrost)
             print("==> handleEvent error: \(error.localizedDescription)")
         }
     }
@@ -236,9 +257,7 @@ extension VBInteractor {
             socket?.write(ping: Data())
         })
 
-        sessionPingTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self] _ in
-            self?.checkSessionTimeout()
-        })
+        plog(level: .info, log: "[bridge-s] subscribe topic: \(self.session.topic) clientId: \(self.clientId)", tag: .bifrost)
 
         subscribe(topic: session.topic)
         subscribe(topic: clientId)
@@ -249,48 +268,38 @@ extension VBInteractor {
     private func onDisconnect(error: Error?) {
         print("<== websocketDidDisconnect, error: \(error.debugDescription)")
         pingTimer?.invalidate()
-        sessionPingTimer?.invalidate()
         if let error = error {
             connectResolver?.reject(error)
         } else {
             connectResolver?.fulfill(false)
         }
         connectResolver = nil
-        onDisconnect?(error)
+        onDisconnect?(self, error)
     }
 
     private func onReceiveMessage(text: String) {
         print("<== receive: \(text)")
-        guard let (topic, payload) = VBEncryptionPayload.extract(text) else { return }
+        guard let (offset, topic, payload) = VBEncryptionPayload.extract(text) else { return }
         do {
             let decrypted = try VBEncryptor.decrypt(payload: payload, with: session.key)
             guard let json = try JSONSerialization.jsonObject(with: decrypted, options: [])
                 as? [String: Any] else {
                     throw VBError.badServerResponse
             }
+            self.offsetMap[topic] = offset
             print("<== decrypted: \(String(data: decrypted, encoding: .utf8)!)")
             if let method = json["method"] as? String,
                 let event = VBEvent(rawValue: method) {
                 handleEvent(event, topic: topic, decrypted: decrypted)
+            } else {
+                if let id = json["id"] as? Int64,
+                    let callback = callbackPair[id] {
+                    callback(decrypted)
+                    callbackPair[id] = nil
+                }
             }
         } catch let error {
             print(error)
-        }
-    }
-}
-
-extension VBInteractor {
-
-    private static let pingTimeout:TimeInterval = 10
-
-    private func updateLastSessionPingTimestamp() {
-        lastSessionPingTimestamp = Date().timeIntervalSince1970
-    }
-
-    private func checkSessionTimeout() {
-        if let lastSessionPingTimestamp = self.lastSessionPingTimestamp,
-            Date().timeIntervalSince1970 - lastSessionPingTimestamp > type(of: self).pingTimeout {
-            self.onSessionPintTimeout?()
         }
     }
 }

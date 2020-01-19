@@ -10,6 +10,10 @@ import BigInt
 
 extension Amount {
 
+    public func amountShortStringForDeFiWithGroupSeparator(decimals: Int) -> String {
+        return amount(decimals: decimals, count: 2, groupSeparator: true)
+    }
+
     public func amountShort(decimals: Int) -> String {
         return amount(decimals: decimals, count: 4, groupSeparator: false)
     }

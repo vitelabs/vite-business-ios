@@ -12,14 +12,14 @@ public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
     case grin = "GRIN"
+    case bnb = "BNB"
     case unsupport = "unsupport"
-
 
     var name: String {
         return rawValue
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth, .grin]
+    static var allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -39,8 +39,13 @@ public enum CoinType: String {
             ]
         case .grin:
             return [
-                UIColor(netHex: 0xFF5C00),
-                UIColor(netHex: 0xFFC800)
+                UIColor(netHex: 0xFAE52D),
+                UIColor(netHex: 0xFFBB00)
+            ]
+        case .bnb:
+            return [
+                UIColor(netHex: 0xFFCC24),
+                UIColor(netHex: 0xF38B01)
             ]
         case .unsupport:
             return [UIColor.white]
@@ -54,7 +59,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
+        case .bnb:
+            return UIColor(netHex: 0xF5A500)
         case .unsupport:
             return UIColor.white
         }
@@ -67,7 +74,9 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0x5BC500)
         case .grin:
-            return UIColor(netHex: 0xFF9C00)
+            return UIColor(netHex: 0xFFD900)
+        case .bnb:
+            return UIColor(netHex: 0xF5A500)
         case .unsupport:
             return UIColor.white
         }
@@ -80,6 +89,8 @@ public enum CoinType: String {
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
         case .grin:
+            return UIColor(netHex: 0xFFF9E1)
+        case .bnb:
             return UIColor(netHex: 0xFFF9E1)
         case .unsupport:
             return UIColor.white
@@ -94,6 +105,8 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF1FFE6)
         case .grin:
             return UIColor(netHex: 0xFFF7DD)
+        case .bnb:
+            return UIColor(netHex: 0xFFFAEA)
         case .unsupport:
             return UIColor.white
         }
@@ -101,13 +114,6 @@ public enum CoinType: String {
 }
 
 public typealias TokenCode = String
-
-extension TokenCode {
-    public static let viteCoin = ViteConst.instance.tokenCode.viteCoin
-    public static let etherCoin = ViteConst.instance.tokenCode.etherCoin
-    public static let viteERC20 = ViteConst.instance.tokenCode.viteERC20
-    public static let grinCoin = ViteConst.instance.tokenCode.grinCoin
-}
 
 public struct TokenInfo: Mappable {
 
@@ -119,7 +125,7 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var decimals: Int = 0
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
-    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress
+    public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
 
 
@@ -148,6 +154,12 @@ public struct TokenInfo: Mappable {
             }
         case .grin:
              return "Grin Coin"
+        case .bnb:
+            if isBnbCoin {
+                return "Binance Coin"
+            } else {
+                return "Binance Token"
+            }
         case .unsupport:
             return "unsupport"
         }
@@ -207,9 +219,10 @@ extension TokenInfo: Equatable {
         return lhs.tokenCode == rhs.tokenCode
     }
 
-    var isViteCoin: Bool { return tokenCode == TokenCode.viteCoin }
-    var isEtherCoin: Bool { return tokenCode == TokenCode.etherCoin }
-    var isViteERC20: Bool { return tokenCode == TokenCode.viteERC20 }
+    var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
+    var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
+    var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
+    var isBnbCoin: Bool { return tokenCode == TokenInfo.BuildIn.bnb.value.tokenCode }
 
     static var viteERC20ContractAddress: String {
         #if DEBUG || TEST
@@ -226,33 +239,10 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionEthHeader()
         }else if self.coinType == .grin {
             return R.string.localizable.tokenListPageSectionGrinHeader()
+        }else if self.coinType == .bnb {
+            return R.string.localizable.tokenListPageSectionBnbHeader()
         }
         return ""
-    }
-}
-
-extension TokenInfo {
-    static var viteCoin: TokenInfo {
-        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"Vite Token\",\"tokenCode\":\"1171\",\"platform\":\"VITE\",\"tokenAddress\":\"tti_5649544520544f4b454e6e40\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(forViteTokenId: ViteWalletConst.viteToken.id) ?? info
-    }
-
-    static var viteERC20: TokenInfo {
-        let jsonString = "{\"symbol\":\"VITE\",\"name\":\"ViteToken\",\"tokenCode\":\"41\",\"platform\":\"ETH\",\"tokenAddress\":\"0x1b793E49237758dBD8b752AFC9Eb4b329d5Da016\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.viteERC20) ?? info
-    }
-
-    static var eth: TokenInfo {
-        let jsonString = "{\"symbol\":\"ETH\",\"name\":\"Ether\",\"tokenCode\":\"1\",\"platform\":\"ETH\",\"tokenAddress\":null,\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\",\"decimal\":18}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: TokenCode.etherCoin) ?? info
-    }
-    static var eth000: TokenInfo {
-        let jsonString = "{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"VITE\",\"tokenCode\":\"1352\",\"tokenIndex\":0,\"gatewayInfo\":{\"policy\":{\"en\":\"https://x.vite.net/privacy.html\"},\"isOfficial\":true,\"mappedToken\":{\"symbol\":\"ETH\",\"decimal\":18,\"platform\":\"ETH\",\"tokenCode\":\"1\",\"tokenIndex\":null,\"tokenAddress\":null,\"name\":\"Ether\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"},\"support\":\"gateway@vite.org\",\"url\":\"https://crosschain.vite.net/gateway/eth\",\"level\":null,\"links\":{\"website\":[\"https://vite.org\"],\"whitepaper\":[\"https://github.com/vitelabs/whitepaper/\"],\"explorer\":[\"https://explorer.vite.net\"]},\"overview\":{\"en\":\"The gateway provided by Vite Labs, running cross-chain services for four coins: BTC, ETH, USDT(ERC20)\",\"zh\":\"Vite Labs官方网关，负责BTC、ETH、USDT(ERC20)、GRIN四种代币跨链服务\"},\"name\":\"Vite Labs\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/e6dec7dfe46cb7f1c65342f511f0197c.png\"},\"tokenAddress\":\"tti_687d8a93915393b219212c73\",\"name\":\"Ethereum\",\"icon\":\"https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/887282bdefb9f3c6fc8384e56b380460.png\"}"
-        let info = TokenInfo(JSONString: jsonString)!
-        return MyTokenInfosService.instance.tokenInfo(for: "1352") ?? info
     }
 }
 
@@ -281,12 +271,12 @@ extension TokenInfo {
             return R.image.icon_logo_chain_eth()
         } else if case .vite = coinType, !isViteCoin {
             return R.image.icon_logo_chain_vite()
-        } else {
+        } else if case .bnb = coinType, !isBnbCoin {
+            return R.image.icon_logo_chain_bnb()
+        }else {
             return nil
         }
     }
-
-
 
     var coinBackgroundGradientColors: [UIColor] {
         return coinType.backgroundGradientColors
@@ -335,7 +325,9 @@ public struct GatewayInfo: Mappable {
 
 
     public init?(map: Map) {
-
+        guard let mapped = map.JSON["mappedToken"] as? [String: Any], let _ = mapped["tokenCode"] as? String else {
+                   return nil
+               }
     }
 
     init(name: String, url: String, mappedTokenInfo: MappedTokenInfo) {
@@ -422,5 +414,4 @@ public struct MappedTokenInfo: Mappable {
         self.icon = icon
         self.id = id
     }
-
 }

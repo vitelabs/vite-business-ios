@@ -9,55 +9,33 @@
 import UIKit
 import ObjectMapper
 
-class MyHomeListCellViewModel: Mappable {
+class MyHomeListCellViewModel {
 
-    enum ViewModelType: String {
+    enum ViewModelType {
         case settings
         case about
-        case custom
+        case custom(title: String, image: UIImage?, url: String)
     }
 
-    var type: ViewModelType = .custom
-    fileprivate var title: StringWrapper = StringWrapper(string: "")
-    fileprivate var icon: String = ""
-    var url: String = ""
-    fileprivate var build: Int?
-
-    fileprivate(set) var name: StringWrapper = StringWrapper(string: "")
-    fileprivate(set) var image: ImageWrapper?
-
-    var isValid: Bool {
-        if let current = Int(Bundle.main.buildNumber),
-            let build = build {
-            return current >= build
-        } else {
-            return true
-        }
-    }
-
-    required init?(map: Map) {
-        guard let type = map.JSON["type"] as? String, let _ = ViewModelType(rawValue: type) else {
-            return nil
-        }
-    }
-
-    func mapping(map: Map) {
-        type <- map["type"]
-        title <- map["title"]
-        icon <- map["icon"]
-        url <- map["url"]
-        build <- map["build"]
-
+    let title: String
+    let image: UIImage?
+    let url: String?
+    let type: ViewModelType
+    init(type: ViewModelType) {
+        self.type = type
         switch type {
         case .settings:
-            name = StringWrapper(string: R.string.localizable.myPageSystemCellTitle())
-            image = ImageWrapper.image(image: R.image.icon_setting()!)
+            title = R.string.localizable.myPageSystemCellTitle()
+            image = R.image.icon_setting()
+            url = nil
         case .about:
-            name = StringWrapper(string: R.string.localizable.myPageAboutUsCellTitle())
-            image = ImageWrapper.image(image: R.image.icon_token_vite()!)
-        case .custom:
-            name = title
-            image = ImageWrapper.url(url: URL(string: icon)!)
+            title = R.string.localizable.myPageAboutUsCellTitle()
+            image = R.image.icon_token_vite()
+            url = nil
+        case let .custom(t, i, u):
+            title = t
+            image = i
+            url = u
         }
     }
 
@@ -72,14 +50,14 @@ class MyHomeListCellViewModel: Mappable {
             let vc = AboutUsViewController()
             viewController.navigationController?.pushViewController(vc, animated: true)
         case .custom:
-            if url == "https://growth.vite.net/invite" {
+            guard let urlString = self.url else { return }
+            if urlString == "https://growth.vite.net/invite" {
                 Statistics.log(eventId: Statistics.Page.MyHome.inviteClicked.rawValue)
-            } else if url == "https://forum.vite.net" {
+            } else if urlString == "https://forum.vite.net" {
                 Statistics.log(eventId: Statistics.Page.MyHome.forumClicked.rawValue)
             }
-            guard let url = URL(string: url) else { return }
-            let webvc = WKWebViewController(url: WebHandler.appendQuery(url: url))
-            UIViewController.current?.navigationController?.pushViewController(webvc, animated: true)
+            guard let url = URL(string: urlString) else { return }
+            NavigatorManager.instance.route(url: url)
         }
     }
 }

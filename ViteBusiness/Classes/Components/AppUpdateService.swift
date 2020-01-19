@@ -57,7 +57,7 @@ class AppUpdateService: NSObject {
         COSProvider.instance.checkUpdate { (result) in
             switch result {
             case .success(let jsonString):
-                plog(level: .debug, log: "check app update finished", tag: .getConfig)
+                //plog(level: .debug, log: "check app update finished", tag: .getConfig)
                 if let string = jsonString,
                     let info = UpdateInfo(JSONString: string),
                     let current = Int(Bundle.main.buildNumber) {

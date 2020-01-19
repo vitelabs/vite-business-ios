@@ -16,28 +16,31 @@ import enum Alamofire.Result
 
 public extension Workflow {
 
-    static func bifrostSendTxWithConfirm(title: String,
-                                         account: Wallet.Account,
-                                         block: VBViteSendTx.Block,
-                                         completion: @escaping (Result<AccountBlock>) -> ()) {
-        bifrostSendTxWithConfirm(title: title,
-                                 account: account,
-                                 toAddress: block.toAddress,
-                                 tokenId: block.tokenId,
-                                 amount: block.amount,
-                                 fee: block.fee,
-                                 data: block.data,
-                                 completion: completion)
+    static func bifrostSendTx(needConfirm: Bool,
+                              title: String,
+                              account: Wallet.Account,
+                              block: VBViteSendTx.Block,
+                              completion: @escaping (Result<AccountBlock>) -> ()) {
+        bifrostSendTx(needConfirm: needConfirm,
+                      title: title,
+                      account: account,
+                      toAddress: block.toAddress,
+                      tokenId: block.tokenId,
+                      amount: block.amount,
+                      fee: block.fee,
+                      data: block.data,
+                      completion: completion)
     }
 
-    static func bifrostSendTxWithConfirm(title: String,
-                                         account: Wallet.Account,
-                                         toAddress: ViteAddress,
-                                         tokenId: ViteTokenId,
-                                         amount: Amount,
-                                         fee: Amount?,
-                                         data: Data?,
-                                         completion: @escaping (Result<AccountBlock>) -> ()) {
+    static func bifrostSendTx(needConfirm: Bool,
+                              title: String,
+                              account: Wallet.Account,
+                              toAddress: ViteAddress,
+                              tokenId: ViteTokenId,
+                              amount: Amount,
+                              fee: Amount?,
+                              data: Data?,
+                              completion: @escaping (Result<AccountBlock>) -> ()) {
         func showConfirm() {
             BifrostConfirmView(title: title) { (ret) in
                 switch ret {
@@ -64,6 +67,17 @@ public extension Workflow {
                 }
                 }.show()
         }
-        showConfirm()
+
+        if needConfirm {
+            showConfirm()
+        } else {
+            sendSilently(account: account,
+                         toAddress: toAddress,
+                         tokenId: tokenId,
+                         amount: amount,
+                         fee: fee,
+                         data: data,
+                         completion: completion)
+        }
     }
 }

@@ -12,14 +12,7 @@ class SendStaticItemView: SendItemView {
     override init(title: String, rightViewStyle: RightViewStyle = .none, titleTipButtonStyle: TitleTipButtonStyle = .none) {
         super.init(title: title, rightViewStyle: rightViewStyle, titleTipButtonStyle: titleTipButtonStyle)
 
-        switch rightViewStyle {
-        case .none:
-            rightView = nil
-        case .label(let style):
-            rightView = style.createLabel()
-        case .button(let style):
-            rightView = style.createButton()
-        }
+        rightView = rightViewStyle.createRightView()
 
         switch titleTipButtonStyle {
         case .none:
@@ -59,7 +52,7 @@ class SendStaticItemView: SendItemView {
             rightView.snp.makeConstraints { (m) in
                 m.right.equalToSuperview()
                 m.centerY.equalTo(leftView)
-                m.left.greaterThanOrEqualTo(leftView).offset(6)
+                m.left.greaterThanOrEqualTo(leftView.snp.right).offset(6)
             }
             rightView.setContentHuggingPriority(.defaultLow, for: .horizontal)
             rightView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

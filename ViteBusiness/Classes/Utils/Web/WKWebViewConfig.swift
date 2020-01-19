@@ -96,6 +96,17 @@ public struct Response : Mappable {
     public var invokeUri: AsyncWebViewConfigClosure?
     public var isInvokingUri: Bool = false
 
+    public var scan: AsyncWebViewConfigClosure?
+
+    // Market
+
+    public var addFavPair: WebViewConfigClosure?
+    public var deleteFavPair: WebViewConfigClosure?
+    public var getAllFavPairs: WebViewConfigClosure?
+    public var switchPair: AsyncWebViewConfigClosure?
+
+
+
     private init() {
         fetchAppInfo = { (_ data: [String: Any]?) -> Response? in
             print(data)
@@ -115,6 +126,22 @@ public struct Response : Mappable {
         }
         invokeUri = { (_ data: [String: Any]?,_ callbackId: String,_ callback:NativeCallback)  in
             print(data)
+        }
+
+        scan = { (_ data: [String: Any]?,_ callbackId: String,_ callback: @escaping NativeCallback)  in
+
+            var ret: String? = nil
+            let scanViewController = ScanViewController()
+            scanViewController.rx.result.subscribe(onNext: { [weak scanViewController] (text) in
+                ret = text
+                scanViewController?.navigationController?.popViewController(animated: true)
+                }, onCompleted: {
+                    callback(Response(code: .success, msg: "", data: ["text": ret]), callbackId)
+            }, onDisposed: {
+                print("")
+            })
+
+            UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
         }
     }
 }

@@ -71,24 +71,22 @@ class ExchangeCard: UIView {
 
 
         GCD.delay(1) {
-            self.ethInfo.icon.tokenInfo = TokenInfo.eth000
-            self.ethInfo.tokenNamelabel.text = TokenInfo.eth000.symbol
-            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId:TokenInfo.eth000.id)
+            self.ethInfo.icon.tokenInfo = TokenInfo.BuildIn.vite_eth_000.value
+            self.ethInfo.tokenNamelabel.text = TokenInfo.BuildIn.vite_eth_000.value.uniqueSymbol
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId:TokenInfo.BuildIn.vite_eth_000.value.id)
                 .drive(onNext: { [weak self] balanceInfo in
                     guard let `self` = self else { return }
-                    self.ethInfo.banlanceLabel.text = balanceInfo?.balance.amountFullWithGroupSeparator(decimals: TokenInfo.eth000.decimals)
+                    self.ethInfo.banlanceLabel.text = balanceInfo?.balance.amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.vite_eth_000.value.decimals)
                 }).disposed(by: self.rx.disposeBag)
 
-            self.viteInfo.icon.tokenInfo = TokenInfo.viteCoin
-            self.viteInfo.tokenNamelabel.text = TokenInfo.viteCoin.symbol
-            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId:TokenInfo.viteCoin.id)
+            self.viteInfo.icon.tokenInfo = TokenInfo.BuildIn.vite.value
+            self.viteInfo.tokenNamelabel.text = TokenInfo.BuildIn.vite.value.symbol
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId:TokenInfo.BuildIn.vite.value.id)
                 .drive(onNext: { [weak self] balanceInfo in
                     guard let `self` = self else { return }
-                    self.viteInfo.banlanceLabel.text = balanceInfo?.balance.amountFullWithGroupSeparator(decimals: TokenInfo.viteCoin.decimals)
+                    self.viteInfo.banlanceLabel.text = balanceInfo?.balance.amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.vite.value.decimals)
                 }).disposed(by: self.rx.disposeBag)
-
         }
-
 
         whiteView.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()

@@ -108,7 +108,7 @@ class GrinManager: GrinBridge {
             return
         }
         self.walletCreated.accept(false)
-        guard let mnemonic = HDWalletManager.instance.mnemonic else { return }
+        guard let mnemonic = HDWalletManager.instance.mnemonicForGrin else { return }
         grin_async({ ()  in
             self.walletRecovery(mnemonic)
         },  { (result) in
@@ -148,6 +148,15 @@ class GrinManager: GrinBridge {
             try currentNode.apiSecret.write(to: url, atomically: true, encoding: .utf8)
         } catch {
             plog(level: .error, log: "grin-resetApiSecretError:\(error)", tag: .grin)
+        }
+    }
+
+    func redApiSecret() -> String {
+        let url =  walletUrl.appendingPathComponent(".api_secret")
+        do {
+            return String.init(data: FileManager.default.contents(atPath: url.path)!, encoding: .utf8) ?? ""
+        } catch {
+            return ""
         }
     }
 
@@ -448,16 +457,7 @@ extension GrinManager {
     }
 
     static var tokenInfo: TokenInfo {
-        return MyTokenInfosService.instance.tokenInfo(for: .grinCoin) ??
-            TokenInfo(tokenCode: .grinCoin,
-                      coinType: .grin,
-                      rawChainName: CoinType.grin.name,
-                      name: "grin",
-                      symbol: "GRIN",
-                      decimals: 9,
-                      index: 0,
-                      icon: "https://token-profile-1257137467.cos.ap-hongkong.myqcloud.com/icon/645fc653c016c2fa55d2683bc49b8803.png",
-                      id: "GRIN")
+        return TokenInfo.BuildIn.grin.value
     }
 
     fileprivate static func getPassword() -> String {

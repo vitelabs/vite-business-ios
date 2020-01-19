@@ -10,7 +10,7 @@ import PromiseKit
 
 struct BuildInContractDexBindInviter: BuildInContractProtocol {
 
-    let abi = ABI.BuildIn.dexBindInviter
+    let abi = ABI.BuildIn.dexBindInviteCode
     let description = VBViteSendTx.Description(JSONString: "{\"function\":{\"name\":{\"base\":\"Use Referral Code\",\"zh\":\"使用邀请码\"}},\"inputs\":[{\"name\":{\"base\":\"Beneficiary Address\",\"zh\":\"接受邀请地址\"}},{\"name\":{\"base\":\"Referral Code\",\"zh\":\"邀请码\"}}]}")!
 
     func confirmInfo(_ sendTx: VBViteSendTx, _ tokenInfo: TokenInfo) -> Promise<BifrostConfirmInfo> {

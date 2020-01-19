@@ -14,13 +14,23 @@ import MJRefresh
 import ViteWallet
 import BigInt
 
+extension Pledge {
+    fileprivate var withdrawingKey: String {
+        if let id = id {
+            return id
+        } else {
+            return beneficialAddress
+        }
+    }
+}
+
 class PledgeHistoryViewController: BaseViewController, View {
 
     var disposeBag = DisposeBag()
 
     let tableView = UITableView()
 
-    var withdrawingAddressSet: Set<ViteAddress> = Set()
+    var withdrawingAddressSet: Set<String> = Set()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +99,7 @@ class PledgeHistoryViewController: BaseViewController, View {
                 cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
                 cell.balanceLabel.text =  pledge.amount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"
-                if self.withdrawingAddressSet.contains(pledge.beneficialAddress) {
+                if self.withdrawingAddressSet.contains(pledge.withdrawingKey) {
                     cell.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
                     cell.cancelButton.isEnabled = false
                 } else {
@@ -109,17 +119,30 @@ class PledgeHistoryViewController: BaseViewController, View {
                     }
 
                     let account = HDWalletManager.instance.account!
-                    Workflow.cancelPledgeWithConfirm(account: account, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount, completion: { (ret) in
-                        switch ret {
-                        case .success:
-                            self?.withdrawingAddressSet.insert(pledge.beneficialAddress)
-                            cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
-                            cell?.cancelButton.isEnabled = false
-                        case .failure:
-                            break
-                        }
-                    })
 
+                    if let id = pledge.id {
+                        Workflow.CancelQuotaStakingWithConfirm(account: account, id:id, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount) { (ret) in
+                            switch ret {
+                            case .success:
+                                self?.withdrawingAddressSet.insert(pledge.withdrawingKey)
+                                cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
+                                cell?.cancelButton.isEnabled = false
+                            case .failure:
+                                break
+                            }
+                        }
+                    } else {
+                        Workflow.cancelPledgeWithConfirm(account: account, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount, completion: { (ret) in
+                            switch ret {
+                            case .success:
+                                self?.withdrawingAddressSet.insert(pledge.withdrawingKey)
+                                cell?.cancelButton.setTitle(R.string.localizable.peldgeCancelPledgeWithdrawingTitle(), for: .normal)
+                                cell?.cancelButton.isEnabled = false
+                            case .failure:
+                                break
+                            }
+                        })
+                    }
                 }.disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)

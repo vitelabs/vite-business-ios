@@ -36,7 +36,7 @@ class BtnDescView: UIView {
 
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(btn.snp.bottom).offset(18)
-            m.left.right.equalTo(self)
+            m.centerX.equalTo(self)
             m.height.equalTo(20)
         }
     }

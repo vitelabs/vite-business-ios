@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import BigInt
-
 import web3swift
 
 class EthSendTokenController: BaseViewController {
@@ -45,14 +44,14 @@ class EthSendTokenController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ETHBalanceInfoManager.instance.registerFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenInfos: [tokenInfo])
+        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
@@ -188,9 +187,19 @@ class EthSendTokenController: BaseViewController {
                     } else if case .failure(let error) = r {
                         guard ViteError.conversion(from: error) != ViteError.cancel else { return }
                         if let e = error as? DisplayableError {
-                            Toast.show(e.errorMessage)
+                            Alert.show(title: R.string.localizable.sendPageEthFailed(e.errorMessage),
+                                                  message: nil,
+                                                  actions: [
+                                                   (.default(title: R.string.localizable.confirm()), { _ in
+                                                   })
+                                           ])
                         } else {
-                            Toast.show((error as NSError).localizedDescription)
+                            Alert.show(title: R.string.localizable.sendPageEthFailed(error.localizedDescription),
+                                                  message: nil,
+                                                  actions: [
+                                                   (.default(title: R.string.localizable.confirm()), { _ in
+                                                   })
+                                           ])
                         }
                     }
                 })
@@ -208,7 +217,7 @@ class EthSendTokenController: BaseViewController {
 
 // MARK: FloatButtonsViewDelegate
 extension EthSendTokenController: FloatButtonsViewDelegate {
-    func didClick(at index: Int) {
+    func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
             let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
             let vc = AddressListViewController(viewModel: viewModel)
@@ -216,7 +225,6 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
             let scanViewController = ScanViewController()
-            scanViewController.reactor = ScanViewReactor()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ETHURI.parser(string: result) {
                     self?.addressView.textView.text = uri.address
@@ -233,7 +241,7 @@ extension EthSendTokenController: FloatButtonsViewDelegate {
 extension EthSendTokenController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, 18))
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, tokenInfo.decimals))
             textField.text = text
             return ret
         }  else {

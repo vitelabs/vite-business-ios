@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BalanceInfoDetailAdapter {
-    init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView)
+    init(tokenInfo: TokenInfo, headerView: UIStackView, tableView: UITableView, vc: UIViewController?)
     var delegate: BalanceInfoDetailTableViewDelegate? { get }
     func viewDidAppear()
     func viewDidDisappear()
@@ -26,7 +26,7 @@ extension BalanceInfoDetailAdapter {
 }
 
 extension TokenInfo {
-    func createBalanceInfoDetailAdapter(headerView: UIStackView, tableView: UITableView) -> BalanceInfoDetailAdapter {
+    func createBalanceInfoDetailAdapter(headerView: UIStackView, tableView: UITableView, vc: UIViewController? = nil) -> BalanceInfoDetailAdapter {
         switch coinType {
         case .vite:
             if isViteCoin {
@@ -43,9 +43,11 @@ extension TokenInfo {
                 return BalanceInfoDetailEthChainAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             }
         case .grin:
-            fatalError()
+            return GrinInfoAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         case .unsupport:
             fatalError()
+        case .bnb:
+            return BalanceInfoDetailBnbAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         }
     }
 }

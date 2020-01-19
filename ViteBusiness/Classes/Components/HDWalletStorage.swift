@@ -62,8 +62,8 @@ public final class HDWalletStorage: Mappable {
 // MARK: - public function
 extension HDWalletStorage {
 
-    func addAddLoginWallet(uuid: String, name: String, mnemonic: String, hash: String, encryptKey: String, needRecoverAddresses: Bool, isBackedUp: Bool) -> Wallet {
-        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: .english, encryptedKey: encryptKey, needRecoverAddresses: needRecoverAddresses, isBackedUp: isBackedUp)
+    func addAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, hash: String, encryptKey: String, needRecoverAddresses: Bool, isBackedUp: Bool) -> Wallet {
+        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptKey, needRecoverAddresses: needRecoverAddresses, isBackedUp: isBackedUp)
 
         var index: Int?
         for (i, wallet) in wallets.enumerated() where wallet.hash == hash {
@@ -100,6 +100,18 @@ extension HDWalletStorage {
 
     func logout() {
         isLogin = false
+        pri_save()
+    }
+
+    func deleteCurrentWallet() {
+        var i: Int? = nil
+        for (index, wallet) in wallets.enumerated() where wallet.uuid == currentWalletUuid {
+            i = index
+        }
+        currentWalletUuid = nil
+        isLogin = false
+        guard let index = i else { fatalError() }
+        wallets.remove(at: index)
         pri_save()
     }
 
