@@ -91,7 +91,7 @@ public class ETHBalanceInfoManager {
                 }
             }.forEach { (tokenInfo) in
                 //plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
-                let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 5, completion: { [weak self] (r) in
+                let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 30, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {

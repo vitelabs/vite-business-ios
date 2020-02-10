@@ -4,8 +4,8 @@ use_frameworks!
 target 'ViteBusiness_Example' do
   pod 'ViteBusiness', :path => '../'
 
-  pod 'ViteWallet', :path => '../../vite-wallet-ios/'
-#  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => 'f30415aa31802addfe3c114a428415de11673aad'
+  #pod 'ViteWallet', :path => '../../vite-wallet-ios/'
+  pod 'ViteWallet', :git => 'https://github.com/vitelabs/vite-wallet-ios.git', :commit => 'f30415aa31802addfe3c114a428415de11673aad'
 
 
   pod 'Vite_GrinWallet', :git => 'https://github.com/vitelabs/Vite_GrinWallet.git', :commit => '1aafb1f0b39c67fe37a98b5b9d17b7f4870c93dd'

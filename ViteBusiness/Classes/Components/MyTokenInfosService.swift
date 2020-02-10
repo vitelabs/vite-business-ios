@@ -49,6 +49,9 @@ public final class MyTokenInfosService: NSObject {
                     #else
 
                     let defaultTokenCodes = config.defaultTokenCodes
+//                    .filter { (tokenCode) -> Bool in
+//                            tokenCode != GrinManager.tokenInfo.tokenCode
+//                    }
                     let myTokenCodes: [TokenCode]
                     if let jsonString = self.readString() {
                         // Compatible with older versions(2.7.0)
@@ -70,7 +73,7 @@ public final class MyTokenInfosService: NSObject {
                     let myTokenInfos = myTokenCodes
                         .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
                         .compactMap { $0 }
-                    let defaultTokenInfos = defaultTokenCodes
+                    var defaultTokenInfos = defaultTokenCodes
                         .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
                         .compactMap { $0 }
 

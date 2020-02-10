@@ -540,7 +540,7 @@
 "grin.balance.awaiting" = "待确认";
 "grin.balance.locked" = "交易锁定";
 "grin.wallet.check" = "刷新";
-"grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。";
+"grin.wallet.check.desc" = "钱包刷新会扫描链上全部数据，取消所有待确认交易，解锁所有锁定花费，修复所有丢失花费，确保钱包内容和链上一致。会消耗大量流量，尽量在wifi环境下。";
 "grin.wallet.check" = "刷新";
 "grin.txType.sent" = "已创建";
 "grin.txType.waitToSign" = "待签收";
@@ -1303,3 +1303,8 @@
 "defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
 "defi.frozened.amount.title" = "已冻结基础余额";
 "defi.detail.Numberofremainingavailableforsubscription" = "剩余可认购份数";
+
+
+"grin.initing.desc" = "正在初始化，点击查看注意事项";
+"grin.initing.detail" = "1、 首次添加GRIN钱包需初始化\n2、初始化预计持续15分钟\n3、初始化过程中请勿杀掉app进程\n4、初始化会消耗大量流量，尽量在wifi环境下";
+

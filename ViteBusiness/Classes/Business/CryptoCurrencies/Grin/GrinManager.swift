@@ -35,39 +35,26 @@ class GrinManager: GrinBridge {
 
     private convenience init() {
         self.init(chainType: GrinManager.getChainType(), walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
-
-        HDWalletManager.instance.walletDriver
-            .filterNil()
-            .map { $0.uuid }
-            .distinctUntilChanged()
-            .drive(onNext: { [weak self] (_) in
-                self?.configGrinWallet()
-            })
-            .disposed(by: self.bag)
-
-//        HDWalletManager.instance.accountDriver
-//            .filterNil()
-//            .distinctUntilChanged({ (a0, a1) -> Bool in
-//                a0.address == a1.address
-//            })
-//            .drive(onNext: { _ in
-//                //GrinTxByViteService().reportViteAddress().done {_ in}
-//            })
-//            .disposed(by: self.bag)
-
-
-        #if DEBUG || TEST
-        NotificationCenter.default.rx.notification(.appEnvironmentDidChange)
-            .bind { [weak self] (n) in
+        
+        Driver.combineLatest(
+            MyTokenInfosService.instance.tokenInfosDriver.map({ (tokenInfos) -> Bool in
+                return tokenInfos.contains {
+                    $0.tokenCode == GrinManager.tokenInfo.tokenCode
+                }
+            }),
+            HDWalletManager.instance.walletDriver.filterNil().map { $0.uuid }.distinctUntilChanged()
+        ).drive(onNext: { [weak self] (args) in
+            let (containGrin, _) = args
+            if containGrin {
                 self?.configGrinWallet()
             }
-            .disposed(by: self.bag)
+        })
 
-        #endif
 
         Observable<Int>.interval(30, scheduler: MainScheduler.asyncInstance)
             .bind{ [weak self] _ in self?.getBalance()}
             .disposed(by: self.bag)
+                
     }
 
 
@@ -77,13 +64,6 @@ class GrinManager: GrinBridge {
         self.walletUrl = GrinManager.getWalletUrl()
         #if DEBUG || TEST
         print("grinwalletpath:\(self.walletUrl.path)")
-//        switch DebugService.instance.config.appEnvironment {
-//        case .online, .stage:
-//            self.chainType = GrinChainType.mainnet.rawValue
-//            break
-//        case .test, .custom:
-//            self.chainType = GrinChainType.usernet.rawValue
-//        }
         self.chainType = GrinChainType.mainnet.rawValue
         self.checkNodeApiHttpAddr = self.currentNode.address
         self.apiSecret = self.currentNode.apiSecret

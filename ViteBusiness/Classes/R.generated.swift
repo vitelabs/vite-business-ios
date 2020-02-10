@@ -1732,7 +1732,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1067 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1069 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1854,6 +1854,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1、 Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -3038,6 +3042,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicAffirmAlterCheckTitle = Rswift.StringResource(key: "mnemonic.affirm.alter.check.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Initializing, click to view details
+      /// 
+      /// Locales: en, zh-Hans
+      public static let grinInitingDesc = Rswift.StringResource(key: "grin.initing.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Input Amount
       /// 
       /// Locales: en, zh-Hans
@@ -6213,6 +6221,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1、 Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func grinInitingDetail(_: Void = ()) -> String {
+        return NSLocalizedString("grin.initing.detail", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -8283,6 +8298,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicAffirmAlterCheckTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.affirm.alter.check.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Initializing, click to view details
+      /// 
+      /// Locales: en, zh-Hans
+      public static func grinInitingDesc(_: Void = ()) -> String {
+        return NSLocalizedString("grin.initing.desc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Input Amount
