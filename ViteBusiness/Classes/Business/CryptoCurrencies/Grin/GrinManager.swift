@@ -32,9 +32,12 @@ class GrinManager: GrinBridge {
     private var receivedSlateUrl: URL?
     var failed = [String]()
     var isHandlingSavedTx = false
+    
+
 
     private convenience init() {
         self.init(chainType: GrinManager.getChainType(), walletUrl: GrinManager.getWalletUrl(), password: GrinManager.getPassword())
+        
         
         Driver.combineLatest(
             MyTokenInfosService.instance.tokenInfosDriver.map({ (tokenInfos) -> Bool in
@@ -457,17 +460,7 @@ extension GrinManager {
 
     var viteGrinNode: GrinNode {
         let viteNode = GrinNode()
-//        #if DEBUG || TEST
-//        switch DebugService.instance.config.appEnvironment {
-//        case .test, .custom:
-//            viteNode.address = "http://45.40.197.46:23413"
-//            viteNode.apiSecret = "Hpd670q3Bar0h8V1f2Z6"
-//            return viteNode
-//        default:
-//            break
-//        }
-//        #endif
-        viteNode.address = "https://grin.vite.net/fullnode"
+        viteNode.address = "http://grin-v3.vite.net/fullnode"
         viteNode.apiSecret = "Pbwnf9nJDEVcVPR8B42u"
         return viteNode
     }
