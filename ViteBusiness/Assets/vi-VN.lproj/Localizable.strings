@@ -533,7 +533,7 @@
 "grin.balance.awaiting" = "Awaiting Confirmation";
 "grin.balance.locked" = "Locked by Previous Transaction";
 "grin.wallet.check" = "Check";
-"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.";
+"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
 "grin.txType.sent" = "Created";
 "grin.txType.waitToSign" = "Unreceived";
 "grin.txType.received" = "Received";
@@ -1293,3 +1293,6 @@
 "defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
 "defi.frozened.amount.title" = "已冻结基础余额";
 "defi.detail.Numberofremainingavailableforsubscription" = "剩余可认购份数";
+
+"grin.initing.desc" = "Initializing, click to view details";
+"grin.initing.detail" = "1、Initialization is required upon adding GRIN wallet\n2、The process is expected to last 15 minutes\n3、Do not interrupt or kill the APP during initialization\n4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
