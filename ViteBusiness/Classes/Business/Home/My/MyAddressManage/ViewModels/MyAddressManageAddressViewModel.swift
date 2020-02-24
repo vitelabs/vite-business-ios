@@ -1,5 +1,5 @@
 //
-//  AddressManageAddressViewModel.swift
+//  MyAddressManageAddressViewModel.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddressManageAddressViewModel: AddressManageAddressViewModelType {
+class MyAddressManageAddressViewModel: MyAddressManageAddressViewModelType {
 
     let number: Int
     let name: String

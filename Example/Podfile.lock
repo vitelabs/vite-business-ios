@@ -364,7 +364,7 @@ DEPENDENCIES:
   - XCGLogger (~> 7.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Action
     - ActionSheetPicker-3.0
     - ActiveLabel
@@ -558,4 +558,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2ac2f00e33cd9c3db972b0e67e0ed87fc6769fbe
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5

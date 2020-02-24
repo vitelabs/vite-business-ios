@@ -50,7 +50,7 @@ public class ETHBalanceInfoManager {
     }
 
     func start() {
-        HDWalletManager.instance.ethAddressDriver.drive(onNext: { [weak self] a in
+        ETHWalletManager.instance.accountDriver.map { $0?.address }.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
             var map = ETHBalanceInfoMap()

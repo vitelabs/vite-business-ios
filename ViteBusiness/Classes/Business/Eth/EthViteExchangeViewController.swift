@@ -121,7 +121,7 @@ class EthViteExchangeViewController: BaseViewController {
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
         self.navigationItem.rightBarButtonItem = rightItem
         self.navigationItem.rightBarButtonItem?.rx.tap.bind { [weak self] in
-            var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(HDWalletManager.instance.ethAddress ?? "")#tokentxns"
+            var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(ETHWalletManager.instance.account?.address ?? "")#tokentxns"
             guard let url = URL(string: infoUrl) else { return }
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)

@@ -56,11 +56,6 @@ public final class HDWalletManager {
     public var accountsBehaviorRelay = BehaviorRelay(value: [Wallet.Account]())
     public var accountBehaviorRelay: BehaviorRelay<Wallet.Account?> = BehaviorRelay(value: nil)
 
-    // ETH
-    public lazy var ethAddressDriver: Driver<String?> = self.ethAddressBehaviorRelay.asDriver()
-    private var ethAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    public var ethAddress: String? { return self.ethAddressBehaviorRelay.value }
-
     // BNB
     public lazy var bnbAddressDriver: Driver<String?> = self.bnbAddressBehaviorRelay.asDriver()
     private var bnbAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -238,7 +233,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
 
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
+        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
@@ -251,7 +246,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
 
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
+        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
@@ -263,7 +258,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
 
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
+        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
         pri_LoginBnbWallet(mnemonic: mnemonic)
 
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
@@ -277,7 +272,7 @@ extension HDWalletManager {
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
 
-        pri_LoginEthWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
+        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
         pri_LoginBnbWallet(mnemonic: mnemonic)
 
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
@@ -292,7 +287,7 @@ extension HDWalletManager {
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
 
-        pri_LogoutEthWallet()
+        pri_LogoutOtherWallet()
         pri_LogoutBnbWallet()
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
@@ -302,7 +297,7 @@ extension HDWalletManager {
         language = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
-        pri_LogoutEthWallet()
+        pri_LogoutOtherWallet()
         storage.deleteCurrentWallet()
         plog(level: .info, log: "wallet delete", tag: .wallet)
     }
@@ -364,18 +359,15 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(wallet)
     }
 
-    // ETH
-    fileprivate func pri_LoginEthWallet(mnemonic: String, encryptKey: String, language: MnemonicCodeBook) {
-        do {
-            try EtherWallet.account.importAccount(mnemonics: mnemonic, password: encryptKey, language: language)
-            self.ethAddressBehaviorRelay.accept(EtherWallet.account.address)
-        } catch let error {
-            plog(level: .severe, log: "\(error)", tag: .wallet)
+    fileprivate func pri_LoginOtherWallet(mnemonic: String, encryptKey: String, language: MnemonicCodeBook) {
+        // make sure all manager init complete
+        DispatchQueue.main.async {
+            ETHWalletManager.instance.register(mnemonic: mnemonic, language: language, password: encryptKey)
         }
     }
 
-    fileprivate func pri_LogoutEthWallet() {
-        EtherWallet.account.logout()
+    fileprivate func pri_LogoutOtherWallet() {
+        ETHWalletManager.instance.unregister()
     }
 
     // bnb

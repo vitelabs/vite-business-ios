@@ -223,7 +223,7 @@
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 /* Address Manage Page */
-"address.manage.page.title" = "我的VITE地址";
+"address.manage.page.title" = "我的%@地址";
 "address.manage.default.address.cell.title" = "默认地址";
 "address.manage.address.header.title" = "地址列表";
 "address.manage.address.generate.button.title" = "添加地址";

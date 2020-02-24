@@ -1,5 +1,5 @@
 //
-//  AddressManageGenerateAddressCell.swift
+//  MyAddressManageGenerateAddressCell.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/13.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class AddressManageGenerateAddressCell: BaseTableViewCell {
+class MyAddressManageGenerateAddressCell: BaseTableViewCell {
 
     let generateButton = UIButton(type: .system).then {
         $0.isUserInteractionEnabled = false

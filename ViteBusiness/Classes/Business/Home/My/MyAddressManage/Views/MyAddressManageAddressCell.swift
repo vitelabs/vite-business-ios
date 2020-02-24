@@ -1,5 +1,5 @@
 //
-//  AddressManageAddressCell.swift
+//  MyAddressManageAddressCell.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/13.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import ViteWallet
 
-class AddressManageAddressCell: BaseTableViewCell {
+class MyAddressManageAddressCell: BaseTableViewCell {
 
     static func cellHeight() -> CGFloat {
         return 111
@@ -114,7 +114,7 @@ class AddressManageAddressCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(viewModel: AddressManageAddressViewModelType) {
+    func bind(viewModel: MyAddressManageAddressViewModelType) {
         var name = viewModel.name
         if name.count < 5 {
             name = name.appending("     ")

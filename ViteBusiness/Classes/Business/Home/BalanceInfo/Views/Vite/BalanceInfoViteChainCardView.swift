@@ -123,7 +123,8 @@ class BalanceInfoViteChainCardView: UIView {
 
         addressButton.rx.tap.bind {
             Statistics.log(eventId: Statistics.Page.WalletHome.changeAddressClicked.rawValue)
-            UIViewController.current?.navigationController?.pushViewController(AddressManageViewController(), animated: true)
+            let vc = MyAddressManageViewController(tableViewModel: MyViteAddressManagerTableViewModel())
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 
         Observable.combineLatest(

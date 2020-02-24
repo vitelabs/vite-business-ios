@@ -19,11 +19,6 @@ class BalanceInfoEthChainCardView: UIView {
     }
     let balanceView = UIView()
 
-    let onroadView = UIView().then {
-        $0.backgroundColor = UIColor.black.withAlphaComponent(0.14)
-        $0.isHidden = true
-    }
-
     let buttonView = UIView().then {
         $0.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.06).cgColor
@@ -54,21 +49,25 @@ class BalanceInfoEthChainCardView: UIView {
 
     func setupAddressView() {
         let nameImageView = UIImageView(image: R.image.icon_address_name())
-
+        let nameLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+            $0.textColor = UIColor.white
+            $0.numberOfLines = 1
+        }
         let addressLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
             $0.textColor = UIColor.white.withAlphaComponent(0.7)
             $0.numberOfLines = 1
             $0.lineBreakMode = .byTruncatingMiddle
         }
-
-        let copyImageView = UIImageView(image: R.image.icon_button_paste_white())
+        let arrowsImageView = UIImageView(image: R.image.icon_balance_detail_arrows())
         let lineImageView = UIImageView(image: R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
 
         addSubview(addressButton)
         addressButton.addSubview(nameImageView)
+        addressButton.addSubview(nameLabel)
         addressButton.addSubview(addressLabel)
-        addressButton.addSubview(copyImageView)
+        addressButton.addSubview(arrowsImageView)
         addressButton.addSubview(lineImageView)
 
         addressButton.snp.makeConstraints { (m) in
@@ -82,28 +81,43 @@ class BalanceInfoEthChainCardView: UIView {
             m.size.equalTo(CGSize(width: 12, height: 12))
         }
 
-        addressLabel.snp.makeConstraints { (m) in
-            m.left.equalTo(nameImageView.snp.right).offset(6)
+        nameLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(nameImageView.snp.right).offset(7)
             m.centerY.equalToSuperview()
         }
 
-        copyImageView.snp.makeConstraints { (m) in
+        addressLabel.snp.makeConstraints { (m) in
+            m.left.equalTo(nameLabel.snp.right).offset(6)
+            m.centerY.equalToSuperview()
+        }
+
+        arrowsImageView.snp.makeConstraints { (m) in
             m.left.equalTo(addressLabel.snp.right).offset(10)
             m.centerY.equalToSuperview()
             m.right.equalToSuperview().offset(-14)
-            m.size.equalTo(CGSize(width: 12, height: 12))
+            m.size.equalTo(CGSize(width: 20, height: 20))
         }
 
         lineImageView.snp.makeConstraints { (m) in
             m.left.right.bottom.equalToSuperview()
         }
 
+        nameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        addressLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
         addressButton.rx.tap.bind {
-            UIPasteboard.general.string = HDWalletManager.instance.ethAddress
-            Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
+            Statistics.log(eventId: Statistics.Page.WalletHome.changeAddressClicked.rawValue)
+            let vc = MyAddressManageViewController(tableViewModel: MyEthAddressManagerTableViewModel())
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 
-        HDWalletManager.instance.ethAddressDriver.filterNil().drive(addressLabel.rx.text).disposed(by: rx.disposeBag)
+        Observable.combineLatest(
+            ETHWalletManager.instance.accountDriver.filterNil().asObservable(),
+            AddressManageService.instance.myAddressNameMapDriver.asObservable())
+            .bind { (account, _) in
+                nameLabel.text = AddressManageService.instance.name(for: account.address)
+                addressLabel.text = account.address
+            }.disposed(by: rx.disposeBag)
     }
 
     func setupBalanceView() {

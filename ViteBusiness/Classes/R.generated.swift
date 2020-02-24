@@ -1854,7 +1854,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 1、 Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, zh-Hans
       public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3238,6 +3238,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupTipAlertTitle = Rswift.StringResource(key: "mnemonic.backup.tip.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My %@ Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManagePageTitle = Rswift.StringResource(key: "address.manage.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Address
       /// 
       /// Locales: en, zh-Hans
@@ -3258,10 +3262,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let addressListPageMyTitle = Rswift.StringResource(key: "address.list.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My VITE Address
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManagePageTitle = Rswift.StringResource(key: "address.manage.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My VITE Address
       /// 
       /// Locales: en, zh-Hans
@@ -4782,7 +4782,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let manageWalletPageTitle = Rswift.StringResource(key: "manage.wallet.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.
+      /// en translation: Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi
       /// 
       /// Locales: en, zh-Hans
       public static let grinWalletCheckDesc = Rswift.StringResource(key: "grin.wallet.check.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -6221,7 +6221,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 1、 Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, zh-Hans
       public static func grinInitingDetail(_: Void = ()) -> String {
@@ -8643,6 +8643,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.tip.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: My %@ Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManagePageTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("address.manage.page.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: My Address
       /// 
       /// Locales: en, zh-Hans
@@ -8676,13 +8683,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func addressListPageMyTitle(_: Void = ()) -> String {
         return NSLocalizedString("address.list.page.my.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: My VITE Address
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManagePageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My VITE Address
@@ -11345,7 +11345,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("manage.wallet.page.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.
+      /// en translation: Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi
       /// 
       /// Locales: en, zh-Hans
       public static func grinWalletCheckDesc(_: Void = ()) -> String {

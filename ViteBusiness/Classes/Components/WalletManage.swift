@@ -23,10 +23,12 @@ extension WalletManager: Storageable {
 
         public fileprivate(set) var vitexInviteCode: String?
         fileprivate var invitedAddresses: [ViteAddress] = []
+        public fileprivate(set) var eth: ETH = ETH()
 
-        public init(vitexInviteCode: String? = nil, invitedAddresses: [ViteAddress] = []) {
+        public init(vitexInviteCode: String? = nil, invitedAddresses: [ViteAddress] = [], eth: ETH = ETH()) {
             self.vitexInviteCode = vitexInviteCode
             self.invitedAddresses = invitedAddresses
+            self.eth = eth
         }
 
         public init?(map: Map) {
@@ -36,6 +38,27 @@ extension WalletManager: Storageable {
         public mutating func mapping(map: Map) {
             vitexInviteCode <- map["vitexInviteCode"]
             invitedAddresses <- map["invitedAddresses"]
+            eth <- map["eth"]
+        }
+
+        public struct ETH: Mappable {
+
+            public fileprivate(set) var totalAccountCount: Int = 1
+            public fileprivate(set) var currentAccountIndex: Int = 0
+
+            public init(totalAccountCount: Int = 1, currentAccountIndex: Int = 0) {
+                self.totalAccountCount = totalAccountCount
+                self.currentAccountIndex = currentAccountIndex
+            }
+
+            public init?(map: Map) {
+
+            }
+
+            public mutating func mapping(map: Map) {
+                totalAccountCount <- map["totalAccountCount"]
+                currentAccountIndex <- map["currentAccountIndex"]
+            }
         }
     }
 }
@@ -61,16 +84,36 @@ public final class WalletManager: NSObject {
 
 
 }
+// MARK: eth
+extension WalletManager {
+    struct eth {
+        static public func update(totalAccountCount: Int) {
+            guard var storager = WalletManager.instance.storagerBehaviorRelay.value else { return }
+            guard storager.eth.totalAccountCount != totalAccountCount else { return }
+            storager.eth.totalAccountCount = totalAccountCount
+            WalletManager.instance.storagerBehaviorRelay.accept(storager)
+            WalletManager.instance.save(mappable: storager)
+        }
+
+        static public func update(currentAccountIndex: Int) {
+            guard var storager = WalletManager.instance.storagerBehaviorRelay.value else { return }
+            guard storager.eth.currentAccountIndex != currentAccountIndex else { return }
+            storager.eth.currentAccountIndex = currentAccountIndex
+            WalletManager.instance.storagerBehaviorRelay.accept(storager)
+            WalletManager.instance.save(mappable: storager)
+        }
+    }
+}
 
 // MARK: vitex invite
 extension WalletManager {
 
     public func update(vitexInviteCode: String?) {
-        if var storager = storagerBehaviorRelay.value {
-            storager.vitexInviteCode = vitexInviteCode
-            storagerBehaviorRelay.accept(storager)
-            save(mappable: storager)
-        }
+        guard var storager = storagerBehaviorRelay.value else { return }
+        guard storager.vitexInviteCode != vitexInviteCode else { return }
+        storager.vitexInviteCode = vitexInviteCode
+        storagerBehaviorRelay.accept(storager)
+        save(mappable: storager)
     }
 
     public func checkVitexInviteCodeAndUpdate(vitexInviteCode: String) {

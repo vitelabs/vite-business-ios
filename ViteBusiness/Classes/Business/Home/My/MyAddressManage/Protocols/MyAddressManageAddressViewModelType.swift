@@ -1,5 +1,5 @@
 //
-//  AddressManageAddressViewModelType.swift
+//  MyAddressManageAddressViewModelType.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/13.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol AddressManageAddressViewModelType {
+protocol MyAddressManageAddressViewModelType {
     var number: Int { get }
     var name: String { get }
     var address: String { get }

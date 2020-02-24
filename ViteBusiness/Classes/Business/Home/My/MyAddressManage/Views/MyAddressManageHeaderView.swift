@@ -1,5 +1,5 @@
 //
-//  AddressManageHeaderView.swift
+//  MyAddressManageHeaderView.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddressManageHeaderView: UIView {
+class MyAddressManageHeaderView: UIView {
 
     let titleLabel = UILabel().then {
         $0.text = R.string.localizable.addressManageDefaultAddressCellTitle()
@@ -48,8 +48,10 @@ class AddressManageHeaderView: UIView {
         $0.setImage(R.image.icon_button_infor()?.highlighted, for: .highlighted)
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(showAddressesTips: Bool) {
+        super.init(frame: .zero)
+
+        tipButton.isHidden = !showAddressesTips
 
         let backView = UIView()
 

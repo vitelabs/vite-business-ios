@@ -51,7 +51,7 @@ class ReceiveEthViewModel: ReceiveViewModelType {
     init(tokenInfo: TokenInfo) {
         self.token = tokenInfo.toETHToken()!
 
-        self.address = HDWalletManager.instance.ethAddress ?? ""
+        self.address = ETHWalletManager.instance.account?.address ?? ""
         self.addressName = nil
 
         self.tipStringBehaviorRelay = BehaviorRelay(value: R.string.localizable.receivePageTokenNameLabel(token.symbol))

@@ -1,9 +1,8 @@
 //
-//  AddressManageViewController.swift
-//  Vite
+//  MyAddressManageViewContraller.swift
+//  ViteBusiness
 //
-//  Created by Stone on 2018/9/12.
-//  Copyright © 2018年 vite labs. All rights reserved.
+//  Created by Stone on 2020/2/24.
 //
 
 import UIKit
@@ -12,9 +11,24 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 
-class AddressManageViewController: BaseTableViewController {
+class MyAddressManageViewController: BaseTableViewController {
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, AddressManageAddressViewModelType>>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, MyAddressManageAddressViewModelType>>
+
+
+    let tableViewModel: MyAddressManagerTableViewModelType
+    let currentAddress = HDWalletManager.instance.account?.address
+
+    var defaultIndex = -1
+
+    init(tableViewModel: MyAddressManagerTableViewModelType) {
+        self.tableViewModel = tableViewModel
+        super.init(.plain)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +36,14 @@ class AddressManageViewController: BaseTableViewController {
         bind()
     }
 
-    let currentAddress = HDWalletManager.instance.account?.address
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if currentAddress != HDWalletManager.instance.account?.address {
-            WalletManager.instance.bindInviteIfNeeded()
+            tableViewModel.addressDidChangeWhenViewDidDisappear()
         }
     }
 
-    let headerView = AddressManageHeaderView()
+    lazy var headerView = MyAddressManageHeaderView(showAddressesTips: self.tableViewModel.showAddressesTips)
     let generateButton = UIButton().then {
         $0.setTitle(R.string.localizable.addressManageAddressGenerateButtonTitle(), for: .normal)
         $0.setImage(R.image.icon_button_add(), for: .normal)
@@ -49,11 +61,11 @@ class AddressManageViewController: BaseTableViewController {
     }
 
     fileprivate func setupView() {
-        navigationTitleView = NavigationTitleView(title: R.string.localizable.addressManagePageTitle())
+        navigationTitleView = NavigationTitleView(title: R.string.localizable.addressManagePageTitle(tableViewModel.coinType.rawValue))
         customHeaderView = headerView
 
-        tableView.rowHeight = AddressManageAddressCell.cellHeight()
-        tableView.estimatedRowHeight = AddressManageAddressCell.cellHeight()
+        tableView.rowHeight = MyAddressManageAddressCell.cellHeight()
+        tableView.estimatedRowHeight = MyAddressManageAddressCell.cellHeight()
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
 
@@ -66,16 +78,14 @@ class AddressManageViewController: BaseTableViewController {
     }
 
     fileprivate let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell: AddressManageAddressCell = tableView.dequeueReusableCell(for: indexPath)
+        let cell: MyAddressManageAddressCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(viewModel: item)
         return cell
     })
 
-    let walletDriver = HDWalletManager.instance.walletDriver
-    var tableViewModel: AddressManagerTableViewModel!
-
     fileprivate func bind() {
-        tableViewModel = AddressManagerTableViewModel()
+
+
 
         tableViewModel.addressesDriver.asObservable()
             .map { [SectionModel(model: "addresses", items: $0)] }

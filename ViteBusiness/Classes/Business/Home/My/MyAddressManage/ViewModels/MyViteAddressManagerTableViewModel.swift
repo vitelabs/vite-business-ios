@@ -1,5 +1,5 @@
 //
-//  AddressManagerTableViewModel.swift
+//  MyViteAddressManagerTableViewModel.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/13.
@@ -12,7 +12,7 @@ import RxCocoa
 import Vite_HDWalletKit
 import ViteWallet
 
-class AddressManagerTableViewModel: AddressManagerTableViewModelType {
+class MyViteAddressManagerTableViewModel: MyAddressManagerTableViewModelType {
 
     lazy var defaultAddressDriver: Driver<(String, String)> = HDWalletManager.instance.accountDriver.map {
         (String(HDWalletManager.instance.selectBagIndex + 1), $0?.address ?? "")
@@ -25,22 +25,24 @@ class AddressManagerTableViewModel: AddressManagerTableViewModelType {
                 return AddressManageService.instance.name(for: address)
     }
     
-    lazy var addressesDriver: Driver<[AddressManageAddressViewModelType]> =
+    lazy var addressesDriver: Driver<[MyAddressManageAddressViewModelType]> =
         Driver.combineLatest(
             HDWalletManager.instance.accountsDriver,
             HDWalletManager.instance.accountDriver,
             AddressManageService.instance.myAddressNameMapDriver)
-            .map { (accounts, _, _) -> [AddressManageAddressViewModelType] in
+            .map { (accounts, _, _) -> [MyAddressManageAddressViewModelType] in
                 var number = 0
-                return accounts.map { account -> AddressManageAddressViewModelType in
+                return accounts.map { account -> MyAddressManageAddressViewModelType in
                     let isSelected = number == HDWalletManager.instance.selectBagIndex
                     number += 1
                     let name = AddressManageService.instance.name(for: account.address)
-                    return AddressManageAddressViewModel(number: number, name: name, address: account.address, isSelected: isSelected)
+                    return MyAddressManageAddressViewModel(number: number, name: name, address: account.address, isSelected: isSelected)
                 }
             }
 
+    var coinType: CoinType { .vite }
     var canGenerateAddress: Bool { return HDWalletManager.instance.canGenerateNextAccount }
+    var showAddressesTips: Bool { return true }
 
     func generateAddress() {
         _ = HDWalletManager.instance.generateNextAccount()
@@ -63,5 +65,9 @@ class AddressManagerTableViewModel: AddressManagerTableViewModelType {
         } else {
             _ = HDWalletManager.instance.selectAccount(index: index)
         }
+    }
+
+    func addressDidChangeWhenViewDidDisappear() {
+        WalletManager.instance.bindInviteIfNeeded()
     }
 }

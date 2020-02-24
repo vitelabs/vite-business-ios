@@ -30,7 +30,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
     }
     var emptyTipView: UIView {
         return TableViewPlaceholderView(imageType: .empty, viewType: .button(R.string.localizable.balanceInfoDetailShowTransactionsButtonTitle(), {
-            var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(HDWalletManager.instance.ethAddress ?? "")"
+            var infoUrl = "\(ViteConst.instance.eth.explorer)/address/\(ETHWalletManager.instance.account?.address ?? "")"
             guard let url = URL(string: infoUrl) else { return }
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
