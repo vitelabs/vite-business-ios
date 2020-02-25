@@ -225,6 +225,13 @@ class SendViewController: BaseViewController {
         navView.bind(tokenInfo: tokenInfo)
         headerView.bind(token: tokenInfo.toViteToken()!)
 
+        amountView.allButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: self.token.id)?.balance ?? Amount(0)
+            self.amountView.textField.text = balance.amountFull(decimals: self.token.decimals)
+            self.amountView.calcPrice()
+        }.disposed(by: rx.disposeBag)
+
         Driver.combineLatest(addressView.textView.rx.text.asDriver(),
                              noteView.textField.rx.text.asDriver())
             .throttle(1)

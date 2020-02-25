@@ -19,6 +19,22 @@ class SendAmountView: UIView {
         $0.font = AppStyle.formHeader.font
     }
 
+    let allButton = UIButton().then {
+        $0.setTitle(R.string.localizable.ethViteExchangePageExchangeAllButtonTitle(), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+
+        let lineImageView = UIImageView(image: R.image.blue_dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
+
+        $0.addSubview(lineImageView)
+        let titleLabel = $0.titleLabel!
+        lineImageView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(titleLabel).offset(2)
+        }
+    }
+
     let textField = UITextField().then {
         $0.font = AppStyle.descWord.font
     }
@@ -82,6 +98,13 @@ class SendAmountView: UIView {
                 m.centerY.equalTo(textField)
             }
 
+            addSubview(allButton)
+            allButton.snp.makeConstraints { (m) in
+                m.centerY.equalTo(titleLabel)
+                m.right.equalTo(self)
+            }
+
+
         } else {
 
             titleLabel.snp.makeConstraints { (m) in
@@ -106,17 +129,20 @@ class SendAmountView: UIView {
         }
 
         textField.rx.text.bind { [weak self] text in
-            guard let `self` = self else { return }
-            let rateMap = ExchangeRateManager.instance.rateMap
-            if let amount = text?.toAmount(decimals: self.token.decimals) {
-                self.symbolLabel.text = "≈" + rateMap.priceString(for: self.token, balance: amount)
-            } else {
-                self.symbolLabel.text = "≈ 0.0"
-            }
+            self?.calcPrice()
         }
         .disposed(by: rx.disposeBag)
 
 
+    }
+
+    func calcPrice() {
+        let rateMap = ExchangeRateManager.instance.rateMap
+        if let amount = textField.text?.toAmount(decimals: self.token.decimals) {
+            self.symbolLabel.text = "≈" + rateMap.priceString(for: self.token, balance: amount)
+        } else {
+            self.symbolLabel.text = "≈ 0.0"
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

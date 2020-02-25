@@ -168,6 +168,13 @@ class BnbWalletSendViewController: BaseViewController {
     }
 
     private func bind() {
+
+        amountView.allButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            self.amountView.textField.text = BnbWallet.shared.balanceInfo(symbol: self.tokenInfo.id).free
+            self.amountView.calcPrice()
+        }.disposed(by: rx.disposeBag)
+
         BnbWallet.shared.balanceInfoDriver(symbol: self.tokenInfo.id).drive(onNext:{[weak self] r in
             guard let `self` = self else { return }
             self.headerView.balanceLabel.text = r.free

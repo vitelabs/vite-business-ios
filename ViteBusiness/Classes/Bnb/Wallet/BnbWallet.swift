@@ -194,6 +194,16 @@ public class BnbWallet {
         })
     }
 
+    func balanceInfo(symbol: String) -> Balance {
+        for balance in balanceBehaviorRelay.value where balance.symbol == symbol {
+            return balance
+        }
+        var balance = Balance()
+        balance.symbol = symbol
+        balance.free = "0.00000000"
+        return balance
+    }
+
     func commonBalanceInfo(for tokenCode: String) -> ETHBalanceInfo {
         let commonBalanceInfos = self.commonBalanceInfoBehaviorRelay.value
         for model in commonBalanceInfos where model.tokenCode == tokenCode {

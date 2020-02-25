@@ -161,6 +161,13 @@ class EthSendTokenController: BaseViewController {
 
     private func bind() {
 
+        amountView.allButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            let balance = ETHBalanceInfoManager.instance.balanceInfo(for: self.tokenInfo.tokenCode)?.balance ?? Amount(0)
+            self.amountView.textField.text = balance.amountFull(decimals: self.tokenInfo.decimals)
+            self.amountView.calcPrice()
+        }.disposed(by: rx.disposeBag)
+
         self.sendButton.rx.tap
             .bind { [weak self] in
                guard let `self` = self else { return }
