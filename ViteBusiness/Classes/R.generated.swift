@@ -3242,6 +3242,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let addressManagePageTitle = Rswift.StringResource(key: "address.manage.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My %@ Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageMyAddressTitle = Rswift.StringResource(key: "send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Address
       /// 
       /// Locales: en, zh-Hans
@@ -3262,10 +3266,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let addressListPageMyTitle = Rswift.StringResource(key: "address.list.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My VITE Address
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageMyAddressTitle = Rswift.StringResource(key: "send.page.my.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Votes
       /// 
       /// Locales: en, zh-Hans
@@ -8650,6 +8650,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("address.manage.page.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: My %@ Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageMyAddressTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("send.page.my.address.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: My Address
       /// 
       /// Locales: en, zh-Hans
@@ -8683,13 +8690,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func addressListPageMyTitle(_: Void = ()) -> String {
         return NSLocalizedString("address.list.page.my.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: My VITE Address
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageMyAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.address.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My Votes

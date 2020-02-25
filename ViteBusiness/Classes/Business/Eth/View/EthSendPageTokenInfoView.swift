@@ -12,7 +12,6 @@ class EthSendPageTokenInfoView: UIView {
     let addressTitleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.text = R.string.localizable.ethSendPageMyAddressTitle()
     }
 
     let addressLabel = UILabel().then {
@@ -32,9 +31,10 @@ class EthSendPageTokenInfoView: UIView {
         $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
     }
 
-    init(address: String) {
+    init(address: String, name: String = R.string.localizable.ethSendPageMyAddressTitle()) {
         super.init(frame: CGRect.zero)
         addressLabel.text = address
+        addressTitleLabel.text = name
 
         let contentView = createContentViewAndSetShadow(width: 0, height: 5, radius: 9)
         contentView.layer.masksToBounds = true

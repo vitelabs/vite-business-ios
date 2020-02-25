@@ -16,9 +16,9 @@ import web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
-    let fromAddress : EthereumAddress = ETHWalletManager.instance.account!.ethereumAddress
+    let fromAddress = ETHWalletManager.instance.account!.address
 
-    var address:  EthereumAddress? = nil
+    var address:  String? = nil
     var amount: Amount? = nil
 
     public var tokenInfo : TokenInfo
@@ -26,7 +26,7 @@ class EthSendTokenController: BaseViewController {
     init(_ tokenInfo: TokenInfo, toAddress: EthereumAddress? = nil,amount:Amount? = nil) {
         self.tokenInfo = tokenInfo
 
-        self.address = toAddress
+        self.address = toAddress?.address
         self.amount = amount
         super.init(nibName: nil, bundle: nil)
     }
@@ -81,7 +81,7 @@ class EthSendTokenController: BaseViewController {
         return gasSliderView
     }()
 
-    private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress.address)
+    private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress, name: AddressManageService.instance.name(for: self.fromAddress))
 
     private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", token: self.tokenInfo)
 
@@ -106,14 +106,15 @@ class EthSendTokenController: BaseViewController {
     }
 
     private lazy var addressView: SendAddressViewType = {
-        if self.address != nil {
-            return AddressLabelView(address: address!.address)
-        }else {
+        if let address = self.address {
+            return AddressLabelView(address: address)
+        } else {
             let view = AddressTextViewView()
             view.addButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                    [R.string.localizable.ethSendPageEthContactsButtonTitle(),
+                    [R.string.localizable.sendPageMyAddressTitle(CoinType.eth.rawValue),
+                     R.string.localizable.ethSendPageEthContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
             return  view
@@ -219,11 +220,16 @@ class EthSendTokenController: BaseViewController {
 extension EthSendTokenController: FloatButtonsViewDelegate {
     func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
-            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
+            let viewModel = AddressListViewModel.createMyAddressListViewModel(for: CoinType.eth)
             let vc = AddressListViewController(viewModel: viewModel)
             vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         } else if index == 1 {
+            let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
+            let vc = AddressListViewController(viewModel: viewModel)
+            vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        } else if index == 2 {
             let scanViewController = ScanViewController()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ETHURI.parser(string: result) {

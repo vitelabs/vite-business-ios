@@ -90,7 +90,7 @@ class SendViewController: BaseViewController {
             view.addButton.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
                 FloatButtonsView(targetView: view.addButton, delegate: self, titles:
-                    [R.string.localizable.sendPageMyAddressTitle(),
+                    [R.string.localizable.sendPageMyAddressTitle(CoinType.vite.rawValue),
                      R.string.localizable.sendPageViteContactsButtonTitle(),
                      R.string.localizable.sendPageScanAddressButtonTitle()]).show()
                 }.disposed(by: rx.disposeBag)
@@ -280,7 +280,7 @@ class SendViewController: BaseViewController {
 extension SendViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
-            let viewModel = AddressListViewModel.createMyAddressListViewModel()
+            let viewModel = AddressListViewModel.createMyAddressListViewModel(for: CoinType.vite)
             let vc = AddressListViewController(viewModel: viewModel)
             vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)

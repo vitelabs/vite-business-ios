@@ -135,7 +135,7 @@ class GatewayWithdrawViewController: BaseViewController {
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addArrangedSubview(feeView)
 
-        abstractView.tl0.text = R.string.localizable.sendPageMyAddressTitle()
+        abstractView.tl0.text = R.string.localizable.sendPageMyAddressTitle(CoinType.vite.rawValue)
         abstractView.cl0.text = HDWalletManager.instance.account?.address
         abstractView.tl1.text = R.string.localizable.sendPageMyBalanceTitle()
 

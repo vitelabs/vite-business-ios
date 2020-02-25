@@ -236,7 +236,7 @@
 
 /* Send Page */
 "send.page.title" = "转账";
-"send.page.my.address.title" = "我的VITE地址";
+"send.page.my.address.title" = "我的%@地址";
 "send.page.my.balance.title" = "余额";
 "send.page.my.pledge.title" = "已获得抵押";
 "send.page.my.quota.title" = "配额余额/上限";

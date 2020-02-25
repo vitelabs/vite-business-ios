@@ -133,7 +133,7 @@ class EthViteExchangeViewController: BaseViewController {
         addressView.addButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
-                [R.string.localizable.sendPageMyAddressTitle(),
+                [R.string.localizable.sendPageMyAddressTitle(CoinType.vite.rawValue),
                  R.string.localizable.sendPageViteContactsButtonTitle(),
                  R.string.localizable.sendPageScanAddressButtonTitle()]).show()
             }.disposed(by: rx.disposeBag)
@@ -264,7 +264,7 @@ class EthViteExchangeViewController: BaseViewController {
 extension EthViteExchangeViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int, targetView: UIView) {
         if index == 0 {
-            let viewModel = AddressListViewModel.createMyAddressListViewModel()
+            let viewModel = AddressListViewModel.createMyAddressListViewModel(for: CoinType.vite)
             let vc = AddressListViewController(viewModel: viewModel)
             vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
