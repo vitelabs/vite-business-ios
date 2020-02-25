@@ -156,7 +156,7 @@ public class EthGasFeeSliderView: UIView {
                        actions: [(Alert.UIAlertControllerAletrActionTitle.default(title: R.string.localizable.addressManageTipAlertOk()), nil)])
             }.disposed(by: rx.disposeBag)
 
-        EtherWallet.transaction.fetchGasPrice()
+        ETHAccount.fetchGasPrice()
             .done({ price in
                 // Gwei = 9
                 let b = BigDecimal(number: price, digits: 9)

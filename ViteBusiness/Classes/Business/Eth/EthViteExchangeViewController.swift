@@ -13,7 +13,7 @@ import ViteWallet
 
 class EthViteExchangeViewController: BaseViewController {
 
-    let myEthAddress = EtherWallet.shared.address!
+    let myEthAddress = ETHWalletManager.instance.account!.address
     var balance = Amount(0)
 
     override func viewDidLoad() {
@@ -69,7 +69,7 @@ class EthViteExchangeViewController: BaseViewController {
         $0.textField.keyboardType = .decimalPad
     }
 
-    let gasSliderView = EthGasFeeSliderView(gasLimit: EtherWallet.defaultGasLimitForTokenTransfer).then {
+    let gasSliderView = EthGasFeeSliderView(gasLimit: ETHWalletManager.defaultGasLimitForTokenTransfer).then {
         $0.value = 1.0
     }
 

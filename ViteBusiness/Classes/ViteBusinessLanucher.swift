@@ -86,7 +86,7 @@ public class ViteBusinessLanucher: NSObject {
         #else
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: ViteConst.instance.vite.nodeHttp)!))
         #endif
-        EtherWallet.shared.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
+        ETHWalletManager.instance.setProviderURL(URL(string: ViteConst.instance.eth.nodeHttp)!, net: ViteConst.instance.eth.chainType)
     }
 
     func handleWebWalletBridgeConfig()  {

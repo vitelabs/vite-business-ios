@@ -13,26 +13,25 @@ import RxSwift
 import RxCocoa
 
 
-
 public class ETHWalletManager {
     static let instance = ETHWalletManager()
     private init() {}
 
 
     private var keystore: BIP32Keystore? = nil
-    private var password: String? = nil
+    public var password: String? = nil
 
     public var totalAccountCount: Int = 1
     public var currentAccountIndex: Int = 0
 
-    public lazy var accountsDriver: Driver<[Account]> = self.accountsBehaviorRelay.asDriver()
-    public lazy var accountDriver: Driver<Account?> = self.accountBehaviorRelay.asDriver()
+    public lazy var accountsDriver: Driver<[ETHAccount]> = self.accountsBehaviorRelay.asDriver()
+    public lazy var accountDriver: Driver<ETHAccount?> = self.accountBehaviorRelay.asDriver()
 
-    public var account:Account? { return accountBehaviorRelay.value}
+    public var account:ETHAccount? { return accountBehaviorRelay.value}
 
 
-    private var accountsBehaviorRelay = BehaviorRelay(value: [Account]())
-    private var accountBehaviorRelay: BehaviorRelay<Account?> = BehaviorRelay(value: nil)
+    private var accountsBehaviorRelay = BehaviorRelay(value: [ETHAccount]())
+    private var accountBehaviorRelay: BehaviorRelay<ETHAccount?> = BehaviorRelay(value: nil)
 
     func unregister() {
         keystore = nil
@@ -70,17 +69,21 @@ public class ETHWalletManager {
         self.currentAccountIndex = eth.currentAccountIndex
 
         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: password, mnemonicsPassword: "", language: l)!
+
+        if let web3 = self.web3 {
+            self.web3.addKeystoreManager(KeystoreManager([keystore]))
+        }
+
         self.keystore = keystore
         self.password = password
         for _ in 1..<totalAccountCount { try! keystore.createNewChildAccount(password: password) }
         let addresses = keystore.sortedAddresses
 
-        var accounts = [Account]()
+        var accounts = [ETHAccount]()
         for index in 0..<totalAccountCount {
             let ethAddress = addresses[index]
             guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: password, account: ethAddress) else { fatalError() }
-            let address = ethAddress.address
-            let account = Account(address: address, privateKey: privateKey, accountIndex: index)
+            let account = ETHAccount(ethereumAddress: ethAddress, privateKey: privateKey, accountIndex: index)
             accounts.append(account)
         }
 
@@ -95,8 +98,7 @@ public class ETHWalletManager {
 
         var accounts = accountsBehaviorRelay.value
         guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: password, account: lastEthAddress) else { fatalError() }
-        let address = lastEthAddress.address
-        let account = Account(address: address, privateKey: privateKey, accountIndex: accounts.count)
+        let account = ETHAccount(ethereumAddress: lastEthAddress, privateKey: privateKey, accountIndex: accounts.count)
         accounts.append(account)
         accountsBehaviorRelay.accept(accounts)
 
@@ -114,20 +116,26 @@ public class ETHWalletManager {
         WalletManager.eth.update(currentAccountIndex: index)
         return true
     }
-}
 
-extension ETHWalletManager {
+    public var web3: web3swift.web3!
+    static public let defaultGasLimitForTokenTransfer = 60000
+    static public let defaultGasLimitForEthTransfer = 60000
 
-    public struct Account {
-        public let address: String
-        public let privateKey: Data
-        public let accountIndex: Int
+    // Must be called first
+    public func setProviderURL(_ providerURL: URL, net:Networks) {
+        let infura = InfuraProvider(net)!
+        infura.url = providerURL
+        self.web3 = web3swift.web3(provider: infura)
+        if let keystore = keystore {
+            self.web3.addKeystoreManager(KeystoreManager([keystore]))
+        }
     }
 }
-
 
 extension BIP32Keystore {
     var sortedAddresses: [EthereumAddress] {
         return self.paths.map { ($0.key, $0.value) }.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
 }
+
+

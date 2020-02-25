@@ -37,7 +37,7 @@ class CrossChainDepositViewController: BaseViewController {
         }
     }
 
-    lazy var headerView = EthSendPageTokenInfoView(address: EtherWallet.shared.address!).then {
+    lazy var headerView = EthSendPageTokenInfoView(address: ETHWalletManager.instance.account!.address).then {
         $0.addressTitleLabel.text = R.string.localizable.ethViteExchangePageMyAddressTitle()
     }
 
@@ -56,7 +56,7 @@ class CrossChainDepositViewController: BaseViewController {
         }
     }
 
-    let gasSliderView = EthGasFeeSliderView(gasLimit: EtherWallet.defaultGasLimitForTokenTransfer).then {
+    let gasSliderView = EthGasFeeSliderView(gasLimit: ETHWalletManager.defaultGasLimitForTokenTransfer).then {
         $0.value = 1.0
     }
 

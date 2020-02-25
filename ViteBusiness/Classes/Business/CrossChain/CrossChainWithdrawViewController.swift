@@ -442,7 +442,7 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
     func didClick(at index: Int, targetView: UIView) {
         if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
             if index == 0 {
-                addressView.textView.text = EtherWallet.shared.ethereumAddress?.address
+                addressView.textView.text = ETHWalletManager.instance.account?.address
             } else if index == 1 {
                 let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
                 let vc = AddressListViewController(viewModel: viewModel)

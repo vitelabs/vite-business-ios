@@ -28,7 +28,7 @@ public class ETHBalanceInfoManager {
 
     fileprivate var serviceMap: [TokenCode: ETHBalanceInfoService] = [:]
 
-    fileprivate var address: String?
+    fileprivate var account: ETHAccount?
     fileprivate var tokenCodes: [TokenCode] = []
 
     func registerFetch(tokenCodes: [TokenCode]) {
@@ -50,12 +50,12 @@ public class ETHBalanceInfoManager {
     }
 
     func start() {
-        ETHWalletManager.instance.accountDriver.map { $0?.address }.drive(onNext: { [weak self] a in
+        ETHWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
             guard let `self` = self else { return }
 
             var map = ETHBalanceInfoMap()
-            if let address = a {
-                map = self.read(address: address)
+            if let account = a {
+                map = self.read(address: account.address)
             }
 
             if self.balanceInfos == nil {
@@ -64,7 +64,7 @@ public class ETHBalanceInfoManager {
                 self.balanceInfos.accept(map)
             }
 
-            self.address = a
+            self.account = a
             self.triggerService()
         }).disposed(by: disposeBag)
     }
@@ -76,10 +76,10 @@ public class ETHBalanceInfoManager {
             .compactMap { $0 }
             .filter{ $0.coinType == .eth }
 
-        if let address = self.address, !tokenInfos.isEmpty {
+        if let account = self.account, !tokenInfos.isEmpty {
 
-            if address != EtherWallet.shared.address {
-                //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
+            if account.address != ETHWalletManager.instance.account?.address {
+                plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
                 self.serviceMap = [:]
             }
 
@@ -90,14 +90,14 @@ public class ETHBalanceInfoManager {
                     return true
                 }
             }.forEach { (tokenInfo) in
-                //plog(level: .debug, log: address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
-                let service = ETHBalanceInfoService(tokenInfo: tokenInfo, interval: 30, completion: { [weak self] (r) in
+                plog(level: .debug, log: account.address + ": " + "start fetch \(tokenInfo.uniqueSymbol)", tag: .transaction)
+                let service = ETHBalanceInfoService(ethAccount: account, tokenInfo: tokenInfo, interval: 30, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
 
                     switch r {
                     case .success(let balanceInfo):
 
-                        //plog(level: .debug, log: "\(address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
+                        plog(level: .debug, log: "\(account.address) \(tokenInfo.uniqueSymbol): \(balanceInfo.balance.description)", tag: .transaction)
 
                         var map = self.balanceInfos.value ?? ETHBalanceInfoMap()
                         map[balanceInfo.tokenCode] = balanceInfo
@@ -105,7 +105,7 @@ public class ETHBalanceInfoManager {
                         self.save(balanceInfos: Array(map.values))
                         self.balanceInfos.accept(map)
                     case .failure(let error):
-                        plog(level: .warning, log: address + ": " + error.viteErrorMessage, tag: .transaction)
+                        plog(level: .warning, log: account.address + ": " + error.viteErrorMessage, tag: .transaction)
                     }
                 })
                 service.startPoll()
@@ -114,14 +114,14 @@ public class ETHBalanceInfoManager {
 
             serviceMap.forEach { (tokenCode, service) in
                 if !tokenInfos.contains(where: { $0.tokenCode == tokenCode }) {
-                    //plog(level: .debug, log: address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
+                    plog(level: .debug, log: account.address + ": " + "stop fetch \(MyTokenInfosService.instance.tokenInfo(for: tokenCode)!.uniqueSymbol)", tag: .transaction)
                     serviceMap[tokenCode] = nil
                 }
             }
 
         } else {
             if tokenCodes.isEmpty {
-                //plog(level: .debug, log: "stop All fetch", tag: .transaction)
+                plog(level: .debug, log: "stop All fetch", tag: .transaction)
                 self.serviceMap = [:]
             } else {
                 GCD.delay(1) {

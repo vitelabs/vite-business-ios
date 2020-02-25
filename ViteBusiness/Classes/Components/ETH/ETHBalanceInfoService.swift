@@ -19,8 +19,10 @@ public class ETHBalanceInfoService: PollService {
         printLog("")
     }
 
+    public var ethAccount: ETHAccount
     public var tokenInfo: TokenInfo
-    public init(tokenInfo: TokenInfo, interval: TimeInterval, completion: ((Ret) -> ())? = nil) {
+    public init(ethAccount: ETHAccount, tokenInfo: TokenInfo, interval: TimeInterval, completion: ((Ret) -> ())? = nil) {
+        self.ethAccount = ethAccount
         self.tokenInfo = tokenInfo
         self.interval = interval
         self.completion = completion
@@ -36,12 +38,12 @@ public class ETHBalanceInfoService: PollService {
         let promise: Promise<ETHBalanceInfo>
         let tokenCode = tokenInfo.tokenCode
         if tokenInfo.isEtherCoin {
-            promise = EtherWallet.balance.etherBalance().map {
+            promise = ethAccount.etherBalance().map {
                 ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         } else {
             guard let token = tokenInfo.toETHToken() else { fatalError() }
-            promise = EtherWallet.balance.tokenBalance(contractAddress: token.contractAddress).map {
+            promise = ethAccount.tokenBalance(contractAddress: token.contractAddress).map {
                 ETHBalanceInfo(tokenCode: tokenCode, balance: $0)
             }
         }

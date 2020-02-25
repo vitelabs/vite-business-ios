@@ -16,7 +16,7 @@ import web3swift
 
 class EthSendTokenController: BaseViewController {
     // FIXME: Optional
-    let fromAddress : EthereumAddress = EtherWallet.shared.ethereumAddress!
+    let fromAddress : EthereumAddress = ETHWalletManager.instance.account!.ethereumAddress
 
     var address:  EthereumAddress? = nil
     var amount: Amount? = nil
@@ -76,7 +76,7 @@ class EthSendTokenController: BaseViewController {
     }
 
     private lazy var gasSliderView: EthGasFeeSliderView = {
-        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? EtherWallet.defaultGasLimitForEthTransfer: EtherWallet.defaultGasLimitForTokenTransfer)
+        let gasSliderView = EthGasFeeSliderView(gasLimit: self.tokenInfo.isEtherCoin ? ETHWalletManager.defaultGasLimitForEthTransfer: ETHWalletManager.defaultGasLimitForTokenTransfer)
         gasSliderView.value = 1.0
         return gasSliderView
     }()
