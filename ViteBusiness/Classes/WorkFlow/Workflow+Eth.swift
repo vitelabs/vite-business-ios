@@ -74,6 +74,7 @@ public extension Workflow {
                                               tokenInfo: TokenInfo,
                                               amount: Amount,
                                               gasPrice: Float,
+                                              note: String, // only ether can has note
                                               completion: @escaping (Result<String>) -> ()) {
         guard let account = ETHWalletManager.instance.account else {
             completion(.failure(WalletError.accountDoesNotExist))
@@ -85,7 +86,7 @@ public extension Workflow {
             let g = BigInt(Web3.Utils.parseToBigUInt(String(gasPrice), units: .Gwei)!)
             let promise: Promise<String>
             if tokenInfo.isEtherCoin {
-                promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g)
+                promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g, note: note)
             } else {
                 promise = account.sendToken(to: toAddress, amount: amount, gasPrice: g, contractAddress: tokenInfo.ethContractAddress)
             }

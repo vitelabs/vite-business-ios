@@ -55,7 +55,7 @@ class CrossChainDepositETH {
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, completion: { (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: withdrawInfo.depositAddress, tokenInfo: tokenInfo, amount: amount, gasPrice: gasPrice, note: "", completion: { (r) in
                     if case .success = r {
                         completion()
                     } else if case .failure(let error) = r {

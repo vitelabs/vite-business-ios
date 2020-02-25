@@ -141,7 +141,7 @@ extension ETHAccount {
         }
     }
 
-    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?) -> Promise<String> {
+    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?, note: String) -> Promise<String> {
         return etherBalance()
             .then(on: DispatchQueue.global(), { (balance) -> Promise<String> in
                 guard balance >= amount else { throw WalletError.notEnoughBalance }
@@ -162,10 +162,18 @@ extension ETHAccount {
                     let gasPrice = try web3.eth.getGasPrice()
                     options.gasPrice = .manual(gasPrice)
                 }
+
+                let extraData: Data
+                if note.isEmpty {
+                    extraData = Data()
+                } else {
+                    extraData = note.data(using: .utf8) ?? Data()
+                }
+
                 options.gasLimit = .manual(BigUInt(ETHWalletManager.defaultGasLimitForEthTransfer))
                 guard let tx = contract.write("fallback",
                                               parameters: [AnyObject](),
-                                              extraData: Data(),
+                                              extraData: extraData,
                                               transactionOptions: options) else { fatalError() }
 
                 let result = try tx.send(password: password)

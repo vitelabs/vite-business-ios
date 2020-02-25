@@ -83,6 +83,7 @@ class EthSendTokenController: BaseViewController {
 
     private lazy var headerView = EthSendPageTokenInfoView(address: self.fromAddress, name: AddressManageService.instance.name(for: self.fromAddress))
 
+    private let noteView = SendNoteView(note: "", canEdit: true)
     private lazy var amountView = SendAmountView(amount: self.amount?.amountFull(decimals: self.tokenInfo.decimals) ?? "", token: self.tokenInfo)
 
     private lazy var sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle()).then { (btn) in
@@ -135,6 +136,9 @@ class EthSendTokenController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 10)
         scrollView.stackView.addArrangedSubview(addressView)
         scrollView.stackView.addArrangedSubview(amountView)
+        if tokenInfo.isEtherCoin {
+            scrollView.stackView.addArrangedSubview(noteView)
+        }
         scrollView.stackView.addPlaceholder(height: 1)
         scrollView.stackView.addArrangedSubview(gasSliderView)
         scrollView.stackView.addPlaceholder(height: 50)
@@ -142,17 +146,13 @@ class EthSendTokenController: BaseViewController {
         addressView.textView.keyboardType = .default
         amountView.textField.keyboardType = .decimalPad
 
-        let toolbar = UIToolbar()
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let next: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.sendPageAmountToolbarButtonTitle(), style: .done, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: R.string.localizable.finish(), style: .done, target: nil, action: nil)
-
-        toolbar.items = [flexSpace, done]
-        toolbar.sizeToFit()
-        done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
-        amountView.textField.inputAccessoryView = toolbar
         addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
-        amountView.textField.delegate = self
+        if tokenInfo.isEtherCoin {
+            amountView.textField.kas_setReturnAction(.next(responder: noteView.textField), delegate: self)
+            noteView.textField.kas_setReturnAction(.done(block: { $0.resignFirstResponder() }))
+        } else {
+            amountView.textField.kas_setReturnAction(.done(block: { $0.resignFirstResponder() }), delegate: self)
+        }
     }
 
     private func checkSendParameterLegal()->Bool {
@@ -182,7 +182,7 @@ class EthSendTokenController: BaseViewController {
                     return
                 }
 
-                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, tokenInfo: self.tokenInfo, amount: amount, gasPrice: Float(self.gasSliderView.value), completion: {[weak self] (r) in
+                Workflow.sendEthTransactionWithConfirm(toAddress: toAddress.address, tokenInfo: self.tokenInfo, amount: amount, gasPrice: Float(self.gasSliderView.value), note: self.noteView.textField.text ?? "", completion: {[weak self] (r) in
                     if case .success = r {
                         self?.dismiss()
                     } else if case .failure(let error) = r {
