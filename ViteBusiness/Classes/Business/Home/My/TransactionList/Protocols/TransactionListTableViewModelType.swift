@@ -11,5 +11,6 @@ import RxSwift
 import RxCocoa
 
 protocol TransactionListTableViewModelType {
-    var transactionsDriver: Driver<[TransactionViewModelType]> { get }
+    associatedtype T
+    var transactionsDriver: Driver<[T]> { get }
 }
