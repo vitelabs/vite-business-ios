@@ -16,7 +16,7 @@ struct ETHTransaction: Mappable {
     enum TransactionType {
         case receive
         case send
-        case other
+        case me
     }
 
     fileprivate(set) var blockNumber: String = ""
@@ -37,7 +37,9 @@ struct ETHTransaction: Mappable {
     fileprivate(set) var tokenInfo: TokenInfo = TokenInfo.BuildIn.eth.value
 
     var type: TransactionType {
-        if accountAddress.lowercased() == toAddress.lowercased() {
+        if fromAddress.lowercased() == toAddress.lowercased() {
+            return .me
+        } else if accountAddress.lowercased() == toAddress.lowercased() {
             return .receive
         } else {
             return .send

@@ -78,9 +78,14 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
             guard let `self` = self else { return }
             guard address == self.address else { return }
 
-            self.viewModels.addObjects(from: transactions.map {
-                ETHTransactionViewModel(transaction: $0)
-            })
+            var set = Set(self.viewModels.map { ($0 as! ETHTransactionViewModel).hash })
+            transactions.forEach { (t) in
+                if !set.contains(t.hash) {
+                    self.viewModels.add(ETHTransactionViewModel(transaction: t))
+                    set.insert(t.hash)
+                }
+            }
+
             self.transactions.accept(self.viewModels as! [ETHTransactionViewModel])
             self.hasMore.accept(transactions.count == self.limit)
             self.loadingStatus = .no

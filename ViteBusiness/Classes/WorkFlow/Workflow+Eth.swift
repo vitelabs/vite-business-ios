@@ -83,7 +83,7 @@ public extension Workflow {
 
         let sendBlock = {
             HUD.show()
-            let g = BigInt(Web3.Utils.parseToBigUInt(String(gasPrice), units: .Gwei)!)
+            let g = BigInt(Web3.Utils.parseToBigUInt(String(format:"%f", gasPrice), units: .Gwei)!)
             let promise: Promise<String>
             if tokenInfo.isEtherCoin {
                 promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g, note: note)
