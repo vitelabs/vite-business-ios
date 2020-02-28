@@ -157,7 +157,7 @@ public final class MyTokenInfosService: NSObject {
 
     //MARK: public func
     public lazy var tokenInfosDriver: Driver<[TokenInfo]> = self.tokenInfosBehaviorRelay.asDriver()
-    public var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
+    private var tokenCodes: [TokenCode] {  return tokenCodesBehaviorRelay.value }
     public var tokenInfos: [TokenInfo] {  return tokenInfosBehaviorRelay.value }
 
     public func tokenInfo(forBnbSymbol symbol: String) -> TokenInfo? {
@@ -200,7 +200,7 @@ public final class MyTokenInfosService: NSObject {
     }
 
     public func contains(for tokenCode: TokenCode) -> Bool {
-        for code in tokenCodes where code == tokenCode {
+        for info in tokenInfos where info.tokenCode == tokenCode {
             return true
         }
         return false
