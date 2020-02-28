@@ -18,8 +18,10 @@ struct ETHTransactionViewModel {
     let symbolString: String
     let gasString: String
     let hash: String
+    let transaction: ETHTransaction
 
     init(transaction: ETHTransaction) {
+        self.transaction = transaction
         typeImage = (transaction.type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
         typeName = R.string.localizable.transactionListTransactionTypeNameTransfer()
         address = (transaction.type == .receive) ? transaction.fromAddress : transaction.toAddress

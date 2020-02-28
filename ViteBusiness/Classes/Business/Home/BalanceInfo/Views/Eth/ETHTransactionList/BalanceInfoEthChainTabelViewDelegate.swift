@@ -46,12 +46,6 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
         ETHWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
             self?.bind(address: account.address)
         }).disposed(by: rx.disposeBag)
-//
-//
-//        tableViewHandler.tableView.delegate = self
-//        DispatchQueue.main.async {
-//            tableViewHandler.status = .empty
-//        }
     }
 
     func getMore(finished: @escaping (Error?) -> ()) {
@@ -137,13 +131,9 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
                 .bind { [weak self] indexPath in
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
-                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
-                        if viewModel.isGenesis {
-                            // do nothing
-                            // WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
-                        } else {
-                            WebHandler.openTranscationDetailPage(hash: viewModel.hash)
-                        }
+                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? ETHTransactionViewModel {
+                        let vc = ETHTransactionDetailViewController(transaction: viewModel.transaction)
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
                 .disposed(by: rx.disposeBag)

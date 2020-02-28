@@ -430,6 +430,19 @@
 "eth.page.gasFee.fast.title" = "Fast";
 "eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
 
+// eth transaction detail
+"eth.transaction.detail.page.title" = "详情";
+"eth.transaction.detail.failed" = "转账失败";
+"eth.transaction.detail.success" = "转账成功";
+"eth.transaction.detail.to.address" = "收款地址";
+"eth.transaction.detail.from.address" = "付款地址";
+"eth.transaction.detail.amount" = "金额";
+"eth.transaction.detail.gas" = "矿工费用";
+"eth.transaction.detail.hash" = "交易号";
+"eth.transaction.detail.block" = "区块";
+"eth.transaction.detail.note" = "备注";
+"eth.transaction.detail.go.button.title" = "到Etherscan查询更详细信息";
+
 //token
 "token.list.page.search.title" = "Please input token name or contract address";
 "token.list.page.section.vite.header" = "Vite Network";
