@@ -100,6 +100,7 @@ public extension ViteConst {
         public var nodeHttp: String
         public var chainType: web3swift.Networks
         public var explorer: String
+        public var api: String
     }
 
     struct Grin {
@@ -169,7 +170,8 @@ public extension ViteConst {
                            snapshotChainHeightPerDay: 60 * 60 * 24),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
-                         explorer: "https://etherscan.io"),
+                         explorer: "https://etherscan.io",
+                         api: "https://api.vitewallet.com/etherscan"),
                 grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,
@@ -196,7 +198,8 @@ public extension ViteConst {
                            snapshotChainHeightPerDay: 200),
                 eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
                          chainType: .Ropsten,
-                         explorer: "https://ropsten.etherscan.io"),
+                         explorer: "https://ropsten.etherscan.io",
+                         api: "https://api.vitewallet.com/beta/etherscan"),
                 grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.usernet.rawValue,
@@ -224,7 +227,8 @@ public extension ViteConst {
                            snapshotChainHeightPerDay: 60 * 60 * 24),
                 eth: Eth(nodeHttp: "https://api.vitewallet.com/eth",
                          chainType: .Mainnet,
-                         explorer: "https://etherscan.io"),
+                         explorer: "https://etherscan.io",
+                         api: "https://api.vitewallet.com/etherscan"),
                 grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.mainnet.rawValue,

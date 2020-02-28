@@ -13,7 +13,7 @@ enum EthAPI: TargetType {
     case erc20Transactions(address: String, contractAddress: String, page: Int, limit: Int)
 
     var baseURL: URL {
-        return URL(string: "https://api-ropsten.etherscan.io")!
+        return URL(string: ViteConst.instance.eth.api)!
     }
 
     var path: String {
