@@ -230,16 +230,6 @@
 "address.manage.change.name.alert.title" = "Edit Address Alias";
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
-/* Vite Add Address Page */
-"vite.add.address.page.title" = "添加地址";
-"vite.add.address.single.title" = "添加一个地址";
-"vite.add.address.single.placeholder" = "请填写地址序号";
-"vite.add.address.batch.title" = "批量添加地址";
-"vite.add.address.batch.placeholder" = "请添加地址序号区间";
-"vite.add.address.batch.to" = "至";
-"vite.add.address.add.button.titile" = "确认添加";
-"vite.add.address.error.toast" = "只能添加1-100号地址";
-
 /* Send Page */
 "send.page.title" = "Send";
 "send.page.my.address.title" = "My %@ Address";

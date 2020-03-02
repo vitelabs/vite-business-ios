@@ -1746,7 +1746,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1088 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1080 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5336,10 +5336,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditQuotalCancleTitle = Rswift.StringResource(key: "defi.use.page.edit.quotal.cancle.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 只能添加1-100号地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressErrorToast = Rswift.StringResource(key: "vite.add.address.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 可取回抵押金额:
       /// 
       /// Locales: en, zh-Hans
@@ -5572,10 +5568,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageAllProduct = Rswift.StringResource(key: "defi.home.page.all.product", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 批量添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressBatchTitle = Rswift.StringResource(key: "vite.add.address.batch.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -5760,14 +5752,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleRegisterforSBPrefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.RegisterforSBPrefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 添加一个地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressSingleTitle = Rswift.StringResource(key: "vite.add.address.single.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressPageTitle = Rswift.StringResource(key: "vite.add.address.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 矿工费用
       /// 
       /// Locales: en, zh-Hans
@@ -5792,10 +5776,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditCancleConfirm = Rswift.StringResource(key: "defi.use.page.edit.cancle.confirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 确认添加
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressAddButtonTitile = Rswift.StringResource(key: "vite.add.address.add.button.titile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 立即抢购
       /// 
       /// Locales: en, zh-Hans
@@ -5836,10 +5816,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 至
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressBatchTo = Rswift.StringResource(key: "vite.add.address.batch.to", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 获取配额
       /// 
       /// Locales: en, zh-Hans
@@ -6012,14 +5988,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellNumberPlaceholder = Rswift.StringResource(key: "defi.loan.page.cell.number.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请填写地址序号
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressSinglePlaceholder = Rswift.StringResource(key: "vite.add.address.single.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请添加地址序号区间
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteAddAddressBatchPlaceholder = Rswift.StringResource(key: "vite.add.address.batch.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入借币总份数
       /// 
       /// Locales: en, zh-Hans
@@ -12380,13 +12348,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.use.page.edit.quotal.cancle.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 只能添加1-100号地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressErrorToast(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.error.toast", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 可取回抵押金额:
       /// 
       /// Locales: en, zh-Hans
@@ -12793,13 +12754,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.all.product", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 批量添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressBatchTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.batch.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -13122,20 +13076,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.bill.billTypeTitle.RegisterforSBPrefund", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 添加一个地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressSingleTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.single.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.page.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 矿工费用
       /// 
       /// Locales: en, zh-Hans
@@ -13176,13 +13116,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditCancleConfirm(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.cancle.confirm", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 确认添加
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressAddButtonTitile(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.add.button.titile", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 立即抢购
@@ -13253,13 +13186,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditSbpTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.sbp.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 至
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressBatchTo(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.batch.to", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 获取配额
@@ -13561,20 +13487,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellNumberPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.number.placeholder", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 请填写地址序号
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressSinglePlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.single.placeholder", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 请添加地址序号区间
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteAddAddressBatchPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("vite.add.address.batch.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入借币总份数

@@ -14,7 +14,7 @@ import RxSwift
 import NSObject_Rx
 
 final class MyVoteInfoViewReactor: Reactor {
-    let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: "", index: 0)
+    let account = HDWalletManager.instance.account ??  Wallet.Account(secretKey: "", publicKey: "", address: "")
     var disposeBag = DisposeBag()
     var pollingVoteInfoTask: GCD.Task?
 

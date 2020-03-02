@@ -27,7 +27,6 @@ public class NavigationTitleView: UIView {
         super.init(frame: CGRect.zero)
         titleLabel.text = title
         addSubview(titleLabel)
-        // top: 6, bottom: 20
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(self).offset(6)
             m.left.equalTo(self).offset(horizontal)
