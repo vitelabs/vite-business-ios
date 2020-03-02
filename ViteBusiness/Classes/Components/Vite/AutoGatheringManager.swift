@@ -24,32 +24,33 @@ final class AutoGatheringManager {
     fileprivate var service: ReceiveAllTransactionService?
 
     func start() {
-        HDWalletManager.instance.accountsDriver.drive(onNext: { (accounts) in
-            if accounts.isEmpty {
-                self.service?.stopPoll()
-                self.service = nil
-                //plog(level: .debug, log: "stop receive", tag: .transaction)
-            } else {
-                //plog(level: .debug, log: "start receive for \(accounts.count) address", tag: .transaction)
-                let service = ReceiveAllTransactionService(accounts: accounts, interval: 5, completion: { (r) in
+        HDWalletManager.instance.accountDriver.drive(onNext: { (account) in
+            if let account = account {
+
+                plog(level: .debug, log: "start receive for \(account.address)", tag: .transaction)
+                let service = ReceiveAllTransactionService(accounts: [account], interval: 5, completion: { (r) in
                     switch r {
                     case .success(let ret):
                         for (send, _, account) in ret {
                             if let data = send.data,
                                 data.contentTypeInUInt16 == 0x8001,
                                 let viteData = data.rawContent {
-                                let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
-                                //plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
+//                                let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
+//                                plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
                                 GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
                             }
                         }
-//                        //plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
+//                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
                     case .failure(let error):
-                        plog(level: .warning, log: "getOnroad for \(accounts.count) address error: \(error.viteErrorMessage)", tag: .transaction)
+                        plog(level: .warning, log: "getOnroad for \(account.address) error: \(error.viteErrorMessage)", tag: .transaction)
                     }
                 })
                 service.startPoll()
                 self.service = service
+            } else {
+                self.service?.stopPoll()
+                self.service = nil
+//                plog(level: .debug, log: "stop receive", tag: .transaction)
             }
         }).disposed(by: disposeBag)
     }
