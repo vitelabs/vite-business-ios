@@ -73,7 +73,7 @@ extension BnbWallet: Storageable {
 extension BnbWallet {
     private func pri_save(balances: [Balance]) {
         if let data = balances.toJSONString()?.data(using: .utf8) {
-            if let error = self.fileHelper.writeData(data, relativePath: type(of: self).saveKey) {
+            if let error = self.fileHelper?.writeData(data, relativePath: type(of: self).saveKey) {
                 assert(false, error.localizedDescription)
             }
         }
@@ -82,7 +82,7 @@ extension BnbWallet {
     private func read() -> BNBBalanceInfoMap {
         var map = BNBBalanceInfoMap()
 
-        if let data = self.fileHelper.contentsAtRelativePath(type(of: self).saveKey),
+        if let data = self.fileHelper?.contentsAtRelativePath(type(of: self).saveKey),
             let jsonString = String(data: data, encoding: .utf8),
             let balanceInfos = [Balance](JSONString: jsonString) {
             // filter deleted balanceInfo
@@ -99,7 +99,7 @@ public class BnbWallet {
     public static let shared = BnbWallet()
 
     fileprivate var appending = "noAddress"
-    fileprivate var fileHelper: FileHelper! = nil
+    fileprivate var fileHelper: FileHelper? = nil
     fileprivate static let saveKey = "BnbWalletBalance"
     
     let binance = BinanceChain(endpoint: .mainnet)
