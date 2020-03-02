@@ -24,7 +24,13 @@ public final class HDWalletManager {
         walletBehaviorRelay.asDriver().drive(onNext: { [weak self] w in
             guard let `self` = self else { return }
             if let wallet = w {
-                let accounts = (0..<wallet.addressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
+                let oldSet = self.accounts.reduce(Set<Int>()) { (ret, account) -> Set<Int> in
+                    var r = ret
+                    r.insert(account.index)
+                    return r
+                }
+                let newAccounts = wallet.addressIndexSet.subtracting(oldSet).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
+                let accounts = (self.accounts + newAccounts).sorted { $0.index < $1.index }
                 guard self.accountsBehaviorRelay.value.count != accounts.count else { return }
                 self.accountsBehaviorRelay.accept(accounts)
             } else {
@@ -53,7 +59,7 @@ public final class HDWalletManager {
     public lazy var accountDriver: Driver<Wallet.Account?> = self.accountBehaviorRelay.asDriver()
 
     public var walletBehaviorRelay: BehaviorRelay<HDWalletStorage.Wallet?> = BehaviorRelay(value: nil)
-    public var accountsBehaviorRelay = BehaviorRelay(value: [Wallet.Account]())
+    public var accountsBehaviorRelay: BehaviorRelay<[Wallet.Account]> = BehaviorRelay(value: [])
     public var accountBehaviorRelay: BehaviorRelay<Wallet.Account?> = BehaviorRelay(value: nil)
 
     // BNB
@@ -68,7 +74,7 @@ public final class HDWalletManager {
 
     public internal(set) var locked = false
 
-    fileprivate static let maxAddressCount = 10
+    fileprivate static let maxAddressIndex = 100
 
     func updateName(name: String) {
         guard let wallet = storage.updateCurrentWalletName(name) else { return }
@@ -76,19 +82,23 @@ public final class HDWalletManager {
         plog(level: .info, log: "wallet change name to \(name)", tag: .wallet)
     }
 
-    func generateNextAccount() -> Bool {
+    func generateAccounts(from: Int, to: Int) -> Bool {
         guard let wallet = walletBehaviorRelay.value else { return false }
-        guard wallet.addressCount < type(of: self).maxAddressCount else { return false }
-        pri_update(addressIndex: wallet.addressIndex, addressCount: wallet.addressCount + 1)
-        plog(level: .info, log: "generate next address \(self.accounts.last?.address ?? ""), total: \(self.accounts.count)", tag: .wallet)
+        guard from > 0, from <= type(of: self).maxAddressIndex, to > 0, to <= type(of: self).maxAddressIndex else { return false }
+        var set = wallet.addressIndexSet
+        for index in min(from - 1, to - 1)...max(from - 1, to - 1) {
+            set.insert(index)
+        }
+        pri_update(addressIndex: wallet.addressIndex, addressIndexSet: set)
+        plog(level: .info, log: "generate from \(from) to \(to) total: \(self.accounts.count)", tag: .wallet)
         return true
     }
 
     func selectAccount(index: Int) -> Bool {
         guard let wallet = walletBehaviorRelay.value else { return false }
-        guard index < wallet.addressCount else { return false }
-        guard index != wallet.addressIndex else { return true }
-        pri_update(addressIndex: index, addressCount: wallet.addressCount)
+        guard let account = account else { return false }
+        guard index != account.index else { return true }
+        pri_update(addressIndex: index, addressIndexSet: wallet.addressIndexSet)
         plog(level: .info, log: "select \(self.account?.address ?? ""), index: \(index)", tag: .wallet)
         return true
     }
@@ -111,11 +121,6 @@ public final class HDWalletManager {
 
     var selectBagIndex: Int {
         return walletBehaviorRelay.value?.addressIndex ?? 0
-    }
-
-    var canGenerateNextAccount: Bool {
-        guard let wallet = walletBehaviorRelay.value else { return false }
-        return wallet.addressCount < type(of: self).maxAddressCount
     }
 }
 
@@ -326,36 +331,10 @@ extension HDWalletManager {
 
     fileprivate func pri_updateWallet(_ wallet: HDWalletStorage.Wallet) {
         walletBehaviorRelay.accept(wallet)
-        pri_recoverAddressesIfNeeded(wallet.uuid)
     }
 
-    fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
-        guard let wallet = self.walletBehaviorRelay.value else { return }
-        guard uuid == wallet.uuid else { return }
-        guard wallet.needRecoverAddresses else { return }
-        let accounts = (0..<type(of: self).maxAddressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
-        let addresses = accounts.map { $0.address }
-        guard addresses.count == type(of: self).maxAddressCount else { return }
-        ViteNode.utils.recoverAddresses(addresses)
-            .done { [weak self] (count) in
-                guard let `self` = self else { return }
-                guard let wallet = self.walletBehaviorRelay.value else { return }
-                guard uuid == wallet.uuid else { return }
-                let current = wallet.addressCount
-                self.pri_update(addressIndex: wallet.addressIndex, addressCount: max(current, count), needRecoverAddresses: false)
-            }
-            .catch { [weak self] (error) in
-                guard let `self` = self else { return }
-                guard let wallet = self.walletBehaviorRelay.value else { return }
-                guard uuid == wallet.uuid else { return }
-                GCD.delay(3, task: { self.pri_recoverAddressesIfNeeded(uuid) })
-        }
-    }
-
-    fileprivate func pri_update(addressIndex: Int, addressCount: Int, needRecoverAddresses: Bool? = nil) {
-        guard let wallet = storage.updateCurrentWallet(addressIndex: addressIndex,
-                                                       addressCount: addressCount,
-                                                       needRecoverAddresses: needRecoverAddresses) else { return }
+    fileprivate func pri_update(addressIndex: Int, addressIndexSet: Set<Int>) {
+        guard let wallet = storage.updateCurrentWallet(addressIndex: addressIndex, addressIndexSet: addressIndexSet) else { return }
         walletBehaviorRelay.accept(wallet)
     }
 
@@ -396,7 +375,7 @@ extension HDWalletManager {
     }
 
     func resetBagCount() {
-        pri_update(addressIndex: 0, addressCount: 1)
+        pri_update(addressIndex: 0, addressIndexSet: [0])
     }
 }
 #endif

@@ -16,6 +16,7 @@ extension UITextField {
     enum KASReturnAction {
         case next(responder: UIResponder)
         case done(block: (UITextField) -> Void)
+        case resignFirstResponder
     }
 
     func kas_setReturnAction(_ action: KASReturnAction, delegate: UITextFieldDelegate? = nil) {
@@ -23,6 +24,8 @@ extension UITextField {
         case .next:
             returnKeyType = .next
         case .done:
+            returnKeyType = .done
+        case .resignFirstResponder:
             returnKeyType = .done
         }
 
@@ -55,6 +58,8 @@ extension UITextField {
     @objc func onDone() {
         if case .done(let block) = kas_returnAction {
             block(self)
+        } else if case .resignFirstResponder = kas_returnAction {
+            self.resignFirstResponder()
         }
     }
 
@@ -112,6 +117,8 @@ extension UITextField {
                     responder.becomeFirstResponder()
                 case .done(let block):
                     block(self.textField)
+                case .resignFirstResponder:
+                    self.textField.resignFirstResponder()
                 }
             }
 

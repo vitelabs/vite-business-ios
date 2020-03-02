@@ -31,21 +31,20 @@ class MyViteAddressManagerTableViewModel: MyAddressManagerTableViewModelType {
             HDWalletManager.instance.accountDriver,
             AddressManageService.instance.myAddressNameMapDriver)
             .map { (accounts, _, _) -> [MyAddressManageAddressViewModelType] in
-                var number = 0
                 return accounts.map { account -> MyAddressManageAddressViewModelType in
-                    let isSelected = number == HDWalletManager.instance.selectBagIndex
-                    number += 1
+                    let isSelected = account.index == HDWalletManager.instance.selectBagIndex
                     let name = AddressManageService.instance.name(for: account.address)
-                    return MyAddressManageAddressViewModel(number: number, name: name, address: account.address, isSelected: isSelected)
+                    return MyAddressManageAddressViewModel(number: account.index + 1, name: name, address: account.address, isSelected: isSelected)
                 }
             }
 
     var coinType: CoinType { .vite }
-    var canGenerateAddress: Bool { return HDWalletManager.instance.canGenerateNextAccount }
+    var canGenerateAddress: Bool { return true }
     var showAddressesTips: Bool { return true }
 
     func generateAddress() {
-        _ = HDWalletManager.instance.generateNextAccount()
+        let vc = ViteAddAddressViewContraller()
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 
     func setDefaultAddressIndex(_ index: Int) {

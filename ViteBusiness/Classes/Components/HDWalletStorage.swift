@@ -63,7 +63,7 @@ public final class HDWalletStorage: Mappable {
 extension HDWalletStorage {
 
     func addAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, hash: String, encryptKey: String, needRecoverAddresses: Bool, isBackedUp: Bool) -> Wallet {
-        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptKey, needRecoverAddresses: needRecoverAddresses, isBackedUp: isBackedUp)
+        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptKey, isBackedUp: isBackedUp)
 
         var index: Int?
         for (i, wallet) in wallets.enumerated() where wallet.hash == hash {
@@ -128,13 +128,10 @@ extension HDWalletStorage {
         }
     }
 
-    func updateCurrentWallet(addressIndex: Int, addressCount: Int, needRecoverAddresses: Bool? = nil) -> Wallet? {
+    func updateCurrentWallet(addressIndex: Int, addressIndexSet: Set<Int>, needRecoverAddresses: Bool? = nil) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in
             wallet.addressIndex = addressIndex
-            wallet.addressCount = addressCount
-            if let needRecoverAddresses = needRecoverAddresses {
-                wallet.needRecoverAddresses = needRecoverAddresses
-            }
+            wallet.addressIndexSet = addressIndexSet
         }
     }
 
@@ -187,9 +184,7 @@ extension HDWalletStorage {
     public class Wallet: ViteWallet.Wallet{
 
         fileprivate(set) var addressIndex: Int = 0
-        fileprivate(set) var addressCount: Int = 1
-        fileprivate(set) var needRecoverAddresses: Bool = true
-
+        fileprivate(set) var addressIndexSet: Set<Int> = [0]
         fileprivate(set) var isBackedUp: Bool = true
         fileprivate(set) var isRequireAuthentication: Bool = false
         fileprivate(set) var isAuthenticatedByBiometry: Bool = false
@@ -205,8 +200,7 @@ extension HDWalletStorage {
                     language: MnemonicCodeBook,
                     encryptedKey: String,
                     addressIndex: Int = 0,
-                    addressCount: Int = 1,
-                    needRecoverAddresses: Bool = true,
+                    addressIndexSet: Set<Int> = [0],
                     isBackedUp: Bool,
                     isRequireAuthentication: Bool = false,
                     isAuthenticatedByBiometry: Bool = false,
@@ -214,8 +208,7 @@ extension HDWalletStorage {
             super.init(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptedKey)
 
             self.addressIndex = addressIndex
-            self.addressCount = addressCount
-            self.needRecoverAddresses = needRecoverAddresses
+            self.addressIndexSet = addressIndexSet
 
             self.isBackedUp = isBackedUp
             self.isRequireAuthentication = isRequireAuthentication
@@ -227,13 +220,31 @@ extension HDWalletStorage {
             super.mapping(map: map)
 
             addressIndex <- map["addressIndex"]
-            addressCount <- map["addressCount"]
-            needRecoverAddresses <- map["needRecoverAddresses"]
+            addressIndexSet <- (map["addressIndexSet"], TransformOf<Set<Int>, [Int]>(fromJSON: { (array) -> Set<Int>? in
+                guard let array = array else { return nil }
+                return Set(array)
+            }, toJSON: { (set) -> [Int]? in
+                guard let set = set else { return nil }
+                return Array(set)
+            }))
 
             isBackedUp <- map["isBackedUp"]
             isRequireAuthentication <- map["isRequireAuthentication"]
             isAuthenticatedByBiometry <- map["isAuthenticatedByBiometry"]
             isTransferByBiometry <- map["isTransferByBiometry"]
+
+            // compatibility old version 3.4.2
+            if map.mappingType == .fromJSON {
+                if addressIndexSet.count == 1 {
+                    var addressCount: Int = 1
+                    addressCount <- map["addressCount"]
+                    if addressCount > 1 {
+                        for index in 1..<addressCount {
+                            addressIndexSet.insert(index)
+                        }
+                    }
+                }
+            }
         }
     }
 }
