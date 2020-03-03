@@ -182,6 +182,7 @@
 "my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
+"my.page.aboutUs.wechat.alert.title" = "扫描二维码关注Vite官方公众号";
 
 /* Transaction List */
 "transaction.list.page.title" = "Transaction History";

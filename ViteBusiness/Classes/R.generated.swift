@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 246 images.
+  /// This `R.image` struct is generated, and contains static references to 252 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -242,10 +242,16 @@ public struct R: Rswift.Validatable {
     public static let icon_button_address_scan = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_scan")
     /// Image `icon_button_address_type`.
     public static let icon_button_address_type = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_type")
+    /// Image `icon_button_bitcointalk`.
+    public static let icon_button_bitcointalk = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_bitcointalk")
     /// Image `icon_button_defi_borrow`.
     public static let icon_button_defi_borrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_defi_borrow")
+    /// Image `icon_button_discord`.
+    public static let icon_button_discord = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_discord")
     /// Image `icon_button_facebook`.
     public static let icon_button_facebook = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_facebook")
+    /// Image `icon_button_forum`.
+    public static let icon_button_forum = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_forum")
     /// Image `icon_button_frame_blue`.
     public static let icon_button_frame_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_frame_blue")
     /// Image `icon_button_github`.
@@ -278,8 +284,12 @@ public struct R: Rswift.Validatable {
     public static let icon_button_twitter = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_twitter")
     /// Image `icon_button_vb_disconnect`.
     public static let icon_button_vb_disconnect = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_vb_disconnect")
+    /// Image `icon_button_wechat-1`.
+    public static let icon_button_wechat1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_wechat-1")
     /// Image `icon_button_wechat`.
     public static let icon_button_wechat = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_wechat")
+    /// Image `icon_button_weibo`.
+    public static let icon_button_weibo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_weibo")
     /// Image `icon_button_youtube`.
     public static let icon_button_youtube = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_youtube")
     /// Image `icon_cell_loan_cancel`.
@@ -436,6 +446,8 @@ public struct R: Rswift.Validatable {
     public static let icon_votecount = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_votecount")
     /// Image `icon_wallet_home_nav_bg`.
     public static let icon_wallet_home_nav_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_wallet_home_nav_bg")
+    /// Image `image_wechat_qrcode`.
+    public static let image_wechat_qrcode = Rswift.ImageResource(bundle: R.hostingBundle, name: "image_wechat_qrcode")
     /// Image `infor_white`.
     public static let infor_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "infor_white")
     /// Image `intro_en`.
@@ -1071,14 +1083,29 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_button_address_type, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_button_bitcointalk", bundle: ..., traitCollection: ...)`
+    public static func icon_button_bitcointalk(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_bitcointalk, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_button_defi_borrow", bundle: ..., traitCollection: ...)`
     public static func icon_button_defi_borrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_defi_borrow, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_button_discord", bundle: ..., traitCollection: ...)`
+    public static func icon_button_discord(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_discord, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_button_facebook", bundle: ..., traitCollection: ...)`
     public static func icon_button_facebook(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_facebook, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_button_forum", bundle: ..., traitCollection: ...)`
+    public static func icon_button_forum(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_forum, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_frame_blue", bundle: ..., traitCollection: ...)`
@@ -1164,6 +1191,16 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_button_wechat", bundle: ..., traitCollection: ...)`
     public static func icon_button_wechat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_wechat, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_button_wechat-1", bundle: ..., traitCollection: ...)`
+    public static func icon_button_wechat1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_wechat1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_button_weibo", bundle: ..., traitCollection: ...)`
+    public static func icon_button_weibo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_weibo, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_youtube", bundle: ..., traitCollection: ...)`
@@ -1556,6 +1593,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_wallet_home_nav_bg, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "image_wechat_qrcode", bundle: ..., traitCollection: ...)`
+    public static func image_wechat_qrcode(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.image_wechat_qrcode, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "infor_white", bundle: ..., traitCollection: ...)`
     public static func infor_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.infor_white, compatibleWith: traitCollection)
@@ -1746,7 +1788,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1085 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1086 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5568,6 +5610,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageAllProduct = Rswift.StringResource(key: "defi.home.page.all.product", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 扫描二维码关注Vite官方公众号
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageAboutUsWechatAlertTitle = Rswift.StringResource(key: "my.page.aboutUs.wechat.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -12772,6 +12818,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiHomePageAllProduct(_: Void = ()) -> String {
         return NSLocalizedString("defi.home.page.all.product", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 扫描二维码关注Vite官方公众号
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageAboutUsWechatAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.aboutUs.wechat.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 抵押余额

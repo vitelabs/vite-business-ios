@@ -70,7 +70,7 @@ extension AboutUsViewController {
         }
         self.tableView.tableHeaderView = headerView
         self.tableView.alwaysBounceVertical = false
-        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 226) )
+        let bottomView = AboutUsTableBottomView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 295) )
         self.tableView.tableFooterView = bottomView
 
         form +++

@@ -75,9 +75,6 @@ class MyHomeViewController: BaseTableViewController {
         MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageRewardCellTitle(),
                                               image: R.image.icon_my_home_reward(),
                                               url: "https://reward.vite.net")),
-        MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageForumCellTitle(),
-                                              image: R.image.icon_my_home_forum(),
-                                              url: "https://forum.vite.net")),
         MyHomeListCellViewModel(type: .about)
         ]
 

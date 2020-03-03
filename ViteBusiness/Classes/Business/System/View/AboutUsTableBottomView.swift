@@ -16,20 +16,25 @@ private enum Reusable {
 
 class AboutUsTableBottomView: UIView {
     let padding = CGFloat(24.0)
-    let w_num = CGFloat(4.0)
-    let h_num = CGFloat(2.0)
+    let w_num = CGFloat(5.0)
+    let h_num = CGFloat(3.0)
 
     var dataList: [[String: String]]
     override init(frame: CGRect) {
         self.dataList =
              [
                 ["img": "icon_button_github", "web": "https://github.com/vitelabs"],
+                ["img": "icon_button_medium", "web": "https://medium.com/vitelabs"],
+                ["img": "icon_button_discord", "web": "https://discordapp.com/invite/CsVY76q"],
                 ["img": "icon_button_twitter", "web": "https://twitter.com/vitelabs"],
                 ["img": "icon_button_telegram", "web": "https://t.me/vite_en"],
                 ["img": "icon_button_reddit", "web": "https://www.reddit.com/r/vitelabs"],
-                ["img": "icon_button_facebook", "web": "https://www.facebook.com/vitelabs/"],
-                ["img": "icon_button_medium", "web": "https://discordapp.com/invite/CsVY76q"],
                 ["img": "icon_button_youtube", "web": "https://www.youtube.com/channel/UC8qft2rEzBnP9yJOGdsJBVg"],
+                ["img": "icon_button_forum", "web": "https://forum.vite.net/"],
+                ["img": "icon_button_bitcointalk", "web": "https://bitcointalk.org/index.php?topic=5056409"],
+                ["img": "icon_button_weibo", "web": "https://weibo.com/u/6572727462?sudaref=vite.org&display=0&retcode=6102"],
+                ["img": "icon_button_wechat", "custom": "wechat"],
+                ["img": "icon_button_facebook", "web": "https://www.facebook.com/vitelabs/"],
                 ]
         super.init(frame: frame)
 
@@ -42,7 +47,7 @@ class AboutUsTableBottomView: UIView {
         self.collectionView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(32)
             make.left.right.equalTo(self)
-            make.height.equalTo(120)
+            make.height.equalTo(198)
         }
 
         self.addSubview(self.officialWebsiteBtn)
@@ -135,9 +140,12 @@ extension AboutUsTableBottomView: UICollectionViewDataSource {
 extension AboutUsTableBottomView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dic = dataList[indexPath.row]
-        let url = URL.init(string: dic["web"]!)!
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if let string = dic["web"], let url = URL.init(string: string) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        } else if dic["custom"] == "wechat" {
+            WechatQRCodeView(superview: UIApplication.shared.keyWindow!).show()
         }
     }
 }
