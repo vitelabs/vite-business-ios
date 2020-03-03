@@ -1746,7 +1746,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1080 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1085 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1940,7 +1940,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinNodeAddNode = Rswift.StringResource(key: "grin.node.addNode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Add up to maximum 10 addresses!
+      /// en translation: Add up to maximum 100 addresses!
       /// 
       /// Locales: en, zh-Hans
       public static let addressManageAddressGenerateButtonToast = Rswift.StringResource(key: "address.manage.address.generate.button.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2084,10 +2084,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tokenListPageIgnoreAlterTitle = Rswift.StringResource(key: "token.list.page.ignore.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageTipAlertMessage = Rswift.StringResource(key: "address.manage.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Auto Sign
       /// 
       /// Locales: en, zh-Hans
@@ -5356,6 +5352,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionDetailSuccessTime = Rswift.StringResource(key: "defi.SubscriptionDetail.success.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 地址已存在
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAddressGenerateButtonAlreadyToast = Rswift.StringResource(key: "address.manage.address.generate.button.already.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -5732,6 +5732,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanCellButtonCancelAlertMessage = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 此为批量添加，将从当前地址添加至所输入序号地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertTip = Rswift.StringResource(key: "address.manage.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 每份金额
       /// 
       /// Locales: en, zh-Hans
@@ -5752,6 +5756,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleRegisterforSBPrefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.RegisterforSBPrefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 添加地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertTitle = Rswift.StringResource(key: "address.manage.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 矿工费用
       /// 
       /// Locales: en, zh-Hans
@@ -5996,6 +6004,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellDurationErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.duration.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入序号
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAddressGenerateButtonErrorToast = Rswift.StringResource(key: "address.manage.address.generate.button.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入日利率
       /// 
       /// Locales: en, zh-Hans
@@ -6016,6 +6028,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageSortTitle = Rswift.StringResource(key: "defi.home.page.sort.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageTipAlertMessage = Rswift.StringResource(key: "address.manage.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 转账失败
       /// 
       /// Locales: en, zh-Hans
@@ -6024,6 +6040,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailSuccess = Rswift.StringResource(key: "eth.transaction.detail.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 输入地址序号1-100
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertPlaceholder = Rswift.StringResource(key: "address.manage.alert.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 退款中
       /// 
       /// Locales: en, zh-Hans
@@ -6405,7 +6425,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.node.addNode", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Add up to maximum 10 addresses!
+      /// en translation: Add up to maximum 100 addresses!
       /// 
       /// Locales: en, zh-Hans
       public static func addressManageAddressGenerateButtonToast(_: Void = ()) -> String {
@@ -6655,13 +6675,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func tokenListPageIgnoreAlterTitle(_: Void = ()) -> String {
         return NSLocalizedString("token.list.page.ignore.alter.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageTipAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.tip.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Auto Sign
@@ -12383,6 +12396,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.SubscriptionDetail.success.time", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 地址已存在
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAddressGenerateButtonAlreadyToast(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.address.generate.button.already.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -13041,6 +13061,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 此为批量添加，将从当前地址添加至所输入序号地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertTip(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 每份金额
       /// 
       /// Locales: en, zh-Hans
@@ -13074,6 +13101,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiBillBillTypeTitleRegisterforSBPrefund(_: Void = ()) -> String {
         return NSLocalizedString("defi.bill.billTypeTitle.RegisterforSBPrefund", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 添加地址
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 矿工费用
@@ -13503,6 +13537,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.loan.page.cell.duration.error.empty", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 请输入序号
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAddressGenerateButtonErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.address.generate.button.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 请输入日利率
       /// 
       /// Locales: en, zh-Hans
@@ -13538,6 +13579,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.sort.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageTipAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.tip.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 转账失败
       /// 
       /// Locales: en, zh-Hans
@@ -13550,6 +13598,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func ethTransactionDetailSuccess(_: Void = ()) -> String {
         return NSLocalizedString("eth.transaction.detail.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 输入地址序号1-100
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 退款中

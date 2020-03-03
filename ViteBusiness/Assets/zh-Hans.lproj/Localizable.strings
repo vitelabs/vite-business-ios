@@ -227,8 +227,13 @@
 "address.manage.default.address.cell.title" = "默认地址";
 "address.manage.address.header.title" = "地址列表";
 "address.manage.address.generate.button.title" = "添加地址";
-"address.manage.address.generate.button.toast" = "最多只能添加10个地址";
-"address.manage.tip.alert.message" = "账户生成上限：10；恢复账户时1号地址和有交易的地址会显示，无交易地址隐藏，可重新生成再次使用。";
+"address.manage.address.generate.button.toast" = "最多只能添加100个地址";
+"address.manage.address.generate.button.already.toast" = "地址已存在";
+"address.manage.tip.alert.message" = "账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。";
+"address.manage.alert.title" = "添加地址";
+"address.manage.alert.placeholder" = "输入地址序号1-100";
+"address.manage.address.generate.button.error.toast" = "请输入序号";
+"address.manage.alert.tip" = "此为批量添加，将从当前地址添加至所输入序号地址";
 "address.manage.tip.alert.ok" = "我知道了";
 "address.manage.default.address.name" = "未命名";
 "address.manage.change.name.alert.title" = "修改地址名称";

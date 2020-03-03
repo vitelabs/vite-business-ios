@@ -75,7 +75,7 @@ class MyAddressManageAddressCell: BaseTableViewCell {
         numberButton.snp.makeConstraints { (m) in
             m.left.equalTo(addressLabel)
             m.top.equalTo(addressLabel).offset(2)
-            m.size.equalTo(CGSize(width: 24, height: 14))
+            m.size.equalTo(CGSize(width: 28, height: 14))
         }
 
         let vLine = UIView().then {
@@ -132,8 +132,7 @@ class MyAddressManageAddressCell: BaseTableViewCell {
         nameButton.rx.tap.bind { [weak self] in
             Alert.show(title: R.string.localizable.addressManageChangeNameAlertTitle(), message: viewModel.address, actions: [
                 (.cancel, nil),
-                (.default(title: R.string.localizable.confirm()), { [weak self] alert in
-                    guard let `self` = self else { return }
+                (.default(title: R.string.localizable.confirm()), { alert in
                     let text = alert.textFields?.first?.text ?? ""
                     AddressManageService.instance.updateName(for: viewModel.address, name: text)
                 }),

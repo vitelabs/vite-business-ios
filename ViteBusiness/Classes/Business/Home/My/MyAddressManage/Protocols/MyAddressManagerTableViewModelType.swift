@@ -16,10 +16,9 @@ protocol MyAddressManagerTableViewModelType {
     var addressesDriver: Driver<[MyAddressManageAddressViewModelType]> { get }
 
     var coinType: CoinType { get }
-    var canGenerateAddress: Bool { get }
     var showAddressesTips: Bool { get }
 
-    func generateAddress()
+    func generateAddress(complete: @escaping (Bool) -> Void)
     func setDefaultAddressIndex(_ index: Int)
     func addressDidChangeWhenViewDidDisappear()
 }

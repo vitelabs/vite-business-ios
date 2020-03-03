@@ -107,7 +107,7 @@ class MyAddressManageHeaderView: UIView {
         numberButton.snp.makeConstraints { (m) in
             m.left.equalTo(addressLabel)
             m.top.equalTo(addressLabel).offset(2)
-            m.size.equalTo(CGSize(width: 24, height: 14))
+            m.size.equalTo(CGSize(width: 28, height: 14))
         }
 
         addressListTitleLabel.snp.makeConstraints { (m) in

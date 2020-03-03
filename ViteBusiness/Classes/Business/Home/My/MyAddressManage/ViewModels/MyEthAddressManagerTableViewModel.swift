@@ -41,11 +41,11 @@ class MyEthAddressManagerTableViewModel: MyAddressManagerTableViewModelType {
                 }
             }
     var coinType: CoinType { .eth }
-    var canGenerateAddress: Bool { return true }
     var showAddressesTips: Bool { return false }
 
-    func generateAddress() {
+    func generateAddress(complete: @escaping (Bool) -> Void) {
         ETHWalletManager.instance.generateNextAccount()
+        complete(true)
     }
 
     func setDefaultAddressIndex(_ index: Int) {

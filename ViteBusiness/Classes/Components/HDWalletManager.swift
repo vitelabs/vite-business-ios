@@ -68,7 +68,7 @@ public final class HDWalletManager {
 
     public internal(set) var locked = false
 
-    fileprivate static let maxAddressCount = 10
+    fileprivate static let maxAddressCount = 100
 
     func updateName(name: String) {
         guard let wallet = storage.updateCurrentWalletName(name) else { return }
@@ -76,11 +76,12 @@ public final class HDWalletManager {
         plog(level: .info, log: "wallet change name to \(name)", tag: .wallet)
     }
 
-    func generateNextAccount() -> Bool {
+    func generateAccount(count: Int) -> Bool {
         guard let wallet = walletBehaviorRelay.value else { return false }
-        guard wallet.addressCount < type(of: self).maxAddressCount else { return false }
-        pri_update(addressIndex: wallet.addressIndex, addressCount: wallet.addressCount + 1)
-        plog(level: .info, log: "generate next address \(self.accounts.last?.address ?? ""), total: \(self.accounts.count)", tag: .wallet)
+        guard wallet.addressCount < count else { return false }
+        guard count <= type(of: self).maxAddressCount else { return false }
+        pri_update(addressIndex: wallet.addressIndex, addressCount: count)
+        plog(level: .info, log: "generate addresses total: \(self.accounts.count)", tag: .wallet)
         return true
     }
 
@@ -227,7 +228,7 @@ extension HDWalletManager {
 
     func addAndLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String, isBackedUp: Bool) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, needRecoverAddresses: false, isBackedUp: isBackedUp)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, isBackedUp: isBackedUp)
         self.mnemonic = mnemonic
         self.language = language
         self.encryptedKey = encryptKey
@@ -240,7 +241,7 @@ extension HDWalletManager {
 
     fileprivate func importAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, encryptKey: String) {
         let hash = Wallet.mnemonicHash(mnemonic: mnemonic)
-        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, needRecoverAddresses: true, isBackedUp: true)
+        let wallet = storage.addAddLoginWallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, hash: hash, encryptKey: encryptKey, isBackedUp: true)
         self.mnemonic = mnemonic
         self.language = language
         self.encryptedKey = encryptKey
@@ -326,36 +327,11 @@ extension HDWalletManager {
 
     fileprivate func pri_updateWallet(_ wallet: HDWalletStorage.Wallet) {
         walletBehaviorRelay.accept(wallet)
-        pri_recoverAddressesIfNeeded(wallet.uuid)
     }
 
-    fileprivate func pri_recoverAddressesIfNeeded(_ uuid: String) {
-        guard let wallet = self.walletBehaviorRelay.value else { return }
-        guard uuid == wallet.uuid else { return }
-        guard wallet.needRecoverAddresses else { return }
-        let accounts = (0..<type(of: self).maxAddressCount).map { try? wallet.account(at: $0, encryptedKey: self.encryptedKey ?? "") }.compactMap { $0 }
-        let addresses = accounts.map { $0.address }
-        guard addresses.count == type(of: self).maxAddressCount else { return }
-        ViteNode.utils.recoverAddresses(addresses)
-            .done { [weak self] (count) in
-                guard let `self` = self else { return }
-                guard let wallet = self.walletBehaviorRelay.value else { return }
-                guard uuid == wallet.uuid else { return }
-                let current = wallet.addressCount
-                self.pri_update(addressIndex: wallet.addressIndex, addressCount: max(current, count), needRecoverAddresses: false)
-            }
-            .catch { [weak self] (error) in
-                guard let `self` = self else { return }
-                guard let wallet = self.walletBehaviorRelay.value else { return }
-                guard uuid == wallet.uuid else { return }
-                GCD.delay(3, task: { self.pri_recoverAddressesIfNeeded(uuid) })
-        }
-    }
-
-    fileprivate func pri_update(addressIndex: Int, addressCount: Int, needRecoverAddresses: Bool? = nil) {
+    fileprivate func pri_update(addressIndex: Int, addressCount: Int) {
         guard let wallet = storage.updateCurrentWallet(addressIndex: addressIndex,
-                                                       addressCount: addressCount,
-                                                       needRecoverAddresses: needRecoverAddresses) else { return }
+                                                       addressCount: addressCount) else { return }
         walletBehaviorRelay.accept(wallet)
     }
 

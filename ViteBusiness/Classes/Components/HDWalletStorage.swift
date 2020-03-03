@@ -62,8 +62,8 @@ public final class HDWalletStorage: Mappable {
 // MARK: - public function
 extension HDWalletStorage {
 
-    func addAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, hash: String, encryptKey: String, needRecoverAddresses: Bool, isBackedUp: Bool) -> Wallet {
-        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptKey, needRecoverAddresses: needRecoverAddresses, isBackedUp: isBackedUp)
+    func addAddLoginWallet(uuid: String, name: String, mnemonic: String, language: MnemonicCodeBook, hash: String, encryptKey: String, isBackedUp: Bool) -> Wallet {
+        let wallet = Wallet(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptKey, isBackedUp: isBackedUp)
 
         var index: Int?
         for (i, wallet) in wallets.enumerated() where wallet.hash == hash {
@@ -128,13 +128,10 @@ extension HDWalletStorage {
         }
     }
 
-    func updateCurrentWallet(addressIndex: Int, addressCount: Int, needRecoverAddresses: Bool? = nil) -> Wallet? {
+    func updateCurrentWallet(addressIndex: Int, addressCount: Int) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in
             wallet.addressIndex = addressIndex
             wallet.addressCount = addressCount
-            if let needRecoverAddresses = needRecoverAddresses {
-                wallet.needRecoverAddresses = needRecoverAddresses
-            }
         }
     }
 
@@ -188,7 +185,6 @@ extension HDWalletStorage {
 
         fileprivate(set) var addressIndex: Int = 0
         fileprivate(set) var addressCount: Int = 1
-        fileprivate(set) var needRecoverAddresses: Bool = true
 
         fileprivate(set) var isBackedUp: Bool = true
         fileprivate(set) var isRequireAuthentication: Bool = false
@@ -206,7 +202,6 @@ extension HDWalletStorage {
                     encryptedKey: String,
                     addressIndex: Int = 0,
                     addressCount: Int = 1,
-                    needRecoverAddresses: Bool = true,
                     isBackedUp: Bool,
                     isRequireAuthentication: Bool = false,
                     isAuthenticatedByBiometry: Bool = false,
@@ -215,7 +210,6 @@ extension HDWalletStorage {
 
             self.addressIndex = addressIndex
             self.addressCount = addressCount
-            self.needRecoverAddresses = needRecoverAddresses
 
             self.isBackedUp = isBackedUp
             self.isRequireAuthentication = isRequireAuthentication
@@ -228,7 +222,6 @@ extension HDWalletStorage {
 
             addressIndex <- map["addressIndex"]
             addressCount <- map["addressCount"]
-            needRecoverAddresses <- map["needRecoverAddresses"]
 
             isBackedUp <- map["isBackedUp"]
             isRequireAuthentication <- map["isRequireAuthentication"]

@@ -223,8 +223,13 @@
 "address.manage.default.address.cell.title" = "Default Address";
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 10 addresses!";
-"address.manage.tip.alert.message" = "At most 10 accounts. The first address and addresses that have transaction records will be shown when resotring account, and addresses with no record will be hidden, these can be regenerated and reused.";
+"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
+"address.manage.address.generate.button.already.toast" = "地址已存在";
+"address.manage.address.generate.button.error.toast" = "请输入序号";
+"address.manage.tip.alert.message" = "账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。";
+"address.manage.alert.title" = "添加地址";
+"address.manage.alert.placeholder" = "输入地址序号1-100";
+"address.manage.alert.tip" = "此为批量添加，将从当前地址添加至所输入序号地址";
 "address.manage.tip.alert.ok" = "I know";
 "address.manage.default.address.name" = "Untitled";
 "address.manage.change.name.alert.title" = "Edit Address Alias";

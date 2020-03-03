@@ -115,11 +115,11 @@ class MyAddressManageViewController: BaseTableViewController {
 
         generateButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            if self.tableViewModel.canGenerateAddress {
-                self.tableViewModel.generateAddress()
-                self.tableView.scrollToRow(at: IndexPath(row: self.tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
-            } else {
-                Toast.show(R.string.localizable.addressManageAddressGenerateButtonToast())
+            self.tableViewModel.generateAddress { [weak self] (ret) in
+                guard let `self` = self else { return }
+                if ret {
+                    self.tableView.scrollToRow(at: IndexPath(row: self.tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
+                }
             }
         }.disposed(by: rx.disposeBag)
 
