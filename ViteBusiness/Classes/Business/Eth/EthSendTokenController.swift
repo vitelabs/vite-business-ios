@@ -163,7 +163,11 @@ class EthSendTokenController: BaseViewController {
 
         amountView.allButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let balance = ETHBalanceInfoManager.instance.balanceInfo(for: self.tokenInfo.tokenCode)?.balance ?? Amount(0)
+            var balance = ETHBalanceInfoManager.instance.balanceInfo(for: self.tokenInfo.tokenCode)?.balance ?? Amount(0)
+            if self.tokenInfo.isEtherCoin {
+                let gas = String(format:"%f", self.gasSliderView.eth).toAmount(decimals: TokenInfo.BuildIn.eth.value.decimals)!
+                balance = balance > gas ? balance - gas : Amount(0)
+            }
             self.amountView.textField.text = balance.amountFull(decimals: self.tokenInfo.decimals)
             self.amountView.calcPrice()
         }.disposed(by: rx.disposeBag)

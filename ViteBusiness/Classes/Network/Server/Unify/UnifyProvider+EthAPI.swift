@@ -29,6 +29,11 @@ extension UnifyProvider.eth {
             guard let c = json["status"].string, let code = Int(c) else {
                 throw UnifyProvider.BackendError.format
             }
+
+            if code == 0 && json["message"].string == "No transactions found" {
+                return "[]"
+            }
+
             guard code == 1 else {
                 throw UnifyProvider.BackendError.response(code, json["message"].string ?? "")
             }

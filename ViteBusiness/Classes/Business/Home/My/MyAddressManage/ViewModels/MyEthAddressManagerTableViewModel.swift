@@ -15,7 +15,7 @@ import ViteWallet
 class MyEthAddressManagerTableViewModel: MyAddressManagerTableViewModelType {
 
     lazy var defaultAddressDriver: Driver<(String, String)> = ETHWalletManager.instance.accountDriver.map {
-        (String($0?.accountIndex ?? 0 + 1), $0?.address ?? "")
+        (String(($0?.accountIndex ?? 0) + 1), $0?.address ?? "")
     }
 
     lazy var defaultAddressNameDriver: Driver<String> =

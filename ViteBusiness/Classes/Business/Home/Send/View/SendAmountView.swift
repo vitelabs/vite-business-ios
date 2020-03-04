@@ -20,7 +20,7 @@ class SendAmountView: UIView {
     }
 
     let allButton = UIButton().then {
-        $0.setTitle(R.string.localizable.ethViteExchangePageExchangeAllButtonTitle(), for: .normal)
+        $0.setTitle(R.string.localizable.sendPageAllButtonTitle(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)

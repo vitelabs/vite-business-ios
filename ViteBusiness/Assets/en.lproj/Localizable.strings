@@ -248,6 +248,7 @@
 "send.page.scan.address.button.title" = "Scan";
 "send.page.to.address.title" = "Recipient";
 "send.page.amount.title" = "Amount";
+"send.page.all.button.title" = "All";
 "send.page.remark.title" = "Comment";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";

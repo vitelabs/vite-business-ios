@@ -1788,7 +1788,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1086 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1087 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2038,6 +2038,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let fundDepositAll = Rswift.StringResource(key: "fund.deposit.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageAllButtonTitle = Rswift.StringResource(key: "send.page.all.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -6567,6 +6571,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func fundDepositAll(_: Void = ()) -> String {
         return NSLocalizedString("fund.deposit.all", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageAllButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.all.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
