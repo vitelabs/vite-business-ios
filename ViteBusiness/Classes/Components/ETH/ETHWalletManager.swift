@@ -71,13 +71,22 @@ public class ETHWalletManager {
         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: password, mnemonicsPassword: "", language: l)!
 
         if let web3 = self.web3 {
-            self.web3.addKeystoreManager(KeystoreManager([keystore]))
+            web3.addKeystoreManager(KeystoreManager([keystore]))
         }
 
         self.keystore = keystore
         self.password = password
         for _ in 1..<totalAccountCount { try! keystore.createNewChildAccount(password: password) }
         let addresses = keystore.sortedAddresses
+
+
+//        keystore.paths.map { ($0.key, $0.value) }.sorted {
+//            let l = Int($0.0.components(separatedBy: "/").last!)!
+//            let r = Int($1.0.components(separatedBy: "/").last!)!
+//            return l < r
+//        }.forEach { (path, address) in
+//            plog(level: .debug, log: "fsdf: \(path) \(address.address)")
+//        }
 
         var accounts = [ETHAccount]()
         for index in 0..<totalAccountCount {
@@ -91,19 +100,30 @@ public class ETHWalletManager {
         accountBehaviorRelay.accept(accounts[currentAccountIndex])
     }
 
-    func generateNextAccount() {
-        guard let keystore = keystore, let password = password else { return }
-        try! keystore.createNewChildAccount(password: password)
-        guard let lastEthAddress = keystore.sortedAddresses.last else { fatalError() }
+    fileprivate static let maxAddressCount = 100
+
+    func generateAccount(count: Int) -> Bool {
+        guard let keystore = keystore, let password = password else { return false }
+        guard count <= type(of: self).maxAddressCount else { return false }
 
         var accounts = accountsBehaviorRelay.value
-        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: password, account: lastEthAddress) else { fatalError() }
-        let account = ETHAccount(ethereumAddress: lastEthAddress, privateKey: privateKey, accountIndex: accounts.count)
-        accounts.append(account)
-        accountsBehaviorRelay.accept(accounts)
 
-        totalAccountCount += 1
+        let num = count - accounts.count
+        for _ in 0..<num {
+            try! keystore.createNewChildAccount(password: password)
+        }
+
+        let addresses = keystore.sortedAddresses.dropFirst(accounts.count)
+
+        for address in addresses {
+            guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: password, account: address) else { fatalError() }
+            let account = ETHAccount(ethereumAddress: address, privateKey: privateKey, accountIndex: accounts.count)
+            accounts.append(account)
+        }
+        accountsBehaviorRelay.accept(accounts)
+        totalAccountCount += num
         WalletManager.eth.update(totalAccountCount: totalAccountCount)
+        return true
     }
 
     func selectAccount(index: Int) -> Bool {
@@ -136,9 +156,28 @@ public class ETHWalletManager {
     }
 }
 
+// MARK: - DEBUG function
+#if DEBUG || TEST
+extension ETHWalletManager {
+
+    func resetBagCount() {
+        currentAccountIndex = 0
+        totalAccountCount = 0
+        accountBehaviorRelay.accept(accountsBehaviorRelay.value.first!)
+        accountsBehaviorRelay.accept([accountBehaviorRelay.value!])
+        WalletManager.eth.update(currentAccountIndex: currentAccountIndex)
+        WalletManager.eth.update(totalAccountCount: totalAccountCount)
+    }
+}
+#endif
+
 extension BIP32Keystore {
     var sortedAddresses: [EthereumAddress] {
-        return self.paths.map { ($0.key, $0.value) }.sorted { $0.0 < $1.0 }.map { $0.1 }
+        return self.paths.map { ($0.key, $0.value) }.sorted {
+            let l = Int($0.0.components(separatedBy: "/").last!)!
+            let r = Int($1.0.components(separatedBy: "/").last!)!
+            return l < r
+        }.map { $0.1 }
     }
 }
 

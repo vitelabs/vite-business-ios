@@ -182,7 +182,7 @@
 "my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "扫描二维码关注Vite官方公众号";
+"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
 
 /* Transaction List */
 "transaction.list.page.title" = "Transaction History";
@@ -225,12 +225,12 @@
 "address.manage.address.header.title" = "Addresses";
 "address.manage.address.generate.button.title" = "Add Address";
 "address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
-"address.manage.address.generate.button.already.toast" = "地址已存在";
-"address.manage.address.generate.button.error.toast" = "请输入序号";
-"address.manage.tip.alert.message" = "账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。";
-"address.manage.alert.title" = "添加地址";
-"address.manage.alert.placeholder" = "输入地址序号1-100";
-"address.manage.alert.tip" = "此为批量添加，将从当前地址添加至所输入序号地址";
+"address.manage.address.generate.button.already.toast" = "Address already exists";
+"address.manage.address.generate.button.error.toast" = "Please input a number";
+"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
+"address.manage.alert.title" = "Generate New Addresses";
+"address.manage.alert.placeholder" = "Input a number between 1 and 100";
+"address.manage.alert.tip" = "Bulk generate a specified number of addresses";
 "address.manage.tip.alert.ok" = "I know";
 "address.manage.default.address.name" = "Untitled";
 "address.manage.change.name.alert.title" = "Edit Address Alias";
@@ -438,17 +438,17 @@
 "eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "详情";
-"eth.transaction.detail.failed" = "转账失败";
-"eth.transaction.detail.success" = "转账成功";
-"eth.transaction.detail.to.address" = "收款地址";
-"eth.transaction.detail.from.address" = "付款地址";
-"eth.transaction.detail.amount" = "金额";
-"eth.transaction.detail.gas" = "矿工费用";
-"eth.transaction.detail.hash" = "交易号";
-"eth.transaction.detail.block" = "区块";
-"eth.transaction.detail.note" = "备注";
-"eth.transaction.detail.go.button.title" = "到Etherscan查询更详细信息";
+"eth.transaction.detail.page.title" = "Details";
+"eth.transaction.detail.failed" = "Transaction Failed";
+"eth.transaction.detail.success" = "Transaction Completed";
+"eth.transaction.detail.to.address" = "Receiving Address";
+"eth.transaction.detail.from.address" = "Sending Address";
+"eth.transaction.detail.amount" = "Amount";
+"eth.transaction.detail.gas" = "Gas Fee";
+"eth.transaction.detail.hash" = "Transaction Hash";
+"eth.transaction.detail.block" = "Block";
+"eth.transaction.detail.note" = "Note";
+"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
 
 //token
 "token.list.page.search.title" = "Please input token name or contract address";

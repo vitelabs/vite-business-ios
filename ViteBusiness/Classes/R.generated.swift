@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 252 images.
+  /// This `R.image` struct is generated, and contains static references to 253 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -78,6 +78,8 @@ public struct R: Rswift.Validatable {
     public static let empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "empty")
     /// Image `exchange_arrow`.
     public static let exchange_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_arrow")
+    /// Image `exchange_button_icon`.
+    public static let exchange_button_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_button_icon")
     /// Image `exchange_hisrory_arrow`.
     public static let exchange_hisrory_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_hisrory_arrow")
     /// Image `exchange_icon`.
@@ -671,6 +673,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "exchange_arrow", bundle: ..., traitCollection: ...)`
     public static func exchange_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.exchange_arrow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "exchange_button_icon", bundle: ..., traitCollection: ...)`
+    public static func exchange_button_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.exchange_button_icon, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "exchange_hisrory_arrow", bundle: ..., traitCollection: ...)`
@@ -2006,6 +2013,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let manageWalletPageAddressManageCellTitle = Rswift.StringResource(key: "manage.wallet.page.addressManage.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Address already exists
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAddressGenerateButtonAlreadyToast = Rswift.StringResource(key: "address.manage.address.generate.button.already.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Addresses
       /// 
       /// Locales: en, zh-Hans
@@ -2086,6 +2097,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionAmountTitle = Rswift.StringResource(key: "confirm.transaction.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailAmount = Rswift.StringResource(key: "eth.transaction.detail.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -2246,6 +2261,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let lockPageFingerprintBtnTitle = Rswift.StringResource(key: "lock.page.fingerprint.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Block
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailBlock = Rswift.StringResource(key: "eth.transaction.detail.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -2254,6 +2273,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteErrorRpcErrorCodeContractMethodNotExist = Rswift.StringResource(key: "vite.error.rpc.error.code.contract.method.not.exist", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Bulk generate a specified number of addresses
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertTip = Rswift.StringResource(key: "address.manage.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Burn
       /// 
       /// Locales: en, zh-Hans
@@ -2778,6 +2801,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainTokenDetailDesc = Rswift.StringResource(key: "crosschain.tokenDetail.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailPageTitle = Rswift.StringResource(key: "eth.transaction.detail.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Discovery
       /// 
       /// Locales: en, zh-Hans
@@ -2954,6 +2981,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethPageGasFeeTitle = Rswift.StringResource(key: "eth.page.gasFee.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gas Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailGas = Rswift.StringResource(key: "eth.transaction.detail.gas", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gateway Details
       /// 
       /// Locales: en, zh-Hans
@@ -2966,6 +2997,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailHost = Rswift.StringResource(key: "crosschain.gatewaydetail.host", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Generate New Addresses
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertTitle = Rswift.StringResource(key: "address.manage.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Generate Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -3110,6 +3145,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let receivePageTokenAmountButtonTitle = Rswift.StringResource(key: "Receive.page.token.amount.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Input a number between 1 and 100
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAlertPlaceholder = Rswift.StringResource(key: "address.manage.alert.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Instant Purchase
       /// 
       /// Locales: en, zh-Hans
@@ -3258,6 +3297,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinCoinIssuanceItem6Title = Rswift.StringResource(key: "buildin.coin.issuance.item6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageTipAlertMessage = Rswift.StringResource(key: "address.manage.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Maximum Amount of Tx
       /// 
       /// Locales: en, zh-Hans
@@ -3422,6 +3465,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeCancelPledgeAgentErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.agent.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Note
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailNote = Rswift.StringResource(key: "eth.transaction.detail.note", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -3554,6 +3601,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailPleaseFinalize = Rswift.StringResource(key: "grin.detail.pleaseFinalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please input a number
+      /// 
+      /// Locales: en, zh-Hans
+      public static let addressManageAddressGenerateButtonErrorToast = Rswift.StringResource(key: "address.manage.address.generate.button.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please input account name or password
       /// 
       /// Locales: en, zh-Hans
@@ -3758,6 +3809,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxbyfileReceivedStatusReceiver = Rswift.StringResource(key: "grin.txbyfile.receivedStatus.receiver", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Receiving Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailToAddress = Rswift.StringResource(key: "eth.transaction.detail.to.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Recipient
       /// 
       /// Locales: en, zh-Hans
@@ -3906,6 +3961,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageScanAddressButtonTitle = Rswift.StringResource(key: "send.page.scan.address.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Scan QR code to follow Vite WeChat Official Account
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageAboutUsWechatAlertTitle = Rswift.StringResource(key: "my.page.aboutUs.wechat.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Scan and Send %@
       /// 
       /// Locales: en, zh-Hans
@@ -3998,6 +4057,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowToastTransferSuccess = Rswift.StringResource(key: "workflow.toast.transfer.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Sending Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailFromAddress = Rswift.StringResource(key: "eth.transaction.detail.from.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Service Mailbox
       /// 
       /// Locales: en, zh-Hans
@@ -4398,10 +4461,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinTransferUtf8stringItem0Title = Rswift.StringResource(key: "buildin.transfer.utf8string.item0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailSuccess = Rswift.StringResource(key: "eth.transaction.detail.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction Confirmation
       /// 
       /// Locales: en, zh-Hans
       public static let appSchemeHomePageBusyHeader = Rswift.StringResource(key: "app.scheme.home.page.busy.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailFailed = Rswift.StringResource(key: "eth.transaction.detail.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction File
       /// 
       /// Locales: en, zh-Hans
@@ -4414,6 +4485,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinFinalizedAlertTitle = Rswift.StringResource(key: "grin.finalized.alertTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailHash = Rswift.StringResource(key: "eth.transaction.detail.hash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction History
       /// 
       /// Locales: en, zh-Hans
@@ -4690,6 +4765,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let aboutUsPageCellVersion = Rswift.StringResource(key: "aboutUs.page.cell.version", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: View More Details on Etherscan
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailGoButtonTitle = Rswift.StringResource(key: "eth.transaction.detail.go.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite
       /// 
       /// Locales: en, zh-Hans
@@ -5050,10 +5129,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易号
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailHash = Rswift.StringResource(key: "eth.transaction.detail.hash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 产品Hash
       /// 
       /// Locales: en, zh-Hans
@@ -5062,10 +5137,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiProductDetailTitle = Rswift.StringResource(key: "defi.product.detail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 付款地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailFromAddress = Rswift.StringResource(key: "eth.transaction.detail.from.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 份
       /// 
       /// Locales: en, zh-Hans
@@ -5266,10 +5337,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleTransferincome = Rswift.StringResource(key: "defi.bill.billTypeTitle.Transferincome", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 到Etherscan查询更详细信息
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailGoButtonTitle = Rswift.StringResource(key: "eth.transaction.detail.go.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 到期快照块高度
       /// 
       /// Locales: en, zh-Hans
@@ -5330,10 +5397,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscriptionCellTitleRemainAmount = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.title.remain.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 区块
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailBlock = Rswift.StringResource(key: "eth.transaction.detail.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 去中心化智能合约安全保障
       /// 
       /// Locales: en, zh-Hans
@@ -5398,10 +5461,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionDetailSuccessTime = Rswift.StringResource(key: "defi.SubscriptionDetail.success.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 地址已存在
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageAddressGenerateButtonAlreadyToast = Rswift.StringResource(key: "address.manage.address.generate.button.already.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -5418,10 +5477,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellEachAmountErrorNotEnough = Rswift.StringResource(key: "defi.loan.page.cell.each.amount.error.not.enough", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 备注
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailNote = Rswift.StringResource(key: "eth.transaction.detail.note", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 天
       /// 
       /// Locales: en, zh-Hans
@@ -5614,10 +5669,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageAllProduct = Rswift.StringResource(key: "defi.home.page.all.product", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 扫描二维码关注Vite官方公众号
-      /// 
-      /// Locales: en, zh-Hans
-      public static let myPageAboutUsWechatAlertTitle = Rswift.StringResource(key: "my.page.aboutUs.wechat.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -5678,10 +5729,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpCancleTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.cancle.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 收款地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailToAddress = Rswift.StringResource(key: "eth.transaction.detail.to.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 收益按日发放至DeFi基础余额。
       /// 
       /// Locales: en, zh-Hans
@@ -5782,10 +5829,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMyLoanCellButtonCancelAlertMessage = Rswift.StringResource(key: "defi.my.page.my.loan.cell.button.cancel.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 此为批量添加，将从当前地址添加至所输入序号地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageAlertTip = Rswift.StringResource(key: "address.manage.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 每份金额
       /// 
       /// Locales: en, zh-Hans
@@ -5806,14 +5849,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleRegisterforSBPrefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.RegisterforSBPrefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageAlertTitle = Rswift.StringResource(key: "address.manage.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 矿工费用
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailGas = Rswift.StringResource(key: "eth.transaction.detail.gas", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 确定
       /// 
       /// Locales: en, zh-Hans
@@ -6034,10 +6069,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageSubscriptionAmountTitle = Rswift.StringResource(key: "defi.subscription.page.subscription.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 详情
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailPageTitle = Rswift.StringResource(key: "eth.transaction.detail.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请到网页端提取SBP奖励
       /// 
       /// Locales: en, zh-Hans
@@ -6054,10 +6085,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellDurationErrorEmpty = Rswift.StringResource(key: "defi.loan.page.cell.duration.error.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请输入序号
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageAddressGenerateButtonErrorToast = Rswift.StringResource(key: "address.manage.address.generate.button.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 请输入日利率
       /// 
       /// Locales: en, zh-Hans
@@ -6078,22 +6105,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageSortTitle = Rswift.StringResource(key: "defi.home.page.sort.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageTipAlertMessage = Rswift.StringResource(key: "address.manage.tip.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账失败
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailFailed = Rswift.StringResource(key: "eth.transaction.detail.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailSuccess = Rswift.StringResource(key: "eth.transaction.detail.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 输入地址序号1-100
-      /// 
-      /// Locales: en, zh-Hans
-      public static let addressManageAlertPlaceholder = Rswift.StringResource(key: "address.manage.alert.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 退款中
       /// 
       /// Locales: en, zh-Hans
@@ -6106,10 +6117,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanDetailPageFailedButtonReloanTitle = Rswift.StringResource(key: "defi.loan.detail.page.failed.button.reloan.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 金额
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailAmount = Rswift.StringResource(key: "eth.transaction.detail.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 预计到期时间
       /// 
       /// Locales: en, zh-Hans
@@ -6517,6 +6524,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("manage.wallet.page.addressManage.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Address already exists
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAddressGenerateButtonAlreadyToast(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.address.generate.button.already.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Addresses
       /// 
       /// Locales: en, zh-Hans
@@ -6655,6 +6669,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func confirmTransactionAmountTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailAmount(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.amount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
@@ -6937,6 +6958,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("lock.page.fingerprint.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Block
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailBlock(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.block", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -6949,6 +6977,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteErrorRpcErrorCodeContractMethodNotExist(_: Void = ()) -> String {
         return NSLocalizedString("vite.error.rpc.error.code.contract.method.not.exist", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Bulk generate a specified number of addresses
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertTip(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Burn
@@ -7868,6 +7903,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.tokenDetail.desc", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Discovery
       /// 
       /// Locales: en, zh-Hans
@@ -8176,6 +8218,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Gas Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailGas(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.gas", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Gateway Details
       /// 
       /// Locales: en, zh-Hans
@@ -8195,6 +8244,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainGatewaydetailHost(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.gatewaydetail.host", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Generate New Addresses
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Generate Transaction File
@@ -8447,6 +8503,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func receivePageTokenAmountButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("Receive.page.token.amount.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Input a number between 1 and 100
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAlertPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.alert.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Instant Purchase
@@ -8706,6 +8769,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinCoinIssuanceItem6Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.coin.issuance.item6.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageTipAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.tip.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Maximum Amount of Tx
@@ -8995,6 +9065,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.cancel.pledge.agent.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Note
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailNote(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.note", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -9224,6 +9301,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinDetailPleaseFinalize(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.pleaseFinalize", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please input a number
+      /// 
+      /// Locales: en, zh-Hans
+      public static func addressManageAddressGenerateButtonErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("address.manage.address.generate.button.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please input account name or password
@@ -9583,6 +9667,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txbyfile.receivedStatus.receiver", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Receiving Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailToAddress(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.to.address", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Recipient
       /// 
       /// Locales: en, zh-Hans
@@ -9842,6 +9933,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.scan.address.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Scan QR code to follow Vite WeChat Official Account
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageAboutUsWechatAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.aboutUs.wechat.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Scan and Send %@
       /// 
       /// Locales: en, zh-Hans
@@ -10001,6 +10099,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowToastTransferSuccess(_: Void = ()) -> String {
         return NSLocalizedString("workflow.toast.transfer.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Sending Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailFromAddress(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.from.address", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Service Mailbox
@@ -10703,11 +10808,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.transfer.utf8string.item0.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transaction Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction Confirmation
       /// 
       /// Locales: en, zh-Hans
       public static func appSchemeHomePageBusyHeader(_: Void = ()) -> String {
         return NSLocalizedString("app.scheme.home.page.busy.header", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transaction Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailFailed(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.failed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction File
@@ -10729,6 +10848,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinFinalizedAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("grin.finalized.alertTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transaction Hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailHash(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.hash", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction History
@@ -11212,6 +11338,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func aboutUsPageCellVersion(_: Void = ()) -> String {
         return NSLocalizedString("aboutUs.page.cell.version", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: View More Details on Etherscan
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailGoButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.go.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vite
@@ -11844,13 +11977,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 交易号
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailHash(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.hash", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 产品Hash
       /// 
       /// Locales: en, zh-Hans
@@ -11863,13 +11989,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiProductDetailTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.product.detail.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 付款地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailFromAddress(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.from.address", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 份
@@ -12222,13 +12341,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.bill.billTypeTitle.Transferincome", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 到Etherscan查询更详细信息
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailGoButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.go.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 到期快照块高度
       /// 
       /// Locales: en, zh-Hans
@@ -12332,13 +12444,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiMyPageMySubscriptionCellTitleRemainAmount(_: Void = ()) -> String {
         return NSLocalizedString("defi.my.page.my.subscription.cell.title.remain.amount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 区块
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailBlock(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.block", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 去中心化智能合约安全保障
@@ -12453,13 +12558,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.SubscriptionDetail.success.time", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 地址已存在
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageAddressGenerateButtonAlreadyToast(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.address.generate.button.already.toast", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -12486,13 +12584,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellEachAmountErrorNotEnough(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.each.amount.error.not.enough", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 备注
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailNote(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.note", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 天
@@ -12831,13 +12922,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.all.product", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 扫描二维码关注Vite官方公众号
-      /// 
-      /// Locales: en, zh-Hans
-      public static func myPageAboutUsWechatAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.aboutUs.wechat.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -12941,13 +13025,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditSbpCancleTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.sbp.cancle.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 收款地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailToAddress(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.to.address", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 收益按日发放至DeFi基础余额。
@@ -13125,13 +13202,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.loan.cell.button.cancel.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 此为批量添加，将从当前地址添加至所输入序号地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageAlertTip(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.alert.tip", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 每份金额
       /// 
       /// Locales: en, zh-Hans
@@ -13165,20 +13235,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiBillBillTypeTitleRegisterforSBPrefund(_: Void = ()) -> String {
         return NSLocalizedString("defi.bill.billTypeTitle.RegisterforSBPrefund", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 添加地址
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageAlertTitle(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.alert.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 矿工费用
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailGas(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.gas", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 确定
@@ -13566,13 +13622,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.subscription.page.subscription.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 详情
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.page.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 请到网页端提取SBP奖励
       /// 
       /// Locales: en, zh-Hans
@@ -13599,13 +13648,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellDurationErrorEmpty(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.duration.error.empty", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 请输入序号
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageAddressGenerateButtonErrorToast(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.address.generate.button.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 请输入日利率
@@ -13643,34 +13685,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.sort.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 账户生成上限：100；恢复账户时，需手动恢复除1号地址之外的其他地址。
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageTipAlertMessage(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.tip.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转账失败
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailFailed(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.failed", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转账成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.success", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 输入地址序号1-100
-      /// 
-      /// Locales: en, zh-Hans
-      public static func addressManageAlertPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("address.manage.alert.placeholder", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 退款中
       /// 
       /// Locales: en, zh-Hans
@@ -13690,13 +13704,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanDetailPageFailedButtonReloanTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.detail.page.failed.button.reloan.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 金额
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailAmount(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.amount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 预计到期时间

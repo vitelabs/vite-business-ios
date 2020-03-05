@@ -44,8 +44,40 @@ class MyEthAddressManagerTableViewModel: MyAddressManagerTableViewModelType {
     var showAddressesTips: Bool { return false }
 
     func generateAddress(complete: @escaping (Bool) -> Void) {
-        ETHWalletManager.instance.generateNextAccount()
-        complete(true)
+
+        guard ETHWalletManager.instance.totalAccountCount < 100 else {
+            Toast.show(R.string.localizable.addressManageAddressGenerateButtonToast())
+            complete(false)
+            return
+        }
+
+        Alert.show(title: R.string.localizable.addressManageAlertTitle(), message: R.string.localizable.addressManageAlertTip(), actions: [
+            (.cancel, { _ in complete(false) }),
+            (.default(title: R.string.localizable.confirm()), { alert in
+                guard let text = alert.textFields?.first?.text, let count = Int(text) else {
+                    Toast.show(R.string.localizable.addressManageAddressGenerateButtonErrorToast())
+                    complete(false)
+                    return
+                }
+                guard count > ETHWalletManager.instance.totalAccountCount else {
+                    Toast.show(R.string.localizable.addressManageAddressGenerateButtonAlreadyToast())
+                    complete(false)
+                    return
+                }
+                guard count <= 100 else {
+                    Toast.show(R.string.localizable.addressManageAddressGenerateButtonToast())
+                    complete(false)
+                    return
+                }
+                let ret = ETHWalletManager.instance.generateAccount(count: count)
+                complete(ret)
+            }),
+            ], config: { alert in
+                alert.addTextField(configurationHandler: { (textField) in
+                    textField.clearButtonMode = .always
+                    textField.placeholder = R.string.localizable.addressManageAlertPlaceholder()
+                })
+        })
     }
 
     func setDefaultAddressIndex(_ index: Int) {

@@ -18,7 +18,7 @@ class BalanceInfoViteCoinOperationView: UIView {
 
     let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote())
 
-     let buyCoinButton = OperationButton(icon: R.image.exchange_tabbar_icon(), title:  R.string.localizable.exchangeTitley())
+     let buyCoinButton = OperationButton(icon: R.image.exchange_button_icon(), title:  R.string.localizable.exchangeTitley())
 
     override init(frame: CGRect) {
         super.init(frame: frame)

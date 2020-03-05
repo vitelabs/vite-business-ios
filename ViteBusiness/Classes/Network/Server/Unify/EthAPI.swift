@@ -25,8 +25,7 @@ enum EthAPI: TargetType {
     }
 
     var task: Task {
-        var parameters = ["apikey": "31B32STX5VSEDM1JNDUWM5UR5YRDMSU94B",
-                          "module": "account",
+        var parameters = ["module": "account",
                           "sort": "desc"]
         switch self {
         case let .etherTransactions(address, page, limit):
