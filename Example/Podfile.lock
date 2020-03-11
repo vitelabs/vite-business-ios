@@ -26,6 +26,9 @@ PODS:
   - BinanceChain/Libraries (1.0.0-beta)
   - BinanceChain/Protobuf (1.0.0-beta)
   - BinanceChain/Util (1.0.0-beta)
+  - Charts (3.4.0):
+    - Charts/Core (= 3.4.0)
+  - Charts/Core (3.4.0)
   - CHIPageControl (0.2):
     - CHIPageControl/Aji (= 0.2)
     - CHIPageControl/Aleppo (= 0.2)
@@ -162,6 +165,7 @@ PODS:
   - KeychainSwift (13.0.0)
   - Kingfisher (4.10.1)
   - KMNavigationBarTransition (1.1.5)
+  - LightweightCharts (2.0.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
   - Moya (11.0.2):
@@ -249,6 +253,7 @@ PODS:
     - BaiduMobStat
     - BigInt
     - BinanceChain
+    - Charts
     - CHIPageControl
     - Crashlytics
     - CryptoSwift
@@ -261,6 +266,7 @@ PODS:
     - KeychainSwift
     - Kingfisher (~> 4.0)
     - KMNavigationBarTransition
+    - LightweightCharts
     - MBProgressHUD
     - MJRefresh
     - Moya
@@ -320,6 +326,7 @@ DEPENDENCIES:
   - BaiduMobStat
   - BigInt (~> 4.0)
   - BinanceChain (from `https://github.com/buckcao/SwiftBinanceChain.git`)
+  - Charts (from `https://github.com/danielgindi/Charts.git`, tag `v3.4.0`)
   - CHIPageControl
   - Crashlytics
   - DACircularProgress (= 2.3.1)
@@ -335,6 +342,7 @@ DEPENDENCIES:
   - KeychainSwift (= 13.0.0)
   - Kingfisher (~> 4.0)
   - KMNavigationBarTransition
+  - LightweightCharts (from `https://github.com/tradingview/LightweightChartsIOS.git`, commit `015e3a349bfdeb963c6c817aa84df1675f37f6bb`)
   - MBProgressHUD
   - MJRefresh (= 3.1.15.7)
   - Moya
@@ -446,6 +454,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   BinanceChain:
     :git: https://github.com/buckcao/SwiftBinanceChain.git
+  Charts:
+    :git: https://github.com/danielgindi/Charts.git
+    :tag: v3.4.0
+  LightweightCharts:
+    :commit: 015e3a349bfdeb963c6c817aa84df1675f37f6bb
+    :git: https://github.com/tradingview/LightweightChartsIOS.git
   Vite_GrinWallet:
     :path: "../../Vite_GrinWallet/"
   Vite_HDWalletKit:
@@ -460,6 +474,12 @@ CHECKOUT OPTIONS:
   BinanceChain:
     :commit: b71de4cbc632bba469d31ff87d5d434115c68dfb
     :git: https://github.com/buckcao/SwiftBinanceChain.git
+  Charts:
+    :git: https://github.com/danielgindi/Charts.git
+    :tag: v3.4.0
+  LightweightCharts:
+    :commit: 015e3a349bfdeb963c6c817aa84df1675f37f6bb
+    :git: https://github.com/tradingview/LightweightChartsIOS.git
   Vite_HDWalletKit:
     :commit: afd57479c20f6514fb20f47cb0c011db7d471457
     :git: https://github.com/vitelabs/vite-keystore-ios.git
@@ -474,6 +494,7 @@ SPEC CHECKSUMS:
   BaiduMobStat: 22bcc4f602fb0c02042d173dfadefe60f2e512af
   BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
   BinanceChain: 72bf401bc474845c37999ff2551ac3c56629e100
+  Charts: ef59ae1e7eaa53f10a16a0009c434051292ba808
   CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
@@ -505,6 +526,7 @@ SPEC CHECKSUMS:
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
+  LightweightCharts: a80612fabb0bb52e9fb26a25a978adf999fa1ce3
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -543,11 +565,11 @@ SPEC CHECKSUMS:
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 75a0b78af01de2028e0a2fd8c2cbe04eea21ae86
-  ViteBusiness: 8fe091d2e68fe00842588938b874ad8b552de8ba
+  ViteBusiness: 05bc0721a2ec54475cdd42f557af54831a11c00c
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 66048c11416c2e7a9a4b35fe42254d0f0d9db4b1
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
 
-PODFILE CHECKSUM: f76860ab41aeea4d351841ac6837a535381db1b6
+PODFILE CHECKSUM: 9cb598ba7e60170e2d5d0a3c02322265ec9499c4
 
 COCOAPODS: 1.7.5

@@ -997,6 +997,27 @@
 "market.switch" =  "切换交易对";
 
 
+
+// market detail
+"market.detail.page.segment.order.book.title" = "委托订单";
+"market.detail.page.segment.last.trades.title" = "最新成交";
+"market.detail.page.segment.token.info.title" = "代币";
+"market.detail.page.segment.operator.into.title" = "运营商";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // DeFi
 "defi.home.page.title" =  "DeFi";
 "defi.home.page.borrow.button.title" =  "我要借币";

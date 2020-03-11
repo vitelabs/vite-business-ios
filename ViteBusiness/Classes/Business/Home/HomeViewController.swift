@@ -30,6 +30,11 @@ class HomeViewController: UITabBarController {
 
         let marketVC = MarketViewController()
 
+        let tradingVC = TradingHomeViewController().then {
+            $0.automaticallyShowDismissButton = false
+        }
+
+
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {
             $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             $0.tabBarItem.image = R.image.icon_tabbar_wallet()?.withRenderingMode(.alwaysOriginal)
@@ -63,11 +68,7 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.title = nil
         }
 
-        let exchangeVC = ExchangeViewController().then {
-            $0.automaticallyShowDismissButton = false
-        }
-
-        let exchangeNav = BaseNavigationController(rootViewController: exchangeVC).then {
+        let tradingNav = BaseNavigationController(rootViewController: tradingVC).then {
             $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             $0.tabBarItem.image = R.image.exchange_tabbar_icon_unseleted()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.exchange_tabbar_icon()?.withRenderingMode(.alwaysOriginal)
@@ -78,7 +79,7 @@ class HomeViewController: UITabBarController {
         #if DAPP
             var subViewControlles: [UIViewController] = [walletNav, myNav, DebugHomeViewController.createNavVC()]
         #else
-            var subViewControlles: [UIViewController] = [walletNav, exchangeNav, marketNav, myNav]
+            var subViewControlles: [UIViewController] = [walletNav, marketNav, tradingNav, myNav]
         #endif
 
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {

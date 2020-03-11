@@ -30,6 +30,10 @@ target 'ViteBusiness_Example' do
   pod 'Kingfisher', '~> 4.0'
   pod 'NYXImagesKit', '2.3'
 
+  pod 'LightweightCharts', :git => 'https://github.com/tradingview/LightweightChartsIOS.git', :commit => '015e3a349bfdeb963c6c817aa84df1675f37f6bb'
+  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :tag => 'v3.4.0'
+
+
   #request
   pod 'SwiftyJSON'
 

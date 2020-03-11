@@ -66,7 +66,8 @@ Pod::Spec.new do |s|
   s.dependency 'URLNavigator'
   s.dependency 'web3.swift.pod', '~> 2.2.0'
   s.dependency 'ProtocolBuffers-Swift'
-
+  s.dependency 'LightweightCharts'
+  s.dependency 'Charts'
   #request
   s.dependency 'SwiftyJSON'
 
