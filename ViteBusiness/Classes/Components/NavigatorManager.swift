@@ -44,7 +44,7 @@ public final class NavigatorManager {
 
     private func matchDomain(url: URL) -> Bool {
         if url.absoluteString.hasPrefix("https://app.vite.net/") ||
-            url.absoluteString.hasPrefix("https://vite-wallet-test.netlify.com/") {
+            url.absoluteString.hasPrefix("https://vite-wallet-test2.netlify.com/") {
             return true
         } else {
             return false
@@ -85,9 +85,9 @@ extension NavigatorManager {
 
         let hostPairs = [
             HostPair(source: "https://app.vite.net/webview/vitex_invite_inner/index.html",
-                     target: "https://vite-wallet-test.netlify.com/webview/vitex_invite_inner/index.html"),
+                     target: "https://vite-wallet-test2.netlify.com/webview/vitex_invite_inner/index.html"),
             HostPair(source: "https://app.vite.net/webview/defi_usage/index.html",
-                     target: "https://vite-wallet-test.netlify.com/webview/defi_prepare_use/index.html"),
+                     target: "https://vite-wallet-test2.netlify.com/webview/defi_prepare_use/index.html"),
         ]
 
         if DebugService.instance.config.appEnvironment == .test {

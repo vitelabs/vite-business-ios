@@ -192,7 +192,7 @@ public extension ViteConst {
                            x: "https://vitex.vite.net/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001",
-                           exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test.netlify.com/mobiledex",
+                           exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test2.netlify.com/mobiledex",
                            pushReportConfig: "http://150.109.40.169:8086/test",
                            pushReportBussness: "http://150.109.40.169:8079",
                            snapshotChainHeightPerDay: 200),
@@ -206,7 +206,7 @@ public extension ViteConst {
                            x: "http://129.28.98.62:8080"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://vite-wallet-test.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
