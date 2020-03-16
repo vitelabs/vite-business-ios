@@ -8,6 +8,10 @@
 import UIKit
 import Starscream
 
+typealias MarketTopic = String
+typealias SubId = String
+typealias TickerBlock = (Data) -> ()
+
 class MarketWebSocket: NSObject {
 
     struct Topic {
@@ -87,19 +91,94 @@ class MarketWebSocket: NSObject {
 
     private func handle(_ data: Data) {
         do {
-            var dexProtocol = try Protocol.DexProtocol.parseFrom(data: data)
-            if dexProtocol.opType == "push" ,
-                dexProtocol.clientId == clientId,
-                topices.contains(dexProtocol.topics ?? ""),
-                let messageData = dexProtocol.message {
-                let tickerStatisticsProto = try Protocol.TickerStatisticsProto.parseFrom(data: messageData)
-                self.onNewTickerStatistics?(tickerStatisticsProto)
+            let dexProtocol = try Protocol.DexProtocol.parseFrom(data: data)
+            let topic = dexProtocol.topics ?? ""
+            if dexProtocol.opType == "push", dexProtocol.clientId == clientId, let messageData = dexProtocol.message {
+                if topices.contains(topic) {
+                    let tickerStatisticsProto = try Protocol.TickerStatisticsProto.parseFrom(data: messageData)
+                    self.onNewTickerStatistics?(tickerStatisticsProto)
+                } else {
+                    guard let array = blockMap[topic] else { return }
+                    array.forEach { $0.block(messageData) }
+                }
             }
         } catch  {
             print(error.localizedDescription)
         }
     }
+
+    var blockMap: [MarketTopic: [(id: SubId, block: TickerBlock)]] = [:]
+    var topicMap: [SubId: MarketTopic] = [:]
 }
+
+
+
+extension MarketWebSocket {
+//    func subMarketPair(pairId: String, ticker: @escaping (Data) -> ()) -> SubId {
+//        let topic = "market.\(pairId).tickers"
+//        return sub(topic: topic, ticker: ticker)
+//    }
+
+    func sub(topic: MarketTopic, ticker: @escaping (Data) -> ()) -> SubId {
+        plog(level: .debug, log: "sub \(topic)", tag: .market)
+        let subId = UUID().uuidString
+        var array = blockMap[topic] ?? []
+
+        // need sub
+        if array.isEmpty {
+            plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
+            do {
+                let originalBuilder = Protocol.DexProtocol.Builder()
+                    .setClientId(clientId)
+                    .setOpType("sub")
+                    .setTopics(topic)
+                    .setMessage(Data())
+                    .setErrorCode(0)
+                let original = try originalBuilder.build()
+                let jsonData = original.data()
+                socket.write(data: jsonData)
+            } catch  {
+                plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+            }
+        }
+        array.append((subId, ticker))
+        blockMap[topic] = array
+        topicMap[subId] = topic
+        return subId
+    }
+
+    func unsub(subId: SubId) {
+        guard let topic = topicMap[subId] else { return }
+        topicMap[subId] = nil
+        plog(level: .debug, log: "unsub \(topic)", tag: .market)
+        guard var array = blockMap[topic] else { return }
+        for (index, item) in array.enumerated() where item.id == subId {
+            array.remove(at: index)
+            break
+        }
+        blockMap[topic] = array.isEmpty ? nil : array
+
+        // need unsub
+        if array.isEmpty {
+            do {
+                plog(level: .debug, log: "unsub \(topic) from socket", tag: .market)
+                let originalBuilder = Protocol.DexProtocol.Builder()
+                    .setClientId(clientId)
+                    .setOpType("un_sub")
+                    .setTopics(topic)
+                    .setMessage(Data())
+                    .setErrorCode(0)
+                let original = try originalBuilder.build()
+                let jsonData = original.data()
+                socket.write(data: jsonData)
+            } catch  {
+                plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+            }
+        }
+    }
+}
+
+
 
 extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 

@@ -82,6 +82,13 @@ public class MarketCache {
         let e = fileHelper.writeData(data, relativePath: "favourite")
     }
 
+    public class func saveFavourites(favourites: [String]) {
+        guard let data = try? JSON(favourites).rawData() else {
+            return
+        }
+        fileHelper.writeData(data, relativePath: "favourite")
+    }
+
     public class func saveSearchHistory(data: String) {
         var favourite = self.readSearchHistory()
         if !favourite.contains(data) {

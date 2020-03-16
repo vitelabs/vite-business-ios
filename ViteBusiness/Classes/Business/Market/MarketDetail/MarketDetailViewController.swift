@@ -7,13 +7,15 @@
 
 import UIKit
 import Then
+import RxSwift
+import RxCocoa
 
 class MarketDetailViewController: BaseViewController {
 
-    let marketInfo: MarketInfo
+    let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo>
 
     init(marketInfo: MarketInfo) {
-        self.marketInfo = marketInfo
+        self.marketInfoBehaviorRelay = BehaviorRelay(value: marketInfo)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -22,6 +24,7 @@ class MarketDetailViewController: BaseViewController {
     }
 
 
+    let navView = MarketDetailNavView()
     let marketDetailInfoView = MarketDetailInfoView()
     let candlestickChartView = CandlestickChartView()
 
@@ -38,8 +41,12 @@ class MarketDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        bind()
+    }
 
-        navigationTitleView = NavigationTitleView(title: "xxxxx")
+    func setupView() {
+        navigationTitleView = navView
 
         let bottomButtonView = UIView()
         bottomButtonView.backgroundColor = .green
@@ -87,7 +94,7 @@ class MarketDetailViewController: BaseViewController {
         view.addSubview(bottomButtonView)
 
         scrollView.snp.makeConstraints { (m) in
-            m.top.equalTo(navigationTitleView!.snp.bottom).offset(0)
+            m.top.equalTo(navView.snp.bottom).offset(0)
             m.left.right.equalToSuperview()
         }
 
@@ -101,5 +108,50 @@ class MarketDetailViewController: BaseViewController {
         scrollView.stackView.addArrangedSubview(candlestickChartView)
         scrollView.stackView.addArrangedSubview(manager.titleView)
         scrollView.stackView.addArrangedSubview(manager.contentView)
+    }
+
+    func bind() {
+        navView.bind(marketInfo: marketInfoBehaviorRelay.value)
+
+        MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
+            guard let `self` = self else { return }
+            let infos = array.flatMap { $0.infos }
+            for info in infos where info.statistic.symbol == self.marketInfoBehaviorRelay.value.statistic.symbol {
+                self.marketInfoBehaviorRelay.accept(info)
+                break
+            }
+        }.disposed(by: rx.disposeBag)
+
+        marketInfoBehaviorRelay.bind { [weak self] in
+            guard let `self` = self else { return }
+            self.marketDetailInfoView.bind(marketInfo: $0)
+        }.disposed(by: rx.disposeBag)
+    }
+
+//    var subId: SubId? = nil
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        subId = MarketInfoService.shared.marketSocket.subMarketPair(pairId: "VX_BTC-000") { data in
+//            guard let tickerStatisticsProto = try? Protocol.TickerStatisticsProto.parseFrom(data: data) else { return }
+//            plog(level: .debug, log: "\(tickerStatisticsProto)", tag: .market)
+//        }
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        guard let subId = subId else { return }
+//        MarketInfoService.shared.marketSocket.unsub(subId: subId)
+//        self.subId = nil
+//    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }

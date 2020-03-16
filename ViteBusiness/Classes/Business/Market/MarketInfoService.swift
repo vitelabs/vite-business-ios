@@ -40,6 +40,7 @@ class MarketInfoService: NSObject {
     var sortStatuses: [(SortStatus,SortStatus)] = Array<(SortStatus,SortStatus)>(repeating: (.normal, .normal), count: 5)
 
     override init() {
+        self.favouriteBehaviorRelay = BehaviorRelay(value: MarketCache.readFavourite())
         super.init()
 
         marketSocket.onNewTickerStatistics = { statistic in
@@ -67,6 +68,32 @@ class MarketInfoService: NSObject {
         marketSocket.start()
     }
 
+
+    //MARK: favourite
+    let favouriteBehaviorRelay: BehaviorRelay<[String]>
+
+    func isFavourite(symbol: String) -> Bool {
+        favouriteBehaviorRelay.value.contains(symbol)
+    }
+
+    func addFavourite(symbol: String) {
+        guard !isFavourite(symbol: symbol) else { return }
+        var array = favouriteBehaviorRelay.value
+        array.append(symbol)
+        favouriteBehaviorRelay.accept(array)
+        MarketCache.saveFavourites(favourites: array)
+    }
+
+    func removeFavourite(symbol: String) {
+        guard isFavourite(symbol: symbol) else { return }
+        var array = favouriteBehaviorRelay.value
+        for (index, s) in array.enumerated() where s == symbol {
+            array.remove(at: index)
+            break
+        }
+        favouriteBehaviorRelay.accept(array)
+        MarketCache.saveFavourites(favourites: array)
+    }
 }
 
 extension MarketInfoService {
@@ -321,6 +348,31 @@ public class MarketInfo {
 
         return URL.init(string: url)!
     }()
+}
+
+extension MarketInfo {
+    var miningImage: UIImage? {
+        switch miningType {
+            case .trade:
+                return R.image.market_mining_trade()
+            case .order:
+                return R.image.market_mining_order()
+            case .both:
+                return R.image.market_mining_both()
+            case .none:
+                return nil
+        }
+    }
+
+    var persentString: String {
+        let priceChangePercent = Double(statistic.priceChangePercent)! * 100
+        return (priceChangePercent >= 0.0 ? "+" : "-") + String(format: "%.2f", abs(priceChangePercent)) + "%"
+
+    }
+
+    var persentColor: UIColor {
+        return Double(statistic.priceChangePercent)! >= 0.0 ? UIColor.init(netHex: 0x01D764) : UIColor.init(netHex: 0xE5494D)
+    }
 }
 
 class MarketData {

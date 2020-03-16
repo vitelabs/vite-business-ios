@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 253 images.
+  /// This `R.image` struct is generated, and contains static references to 260 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -336,6 +336,18 @@ public struct R: Rswift.Validatable {
     public static let icon_logo_chain_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo_chain_vite")
     /// Image `icon_logo`.
     public static let icon_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_logo")
+    /// Image `icon_market_change`.
+    public static let icon_market_change = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_change")
+    /// Image `icon_market_down`.
+    public static let icon_market_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_down")
+    /// Image `icon_market_fav`.
+    public static let icon_market_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_fav")
+    /// Image `icon_market_logo`.
+    public static let icon_market_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_logo")
+    /// Image `icon_market_un_fav`.
+    public static let icon_market_un_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_un_fav")
+    /// Image `icon_market_up`.
+    public static let icon_market_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_up")
     /// Image `icon_mnemonic`.
     public static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
     /// Image `icon_my_defi_more`.
@@ -350,6 +362,8 @@ public struct R: Rswift.Validatable {
     public static let icon_my_loan_cell_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_loan_cell_line")
     /// Image `icon_nav_add`.
     public static let icon_nav_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_add")
+    /// Image `icon_nav_back_black_gray`.
+    public static let icon_nav_back_black_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black_gray")
     /// Image `icon_nav_back_black_offset`.
     public static let icon_nav_back_black_offset = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black_offset")
     /// Image `icon_nav_back_black`.
@@ -1320,6 +1334,36 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_logo_chain_vite, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_market_change", bundle: ..., traitCollection: ...)`
+    public static func icon_market_change(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_change, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_down", bundle: ..., traitCollection: ...)`
+    public static func icon_market_down(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_down, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_fav", bundle: ..., traitCollection: ...)`
+    public static func icon_market_fav(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_fav, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_logo", bundle: ..., traitCollection: ...)`
+    public static func icon_market_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_logo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_un_fav", bundle: ..., traitCollection: ...)`
+    public static func icon_market_un_fav(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_un_fav, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_up", bundle: ..., traitCollection: ...)`
+    public static func icon_market_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_up, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_mnemonic", bundle: ..., traitCollection: ...)`
     public static func icon_mnemonic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
@@ -1358,6 +1402,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_nav_back_black", bundle: ..., traitCollection: ...)`
     public static func icon_nav_back_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_back_black, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_nav_back_black_gray", bundle: ..., traitCollection: ...)`
+    public static func icon_nav_back_black_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_back_black_gray, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_back_black_offset", bundle: ..., traitCollection: ...)`
@@ -1795,7 +1844,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1091 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1094 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1921,6 +1970,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 24H
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageInfoVolTitle = Rswift.StringResource(key: "market.detail.page.info.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -5161,6 +5214,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageSubscriptionCopysUnit = Rswift.StringResource(key: "defi.subscription.page.subscription.copys.unit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 低
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageInfoLowTitle = Rswift.StringResource(key: "market.detail.page.info.low.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币份数
       /// 
       /// Locales: en, zh-Hans
@@ -6161,6 +6218,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageEarningsTitle = Rswift.StringResource(key: "defi.subscription.page.earnings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 高
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageInfoHighTitle = Rswift.StringResource(key: "market.detail.page.info.high.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6377,6 +6438,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinInitingDetail(_: Void = ()) -> String {
         return NSLocalizedString("grin.initing.detail", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 24H
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageInfoVolTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.info.vol.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>
@@ -12049,6 +12117,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.subscription.page.subscription.copys.unit", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 低
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageInfoLowTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.info.low.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 借币份数
       /// 
       /// Locales: en, zh-Hans
@@ -13797,6 +13872,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiSubscriptionPageEarningsTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.subscription.page.earnings.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 高
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageInfoHighTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.info.high.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

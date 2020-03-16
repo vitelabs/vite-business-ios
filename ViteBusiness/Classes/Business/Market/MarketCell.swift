@@ -122,28 +122,15 @@ class MarketPageCell: UITableViewCell {
         tradeSymbolLabel.text = info.statistic.tradeTokenSymbol.components(separatedBy: "-").first
         let quoteTokenSymbol = (info.statistic.quoteTokenSymbol.components(separatedBy: "-").first ?? "")
         quoteSymbolLabel.text = "/" + quoteTokenSymbol
-        switch info.miningType {
-            case .trade:
-                miningImgView.image = R.image.market_mining_trade()
-                miningImgView.isHidden = false
-            case .order:
-                miningImgView.image = R.image.market_mining_order()
-                miningImgView.isHidden = false
-            case .both:
-                miningImgView.image = R.image.market_mining_both()
-                miningImgView.isHidden = false
-            case .none:
-                miningImgView.isHidden = true
-        }
+        miningImgView.image = info.miningImage
+        miningImgView.isHidden = miningImgView.image == nil
         priceLabel.text = info.statistic.closePrice
         timeLabel.text = "24H"
         volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount ?? "0") ?? 0))
         rateLabel.text = info.rate
-        let priceChangePercent = Double(info.statistic.priceChangePercent)! * 100
-        var persentString = priceChangePercent >= 0.0 ? "+" : "-"
-        persentString = persentString + String(format: "%.2f", abs(priceChangePercent)) + "%"
-        persentLabel.text = persentString
-        persentLabel.textColor = priceChangePercent >= 0.0 ? UIColor.init(netHex: 0x01D764) : UIColor.init(netHex: 0xE5494D)
+
+        persentLabel.text = info.persentString
+        persentLabel.textColor = info.persentColor
     }
 
     required init?(coder: NSCoder) {

@@ -1004,7 +1004,9 @@
 "market.detail.page.segment.token.info.title" = "代币";
 "market.detail.page.segment.operator.into.title" = "运营商";
 
-
+"market.detail.page.info.high.title" = "高";
+"market.detail.page.info.low.title" = "低";
+"market.detail.page.info.vol.title" = "24H";
 
 
 

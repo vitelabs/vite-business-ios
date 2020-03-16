@@ -84,6 +84,7 @@ extension MarketPairsViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         let info = self.marketVM.sortedMarketDataBehaviorRelay.value[index].infos[indexPath.row]
 //        let webvc = WKWebViewController(url: info.vitexURL)
+//        self.navigationController?.pushViewController(webvc, animated: true)
         let vc = MarketDetailViewController(marketInfo: info)
         self.navigationController?.pushViewController(vc, animated: true)
         Statistics.logWithUUIDAndAddress(eventId: Statistics.Page.MarketHome.pairClicked.rawValue)
