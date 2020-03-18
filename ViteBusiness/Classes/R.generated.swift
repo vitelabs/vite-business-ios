@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 260 images.
+  /// This `R.image` struct is generated, and contains static references to 261 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -342,6 +342,8 @@ public struct R: Rswift.Validatable {
     public static let icon_market_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_down")
     /// Image `icon_market_fav`.
     public static let icon_market_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_fav")
+    /// Image `icon_market_kline_type`.
+    public static let icon_market_kline_type = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_kline_type")
     /// Image `icon_market_logo`.
     public static let icon_market_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_logo")
     /// Image `icon_market_un_fav`.
@@ -1349,6 +1351,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_market_fav, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_market_kline_type", bundle: ..., traitCollection: ...)`
+    public static func icon_market_kline_type(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_kline_type, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_market_logo", bundle: ..., traitCollection: ...)`
     public static func icon_market_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_market_logo, compatibleWith: traitCollection)
@@ -1844,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1094 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1101 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1966,14 +1973,42 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 12小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeHour12Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour12.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, zh-Hans
       public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1分钟
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeMin1Title = Rswift.StringResource(key: "market.detail.page.kline.type.min1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1周
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeWeek1Title = Rswift.StringResource(key: "market.detail.page.kline.type.week1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1天
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeDay1Title = Rswift.StringResource(key: "market.detail.page.kline.type.day1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeHour1Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 24H
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoVolTitle = Rswift.StringResource(key: "market.detail.page.info.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 30分钟
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeMin30Title = Rswift.StringResource(key: "market.detail.page.kline.type.min30.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 6小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeHour6Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>
       /// 
       /// Locales: en, zh-Hans
@@ -6433,6 +6468,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 12小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeHour12Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.hour12.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, zh-Hans
@@ -6440,11 +6482,53 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.initing.detail", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1分钟
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeMin1Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.min1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 1周
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeWeek1Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.week1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 1天
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeDay1Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.day1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 1小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeHour1Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.hour1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 24H
       /// 
       /// Locales: en, zh-Hans
       public static func marketDetailPageInfoVolTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.info.vol.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 30分钟
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeMin30Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.min30.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 6小时
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeHour6Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.hour6.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: <h1 style="font-PingFangSC-Medium;font-size:12;color:#24272B">About Cross-Chain Deposit</h1><p style="font-PingFangSC-Regular;font-size:11;color:#3E4A59">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>

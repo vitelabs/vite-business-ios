@@ -13,6 +13,7 @@ import RxCocoa
 class MarketDetailViewController: BaseViewController {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo>
+    var klineHolder: MarketKlineHolder?
 
     init(marketInfo: MarketInfo) {
         self.marketInfoBehaviorRelay = BehaviorRelay(value: marketInfo)
@@ -26,7 +27,7 @@ class MarketDetailViewController: BaseViewController {
 
     let navView = MarketDetailNavView()
     let marketDetailInfoView = MarketDetailInfoView()
-    let candlestickChartView = CandlestickChartView()
+    let candlestickChartView = CandlestickChartView(klineType: MarketKlineType.hour1)
 
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)).then {
         $0.layer.masksToBounds = true
@@ -46,7 +47,6 @@ class MarketDetailViewController: BaseViewController {
     }
 
     func setupView() {
-        navigationTitleView = navView
 
         let bottomButtonView = UIView()
         bottomButtonView.backgroundColor = .green
@@ -90,8 +90,15 @@ class MarketDetailViewController: BaseViewController {
 
 
 
+        view.addSubview(navView)
         view.addSubview(scrollView)
         view.addSubview(bottomButtonView)
+
+        navView.snp.remakeConstraints { (m) in
+            m.top.equalToSuperview()
+            m.left.equalTo(view)
+            m.right.equalTo(view)
+        }
 
         scrollView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(0)
@@ -126,9 +133,33 @@ class MarketDetailViewController: BaseViewController {
             guard let `self` = self else { return }
             self.marketDetailInfoView.bind(marketInfo: $0)
         }.disposed(by: rx.disposeBag)
+
+        Driver.combineLatest(marketInfoBehaviorRelay.asDriver(),
+                             candlestickChartView.kineTypeBehaviorRelay.asDriver())
+            .drive(onNext: { [weak self] (info, type) in
+                guard let `self` = self else { return }
+
+                if let holder = self.klineHolder {
+                    guard info.statistic.symbol != holder.marketInfo.statistic.symbol ||
+                        type != holder.kineType else {
+                        return
+                    }
+                    holder.unsub()
+                }
+
+
+                let klineHolder = MarketKlineHolder(marketInfo: info, kineType: type)
+                klineHolder.klinesBehaviorRelay.bind { [weak self] in
+                    self?.candlestickChartView.bind(klineItems: $0)
+                }.disposed(by: klineHolder.rx.disposeBag)
+
+                self.klineHolder = klineHolder
+
+
+            }).disposed(by: rx.disposeBag)
     }
 
-//    var subId: SubId? = nil
+    var klineSubId: SubId? = nil
 //
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)

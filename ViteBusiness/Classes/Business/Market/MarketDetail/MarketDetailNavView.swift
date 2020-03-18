@@ -41,6 +41,8 @@ class MarketDetailNavView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+
         addSubview(backButton)
         addSubview(tradeLabel)
         addSubview(quoteLabel)
@@ -59,7 +61,7 @@ class MarketDetailNavView: UIView {
             m.top.equalTo(self.safeAreaLayoutGuideSnpTop).offset(8)
             m.bottom.equalToSuperview().offset(-8)
             m.left.equalToSuperview().offset(20)
-
+            m.size.equalTo(CGSize(width: 28, height: 28))
         }
 
         tradeLabel.snp.makeConstraints { (m) in

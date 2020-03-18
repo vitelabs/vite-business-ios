@@ -94,35 +94,47 @@ class MarketDetailInfoView: UIView {
             m.left.equalTo(upDownImageView.snp.right)
         }
 
-        highTitleLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(6)
-            m.right.equalToSuperview().offset(-80)
-        }
+        let layoutGuide = UILayoutGuide()
+        addLayoutGuide(layoutGuide)
 
-        lowTitleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(highTitleLabel.snp.bottom).offset(8)
-            m.left.equalTo(highTitleLabel)
-        }
-
-        quantityTitleLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(lowTitleLabel.snp.bottom).offset(8)
-            m.left.equalTo(lowTitleLabel)
+        layoutGuide.snp.makeConstraints { (m) in
+            m.top.equalTo(highTitleLabel)
+            m.bottom.equalToSuperview()
+            m.right.equalToSuperview().offset(-24)
         }
 
         highLabel.snp.makeConstraints { (m) in
             m.top.equalTo(highTitleLabel)
-            m.left.equalTo(highTitleLabel.snp.right).offset(8)
+            m.left.equalTo(layoutGuide).offset(8)
+            m.right.lessThanOrEqualTo(layoutGuide)
         }
 
         lowLabel.snp.makeConstraints { (m) in
             m.top.equalTo(highLabel.snp.bottom).offset(8)
-            m.left.equalTo(highLabel)
+            m.left.equalTo(layoutGuide).offset(8)
+            m.right.lessThanOrEqualTo(layoutGuide)
         }
 
         quantityLabel.snp.makeConstraints { (m) in
             m.top.equalTo(lowLabel.snp.bottom).offset(8)
-            m.left.equalTo(lowLabel)
-            m.bottom.equalToSuperview()
+            m.left.equalTo(layoutGuide).offset(8)
+            m.right.lessThanOrEqualTo(layoutGuide)
+            m.bottom.equalToSuperview().offset(-5)
+        }
+
+        highTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(6)
+            m.right.equalTo(layoutGuide.snp.left)
+        }
+
+        lowTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(highTitleLabel.snp.bottom).offset(8)
+            m.right.equalTo(layoutGuide.snp.left)
+        }
+
+        quantityTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(lowTitleLabel.snp.bottom).offset(8)
+            m.right.equalTo(layoutGuide.snp.left)
         }
     }
 
@@ -133,9 +145,9 @@ class MarketDetailInfoView: UIView {
         upDownImageView.image = Double(marketInfo.statistic.priceChangePercent)! >= 0.0 ? R.image.icon_market_up() : R.image.icon_market_down()
         percentLabel.textColor = marketInfo.persentColor
 
-        highLabel.text = marketInfo.statistic.highPrice
-        lowLabel.text = marketInfo.statistic.lowPrice
-        quantityLabel.text = marketInfo.statistic.quantity
+        highLabel.text = String(format: "%.6f", Double(marketInfo.statistic.highPrice)!)
+        lowLabel.text = String(format: "%.6f", Double(marketInfo.statistic.lowPrice)!)
+        quantityLabel.text = String(format: "%.6f", Double(marketInfo.statistic.quantity)!)
     }
 
     required init?(coder: NSCoder) {
