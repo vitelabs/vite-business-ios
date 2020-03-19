@@ -1016,7 +1016,14 @@
 "market.detail.page.kline.type.day1.title" = "1天";
 "market.detail.page.kline.type.week1.title" = "1周";
 
-
+"market.detail.page.value.time.title" = "时间";
+"market.detail.page.value.open.title" = "开";
+"market.detail.page.value.high.title" = "高";
+"market.detail.page.value.low.title" = "低";
+"market.detail.page.value.close.title" = "收";
+"market.detail.page.value.diff.title" = "涨跌额";
+"market.detail.page.value.extent.title" = "涨跌幅";
+"market.detail.page.value.vol.title" = "成交量";
 
 
 

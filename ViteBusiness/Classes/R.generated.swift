@@ -1851,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1101 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1109 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5253,6 +5253,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoLowTitle = Rswift.StringResource(key: "market.detail.page.info.low.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 低
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueLowTitle = Rswift.StringResource(key: "market.detail.page.value.low.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 借币份数
       /// 
       /// Locales: en, zh-Hans
@@ -5705,6 +5709,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionDetailAmountShallRefunded = Rswift.StringResource(key: "defi.SubscriptionDetail.AmountShallRefunded", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueOpenTitle = Rswift.StringResource(key: "market.detail.page.value.open.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 开通交易所SVIP
       /// 
       /// Locales: en, zh-Hans
@@ -5721,6 +5729,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiProductDetailTitleCount = Rswift.StringResource(key: "defi.product.detail.title.count", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 成交量
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueVolTitle = Rswift.StringResource(key: "market.detail.page.value.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 成功借币
       /// 
       /// Locales: en, zh-Hans
@@ -5829,6 +5841,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpCancleTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.cancle.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 收
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueCloseTitle = Rswift.StringResource(key: "market.detail.page.value.close.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 收益按日发放至DeFi基础余额。
       /// 
       /// Locales: en, zh-Hans
@@ -5861,6 +5877,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellRateErrorTooBig = Rswift.StringResource(key: "defi.loan.page.cell.rate.error.too.big", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 时间
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueTimeTitle = Rswift.StringResource(key: "market.detail.page.value.time.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 暂不修改
       /// 
       /// Locales: en, zh-Hans
@@ -5953,6 +5973,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleRegisterforSBPrefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.RegisterforSBPrefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 涨跌幅
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueExtentTitle = Rswift.StringResource(key: "market.detail.page.value.extent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 涨跌额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueDiffTitle = Rswift.StringResource(key: "market.detail.page.value.diff.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 确定
       /// 
       /// Locales: en, zh-Hans
@@ -6257,6 +6285,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoHighTitle = Rswift.StringResource(key: "market.detail.page.info.high.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 高
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageValueHighTitle = Rswift.StringResource(key: "market.detail.page.value.high.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -12208,6 +12240,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.info.low.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 低
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueLowTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.low.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 借币份数
       /// 
       /// Locales: en, zh-Hans
@@ -12999,6 +13038,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.SubscriptionDetail.AmountShallRefunded", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 开
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueOpenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.open.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 开通交易所SVIP
       /// 
       /// Locales: en, zh-Hans
@@ -13025,6 +13071,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiProductDetailTitleCount(_: Void = ()) -> String {
         return NSLocalizedString("defi.product.detail.title.count", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 成交量
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueVolTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.vol.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 成功借币
@@ -13216,6 +13269,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.use.page.edit.sbp.cancle.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 收
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueCloseTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.close.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 收益按日发放至DeFi基础余额。
       /// 
       /// Locales: en, zh-Hans
@@ -13270,6 +13330,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellRateErrorTooBig(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.rate.error.too.big", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 时间
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueTimeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.time.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 暂不修改
@@ -13431,6 +13498,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiBillBillTypeTitleRegisterforSBPrefund(_: Void = ()) -> String {
         return NSLocalizedString("defi.bill.billTypeTitle.RegisterforSBPrefund", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 涨跌幅
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueExtentTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.extent.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 涨跌额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueDiffTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.diff.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 确定
@@ -13963,6 +14044,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageInfoHighTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.info.high.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 高
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageValueHighTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.value.high.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

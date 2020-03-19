@@ -19,6 +19,25 @@ class CandlestickChartView: UIView {
     let headerView = HeaderView()
     let selectorView = SelectorView()
 
+    let valueView = ValueView()
+
+    let ma5Lable = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        $0.textColor = UIColor(netHex: 0xFFA300)
+    }
+
+    let ma10Lable = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x007AFF)
+    }
+
+    let ma30Lable = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        $0.textColor = UIColor(netHex: 0xA864FF)
+    }
+
+    let logoImageView = UIImageView(image: R.image.icon_market_logo())
+
     let combinedChartView = CombinedChartView().then {
 
         $0.chartDescription?.enabled = false
@@ -35,19 +54,22 @@ class CandlestickChartView: UIView {
         $0.gridBackgroundColor = .clear
         $0.noDataText = ""
 
-
-        $0.xAxis.enabled = false
-        $0.xAxis.labelPosition = .bottom
-        $0.xAxis.drawGridLinesEnabled = false
-        $0.xAxis.labelFont = UIFont.systemFont(ofSize: 11, weight: .regular)
-        $0.xAxis.labelTextColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+        $0.xAxis.enabled = true
+        $0.xAxis.drawAxisLineEnabled = false
+        $0.xAxis.labelPosition = .top
+        $0.xAxis.labelTextColor = .clear
+        $0.xAxis.drawGridLinesEnabled = true
+        $0.xAxis.gridLineWidth = 1
+        $0.xAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
 
         $0.rightAxis.labelCount = 4
-        $0.rightAxis.drawGridLinesEnabled = false
         $0.rightAxis.drawAxisLineEnabled = false
         $0.rightAxis.labelPosition = .insideChart
         $0.rightAxis.labelFont = UIFont.systemFont(ofSize: 11, weight: .regular)
         $0.rightAxis.labelTextColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+        $0.rightAxis.drawGridLinesEnabled = true
+        $0.rightAxis.gridLineWidth = 1
+        $0.rightAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
 
     }
 
@@ -68,10 +90,11 @@ class CandlestickChartView: UIView {
 
 
         $0.xAxis.labelPosition = .bottom
-        $0.xAxis.drawGridLinesEnabled = false
         $0.xAxis.labelFont = UIFont.systemFont(ofSize: 11, weight: .regular)
         $0.xAxis.labelTextColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
-
+        $0.xAxis.drawGridLinesEnabled = true
+        $0.xAxis.gridLineWidth = 1
+        $0.xAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
 
         $0.leftAxis.enabled = false
         $0.rightAxis.enabled = false
@@ -85,9 +108,14 @@ class CandlestickChartView: UIView {
         barChartView.delegate = self
 
         addSubview(headerView)
+        addSubview(logoImageView)
         addSubview(combinedChartView)
         addSubview(barChartView)
+        addSubview(ma5Lable)
+        addSubview(ma10Lable)
+        addSubview(ma30Lable)
         addSubview(selectorView)
+        addSubview(valueView)
 
         selectorView.isHidden = true
 
@@ -111,6 +139,11 @@ class CandlestickChartView: UIView {
             m.top.left.right.equalToSuperview()
         }
 
+        logoImageView.snp.makeConstraints { (m) in
+            m.left.equalTo(combinedChartView).offset(9)
+            m.bottom.equalTo(combinedChartView)
+        }
+
         combinedChartView.snp.makeConstraints { (m) in
             m.top.equalTo(headerView.snp.bottom)
             m.left.right.equalToSuperview()
@@ -123,17 +156,89 @@ class CandlestickChartView: UIView {
             m.height.equalTo(60)
         }
 
+        ma5Lable.snp.makeConstraints { (m) in
+            m.top.equalTo(combinedChartView).offset(10)
+            m.left.equalTo(combinedChartView).offset(8)
+        }
+
+        ma10Lable.snp.makeConstraints { (m) in
+            m.top.equalTo(combinedChartView).offset(10)
+            m.left.equalTo(ma5Lable.snp.right).offset(20)
+        }
+
+        ma30Lable.snp.makeConstraints { (m) in
+            m.top.equalTo(combinedChartView).offset(10)
+            m.left.equalTo(ma10Lable.snp.right).offset(20)
+        }
+
         selectorView.snp.makeConstraints { (m) in
             m.top.left.right.equalTo(combinedChartView)
         }
+
+        valueView.snp.makeConstraints { (m) in
+            m.top.equalTo(combinedChartView).offset(36)
+            m.width.equalTo(135)
+            m.right.equalTo(combinedChartView).offset(-5)
+        }
+
+        selectedIndex.bind { [weak self] in
+            guard let `self` = self else { return }
+            if let index = $0 {
+                let ma5Value = self.ma5?[index].map { String(format: "%.4f", $0) } ?? ""
+                let ma10Value = self.ma10?[index].map { String(format: "%.4f", $0) } ?? ""
+                let ma30Value = self.ma30?[index].map { String(format: "%.4f", $0) } ?? ""
+                self.ma5Lable.text = "MA5: \(ma5Value)"
+                self.ma10Lable.text = "MA10: \(ma10Value)"
+                self.ma30Lable.text = "MA30: \(ma30Value)"
+
+                self.valueView.bind(klineItem: self.klineItems[index])
+                self.valueView.isHidden = false
+            } else {
+                self.ma5Lable.text = "MA5: "
+                self.ma10Lable.text = "MA10: "
+                self.ma30Lable.text = "MA30: "
+
+                self.valueView.isHidden = true
+            }
+
+
+            
+
+        }.disposed(by: rx.disposeBag)
     }
 
+    let selectedIndex: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
+    var klineItems: [KlineItem] = []
+    var ma5: [Double?]? = nil
+    var ma10: [Double?]? = nil
+    var ma30: [Double?]? = nil
+
     func bind(klineItems: [KlineItem]) {
+        self.klineItems = klineItems
+        selectedIndex.accept(nil)
+        ma5 = nil
+        ma10 = nil
+        ma30 = nil
 
         guard klineItems.count > 0 else { return }
+        bindCombinedChartView(klineItems: klineItems)
+        bindBarChartView(klineItems: klineItems)
 
+        self.combinedChartView.setVisibleXRangeMaximum(50.0)
+        self.barChartView.setVisibleXRangeMaximum(50.0)
+        self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
+        self.barChartView.moveViewToX(Double(klineItems.count - 1))
 
+        let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format("HH:mm") }
+        combinedChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+        combinedChartView.xAxis.setLabelCount(4, force: false)
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+        barChartView.xAxis.setLabelCount(4, force: false)
+    }
+
+    func bindCombinedChartView(klineItems: [KlineItem]) {
         let combinedChartData = CombinedChartData()
+
         // kline
         let klineEntries = (0..<klineItems.count).map { index -> CandleChartDataEntry in
             let item = klineItems[index]
@@ -163,10 +268,38 @@ class CandlestickChartView: UIView {
             return BarChartData(dataSet: set)
         }()
 
+        // ma
+        let ma5 = calcMA(klineItems: klineItems, days: 5)
+        let ma10 = calcMA(klineItems: klineItems, days: 10)
+        let ma30 = calcMA(klineItems: klineItems, days: 30)
+        self.ma5 = ma5
+        self.ma10 = ma10
+        self.ma30 = ma30
+        let ma5DataSet = maDataSet(ma: ma5, days: 5).then { $0.colors = [UIColor(netHex: 0xFFA300)] }
+        let ma10DataSet = maDataSet(ma: ma10, days: 10).then { $0.colors = [UIColor(netHex: 0x007AFF)] }
+        let ma30DataSet = maDataSet(ma: ma30, days: 30).then { $0.colors = [UIColor(netHex: 0xA864FF)] }
+        combinedChartData.lineData = LineChartData(dataSets: [ma5DataSet, ma10DataSet, ma30DataSet])
+
         combinedChartView.data = combinedChartData
+    }
 
+    func maDataSet(ma: [Double?], days: Int) -> LineChartDataSet {
+        var maEntries: [ChartDataEntry] = []
+        for (index, closePrice) in ma.enumerated() {
+            if let closePrice = closePrice {
+                maEntries.append(ChartDataEntry(x: Double(index), y: closePrice))
+            }
+        }
 
-        // Bar
+        return LineChartDataSet(entries: maEntries).then {
+            $0.mode = .cubicBezier
+            $0.drawCirclesEnabled = false
+            $0.lineWidth = 1
+            $0.circleRadius = 4
+        }
+    }
+
+    func bindBarChartView(klineItems: [KlineItem]) {
         let barDataEntries = (0..<klineItems.count).map { index -> BarChartDataEntry in
             BarChartDataEntry(x: Double(index), y: klineItems[index].v)
         }
@@ -175,20 +308,29 @@ class CandlestickChartView: UIView {
         barSet.colors = klineItems.map { UIColor(netHex: $0.c - $0.o >= 0 ? 0x01D764: 0xE5494D) }
         barSet.highlightEnabled = false
         barChartView.data = BarChartData(dataSet: barSet)
-
-        self.combinedChartView.setVisibleXRangeMaximum(50.0)
-        self.barChartView.setVisibleXRangeMaximum(50.0)
-        self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
-        self.barChartView.moveViewToX(Double(klineItems.count - 1))
-
-        let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format("HH:mm") }
-        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
-        barChartView.xAxis.setLabelCount(3, force: false)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 
+    func calcMA(klineItems: [KlineItem], days: Int) -> [Double?] {
+        var sum: Double = 0
+        var ma: [Double?] = []
+        let closePriceArray = klineItems.map { $0.c }
+        for (index, closePrice) in closePriceArray.enumerated() {
+            if index >= days - 1 {
+                sum += closePrice
+                if index - days >= 0 {
+                    sum -= closePriceArray[index - days]
+                }
+                ma.append(sum / Double(days))
+            } else {
+                sum += closePrice
+                ma.append(nil)
+            }
+        }
+        return ma
+    }
 }
 
 extension CandlestickChartView: ChartViewDelegate {
@@ -205,6 +347,32 @@ extension CandlestickChartView: ChartViewDelegate {
         self.barChartView.viewPortHandler.refresh(newMatrix: srcMatrix, chart: self.barChartView, invalidate: true)
     }
 
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        if let index = Int(exactly: entry.x) {
+            selectedIndex.accept(index)
+
+            if highlight.xPx > self.bounds.width / 2 {
+                valueView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(combinedChartView).offset(36)
+                    m.width.equalTo(135)
+                    m.left.equalTo(combinedChartView).offset(5)
+                }
+            } else {
+                valueView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(combinedChartView).offset(36)
+                    m.width.equalTo(135)
+                    m.right.equalTo(combinedChartView).offset(-5)
+                }
+            }
+
+        } else {
+            selectedIndex.accept(nil)
+        }
+    }
+
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        selectedIndex.accept(nil)
+    }
 }
 
 extension CandlestickChartView {
@@ -296,6 +464,148 @@ extension CandlestickChartView {
         }
 
         required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class ValueView: UIView {
+        let timeTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueTimeTitle()
+        }
+        let openTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueOpenTitle()
+        }
+        let highTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueHighTitle()
+        }
+        let lowTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueLowTitle()
+        }
+        let closeTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueCloseTitle()
+        }
+        let diffTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueDiffTitle()
+        }
+        let extentTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueExtentTitle()
+        }
+        let volTitleLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageValueVolTitle()
+        }
+
+
+        let timeLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let openLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let highLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let lowLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let closeLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let diffLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let extentLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let volLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            let stackView = UIStackView().then {
+                $0.axis = .vertical
+                $0.alignment = .fill
+                $0.distribution = .fill
+                $0.spacing = 4
+            }
+
+            func addTo(left: UIView, right: UIView) -> UIView {
+                let view = UIView()
+                view.addSubview(left)
+                view.addSubview(right)
+                left.snp.makeConstraints { (m) in
+                    m.top.bottom.left.equalToSuperview()
+                }
+
+                right.snp.makeConstraints { (m) in
+                    m.top.bottom.right.equalToSuperview()
+                }
+                return view
+            }
+
+            backgroundColor = UIColor(netHex: 0xFBFBFC)
+            layer.borderColor = UIColor(netHex: 0xD3DFEF).cgColor
+            layer.borderWidth = 1
+            layer.cornerRadius = 2
+
+            addSubview(stackView)
+            stackView.snp.makeConstraints { (m) in
+                m.edges.equalToSuperview().inset(8)
+            }
+
+            stackView.addArrangedSubview(addTo(left: timeTitleLabel, right: timeLabel))
+            stackView.addArrangedSubview(addTo(left: openTitleLabel, right: openLabel))
+            stackView.addArrangedSubview(addTo(left: highTitleLabel, right: highLabel))
+            stackView.addArrangedSubview(addTo(left: lowTitleLabel, right: lowLabel))
+            stackView.addArrangedSubview(addTo(left: closeTitleLabel, right: closeLabel))
+            stackView.addArrangedSubview(addTo(left: diffTitleLabel, right: diffLabel))
+            stackView.addArrangedSubview(addTo(left: extentTitleLabel, right: extentLabel))
+            stackView.addArrangedSubview(addTo(left: volTitleLabel, right: volLabel))
+        }
+
+        func bind(klineItem: KlineItem) {
+            timeLabel.text = Date(timeIntervalSince1970: TimeInterval(klineItem.t)).format("yy-MM-dd HH:mm:ss")
+            openLabel.text = String(format: "%.4f", klineItem.o)
+            highLabel.text = String(format: "%.4f", klineItem.h)
+            lowLabel.text = String(format: "%.4f", klineItem.l)
+            closeLabel.text = String(format: "%.4f", klineItem.c)
+            diffLabel.text = String(format: "%.4f", klineItem.o - klineItem.c)
+            extentLabel.text = String(format: "%.2f%%", (klineItem.o - klineItem.c) * 100 / klineItem.o)
+            volLabel.text = String(format: "%.4f", klineItem.v)
+        }
+
+        required init(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
     }

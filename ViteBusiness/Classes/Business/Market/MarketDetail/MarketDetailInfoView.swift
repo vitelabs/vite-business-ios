@@ -98,13 +98,12 @@ class MarketDetailInfoView: UIView {
         addLayoutGuide(layoutGuide)
 
         layoutGuide.snp.makeConstraints { (m) in
-            m.top.equalTo(highTitleLabel)
-            m.bottom.equalToSuperview()
+            m.top.bottom.equalToSuperview()
             m.right.equalToSuperview().offset(-24)
         }
 
         highLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(highTitleLabel)
+            m.top.equalToSuperview().offset(6)
             m.left.equalTo(layoutGuide).offset(8)
             m.right.lessThanOrEqualTo(layoutGuide)
         }
