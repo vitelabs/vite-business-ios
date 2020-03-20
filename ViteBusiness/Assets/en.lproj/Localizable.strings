@@ -1014,7 +1014,8 @@
 "market.detail.page.value.extent.title" = "涨跌幅";
 "market.detail.page.value.vol.title" = "成交量";
 
-
+"market.detail.page.depth.vol.title" = "数量(%@)";
+"market.detail.page.depth.price.title" = "价格(%@)";
 
 
 

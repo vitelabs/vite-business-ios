@@ -14,6 +14,12 @@ class MarketDetailViewController: BaseViewController {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo>
     var klineHolder: MarketKlineHolder?
+    var depthHolder: MarketDepthHolder?
+
+    let depthVC = OrderBookViewController()
+    let tradsVC = LastTradesViewController()
+    let tokenInfoVC = MarketTokenInfoViewController()
+    let operatorInfoVC = MarketOperatorInfoViewController()
 
     init(marketInfo: MarketInfo) {
         self.marketInfoBehaviorRelay = BehaviorRelay(value: marketInfo)
@@ -63,10 +69,10 @@ class MarketDetailViewController: BaseViewController {
         pageStyle.bottomLineHeight = 3
 
         let viewControllers = [
-            OrderBookViewController(),
-            LastTradesViewController(),
-            MarketTokenInfoViewController(),
-            MarketOperatorInfoViewController()
+            self.depthVC,
+            self.tradsVC,
+            self.tokenInfoVC,
+            self.operatorInfoVC
         ]
 
         let titles = [
@@ -157,6 +163,20 @@ class MarketDetailViewController: BaseViewController {
 
 
             }).disposed(by: rx.disposeBag)
+
+        marketInfoBehaviorRelay.asDriver().distinctUntilChanged { (left, right) -> Bool in
+            left.statistic.symbol == right.statistic.symbol
+        }.drive(onNext: { [weak self] info in
+            guard let `self` = self else { return }
+
+            let holder = MarketDepthHolder(marketInfo: info)
+            holder.depthListBehaviorRelay.bind { [weak self] in
+                plog(level: .debug, log: $0)
+                guard let `self` = self else { return }
+                self.depthVC.bind(info: info, depthList: $0)
+            }.disposed(by: holder.rx.disposeBag)
+            self.depthHolder = holder
+        }).disposed(by: rx.disposeBag)
     }
 
     var klineSubId: SubId? = nil

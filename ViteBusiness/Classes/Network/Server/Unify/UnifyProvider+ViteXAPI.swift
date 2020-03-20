@@ -68,4 +68,15 @@ extension UnifyProvider.vitex {
             return klineItems
         }
     }
+
+    static func getDepth(symbol: String) -> Promise<MarketDepthList> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getDepth(symbol: symbol), responseToData: responseToData).map { string in
+            guard let ret = MarketDepthList(JSONString: string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            ret.calcPercent()
+            return ret
+        }
+    }
 }

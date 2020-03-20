@@ -8,30 +8,6 @@
 import Foundation
 import ObjectMapper
 
-//struct KlineItem: Mappable {
-//
-//    fileprivate(set) var t: Int64 = 0
-//    fileprivate(set) var c: Double = 0
-//    fileprivate(set) var o: Double = 0
-//    fileprivate(set) var h: Double = 0
-//    fileprivate(set) var l: Double = 0
-//    fileprivate(set) var v: Double = 0
-//
-//    init?(map: Map) {
-//
-//    }
-//
-//    mutating func mapping(map: Map) {
-//        t <- map["t"]
-//        c <- map["c"]
-//        o <- map["o"]
-//        h <- map["h"]
-//        l <- map["l"]
-//        v <- map["v"]
-//    }
-//
-//}
-
 struct KlineItem {
     
     let t: Int64
