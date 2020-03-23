@@ -14,7 +14,7 @@ class MarketDetailViewController: BaseViewController {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo>
     var klineHolder: MarketKlineHolder?
-    var depthHolder: MarketDepthHolder?
+    var depthHolder: MarketDataIndoHolder?
 
     let depthVC = OrderBookViewController()
     let tradsVC = LastTradesViewController()
@@ -35,16 +35,86 @@ class MarketDetailViewController: BaseViewController {
     let marketDetailInfoView = MarketDetailInfoView()
     let candlestickChartView = CandlestickChartView(klineType: MarketKlineType.hour1)
 
-    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)).then {
-        $0.layer.masksToBounds = true
-        if #available(iOS 11.0, *) {
-            $0.contentInsetAdjustmentBehavior = .never
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = false
-        }
-    }
+    private let bottomHeight: CGFloat = 94
+    lazy var contentView: LTSimpleManager = {
+        let titles = [
+            R.string.localizable.marketDetailPageSegmentOrderBookTitle(),
+            R.string.localizable.marketDetailPageSegmentLastTradesTitle(),
+            R.string.localizable.marketDetailPageSegmentTokenInfoTitle(),
+            R.string.localizable.marketDetailPageSegmentOperatorIntoTitle(),
+        ]
 
-    private var manager: DNSPageViewManager?
+        let viewControllers = [
+            self.depthVC,
+            self.tradsVC,
+            self.tokenInfoVC,
+            self.operatorInfoVC
+        ]
+
+        let layout: LTLayout = {
+            let layout = LTLayout()
+            layout.sliderHeight = 38
+
+            layout.bottomLineHeight = 2
+            layout.bottomLineCornerRadius = 0
+            layout.bottomLineColor = UIColor.init(netHex: 0x007aff)
+
+            layout.scale = 1
+            layout.lrMargin = 24
+            layout.titleMargin = 30
+            layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
+            layout.titleViewBgColor = UIColor.init(hex: "0xFFFFFF")
+            layout.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+            layout.titleSelectColor = UIColor.init(netHex: 0x3E4A59)
+
+            layout.pageBottomLineColor = UIColor(netHex: 0xD3DFEF)
+            layout.pageBottomLineHeight = CGFloat.singleLineWidth
+            
+            layout.showsHorizontalScrollIndicator = false
+
+            return layout
+        }()
+
+        let frame: CGRect =  {
+            let statusBarH = UIApplication.shared.statusBarFrame.size.height
+            let navH: CGFloat = MarketDetailNavView.height
+            let bottomH: CGFloat = bottomHeight
+            let bottomSafeH: CGFloat = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+            var H: CGFloat = kScreenH - statusBarH - navH - bottomH - bottomSafeH
+            return CGRect(x: 0, y: statusBarH + navH, width: kScreenW, height: H)
+        }()
+
+        let contentView = LTSimpleManager(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
+
+        contentView.configHeaderView {[weak self] in
+            guard let strongSelf = self else { return nil }
+            let headerView = strongSelf.headerView
+            return headerView
+        }
+
+        contentView.scrollToIndex(index: 0)
+        return contentView
+    }()
+
+    lazy var headerView: UIView = {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0,
+                                              width: self.view.bounds.width,
+                                              height: MarketDetailInfoView.height + CandlestickChartView.height))
+
+        headerView.addSubview(self.marketDetailInfoView)
+        headerView.addSubview(self.candlestickChartView)
+
+        self.marketDetailInfoView.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
+        }
+
+        self.candlestickChartView.snp.makeConstraints { (m) in
+            m.top.equalTo(self.marketDetailInfoView.snp.bottom)
+            m.left.right.equalToSuperview()
+        }
+        return headerView
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,47 +127,8 @@ class MarketDetailViewController: BaseViewController {
         let bottomButtonView = UIView()
         bottomButtonView.backgroundColor = .green
 
-
-        let pageStyle = DNSPageStyle()
-        pageStyle.isShowBottomLine = true
-        pageStyle.isTitleViewScrollEnabled = true
-        pageStyle.titleViewBackgroundColor = .white
-        pageStyle.titleSelectedColor = Colors.titleGray
-        pageStyle.titleColor = Colors.titleGray_61
-        pageStyle.titleFont = Fonts.Font13
-        pageStyle.bottomLineColor = Colors.blueBg
-        pageStyle.bottomLineHeight = 3
-
-        let viewControllers = [
-            self.depthVC,
-            self.tradsVC,
-            self.tokenInfoVC,
-            self.operatorInfoVC
-        ]
-
-        let titles = [
-            R.string.localizable.marketDetailPageSegmentOrderBookTitle(),
-            R.string.localizable.marketDetailPageSegmentLastTradesTitle(),
-            R.string.localizable.marketDetailPageSegmentTokenInfoTitle(),
-            R.string.localizable.marketDetailPageSegmentOperatorIntoTitle(),
-        ]
-
-        let manager = DNSPageViewManager(style: pageStyle, titles: titles, childViewControllers: viewControllers)
-        self.manager = manager
-
-
-        manager.titleView.snp.makeConstraints { (make) in
-            make.height.equalTo(35)
-        }
-
-        manager.contentView.snp.makeConstraints { (make) in
-            make.height.equalTo(300)
-        }
-
-
-
         view.addSubview(navView)
-        view.addSubview(scrollView)
+        view.addSubview(contentView)
         view.addSubview(bottomButtonView)
 
         navView.snp.remakeConstraints { (m) in
@@ -106,21 +137,17 @@ class MarketDetailViewController: BaseViewController {
             m.right.equalTo(view)
         }
 
-        scrollView.snp.makeConstraints { (m) in
+        contentView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(0)
             m.left.right.equalToSuperview()
         }
 
         bottomButtonView.snp.makeConstraints { (m) in
-            m.top.equalTo(scrollView.snp.bottom)
-            m.left.right.bottom.equalToSuperview()
-            m.height.equalTo(100)
+            m.top.equalTo(contentView.snp.bottom)
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+            m.height.equalTo(bottomHeight)
         }
-
-        scrollView.stackView.addArrangedSubview(marketDetailInfoView)
-        scrollView.stackView.addArrangedSubview(candlestickChartView)
-        scrollView.stackView.addArrangedSubview(manager.titleView)
-        scrollView.stackView.addArrangedSubview(manager.contentView)
     }
 
     func bind() {
@@ -169,32 +196,21 @@ class MarketDetailViewController: BaseViewController {
         }.drive(onNext: { [weak self] info in
             guard let `self` = self else { return }
 
-            let holder = MarketDepthHolder(marketInfo: info)
+            let holder = MarketDataIndoHolder(marketInfo: info)
             holder.depthListBehaviorRelay.bind { [weak self] in
                 plog(level: .debug, log: $0)
                 guard let `self` = self else { return }
                 self.depthVC.bind(info: info, depthList: $0)
             }.disposed(by: holder.rx.disposeBag)
+
+            holder.tradesBehaviorRelay.bind { [weak self] in
+                plog(level: .debug, log: $0)
+                guard let `self` = self else { return }
+                self.tradsVC.bind(info: info, trades: $0)
+            }.disposed(by: holder.rx.disposeBag)
             self.depthHolder = holder
         }).disposed(by: rx.disposeBag)
     }
-
-    var klineSubId: SubId? = nil
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        subId = MarketInfoService.shared.marketSocket.subMarketPair(pairId: "VX_BTC-000") { data in
-//            guard let tickerStatisticsProto = try? Protocol.TickerStatisticsProto.parseFrom(data: data) else { return }
-//            plog(level: .debug, log: "\(tickerStatisticsProto)", tag: .market)
-//        }
-//    }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        guard let subId = subId else { return }
-//        MarketInfoService.shared.marketSocket.unsub(subId: subId)
-//        self.subId = nil
-//    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

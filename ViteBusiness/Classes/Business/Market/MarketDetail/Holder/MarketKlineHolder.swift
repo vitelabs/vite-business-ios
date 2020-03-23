@@ -24,23 +24,7 @@ class MarketKlineHolder: NSObject {
         self.kineType = kineType
         super.init()
 
-        UnifyProvider.vitex.getKlines(symbol: symbol, type: kineType).done { (items) in
-            plog(level: .debug, log: "get \(items.count) klines for \(self.symbol) \(self.kineType.requestParameter)", tag: .market)
-            if self.tmpItems.isEmpty {
-                self.klinesBehaviorRelay.accept(items)
-            } else {
-                guard let last = items.last else { return }
-                var array = items
-                self.tmpItems.forEach { (item) in
-                    if item.t > last.t {
-                        array.append(item)
-                    }
-                }
-                self.klinesBehaviorRelay.accept(array)
-            }
-        }.catch { (e) in
-            plog(level: .debug, log: e, tag: .market)
-        }
+        self.fetchKlines()
 
         self.klineSubId = MarketInfoService.shared.marketSocket.sub(topic: kineType.topic(symbol: symbol), ticker: { [weak self] (data) in
             guard let `self` = self else { return }
@@ -60,6 +44,33 @@ class MarketKlineHolder: NSObject {
                 self.tmpItems.append(item)
             }
         })
+    }
+
+    func fetchKlines() {
+        UnifyProvider.vitex.getKlines(symbol: symbol, type: kineType).done { [weak self] (items) in
+            guard let `self` = self else {
+                return
+            }
+            plog(level: .debug, log: "get \(items.count) klines for \(self.symbol) \(self.kineType.requestParameter)", tag: .market)
+            if self.tmpItems.isEmpty {
+                self.klinesBehaviorRelay.accept(items)
+            } else {
+                guard let last = items.last else { return }
+                var array = items
+                self.tmpItems.forEach { (item) in
+                    if item.t > last.t {
+                        array.append(item)
+                    }
+                }
+                self.klinesBehaviorRelay.accept(array)
+            }
+        }.catch { [weak self] (e) in
+            plog(level: .debug, log: e, tag: .market)
+            guard let `self` = self else {
+                return
+            }
+            GCD.delay(1) { self.fetchKlines() }
+        }
     }
 
     func unsub() {

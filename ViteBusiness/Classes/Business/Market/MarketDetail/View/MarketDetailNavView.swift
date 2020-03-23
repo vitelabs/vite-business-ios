@@ -9,6 +9,8 @@ import UIKit
 
 class MarketDetailNavView: UIView {
 
+    static let height: CGFloat = 44
+
     let backButton = UIButton().then {
         $0.setImage(R.image.icon_nav_back_black_gray(), for: .normal)
         $0.setImage(R.image.icon_nav_back_black_gray()?.highlighted, for: .highlighted)

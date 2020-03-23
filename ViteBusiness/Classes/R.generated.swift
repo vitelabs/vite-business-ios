@@ -1851,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1111 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1114 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5229,6 +5229,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageSegmentTokenInfoTitle = Rswift.StringResource(key: "market.detail.page.segment.token.info.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 价格
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageTradePriceTitle = Rswift.StringResource(key: "market.detail.page.trade.price.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 价格(%@)
       /// 
       /// Locales: en, zh-Hans
@@ -5861,6 +5865,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionPageTip4 = Rswift.StringResource(key: "defi.subscription.page.tip4", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageTradeVolTitle = Rswift.StringResource(key: "market.detail.page.trade.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 数量(%@)
       /// 
       /// Locales: en, zh-Hans
@@ -5885,6 +5893,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanPageCellRateErrorTooBig = Rswift.StringResource(key: "defi.loan.page.cell.rate.error.too.big", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 时间
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageTradeTimeTitle = Rswift.StringResource(key: "market.detail.page.trade.time.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 时间
       /// 
       /// Locales: en, zh-Hans
@@ -12206,6 +12218,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.segment.token.info.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 价格
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageTradePriceTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.trade.price.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 价格(%@)
       /// 
       /// Locales: en, zh-Hans
@@ -13312,6 +13331,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.subscription.page.tip4", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageTradeVolTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.trade.vol.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 数量(%@)
       /// 
       /// Locales: en, zh-Hans
@@ -13352,6 +13378,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanPageCellRateErrorTooBig(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.page.cell.rate.error.too.big", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 时间
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageTradeTimeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.trade.time.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 时间

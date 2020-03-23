@@ -1028,7 +1028,9 @@
 "market.detail.page.depth.vol.title" = "数量(%@)";
 "market.detail.page.depth.price.title" = "价格(%@)";
 
-
+"market.detail.page.trade.time.title" = "时间";
+"market.detail.page.trade.price.title" = "价格";
+"market.detail.page.trade.vol.title" = "数量";
 
 
 

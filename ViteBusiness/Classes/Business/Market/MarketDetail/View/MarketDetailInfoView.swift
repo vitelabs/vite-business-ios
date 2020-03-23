@@ -9,6 +9,8 @@ import UIKit
 
 class MarketDetailInfoView: UIView {
 
+    static let height: CGFloat = 70
+
     let priceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
     }
@@ -60,6 +62,8 @@ class MarketDetailInfoView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
 
         addSubview(priceLabel)
         addSubview(plegalPriceLabel)

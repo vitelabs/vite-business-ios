@@ -79,4 +79,17 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+
+    static func getTrades(symbol: String) -> Promise<[MarketTrade]> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getTrades(symbol: symbol), responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            guard let trade = json["trade"].rawString(),
+                let ret = [MarketTrade](JSONString: trade) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
 }
+

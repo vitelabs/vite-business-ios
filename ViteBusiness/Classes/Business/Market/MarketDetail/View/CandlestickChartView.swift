@@ -14,6 +14,8 @@ import RxCocoa
 
 class CandlestickChartView: UIView {
 
+    static let height: CGFloat = 432
+
     var kineTypeBehaviorRelay: BehaviorRelay<MarketKlineType>
 
     let headerView = HeaderView()

@@ -11,6 +11,7 @@ import ViteWallet
 enum ViteXAPI: TargetType {
     case getklines(symbol: String, type: MarketKlineType)
     case getDepth(symbol: String)
+    case getTrades(symbol: String)
 
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -20,6 +21,7 @@ enum ViteXAPI: TargetType {
         switch self {
         case .getklines: return "api/v1/klines"
         case .getDepth: return "api/v1/depth"
+        case .getTrades: return "api/v1/trades"
         }
     }
 
@@ -41,6 +43,12 @@ enum ViteXAPI: TargetType {
         case let .getDepth(symbol):
             let parameters = [
                 "step": "6",
+                "limit": "200",
+                "symbol": symbol
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getTrades(symbol):
+            let parameters = [
                 "limit": "200",
                 "symbol": symbol
             ]

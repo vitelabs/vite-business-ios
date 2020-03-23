@@ -7,106 +7,157 @@
 
 import UIKit
 
-class OrderBookViewController: BaseViewController {
+class OrderBookViewController: BaseTableViewController {
 
-    let leftLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-    }
-
-    let midLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-    }
-
-    let rightLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-    }
-
-    let leftStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .fill
-        $0.distribution = .fill
-        $0.spacing = 0
-    }
-
-    let rightStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .fill
-        $0.distribution = .fill
-        $0.spacing = 0
-    }
-
-    let leftViews: [LeftItemView] = (0..<15).map { _ in LeftItemView() }
-    let rightViews: [RightItemView] = (0..<15).map { _ in RightItemView() }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(leftLabel)
-        view.addSubview(midLabel)
-        view.addSubview(rightLabel)
-        view.addSubview(leftStackView)
-        view.addSubview(rightStackView)
-
-        leftLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.left.equalToSuperview().offset(24)
+        tableView.snp.remakeConstraints { (m) in
+            m.top.equalTo(view).offset(38)
+            m.left.right.bottom.equalToSuperview()
         }
 
-        midLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.centerX.equalToSuperview()
-        }
-
-        rightLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.right.equalToSuperview().offset(-24)
-        }
-
-        leftStackView.snp.makeConstraints { (m) in
-            m.top.equalTo(leftLabel.snp.bottom).offset(10)
-            m.left.equalToSuperview().offset(24)
-//            m.bottom.equalToSuperview().offset(-10)
-        }
-
-        rightStackView.snp.makeConstraints { (m) in
-            m.top.equalTo(leftLabel.snp.bottom).offset(10)
-            m.left.equalTo(leftStackView.snp.right)
-            m.width.equalTo(leftStackView)
-            m.right.equalToSuperview().offset(-24)
-//            m.bottom.equalToSuperview().offset(-10)
-        }
-
-        leftViews.forEach {
-            leftStackView.addArrangedSubview($0)
-        }
-
-        rightViews.forEach {
-            rightStackView.addArrangedSubview($0)
-        }
-
+        glt_scrollView = tableView
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.contentInsetAdjustmentBehavior = .never
     }
 
+    let headerCell = HeaderCell()
+
+    var depthList: MarketDepthList?
     func bind(info: MarketInfo, depthList: MarketDepthList?) {
-        leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
-        midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.tradeTokenSymbol)
-        rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
+        headerCell.leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
+        headerCell.midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.tradeTokenSymbol)
+        headerCell.rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
+        self.depthList = depthList
+        tableView.reloadData()
+    }
 
-        for (index, view) in leftViews.enumerated() {
-            let depth = (index < (depthList?.asks.count ?? 0)) ? depthList?.asks[index] : nil
-            view.bind(depth: depth)
-        }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 
-        for (index, view) in rightViews.enumerated() {
-            let depth = (index < (depthList?.bids.count ?? 0)) ? depthList?.bids[index] : nil
-            view.bind(depth: depth)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            if let depthList = depthList {
+                return max(depthList.asks.count, depthList.bids.count)
+            } else {
+                return 0
+            }
         }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            return headerCell
+        } else {
+            let cell: ItemCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.bind(list: depthList, index: indexPath.row)
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 45 : 24
     }
 }
 
 extension OrderBookViewController {
+
+    class HeaderCell: BaseTableViewCell {
+
+        let leftLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let midLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        let rightLabel = UILabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+        }
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+            selectionStyle = .none
+            contentView.addSubview(leftLabel)
+            contentView.addSubview(midLabel)
+            contentView.addSubview(rightLabel)
+
+            leftLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(19)
+                m.left.equalToSuperview().offset(24)
+            }
+
+            midLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(19)
+                m.centerX.equalToSuperview()
+            }
+
+            rightLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(19)
+                m.right.equalToSuperview().offset(-24)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class ItemCell: BaseTableViewCell {
+
+        let leftView = LeftItemView()
+        let rightView = RightItemView()
+
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+            selectionStyle = .none
+            contentView.addSubview(leftView)
+            contentView.addSubview(rightView)
+
+            leftView.snp.makeConstraints { (m) in
+                m.top.bottom.equalToSuperview()
+                m.left.equalToSuperview().offset(24)
+            }
+
+            rightView.snp.makeConstraints { (m) in
+                m.top.bottom.equalToSuperview()
+                m.left.equalTo(leftView.snp.right)
+                m.width.equalTo(leftView)
+                m.right.equalToSuperview().offset(-24)
+            }
+        }
+
+        func bind(list: MarketDepthList?, index: Int) {
+            if let list = list {
+                let left = index < list.asks.count ? list.asks[index] : nil
+                let right = index < list.bids.count ? list.bids[index] : nil
+                leftView.bind(depth: left)
+                rightView.bind(depth: right)
+            } else {
+                leftView.bind(depth: nil)
+                rightView.bind(depth: nil)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+
     class LeftItemView: UIView {
 
         let quantityLabel = UILabel().then {
