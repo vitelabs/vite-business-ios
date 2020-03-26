@@ -1033,10 +1033,24 @@
 "market.detail.page.trade.vol.title" = "数量";
 
 
+"market.detail.page.buy.button.title" = "买入";
+"market.detail.page.sell.button.title" = "卖出";
 
+"market.detail.page.token.info.token.id" = "TokenID";
+"market.detail.page.token.info.total" = "流通总量";
+"market.detail.page.token.info.type" = "代币类型";
+"market.detail.page.token.info.type.value.native" = "原生代币";
+"market.detail.page.token.info.type.value.other" = "跨链代币";
+"market.detail.page.token.info.gateway" = "跨链网关";
+"market.detail.page.token.info.official" = "官网";
+"market.detail.page.token.info.paper" = "白皮书";
+"market.detail.page.token.info.browser" = "浏览器";
+"market.detail.page.token.info.github" = "Github";
+"market.detail.page.token.info.social" = "社交媒体";
+"market.detail.page.token.info.brief" = "代币简介";
 
-
-
+"market.detail.page.token.info.address" = "运营商地址";
+"market.detail.page.token.info.pair" = "交易对";
 
 // DeFi
 "defi.home.page.title" =  "DeFi";

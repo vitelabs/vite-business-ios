@@ -63,6 +63,16 @@ class TokenIconView: UIView {
         self.layer.pop_add(animation, forKey: "layerScaleSmallSpringAnimation")
     }
 
+    func setTokenIcon(_ urlString: String) {
+        tokenIconImageView.kf.cancelDownloadTask()
+        tokenIconImageView.image = UIImage.color(UIColor(netHex: 0xF8F8F8))
+        updateLayer()
+        gatewayIconImageView.isHidden = true
+        self.bringSubviewToFront(gatewayIconImageView)
+        guard let url = URL(string: urlString) else { return }
+        tokenIconImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
+    }
+
     var tokenInfo: TokenInfo? {
         didSet {
             tokenIconImageView.kf.cancelDownloadTask()

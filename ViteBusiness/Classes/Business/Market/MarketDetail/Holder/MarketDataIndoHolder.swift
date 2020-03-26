@@ -8,13 +8,15 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import PromiseKit
 
 class MarketDataIndoHolder: NSObject {
-    fileprivate(set) var marketInfo: MarketInfo
+    let marketInfo: MarketInfo
 
 
     let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
     let tradesBehaviorRelay: BehaviorRelay<[MarketTrade]> = BehaviorRelay(value: [])
+    let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
 
     var depthSubId: SubId? = nil
     var tradesSubId: SubId? = nil
@@ -30,6 +32,7 @@ class MarketDataIndoHolder: NSObject {
 
         self.fetchDepth()
         self.fetchTrades()
+        self.fetchPairDetailInfo()
 
         self.depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
@@ -64,28 +67,54 @@ class MarketDataIndoHolder: NSObject {
         })
     }
 
-    func fetchDepth() {
-        UnifyProvider.vitex.getDepth(symbol: symbol).done { [weak self] (depthList) in
+
+    func fetchUntilSuccess<T>(promise: @escaping () -> Promise<T>, success: @escaping (T) -> Void) {
+        promise().done {
+            success($0)
+        }.catch { [weak self] (e) in
             guard let `self` = self else {
                 return
             }
+            plog(level: .debug, log: "fetchUntilSuccess error", tag: .market)
+            GCD.delay(1) {[weak self] in
+                guard let `self` = self else {
+                    return
+                }
+                self.fetchUntilSuccess(promise: promise, success: success)
+            }
+        }
+    }
+
+    func fetchPairDetailInfo() {
+        let tradeToken: String = marketInfo.statistic.tradeToken
+        let quoteToken: String = marketInfo.statistic!.quoteToken
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getPairDetailInfo(tradeTokenId: tradeToken, quoteTokenId: quoteToken)
+        }) { [weak self] (info) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: "getPairDetailInfo for \(self.symbol)", tag: .market)
+            self.marketPairDetailInfoBehaviorRelay.accept(info)
+        }
+    }
+
+    func fetchDepth() {
+        let symbol = self.symbol
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getDepth(symbol: symbol)
+        }) { [weak self] (depthList) in
+            guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
             guard self.depthListBehaviorRelay.value == nil else { return }
             self.depthListBehaviorRelay.accept(depthList)
-        }.catch { [weak self] (e) in
-            plog(level: .debug, log: e, tag: .market)
-            guard let `self` = self else {
-                return
-            }
-            GCD.delay(1) { self.fetchDepth() }
         }
     }
 
     func fetchTrades() {
-        UnifyProvider.vitex.getTrades(symbol: symbol).done { [weak self] (trades) in
-            guard let `self` = self else {
-                return
-            }
+        let symbol = self.symbol
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getTrades(symbol: symbol)
+        }) { [weak self] (trades) in
+            guard let `self` = self else { return }
             plog(level: .debug, log: "getTrades for \(self.symbol)", tag: .market)
 
             if self.tmpTradeItems.isEmpty {
@@ -101,12 +130,6 @@ class MarketDataIndoHolder: NSObject {
                 self.tradesBehaviorRelay.accept(array)
                 self.tmpTradeItems = []
             }
-        }.catch { [weak self](e) in
-            guard let `self` = self else {
-                return
-            }
-            plog(level: .debug, log: e, tag: .market)
-            GCD.delay(1) { self.fetchTrades() }
         }
     }
 

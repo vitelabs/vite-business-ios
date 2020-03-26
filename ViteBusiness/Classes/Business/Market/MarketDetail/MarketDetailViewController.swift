@@ -34,8 +34,8 @@ class MarketDetailViewController: BaseViewController {
     let navView = MarketDetailNavView()
     let marketDetailInfoView = MarketDetailInfoView()
     let candlestickChartView = CandlestickChartView(klineType: MarketKlineType.hour1)
+    let bottomView = BottomView()
 
-    private let bottomHeight: CGFloat = 94
     lazy var contentView: LTSimpleManager = {
         let titles = [
             R.string.localizable.marketDetailPageSegmentOrderBookTitle(),
@@ -78,7 +78,7 @@ class MarketDetailViewController: BaseViewController {
         let frame: CGRect =  {
             let statusBarH = UIApplication.shared.statusBarFrame.size.height
             let navH: CGFloat = MarketDetailNavView.height
-            let bottomH: CGFloat = bottomHeight
+            let bottomH: CGFloat = BottomView.height
             let bottomSafeH: CGFloat = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
             var H: CGFloat = kScreenH - statusBarH - navH - bottomH - bottomSafeH
             return CGRect(x: 0, y: statusBarH + navH, width: kScreenW, height: H)
@@ -124,12 +124,12 @@ class MarketDetailViewController: BaseViewController {
 
     func setupView() {
 
-        let bottomButtonView = UIView()
-        bottomButtonView.backgroundColor = .green
+
+        bottomView.backgroundColor = .green
 
         view.addSubview(navView)
         view.addSubview(contentView)
-        view.addSubview(bottomButtonView)
+        view.addSubview(bottomView)
 
         navView.snp.remakeConstraints { (m) in
             m.top.equalToSuperview()
@@ -142,11 +142,11 @@ class MarketDetailViewController: BaseViewController {
             m.left.right.equalToSuperview()
         }
 
-        bottomButtonView.snp.makeConstraints { (m) in
+        bottomView.snp.makeConstraints { (m) in
             m.top.equalTo(contentView.snp.bottom)
             m.left.right.equalToSuperview()
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
-            m.height.equalTo(bottomHeight)
+            m.height.equalTo(BottomView.height)
         }
     }
 
@@ -209,6 +209,12 @@ class MarketDetailViewController: BaseViewController {
                 self.tradsVC.bind(info: info, trades: $0)
             }.disposed(by: holder.rx.disposeBag)
             self.depthHolder = holder
+            holder.marketPairDetailInfoBehaviorRelay.bind { [weak self] in
+                plog(level: .debug, log: $0)
+                guard let `self` = self else { return }
+                self.tokenInfoVC.bind(info: $0)
+                self.operatorInfoVC.bind(info: $0)
+            }.disposed(by: holder.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
     }
 
@@ -220,5 +226,43 @@ class MarketDetailViewController: BaseViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+}
+
+extension MarketDetailViewController {
+
+    class BottomView: UIView {
+
+        static let height: CGFloat = 94
+
+        let buyButton = UIButton(style: .green, title: R.string.localizable.marketDetailPageBuyButtonTitle())
+        let sellButton = UIButton(style: .red, title: R.string.localizable.marketDetailPageSellButtonTitle())
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            addSubview(buyButton)
+            addSubview(sellButton)
+
+            buyButton.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(20)
+                m.left.equalToSuperview().offset(24)
+                m.bottom.equalToSuperview().offset(-24)
+            }
+
+            sellButton.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(20)
+                m.left.equalTo(buyButton.snp.right).offset(24)
+                m.width.equalTo(buyButton)
+                m.right.equalToSuperview().offset(-24)
+                m.bottom.equalToSuperview().offset(-24)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+
     }
 }

@@ -8,26 +8,6 @@
 import UIKit
 
 class LastTradesViewController: BaseTableViewController {
-    
-
-
-    lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24)).then {
-        $0.layer.masksToBounds = false
-        if #available(iOS 11.0, *) {
-            $0.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
-    }
-
-//    let stackView = UIStackView().then {
-//        $0.axis = .vertical
-//        $0.alignment = .fill
-//        $0.distribution = .fill
-//        $0.spacing = 0
-//    }
-
-//    let itemViews: [ItemView] = (0..<50).map { _ in ItemView() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,60 +25,11 @@ class LastTradesViewController: BaseTableViewController {
     }
 
     let headerCell = HeaderCell()
-/*
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        view.addSubview(leftLabel)
-        view.addSubview(midLabel)
-        view.addSubview(rightLabel)
-        view.addSubview(scrollView)
-
-        let guide = UILayoutGuide()
-        view.addLayoutGuide(guide)
-        guide.snp.makeConstraints { (m) in
-            m.edges.equalToSuperview().inset(24)
-        }
-
-        leftLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.left.equalToSuperview().offset(24)
-            m.width.equalTo(guide).multipliedBy(1.0 / 3.0)
-        }
-
-        midLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.left.equalTo(leftLabel.snp.right)
-            m.width.equalTo(guide).multipliedBy(1.0 / 3.0)
-        }
-
-        rightLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(19)
-            m.right.equalToSuperview().offset(-24)
-        }
-
-        scrollView.snp.makeConstraints { (m) in
-            m.top.equalTo(leftLabel.snp.bottom)
-            m.left.right.equalToSuperview()
-            m.bottom.equalToSuperview()
-        }
-
-        itemViews.forEach {
-            scrollView.stackView.addArrangedSubview($0)
-        }
-
-    }
-*/
     var trades: [MarketTrade] = []
     func bind(info: MarketInfo, trades: [MarketTrade]) {
-
         self.trades = trades
         tableView.reloadData()
-
-//        for (index, view) in itemViews.enumerated() {
-//            let trade = (index < trades.count) ? trades[index] : nil
-//            view.bind(trade: trade)
-//        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

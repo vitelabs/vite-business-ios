@@ -26,7 +26,7 @@ class BalanceInfoNavView: UIView {
     let helpButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.grin_help(), for: .normal)
-        button.isHidden == true
+        button.isHidden = true
         return button
     }()
 
@@ -102,7 +102,7 @@ class BalanceInfoNavView: UIView {
         if tokenInfo == GrinManager.tokenInfo {
             helpButton.isHidden = false
         } else {
-            helpButton.isHidden == true
+            helpButton.isHidden = true
             helpButton.setImage(nil, for: .normal)
         }
     }

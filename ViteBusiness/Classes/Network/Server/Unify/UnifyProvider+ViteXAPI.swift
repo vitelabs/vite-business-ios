@@ -91,5 +91,15 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+
+    static func getPairDetailInfo(tradeTokenId: ViteTokenId, quoteTokenId: ViteTokenId) -> Promise<MarketPairDetailInfo> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getPairDetailInfo(tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId), responseToData: responseToData).map { string in
+            guard let ret = MarketPairDetailInfo(JSONString: string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
 }
 

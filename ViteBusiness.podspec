@@ -80,11 +80,11 @@ Pod::Spec.new do |s|
   s.dependency 'Toast-Swift', '~> 4.0.1'
   s.dependency 'RazzleDazzle'
   s.dependency 'CHIPageControl'
-  s.dependency 'ActiveLabel', '1.0.1'
+  s.dependency 'ActiveLabel', '1.1.0'
   s.dependency 'PPBadgeViewSwift', '3.1.0'
 
   #table static form
-  s.dependency 'Eureka', '~> 4.3.0'
+  s.dependency 'Eureka', '~> 5.2.0'
 
   #RX
   s.dependency 'RxSwift', '~> 4.0'
