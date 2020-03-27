@@ -124,9 +124,6 @@ class MarketDetailViewController: BaseViewController {
 
     func setupView() {
 
-
-        bottomView.backgroundColor = .green
-
         view.addSubview(navView)
         view.addSubview(contentView)
         view.addSubview(bottomView)
@@ -151,7 +148,16 @@ class MarketDetailViewController: BaseViewController {
     }
 
     func bind() {
-        navView.bind(marketInfo: marketInfoBehaviorRelay.value)
+
+        navView.switchPair = { [weak self] info in
+            guard let `self` = self else { return }
+            self.marketInfoBehaviorRelay.accept(info)
+        }
+
+        operatorInfoVC.switchPair = { [weak self] info in
+            guard let `self` = self else { return }
+            self.marketInfoBehaviorRelay.accept(info)
+        }
 
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
             guard let `self` = self else { return }
@@ -195,7 +201,7 @@ class MarketDetailViewController: BaseViewController {
             left.statistic.symbol == right.statistic.symbol
         }.drive(onNext: { [weak self] info in
             guard let `self` = self else { return }
-
+            self.navView.bind(marketInfo: info)
             let holder = MarketDataIndoHolder(marketInfo: info)
             holder.depthListBehaviorRelay.bind { [weak self] in
                 plog(level: .debug, log: $0)
@@ -214,6 +220,7 @@ class MarketDetailViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.tokenInfoVC.bind(info: $0)
                 self.operatorInfoVC.bind(info: $0)
+                self.navView.setOpertionIcon($0?.operatorInfo.icon)
             }.disposed(by: holder.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
     }

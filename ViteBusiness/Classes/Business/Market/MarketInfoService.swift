@@ -37,6 +37,14 @@ class MarketInfoService: NSObject {
         return BehaviorRelay<[MarketData]>(value: orignialMarketData)
     }()
 
+    func marketInfo(symbol: String) -> MarketInfo? {
+        let infos = sortedMarketDataBehaviorRelay.value.flatMap { $0.infos }
+        for info in infos where info.statistic.symbol == symbol {
+            return info
+        }
+        return nil
+    }
+
     var sortStatuses: [(SortStatus,SortStatus)] = Array<(SortStatus,SortStatus)>(repeating: (.normal, .normal), count: 5)
 
     override init() {

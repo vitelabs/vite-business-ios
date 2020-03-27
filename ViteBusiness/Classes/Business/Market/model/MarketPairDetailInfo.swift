@@ -127,6 +127,10 @@ extension MarketPairDetailInfo {
         var gateway : String = ""
         var level : Int = 0
 
+        var tradePairsArray: [String] {
+            tradePairs.values.reduce([String](), +)
+        }
+
         init() {}
         
         init?(map: Map) {

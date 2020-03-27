@@ -34,10 +34,11 @@ enum ViteXAPI: TargetType {
     var task: Task {
         switch self {
         case let .getklines(symbol, type):
+            let end = Date().timeIntervalSince1970
+            let start = type.calcRequestStartTime(end: end, limit: 500)
             let parameters = [
-                "startTime": "0",
-                "endTime": "\(Int(Date().timeIntervalSince1970))",
-                "limit": "200",
+                "startTime": "\(Int(start))",
+                "endTime": "\(Int(end))",
                 "symbol": symbol,
                 "interval": type.requestParameter
             ]

@@ -11,6 +11,8 @@ class MarketDetailNavView: UIView {
 
     static let height: CGFloat = 44
 
+    var switchPair: ((MarketInfo) -> Void)?
+
     let backButton = UIButton().then {
         $0.setImage(R.image.icon_nav_back_black_gray(), for: .normal)
         $0.setImage(R.image.icon_nav_back_black_gray()?.highlighted, for: .highlighted)
@@ -28,12 +30,12 @@ class MarketDetailNavView: UIView {
 
     let miningImgView = UIImageView()
 
+    let changeImageView = UIImageView(image: R.image.icon_market_change())
     let changeButton = UIButton().then {
-        $0.setImage(R.image.icon_market_change(), for: .normal)
-        $0.setImage(R.image.icon_market_change()?.highlighted, for: .highlighted)
+        $0.backgroundColor = .clear
     }
 
-    let operatorButton = UIButton()
+    let operatorImageView = UIImageView()
 
     let favButton = UIButton().then {
         $0.setImage(R.image.icon_market_un_fav(), for: .normal)
@@ -46,10 +48,13 @@ class MarketDetailNavView: UIView {
         backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
 
         addSubview(backButton)
+        addSubview(changeButton)
         addSubview(tradeLabel)
         addSubview(quoteLabel)
         addSubview(miningImgView)
-        addSubview(changeButton)
+
+        addSubview(changeImageView)
+        addSubview(operatorImageView)
         addSubview(favButton)
 
         let vLine = UIView().then {
@@ -60,10 +65,16 @@ class MarketDetailNavView: UIView {
 
 
         backButton.snp.makeConstraints { (m) in
-            m.top.equalTo(self.safeAreaLayoutGuideSnpTop).offset(8)
-            m.bottom.equalToSuperview().offset(-8)
+            m.top.equalTo(self.safeAreaLayoutGuideSnpTop)
+            m.bottom.equalToSuperview()
             m.left.equalToSuperview().offset(20)
-            m.size.equalTo(CGSize(width: 28, height: 28))
+            m.size.equalTo(CGSize(width: 28, height: 28 + 16))
+        }
+
+        changeButton.snp.makeConstraints { (m) in
+            m.top.bottom.equalToSuperview()
+            m.left.equalTo(tradeLabel)
+            m.right.equalTo(operatorImageView.snp.left)
         }
 
         tradeLabel.snp.makeConstraints { (m) in
@@ -88,22 +99,28 @@ class MarketDetailNavView: UIView {
             m.left.equalTo(miningImgView.snp.right).offset(8)
         }
 
-        changeButton.snp.makeConstraints { (m) in
+        changeImageView.snp.makeConstraints { (m) in
             m.centerY.equalTo(backButton)
             m.left.equalTo(vLine.snp.right)
-            m.size.equalTo(CGSize(width: 32, height: 32))
         }
 
         favButton.snp.makeConstraints { (m) in
             m.centerY.equalTo(backButton)
             m.right.equalToSuperview().offset(-20)
         }
-//
-//        operatorButton.snp.makeConstraints { (m) in
-//            m.centerY.equalTo(backButton)
-//            m.right.equalTo(favButton.snp.left).offset(-8)
-//            m.size.equalTo(CGSize(width: 14, height: 14))
-//        }
+
+        operatorImageView.snp.makeConstraints { (m) in
+            m.centerY.equalTo(backButton)
+            m.right.equalTo(favButton.snp.left).offset(-8)
+            m.size.equalTo(CGSize(width: 14, height: 14))
+        }
+    }
+
+    func setOpertionIcon(_ urlString: String?) {
+        operatorImageView.kf.cancelDownloadTask()
+        if let urlString = urlString, let url = URL(string: urlString) {
+            operatorImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
+        }
     }
 
     func bind(marketInfo: MarketInfo) {
@@ -137,11 +154,10 @@ class MarketDetailNavView: UIView {
         }.disposed(by: rx.disposeBag)
 
         changeButton.rx.tap.bind {
-
-        }.disposed(by: rx.disposeBag)
-
-        operatorButton.rx.tap.bind {
-
+            SeletcMarketPairManager.shared.showCard()
+            SeletcMarketPairManager.shared.onSelectInfo = { [weak self] info in
+                self?.switchPair?(info)
+            }
         }.disposed(by: rx.disposeBag)
     }
 

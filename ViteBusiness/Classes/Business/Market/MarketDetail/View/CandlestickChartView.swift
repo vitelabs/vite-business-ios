@@ -231,7 +231,7 @@ class CandlestickChartView: UIView {
         self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
         self.barChartView.moveViewToX(Double(klineItems.count - 1))
 
-        let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format("HH:mm") }
+        let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format(kineTypeBehaviorRelay.value.timeFormat) }
         combinedChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
         combinedChartView.xAxis.setLabelCount(4, force: false)
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)

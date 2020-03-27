@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class MarketOperatorInfoViewController: BaseTableViewController {
 
@@ -26,6 +27,7 @@ class MarketOperatorInfoViewController: BaseTableViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
 
+    var switchPair: ((MarketInfo) -> Void)?
 
     var cells: [BaseTableViewCell] = []
     var info: MarketPairDetailInfo? = nil {
@@ -48,6 +50,16 @@ class MarketOperatorInfoViewController: BaseTableViewController {
             cells.append({
                 let cell = MarketTokenInfoViewController.BriefCell()
                 cell.setText(info.overview.value)
+            return cell
+            }())
+
+            cells.append({
+                let cell = PairCell()
+                cell.setText(info.tradePairsArray, clicked: { [weak self] in
+                    guard let block = self?.switchPair else { return }
+                    guard let info = MarketInfoService.shared.marketInfo(symbol: $0) else { return }
+                    block(info)
+                })
             return cell
             }())
 
@@ -112,27 +124,54 @@ extension MarketOperatorInfoViewController {
         }
     }
 
-    class TestCell: BaseTableViewCell {
-        let leftLabel = UILabel().then {
+    class PairCell: BaseTableViewCell {
+        let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
-            $0.text = R.string.localizable.marketDetailPageTradeTimeTitle()
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.text = R.string.localizable.marketDetailPageTokenInfoPair()
+        }
+
+        let valueLabel = ActiveLabel().then {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+            $0.numberOfLines = 0
+            $0.lineSpacing = 12
         }
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
             selectionStyle = .none
-            contentView.addSubview(leftLabel)
+            contentView.addSubview(titleLabel)
+            contentView.addSubview(valueLabel)
 
 
-            contentView.backgroundColor = .red
-            leftLabel.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(19)
-                m.centerX.equalToSuperview()
-                m.bottom.equalToSuperview().offset(-40)
+            titleLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(12)
+                m.left.right.equalToSuperview().inset(24)
             }
 
+            valueLabel.snp.makeConstraints { (m) in
+                m.top.equalTo(titleLabel.snp.bottom).offset(12)
+                m.left.right.equalToSuperview().inset(24)
+                m.bottom.equalToSuperview().inset(12)
+            }
+        }
+
+        func setText(_ pairArray: [String], clicked: @escaping (String) -> Void) {
+
+            var enabledTypes = [ActiveType]()
+            pairArray.forEach { string in
+                let customType = ActiveType.custom(pattern: string.replacingOccurrences(of: "_", with: "/"))
+                enabledTypes.append(customType)
+                self.valueLabel.customize { label in
+                    label.customColor[customType] = UIColor(netHex: 0x007AFF)
+                    label.customSelectedColor[customType] = UIColor(netHex: 0x007AFF).highlighted
+                    label.handleCustomTap(for: customType) { _ in clicked(string) }
+                }
+            }
+            self.valueLabel.enabledTypes = enabledTypes
+            self.valueLabel.text = pairArray.joined(separator: "   ").replacingOccurrences(of: "_", with: "/")
         }
 
         required init?(coder: NSCoder) {
