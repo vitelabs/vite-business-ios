@@ -1042,6 +1042,26 @@
 "market.detail.page.token.info.address" = "运营商地址";
 "market.detail.page.token.info.pair" = "交易对";
 
+// Trading Home
+"trading.home.page.segment.spot" = "币币";
+"trading.home.page.segment.mining" = "挖矿";
+"trading.home.page.segment.bonus" = "分红";
+
+// Spot
+"spot.page.button.buy.title" = "买入";
+"spot.page.button.sell.title" = "卖出";
+"spot.page.button.limit.buy.title" = "限价委托";
+"spot.page.price.placeholder" = "买入价格";
+"spot.page.vol.placeholder" = "买入数量";
+"spot.page.available" = "可用";
+"spot.page.buyable" = "可买";
+"spot.page.sellable" = "可卖";
+"spot.page.open.vip" = "开通 VIP";
+"spot.page.close.vip" = "取消 VIP";
+"spot.page.depth.price" = "价格";
+"spot.page.depth.vol" = "数量";
+"spot.page.current.order.title" = "当前委托";
+"spot.page.orders.button.title" = "历史委托";
 
 // DeFi
 "defi.home.page.title" =  "DeFi";

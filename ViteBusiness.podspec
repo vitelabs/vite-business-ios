@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
   s.dependency 'PromiseKit', '~> 6.0'
   s.dependency 'PromiseKit/Alamofire'
   s.dependency 'APIKit'
-  s.dependency 'ObjectMapper'
+  s.dependency 'ObjectMapper', '3.5.1'
   s.dependency 'MBProgressHUD'
   s.dependency 'KeychainSwift'
   s.dependency 'Moya'

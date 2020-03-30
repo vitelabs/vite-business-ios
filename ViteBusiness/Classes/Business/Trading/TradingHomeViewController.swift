@@ -8,8 +8,127 @@
 import UIKit
 
 class TradingHomeViewController: BaseViewController {
-    
+
+    let segmentView = SegmentView()
+    let containerView = UIView()
+
+    let spotVC = SpotViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        bind()
     }
+
+    func setupView() {
+        view.addSubview(segmentView)
+        view.addSubview(containerView)
+
+        segmentView.snp.makeConstraints { (m) in
+            m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
+            m.left.right.equalToSuperview()
+        }
+
+        containerView.snp.makeConstraints { (m) in
+            m.top.equalTo(segmentView.snp.bottom)
+            m.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+        }
+
+        containerView.addSubview(spotVC.view)
+        addChild(spotVC)
+        spotVC.didMove(toParent: self)
+    }
+
+    func bind() {
+        segmentView.changed = { index in
+            plog(level: .debug, log: index)
+            DispatchQueue.main.async {
+                self.segmentView.index = 0
+            }
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+}
+
+extension TradingHomeViewController {
+
+    class SegmentView: UIView {
+
+        let buttons = [
+            makeSegmentButton(title: R.string.localizable.tradingHomePageSegmentSpot()),
+            makeSegmentButton(title: R.string.localizable.tradingHomePageSegmentMining()),
+            makeSegmentButton(title: R.string.localizable.tradingHomePageSegmentBonus())
+        ]
+
+        var changed: ((Int) -> Void)?
+
+        var index: Int = 0 {
+            didSet {
+                self.updateState()
+            }
+        }
+
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            for (index, button) in buttons.enumerated() {
+                addSubview(button)
+                button.snp.makeConstraints { (m) in
+                    m.top.equalToSuperview().offset(17)
+                    m.bottom.equalToSuperview().offset(-10)
+                    if index == 0 {
+                        m.left.equalToSuperview().offset(24)
+                    } else {
+                        m.left.equalTo(buttons[index - 1].snp.right).offset(10)
+                        m.width.equalTo(buttons[index - 1])
+                    }
+
+                    if index == buttons.count - 1 {
+                        m.right.equalToSuperview().offset(-24)
+                    }
+                }
+
+                button.rx.tap.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.index = index
+                    self.changed?(index)
+                }.disposed(by: rx.disposeBag)
+            }
+            updateState()
+        }
+
+        func updateState() {
+            for (i, b) in self.buttons.enumerated() {
+                b.isEnabled = (self.index != i)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        static func makeSegmentButton(title: String) -> UIButton {
+            let ret = UIButton()
+            ret.setTitle(title, for: .normal)
+            ret.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+            ret.setTitleColor(UIColor(netHex: 0x3E4A59, alpha: 0.7), for: .normal)
+            ret.setTitleColor(UIColor(netHex: 0x007AFF), for: .disabled)
+            ret.setBackgroundImage(R.image.icon_trading_segment_unselected_fram()?.resizable, for: .normal)
+            ret.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.resizable, for: .disabled)
+            return ret
+        }
+    }
+
+
 }

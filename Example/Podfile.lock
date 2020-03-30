@@ -189,7 +189,7 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - ObjectMapper (3.5.2)
+  - ObjectMapper (3.5.1)
   - pop (1.0.12)
   - PPBadgeViewSwift (3.1.0)
   - PromiseKit (6.8.5):
@@ -278,7 +278,7 @@ PODS:
     - Moya
     - "NSObject+Rx"
     - NYXImagesKit (= 2.3)
-    - ObjectMapper
+    - ObjectMapper (= 3.5.1)
     - pop (~> 1.0)
     - PPBadgeViewSwift (= 3.1.0)
     - PromiseKit (~> 6.0)
@@ -543,7 +543,7 @@ SPEC CHECKSUMS:
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
   NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PPBadgeViewSwift: 18a219a9897f418342c22dd1a54f7b18ac56546b
   PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
@@ -575,7 +575,7 @@ SPEC CHECKSUMS:
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
   Vite_GrinWallet: de995b55145f9171385ad035f47b37b579715a69
   Vite_HDWalletKit: 75a0b78af01de2028e0a2fd8c2cbe04eea21ae86
-  ViteBusiness: 6706fd2b0f04c0a63df9f907dd762c524b127778
+  ViteBusiness: 7a830a891009fed975e76089a4266c57de96eda2
   ViteWallet: cc4401e88efddbd8e3f44378d4ceade078d2d82a
   web3.swift.pod: 66048c11416c2e7a9a4b35fe42254d0f0d9db4b1
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
