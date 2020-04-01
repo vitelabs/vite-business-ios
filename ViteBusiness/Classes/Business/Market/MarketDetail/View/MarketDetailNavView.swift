@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MarketDetailNavView: UIView {
 
@@ -114,24 +116,9 @@ class MarketDetailNavView: UIView {
             m.right.equalTo(favButton.snp.left).offset(-8)
             m.size.equalTo(CGSize(width: 14, height: 14))
         }
-    }
 
-    func setOpertionIcon(_ urlString: String?) {
-        operatorImageView.kf.cancelDownloadTask()
-        if let urlString = urlString, let url = URL(string: urlString) {
-            operatorImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
-        }
-    }
-
-    func bind(marketInfo: MarketInfo) {
-        tradeLabel.text = marketInfo.statistic.tradeTokenSymbol
-        quoteLabel.text = "/\(marketInfo.statistic.quoteTokenSymbol ?? "")"
-        miningImgView.image = marketInfo.miningImage
-        miningImgView.isHidden = miningImgView.image == nil
-
-        let symbol = marketInfo.statistic.symbol ?? ""
-
-        MarketInfoService.shared.favouriteBehaviorRelay.bind { [weak self] in
+        BehaviorRelay.combineLatest(MarketInfoService.shared.favouriteBehaviorRelay, marketInfoBehaviorRelay).bind { [weak self] in
+            let symbol = $1?.statistic.symbol ?? ""
             if $0.contains(symbol) {
                 self?.favButton.setImage(R.image.icon_market_fav(), for: .normal)
                 self?.favButton.setImage(R.image.icon_market_fav()?.highlighted, for: .highlighted)
@@ -141,16 +128,17 @@ class MarketDetailNavView: UIView {
             }
         }.disposed(by: rx.disposeBag)
 
-        backButton.rx.tap.bind {
-            UIViewController.current?.navigationController?.popViewController(animated: true)
-        }.disposed(by: rx.disposeBag)
-
-        favButton.rx.tap.bind {
+        favButton.rx.tap.bind { [weak self] in
+            guard let symbol = self?.marketInfoBehaviorRelay.value?.statistic.symbol else { return }
             if MarketInfoService.shared.isFavourite(symbol: symbol) {
                 MarketInfoService.shared.removeFavourite(symbol: symbol)
             } else {
                 MarketInfoService.shared.addFavourite(symbol: symbol)
             }
+        }.disposed(by: rx.disposeBag)
+
+        backButton.rx.tap.bind {
+            UIViewController.current?.navigationController?.popViewController(animated: true)
         }.disposed(by: rx.disposeBag)
 
         changeButton.rx.tap.bind {
@@ -159,6 +147,23 @@ class MarketDetailNavView: UIView {
                 self?.switchPair?(info)
             }
         }.disposed(by: rx.disposeBag)
+    }
+
+    let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
+
+    func setOpertionIcon(_ urlString: String?) {
+        operatorImageView.kf.cancelDownloadTask()
+        if let urlString = urlString, let url = URL(string: urlString) {
+            operatorImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
+        }
+    }
+
+    func bind(marketInfo: MarketInfo) {
+        marketInfoBehaviorRelay.accept(marketInfo)
+        tradeLabel.text = marketInfo.statistic.tradeTokenSymbol
+        quoteLabel.text = "/\(marketInfo.statistic.quoteTokenSymbol ?? "")"
+        miningImgView.image = marketInfo.miningImage
+        miningImgView.isHidden = miningImgView.image == nil
     }
 
     required init?(coder: NSCoder) {

@@ -12,7 +12,7 @@ class TradingHomeViewController: BaseViewController {
     let segmentView = SegmentView()
     let containerView = UIView()
 
-    let spotVC = SpotViewController()
+    let spotVC = SpotViewController(symbol: "VX_BTC-000")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,9 @@ class TradingHomeViewController: BaseViewController {
         }
 
         containerView.addSubview(spotVC.view)
+        spotVC.view.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
         addChild(spotVC)
         spotVC.didMove(toParent: self)
     }
