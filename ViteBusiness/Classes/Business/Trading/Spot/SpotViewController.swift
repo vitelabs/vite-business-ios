@@ -45,6 +45,10 @@ class SpotViewController: BaseTableViewController {
             self?.marketInfoBehaviorRelay.accept($0)
         }
 
+        depthView.priceClicked = { [weak self] in
+            self?.operationView.priceTextField.textField.text = $0
+        }
+
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
             guard let `self` = self else { return }
             let infos = array.flatMap { $0.infos }
@@ -65,6 +69,8 @@ class SpotViewController: BaseTableViewController {
             guard let `self` = self else { return }
             guard let info = info else { return }
 
+            self.operationView.bind(marketInfo: info)
+
             let holder = MarketDataIndoHolder(marketInfo: info)
 //            holder.depthListBehaviorRelay.bind { [weak self] in
 //                plog(level: .debug, log: $0)
@@ -75,6 +81,11 @@ class SpotViewController: BaseTableViewController {
             holder.marketPairDetailInfoBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
                 self.navView.setOpertionIcon($0?.operatorInfo.icon)
+            }.disposed(by: holder.rx.disposeBag)
+
+            holder.depthListBehaviorRelay.bind { [weak self] in
+                guard let `self` = self else { return }
+                self.depthView.bind(depthList: $0)
             }.disposed(by: holder.rx.disposeBag)
 
             self.depthHolder = holder

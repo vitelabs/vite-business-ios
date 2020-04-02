@@ -40,6 +40,26 @@ extension UnifyProvider.vitex {
         }
     }
 
+    static func getRate(tokenCodes: [TokenCode]) -> Promise<ExchangeRateMap> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getRate(tokenCodes: tokenCodes), responseToData: responseToData).map { string in
+            var map = ExchangeRateMap()
+            if let json = JSON(parseJSON: string).array {
+                json.forEach({
+                    if let tokenCode = $0["tokenCode"].string,
+                        let usd = $0["usd"].string,
+                        let cny = $0["cny"].string {
+                        map[tokenCode] = [
+                            "usd": usd,
+                            "cny": cny
+                        ]
+                    }
+                })
+            }
+            return map
+        }
+    }
+
     static func getKlines(symbol: String, type: MarketKlineType) -> Promise<[KlineItem]> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
         return p.requestPromise(.getklines(symbol: symbol, type: type), responseToData: responseToData).map { string in

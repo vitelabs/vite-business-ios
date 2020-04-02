@@ -29,31 +29,6 @@ class ExchangeProvider: MoyaProvider<ExchangeAPI> {
 extension ExchangeProvider {
 
     @discardableResult
-    func getRate(for tokenCodes: [TokenCode], completion: @escaping (Result<ExchangeRateMap>) -> Void) -> Cancellable {
-        return sendRequest(api: .getRate(tokenCodes), completion: { (ret) in
-            switch ret {
-            case .success(let json):
-                var map = ExchangeRateMap()
-                if let json = json as? [[String: Any]] {
-                    json.forEach({
-                        if let tokenCode = $0["tokenCode"] as? String,
-                            let usd = $0["usd"] as? String,
-                            let cny = $0["cny"] as? String {
-                            map[tokenCode] = [
-                                "usd": usd,
-                                "cny": cny
-                            ]
-                        }
-                    })
-                }
-                completion(Result.success(map))
-            case .failure(let error):
-                completion(Result.failure(error))
-            }
-        })
-    }
-
-    @discardableResult
     func recommendTokenInfos(completion: @escaping (Result<[String: [TokenInfo]]>) -> Void) -> Cancellable {
         return sendRequest(api: .recommendTokenInfos, completion: { (ret) in
             switch ret {

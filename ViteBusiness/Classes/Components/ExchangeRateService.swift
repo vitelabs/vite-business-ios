@@ -33,28 +33,24 @@ public class ExchangeRateService: PollService {
     public var completion: ((Ret) -> ())?
 
     public func handle(completion: @escaping (Ret) -> ()) {
-        ExchangeProvider.instance.getRate(for: tokenCodes) { [weak self] (ret) in
-            switch ret {
-            case .success(let map):
-                completion(Result.success(map))
-            case .failure(let error):
-                completion(Result.failure(error))
-            }
+        UnifyProvider.vitex.getRate(tokenCodes: tokenCodes).done { (map) in
+            completion(Result.success(map))
+        }.catch { (error) in
+            completion(Result.failure(error))
         }
     }
 
     func getRateImmediately(for tokenCode: TokenCode, completion: @escaping (Ret) -> ()) {
         let taskId = self.taskId
         tokenCodes.append(tokenCode)
-        ExchangeProvider.instance.getRate(for: [tokenCode]) { [weak self] (ret) in
+        UnifyProvider.vitex.getRate(tokenCodes: tokenCodes).done {[weak self] (map) in
             guard let `self` = self else { return }
             guard taskId == self.taskId else { return }
-            switch ret {
-            case .success(let map):
-                completion(Result.success(map))
-            case .failure(let error):
-                completion(Result.failure(error))
-            }
+            completion(Result.success(map))
+        }.catch {[weak self] (error) in
+            guard let `self` = self else { return }
+            guard taskId == self.taskId else { return }
+            completion(Result.failure(error))
         }
     }
 }

@@ -23,12 +23,12 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [tokenInfo.tokenCode])
+        ViteBalanceInfoManager.instance.registerFetch()
         FetchQuotaManager.instance.retainQuota()
     }
 
     func viewDidDisappear() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [tokenInfo.tokenCode])
+        ViteBalanceInfoManager.instance.unregisterFetch()
         FetchQuotaManager.instance.releaseQuota()
     }
 

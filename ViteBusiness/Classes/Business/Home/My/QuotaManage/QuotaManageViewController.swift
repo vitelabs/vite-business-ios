@@ -37,13 +37,13 @@ class QuotaManageViewController: BaseViewController {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
         FetchQuotaManager.instance.retainQuota()
-        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: [TokenInfo.BuildIn.vite.value.tokenCode])
+        ViteBalanceInfoManager.instance.registerFetch()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaManager.instance.releaseQuota()
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: [TokenInfo.BuildIn.vite.value.tokenCode])
+        ViteBalanceInfoManager.instance.unregisterFetch()
     }
 
     // View

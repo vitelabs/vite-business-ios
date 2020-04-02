@@ -88,12 +88,12 @@ class MyDeFiViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        ViteBalanceInfoManager.instance.registerFetch()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        ViteBalanceInfoManager.instance.unregisterFetch()
     }
 
     private func setupView() {

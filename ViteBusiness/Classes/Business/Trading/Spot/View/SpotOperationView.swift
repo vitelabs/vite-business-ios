@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import ViteWallet
 
 class SpotOperationView: UIView {
 
@@ -32,13 +33,13 @@ class SpotOperationView: UIView {
     let amountLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.text = "\(R.string.localizable.spotPageAvailable()): --"
+        $0.text = R.string.localizable.spotPageAvailable("--")
     }
 
     let volLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.text = "\(R.string.localizable.spotPageBuyable()): --"
+        $0.text = R.string.localizable.spotPageBuyable("--")
     }
 
     let vipButton = UIButton().then {
@@ -163,15 +164,73 @@ class SpotOperationView: UIView {
             if isBuy {
                 self.buyButton.isHidden = false
                 self.sellButton.isHidden = true
+                self.priceTextField.textField.placeholder = R.string.localizable.spotPagePriceBuyPlaceholder()
+                self.volTextField.textField.placeholder = R.string.localizable.spotPageVolBuyPlaceholder()
             } else {
                 self.buyButton.isHidden = true
                 self.sellButton.isHidden = false
+                self.priceTextField.textField.placeholder = R.string.localizable.spotPagePriceSellPlaceholder()
+                self.volTextField.textField.placeholder = R.string.localizable.spotPageVolSellPlaceholder()
+            }
+
+            self.priceTextField.textField.text = ""
+            self.volTextField.textField.text = ""
+            self.percentView.index = nil
+        }.disposed(by: rx.disposeBag)
+
+        marketInfoBehaviorRelay.filterNil().bind { [weak self] info in
+            TokenInfoCacheService.instance.tokenInfo(forViteTokenId: info.statistic.tradeToken) { [weak self] (ret) in
+                if case .success(let tokenInfo) = ret {
+                    self?.tradeToken.accept(tokenInfo)
+                }
+            }
+
+            TokenInfoCacheService.instance.tokenInfo(forViteTokenId: info.statistic.quoteToken) { [weak self] (ret) in
+                if case .success(let tokenInfo) = ret {
+                    self?.quoteToken.accept(tokenInfo)
+                }
             }
         }.disposed(by: rx.disposeBag)
+
+        Driver.combineLatest(ViteBalanceInfoManager.instance.dexBalanceInfosDriver,
+                             tradeToken.asDriver().filterNil(),
+                             quoteToken.asDriver().filterNil(),
+                             priceTextField.textField.rx.text.asDriver(),
+                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, tradeTokenInfo, quoteTokenInfo, priceText, isBuy) in
+                                guard let `self` = self else { return }
+
+                                let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
+                                let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
+
+                                let sourceToken = sourceTokenInfo.toViteToken()!
+                                let balance = balanceMap[sourceToken.id]?.available ?? Amount()
+                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals))
+
+//                                if let text = priceText, let amount = text.toAmount(decimals: targetTokenInfo.decimals), let price = BigDecimal(text) {
+//                                    self.priceLabel.text = "≈" + rateMap.priceString(for: targetTokenInfo, balance: amount)
+//                                } else {
+//                                    self.priceLabel.text = "≈--"
+//                                }
+
+
+
+
+
+
+        }).disposed(by: rx.disposeBag)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
+    let tradeToken: BehaviorRelay<TokenInfo?> = BehaviorRelay(value: nil)
+    let quoteToken: BehaviorRelay<TokenInfo?> = BehaviorRelay(value: nil)
+
+    func bind(marketInfo: MarketInfo?) {
+        marketInfoBehaviorRelay.accept(marketInfo)
+
     }
 }
 
@@ -281,7 +340,7 @@ extension SpotOperationView {
 
         var changed: ((Int) -> Void)?
 
-        var index: Int = 0 {
+        var index: Int? = nil {
             didSet {
                 self.updateState()
             }

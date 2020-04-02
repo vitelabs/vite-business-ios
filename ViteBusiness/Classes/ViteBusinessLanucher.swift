@@ -51,8 +51,6 @@ public class ViteBusinessLanucher: NSObject {
         handleNotification()
         _ = LocalizationService.sharedInstance
 
-        goShowIntroViewPage()
-
         AppConfigService.instance.start()
         WalletManager.instance.start()
         MyTokenInfosService.instance.start()
@@ -70,6 +68,7 @@ public class ViteBusinessLanucher: NSObject {
         self.handleWebWalletBridgeConfig()
 
 
+        goShowIntroViewPage()
     }
 
     func configProvider() {

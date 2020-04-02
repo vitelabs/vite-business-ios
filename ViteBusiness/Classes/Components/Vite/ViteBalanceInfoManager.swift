@@ -47,22 +47,18 @@ public class ViteBalanceInfoManager {
     fileprivate var service: FetchBalanceInfoService?
 
     fileprivate var address: ViteAddress?
-    fileprivate var tokenCodes: [TokenCode] = []
+    fileprivate var remainCount = 0
 
-    func registerFetch(tokenCodes: [TokenCode]) {
+    func registerFetch() {
         DispatchQueue.main.async {
-            self.tokenCodes.append(contentsOf: tokenCodes)
+            self.remainCount += 1
             self.triggerService()
         }
     }
 
-    func unregisterFetch(tokenCodes: [TokenCode]) {
+    func unregisterFetch() {
         DispatchQueue.main.async {
-            tokenCodes.forEach({ tokenCode in
-                if let index = self.tokenCodes.firstIndex(of: tokenCode) {
-                    self.tokenCodes.remove(at: index)
-                }
-            })
+            self.remainCount = max(0, self.remainCount - 1)
             self.triggerService()
         }
     }
@@ -106,13 +102,8 @@ public class ViteBalanceInfoManager {
 
     private func triggerService() {
 
-        let tokenInfos: [TokenInfo] = self.tokenCodes
-            .map { TokenInfoCacheService.instance.tokenInfo(for: $0) }
-            .compactMap { $0 }
-            .filter{ $0.coinType == .vite }
 
-        if let address = self.address,
-            !tokenInfos.isEmpty {
+        if let address = self.address, self.remainCount > 0 {
 
             guard address != self.service?.address else { return }
 
@@ -165,7 +156,7 @@ public class ViteBalanceInfoManager {
             self.service = service
             self.service?.startPoll()
         } else {
-            if tokenCodes.isEmpty {
+            if self.remainCount == 0 {
                 //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
                 self.service?.stopPoll()
                 self.service = nil

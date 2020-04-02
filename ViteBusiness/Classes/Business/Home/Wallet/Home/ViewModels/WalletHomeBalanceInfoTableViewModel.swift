@@ -94,13 +94,13 @@ final class WalletHomeBalanceInfoTableViewModel {
     }
 
     func registerFetchAll() {
-        ViteBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        ViteBalanceInfoManager.instance.registerFetch()
         ETHBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
         GrinManager.default.getBalance()
     }
 
     func unregisterFetchAll() {
-        ViteBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        ViteBalanceInfoManager.instance.unregisterFetch()
         ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
     }
 }

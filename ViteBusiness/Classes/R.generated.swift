@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1147 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1149 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5327,11 +5327,11 @@ public struct R: Rswift.Validatable {
       /// en translation: 买入价格
       /// 
       /// Locales: en, zh-Hans
-      public static let spotPagePricePlaceholder = Rswift.StringResource(key: "spot.page.price.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let spotPagePriceBuyPlaceholder = Rswift.StringResource(key: "spot.page.price.buy.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 买入数量
       /// 
       /// Locales: en, zh-Hans
-      public static let spotPageVolPlaceholder = Rswift.StringResource(key: "spot.page.vol.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let spotPageVolBuyPlaceholder = Rswift.StringResource(key: "spot.page.vol.buy.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易对
       /// 
       /// Locales: en, zh-Hans
@@ -5648,6 +5648,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageButtonSellTitle = Rswift.StringResource(key: "spot.page.button.sell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 卖出价格
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPagePriceSellPlaceholder = Rswift.StringResource(key: "spot.page.price.sell.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 卖出数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageVolSellPlaceholder = Rswift.StringResource(key: "spot.page.vol.sell.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 历史委托
       /// 
       /// Locales: en, zh-Hans
@@ -5704,11 +5712,11 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageCloseVip = Rswift.StringResource(key: "spot.page.close.vip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 可买
+      /// en translation: 可买: %@
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageBuyable = Rswift.StringResource(key: "spot.page.buyable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 可卖
+      /// en translation: 可卖: %@
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageSellable = Rswift.StringResource(key: "spot.page.sellable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5716,7 +5724,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditCanCancleAmount = Rswift.StringResource(key: "defi.use.page.edit.can.cancle.Amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 可用
+      /// en translation: 可用: %@
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageAvailable = Rswift.StringResource(key: "spot.page.available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -12451,15 +12459,15 @@ public struct R: Rswift.Validatable {
       /// en translation: 买入价格
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPagePricePlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.price.placeholder", bundle: R.hostingBundle, comment: "")
+      public static func spotPagePriceBuyPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.price.buy.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 买入数量
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageVolPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.vol.placeholder", bundle: R.hostingBundle, comment: "")
+      public static func spotPageVolBuyPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.vol.buy.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 交易对
@@ -13015,6 +13023,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.button.sell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 卖出价格
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPagePriceSellPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.price.sell.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 卖出数量
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageVolSellPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.vol.sell.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 历史委托
       /// 
       /// Locales: en, zh-Hans
@@ -13113,18 +13135,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.close.vip", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 可买
+      /// en translation: 可买: %@
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageBuyable(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.buyable", bundle: R.hostingBundle, comment: "")
+      public static func spotPageBuyable(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.buyable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: 可卖
+      /// en translation: 可卖: %@
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageSellable(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.sellable", bundle: R.hostingBundle, comment: "")
+      public static func spotPageSellable(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.sellable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 可取回抵押金额:
@@ -13134,11 +13156,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.use.page.edit.can.cancle.Amount", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 可用
+      /// en translation: 可用: %@
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageAvailable(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.available", bundle: R.hostingBundle, comment: "")
+      public static func spotPageAvailable(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.available", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 可用借币余额

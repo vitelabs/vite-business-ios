@@ -11,6 +11,8 @@ class SpotDepthView: UIView {
 
     static let height: CGFloat = 322
 
+    var priceClicked: ((String) -> Void)?
+
     let leftLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
@@ -23,7 +25,13 @@ class SpotDepthView: UIView {
         $0.text = R.string.localizable.spotPageDepthVol()
     }
 
-    let sellItemViews = (0..<5).map { _ in ItemView(isBuy: false) }
+    lazy var sellItemViews = (0..<5).map { _ in
+        ItemView(isBuy: false) { [weak self] in
+            if let _ = Double($0) {
+                self?.priceClicked?($0)
+            }
+        }
+    }
 
     let openLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -37,7 +45,13 @@ class SpotDepthView: UIView {
         $0.text = "≈--"
     }
 
-    let buyItemViews = (0..<5).map { _ in ItemView(isBuy: true) }
+    lazy var buyItemViews = (0..<5).map { _ in
+        ItemView(isBuy: true) { [weak self] in
+            if let _ = Double($0) {
+                self?.priceClicked?($0)
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,6 +116,25 @@ class SpotDepthView: UIView {
         }
     }
 
+    func bind(depthList: MarketDepthList?) {
+
+        for (index, view) in sellItemViews.enumerated() {
+            var depth: MarketDepthList.Depth? = nil
+            if let list = depthList, index < list.asks.count {
+                depth = list.asks[list.asks.count - 1 - index]
+            }
+            view.bind(depth: depth)
+        }
+
+        for (index, view) in buyItemViews.enumerated() {
+            var depth: MarketDepthList.Depth? = nil
+            if let list = depthList, index < list.bids.count {
+                depth = list.bids[index]
+            }
+            view.bind(depth: depth)
+        }
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -123,12 +156,17 @@ extension SpotDepthView {
 
         let percentView = UIView()
 
-        init(isBuy: Bool) {
+        let button = UIButton().then {
+            $0.backgroundColor = .clear
+        }
+
+        init(isBuy: Bool, clicked: @escaping (String) -> Void) {
             super.init(frame: .zero)
 
             addSubview(percentView)
             addSubview(priceLabel)
             addSubview(quantityLabel)
+            addSubview(button)
 
             quantityLabel.snp.makeConstraints { (m) in
                 m.right.centerY.equalToSuperview()
@@ -144,6 +182,10 @@ extension SpotDepthView {
                 m.width.equalToSuperview().multipliedBy(0.5)
             }
 
+            button.snp.makeConstraints { (m) in
+                m.edges.equalToSuperview()
+            }
+
             if isBuy {
                 priceLabel.textColor = UIColor(netHex: 0x00D764)
                 percentView.backgroundColor = UIColor(netHex: 0x01D764, alpha: 0.1)
@@ -152,6 +194,10 @@ extension SpotDepthView {
                 percentView.backgroundColor = UIColor(netHex: 0xE5494D, alpha: 0.1)
             }
 
+            button.rx.tap.bind { [weak self] in
+                guard let `self` = self else { return }
+                clicked(self.priceLabel.text ?? "")
+            }.disposed(by: rx.disposeBag)
         }
 
         func bind(depth: MarketDepthList.Depth?) {

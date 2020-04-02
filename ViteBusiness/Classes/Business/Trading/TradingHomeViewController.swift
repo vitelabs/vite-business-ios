@@ -61,6 +61,16 @@ class TradingHomeViewController: BaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ViteBalanceInfoManager.instance.registerFetch()
+    }
+
+    override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ViteBalanceInfoManager.instance.unregisterFetch()
+    }
 }
 
 extension TradingHomeViewController {
