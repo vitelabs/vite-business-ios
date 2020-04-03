@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import ViteWallet
+import BigInt
 
 class SpotOperationView: UIView {
 
@@ -80,6 +81,10 @@ class SpotOperationView: UIView {
             $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
             $0.text = R.string.localizable.spotPageButtonLimitBuyTitle()
         }
+
+
+        priceTextField.textField.kas_setReturnAction(.resignFirstResponder, delegate: self)
+        volTextField.textField.kas_setReturnAction(.resignFirstResponder, delegate: self)
 
 
         addSubview(segmentView)
@@ -172,9 +177,8 @@ class SpotOperationView: UIView {
                 self.priceTextField.textField.placeholder = R.string.localizable.spotPagePriceSellPlaceholder()
                 self.volTextField.textField.placeholder = R.string.localizable.spotPageVolSellPlaceholder()
             }
-
-            self.priceTextField.textField.text = ""
-            self.volTextField.textField.text = ""
+            self.setPrice("")
+            self.setVol("")
             self.percentView.index = nil
         }.disposed(by: rx.disposeBag)
 
@@ -193,31 +197,172 @@ class SpotOperationView: UIView {
         }.disposed(by: rx.disposeBag)
 
         Driver.combineLatest(ViteBalanceInfoManager.instance.dexBalanceInfosDriver,
+                             marketInfoBehaviorRelay.asDriver().filterNil(),
                              tradeToken.asDriver().filterNil(),
                              quoteToken.asDriver().filterNil(),
                              priceTextField.textField.rx.text.asDriver(),
-                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, tradeTokenInfo, quoteTokenInfo, priceText, isBuy) in
+                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, tradeTokenInfo, quoteTokenInfo, priceText, isBuy) in
                                 guard let `self` = self else { return }
 
                                 let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
-                                let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
+//                                let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
 
                                 let sourceToken = sourceTokenInfo.toViteToken()!
                                 let balance = balanceMap[sourceToken.id]?.available ?? Amount()
-                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals))
+                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.uniqueSymbol)"
 
-//                                if let text = priceText, let amount = text.toAmount(decimals: targetTokenInfo.decimals), let price = BigDecimal(text) {
-//                                    self.priceLabel.text = "≈" + rateMap.priceString(for: targetTokenInfo, balance: amount)
-//                                } else {
-//                                    self.priceLabel.text = "≈--"
-//                                }
+                                if let text = priceText, let price = BigDecimal(text), price != BigDecimal(0) {
+                                    self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: text)
+                                    if isBuy {
+                                        let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! / price
+                                        self.volLabel.text = R.string.localizable.spotPageBuyable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(tradeTokenInfo.uniqueSymbol)"
+                                    } else {
+                                        let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
+                                        self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.uniqueSymbol)"
+                                    }
 
-
-
-
-
+                                } else {
+                                    self.priceLabel.text = "≈--"
+                                    if isBuy {
+                                        self.volLabel.text = R.string.localizable.spotPageBuyable("--")
+                                    } else {
+                                        self.volLabel.text = R.string.localizable.spotPageSellable("--")
+                                    }
+                                }
 
         }).disposed(by: rx.disposeBag)
+
+
+        Driver.combineLatest(priceTextField.textField.rx.text.asDriver(),
+                             volTextField.textField.rx.text.asDriver()).drive(onNext: { [weak self] (_, _) in
+                                guard let `self` = self else { return }
+                                self.percentView.index = nil
+        }).disposed(by: rx.disposeBag)
+
+        percentView.changed = { [weak self] index in
+            guard let `self` = self, let info = self.marketInfoBehaviorRelay.value else { return }
+
+            guard let text = self.priceTextField.textField.text, let price = BigDecimal(text), price > BigDecimal(0) else {
+                self.percentView.index = nil
+                return
+            }
+
+            guard let quoteTokenInfo = self.quoteToken.value, let tradeTokenInfo = self.tradeToken.value else { return }
+
+            let isBuy = self.segmentView.isBuyBehaviorRelay.value
+            let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
+//            let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
+
+            let sourceToken = sourceTokenInfo.toViteToken()!
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: sourceToken.id)?.available ?? Amount()
+
+            let vol: BigDecimal
+            if isBuy {
+                vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! / price
+            } else {
+                vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
+            }
+
+            let percent = BigDecimal("\(PercentView.values[index])")!
+
+            self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [])
+        }
+
+        buyButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let tradeTokenInfo = self.tradeToken.value else { return }
+            guard let quoteTokenInfo = self.quoteToken.value else { return }
+
+            guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
+                return
+            }
+
+            guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = volText.toAmount(decimals: tradeTokenInfo.decimals) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolEmpty())
+                return
+            }
+
+            guard price > BigDecimal(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
+                return
+            }
+
+            guard vol > Amount(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolZero())
+                return
+            }
+
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: quoteTokenInfo.viteTokenId)?.available ?? Amount()
+
+            guard BigDecimal(balance * BigInt(10).power(tradeTokenInfo.decimals)) >= price * BigDecimal(vol * BigInt(10).power(quoteTokenInfo.decimals)) else {
+                Toast.show(R.string.localizable.sendPageToastAmountError())
+                return
+            }
+
+            Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
+                                       tradeTokenInfo: tradeTokenInfo,
+                                       quoteTokenInfo: quoteTokenInfo,
+                                       price: priceText,
+                                       quantity: vol) { (r) in
+                if case .success = r {
+
+                }
+            }
+        }.disposed(by: rx.disposeBag)
+
+        sellButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let tradeTokenInfo = self.tradeToken.value else { return }
+            guard let quoteTokenInfo = self.quoteToken.value else { return }
+
+            guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
+                return
+            }
+
+            guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = volText.toAmount(decimals: tradeTokenInfo.decimals) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolEmpty())
+                return
+            }
+
+            guard price != BigDecimal(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
+                return
+            }
+
+            guard vol != Amount(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolZero())
+                return
+            }
+
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tradeTokenInfo.viteTokenId)?.available ?? Amount()
+
+            guard balance >= vol else {
+                Toast.show(R.string.localizable.sendPageToastAmountError())
+                return
+            }
+
+            Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
+                                        tradeTokenInfo: tradeTokenInfo,
+                                        quoteTokenInfo: quoteTokenInfo,
+                                        price: priceText,
+                                        quantity: vol) { (r) in
+                if case .success = r {
+
+                }
+            }
+        }.disposed(by: rx.disposeBag)
+    }
+
+    func setPrice(_ text: String) {
+        priceTextField.textField.text = text
+        priceTextField.textField.sendActions(for: .valueChanged)
+    }
+
+    func setVol(_ text: String) {
+        volTextField.textField.text = text
+        volTextField.textField.sendActions(for: .valueChanged)
     }
 
     required init?(coder: NSCoder) {
@@ -230,9 +375,32 @@ class SpotOperationView: UIView {
 
     func bind(marketInfo: MarketInfo?) {
         marketInfoBehaviorRelay.accept(marketInfo)
-
+        self.setPrice("")
+        self.setVol("")
     }
 }
+
+extension SpotOperationView: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let info = marketInfoBehaviorRelay.value else {
+            return false
+        }
+
+        if textField == priceTextField.textField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.pricePrecision))
+            textField.text = text
+            return ret
+        } else if textField == volTextField.textField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.quantityPrecision))
+            textField.text = text
+            return ret
+        } else {
+            return true
+        }
+    }
+}
+
 
 extension SpotOperationView {
 
@@ -305,7 +473,6 @@ extension SpotOperationView {
         let textField = UITextField().then {
             $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             $0.keyboardType = .decimalPad
-            $0.kas_setReturnAction(.resignFirstResponder)
         }
 
         override init(frame: CGRect) {
@@ -331,12 +498,16 @@ extension SpotOperationView {
 
     class PercentView: UIView {
 
-        let buttons = [
-            makeSegmentButton(title: "25%"),
-            makeSegmentButton(title: "50%"),
-            makeSegmentButton(title: "75%"),
-            makeSegmentButton(title: "100%"),
+        static var values: [Double] = [
+            0.25,
+            0.5,
+            0.75,
+            1
         ]
+
+        let buttons = PercentView.values.map {
+            makeSegmentButton(title: String(format: "%.0f%", $0 * 100))
+        }
 
         var changed: ((Int) -> Void)?
 

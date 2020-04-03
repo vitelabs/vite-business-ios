@@ -461,6 +461,52 @@ public extension Workflow {
         }
     }
 
+    static func dexBuyWithConfirm(account: Wallet.Account,
+                                  tradeTokenInfo: TokenInfo,
+                                  quoteTokenInfo: TokenInfo,
+                                  price: String,
+                                  quantity: Amount,
+                                  completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: quoteTokenInfo.viteTokenId,
+                 amount: Amount(0),
+                 fee: nil,
+                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: quoteTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: true, price: price, quantity: quantity),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let quantityString = quantity.amountFullWithGroupSeparator(decimals: tradeTokenInfo.decimals)
+        let viewModel = ConfirmViteDexBuyViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, priceString: price, quantityString: quantityString, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func dexSellWithConfirm(account: Wallet.Account,
+                                   tradeTokenInfo: TokenInfo,
+                                   quoteTokenInfo: TokenInfo,
+                                   price: String,
+                                   quantity: Amount,
+                                   completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: quoteTokenInfo.viteTokenId,
+                 amount: Amount(0),
+                 fee: nil,
+                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: quoteTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: false, price: price, quantity: quantity),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let quantityString = quantity.amountFullWithGroupSeparator(decimals: tradeTokenInfo.decimals)
+        let viewModel = ConfirmViteDexSellViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, priceString: price, quantityString: quantityString, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
     enum WorkflowError: Error {
         case notLogin
         case accountAddressInconformity
@@ -492,4 +538,3 @@ public extension Workflow {
         current.present(activityViewController, animated: true)
     }
 }
-

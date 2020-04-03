@@ -40,9 +40,9 @@ extension UnifyProvider.vitex {
         }
     }
 
-    static func getRate(tokenCodes: [TokenCode]) -> Promise<ExchangeRateMap> {
+    static func getRate(tokenIds: [ViteTokenId]) -> Promise<ExchangeRateMap> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
-        return p.requestPromise(.getRate(tokenCodes: tokenCodes), responseToData: responseToData).map { string in
+        return p.requestPromise(.getRate(tokenIds: tokenIds), responseToData: responseToData).map { string in
             var map = ExchangeRateMap()
             if let json = JSON(parseJSON: string).array {
                 json.forEach({

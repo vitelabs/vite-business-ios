@@ -46,7 +46,7 @@ class SpotViewController: BaseTableViewController {
         }
 
         depthView.priceClicked = { [weak self] in
-            self?.operationView.priceTextField.textField.text = $0
+            self?.operationView.setPrice($0)
         }
 
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
@@ -61,6 +61,7 @@ class SpotViewController: BaseTableViewController {
         self.marketInfoBehaviorRelay.bind { [weak self] in
             guard let `self` = self else { return }
             self.navView.bind(marketInfo: $0)
+            self.depthView.bind(marketInfo: $0)
         }.disposed(by: rx.disposeBag)
 
         self.marketInfoBehaviorRelay.asDriver().distinctUntilChanged { (left, right) -> Bool in

@@ -26,6 +26,8 @@ class MarketInfoService: NSObject {
 
     var operatorValue: [String: Any]?
 
+    private var rateMap = [String: Double]()
+
     lazy var sortedMarketDataBehaviorRelay = { () -> BehaviorRelay<[MarketData]> in
         var orignialMarketData = [
             MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
@@ -222,6 +224,11 @@ extension MarketInfoService {
         handleData(t, r, m)
     }
 
+    func legalPrice(quoteTokenSymbol: String, price: String) -> String {
+        guard let rate = rateMap[quoteTokenSymbol] else { return "--" }
+        return rateString(price: price, rate: rate, currency: AppSettingsService.instance.appSettings.currency)
+    }
+
     func handleData(_ t: [[String: Any]], _ r: [[String: Any]], _ m: [String: Any])  {
         let tradeMiningSymbols = Set(m["tradeSymbols"] as? [String] ?? [])
         let orderMiningSymbols = Set(m["orderSymbols"] as? [String] ?? [])
@@ -245,7 +252,7 @@ extension MarketInfoService {
                 rateMap[key] = JSON(i)["usdRate"].double
             }
         }
-
+        self.rateMap = rateMap
         let favourite = MarketCache.readFavourite()
         for item in t {
             var i = item

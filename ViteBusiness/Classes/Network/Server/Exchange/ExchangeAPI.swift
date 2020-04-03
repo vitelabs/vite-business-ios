@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 enum ExchangeAPI {
+    case getRate([TokenCode])
     case recommendTokenInfos
     case searchTokenInfo(String)
     case getTokenInfos([TokenCode])
@@ -26,6 +27,8 @@ extension ExchangeAPI: TargetType {
 
     var path: String {
         switch self {
+        case .getRate:
+            return "/api/v1/cryptocurrency/rate/assign"
         case .recommendTokenInfos:
             return "/api/v1/cryptocurrency/info/default"
         case .searchTokenInfo:
@@ -43,6 +46,8 @@ extension ExchangeAPI: TargetType {
 
     var method: Moya.Method {
         switch self {
+        case .getRate:
+            return .post
         case .recommendTokenInfos:
             return .get
         case .searchTokenInfo:
@@ -60,6 +65,8 @@ extension ExchangeAPI: TargetType {
 
     var task: Task {
         switch self {
+        case .getRate(let tokenCodes):
+            return .requestJSONEncodable(tokenCodes)
         case .recommendTokenInfos:
             return .requestPlain
         case .searchTokenInfo(let key):

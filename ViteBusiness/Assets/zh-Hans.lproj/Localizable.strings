@@ -540,6 +540,13 @@
 "confirm.transaction.page.vite.dex.deposit.confirm.button" = "确认";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "提币至钱包";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "确认";
+"confirm.transaction.page.vite.dex.buy.title" = "买入 %@";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "确认";
+"confirm.transaction.page.vite.dex.sell.title" = "卖出 %@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "确认";
+
+
+
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "支付";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "确认支付";
@@ -1074,6 +1081,12 @@
 "spot.page.depth.vol" = "数量";
 "spot.page.current.order.title" = "当前委托";
 "spot.page.orders.button.title" = "历史委托";
+
+"spot.page.post.toast.price.empty" = "请输入价格";
+"spot.page.post.toast.price.zero" = "价格不能为0";
+"spot.page.post.toast.vol.empty" = "请输入数量";
+"spot.page.post.toast.vol.zero" = "数量不能为0";
+
 
 // DeFi
 "defi.home.page.title" =  "DeFi";

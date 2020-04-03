@@ -116,6 +116,16 @@ class SpotDepthView: UIView {
         }
     }
 
+    func bind(marketInfo: MarketInfo?) {
+        if let info = marketInfo {
+            openLabel.text = info.statistic.openPrice
+            priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: info.statistic.quoteTokenSymbol, price: info.statistic.openPrice)
+        } else {
+            openLabel.text = "--"
+            priceLabel.text = "≈--"
+        }
+    }
+
     func bind(depthList: MarketDepthList?) {
 
         for (index, view) in sellItemViews.enumerated() {

@@ -7,11 +7,25 @@
 
 import BigInt
 
-public struct BigDecimal {
+public struct BigDecimal: Equatable, Comparable {
 
     public let number: BigInt
     public let digits: Int
     private let rawString: String
+
+    public static func == (lhs: BigDecimal, rhs: BigDecimal) -> Bool {
+        lhs.number == rhs.number && lhs.digits == rhs.digits
+    }
+
+    public static func < (lhs: BigDecimal, rhs: BigDecimal) -> Bool {
+        if lhs.digits > rhs.digits {
+            return lhs.number < rhs.number * BigInt(10).power(lhs.digits - rhs.digits)
+        } else if lhs.digits < rhs.digits {
+            return lhs.number * BigInt(10).power(rhs.digits - lhs.digits) < rhs.number
+        } else {
+            return lhs.number < rhs.number
+        }
+    }
     
     // +0
     // +0.1

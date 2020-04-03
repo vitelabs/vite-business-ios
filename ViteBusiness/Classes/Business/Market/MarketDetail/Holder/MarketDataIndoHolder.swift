@@ -17,6 +17,7 @@ class MarketDataIndoHolder: NSObject {
     let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
     let tradesBehaviorRelay: BehaviorRelay<[MarketTrade]> = BehaviorRelay(value: [])
     let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
+    let rateMapBehaviorRelay: BehaviorRelay<ExchangeRateMap> = BehaviorRelay(value: ExchangeRateMap())
 
     var depthSubId: SubId? = nil
     var tradesSubId: SubId? = nil
