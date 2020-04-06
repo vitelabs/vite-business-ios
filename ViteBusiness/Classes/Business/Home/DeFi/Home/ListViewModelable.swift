@@ -194,7 +194,8 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
 
         view.addSubview(indicatorView)
         indicatorView.snp.makeConstraints { (m) in
-            m.center.equalToSuperview()
+            m.left.right.equalToSuperview()
+            m.top.bottom.equalToSuperview().inset(20)
         }
         return view
     }
@@ -236,6 +237,13 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
         }
     }
 
+    private var placeholderViewHeight: CGFloat {
+        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
+        let ret = tableView.frame.height - tableView.contentSize.height
+        return ret
+    }
+
     private func setTipView(type: TipViewType, isShow: Bool) {
         if isShow {
             guard tipViewMap[type.key] == nil else { return }
@@ -249,14 +257,22 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
                 view = createErrorView(message: message)
             }
             tableView.isScrollEnabled = type.isScrollEnabled
-            tableView.addSubview(view)
-            tipViewMap[type.key] = view
+
+            let footerView = UIView()
+            footerView.backgroundColor = .white
+            footerView.addSubview(view)
             view.snp.makeConstraints { (m) in
-                m.edges.height.width.equalToSuperview()
+                m.centerY.equalToSuperview()
+                m.left.equalToSuperview().offset(24)
+                m.right.equalToSuperview().offset(-24)
             }
+            view.layoutIfNeeded()
+            let lastTableFooterViewHeight = tableView.tableFooterView?.frame.height ?? 0
+            let height = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            footerView.frame = CGRect(x: 0, y: 0, width: 0, height: max(height, placeholderViewHeight + lastTableFooterViewHeight - tableView.contentInset.bottom))
+            tableView.tableFooterView = footerView
         } else {
-            guard let view = tipViewMap[type.key] else { return }
-            view.removeFromSuperview()
+            tableView.tableFooterView = nil
             tipViewMap[type.key] = nil
             if tableView.isScrollEnabled == false {
                 tableView.isScrollEnabled = true
@@ -282,7 +298,8 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
         view.addSubview(label)
 
         layoutGuide.snp.makeConstraints { (m) in
-            m.centerY.left.right.equalTo(view)
+            m.left.right.equalTo(view)
+            m.top.bottom.equalToSuperview().inset(20)
         }
 
         imageView.snp.makeConstraints { (m) in
