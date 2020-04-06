@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 274 images.
+  /// This `R.image` struct is generated, and contains static references to 275 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -414,6 +414,8 @@ public struct R: Rswift.Validatable {
     public static let icon_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_setting")
     /// Image `icon_show_pwd`.
     public static let icon_show_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_show_pwd")
+    /// Image `icon_spot_history_arrows`.
+    public static let icon_spot_history_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_history_arrows")
     /// Image `icon_spot_kilne`.
     public static let icon_spot_kilne = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_kilne")
     /// Image `icon_spot_transfer`.
@@ -1557,6 +1559,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_show_pwd, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_spot_history_arrows", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_history_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_history_arrows, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_spot_kilne", bundle: ..., traitCollection: ...)`
     public static func icon_spot_kilne(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_spot_kilne, compatibleWith: traitCollection)
@@ -1942,7 +1949,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1157 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1165 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5324,6 +5331,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 买
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellTypeBuy = Rswift.StringResource(key: "spot.page.cell.type.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 买入
       /// 
       /// Locales: en, zh-Hans
@@ -5380,6 +5391,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageDepthPriceTitle = Rswift.StringResource(key: "market.detail.page.depth.price.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 价格: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellPrice = Rswift.StringResource(key: "spot.page.cell.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 价格不能为0
       /// 
       /// Locales: en, zh-Hans
@@ -5656,6 +5671,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscriptionCellTitleRemainAmount = Rswift.StringResource(key: "defi.my.page.my.subscription.cell.title.remain.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 卖
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellTypeSell = Rswift.StringResource(key: "spot.page.cell.type.sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 卖出
       /// 
       /// Locales: en, zh-Hans
@@ -5764,6 +5783,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiSubscriptionDetailSuccessTime = Rswift.StringResource(key: "defi.SubscriptionDetail.success.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 均价: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellAverage = Rswift.StringResource(key: "spot.page.cell.average", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 基础余额
       /// 
       /// Locales: en, zh-Hans
@@ -5948,6 +5971,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiProductDetailTitleCount = Rswift.StringResource(key: "defi.product.detail.title.count", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 成交: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellDeal = Rswift.StringResource(key: "spot.page.cell.deal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 成交量
       /// 
       /// Locales: en, zh-Hans
@@ -6020,6 +6047,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpRewardWithdrawAddressTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.rewardWithdrawAddressTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 撤销
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellButtonCancelTitle = Rswift.StringResource(key: "spot.page.cell.button.cancel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 撤销SBP
       /// 
       /// Locales: en, zh-Hans
@@ -6092,10 +6123,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageDepthVolTitle = Rswift.StringResource(key: "market.detail.page.depth.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 数量: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCellVol = Rswift.StringResource(key: "spot.page.cell.vol", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 数量不能为0
       /// 
       /// Locales: en, zh-Hans
       public static let spotPagePostToastVolZero = Rswift.StringResource(key: "spot.page.post.toast.vol.zero", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 无委托
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageOrderEmpty = Rswift.StringResource(key: "spot.page.order.empty", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 日利率
       /// 
       /// Locales: en, zh-Hans
@@ -12488,6 +12527,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 买
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellTypeBuy(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.cell.type.buy", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 买入
       /// 
       /// Locales: en, zh-Hans
@@ -12584,6 +12630,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageDepthPriceTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("market.detail.page.depth.price.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 价格: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellPrice(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.cell.price", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 价格不能为0
@@ -13069,6 +13122,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.subscription.cell.title.remain.amount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 卖
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellTypeSell(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.cell.type.sell", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 卖出
       /// 
       /// Locales: en, zh-Hans
@@ -13256,6 +13316,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiSubscriptionDetailSuccessTime(_: Void = ()) -> String {
         return NSLocalizedString("defi.SubscriptionDetail.success.time", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 均价: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellAverage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.cell.average", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 基础余额
@@ -13580,6 +13647,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.product.detail.title.count", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 成交: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellDeal(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.cell.deal", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 成交量
       /// 
       /// Locales: en, zh-Hans
@@ -13704,6 +13778,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditSbpRewardWithdrawAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.sbp.rewardWithdrawAddressTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 撤销
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellButtonCancelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.cell.button.cancel.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 撤销SBP
@@ -13832,11 +13913,25 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("market.detail.page.depth.vol.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// en translation: 数量: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCellVol(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.cell.vol", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 数量不能为0
       /// 
       /// Locales: en, zh-Hans
       public static func spotPagePostToastVolZero(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.post.toast.vol.zero", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 无委托
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageOrderEmpty(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.order.empty", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 日利率

@@ -1075,6 +1075,15 @@
 "spot.page.post.toast.vol.empty" = "请输入数量";
 "spot.page.post.toast.vol.zero" = "数量不能为0";
 
+"spot.page.order.empty" = "无委托";
+"spot.page.cell.type.buy" = "买";
+"spot.page.cell.type.sell" = "卖";
+"spot.page.cell.button.cancel.title" = "撤销";
+"spot.page.cell.vol" = "数量: %@";
+"spot.page.cell.price" = "价格: %@";
+"spot.page.cell.deal" = "成交: %@";
+"spot.page.cell.average" = "均价: %@";
+
 // DeFi
 "defi.home.page.title" =  "DeFi";
 "defi.home.page.borrow.button.title" =  "我要借币";

@@ -13,6 +13,7 @@ class SpotViewController: BaseTableViewController {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
     var depthHolder: MarketDataIndoHolder?
+    var viewModle: SpotOpenedOrderListViewModel?
     
     init(symbol: String) {
         if let marketInfo = MarketInfoService.shared.marketInfo(symbol: symbol) {
@@ -30,13 +31,20 @@ class SpotViewController: BaseTableViewController {
         setupView()
         bind()
 
-
-
     }
 
     func setupView() {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.tableHeaderView = makeHeaderView()
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.rowHeight = 85
+//        tableView.estimatedRowHeight = 85
+//        tableView.separatorStyle = .none
+//
+//        let emptyView = UIView.defaultPlaceholderView(text: R.string.localizable.spotPageOrderEmpty())
+//        emptyView.frame = CGRect(x: 0, y: 0, width: 0, height: 275)
+//        tableView.tableFooterView = emptyView
     }
 
     func bind() {
@@ -73,11 +81,6 @@ class SpotViewController: BaseTableViewController {
             self.operationView.bind(marketInfo: info)
 
             let holder = MarketDataIndoHolder(marketInfo: info)
-//            holder.depthListBehaviorRelay.bind { [weak self] in
-//                plog(level: .debug, log: $0)
-//                guard let `self` = self else { return }
-//                self.depthVC.bind(info: info, depthList: $0)
-//            }.disposed(by: holder.rx.disposeBag)
 
             holder.marketPairDetailInfoBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
@@ -90,27 +93,30 @@ class SpotViewController: BaseTableViewController {
             }.disposed(by: holder.rx.disposeBag)
 
             self.depthHolder = holder
+            self.viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, tradeTokenSymbol: info.statistic.tradeTokenSymbol, quoteTokenSymbol: info.statistic.quoteTokenSymbol)
         }).disposed(by: rx.disposeBag)
 
-        
     }
 
     let navView = SpotNavView()
     let operationView = SpotOperationView()
     let depthView = SpotDepthView()
+    let ordersHeaderView = SpotOrdersHeaderView()
 
     func makeHeaderView() -> UIView {
         let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 0, height:
-            SpotNavView.height +
-            10 +
-            max(SpotOperationView.height, SpotDepthView.height) +
-            16 +
-            16)
+        var height = SpotNavView.height
+        height += 10
+        height += max(SpotOperationView.height, SpotDepthView.height)
+        height += 16
+        height += 16
+        height += SpotOrdersHeaderView.height
+        view.frame = CGRect(x: 0, y: 0, width: 0, height: height)
 
         view.addSubview(navView)
         view.addSubview(operationView)
         view.addSubview(depthView)
+        view.addSubview(ordersHeaderView)
 
         navView.snp.makeConstraints { (m) in
             m.top.left.right.equalToSuperview()
@@ -128,15 +134,31 @@ class SpotViewController: BaseTableViewController {
             m.right.equalToSuperview().offset(-24)
         }
 
-
         let line = UIView()
         line.backgroundColor = UIColor(netHex: 0xF3F5F9)
         view.addSubview(line)
         line.snp.makeConstraints { (m) in
-            m.left.right.bottom.equalToSuperview()
+            m.top.greaterThanOrEqualTo(operationView.snp.bottom).offset(16)
+            m.top.greaterThanOrEqualTo(depthView.snp.bottom).offset(16)
+            m.left.right.equalToSuperview()
             m.height.equalTo(16)
         }
 
+        ordersHeaderView.snp.makeConstraints { (m) in
+            m.top.equalTo(line.snp.bottom)
+            m.left.right.equalToSuperview()
+        }
         return view
+    }
+}
+
+extension SpotViewController {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return SpotOrderCell()
     }
 }
