@@ -46,6 +46,12 @@ class TradingHomeViewController: BaseViewController {
     func bind() {
         segmentView.changed = { index in
             plog(level: .debug, log: index)
+            if index == 1 {
+                WebHandler.openMarketMining()
+            } else if index == 2 {
+                WebHandler.openMarketDividend()
+            }
+
             DispatchQueue.main.async {
                 self.segmentView.index = 0
             }

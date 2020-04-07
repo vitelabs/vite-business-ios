@@ -57,6 +57,10 @@ class SpotViewController: BaseTableViewController {
             self?.operationView.setPrice($0)
         }
 
+        ordersHeaderView.historyButton.rx.tap.bind {
+            WebHandler.openMarketHistoryOrders()
+        }.disposed(by: rx.disposeBag)
+
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
             guard let `self` = self else { return }
             let infos = array.flatMap { $0.infos }

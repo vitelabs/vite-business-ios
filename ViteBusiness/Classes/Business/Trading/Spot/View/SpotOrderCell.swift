@@ -35,6 +35,8 @@ class SpotOrderCell: BaseTableViewCell {
     let cancelButton = UIButton().then {
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setBackgroundImage(R.image.icon_spot_order_cancel_button_frame()?.resizable, for: .normal)
+        $0.setBackgroundImage(R.image.icon_spot_order_cancel_button_frame()?.highlighted.resizable, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.setTitle(R.string.localizable.spotPageCellButtonCancelTitle(), for: .normal)
         $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)

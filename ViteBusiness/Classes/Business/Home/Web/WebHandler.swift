@@ -25,6 +25,30 @@ public struct WebHandler {
         self.open(url)
     }
 
+    static func openMarketMining() {
+        var url = ViteConst.instance.market.baseWebUrl + "#/mining?activeTab=mining&hideSelectTab=true"
+        url = url  + "&address=" + (HDWalletManager.instance.account?.address ?? "")
+        url = url   + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
+        url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
+        NavigatorManager.instance.route(url: URL(string: url)!)
+    }
+
+    static func openMarketDividend() {
+        var url = ViteConst.instance.market.baseWebUrl + "#/mining?activeTab=dividend&hideSelectTab=true"
+        url = url  + "&address=" + (HDWalletManager.instance.account?.address ?? "")
+        url = url   + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
+        url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
+        NavigatorManager.instance.route(url: URL(string: url)!)
+    }
+
+    static func openMarketHistoryOrders() {
+        var url = ViteConst.instance.market.baseWebUrl + "#/order?activeTab=historyOrders&hideSelectTab=true"
+        url = url  + "&address=" + (HDWalletManager.instance.account?.address ?? "")
+        url = url   + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
+        url = url   + "&lang=" + LocalizationService.sharedInstance.currentLanguage.rawValue
+        NavigatorManager.instance.route(url: URL(string: url)!)
+    }
+
     static func openDeFiLoanUsagePage(productHash: String, optionCode: String) {
         let url = URL(string: "https://app.vite.net/webview/defi_usage/index.html?id=\(productHash)&optionCode=\(optionCode)")!
         NavigatorManager.instance.route(url: url)

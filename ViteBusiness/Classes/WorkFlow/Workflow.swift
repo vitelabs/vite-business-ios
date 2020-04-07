@@ -470,10 +470,10 @@ public extension Workflow {
         let sendBlock = {
             send(account: account,
                  toAddress: ViteWalletConst.ContractAddress.dexFund.address,
-                 tokenId: quoteTokenInfo.viteTokenId,
+                 tokenId: tradeTokenInfo.viteTokenId,
                  amount: Amount(0),
                  fee: nil,
-                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: quoteTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: true, price: price, quantity: quantity),
+                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: true, price: price, quantity: quantity),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)
@@ -493,10 +493,10 @@ public extension Workflow {
         let sendBlock = {
             send(account: account,
                  toAddress: ViteWalletConst.ContractAddress.dexFund.address,
-                 tokenId: quoteTokenInfo.viteTokenId,
+                 tokenId: tradeTokenInfo.viteTokenId,
                  amount: Amount(0),
                  fee: nil,
-                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: quoteTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: false, price: price, quantity: quantity),
+                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: false, price: price, quantity: quantity),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)

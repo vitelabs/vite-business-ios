@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 275 images.
+  /// This `R.image` struct is generated, and contains static references to 274 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -86,10 +86,6 @@ public struct R: Rswift.Validatable {
     public static let exchange_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_icon")
     /// Image `exchange_middle_line`.
     public static let exchange_middle_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_middle_line")
-    /// Image `exchange_tabbar_icon_unseleted`.
-    public static let exchange_tabbar_icon_unseleted = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_tabbar_icon_unseleted")
-    /// Image `exchange_tabbar_icon`.
-    public static let exchange_tabbar_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_tabbar_icon")
     /// Image `exchange_txs`.
     public static let exchange_txs = Rswift.ImageResource(bundle: R.hostingBundle, name: "exchange_txs")
     /// Image `face_id`.
@@ -418,6 +414,8 @@ public struct R: Rswift.Validatable {
     public static let icon_spot_history_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_history_arrows")
     /// Image `icon_spot_kilne`.
     public static let icon_spot_kilne = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_kilne")
+    /// Image `icon_spot_order_cancel_button_frame`.
+    public static let icon_spot_order_cancel_button_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_order_cancel_button_frame")
     /// Image `icon_spot_transfer`.
     public static let icon_spot_transfer = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_transfer")
     /// Image `icon_spot_vip_close`.
@@ -442,10 +440,10 @@ public struct R: Rswift.Validatable {
     public static let icon_tabbar_me_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me_select")
     /// Image `icon_tabbar_me`.
     public static let icon_tabbar_me = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me")
-    /// Image `icon_tabbar_wallet-1`.
-    public static let icon_tabbar_wallet1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet-1")
-    /// Image `icon_tabbar_wallet_select-1`.
-    public static let icon_tabbar_wallet_select1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet_select-1")
+    /// Image `icon_tabbar_trading_select`.
+    public static let icon_tabbar_trading_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_trading_select")
+    /// Image `icon_tabbar_trading`.
+    public static let icon_tabbar_trading = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_trading")
     /// Image `icon_tabbar_wallet_select`.
     public static let icon_tabbar_wallet_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet_select")
     /// Image `icon_tabbar_wallet`.
@@ -737,16 +735,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "exchange_middle_line", bundle: ..., traitCollection: ...)`
     public static func exchange_middle_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.exchange_middle_line, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "exchange_tabbar_icon", bundle: ..., traitCollection: ...)`
-    public static func exchange_tabbar_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.exchange_tabbar_icon, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "exchange_tabbar_icon_unseleted", bundle: ..., traitCollection: ...)`
-    public static func exchange_tabbar_icon_unseleted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.exchange_tabbar_icon_unseleted, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "exchange_txs", bundle: ..., traitCollection: ...)`
@@ -1569,6 +1557,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_spot_kilne, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_spot_order_cancel_button_frame", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_order_cancel_button_frame(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_order_cancel_button_frame, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_spot_transfer", bundle: ..., traitCollection: ...)`
     public static func icon_spot_transfer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_spot_transfer, compatibleWith: traitCollection)
@@ -1629,24 +1622,24 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tabbar_me_select, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_tabbar_trading", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_trading(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_trading, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_tabbar_trading_select", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_trading_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_trading_select, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_tabbar_wallet", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_wallet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_wallet, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_tabbar_wallet-1", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_wallet1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_wallet1, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_tabbar_wallet_select", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_wallet_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_wallet_select, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_wallet_select-1", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_wallet_select1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_wallet_select1, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_token_info_add_button", bundle: ..., traitCollection: ...)`
