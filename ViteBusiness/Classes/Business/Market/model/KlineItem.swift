@@ -26,7 +26,7 @@ struct KlineItem {
         self.v = v
     }
 
-    init(klineProto: Protocol.KlineProto) {
+    init(klineProto: KlineProto) {
         self.t = klineProto.t
         self.c = klineProto.c
         self.o = klineProto.o

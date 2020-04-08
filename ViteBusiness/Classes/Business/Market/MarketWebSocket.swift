@@ -26,7 +26,7 @@ class MarketWebSocket: NSObject {
     private let clientId = "vx_i_\(UUID().uuidString)"
     private let topices = [Topic.btc, Topic.eth, Topic.vite, Topic.usdt]
 
-    var onNewTickerStatistics: ((Protocol.TickerStatisticsProto)->())?
+    var onNewTickerStatistics: ((TickerStatisticsProto)->())?
 
     override init() {
         socket = WebSocket(url: URL.init(string: ViteConst.instance.market.vitexWS)!)
@@ -51,16 +51,16 @@ class MarketWebSocket: NSObject {
     }
 
     private func sub() {
-        var originalBuilder = Protocol.DexProtocol.Builder()
-        originalBuilder
-            .setClientId(clientId)
-            .setOpType("sub")
-            .setTopics(topices.joined(separator: ","))
-            .setMessage(Data())
-            .setErrorCode(0)
+        let dexProtocol = DexProtocol.with {
+            $0.clientID = clientId
+            $0.opType = "sub"
+            $0.topics = topices.joined(separator: ",")
+            $0.message = Data()
+            $0.errorCode = 0
+        }
+
         do {
-            let original = try originalBuilder.build()
-            let jsonData = try original.data()
+            let jsonData = try dexProtocol.serializedData()
             socket.write(data: jsonData)
         } catch  {
 //            //plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
@@ -69,16 +69,16 @@ class MarketWebSocket: NSObject {
 
     @objc private func ping()  {
         if socket.isConnected {
-            var originalBuilder = Protocol.DexProtocol.Builder()
-            originalBuilder
-                .setClientId(clientId)
-                .setOpType("ping")
-                .setTopics("")
-                .setMessage(Data())
-                .setErrorCode(0)
+            let dexProtocol = DexProtocol.with {
+                $0.clientID = clientId
+                $0.opType = "ping"
+                $0.topics = ""
+                $0.message = Data()
+                $0.errorCode = 0
+            }
+
             do {
-                let original = try originalBuilder.build()
-                let jsonData = try original.data()
+                let jsonData = try dexProtocol.serializedData()
                 socket.write(data: jsonData)
 //                //plog(level: .debug, log: "websocketSendPing", tag: .market)
             } catch  {
@@ -91,11 +91,12 @@ class MarketWebSocket: NSObject {
 
     private func handle(_ data: Data) {
         do {
-            let dexProtocol = try Protocol.DexProtocol.parseFrom(data: data)
-            let topic = dexProtocol.topics ?? ""
-            if dexProtocol.opType == "push", dexProtocol.clientId == clientId, let messageData = dexProtocol.message {
+            let dexProtocol = try DexProtocol(serializedData: data)
+            let topic = dexProtocol.topics
+            let messageData = dexProtocol.message
+            if dexProtocol.opType == "push", dexProtocol.clientID == clientId {
                 if topices.contains(topic) {
-                    let tickerStatisticsProto = try Protocol.TickerStatisticsProto.parseFrom(data: messageData)
+                    let tickerStatisticsProto = try TickerStatisticsProto(serializedData: messageData)
                     self.onNewTickerStatistics?(tickerStatisticsProto)
                 } else {
                     guard let array = blockMap[topic] else { return }
@@ -128,14 +129,15 @@ extension MarketWebSocket {
         if array.isEmpty {
             plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
             do {
-                let originalBuilder = Protocol.DexProtocol.Builder()
-                    .setClientId(clientId)
-                    .setOpType("sub")
-                    .setTopics(topic)
-                    .setMessage(Data())
-                    .setErrorCode(0)
-                let original = try originalBuilder.build()
-                let jsonData = original.data()
+                let dexProtocol = DexProtocol.with {
+                    $0.clientID = clientId
+                    $0.opType = "sub"
+                    $0.topics = topic
+                    $0.message = Data()
+                    $0.errorCode = 0
+                }
+
+                let jsonData = try dexProtocol.serializedData()
                 socket.write(data: jsonData)
             } catch  {
                 plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
@@ -162,14 +164,15 @@ extension MarketWebSocket {
         if array.isEmpty {
             do {
                 plog(level: .debug, log: "unsub \(topic) from socket", tag: .market)
-                let originalBuilder = Protocol.DexProtocol.Builder()
-                    .setClientId(clientId)
-                    .setOpType("un_sub")
-                    .setTopics(topic)
-                    .setMessage(Data())
-                    .setErrorCode(0)
-                let original = try originalBuilder.build()
-                let jsonData = original.data()
+                let dexProtocol = DexProtocol.with {
+                    $0.clientID = clientId
+                    $0.opType = "un_sub"
+                    $0.topics = topic
+                    $0.message = Data()
+                    $0.errorCode = 0
+                }
+
+                let jsonData = try dexProtocol.serializedData()
                 socket.write(data: jsonData)
             } catch  {
                 plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)

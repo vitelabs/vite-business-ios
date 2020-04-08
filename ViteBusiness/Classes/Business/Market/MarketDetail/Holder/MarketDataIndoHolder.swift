@@ -37,14 +37,14 @@ class MarketDataIndoHolder: NSObject {
 
         self.depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
-            guard let depthListProto = try? Protocol.DepthListProto.parseFrom(data: data) else { return }
+            guard let depthListProto = try? DepthListProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new DepthListProto for \(self.symbol) ", tag: .market)
             self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto))
         })
 
         self.tradesSubId = MarketInfoService.shared.marketSocket.sub(topic: tradesTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
-            guard let tradeListProto = try? Protocol.TradeListProto.parseFrom(data: data) else { return }
+            guard let tradeListProto = try? TradeListProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new TradeListProto for \(self.symbol) ", tag: .market)
             let trades = tradeListProto.trade.map { MarketTrade.generate(proto: $0) }
 

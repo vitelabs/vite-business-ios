@@ -57,9 +57,12 @@ class MarketInfoService: NSObject {
             let relay = self.sortedMarketDataBehaviorRelay.value
             for data in relay {
                 for info in data.infos {
-                    if info.statistic.symbol == statistic.symbol,
-                        let new = try? info.statistic.getBuilder().mergeFrom(other:statistic).build(){
-                        info.statistic = new
+//                    if info.statistic.symbol == statistic.symbol,
+//                        let new = try? info.statistic.getBuilder().mergeFrom(other:statistic).build(){
+//                        info.statistic = new
+//                    }
+                    if info.statistic.symbol == statistic.symbol {
+                        info.statistic = statistic
                     }
                 }
             }
@@ -257,8 +260,9 @@ extension MarketInfoService {
         for item in t {
             var i = item
             let json = JSON(i)["priceChangePercent"]
-            i["priceChangePercent"] = json.string ?? (String(json.double ?? 0) ?? "0")
-            guard let statistic = try? Protocol.TickerStatisticsProto.decode(jsonMap: i) else {
+            i["priceChangePercent"] = json.string ?? String(json.double ?? 0)
+
+            guard let statistic = TickerStatisticsProto(dict: i) else {
                 continue
             }
             let info = MarketInfo()
@@ -280,10 +284,10 @@ extension MarketInfoService {
             info.operatorName = self.operatorValue?[info.statistic.symbol] as? String ?? "--"
 
            let indexs = ["BTC-000": 1, "ETH-000": 2, "VITE":3, "USDT-000":4]
-            if statistic.hasQuoteTokenSymbol, let index = indexs[statistic.quoteTokenSymbol] {
+            if let index = indexs[statistic.quoteTokenSymbol] {
                 marketDatas[index].infos.append(info)
             }
-            if favourite.contains(statistic.symbol ?? "") {
+            if favourite.contains(statistic.symbol) {
                 marketDatas[0].infos.append(info)
             }
         }
@@ -345,7 +349,7 @@ public class MarketInfo {
         case both
     }
 
-    public var statistic: Protocol.TickerStatisticsProto!
+    public var statistic: TickerStatisticsProto!
     var miningType: MiningType = .none
     var rate = ""
     var operatorName = "--"
@@ -398,4 +402,46 @@ class MarketData {
     var categary = ""
     var infos = [MarketInfo]()
     var sortStatus = (SortStatus.normal, SortStatus.normal)
+}
+
+extension TickerStatisticsProto {
+    init?(dict: [String: Any]) {
+        self.init()
+
+        guard let symbol = dict["symbol"] as? String,
+            let tradeTokenSymbol = dict["tradeTokenSymbol"] as? String,
+            let quoteTokenSymbol = dict["quoteTokenSymbol"] as? String,
+            let tradeToken = dict["tradeToken"] as? String,
+            let quoteToken = dict["quoteToken"] as? String,
+            let openPrice = dict["openPrice"] as? String,
+            let prevClosePrice = dict["prevClosePrice"] as? String,
+            let closePrice = dict["closePrice"] as? String,
+            let priceChange = dict["priceChange"] as? String,
+            let priceChangePercent = dict["priceChangePercent"] as? String,
+            let highPrice = dict["highPrice"] as? String,
+            let lowPrice = dict["lowPrice"] as? String,
+            let quantity = dict["quantity"] as? String,
+            let amount = dict["amount"] as? String,
+            let pricePrecision = dict["pricePrecision"] as? Int32,
+            let quantityPrecision = dict["quantityPrecision"] as? Int32 else {
+                return nil
+        }
+
+        self.symbol = symbol
+        self.tradeTokenSymbol = tradeTokenSymbol
+        self.quoteTokenSymbol = quoteTokenSymbol
+        self.tradeToken = tradeToken
+        self.quoteToken = quoteToken
+        self.openPrice = openPrice
+        self.prevClosePrice = prevClosePrice
+        self.closePrice = closePrice
+        self.priceChange = priceChange
+        self.priceChangePercent = priceChangePercent
+        self.highPrice = highPrice
+        self.lowPrice = lowPrice
+        self.quantity = quantity
+        self.amount = amount
+        self.pricePrecision = pricePrecision
+        self.quantityPrecision = quantityPrecision
+    }
 }

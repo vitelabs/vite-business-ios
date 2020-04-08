@@ -39,7 +39,7 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
 
     //MARK: pubilc
     let tableView: UITableView
-    fileprivate(set) var items: [Model] = []
+    var items: [Model] = []
     fileprivate(set) var hasMore: Bool = false
     fileprivate(set) var loadStatus: LoadStatus = .normal {
         didSet {
@@ -141,7 +141,7 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
     func tirggerLoadMore() -> Promise<(items: [Model], hasMore: Bool)> {
         loadStatus = .loadMore
         return loadMore().then {[weak self] (items, hasMore) -> Promise<(items: [Model], hasMore: Bool)> in
-            self?.items.append(contentsOf: items)
+            self?.merge(items: items)
             self?.hasMore = hasMore
             self?.tableView.reloadData()
             self?.loadStatus = .normal
@@ -184,6 +184,10 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
     }
 
     //MARK: can be override
+    func merge(items: [Model]) {
+        self.items.append(contentsOf: items)
+    }
+
     func createLoadingView() -> UIView {
         let view = UIView().then {
             $0.backgroundColor = .white

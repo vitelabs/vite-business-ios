@@ -33,8 +33,8 @@ class MarketTrade: Mappable {
         quantity <- map["quantity"]
     }
 
-    static func generate(proto: Protocol.TradeProto) -> MarketTrade {
-        return MarketTrade(time: proto.time, side: 0, price: proto.price, quantity: proto.quantity)
+    static func generate(proto: TradeProto) -> MarketTrade {
+        return MarketTrade(time: proto.time, side: proto.side, price: proto.price, quantity: proto.quantity)
     }
 
 }

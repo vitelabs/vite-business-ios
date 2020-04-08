@@ -300,6 +300,8 @@ class SpotOperationView: UIView {
                 return
             }
 
+            self.endEditing(true)
+
             Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
                                        tradeTokenInfo: tradeTokenInfo,
                                        quoteTokenInfo: quoteTokenInfo,
@@ -343,6 +345,8 @@ class SpotOperationView: UIView {
                 return
             }
 
+            self.endEditing(true)
+            
             Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
                                         tradeTokenInfo: tradeTokenInfo,
                                         quoteTokenInfo: quoteTokenInfo,

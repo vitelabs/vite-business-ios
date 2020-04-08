@@ -28,7 +28,7 @@ class MarketKlineHolder: NSObject {
 
         self.klineSubId = MarketInfoService.shared.marketSocket.sub(topic: kineType.topic(symbol: symbol), ticker: { [weak self] (data) in
             guard let `self` = self else { return }
-            guard let klineProto = try? Protocol.KlineProto.parseFrom(data: data) else { return }
+            guard let klineProto = try? KlineProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new kline for \(self.symbol) \(self.kineType.requestParameter) \(Date.init(timeIntervalSince1970: TimeInterval(klineProto.t)).format())", tag: .market)
             let item = KlineItem(klineProto: klineProto)
             if let last = self.klinesBehaviorRelay.value.last {
@@ -73,6 +73,10 @@ class MarketKlineHolder: NSObject {
         }
     }
 
+    deinit {
+        unsub()
+    }
+    
     func unsub() {
         if let old = self.klineSubId {
             MarketInfoService.shared.marketSocket.unsub(subId: old)

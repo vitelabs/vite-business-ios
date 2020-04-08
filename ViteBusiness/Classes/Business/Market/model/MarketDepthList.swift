@@ -50,7 +50,7 @@ struct MarketDepthList: Mappable {
         bids <- map["bids"]
     }
 
-    static func generate(proto: Protocol.DepthListProto) -> MarketDepthList {
+    static func generate(proto: DepthListProto) -> MarketDepthList {
         let asks = proto.asks.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
         let bids = proto.bids.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
 

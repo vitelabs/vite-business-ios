@@ -148,31 +148,6 @@ class SpotOrderCell: BaseTableViewCell {
             m.bottom.equalToSuperview()
             m.left.right.equalToSuperview().inset(24)
         }
-
-        bind()
-    }
-
-    func bind() {
-        let isBuy = true
-
-        if isBuy {
-            typeButton.setTitle(R.string.localizable.spotPageCellTypeBuy(), for: .normal)
-            typeButton.setTitleColor(UIColor(netHex: 0x01D764), for: .normal)
-            typeButton.backgroundColor = UIColor(netHex: 0x01D764, alpha: 0.1)
-        } else {
-            typeButton.setTitle(R.string.localizable.spotPageCellTypeSell(), for: .normal)
-            typeButton.setTitleColor(UIColor(netHex: 0xE5494D), for: .normal)
-            typeButton.backgroundColor = UIColor(netHex: 0xE5494D, alpha: 0.1)
-        }
-
-        tradeLabel.text = "BTC"
-        quoteLabel.text = "/\("VITE")"
-        timeLabel.text = "2020-10-10 10:20:30"
-
-        volLabel.text = R.string.localizable.spotPageCellVol("ffff")
-        priceLabel.text = R.string.localizable.spotPageCellPrice("ffff")
-        dealLabel.text = R.string.localizable.spotPageCellDeal("ffff")
-        averageLabel.text = R.string.localizable.spotPageCellAverage("ffff")
     }
 
     required init?(coder: NSCoder) {
@@ -183,8 +158,7 @@ class SpotOrderCell: BaseTableViewCell {
 extension SpotOrderCell: ListCellable {
 
     func bind(_ item: MarketOrder) {
-        let isBuy = true
-
+        let isBuy = (item.side == 0)
         if isBuy {
             typeButton.setTitle(R.string.localizable.spotPageCellTypeBuy(), for: .normal)
             typeButton.setTitleColor(UIColor(netHex: 0x01D764), for: .normal)
@@ -195,13 +169,13 @@ extension SpotOrderCell: ListCellable {
             typeButton.backgroundColor = UIColor(netHex: 0xE5494D, alpha: 0.1)
         }
 
-        tradeLabel.text = "BTC"
-        quoteLabel.text = "/\("VITE")"
-        timeLabel.text = "2020-10-10 10:20:30"
+        tradeLabel.text = item.tradeTokenSymbol
+        quoteLabel.text = "/\(item.quoteTokenSymbol)"
+        timeLabel.text = Date(timeIntervalSince1970: TimeInterval(item.createTime)).format()
 
-        volLabel.text = R.string.localizable.spotPageCellVol("ffff")
-        priceLabel.text = R.string.localizable.spotPageCellPrice("ffff")
-        dealLabel.text = R.string.localizable.spotPageCellDeal("ffff")
-        averageLabel.text = R.string.localizable.spotPageCellAverage("ffff")
+        volLabel.text = R.string.localizable.spotPageCellVol("\(item.quantity) \(item.tradeTokenSymbol)")
+        priceLabel.text = R.string.localizable.spotPageCellPrice("\(item.price) \(item.quoteTokenSymbol)")
+        dealLabel.text = R.string.localizable.spotPageCellDeal("\(item.executedQuantity) \(item.tradeTokenSymbol)")
+        averageLabel.text = R.string.localizable.spotPageCellAverage("\(item.executedAvgPrice) \(item.quoteTokenSymbol)")
     }
 }

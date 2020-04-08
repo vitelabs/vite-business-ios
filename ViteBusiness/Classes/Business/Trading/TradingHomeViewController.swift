@@ -12,7 +12,9 @@ class TradingHomeViewController: BaseViewController {
     let segmentView = SegmentView()
     let containerView = UIView()
 
-    let spotVC = SpotViewController(symbol: "VX_BTC-000")
+//    let spotVC = SpotViewController(symbol: "VITE_BTC-000")
+
+    let spotVC = SpotViewController(symbol: "QQ-000_VITE")
 
     override func viewDidLoad() {
         super.viewDidLoad()
