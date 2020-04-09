@@ -50,7 +50,7 @@ public struct TickerStatisticsProto {
   // methods supported on all messages.
 
   ///symbol
-  var symbol: String = String()
+  public var symbol: String = String()
 
   ///symbol
   var tradeTokenSymbol: String = String()
