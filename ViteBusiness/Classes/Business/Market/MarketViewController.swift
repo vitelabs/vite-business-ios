@@ -283,8 +283,8 @@ class MarketViewController: BaseViewController {
         vc.originalData = Array(self.marketVM.sortedMarketDataBehaviorRelay.value.dropFirst())
         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         vc.onSelectInfo = { [unowned self] info in
-            let webvc = WKWebViewController(url: info.vitexURL)
-            self.navigationController?.pushViewController(webvc, animated: true)
+            let vc = MarketDetailViewController(marketInfo: info)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

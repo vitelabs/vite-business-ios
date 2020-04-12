@@ -13,6 +13,8 @@ extension Notification.Name {
     public static let languageChanged = NSNotification.Name(rawValue: "Vite_APPLanguageChanged")
     public static let languageChangedInSetting = NSNotification.Name(rawValue: "Vite_APPLanguageChangedInSetting")
 
+    public static let goTradingPage = NSNotification.Name(rawValue: "Vite_GoTradingPage")
+
     // account
     public static let createAccountSuccess = NSNotification.Name(rawValue: "Vite_createAccountSuccess")
     public static let logoutDidFinish = NSNotification.Name(rawValue: "Vite_logoutDidFinish")

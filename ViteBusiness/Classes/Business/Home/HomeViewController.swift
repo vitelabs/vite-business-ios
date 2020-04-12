@@ -13,6 +13,10 @@ import RxSwift
 
 class HomeViewController: UITabBarController {
 
+    let tradingVC = TradingHomeViewController().then {
+        $0.automaticallyShowDismissButton = false
+    }
+
     init() {
         super.init(nibName: nil, bundle: nil)
 
@@ -29,10 +33,6 @@ class HomeViewController: UITabBarController {
 //        }
 
         let marketVC = MarketViewController()
-
-        let tradingVC = TradingHomeViewController().then {
-            $0.automaticallyShowDismissButton = false
-        }
 
 
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {
@@ -101,6 +101,14 @@ class HomeViewController: UITabBarController {
 
         tabBar.shadowImage = R.image.tabber_shadow()?.resizable
         tabBar.backgroundImage = UIImage.color(UIColor.white).resizable
+
+        NotificationCenter.default.rx.notification(NSNotification.Name.goTradingPage).bind { [weak self] m in
+            guard let `self` = self else { return }
+            guard let marketInfo = m.userInfo?["marketInfo"] as? MarketInfo, let isBuy = m.userInfo?["isBuy"] as? Bool else { return }
+            UIViewController.current?.navigationController?.popToRootViewController(animated: false)
+            self.tradingVC.spotVC.update(marketInfo: marketInfo, isBuy: isBuy)
+            self.selectedIndex = 2
+        }.disposed(by: rx.disposeBag)
 
         GCD.delay(1) { AppUpdateService.checkUpdate() }
 

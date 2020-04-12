@@ -46,6 +46,11 @@ class SpotViewController: BaseTableViewController {
 //        tableView.tableFooterView = emptyView
     }
 
+    func update(marketInfo: MarketInfo, isBuy: Bool) {
+        self.marketInfoBehaviorRelay.accept(marketInfo)
+        self.operationView.segmentView.isBuyBehaviorRelay.accept(isBuy)
+    }
+
     func bind() {
 
         navView.switchPair = { [weak self] in

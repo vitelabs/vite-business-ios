@@ -223,6 +223,16 @@ class MarketDetailViewController: BaseViewController {
                 self.navView.setOpertionIcon($0?.operatorInfo.icon)
             }.disposed(by: holder.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
+
+        bottomView.buyButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": self.marketInfoBehaviorRelay.value, "isBuy" : true])
+        }.disposed(by: rx.disposeBag)
+
+        bottomView.sellButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": self.marketInfoBehaviorRelay.value, "isBuy" : false])
+        }.disposed(by: rx.disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
