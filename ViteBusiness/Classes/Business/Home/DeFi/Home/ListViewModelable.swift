@@ -12,7 +12,7 @@ import PromiseKit
 protocol ListCellable where Self: UITableViewCell {
     associatedtype Model
 
-    func bind(_ item: Model)
+    
     static var cellHeight: CGFloat { get }
 }
 

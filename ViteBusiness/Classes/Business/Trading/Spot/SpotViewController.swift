@@ -12,7 +12,6 @@ import RxCocoa
 class SpotViewController: BaseTableViewController {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
-    var depthHolder: MarketDataIndoHolder?
     var viewModle: SpotOpenedOrderListViewModel?
     
     init(symbol: String) {
@@ -81,23 +80,30 @@ class SpotViewController: BaseTableViewController {
         }.drive(onNext: { [weak self] info in
             guard let `self` = self else { return }
             guard let info = info else { return }
-
             self.operationView.bind(marketInfo: info)
 
-            let holder = MarketDataIndoHolder(marketInfo: info)
-
-            holder.marketPairDetailInfoBehaviorRelay.bind { [weak self] in
+            let viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, marketInfo: info)
+            viewModle.operatorInfoIconUrlStringBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
-                self.navView.setOpertionIcon($0?.operatorInfo.icon)
-            }.disposed(by: holder.rx.disposeBag)
+                self.navView.setOpertionIcon($0)
+            }.disposed(by: viewModle.rx.disposeBag)
 
-            holder.depthListBehaviorRelay.bind { [weak self] in
+            viewModle.depthListBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
                 self.depthView.bind(depthList: $0)
-            }.disposed(by: holder.rx.disposeBag)
+            }.disposed(by: viewModle.rx.disposeBag)
 
-            self.depthHolder = holder
-            self.viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, tradeTokenSymbol: info.statistic.tradeTokenSymbol, quoteTokenSymbol: info.statistic.quoteTokenSymbol)
+            viewModle.pairTokenInfoBehaviorRelay.bind { [weak self] in
+                guard let `self` = self else { return }
+                self.operationView.bind(pair: $0)
+            }.disposed(by: viewModle.rx.disposeBag)
+
+            viewModle.vipStateBehaviorRelay.bind { [weak self] in
+                guard let `self` = self else { return }
+                self.operationView.bind(vipState: $0)
+            }.disposed(by: viewModle.rx.disposeBag)
+
+            self.viewModle = viewModle
         }).disposed(by: rx.disposeBag)
 
     }

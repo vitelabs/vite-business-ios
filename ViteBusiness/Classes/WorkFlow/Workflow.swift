@@ -507,6 +507,64 @@ public extension Workflow {
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
+    static func dexCancelOrderWithConfirm(account: Wallet.Account,
+                                          tradeTokenInfo: TokenInfo,
+                                          orderId: String,
+                                          completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexTrade.address,
+                 tokenId: tradeTokenInfo.viteTokenId,
+                 amount: Amount(0),
+                 fee: nil,
+                 data: ABI.BuildIn.getDexCancelOrderData(orderId: orderId),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let viewModel = ConfirmViteDexCancelOrderViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, orderId: orderId, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func dexVipWithConfirm(account: Wallet.Account,
+                                  completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: nil,
+                 data: ABI.BuildIn.getDexStakeForVIP(isPledge: true),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.available ?? Amount(0)
+        let balanceString = "\(balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) \(ViteWalletConst.viteToken.symbol)"
+        let viewModel = ConfirmViteDexPledgeForVipViewModel(balanceString: balanceString, amountString: "100,000 VITE")
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
+    static func dexCancelVipWithConfirm(account: Wallet.Account,
+                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+        let sendBlock = {
+            send(account: account,
+                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+                 tokenId: ViteWalletConst.viteToken.id,
+                 amount: Amount(0),
+                 fee: nil,
+                 data: ABI.BuildIn.getDexStakeForVIP(isPledge: false),
+                 successToast: R.string.localizable.workflowToastContractSuccess(),
+                 type: .other,
+                 completion: completion)
+        }
+
+        let viewModel = ConfirmViteDexCancelVipViewModel()
+        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+    }
+
     enum WorkflowError: Error {
         case notLogin
         case accountAddressInconformity

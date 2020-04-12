@@ -538,6 +538,16 @@
 "confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
 "confirm.transaction.page.vite.dex.sell.title" = "卖出 %@";
 "confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "撤单";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+
+"confirm.transaction.page.vite.dex.vip.title" = "开通VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "交易所可用余额";
+"confirm.transaction.page.vite.dex.vip.amount" = "开通VIP抵押金额";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP开通后，可享有降低0.1%手续费特权，开通VIP需抵押10000VITE，30天后可手动取回";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "确认开通";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "取消VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "确认取消";
 
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
@@ -1064,6 +1074,7 @@
 "spot.page.buyable" = "可买: %@";
 "spot.page.sellable" = "可卖: %@";
 "spot.page.open.vip" = "开通 VIP";
+"spot.page.open.vip.error.toast" = "交易所 VITE 余额不足，开通 VIP 需抵押 100,000 VITE";
 "spot.page.close.vip" = "取消 VIP";
 "spot.page.depth.price" = "价格";
 "spot.page.depth.vol" = "数量";

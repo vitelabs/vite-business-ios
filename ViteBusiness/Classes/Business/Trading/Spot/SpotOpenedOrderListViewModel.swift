@@ -6,20 +6,25 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 import PromiseKit
+import ViteWallet
 
 class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     static let limit = 50
     let address = HDWalletManager.instance.account!.address
     let quoteTokenSymbol: String
     let tradeTokenSymbol: String
+    let marketInfo: MarketInfo
 
-    init(tableView: UITableView, tradeTokenSymbol: String, quoteTokenSymbol: String) {
-        self.tradeTokenSymbol = tradeTokenSymbol
-        self.quoteTokenSymbol = quoteTokenSymbol
+    init(tableView: UITableView, marketInfo: MarketInfo) {
+        self.tradeTokenSymbol = marketInfo.statistic.tradeTokenSymbol
+        self.quoteTokenSymbol = marketInfo.statistic.quoteTokenSymbol
+        self.marketInfo = marketInfo
         super.init(tableView: tableView)
-        tirggerRefresh()
-        subOrder()
+        fetch()
+        sub()
     }
 
     override func refresh() -> Promise<(items: [MarketOrder], hasMore: Bool)> {
@@ -42,7 +47,7 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
 
     override func cellFor(model: MarketOrder, indexPath: IndexPath) -> UITableViewCell {
         let cell: SpotOrderCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(model)
+        cell.bind(model, tradeTokenInfo: self.pairTokenInfoBehaviorRelay.value?.quoteTokenInfo)
         return cell
     }
 
@@ -50,18 +55,97 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
         self.items.append(contentsOf: items)
     }
 
-    var orderSubId: SubId? = nil
 
     deinit {
         unsub()
     }
+
+    let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
+    private let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
+    let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
+
+    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+    let operatorInfoIconUrlStringBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+
+    var depthSubId: SubId? = nil
+    var orderSubId: SubId? = nil
 }
 
 extension SpotOpenedOrderListViewModel {
 
+    func fetch() {
+        let symbol = self.symbol
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getDepth(symbol: symbol)
+        }) { [weak self] (depthList) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
+            guard self.depthListBehaviorRelay.value == nil else { return }
+            self.depthListBehaviorRelay.accept(depthList)
+        }
+
+        let tradeToken: String = marketInfo.statistic.tradeToken
+        let quoteToken: String = marketInfo.statistic!.quoteToken
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getPairDetailInfo(tradeTokenId: tradeToken, quoteTokenId: quoteToken)
+        }) { [weak self] (info) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: "getPairDetailInfo for \(self.symbol)", tag: .market)
+            self.marketPairDetailInfoBehaviorRelay.accept(info)
+            self.operatorInfoIconUrlStringBehaviorRelay.accept(info.operatorInfo.icon)
+            self.tirggerRefresh()
+        }
+
+        let tradeTokenId = marketInfo.statistic.tradeToken
+        let quoteTokenId = marketInfo.statistic.quoteToken
+        fetchUntilSuccess(promise: {
+            when(fulfilled:
+                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: tradeTokenId),
+                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: quoteTokenId))
+        }) { [weak self] (tradeTokenInfo, quoteTokenInfo) in
+            guard let `self` = self else { return }
+            self.pairTokenInfoBehaviorRelay.accept((tradeTokenInfo: tradeTokenInfo, quoteTokenInfo: quoteTokenInfo))
+        }
+
+        let address = self.address
+        fetchUntilSuccess(promise: {
+            ViteNode.dex.info.getDexVIPState(address: address)
+        }) { [weak self] in
+            guard let `self` = self else { return }
+            self.vipStateBehaviorRelay.accept($0)
+        }
+    }
+
+    func fetchUntilSuccess<T>(promise: @escaping () -> Promise<T>, success: @escaping (T) -> Void) {
+        promise().done {
+            success($0)
+        }.catch { [weak self] (e) in
+            guard let `self` = self else {
+                return
+            }
+            plog(level: .debug, log: "fetchUntilSuccess error", tag: .market)
+            GCD.delay(1) {[weak self] in
+                guard let `self` = self else {
+                    return
+                }
+                self.fetchUntilSuccess(promise: promise, success: success)
+            }
+        }
+    }
+
+    var symbol: String { marketInfo.statistic.symbol }
+    var depthTopic: String { "market.\(symbol).depth.step6" }
     var orderTopic: String { "order.\(address)" }
 
-    func subOrder() {
+    func sub() {
+
+        depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
+            guard let `self` = self else { return }
+            guard let depthListProto = try? DepthListProto(serializedData: data) else { return }
+            plog(level: .debug, log: "receive new DepthListProto for \(self.symbol) ", tag: .market)
+            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto))
+        })
+
         orderSubId = MarketInfoService.shared.marketSocket.sub(topic: orderTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
             guard let orderProto = try? OrderProto(serializedData: data) else { return }
@@ -102,6 +186,10 @@ extension SpotOpenedOrderListViewModel {
     }
 
     func unsub() {
+        if let old = self.depthSubId {
+            MarketInfoService.shared.marketSocket.unsub(subId: old)
+        }
+
         if let old = self.orderSubId {
             MarketInfoService.shared.marketSocket.unsub(subId: old)
             self.orderSubId = nil

@@ -148,16 +148,35 @@ class SpotOrderCell: BaseTableViewCell {
             m.bottom.equalToSuperview()
             m.left.right.equalToSuperview().inset(24)
         }
+
+        cancelButton.rx.tap.bind { [weak self] in
+            guard let orderId = self?.orderId else { return }
+            guard let tradeTokenInfo = self?.tradeTokenInfo else { return }
+
+            Workflow.dexCancelOrderWithConfirm(account: HDWalletManager.instance.account!,
+                                               tradeTokenInfo: tradeTokenInfo,
+                                               orderId: orderId)  { (r) in
+                                                if case .success = r {
+
+                                                }
+            }
+
+        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    var orderId: String?
+    var tradeTokenInfo: TokenInfo?
 }
 
-extension SpotOrderCell: ListCellable {
+extension SpotOrderCell {
 
-    func bind(_ item: MarketOrder) {
+    func bind(_ item: MarketOrder, tradeTokenInfo: TokenInfo?) {
+        self.orderId = item.orderId
+        self.tradeTokenInfo = tradeTokenInfo
         let isBuy = (item.side == 0)
         if isBuy {
             typeButton.setTitle(R.string.localizable.spotPageCellTypeBuy(), for: .normal)

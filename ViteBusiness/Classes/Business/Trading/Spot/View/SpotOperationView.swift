@@ -182,30 +182,29 @@ class SpotOperationView: UIView {
             self.percentView.index = nil
         }.disposed(by: rx.disposeBag)
 
-        marketInfoBehaviorRelay.filterNil().bind { [weak self] info in
-            TokenInfoCacheService.instance.tokenInfo(forViteTokenId: info.statistic.tradeToken) { [weak self] (ret) in
-                if case .success(let tokenInfo) = ret {
-                    self?.tradeToken.accept(tokenInfo)
-                }
-            }
-
-            TokenInfoCacheService.instance.tokenInfo(forViteTokenId: info.statistic.quoteToken) { [weak self] (ret) in
-                if case .success(let tokenInfo) = ret {
-                    self?.quoteToken.accept(tokenInfo)
-                }
+        vipStateBehaviorRelay.bind { [weak self] in
+            guard let `self` = self else { return }
+            if let ret = $0, ret == true {
+                self.vipButton.setImage(R.image.icon_spot_vip_open(), for: .normal)
+                self.vipButton.setImage(R.image.icon_spot_vip_open()?.highlighted, for: .highlighted)
+                self.vipButton.setTitle(R.string.localizable.spotPageCloseVip(), for: .normal)
+            } else {
+                self.vipButton.setImage(R.image.icon_spot_vip_close(), for: .normal)
+                self.vipButton.setImage(R.image.icon_spot_vip_close()?.highlighted, for: .highlighted)
+                self.vipButton.setTitle(R.string.localizable.spotPageOpenVip(), for: .normal)
             }
         }.disposed(by: rx.disposeBag)
 
         Driver.combineLatest(ViteBalanceInfoManager.instance.dexBalanceInfosDriver,
                              marketInfoBehaviorRelay.asDriver().filterNil(),
-                             tradeToken.asDriver().filterNil(),
-                             quoteToken.asDriver().filterNil(),
+                             pairTokenInfoBehaviorRelay.asDriver().filterNil(),
                              priceTextField.textField.rx.text.asDriver(),
-                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, tradeTokenInfo, quoteTokenInfo, priceText, isBuy) in
+                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, pair, priceText, isBuy) in
                                 guard let `self` = self else { return }
 
+                                let quoteTokenInfo = pair.quoteTokenInfo
+                                let tradeTokenInfo = pair.tradeTokenInfo
                                 let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
-//                                let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
 
                                 let sourceToken = sourceTokenInfo.toViteToken()!
                                 let balance = balanceMap[sourceToken.id]?.available ?? Amount()
@@ -247,11 +246,12 @@ class SpotOperationView: UIView {
                 return
             }
 
-            guard let quoteTokenInfo = self.quoteToken.value, let tradeTokenInfo = self.tradeToken.value else { return }
+            guard let pair = self.pairTokenInfoBehaviorRelay.value else { return }
+            let quoteTokenInfo = pair.quoteTokenInfo
+            let tradeTokenInfo = pair.tradeTokenInfo
 
             let isBuy = self.segmentView.isBuyBehaviorRelay.value
             let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
-//            let targetTokenInfo = isBuy ? tradeTokenInfo : quoteTokenInfo
 
             let sourceToken = sourceTokenInfo.toViteToken()!
             let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: sourceToken.id)?.available ?? Amount()
@@ -264,14 +264,44 @@ class SpotOperationView: UIView {
             }
 
             let percent = BigDecimal("\(PercentView.values[index])")!
-
-            self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [])
+            let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
+            self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(decimals), padding: .none, options: [])
         }
+
+        transferButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let tokenInfo = self.pairTokenInfoBehaviorRelay.value?.tradeTokenInfo else { return }
+            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: false)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+        vipButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            if self.vipStateBehaviorRelay.value ?? false {
+                Workflow.dexCancelVipWithConfirm(account: HDWalletManager.instance.account!) { (r) in
+                    if case .success = r {
+
+                    }
+                }
+            } else {
+                let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.available ?? Amount(0)
+                guard balance >= "100000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
+                    Toast.show(R.string.localizable.spotPageOpenVipErrorToast())
+                    return
+                }
+                Workflow.dexVipWithConfirm(account: HDWalletManager.instance.account!) { (r) in
+                    if case .success = r {
+
+                    }
+                }
+            }
+        }.disposed(by: rx.disposeBag)
 
         buyButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            guard let tradeTokenInfo = self.tradeToken.value else { return }
-            guard let quoteTokenInfo = self.quoteToken.value else { return }
+            guard let pair = self.pairTokenInfoBehaviorRelay.value else { return }
+            let quoteTokenInfo = pair.quoteTokenInfo
+            let tradeTokenInfo = pair.tradeTokenInfo
 
             guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
                 Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
@@ -315,8 +345,9 @@ class SpotOperationView: UIView {
 
         sellButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            guard let tradeTokenInfo = self.tradeToken.value else { return }
-            guard let quoteTokenInfo = self.quoteToken.value else { return }
+            guard let pair = self.pairTokenInfoBehaviorRelay.value else { return }
+            let quoteTokenInfo = pair.quoteTokenInfo
+            let tradeTokenInfo = pair.tradeTokenInfo
 
             guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
                 Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
@@ -374,13 +405,21 @@ class SpotOperationView: UIView {
     }
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
-    let tradeToken: BehaviorRelay<TokenInfo?> = BehaviorRelay(value: nil)
-    let quoteToken: BehaviorRelay<TokenInfo?> = BehaviorRelay(value: nil)
+    let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
+    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
     func bind(marketInfo: MarketInfo?) {
         marketInfoBehaviorRelay.accept(marketInfo)
         self.setPrice("")
         self.setVol("")
+    }
+
+    func bind(pair: (tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?) {
+        pairTokenInfoBehaviorRelay.accept(pair)
+    }
+
+    func bind(vipState: Bool?) {
+        vipStateBehaviorRelay.accept(vipState)
     }
 }
 

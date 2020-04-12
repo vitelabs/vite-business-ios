@@ -1,0 +1,55 @@
+//
+//  ConfirmViteDexCancelOrderViewModel.swift
+//  ViteBusiness
+//
+//  Created by Stone on 2019/3/13.
+//
+
+import UIKit
+
+struct ConfirmViteDexCancelOrderViewModel: ConfirmViewModelType {
+
+    private let tokenInfo: TokenInfo
+    private let addressString: String
+    private let orderId: String
+    private let utString: String?
+
+    init(tokenInfo: TokenInfo, addressString: String, orderId: String, utString: String?) {
+        self.tokenInfo = tokenInfo
+        self.addressString = addressString
+        self.orderId = orderId
+        self.utString = utString
+    }
+
+    var confirmTitle: String {
+        return R.string.localizable.confirmTransactionPageViteDexCancelOrderTitle()
+    }
+    var biometryConfirmButtonTitle: String {
+        return R.string.localizable.confirmTransactionPageViteDexCancelOrderConfirmButton()
+    }
+
+    func createInfoView() -> UIView {
+        let stackView = UIStackView().then {
+            $0.axis = .vertical
+            $0.alignment = .fill
+            $0.distribution = .fill
+            $0.spacing = 0
+        }
+
+        let infoView = ConfirmDefaultInfoView()
+
+        stackView.addArrangedSubview(infoView)
+        stackView.addPlaceholder(height: 15)
+
+        infoView.set(title: R.string.localizable.contractConfirmInfo(), detail: addressString, tokenInfo: tokenInfo)
+
+        if let utString = utString {
+            let quotaView = ConfirmAmountView(type: .quota)
+            quotaView.set(text: utString)
+            stackView.addPlaceholder(height: 15)
+            stackView.addArrangedSubview(quotaView)
+        }
+
+        return stackView
+    }
+}

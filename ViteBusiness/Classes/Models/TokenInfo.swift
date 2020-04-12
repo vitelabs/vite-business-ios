@@ -128,7 +128,7 @@ public struct TokenInfo: Mappable {
     public fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     public fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
 
-
+    public init() {}
 
     public var uniqueSymbol: String {
         if case .vite = coinType {

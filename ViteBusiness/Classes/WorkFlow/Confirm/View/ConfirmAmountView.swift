@@ -17,6 +17,7 @@ class ConfirmAmountView: UIView {
         case amount
         case fee
         case quota
+        case custom(title: String)
     }
 
     let titleLabel = UILabel().then {
@@ -58,6 +59,10 @@ class ConfirmAmountView: UIView {
             backgroundColor = UIColor(netHex: 0xffffff)
             titleLabel.text = R.string.localizable.confirmTransactionQuotaTitle()
             textLabel.textColor = UIColor(netHex: 0x007AFF, alpha: 0.7)
+        case .custom(let title):
+            backgroundColor = UIColor(netHex: 0xffffff)
+            titleLabel.text = title
+            textLabel.textColor = UIColor(netHex: 0x24272B, alpha: 0.7)
         }
 
         titleLabel.snp.makeConstraints { (m) in
@@ -80,6 +85,8 @@ class ConfirmAmountView: UIView {
             textLabel.text = text
         case .quota:
             textLabel.text = text + " UT"
+        case .custom:
+            textLabel.text = text
         }
     }
 

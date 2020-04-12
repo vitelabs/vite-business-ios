@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1165 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1175 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2648,6 +2648,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteDexBuyConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.buy.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexCancelOrderConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.cancel.order.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirm
       /// 
       /// Locales: en, zh-Hans
@@ -4908,6 +4912,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupPageErrorTypeValidWalletNameCount = Rswift.StringResource(key: "mnemonic.backup.page.error.type.validWalletNameCount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: VIP开通后，可享有降低0.1%手续费特权，开通VIP需抵押10000VITE，30天后可手动取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexVipTip = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: VITE Address
       /// 
       /// Locales: en, zh-Hans
@@ -5352,6 +5360,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoPair = Rswift.StringResource(key: "market.detail.page.token.info.pair", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 100,000 VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexVipBalance = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 产品Hash
       /// 
       /// Locales: en, zh-Hans
@@ -5744,6 +5760,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageCloseVip = Rswift.StringResource(key: "spot.page.close.vip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取消VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexCancelVipTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.cancel.vip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 可买: %@
       /// 
       /// Locales: en, zh-Hans
@@ -5944,6 +5964,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageOpenVip = Rswift.StringResource(key: "spot.page.open.vip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开通VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexVipTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 开通VIP抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexVipAmount = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 开通交易所SVIP
       /// 
       /// Locales: en, zh-Hans
@@ -6040,6 +6068,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpRewardWithdrawAddressTitle = Rswift.StringResource(key: "defi.use.page.edit.sbp.rewardWithdrawAddressTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 撤单
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexCancelOrderTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.cancel.order.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 撤销
       /// 
       /// Locales: en, zh-Hans
@@ -6284,6 +6316,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiUsePageEditSbpConfirm = Rswift.StringResource(key: "defi.use.page.edit.sbp.confirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认取消
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexCancelVipConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.cancel.vip.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认开通
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionPageViteDexVipConfirmButton = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.confirm.button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 确认撤销
       /// 
       /// Locales: en, zh-Hans
@@ -7835,6 +7875,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func confirmTransactionPageViteDexBuyConfirmButton(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.vite.dex.buy.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirm
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexCancelOrderConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.cancel.order.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirm
@@ -11792,6 +11839,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.page.error.type.validWalletNameCount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: VIP开通后，可享有降低0.1%手续费特权，开通VIP需抵押10000VITE，30天后可手动取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexVipTip(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.vip.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: VITE Address
       /// 
       /// Locales: en, zh-Hans
@@ -12569,6 +12623,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.pair", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 100,000 VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageOpenVipErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.open.vip.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexVipBalance(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.vip.balance", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 产品Hash
       /// 
       /// Locales: en, zh-Hans
@@ -13255,6 +13323,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.close.vip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 取消VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexCancelVipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.cancel.vip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 可买: %@
       /// 
       /// Locales: en, zh-Hans
@@ -13605,6 +13680,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.open.vip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 开通VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexVipTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.vip.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 开通VIP抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexVipAmount(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.vip.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 开通交易所SVIP
       /// 
       /// Locales: en, zh-Hans
@@ -13771,6 +13860,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditSbpRewardWithdrawAddressTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.sbp.rewardWithdrawAddressTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 撤单
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexCancelOrderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.cancel.order.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 撤销
@@ -14198,6 +14294,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiUsePageEditSbpConfirm(_: Void = ()) -> String {
         return NSLocalizedString("defi.use.page.edit.sbp.confirm", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认取消
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexCancelVipConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.cancel.vip.confirm.button", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认开通
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionPageViteDexVipConfirmButton(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.page.vite.dex.vip.confirm.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 确认撤销
