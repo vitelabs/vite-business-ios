@@ -64,14 +64,27 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     private let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
     let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
 
-    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+    let vipStateBehaviorRelay: BehaviorRelay<Pledge?> = BehaviorRelay(value: nil)
     let operatorInfoIconUrlStringBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let levelBehaviorRelay: BehaviorRelay<Int> = BehaviorRelay(value: 0)
 
     var depthSubId: SubId? = nil
     var orderSubId: SubId? = nil
 }
 
 extension SpotOpenedOrderListViewModel {
+
+    func fetchVIPState() {
+        let address = self.address
+        fetchUntilSuccess(promise: {
+            // 这里需要确认
+            ViteNode.dex.info.getDexVIPStakeInfoListRequest(address: address, index: 0, count: 100)
+        }) { [weak self] pledgeDetail in
+            guard let `self` = self else { return }
+            let pledge = pledgeDetail.list.first
+            self.vipStateBehaviorRelay.accept(pledge)
+        }
+    }
 
     func fetch() {
         let symbol = self.symbol
@@ -93,6 +106,7 @@ extension SpotOpenedOrderListViewModel {
             plog(level: .debug, log: "getPairDetailInfo for \(self.symbol)", tag: .market)
             self.marketPairDetailInfoBehaviorRelay.accept(info)
             self.operatorInfoIconUrlStringBehaviorRelay.accept(info.operatorInfo.icon)
+            self.levelBehaviorRelay.accept(info.operatorInfo.level)
             self.tirggerRefresh()
         }
 
@@ -107,13 +121,7 @@ extension SpotOpenedOrderListViewModel {
             self.pairTokenInfoBehaviorRelay.accept((tradeTokenInfo: tradeTokenInfo, quoteTokenInfo: quoteTokenInfo))
         }
 
-        let address = self.address
-        fetchUntilSuccess(promise: {
-            ViteNode.dex.info.getDexVIPState(address: address)
-        }) { [weak self] in
-            guard let `self` = self else { return }
-            self.vipStateBehaviorRelay.accept($0)
-        }
+        fetchVIPState()
     }
 
     func fetchUntilSuccess<T>(promise: @escaping () -> Promise<T>, success: @escaping (T) -> Void) {

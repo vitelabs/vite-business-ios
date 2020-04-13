@@ -32,9 +32,13 @@ class MarketKlineHolder: NSObject {
             plog(level: .debug, log: "receive new kline for \(self.symbol) \(self.kineType.requestParameter) \(Date.init(timeIntervalSince1970: TimeInterval(klineProto.t)).format())", tag: .market)
             let item = KlineItem(klineProto: klineProto)
             if let last = self.klinesBehaviorRelay.value.last {
-                guard klineProto.t > last.t else { return }
-
+                guard klineProto.t >= last.t else { return }
                 var array = self.klinesBehaviorRelay.value
+
+                if klineProto.t == last.t {
+                    array.removeLast()
+                }
+
                 array.append(item)
                 self.klinesBehaviorRelay.accept(array)
             } else {

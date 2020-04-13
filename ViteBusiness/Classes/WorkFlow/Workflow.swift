@@ -548,6 +548,7 @@ public extension Workflow {
     }
 
     static func dexCancelVipWithConfirm(account: Wallet.Account,
+                                        id: String?,
                                         completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             send(account: account,
@@ -555,7 +556,13 @@ public extension Workflow {
                  tokenId: ViteWalletConst.viteToken.id,
                  amount: Amount(0),
                  fee: nil,
-                 data: ABI.BuildIn.getDexStakeForVIP(isPledge: false),
+                 data: {
+                    if let id = id {
+                        return ABI.BuildIn.getDexCancelStakeById(id: id)
+                    } else {
+                        return ABI.BuildIn.getDexStakeForVIP(isPledge: false)
+                    }
+            }(),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)

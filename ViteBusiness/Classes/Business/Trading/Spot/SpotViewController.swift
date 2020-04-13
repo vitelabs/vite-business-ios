@@ -108,9 +108,18 @@ class SpotViewController: BaseTableViewController {
                 self.operationView.bind(vipState: $0)
             }.disposed(by: viewModle.rx.disposeBag)
 
+            viewModle.levelBehaviorRelay.bind { [weak self] in
+                guard let `self` = self else { return }
+                self.operationView.bind(level: $0)
+            }.disposed(by: viewModle.rx.disposeBag)
+
             self.viewModle = viewModle
         }).disposed(by: rx.disposeBag)
 
+        self.operationView.needReFreshVIPStateBehaviorRelay.filterNil().bind {[weak self] in
+            guard let `self` = self else { return }
+            self.viewModle?.fetchVIPState()
+        }.disposed(by: rx.disposeBag)
     }
 
     let navView = SpotNavView()

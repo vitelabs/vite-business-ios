@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1175 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1179 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5984,6 +5984,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleOpenexchangeSVIPrefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.OpenexchangeSVIPrefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageAlertMessage = Rswift.StringResource(key: "spot.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 当前委托
       /// 
       /// Locales: en, zh-Hans
@@ -6016,6 +6020,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiMyPageMySubscribeSortSuccess = Rswift.StringResource(key: "defi.my.page.my.subscribe.sort.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我已了解
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageAlertOk = Rswift.StringResource(key: "spot.page.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的DeFi
       /// 
       /// Locales: en, zh-Hans
@@ -6048,6 +6056,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageAllProduct = Rswift.StringResource(key: "defi.home.page.all.product", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押不足30天，无法取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCloseVipErrorToast = Rswift.StringResource(key: "spot.page.close.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -6296,6 +6308,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageValueDiffTitle = Rswift.StringResource(key: "market.detail.page.value.diff.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 温馨提示
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageAlertTitle = Rswift.StringResource(key: "spot.page.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 白皮书
       /// 
       /// Locales: en, zh-Hans
@@ -13715,6 +13731,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.bill.billTypeTitle.OpenexchangeSVIPrefund", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageAlertMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 当前委托
       /// 
       /// Locales: en, zh-Hans
@@ -13771,6 +13794,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.my.page.my.subscribe.sort.success", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 我已了解
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageAlertOk(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.alert.ok", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 我的DeFi
       /// 
       /// Locales: en, zh-Hans
@@ -13825,6 +13855,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiHomePageAllProduct(_: Void = ()) -> String {
         return NSLocalizedString("defi.home.page.all.product", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押不足30天，无法取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCloseVipErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.close.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 抵押余额
@@ -14259,6 +14296,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageValueDiffTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.value.diff.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 温馨提示
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 白皮书

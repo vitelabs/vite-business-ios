@@ -33,7 +33,7 @@ class MarketDetailViewController: BaseViewController {
 
     let navView = MarketDetailNavView()
     let marketDetailInfoView = MarketDetailInfoView()
-    let candlestickChartView = CandlestickChartView(klineType: MarketKlineType.hour1)
+    let candlestickChartView = CandlestickChartView(klineType: MarketKlineType.day1)
     let bottomView = BottomView()
 
     lazy var contentView: LTSimpleManager = {
@@ -156,7 +156,7 @@ class MarketDetailViewController: BaseViewController {
 
         operatorInfoVC.switchPair = { [weak self] info in
             guard let `self` = self else { return }
-            self.marketInfoBehaviorRelay.accept(info)
+            NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": info, "isBuy" : true])
         }
 
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
@@ -226,23 +226,25 @@ class MarketDetailViewController: BaseViewController {
 
         bottomView.buyButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
             NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": self.marketInfoBehaviorRelay.value, "isBuy" : true])
         }.disposed(by: rx.disposeBag)
 
         bottomView.sellButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
             NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": self.marketInfoBehaviorRelay.value, "isBuy" : false])
         }.disposed(by: rx.disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
 

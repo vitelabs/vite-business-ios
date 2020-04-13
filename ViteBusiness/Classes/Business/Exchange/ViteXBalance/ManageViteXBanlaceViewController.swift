@@ -307,23 +307,24 @@ public class ManageViteXBanlaceViewController: BaseViewController {
             guard let `self` = self else { return }
             switch result {
             case .success(_):
-                if self.autoDismiss {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
-                    (.default(title: R.string.localizable.cancel()), { _ in
-                        self.navigationController?.popViewController(animated: true)
-                    }),
-                    (.default(title: R.string.localizable.confirm()), { _ in
-                        let webvc = WKWebViewController(url: self.vitexPageUrl())
-                        var vcs = self.navigationController?.viewControllers
-                        vcs?.popLast()
-                        vcs?.append(webvc)
-                        if let vcs = vcs {
-                            self.navigationController?.setViewControllers(vcs, animated: true)
-                        }
-                    })])
-                }
+                self.navigationController?.popViewController(animated: true)
+//                if self.autoDismiss {
+//                    self.navigationController?.popViewController(animated: true)
+//                } else {
+//                    Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
+//                    (.default(title: R.string.localizable.cancel()), { _ in
+//                        self.navigationController?.popViewController(animated: true)
+//                    }),
+//                    (.default(title: R.string.localizable.confirm()), { _ in
+//                        let webvc = WKWebViewController(url: self.vitexPageUrl())
+//                        var vcs = self.navigationController?.viewControllers
+//                        vcs?.popLast()
+//                        vcs?.append(webvc)
+//                        if let vcs = vcs {
+//                            self.navigationController?.setViewControllers(vcs, animated: true)
+//                        }
+//                    })])
+//                }
             case .failure(let e):
                 Toast.show(e.localizedDescription)
             }

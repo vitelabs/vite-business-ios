@@ -184,7 +184,7 @@ class SpotOperationView: UIView {
 
         vipStateBehaviorRelay.bind { [weak self] in
             guard let `self` = self else { return }
-            if let ret = $0, ret == true {
+            if let _ = $0 {
                 self.vipButton.setImage(R.image.icon_spot_vip_open(), for: .normal)
                 self.vipButton.setImage(R.image.icon_spot_vip_open()?.highlighted, for: .highlighted)
                 self.vipButton.setTitle(R.string.localizable.spotPageCloseVip(), for: .normal)
@@ -271,16 +271,23 @@ class SpotOperationView: UIView {
         transferButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             guard let tokenInfo = self.pairTokenInfoBehaviorRelay.value?.tradeTokenInfo else { return }
-            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: false)
+            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
 
         vipButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            if self.vipStateBehaviorRelay.value ?? false {
-                Workflow.dexCancelVipWithConfirm(account: HDWalletManager.instance.account!) { (r) in
-                    if case .success = r {
+            if let pledge = self.vipStateBehaviorRelay.value {
+                guard Date() > pledge.timestamp else {
+                    Toast.show(R.string.localizable.spotPageCloseVipErrorToast())
+                    return
+                }
 
+                Workflow.dexCancelVipWithConfirm(account: HDWalletManager.instance.account!, id: pledge.id) { [weak self] (r) in
+                    if case .success = r {
+                        GCD.delay(3) { [weak self] in
+                            self?.needReFreshVIPStateBehaviorRelay.accept(Void())
+                        }
                     }
                 }
             } else {
@@ -289,9 +296,11 @@ class SpotOperationView: UIView {
                     Toast.show(R.string.localizable.spotPageOpenVipErrorToast())
                     return
                 }
-                Workflow.dexVipWithConfirm(account: HDWalletManager.instance.account!) { (r) in
+                Workflow.dexVipWithConfirm(account: HDWalletManager.instance.account!) { [weak self] (r) in
                     if case .success = r {
-
+                        GCD.delay(3) { [weak self] in
+                            self?.needReFreshVIPStateBehaviorRelay.accept(Void())
+                        }
                     }
                 }
             }
@@ -300,6 +309,7 @@ class SpotOperationView: UIView {
         buyButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             guard let pair = self.pairTokenInfoBehaviorRelay.value else { return }
+
             let quoteTokenInfo = pair.quoteTokenInfo
             let tradeTokenInfo = pair.tradeTokenInfo
 
@@ -332,15 +342,30 @@ class SpotOperationView: UIView {
 
             self.endEditing(true)
 
-            Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
-                                       tradeTokenInfo: tradeTokenInfo,
-                                       quoteTokenInfo: quoteTokenInfo,
-                                       price: priceText,
-                                       quantity: vol) { (r) in
-                if case .success = r {
 
-                }
+
+            if self.level > 0 {
+                Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
+                                           tradeTokenInfo: tradeTokenInfo,
+                                           quoteTokenInfo: quoteTokenInfo,
+                                           price: priceText,
+                                           quantity: vol,
+                                           completion: { _ in })
+            } else {
+                Alert.show(title: R.string.localizable.spotPageAlertTitle(),
+                           message: R.string.localizable.spotPageAlertMessage("\(tradeTokenInfo.uniqueSymbol)/\(quoteTokenInfo.uniqueSymbol)"),
+                           actions: [
+                            (.default(title: R.string.localizable.spotPageAlertOk()), { _ in
+                                Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
+                                                           tradeTokenInfo: tradeTokenInfo,
+                                                           quoteTokenInfo: quoteTokenInfo,
+                                                           price: priceText,
+                                                           quantity: vol,
+                                                           completion: { _ in })
+                            }),
+                ])
             }
+
         }.disposed(by: rx.disposeBag)
 
         sellButton.rx.tap.bind { [weak self] in
@@ -377,15 +402,28 @@ class SpotOperationView: UIView {
             }
 
             self.endEditing(true)
-            
-            Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
-                                        tradeTokenInfo: tradeTokenInfo,
-                                        quoteTokenInfo: quoteTokenInfo,
-                                        price: priceText,
-                                        quantity: vol) { (r) in
-                if case .success = r {
 
-                }
+
+            if self.level > 0 {
+                Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
+                                            tradeTokenInfo: tradeTokenInfo,
+                                            quoteTokenInfo: quoteTokenInfo,
+                                            price: priceText,
+                                            quantity: vol,
+                                            completion: { _ in })
+            } else {
+                Alert.show(title: R.string.localizable.spotPageAlertTitle(),
+                           message: R.string.localizable.spotPageAlertMessage("\(tradeTokenInfo.uniqueSymbol)/\(quoteTokenInfo.uniqueSymbol)"),
+                           actions: [
+                            (.default(title: R.string.localizable.spotPageAlertOk()), { _ in
+                                Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
+                                                            tradeTokenInfo: tradeTokenInfo,
+                                                            quoteTokenInfo: quoteTokenInfo,
+                                                            price: priceText,
+                                                            quantity: vol,
+                                                            completion: { _ in })
+                            }),
+                ])
             }
         }.disposed(by: rx.disposeBag)
     }
@@ -406,7 +444,9 @@ class SpotOperationView: UIView {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
     let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
-    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+    let vipStateBehaviorRelay: BehaviorRelay<Pledge?> = BehaviorRelay(value: nil)
+    let needReFreshVIPStateBehaviorRelay: BehaviorRelay<Void?> = BehaviorRelay(value: nil)
+    var level: Int = 0
 
     func bind(marketInfo: MarketInfo?) {
         marketInfoBehaviorRelay.accept(marketInfo)
@@ -418,8 +458,12 @@ class SpotOperationView: UIView {
         pairTokenInfoBehaviorRelay.accept(pair)
     }
 
-    func bind(vipState: Bool?) {
+    func bind(vipState: Pledge?) {
         vipStateBehaviorRelay.accept(vipState)
+    }
+
+    func bind(level: Int) {
+        self.level = level
     }
 }
 
