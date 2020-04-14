@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1179 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1180 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6059,7 +6059,7 @@ public struct R: Rswift.Validatable {
       /// en translation: 抵押不足30天，无法取回
       /// 
       /// Locales: en, zh-Hans
-      public static let spotPageCloseVipErrorToast = Rswift.StringResource(key: "spot.page.close.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let spotPageCloseVipUnExpireErrorToast = Rswift.StringResource(key: "spot.page.close.vip.un.expire.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押余额
       /// 
       /// Locales: en, zh-Hans
@@ -6168,6 +6168,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPagePostToastVolZero = Rswift.StringResource(key: "spot.page.post.toast.vol.zero", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 无VIP抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCloseVipErrorToast = Rswift.StringResource(key: "spot.page.close.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 无委托
       /// 
       /// Locales: en, zh-Hans
@@ -13860,8 +13864,8 @@ public struct R: Rswift.Validatable {
       /// en translation: 抵押不足30天，无法取回
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageCloseVipErrorToast(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.close.vip.error.toast", bundle: R.hostingBundle, comment: "")
+      public static func spotPageCloseVipUnExpireErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.close.vip.un.expire.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 抵押余额
@@ -14051,6 +14055,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func spotPagePostToastVolZero(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.post.toast.vol.zero", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 无VIP抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCloseVipErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.close.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 无委托

@@ -11,16 +11,7 @@ class ConfirmContentView: UIView {
 
     var type: ConfirmViewController.ConfirmTransactionType = .password {
         didSet {
-            switch type {
-            case .password:
-                biometryConfirmButton.isHidden = true
-                passwordInputView.isHidden = false
-                enterPasswordButton.isHidden = true
-                passwordInputView.textField.becomeFirstResponder()
-            case .biometry:
-                biometryConfirmButton.isHidden = false
-                passwordInputView.isHidden = true
-            }
+            layoutConfirmButtonAndPasswordInputView()
         }
     }
 
@@ -39,14 +30,15 @@ class ConfirmContentView: UIView {
     }
 
     let infoView: UIView
+    let bottomTip: String?
 
     let biometryConfirmButton = UIButton(style: .blue)
     let passwordInputView = TitlePasswordInputView(title: R.string.localizable.confirmTransactionPagePwTitle())
+    lazy var bottomTipView = TipTextView(text: self.bottomTip ?? "", hasPoint: true)
 
-
-
-    init(infoView: UIView) {
+    init(infoView: UIView, bottomTip: String?) {
         self.infoView = infoView
+        self.bottomTip = bottomTip
         super.init(frame: CGRect.zero)
 
         backgroundColor = UIColor.white
@@ -54,8 +46,7 @@ class ConfirmContentView: UIView {
         addSubview(titleLabel)
         addSubview(enterPasswordButton)
         addSubview(infoView)
-        addSubview(biometryConfirmButton)
-        addSubview(passwordInputView)
+
 
         closeButton.snp.makeConstraints { (m) in
             m.width.height.equalTo(30)
@@ -76,25 +67,95 @@ class ConfirmContentView: UIView {
 
         infoView.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(60)
-            if #available(iOS 11.0, *) {
-                let i = -98 - (UIViewController.current?.view.safeAreaInsets.bottom ?? 0)
-                m.bottom.equalToSuperview().offset(i)
-            } else {
-                m.bottom.equalToSuperview().offset(-98)
-            }
+//            if #available(iOS 11.0, *) {
+//                let i = -98 - (UIViewController.current?.view.safeAreaInsets.bottom ?? 0)
+//                m.bottom.equalToSuperview().offset(i)
+//            } else {
+//                m.bottom.equalToSuperview().offset(-98)
+//            }
             m.leading.trailing.equalToSuperview()
         }
 
-        biometryConfirmButton.snp.makeConstraints { (m) in
-            m.top.equalTo(infoView.snp.bottom).offset(24)
-            m.leading.equalToSuperview().offset(24)
-            m.trailing.equalToSuperview().offset(-24)
+        if self.bottomTip != nil {
+            addSubview(bottomTipView)
         }
 
-        passwordInputView.snp.makeConstraints { (m) in
-            m.top.equalTo(infoView.snp.bottom).offset(24)
-            m.leading.equalToSuperview().offset(24)
-            m.trailing.equalToSuperview().offset(-24)
+        layoutConfirmButtonAndPasswordInputView()
+    }
+
+    func layoutConfirmButtonAndPasswordInputView() {
+        if self.bottomTip != nil {
+            switch type {
+            case .password:
+                addSubview(passwordInputView)
+                biometryConfirmButton.removeFromSuperview()
+                passwordInputView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(infoView.snp.bottom).offset(24)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                }
+
+                bottomTipView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(passwordInputView.snp.bottom).offset(12)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                    m.bottom.equalTo(self.safeAreaLayoutGuideSnpBottom).offset(-24)
+                }
+
+                enterPasswordButton.isHidden = true
+                passwordInputView.textField.becomeFirstResponder()
+            case .biometry:
+                addSubview(biometryConfirmButton)
+                passwordInputView.removeFromSuperview()
+
+                bottomTipView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(infoView.snp.bottom).offset(12)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                }
+
+                biometryConfirmButton.snp.remakeConstraints { (m) in
+                    m.top.equalTo(bottomTipView.snp.bottom).offset(19)
+                    m.height.equalTo(50)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                    m.bottom.equalTo(self.safeAreaLayoutGuideSnpBottom).offset(-24)
+                }
+
+                enterPasswordButton.isHidden = false
+            }
+        } else {
+
+            switch type {
+            case .password:
+                addSubview(passwordInputView)
+                biometryConfirmButton.removeFromSuperview()
+                passwordInputView.snp.remakeConstraints { (m) in
+                    m.top.equalTo(infoView.snp.bottom).offset(24)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                    m.bottom.equalTo(self.safeAreaLayoutGuideSnpBottom).offset(-24)
+                }
+
+                enterPasswordButton.isHidden = true
+                passwordInputView.textField.becomeFirstResponder()
+            case .biometry:
+                addSubview(biometryConfirmButton)
+                passwordInputView.removeFromSuperview()
+                biometryConfirmButton.snp.remakeConstraints { (m) in
+                    m.top.equalTo(infoView.snp.bottom).offset(24)
+                    m.height.equalTo(50)
+                    m.leading.equalToSuperview().offset(24)
+                    m.trailing.equalToSuperview().offset(-24)
+                    m.bottom.equalTo(self.safeAreaLayoutGuideSnpBottom).offset(-24)
+                }
+
+                enterPasswordButton.isHidden = false
+            }
+
+
+
+
         }
     }
 
@@ -102,3 +163,5 @@ class ConfirmContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+

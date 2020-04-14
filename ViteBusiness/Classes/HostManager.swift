@@ -26,7 +26,7 @@ class HostManager {
             }
         }
 
-        Alamofire.request("https://config.leanfaces.com/dns/hostips")
+        Alamofire.request("https://config.zaokaidian.com/dns/hostips")
             .responseJSON()
             .done { (json, resp) in
                 if HostManager.success { return }

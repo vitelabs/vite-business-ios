@@ -29,7 +29,7 @@ class ConfirmViewController: UIViewController {
     init(viewModel: ConfirmViewModelType, isForceUsePassword: Bool = false, completion:@escaping ((ConfirmTransactionResult) -> Void)) {
         self.viewModel = viewModel
         self.completion = completion
-        self.contentView = ConfirmContentView(infoView: viewModel.createInfoView())
+        self.contentView = ConfirmContentView(infoView: viewModel.createInfoView(), bottomTip: viewModel.bottomTipString)
         if isForceUsePassword {
             self.contentView.type = .password
         } else {
@@ -98,9 +98,6 @@ class ConfirmViewController: UIViewController {
             .subscribe(onNext: {[weak self] (notification) in
                 let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0.25
                 var height = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-                if #available(iOS 11.0, *) {
-                    height = height - (UIViewController.current?.view.safeAreaInsets.bottom ?? 0)
-                }
                 UIView.animate(withDuration: duration, animations: {
                     self?.contentView.transform = CGAffineTransform(translationX: 0, y: -height)
                 })

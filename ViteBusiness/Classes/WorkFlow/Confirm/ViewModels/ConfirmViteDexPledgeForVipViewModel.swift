@@ -24,6 +24,10 @@ struct ConfirmViteDexPledgeForVipViewModel: ConfirmViewModelType {
         return R.string.localizable.confirmTransactionPageViteDexVipConfirmButton()
     }
 
+    var bottomTipString: String? {
+        return R.string.localizable.confirmTransactionPageViteDexVipTip()
+    }
+
     func createInfoView() -> UIView {
         let stackView = UIStackView().then {
             $0.axis = .vertical

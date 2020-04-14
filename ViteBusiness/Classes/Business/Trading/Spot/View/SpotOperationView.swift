@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import ViteWallet
 import BigInt
+import PromiseKit
 
 class SpotOperationView: UIView {
 
@@ -184,7 +185,7 @@ class SpotOperationView: UIView {
 
         vipStateBehaviorRelay.bind { [weak self] in
             guard let `self` = self else { return }
-            if let _ = $0 {
+            if $0 ?? false {
                 self.vipButton.setImage(R.image.icon_spot_vip_open(), for: .normal)
                 self.vipButton.setImage(R.image.icon_spot_vip_open()?.highlighted, for: .highlighted)
                 self.vipButton.setTitle(R.string.localizable.spotPageCloseVip(), for: .normal)
@@ -277,19 +278,36 @@ class SpotOperationView: UIView {
 
         vipButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            if let pledge = self.vipStateBehaviorRelay.value {
-                guard Date() > pledge.timestamp else {
-                    Toast.show(R.string.localizable.spotPageCloseVipErrorToast())
-                    return
+            if self.vipStateBehaviorRelay.value ?? false {
+
+                HUD.show()
+                self.getDexVipPledge().done {[weak self] (pledge) in
+                    guard let `self` = self else { return }
+
+                    if let pledge = pledge {
+                        guard Date() > pledge.timestamp else {
+                            Toast.show(R.string.localizable.spotPageCloseVipUnExpireErrorToast())
+                            return
+                        }
+
+                        Workflow.dexCancelVipWithConfirm(account: HDWalletManager.instance.account!, id: pledge.id) { [weak self] (r) in
+                            if case .success = r {
+                                GCD.delay(3) { [weak self] in
+                                    self?.needReFreshVIPStateBehaviorRelay.accept(Void())
+                                }
+                            }
+                        }
+
+                    } else {
+                        Toast.show(R.string.localizable.spotPageCloseVipErrorToast())
+                        self.needReFreshVIPStateBehaviorRelay.accept(Void())
+                    }
+                }.catch { (error) in
+                    Toast.show(error.localizedDescription)
+                }.finally {
+                    HUD.hide()
                 }
 
-                Workflow.dexCancelVipWithConfirm(account: HDWalletManager.instance.account!, id: pledge.id) { [weak self] (r) in
-                    if case .success = r {
-                        GCD.delay(3) { [weak self] in
-                            self?.needReFreshVIPStateBehaviorRelay.accept(Void())
-                        }
-                    }
-                }
             } else {
                 let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.available ?? Amount(0)
                 guard balance >= "100000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
@@ -428,6 +446,23 @@ class SpotOperationView: UIView {
         }.disposed(by: rx.disposeBag)
     }
 
+    func getDexVipPledge() ->Promise<Pledge?> {
+        let address = HDWalletManager.instance.account!.address
+        return ViteNode.dex.info.getDexVIPStakeInfoListRequest(address: address, index: 0, count: 100)
+            .then { pledgeDetail -> Promise<Pledge?> in
+                for pledge in pledgeDetail.list where pledge.bid == 2 {
+                    return Promise.value(pledge)
+                }
+                return ViteNode.dex.info.getDexVIPStakeInfoListRequest(address: address, index: 0, count: Int(pledgeDetail.totalCount))
+                    .then { pledgeDetail -> Promise<Pledge?> in
+                        for pledge in pledgeDetail.list where pledge.bid == 2 {
+                            return Promise.value(pledge)
+                        }
+                        return Promise.value(nil)
+                }
+        }
+    }
+
     func setPrice(_ text: String) {
         priceTextField.textField.text = text
         priceTextField.textField.sendActions(for: .valueChanged)
@@ -444,7 +479,7 @@ class SpotOperationView: UIView {
 
     let marketInfoBehaviorRelay: BehaviorRelay<MarketInfo?> = BehaviorRelay(value: nil)
     let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
-    let vipStateBehaviorRelay: BehaviorRelay<Pledge?> = BehaviorRelay(value: nil)
+    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
     let needReFreshVIPStateBehaviorRelay: BehaviorRelay<Void?> = BehaviorRelay(value: nil)
     var level: Int = 0
 
@@ -458,7 +493,7 @@ class SpotOperationView: UIView {
         pairTokenInfoBehaviorRelay.accept(pair)
     }
 
-    func bind(vipState: Pledge?) {
+    func bind(vipState: Bool?) {
         vipStateBehaviorRelay.accept(vipState)
     }
 

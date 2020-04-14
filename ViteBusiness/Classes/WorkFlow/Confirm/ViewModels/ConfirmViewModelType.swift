@@ -10,5 +10,10 @@ import UIKit
 public protocol ConfirmViewModelType {
     func createInfoView() -> UIView
     var confirmTitle: String { get }
+    var bottomTipString: String? { get }
     var biometryConfirmButtonTitle: String { get }
+}
+
+extension ConfirmViewModelType {
+    var bottomTipString: String? { nil }
 }
