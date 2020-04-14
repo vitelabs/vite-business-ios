@@ -11,7 +11,7 @@ class SpotDepthView: UIView {
 
     static let height: CGFloat = 322
 
-    var priceClicked: ((String) -> Void)?
+    var priceClicked: (((price: String, vol: Double?, isBuy: Bool)) -> Void)?
 
     let leftLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -28,12 +28,12 @@ class SpotDepthView: UIView {
     lazy var sellItemViews = (0..<5).map { _ in
         ItemView(isBuy: false) { [weak self] in
             if let _ = Double($0) {
-                self?.priceClicked?($0)
+                self?.priceClicked?((price: $0, vol: $1, isBuy: false))
             }
         }
     }
 
-    let openLabel = UILabel().then {
+    let closeLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = UIColor(netHex: 0x24272B)
         $0.text = "--"
@@ -48,7 +48,7 @@ class SpotDepthView: UIView {
     lazy var buyItemViews = (0..<5).map { _ in
         ItemView(isBuy: true) { [weak self] in
             if let _ = Double($0) {
-                self?.priceClicked?($0)
+                self?.priceClicked?((price: $0, vol: $1, isBuy: true))
             }
         }
     }
@@ -64,7 +64,7 @@ class SpotDepthView: UIView {
             addSubview($0)
         }
 
-        addSubview(openLabel)
+        addSubview(closeLabel)
         addSubview(priceLabel)
 
         buyItemViews.forEach {
@@ -90,13 +90,13 @@ class SpotDepthView: UIView {
             }
         }
 
-        openLabel.snp.makeConstraints { (m) in
+        closeLabel.snp.makeConstraints { (m) in
             m.top.equalTo(sellItemViews.last!.snp.bottom).offset(12)
             m.right.equalToSuperview()
         }
 
         priceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(openLabel.snp.bottom).offset(4)
+            m.top.equalTo(closeLabel.snp.bottom).offset(4)
             m.right.equalToSuperview()
         }
 
@@ -118,31 +118,69 @@ class SpotDepthView: UIView {
 
     func bind(marketInfo: MarketInfo?) {
         if let info = marketInfo {
-            openLabel.text = info.statistic.openPrice
+            closeLabel.text = info.statistic.closePrice
             priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: info.statistic.quoteTokenSymbol, price: info.statistic.openPrice)
         } else {
-            openLabel.text = "--"
+            closeLabel.text = "--"
             priceLabel.text = "≈--"
         }
     }
 
     func bind(depthList: MarketDepthList?) {
 
-        for (index, view) in sellItemViews.enumerated() {
+        let asks = depthList?.asks
+        let bids = depthList?.bids
+
+        var sellDepth: [MarketDepthList.Depth?] = []
+        var buyDepth: [MarketDepthList.Depth?] = []
+
+        var sellVol: [Double?] = []
+        var buyVol: [Double?] = []
+
+        for (index, _) in sellItemViews.enumerated() {
             var depth: MarketDepthList.Depth? = nil
-            if let list = depthList, index < list.asks.count {
-                depth = list.asks[list.asks.count - 1 - index]
+            if let asks = asks, sellItemViews.count - 1 - index < asks.count {
+                depth = asks[sellItemViews.count - 1 - index]
             }
-            view.bind(depth: depth)
+            sellDepth.append(depth)
+        }
+
+        for (index, _) in buyItemViews.enumerated() {
+            var depth: MarketDepthList.Depth? = nil
+            if let bids = bids, index < bids.count {
+                depth = bids[index]
+            }
+            buyDepth.append(depth)
+        }
+
+        var buyVolSum: Double = 0
+        buyDepth.forEach {
+            if let depth = $0, let vol = Double(depth.quantity) {
+                buyVolSum += vol
+                buyVol.append(buyVolSum)
+            } else {
+                buyVol.append(nil)
+            }
+        }
+
+        var sellVolSum: Double = 0
+        sellDepth.reversed().forEach {
+            if let depth = $0, let vol = Double(depth.quantity) {
+                sellVolSum += vol
+                sellVol.insert(sellVolSum, at: 0)
+            } else {
+                sellVol.insert(nil, at: 0)
+            }
+        }
+
+        for (index, view) in sellItemViews.enumerated() {
+            view.bind(depth: sellDepth[index], vol: sellVol[index])
         }
 
         for (index, view) in buyItemViews.enumerated() {
-            var depth: MarketDepthList.Depth? = nil
-            if let list = depthList, index < list.bids.count {
-                depth = list.bids[index]
-            }
-            view.bind(depth: depth)
+            view.bind(depth: buyDepth[index], vol: buyVol[index])
         }
+
     }
 
     required init?(coder: NSCoder) {
@@ -170,7 +208,7 @@ extension SpotDepthView {
             $0.backgroundColor = .clear
         }
 
-        init(isBuy: Bool, clicked: @escaping (String) -> Void) {
+        init(isBuy: Bool, clicked: @escaping (String, Double?) -> Void) {
             super.init(frame: .zero)
 
             addSubview(percentView)
@@ -206,11 +244,13 @@ extension SpotDepthView {
 
             button.rx.tap.bind { [weak self] in
                 guard let `self` = self else { return }
-                clicked(self.priceLabel.text ?? "")
+                clicked(self.priceLabel.text ?? "", self.vol)
             }.disposed(by: rx.disposeBag)
         }
 
-        func bind(depth: MarketDepthList.Depth?) {
+        var vol: Double?
+        func bind(depth: MarketDepthList.Depth?, vol: Double?) {
+            self.vol = vol
             if let depth = depth {
                 quantityLabel.text = depth.quantity
                 priceLabel.text = depth.price

@@ -236,6 +236,8 @@ extension MarketInfoService {
         let tradeMiningSymbols = Set(m["tradeSymbols"] as? [String] ?? [])
         let orderMiningSymbols = Set(m["orderSymbols"] as? [String] ?? [])
         let bothMiningSymbols = tradeMiningSymbols.intersection(orderMiningSymbols)
+        let miningMultiplesMap = m["orderMiningMultiples"] as? [String: Int] ?? [:]
+        let orderMiningSettings = m["orderMiningSettings"] as? [String: [String: String]] ?? [:]
 
         let marketDatas = [
             MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
@@ -278,10 +280,25 @@ extension MarketInfoService {
                 info.miningType = .none
             }
 
+            info.miningMultiples = miningMultiplesMap[statistic.symbol] ?? 1
+
             if let rate = rateMap[info.statistic.quoteTokenSymbol] {
                 info.rate = rateString(price: info.statistic.closePrice, rate: rate, currency: currency)
             }
             info.operatorName = self.operatorValue?[info.statistic.symbol] as? String ?? "--"
+
+
+            if let string = orderMiningSettings[info.statistic.symbol]?["buyRangeMax"], let max = Double(string) {
+                info.buyRangeMax = max
+            } else {
+                info.buyRangeMax = nil
+            }
+
+            if let string = orderMiningSettings[info.statistic.symbol]?["sellRangeMax"], let max = Double(string) {
+                info.sellRangeMax = max
+            } else {
+                info.sellRangeMax = nil
+            }
 
            let indexs = ["BTC-000": 1, "ETH-000": 2, "VITE":3, "USDT-000":4]
             if let index = indexs[statistic.quoteTokenSymbol] {
@@ -353,6 +370,10 @@ public class MarketInfo {
     var miningType: MiningType = .none
     var rate = ""
     var operatorName = "--"
+    var miningMultiples: Int = 1
+
+    var buyRangeMax: Double? = nil
+    var sellRangeMax: Double? = nil
 
     private(set) lazy var vitexURL: URL = {
         let tickerStatistics =  self.statistic!

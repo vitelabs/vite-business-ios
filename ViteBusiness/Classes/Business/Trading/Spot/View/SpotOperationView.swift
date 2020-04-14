@@ -178,7 +178,7 @@ class SpotOperationView: UIView {
                 self.priceTextField.textField.placeholder = R.string.localizable.spotPagePriceSellPlaceholder()
                 self.volTextField.textField.placeholder = R.string.localizable.spotPageVolSellPlaceholder()
             }
-            self.setPrice("")
+            self.setPrice(self.marketInfoBehaviorRelay.value?.statistic.closePrice ?? "")
             self.setVol("")
             self.percentView.index = nil
         }.disposed(by: rx.disposeBag)
@@ -473,6 +473,15 @@ class SpotOperationView: UIView {
         volTextField.textField.sendActions(for: .valueChanged)
     }
 
+    func setVol(_ num: Double) {
+        guard let info = self.marketInfoBehaviorRelay.value else { return }
+        guard let pair = self.pairTokenInfoBehaviorRelay.value else { return }
+        let tradeTokenInfo = pair.tradeTokenInfo
+        let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
+        let text = String(format: "%.\(decimals)f", num)
+        setVol(text)
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -485,7 +494,7 @@ class SpotOperationView: UIView {
 
     func bind(marketInfo: MarketInfo?) {
         marketInfoBehaviorRelay.accept(marketInfo)
-        self.setPrice("")
+        self.setPrice(marketInfo?.statistic.closePrice ?? "")
         self.setVol("")
     }
 

@@ -29,6 +29,15 @@ class MarketPageCell: UITableViewCell {
         return miningImgView
     }()
 
+    let miningMultiplesButton = UIButton().then {
+        $0.isUserInteractionEnabled = false
+        $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
+        $0.layer.cornerRadius = 2
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+    }
+
     let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -69,6 +78,7 @@ class MarketPageCell: UITableViewCell {
         contentView.addSubview(tradeSymbolLabel)
         contentView.addSubview(quoteSymbolLabel)
         contentView.addSubview(miningImgView)
+        contentView.addSubview(miningMultiplesButton)
         contentView.addSubview(priceLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(volumeLabel)
@@ -89,6 +99,12 @@ class MarketPageCell: UITableViewCell {
             make.left.equalTo(quoteSymbolLabel.snp.right).offset(5)
             make.centerY.equalTo(quoteSymbolLabel)
             make.width.height.equalTo(14)
+        }
+
+        miningMultiplesButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(miningImgView.snp.right).offset(9)
+            make.centerY.equalTo(quoteSymbolLabel)
+            make.height.equalTo(16)
         }
 
         priceLabel.snp.makeConstraints { (make) -> Void in
@@ -124,13 +140,29 @@ class MarketPageCell: UITableViewCell {
         quoteSymbolLabel.text = "/" + quoteTokenSymbol
         miningImgView.image = info.miningImage
         miningImgView.isHidden = miningImgView.image == nil
+        miningMultiplesButton.setTitle("X\(info.miningMultiples)", for: .normal)
+        miningMultiplesButton.isHidden = info.miningMultiples == 1
         priceLabel.text = info.statistic.closePrice
         timeLabel.text = "24H"
-        volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount ?? "0") ?? 0))
+        volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount) ?? 0))
         rateLabel.text = info.rate
 
         persentLabel.text = info.persentString
         persentLabel.textColor = info.persentColor
+
+        if miningImgView.isHidden {
+            miningMultiplesButton.snp.remakeConstraints { (make) -> Void in
+                make.left.equalTo(quoteSymbolLabel.snp.right).offset(9)
+                make.centerY.equalTo(quoteSymbolLabel)
+                make.height.equalTo(16)
+            }
+        } else {
+            miningMultiplesButton.snp.remakeConstraints { (make) -> Void in
+                make.left.equalTo(miningImgView.snp.right).offset(9)
+                make.centerY.equalTo(quoteSymbolLabel)
+                make.height.equalTo(16)
+            }
+        }
     }
 
     required init?(coder: NSCoder) {

@@ -35,15 +35,6 @@ class SpotViewController: BaseTableViewController {
     func setupView() {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.tableHeaderView = makeHeaderView()
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.rowHeight = 85
-//        tableView.estimatedRowHeight = 85
-//        tableView.separatorStyle = .none
-//
-//        let emptyView = UIView.defaultPlaceholderView(text: R.string.localizable.spotPageOrderEmpty())
-//        emptyView.frame = CGRect(x: 0, y: 0, width: 0, height: 275)
-//        tableView.tableFooterView = emptyView
     }
 
     func update(marketInfo: MarketInfo, isBuy: Bool) {
@@ -57,8 +48,15 @@ class SpotViewController: BaseTableViewController {
             self?.marketInfoBehaviorRelay.accept($0)
         }
 
-        depthView.priceClicked = { [weak self] in
-            self?.operationView.setPrice($0)
+        depthView.priceClicked = { [weak self] ret in
+            guard let `self` = self else { return }
+            self.operationView.setPrice(ret.price)
+
+            if self.operationView.segmentView.isBuyBehaviorRelay.value != ret.isBuy {
+                if let num = ret.vol {
+                    self.operationView.setVol(num)
+                }
+            }
         }
 
         ordersHeaderView.historyButton.rx.tap.bind {
