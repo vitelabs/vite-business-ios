@@ -167,7 +167,7 @@ extension LastTradesViewController {
         }
 
         func bind(trade: MarketTrade) {
-            timeLabel.text = trade.date.format("HH:mm")
+            timeLabel.text = trade.date.format("HH:mm:ss")
             priceLabel.text = trade.price
             quantityLabel.text = trade.quantity
             priceLabel.textColor = UIColor(netHex: trade.isBuy ? 0x00D764: 0xE5494D)

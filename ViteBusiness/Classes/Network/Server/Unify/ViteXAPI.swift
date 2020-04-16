@@ -59,7 +59,6 @@ enum ViteXAPI: TargetType {
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case let .getDepth(symbol):
             let parameters = [
-                "step": "6",
                 "limit": "200",
                 "symbol": symbol
             ]

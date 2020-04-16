@@ -140,7 +140,7 @@ extension SpotOpenedOrderListViewModel {
     }
 
     var symbol: String { marketInfo.statistic.symbol }
-    var depthTopic: String { "market.\(symbol).depth.step6" }
+    var depthTopic: String { "market.\(symbol).depth" }
     var orderTopic: String { "order.\(address)" }
 
     func sub() {

@@ -192,9 +192,9 @@ extension SpotOrderCell {
         quoteLabel.text = "/\(item.quoteTokenSymbol)"
         timeLabel.text = Date(timeIntervalSince1970: TimeInterval(item.createTime)).format()
 
-        volLabel.text = R.string.localizable.spotPageCellVol("\(item.quantity) \(item.tradeTokenSymbol)")
-        priceLabel.text = R.string.localizable.spotPageCellPrice("\(item.price) \(item.quoteTokenSymbol)")
-        dealLabel.text = R.string.localizable.spotPageCellDeal("\(item.executedQuantity) \(item.tradeTokenSymbol)")
-        averageLabel.text = R.string.localizable.spotPageCellAverage("\(item.executedAvgPrice) \(item.quoteTokenSymbol)")
+        volLabel.text = R.string.localizable.spotPageCellVol("\(item.quantity) \(item.tradeTokenSymbolWithoutIndex)")
+        priceLabel.text = R.string.localizable.spotPageCellPrice("\(item.price) \(item.quoteTokenSymbolWithoutIndex)")
+        dealLabel.text = R.string.localizable.spotPageCellDeal("\(item.executedQuantity) \(item.tradeTokenSymbolWithoutIndex)")
+        averageLabel.text = R.string.localizable.spotPageCellAverage("\(item.executedAvgPrice) \(item.quoteTokenSymbolWithoutIndex)")
     }
 }

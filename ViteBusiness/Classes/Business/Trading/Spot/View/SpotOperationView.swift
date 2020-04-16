@@ -209,16 +209,16 @@ class SpotOperationView: UIView {
 
                                 let sourceToken = sourceTokenInfo.toViteToken()!
                                 let balance = balanceMap[sourceToken.id]?.available ?? Amount()
-                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.uniqueSymbol)"
+                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.symbol)"
 
                                 if let text = priceText, let price = BigDecimal(text), price != BigDecimal(0) {
                                     self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: text)
                                     if isBuy {
                                         let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! / price
-                                        self.volLabel.text = R.string.localizable.spotPageBuyable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(tradeTokenInfo.uniqueSymbol)"
+                                        self.volLabel.text = R.string.localizable.spotPageBuyable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(tradeTokenInfo.symbol)"
                                     } else {
                                         let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
-                                        self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.uniqueSymbol)"
+                                        self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.symbol)"
                                     }
 
                                 } else {
@@ -252,28 +252,35 @@ class SpotOperationView: UIView {
             let tradeTokenInfo = pair.tradeTokenInfo
 
             let isBuy = self.segmentView.isBuyBehaviorRelay.value
-            let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
+            let tradeToken = tradeTokenInfo.toViteToken()!
+            let quoteToken = quoteTokenInfo.toViteToken()!
 
-            let sourceToken = sourceTokenInfo.toViteToken()!
-            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: sourceToken.id)?.available ?? Amount()
-
-            let vol: BigDecimal
             if isBuy {
-                vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! / price
+                let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: quoteToken.id)?.available ?? Amount()
+                let vol = BigDecimal(balance.amountFull(decimals: quoteToken.decimals))! / price
+                let percent = BigDecimal("\(PercentView.values[index])")!
+                let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
+                self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(decimals), padding: .none, options: [])
             } else {
-                vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
+                let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tradeToken.id)?.available ?? Amount()
+                let percent = BigDecimal("\(PercentView.values[index])")!
+                let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
+                self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: BigDecimal(balance) * percent / BigDecimal(BigInt(10).power(tradeTokenInfo.decimals)), style: .decimalTruncation(decimals), padding: .none, options: [])
             }
-
-            let percent = BigDecimal("\(PercentView.values[index])")!
-            let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
-            self.volTextField.textField.text = BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(decimals), padding: .none, options: [])
         }
 
         transferButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            guard let tokenInfo = self.pairTokenInfoBehaviorRelay.value?.tradeTokenInfo else { return }
-            let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            let isBuy = self.segmentView.isBuyBehaviorRelay.value
+            if isBuy {
+                guard let tokenInfo = self.pairTokenInfoBehaviorRelay.value?.quoteTokenInfo else { return }
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                guard let tokenInfo = self.pairTokenInfoBehaviorRelay.value?.tradeTokenInfo else { return }
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
         }.disposed(by: rx.disposeBag)
 
         vipButton.rx.tap.bind { [weak self] in
@@ -310,7 +317,7 @@ class SpotOperationView: UIView {
 
             } else {
                 let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.available ?? Amount(0)
-                guard balance >= "100000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
+                guard balance >= "10000".toAmount(decimals: ViteWalletConst.viteToken.decimals)! else {
                     Toast.show(R.string.localizable.spotPageOpenVipErrorToast())
                     return
                 }

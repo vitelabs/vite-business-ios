@@ -21,7 +21,7 @@ class MarketDataIndoHolder: NSObject {
     var depthSubId: SubId? = nil
     var tradesSubId: SubId? = nil
     var symbol: String { marketInfo.statistic.symbol }
-    var depthTopic: String { "market.\(symbol).depth.step6" }
+    var depthTopic: String { "market.\(symbol).depth" }
     var tradesTopic: String { "market.\(symbol).trade" }
 
     var tmpTradeItems: [MarketTrade] = []

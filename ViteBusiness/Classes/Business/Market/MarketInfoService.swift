@@ -236,7 +236,7 @@ extension MarketInfoService {
         let tradeMiningSymbols = Set(m["tradeSymbols"] as? [String] ?? [])
         let orderMiningSymbols = Set(m["orderSymbols"] as? [String] ?? [])
         let bothMiningSymbols = tradeMiningSymbols.intersection(orderMiningSymbols)
-        let miningMultiplesMap = m["orderMiningMultiples"] as? [String: Int] ?? [:]
+        let miningMultiplesMap = m["orderMiningMultiples"] as? [String: String] ?? [:]
         let orderMiningSettings = m["orderMiningSettings"] as? [String: [String: String]] ?? [:]
 
         let marketDatas = [
@@ -280,7 +280,7 @@ extension MarketInfoService {
                 info.miningType = .none
             }
 
-            info.miningMultiples = miningMultiplesMap[statistic.symbol] ?? 1
+            info.miningMultiples = miningMultiplesMap[statistic.symbol] ?? ""
 
             if let rate = rateMap[info.statistic.quoteTokenSymbol] {
                 info.rate = rateString(price: info.statistic.closePrice, rate: rate, currency: currency)
@@ -370,7 +370,7 @@ public class MarketInfo {
     var miningType: MiningType = .none
     var rate = ""
     var operatorName = "--"
-    var miningMultiples: Int = 1
+    var miningMultiples: String = ""
 
     var buyRangeMax: Double? = nil
     var sellRangeMax: Double? = nil

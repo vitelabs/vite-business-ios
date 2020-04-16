@@ -13,28 +13,28 @@ struct MarketDepthList: Mappable {
     fileprivate(set) var bids: [Depth] = []
 
     func calcPercent() {
-        let maxAskAmount = asks.reduce(Double(0)) { (max, depth) -> Double in
-            if let amount = Double(depth.amount), amount > max {
-                return amount
+        let maxAskQuantity = asks.reduce(Double(0)) { (max, depth) -> Double in
+            if let quantity = Double(depth.quantity), quantity > max {
+                return quantity
             } else {
                 return max
             }
         }
 
-        let maxBidAmount = bids.reduce(Double(0)) { (max, depth) -> Double in
-            if let amount = Double(depth.amount), amount > max {
-                return amount
+        let maxBidQuantity = bids.reduce(Double(0)) { (max, depth) -> Double in
+            if let quantity = Double(depth.quantity), quantity > max {
+                return quantity
             } else {
                 return max
             }
         }
 
         asks.forEach {
-            $0.percent = (Double($0.amount) ?? 0) / maxAskAmount
+            $0.percent = (Double($0.quantity) ?? 0) / maxAskQuantity
         }
 
         bids.forEach {
-            $0.percent = (Double($0.amount) ?? 0) / maxBidAmount
+            $0.percent = (Double($0.quantity) ?? 0) / maxBidQuantity
         }
     }
 

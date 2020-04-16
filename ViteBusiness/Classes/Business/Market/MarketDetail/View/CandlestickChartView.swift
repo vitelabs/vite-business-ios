@@ -602,8 +602,8 @@ extension CandlestickChartView {
             highLabel.text = String(format: "%.4f", klineItem.h)
             lowLabel.text = String(format: "%.4f", klineItem.l)
             closeLabel.text = String(format: "%.4f", klineItem.c)
-            diffLabel.text = String(format: "%.4f", klineItem.o - klineItem.c)
-            extentLabel.text = String(format: "%.2f%%", (klineItem.o - klineItem.c) * 100 / klineItem.o)
+            diffLabel.text = String(format: "%.4f", klineItem.c - klineItem.o)
+            extentLabel.text = String(format: "%.2f%%", (klineItem.c - klineItem.o) * 100 / klineItem.o)
             volLabel.text = String(format: "%.4f", klineItem.v)
         }
 

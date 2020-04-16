@@ -543,7 +543,7 @@ public extension Workflow {
 
         let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: ViteWalletConst.viteToken.id)?.available ?? Amount(0)
         let balanceString = "\(balance.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)) \(ViteWalletConst.viteToken.symbol)"
-        let viewModel = ConfirmViteDexPledgeForVipViewModel(balanceString: balanceString, amountString: "100,000 VITE")
+        let viewModel = ConfirmViteDexPledgeForVipViewModel(balanceString: balanceString, amountString: "10,000 VITE")
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 

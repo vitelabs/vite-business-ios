@@ -36,6 +36,14 @@ struct MarketOrder : Mappable {
     var type : Int32 = 0
     var createTime : Int64 = 0
 
+    var tradeTokenSymbolWithoutIndex : String {
+        tradeTokenSymbol.components(separatedBy: "-").first ?? tradeTokenSymbol
+    }
+
+    var quoteTokenSymbolWithoutIndex : String {
+        quoteTokenSymbol.components(separatedBy: "-").first ?? quoteTokenSymbol
+    }
+
     init(orderProto: OrderProto) {
         self.orderId = orderProto.orderID
         self.symbol = orderProto.symbol

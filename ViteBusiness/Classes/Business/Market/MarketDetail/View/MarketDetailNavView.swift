@@ -180,7 +180,7 @@ class MarketDetailNavView: UIView {
         miningImgView.image = marketInfo.miningImage
         miningImgView.isHidden = miningImgView.image == nil
         miningMultiplesButton.setTitle("X\(marketInfo.miningMultiples)", for: .normal)
-        miningMultiplesButton.isHidden = marketInfo.miningMultiples == 1
+        miningMultiplesButton.isHidden = marketInfo.miningMultiples.isEmpty
 
 
         if miningImgView.isHidden {

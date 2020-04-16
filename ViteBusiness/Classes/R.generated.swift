@@ -5360,7 +5360,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoPair = Rswift.StringResource(key: "market.detail.page.token.info.pair", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 100,000 VITE
+      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 10,000 VITE
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -12643,7 +12643,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.pair", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 100,000 VITE
+      /// en translation: 交易所 VITE 余额不足，开通 VIP 需抵押 10,000 VITE
       /// 
       /// Locales: en, zh-Hans
       public static func spotPageOpenVipErrorToast(_: Void = ()) -> String {

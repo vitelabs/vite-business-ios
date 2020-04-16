@@ -141,7 +141,7 @@ class MarketPageCell: UITableViewCell {
         miningImgView.image = info.miningImage
         miningImgView.isHidden = miningImgView.image == nil
         miningMultiplesButton.setTitle("X\(info.miningMultiples)", for: .normal)
-        miningMultiplesButton.isHidden = info.miningMultiples == 1
+        miningMultiplesButton.isHidden = info.miningMultiples.isEmpty
         priceLabel.text = info.statistic.closePrice
         timeLabel.text = "24H"
         volumeLabel.text = String(format: "%.2f \(quoteTokenSymbol)", (Double(info.statistic.amount) ?? 0))

@@ -55,7 +55,7 @@ class MarketDetailInfoView: UIView {
         $0.textColor = UIColor(netHex: 0x3E4A59)
     }
 
-    let quantityLabel = UILabel().then {
+    let amountLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59)
     }
@@ -71,7 +71,7 @@ class MarketDetailInfoView: UIView {
         addSubview(percentLabel)
         addSubview(highLabel)
         addSubview(lowLabel)
-        addSubview(quantityLabel)
+        addSubview(amountLabel)
 
         addSubview(highTitleLabel)
         addSubview(lowTitleLabel)
@@ -118,7 +118,7 @@ class MarketDetailInfoView: UIView {
             m.right.lessThanOrEqualTo(layoutGuide)
         }
 
-        quantityLabel.snp.makeConstraints { (m) in
+        amountLabel.snp.makeConstraints { (m) in
             m.top.equalTo(lowLabel.snp.bottom).offset(8)
             m.left.equalTo(layoutGuide).offset(8)
             m.right.lessThanOrEqualTo(layoutGuide)
@@ -150,7 +150,7 @@ class MarketDetailInfoView: UIView {
 
         highLabel.text = String(format: "%.6f", Double(marketInfo.statistic.highPrice)!)
         lowLabel.text = String(format: "%.6f", Double(marketInfo.statistic.lowPrice)!)
-        quantityLabel.text = String(format: "%.6f", Double(marketInfo.statistic.quantity)!)
+        amountLabel.text = String(format: "%.6f", Double(marketInfo.statistic.amount)!)
     }
 
     required init?(coder: NSCoder) {
