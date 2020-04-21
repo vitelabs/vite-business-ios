@@ -845,6 +845,12 @@
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
+"bifrost.operation.sign.message.title" = "创建API";
+"bifrost.operation.sign.message.address" = "当前地址";
+"bifrost.operation.sign.message.type" = "权限类型";
+"bifrost.operation.sign.message.content" = "签名内容";
+"bifrost.operation.sign.message.type.trade.value" = "交易权限";
+
 //bnb
 "token.list.page.section.bnb.header" = "Binance网络";
 "bnb.send.page.feeView.titleLabel.title" = "矿工费用";

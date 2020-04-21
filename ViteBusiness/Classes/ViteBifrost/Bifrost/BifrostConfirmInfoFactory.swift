@@ -79,6 +79,14 @@ struct BifrostConfirmInfoFactory {
             })
     }
 
+    static public func generateConfirmInfo(_ signMessage: VBViteSignMessage) -> Promise<BifrostConfirmInfo> {
+
+        let addressItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationSignMessageAddress(), text: HDWalletManager.instance.account!.address)
+        let typeItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationSignMessageType(), text: R.string.localizable.bifrostOperationSignMessageTypeTradeValue())
+        let contentItem = BifrostConfirmItemInfo(title: R.string.localizable.bifrostOperationSignMessageContent(), text: signMessage.message.toHexString())
+        return Promise.value(BifrostConfirmInfo(title: R.string.localizable.bifrostOperationSignMessageTitle(), items: [addressItem, typeItem, contentItem]))
+    }
+
     enum BuildInTransfer: CaseIterable {
 
         case normal

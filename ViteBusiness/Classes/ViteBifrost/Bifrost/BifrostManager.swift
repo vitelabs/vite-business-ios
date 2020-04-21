@@ -13,6 +13,7 @@ import PromiseKit
 import Starscream
 import Alamofire
 import SwiftyJSON
+import Vite_HDWalletKit
 
 public final class BifrostManager {
     public static let instance = BifrostManager()
@@ -343,12 +344,26 @@ extension BifrostManager {
             guard i === self.interactor else { return }
             BifrostConfirmInfoFactory.generateConfirmInfo(tx).done({[weak self] (info, tokenInfo) in
                 guard let `self` = self else { return }
-                let task = BifrostViteSendTxTask(id: id, tx: tx, info: info, tokenInfo: tokenInfo)
+                let task = BifrostViteSendTxTask(id: id, info: info, tx: tx, tokenInfo: tokenInfo)
                 self.addTask(task)
                 self.processTaskIfHave()
             }).catch({ (error) in
                 self.interactor?.rejectRequest(id: id, message: error.localizedDescription).cauterize()
             })
+        }
+
+        interactor.onViteSignMessage = { [weak self] (i, id, signMessage) in
+            guard let `self` = self else { return }
+            // make sure interactor is current, otherwise ignore
+            guard i === self.interactor else { return }
+            BifrostConfirmInfoFactory.generateConfirmInfo(signMessage).done { [weak self] info in
+                guard let `self` = self else { return }
+                let task = BifrostViteSendTxTask(id: id, info: info, signMessage: signMessage)
+                self.addTask(task)
+                self.processTaskIfHave()
+            }.catch { (error) in
+                self.interactor?.rejectRequest(id: id, message: error.localizedDescription).cauterize()
+            }
         }
     }
 
@@ -491,35 +506,45 @@ extension BifrostManager {
             guard let account = HDWalletManager.instance.account else { return }
             setTaskStatusProcessing(task)
             plog(level: .info, log: "[task] task: \(task.id) auto start sign", tag: .bifrost)
-            Workflow.bifrostSendTx(needConfirm: false,
-                                   title: task.info.title,
-                                   account: account,
-                                   toAddress: task.tx.block.toAddress,
-                                   tokenId: task.tokenInfo.viteTokenId,
-                                   amount: task.tx.block.amount,
-                                   fee: task.tx.block.fee,
-                                   data: task.tx.block.data,
-                                   completion: { (ret) in
-                                    switch ret {
-                                    case .success(let accountBlock):
-                                        self.processedTask(task, processedType: .finished)
-                                        self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
-                                        plog(level: .info, log: "[task] task: \(task.id) auto finished sign", tag: .bifrost)
-                                        self.delaySetIsProcessingFalseAndProcessTaskIfHave()
-                                    case .failure(let error):
-                                        if self.retryMaybeRecover(error: error) {
-                                            self.setTaskStatusWaitingForRetry(task)
-                                            plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
-                                            GCD.delay(1) { self.processTask(task) }
-                                        } else {
-                                            self.processedTask(task, processedType: .failed)
-                                            plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then failed", tag: .bifrost)
+            switch task.type {
+            case let .sendTx(tx, tokenInfo):
+                Workflow.bifrostSendTx(needConfirm: false,
+                                       title: task.info.title,
+                                       account: account,
+                                       toAddress: tx.block.toAddress,
+                                       tokenId: tokenInfo.viteTokenId,
+                                       amount: tx.block.amount,
+                                       fee: tx.block.fee,
+                                       data: tx.block.data,
+                                       completion: { (ret) in
+                                        switch ret {
+                                        case .success(let accountBlock):
+                                            self.processedTask(task, processedType: .finished)
+                                            self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
+                                            plog(level: .info, log: "[task] task: \(task.id) auto finished sign", tag: .bifrost)
                                             self.delaySetIsProcessingFalseAndProcessTaskIfHave()
+                                        case .failure(let error):
+                                            if self.retryMaybeRecover(error: error) {
+                                                self.setTaskStatusWaitingForRetry(task)
+                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then retry", tag: .bifrost)
+                                                GCD.delay(1) { self.processTask(task) }
+                                            } else {
+                                                self.processedTask(task, processedType: .failed)
+                                                plog(level: .info, log: "[task] task: \(task.id) auto failed sign, then failed", tag: .bifrost)
+                                                self.delaySetIsProcessingFalseAndProcessTaskIfHave()
+                                            }
+                                            plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
                                         }
-                                        plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
-                                    }
 
-            })
+                })
+            case let .signMessage(signMessage):
+                let response = self.signMessage(signMessage: signMessage)
+                self.processedTask(task, processedType: .finished)
+                self.interactor?.approveViteSignMessage(id: task.id, response: response)
+                plog(level: .info, log: "[task] task: \(task.id) auto finished sign", tag: .bifrost)
+                self.delaySetIsProcessingFalseAndProcessTaskIfHave()
+            }
+
         } else {
             setTaskStatusProcessing(task)
             let vc = self.showBifrostViewController()
@@ -565,27 +590,37 @@ extension BifrostManager {
                     guard let account = HDWalletManager.instance.account else { return }
                     if ret {
                         plog(level: .info, log: "[task] task: \(task.id) manual start sign", tag: .bifrost)
-                        Workflow.bifrostSendTx(needConfirm: true,
-                                               title: task.info.title,
-                                               account: account,
-                                               toAddress: task.tx.block.toAddress,
-                                               tokenId: task.tokenInfo.viteTokenId,
-                                               amount: task.tx.block.amount,
-                                               fee: task.tx.block.fee,
-                                               data: task.tx.block.data,
-                                               completion: { (ret) in
-                                                switch ret {
-                                                case .success(let accountBlock):
-                                                    self.processedTask(task, processedType: .finished)
-                                                    vc.hideConfirm()
-                                                    self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
-                                                    plog(level: .info, log: "[task] task: \(task.id) manual finished sign", tag: .bifrost)
-                                                    self.delaySetIsProcessingFalseAndProcessTaskIfHave()
-                                                case .failure(let error):
-                                                    plog(level: .info, log: "[task] task: \(task.id) manual failed sign, then manual retry", tag: .bifrost)
-                                                    plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
-                                                }
-                        })
+                        switch task.type {
+                        case let .sendTx(tx, tokenInfo):
+                            Workflow.bifrostSendTx(needConfirm: true,
+                                                   title: task.info.title,
+                                                   account: account,
+                                                   toAddress: tx.block.toAddress,
+                                                   tokenId: tokenInfo.viteTokenId,
+                                                   amount: tx.block.amount,
+                                                   fee: tx.block.fee,
+                                                   data: tx.block.data,
+                                                   completion: { (ret) in
+                                                    switch ret {
+                                                    case .success(let accountBlock):
+                                                        self.processedTask(task, processedType: .finished)
+                                                        vc.hideConfirm()
+                                                        self.interactor?.approveViteTx(id: task.id, accountBlock: accountBlock)
+                                                        plog(level: .info, log: "[task] task: \(task.id) manual finished sign", tag: .bifrost)
+                                                        self.delaySetIsProcessingFalseAndProcessTaskIfHave()
+                                                    case .failure(let error):
+                                                        plog(level: .info, log: "[task] task: \(task.id) manual failed sign, then manual retry", tag: .bifrost)
+                                                        plog(level: .warning, log: "\(error.localizedDescription)", tag: .bifrost)
+                                                    }
+                            })
+                        case let .signMessage(signMessage):
+                            let response = self.signMessage(signMessage: signMessage)
+                            self.processedTask(task, processedType: .finished)
+                            vc.hideConfirm()
+                            self.interactor?.approveViteSignMessage(id: task.id, response: response)
+                            plog(level: .info, log: "[task] task: \(task.id) manual finished sign", tag: .bifrost)
+                            self.delaySetIsProcessingFalseAndProcessTaskIfHave()
+                        }
                     } else {
                         self.processedTask(task, processedType: .canceled)
                         vc.hideConfirm()
@@ -598,6 +633,17 @@ extension BifrostManager {
             }
         }
         return ret
+    }
+
+    fileprivate func signMessage(signMessage: VBViteSignMessage) -> VBViteSignMessageResponse {
+        let account = HDWalletManager.instance.account!
+        let publicKey = Data(bytes: account.publicKey.hex2Bytes).base64EncodedString()
+        let prefix = "Vite Signed Message:\n".data(using: .utf8)!
+        let source = (prefix + signMessage.message).bytes
+        let hash = Blake2b.hash(outLength: 32, in: source) ?? Bytes()
+        let signature = Data(bytes: account.sign(hash: hash)).base64EncodedString()
+        let response = VBViteSignMessageResponse(publicKey: publicKey, signature: signature)
+        return response
     }
 
     fileprivate func approveFailed(message: String?) {
@@ -642,14 +688,19 @@ extension BifrostManager {
     }
 
     fileprivate func canAutoConfirm(task: BifrostViteSendTxTask) -> Bool {
-        guard let data = task.tx.block.data, data.count >= 4 else {
+
+        guard case let .sendTx(tx, _) = task.type else {
             return false
         }
-        guard let toAddress = task.tx.block.toAddress else {
+
+        guard let data = tx.block.data, data.count >= 4 else {
+            return false
+        }
+        guard let toAddress = tx.block.toAddress else {
             return false
         }
         let toAddressAndDataPrefix = "\(toAddress).\(data[0..<4].toHexString())"
-        if let (type, values) = ABI.BuildIn.type(data: task.tx.block.data, toAddress: toAddress) , type == .dexPlaceOrder {
+        if let (type, values) = ABI.BuildIn.type(data: tx.block.data, toAddress: toAddress) , type == .dexPlaceOrder {
             guard let tradeTokenIdValue = values[0] as? ABITokenIdValue,
                 let quoteTokenIdValue = values[1] as? ABITokenIdValue else {
                     return false

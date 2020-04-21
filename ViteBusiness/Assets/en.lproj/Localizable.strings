@@ -837,6 +837,12 @@
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
+"bifrost.operation.sign.message.title" = "Create API";
+"bifrost.operation.sign.message.address" = "Current Address";
+"bifrost.operation.sign.message.type" = "Permission Type";
+"bifrost.operation.sign.message.content" = "Signature Content";
+"bifrost.operation.sign.message.type.trade.value" = "Trade";
+
 //bnb
 "token.list.page.section.bnb.header" = "Binance Network";
 "bnb.send.page.feeView.titleLabel.title" = "Fee";

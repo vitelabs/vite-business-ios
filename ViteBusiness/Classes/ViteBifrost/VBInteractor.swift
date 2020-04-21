@@ -15,6 +15,7 @@ public typealias SessionRequestClosure = (VBInteractor, _ id: Int64, _ peer: VBP
 public typealias DisconnectByPeerClosure = (VBInteractor) -> Void
 public typealias DisconnectClosure = (VBInteractor, Error?) -> Void
 public typealias ViteSendTxClosure = (VBInteractor, _ id: Int64, _ viteSendTx: VBViteSendTx) -> Void
+public typealias ViteSignMessageClosure = (VBInteractor, _ id: Int64, _ viteSendTx: VBViteSignMessage) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -38,6 +39,7 @@ public class VBInteractor {
     public var onDisconnect: DisconnectClosure?
     public var onDisconnectByPeer: DisconnectByPeerClosure?
     public var onViteSendTx: ViteSendTxClosure?
+    public var onViteSignMessage: ViteSignMessageClosure?
 
     // outgoing promise resolvers
     var connectResolver: Resolver<Bool>?
@@ -144,6 +146,15 @@ public class VBInteractor {
         return encryptAndSend(data: data)
     }
 
+    public func approveViteSignMessage(id: Int64, response: VBViteSignMessageResponse) -> Promise<Void> {
+        guard let jsonString = VBJSONRPCResponse(id: id, result: response).toJSONString(),
+            let data = jsonString.data(using: .utf8) else {
+            fatalError()
+        }
+        plog(level: .info, log: "[bridge-s] viteSignMessage result: \(jsonString)", tag: .bifrost)
+        return encryptAndSend(data: data)
+    }
+
     public func approveRequest(id: Int64, result: String) -> Promise<Void> {
         let response = JSONRPCResponse(id: id, result: result)
         return encryptAndSend(data: response.encoded)
@@ -241,9 +252,17 @@ extension VBInteractor {
                 }
                 plog(level: .info, log: "[bridge-r] viteSendTx event: \(jsonString)", tag: .bifrost)
                 onViteSendTx?(self, request.id, viteSendTx)
+            case .viteSignMessage:
+                guard let jsonString = String(data: decrypted, encoding: .utf8),
+                    let request = VBJSONRPCRequest<VBViteSignMessage>(JSONString: jsonString),
+                    let obj = request.params.first else {
+                        throw VBError.badJSONRPCRequest
+                }
+                plog(level: .info, log: "[bridge-r] viteSignMessage event: \(jsonString)", tag: .bifrost)
+                onViteSignMessage?(self, request.id, obj)
             }
         } catch let error {
-            plog(level: .severe, log: "error.localizedDescription", tag: .bifrost)
+            plog(level: .severe, log: error.localizedDescription, tag: .bifrost)
             print("==> handleEvent error: \(error.localizedDescription)")
         }
     }

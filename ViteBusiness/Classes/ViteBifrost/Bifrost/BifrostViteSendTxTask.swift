@@ -18,20 +18,30 @@ class BifrostViteSendTxTask {
         case canceled
     }
 
+    enum TaskType {
+        case sendTx(tx : VBViteSendTx, tokenInfo: TokenInfo)
+        case signMessage(signMessage: VBViteSignMessage)
+    }
+
     let timestamp: Date
     let id: Int64
-    let tx : VBViteSendTx
     let info: BifrostConfirmInfo
-    let tokenInfo: TokenInfo
+    let type: TaskType
 
     var status: Status = .pending
 
-    init(id: Int64, tx : VBViteSendTx, info: BifrostConfirmInfo, tokenInfo: TokenInfo) {
+    init(id: Int64, info: BifrostConfirmInfo, tx : VBViteSendTx, tokenInfo: TokenInfo) {
         self.timestamp = Date()
         self.id = id
-        self.tx = tx
         self.info = info
-        self.tokenInfo = tokenInfo
+        self.type = .sendTx(tx: tx, tokenInfo: tokenInfo)
+    }
+
+    init(id: Int64, info: BifrostConfirmInfo, signMessage : VBViteSignMessage) {
+        self.timestamp = Date()
+        self.id = id
+        self.info = info
+        self.type = .signMessage(signMessage: signMessage)
     }
 
     var statusDescription: String {

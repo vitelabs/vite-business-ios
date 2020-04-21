@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1180 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1185 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2792,6 +2792,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinPayTitleCreat = Rswift.StringResource(key: "grin.pay.title.creat", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Create API
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationSignMessageTitle = Rswift.StringResource(key: "bifrost.operation.sign.message.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Create Account
       /// 
       /// Locales: en, zh-Hans
@@ -2840,6 +2844,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationSignMessageAddress = Rswift.StringResource(key: "bifrost.operation.sign.message.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Current Address
       /// 
       /// Locales: en, zh-Hans
@@ -3740,6 +3748,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteCallContractTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.call.contract.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Permission Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationSignMessageType = Rswift.StringResource(key: "bifrost.operation.sign.message.type", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Pick up 10~1000
       /// 
       /// Locales: en, zh-Hans
@@ -4276,6 +4288,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertPowAndQuotaMessage = Rswift.StringResource(key: "quota.alert.pow.and.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Signature content
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationSignMessageContent = Rswift.StringResource(key: "bifrost.operation.sign.message.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Signed Transactions Details
       /// 
       /// Locales: en, zh-Hans
@@ -4640,6 +4656,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinCoinIssuanceItem3Title = Rswift.StringResource(key: "buildin.coin.issuance.item3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trade
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostOperationSignMessageTypeTradeValue = Rswift.StringResource(key: "bifrost.operation.sign.message.type.trade.value", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transact Faster via Staking
       /// 
       /// Locales: en, zh-Hans
@@ -8149,6 +8169,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.pay.title.creat", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Create API
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationSignMessageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.sign.message.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Create Account
       /// 
       /// Locales: en, zh-Hans
@@ -8231,6 +8258,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func systemPageCellChangeCurrency(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.change.currency", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationSignMessageAddress(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.sign.message.address", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Current Address
@@ -9808,6 +9842,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("confirm.transaction.page.vite.call.contract.transfer.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Permission Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationSignMessageType(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.sign.message.type", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Pick up 10~1000
       /// 
       /// Locales: en, zh-Hans
@@ -10746,6 +10787,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.and.quota.message", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Signature content
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationSignMessageContent(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.sign.message.content", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Signed Transactions Details
       /// 
       /// Locales: en, zh-Hans
@@ -11381,6 +11429,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func buildinCoinIssuanceItem3Title(_: Void = ()) -> String {
         return NSLocalizedString("buildin.coin.issuance.item3.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Trade
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostOperationSignMessageTypeTradeValue(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.operation.sign.message.type.trade.value", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transact Faster via Staking
