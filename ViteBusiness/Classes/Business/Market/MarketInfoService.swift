@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import PromiseKit
+import ViteWallet
 
 enum SortStatus: Int {
     case normal = 0
@@ -23,6 +24,8 @@ class MarketInfoService: NSObject {
     static let shared = MarketInfoService()
 
     let marketSocket = MarketWebSocket()
+
+    fileprivate(set) var marketLimit = MarketLimit(json: nil)
 
     var operatorValue: [String: Any]?
 
@@ -57,10 +60,6 @@ class MarketInfoService: NSObject {
             let relay = self.sortedMarketDataBehaviorRelay.value
             for data in relay {
                 for info in data.infos {
-//                    if info.statistic.symbol == statistic.symbol,
-//                        let new = try? info.statistic.getBuilder().mergeFrom(other:statistic).build(){
-//                        info.statistic = new
-//                    }
                     if info.statistic.symbol == statistic.symbol {
                         info.statistic = statistic
                     }
@@ -79,8 +78,21 @@ class MarketInfoService: NSObject {
         readCaches()
         requestPageList()
         marketSocket.start()
+        fetchLimit()
     }
 
+    func fetchLimit() {
+        UnifyProvider.vitex.getLimit().done { [weak self] in
+            self?.marketLimit = $0
+        }.catch { [weak self] (e) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: e.localizedDescription, tag: .market)
+            GCD.delay(1) {[weak self] in
+                guard let `self` = self else { return }
+                self.fetchLimit()
+            }
+        }
+    }
 
     //MARK: favourite
     let favouriteBehaviorRelay: BehaviorRelay<[String]>

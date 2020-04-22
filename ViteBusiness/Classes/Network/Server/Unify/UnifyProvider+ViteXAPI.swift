@@ -40,6 +40,14 @@ extension UnifyProvider.vitex {
         }
     }
 
+    static func getLimit() -> Promise<MarketLimit> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getLimit, responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            return MarketLimit(json: json)
+        }
+    }
+
     static func getRate(tokenIds: [ViteTokenId]) -> Promise<ExchangeRateMap> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
         return p.requestPromise(.getRate(tokenIds: tokenIds), responseToData: responseToData).map { string in

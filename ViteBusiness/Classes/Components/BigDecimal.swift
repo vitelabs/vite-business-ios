@@ -189,6 +189,35 @@ public struct BigDecimal: Equatable, Comparable {
 
 }
 
+public extension BigDecimal {
+    func ceil() -> BigInt {
+        if self.digits == 0 {
+            return self.number
+        } else {
+            let (q, r) = self.number.quotientAndRemainder(dividingBy: BigInt(10).power(digits))
+            if r == 0 {
+                return q
+            } else {
+                return q + 1
+            }
+        }
+    }
+
+    func floor() -> BigInt {
+        if self.digits == 0 {
+            return self.number
+        } else {
+            let (q, _) = self.number.quotientAndRemainder(dividingBy: BigInt(10).power(digits))
+            return q
+        }
+    }
+
+    func round() -> BigInt {
+        let bigDecimal = self + BigDecimal("0.5")!
+        return bigDecimal.floor()
+    }
+}
+
 extension BigDecimal: CustomStringConvertible {
 
     public var description: String {

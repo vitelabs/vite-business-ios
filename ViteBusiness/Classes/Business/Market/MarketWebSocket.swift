@@ -51,19 +51,9 @@ class MarketWebSocket: NSObject {
     }
 
     private func sub() {
-        let dexProtocol = DexProtocol.with {
-            $0.clientID = clientId
-            $0.opType = "sub"
-            $0.topics = topices.joined(separator: ",")
-            $0.message = Data()
-            $0.errorCode = 0
-        }
-
-        do {
-            let jsonData = try dexProtocol.serializedData()
-            socket.write(data: jsonData)
-        } catch  {
-//            //plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+        socketWriteSub(topic: topices.joined(separator: ","))
+        blockMap.keys.forEach { (topic) in
+            socketWriteSub(topic: topic)
         }
     }
 
@@ -115,10 +105,24 @@ class MarketWebSocket: NSObject {
 
 
 extension MarketWebSocket {
-//    func subMarketPair(pairId: String, ticker: @escaping (Data) -> ()) -> SubId {
-//        let topic = "market.\(pairId).tickers"
-//        return sub(topic: topic, ticker: ticker)
-//    }
+
+    fileprivate func socketWriteSub(topic: String) {
+        plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
+        do {
+            let dexProtocol = DexProtocol.with {
+                $0.clientID = clientId
+                $0.opType = "sub"
+                $0.topics = topic
+                $0.message = Data()
+                $0.errorCode = 0
+            }
+
+            let jsonData = try dexProtocol.serializedData()
+            socket.write(data: jsonData)
+        } catch  {
+            plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+        }
+    }
 
     func sub(topic: MarketTopic, ticker: @escaping (Data) -> ()) -> SubId {
         plog(level: .debug, log: "sub \(topic)", tag: .market)
@@ -127,21 +131,7 @@ extension MarketWebSocket {
 
         // need sub
         if array.isEmpty {
-            plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
-            do {
-                let dexProtocol = DexProtocol.with {
-                    $0.clientID = clientId
-                    $0.opType = "sub"
-                    $0.topics = topic
-                    $0.message = Data()
-                    $0.errorCode = 0
-                }
-
-                let jsonData = try dexProtocol.serializedData()
-                socket.write(data: jsonData)
-            } catch  {
-                plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
-            }
+            socketWriteSub(topic: topic)
         }
         array.append((subId, ticker))
         blockMap[topic] = array

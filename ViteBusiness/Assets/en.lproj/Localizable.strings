@@ -1093,6 +1093,7 @@
 "spot.page.post.toast.price.zero" = "价格不能为0";
 "spot.page.post.toast.vol.empty" = "请输入数量";
 "spot.page.post.toast.vol.zero" = "数量不能为0";
+"spot.page.post.toast.amount.min" = "下单金额太小";
 
 "spot.page.alert.title" = "温馨提示";
 "spot.page.alert.message" = "当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。";

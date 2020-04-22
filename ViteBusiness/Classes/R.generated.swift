@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1185 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1186 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4288,7 +4288,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertPowAndQuotaMessage = Rswift.StringResource(key: "quota.alert.pow.and.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Signature content
+      /// en translation: Signature Content
       /// 
       /// Locales: en, zh-Hans
       public static let bifrostOperationSignMessageContent = Rswift.StringResource(key: "bifrost.operation.sign.message.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5348,6 +5348,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 下单金额太小
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPagePostToastAmountMin = Rswift.StringResource(key: "spot.page.post.toast.amount.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, zh-Hans
@@ -10787,7 +10791,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.alert.pow.and.quota.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Signature content
+      /// en translation: Signature Content
       /// 
       /// Locales: en, zh-Hans
       public static func bifrostOperationSignMessageContent(_: Void = ()) -> String {
@@ -12640,6 +12644,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 下单金额太小
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPagePostToastAmountMin(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.post.toast.amount.min", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 中

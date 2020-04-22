@@ -86,29 +86,16 @@ class SpotViewController: BaseTableViewController {
             self.operationView.bind(marketInfo: info)
 
             let viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, marketInfo: info)
-            viewModle.operatorInfoIconUrlStringBehaviorRelay.bind { [weak self] in
+
+            viewModle.spotViewModelBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
-                self.navView.setOpertionIcon($0)
+                self.navView.setOpertionIcon($0?.operatorInfoIconUrlString)
+                self.operationView.bind(spotViewModel: $0)
             }.disposed(by: viewModle.rx.disposeBag)
 
             viewModle.depthListBehaviorRelay.bind { [weak self] in
                 guard let `self` = self else { return }
                 self.depthView.bind(depthList: $0)
-            }.disposed(by: viewModle.rx.disposeBag)
-
-            viewModle.pairTokenInfoBehaviorRelay.bind { [weak self] in
-                guard let `self` = self else { return }
-                self.operationView.bind(pair: $0)
-            }.disposed(by: viewModle.rx.disposeBag)
-
-            viewModle.vipStateBehaviorRelay.bind { [weak self] in
-                guard let `self` = self else { return }
-                self.operationView.bind(vipState: $0)
-            }.disposed(by: viewModle.rx.disposeBag)
-
-            viewModle.levelBehaviorRelay.bind { [weak self] in
-                guard let `self` = self else { return }
-                self.operationView.bind(level: $0)
             }.disposed(by: viewModle.rx.disposeBag)
 
             self.viewModle = viewModle

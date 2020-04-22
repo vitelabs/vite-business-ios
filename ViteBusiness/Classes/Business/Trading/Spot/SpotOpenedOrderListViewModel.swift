@@ -47,7 +47,7 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
 
     override func cellFor(model: MarketOrder, indexPath: IndexPath) -> UITableViewCell {
         let cell: SpotOrderCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(model, tradeTokenInfo: self.pairTokenInfoBehaviorRelay.value?.quoteTokenInfo)
+        cell.bind(model, tradeTokenInfo: self.spotViewModelBehaviorRelay.value?.quoteTokenInfo)
         return cell
     }
 
@@ -61,12 +61,7 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     }
 
     let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
-    private let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
-    let pairTokenInfoBehaviorRelay: BehaviorRelay<(tradeTokenInfo: TokenInfo, quoteTokenInfo: TokenInfo)?> = BehaviorRelay(value: nil)
-
-    let vipStateBehaviorRelay: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
-    let operatorInfoIconUrlStringBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let levelBehaviorRelay: BehaviorRelay<Int> = BehaviorRelay(value: 0)
+    let spotViewModelBehaviorRelay: BehaviorRelay<SpotViewModel?> = BehaviorRelay(value: nil)
 
     var depthSubId: SubId? = nil
     var orderSubId: SubId? = nil
@@ -80,11 +75,19 @@ extension SpotOpenedOrderListViewModel {
             ViteNode.dex.info.getDexVIPState(address: address)
         }) { [weak self] in
             guard let `self` = self else { return }
-            self.vipStateBehaviorRelay.accept($0)
+            guard let vm = self.spotViewModelBehaviorRelay.value else { return }
+            let spotViewModel = SpotViewModel(marketPairDetailInfo: vm.marketPairDetailInfo,
+                                              tradeTokenInfo: vm.tradeTokenInfo,
+                                              quoteTokenInfo: vm.quoteTokenInfo,
+                                              vipState: $0,
+                                              svipState: vm.svipState,
+                                              dexMarketInfo: vm.dexMarketInfo,
+                                              invited: vm.invited)
+            self.spotViewModelBehaviorRelay.accept(spotViewModel)
         }
     }
 
-    func fetch() {
+    fileprivate func fetch() {
         let symbol = self.symbol
         fetchUntilSuccess(promise: {
             UnifyProvider.vitex.getDepth(symbol: symbol)
@@ -95,34 +98,40 @@ extension SpotOpenedOrderListViewModel {
             self.depthListBehaviorRelay.accept(depthList)
         }
 
-        let tradeToken: String = marketInfo.statistic.tradeToken
-        let quoteToken: String = marketInfo.statistic!.quoteToken
-        fetchUntilSuccess(promise: {
-            UnifyProvider.vitex.getPairDetailInfo(tradeTokenId: tradeToken, quoteTokenId: quoteToken)
-        }) { [weak self] (info) in
-            guard let `self` = self else { return }
-            plog(level: .debug, log: "getPairDetailInfo for \(self.symbol)", tag: .market)
-            self.marketPairDetailInfoBehaviorRelay.accept(info)
-            self.operatorInfoIconUrlStringBehaviorRelay.accept(info.operatorInfo.icon)
-            self.levelBehaviorRelay.accept(info.operatorInfo.level)
-            self.tirggerRefresh()
-        }
-
+        let tradeToken = marketInfo.statistic.tradeToken
+        let quoteToken = marketInfo.statistic!.quoteToken
         let tradeTokenId = marketInfo.statistic.tradeToken
         let quoteTokenId = marketInfo.statistic.quoteToken
+        let address = self.address
         fetchUntilSuccess(promise: {
             when(fulfilled:
-                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: tradeTokenId),
-                TokenInfoCacheService.instance.tokenInfo(forViteTokenId: quoteTokenId))
-        }) { [weak self] (tradeTokenInfo, quoteTokenInfo) in
+                when(fulfilled:
+                     UnifyProvider.vitex.getPairDetailInfo(tradeTokenId: tradeToken, quoteTokenId: quoteToken),
+                     TokenInfoCacheService.instance.tokenInfo(forViteTokenId: tradeTokenId),
+                     TokenInfoCacheService.instance.tokenInfo(forViteTokenId: quoteTokenId)
+                ),
+                 when(fulfilled:
+                      ViteNode.dex.info.getDexVIPState(address: address),
+                      ViteNode.dex.info.getDexSuperVIPState(address: address),
+                      ViteNode.dex.info.getDexMarketInfoRequest(tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId),
+                      ViteNode.dex.info.getDexInviteCodeBinding(address: address)
+                )
+            )
+        }) { [weak self] (f, s) in
             guard let `self` = self else { return }
-            self.pairTokenInfoBehaviorRelay.accept((tradeTokenInfo: tradeTokenInfo, quoteTokenInfo: quoteTokenInfo))
+            let spotViewModel = SpotViewModel(marketPairDetailInfo: f.0,
+                                              tradeTokenInfo: f.1,
+                                              quoteTokenInfo: f.2,
+                                              vipState: s.0,
+                                              svipState: s.1,
+                                              dexMarketInfo: s.2,
+                                              invited: (s.3 != nil))
+            self.spotViewModelBehaviorRelay.accept(spotViewModel)
+            self.tirggerRefresh()
         }
-
-        fetchVIPState()
     }
 
-    func fetchUntilSuccess<T>(promise: @escaping () -> Promise<T>, success: @escaping (T) -> Void) {
+    fileprivate func fetchUntilSuccess<T>(promise: @escaping () -> Promise<T>, success: @escaping (T) -> Void) {
         promise().done {
             success($0)
         }.catch { [weak self] (e) in
@@ -143,7 +152,7 @@ extension SpotOpenedOrderListViewModel {
     var depthTopic: String { "market.\(symbol).depth" }
     var orderTopic: String { "order.\(address)" }
 
-    func sub() {
+    fileprivate func sub() {
 
         depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
@@ -191,7 +200,7 @@ extension SpotOpenedOrderListViewModel {
         })
     }
 
-    func unsub() {
+    fileprivate func unsub() {
         if let old = self.depthSubId {
             MarketInfoService.shared.marketSocket.unsub(subId: old)
         }

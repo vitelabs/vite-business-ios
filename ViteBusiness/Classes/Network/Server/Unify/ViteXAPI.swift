@@ -9,6 +9,7 @@ import Moya
 import ViteWallet
 
 enum ViteXAPI: TargetType {
+    case getLimit
     case getRate(tokenIds: [ViteTokenId])
     case getklines(symbol: String, type: MarketKlineType)
     case getDepth(symbol: String)
@@ -22,6 +23,7 @@ enum ViteXAPI: TargetType {
 
     var path: String {
         switch self {
+        case .getLimit: return "api/v1/limit"
         case .getRate: return "api/v1/exchange-rate"
         case .getklines: return "api/v1/klines"
         case .getDepth: return "api/v1/depth"
@@ -33,6 +35,7 @@ enum ViteXAPI: TargetType {
 
     var method: Moya.Method {
         switch self {
+        case .getLimit: return .get
         case .getRate: return .get
         case .getklines: return .get
         case .getDepth: return .get
@@ -44,6 +47,8 @@ enum ViteXAPI: TargetType {
 
     var task: Task {
         switch self {
+        case .getLimit:
+            return .requestPlain
         case .getRate(let tokenIds):
             let parameters = ["tokenIds": tokenIds.joined(separator: ",")]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
