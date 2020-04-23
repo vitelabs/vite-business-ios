@@ -176,13 +176,13 @@ extension MarketWebSocket {
 extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
-//        //plog(level: .debug, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
+        plog(level: .info, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
         self.ping()
         self.sub()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-//        //plog(level: .debug, log: "websocketDidDisconnect, clientId:\(clientId),error: \(error?.localizedDescription)", tag: .market)
+        plog(level: .info, log: "websocketDidDisconnect, clientId:\(clientId), error: \(String(describing: error?.localizedDescription))", tag: .market)
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
