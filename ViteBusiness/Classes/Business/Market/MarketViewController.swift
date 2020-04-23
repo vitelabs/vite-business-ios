@@ -20,15 +20,14 @@ class MarketViewController: BaseViewController {
     let navTitleView: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.marketTitle()
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.alpha = 0
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = UIColor(netHex: 0x24272B)
         return label
     }()
 
     let navSearchButton: UIButton = {
         let searchButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
         searchButton.setBackgroundImage(R.image.market_search(), for: .normal)
-        searchButton.alpha = 0
         return searchButton
     }()
 
@@ -86,6 +85,7 @@ class MarketViewController: BaseViewController {
             layout.titleMargin = 30
             layout.bottomLineColor = UIColor.init(netHex: 0x007aff)
             layout.pageBottomLineColor = .white
+            layout.showsHorizontalScrollIndicator = false
             return layout
         }()
 
@@ -98,12 +98,6 @@ class MarketViewController: BaseViewController {
 
         let contentView = LTSimpleManager(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
 
-        contentView.configHeaderView {[weak self] in
-            guard let strongSelf = self else { return nil }
-            let headerView = strongSelf.headerView
-            return headerView
-        }
-
         let sortViewContainer = contentView.titleView.pageBottomLineView
         sortViewContainer.addSubview(self.sortView)
          self.sortView.snp.makeConstraints { (m) in
@@ -111,37 +105,6 @@ class MarketViewController: BaseViewController {
          }
         contentView.scrollToIndex(index: 0)
         return contentView
-    }()
-
-    lazy var headerView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 65 + 94.0 * kScreenW/375))
-
-        let titleLabel = UILabel()
-        titleLabel.text = R.string.localizable.marketTitle()
-        titleLabel.font = UIFont.systemFont(ofSize: 24)
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.left.equalToSuperview().offset(24)
-        }
-
-        let searchButton = UIButton()
-        searchButton.setBackgroundImage(R.image.market_search(), for: .normal)
-        headerView.addSubview(searchButton)
-        searchButton.snp.makeConstraints { (m) in
-            m.top.equalToSuperview()
-            m.right.equalToSuperview().offset(-16)
-            m.width.height.equalTo(28)
-        }
-        searchButton.addTarget(self, action: #selector(goToSearchVC), for: .touchUpInside)
-
-        let bannerView = MarketBannerView()
-        headerView.addSubview(bannerView)
-        bannerView.snp.makeConstraints { (m) in
-            m.top.equalTo(searchButton.snp.bottom).offset(20)
-            m.left.right.equalToSuperview()
-        }
-        return headerView
     }()
 
     lazy var sortView: UIView = {
@@ -236,8 +199,6 @@ class MarketViewController: BaseViewController {
 
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
-
-        self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.titleView = navTitleView
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: navSearchButton)
         navSearchButton.addTarget(self, action: #selector(goToSearchVC), for: .touchUpInside)
@@ -302,9 +263,7 @@ class MarketViewController: BaseViewController {
 extension MarketViewController: LTSimpleScrollViewDelegate {
 
     func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let alpha = max(min(scrollView.contentOffset.y, 64.0), 0.0) / 64.0
-        navTitleView.alpha = alpha
-        navSearchButton.alpha = alpha
+
     }
 
     func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int) {

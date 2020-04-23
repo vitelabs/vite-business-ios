@@ -65,6 +65,11 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
         }
     }
 
+    func updateLoadStatus() {
+        guard self.loadStatus != .refresh && self.loadStatus != .loadMore else { return }
+        self.loadStatus = items.isEmpty ? .empty : .normal
+    }
+
     init(tableView: UITableView) {
         self.tableView = tableView
         super.init()

@@ -488,7 +488,7 @@ class SpotOperationView: UIView {
 
         } else {
             let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
-            let total = amount - fee
+            let total = amount
             guard total >= minAmount else {
                 Toast.show(R.string.localizable.spotPagePostToastAmountMin())
                 return false

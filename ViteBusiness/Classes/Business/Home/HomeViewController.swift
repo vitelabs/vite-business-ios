@@ -32,7 +32,9 @@ class HomeViewController: UITabBarController {
 //            $0.automaticallyShowDismissButton = false
 //        }
 
-        let marketVC = MarketViewController()
+        let marketVC = MarketViewController().then {
+            $0.automaticallyShowDismissButton = false
+        }
 
 
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {

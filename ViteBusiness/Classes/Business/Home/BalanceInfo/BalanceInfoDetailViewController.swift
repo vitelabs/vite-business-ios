@@ -39,11 +39,6 @@ class BalanceInfoDetailViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
-
-
     let titleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         $0.textColor = UIColor(netHex: 0x24272B)

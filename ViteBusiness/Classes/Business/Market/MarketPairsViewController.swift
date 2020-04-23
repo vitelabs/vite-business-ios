@@ -45,18 +45,20 @@ class MarketPairsViewController : UIViewController, LTTableViewProtocal {
             self.automaticallyAdjustsScrollViewInsets = false
         }
 
-        marketVM.sortedMarketDataBehaviorRelay.asObservable().bind{ _ in
+        marketVM.sortedMarketDataBehaviorRelay.asObservable().bind{ [weak self] items in
+            guard let `self` = self else { return }
+            self.dataStatus = items[self.index].infos.isEmpty ? .empty : .normal
             self.tableView.reloadData()
-        }
+        }.disposed(by: rx.disposeBag)
 
         tableView.register(MarketPageCell.self, forCellReuseIdentifier: "identifier")
     }
 
-    func vitexPageUrl() -> URL {
-        var urlStr = ViteConst.instance.vite.viteXUrl + "#/assets"
-            + "?address=" + (HDWalletManager.instance.account?.address ?? "")
-            + "&currency=" + AppSettingsService.instance.appSettings.currency.rawValue
-        return URL.init(string:urlStr)!
+}
+
+extension MarketPairsViewController: ViewControllerDataStatusable {
+    func emptyView() -> UIView {
+        return UIView.defaultPlaceholderView(text: R.string.localizable.transactionListPageEmpty())
     }
 }
 

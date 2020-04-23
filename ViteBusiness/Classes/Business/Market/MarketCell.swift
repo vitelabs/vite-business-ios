@@ -65,9 +65,14 @@ class MarketPageCell: UITableViewCell {
           return label
     }()
 
+    let persentBgView = UIView().then {
+        $0.layer.cornerRadius = 2
+    }
+
     let persentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .white
         return label
     }()
 
@@ -83,6 +88,7 @@ class MarketPageCell: UITableViewCell {
         contentView.addSubview(timeLabel)
         contentView.addSubview(volumeLabel)
         contentView.addSubview(rateLabel)
+        contentView.addSubview(persentBgView)
         contentView.addSubview(persentLabel)
 
         tradeSymbolLabel.snp.makeConstraints { (make) -> Void in
@@ -127,9 +133,17 @@ class MarketPageCell: UITableViewCell {
             make.top.equalTo(timeLabel)
         }
 
+        persentBgView.snp.makeConstraints { (m) in
+            m.right.equalToSuperview().offset(-24)
+            m.height.equalTo(26)
+            m.width.greaterThanOrEqualTo(70)
+            m.centerY.equalToSuperview()
+        }
+
         persentLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-24)
-            make.centerY.equalTo(contentView)
+            make.left.equalTo(persentBgView).offset(5)
+            make.right.equalTo(persentBgView).offset(-5)
+            make.centerY.equalToSuperview()
         }
 
     }
@@ -148,7 +162,7 @@ class MarketPageCell: UITableViewCell {
         rateLabel.text = info.rate
 
         persentLabel.text = info.persentString
-        persentLabel.textColor = info.persentColor
+        persentBgView.backgroundColor = info.persentColor
 
         if miningImgView.isHidden {
             miningMultiplesButton.snp.remakeConstraints { (make) -> Void in

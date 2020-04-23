@@ -197,6 +197,8 @@ extension SpotOpenedOrderListViewModel {
                     self.tableView.reloadData()
                 }
             }
+
+            self.updateLoadStatus()
         })
     }
 
