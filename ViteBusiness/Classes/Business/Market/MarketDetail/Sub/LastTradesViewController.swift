@@ -22,6 +22,7 @@ class LastTradesViewController: BaseTableViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
     }
 
     let headerCell = HeaderCell()
@@ -88,6 +89,8 @@ extension LastTradesViewController {
             contentView.addSubview(midLabel)
             contentView.addSubview(rightLabel)
 
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+
             let guide = UILayoutGuide()
             contentView.addLayoutGuide(guide)
             guide.snp.makeConstraints { (m) in
@@ -140,6 +143,8 @@ extension LastTradesViewController {
             contentView.addSubview(timeLabel)
             contentView.addSubview(priceLabel)
             contentView.addSubview(quantityLabel)
+
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
 
             let guide = UILayoutGuide()
             contentView.addLayoutGuide(guide)

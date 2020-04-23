@@ -119,7 +119,8 @@ class SpotDepthView: UIView {
     func bind(marketInfo: MarketInfo?) {
         if let info = marketInfo {
             closeLabel.text = info.statistic.closePrice
-            priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: info.statistic.quoteTokenSymbol, price: info.statistic.openPrice)
+            closeLabel.textColor = info.persentColor
+            priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: info.statistic.quoteTokenSymbol, price: info.statistic.closePrice)
         } else {
             closeLabel.text = "--"
             priceLabel.text = "≈--"

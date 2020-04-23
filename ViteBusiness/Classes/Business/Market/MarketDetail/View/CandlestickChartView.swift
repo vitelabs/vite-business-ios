@@ -396,6 +396,7 @@ extension CandlestickChartView {
 
             addSubview(selectorButton)
 
+            backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
             selectorButton.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
                 m.left.equalToSuperview().offset(24)

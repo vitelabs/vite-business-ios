@@ -25,6 +25,7 @@ class MarketOperatorInfoViewController: BaseTableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
     }
 
     var switchPair: ((MarketInfo) -> Void)?
@@ -63,6 +64,9 @@ class MarketOperatorInfoViewController: BaseTableViewController {
             return cell
             }())
 
+            cells.forEach { (cell) in
+                cell.contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+            }
             
             self.cells = cells
         }
@@ -99,6 +103,19 @@ extension MarketOperatorInfoViewController {
             selectionStyle = .none
             contentView.addSubview(iconView)
             contentView.addSubview(nameLabel)
+
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+
+            let hLine = UIView().then {
+                $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
+            }
+
+            contentView.addSubview(hLine)
+
+            hLine.snp.makeConstraints { (m) in
+                m.left.right.equalToSuperview().inset(24)
+                m.bottom.equalToSuperview()
+            }
 
             iconView.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(11)
@@ -145,7 +162,8 @@ extension MarketOperatorInfoViewController {
             contentView.addSubview(titleLabel)
             contentView.addSubview(valueLabel)
 
-
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+            
             titleLabel.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(12)
                 m.left.right.equalToSuperview().inset(24)

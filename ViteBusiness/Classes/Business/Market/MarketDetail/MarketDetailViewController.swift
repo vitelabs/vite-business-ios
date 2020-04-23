@@ -63,7 +63,7 @@ class MarketDetailViewController: BaseViewController {
             layout.lrMargin = 24
             layout.titleMargin = 30
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
-            layout.titleViewBgColor = UIColor.init(hex: "0xFFFFFF")
+            layout.titleViewBgColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
             layout.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
             layout.titleSelectColor = UIColor.init(netHex: 0x3E4A59)
 

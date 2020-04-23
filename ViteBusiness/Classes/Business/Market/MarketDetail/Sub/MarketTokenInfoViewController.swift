@@ -25,6 +25,8 @@ class MarketTokenInfoViewController: BaseTableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
+
+        tableView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
     }
 
     var cells: [BaseTableViewCell] = []
@@ -49,7 +51,8 @@ class MarketTokenInfoViewController: BaseTableViewController {
                 }())
             cells.append({
                 let cell = TitleCell()
-                cell.setTitle(R.string.localizable.marketDetailPageTokenInfoTotal(), text: info.totalSupply)
+                let amount = Amount(info.totalSupply) ?? Amount(0)
+                cell.setTitle(R.string.localizable.marketDetailPageTokenInfoTotal(), text: amount.amountShortWithGroupSeparator(decimals: info.tokenDecimals))
                 return cell
                 }())
             cells.append({
@@ -141,6 +144,9 @@ class MarketTokenInfoViewController: BaseTableViewController {
                 return cell
                 }())
 
+            cells.forEach { (cell) in
+                cell.contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+            }
             self.cells = cells
         }
     }

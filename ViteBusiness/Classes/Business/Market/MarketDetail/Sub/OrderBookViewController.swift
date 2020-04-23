@@ -22,6 +22,7 @@ class OrderBookViewController: BaseTableViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
     }
 
     private func calcIsMining(max: Double?, peerPriceString: String?, currectString: String?) -> Bool {
@@ -95,9 +96,9 @@ class OrderBookViewController: BaseTableViewController {
             }
         }
 
-        headerCell.leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
-        headerCell.midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.tradeTokenSymbol)
-        headerCell.rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.quoteTokenSymbol)
+        headerCell.leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbol)
+        headerCell.midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.quoteTokenSymbol)
+        headerCell.rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbol)
 
         tableView.reloadData()
     }
@@ -180,6 +181,8 @@ extension OrderBookViewController {
             contentView.addSubview(midLabel)
             contentView.addSubview(rightLabel)
 
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
+
             leftLabel.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(19)
                 m.left.equalToSuperview().offset(24)
@@ -213,6 +216,8 @@ extension OrderBookViewController {
             selectionStyle = .none
             contentView.addSubview(leftView)
             contentView.addSubview(rightView)
+
+            contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
 
             leftView.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
@@ -289,7 +294,7 @@ extension OrderBookViewController {
 
         func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool) {
 
-            backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : UIColor.white
+            backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : .clear
             lineImg.isHidden = !isLastMining
 
             if let depth = depth {
@@ -367,7 +372,7 @@ extension OrderBookViewController {
 
         func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool) {
 
-            backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : UIColor.white
+            backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : .clear
             lineImg.isHidden = !isLastMining
 
             if let depth = depth {

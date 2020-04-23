@@ -41,6 +41,12 @@
 "airdrop.error.tip.unknown.error" = "Unknown Error.";
 
 
+"tab.title.wallet" = "钱包";
+"tab.title.market" = "行情";
+"tab.title.trading" = "交易";
+"tab.title.discover" = "发现";
+"tab.title.my" = "我的";
+
 /* App */
 "Cancel" = "Cancel";
 "Finish" = "Done";

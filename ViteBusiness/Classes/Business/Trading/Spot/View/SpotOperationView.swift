@@ -350,27 +350,12 @@ class SpotOperationView: UIView {
 
             self.endEditing(true)
 
-            if vm.level > 0 {
-                Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
-                                           tradeTokenInfo: tradeTokenInfo,
-                                           quoteTokenInfo: quoteTokenInfo,
-                                           price: priceText,
-                                           quantity: vol,
-                                           completion: { _ in })
-            } else {
-                Alert.show(title: R.string.localizable.spotPageAlertTitle(),
-                           message: R.string.localizable.spotPageAlertMessage("\(tradeTokenInfo.uniqueSymbol)/\(quoteTokenInfo.uniqueSymbol)"),
-                           actions: [
-                            (.default(title: R.string.localizable.spotPageAlertOk()), { _ in
-                                Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
-                                                           tradeTokenInfo: tradeTokenInfo,
-                                                           quoteTokenInfo: quoteTokenInfo,
-                                                           price: priceText,
-                                                           quantity: vol,
-                                                           completion: { _ in })
-                            }),
-                ])
-            }
+            Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
+                                       tradeTokenInfo: tradeTokenInfo,
+                                       quoteTokenInfo: quoteTokenInfo,
+                                       price: priceText,
+                                       quantity: vol,
+                                       completion: { _ in })
 
         }.disposed(by: rx.disposeBag)
 
@@ -406,28 +391,12 @@ class SpotOperationView: UIView {
 
             self.endEditing(true)
 
-
-            if vm.level > 0 {
-                Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
-                                            tradeTokenInfo: tradeTokenInfo,
-                                            quoteTokenInfo: quoteTokenInfo,
-                                            price: priceText,
-                                            quantity: vol,
-                                            completion: { _ in })
-            } else {
-                Alert.show(title: R.string.localizable.spotPageAlertTitle(),
-                           message: R.string.localizable.spotPageAlertMessage("\(tradeTokenInfo.uniqueSymbol)/\(quoteTokenInfo.uniqueSymbol)"),
-                           actions: [
-                            (.default(title: R.string.localizable.spotPageAlertOk()), { _ in
-                                Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
-                                                            tradeTokenInfo: tradeTokenInfo,
-                                                            quoteTokenInfo: quoteTokenInfo,
-                                                            price: priceText,
-                                                            quantity: vol,
-                                                            completion: { _ in })
-                            }),
-                ])
-            }
+            Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
+                                        tradeTokenInfo: tradeTokenInfo,
+                                        quoteTokenInfo: quoteTokenInfo,
+                                        price: priceText,
+                                        quantity: vol,
+                                        completion: { _ in })
         }.disposed(by: rx.disposeBag)
     }
 
@@ -626,6 +595,13 @@ class SpotOperationView: UIView {
 
     func bind(spotViewModel: SpotViewModel?) {
         self.spotViewModelBehaviorRelay.accept(spotViewModel)
+
+        if let vm = spotViewModel, vm.level <= 0 {
+            Alert.show(title: R.string.localizable.spotPageAlertTitle(),
+                       message: R.string.localizable.spotPageAlertMessage("\(vm.tradeTokenInfo.uniqueSymbol)/\(vm.quoteTokenInfo.uniqueSymbol)"),
+                       actions: [(.default(title: R.string.localizable.spotPageAlertOk()), nil)]
+            )
+        }
     }
 }
 

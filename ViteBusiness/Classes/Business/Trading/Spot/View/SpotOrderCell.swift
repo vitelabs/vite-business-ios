@@ -80,13 +80,13 @@ class SpotOrderCell: BaseTableViewCell {
         contentView.addSubview(averageLabel)
 
         let vLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
+            $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
         }
 
         addSubview(vLine)
 
         let hLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
+            $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
         }
 
         addSubview(hLine)

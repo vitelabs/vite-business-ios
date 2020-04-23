@@ -41,6 +41,11 @@
 "airdrop.error.tip.not.support" = "当前设备暂不支持领取空投";
 "airdrop.error.tip.unknown.error" = "未知错误";
 
+"tab.title.wallet" = "钱包";
+"tab.title.market" = "行情";
+"tab.title.trading" = "交易";
+"tab.title.discover" = "发现";
+"tab.title.my" = "我的";
 
 /* App */
 "Cancel" = "取消";

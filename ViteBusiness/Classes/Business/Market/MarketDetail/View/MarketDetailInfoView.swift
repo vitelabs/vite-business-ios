@@ -143,6 +143,7 @@ class MarketDetailInfoView: UIView {
 
     func bind(marketInfo: MarketInfo) {
         priceLabel.text = marketInfo.statistic.closePrice
+        priceLabel.textColor = marketInfo.persentColor
         plegalPriceLabel.text = "≈" + marketInfo.rate
         percentLabel.text = marketInfo.persentString
         upDownImageView.image = Double(marketInfo.statistic.priceChangePercent)! >= 0.0 ? R.image.icon_market_up() : R.image.icon_market_down()

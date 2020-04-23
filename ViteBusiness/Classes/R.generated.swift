@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1186 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1191 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5380,6 +5380,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageVolBuyPlaceholder = Rswift.StringResource(key: "spot.page.vol.buy.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleTrading = Rswift.StringResource(key: "tab.title.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易对
       /// 
       /// Locales: en, zh-Hans
@@ -5768,6 +5772,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiHomePageSortPublishTime = Rswift.StringResource(key: "defi.home.page.sort.publish.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 发现
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleDiscover = Rswift.StringResource(key: "tab.title.discover", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 取回抵押
       /// 
       /// Locales: en, zh-Hans
@@ -6048,6 +6056,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageAlertOk = Rswift.StringResource(key: "spot.page.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleMy = Rswift.StringResource(key: "tab.title.my", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 我的DeFi
       /// 
       /// Locales: en, zh-Hans
@@ -6428,6 +6440,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiBillBillTypeTitleQuotarefund = Rswift.StringResource(key: "defi.bill.billTypeTitle.quotarefund", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 行情
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleMarket = Rswift.StringResource(key: "tab.title.market", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购不能为0
       /// 
       /// Locales: en, zh-Hans
@@ -6648,6 +6664,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let defiLoanDetailPageFailedButtonReloanTitle = Rswift.StringResource(key: "defi.loan.detail.page.failed.button.reloan.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleWallet = Rswift.StringResource(key: "tab.title.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 限价委托
       /// 
       /// Locales: en, zh-Hans
@@ -12702,6 +12722,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.vol.buy.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleTrading(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.trading", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易对
       /// 
       /// Locales: en, zh-Hans
@@ -13381,6 +13408,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.home.page.sort.publish.time", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 发现
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleDiscover(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.discover", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 取回抵押
       /// 
       /// Locales: en, zh-Hans
@@ -13869,6 +13903,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func spotPageAlertOk(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.alert.ok", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我的
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleMy(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.my", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 我的DeFi
@@ -14536,6 +14577,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("defi.bill.billTypeTitle.quotarefund", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 行情
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleMarket(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.market", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 认购不能为0
       /// 
       /// Locales: en, zh-Hans
@@ -14919,6 +14967,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiLoanDetailPageFailedButtonReloanTitle(_: Void = ()) -> String {
         return NSLocalizedString("defi.loan.detail.page.failed.button.reloan.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 钱包
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleWallet(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.wallet", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 限价委托
