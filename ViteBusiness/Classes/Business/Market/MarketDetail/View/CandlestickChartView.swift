@@ -226,7 +226,6 @@ class CandlestickChartView: UIView {
             self.lastKlineTopic = self.kineTypeBehaviorRelay.value.topic(symbol: info.statistic.symbol)
         }
 
-        selectedIndex.accept(nil)
         ma5 = nil
         ma10 = nil
         ma30 = nil
@@ -241,6 +240,7 @@ class CandlestickChartView: UIView {
         if neededMove {
             self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
             self.barChartView.moveViewToX(Double(klineItems.count - 1))
+            selectedIndex.accept(nil)
         }
 
         let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format(kineTypeBehaviorRelay.value.timeFormat) }
