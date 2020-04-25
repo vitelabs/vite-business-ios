@@ -14,7 +14,7 @@ import RxCocoa
 
 class CandlestickChartView: UIView {
 
-    static let height: CGFloat = 432
+    static let height: CGFloat = 440
 
     var kineTypeBehaviorRelay: BehaviorRelay<MarketKlineType>
 
@@ -143,7 +143,7 @@ class CandlestickChartView: UIView {
 
         logoImageView.snp.makeConstraints { (m) in
             m.left.equalTo(combinedChartView).offset(9)
-            m.bottom.equalTo(combinedChartView)
+            m.bottom.equalTo(combinedChartView).offset(-8)
         }
 
         combinedChartView.snp.makeConstraints { (m) in
@@ -193,7 +193,7 @@ class CandlestickChartView: UIView {
                 self.ma10Lable.text = "MA10: \(ma10Value)"
                 self.ma30Lable.text = "MA30: \(ma30Value)"
 
-                self.valueView.bind(klineItem: self.klineItems[index])
+                self.valueView.bind(klineItem: self.klineItems[index], info: self.marketInfo)
                 self.valueView.isHidden = false
             } else {
                 self.ma5Lable.text = "MA5: "
@@ -211,12 +211,14 @@ class CandlestickChartView: UIView {
 
     let selectedIndex: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     var klineItems: [KlineItem] = []
+    var marketInfo: MarketInfo? = nil
     var ma5: [Double?]? = nil
     var ma10: [Double?]? = nil
     var ma30: [Double?]? = nil
 
-    func bind(klineItems: [KlineItem]) {
+    func bind(klineItems: [KlineItem], info: MarketInfo) {
         self.klineItems = klineItems
+        self.marketInfo = info
         selectedIndex.accept(nil)
         ma5 = nil
         ma10 = nil
@@ -597,15 +599,20 @@ extension CandlestickChartView {
             stackView.addArrangedSubview(addTo(left: volTitleLabel, right: volLabel))
         }
 
-        func bind(klineItem: KlineItem) {
+        func bind(klineItem: KlineItem, info: MarketInfo?) {
+
+            let pricePrecision = info?.statistic.pricePrecision ?? 4
+            let quantityPrecision = info?.statistic.quantityPrecision ?? 4
+
+
             timeLabel.text = Date(timeIntervalSince1970: TimeInterval(klineItem.t)).format("yy-MM-dd HH:mm:ss")
-            openLabel.text = String(format: "%.4f", klineItem.o)
-            highLabel.text = String(format: "%.4f", klineItem.h)
-            lowLabel.text = String(format: "%.4f", klineItem.l)
-            closeLabel.text = String(format: "%.4f", klineItem.c)
-            diffLabel.text = String(format: "%.4f", klineItem.c - klineItem.o)
+            openLabel.text = String(format: "%.\(pricePrecision)f", klineItem.o)
+            highLabel.text = String(format: "%.\(pricePrecision)f", klineItem.h)
+            lowLabel.text = String(format: "%.\(pricePrecision)f", klineItem.l)
+            closeLabel.text = String(format: "%.\(pricePrecision)f", klineItem.c)
+            diffLabel.text = String(format: "%.\(pricePrecision)f", klineItem.c - klineItem.o)
             extentLabel.text = String(format: "%.2f%%", (klineItem.c - klineItem.o) * 100 / klineItem.o)
-            volLabel.text = String(format: "%.4f", klineItem.v)
+            volLabel.text = String(format: "%.\(quantityPrecision)f", klineItem.v)
         }
 
         required init(coder: NSCoder) {

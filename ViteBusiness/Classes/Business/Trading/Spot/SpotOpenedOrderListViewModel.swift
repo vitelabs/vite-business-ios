@@ -13,15 +13,16 @@ import ViteWallet
 
 class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     static let limit = 50
-    let address = HDWalletManager.instance.account!.address
     let quoteTokenSymbol: String
     let tradeTokenSymbol: String
     let marketInfo: MarketInfo
+    let address: ViteAddress
 
-    init(tableView: UITableView, marketInfo: MarketInfo) {
+    init(tableView: UITableView, marketInfo: MarketInfo, address: ViteAddress) {
         self.tradeTokenSymbol = marketInfo.statistic.tradeTokenSymbol
         self.quoteTokenSymbol = marketInfo.statistic.quoteTokenSymbol
         self.marketInfo = marketInfo
+        self.address = address
         super.init(tableView: tableView)
         fetch()
         sub()

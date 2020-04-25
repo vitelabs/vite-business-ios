@@ -107,13 +107,14 @@ extension MarketOperatorInfoViewController {
             contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
 
             let hLine = UIView().then {
-                $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
+                $0.backgroundColor = Colors.lineGray
             }
 
             contentView.addSubview(hLine)
 
             hLine.snp.makeConstraints { (m) in
                 m.left.right.equalToSuperview().inset(24)
+                m.height.equalTo(CGFloat.singleLineWidth)
                 m.bottom.equalToSuperview()
             }
 

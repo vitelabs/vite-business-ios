@@ -160,17 +160,17 @@ extension OrderBookViewController {
 
         let leftLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
         }
 
         let midLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
         }
 
         let rightLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59)
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
         }
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

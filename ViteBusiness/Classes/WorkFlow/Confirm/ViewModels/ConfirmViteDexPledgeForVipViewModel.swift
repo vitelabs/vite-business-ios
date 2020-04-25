@@ -36,8 +36,8 @@ struct ConfirmViteDexPledgeForVipViewModel: ConfirmViewModelType {
             $0.spacing = 0
         }
 
-        let balanceView = ConfirmAmountView(type: .custom(title: R.string.localizable.confirmTransactionPageViteDexVipBalance()))
-        let amountView = ConfirmAmountView(type: .custom(title: R.string.localizable.confirmTransactionPageViteDexVipAmount()))
+        let balanceView = ConfirmAmountView(type: .custom(title: R.string.localizable.confirmTransactionPageViteDexVipBalance(), hasBackgroundColor: true))
+        let amountView = ConfirmAmountView(type: .custom(title: R.string.localizable.confirmTransactionPageViteDexVipAmount(), hasBackgroundColor: false))
         stackView.addArrangedSubview(balanceView)
         stackView.addArrangedSubview(amountView)
         balanceView.set(text: balanceString)

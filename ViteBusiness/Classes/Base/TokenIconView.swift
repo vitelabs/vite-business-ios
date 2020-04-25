@@ -51,7 +51,7 @@ class TokenIconView: UIView {
 
     func set(cornerRadius: CGFloat) {
         tokenIconImageView.layer.masksToBounds = true
-        tokenIconImageView.layer.cornerRadius = 20
+        tokenIconImageView.layer.cornerRadius = cornerRadius
         tokenIconFrameImageView.removeFromSuperview()
     }
 

@@ -12,14 +12,14 @@ class MarketPageCell: UITableViewCell {
     let tradeSymbolLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
 
     let quoteSymbolLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.3)
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
 
@@ -40,7 +40,7 @@ class MarketPageCell: UITableViewCell {
 
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
 
@@ -71,8 +71,9 @@ class MarketPageCell: UITableViewCell {
 
     let persentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .white
+        label.textAlignment = .center
         return label
     }()
 
@@ -114,7 +115,7 @@ class MarketPageCell: UITableViewCell {
         }
 
         priceLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-(kScreenW - 48)*0.33)
+            make.left.equalTo(contentView.snp.centerX).offset(LocalizationService.sharedInstance.currentLanguage == .chinese ? -23 : -33)
             make.top.equalTo(contentView).offset(11)
         }
 
@@ -129,14 +130,14 @@ class MarketPageCell: UITableViewCell {
         }
 
         rateLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(priceLabel)
+            make.left.equalTo(priceLabel)
             make.top.equalTo(timeLabel)
         }
 
         persentBgView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-24)
             m.height.equalTo(26)
-            m.width.greaterThanOrEqualTo(70)
+            m.width.equalTo(70)
             m.centerY.equalToSuperview()
         }
 

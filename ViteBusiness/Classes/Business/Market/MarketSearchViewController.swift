@@ -141,9 +141,9 @@ class MarketSearchViewController: UIViewController {
         let index = sender.tag
         let (info, favourite ) = self.history[index]
         if favourite {
-            MarketCache.deletFavourite(data: info.statistic.symbol)
+            MarketInfoService.shared.removeFavourite(symbol: info.statistic.symbol)
         } else {
-            MarketCache.saveFavourite(data: info.statistic.symbol)
+            MarketInfoService.shared.addFavourite(symbol: info.statistic.symbol)
         }
         self.reloadHistory()
     }

@@ -189,7 +189,7 @@ class MarketDetailViewController: BaseViewController {
 
                 let klineHolder = MarketKlineHolder(marketInfo: info, kineType: type)
                 klineHolder.klinesBehaviorRelay.bind { [weak self] in
-                    self?.candlestickChartView.bind(klineItems: $0)
+                    self?.candlestickChartView.bind(klineItems: $0, info: info)
                 }.disposed(by: klineHolder.rx.disposeBag)
 
                 self.klineHolder = klineHolder

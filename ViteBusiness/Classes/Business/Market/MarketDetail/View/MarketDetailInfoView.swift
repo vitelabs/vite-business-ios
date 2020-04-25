@@ -108,20 +108,20 @@ class MarketDetailInfoView: UIView {
 
         highLabel.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(6)
-            m.left.equalTo(layoutGuide).offset(8)
-            m.right.lessThanOrEqualTo(layoutGuide)
+            m.left.greaterThanOrEqualTo(layoutGuide).offset(8)
+            m.right.equalTo(layoutGuide)
         }
 
         lowLabel.snp.makeConstraints { (m) in
             m.top.equalTo(highLabel.snp.bottom).offset(8)
-            m.left.equalTo(layoutGuide).offset(8)
-            m.right.lessThanOrEqualTo(layoutGuide)
+            m.left.greaterThanOrEqualTo(layoutGuide).offset(8)
+            m.right.equalTo(layoutGuide)
         }
 
         amountLabel.snp.makeConstraints { (m) in
             m.top.equalTo(lowLabel.snp.bottom).offset(8)
-            m.left.equalTo(layoutGuide).offset(8)
-            m.right.lessThanOrEqualTo(layoutGuide)
+            m.left.greaterThanOrEqualTo(layoutGuide).offset(8)
+            m.right.equalTo(layoutGuide)
             m.bottom.equalToSuperview().offset(-5)
         }
 

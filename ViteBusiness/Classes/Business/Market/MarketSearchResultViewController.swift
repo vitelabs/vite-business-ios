@@ -36,13 +36,13 @@ class MarketSearchResultViewController: UIViewController, UISearchResultsUpdatin
         let index = sender.tag
         let (info, favourite ) = self.result[index]
         if favourite {
-            MarketCache.deletFavourite(data: info.statistic.symbol)
+            MarketInfoService.shared.removeFavourite(symbol: info.statistic.symbol)
         } else {
-            MarketCache.saveFavourite(data: info.statistic.symbol)
+            MarketInfoService.shared.addFavourite(symbol: info.statistic.symbol)
         }
         let readFavourite = MarketCache.readFavourite()
         self.result = result.map({
-            ($0.0 , readFavourite.contains($0.0.statistic.symbol ?? ""))
+            ($0.0 , readFavourite.contains($0.0.statistic.symbol))
         })
         tableView.reloadData()
     }
@@ -59,7 +59,7 @@ class MarketSearchResultViewController: UIViewController, UISearchResultsUpdatin
         }
         let favourite = MarketCache.readFavourite()
         self.result = datas.map({
-            ($0 , favourite.contains($0.statistic.symbol ?? ""))
+            ($0 , favourite.contains($0.statistic.symbol))
         })
         tableView.reloadData()
     }

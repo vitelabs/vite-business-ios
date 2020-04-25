@@ -3076,10 +3076,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketSwitch = Rswift.StringResource(key: "market.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Exchange
-      /// 
-      /// Locales: en, zh-Hans
-      public static let marketTitle = Rswift.StringResource(key: "market.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Exchange Account
       /// 
       /// Locales: en, zh-Hans
@@ -6443,6 +6439,10 @@ public struct R: Rswift.Validatable {
       /// en translation: 行情
       /// 
       /// Locales: en, zh-Hans
+      public static let marketTitle = Rswift.StringResource(key: "market.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 行情
+      /// 
+      /// Locales: en, zh-Hans
       public static let tabTitleMarket = Rswift.StringResource(key: "tab.title.market", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 认购不能为0
       /// 
@@ -8688,13 +8688,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketSwitch(_: Void = ()) -> String {
         return NSLocalizedString("market.switch", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Exchange
-      /// 
-      /// Locales: en, zh-Hans
-      public static func marketTitle(_: Void = ()) -> String {
-        return NSLocalizedString("market.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Exchange Account
@@ -14575,6 +14568,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func defiBillBillTypeTitleQuotarefund(_: Void = ()) -> String {
         return NSLocalizedString("defi.bill.billTypeTitle.quotarefund", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 行情
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketTitle(_: Void = ()) -> String {
+        return NSLocalizedString("market.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 行情

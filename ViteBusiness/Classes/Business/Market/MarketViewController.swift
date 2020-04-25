@@ -148,10 +148,8 @@ class MarketViewController: BaseViewController {
          }
 
          self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-(kScreenW - 48)*0.33)
-             make.centerY.equalToSuperview()
-//            make.width.height.equalTo(12)`
-
+            make.right.equalTo(self.sortByPriceButton)
+            make.centerY.equalToSuperview()
          }
 
          self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
@@ -162,8 +160,9 @@ class MarketViewController: BaseViewController {
          }
 
          priceTitleLabel.snp.makeConstraints { (make) -> Void in
-             make.right.equalTo(self.sortByPriceStatusImg.snp.left)
-             make.centerY.equalToSuperview()
+            make.left.equalTo(self.sortByPriceButton)
+            make.right.equalTo(self.sortByPriceStatusImg.snp.left)
+            make.centerY.equalToSuperview()
         }
 
         percentTitleLabel.snp.makeConstraints { (make) -> Void in
@@ -172,8 +171,8 @@ class MarketViewController: BaseViewController {
         }
 
          self.sortByPriceButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self.sortByPriceStatusImg)
-            make.left.bottom.top.equalTo(priceTitleLabel)
+            make.left.equalTo(sortView.snp.centerX).offset(LocalizationService.sharedInstance.currentLanguage == .chinese ? -23 : -33)
+            make.bottom.top.equalTo(priceTitleLabel)
          }
 
          self.sortByPercentButton.snp.makeConstraints { (make) -> Void in

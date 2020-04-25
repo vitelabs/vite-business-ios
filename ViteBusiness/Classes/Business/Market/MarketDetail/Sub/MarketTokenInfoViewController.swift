@@ -189,6 +189,7 @@ extension MarketTokenInfoViewController {
             contentView.addSubview(symbolLabel)
             contentView.addSubview(nameLabel)
 
+            iconView.set(cornerRadius: 16)
             iconView.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(11)
                 m.left.equalToSuperview().offset(24)

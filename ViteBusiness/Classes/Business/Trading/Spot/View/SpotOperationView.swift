@@ -16,6 +16,7 @@ class SpotOperationView: UIView {
 
     static let height: CGFloat = 303
 
+    var lastSymbol = ""
     let segmentView = SegmentView()
     let priceTextField = TextFieldView()
     let priceLabel = UILabel().then {
@@ -178,8 +179,8 @@ class SpotOperationView: UIView {
                 self.priceTextField.textField.placeholder = R.string.localizable.spotPagePriceSellPlaceholder()
                 self.volTextField.textField.placeholder = R.string.localizable.spotPageVolSellPlaceholder()
             }
-            self.setPrice(self.marketInfoBehaviorRelay.value?.statistic.closePrice ?? "")
             self.setVol("")
+            self.setPrice(self.marketInfoBehaviorRelay.value?.statistic.closePrice ?? "")
             self.percentView.index = nil
         }.disposed(by: rx.disposeBag)
 
@@ -594,9 +595,14 @@ class SpotOperationView: UIView {
     }
 
     func bind(spotViewModel: SpotViewModel?) {
+        let showAlertIfNeeded = self.lastSymbol != spotViewModel?.dexMarketInfo.marketSymbol
+        if let symbol = spotViewModel?.dexMarketInfo.marketSymbol, !symbol.isEmpty {
+            self.lastSymbol = symbol
+        }
+
         self.spotViewModelBehaviorRelay.accept(spotViewModel)
 
-        if let vm = spotViewModel, vm.level <= 0 {
+        if let vm = spotViewModel, vm.level <= 0, showAlertIfNeeded {
             Alert.show(title: R.string.localizable.spotPageAlertTitle(),
                        message: R.string.localizable.spotPageAlertMessage("\(vm.tradeTokenInfo.uniqueSymbol)/\(vm.quoteTokenInfo.uniqueSymbol)"),
                        actions: [(.default(title: R.string.localizable.spotPageAlertOk()), nil)]

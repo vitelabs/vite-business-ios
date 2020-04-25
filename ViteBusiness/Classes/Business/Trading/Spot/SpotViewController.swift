@@ -78,27 +78,34 @@ class SpotViewController: BaseTableViewController {
             self.depthView.bind(marketInfo: $0)
         }.disposed(by: rx.disposeBag)
 
-        self.marketInfoBehaviorRelay.asDriver().distinctUntilChanged { (left, right) -> Bool in
-            left?.statistic.symbol == right?.statistic.symbol
-        }.drive(onNext: { [weak self] info in
+        Driver.combineLatest(
+            HDWalletManager.instance.accountDriver,
+            self.marketInfoBehaviorRelay.asDriver().distinctUntilChanged { (left, right) -> Bool in
+                left?.statistic.symbol == right?.statistic.symbol
+        }).drive(onNext: { [weak self] (account, info) in
             guard let `self` = self else { return }
             guard let info = info else { return }
             self.operationView.bind(marketInfo: info)
 
-            let viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, marketInfo: info)
+            if let address = account?.address {
+                let viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, marketInfo: info, address: address)
+                viewModle.spotViewModelBehaviorRelay.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.navView.setOpertionIcon($0?.operatorInfoIconUrlString)
+                    self.operationView.bind(spotViewModel: $0)
+                }.disposed(by: viewModle.rx.disposeBag)
 
-            viewModle.spotViewModelBehaviorRelay.bind { [weak self] in
-                guard let `self` = self else { return }
-                self.navView.setOpertionIcon($0?.operatorInfoIconUrlString)
-                self.operationView.bind(spotViewModel: $0)
-            }.disposed(by: viewModle.rx.disposeBag)
+                viewModle.depthListBehaviorRelay.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.depthView.bind(depthList: $0)
+                }.disposed(by: viewModle.rx.disposeBag)
 
-            viewModle.depthListBehaviorRelay.bind { [weak self] in
-                guard let `self` = self else { return }
-                self.depthView.bind(depthList: $0)
-            }.disposed(by: viewModle.rx.disposeBag)
+                self.viewModle = viewModle
+            } else {
+                self.viewModle = nil
+            }
 
-            self.viewModle = viewModle
+
         }).disposed(by: rx.disposeBag)
 
         self.operationView.needReFreshVIPStateBehaviorRelay.filterNil().bind {[weak self] in

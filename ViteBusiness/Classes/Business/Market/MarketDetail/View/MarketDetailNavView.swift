@@ -42,7 +42,7 @@ class MarketDetailNavView: UIView {
     }
 
     let vLine = UIView().then {
-        $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.15)
+        $0.backgroundColor = Colors.lineGray
     }
 
     let changeImageView = UIImageView(image: R.image.icon_market_change())
@@ -118,7 +118,7 @@ class MarketDetailNavView: UIView {
 
         changeImageView.snp.makeConstraints { (m) in
             m.centerY.equalTo(backButton)
-            m.left.equalTo(vLine.snp.right)
+            m.left.equalTo(vLine.snp.right).offset(8)
         }
 
         favButton.snp.makeConstraints { (m) in
