@@ -213,9 +213,19 @@ class CandlestickChartView: UIView {
     var ma10: [Double?]? = nil
     var ma30: [Double?]? = nil
 
+    var lastKlineTopic: String = ""
+
     func bind(klineItems: [KlineItem], info: MarketInfo) {
+
+        let neededMove = lastKlineTopic != self.kineTypeBehaviorRelay.value.topic(symbol: info.statistic.symbol)
+
         self.klineItems = klineItems
         self.marketInfo = info
+
+        if klineItems.count > 0 {
+            self.lastKlineTopic = self.kineTypeBehaviorRelay.value.topic(symbol: info.statistic.symbol)
+        }
+
         selectedIndex.accept(nil)
         ma5 = nil
         ma10 = nil
@@ -225,10 +235,13 @@ class CandlestickChartView: UIView {
         bindCombinedChartView(klineItems: klineItems)
         bindBarChartView(klineItems: klineItems)
 
-        self.combinedChartView.setVisibleXRangeMaximum(50.0)
-        self.barChartView.setVisibleXRangeMaximum(50.0)
-        self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
-        self.barChartView.moveViewToX(Double(klineItems.count - 1))
+        self.combinedChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
+        self.barChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
+
+        if neededMove {
+            self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
+            self.barChartView.moveViewToX(Double(klineItems.count - 1))
+        }
 
         let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format(kineTypeBehaviorRelay.value.timeFormat) }
         combinedChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
