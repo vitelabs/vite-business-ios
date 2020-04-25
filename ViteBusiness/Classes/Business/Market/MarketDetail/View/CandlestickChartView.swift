@@ -116,8 +116,8 @@ class CandlestickChartView: UIView {
         addSubview(ma5Lable)
         addSubview(ma10Lable)
         addSubview(ma30Lable)
-        addSubview(selectorView)
         addSubview(valueView)
+        addSubview(selectorView)
 
         selectorView.isHidden = true
 
@@ -185,10 +185,11 @@ class CandlestickChartView: UIView {
 
         selectedIndex.bind { [weak self] in
             guard let `self` = self else { return }
-            if let index = $0 {
-                let ma5Value = self.ma5?[index].map { String(format: "%.4f", $0) } ?? ""
-                let ma10Value = self.ma10?[index].map { String(format: "%.4f", $0) } ?? ""
-                let ma30Value = self.ma30?[index].map { String(format: "%.4f", $0) } ?? ""
+            if let index = $0, index < self.klineItems.count {
+                let pricePrecision = self.marketInfo?.statistic.pricePrecision ?? 4
+                let ma5Value = self.ma5?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
+                let ma10Value = self.ma10?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
+                let ma30Value = self.ma30?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
                 self.ma5Lable.text = "MA5: \(ma5Value)"
                 self.ma10Lable.text = "MA10: \(ma10Value)"
                 self.ma30Lable.text = "MA30: \(ma30Value)"
@@ -202,10 +203,6 @@ class CandlestickChartView: UIView {
 
                 self.valueView.isHidden = true
             }
-
-
-            
-
         }.disposed(by: rx.disposeBag)
     }
 
