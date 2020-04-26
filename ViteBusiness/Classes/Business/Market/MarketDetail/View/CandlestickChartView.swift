@@ -43,10 +43,10 @@ class CandlestickChartView: UIView {
     let combinedChartView = CombinedChartView().then {
 
         $0.chartDescription?.enabled = false
-        $0.pinchZoomEnabled = false
+        $0.pinchZoomEnabled = true
         $0.drawGridBackgroundEnabled = true
         $0.doubleTapToZoomEnabled = false
-        $0.scaleXEnabled = false
+        $0.scaleXEnabled = true
         $0.scaleYEnabled = false
         $0.leftAxis.enabled = false
         $0.legend.enabled = false
@@ -77,10 +77,10 @@ class CandlestickChartView: UIView {
 
     let barChartView = BarChartView().then {
         $0.chartDescription?.enabled = false
-        $0.pinchZoomEnabled = false
+        $0.pinchZoomEnabled = true
         $0.drawGridBackgroundEnabled = true
         $0.doubleTapToZoomEnabled = false
-        $0.scaleXEnabled = false
+        $0.scaleXEnabled = true
         $0.scaleYEnabled = false
         $0.leftAxis.enabled = false
         $0.legend.enabled = false
@@ -230,12 +230,11 @@ class CandlestickChartView: UIView {
         ma10 = nil
         ma30 = nil
 
-        guard klineItems.count > 0 else { return }
         bindCombinedChartView(klineItems: klineItems)
         bindBarChartView(klineItems: klineItems)
 
-        self.combinedChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
-        self.barChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
+        self.combinedChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
+        self.barChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
 
         if neededMove {
             self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
@@ -251,6 +250,12 @@ class CandlestickChartView: UIView {
     }
 
     func bindCombinedChartView(klineItems: [KlineItem]) {
+
+        guard klineItems.count > 0 else {
+            combinedChartView.data = nil
+            return
+        }
+
         let combinedChartData = CombinedChartData()
 
         // kline
@@ -314,6 +319,12 @@ class CandlestickChartView: UIView {
     }
 
     func bindBarChartView(klineItems: [KlineItem]) {
+
+        guard klineItems.count > 0 else {
+            barChartView.data = nil
+            return
+        }
+
         let barDataEntries = (0..<klineItems.count).map { index -> BarChartDataEntry in
             BarChartDataEntry(x: Double(index), y: klineItems[index].v)
         }
