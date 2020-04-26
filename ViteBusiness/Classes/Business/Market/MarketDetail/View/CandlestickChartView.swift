@@ -82,7 +82,7 @@ class CandlestickChartView: UIView {
         $0.doubleTapToZoomEnabled = false
         $0.scaleXEnabled = true
         $0.scaleYEnabled = false
-        $0.leftAxis.enabled = false
+        
         $0.legend.enabled = false
         $0.autoScaleMinMaxEnabled = true
         $0.maxVisibleCount = 0
@@ -98,8 +98,12 @@ class CandlestickChartView: UIView {
         $0.xAxis.gridLineWidth = 1
         $0.xAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
 
-        $0.leftAxis.enabled = false
         $0.rightAxis.enabled = false
+        $0.leftAxis.drawAxisLineEnabled = false;
+        $0.leftAxis.labelPosition = .insideChart
+        $0.leftAxis.labelTextColor = .clear;
+        $0.leftAxis.labelCount = 1;
+        $0.leftAxis.drawGridLinesEnabled = false;
     }
 
     init(klineType: MarketKlineType) {
@@ -315,6 +319,7 @@ class CandlestickChartView: UIView {
             $0.drawCirclesEnabled = false
             $0.lineWidth = 1
             $0.circleRadius = 4
+            $0.axisDependency = .right
         }
     }
 
