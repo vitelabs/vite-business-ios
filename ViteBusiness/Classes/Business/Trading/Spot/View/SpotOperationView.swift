@@ -139,19 +139,19 @@ class SpotOperationView: UIView {
             m.width.equalTo(37)
         }
 
-        amountLabel.snp.makeConstraints { (m) in
+        volLabel.snp.makeConstraints { (m) in
             m.top.equalTo(percentView.snp.bottom).offset(12)
             m.left.equalToSuperview()
             m.right.equalTo(transferButton.snp.left)
         }
 
-        volLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(amountLabel.snp.bottom).offset(4)
+        amountLabel.snp.makeConstraints { (m) in
+            m.top.equalTo(volLabel.snp.bottom).offset(4)
             m.left.right.equalToSuperview()
         }
 
         vipButton.snp.makeConstraints { (m) in
-            m.top.equalTo(volLabel.snp.bottom).offset(4)
+            m.top.equalTo(amountLabel.snp.bottom).offset(4)
             m.left.equalToSuperview()
         }
 
@@ -474,7 +474,8 @@ class SpotOperationView: UIView {
             let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
             let total = amount + fee
             guard total >= minAmount else {
-                Toast.show(R.string.localizable.spotPagePostToastAmountMin())
+                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: Int.max, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
+                Toast.show(R.string.localizable.spotPagePostToastAmountMin(text))
                 return false
             }
 
@@ -491,7 +492,8 @@ class SpotOperationView: UIView {
             let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
             let total = amount
             guard total >= minAmount else {
-                Toast.show(R.string.localizable.spotPagePostToastAmountMin())
+                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: Int.max, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
+                Toast.show(R.string.localizable.spotPagePostToastAmountMin(text))
                 return false
             }
 

@@ -32,6 +32,14 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
         super.init(coder: aDecoder)
     }
 
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

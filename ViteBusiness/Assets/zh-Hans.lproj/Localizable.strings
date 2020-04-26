@@ -1092,8 +1092,8 @@
 "spot.page.price.sell.placeholder" = "卖出价格";
 "spot.page.vol.sell.placeholder" = "卖出数量";
 "spot.page.available" = "可用: %@";
-"spot.page.buyable" = "可买: %@";
-"spot.page.sellable" = "可卖: %@";
+"spot.page.buyable" = "成交额: %@";
+"spot.page.sellable" = "成交额: %@";
 "spot.page.open.vip" = "开通 VIP";
 "spot.page.close.vip" = "取消 VIP";
 "spot.page.open.vip.error.toast" = "交易所 VITE 余额不足，开通 VIP 需抵押 10,000 VITE";
@@ -1108,7 +1108,7 @@
 "spot.page.post.toast.price.zero" = "价格不能为0";
 "spot.page.post.toast.vol.empty" = "请输入数量";
 "spot.page.post.toast.vol.zero" = "数量不能为0";
-"spot.page.post.toast.amount.min" = "下单金额太小";
+"spot.page.post.toast.amount.min" = "成交额需大于 %@";
 
 "spot.page.alert.title" = "温馨提示";
 "spot.page.alert.message" = "当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。";

@@ -41,11 +41,11 @@
 "airdrop.error.tip.unknown.error" = "Unknown Error.";
 
 
-"tab.title.wallet" = "钱包";
-"tab.title.market" = "行情";
-"tab.title.trading" = "交易";
-"tab.title.discover" = "发现";
-"tab.title.my" = "我的";
+"tab.title.wallet" = "Wallet";
+"tab.title.market" = "Market";
+"tab.title.trading" = "Trade";
+"tab.title.discover" = "Discover";
+"tab.title.my" = "Account";
 
 /* App */
 "Cancel" = "Cancel";
@@ -540,20 +540,20 @@
 "confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.buy.title" = "买入 %@";
+"confirm.transaction.page.vite.dex.buy.title" = "Buy %@";
 "confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.sell.title" = "卖出 %@";
+"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
 "confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.cancel.order.title" = "撤单";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
 "confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
 
-"confirm.transaction.page.vite.dex.vip.title" = "开通VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "交易所可用余额";
-"confirm.transaction.page.vite.dex.vip.amount" = "开通VIP抵押金额";
-"confirm.transaction.page.vite.dex.vip.tip" = "VIP开通后，可享有降低0.1%手续费特权，开通VIP需抵押10000VITE，30天后可手动取回";
-"confirm.transaction.page.vite.dex.vip.confirm.button" = "确认开通";
-"confirm.transaction.page.vite.dex.cancel.vip.title" = "取消VIP";
-"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "确认取消";
+"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
+"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
 
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
@@ -1006,7 +1006,7 @@
 
 "market.favourite" =  "Favorites";
 "market.searchhistory" =  "Search History";
-"market.title" =  "行情";
+"market.title" =  "Market";
 "market.about" =  "Get Started with ViteX";
 "market.name" =  "Name";
 "market.price" =  "Last Price";
@@ -1015,104 +1015,103 @@
 "market.switch" =  "Exchange";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "委托订单";
-"market.detail.page.segment.last.trades.title" = "最新成交";
-"market.detail.page.segment.token.info.title" = "代币";
-"market.detail.page.segment.operator.into.title" = "运营商";
+"market.detail.page.segment.order.book.title" = "Order book";
+"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.token.info.title" = "Token";
+"market.detail.page.segment.operator.into.title" = "Operator";
 
-"market.detail.page.info.high.title" = "高";
-"market.detail.page.info.low.title" = "低";
+"market.detail.page.info.high.title" = "High";
+"market.detail.page.info.low.title" = "Low";
 "market.detail.page.info.vol.title" = "24H";
 
-"market.detail.page.kline.type.min1.title" = "1分钟";
-"market.detail.page.kline.type.min30.title" = "30分钟";
-"market.detail.page.kline.type.hour1.title" = "1小时";
-"market.detail.page.kline.type.hour6.title" = "6小时";
-"market.detail.page.kline.type.hour12.title" = "12小时";
-"market.detail.page.kline.type.day1.title" = "1天";
-"market.detail.page.kline.type.week1.title" = "1周";
+"market.detail.page.kline.type.min1.title" = "1m";
+"market.detail.page.kline.type.min30.title" = "30m";
+"market.detail.page.kline.type.hour1.title" = "1H";
+"market.detail.page.kline.type.hour6.title" = "6H";
+"market.detail.page.kline.type.hour12.title" = "12H";
+"market.detail.page.kline.type.day1.title" = "1D";
+"market.detail.page.kline.type.week1.title" = "1W";
 
-"market.detail.page.value.time.title" = "时间";
-"market.detail.page.value.open.title" = "开";
-"market.detail.page.value.high.title" = "高";
-"market.detail.page.value.low.title" = "低";
-"market.detail.page.value.close.title" = "收";
-"market.detail.page.value.diff.title" = "涨跌额";
-"market.detail.page.value.extent.title" = "涨跌幅";
-"market.detail.page.value.vol.title" = "成交量";
+"market.detail.page.value.time.title" = "Time";
+"market.detail.page.value.open.title" = "Open";
+"market.detail.page.value.high.title" = "High";
+"market.detail.page.value.low.title" = "Low";
+"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.diff.title" = "chg";
+"market.detail.page.value.extent.title" = "chg%";
+"market.detail.page.value.vol.title" = "Volume";
 
-"market.detail.page.depth.vol.title" = "数量(%@)";
-"market.detail.page.depth.price.title" = "价格(%@)";
+"market.detail.page.depth.vol.title" = "Amount(%@)";
+"market.detail.page.depth.price.title" = "Price(%@)";
 
-"market.detail.page.trade.time.title" = "时间";
-"market.detail.page.trade.price.title" = "价格";
-"market.detail.page.trade.vol.title" = "数量";
-
-
-"market.detail.page.buy.button.title" = "买入";
-"market.detail.page.sell.button.title" = "卖出";
+"market.detail.page.trade.time.title" = "Time";
+"market.detail.page.trade.price.title" = "Price";
+"market.detail.page.trade.vol.title" = "Amount";
+"market.detail.page.buy.button.title" = "Buy";
+"market.detail.page.sell.button.title" = "Sell";
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "流通总量";
-"market.detail.page.token.info.type" = "代币类型";
-"market.detail.page.token.info.type.value.native" = "原生代币";
-"market.detail.page.token.info.type.value.other" = "跨链代币";
-"market.detail.page.token.info.gateway" = "跨链网关";
-"market.detail.page.token.info.official" = "官网";
-"market.detail.page.token.info.paper" = "白皮书";
-"market.detail.page.token.info.browser" = "浏览器";
+"market.detail.page.token.info.total" = "Tokens in Circulation";
+"market.detail.page.token.info.type" = "Type";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
+"market.detail.page.token.info.official" = "Official website";
+"market.detail.page.token.info.paper" = "WhitePaper";
+"market.detail.page.token.info.browser" = "Explorer";
 "market.detail.page.token.info.github" = "Github";
-"market.detail.page.token.info.social" = "社交媒体";
-"market.detail.page.token.info.brief" = "代币简介";
 
-"market.detail.page.token.info.address" = "运营商地址";
-"market.detail.page.token.info.pair" = "交易对";
+"market.detail.page.token.info.social" = "Social Media";
+"market.detail.page.token.info.brief" = "Introduction";
+
+"market.detail.page.token.info.address" = "Operator address";
+"market.detail.page.token.info.pair" = "Trading pair";
 
 // Trading Home
-"trading.home.page.segment.spot" = "币币";
-"trading.home.page.segment.mining" = "挖矿";
-"trading.home.page.segment.bonus" = "分红";
+"trading.home.page.segment.spot" = "Spot";
+"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.bonus" = "Dividend";
 
 // Spot
-"spot.page.button.buy.title" = "买入";
-"spot.page.button.sell.title" = "卖出";
-"spot.page.button.limit.buy.title" = "限价委托";
-"spot.page.price.buy.placeholder" = "买入价格";
-"spot.page.vol.buy.placeholder" = "买入数量";
-"spot.page.price.sell.placeholder" = "卖出价格";
-"spot.page.vol.sell.placeholder" = "卖出数量";
-"spot.page.available" = "可用: %@";
-"spot.page.buyable" = "可买: %@";
-"spot.page.sellable" = "可卖: %@";
-"spot.page.open.vip" = "开通 VIP";
-"spot.page.close.vip" = "取消 VIP";
-"spot.page.open.vip.error.toast" = "交易所 VITE 余额不足，开通 VIP 需抵押 10,000 VITE";
-"spot.page.close.vip.error.toast" = "无VIP抵押";
-"spot.page.close.vip.un.expire.error.toast" = "抵押不足30天，无法取回";
-"spot.page.depth.price" = "价格";
-"spot.page.depth.vol" = "数量";
-"spot.page.current.order.title" = "当前委托";
-"spot.page.orders.button.title" = "历史委托";
+"spot.page.button.buy.title" = "Buy";
+"spot.page.button.sell.title" = "Sell";
+"spot.page.button.limit.buy.title" = "Limit Order";
+"spot.page.price.buy.placeholder" = "Price";
+"spot.page.vol.buy.placeholder" = "Amount";
+"spot.page.price.sell.placeholder" = "Price";
+"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.available" = "Avail.: %@";
+"spot.page.buyable" = "Total: %@";
+"spot.page.sellable" = "Total: %@";
+"spot.page.open.vip" = "Become a VIP";
+"spot.page.close.vip" = "Cancel VIP";
+"spot.page.open.vip.error.toast" = "insufficient balance: 10,000 VITE staking is required to open VIP";
+"spot.page.close.vip.error.toast" = "No VIP staked";
+"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
+"spot.page.depth.price" = "Price";
+"spot.page.depth.vol" = "Amount";
+"spot.page.current.order.title" = "Open orders";
+"spot.page.orders.button.title" = "Order history";
 
-"spot.page.post.toast.price.empty" = "请输入价格";
-"spot.page.post.toast.price.zero" = "价格不能为0";
-"spot.page.post.toast.vol.empty" = "请输入数量";
-"spot.page.post.toast.vol.zero" = "数量不能为0";
-"spot.page.post.toast.amount.min" = "下单金额太小";
+"spot.page.post.toast.price.empty" = "Please enter the price";
+"spot.page.post.toast.price.zero" = "Value must be greater than 0";
+"spot.page.post.toast.vol.empty" = "Please enter the amount";
+"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
+"spot.page.post.toast.amount.min" = "Total value must be at least %@";
 
-"spot.page.alert.title" = "温馨提示";
-"spot.page.alert.message" = "当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。";
-"spot.page.alert.ok" = "我已了解";
+"spot.page.alert.title" = "Important reminder";
+"spot.page.alert.message" = "The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.ok" = "Confirm";
 
-"spot.page.order.empty" = "无委托";
-"spot.page.cell.type.buy" = "买";
-"spot.page.cell.type.sell" = "卖";
-"spot.page.cell.button.cancel.title" = "撤销";
-"spot.page.cell.vol" = "数量: %@";
-"spot.page.cell.price" = "价格: %@";
-"spot.page.cell.deal" = "成交: %@";
-"spot.page.cell.average" = "均价: %@";
+"spot.page.order.empty" = "No order";
+"spot.page.cell.type.buy" = "Buy";
+"spot.page.cell.type.sell" = "Sell";
+"spot.page.cell.button.cancel.title" = "Cancel";
+"spot.page.cell.vol" = "Amt.: %@";
+"spot.page.cell.price" = "Price: %@";
+"spot.page.cell.deal" = "Filled: %@";
+"spot.page.cell.average" = "Avg.: %@";
 
 // DeFi
 "defi.home.page.title" =  "DeFi";
