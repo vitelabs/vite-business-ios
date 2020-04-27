@@ -63,6 +63,9 @@ class CandlestickChartView: UIView {
         $0.xAxis.drawGridLinesEnabled = true
         $0.xAxis.gridLineWidth = 1
         $0.xAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
+        $0.xAxis.axisMinLabels = 1
+        $0.xAxis.axisMaxLabels = 4
+        $0.xAxis.labelCount = 4
 
         $0.rightAxis.labelCount = 4
         $0.rightAxis.drawAxisLineEnabled = false
@@ -97,6 +100,9 @@ class CandlestickChartView: UIView {
         $0.xAxis.drawGridLinesEnabled = true
         $0.xAxis.gridLineWidth = 1
         $0.xAxis.gridColor = UIColor(netHex: 0xD3DFEF, alpha: 0.4)
+        $0.xAxis.axisMinLabels = 1
+        $0.xAxis.axisMaxLabels = 4
+        $0.xAxis.labelCount = 4
 
         $0.rightAxis.enabled = false
         $0.leftAxis.drawAxisLineEnabled = false;
@@ -237,20 +243,22 @@ class CandlestickChartView: UIView {
         bindCombinedChartView(klineItems: klineItems)
         bindBarChartView(klineItems: klineItems)
 
-        self.combinedChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
-        self.barChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
+
 
         if neededMove {
-            self.combinedChartView.moveViewToX(Double(klineItems.count - 1))
-            self.barChartView.moveViewToX(Double(klineItems.count - 1))
+            self.combinedChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
+            self.barChartView.setVisibleXRange(minXRange: 50, maxXRange: 50)
+            let x: Double = klineItems.count < 50 ? 0 : Double(klineItems.count - 1)
+            self.combinedChartView.moveViewToX(x)
+            self.barChartView.moveViewToX(x)
+            self.combinedChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
+            self.barChartView.setVisibleXRange(minXRange: 25, maxXRange: 50)
             selectedIndex.accept(nil)
         }
 
         let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format(kineTypeBehaviorRelay.value.timeFormat) }
         combinedChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
-        combinedChartView.xAxis.setLabelCount(4, force: false)
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
-        barChartView.xAxis.setLabelCount(4, force: false)
     }
 
     func bindCombinedChartView(klineItems: [KlineItem]) {
@@ -284,7 +292,7 @@ class CandlestickChartView: UIView {
         // use bar fix offset
         combinedChartData.barData = {
             let entries = [BarChartDataEntry(x: -0.5, y: 0),
-                           BarChartDataEntry(x: Double(klineItems.count) - 0.5, y: 0)]
+                           BarChartDataEntry(x: max(Double(klineItems.count), 50) - 0.5, y: 0)]
             let set = BarChartDataSet(entries: entries)
             set.colors = [.clear]
             set.highlightEnabled = false
@@ -330,8 +338,12 @@ class CandlestickChartView: UIView {
             return
         }
 
-        let barDataEntries = (0..<klineItems.count).map { index -> BarChartDataEntry in
+        var barDataEntries = (0..<klineItems.count).map { index -> BarChartDataEntry in
             BarChartDataEntry(x: Double(index), y: klineItems[index].v)
+        }
+
+        if klineItems.count < 50 {
+            barDataEntries.append(BarChartDataEntry(x: 49, y: 0))
         }
 
         let barSet = BarChartDataSet(entries: barDataEntries)

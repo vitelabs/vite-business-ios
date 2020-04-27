@@ -216,9 +216,8 @@ class SpotOperationView: UIView {
                                 if let priceText = priceText, let price = BigDecimal(priceText), price != BigDecimal(0) {
                                     self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: priceText)
 
-                                    if let volText = volText, let vol = BigDecimal(volText), vol != BigDecimal(0) {
-                                        let totalBigDecimal = price * vol * BigDecimal(BigInt(10).power(quoteTokenInfo.decimals))
-                                        let totalBigInt = totalBigDecimal.ceil()
+                                    if let volText = volText, let vol = BigDecimal(volText), vol != BigDecimal(0), let (amount, fee) = self.calcFee() {
+                                        let totalBigInt = isBuy ? (amount + fee) : amount
                                         let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.quantityPrecision)) + " " + quoteTokenInfo.symbol
                                         self.volLabel.text = R.string.localizable.spotPageTotal(total)
                                     } else {
