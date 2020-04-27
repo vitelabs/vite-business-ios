@@ -1092,8 +1092,9 @@
 "spot.page.price.sell.placeholder" = "卖出价格";
 "spot.page.vol.sell.placeholder" = "卖出数量";
 "spot.page.available" = "可用: %@";
-"spot.page.buyable" = "成交额: %@";
-"spot.page.sellable" = "成交额: %@";
+"spot.page.buyable" = "可买: %@";
+"spot.page.sellable" = "可卖: %@";
+"spot.page.total" = "成交额: %@";
 "spot.page.open.vip" = "开通 VIP";
 "spot.page.close.vip" = "取消 VIP";
 "spot.page.open.vip.error.toast" = "交易所 VITE 余额不足，开通 VIP 需抵押 10,000 VITE";

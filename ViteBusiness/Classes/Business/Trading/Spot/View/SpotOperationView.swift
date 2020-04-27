@@ -201,7 +201,8 @@ class SpotOperationView: UIView {
                              marketInfoBehaviorRelay.asDriver().filterNil(),
                              spotViewModelBehaviorRelay.asDriver().filterNil(),
                              priceTextField.textField.rx.text.asDriver(),
-                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, spotViewModel, priceText, isBuy) in
+                             volTextField.textField.rx.text.asDriver(),
+                             segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, spotViewModel, priceText, volText, isBuy) in
                                 guard let `self` = self else { return }
 
                                 let quoteTokenInfo = spotViewModel.quoteTokenInfo
@@ -212,15 +213,22 @@ class SpotOperationView: UIView {
                                 let balance = balanceMap[sourceToken.id]?.available ?? Amount()
                                 self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.symbol)"
 
-                                if let text = priceText, let price = BigDecimal(text), price != BigDecimal(0) {
-                                    self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: text)
-                                    if isBuy {
-                                        self.volLabel.text = R.string.localizable.spotPageBuyable(self.calcVol(p: 1) ?? "--") + " \(tradeTokenInfo.symbol)"
-                                    } else {
-                                        let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
-                                        self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.symbol)"
-                                    }
+                                if let priceText = priceText, let price = BigDecimal(priceText), price != BigDecimal(0) {
+                                    self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: priceText)
 
+                                    if let volText = volText, let vol = BigDecimal(volText), vol != BigDecimal(0) {
+                                        let totalBigDecimal = price * vol * BigDecimal(BigInt(10).power(quoteTokenInfo.decimals))
+                                        let totalBigInt = totalBigDecimal.ceil()
+                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.quantityPrecision)) + " " + quoteTokenInfo.symbol
+                                        self.volLabel.text = R.string.localizable.spotPageTotal(total)
+                                    } else {
+                                        if isBuy {
+                                            self.volLabel.text = R.string.localizable.spotPageBuyable(self.calcVol(p: 1) ?? "--") + " \(tradeTokenInfo.symbol)"
+                                        } else {
+                                            let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
+                                            self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.symbol)"
+                                        }
+                                    }
                                 } else {
                                     self.priceLabel.text = "≈--"
                                     if isBuy {
@@ -236,7 +244,15 @@ class SpotOperationView: UIView {
         Driver.combineLatest(priceTextField.textField.rx.text.asDriver(),
                              volTextField.textField.rx.text.asDriver()).drive(onNext: { [weak self] (price, vol) in
                                 guard let `self` = self else { return }
-                                self.percentView.index = nil
+
+                                var index: Int? = nil
+                                for (i, value) in PercentView.values.enumerated() {
+                                    if let v = vol, v != "0", v == self.calcVol(p: value) {
+                                        index = i
+                                        break
+                                    }
+                                }
+                                self.percentView.index = index
 
                                 guard !(price ?? "").isEmpty && !(vol ?? "").isEmpty else {
                                     return
@@ -253,7 +269,7 @@ class SpotOperationView: UIView {
             }
 
             guard let vol = self.calcVol(p: PercentView.values[index]) else { return }
-            self.volTextField.textField.text = vol
+            self.setVol(vol)
         }
 
         transferButton.rx.tap.bind { [weak self] in
@@ -356,7 +372,14 @@ class SpotOperationView: UIView {
                                        quoteTokenInfo: quoteTokenInfo,
                                        price: priceText,
                                        quantity: vol,
-                                       completion: { _ in })
+                                       completion: { [weak self] ret in
+                                        switch ret {
+                                        case .success:
+                                            self?.setVol("")
+                                        case .failure:
+                                            break
+                                        }
+            })
 
         }.disposed(by: rx.disposeBag)
 
@@ -397,7 +420,14 @@ class SpotOperationView: UIView {
                                         quoteTokenInfo: quoteTokenInfo,
                                         price: priceText,
                                         quantity: vol,
-                                        completion: { _ in })
+                                        completion: { [weak self] ret in
+                                            switch ret {
+                                            case .success:
+                                                self?.setVol("")
+                                            case .failure:
+                                                break
+                                            }
+            })
         }.disposed(by: rx.disposeBag)
     }
 

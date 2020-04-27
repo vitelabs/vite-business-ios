@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1191 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1192 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3652,6 +3652,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tabTitleMarket = Rswift.StringResource(key: "tab.title.market", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Max Buy: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageBuyable = Rswift.StringResource(key: "spot.page.buyable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Max Sell: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageSellable = Rswift.StringResource(key: "spot.page.sellable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Max Supply
       /// 
       /// Locales: en, zh-Hans
@@ -4947,11 +4955,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Total: %@
       /// 
       /// Locales: en, zh-Hans
-      public static let spotPageBuyable = Rswift.StringResource(key: "spot.page.buyable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Total: %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageSellable = Rswift.StringResource(key: "spot.page.sellable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let spotPageTotal = Rswift.StringResource(key: "spot.page.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
@@ -9698,6 +9702,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("tab.title.market", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Max Buy: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageBuyable(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.buyable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Max Sell: %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageSellable(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.sellable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Max Supply
       /// 
       /// Locales: en, zh-Hans
@@ -11962,15 +11980,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Total: %@
       /// 
       /// Locales: en, zh-Hans
-      public static func spotPageBuyable(_ value1: String) -> String {
-        return String(format: NSLocalizedString("spot.page.buyable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: Total: %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageSellable(_ value1: String) -> String {
-        return String(format: NSLocalizedString("spot.page.sellable", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      public static func spotPageTotal(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.total", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Trade
