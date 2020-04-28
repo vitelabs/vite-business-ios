@@ -134,7 +134,7 @@ class SpotOperationView: UIView {
         }
 
         transferButton.snp.makeConstraints { (m) in
-            m.centerY.equalTo(amountLabel)
+            m.centerY.equalTo(volLabel)
             m.right.equalTo(percentView)
             m.width.equalTo(37)
         }
@@ -142,7 +142,7 @@ class SpotOperationView: UIView {
         volLabel.snp.makeConstraints { (m) in
             m.top.equalTo(percentView.snp.bottom).offset(12)
             m.left.equalToSuperview()
-            m.right.equalTo(transferButton.snp.left)
+            m.right.equalTo(transferButton.snp.left).offset(15)
         }
 
         amountLabel.snp.makeConstraints { (m) in
@@ -216,16 +216,17 @@ class SpotOperationView: UIView {
                                 if let priceText = priceText, let price = BigDecimal(priceText), price != BigDecimal(0) {
                                     self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: priceText)
 
-                                    if let volText = volText, let vol = BigDecimal(volText), vol != BigDecimal(0), let (amount, fee) = self.calcFee() {
-                                        let totalBigInt = isBuy ? (amount + fee) : amount
-                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.quantityPrecision)) + " " + quoteTokenInfo.symbol
+                                    if let amount = type(of: self).calcAmount(vm: spotViewModel, priceText: priceText, volText: volText) {
+                                        let totalBigInt = isBuy ? (amount + type(of: self).calcFee(vm: spotViewModel, amount: amount)) : amount
+                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: quoteTokenInfo.decimals) + " " + quoteTokenInfo.symbol
                                         self.volLabel.text = R.string.localizable.spotPageTotal(total)
                                     } else {
                                         if isBuy {
-                                            self.volLabel.text = R.string.localizable.spotPageBuyable(self.calcVol(p: 1) ?? "--") + " \(tradeTokenInfo.symbol)"
+                                            let text = type(of: self).calcVol(vm: spotViewModel, info: info, priceText: priceText, isBuy: isBuy, p: 1) ?? "--"
+                                            self.volLabel.text = R.string.localizable.spotPageBuyable(text) + " \(tradeTokenInfo.symbol)"
                                         } else {
                                             let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
-                                            self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [.groupSeparator])) + " \(quoteTokenInfo.symbol)"
+                                            self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [])) + " \(quoteTokenInfo.symbol)"
                                         }
                                     }
                                 } else {
@@ -243,12 +244,16 @@ class SpotOperationView: UIView {
         Driver.combineLatest(priceTextField.textField.rx.text.asDriver(),
                              volTextField.textField.rx.text.asDriver()).drive(onNext: { [weak self] (price, vol) in
                                 guard let `self` = self else { return }
+                                let isBuy = self.segmentView.isBuyBehaviorRelay.value
 
                                 var index: Int? = nil
-                                for (i, value) in PercentView.values.enumerated() {
-                                    if let v = vol, v != "0", v == self.calcVol(p: value) {
-                                        index = i
-                                        break
+                                if let vm = self.spotViewModelBehaviorRelay.value, let info = self.marketInfoBehaviorRelay.value {
+
+                                    for (i, value) in PercentView.values.enumerated() {
+                                        if let v = vol, v != "0", v == type(of: self).calcVol(vm: vm, info: info, priceText: price, isBuy: isBuy, p: value) {
+                                            index = i
+                                            break
+                                        }
                                     }
                                 }
                                 self.percentView.index = index
@@ -257,7 +262,9 @@ class SpotOperationView: UIView {
                                     return
                                 }
 
-                                _ = self.checkAmount()
+                                if let vm = self.spotViewModelBehaviorRelay.value {
+                                    _ = type(of: self).checkAmount(vm: vm, isBuy: isBuy, priceText: price, volText: vol, isShowToast: true)
+                                }
         }).disposed(by: rx.disposeBag)
 
         percentView.changed = { [weak self] index in
@@ -266,9 +273,13 @@ class SpotOperationView: UIView {
                 self.percentView.index = nil
                 return
             }
+            let isBuy = self.segmentView.isBuyBehaviorRelay.value
 
-            guard let vol = self.calcVol(p: PercentView.values[index]) else { return }
-            self.setVol(vol)
+            if let vm = self.spotViewModelBehaviorRelay.value,
+                let info = self.marketInfoBehaviorRelay.value,
+                let vol = type(of: self).calcVol(vm: vm, info: info, priceText: text, isBuy: isBuy, p: PercentView.values[index]) {
+                self.setVol(vol)
+            }
         }
 
         transferButton.rx.tap.bind { [weak self] in
@@ -360,7 +371,7 @@ class SpotOperationView: UIView {
                 return
             }
 
-            guard self.checkAmount() else {
+            guard type(of: self).checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: true) else {
                 return
             }
 
@@ -408,7 +419,7 @@ class SpotOperationView: UIView {
                 return
             }
 
-            guard self.checkAmount() else {
+            guard type(of: self).checkAmount(vm: vm, isBuy: false, priceText: priceText, volText: volText, isShowToast: true) else {
                 return
             }
 
@@ -430,24 +441,22 @@ class SpotOperationView: UIView {
         }.disposed(by: rx.disposeBag)
     }
 
-    func calcQuoteBigDecimal() -> BigDecimal? {
-        guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
+
+    static func calcAmount(vm: SpotViewModel, priceText: String?, volText: String?) -> BigInt? {
+        guard let priceText = priceText, !priceText.isEmpty, let price = BigDecimal(priceText), price > BigDecimal(BigInt(0)) else {
             return nil
         }
 
-        guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = BigDecimal(volText) else {
+        guard let volText = volText, !volText.isEmpty, let vol = BigDecimal(volText), vol > BigDecimal(BigInt(0)) else {
             return nil
         }
 
-        let bigDecimal = price * vol
-        return bigDecimal
+        let bigDecimal = (price * vol) * BigDecimal(BigInt(10).power(vm.quoteTokenInfo.decimals))
+        let amount = bigDecimal.round()
+        return amount
     }
 
-    func calcFeeRate() -> BigDecimal? {
-        guard let vm = self.spotViewModelBehaviorRelay.value else {
-             return nil
-        }
-
+    static func calcFeeRate(vm: SpotViewModel) -> BigDecimal {
         let vipReduceFeeRate: BigDecimal
         if vm.svipState {
             vipReduceFeeRate = BigDecimal("0.002")!
@@ -468,86 +477,16 @@ class SpotOperationView: UIView {
         return lockFeeRate
     }
 
-    func calcFee() -> (amount: Amount, fee: Amount)? {
-        guard let quoteBigDecimal = calcQuoteBigDecimal() else {
-            return nil
-        }
-
-        guard let feeRate = calcFeeRate() else {
-            return nil
-        }
-
-        guard let vm = self.spotViewModelBehaviorRelay.value else {
-             return nil
-        }
-
-        let quote = quoteBigDecimal * BigDecimal(BigInt(10).power(vm.quoteTokenInfo.decimals))
-        let feeBigDecimal = quote * feeRate
-        let amount = quote.ceil()
-        let fee = feeBigDecimal.ceil()
-
-        plog(level: .debug, log: "calcFee quote: \(quoteBigDecimal.description), rate: \(feeRate.description), fee: \((quoteBigDecimal * feeRate).description)", tag: .market)
-        return (amount, fee)
+    static func calcFee(vm: SpotViewModel, amount: Amount) -> Amount {
+        let feeRate = calcFeeRate(vm: vm)
+        let feeBigDecimal = BigDecimal(amount) * feeRate
+        let fee = feeBigDecimal.round()
+        plog(level: .debug, log: "calcFee amount: \(amount.description), rate: \(feeRate.description), fee: \(fee.description)", tag: .market)
+        return fee
     }
 
-    func checkAmount() -> Bool {
-        guard let (amount, fee) = calcFee() else {
-            return false
-        }
-
-        guard let vm = self.spotViewModelBehaviorRelay.value else {
-             return false
-        }
-
-        if self.segmentView.isBuyBehaviorRelay.value {
-            let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
-            let total = amount + fee
-            guard total >= minAmount else {
-                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: Int.max, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
-                Toast.show(R.string.localizable.spotPagePostToastAmountMin(text))
-                return false
-            }
-
-            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.quoteTokenInfo.viteTokenId)?.available ?? Amount()
-
-            guard total <= balance else {
-                Toast.show(R.string.localizable.sendPageToastAmountError())
-                return false
-            }
-
-            return true
-
-        } else {
-            let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
-            let total = amount
-            guard total >= minAmount else {
-                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: Int.max, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
-                Toast.show(R.string.localizable.spotPagePostToastAmountMin(text))
-                return false
-            }
-
-            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.tradeTokenInfo.viteTokenId)?.available ?? Amount()
-
-            guard let volText = self.volTextField.textField.text, !volText.isEmpty,
-                let vol = volText.toAmount(decimals: vm.tradeTokenInfo.decimals) else {
-                return false
-            }
-
-            guard vol <= balance else {
-                Toast.show(R.string.localizable.sendPageToastAmountError())
-                return false
-            }
-
-            return true
-        }
-    }
-
-    func calcVol(p: Double) -> String? {
+    static func calcVol(vm: SpotViewModel, info: MarketInfo, priceText: String?, isBuy: Bool, p: Double) -> String? {
         guard p >= 0, p <= 1 else { return nil }
-        guard let info = self.marketInfoBehaviorRelay.value else { return nil }
-        guard let vm = self.spotViewModelBehaviorRelay.value else { return nil }
-
-        let isBuy = self.segmentView.isBuyBehaviorRelay.value
         let quoteTokenInfo = vm.quoteTokenInfo
         let tradeTokenInfo = vm.tradeTokenInfo
         let tradeToken = tradeTokenInfo.toViteToken()!
@@ -556,20 +495,79 @@ class SpotOperationView: UIView {
         let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
 
         if isBuy {
-            guard let text = self.priceTextField.textField.text,
-                let price = BigDecimal(text), price > BigDecimal(0) else {
+            guard let priceText = priceText, let price = BigDecimal(priceText), price > BigDecimal(0) else {
                 return nil
             }
-
-             guard let feeRate = calcFeeRate() else { return nil }
-
-            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: quoteToken.id)?.available ?? Amount()
+            let feeRate = calcFeeRate(vm: vm)
             let multiple = BigDecimal(BigInt(1)) + feeRate
-            let vol = BigDecimal(balance.amountFull(decimals: quoteToken.decimals))! / (multiple * price)
-            return BigDecimalFormatter.format(bigDecimal: vol * percent, style: .decimalTruncation(decimals), padding: .none, options: [])
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: quoteToken.id)?.available ?? Amount()
+
+            guard balance > 0 else {
+                return "0"
+            }
+
+            let allVol = BigDecimal(balance.amount(decimals: quoteToken.decimals, count: quoteToken.decimals, groupSeparator: false))! / (multiple * price)
+            let vol = allVol * percent
+
+            var volText = BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(decimals), padding: .none, options: [])
+            while checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: false) == false {
+                let newVol = BigDecimal(volText)! - BigDecimal(number: BigInt(1), digits: Int(info.statistic.quantityPrecision))
+                guard newVol > BigDecimal(BigInt(0)) else {
+                    return "0"
+                }
+                volText = BigDecimalFormatter.format(bigDecimal: newVol, style: .decimalTruncation(decimals), padding: .none, options: [])
+            }
+
+            return volText
         } else {
             let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tradeToken.id)?.available ?? Amount()
-            return BigDecimalFormatter.format(bigDecimal: BigDecimal(balance) * percent / BigDecimal(BigInt(10).power(tradeTokenInfo.decimals)), style: .decimalTruncation(decimals), padding: .none, options: [])
+            let volText = BigDecimalFormatter.format(bigDecimal: BigDecimal(balance) * percent / BigDecimal(BigInt(10).power(tradeTokenInfo.decimals)), style: .decimalTruncation(decimals), padding: .none, options: [])
+            return volText
+        }
+    }
+
+    static func checkAmount(vm: SpotViewModel, isBuy: Bool, priceText: String?, volText: String?, isShowToast: Bool) -> Bool {
+        guard let amount = calcAmount(vm: vm, priceText: priceText, volText: volText) else { return false }
+        let fee = calcFee(vm: vm, amount: amount)
+
+        let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
+
+        if isBuy {
+            let total = amount + fee
+            guard total >= minAmount else {
+                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: vm.quoteTokenInfo.decimals, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
+                if isShowToast { Toast.show(R.string.localizable.spotPagePostToastAmountMin(text)) }
+                return false
+            }
+
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.quoteTokenInfo.viteTokenId)?.available ?? Amount()
+
+            guard total <= balance else {
+                if isShowToast { Toast.show(R.string.localizable.sendPageToastAmountError()) }
+                return false
+            }
+
+            return true
+        } else {
+            let total = amount
+            guard total >= minAmount else {
+                let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: vm.quoteTokenInfo.decimals, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
+                if isShowToast { Toast.show(R.string.localizable.spotPagePostToastAmountMin(text)) }
+                return false
+            }
+
+            guard let volText = volText, !volText.isEmpty, let vol = volText.toAmount(decimals: vm.tradeTokenInfo.decimals) else {
+                return false
+            }
+
+            let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.tradeTokenInfo.viteTokenId)?.available ?? Amount()
+
+            guard vol <= balance else {
+                if isShowToast { Toast.show(R.string.localizable.sendPageToastAmountError()) }
+                return false
+            }
+
+            return true
         }
     }
 

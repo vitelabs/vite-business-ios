@@ -112,17 +112,12 @@ class OrderBookViewController: BaseTableViewController {
             return 1
         } else {
             if let depthList = depthList {
-                return max(depthList.asks.count, depthList.bids.count)
+                return min(20, max(depthList.asks.count, depthList.bids.count))
             } else {
                 return 0
             }
         }
     }
-
-
-
-
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
