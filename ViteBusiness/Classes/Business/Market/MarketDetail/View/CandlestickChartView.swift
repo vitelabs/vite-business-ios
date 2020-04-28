@@ -23,17 +23,17 @@ class CandlestickChartView: UIView {
 
     let valueView = ValueView()
 
-    let ma5Lable = UILabel().then {
+    let ma7Lable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         $0.textColor = UIColor(netHex: 0xFFA300)
     }
 
-    let ma10Lable = UILabel().then {
+    let ma30Lable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         $0.textColor = UIColor(netHex: 0x007AFF)
     }
 
-    let ma30Lable = UILabel().then {
+    let ma90Lable = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         $0.textColor = UIColor(netHex: 0xA864FF)
     }
@@ -123,9 +123,9 @@ class CandlestickChartView: UIView {
         addSubview(logoImageView)
         addSubview(combinedChartView)
         addSubview(barChartView)
-        addSubview(ma5Lable)
-        addSubview(ma10Lable)
+        addSubview(ma7Lable)
         addSubview(ma30Lable)
+        addSubview(ma90Lable)
         addSubview(valueView)
         addSubview(selectorView)
 
@@ -168,19 +168,19 @@ class CandlestickChartView: UIView {
             m.height.equalTo(60)
         }
 
-        ma5Lable.snp.makeConstraints { (m) in
+        ma7Lable.snp.makeConstraints { (m) in
             m.top.equalTo(combinedChartView).offset(10)
             m.left.equalTo(combinedChartView).offset(8)
         }
 
-        ma10Lable.snp.makeConstraints { (m) in
-            m.top.equalTo(combinedChartView).offset(10)
-            m.left.equalTo(ma5Lable.snp.right).offset(20)
-        }
-
         ma30Lable.snp.makeConstraints { (m) in
             m.top.equalTo(combinedChartView).offset(10)
-            m.left.equalTo(ma10Lable.snp.right).offset(20)
+            m.left.equalTo(ma7Lable.snp.right).offset(20)
+        }
+
+        ma90Lable.snp.makeConstraints { (m) in
+            m.top.equalTo(combinedChartView).offset(10)
+            m.left.equalTo(ma30Lable.snp.right).offset(20)
         }
 
         selectorView.snp.makeConstraints { (m) in
@@ -197,19 +197,19 @@ class CandlestickChartView: UIView {
             guard let `self` = self else { return }
             if let index = $0, index < self.klineItems.count {
                 let pricePrecision = self.marketInfo?.statistic.pricePrecision ?? 4
-                let ma5Value = self.ma5?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
-                let ma10Value = self.ma10?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
+                let ma7Value = self.ma7?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
                 let ma30Value = self.ma30?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
-                self.ma5Lable.text = "MA5: \(ma5Value)"
-                self.ma10Lable.text = "MA10: \(ma10Value)"
+                let ma90Value = self.ma90?[index].map { String(format: "%.\(pricePrecision)f", $0) } ?? ""
+                self.ma7Lable.text = "MA7: \(ma7Value)"
                 self.ma30Lable.text = "MA30: \(ma30Value)"
+                self.ma90Lable.text = "MA90: \(ma90Value)"
 
                 self.valueView.bind(klineItem: self.klineItems[index], info: self.marketInfo)
                 self.valueView.isHidden = false
             } else {
-                self.ma5Lable.text = "MA5: "
-                self.ma10Lable.text = "MA10: "
+                self.ma7Lable.text = "MA7: "
                 self.ma30Lable.text = "MA30: "
+                self.ma90Lable.text = "MA90: "
 
                 self.valueView.isHidden = true
             }
@@ -219,9 +219,9 @@ class CandlestickChartView: UIView {
     let selectedIndex: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     var klineItems: [KlineItem] = []
     var marketInfo: MarketInfo? = nil
-    var ma5: [Double?]? = nil
-    var ma10: [Double?]? = nil
+    var ma7: [Double?]? = nil
     var ma30: [Double?]? = nil
+    var ma90: [Double?]? = nil
 
     var lastKlineTopic: String = ""
 
@@ -236,9 +236,9 @@ class CandlestickChartView: UIView {
             self.lastKlineTopic = self.kineTypeBehaviorRelay.value.topic(symbol: info.statistic.symbol)
         }
 
-        ma5 = nil
-        ma10 = nil
+        ma7 = nil
         ma30 = nil
+        ma90 = nil
 
         bindCombinedChartView(klineItems: klineItems)
         bindBarChartView(klineItems: klineItems)
@@ -300,21 +300,21 @@ class CandlestickChartView: UIView {
         }()
 
         // ma
-        let ma5 = calcMA(klineItems: klineItems, days: 5)
-        let ma10 = calcMA(klineItems: klineItems, days: 10)
+        let ma7 = calcMA(klineItems: klineItems, days: 7)
         let ma30 = calcMA(klineItems: klineItems, days: 30)
-        self.ma5 = ma5
-        self.ma10 = ma10
+        let ma90 = calcMA(klineItems: klineItems, days: 90)
+        self.ma7 = ma7
         self.ma30 = ma30
-        let ma5DataSet = maDataSet(ma: ma5, days: 5).then { $0.colors = [UIColor(netHex: 0xFFA300)] }
-        let ma10DataSet = maDataSet(ma: ma10, days: 10).then { $0.colors = [UIColor(netHex: 0x007AFF)] }
-        let ma30DataSet = maDataSet(ma: ma30, days: 30).then { $0.colors = [UIColor(netHex: 0xA864FF)] }
-        combinedChartData.lineData = LineChartData(dataSets: [ma5DataSet, ma10DataSet, ma30DataSet])
+        self.ma90 = ma90
+        let ma7DataSet = maDataSet(ma: ma7).then { $0.colors = [UIColor(netHex: 0xFFA300)] }
+        let ma30DataSet = maDataSet(ma: ma30).then { $0.colors = [UIColor(netHex: 0x007AFF)] }
+        let ma90DataSet = maDataSet(ma: ma90).then { $0.colors = [UIColor(netHex: 0xA864FF)] }
+        combinedChartData.lineData = LineChartData(dataSets: [ma7DataSet, ma30DataSet, ma90DataSet])
 
         combinedChartView.data = combinedChartData
     }
 
-    func maDataSet(ma: [Double?], days: Int) -> LineChartDataSet {
+    func maDataSet(ma: [Double?]) -> LineChartDataSet {
         var maEntries: [ChartDataEntry] = []
         for (index, closePrice) in ma.enumerated() {
             if let closePrice = closePrice {
