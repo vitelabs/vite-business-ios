@@ -97,9 +97,9 @@ extension UnifyProvider.vitex {
         }
     }
 
-    static func getDepth(symbol: String) -> Promise<MarketDepthList> {
+    static func getDepth(symbol: String, limit: Int) -> Promise<MarketDepthList> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
-        return p.requestPromise(.getDepth(symbol: symbol), responseToData: responseToData).map { string in
+        return p.requestPromise(.getDepth(symbol: symbol, limit: limit), responseToData: responseToData).map { string in
             guard let ret = MarketDepthList(JSONString: string) else {
                 throw UnifyProvider.BackendError.format
             }

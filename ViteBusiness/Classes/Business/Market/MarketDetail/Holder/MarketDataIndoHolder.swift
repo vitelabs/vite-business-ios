@@ -38,7 +38,7 @@ class MarketDataIndoHolder: NSObject {
             guard let `self` = self else { return }
             guard let depthListProto = try? DepthListProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new DepthListProto for \(self.symbol) ", tag: .market)
-            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto))
+            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto, count: 20))
         })
 
         self.tradesSubId = MarketInfoService.shared.marketSocket.sub(topic: tradesTopic, ticker: { [weak self] (data) in
@@ -100,7 +100,7 @@ class MarketDataIndoHolder: NSObject {
     func fetchDepth() {
         let symbol = self.symbol
         fetchUntilSuccess(promise: {
-            UnifyProvider.vitex.getDepth(symbol: symbol)
+            UnifyProvider.vitex.getDepth(symbol: symbol, limit: 20)
         }) { [weak self] (depthList) in
             guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)

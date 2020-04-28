@@ -50,9 +50,17 @@ struct MarketDepthList: Mappable {
         bids <- map["bids"]
     }
 
-    static func generate(proto: DepthListProto) -> MarketDepthList {
-        let asks = proto.asks.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
-        let bids = proto.bids.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
+    static func generate(proto: DepthListProto, count: Int) -> MarketDepthList {
+        var asks = proto.asks.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
+        var bids = proto.bids.map { Depth(price: $0.price, quantity: $0.quantity, amount: $0.amount)}
+
+        if asks.count > count {
+            asks = Array(asks[..<count])
+        }
+
+        if bids.count > count {
+            bids = Array(bids[..<count])
+        }
 
         let ret = MarketDepthList(asks: asks, bids: bids)
         ret.calcPercent()

@@ -91,7 +91,7 @@ extension SpotOpenedOrderListViewModel {
     fileprivate func fetch() {
         let symbol = self.symbol
         fetchUntilSuccess(promise: {
-            UnifyProvider.vitex.getDepth(symbol: symbol)
+            UnifyProvider.vitex.getDepth(symbol: symbol, limit: 5)
         }) { [weak self] (depthList) in
             guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
@@ -159,7 +159,7 @@ extension SpotOpenedOrderListViewModel {
             guard let `self` = self else { return }
             guard let depthListProto = try? DepthListProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new DepthListProto for \(self.symbol) ", tag: .market)
-            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto))
+            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto, count: 5))
         })
 
         orderSubId = MarketInfoService.shared.marketSocket.sub(topic: orderTopic, ticker: { [weak self] (data) in

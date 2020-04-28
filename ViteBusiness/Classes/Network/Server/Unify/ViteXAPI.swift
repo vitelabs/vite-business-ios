@@ -12,7 +12,7 @@ enum ViteXAPI: TargetType {
     case getLimit
     case getRate(tokenIds: [ViteTokenId])
     case getklines(symbol: String, type: MarketKlineType)
-    case getDepth(symbol: String)
+    case getDepth(symbol: String, limit: Int)
     case getTrades(symbol: String)
     case getPairDetailInfo(tradeTokenId: ViteTokenId, quoteTokenId: ViteTokenId)
     case getOpenedOrderlist(address: ViteAddress, tradeTokenSymbol: String, quoteTokenSymbol: String, offset: Int, limit: Int)
@@ -62,9 +62,9 @@ enum ViteXAPI: TargetType {
                 "interval": type.requestParameter
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-        case let .getDepth(symbol):
+        case let .getDepth(symbol, limit):
             let parameters = [
-                "limit": "20",
+                "limit": "\(limit)",
                 "symbol": symbol
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
