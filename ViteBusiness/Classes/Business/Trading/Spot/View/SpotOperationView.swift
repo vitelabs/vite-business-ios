@@ -371,7 +371,7 @@ class SpotOperationView: UIView {
                 return
             }
 
-            guard type(of: self).checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: true) else {
+            guard type(of: self).checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
                 return
             }
 
@@ -419,7 +419,7 @@ class SpotOperationView: UIView {
                 return
             }
 
-            guard type(of: self).checkAmount(vm: vm, isBuy: false, priceText: priceText, volText: volText, isShowToast: true) else {
+            guard type(of: self).checkAmount(vm: vm, isBuy: false, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
                 return
             }
 
@@ -510,7 +510,8 @@ class SpotOperationView: UIView {
             let vol = allVol * percent
 
             var volText = BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(decimals), padding: .none, options: [])
-            while checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: false) == false {
+
+            while checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: false).isBalanceInsufficient {
                 let newVol = BigDecimal(volText)! - BigDecimal(number: BigInt(1), digits: Int(info.statistic.quantityPrecision))
                 guard newVol > BigDecimal(BigInt(0)) else {
                     return "0"
@@ -526,8 +527,35 @@ class SpotOperationView: UIView {
         }
     }
 
-    static func checkAmount(vm: SpotViewModel, isBuy: Bool, priceText: String?, volText: String?, isShowToast: Bool) -> Bool {
-        guard let amount = calcAmount(vm: vm, priceText: priceText, volText: volText) else { return false }
+    enum CheckAmountResult {
+        case success
+        case calcAmountFailed
+        case volError
+        case totalInsufficient
+        case balanceInsufficient
+
+        var isSuccess: Bool {
+            switch self {
+            case .success:
+                return true
+            case .calcAmountFailed, .volError, .totalInsufficient, .balanceInsufficient:
+                return false
+            }
+        }
+
+        var isBalanceInsufficient: Bool {
+            switch self {
+            case .balanceInsufficient:
+                return true
+            case .success, .calcAmountFailed, .volError, .totalInsufficient:
+                return false
+            }
+        }
+    }
+
+    static func checkAmount(vm: SpotViewModel, isBuy: Bool, priceText: String?, volText: String?, isShowToast: Bool) -> CheckAmountResult {
+        plog(level: .debug, log: "price: \(priceText ?? "") vol: \(volText ?? "")", tag: .market)
+        guard let amount = calcAmount(vm: vm, priceText: priceText, volText: volText) else { return .calcAmountFailed }
         let fee = calcFee(vm: vm, amount: amount)
 
         let minAmount = MarketInfoService.shared.marketLimit.getMinAmount(quoteTokenSymbol: vm.quoteTokenInfo.uniqueSymbol)
@@ -537,37 +565,37 @@ class SpotOperationView: UIView {
             guard total >= minAmount else {
                 let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: vm.quoteTokenInfo.decimals, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
                 if isShowToast { Toast.show(R.string.localizable.spotPagePostToastAmountMin(text)) }
-                return false
+                return .totalInsufficient
             }
 
             let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.quoteTokenInfo.viteTokenId)?.available ?? Amount()
 
             guard total <= balance else {
                 if isShowToast { Toast.show(R.string.localizable.sendPageToastAmountError()) }
-                return false
+                return .balanceInsufficient
             }
 
-            return true
+            return .success
         } else {
             let total = amount
             guard total >= minAmount else {
                 let text = minAmount.amount(decimals: vm.quoteTokenInfo.decimals, count: vm.quoteTokenInfo.decimals, groupSeparator: true) + " " + vm.quoteTokenInfo.symbol
                 if isShowToast { Toast.show(R.string.localizable.spotPagePostToastAmountMin(text)) }
-                return false
+                return .totalInsufficient
             }
 
             guard let volText = volText, !volText.isEmpty, let vol = volText.toAmount(decimals: vm.tradeTokenInfo.decimals) else {
-                return false
+                return .volError
             }
 
             let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: vm.tradeTokenInfo.viteTokenId)?.available ?? Amount()
 
             guard vol <= balance else {
                 if isShowToast { Toast.show(R.string.localizable.sendPageToastAmountError()) }
-                return false
+                return .balanceInsufficient
             }
 
-            return true
+            return .success
         }
     }
 
