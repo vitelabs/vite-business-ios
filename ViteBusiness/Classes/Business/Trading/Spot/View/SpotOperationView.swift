@@ -218,7 +218,7 @@ class SpotOperationView: UIView {
 
                                     if let amount = type(of: self).calcAmount(vm: spotViewModel, priceText: priceText, volText: volText) {
                                         let totalBigInt = isBuy ? (amount + type(of: self).calcFee(vm: spotViewModel, amount: amount)) : amount
-                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: quoteTokenInfo.decimals) + " " + quoteTokenInfo.symbol
+                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.pricePrecision)) + " " + quoteTokenInfo.symbol
                                         self.volLabel.text = R.string.localizable.spotPageTotal(total)
                                     } else {
                                         if isBuy {
