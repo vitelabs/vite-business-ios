@@ -17,6 +17,8 @@ enum ViteXAPI: TargetType {
     case getPairDetailInfo(tradeTokenId: ViteTokenId, quoteTokenId: ViteTokenId)
     case getOpenedOrderlist(address: ViteAddress, tradeTokenSymbol: String, quoteTokenSymbol: String, offset: Int, limit: Int)
 
+    case getTokenInfoDetail(TokenCode)
+    
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
     }
@@ -30,6 +32,7 @@ enum ViteXAPI: TargetType {
         case .getTrades: return "api/v1/trades"
         case .getPairDetailInfo: return "api/v1/operator/tradepair"
         case .getOpenedOrderlist: return "api/v1/orders/open"
+        case .getTokenInfoDetail: return "/api/v1/cryptocurrency/info/detail"
         }
     }
 
@@ -42,6 +45,7 @@ enum ViteXAPI: TargetType {
         case .getTrades: return .get
         case .getPairDetailInfo: return .get
         case .getOpenedOrderlist: return .get
+        case .getTokenInfoDetail: return .post
         }
     }
 
@@ -89,6 +93,8 @@ enum ViteXAPI: TargetType {
                 "limit": String(limit)
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getTokenInfoDetail(let tokenCode):
+            return .requestJSONEncodable([tokenCode])
         }
     }
 

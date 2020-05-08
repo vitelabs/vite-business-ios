@@ -181,7 +181,7 @@ public struct TokenInfo: Mappable {
 
     public mutating func mapping(map: Map) {
         tokenCode <- map["tokenCode"]
-        coinType <- (map["platform"], coinTypeTransform)
+        coinType <- (map["platform"], TokenInfo.coinTypeTransform)
         rawChainName <- map["platform"]
         name <- map["name"]
         symbol <- map["symbol"]
@@ -192,7 +192,7 @@ public struct TokenInfo: Mappable {
         gatewayInfo <- map["gatewayInfo"]
     }
 
-    private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
+    static let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
         guard let string = string else { return nil }
         return CoinType(rawValue: string)
     }, toJSON: { (coinType) -> String? in
@@ -319,9 +319,18 @@ public struct GatewayInfo: Mappable {
     var overview = [String:String]()
     var policy = [String:String]()
     var support = ""
+    var serviceSupport = ""
     var isOfficial = false
 
     private var mappedTokenInfo = MappedTokenInfo()
+
+    var overviewString: String {
+        return (LocalizationService.sharedInstance.currentLanguage == .chinese ? overview["zh"] : overview["en"]) ?? overview["en"] ?? ""
+    }
+
+    var policyString: String {
+        return (LocalizationService.sharedInstance.currentLanguage == .chinese ? policy["zh"] : policy["en"]) ?? policy["en"] ?? ""
+    }
 
 
     public init?(map: Map) {
@@ -344,6 +353,7 @@ public struct GatewayInfo: Mappable {
         overview <- map["overview"]
         policy <- map["policy"]
         support <- map["support"]
+        serviceSupport <- map["serviceSupport"]
         mappedTokenInfo <- map["mappedToken"]
         isOfficial <- map["isOfficial"]
     }

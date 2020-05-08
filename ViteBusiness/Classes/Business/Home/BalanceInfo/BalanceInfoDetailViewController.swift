@@ -139,13 +139,20 @@ class BalanceInfoDetailViewController: BaseViewController {
 
         let tapGestureRecognizer = UITapGestureRecognizer()
         navView.tokenIconView.addGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer.rx.event.subscribe(onNext: { [unowned self] (r) in
-           NotificationCenter.default.post(name: .goTokenInfoVC, object: ["tokenCode": tokenInfo.tokenCode])
+        tapGestureRecognizer.rx.event.subscribe(onNext: { (r) in
+            let vc = TokenInfoDetailViewController(tokenInfo: tokenInfo)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//           NotificationCenter.default.post(name: .goTokenInfoVC, object: ["tokenCode": tokenInfo.tokenCode])
         }).disposed(by: rx.disposeBag)
 
         navView.gatewayInfoBtn.button.rx.tap.bind { _ in
             guard tokenInfo.isGateway else { return }
-           NotificationCenter.default.post(name: .goGateWayVC, object: ["gateway": tokenInfo.gatewayInfo?.toJSONString()])
+            if let gatewayInfo = tokenInfo.gatewayInfo {
+                let vc = GatewayInfoDetailViewController(gatewayInfo: gatewayInfo)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }
+
+//           NotificationCenter.default.post(name: .goGateWayVC, object: ["gateway": tokenInfo.gatewayInfo?.toJSONString()])
         }.disposed(by: rx.disposeBag)
 
         navView.helpButton.rx.tap.bind { _ in

@@ -141,5 +141,17 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+
+    static func getTokenInfoDetail(tokenCode: TokenCode) -> Promise<TokenInfoDetail> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getTokenInfoDetail(tokenCode), responseToData: responseToData).map { string in
+
+            guard let array = [TokenInfoDetail](JSONString: string), let ret = array.first else {
+                throw UnifyProvider.BackendError.format
+            }
+
+            return ret
+        }
+    }
 }
 

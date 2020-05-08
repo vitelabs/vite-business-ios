@@ -1942,7 +1942,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 919 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 940 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2880,6 +2880,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoGateway = Rswift.StringResource(key: "market.detail.page.token.info.gateway", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cross-Chain gateway
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageGateway = Rswift.StringResource(key: "token.info.detail.page.gateway", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Currency Unit
       /// 
       /// Locales: en, zh-Hans
@@ -2944,6 +2948,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeMessage = Rswift.StringResource(key: "peldge.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Customer Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageEmail = Rswift.StringResource(key: "gateway.info.detail.page.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE   
       /// 
       /// Locales: en, zh-Hans
@@ -3136,6 +3144,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoBrowser = Rswift.StringResource(key: "market.detail.page.token.info.browser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Explorer
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageBrowser = Rswift.StringResource(key: "token.info.detail.page.browser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -3232,10 +3244,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailTitle = Rswift.StringResource(key: "crosschain.gatewaydetail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageTitle = Rswift.StringResource(key: "gateway.info.detail.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageBrief = Rswift.StringResource(key: "gateway.info.detail.page.brief", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Link
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageLink = Rswift.StringResource(key: "gateway.info.detail.page.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gateway Name
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailName = Rswift.StringResource(key: "crosschain.gatewaydetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageName = Rswift.StringResource(key: "gateway.info.detail.page.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gateway Official Site
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageWebside = Rswift.StringResource(key: "gateway.info.detail.page.webside", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gateway URL
       /// 
       /// Locales: en, zh-Hans
@@ -3276,6 +3308,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoGithub = Rswift.StringResource(key: "market.detail.page.token.info.github", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Github
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageGithub = Rswift.StringResource(key: "token.info.detail.page.github", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Grin wallet initializing, please wait a moment.
       /// 
       /// Locales: en, zh-Hans
@@ -3452,6 +3488,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoBrief = Rswift.StringResource(key: "market.detail.page.token.info.brief", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageBrief = Rswift.StringResource(key: "token.info.detail.page.brief", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Invalid Voting
       /// 
       /// Locales: en, zh-Hans
@@ -4452,6 +4492,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainGatewaydetailEmail = Rswift.StringResource(key: "crosschain.gatewaydetail.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Service Terms
+      /// 
+      /// Locales: en, zh-Hans
+      public static let gatewayInfoDetailPageAgreement = Rswift.StringResource(key: "gateway.info.detail.page.agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Settings
       /// 
       /// Locales: en, zh-Hans
@@ -4504,6 +4548,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoSocial = Rswift.StringResource(key: "market.detail.page.token.info.social", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Social Media
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageSocial = Rswift.StringResource(key: "token.info.detail.page.social", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Something went wrong with network, click here to check account details
       /// 
       /// Locales: en, zh-Hans
@@ -4788,10 +4836,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainTokendetail = Rswift.StringResource(key: "crosschain.tokendetail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageTitle = Rswift.StringResource(key: "token.info.detail.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token ID
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainTokenDetailId = Rswift.StringResource(key: "crosschain.tokenDetail.id", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token ID
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageId = Rswift.StringResource(key: "token.info.detail.page.id", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Info Error
       /// 
       /// Locales: en, zh-Hans
@@ -4832,6 +4888,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainTokenDetailName = Rswift.StringResource(key: "crosschain.tokenDetail.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageName = Rswift.StringResource(key: "token.info.detail.page.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
@@ -4852,6 +4912,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexTransferTokenOwnerItem1Title = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.item1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageType = Rswift.StringResource(key: "token.info.detail.page.type", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: TokenID
       /// 
       /// Locales: en, zh-Hans
@@ -4868,6 +4932,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainTokenDetailAmount = Rswift.StringResource(key: "crosschain.tokenDetail.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Total Issuance
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageTotal = Rswift.StringResource(key: "token.info.detail.page.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Total Supply
       /// 
       /// Locales: en, zh-Hans
@@ -5412,10 +5480,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethPageGasFeeNoticeTitle = Rswift.StringResource(key: "eth.page.gasFee.notice.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Website
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPageWebside = Rswift.StringResource(key: "token.info.detail.page.webside", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: WhitePaper
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoPaper = Rswift.StringResource(key: "market.detail.page.token.info.paper", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: WhitePaper
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tokenInfoDetailPagePaper = Rswift.StringResource(key: "token.info.detail.page.paper", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Winners
       /// 
       /// Locales: en, zh-Hans
@@ -5620,6 +5696,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// zh-Hans translation: 原生代币
+      /// 
+      /// Locales: zh-Hans
+      public static let tokenInfoDetailPageTypeValueNative = Rswift.StringResource(key: "token.info.detail.page.type.value.native", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 跨链代币
+      /// 
+      /// Locales: zh-Hans
+      public static let tokenInfoDetailPageTypeValueOther = Rswift.StringResource(key: "token.info.detail.page.type.value.other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -7259,6 +7343,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.gateway", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Cross-Chain gateway
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageGateway(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.gateway", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Currency Unit
       /// 
       /// Locales: en, zh-Hans
@@ -7369,6 +7460,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func peldgeMessage(_: Void = ()) -> String {
         return NSLocalizedString("peldge.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Customer Service
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageEmail(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.email", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE   
@@ -7707,6 +7805,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.browser", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Explorer
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageBrowser(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.browser", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -7875,11 +7980,46 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.gatewaydetail.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Gateway Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageBrief(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.brief", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway Link
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageLink(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.link", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Gateway Name
       /// 
       /// Locales: en, zh-Hans
       public static func crosschainGatewaydetailName(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.gatewaydetail.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageName(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gateway Official Site
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageWebside(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.webside", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gateway URL
@@ -7950,6 +8090,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageTokenInfoGithub(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.github", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Github
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageGithub(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.github", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Grin wallet initializing, please wait a moment.
@@ -8258,6 +8405,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageTokenInfoBrief(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.brief", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Introduction
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageBrief(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.brief", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Invalid Voting
@@ -10010,6 +10164,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.gatewaydetail.email", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Service Terms
+      /// 
+      /// Locales: en, zh-Hans
+      public static func gatewayInfoDetailPageAgreement(_: Void = ()) -> String {
+        return NSLocalizedString("gateway.info.detail.page.agreement", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Settings
       /// 
       /// Locales: en, zh-Hans
@@ -10099,6 +10260,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageTokenInfoSocial(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.social", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Social Media
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageSocial(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.social", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Something went wrong with network, click here to check account details
@@ -10598,11 +10766,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.tokendetail", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Token Details
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Token ID
       /// 
       /// Locales: en, zh-Hans
       public static func crosschainTokenDetailId(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.id", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token ID
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageId(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.id", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Token Info Error
@@ -10675,6 +10857,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.tokenDetail.name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Token Name
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageName(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.name", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Token Symbol
       /// 
       /// Locales: en, zh-Hans
@@ -10710,6 +10899,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.dex.transfer.token.owner.item1.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Token Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageType(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.type", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: TokenID
       /// 
       /// Locales: en, zh-Hans
@@ -10736,6 +10932,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainTokenDetailAmount(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.tokenDetail.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Total Issuance
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageTotal(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.total", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Total Supply
@@ -11690,11 +11893,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.page.gasFee.notice.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Website
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPageWebside(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.webside", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: WhitePaper
       /// 
       /// Locales: en, zh-Hans
       public static func marketDetailPageTokenInfoPaper(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.paper", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: WhitePaper
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tokenInfoDetailPagePaper(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.paper", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Winners
@@ -12052,6 +12269,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 原生代币
+      /// 
+      /// Locales: zh-Hans
+      public static func tokenInfoDetailPageTypeValueNative(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.type.value.native", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 跨链代币
+      /// 
+      /// Locales: zh-Hans
+      public static func tokenInfoDetailPageTypeValueOther(_: Void = ()) -> String {
+        return NSLocalizedString("token.info.detail.page.type.value.other", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

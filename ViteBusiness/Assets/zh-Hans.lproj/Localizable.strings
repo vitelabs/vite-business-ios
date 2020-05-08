@@ -227,6 +227,29 @@
 "balance.info.detail.pledge.count.content" = "可用配额/配额上限";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
+"gateway.info.detail.page.title" = "网关详情";
+"gateway.info.detail.page.name" = "网关名称";
+"gateway.info.detail.page.webside" = "网关官网";
+"gateway.info.detail.page.brief" = "网关介绍";
+"gateway.info.detail.page.email" = "提交工单";
+"gateway.info.detail.page.agreement" = "服务协议";
+"gateway.info.detail.page.link" = "网关链接";
+
+"token.info.detail.page.title" = "代币详情";
+"token.info.detail.page.name" = "代币名称";
+"token.info.detail.page.id" = "代币 ID";
+"token.info.detail.page.brief" = "代币简介";
+"token.info.detail.page.total" = "流通总量";
+"token.info.detail.page.type" = "代币类型";
+"token.info.detail.page.type.value.native" = "原生代币";
+"token.info.detail.page.type.value.other" = "跨链代币";
+"token.info.detail.page.gateway" = "跨链网关";
+"token.info.detail.page.webside" = "官网";
+"token.info.detail.page.paper" = "白皮书";
+"token.info.detail.page.browser" = "浏览器";
+"token.info.detail.page.github" = "Github";
+"token.info.detail.page.social" = "社交媒体";
+
 /* Address Manage Page */
 "address.manage.page.title" = "我的%@地址";
 "address.manage.default.address.cell.title" = "默认地址";
