@@ -86,8 +86,6 @@ extension NavigatorManager {
         let hostPairs = [
             HostPair(source: "https://app.vite.net/webview/vitex_invite_inner/index.html",
                      target: "https://vite-wallet-test2.netlify.com/webview/vitex_invite_inner/index.html"),
-            HostPair(source: "https://app.vite.net/webview/defi_usage/index.html",
-                     target: "https://vite-wallet-test2.netlify.com/webview/defi_prepare_use/index.html"),
         ]
 
         if DebugService.instance.config.appEnvironment == .test {

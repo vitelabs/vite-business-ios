@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 274 images.
+  /// This `R.image` struct is generated, and contains static references to 253 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -60,18 +60,6 @@ public struct R: Rswift.Validatable {
     public static let crosschain_status_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_vite")
     /// Image `crosschain_withdrwa`.
     public static let crosschain_withdrwa = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_withdrwa")
-    /// Image `defi_alert_cn`.
-    public static let defi_alert_cn = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_alert_cn")
-    /// Image `defi_lock`.
-    public static let defi_lock = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_lock")
-    /// Image `defi_use_minning`.
-    public static let defi_use_minning = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_use_minning")
-    /// Image `defi_use_quoto`.
-    public static let defi_use_quoto = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_use_quoto")
-    /// Image `defi_use_sbp`.
-    public static let defi_use_sbp = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_use_sbp")
-    /// Image `defi_use_svip`.
-    public static let defi_use_svip = Rswift.ImageResource(bundle: R.hostingBundle, name: "defi_use_svip")
     /// Image `dotted_line`.
     public static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
@@ -242,16 +230,12 @@ public struct R: Rswift.Validatable {
     public static let icon_button_address_type = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_address_type")
     /// Image `icon_button_bitcointalk`.
     public static let icon_button_bitcointalk = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_bitcointalk")
-    /// Image `icon_button_defi_borrow`.
-    public static let icon_button_defi_borrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_defi_borrow")
     /// Image `icon_button_discord`.
     public static let icon_button_discord = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_discord")
     /// Image `icon_button_facebook`.
     public static let icon_button_facebook = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_facebook")
     /// Image `icon_button_forum`.
     public static let icon_button_forum = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_forum")
-    /// Image `icon_button_frame_blue`.
-    public static let icon_button_frame_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_frame_blue")
     /// Image `icon_button_github`.
     public static let icon_button_github = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_github")
     /// Image `icon_button_infor`.
@@ -260,8 +244,6 @@ public struct R: Rswift.Validatable {
     public static let icon_button_light = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_light")
     /// Image `icon_button_medium`.
     public static let icon_button_medium = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_medium")
-    /// Image `icon_button_my_defi`.
-    public static let icon_button_my_defi = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_my_defi")
     /// Image `icon_button_paste_blue`.
     public static let icon_button_paste_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_paste_blue")
     /// Image `icon_button_paste_gray`.
@@ -290,14 +272,6 @@ public struct R: Rswift.Validatable {
     public static let icon_button_weibo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_weibo")
     /// Image `icon_button_youtube`.
     public static let icon_button_youtube = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_youtube")
-    /// Image `icon_cell_loan_cancel`.
-    public static let icon_cell_loan_cancel = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_loan_cancel")
-    /// Image `icon_cell_loan_failed`.
-    public static let icon_cell_loan_failed = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_loan_failed")
-    /// Image `icon_cell_loan_on_sale`.
-    public static let icon_cell_loan_on_sale = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_loan_on_sale")
-    /// Image `icon_cell_loan_sucess`.
-    public static let icon_cell_loan_sucess = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_loan_sucess")
     /// Image `icon_cell_select`.
     public static let icon_cell_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_select")
     /// Image `icon_cell_unselect`.
@@ -310,10 +284,6 @@ public struct R: Rswift.Validatable {
     public static let icon_contacts_empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_empty")
     /// Image `icon_contacts`.
     public static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
-    /// Image `icon_defi_home_cell_safe_flag`.
-    public static let icon_defi_home_cell_safe_flag = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_defi_home_cell_safe_flag")
-    /// Image `icon_defi_home_down_button`.
-    public static let icon_defi_home_down_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_defi_home_down_button")
     /// Image `icon_edit_name`.
     public static let icon_edit_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_edit_name")
     /// Image `icon_eth_detail_falied`.
@@ -358,16 +328,12 @@ public struct R: Rswift.Validatable {
     public static let icon_market_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_up")
     /// Image `icon_mnemonic`.
     public static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
-    /// Image `icon_my_defi_more`.
-    public static let icon_my_defi_more = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_defi_more")
     /// Image `icon_my_home_forum`.
     public static let icon_my_home_forum = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_forum")
     /// Image `icon_my_home_invite`.
     public static let icon_my_home_invite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_invite")
     /// Image `icon_my_home_reward`.
     public static let icon_my_home_reward = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_home_reward")
-    /// Image `icon_my_loan_cell_line`.
-    public static let icon_my_loan_cell_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_my_loan_cell_line")
     /// Image `icon_nav_add`.
     public static let icon_nav_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_add")
     /// Image `icon_nav_back_black_gray`.
@@ -426,12 +392,6 @@ public struct R: Rswift.Validatable {
     public static let icon_tabbar_debug_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug_select")
     /// Image `icon_tabbar_debug`.
     public static let icon_tabbar_debug = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug")
-    /// Image `icon_tabbar_defi_hot`.
-    public static let icon_tabbar_defi_hot = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi_hot")
-    /// Image `icon_tabbar_defi_unselected`.
-    public static let icon_tabbar_defi_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi_unselected")
-    /// Image `icon_tabbar_defi`.
-    public static let icon_tabbar_defi = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_defi")
     /// Image `icon_tabbar_market_select`.
     public static let icon_tabbar_market_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_market_select")
     /// Image `icon_tabbar_market`.
@@ -534,8 +494,6 @@ public struct R: Rswift.Validatable {
     public static let marketr_ascending = Rswift.ImageResource(bundle: R.hostingBundle, name: "marketr_ascending")
     /// Image `marketr_descending`.
     public static let marketr_descending = Rswift.ImageResource(bundle: R.hostingBundle, name: "marketr_descending")
-    /// Image `my_defi_amount_bg`.
-    public static let my_defi_amount_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "my_defi_amount_bg")
     /// Image `network_error`.
     public static let network_error = Rswift.ImageResource(bundle: R.hostingBundle, name: "network_error")
     /// Image `point`.
@@ -670,36 +628,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "crosschain_withdrwa", bundle: ..., traitCollection: ...)`
     public static func crosschain_withdrwa(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_withdrwa, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_alert_cn", bundle: ..., traitCollection: ...)`
-    public static func defi_alert_cn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_alert_cn, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_lock", bundle: ..., traitCollection: ...)`
-    public static func defi_lock(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_lock, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_use_minning", bundle: ..., traitCollection: ...)`
-    public static func defi_use_minning(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_use_minning, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_use_quoto", bundle: ..., traitCollection: ...)`
-    public static func defi_use_quoto(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_use_quoto, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_use_sbp", bundle: ..., traitCollection: ...)`
-    public static func defi_use_sbp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_use_sbp, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "defi_use_svip", bundle: ..., traitCollection: ...)`
-    public static func defi_use_svip(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.defi_use_svip, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
@@ -1127,11 +1055,6 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_button_bitcointalk, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_button_defi_borrow", bundle: ..., traitCollection: ...)`
-    public static func icon_button_defi_borrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_button_defi_borrow, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_button_discord", bundle: ..., traitCollection: ...)`
     public static func icon_button_discord(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_discord, compatibleWith: traitCollection)
@@ -1145,11 +1068,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_button_forum", bundle: ..., traitCollection: ...)`
     public static func icon_button_forum(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_forum, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_button_frame_blue", bundle: ..., traitCollection: ...)`
-    public static func icon_button_frame_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_button_frame_blue, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_github", bundle: ..., traitCollection: ...)`
@@ -1170,11 +1088,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_button_medium", bundle: ..., traitCollection: ...)`
     public static func icon_button_medium(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_button_medium, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_button_my_defi", bundle: ..., traitCollection: ...)`
-    public static func icon_button_my_defi(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_button_my_defi, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_button_paste_blue", bundle: ..., traitCollection: ...)`
@@ -1247,26 +1160,6 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_button_youtube, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_cell_loan_cancel", bundle: ..., traitCollection: ...)`
-    public static func icon_cell_loan_cancel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_cell_loan_cancel, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_cell_loan_failed", bundle: ..., traitCollection: ...)`
-    public static func icon_cell_loan_failed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_cell_loan_failed, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_cell_loan_on_sale", bundle: ..., traitCollection: ...)`
-    public static func icon_cell_loan_on_sale(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_cell_loan_on_sale, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_cell_loan_sucess", bundle: ..., traitCollection: ...)`
-    public static func icon_cell_loan_sucess(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_cell_loan_sucess, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_cell_select", bundle: ..., traitCollection: ...)`
     public static func icon_cell_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_cell_select, compatibleWith: traitCollection)
@@ -1295,16 +1188,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_contacts_empty", bundle: ..., traitCollection: ...)`
     public static func icon_contacts_empty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_contacts_empty, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_defi_home_cell_safe_flag", bundle: ..., traitCollection: ...)`
-    public static func icon_defi_home_cell_safe_flag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_defi_home_cell_safe_flag, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_defi_home_down_button", bundle: ..., traitCollection: ...)`
-    public static func icon_defi_home_down_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_defi_home_down_button, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_edit_name", bundle: ..., traitCollection: ...)`
@@ -1417,11 +1300,6 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_my_defi_more", bundle: ..., traitCollection: ...)`
-    public static func icon_my_defi_more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_my_defi_more, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "icon_my_home_forum", bundle: ..., traitCollection: ...)`
     public static func icon_my_home_forum(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_my_home_forum, compatibleWith: traitCollection)
@@ -1435,11 +1313,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_my_home_reward", bundle: ..., traitCollection: ...)`
     public static func icon_my_home_reward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_my_home_reward, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_my_loan_cell_line", bundle: ..., traitCollection: ...)`
-    public static func icon_my_loan_cell_line(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_my_loan_cell_line, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_nav_add", bundle: ..., traitCollection: ...)`
@@ -1585,21 +1458,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_tabbar_debug_select", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_debug_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_debug_select, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_defi", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_defi(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_defi, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_defi_hot", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_defi_hot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_defi_hot, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_defi_unselected", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_defi_unselected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_defi_unselected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_tabbar_market", bundle: ..., traitCollection: ...)`
@@ -1855,11 +1713,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "marketr_descending", bundle: ..., traitCollection: ...)`
     public static func marketr_descending(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.marketr_descending, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "my_defi_amount_bg", bundle: ..., traitCollection: ...)`
-    public static func my_defi_amount_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.my_defi_amount_bg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "network_error", bundle: ..., traitCollection: ...)`
