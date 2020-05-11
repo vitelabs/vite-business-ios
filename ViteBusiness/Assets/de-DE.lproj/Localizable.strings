@@ -41,6 +41,12 @@
 "airdrop.error.tip.unknown.error" = "Unknown Error.";
 
 
+"tab.title.wallet" = "Wallet";
+"tab.title.market" = "Market";
+"tab.title.trading" = "Trade";
+"tab.title.discover" = "Discover";
+"tab.title.my" = "Account";
+
 /* App */
 "Cancel" = "Cancel";
 "Finish" = "Done";
@@ -534,6 +540,21 @@
 "confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.buy.title" = "Buy %@";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+
+"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
+"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
+
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
@@ -822,6 +843,12 @@
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
+"bifrost.operation.sign.message.title" = "Create API";
+"bifrost.operation.sign.message.address" = "Current Address";
+"bifrost.operation.sign.message.type" = "Permission Type";
+"bifrost.operation.sign.message.content" = "Signature Content";
+"bifrost.operation.sign.message.type.trade.value" = "Trade";
+
 //bnb
 "token.list.page.section.bnb.header" = "Binance Network";
 "bnb.send.page.feeView.titleLabel.title" = "Fee";
@@ -979,7 +1006,7 @@
 
 "market.favourite" = "Favorites";
 "market.searchhistory" = "Search History";
-"market.title" = "Exchange";
+"market.title" = "Market";
 "market.about" = "Get Started with ViteX";
 "market.name" = "Name";
 "market.price" = "Last Price";
@@ -987,6 +1014,105 @@
 "market.operator" = "Operators";
 "market.switch" = "Exchange";
 
+// market detail
+"market.detail.page.segment.order.book.title" = "Order book";
+"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.token.info.title" = "Token";
+"market.detail.page.segment.operator.into.title" = "Operator";
+
+"market.detail.page.info.high.title" = "High";
+"market.detail.page.info.low.title" = "Low";
+"market.detail.page.info.vol.title" = "24H";
+
+"market.detail.page.kline.type.min1.title" = "1m";
+"market.detail.page.kline.type.min30.title" = "30m";
+"market.detail.page.kline.type.hour1.title" = "1H";
+"market.detail.page.kline.type.hour6.title" = "6H";
+"market.detail.page.kline.type.hour12.title" = "12H";
+"market.detail.page.kline.type.day1.title" = "1D";
+"market.detail.page.kline.type.week1.title" = "1W";
+
+"market.detail.page.value.time.title" = "Time";
+"market.detail.page.value.open.title" = "Open";
+"market.detail.page.value.high.title" = "High";
+"market.detail.page.value.low.title" = "Low";
+"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.diff.title" = "chg";
+"market.detail.page.value.extent.title" = "chg%";
+"market.detail.page.value.vol.title" = "Volume";
+
+"market.detail.page.depth.vol.title" = "Amount(%@)";
+"market.detail.page.depth.price.title" = "Price(%@)";
+
+"market.detail.page.trade.time.title" = "Time";
+"market.detail.page.trade.price.title" = "Price";
+"market.detail.page.trade.vol.title" = "Amount";
+"market.detail.page.buy.button.title" = "Buy";
+"market.detail.page.sell.button.title" = "Sell";
+
+
+"market.detail.page.token.info.token.id" = "TokenID";
+"market.detail.page.token.info.total" = "Tokens in Circulation";
+"market.detail.page.token.info.type" = "Type";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
+"market.detail.page.token.info.official" = "Official website";
+"market.detail.page.token.info.paper" = "WhitePaper";
+"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.github" = "Github";
+
+"market.detail.page.token.info.social" = "Social Media";
+"market.detail.page.token.info.brief" = "Introduction";
+
+"market.detail.page.token.info.address" = "Operator address";
+"market.detail.page.token.info.pair" = "Trading pair";
+
+// Trading Home
+"trading.home.page.segment.spot" = "Spot";
+"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.bonus" = "Dividend";
+
+// Spot
+"spot.page.button.buy.title" = "Buy";
+"spot.page.button.sell.title" = "Sell";
+"spot.page.button.limit.buy.title" = "Limit Order";
+"spot.page.price.buy.placeholder" = "Price";
+"spot.page.vol.buy.placeholder" = "Amount";
+"spot.page.price.sell.placeholder" = "Price";
+"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.available" = "Avail.: %@";
+"spot.page.buyable" = "Max Buy: %@";
+"spot.page.sellable" = "Max Sell: %@";
+"spot.page.total" = "Total: %@";
+"spot.page.open.vip" = "Become a VIP";
+"spot.page.close.vip" = "Cancel VIP";
+"spot.page.open.vip.error.toast" = "insufficient balance: 10,000 VITE staking is required to open VIP";
+"spot.page.close.vip.error.toast" = "No VIP staked";
+"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
+"spot.page.depth.price" = "Price";
+"spot.page.depth.vol" = "Amount";
+"spot.page.current.order.title" = "Open orders";
+"spot.page.orders.button.title" = "Order history";
+
+"spot.page.post.toast.price.empty" = "Please enter the price";
+"spot.page.post.toast.price.zero" = "Value must be greater than 0";
+"spot.page.post.toast.vol.empty" = "Please enter the amount";
+"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
+"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+
+"spot.page.alert.title" = "Important reminder";
+"spot.page.alert.message" = "The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.ok" = "Confirm";
+
+"spot.page.order.empty" = "No order";
+"spot.page.cell.type.buy" = "Buy";
+"spot.page.cell.type.sell" = "Sell";
+"spot.page.cell.button.cancel.title" = "Cancel";
+"spot.page.cell.vol" = "Amt.: %@";
+"spot.page.cell.price" = "Price: %@";
+"spot.page.cell.deal" = "Filled: %@";
+"spot.page.cell.average" = "Avg.: %@";
 
 // DeFi
 "defi.home.page.title" = "DeFi";
