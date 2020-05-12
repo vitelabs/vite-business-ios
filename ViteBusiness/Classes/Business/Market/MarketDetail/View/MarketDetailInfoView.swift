@@ -149,9 +149,9 @@ class MarketDetailInfoView: UIView {
         upDownImageView.image = Double(marketInfo.statistic.priceChangePercent)! >= 0.0 ? R.image.icon_market_up() : R.image.icon_market_down()
         percentLabel.textColor = marketInfo.persentColor
 
-        highLabel.text = String(format: "%.6f", Double(marketInfo.statistic.highPrice)!)
-        lowLabel.text = String(format: "%.6f", Double(marketInfo.statistic.lowPrice)!)
-        amountLabel.text = String(format: "%.6f", Double(marketInfo.statistic.amount)!)
+        highLabel.text = marketInfo.statistic.highPrice
+        lowLabel.text = marketInfo.statistic.lowPrice
+        amountLabel.text = marketInfo.statistic.amount
     }
 
     required init?(coder: NSCoder) {

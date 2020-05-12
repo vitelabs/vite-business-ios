@@ -259,6 +259,9 @@ class CandlestickChartView: UIView {
         let dataPoints = klineItems.map { Date(timeIntervalSince1970: TimeInterval($0.t)).format(kineTypeBehaviorRelay.value.timeFormat) }
         combinedChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+        combinedChartView.rightAxis.valueFormatter = DefaultAxisValueFormatter(block: { (value, _) -> String in
+            String(format: "%.\(info.statistic.pricePrecision)f", value)
+        })
     }
 
     func bindCombinedChartView(klineItems: [KlineItem]) {
