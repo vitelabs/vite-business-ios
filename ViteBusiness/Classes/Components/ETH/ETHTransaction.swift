@@ -19,6 +19,7 @@ struct ETHTransaction: Mappable {
         case me
     }
 
+    fileprivate(set) var isError: Bool = false
     fileprivate(set) var blockNumber: String = ""
     fileprivate(set) var timeStamp: Date = Date()
     fileprivate(set) var hash: String = ""
@@ -49,6 +50,7 @@ struct ETHTransaction: Mappable {
     public init?(map: Map) { }
 
     mutating func mapping(map: Map) {
+        isError <- (map["isError"], ETHTransaction.isErrorTransform)
         blockNumber <- map["blockNumber"]
         timeStamp <- (map["timeStamp"], ETHTransaction.timestampTransform)
         hash <- map["hash"]
@@ -79,5 +81,12 @@ struct ETHTransaction: Mappable {
     }, toJSON: { (date) -> String? in
         guard let date = date else { return nil }
         return String(date.timeIntervalSinceNow)
+    })
+
+    static let isErrorTransform = TransformOf<Bool, String>(fromJSON: { (text) -> Bool in
+        return text != "0"
+    }, toJSON: { (ret) -> String? in
+        guard let ret = ret else { return nil }
+        return ret ? "1" : "0"
     })
 }

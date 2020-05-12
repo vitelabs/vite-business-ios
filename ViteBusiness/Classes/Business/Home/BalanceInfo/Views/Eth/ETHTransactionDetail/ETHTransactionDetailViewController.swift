@@ -25,7 +25,7 @@ class ETHTransactionDetailViewController: BaseViewController {
         bind()
     }
 
-    let headerImageView = UIImageView(image: R.image.icon_eth_detail_success())
+    let headerImageView = UIImageView()
     let etherscanButton = UIButton().then {
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
@@ -114,7 +114,8 @@ class ETHTransactionDetailViewController: BaseViewController {
             m.top.equalTo(statusLabel.snp.bottom).offset(10)
         }
 
-        statusLabel.text = R.string.localizable.ethTransactionDetailSuccess()
+        headerImageView.image =  transaction.isError ? R.image.icon_eth_detail_falied() : R.image.icon_eth_detail_success()
+        statusLabel.text = transaction.isError ? R.string.localizable.ethTransactionDetailFailed() : R.string.localizable.ethTransactionDetailSuccess()
         timeLabel.text = transaction.timeStamp.format("yyyy.MM.dd HH:mm:ss")
 
 
