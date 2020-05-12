@@ -17,6 +17,14 @@ class DebugWorkflowViewController: FormViewController {
         setupView()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+
     func setupView() {
         form
             +++

@@ -52,6 +52,14 @@ class EditGrinNodeViewController: UIViewController {
     let confirmButton = UIButton(style: .blueWithShadow, title: R.string.localizable.confirm())
 
     var node: GrinNode?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

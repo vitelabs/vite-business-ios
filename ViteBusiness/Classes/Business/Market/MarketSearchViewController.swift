@@ -107,6 +107,14 @@ class MarketSearchViewController: UIViewController {
     var history: [(MarketInfo, Bool)] = []
     var originalData: [MarketData] = []
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.definesPresentationContext = true

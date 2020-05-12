@@ -53,6 +53,14 @@ class TokenListSearchViewController: UIViewController {
             return dataSource[sectionIndex].model
     })
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white

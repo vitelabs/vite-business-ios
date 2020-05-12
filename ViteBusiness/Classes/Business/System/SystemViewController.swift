@@ -49,6 +49,14 @@ class SystemViewController: FormViewController {
         NavigationBarStyle.configStyle(navigationBarStyle, viewController: self)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self._setupView()

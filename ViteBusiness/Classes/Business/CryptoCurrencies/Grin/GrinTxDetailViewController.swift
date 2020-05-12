@@ -39,6 +39,14 @@ class GrinTxDetailViewController: UIViewController {
         return self.txDetailVM.pageInfo.value
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+
     override func viewDidLoad() {
         setUpViews()
         self.bind()
