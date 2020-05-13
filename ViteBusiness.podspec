@@ -65,7 +65,6 @@ Pod::Spec.new do |s|
   s.dependency 'FSPagerView'
   s.dependency 'URLNavigator'
   s.dependency 'web3.swift.pod', '~> 2.2.0'
-  s.dependency 'LightweightCharts'
   s.dependency 'Charts', '3.5.0'
   #request
   s.dependency 'SwiftyJSON'

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LightweightCharts
 import Charts
 import RxSwift
 import RxCocoa
