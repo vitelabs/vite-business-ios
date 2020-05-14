@@ -132,7 +132,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
                     if let viewModel = (try? self.dataSource.model(at: indexPath)) as? ETHTransactionViewModel {
-                        let vc = ETHTransactionDetailViewController(transaction: viewModel.transaction)
+                        let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(transaction: viewModel.transaction))
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     }
                 }

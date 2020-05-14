@@ -1,5 +1,5 @@
 //
-//  ETHTransactionDetailViewController.swift
+//  TransactionDetailViewController.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2020/2/27.
@@ -7,11 +7,12 @@
 
 import Foundation
 
-class ETHTransactionDetailViewController: BaseViewController {
+class TransactionDetailViewController: BaseViewController {
 
-    let transaction: ETHTransaction
-    init(transaction: ETHTransaction) {
-        self.transaction = transaction
+    let holder: TransactionDetailHolder
+    var vm: TransactionDetailHolder.ViewModel? = nil
+    init(holder: TransactionDetailHolder) {
+        self.holder = holder
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -26,11 +27,21 @@ class ETHTransactionDetailViewController: BaseViewController {
     }
 
     let headerImageView = UIImageView()
+
+    let statusLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.textColor = UIColor(netHex: 0x3E4A59)
+    }
+
+    let timeLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+    }
+
     let etherscanButton = UIButton().then {
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.setTitle(R.string.localizable.ethTransactionDetailGoButtonTitle(), for: .normal)
     }
 
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)).then {
@@ -91,16 +102,6 @@ class ETHTransactionDetailViewController: BaseViewController {
             m.top.equalTo(shadowView.snp.bottom).offset(17)
         }
 
-        let statusLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-            $0.textColor = UIColor(netHex: 0x3E4A59)
-        }
-
-        let timeLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
-        }
-
         view.addSubview(statusLabel)
         view.addSubview(timeLabel)
 
@@ -113,41 +114,61 @@ class ETHTransactionDetailViewController: BaseViewController {
             m.centerX.equalToSuperview()
             m.top.equalTo(statusLabel.snp.bottom).offset(10)
         }
-
-        headerImageView.image =  transaction.isError ? R.image.icon_eth_detail_falied() : R.image.icon_eth_detail_success()
-        statusLabel.text = transaction.isError ? R.string.localizable.ethTransactionDetailFailed() : R.string.localizable.ethTransactionDetailSuccess()
-        timeLabel.text = transaction.timeStamp.format("yyyy.MM.dd HH:mm:ss")
-
-
-        let toAddressView = AddressView(title: R.string.localizable.ethTransactionDetailToAddress(), address: transaction.toAddress, showLine: true)
-        let fromAddressView = AddressView(title: R.string.localizable.ethTransactionDetailFromAddress(), address: transaction.fromAddress, showLine: false)
-
-        let amountView = TitleValueView(title: R.string.localizable.ethTransactionDetailAmount(), value: transaction.amount.amountShortWithGroupSeparator(decimals: transaction.tokenInfo.decimals), unit: transaction.tokenInfo.symbol)
-        let gasView = TitleValueView(title: R.string.localizable.ethTransactionDetailGas(), value: (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals), unit: TokenInfo.BuildIn.eth.value.symbol)
-        let hashView = HashView(title: R.string.localizable.ethTransactionDetailHash(), value: transaction.hash)
-        let blockView = TitleValueView(title: R.string.localizable.ethTransactionDetailBlock(), value: transaction.blockNumber, unit: nil)
-
-        scrollView.stackView.addArrangedSubview(toAddressView)
-        scrollView.stackView.addArrangedSubview(fromAddressView)
-        scrollView.stackView.addArrangedSubview(amountView)
-        scrollView.stackView.addArrangedSubview(gasView)
-        scrollView.stackView.addArrangedSubview(hashView)
-        scrollView.stackView.addArrangedSubview(blockView)
-
-        if transaction.tokenInfo.isEtherCoin && transaction.input.count > 2 {
-            let noteView = NoteView(input: transaction.input)
-            scrollView.stackView.addArrangedSubview(noteView)
-        }
     }
 
     fileprivate func bind() {
-        etherscanButton.rx.tap.bind { [weak self] in
+
+        holder.bind { [weak self] (state) in
             guard let `self` = self else { return }
-            var url = URL(string: "\(ViteConst.instance.eth.explorer)/tx/\(self.transaction.hash)")!
+            switch state {
+            case .loading:
+                self.dataStatus = .loading
+            case .success(let vm):
+                self.vm = vm
+                self.dataStatus = .normal
+
+                self.headerImageView.image = vm.headerImage
+                self.statusLabel.text = vm.stateString
+                self.timeLabel.text = vm.timeString
+                self.etherscanButton.setTitle(vm.link.text, for: .normal)
+
+                self.scrollView.stackView.arrangedSubviews.forEach {
+                    self.scrollView.stackView.removeArrangedSubview($0)
+                }
+
+                vm.items.forEach { (item) in
+                    let view: UIView
+                    switch item {
+                    case let .address(title, text, hasSeparator):
+                        view = AddressView(title: title, address: text, showLine: hasSeparator)
+                    case let .ammount(title, text, symbol):
+                        view = TitleValueView(title: title, value: text, unit: symbol)
+                    case let .copyable(title, text, rawText):
+                        view = CopyableView(title: title, value: text, rawText: rawText)
+                    case let .height(title, text):
+                        view = TitleValueView(title: title, value: text, unit: nil)
+                    case let .note(title, text):
+                        view = NoteView(title: title, text: text)
+                    }
+                    self.scrollView.stackView.addArrangedSubview(view)
+                }
+
+            case .failed(let error, let block):
+                self.dataStatus = .networkError(error, block)
+            }
+        }
+
+        etherscanButton.rx.tap.bind { [weak self] in
+            guard let url = self?.vm?.link.url else { return }
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
     }
+}
+extension TransactionDetailViewController: ViewControllerDataStatusable {
+
+}
+extension TransactionDetailViewController {
 
     class AddressView: UIView {
 
@@ -255,6 +276,8 @@ class ETHTransactionDetailViewController: BaseViewController {
             addSubview(titleLabel)
             addSubview(valueLabel)
 
+            titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
             titleLabel.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview().inset(10)
                 m.left.equalToSuperview().offset(20)
@@ -264,6 +287,8 @@ class ETHTransactionDetailViewController: BaseViewController {
                 unitLabel.text = unit
                 addSubview(unitLabel)
 
+                unitLabel.setContentHuggingPriority(.required, for: .horizontal)
+                unitLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
                 unitLabel.snp.makeConstraints { (m) in
                     m.centerY.equalToSuperview()
                     m.right.equalToSuperview().inset(20)
@@ -271,11 +296,13 @@ class ETHTransactionDetailViewController: BaseViewController {
 
                 valueLabel.snp.makeConstraints { (m) in
                     m.centerY.equalToSuperview()
-                    m.right.equalTo(unitLabel.snp.left).inset(-8)
+                    m.left.equalTo(titleLabel.snp.right).offset(8)
+                    m.right.equalTo(unitLabel.snp.left).offset(-8)
                 }
             } else {
                 valueLabel.snp.makeConstraints { (m) in
                     m.centerY.equalToSuperview()
+                    m.left.equalTo(titleLabel.snp.right).offset(8)
                     m.right.equalToSuperview().inset(20)
                 }
             }
@@ -286,7 +313,7 @@ class ETHTransactionDetailViewController: BaseViewController {
         }
     }
 
-    class HashView: UIView {
+    class CopyableView: UIView {
 
         private let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
@@ -297,6 +324,7 @@ class ETHTransactionDetailViewController: BaseViewController {
             $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
             $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
             $0.textAlignment = .right
+            $0.lineBreakMode = .byTruncatingMiddle
         }
 
         private let copyButton = UIButton().then {
@@ -304,22 +332,25 @@ class ETHTransactionDetailViewController: BaseViewController {
             $0.setImage(R.image.icon_button_paste_light_gray()?.highlighted, for: .highlighted)
         }
 
-        init(title: String, value: String) {
+        init(title: String, value: String, rawText: String) {
             super.init(frame: .zero)
 
             titleLabel.text = title
-            valueLabel.text = "\(value.prefix(8))...\(value.suffix(6))"
+            valueLabel.text = value
 
             addSubview(titleLabel)
             addSubview(valueLabel)
             addSubview(copyButton)
 
+            titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
             titleLabel.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview().inset(10)
                 m.left.equalToSuperview().offset(20)
             }
 
             valueLabel.snp.makeConstraints { (m) in
+                m.left.equalTo(titleLabel.snp.right).offset(8)
                 m.centerY.equalToSuperview()
             }
 
@@ -330,7 +361,7 @@ class ETHTransactionDetailViewController: BaseViewController {
             addSubview(vLine)
             vLine.snp.makeConstraints { (m) in
                 m.width.equalTo(CGFloat.singleLineWidth)
-                m.left.equalTo(valueLabel.snp.right).offset(20)
+                m.left.equalTo(valueLabel.snp.right).offset(10)
                 m.right.equalToSuperview().offset(-50)
                 m.top.equalToSuperview().offset(10)
                 m.bottom.equalToSuperview().offset(-10)
@@ -342,7 +373,7 @@ class ETHTransactionDetailViewController: BaseViewController {
             }
 
             copyButton.rx.tap.bind {
-                UIPasteboard.general.string = value
+                UIPasteboard.general.string = rawText
                 Toast.show(R.string.localizable.walletHomeToastCopyAddress(), duration: 1.0)
             }.disposed(by: rx.disposeBag)
         }
@@ -365,16 +396,11 @@ class ETHTransactionDetailViewController: BaseViewController {
             $0.numberOfLines = 0
         }
 
-        init(input: String) {
+        init(title: String, text: String) {
             super.init(frame: .zero)
 
-            titleLabel.text = R.string.localizable.ethTransactionDetailNote()
-            let bytes = input.hex2Bytes
-            if bytes.count > 0, let note = String(bytes: bytes, encoding: .utf8) {
-                valueLabel.text = note
-            } else {
-                valueLabel.text = input
-            }
+            titleLabel.text = title
+            valueLabel.text = text
 
             addSubview(titleLabel)
             addSubview(valueLabel)
