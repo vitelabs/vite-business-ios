@@ -141,13 +141,15 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
                 .bind { [weak self] indexPath in
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
-                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModelType {
-                        if viewModel.isGenesis {
-                            // do nothing
-                            // WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
-                        } else {
-                            WebHandler.openTranscationDetailPage(hash: viewModel.hash)
-                        }
+                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModel {
+                        let vc = TransactionDetailViewController(holder: ViteTransactionDetailHolder(accountBlock: viewModel.accountBlock))
+                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                        if viewModel.isGenesis {
+//                            // do nothing
+//                            // WebHandler.openTranscationGenesisPage(hash: viewModel.hash)
+//                        } else {
+//                            WebHandler.openTranscationDetailPage(hash: viewModel.hash)
+//                        }
                     }
                 }
                 .disposed(by: rx.disposeBag)

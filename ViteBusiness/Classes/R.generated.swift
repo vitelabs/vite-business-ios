@@ -1802,7 +1802,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 940 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 951 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5556,6 +5556,50 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易 hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageHashTitle = Rswift.StringResource(key: "vite.transaction.detail.page.hash.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易类型
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeTitle = Rswift.StringResource(key: "vite.transaction.detail.page.type.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 到 Vite 浏览器查询更详细信息
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageLinkButtonTitle = Rswift.StringResource(key: "vite.transaction.detail.page.link.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 区块高度
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageHeightTitle = Rswift.StringResource(key: "vite.transaction.detail.page.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约调用失败
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallFailed = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合约调用成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 响应
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeReceive = Rswift.StringResource(key: "vite.transaction.detail.page.type.receive", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 备注
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 等待合约执行
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallWait = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请求
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeSend = Rswift.StringResource(key: "vite.transaction.detail.page.type.send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 转账成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -12129,6 +12173,83 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易 hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageHashTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.hash.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易类型
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 到 Vite 浏览器查询更详细信息
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageLinkButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.link.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 区块高度
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageHeightTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.height.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合约调用失败
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallFailed(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.failed", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合约调用成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 响应
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeReceive(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.receive", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 备注
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 等待合约执行
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallWait(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请求
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeSend(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.send", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 转账成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

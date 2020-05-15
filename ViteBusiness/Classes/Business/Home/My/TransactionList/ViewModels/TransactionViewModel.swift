@@ -20,8 +20,10 @@ final class TransactionViewModel: TransactionViewModelType {
     let symbolString: String
     let hash: String
     let isGenesis: Bool
+    let accountBlock: AccountBlock
 
     init(accountBlock: AccountBlock) {
+        self.accountBlock = accountBlock
         if accountBlock.type == .genesisReceive {
             self.isGenesis = true
             self.typeImage = accountBlock.transactionType.icon

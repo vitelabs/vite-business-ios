@@ -25,6 +25,13 @@ public struct WebHandler {
         self.open(url)
     }
 
+    static func viteTranscationDetailPageURL(hash: String) -> URL? {
+        let host = appendLanguagePath(urlString: browserUrlString)
+        guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return nil }
+        guard let url = URL(string: "\(host)/transaction/\(string)") else { return nil }
+        return url
+    }
+
     static func openMarketMining() {
         var url = ViteConst.instance.market.baseWebUrl + "#/mining?activeTab=mining&hideSelectTab=true"
         url = url  + "&address=" + (HDWalletManager.instance.account?.address ?? "")
@@ -57,9 +64,7 @@ public struct WebHandler {
     }
 
     static func openTranscationDetailPage(hash: String) {
-        let host = appendLanguagePath(urlString: browserUrlString)
-        guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
-        guard let url = URL(string: "\(host)/transaction/\(string)") else { return }
+        guard let url = viteTranscationDetailPageURL(hash: hash) else { return }
         open(url)
     }
 

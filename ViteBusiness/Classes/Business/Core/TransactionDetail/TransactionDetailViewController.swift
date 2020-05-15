@@ -166,7 +166,9 @@ class TransactionDetailViewController: BaseViewController {
     }
 }
 extension TransactionDetailViewController: ViewControllerDataStatusable {
-
+    func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {
+        return UIView.defaultNetworkErrorView(error: error, retry: retry)
+    }
 }
 extension TransactionDetailViewController {
 
