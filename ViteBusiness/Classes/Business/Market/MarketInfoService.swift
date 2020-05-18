@@ -119,6 +119,10 @@ class MarketInfoService: NSObject {
         favouriteBehaviorRelay.accept(array)
         MarketCache.saveFavourites(favourites: array)
     }
+
+    var isFavouriteEmpty: Bool {
+        favouriteBehaviorRelay.value.isEmpty
+    }
 }
 
 extension MarketInfoService {

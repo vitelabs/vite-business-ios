@@ -43,8 +43,6 @@ open class SeletcMarketPairManager {
 
     @objc public  func closeCard() {
         self.hideCard()
-        self.card = nil
-        self.carNav = nil
     }
 
     @objc public  func hideCard() {

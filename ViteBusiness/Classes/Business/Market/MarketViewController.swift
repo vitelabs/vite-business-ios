@@ -103,7 +103,8 @@ class MarketViewController: BaseViewController {
          self.sortView.snp.makeConstraints { (m) in
              m.edges.equalToSuperview()
          }
-        contentView.scrollToIndex(index: 0)
+        let index = MarketInfoService.shared.isFavouriteEmpty ? 1 : 0
+        contentView.scrollToIndex(index: index)
         return contentView
     }()
 
