@@ -57,7 +57,7 @@ public enum CoinType: String {
         case .vite:
             return UIColor(netHex: 0x007AFF)
         case .eth:
-            return UIColor(netHex: 0x5BC500)
+            return UIColor(netHex: 0x01D764)
         case .grin:
             return UIColor(netHex: 0xFFD900)
         case .bnb:
@@ -72,7 +72,7 @@ public enum CoinType: String {
         case .vite:
             return UIColor(netHex: 0x007AFF, alpha: 0.67)
         case .eth:
-            return UIColor(netHex: 0x5BC500)
+            return UIColor(netHex: 0x01D764)
         case .grin:
             return UIColor(netHex: 0xFFD900)
         case .bnb:

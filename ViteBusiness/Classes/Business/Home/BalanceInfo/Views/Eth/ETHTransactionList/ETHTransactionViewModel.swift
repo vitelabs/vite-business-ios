@@ -28,7 +28,7 @@ struct ETHTransactionViewModel {
         timeString = transaction.timeStamp.format("yyyy.MM.dd HH:mm:ss")
         let symbol = (((transaction.amount ?? 0) == 0) || transaction.type == .me ) ? "" : (transaction.type == .receive ? "+" : "-")
         balanceString = "\(symbol)\(transaction.amount.amountShortWithGroupSeparator(decimals: transaction.tokenInfo.decimals))"
-        balanceColor = transaction.type == .send ? UIColor(netHex: 0xFF0008) : UIColor(netHex: 0x5BC500)
+        balanceColor = transaction.type == .send ? UIColor(netHex: 0xFF0008) : UIColor(netHex: 0x01D764)
         symbolString = transaction.tokenInfo.symbol
         gasString = R.string.localizable.ethPageGasFeeTitle() + " " + (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals)
         hash = transaction.hash

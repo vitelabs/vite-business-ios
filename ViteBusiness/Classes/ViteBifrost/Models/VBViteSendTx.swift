@@ -143,7 +143,7 @@ extension VBViteSendTx {
             }
 
             static var green: Style {
-                return Style(textColor: UIColor(netHex: 0x5BC500), backgroundColor: UIColor(netHex: 0x007AFF, alpha: 0.06))
+                return Style(textColor: UIColor(netHex: 0x01D764), backgroundColor: UIColor(netHex: 0x007AFF, alpha: 0.06))
             }
         }
 

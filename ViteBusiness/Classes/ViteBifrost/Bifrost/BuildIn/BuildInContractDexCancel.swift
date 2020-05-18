@@ -44,7 +44,7 @@ struct BuildInContractDexCancel: BuildInContractProtocol {
             } else if side == 0 {
                 let type = LocalizationService.sharedInstance.currentLanguage == .chinese ? "买": "Buy"
                 orderType = "\(type) \(tradeTokenSymbol)"
-                textColor = UIColor(netHex: 0x5BC500)
+                textColor = UIColor(netHex: 0x01D764)
             } else {
                 return Promise(error: ConfirmError.InvalidData)
             }

@@ -149,7 +149,7 @@ class BnbTransactionCell: BaseTableViewCell {
                 addressLabel.text = viewModel.toAddr
                 balanceTempStr = "-"
             }else {
-                balanceLabel.textColor = UIColor(netHex: 0x5BC500)
+                balanceLabel.textColor = UIColor(netHex: 0x01D764)
                 addressLabel.text = viewModel.fromAddr
                 balanceTempStr = "+"
             }

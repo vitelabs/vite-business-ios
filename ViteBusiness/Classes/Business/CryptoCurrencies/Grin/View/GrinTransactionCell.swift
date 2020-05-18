@@ -51,7 +51,7 @@ class GrinTransactionCell: UITableViewCell {
             statusLabel.text = R.string.localizable.grinTxTypeWaitToSign()
             let amount = slate.amount
             amountLabel.text =  (amount < 0 ? "-" : "") + Amount(amount).amount(decimals: 9, count: 4)
-            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x01D764) : UIColor(netHex: 0xFF0008)
             feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(0).amountShort(decimals:9))"
             return
         }
@@ -67,7 +67,7 @@ class GrinTransactionCell: UITableViewCell {
             feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(0).amountShort(decimals:9))"
             let amount = (Int(gatewayInfo.toAmount ?? gatewayInfo.fromAmount ?? "") ?? 0)
             amountLabel.text =  (amount < 0 ? "-" : "") + Amount(amount).amount(decimals: 9, count: 4)
-            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x01D764) : UIColor(netHex: 0xFF0008)
             let date = Date.init(timeIntervalSince1970: TimeInterval(gatewayInfo.createTime/1000))
             let timeString = dateFormatter.string(from: date)
             creationTimeLabel.text = (timeString) + " \(R.string.localizable.grinTxFileInitStatus())"
@@ -85,7 +85,7 @@ class GrinTransactionCell: UITableViewCell {
                 statusLabel.text = R.string.localizable.grinTxTypeWaitToSign()
             let amount = slate.amount
             amountLabel.text =  (amount < 0 ? "-" : "") + Amount(amount).amount(decimals: 9, count: 4)
-            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+            amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x01D764) : UIColor(netHex: 0xFF0008)
             feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(0).amountShort(decimals:9))"
         }
 
@@ -104,7 +104,7 @@ class GrinTransactionCell: UITableViewCell {
         feeLabel.text = "\(R.string.localizable.grinSentFee()) \(Amount(tx.fee ?? 0).amountShort(decimals:9))"
         let amount = (tx.amountCredited ?? 0) - (tx.amountDebited ?? 0) + (tx.fee ?? 0)
         amountLabel.text =  (amount < 0 ? "-" : "") + Amount(abs(amount)).amount(decimals: 9, count: 4)
-        amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x5BC500) : UIColor(netHex: 0xFF0008)
+        amountLabel.textColor = amount >= 0 ? UIColor(netHex: 0x01D764) : UIColor(netHex: 0xFF0008)
 
         var status = "Grin Transaction"
         var image: UIImage? = R.image.grin_tx_send()
