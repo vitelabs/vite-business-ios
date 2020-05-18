@@ -31,6 +31,12 @@ class MarketViewController: BaseViewController {
         return searchButton
     }()
 
+    let sortByNameStatusImg: UIImageView = {
+        let img = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
+        img.image = (R.image.market_ascend_default())
+        return img
+    }()
+
     let sortByPriceStatusImg: UIImageView = {
         let img = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
         img.image = (R.image.market_ascend_default())
@@ -41,6 +47,11 @@ class MarketViewController: BaseViewController {
         let img = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
         img.image = (R.image.market_ascend_default())
         return img
+    }()
+
+    let sortByNameButton: UIButton = {
+        let button = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 28, height: 28))
+        return button
     }()
 
     let sortByPriceButton: UIButton = {
@@ -135,52 +146,63 @@ class MarketViewController: BaseViewController {
              return label
          }()
 
-         sortView.addSubview(symbleTitleLabel)
-         sortView.addSubview(priceTitleLabel)
-         sortView.addSubview(percentTitleLabel)
+        sortView.addSubview(symbleTitleLabel)
+        sortView.addSubview(priceTitleLabel)
+        sortView.addSubview(percentTitleLabel)
+        sortView.addSubview(self.sortByNameStatusImg)
         sortView.addSubview(self.sortByPriceStatusImg)
         sortView.addSubview(self.sortByPercenteStatusImg)
-         sortView.addSubview(self.sortByPriceButton)
-         sortView.addSubview(self.sortByPercentButton)
+        sortView.addSubview(self.sortByNameButton)
+        sortView.addSubview(self.sortByPriceButton)
+        sortView.addSubview(self.sortByPercentButton)
 
-         symbleTitleLabel.snp.makeConstraints { (make) -> Void in
-             make.left.equalToSuperview().offset(24)
-             make.centerY.equalToSuperview()
-         }
-
-         self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self.sortByPriceButton)
+        symbleTitleLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(24)
             make.centerY.equalToSuperview()
-         }
+        }
 
-         self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-24)
-             make.centerY.equalToSuperview()
-//            make.width.height.equalTo(12)
-
-         }
-
-         priceTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.sortByPriceButton)
-            make.right.equalTo(self.sortByPriceStatusImg.snp.left)
+        priceTitleLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(sortView.snp.centerX).offset(LocalizationService.sharedInstance.currentLanguage == .chinese ? -23 : -33)
             make.centerY.equalToSuperview()
         }
 
         percentTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self.sortByPercenteStatusImg.snp.left)
             make.centerY.equalToSuperview()
         }
 
-         self.sortByPriceButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(sortView.snp.centerX).offset(LocalizationService.sharedInstance.currentLanguage == .chinese ? -23 : -33)
-            make.bottom.top.equalTo(priceTitleLabel)
-         }
+        self.sortByNameStatusImg.snp.makeConstraints { (m) in
+            m.left.equalTo(symbleTitleLabel.snp.right)
+            m.centerY.equalToSuperview()
+        }
 
-         self.sortByPercentButton.snp.makeConstraints { (make) -> Void in
-             make.right.equalTo(self.sortByPercenteStatusImg)
-             make.left.bottom.top.equalTo(percentTitleLabel)
+        self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(priceTitleLabel.snp.right)
+            make.centerY.equalToSuperview()
+        }
 
-         }
+        self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(percentTitleLabel.snp.right)
+            make.right.equalToSuperview().offset(-24)
+            make.centerY.equalToSuperview()
+
+        }
+
+        self.sortByNameButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(self.sortByNameStatusImg)
+            make.left.bottom.top.equalTo(symbleTitleLabel)
+        }
+
+        self.sortByPriceButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(self.sortByPriceStatusImg)
+            make.left.bottom.top.equalTo(priceTitleLabel)
+        }
+
+        self.sortByPercentButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(self.sortByPercenteStatusImg)
+            make.left.bottom.top.equalTo(percentTitleLabel)
+
+        }
+
 
         let line = UIView()
         line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
@@ -220,6 +242,12 @@ class MarketViewController: BaseViewController {
 
         }.disposed(by:rx.disposeBag)
 
+        sortByNameButton.rx.tap.bind { [unowned self] _ in
+            let index = self.contentView.pageView.currentIndex()
+            self.marketVM.sortByName(index: index)
+
+        }.disposed(by:rx.disposeBag)
+
         contentView.tableView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
             self?.marketVM.requestPageList()
         })
@@ -250,12 +278,28 @@ class MarketViewController: BaseViewController {
     }
 
     func configSortStatus() {
-        let configs = self.marketVM.sortedMarketDataBehaviorRelay.value.map { $0.sortStatus }
+        let configs = self.marketVM.sortedMarketDataBehaviorRelay.value.map { $0.sortType }
         let index = self.contentView.pageView.currentIndex()
         let config = configs[index]
-        let images = [R.image.market_ascend_default(),R.image.marketr_descending(),R.image.marketr_ascending(),]
-        self.sortByPriceStatusImg.image = images[config.0.rawValue]
-        self.sortByPercenteStatusImg.image = images[config.1.rawValue]
+
+        switch config {
+        case .default:
+            self.sortByNameStatusImg.image = R.image.market_ascend_default()
+            self.sortByPriceStatusImg.image = R.image.market_ascend_default()
+            self.sortByPercenteStatusImg.image = R.image.market_ascend_default()
+        case .name(let mode):
+            self.sortByNameStatusImg.image = (mode == .ascending ? R.image.marketr_descending() : R.image.marketr_ascending())
+            self.sortByPriceStatusImg.image = R.image.market_ascend_default()
+            self.sortByPercenteStatusImg.image = R.image.market_ascend_default()
+        case .price(let mode):
+            self.sortByNameStatusImg.image = R.image.market_ascend_default()
+            self.sortByPriceStatusImg.image = (mode == .ascending ? R.image.marketr_descending() : R.image.marketr_ascending())
+            self.sortByPercenteStatusImg.image = R.image.market_ascend_default()
+        case .percent(let mode):
+            self.sortByNameStatusImg.image = R.image.market_ascend_default()
+            self.sortByPriceStatusImg.image = R.image.market_ascend_default()
+            self.sortByPercenteStatusImg.image = (mode == .ascending ? R.image.marketr_descending() : R.image.marketr_ascending())
+        }
     }
 }
 

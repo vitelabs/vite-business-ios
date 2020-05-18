@@ -13,10 +13,16 @@ import Alamofire
 import PromiseKit
 import ViteWallet
 
-enum SortStatus: Int {
-    case normal = 0
-    case ascending = 1
-    case descending = 2
+enum SortType {
+    case `default`
+    case name(mode: SortMode)
+    case price(mode: SortMode)
+    case percent(mode: SortMode)
+}
+
+enum SortMode {
+    case ascending
+    case descending
 }
 
 class MarketInfoService: NSObject {
@@ -50,7 +56,7 @@ class MarketInfoService: NSObject {
         return nil
     }
 
-    var sortStatuses: [(SortStatus,SortStatus)] = Array<(SortStatus,SortStatus)>(repeating: (.normal, .normal), count: 5)
+    var sortTypes: [SortType] = Array<SortType>(repeating: .default, count: 5)
 
     override init() {
         self.favouriteBehaviorRelay = BehaviorRelay(value: MarketCache.readFavourite())
@@ -127,45 +133,108 @@ class MarketInfoService: NSObject {
 
 extension MarketInfoService {
 
+    func sortByName(index: Int) {
+        let old = sortTypes[index]
+        let new: SortType
+        switch old {
+        case .default, .price, .percent:
+            new = .name(mode: .descending)
+        case .name(let mode):
+            switch mode {
+            case .ascending:
+                new = .default
+            case .descending:
+                new = .name(mode: .ascending)
+            }
+        }
+        sortTypes[index] = new
+        let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
+        sortedMarketDataBehaviorRelay.accept(sorted)
+    }
+
     func sortByPrice(index: Int) {
-        sortStatuses[index].1 = .normal
-        sortStatuses[index].0 = SortStatus.init(rawValue: (sortStatuses[index].0.rawValue + 1) % 3)!
+        let old = sortTypes[index]
+        let new: SortType
+        switch old {
+        case .default, .name, .percent:
+            new = .price(mode: .ascending)
+        case .price(let mode):
+            switch mode {
+            case .ascending:
+                new = .price(mode: .descending)
+            case .descending:
+                new = .default
+            }
+        }
+        sortTypes[index] = new
         let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
         sortedMarketDataBehaviorRelay.accept(sorted)
     }
 
     func sortByPercent(index: Int) {
-        sortStatuses[index].0 = .normal
-        sortStatuses[index].1 = SortStatus.init(rawValue: (sortStatuses[index].1.rawValue + 1) % 3)!
+        let old = sortTypes[index]
+        let new: SortType
+        switch old {
+        case .default, .name, .price:
+            new = .percent(mode: .ascending)
+        case .percent(let mode):
+            switch mode {
+            case .ascending:
+                new = .percent(mode: .descending)
+            case .descending:
+                new = .default
+            }
+        }
+        sortTypes[index] = new
         let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
         sortedMarketDataBehaviorRelay.accept(sorted)
     }
 
     func sortedMarketDatas(_ datas:[MarketData]) -> [MarketData] {
         for (index, data) in datas.enumerated() {
-            let config = sortStatuses[index]
-            data.sortStatus = config
-            if config.0 == .normal && config.1 == .normal {
+            let config = sortTypes[index]
+            data.sortType = config
+
+            switch config {
+            case .default:
+                if index == 0 {
+                    datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
+                        let p0 = self.favouriteBehaviorRelay.value.index(of: info0.statistic.symbol) ?? 0
+                        let p1 = self.favouriteBehaviorRelay.value.index(of: info1.statistic.symbol) ?? 0
+                        return p0 < p1
+                    })
+                } else {
+                    datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
+                        let p0 = Double(info0.statistic.amount ?? "") ?? 0
+                        let p1 = Double(info1.statistic.amount ?? "") ?? 0
+                        return p0 > p1
+                    })
+                }
+            case .name(let mode):
                 datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
-                    let p0 = Double(info0.statistic.amount ?? "") ?? 0
-                    let p1 = Double(info1.statistic.amount ?? "") ?? 0
-                    return p0 > p1
-                })
-            } else if config.0 != .normal{
-                datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
-                    let p0 = Double(info0.statistic.closePrice) ?? 0
-                    let p1 = Double(info1.statistic.closePrice) ?? 0
-                    if config.0 == .ascending {
+                    let p0 = info0.statistic.symbol
+                    let p1 = info1.statistic.symbol
+                    if mode == .ascending {
                         return p0 > p1
                     } else {
                         return p0 < p1
                     }
                 })
-            } else  if config.1 != .normal{
+            case .price(let mode):
+                datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
+                    let p0 = Double(info0.statistic.closePrice) ?? 0
+                    let p1 = Double(info1.statistic.closePrice) ?? 0
+                    if mode == .ascending {
+                        return p0 > p1
+                    } else {
+                        return p0 < p1
+                    }
+                })
+            case .percent(let mode):
                 datas[index].infos = datas[index].infos.sorted(by: { (info0, info1) -> Bool in
                     let p0 = Double(info0.statistic.priceChangePercent) ?? 0
                     let p1 = Double(info1.statistic.priceChangePercent) ?? 0
-                    if config.1 == .ascending {
+                    if mode == .ascending {
                         return p0 > p1
                     } else {
                         return p0 < p1
@@ -438,7 +507,7 @@ class MarketData {
     }
     var categary = ""
     var infos = [MarketInfo]()
-    var sortStatus = (SortStatus.normal, SortStatus.normal)
+    var sortType = SortType.default
 }
 
 extension TickerStatisticsProto {
