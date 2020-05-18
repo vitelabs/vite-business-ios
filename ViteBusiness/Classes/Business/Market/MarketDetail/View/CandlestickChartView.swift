@@ -281,7 +281,7 @@ class CandlestickChartView: UIView {
         let klineSet = CandleChartDataSet(entries: klineEntries, label: "Data Set").then {
             $0.axisDependency = .right
             $0.shadowColorSameAsCandle = true
-            $0.shadowWidth = 3
+            $0.shadowWidth = 1
             $0.decreasingColor = UIColor(netHex: 0xE5494D)
             $0.decreasingFilled = true
             $0.increasingColor = UIColor(netHex: 0x01D764)
