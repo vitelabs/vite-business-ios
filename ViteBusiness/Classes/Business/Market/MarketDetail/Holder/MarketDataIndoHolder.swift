@@ -14,7 +14,7 @@ class MarketDataIndoHolder: NSObject {
     let marketInfo: MarketInfo
 
 
-    let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
+    let depthListBehaviorRelay: BehaviorRelay<(MarketDepthList?, [MarketOrder])> = BehaviorRelay(value: (nil, []))
     let tradesBehaviorRelay: BehaviorRelay<[MarketTrade]> = BehaviorRelay(value: [])
     let marketPairDetailInfoBehaviorRelay: BehaviorRelay<MarketPairDetailInfo?> = BehaviorRelay(value: nil)
 
@@ -38,7 +38,8 @@ class MarketDataIndoHolder: NSObject {
             guard let `self` = self else { return }
             guard let depthListProto = try? DepthListProto(serializedData: data) else { return }
             plog(level: .debug, log: "receive new DepthListProto for \(self.symbol) ", tag: .market)
-            self.depthListBehaviorRelay.accept(MarketDepthList.generate(proto: depthListProto, count: 20))
+            let orders = self.depthListBehaviorRelay.value.1
+            self.depthListBehaviorRelay.accept((MarketDepthList.generate(proto: depthListProto, count: 20), orders))
         })
 
         self.tradesSubId = MarketInfoService.shared.marketSocket.sub(topic: tradesTopic, ticker: { [weak self] (data) in
@@ -104,8 +105,22 @@ class MarketDataIndoHolder: NSObject {
         }) { [weak self] (depthList) in
             guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
-            guard self.depthListBehaviorRelay.value == nil else { return }
-            self.depthListBehaviorRelay.accept(depthList)
+            guard self.depthListBehaviorRelay.value.0 == nil else { return }
+            let orders = self.depthListBehaviorRelay.value.1
+            self.depthListBehaviorRelay.accept((depthList, orders))
+        }
+
+        let address = HDWalletManager.instance.account!.address
+        let tradeTokenSymbol = marketInfo.statistic.tradeTokenSymbol
+        let quoteTokenSymbol = marketInfo.statistic.quoteTokenSymbol
+
+        fetchUntilSuccess(promise: {
+            UnifyProvider.vitex.getOpenedOrderlist(address: address, tradeTokenSymbol: tradeTokenSymbol, quoteTokenSymbol: quoteTokenSymbol, offset: 0, limit: 50)
+        }) { [weak self] (orders) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: "getOrder for \(self.symbol)", tag: .market)
+            let depthList = self.depthListBehaviorRelay.value.0
+            self.depthListBehaviorRelay.accept((depthList, orders))
         }
     }
 

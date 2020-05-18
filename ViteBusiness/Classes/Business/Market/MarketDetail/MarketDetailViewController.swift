@@ -60,7 +60,7 @@ class MarketDetailViewController: BaseViewController {
             layout.bottomLineColor = UIColor.init(netHex: 0x007aff)
 
             layout.scale = 1
-            layout.lrMargin = 24
+            layout.lrMargin = 12
             layout.titleMargin = 30
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
             layout.titleViewBgColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
@@ -206,7 +206,7 @@ class MarketDetailViewController: BaseViewController {
             holder.depthListBehaviorRelay.bind { [weak self] in
                 plog(level: .debug, log: $0)
                 guard let `self` = self else { return }
-                self.depthVC.bind(info: info, depthList: $0)
+                self.depthVC.bind(info: info, depthList: $0.0, myOrders: $0.1)
             }.disposed(by: holder.rx.disposeBag)
 
             holder.tradesBehaviorRelay.bind { [weak self] in

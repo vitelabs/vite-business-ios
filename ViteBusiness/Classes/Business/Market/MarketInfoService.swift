@@ -550,4 +550,12 @@ extension TickerStatisticsProto {
         self.pricePrecision = pricePrecision
         self.quantityPrecision = quantityPrecision
     }
+
+    var tradeTokenSymbolWithoutIndex : String {
+        tradeTokenSymbol.components(separatedBy: "-").first ?? tradeTokenSymbol
+    }
+
+    var quoteTokenSymbolWithoutIndex : String {
+        quoteTokenSymbol.components(separatedBy: "-").first ?? quoteTokenSymbol
+    }
 }

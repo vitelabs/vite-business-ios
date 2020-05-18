@@ -79,7 +79,7 @@ class MarketDetailInfoView: UIView {
 
         priceLabel.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(6)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
         }
 
         plegalPriceLabel.snp.makeConstraints { (m) in
@@ -103,7 +103,7 @@ class MarketDetailInfoView: UIView {
 
         layoutGuide.snp.makeConstraints { (m) in
             m.top.bottom.equalToSuperview()
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
         }
 
         highLabel.snp.makeConstraints { (m) in

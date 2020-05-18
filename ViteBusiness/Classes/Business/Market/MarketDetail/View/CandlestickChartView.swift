@@ -13,7 +13,7 @@ import RxCocoa
 
 class CandlestickChartView: UIView {
 
-    static let height: CGFloat = 440
+    static let height: CGFloat = 32+340+60+8
 
     var kineTypeBehaviorRelay: BehaviorRelay<MarketKlineType>
 
@@ -441,7 +441,7 @@ extension CandlestickChartView {
             backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
             selectorButton.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
-                m.left.equalToSuperview().offset(24)
+                m.left.equalToSuperview().offset(12)
                 m.height.equalTo(9+14+9)
             }
         }

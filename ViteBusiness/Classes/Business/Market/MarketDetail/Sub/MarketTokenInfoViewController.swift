@@ -240,6 +240,7 @@ extension MarketTokenInfoViewController {
             $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
             $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
             $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.backgroundColor = .clear
         }
 
         var url: URL?
@@ -265,12 +266,8 @@ extension MarketTokenInfoViewController {
             }
 
             button.snp.makeConstraints { (m) in
-                m.top.equalTo(titleLabel.snp.bottom).offset(10)
-                m.left.equalToSuperview().inset(24)
-                m.bottom.lessThanOrEqualToSuperview().offset(-12)
+                m.edges.equalToSuperview()
             }
-
-            button.isHidden = true
 
             let hLine = UIView().then { $0.backgroundColor = Colors.lineGray}
             contentView.addSubview(hLine)
@@ -302,17 +299,18 @@ extension MarketTokenInfoViewController {
 
         func setTitle(_ title: String, text: String, url: URL?) {
             titleLabel.text = title
+            valueLabel.text = text
 
             self.url = url
             if let url = url {
-                button.setTitle(text, for: .normal)
-                valueLabel.isHidden = true
+                valueLabel.textColor = UIColor(netHex: 0x007AFF)
                 button.isHidden = false
             } else {
-                valueLabel.text = text
-                valueLabel.isHidden = false
+                valueLabel.textColor = UIColor(netHex: 0x24272B)
                 button.isHidden = true
             }
+
+            button.isEnabled = url != nil
         }
 
     }

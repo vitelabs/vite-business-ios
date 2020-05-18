@@ -46,10 +46,23 @@ class OrderBookViewController: BaseTableViewController {
     var buyIsLastMiningArray: [Bool] = []
     var sellIsLastMiningArray: [Bool] = []
 
+    var myBuyPriceList: [String] = []
+    var mySellPriceList: [String] = []
 
-    func bind(info: MarketInfo, depthList: MarketDepthList?) {
+    func bind(info: MarketInfo, depthList: MarketDepthList?, myOrders: [MarketOrder]) {
         self.info = info
         self.depthList = depthList
+
+        myBuyPriceList = []
+        mySellPriceList = []
+
+        myOrders.forEach { (order) in
+            if order.side == 0 {
+                myBuyPriceList.append(order.price)
+            } else {
+                mySellPriceList.append(order.price)
+            }
+        }
 
         buyIsMiningArray = depthList?.bids.map {
             calcIsMining(max: self.info?.buyRangeMax, peerPriceString: depthList?.asks.first?.price, currectString: $0.price)
@@ -96,9 +109,9 @@ class OrderBookViewController: BaseTableViewController {
             }
         }
 
-        headerCell.leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbol)
-        headerCell.midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.quoteTokenSymbol)
-        headerCell.rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbol)
+        headerCell.leftLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbolWithoutIndex)
+        headerCell.midLabel.text = R.string.localizable.marketDetailPageDepthPriceTitle(info.statistic.quoteTokenSymbolWithoutIndex)
+        headerCell.rightLabel.text = R.string.localizable.marketDetailPageDepthVolTitle(info.statistic.tradeTokenSymbolWithoutIndex)
 
         tableView.reloadData()
     }
@@ -136,9 +149,19 @@ class OrderBookViewController: BaseTableViewController {
             let buy = index < bids.count ? bids[index] : nil
             let sell = index < asks.count ? asks[index] : nil
 
+            var isBuySelf = false
+            var isSellSelf = false
 
-            cell.bind(buy: (depth: buy, isMining: buyIsMiningArray[index], isLastMining: buyIsLastMiningArray[index]),
-                      sell: (depth: sell, isMining: sellIsMiningArray[index], isLastMining: sellIsLastMiningArray[index]))
+            if let price = buy?.price, myBuyPriceList.contains(price) {
+                isBuySelf = true
+            }
+
+            if let price = sell?.price, mySellPriceList.contains(price) {
+                isSellSelf = true
+            }
+
+            cell.bind(buy: (depth: buy, isMining: buyIsMiningArray[index], isLastMining: buyIsLastMiningArray[index], isSelf: isBuySelf),
+                      sell: (depth: sell, isMining: sellIsMiningArray[index], isLastMining: sellIsLastMiningArray[index], isSelf: isSellSelf))
 
             return cell
         }
@@ -180,7 +203,7 @@ extension OrderBookViewController {
 
             leftLabel.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(19)
-                m.left.equalToSuperview().offset(24)
+                m.left.equalToSuperview().offset(12)
             }
 
             midLabel.snp.makeConstraints { (m) in
@@ -190,7 +213,7 @@ extension OrderBookViewController {
 
             rightLabel.snp.makeConstraints { (m) in
                 m.top.equalToSuperview().offset(19)
-                m.right.equalToSuperview().offset(-24)
+                m.right.equalToSuperview().offset(-12)
             }
         }
 
@@ -216,21 +239,21 @@ extension OrderBookViewController {
 
             leftView.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
-                m.left.equalToSuperview().offset(24)
+                m.left.equalToSuperview().offset(12)
             }
 
             rightView.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
                 m.left.equalTo(leftView.snp.right)
                 m.width.equalTo(leftView)
-                m.right.equalToSuperview().offset(-24)
+                m.right.equalToSuperview().offset(-12)
             }
         }
 
-        func bind(buy: (depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool),
-                  sell:  (depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool)) {
-            leftView.bind(depth: buy.depth, isMining: buy.isMining, isLastMining: buy.isLastMining)
-            rightView.bind(depth: sell.depth, isMining: sell.isMining, isLastMining: sell.isLastMining)
+        func bind(buy: (depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool, isSelf: Bool),
+                  sell:  (depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool, isSelf: Bool)) {
+            leftView.bind(depth: buy.depth, isMining: buy.isMining, isLastMining: buy.isLastMining, isSelf: buy.isSelf)
+            rightView.bind(depth: sell.depth, isMining: sell.isMining, isLastMining: sell.isLastMining, isSelf: sell.isSelf)
         }
 
         required init?(coder: NSCoder) {
@@ -242,6 +265,8 @@ extension OrderBookViewController {
     class LeftItemView: UIView {
 
         let lineImg = UIImageView(image: R.image.dotted_line()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.3)).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
+
+        let flagImageView = UIImageView(image: R.image.icon_market_orderbook_self())
 
         let quantityLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -266,6 +291,7 @@ extension OrderBookViewController {
             addSubview(quantityLabel)
             addSubview(priceLabel)
             addSubview(lineImg)
+            addSubview(flagImageView)
 
             lineImg.snp.makeConstraints { (m) in
                 m.bottom.left.right.equalToSuperview()
@@ -279,6 +305,11 @@ extension OrderBookViewController {
                 m.right.centerY.equalToSuperview()
             }
 
+            flagImageView.snp.makeConstraints { (m) in
+                m.right.equalTo(priceLabel.snp.left).offset(-2)
+                m.centerY.equalToSuperview()
+            }
+
             percentView.snp.makeConstraints { (m) in
                 m.top.bottom.right.equalToSuperview()
                 m.height.equalTo(24)
@@ -287,10 +318,11 @@ extension OrderBookViewController {
 
         }
 
-        func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool) {
+        func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool, isSelf: Bool) {
 
             backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : .clear
             lineImg.isHidden = !isLastMining
+            flagImageView.isHidden = !isSelf
 
             if let depth = depth {
                 quantityLabel.text = depth.quantity
@@ -322,6 +354,8 @@ extension OrderBookViewController {
 
         let lineImg = UIImageView(image: R.image.dotted_line()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.3)).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
 
+        let flagImageView = UIImageView(image: R.image.icon_market_orderbook_self())
+
         let quantityLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
             $0.textColor = UIColor(netHex: 0x24272B)
@@ -345,6 +379,7 @@ extension OrderBookViewController {
             addSubview(quantityLabel)
             addSubview(priceLabel)
             addSubview(lineImg)
+            addSubview(flagImageView)
 
             lineImg.snp.makeConstraints { (m) in
                 m.bottom.left.right.equalToSuperview()
@@ -358,6 +393,11 @@ extension OrderBookViewController {
                 m.left.centerY.equalToSuperview()
             }
 
+            flagImageView.snp.makeConstraints { (m) in
+                m.left.equalTo(priceLabel.snp.right).offset(2)
+                m.centerY.equalToSuperview()
+            }
+
             percentView.snp.makeConstraints { (m) in
                 m.top.bottom.left.equalToSuperview()
                 m.height.equalTo(24)
@@ -365,10 +405,11 @@ extension OrderBookViewController {
             }
         }
 
-        func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool) {
+        func bind(depth: MarketDepthList.Depth?, isMining: Bool, isLastMining: Bool, isSelf: Bool) {
 
             backgroundColor = isMining ? UIColor(netHex: 0x4B74FF, alpha: 0.05) : .clear
             lineImg.isHidden = !isLastMining
+            flagImageView.isHidden = !isSelf
 
             if let depth = depth {
                 quantityLabel.text = depth.quantity
