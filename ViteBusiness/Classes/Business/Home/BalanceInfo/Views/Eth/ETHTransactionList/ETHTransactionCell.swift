@@ -44,6 +44,11 @@ class ETHTransactionCell: BaseTableViewCell {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
     }
 
+    fileprivate let stateLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0xFF0008)
+    }
+
     fileprivate let gasLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
@@ -64,6 +69,7 @@ class ETHTransactionCell: BaseTableViewCell {
         contentView.addSubview(timeLabel)
         contentView.addSubview(balanceLabel)
         contentView.addSubview(symbolLabel)
+        contentView.addSubview(stateLabel)
         contentView.addSubview(gasLabel)
 
         typeImageView.setContentHuggingPriority(.required, for: .horizontal)
@@ -94,9 +100,16 @@ class ETHTransactionCell: BaseTableViewCell {
             m.right.equalTo(addressBackView).offset(-6)
         }
 
+        stateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        stateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        stateLabel.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(24)
+            m.centerY.equalTo(balanceLabel)
+        }
+
         balanceLabel.snp.makeConstraints { (m) in
             m.top.equalTo(typeNameLabel.snp.bottom).offset(10)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalTo(stateLabel.snp.right).offset(8)
         }
 
         symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -111,7 +124,7 @@ class ETHTransactionCell: BaseTableViewCell {
         timeLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         timeLabel.snp.makeConstraints { (m) in
             m.top.equalTo(balanceLabel.snp.bottom).offset(9)
-            m.left.equalTo(balanceLabel)
+            m.left.equalToSuperview().offset(24)
             m.bottom.equalTo(contentView).offset(-13)
         }
 
@@ -147,5 +160,6 @@ class ETHTransactionCell: BaseTableViewCell {
         balanceLabel.textColor = viewModel.balanceColor
         symbolLabel.text = viewModel.symbolString
         gasLabel.text = viewModel.gasString
+        stateLabel.text = viewModel.stateString
     }
 }

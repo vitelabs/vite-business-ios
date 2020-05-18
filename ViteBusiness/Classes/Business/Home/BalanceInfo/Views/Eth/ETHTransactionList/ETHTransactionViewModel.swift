@@ -19,6 +19,7 @@ struct ETHTransactionViewModel {
     let gasString: String
     let hash: String
     let transaction: ETHTransaction
+    let stateString: String?
 
     init(transaction: ETHTransaction) {
         self.transaction = transaction
@@ -32,5 +33,6 @@ struct ETHTransactionViewModel {
         symbolString = transaction.tokenInfo.symbol
         gasString = R.string.localizable.ethPageGasFeeTitle() + " " + (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals)
         hash = transaction.hash
+        stateString = transaction.isError ? R.string.localizable.ethTransactionDetailFailed() : nil
     }
 }
