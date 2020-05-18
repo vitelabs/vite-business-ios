@@ -203,7 +203,7 @@ public extension ViteConst {
                 grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
                            apiSecret: "Pbwnf9nJDEVcVPR8B42u",
                            chainType: GrinChainType.usernet.rawValue,
-                           x: "http://129.28.98.62:8080"),
+                           x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
