@@ -93,7 +93,7 @@ class MarketPageCell: UITableViewCell {
         contentView.addSubview(persentLabel)
 
         tradeSymbolLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(contentView).offset(24)
+            make.left.equalTo(contentView).offset(12)
             make.top.equalTo(contentView).offset(11)
         }
 
@@ -135,7 +135,7 @@ class MarketPageCell: UITableViewCell {
         }
 
         persentBgView.snp.makeConstraints { (m) in
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
             m.height.equalTo(26)
             m.width.equalTo(70)
             m.centerY.equalToSuperview()

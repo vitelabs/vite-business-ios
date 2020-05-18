@@ -23,6 +23,7 @@ class MarketPairsViewController : UIViewController, LTTableViewProtocal {
         var H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         H = H - tabBarH - 44 - 70
         let tableView = UITableView.listView()
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 12, bottom: 0, right: 12)
         tableView.frame = CGRect(x: 0, y:44, width: view.bounds.width, height: H)
         tableView.delegate = self
         tableView.dataSource = self

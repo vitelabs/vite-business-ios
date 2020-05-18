@@ -92,7 +92,7 @@ class MarketViewController: BaseViewController {
             layout.pageBottomLineHeight = 38
             layout.scale = 1
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
-            layout.lrMargin = 24
+            layout.lrMargin = 12
             layout.titleMargin = 30
             layout.bottomLineColor = UIColor.init(netHex: 0x007aff)
             layout.pageBottomLineColor = .white
@@ -157,7 +157,7 @@ class MarketViewController: BaseViewController {
         sortView.addSubview(self.sortByPercentButton)
 
         symbleTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(24)
+            make.left.equalToSuperview().offset(12)
             make.centerY.equalToSuperview()
         }
 
@@ -182,7 +182,7 @@ class MarketViewController: BaseViewController {
 
         self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(percentTitleLabel.snp.right)
-            make.right.equalToSuperview().offset(-24)
+            make.right.equalToSuperview().offset(-12)
             make.centerY.equalToSuperview()
 
         }
@@ -208,7 +208,7 @@ class MarketViewController: BaseViewController {
         line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
         sortView.addSubview(line)
         line.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
+            m.left.right.equalToSuperview().inset(12)
             m.bottom.equalToSuperview()
             m.height.equalTo(0.5)
         }
