@@ -517,7 +517,7 @@ public extension Workflow {
                  tokenId: tradeTokenInfo.viteTokenId,
                  amount: Amount(0),
                  fee: nil,
-                 data: ABI.BuildIn.getDexCancelOrderData(orderId: orderId),
+                 data: ABI.BuildIn.getDexCancelOrderData(sendBlockHash: orderId),
                  successToast: R.string.localizable.workflowToastContractSuccess(),
                  type: .other,
                  completion: completion)
