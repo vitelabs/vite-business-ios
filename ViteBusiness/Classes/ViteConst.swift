@@ -121,7 +121,6 @@ public extension ViteConst {
 
     struct Market {
         public var baseWebUrl: String
-        public var vitexHost: String
         public var vitexWS: String
     }
 
@@ -160,7 +159,7 @@ public extension ViteConst {
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",
-                           x: "https://vitex.vite.net",
+                           x: "https://api.vitex.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com",
@@ -178,7 +177,7 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
+                 market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")
         )
 
         public static let testEnv =
@@ -189,7 +188,7 @@ public extension ViteConst {
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
                            growth: "https://growth.vite.net/test",
-                           x: "https://vitex.vite.net/test",
+                           x: "https://api.vitex.net/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "http://132.232.60.116:8001",
                            exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test2.netlify.com/mobiledex",
@@ -206,7 +205,7 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-                 market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexHost: "https://vitex.vite.net/test", vitexWS: "wss://vitex.vite.net/test/websocket")
+                 market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexWS: "wss://vitex.vite.net/test/websocket")
         )
 
         public static let stageEnv =
@@ -217,7 +216,7 @@ public extension ViteConst {
                 vite: Vite(nodeHttp: "https://api.vitewallet.com/ios",
                            explorer: "https://explorer.vite.net",
                            growth: "https://growth.vite.net",
-                           x: "https://vitex.vite.net",
+                           x: "https://api.vitex.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
                            gateway: "https://wallet.vite.net",
                            exchange: "https://buycoin.vitewallet.com",
@@ -235,7 +234,7 @@ public extension ViteConst {
                            x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
-               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexHost: "https://vitex.vite.net", vitexWS: "wss://vitex.vite.net/websocket")
+               market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")
         )
     }
 }

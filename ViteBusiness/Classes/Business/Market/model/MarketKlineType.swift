@@ -28,20 +28,6 @@ enum MarketKlineType: CaseIterable {
         }
     }
 
-    func calcRequestStartTime(end: TimeInterval, limit: Int) -> TimeInterval {
-        let interval: TimeInterval
-        switch self {
-        case .min1: interval = 60
-        case .min30: interval = 60 * 30
-        case .hour1: interval = 60 * 60
-        case .hour6: interval = 60 * 60 * 6
-        case .hour12: interval = 60 * 60 * 12
-        case .day1: interval = 60 * 60 * 24
-        case .week1: interval = 60 * 60 * 24 * 7
-        }
-        return max(0, end - TimeInterval(limit) * interval)
-    }
-
     var text: String {
         switch self {
         case .min1: return R.string.localizable.marketDetailPageKlineTypeMin1Title()

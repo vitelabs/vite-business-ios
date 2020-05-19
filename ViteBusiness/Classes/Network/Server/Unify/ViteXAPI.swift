@@ -25,13 +25,13 @@ enum ViteXAPI: TargetType {
 
     var path: String {
         switch self {
-        case .getLimit: return "api/v1/limit"
-        case .getRate: return "api/v1/exchange-rate"
-        case .getklines: return "api/v1/klines"
-        case .getDepth: return "api/v1/depth"
-        case .getTrades: return "api/v1/trades"
+        case .getLimit: return "api/v2/limit"
+        case .getRate: return "api/v2/exchange-rate"
+        case .getklines: return "api/v2/klines"
+        case .getDepth: return "api/v2/depth/all"
+        case .getTrades: return "api/v2/trades/all"
         case .getPairDetailInfo: return "api/v1/operator/tradepair"
-        case .getOpenedOrderlist: return "api/v1/orders/open"
+        case .getOpenedOrderlist: return "api/v2/orders/open"
         case .getTokenInfoDetail: return "/api/v1/cryptocurrency/info/detail"
         }
     }
@@ -57,11 +57,8 @@ enum ViteXAPI: TargetType {
             let parameters = ["tokenIds": tokenIds.joined(separator: ",")]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case let .getklines(symbol, type):
-            let end = Date().timeIntervalSince1970
-            let start = type.calcRequestStartTime(end: end, limit: 500)
             let parameters = [
-                "startTime": "\(Int(start))",
-                "endTime": "\(Int(end))",
+                "limit": "500",
                 "symbol": symbol,
                 "interval": type.requestParameter
             ]

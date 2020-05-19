@@ -251,7 +251,7 @@ extension MarketInfoService {
 
     func requestPageList()  {
         let ticker = Alamofire
-            .request( ViteConst.instance.market.vitexHost + "/api/v2/ticker/24hr",
+            .request( ViteConst.instance.vite.x + "/api/v2/ticker/24hr",
                          parameters: ["quoteTokenCategory":"VITE,ETH,BTC,USDT"])
             .responseJSON()
             .map(on: .main) { data, response -> [[String: Any]] in
@@ -268,7 +268,7 @@ extension MarketInfoService {
            }
         #endif
         let rate = Alamofire
-             .request(ViteConst.instance.market.vitexHost +  "/api/v1/exchange-rate",
+             .request(ViteConst.instance.vite.x +  "/api/v2/exchange-rate",
                       parameters: ["tokenIds":tokenIDs])
             .responseJSON()
             .map(on: .main) { data, response -> [[String: Any]] in
@@ -277,7 +277,7 @@ extension MarketInfoService {
 
         let mining = Promise<[String: Any]> { seal in
             Alamofire
-            .request(ViteConst.instance.market.vitexHost + "/api/v1/mining/setting")
+            .request(ViteConst.instance.vite.x + "/api/v1/mining/setting")
             .responseJSON()
             .map(on: .main) { (arg) -> [String: Any] in
                 let (_, response) = arg
@@ -412,7 +412,7 @@ extension MarketInfoService {
             let arr = marekData.infos.map { $0.statistic.symbol ?? "" }
             return result + arr
         }
-        var request = URLRequest(url: URL.init(string: ViteConst.instance.market.vitexHost + "/api/v1/operator/tradepair")!)
+        var request = URLRequest(url: URL.init(string: ViteConst.instance.vite.x + "/api/v1/operator/tradepair")!)
        request.httpMethod = "POST"
        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
        let values = pairs

@@ -68,9 +68,9 @@ class HostManager {
             ViteBusinessLanucher.instance.configProvider()
         }
 
-        if let dexApi = data["VITEX"]["hostNameList"].array?.first?.string,
+        if let dexApi = data["VITEX_API"]["hostNameList"].array?.first?.string,
             let _ = URL.init(string:dexApi) {
-            ViteConst.Env.premainnet.market.vitexHost = dexApi
+            ViteConst.Env.premainnet.vite.x = dexApi
         }
 
         if let wss = data["DEXPUSHSERVER"]["hostNameList"].array?.first?.string,
