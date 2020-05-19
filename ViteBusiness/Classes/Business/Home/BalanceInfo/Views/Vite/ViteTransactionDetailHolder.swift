@@ -26,13 +26,20 @@ class ViteTransactionDetailHolder: TransactionDetailHolder {
             typeString = R.string.localizable.viteTransactionDetailPageTypeSend()
         }
 
+        let height: String
+        if let h = accountBlock.firstSnapshotHeight {
+            height = "\(h)"
+        } else {
+            height = "--"
+        }
+
         var items: [TransactionDetailHolder.Item] = [
             .address(title: R.string.localizable.ethTransactionDetailToAddress(), text: accountBlock.toAddress!, hasSeparator: true),
             .address(title: R.string.localizable.ethTransactionDetailFromAddress(), text: accountBlock.fromAddress!, hasSeparator: false),
             .ammount(title: R.string.localizable.ethTransactionDetailAmount(), text: accountBlock.amount!.amountShortWithGroupSeparator(decimals: accountBlock.token!.decimals), symbol: accountBlock.token!.symbol),
             .height(title: R.string.localizable.viteTransactionDetailPageTypeTitle(), text: typeString),
             .copyable(title: R.string.localizable.viteTransactionDetailPageHashTitle(), text: "\(accountBlock.hash!.prefix(8))...\(accountBlock.hash!.suffix(6))", rawText: accountBlock.hash!),
-            .height(title: R.string.localizable.viteTransactionDetailPageHeightTitle(), text: "\(accountBlock.height!)"),
+            .height(title: R.string.localizable.viteTransactionDetailPageHeightTitle(), text: height),
         ]
 
         if accountBlock.toAddress!.isDexAddress {
