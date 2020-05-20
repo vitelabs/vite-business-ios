@@ -262,6 +262,8 @@ class SpotOperationView: UIView {
                                     return
                                 }
 
+                                plog(level: .debug, log: "checkAmount price: \(price), vol: \(vol)", tag: .market)
+
                                 if let vm = self.spotViewModelBehaviorRelay.value {
                                     _ = type(of: self).checkAmount(vm: vm, isBuy: isBuy, priceText: price, volText: vol, isShowToast: true)
                                 }
@@ -632,7 +634,17 @@ class SpotOperationView: UIView {
         let tradeTokenInfo = vm.tradeTokenInfo
         let decimals = min(Int(info.statistic.quantityPrecision), tradeTokenInfo.decimals)
         let text = String(format: "%.\(decimals)f", num)
-        setVol(text)
+
+        if let vm = self.spotViewModelBehaviorRelay.value,
+            let info = self.marketInfoBehaviorRelay.value,
+            let priceText = self.priceTextField.textField.text,
+            let maxString = type(of: self).calcVol(vm: vm, info: info, priceText: priceText, isBuy: self.segmentView.isBuyBehaviorRelay.value, p: 1),
+            let max = Double(maxString),
+            num > max {
+            setVol(maxString)
+        } else {
+            setVol(text)
+        }
     }
 
     required init?(coder: NSCoder) {

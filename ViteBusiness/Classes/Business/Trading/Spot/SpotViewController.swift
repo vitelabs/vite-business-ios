@@ -50,12 +50,22 @@ class SpotViewController: BaseTableViewController {
 
         depthView.priceClicked = { [weak self] ret in
             guard let `self` = self else { return }
+
+            var num: Double? = nil
+            if self.operationView.segmentView.isBuyBehaviorRelay.value != ret.isBuy {
+                if let n = ret.vol {
+                    num = n
+                }
+            }
+
+            if let _ = num {
+                self.operationView.setVol("")
+            }
+
             self.operationView.setPrice(ret.price)
 
-            if self.operationView.segmentView.isBuyBehaviorRelay.value != ret.isBuy {
-                if let num = ret.vol {
-                    self.operationView.setVol(num)
-                }
+            if let num = num {
+                self.operationView.setVol(num)
             }
         }
 
