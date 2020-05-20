@@ -111,14 +111,14 @@ extension TradingHomeViewController {
                     m.top.equalToSuperview().offset(17)
                     m.bottom.equalToSuperview().offset(-10)
                     if index == 0 {
-                        m.left.equalToSuperview().offset(24)
+                        m.left.equalToSuperview().offset(12)
                     } else {
                         m.left.equalTo(buttons[index - 1].snp.right).offset(10)
                         m.width.equalTo(buttons[index - 1])
                     }
 
                     if index == buttons.count - 1 {
-                        m.right.equalToSuperview().offset(-24)
+                        m.right.equalToSuperview().offset(-12)
                     }
                 }
 

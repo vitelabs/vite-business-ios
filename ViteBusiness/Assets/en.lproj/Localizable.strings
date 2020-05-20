@@ -1110,6 +1110,8 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Spot
+"spot.page.buy.mining.tip" = "买入价大于 %@ 时满足挂单挖矿条件";
+"spot.page.sell.mining.tip" = "卖出价小于 %@ 时满足挂单挖矿条件";
 "spot.page.button.buy.title" = "Buy";
 "spot.page.button.sell.title" = "Sell";
 "spot.page.button.limit.buy.title" = "Limit Order";

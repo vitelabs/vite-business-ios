@@ -93,7 +93,7 @@ class SpotOrderCell: BaseTableViewCell {
         
         typeButton.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(16)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
         }
 
         tradeLabel.snp.makeConstraints { (m) in
@@ -120,12 +120,12 @@ class SpotOrderCell: BaseTableViewCell {
 
         cancelButton.snp.makeConstraints { (m) in
             m.centerY.equalTo(typeButton)
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
         }
 
         volLabel.snp.makeConstraints { (m) in
             m.top.equalTo(typeButton.snp.bottom).offset(7)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
         }
 
         priceLabel.snp.makeConstraints { (m) in
@@ -135,7 +135,7 @@ class SpotOrderCell: BaseTableViewCell {
 
         dealLabel.snp.makeConstraints { (m) in
             m.top.equalTo(volLabel.snp.bottom).offset(6)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
         }
 
         averageLabel.snp.makeConstraints { (m) in
@@ -146,7 +146,7 @@ class SpotOrderCell: BaseTableViewCell {
         hLine.snp.makeConstraints { (m) in
             m.height.equalTo(CGFloat.singleLineWidth)
             m.bottom.equalToSuperview()
-            m.left.right.equalToSuperview().inset(24)
+            m.left.right.equalToSuperview().inset(12)
         }
 
         cancelButton.rx.tap.bind { [weak self] in

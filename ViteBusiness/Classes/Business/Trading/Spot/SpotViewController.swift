@@ -35,6 +35,7 @@ class SpotViewController: BaseTableViewController {
     func setupView() {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.tableHeaderView = makeHeaderView()
+        bubbleView.isHidden = true
     }
 
     func update(marketInfo: MarketInfo, isBuy: Bool) {
@@ -43,6 +44,16 @@ class SpotViewController: BaseTableViewController {
     }
 
     func bind() {
+
+        NotificationCenter.default.rx.notification(UIResponder.keyboardDidShowNotification).bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.bubbleView.isHidden = ((!self.operationView.priceTextField.textField.isFirstResponder) || self.bubbleView.textLabel.text == nil)
+        }.disposed(by: rx.disposeBag)
+
+        NotificationCenter.default.rx.notification(UIResponder.keyboardDidHideNotification).bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.bubbleView.isHidden = true
+        }.disposed(by: rx.disposeBag)
 
         navView.switchPair = { [weak self] in
             self?.marketInfoBehaviorRelay.accept($0)
@@ -105,6 +116,35 @@ class SpotViewController: BaseTableViewController {
                     self.operationView.bind(spotViewModel: $0)
                 }.disposed(by: viewModle.rx.disposeBag)
 
+                Driver.combineLatest(
+                    self.operationView.segmentView.isBuyBehaviorRelay.asDriver(),
+                    viewModle.depthListBehaviorRelay.asDriver()).drive(onNext: { [weak self] (isBuy, depthList) in
+                        guard let `self` = self else { return }
+                        if isBuy {
+                            if let peerPriceString = depthList?.asks.first?.price,
+                                let peerPrice = Double(peerPriceString),
+                                let max = info.buyRangeMax {
+                                var price = peerPrice - max * peerPrice
+                                price = price - (0.5 / pow(10, Double(info.statistic.pricePrecision)))
+                                let text = String(format: "%0.\(info.statistic.pricePrecision)f", price)
+                                self.bubbleView.textLabel.text = R.string.localizable.spotPageBuyMiningTip(text)
+                            } else {
+                                self.bubbleView.textLabel.text = nil
+                            }
+                        } else {
+                            if let peerPriceString = depthList?.bids.first?.price,
+                                let peerPrice = Double(peerPriceString),
+                                let max = info.sellRangeMax {
+                                var price = peerPrice + max * peerPrice
+                                price = price + (0.5 / pow(10, Double(info.statistic.pricePrecision)))
+                                let text = String(format: "%0.\(info.statistic.pricePrecision)f", price)
+                                self.bubbleView.textLabel.text = R.string.localizable.spotPageSellMiningTip((text))
+                            } else {
+                                self.bubbleView.textLabel.text = nil
+                            }
+                        }
+                    }).disposed(by: viewModle.rx.disposeBag)
+
                 viewModle.depthListBehaviorRelay.bind { [weak self] in
                     guard let `self` = self else { return }
                     self.depthView.bind(depthList: $0)
@@ -124,10 +164,12 @@ class SpotViewController: BaseTableViewController {
         }.disposed(by: rx.disposeBag)
     }
 
+
     let navView = SpotNavView()
     let operationView = SpotOperationView()
     let depthView = SpotDepthView()
     let ordersHeaderView = SpotOrdersHeaderView()
+    let bubbleView = BubbleView()
 
     func makeHeaderView() -> UIView {
         let view = UIView()
@@ -143,6 +185,7 @@ class SpotViewController: BaseTableViewController {
         view.addSubview(operationView)
         view.addSubview(depthView)
         view.addSubview(ordersHeaderView)
+        view.addSubview(bubbleView)
 
         navView.snp.makeConstraints { (m) in
             m.top.left.right.equalToSuperview()
@@ -150,14 +193,19 @@ class SpotViewController: BaseTableViewController {
 
         operationView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(10)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
             m.right.equalTo(view.snp.centerX)
         }
 
         depthView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(10)
             m.left.equalTo(view.snp.centerX).offset(12)
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
+        }
+
+        bubbleView.snp.makeConstraints { (m) in
+            m.bottom.equalTo(operationView.priceTextField.snp.top)
+            m.left.right.equalTo(operationView.priceTextField).inset(18)
         }
 
         let line = UIView()
@@ -186,5 +234,55 @@ extension SpotViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return SpotOrderCell()
+    }
+}
+
+extension SpotViewController {
+    class BubbleView: UIView {
+
+        let leftView = UIImageView(image: R.image.icon_spot_bubble_left()?.resizable)
+        let centerView = UIImageView(image: R.image.icon_spot_bubble_center()?.resizable)
+        let rightView = UIImageView(image: R.image.icon_spot_bubble_right()?.resizable)
+        let textLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.numberOfLines = 0
+        }
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            addSubview(leftView)
+            addSubview(centerView)
+            addSubview(rightView)
+            addSubview(textLabel)
+
+            leftView.snp.makeConstraints { (m) in
+                m.top.left.bottom.equalToSuperview()
+            }
+
+            rightView.snp.makeConstraints { (m) in
+                m.top.right.bottom.equalToSuperview()
+                m.width.equalTo(leftView)
+            }
+
+            centerView.snp.makeConstraints { (m) in
+                m.top.bottom.equalToSuperview()
+                m.left.equalTo(leftView.snp.right)
+                m.right.equalTo(rightView.snp.left)
+                m.width.equalTo(15)
+            }
+
+            textLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(10)
+                m.left.equalToSuperview().offset(15)
+                m.bottom.equalToSuperview().offset(-18)
+                m.right.equalToSuperview().offset(-15)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     }
 }

@@ -105,7 +105,6 @@ class SpotOperationView: UIView {
 
         segmentView.snp.makeConstraints { (m) in
             m.top.left.right.equalToSuperview()
-
         }
 
         limitBuyTitle.snp.makeConstraints { (m) in
@@ -165,6 +164,61 @@ class SpotOperationView: UIView {
         sellButton.snp.makeConstraints { (m) in
             m.edges.equalTo(buyButton).priorityHigh()
         }
+
+        priceTextField.subButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let info = self.marketInfoBehaviorRelay.value else { return }
+            let step: Double = pow(10, -Double(info.statistic.pricePrecision))
+
+            guard let text = self.priceTextField.textField.text,
+                let value = Double(text),
+                value - step > 0 else {
+                    return
+            }
+            let new = String(format: "%0.\(info.statistic.pricePrecision)f", value - step)
+            self.setPrice(new)
+        }.disposed(by: rx.disposeBag)
+
+        priceTextField.addButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let info = self.marketInfoBehaviorRelay.value else { return }
+            let step: Double = pow(10, -Double(info.statistic.pricePrecision))
+
+            guard let text = self.priceTextField.textField.text,
+                let value = Double(text) else {
+                    return
+            }
+            let new = String(format: "%0.\(info.statistic.pricePrecision)f", value + step)
+            self.setPrice(new)
+        }.disposed(by: rx.disposeBag)
+
+
+        volTextField.subButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let info = self.marketInfoBehaviorRelay.value else { return }
+            let step: Double = pow(10, -Double(info.statistic.quantityPrecision))
+
+            guard let text = self.volTextField.textField.text,
+                let value = Double(text),
+                value - step > 0 else {
+                    return
+            }
+            let new = String(format: "%0.\(info.statistic.quantityPrecision)f", value - step)
+            self.setVol(new)
+        }.disposed(by: rx.disposeBag)
+
+        volTextField.addButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            guard let info = self.marketInfoBehaviorRelay.value else { return }
+            let step: Double = pow(10, -Double(info.statistic.quantityPrecision))
+
+            guard let text = self.volTextField.textField.text,
+                let value = Double(text) else {
+                    return
+            }
+            let new = String(format: "%0.\(info.statistic.quantityPrecision)f", value + step)
+            self.setVol(new)
+        }.disposed(by: rx.disposeBag)
 
         segmentView.isBuyBehaviorRelay.bind { [weak self] isBuy in
             guard let `self` = self else { return }
@@ -771,8 +825,17 @@ extension SpotOperationView {
     class TextFieldView: UIView {
 
         let textField = UITextField().then {
-            $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            $0.textColor = UIColor(netHex: 0x24272B)
             $0.keyboardType = .decimalPad
+        }
+
+        let subButton = UIButton().then {
+            $0.setImage(R.image.icon_spot_sub(), for: .normal)
+        }
+
+        let addButton = UIButton().then {
+            $0.setImage(R.image.icon_spot_add(), for: .normal)
         }
 
         override init(frame: CGRect) {
@@ -782,12 +845,93 @@ extension SpotOperationView {
             layer.borderColor = UIColor(netHex: 0xD3DFEF).cgColor
             layer.borderWidth = CGFloat.singleLineWidth
 
+            let sline = UIView().then {
+                $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
+            }
+
+            let aline = UIView().then {
+                $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
+            }
+
             addSubview(textField)
+            addSubview(subButton)
+            addSubview(addButton)
+            addSubview(sline)
+            addSubview(aline)
+
+            subButton.snp.makeConstraints { (m) in
+                m.size.equalTo(CGSize(width: 38, height: 38))
+                m.left.top.bottom.equalToSuperview()
+            }
+
+            addButton.snp.makeConstraints { (m) in
+                m.size.equalTo(CGSize(width: 38, height: 38))
+                m.right.top.bottom.equalToSuperview()
+            }
 
             textField.snp.makeConstraints { (m) in
                 m.top.bottom.equalToSuperview()
-                m.left.right.equalToSuperview().inset(10)
-                m.height.equalTo(30)
+                m.left.equalTo(subButton.snp.right).offset(5)
+                m.right.equalTo(addButton.snp.left).offset(-5)
+            }
+
+            sline.snp.makeConstraints { (m) in
+                m.width.equalTo(CGFloat.singleLineWidth)
+                m.right.top.bottom.equalTo(subButton)
+            }
+
+            aline.snp.makeConstraints { (m) in
+                m.width.equalTo(CGFloat.singleLineWidth)
+                m.left.top.bottom.equalTo(addButton)
+            }
+
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class BubbleView: UIView {
+
+        let leftView = UIImageView(image: R.image.icon_spot_bubble_left()?.resizable)
+        let centerView = UIImageView(image: R.image.icon_spot_bubble_center()?.resizable)
+        let rightView = UIImageView(image: R.image.icon_spot_bubble_right()?.resizable)
+        let textLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            $0.numberOfLines = 0
+        }
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            addSubview(leftView)
+            addSubview(centerView)
+            addSubview(rightView)
+            addSubview(textLabel)
+
+            leftView.snp.makeConstraints { (m) in
+                m.top.left.bottom.equalToSuperview()
+            }
+
+            rightView.snp.makeConstraints { (m) in
+                m.top.right.bottom.equalToSuperview()
+                m.width.equalTo(leftView)
+            }
+
+            centerView.snp.makeConstraints { (m) in
+                m.top.bottom.equalToSuperview()
+                m.left.equalTo(leftView.snp.right)
+                m.right.equalTo(rightView.snp.left)
+                m.width.equalTo(15)
+            }
+
+            textLabel.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(10)
+                m.left.equalToSuperview().offset(15)
+                m.bottom.equalToSuperview().offset(-18)
+                m.right.equalToSuperview().offset(-15)
             }
         }
 

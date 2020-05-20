@@ -38,13 +38,13 @@ class SpotOrdersHeaderView: UIView {
 
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(16)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
             m.bottom.equalToSuperview()
         }
 
         historyButton.snp.makeConstraints { (m) in
             m.centerY.equalTo(titleLabel)
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
         }
     }
 

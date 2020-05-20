@@ -78,7 +78,7 @@ class SpotNavView: UIView {
 
         tradeLabel.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(10)
-            m.left.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(12)
         }
 
         quoteLabel.snp.makeConstraints { (m) in
@@ -105,7 +105,7 @@ class SpotNavView: UIView {
 
         favButton.snp.makeConstraints { (m) in
             m.centerY.equalTo(tradeLabel)
-            m.right.equalToSuperview().offset(-24)
+            m.right.equalToSuperview().offset(-12)
             m.size.equalTo(CGSize(width: 28, height: 28))
         }
 

@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 255 images.
+  /// This `R.image` struct is generated, and contains static references to 260 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -380,12 +380,22 @@ public struct R: Rswift.Validatable {
     public static let icon_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_setting")
     /// Image `icon_show_pwd`.
     public static let icon_show_pwd = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_show_pwd")
+    /// Image `icon_spot_add`.
+    public static let icon_spot_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_add")
+    /// Image `icon_spot_bubble_center`.
+    public static let icon_spot_bubble_center = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_bubble_center")
+    /// Image `icon_spot_bubble_left`.
+    public static let icon_spot_bubble_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_bubble_left")
+    /// Image `icon_spot_bubble_right`.
+    public static let icon_spot_bubble_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_bubble_right")
     /// Image `icon_spot_history_arrows`.
     public static let icon_spot_history_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_history_arrows")
     /// Image `icon_spot_kilne`.
     public static let icon_spot_kilne = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_kilne")
     /// Image `icon_spot_order_cancel_button_frame`.
     public static let icon_spot_order_cancel_button_frame = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_order_cancel_button_frame")
+    /// Image `icon_spot_sub`.
+    public static let icon_spot_sub = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_sub")
     /// Image `icon_spot_transfer`.
     public static let icon_spot_transfer = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_transfer")
     /// Image `icon_spot_vip_close`.
@@ -1434,6 +1444,26 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_show_pwd, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_spot_add", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_add, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_spot_bubble_center", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_bubble_center(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_bubble_center, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_spot_bubble_left", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_bubble_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_bubble_left, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_spot_bubble_right", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_bubble_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_bubble_right, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_spot_history_arrows", bundle: ..., traitCollection: ...)`
     public static func icon_spot_history_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_spot_history_arrows, compatibleWith: traitCollection)
@@ -1447,6 +1477,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_spot_order_cancel_button_frame", bundle: ..., traitCollection: ...)`
     public static func icon_spot_order_cancel_button_frame(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_spot_order_cancel_button_frame, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_spot_sub", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_sub(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_sub, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_spot_transfer", bundle: ..., traitCollection: ...)`
@@ -1809,7 +1844,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 951 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 953 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5563,6 +5598,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 买入价大于 %@ 时满足挂单挖矿条件
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageBuyMiningTip = Rswift.StringResource(key: "spot.page.buy.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易 hash
       /// 
       /// Locales: en, zh-Hans
@@ -5579,6 +5618,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteTransactionDetailPageHeightTitle = Rswift.StringResource(key: "vite.transaction.detail.page.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 卖出价小于 %@ 时满足挂单挖矿条件
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageSellMiningTip = Rswift.StringResource(key: "spot.page.sell.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 合约调用失败
       /// 
       /// Locales: en, zh-Hans
@@ -12182,6 +12225,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 买入价大于 %@ 时满足挂单挖矿条件
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageBuyMiningTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.buy.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 交易 hash
       /// 
       /// Locales: en, zh-Hans
@@ -12208,6 +12258,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteTransactionDetailPageHeightTitle(_: Void = ()) -> String {
         return NSLocalizedString("vite.transaction.detail.page.height.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 卖出价小于 %@ 时满足挂单挖矿条件
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageSellMiningTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.sell.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 合约调用失败
