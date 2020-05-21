@@ -13,7 +13,12 @@ import RxCocoa
 
 class CandlestickChartView: UIView {
 
-    static let height: CGFloat = 32+340+60+8
+    static let headerViewHeight: CGFloat = 32
+    static let bottomGap: CGFloat = 8
+    static let safeGap: CGFloat = kStatusBarH > 20 ? (24 + 34) : 0
+    static let barChartViewHeight: CGFloat = max(round((kScreenH - safeGap - 64 - 70 - headerViewHeight - bottomGap - 94 - 38 - 45 - 96) / 4), 45)
+    static let combinedChartViewHeight: CGFloat = barChartViewHeight * 3
+    static let height: CGFloat = headerViewHeight + barChartViewHeight + combinedChartViewHeight + bottomGap
 
     var kineTypeBehaviorRelay: BehaviorRelay<MarketKlineType>
 
@@ -120,8 +125,8 @@ class CandlestickChartView: UIView {
 
         addSubview(headerView)
         addSubview(logoImageView)
-        addSubview(combinedChartView)
         addSubview(barChartView)
+        addSubview(combinedChartView)
         addSubview(ma7Lable)
         addSubview(ma30Lable)
         addSubview(ma90Lable)
@@ -158,13 +163,13 @@ class CandlestickChartView: UIView {
         combinedChartView.snp.makeConstraints { (m) in
             m.top.equalTo(headerView.snp.bottom)
             m.left.right.equalToSuperview()
-            m.height.equalTo(340)
+            m.height.equalTo(type(of: self).combinedChartViewHeight + 10)
         }
 
         barChartView.snp.makeConstraints { (m) in
-            m.top.equalTo(combinedChartView.snp.bottom)
+            m.top.equalTo(combinedChartView.snp.bottom).offset(-20)
             m.bottom.left.right.equalToSuperview()
-            m.height.equalTo(60)
+            m.height.equalTo(type(of: self).barChartViewHeight + 10)
         }
 
         ma7Lable.snp.makeConstraints { (m) in
