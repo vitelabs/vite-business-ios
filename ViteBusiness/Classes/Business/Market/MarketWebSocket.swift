@@ -7,10 +7,12 @@
 
 import UIKit
 import Starscream
+import PromiseKit
 
 typealias MarketTopic = String
 typealias SubId = String
 typealias TickerBlock = (Data) -> ()
+typealias SucessSubBlock = (SubId) -> ()
 
 class MarketWebSocket: NSObject {
 
@@ -92,13 +94,26 @@ class MarketWebSocket: NSObject {
                     guard let array = blockMap[topic] else { return }
                     array.forEach { $0.block(messageData) }
                 }
+            } else if dexProtocol.opType == "sub" {
+                guard let array = blockMap[topic] else { return }
+
+                var newArray: [(id: SubId, block: TickerBlock, successSubBlock: SucessSubBlock?)] = []
+                array.forEach { (id, tickerBlock, successSubBlock) in
+                    if let block = successSubBlock {
+                        block(id)
+                    }
+                    newArray.append((id: id, block: tickerBlock, successSubBlock: nil))
+                }
+                blockMap[topic] = newArray
+            } else {
+                plog(level: .debug, log: "opType: \(dexProtocol.opType)", tag: .market)
             }
         } catch  {
             print(error.localizedDescription)
         }
     }
 
-    var blockMap: [MarketTopic: [(id: SubId, block: TickerBlock)]] = [:]
+    var blockMap: [MarketTopic: [(id: SubId, block: TickerBlock, successSubBlock: SucessSubBlock?)]] = [:]
     var topicMap: [SubId: MarketTopic] = [:]
 }
 
@@ -124,18 +139,27 @@ extension MarketWebSocket {
         }
     }
 
-    func sub(topic: MarketTopic, ticker: @escaping (Data) -> ()) -> SubId {
+    func sub(topic: MarketTopic, ticker: @escaping TickerBlock, sucessSub: SucessSubBlock? = nil) -> SubId {
         plog(level: .debug, log: "sub \(topic)", tag: .market)
         let subId = UUID().uuidString
         var array = blockMap[topic] ?? []
 
-        // need sub
-        if array.isEmpty {
+        let needSub = array.isEmpty
+        
+        if needSub {
+            array.append((subId, ticker, sucessSub))
+            blockMap[topic] = array
+            topicMap[subId] = topic
             socketWriteSub(topic: topic)
+        } else {
+            array.append((subId, ticker, nil))
+            blockMap[topic] = array
+            topicMap[subId] = topic
+            DispatchQueue.main.async {
+                sucessSub?(subId)
+            }
         }
-        array.append((subId, ticker))
-        blockMap[topic] = array
-        topicMap[subId] = topic
+
         return subId
     }
 

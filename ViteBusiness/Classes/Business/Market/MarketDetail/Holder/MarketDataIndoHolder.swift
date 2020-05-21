@@ -31,7 +31,6 @@ class MarketDataIndoHolder: NSObject {
         super.init()
 
         self.fetchDepth()
-        self.fetchTrades()
         self.fetchPairDetailInfo()
 
         self.depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
@@ -65,7 +64,9 @@ class MarketDataIndoHolder: NSObject {
                     self.tmpTradeItems = trades
                 }
             }
-        })
+        }) { [weak self] _ in
+            self?.fetchTrades()
+        }
     }
 
 

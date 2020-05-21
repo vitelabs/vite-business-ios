@@ -24,8 +24,6 @@ class MarketKlineHolder: NSObject {
         self.kineType = kineType
         super.init()
 
-        self.fetchKlines()
-
         self.klineSubId = MarketInfoService.shared.marketSocket.sub(topic: kineType.topic(symbol: symbol), ticker: { [weak self] (data) in
             guard let `self` = self else { return }
             guard let klineProto = try? KlineProto(serializedData: data) else { return }
@@ -47,7 +45,9 @@ class MarketKlineHolder: NSObject {
                 }
                 self.tmpItems.append(item)
             }
-        })
+        }) { [weak self] _ in
+            self?.fetchKlines()
+        }
     }
 
     func fetchKlines() {
