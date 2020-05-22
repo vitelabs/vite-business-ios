@@ -60,10 +60,11 @@ public struct Alert {
     public static func show(into viewController: UIViewController? = nil,
                             title: String?,
                             message: String?,
+                            customView: UIView? = nil,
                             actions: [(UIAlertControllerAletrActionTitle, ((AlertControl) -> Void)?)],
                             config: ((AlertControl) -> Void)? = nil) -> AlertControl {
 
-        let alert = AlertControl.init(title: title, message: message, style: .alert)
+        let alert = AlertControl.init(title: title, message: message, customView: customView, style: .alert)
         for action in actions {
             switch action.0 {
             case .default(let title):

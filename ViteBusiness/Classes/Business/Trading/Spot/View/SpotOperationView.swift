@@ -11,6 +11,7 @@ import RxCocoa
 import ViteWallet
 import BigInt
 import PromiseKit
+import ActiveLabel
 
 class SpotOperationView: UIView {
 
@@ -401,99 +402,11 @@ class SpotOperationView: UIView {
         }.disposed(by: rx.disposeBag)
 
         buyButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            guard let vm = self.spotViewModelBehaviorRelay.value else { return }
-
-            let quoteTokenInfo = vm.quoteTokenInfo
-            let tradeTokenInfo = vm.tradeTokenInfo
-
-            guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
-                Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
-                return
-            }
-
-            guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = volText.toAmount(decimals: tradeTokenInfo.decimals) else {
-                Toast.show(R.string.localizable.spotPagePostToastVolEmpty())
-                return
-            }
-
-            guard price > BigDecimal(0) else {
-                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
-                return
-            }
-
-            guard vol > Amount(0) else {
-                Toast.show(R.string.localizable.spotPagePostToastVolZero())
-                return
-            }
-
-            guard type(of: self).checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
-                return
-            }
-
-            self.endEditing(true)
-
-            Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
-                                       tradeTokenInfo: tradeTokenInfo,
-                                       quoteTokenInfo: quoteTokenInfo,
-                                       price: priceText,
-                                       quantity: vol,
-                                       completion: { [weak self] ret in
-                                        switch ret {
-                                        case .success:
-                                            self?.setVol("")
-                                        case .failure:
-                                            break
-                                        }
-            })
-
+            self?.placeOrderAndShowConfirmIfNeeded(isBuy: true)
         }.disposed(by: rx.disposeBag)
 
         sellButton.rx.tap.bind { [weak self] in
-            guard let `self` = self else { return }
-            guard let vm = self.spotViewModelBehaviorRelay.value else { return }
-            let quoteTokenInfo = vm.quoteTokenInfo
-            let tradeTokenInfo = vm.tradeTokenInfo
-
-            guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
-                Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
-                return
-            }
-
-            guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = volText.toAmount(decimals: tradeTokenInfo.decimals) else {
-                Toast.show(R.string.localizable.spotPagePostToastVolEmpty())
-                return
-            }
-
-            guard price != BigDecimal(0) else {
-                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
-                return
-            }
-
-            guard vol != Amount(0) else {
-                Toast.show(R.string.localizable.spotPagePostToastVolZero())
-                return
-            }
-
-            guard type(of: self).checkAmount(vm: vm, isBuy: false, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
-                return
-            }
-
-            self.endEditing(true)
-
-            Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
-                                        tradeTokenInfo: tradeTokenInfo,
-                                        quoteTokenInfo: quoteTokenInfo,
-                                        price: priceText,
-                                        quantity: vol,
-                                        completion: { [weak self] ret in
-                                            switch ret {
-                                            case .success:
-                                                self?.setVol("")
-                                            case .failure:
-                                                break
-                                            }
-            })
+            self?.placeOrderAndShowConfirmIfNeeded(isBuy: false)
         }.disposed(by: rx.disposeBag)
     }
 
@@ -1011,5 +924,216 @@ extension SpotOperationView {
             ret.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.resizable, for: .disabled)
             return ret
         }
+    }
+
+    class ConfirmView: UIView {
+        let priceTitleLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            $0.text = R.string.localizable.spotPageDepthPrice()
+        }
+
+        let priceValueLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x007AFF, alpha: 0.7)
+            $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        }
+
+        let priceBgView = UIView().then {
+            $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
+        }
+
+        let volTitleLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            $0.text = R.string.localizable.spotPageDepthVol()
+        }
+
+        let volValueLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x007AFF, alpha: 0.7)
+            $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        }
+
+        let checkButton = BackupMnemonicViewController.ConfirmView().then { view in
+            view.label.text = R.string.localizable.spotPageConfirmTip()
+            let customType = ActiveType.custom(pattern: view.label.text!)
+            view.label.enabledTypes = [customType]
+            view.label.customize { [weak view] label in
+                label.customColor[customType] = view?.label.textColor
+                label.customSelectedColor[customType] = view?.label.textColor
+                label.handleCustomTap(for: customType) { [weak view] element in
+                    view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
+                }
+            }
+        }
+
+        init(price: String, vol: String) {
+            super.init(frame: .zero)
+
+            priceValueLabel.text = price
+            volValueLabel.text = vol
+
+            addSubview(priceBgView)
+            addSubview(priceTitleLabel)
+            addSubview(priceValueLabel)
+            addSubview(volTitleLabel)
+            addSubview(volValueLabel)
+            addSubview(checkButton)
+
+            priceBgView.snp.makeConstraints { (m) in
+                m.top.equalToSuperview().offset(16)
+                m.left.right.equalToSuperview()
+                m.height.equalTo(50)
+            }
+
+            priceTitleLabel.snp.makeConstraints { (m) in
+                m.left.equalToSuperview().offset(15)
+                m.centerY.equalTo(priceBgView)
+            }
+
+            priceValueLabel.snp.makeConstraints { (m) in
+                m.right.equalToSuperview().offset(-15)
+                m.centerY.equalTo(priceBgView)
+            }
+
+            volTitleLabel.snp.makeConstraints { (m) in
+                m.top.equalTo(priceBgView.snp.bottom).offset(16)
+                m.left.equalToSuperview().offset(15)
+            }
+
+            volValueLabel.snp.makeConstraints { (m) in
+                m.right.equalToSuperview().offset(-15)
+                m.centerY.equalTo(volTitleLabel)
+            }
+
+            checkButton.snp.makeConstraints { (m) in
+                m.top.equalTo(volTitleLabel.snp.bottom).offset(28)
+                m.left.right.equalToSuperview().inset(15)
+                m.bottom.equalToSuperview().offset(-12)
+            }
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+}
+
+// Call Contract
+extension SpotOperationView {
+
+    func placeOrderAndShowConfirmIfNeeded(isBuy: Bool) {
+
+        guard let vm = self.spotViewModelBehaviorRelay.value else { return }
+
+        let quoteTokenInfo = vm.quoteTokenInfo
+        let tradeTokenInfo = vm.tradeTokenInfo
+
+        self.endEditing(true)
+
+        guard let priceText = self.priceTextField.textField.text, !priceText.isEmpty, let price = BigDecimal(priceText) else {
+            Toast.show(R.string.localizable.spotPagePostToastPriceEmpty())
+            return
+        }
+
+        guard let volText = self.volTextField.textField.text, !volText.isEmpty, let vol = volText.toAmount(decimals: tradeTokenInfo.decimals) else {
+            Toast.show(R.string.localizable.spotPagePostToastVolEmpty())
+            return
+        }
+
+        if isBuy {
+            guard price > BigDecimal(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
+                return
+            }
+
+            guard vol > Amount(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolZero())
+                return
+            }
+
+            guard type(of: self).checkAmount(vm: vm, isBuy: true, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
+                return
+            }
+
+
+            let block = {
+                Workflow.dexBuyWithConfirm(account: HDWalletManager.instance.account!,
+                                           tradeTokenInfo: tradeTokenInfo,
+                                           quoteTokenInfo: quoteTokenInfo,
+                                           price: priceText,
+                                           quantity: vol,
+                                           completion: { [weak self] ret in
+                                            switch ret {
+                                            case .success:
+                                                self?.setVol("")
+                                            case .failure:
+                                                break
+                                            }
+                })
+            }
+
+            if WalletManager.setting.isNeedConfirmForPlaceOrder() {
+                let title = "\(R.string.localizable.spotPageButtonBuyTitle()) \(tradeTokenInfo.symbol)"
+                let confirmView = ConfirmView(price: "\(priceText) \(quoteTokenInfo.symbol)", vol: "\(volText) \(tradeTokenInfo.symbol)")
+                Alert.show(title: title, message: nil, customView: confirmView, actions: [
+                    (.cancel, nil),
+                    (.default(title: R.string.localizable.confirm()), { _ in
+                        if confirmView.checkButton.checkButton.isSelected {
+                            WalletManager.setting.updatePlaceOrderConfirmExpireTimestamp()
+                        }
+                        block()
+                    }),
+                ])
+            } else {
+                block()
+            }
+        } else {
+            guard price != BigDecimal(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastPriceZero())
+                return
+            }
+
+            guard vol != Amount(0) else {
+                Toast.show(R.string.localizable.spotPagePostToastVolZero())
+                return
+            }
+
+            guard type(of: self).checkAmount(vm: vm, isBuy: false, priceText: priceText, volText: volText, isShowToast: true).isSuccess else {
+                return
+            }
+
+            let block = {
+                Workflow.dexSellWithConfirm(account: HDWalletManager.instance.account!,
+                                            tradeTokenInfo: tradeTokenInfo,
+                                            quoteTokenInfo: quoteTokenInfo,
+                                            price: priceText,
+                                            quantity: vol,
+                                            completion: { [weak self] ret in
+                                                switch ret {
+                                                case .success:
+                                                    self?.setVol("")
+                                                case .failure:
+                                                    break
+                                                }
+                })
+            }
+
+            if WalletManager.setting.isNeedConfirmForPlaceOrder() {
+                let title = "\(R.string.localizable.spotPageButtonSellTitle()) \(tradeTokenInfo.symbol)"
+                let confirmView = ConfirmView(price: "\(priceText) \(quoteTokenInfo.symbol)", vol: "\(volText) \(tradeTokenInfo.symbol)")
+                Alert.show(title: title, message: nil, customView: confirmView, actions: [
+                    (.cancel, nil),
+                    (.default(title: R.string.localizable.confirm()), { _ in
+                        if confirmView.checkButton.checkButton.isSelected {
+                            WalletManager.setting.updatePlaceOrderConfirmExpireTimestamp()
+                        }
+                        block()
+                    }),
+                ])
+            } else {
+                block()
+            }
+        }
+
     }
 }

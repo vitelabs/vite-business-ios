@@ -45,7 +45,7 @@ struct MarketOrder : Mappable {
     }
 
     init(orderProto: OrderProto) {
-        self.orderId = orderProto.orderID
+        self.orderId = orderProto.orderHash
         self.symbol = orderProto.symbol
         self.tradeTokenSymbol = orderProto.tradeTokenSymbol
         self.quoteTokenSymbol = orderProto.quoteTokenSymbol

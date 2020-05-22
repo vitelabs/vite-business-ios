@@ -536,6 +536,8 @@
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
+"workflow.toast.place.order.success" = "下单成功";
+"workflow.toast.cancel.order.success" = "撤单成功";
 
 "workflow.congestion.without.pow.alert.title" = "Notice";
 "workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
@@ -1138,6 +1140,8 @@
 "spot.page.post.toast.vol.empty" = "Please enter the amount";
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
 "spot.page.post.toast.amount.min" = "Total value must be at least %@";
+
+"spot.page.confirm.tip" = "24小时内不再提示";
 
 "spot.page.alert.title" = "Important reminder";
 "spot.page.alert.message" = "The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";

@@ -1844,7 +1844,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 953 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 956 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1934,6 +1934,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoVolTitle = Rswift.StringResource(key: "market.detail.page.info.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 24小时内不再提示
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageConfirmTip = Rswift.StringResource(key: "spot.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 30m
       /// 
       /// Locales: en, zh-Hans
@@ -5594,6 +5598,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 下单成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowToastPlaceOrderSuccess = Rswift.StringResource(key: "workflow.toast.place.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, zh-Hans
@@ -5638,6 +5646,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 撤单成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowToastCancelOrderSuccess = Rswift.StringResource(key: "workflow.toast.cancel.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 等待合约执行
       /// 
       /// Locales: en, zh-Hans
@@ -5811,6 +5823,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageInfoVolTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.info.vol.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 24小时内不再提示
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.confirm.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 30m
@@ -12218,6 +12237,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.open.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 下单成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowToastPlaceOrderSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.place.order.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 中
       /// 
       /// Locales: en, zh-Hans
@@ -12293,6 +12319,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
         return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 撤单成功
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowToastCancelOrderSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.cancel.order.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 等待合约执行

@@ -20,14 +20,15 @@ extension WalletManager: Storageable {
     }
 
     public struct Storager: Mappable {
-
         public fileprivate(set) var vitexInviteCode: String?
         fileprivate var invitedAddresses: [ViteAddress] = []
+        fileprivate var settings: Settings = Settings()
         public fileprivate(set) var eth: ETH = ETH()
 
-        public init(vitexInviteCode: String? = nil, invitedAddresses: [ViteAddress] = [], eth: ETH = ETH()) {
+        public init(vitexInviteCode: String? = nil, invitedAddresses: [ViteAddress] = [], settings: Settings = Settings(), eth: ETH = ETH()) {
             self.vitexInviteCode = vitexInviteCode
             self.invitedAddresses = invitedAddresses
+            self.settings = settings
             self.eth = eth
         }
 
@@ -38,7 +39,24 @@ extension WalletManager: Storageable {
         public mutating func mapping(map: Map) {
             vitexInviteCode <- map["vitexInviteCode"]
             invitedAddresses <- map["invitedAddresses"]
+            settings <- map["settings"]
             eth <- map["eth"]
+        }
+
+        public struct Settings: Mappable {
+            public fileprivate(set) var placeOrderConfirmExpireTimestamp: TimeInterval?
+
+            public init( placeOrderConfirmExpireTimestamp: TimeInterval? = nil) {
+                self.placeOrderConfirmExpireTimestamp = placeOrderConfirmExpireTimestamp
+            }
+
+            public init?(map: Map) {
+
+            }
+
+            public mutating func mapping(map: Map) {
+                placeOrderConfirmExpireTimestamp <- map["placeOrderConfirmExpireTimestamp"]
+            }
         }
 
         public struct ETH: Mappable {
@@ -83,6 +101,28 @@ public final class WalletManager: NSObject {
     }
 
 
+}
+
+// MARK: setting
+extension WalletManager {
+    struct setting {
+        static public func isNeedConfirmForPlaceOrder() -> Bool {
+            if let timestamp = WalletManager.instance.storagerBehaviorRelay.value?.settings.placeOrderConfirmExpireTimestamp {
+                return Date().timeIntervalSince1970 > timestamp
+            } else {
+                return true
+            }
+        }
+
+        static public func updatePlaceOrderConfirmExpireTimestamp() {
+            guard var storager = WalletManager.instance.storagerBehaviorRelay.value else { return }
+            let now = Date().timeIntervalSince1970
+            let tomorrow = now + 60 * 60 * 24
+            storager.settings.placeOrderConfirmExpireTimestamp = tomorrow
+            WalletManager.instance.storagerBehaviorRelay.accept(storager)
+            WalletManager.instance.save(mappable: storager)
+        }
+    }
 }
 // MARK: eth
 extension WalletManager {

@@ -37,6 +37,7 @@ public class AlertControl: UIViewController {
     public var message: String?
     public var preferredAction: AlertAction?
     public var textFields: [UITextField]? = []
+    public var customView: UIView?
     public var actions: [AlertAction] = []
     public var cancelAction: AlertAction?
     public var window: UIWindow {
@@ -46,9 +47,10 @@ public class AlertControl: UIViewController {
     fileprivate var contentView: UIView?
     public var style: UIAlertController.Style
 
-    public init(title: String? = nil, message: String? = nil, style: UIAlertController.Style = .alert) {
+    public init(title: String? = nil, message: String? = nil, customView: UIView? = nil, style: UIAlertController.Style = .alert) {
         self.alertTitle = title
         self.message = message
+        self.customView = customView
         self.style = style
         super.init(nibName: nil, bundle: nil)
     }
@@ -165,7 +167,7 @@ public class AlertControl: UIViewController {
             fatalError("just support one or two actions")
         }
 
-        let alertCommenView = AlertCommenView.init(title: alertTitle, message: message, textFields: self.textFields!, actions: actions)
+        let alertCommenView = AlertCommenView.init(title: alertTitle, message: message, textFields: self.textFields!, customView: self.customView, actions: actions)
         view.addSubview(alertCommenView)
         contentView = alertCommenView
         alertCommenView.snp.makeConstraints { (m) in
@@ -292,17 +294,18 @@ private class AlertCommenView: UIView {
     }
 
     var textFields: [UITextField]?
+    var customView: UIView?
     var actionButtons = [UIButton]()
 
-    init(title: String?, message: String?, textFields: [UITextField]?, actions: [AlertAction]) {
+    init(title: String?, message: String?, textFields: [UITextField]?, customView: UIView?, actions: [AlertAction]) {
         super.init(frame: CGRect.init(x: 0, y: 0, width: 270, height: 151))
         self.layer.cornerRadius = 2
         self.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
         self.textFields = textFields
+        self.customView = customView
 
         var v: UIView? = self
         var topMargen = 24.0
-        var hegith = topMargen
 
         if title != nil {
             titleLabel.text = title
@@ -314,7 +317,6 @@ private class AlertCommenView: UIView {
             }
             v = titleLabel
             let suggestedTitleLabelSize = titleLabel.sizeThatFits(CGSize(width: 270 - 16 * 2, height: kScreenH / 2))
-            hegith +=  (topMargen + Double(suggestedTitleLabelSize.height))
             topMargen = 12
         }
 
@@ -328,7 +330,6 @@ private class AlertCommenView: UIView {
             }
             v = messageLabel
             let suggestedMessageLabelSize = messageLabel.sizeThatFits(CGSize(width: 270 - 16 * 2, height: kScreenH / 2))
-            hegith += topMargen + Double(suggestedMessageLabelSize.height)
             topMargen = 12
         }
 
@@ -341,8 +342,16 @@ private class AlertCommenView: UIView {
                 m.height.equalTo(25)
             }
             v = textField
-            hegith += topMargen + 25
             topMargen = 12
+        }
+
+        if let view = self.customView {
+            self.addSubview(view)
+            view.snp.makeConstraints { (m) in
+                m.left.right.equalToSuperview()
+                m.top.equalTo(v!.snp.bottom)
+            }
+            v = view
         }
 
         let horizontalSeperator = UIView().then { $0.backgroundColor = UIColor.init(netHex: 0x000050, alpha: 0.05) }
@@ -376,26 +385,28 @@ private class AlertCommenView: UIView {
 
         if actionButtons.count == 1 {
             actionButtons.first!.snp.makeConstraints { (m) in
+                m.top.equalTo(horizontalSeperator.snp.bottom)
                 m.left.right.bottom.equalToSuperview()
                 m.height.equalTo(43)
             }
             verticalSeperator.isHidden = true
         } else if actionButtons.count == 2 {
             actionButtons.first!.snp.makeConstraints { (m) in
+                m.top.equalTo(horizontalSeperator.snp.bottom)
                 m.left.bottom.equalToSuperview()
                 m.height.equalTo(43)
                 m.width.equalTo(134)
             }
             actionButtons.last!.snp.makeConstraints { (m) in
+                m.top.equalTo(horizontalSeperator.snp.bottom)
                 m.right.bottom.equalToSuperview()
                 m.height.equalTo(43)
                 m.width.equalTo(134)
             }
         }
-        hegith += 32
 
         self.snp.makeConstraints { (m) in
-            m.height.equalTo(hegith)
+            m.bottom.equalTo(actionButtons.first!.snp.bottom)
             m.width.equalTo(270)
         }
 

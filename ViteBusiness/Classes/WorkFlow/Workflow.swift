@@ -467,21 +467,15 @@ public extension Workflow {
                                   price: String,
                                   quantity: Amount,
                                   completion: @escaping (Result<AccountBlock>) -> ()) {
-        let sendBlock = {
-            send(account: account,
-                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
-                 tokenId: tradeTokenInfo.viteTokenId,
-                 amount: Amount(0),
-                 fee: nil,
-                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: true, price: price, quantity: quantity),
-                 successToast: R.string.localizable.workflowToastContractSuccess(),
-                 type: .other,
-                 completion: completion)
-        }
-
-        let quantityString = quantity.amountFullWithGroupSeparator(decimals: tradeTokenInfo.decimals)
-        let viewModel = ConfirmViteDexBuyViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, priceString: price, quantityString: quantityString, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
-        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: tradeTokenInfo.viteTokenId,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: true, price: price, quantity: quantity),
+             successToast: R.string.localizable.workflowToastPlaceOrderSuccess(),
+             type: .other,
+             completion: completion)
     }
 
     static func dexSellWithConfirm(account: Wallet.Account,
@@ -490,41 +484,30 @@ public extension Workflow {
                                    price: String,
                                    quantity: Amount,
                                    completion: @escaping (Result<AccountBlock>) -> ()) {
-        let sendBlock = {
-            send(account: account,
-                 toAddress: ViteWalletConst.ContractAddress.dexFund.address,
-                 tokenId: tradeTokenInfo.viteTokenId,
-                 amount: Amount(0),
-                 fee: nil,
-                 data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: false, price: price, quantity: quantity),
-                 successToast: R.string.localizable.workflowToastContractSuccess(),
-                 type: .other,
-                 completion: completion)
-        }
-
-        let quantityString = quantity.amountFullWithGroupSeparator(decimals: tradeTokenInfo.decimals)
-        let viewModel = ConfirmViteDexSellViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, priceString: price, quantityString: quantityString, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
-        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: tradeTokenInfo.viteTokenId,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexPlaceOrderData(tradeToken: tradeTokenInfo.viteTokenId, quoteToken: quoteTokenInfo.viteTokenId, isBuy: false, price: price, quantity: quantity),
+             successToast: R.string.localizable.workflowToastPlaceOrderSuccess(),
+             type: .other,
+             completion: completion)
     }
 
     static func dexCancelOrderWithConfirm(account: Wallet.Account,
                                           tradeTokenInfo: TokenInfo,
                                           orderId: String,
                                           completion: @escaping (Result<AccountBlock>) -> ()) {
-        let sendBlock = {
-            send(account: account,
-                 toAddress: ViteWalletConst.ContractAddress.dexTrade.address,
-                 tokenId: tradeTokenInfo.viteTokenId,
-                 amount: Amount(0),
-                 fee: nil,
-                 data: ABI.BuildIn.getDexCancelOrderData(sendBlockHash: orderId),
-                 successToast: R.string.localizable.workflowToastContractSuccess(),
-                 type: .other,
-                 completion: completion)
-        }
-
-        let viewModel = ConfirmViteDexCancelOrderViewModel(tokenInfo: tradeTokenInfo, addressString: ViteWalletConst.ContractAddress.dexFund.address, orderId: orderId, utString: ABI.BuildIn.dexPlaceOrder.ut.utToString())
-        confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexTrade.address,
+             tokenId: tradeTokenInfo.viteTokenId,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexCancelOrderData(sendBlockHash: orderId),
+             successToast: R.string.localizable.workflowToastCancelOrderSuccess(),
+             type: .other,
+             completion: completion)
     }
 
     static func dexVipWithConfirm(account: Wallet.Account,

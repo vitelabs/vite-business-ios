@@ -540,6 +540,8 @@
 "workflow.toast.vote.success" = "投票请求发送成功";
 "workflow.toast.cancel.vote.success" = "撤销投票请求发送成功";
 "workflow.toast.contract.success" = "支付成功";
+"workflow.toast.place.order.success" = "下单成功";
+"workflow.toast.cancel.order.success" = "撤单成功";
 
 "workflow.congestion.without.pow.alert.title" = "提示";
 "workflow.congestion.without.pow.alert.message" = "当前网络拥堵，已经进入动态配额阶段，您的可用配额已经减少，请确认是否仍发交易。";
@@ -1148,6 +1150,8 @@
 "spot.page.post.toast.vol.empty" = "请输入数量";
 "spot.page.post.toast.vol.zero" = "数量不能为0";
 "spot.page.post.toast.amount.min" = "成交额需大于 %@";
+
+"spot.page.confirm.tip" = "24小时内不再提示";
 
 "spot.page.alert.title" = "温馨提示";
 "spot.page.alert.message" = "当前交易对为%@，请谨慎交易，数字资产交易存在风险，需用户自行谨慎判断确定相关数字资产的真实性、合法性和有效性，并自行承担因此产生的责任与损失。";
