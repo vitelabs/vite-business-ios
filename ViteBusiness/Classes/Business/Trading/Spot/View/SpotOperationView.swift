@@ -235,7 +235,6 @@ class SpotOperationView: UIView {
                 self.volTextField.textField.placeholder = R.string.localizable.spotPageVolSellPlaceholder()
             }
             self.setVol("")
-            self.setPrice(self.marketInfoBehaviorRelay.value?.statistic.closePrice ?? "")
             self.percentView.index = nil
         }.disposed(by: rx.disposeBag)
 
