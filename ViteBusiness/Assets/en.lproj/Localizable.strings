@@ -384,7 +384,7 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction…";
+"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
@@ -548,7 +548,7 @@
 "workflow.congestion.with.pow.alert.cancel" = "Transact Later";
 
 "workflow.fast.get.quota.title" = "Instantly Getting Quota";
-"workflow.fast.get.quota.message" = "Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
+"workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
 "workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
 "workflow.fast.get.quota.link" = "clicking here";
 
@@ -818,7 +818,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE\n\n\n";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
@@ -1144,7 +1144,7 @@
 "spot.page.confirm.tip" = "24小时内不再提示";
 
 "spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
 "spot.page.alert.ok" = "Confirm";
 
 "spot.page.order.empty" = "No order";
@@ -1157,4 +1157,4 @@
 "spot.page.cell.average" = "Avg.: %@";
 
 "grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1、Initialization is required upon adding GRIN wallet\n2、The process is expected to last 15 minutes\n3、Do not interrupt or kill the APP during initialization\n4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
