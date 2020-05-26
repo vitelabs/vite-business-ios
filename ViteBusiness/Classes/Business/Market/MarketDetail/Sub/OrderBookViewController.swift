@@ -33,7 +33,14 @@ class OrderBookViewController: BaseTableViewController {
             let currect = Double(currectString) else {
                 return false
         }
-        return abs(currect - peerPrice) / peerPrice < max
+        let ret = abs(currect - peerPrice) / peerPrice
+        if ret < max {
+            return true
+        } else if abs(ret - max) < Double.ulpOfOne {
+            return true
+        } else {
+            return false
+        }
     }
 
     let headerCell = HeaderCell()
