@@ -72,8 +72,8 @@ class SpotNavView: UIView {
 
         changeButton.snp.makeConstraints { (m) in
             m.top.bottom.equalToSuperview()
-            m.left.equalTo(tradeLabel)
-            m.right.equalTo(operatorImageView.snp.left)
+            m.left.equalTo(vLine)
+            m.right.equalTo(changeImageView.snp.right)
         }
 
         tradeLabel.snp.makeConstraints { (m) in
@@ -101,6 +101,7 @@ class SpotNavView: UIView {
         changeImageView.snp.makeConstraints { (m) in
             m.centerY.equalTo(tradeLabel)
             m.left.equalTo(vLine.snp.right).offset(7)
+            m.size.equalTo(CGSize(width: 16, height: 16))
         }
 
         favButton.snp.makeConstraints { (m) in
@@ -148,6 +149,7 @@ class SpotNavView: UIView {
         }.disposed(by: rx.disposeBag)
 
         changeButton.rx.tap.bind {
+            UIViewController.current?.view.endEditing(true)
             SeletcMarketPairManager.shared.showCard()
             SeletcMarketPairManager.shared.onSelectInfo = { [weak self] info in
                 self?.switchPair?(info)
