@@ -1906,6 +1906,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 12H
       /// 
       /// Locales: en, zh-Hans
@@ -1926,18 +1930,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageKlineTypeMin1Title = Rswift.StringResource(key: "market.detail.page.kline.type.min1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let grinInitingDetail = Rswift.StringResource(key: "grin.initing.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 24H
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoVolTitle = Rswift.StringResource(key: "market.detail.page.info.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 24小时内不再提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageConfirmTip = Rswift.StringResource(key: "spot.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 30m
       /// 
       /// Locales: en, zh-Hans
@@ -2334,6 +2330,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailBlock = Rswift.StringResource(key: "eth.transaction.detail.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Block Height
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageHeightTitle = Rswift.StringResource(key: "vite.transaction.detail.page.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -2386,6 +2386,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementViteDesc1 = Rswift.StringResource(key: "crosschain.statement.vite.desc1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Call Contract Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallFailed = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Call Contract Succeeded
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Campaign Center
       /// 
       /// Locales: en, zh-Hans
@@ -2538,7 +2546,11 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageRemarkTitle = Rswift.StringResource(key: "send.page.remark.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Computing PoW to Secure Quota for this Transaction…
+      /// en translation: Comment
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Computing PoW to Secure Quota for this Transaction...
       /// 
       /// Locales: en, zh-Hans
       public static let quotaFloatViewTitle = Rswift.StringResource(key: "quota.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2858,7 +2870,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let gatewayInfoDetailPageEmail = Rswift.StringResource(key: "gateway.info.detail.page.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE   
+      /// en translation: Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE   
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitOneday = Rswift.StringResource(key: "exchange.limit.oneday", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -2958,6 +2970,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tradingHomePageSegmentBonus = Rswift.StringResource(key: "trading.home.page.segment.bonus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Do not ask again in 24 hours
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageConfirmTip = Rswift.StringResource(key: "spot.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Don't show me again
       /// 
       /// Locales: en, zh-Hans
@@ -3006,6 +3022,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let manageWalletPageChangeNameLoading = Rswift.StringResource(key: "manage.wallet.page.changeName.loading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Eligible for mining when price is greater than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageBuyMiningTip = Rswift.StringResource(key: "spot.page.buy.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Eligible for mining when price is less than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageSellMiningTip = Rswift.StringResource(key: "spot.page.sell.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Empty
       /// 
       /// Locales: en, zh-Hans
@@ -3802,6 +3826,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketOperator = Rswift.StringResource(key: "market.operator", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Order Cancelled
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowToastCancelOrderSuccess = Rswift.StringResource(key: "workflow.toast.cancel.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Order Placed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let workflowToastPlaceOrderSuccess = Rswift.StringResource(key: "workflow.toast.place.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Order book
       /// 
       /// Locales: en, zh-Hans
@@ -3846,7 +3878,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exportPageAlterTitle = Rswift.StringResource(key: "export.page.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
+      /// en translation: Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaMessage = Rswift.StringResource(key: "workflow.fast.get.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -4198,6 +4230,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailGatewayResend = Rswift.StringResource(key: "grin.detail.gatewayResend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Response
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeReceive = Rswift.StringResource(key: "vite.transaction.detail.page.type.receive", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Restore Account
       /// 
       /// Locales: en, zh-Hans
@@ -4634,7 +4670,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitAlert = Rswift.StringResource(key: "exchange.limit.alert", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
+      /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageAlertMessage = Rswift.StringResource(key: "spot.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -4890,6 +4926,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailSuccess = Rswift.StringResource(key: "eth.transaction.detail.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction Confirmation
       /// 
       /// Locales: en, zh-Hans
@@ -4914,6 +4954,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailHash = Rswift.StringResource(key: "eth.transaction.detail.hash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageHashTitle = Rswift.StringResource(key: "vite.transaction.detail.page.hash.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction History
       /// 
       /// Locales: en, zh-Hans
@@ -4934,6 +4978,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailTxStatus = Rswift.StringResource(key: "grin.detail.txStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeSend = Rswift.StringResource(key: "vite.transaction.detail.page.type.send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Transaction Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeTitle = Rswift.StringResource(key: "vite.transaction.detail.page.type.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.
       /// 
       /// Locales: en, zh-Hans
@@ -5210,6 +5262,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailGoButtonTitle = Rswift.StringResource(key: "eth.transaction.detail.go.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: View More Details on Vite Explorer
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageLinkButtonTitle = Rswift.StringResource(key: "vite.transaction.detail.page.link.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite
       /// 
       /// Locales: en, zh-Hans
@@ -5342,6 +5398,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let votePageVoteStatusVoting = Rswift.StringResource(key: "vote.page.voteStatus.voting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Waiting for Smart Contract Response
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageStateCallWait = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -5598,70 +5658,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 下单成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowToastPlaceOrderSuccess = Rswift.StringResource(key: "workflow.toast.place.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 买入价大于 %@ 时满足挂单挖矿条件
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageBuyMiningTip = Rswift.StringResource(key: "spot.page.buy.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易 hash
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageHashTitle = Rswift.StringResource(key: "vite.transaction.detail.page.hash.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 交易类型
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageTypeTitle = Rswift.StringResource(key: "vite.transaction.detail.page.type.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 到 Vite 浏览器查询更详细信息
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageLinkButtonTitle = Rswift.StringResource(key: "vite.transaction.detail.page.link.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 区块高度
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageHeightTitle = Rswift.StringResource(key: "vite.transaction.detail.page.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 卖出价小于 %@ 时满足挂单挖矿条件
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageSellMiningTip = Rswift.StringResource(key: "spot.page.sell.mining.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 合约调用失败
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageStateCallFailed = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 合约调用成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageStateCallSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 响应
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageTypeReceive = Rswift.StringResource(key: "vite.transaction.detail.page.type.receive", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 备注
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 撤单成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static let workflowToastCancelOrderSuccess = Rswift.StringResource(key: "workflow.toast.cancel.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 等待合约执行
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageStateCallWait = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 请求
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageTypeSend = Rswift.StringResource(key: "vite.transaction.detail.page.type.send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 转账成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageStateSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -5776,6 +5776,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func grinInitingDetail(_: Void = ()) -> String {
+        return NSLocalizedString("grin.initing.detail", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 12H
       /// 
       /// Locales: en, zh-Hans
@@ -5811,25 +5818,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.kline.type.min1.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 1、Initialization is required upon adding GRIN wallet 2、The process is expected to last 15 minutes 3、Do not interrupt or kill the APP during initialization 4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func grinInitingDetail(_: Void = ()) -> String {
-        return NSLocalizedString("grin.initing.detail", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 24H
       /// 
       /// Locales: en, zh-Hans
       public static func marketDetailPageInfoVolTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.info.vol.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 24小时内不再提示
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageConfirmTip(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.confirm.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 30m
@@ -6525,6 +6518,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.transaction.detail.block", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Block Height
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageHeightTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.height.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Built-in contract error, please try again later(-35004)
       /// 
       /// Locales: en, zh-Hans
@@ -6614,6 +6614,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainStatementViteDesc1(_ value1: String, _ value2: String, _ value3: String, _ value4: String) -> String {
         return String(format: NSLocalizedString("crosschain.statement.vite.desc1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
+      }
+      
+      /// en translation: Call Contract Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallFailed(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.failed", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Call Contract Succeeded
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Campaign Center
@@ -6882,7 +6896,14 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("send.page.remark.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Computing PoW to Secure Quota for this Transaction…
+      /// en translation: Comment
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Computing PoW to Secure Quota for this Transaction...
       /// 
       /// Locales: en, zh-Hans
       public static func quotaFloatViewTitle(_: Void = ()) -> String {
@@ -7442,7 +7463,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("gateway.info.detail.page.email", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE   
+      /// en translation: Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE   
       /// 
       /// Locales: en, zh-Hans
       public static func exchangeLimitOneday(_ value1: String, _ value2: String) -> String {
@@ -7617,6 +7638,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("trading.home.page.segment.bonus", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Do not ask again in 24 hours
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.confirm.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Don't show me again
       /// 
       /// Locales: en, zh-Hans
@@ -7699,6 +7727,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func manageWalletPageChangeNameLoading(_: Void = ()) -> String {
         return NSLocalizedString("manage.wallet.page.changeName.loading", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Eligible for mining when price is greater than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageBuyMiningTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.buy.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Eligible for mining when price is less than %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageSellMiningTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.sell.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Empty
@@ -9094,6 +9136,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.operator", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Order Cancelled
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowToastCancelOrderSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.cancel.order.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Order Placed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func workflowToastPlaceOrderSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("workflow.toast.place.order.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Order book
       /// 
       /// Locales: en, zh-Hans
@@ -9171,7 +9227,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("export.page.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
+      /// en translation: Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.
       /// 
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaMessage(_: Void = ()) -> String {
@@ -9785,6 +9841,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinDetailGatewayResend(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.gatewayResend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Response
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeReceive(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.receive", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Restore Account
@@ -10550,7 +10613,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("exchange.limit.alert", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
-      /// en translation: The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
+      /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
       /// 
       /// Locales: en, zh-Hans
       public static func spotPageAlertMessage(_ value1: String) -> String {
@@ -10998,6 +11061,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.transaction.detail.success", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transaction Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction Confirmation
       /// 
       /// Locales: en, zh-Hans
@@ -11040,6 +11110,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.transaction.detail.hash", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Transaction Hash
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageHashTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.hash.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Transaction History
       /// 
       /// Locales: en, zh-Hans
@@ -11073,6 +11150,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinDetailTxStatus(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.txStatus", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transaction Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeSend(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.send", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Transaction Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.
@@ -11558,6 +11649,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.transaction.detail.go.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: View More Details on Vite Explorer
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageLinkButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.link.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Vite
       /// 
       /// Locales: en, zh-Hans
@@ -11787,6 +11885,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func votePageVoteStatusVoting(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteStatus.voting", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Waiting for Smart Contract Response
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageStateCallWait(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Wallet
@@ -12237,116 +12342,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.open.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 下单成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowToastPlaceOrderSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.toast.place.order.success", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: 中
       /// 
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 买入价大于 %@ 时满足挂单挖矿条件
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageBuyMiningTip(_ value1: String) -> String {
-        return String(format: NSLocalizedString("spot.page.buy.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 交易 hash
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageHashTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.hash.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 交易类型
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageTypeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.type.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 到 Vite 浏览器查询更详细信息
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageLinkButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.link.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 区块高度
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageHeightTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.height.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 卖出价小于 %@ 时满足挂单挖矿条件
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageSellMiningTip(_ value1: String) -> String {
-        return String(format: NSLocalizedString("spot.page.sell.mining.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 合约调用失败
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageStateCallFailed(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.state.call.failed", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 合约调用成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageStateCallSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.state.call.success", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 响应
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageTypeReceive(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.type.receive", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 备注
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 撤单成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static func workflowToastCancelOrderSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("workflow.toast.cancel.order.success", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 等待合约执行
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageStateCallWait(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 请求
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageTypeSend(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.type.send", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 转账成功
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageStateSuccess(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.state.success", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

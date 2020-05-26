@@ -212,17 +212,17 @@
 "transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "转账成功";
-"vite.transaction.detail.page.state.call.success" = "合约调用成功";
-"vite.transaction.detail.page.state.call.failed" = "合约调用失败";
-"vite.transaction.detail.page.state.call.wait" = "等待合约执行";
-"vite.transaction.detail.page.type.title" = "交易类型";
-"vite.transaction.detail.page.type.send" = "请求";
-"vite.transaction.detail.page.type.receive" = "响应";
-"vite.transaction.detail.page.hash.title" = "交易 hash";
-"vite.transaction.detail.page.height.title" = "区块高度";
-"vite.transaction.detail.page.note.title" = "备注";
-"vite.transaction.detail.page.link.button.title" = "到 Vite 浏览器查询更详细信息";
+"vite.transaction.detail.page.state.success" = "Transaction Completed";
+"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
+"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
+"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
+"vite.transaction.detail.page.type.title" = "Transaction Type";
+"vite.transaction.detail.page.type.send" = "Transaction Type";
+"vite.transaction.detail.page.type.receive" = "Response";
+"vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.note.title" = "Comment";
+"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
@@ -536,8 +536,8 @@
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
-"workflow.toast.place.order.success" = "下单成功";
-"workflow.toast.cancel.order.success" = "撤单成功";
+"workflow.toast.place.order.success" = "Order Placed";
+"workflow.toast.cancel.order.success" = "Order Cancelled";
 
 "workflow.congestion.without.pow.alert.title" = "Notice";
 "workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
@@ -1112,8 +1112,8 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Spot
-"spot.page.buy.mining.tip" = "买入价大于 %@ 时满足挂单挖矿条件";
-"spot.page.sell.mining.tip" = "卖出价小于 %@ 时满足挂单挖矿条件";
+"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
+"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
 "spot.page.button.buy.title" = "Buy";
 "spot.page.button.sell.title" = "Sell";
 "spot.page.button.limit.buy.title" = "Limit Order";
@@ -1141,7 +1141,7 @@
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
 "spot.page.post.toast.amount.min" = "Total value must be at least %@";
 
-"spot.page.confirm.tip" = "24小时内不再提示";
+"spot.page.confirm.tip" = "Do not ask again in 24 hours";
 
 "spot.page.alert.title" = "Important reminder";
 "spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
