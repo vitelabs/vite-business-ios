@@ -53,16 +53,10 @@ class OrderBookViewController: BaseTableViewController {
         self.info = info
         self.depthList = depthList
 
-        myBuyPriceList = []
-        mySellPriceList = []
+        let (buyPriceList, sellPriceList) = myOrders.toPriceList()
 
-        myOrders.forEach { (order) in
-            if order.side == 0 {
-                myBuyPriceList.append(order.price)
-            } else {
-                mySellPriceList.append(order.price)
-            }
-        }
+        myBuyPriceList = buyPriceList
+        mySellPriceList = sellPriceList
 
         buyIsMiningArray = depthList?.bids.map {
             calcIsMining(max: self.info?.buyRangeMax, peerPriceString: depthList?.asks.first?.price, currectString: $0.price)
@@ -437,3 +431,25 @@ extension OrderBookViewController {
         }
     }
 }
+
+extension Array where Element == MarketOrder {
+
+    func toPriceList() -> ([String], [String]) {
+        var buyPriceList: [String] = []
+        var sellPriceList: [String] = []
+
+        forEach { (order) in
+            if order.side == 0 {
+                buyPriceList.append(order.price)
+            } else {
+                sellPriceList.append(order.price)
+            }
+        }
+
+        return (buyPriceList, sellPriceList)
+    }
+}
+
+
+
+

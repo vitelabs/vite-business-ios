@@ -72,7 +72,8 @@ class SpotDepthView: UIView {
         }
 
         leftLabel.snp.makeConstraints { (m) in
-            m.top.left.equalToSuperview()
+            m.top.equalToSuperview()
+            m.left.equalToSuperview().offset(10)
         }
 
         rightLabel.snp.makeConstraints { (m) in
@@ -127,10 +128,11 @@ class SpotDepthView: UIView {
         }
     }
 
-    func bind(depthList: MarketDepthList?) {
+    func bind(depthList: MarketDepthList?, myOrders: [MarketOrder]) {
 
         let asks = depthList?.asks
         let bids = depthList?.bids
+        let (buyPriceList, sellPriceList) = myOrders.toPriceList()
 
         var sellDepth: [MarketDepthList.Depth?] = []
         var buyDepth: [MarketDepthList.Depth?] = []
@@ -175,11 +177,13 @@ class SpotDepthView: UIView {
         }
 
         for (index, view) in sellItemViews.enumerated() {
-            view.bind(depth: sellDepth[index], vol: sellVol[index])
+            let isSelf = sellDepth[index] == nil ? false : sellPriceList.contains(sellDepth[index]!.price)
+            view.bind(depth: sellDepth[index], vol: sellVol[index], isSelf: isSelf)
         }
 
         for (index, view) in buyItemViews.enumerated() {
-            view.bind(depth: buyDepth[index], vol: buyVol[index])
+            let isSelf = buyDepth[index] == nil ? false : buyPriceList.contains(buyDepth[index]!.price)
+            view.bind(depth: buyDepth[index], vol: buyVol[index], isSelf: isSelf)
         }
 
     }
@@ -192,6 +196,8 @@ class SpotDepthView: UIView {
 extension SpotDepthView {
 
     class ItemView: UIView {
+
+        let flagImageView = UIImageView(image: R.image.icon_market_orderbook_self())
 
         let priceLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -209,26 +215,41 @@ extension SpotDepthView {
             $0.backgroundColor = .clear
         }
 
+        let guide = UILayoutGuide()
+
         init(isBuy: Bool, clicked: @escaping (String, Double?) -> Void) {
             super.init(frame: .zero)
 
+            addSubview(flagImageView)
             addSubview(percentView)
             addSubview(priceLabel)
             addSubview(quantityLabel)
             addSubview(button)
+            addLayoutGuide(guide)
+
+            flagImageView.snp.makeConstraints { (m) in
+                m.centerY.equalToSuperview()
+                m.left.equalToSuperview()
+            }
+
+            guide.snp.makeConstraints { (m) in
+                m.top.bottom.right.equalToSuperview()
+                m.left.equalTo(flagImageView.snp.right).offset(2)
+            }
 
             quantityLabel.snp.makeConstraints { (m) in
                 m.right.centerY.equalToSuperview()
             }
 
             priceLabel.snp.makeConstraints { (m) in
-                m.left.centerY.equalToSuperview()
+                m.centerY.equalToSuperview()
+                m.left.equalTo(guide)
             }
 
             percentView.snp.makeConstraints { (m) in
-                m.top.bottom.right.equalToSuperview()
+                m.top.bottom.right.equalTo(guide)
                 m.height.equalTo(24)
-                m.width.equalToSuperview().multipliedBy(0.5)
+                m.width.equalTo(guide).multipliedBy(0.5)
             }
 
             button.snp.makeConstraints { (m) in
@@ -250,25 +271,27 @@ extension SpotDepthView {
         }
 
         var vol: Double?
-        func bind(depth: MarketDepthList.Depth?, vol: Double?) {
+        func bind(depth: MarketDepthList.Depth?, vol: Double?, isSelf: Bool) {
             self.vol = vol
             if let depth = depth {
+                flagImageView.isHidden = !isSelf
                 quantityLabel.text = depth.quantity
                 priceLabel.text = depth.price
 
                 percentView.snp.remakeConstraints { (m) in
-                    m.top.bottom.right.equalToSuperview()
+                    m.top.bottom.right.equalTo(guide)
                     m.height.equalTo(24)
-                    m.width.equalToSuperview().multipliedBy(depth.percent)
+                    m.width.equalTo(guide).multipliedBy(depth.percent)
                 }
             } else {
+                flagImageView.isHidden = true
                 quantityLabel.text = ""
                 priceLabel.text = ""
 
                 percentView.snp.remakeConstraints { (m) in
-                    m.top.bottom.right.equalToSuperview()
+                    m.top.bottom.right.equalTo(guide)
                     m.height.equalTo(24)
-                    m.width.equalToSuperview().multipliedBy(0)
+                    m.width.equalTo(guide).multipliedBy(0)
                 }
             }
         }

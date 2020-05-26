@@ -18,6 +18,12 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     let marketInfo: MarketInfo
     let address: ViteAddress
 
+    override var items: [MarketOrder] {
+        didSet {
+            orderListBehaviorRelay.accept(items)
+        }
+    }
+
     init(tableView: UITableView, marketInfo: MarketInfo, address: ViteAddress) {
         self.tradeTokenSymbol = marketInfo.statistic.tradeTokenSymbol
         self.quoteTokenSymbol = marketInfo.statistic.quoteTokenSymbol
@@ -63,6 +69,7 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
 
     let depthListBehaviorRelay: BehaviorRelay<MarketDepthList?> = BehaviorRelay(value: nil)
     let spotViewModelBehaviorRelay: BehaviorRelay<SpotViewModel?> = BehaviorRelay(value: nil)
+    let orderListBehaviorRelay: BehaviorRelay<[MarketOrder]> = BehaviorRelay(value: [])
 
     var depthSubId: SubId? = nil
     var orderSubId: SubId? = nil

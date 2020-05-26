@@ -144,11 +144,12 @@ class SpotViewController: BaseTableViewController {
                             }
                         }
                     }).disposed(by: viewModle.rx.disposeBag)
-
-                viewModle.depthListBehaviorRelay.bind { [weak self] in
-                    guard let `self` = self else { return }
-                    self.depthView.bind(depthList: $0)
-                }.disposed(by: viewModle.rx.disposeBag)
+                Driver.combineLatest(
+                    viewModle.depthListBehaviorRelay.asDriver(),
+                    viewModle.orderListBehaviorRelay.asDriver()).drive(onNext: { [weak self] in
+                        guard let `self` = self else { return }
+                        self.depthView.bind(depthList: $0, myOrders: $1)
+                }).disposed(by: viewModle.rx.disposeBag)
 
                 self.viewModle = viewModle
             } else {
@@ -199,7 +200,7 @@ class SpotViewController: BaseTableViewController {
 
         depthView.snp.makeConstraints { (m) in
             m.top.equalTo(navView.snp.bottom).offset(10)
-            m.left.equalTo(view.snp.centerX).offset(12)
+            m.left.equalTo(view.snp.centerX).offset(8)
             m.right.equalToSuperview().offset(-12)
         }
 
@@ -223,17 +224,6 @@ class SpotViewController: BaseTableViewController {
             m.left.right.equalToSuperview()
         }
         return view
-    }
-}
-
-extension SpotViewController {
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return SpotOrderCell()
     }
 }
 
