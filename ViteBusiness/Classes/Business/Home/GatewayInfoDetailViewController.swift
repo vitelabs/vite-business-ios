@@ -51,8 +51,8 @@ class GatewayInfoDetailViewController: BaseTableViewController {
 
         cells.append({
             let cell = InfoTitleValueCell()
-            let text = gatewayInfo.url
-            let url = URL(string: text)
+            let text = gatewayInfo.website ?? "--"
+            let url = gatewayInfo.website == nil ? nil : URL(string: text)
             cell.setTitle(R.string.localizable.gatewayInfoDetailPageWebside(), text: text, url: url)
             return cell
         }())

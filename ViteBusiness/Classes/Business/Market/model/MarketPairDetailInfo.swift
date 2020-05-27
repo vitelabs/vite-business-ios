@@ -68,6 +68,7 @@ extension MarketPairDetailInfo {
             website <- map["website"]
             whitepaper <- map["whitepaper"]
             explorer <- map["explorer"]
+            github <- map["github"]
 
             facebook <- map["facebook"]
             telegram <- map["telegram"]

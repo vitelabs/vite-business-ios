@@ -66,7 +66,7 @@ class TokenInfoDetailViewController: BaseTableViewController {
 
                 cells.append({
                     let cell = InfoTitleValueCell()
-                    let text = detail.total
+                    let text = detail.total ?? "--"
                     cell.setTitle(R.string.localizable.tokenInfoDetailPageTotal(), text: text)
                     return cell
                 }())
@@ -170,7 +170,7 @@ class TokenInfoDetailViewController: BaseTableViewController {
         nav.addSubview(tokenIconView)
         tokenIconView.snp.makeConstraints { (m) in
             m.right.equalToSuperview().offset(-24)
-            m.centerY.equalTo(nav.titleLabel)
+            m.top.equalToSuperview()
             m.size.equalTo(CGSize(width: 50, height: 50))
         }
         tokenIconView.tokenInfo = tokenInfo

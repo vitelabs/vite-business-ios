@@ -21,7 +21,7 @@ struct TokenInfoDetail: Mappable {
     fileprivate(set)  var icon: String = ""
     fileprivate(set)  var id: String = "" // Vite is tokenId, ERC20 is contractAddress, BNB is symbol
     fileprivate(set)  var gatewayInfo: GatewayInfo? = nil
-    fileprivate(set)  var total: String = ""
+    fileprivate(set)  var total: String? = nil
 
     fileprivate(set)  var overview = [String:String]()
     fileprivate(set)  var website: String = ""

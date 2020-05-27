@@ -315,7 +315,7 @@ public struct GatewayInfo: Mappable {
     var name =  ""
     var url = ""
     var icon = ""
-    var website = ""
+    var website: String? = nil
     var overview = [String:String]()
     var policy = [String:String]()
     var support = ""
@@ -337,12 +337,6 @@ public struct GatewayInfo: Mappable {
         guard let mapped = map.JSON["mappedToken"] as? [String: Any], let _ = mapped["tokenCode"] as? String else {
                    return nil
                }
-    }
-
-    init(name: String, url: String, mappedTokenInfo: MappedTokenInfo) {
-        self.name = name
-        self.url = url
-        self.mappedTokenInfo = mappedTokenInfo
     }
 
     public mutating func mapping(map: Map) {
