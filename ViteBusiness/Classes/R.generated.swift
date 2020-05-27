@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 260 images.
+  /// This `R.image` struct is generated, and contains static references to 261 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -436,6 +436,8 @@ public struct R: Rswift.Validatable {
     public static let icon_trading_segment_unselected_fram = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_trading_segment_unselected_fram")
     /// Image `icon_tx_coin`.
     public static let icon_tx_coin = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_coin")
+    /// Image `icon_tx_contract`.
+    public static let icon_tx_contract = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_contract")
     /// Image `icon_tx_pledge`.
     public static let icon_tx_pledge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_pledge")
     /// Image `icon_tx_receive`.
@@ -1584,6 +1586,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tx_coin, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_tx_contract", bundle: ..., traitCollection: ...)`
+    public static func icon_tx_contract(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tx_contract, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_tx_pledge", bundle: ..., traitCollection: ...)`
     public static func icon_tx_pledge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tx_pledge, compatibleWith: traitCollection)
@@ -1844,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 956 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 957 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2386,6 +2393,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementViteDesc1 = Rswift.StringResource(key: "crosschain.statement.vite.desc1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Call
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transactionListTransactionTypeNameContract = Rswift.StringResource(key: "transaction.list.transaction.type.name.contract", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Call Contract Failed
       /// 
       /// Locales: en, zh-Hans
@@ -2542,14 +2553,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let receivePageTokenNoteLabel = Rswift.StringResource(key: "Receive.page.token.note.label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Comment
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageRemarkTitle = Rswift.StringResource(key: "send.page.remark.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Comment
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Computing PoW to Secure Quota for this Transaction...
       /// 
       /// Locales: en, zh-Hans
@@ -3570,6 +3573,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tabbarItemTitleMy = Rswift.StringResource(key: "tabbar.item.title.my", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageRemarkTitle = Rswift.StringResource(key: "send.page.remark.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageNoteTitle = Rswift.StringResource(key: "vite.transaction.detail.page.note.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Mine
       /// 
       /// Locales: en, zh-Hans
@@ -6616,6 +6627,13 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.statement.vite.desc1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4)
       }
       
+      /// en translation: Call
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transactionListTransactionTypeNameContract(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.transaction.type.name.contract", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Call Contract Failed
       /// 
       /// Locales: en, zh-Hans
@@ -6887,20 +6905,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func receivePageTokenNoteLabel(_: Void = ()) -> String {
         return NSLocalizedString("Receive.page.token.note.label", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Comment
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageRemarkTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.remark.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Comment
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Computing PoW to Secure Quota for this Transaction...
@@ -8686,6 +8690,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func tabbarItemTitleMy(_: Void = ()) -> String {
         return NSLocalizedString("tabbar.item.title.my", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageRemarkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.remark.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageNoteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.note.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Mine

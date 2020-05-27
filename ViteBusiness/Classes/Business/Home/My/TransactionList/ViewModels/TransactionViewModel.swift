@@ -64,6 +64,8 @@ final class TransactionViewModel: TransactionViewModelType {
 extension AccountBlock.TransactionType {
     var name: String {
         switch self {
+        case .contract:
+            return R.string.localizable.transactionListTransactionTypeNameContract()
         case .register:
             return R.string.localizable.transactionListTransactionTypeNameRegister()
         case .registerUpdate:
@@ -89,6 +91,8 @@ extension AccountBlock.TransactionType {
 
     var icon: UIImage! {
         switch self {
+        case .contract:
+            return R.image.icon_tx_contract()
         case .register, .registerUpdate, .cancelRegister:
             return R.image.icon_tx_register()
         case .extractReward:

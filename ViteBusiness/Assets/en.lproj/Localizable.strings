@@ -198,6 +198,7 @@
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
 "transaction.list.page.header.refresh.refreshing" = "Loading...";
+"transaction.list.transaction.type.name.contract" = "Call";
 "transaction.list.transaction.type.name.register" = "Registration";
 "transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
 "transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
@@ -221,7 +222,7 @@
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
-"vite.transaction.detail.page.note.title" = "Comment";
+"vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
 
 /* BalanceInfo */
@@ -291,7 +292,7 @@
 "send.page.to.address.title" = "Recipient";
 "send.page.amount.title" = "Amount";
 "send.page.all.button.title" = "All";
-"send.page.remark.title" = "Comment";
+"send.page.remark.title" = "Memo";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
 "send.page.toast.address.error" = "Wrong address, please check the format";

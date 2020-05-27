@@ -200,6 +200,7 @@
 "transaction.list.page.header.refresh.idle" = "下拉刷新";
 "transaction.list.page.header.refresh.pulling" = "松开立即刷新";
 "transaction.list.page.header.refresh.refreshing" = "正在刷新中...";
+"transaction.list.transaction.type.name.contract" = "合约";
 "transaction.list.transaction.type.name.register" = "注册";
 "transaction.list.transaction.type.name.registerUpdate" = "更新注册";
 "transaction.list.transaction.type.name.cancelRegister" = "撤销注册";
@@ -223,7 +224,7 @@
 "vite.transaction.detail.page.type.receive" = "响应";
 "vite.transaction.detail.page.hash.title" = "交易 hash";
 "vite.transaction.detail.page.height.title" = "区块高度";
-"vite.transaction.detail.page.note.title" = "备注";
+"vite.transaction.detail.page.note.title" = "备注（Memo）";
 "vite.transaction.detail.page.link.button.title" = "到 Vite 浏览器查询更详细信息";
 
 /* BalanceInfo */
