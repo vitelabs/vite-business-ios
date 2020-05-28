@@ -42,7 +42,7 @@ class ViteTransactionDetailHolder: TransactionDetailHolder {
             .height(title: R.string.localizable.viteTransactionDetailPageHeightTitle(), text: height),
         ]
 
-        if accountBlock.toAddress!.isDexAddress {
+        if accountBlock.toAddress?.viteAddressType == .contract {
 
             let note: String?
             if let data = accountBlock.data {

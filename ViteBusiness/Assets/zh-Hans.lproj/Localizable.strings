@@ -294,7 +294,7 @@
 "send.page.to.address.title" = "收款地址";
 "send.page.amount.title" = "金额";
 "send.page.all.button.title" = "全部";
-"send.page.remark.title" = "备注";
+"send.page.remark.title" = "备注（Memo）";
 "send.page.send.button.title" = "转账";
 "send.page.amount.toolbar.button.title" = "下一项";
 "send.page.toast.address.error" = "地址输入错误,请检查格式";
