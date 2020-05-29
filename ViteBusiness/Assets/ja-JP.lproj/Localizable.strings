@@ -198,6 +198,7 @@
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
 "transaction.list.page.header.refresh.refreshing" = "Loading...";
+"transaction.list.transaction.type.name.contract" = "Call";
 "transaction.list.transaction.type.name.register" = "Registration";
 "transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
 "transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
@@ -210,6 +211,19 @@
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
+
+/* Transaction Detail */
+"vite.transaction.detail.page.state.success" = "Transaction Completed";
+"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
+"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
+"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
+"vite.transaction.detail.page.type.title" = "Transaction Type";
+"vite.transaction.detail.page.type.send" = "Transaction Type";
+"vite.transaction.detail.page.type.receive" = "Response";
+"vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.note.title" = "Memo";
+"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
@@ -224,6 +238,29 @@
 "balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+
+"gateway.info.detail.page.title" = "Gateway Details";
+"gateway.info.detail.page.name" = "Gateway Name";
+"gateway.info.detail.page.webside" = "Gateway Official Site";
+"gateway.info.detail.page.brief" = "Gateway Introduction";
+"gateway.info.detail.page.email" = "Customer Service";
+"gateway.info.detail.page.agreement" = "Service Terms";
+"gateway.info.detail.page.link" = "Gateway Link";
+
+"token.info.detail.page.title" = "Token Details";
+"token.info.detail.page.name" = "Token Name";
+"token.info.detail.page.id" = "Token ID";
+"token.info.detail.page.brief" = "Introduction";
+"token.info.detail.page.total" = "Total Issuance";
+"token.info.detail.page.type" = "Token Type";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"token.info.detail.page.gateway" = "Cross-Chain gateway";
+"token.info.detail.page.webside" = "Website";
+"token.info.detail.page.paper" = "WhitePaper";
+"token.info.detail.page.browser" = "Explorer";
+"token.info.detail.page.github" = "Github";
+"token.info.detail.page.social" = "Social Media";
 
 /* Address Manage Page */
 "address.manage.page.title" = "My %@ Address";
@@ -255,7 +292,7 @@
 "send.page.to.address.title" = "Recipient";
 "send.page.amount.title" = "Amount";
 "send.page.all.button.title" = "All";
-"send.page.remark.title" = "Comment";
+"send.page.remark.title" = "Memo";
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
 "send.page.toast.address.error" = "Wrong address, please check the format";
@@ -348,7 +385,7 @@
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction…";
+"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
@@ -500,6 +537,8 @@
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
+"workflow.toast.place.order.success" = "Order Placed";
+"workflow.toast.cancel.order.success" = "Order Cancelled";
 
 "workflow.congestion.without.pow.alert.title" = "Notice";
 "workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
@@ -510,7 +549,7 @@
 "workflow.congestion.with.pow.alert.cancel" = "Transact Later";
 
 "workflow.fast.get.quota.title" = "Instantly Getting Quota";
-"workflow.fast.get.quota.message" = "Please confirm that you’d like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
+"workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
 "workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
 "workflow.fast.get.quota.link" = "clicking here";
 
@@ -780,7 +819,7 @@
 "exchange.price" = "Rate: ";
 "exchange.amount" = "Amount: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE；Unused Daily Limit：%@ VITE\n\n\n";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
@@ -1074,6 +1113,8 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Spot
+"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
+"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
 "spot.page.button.buy.title" = "Buy";
 "spot.page.button.sell.title" = "Sell";
 "spot.page.button.limit.buy.title" = "Limit Order";
@@ -1101,8 +1142,10 @@
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
 "spot.page.post.toast.amount.min" = "Total value must be at least %@";
 
+"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+
 "spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@，Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
 "spot.page.alert.ok" = "Confirm";
 
 "spot.page.order.empty" = "No order";
@@ -1114,331 +1157,5 @@
 "spot.page.cell.deal" = "Filled: %@";
 "spot.page.cell.average" = "Avg.: %@";
 
-// DeFi
-"defi.home.page.title" = "DeFi";
-"defi.home.page.borrow.button.title" = "我要借币";
-"defi.home.page.my.defi.button.title" = "我的DeFi";
-"defi.home.page.all.product" = "所有产品";
-"defi.home.page.sort.title" = "请选择排序";
-"defi.home.page.sort.publish.time" = "发布时间倒序";
-"defi.home.page.sort.remain.time" = "剩余认购时间从短到长";
-"defi.home.page.sort.earnings" = "年化收益率从高到底";
-"defi.home.page.sort.borrow.time" = "借款期限从短到长";
-"defi.home.page.sort.progress" = "认购进度从高到低";
-
-"defi.home.page.cell.end.time.format" = "%@天%@";
-"defi.home.page.cell.end.time" = "%@后结束认购";
-"defi.home.page.cell.borrow.time" = "%@天借币期限";
-"defi.home.page.cell.buy.button.title" = "立即抢购";
-
-// My DeFi
-"defi.my.page.title" = "我的DeFi";
-"defi.my.page.my.loan.account.amount" = "基础余额";
-"defi.my.page.my.loan.loan.amount" = "借币余额";
-"defi.my.page.my.loan.button.transfer.title" = "划转";
-"defi.my.page.my.loan.button.bil.title" = "查看流水";
-
-"defi.my.page.my.loan.title" = "我的借币";
-"defi.my.page.my.loan.sort.all" = "全部";
-"defi.my.page.my.loan.sort.on.sale" = "认购中";
-"defi.my.page.my.loan.sort.failed" = "到期未售罄";
-"defi.my.page.my.loan.sort.success" = "成功售罄";
-"defi.my.page.my.loan.sort.cancel" = "已取消";
-"defi.my.page.my.loan.sort.refunding" = "借币到期待还款";
-"defi.my.page.my.loan.sort.refunded" = "借币到期已还款";
-
-"defi.my.page.my.subscribe.issued.earnings" = "已发放收益";
-"defi.my.page.my.subscribe.predict.amount" = "预计总收益";
-"defi.my.page.my.subscribe.subscribe.amount" = "已认购金额";
-"defi.my.page.my.subscribe.earnings.rate" = "我的收益率";
-
-"defi.my.page.my.subscribe.title" = "我的认购";
-"defi.my.page.my.subscribe.sort.all" = "全部";
-"defi.my.page.my.subscribe.sort.on.sale" = "认购中";
-"defi.my.page.my.subscribe.sort.failed" = "到期未售罄";
-"defi.my.page.my.subscribe.sort.success" = "成功售罄";
-"defi.my.page.my.subscribe.sort.cancel" = "已取消";
-
-// My DeFi Loan
-"defi.my.page.my.loan.cell.header.end.time" = "%@后结束认购";
-"defi.my.page.my.loan.cell.header.failed" = "认购期结束";
-"defi.my.page.my.loan.cell.header.success" = "%@售罄";
-"defi.my.page.my.loan.cell.header.cancel" = "已取消";
-
-"defi.my.page.my.loan.cell.title.saled" = "已认购";
-"defi.my.page.my.loan.cell.title.expire.time" = "到期时间";
-"defi.my.page.my.loan.cell.title.rate" = "日利率: %@";
-"defi.my.page.my.loan.cell.title.duration" = "借币期限: %@天";
-"defi.my.page.my.loan.cell.title.used" = "已使用: ";
-"defi.my.page.my.loan.cell.title.remain" = "剩余金额: ";
-
-"defi.my.page.my.loan.cell.button.view.refund" = "查看余额";
-"defi.my.page.my.loan.cell.button.cancel" = "撤销借币";
-"defi.my.page.my.loan.cell.button.use" = "去使用";
-
-"defi.my.page.my.loan.cell.button.cancel.alert.title" = "撤销借币";
-"defi.my.page.my.loan.cell.button.cancel.alert.message" = "正在火热认购中，确定撤销借币吗？";
-"defi.my.page.my.loan.cell.button.cancel.alert.ok" = "确定";
-"defi.my.page.my.loan.cell.button.cancel.alert.cancel" = "暂不撤销";
-"defi.my.page.my.loan.cell.button.cancel.success.toast" = "撤销借币成功";
-
-// My DeFi Subscription
-"defi.my.page.my.subscription.cell.id.title" = "Hash: ";
-"defi.my.page.my.subscription.cell.header.end.time" = "%@后结束认购";
-"defi.my.page.my.subscription.cell.header.failed" = "认购期结束";
-"defi.my.page.my.subscription.cell.header.success" = "%@售罄";
-
-"defi.my.page.my.subscription.cell.title.subscription.amount" = "认购金额";
-"defi.my.page.my.subscription.cell.title.duration" = "借币期限: %@天";
-"defi.my.page.my.subscription.cell.title.year.rate" = "年化收益率: %@";
-"defi.my.page.my.subscription.cell.title.total.earnings" = "预计总收益";
-"defi.my.page.my.subscription.cell.title.saled" = "已认购";
-"defi.my.page.my.subscription.cell.title.remain.amount" = "剩余额度";
-
-"defi.my.page.my.subscription.cell.button.view.earnings" = "查看收益";
-"defi.my.page.my.subscription.cell.button.subscription" = "继续认购";
-"defi.my.page.my.subscription.cell.button.view.refund" = "查看退款";
-
-// DeFi Loan
-"defi.loan.page.title" = "发布借币";
-"defi.loan.page.slogan" = "去中心化智能合约安全保障";
-
-"defi.loan.page.cell.each.amount.placeholder" = "最少%@ %@";
-"defi.loan.page.cell.number.title" = "借币份数";
-"defi.loan.page.cell.number.placeholder" = "请填写借币总份数";
-"defi.loan.page.cell.number.unit" = "份";
-"defi.loan.page.cell.total.amount.title" = "借币总额";
-"defi.loan.page.cell.total.amount.tip" = "借币总额=每份金额*份数";
-"defi.loan.page.cell.rate.title" = "日利率";
-"defi.loan.page.cell.duration.title" = "借币期限";
-"defi.loan.page.cell.duration.approximate" = "约";
-"defi.loan.page.cell.duration.day" = "天";
-"defi.loan.page.cell.duration.block" = "%@个快照块";
-"defi.loan.page.cell.duration.tip" = "借币成功后需手动操作使用借款，请预留操作时间。使用DeFi资产时，注册SBP需要剩余可用时间大于90天；抵押挖矿需要剩余可用时间大于11天，开通交易所SVIP需要剩余可用时间大于90天，获取配额需要剩余可用时间大于3天。需考虑节点丢块造成的时间和快照块之间的误差。";
-"defi.loan.page.cell.subscription.time.title" = "认购期";
-"defi.loan.page.cell.subscription.time.unit" = "天";
-"defi.loan.page.cell.interest.title" = "应冻结利息";
-"defi.loan.page.loan.button.title" = "冻结利息发布借币";
-"defi.loan.page.loan.success.toast" = "发布借币成功";
-
-"defi.loan.page.tip1" = "借币期限以快照块为准。";
-"defi.loan.page.tip2" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.loan.page.tip3" = "尚无认购时，您可以撤销借币。";
-"defi.loan.page.tip4" = "认购期结束后，若未成功售罄，可重新发布借币。";
-
-"defi.loan.page.cell.each.amount.error.empty" = "请输入每份金额";
-"defi.loan.page.cell.each.amount.error.too.small" = "最少 10 Vite";
-"defi.loan.page.cell.each.amount.error.not.enough" = "基础余额不足，无法支付利息";
-
-"defi.loan.page.cell.number.error.empty" = "请输入借币总份数";
-"defi.loan.page.cell.number.error.too.small" = "借币总份数不能为0";
-
-"defi.loan.page.cell.rate.error.empty" = "请输入日利率";
-"defi.loan.page.cell.rate.error.too.small" = "日利率必须大于0%";
-"defi.loan.page.cell.rate.error.too.big" = "日利率必须小于或等于100%";
-
-"defi.loan.page.cell.duration.error.empty" = "请输入借币期限";
-"defi.loan.page.cell.duration.error.too.small" = "借币期限必须大于0";
-
-"defi.loan.page.cell.subscription.time.error.empty" = "请输入认购期";
-"defi.loan.page.cell.subscription.time.error.illegal" = "认购期只能是1-7天";
-
-// DeFi Subscription
-"defi.subscription.page.title" = "我要认购";
-"defi.subscription.page.duration.title" = "借币期限";
-"defi.subscription.page.duration.pre" = "约";
-"defi.subscription.page.duration.suf" = "天";
-"defi.subscription.page.duration.unit" = "%@ %@ %@";
-"defi.subscription.page.duration.block" = "%@个快照块";
-"defi.subscription.page.left.copys.title" = "剩余份数";
-"defi.subscription.page.left.copys.unit" = "份";
-"defi.subscription.page.subscription.copys.title" = "认购份数";
-"defi.subscription.page.subscription.copys.unit" = "份";
-"defi.subscription.page.subscription.amount.title" = "认购金额";
-"defi.subscription.page.earnings.title" = "预计总收益/每日收益";
-"defi.subscription.page.subscription.button.title" = "立即认购";
-"defi.subscription.page.tip1" = "准确的借币期限以快照块高度为准。";
-"defi.subscription.page.tip2" = "认购期结束后，若未成功售罄，会自动返还认购金额。";
-"defi.subscription.page.tip3" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.subscription.page.tip4" = "收益按日发放至DeFi基础余额。";
-
-"defi.subscription.page.cell.copys.error.empty" = "请输入认购份数";
-"defi.subscription.page.cell.copys.error.too.small" = "认购不能为0";
-"defi.subscription.page.cell.copys.error.too.big" = "认购份数不足";
-"defi.subscription.page.cell.amount.error.not.enough" = "基础余额不足";
-"defi.subscription.page.subscription.success.toast" = "认购成功";
-
-// DeFi Loan Detail
-"defi.loan.detail.page.title" = "借币详情";
-
-"defi.loan.detail.page.failed.button.reloan.title" = "重新发布借币";
-"defi.loan.detail.page.failed.button.refunding.title" = "退款中";
-"defi.loan.detail.page.failed.button.view.refund.title" = "查看退款";
-"defi.loan.detail.page.failed.tip1" = "借币期限以快照块高度为准。";
-
-"defi.loan.detail.page.on.sale.button.cancel.title" = "撤销借币";
-"defi.loan.detail.page.on.sale.button.cancel.alert.title" = "撤销借币";
-"defi.loan.detail.page.on.sale.button.cancel.alert.message" = "正在火热认购中，确定撤销借币吗？";
-"defi.loan.detail.page.on.sale.button.cancel.alert.ok" = "确定";
-"defi.loan.detail.page.on.sale.button.cancel.alert.cancel" = "暂不取消";
-"defi.loan.detail.page.on.sale.tip1" = "借币期限以快照块高度为准。";
-"defi.loan.detail.page.on.sale.tip2" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.loan.detail.page.on.sale.tip3" = "尚无认购时，您可以撤销借币。";
-"defi.loan.detail.page.on.sale.tip4" = "认购期结束后，若未成功售罄，可重新发布借币。";
-
-"defi.loan.detail.page.success.button.use.title" = "去使用";
-"defi.loan.detail.page.success.button.view.use.title" = "查看使用记录";
-"defi.loan.detail.page.success.tip1" = "借币期限以快照块高度为准。";
-
-// DeFi item
-"defi.item.id.title" = "产品Hash";
-"defi.item.loan.duration.title" = "借币期限";
-"defi.item.subscription.duration.title" = "认购期限";
-"defi.item.duration.pre" = "约";
-"defi.item.duration.suf" = "天";
-"defi.item.subscription.duration.format" = "%@ %@";
-"defi.item.loan.duration.format" = "%@ %@ %@";
-"defi.item.loan.duration.block" = "%@个快照块";
-"defi.item.year.rate.title" = "年化收益率";
-"defi.item.day.rate.title" = "日利率";
-"defi.item.loan.amount.title" = "借币金额";
-"defi.item.loan.copys.title" = "借币份数";
-"defi.item.each.amount.title" = "每份金额";
-"defi.item.left.copys.title" = "剩余份数";
-"defi.item.subscription.copys.title" = "认购份数";
-"defi.item.copys.unit" = "份";
-"defi.item.subscription.amount.title" = "认购金额";
-
-"defi.item.paid.interest.title" = "已冻结利息";
-"defi.item.paid.interest.invaild.title" = "(已解冻)";
-"defi.item.subscribe.amount.title" = "已认购金额";
-"defi.item.used.amount.title" = "已使用金额";
-"defi.item.can.use.amount.title" = "可用借币余额";
-"defi.item.end.snapshoot.height.title" = "到期快照块高度";
-"defi.item.end.time.title" = "预计到期时间";
-"defi.item.refund.paid.interest.title" = "应退已支付利息";
-"defi.item.publish.time.title" = "发布时间";
-"defi.item.success.time.title" = "售罄时间";
-
-"defi.item.status.on.sale" = "认购中";
-"defi.item.status.failed" = "到期未售罄";
-"defi.item.status.success" = "成功售罄";
-"defi.item.status.cancel" = "已取消";
-
-"defi.card.slogan" = "去中心化智能合约安全保障";
-"defi.card.progress" = "认购进度: ";
-"defi.card.end.time" = "%@天%@后结束认购";
-
-"defi.bill.billTypeTitle.all" = "全部";
-"defi.bill.billTypeTitle.paiedInterest" = "认购成功利息扣款";
-"defi.bill.billTypeTitle.refundOfinterestPaid" = "已付利息退款";
-"defi.bill.billTypeTitle.subscriptionAmount" = "认购金额";
-"defi.bill.billTypeTitle.subscriptionAmountDue" = "认购到期退款";
-"defi.bill.billTypeTitle.subscriptionRevenuee" = "认购收益";
-"defi.bill.billTypeTitle.Refundofsubscriptionamount" = "认购失败退款";
-"defi.bill.billTypeTitle.RegisteredSBP" = "注册SBP";
-"defi.bill.billTypeTitle.RegisterforSBPrefund" = "注册SBP退款";
-"defi.bill.billTypeTitle.OpenSVIPexchange" = "开通交易所SVIP";
-"defi.bill.billTypeTitle.OpenexchangeSVIPrefund" = "开通交易所SVIP退款";
-"defi.bill.billTypeTitle.getquota" = "获取配额";
-"defi.bill.billTypeTitle.quotarefund" = "获取配额退款";
-"defi.bill.billTypeTitle.minning" = "抵押挖矿";
-"defi.bill.billTypeTitle.minningrefund" = "抵押挖矿退款";
-"defi.bill.billTypeTitle.Transferincome" = "划转收入";
-"defi.bill.billTypeTitle.Transferspending" = "划转支出";
-"defi.bill.billTypeTitle.Successborrowmoney" = "成功借币";
-"defi.bill.billTypeTitle.loanisdueforrepayment" = "借币到期还款";
-"defi.bill.billTypeTitle.Subscribefreeze" = "认购冻结";
-"defi.bill.billTypeTitle.Interestonloansisfrozen" = "借币利息冻结";
-"defi.bill.billTypeTitle.thefailedloanisthawedout" = "借币失败利息解冻";
-
-"defi.bill.page.title" = "DeFi账单";
-"defi.bill.page.Basedbalance" = "基础余额";
-"defi.bill.page.UsedBasedbalance" = "已使用基础余额";
-"defi.bill.page.totalamountofborrowedmoney" = "借币总额";
-"defi.bill.page.Borrowmoneybalances" = "借币余额";
-
-"defi.subscription.detail.title" = "认购详情";
-
-"defi.subscription.detail.title" = "认购详情";
-
-"defi.manage.BasedBalanceTitle" = "DeFi基础账户";
-
-"defi.product.detail.title" = "产品详情";
-"defi.product.detail.buy" = "立即抢购";
-"defi.product.detail.desc0" = "准确的借币期限以快照块为准。";
-"defi.product.detail.desc1" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.product.detail.title.count" = "总份数";
-"defi.product.detail.title.borrowdeadline" = "借币期限";
-"defi.product.detail.title.beginTime" = "认购开始时间";
-"defi.product.detail.title.buydeadline" = "认购期限";
-"defi.product.detail.until.day" = "天";
-"defi.product.detail.until.pear" = "份";
-
-
-"defi.use.page.title" = "借币使用记录";
-"defi.use.page.used.basefund.title" = "已使用基础余额：";
-"defi.use.page.used.borrowed.fund.title" = "已使用借币余额：";
-"defi.use.page.deadline.block.height.title" = "到期快照高度：";
-"defi.use.page.useType.title.sbp" = "注册SBP";
-"defi.use.page.gussesed.deadline.time" = "预计到期时间";
-"defi.use.page.qouto.fund" = "抵押余额";
-"defi.use.page.deit" = "编辑";
-"defi.use.page.Revocation.SBP" = "撤销SBP";
-"defi.use.page.SBP.reward" = "请到网页端提取SBP奖励";
-"defi.use.page.view.minning.reward" = "查看收益";
-"defi.use.page.view.stop.minning" = "停止挖矿";
-"defi.use.page.cancle.qouto" = "取回抵押";
-"defi.use.page.get.qouto" = "获取配额";
-"defi.use.page.open.svip" = "开通交易所SVIP";
-"defi.use.page.close.svip" = "撤销交易所SVIP";
-"defi.use.page.regist.sbp" = "注册SBP";
-
-"defi.use.page.edit.sbp.title" = "编辑SBP信息";
-"defi.use.page.edit.sbp.blockProducingAddressTitle" = "出块地址:";
-"defi.use.page.edit.sbp.rewardWithdrawAddressTitle" = "提取奖励地址:";
-"defi.use.page.edit.sbp.confirm" = "确认修改";
-"defi.use.page.edit.sbp.cancle" = "暂不修改";
-"defi.use.page.edit.sbp.cancle.title" = "撤销注册SBP";
-"defi.use.page.edit.can.cancle.Amount" = "可取回抵押金额:";
-"defi.use.page.edit.sbp.cancle.desc" = "撤销后，抵押金额将退回原路；若想成为SBP，您需重新提交注册申请。";
-"defi.use.page.edit.cancle.cancle" = "暂不撤销";
-"defi.use.page.edit.cancle.confirm" = "确认撤销";
-
-"defi.use.page.edit.svip.cancle.title" = "撤销交易所SVIP";
-"defi.use.page.edit.svip.cancle.desc" = "撤销后，将无法享受交易所SVIP特权；抵押金额将退回原路。";
-
-"defi.use.page.edit.quotal.cancle.title" = "取回获取配额抵押";
-"defi.use.page.edit.quotal.cancle.desc" = "取回抵押会影响交易速度；抵押金额将退回原路。确认撤销抵押吗？";
-
-"defi.use.page.edit.minning.cancle.title" = "停止挖矿";
-"defi.use.page.edit.minning.cancle.desc" = "停止挖矿后，需约7天退回抵押金额。停止挖矿将不会再分得VX收益，确定要停止挖矿吗？";
-"defi.use.page.edit.minning.cancle.cancle" = "暂不停止";
-"defi.use.page.edit.minningcancle.confirm" = "确认";
-
-"defi.SubscriptionDetail.SubscriptionAmount" = "认购金额";
-"defi.SubscriptionDetail.TotalAmount" = "借币总金额";
-"defi.SubscriptionDetail.EstimatedTotalRevenuet" = "预计总收益/每日收益";
-"defi.SubscriptionDetail.Rate" = "年化利率";
-"defi.SubscriptionDetail.Paied" = "已发放收益";
-"defi.SubscriptionDetail.AmountShallRefunded" = "应退认购金额";
-"defi.SubscriptionDetail.RemainingUnsold" = "剩余未售出";
-"defi.SubscriptionDetail.Refunding" = "退款中";
-"defi.SubscriptionDetail.remaining.copies" = "剩余份数";
-"defi.SubscriptionDetail.buy" = "继续认购";
-"defi.SubscriptionDetail.onSaleTip1" = "借币期限以快照块高度为准.";
-"defi.SubscriptionDetail.onSaleTip2" = "认购期结束后，若未成功售罄，会自动返还认购金额。";
-"defi.SubscriptionDetail.onSaleTip3" = "认购期内，若成功售罄，自动结束认购，开始计息。";
-"defi.SubscriptionDetail.onSaleTip4" = "收益按日发放至DeFi基础余额。";
-"defi.SubscriptionDetail.success.height" = "售罄快照块高度";
-"defi.SubscriptionDetail.success.time" = "售罄时间";
-"defi.SubscriptionDetail.end.time" = "到期快照块高度";
-"defi.SubscriptionDetail.Estimated.end.time" = "预计到期时间";
-"defi.SubscriptionDetail.Check.the.yield" = "查看收益";
-"defi.SubscriptionDetail.successTip1" = "借币期限和到期时间以快照块高度为准.";
-"defi.SubscriptionDetail.successTip2" = "收益按日发放至DeFi基础余额。";
-"defi.frozened.amount.title" = "已冻结基础余额";
-"defi.detail.Numberofremainingavailableforsubscription" = "剩余可认购份数";
-
 "grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1、Initialization is required upon adding GRIN wallet\n2、The process is expected to last 15 minutes\n3、Do not interrupt or kill the APP during initialization\n4、Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
