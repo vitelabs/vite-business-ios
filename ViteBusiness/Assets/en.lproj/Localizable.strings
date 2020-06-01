@@ -490,7 +490,7 @@
 "eth.transaction.detail.gas" = "Gas Fee";
 "eth.transaction.detail.hash" = "Transaction Hash";
 "eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Note";
+"eth.transaction.detail.note" = "Memo";
 "eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
 
 //token

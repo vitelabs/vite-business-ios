@@ -493,7 +493,7 @@
 "eth.transaction.detail.gas" = "矿工费用";
 "eth.transaction.detail.hash" = "交易号";
 "eth.transaction.detail.block" = "区块";
-"eth.transaction.detail.note" = "备注";
+"eth.transaction.detail.note" = "备注（Memo）";
 "eth.transaction.detail.go.button.title" = "到Etherscan查询更详细信息";
 
 //token
