@@ -787,7 +787,11 @@
 "crosschain.status.gatewayReceived" = "网关已接收";
 "crosschain.status.withdraw.failed" = "转出失败";
 "crosschain.status.failedBecausePoor" = "充值金额过小";
-"crosschain.withdraw.fee.desc" = "此手续费为网关收取。";
+"crosschain.withdraw.amount.limit.title" = "提现金额限制";
+"crosschain.withdraw.amount.limit.min" = "单笔提现最小金额: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "单笔提现最大金额: %@ %@";
+"crosschain.withdraw.fee.desc" = "提现手续费由网关手续收取";
+"crosschain.withdraw.fee.desc2" = "单笔提现手续费为: ";
 "crosschain.withdraw.aboutfee" = "关于手续费";
 "crosschain.status.failed" = "充值失败";
 "crosschain.beta.alert" = "当前网关为beta版，请不要充值大额资产";

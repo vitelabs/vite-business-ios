@@ -74,7 +74,26 @@ class GatewayWithdrawViewController: BaseViewController {
         labelView.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
     }
 
-    lazy var amountView = EthViteExchangeAmountView().then { amountView in
+    lazy var amountView = EthViteExchangeAmountView(tipButtonClicked: { [weak self] in
+        guard let `self` = self else { return }
+        guard let symbol = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
+
+        let info = self.withDrawInfo
+
+        guard !info.minimumWithdrawAmount.isEmpty, !info.maximumWithdrawAmount.isEmpty,
+            let min = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals),
+            let max = Amount(info.maximumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals) else {
+                return
+        }
+
+        let message = "\(R.string.localizable.crosschainWithdrawAmountLimitMin(min, symbol))\n\(R.string.localizable.crosschainWithdrawAmountLimitMax(max, symbol))"
+
+
+        Alert.show(title: R.string.localizable.crosschainWithdrawAmountLimitTitle(), message: message, actions: [
+        (.default(title: R.string.localizable.confirm()), nil),
+        ])
+
+    }).then { amountView in
         amountView.textField.keyboardType = .decimalPad
         amountView.symbolLabel.text = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
@@ -221,7 +240,13 @@ class GatewayWithdrawViewController: BaseViewController {
         }
 
         feeView.tipButton.rx.tap.bind { [weak self] in
-            Alert.show(title: R.string.localizable.crosschainWithdrawAboutfee(), message: R.string.localizable.crosschainWithdrawFeeDesc(), actions: [
+            var message = R.string.localizable.crosschainWithdrawFeeDesc()
+            if let amount = self?.feeView.contentLabel.text, amount != "--", let symbol = self?.feeView.symbolLabel.text {
+                message.append(contentsOf: "\n")
+                message.append(contentsOf: R.string.localizable.crosschainWithdrawFeeDesc2())
+                message.append(contentsOf: "\(amount) \(symbol)")
+            }
+            Alert.show(title: R.string.localizable.crosschainWithdrawAboutfee(), message: message, actions: [
                 (.default(title: R.string.localizable.confirm()), nil),
                 ])
         }
@@ -235,21 +260,15 @@ class GatewayWithdrawViewController: BaseViewController {
 
 
         amountView.textField.rx.text
-            .throttle(0.5, scheduler: MainScheduler.instance).bind { [weak self] text in
+            .debounce(0.5, scheduler: MainScheduler.instance).bind { [weak self] text in
                 guard let `self` = self else { return }
 
                 guard let viteAddress = HDWalletManager.instance.account?.address else {
                     return
                 }
-                guard let text = text, !text.isEmpty else {
-                    self.feeView.contentLabel.text = nil
+                guard let text = text, !text.isEmpty, let amount = text.toAmount(decimals: self.viteChainTokenDecimals) else {
+                    self.feeView.contentLabel.text = "--"
                     return
-                }
-
-                guard let amountString = self.amountView.textField.text, !amountString.isEmpty,
-                    let amount = amountString.toAmount(decimals: self.viteChainTokenDecimals) else {
-                        Toast.show(R.string.localizable.sendPageToastAmountEmpty())
-                        return
                 }
 
                 let amountStr = amount.amountFull(decimals: 0)
@@ -258,6 +277,7 @@ class GatewayWithdrawViewController: BaseViewController {
                     guard let `self` = self else { return }
                     self.feeView.contentLabel.text = Amount(fee)?.amountShort(decimals: self.viteChainTokenDecimals)
                 }.catch({ (error) in
+                    self.feeView.contentLabel.text = "--"
                     Toast.show(error.localizedDescription)
                 })
         }

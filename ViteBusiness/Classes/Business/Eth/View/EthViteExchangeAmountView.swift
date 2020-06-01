@@ -44,9 +44,15 @@ class EthViteExchangeAmountView: UIView {
         $0.backgroundColor = Colors.lineGray
     }
 
-    init() {
-        super.init(frame: CGRect.zero)
+    let tipButton = UIButton().then {
+        $0.setImage(R.image.icon_button_infor(), for: .normal)
+    }
 
+    let tipButtonClicked: (() -> Void)?
+
+    init(tipButtonClicked: (() -> Void)? = nil) {
+        self.tipButtonClicked = tipButtonClicked
+        super.init(frame: CGRect.zero)
         titleLabel.text = R.string.localizable.ethViteExchangePageAmountTitle()
 
         addSubview(titleLabel)
@@ -85,6 +91,18 @@ class EthViteExchangeAmountView: UIView {
             m.left.equalTo(textField.snp.right).offset(10)
             m.right.equalTo(self)
             m.centerY.equalTo(textField)
+        }
+
+        if tipButtonClicked != nil {
+            addSubview(tipButton)
+            tipButton.snp.makeConstraints { (m) in
+                m.centerY.equalTo(titleLabel)
+                m.left.equalTo(titleLabel.snp.right).offset(6)
+            }
+
+            tipButton.rx.tap.bind { [weak self] in
+                self?.tipButtonClicked?()
+            }.disposed(by: rx.disposeBag)
         }
     }
 

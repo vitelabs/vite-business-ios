@@ -1851,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 957 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 961 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3576,6 +3576,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Memo
       /// 
       /// Locales: en, zh-Hans
+      public static let ethTransactionDetailNote = Rswift.StringResource(key: "eth.transaction.detail.note", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
       public static let sendPageRemarkTitle = Rswift.StringResource(key: "send.page.remark.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Memo
       /// 
@@ -3753,10 +3757,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let peldgeCancelPledgeAgentErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.agent.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Note
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailNote = Rswift.StringResource(key: "eth.transaction.detail.note", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, zh-Hans
@@ -4749,10 +4749,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicAffirmAlterTitle = Rswift.StringResource(key: "mnemonic.affirm.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: This fee is charged by the gateway.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: This is your first VITE address
       /// 
       /// Locales: en, zh-Hans
@@ -5673,6 +5669,26 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 单笔提现手续费为: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawFeeDesc2 = Rswift.StringResource(key: "crosschain.withdraw.fee.desc2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 单笔提现最大金额: %@ %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawAmountLimitMax = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.max", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 单笔提现最小金额: %@ %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawAmountLimitMin = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现手续费由网关手续收取
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现金额限制
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainWithdrawAmountLimitTitle = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -8695,6 +8711,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Memo
       /// 
       /// Locales: en, zh-Hans
+      public static func ethTransactionDetailNote(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.note", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Memo
+      /// 
+      /// Locales: en, zh-Hans
       public static func sendPageRemarkTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.remark.title", bundle: R.hostingBundle, comment: "")
       }
@@ -9005,13 +9028,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func peldgeCancelPledgeAgentErrorToast(_: Void = ()) -> String {
         return NSLocalizedString("peldge.cancel.pledge.agent.error.toast", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Note
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailNote(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.note", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Notice
@@ -10750,13 +10766,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.affirm.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: This fee is charged by the gateway.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainWithdrawFeeDesc(_: Void = ()) -> String {
-        return NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: This is your first VITE address
       /// 
       /// Locales: en, zh-Hans
@@ -12365,6 +12374,41 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 单笔提现手续费为: 
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawFeeDesc2(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.fee.desc2", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 单笔提现最大金额: %@ %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawAmountLimitMax(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.withdraw.amount.limit.max", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: 单笔提现最小金额: %@ %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawAmountLimitMin(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.withdraw.amount.limit.min", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: 提现手续费由网关手续收取
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawFeeDesc(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提现金额限制
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainWithdrawAmountLimitTitle(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.withdraw.amount.limit.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

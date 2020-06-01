@@ -783,7 +783,11 @@
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
 "crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.fee.desc" = "This fee is charged by the gateway.";
+"crosschain.withdraw.amount.limit.title" = "提现金额限制";
+"crosschain.withdraw.amount.limit.min" = "单笔提现最小金额: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "单笔提现最大金额: %@ %@";
+"crosschain.withdraw.fee.desc" = "提现手续费由网关手续收取";
+"crosschain.withdraw.fee.desc2" = "单笔提现手续费为: ";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
