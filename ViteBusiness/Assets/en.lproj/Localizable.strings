@@ -1116,6 +1116,22 @@
 "trading.home.page.segment.mining" = "Mining";
 "trading.home.page.segment.bonus" = "Dividend";
 
+// Mining Home
+"mining.page.segment.trading" = "交易挖矿";
+"mining.page.segment.staking" = "抵押挖矿";
+"mining.page.segment.invite" = "邀请挖矿";
+"mining.page.segment.making" = "挂单挖矿";
+
+"mining.trading.page.header.total.earnings" = "交易挖矿总收益";
+"mining.trading.page.header.total.earnings.alert.title" = "说明";
+"mining.trading.page.header.total.earnings.alert.message" = "当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费";
+"mining.trading.page.header.total.real.time" = "实时挖矿数据";
+
+"mining.trading.page.header.fee" = "手续费";
+"mining.trading.page.header.expect" = "预计今日可挖";
+"mining.trading.page.list.title" = "挖矿明细";
+"mining.trading.page.cell.fee" = "手续费金额";
+
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
 "spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";

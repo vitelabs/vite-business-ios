@@ -18,6 +18,9 @@ class TradingHomeViewController: BaseViewController {
     let spotVC = SpotViewController(symbol: "VITE_BTC-000")
     #endif
 
+    let miningVC = MiningViewController()
+    let dividendsVC = DividendsViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -40,24 +43,46 @@ class TradingHomeViewController: BaseViewController {
         }
 
         containerView.addSubview(spotVC.view)
+        containerView.addSubview(miningVC.view)
+        containerView.addSubview(dividendsVC.view)
         spotVC.view.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
+        miningVC.view.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
+        dividendsVC.view.snp.makeConstraints { (m) in
+            m.edges.equalToSuperview()
+        }
         addChild(spotVC)
+        addChild(miningVC)
+        addChild(dividendsVC)
         spotVC.didMove(toParent: self)
+        miningVC.didMove(toParent: self)
+        dividendsVC.didMove(toParent: self)
+
+        self.spotVC.view.isHidden = false
+        self.miningVC.view.isHidden = true
+        self.dividendsVC.view.isHidden = true
     }
 
     func bind() {
-        segmentView.changed = { index in
+        segmentView.changed = { [weak self] index in
+            guard let `self` = self else { return }
             plog(level: .debug, log: index)
-            if index == 1 {
-                WebHandler.openMarketMining()
-            } else if index == 2 {
-                WebHandler.openMarketDividend()
-            }
 
-            DispatchQueue.main.async {
-                self.segmentView.index = 0
+            if index == 1 {
+                self.spotVC.view.isHidden = true
+                self.miningVC.view.isHidden = false
+                self.dividendsVC.view.isHidden = true
+            } else if index == 2 {
+                self.spotVC.view.isHidden = true
+                self.miningVC.view.isHidden = true
+                self.dividendsVC.view.isHidden = false
+            } else {
+                self.spotVC.view.isHidden = false
+                self.miningVC.view.isHidden = true
+                self.dividendsVC.view.isHidden = true
             }
         }
     }

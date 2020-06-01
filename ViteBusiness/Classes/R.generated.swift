@@ -1851,7 +1851,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 961 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 973 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5669,6 +5669,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningPageSegmentTrading = Rswift.StringResource(key: "mining.page.segment.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易挖矿总收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.trading.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 单笔提现手续费为: 
       /// 
       /// Locales: en, zh-Hans
@@ -5681,6 +5689,34 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawAmountLimitMin = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 实时挖矿数据
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderTotalRealTime = Rswift.StringResource(key: "mining.trading.page.header.total.real.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderTotalEarningsAlertMessage = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 手续费
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderFee = Rswift.StringResource(key: "mining.trading.page.header.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 手续费金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageCellFee = Rswift.StringResource(key: "mining.trading.page.cell.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningPageSegmentStaking = Rswift.StringResource(key: "mining.page.segment.staking", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 挂单挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningPageSegmentMaking = Rswift.StringResource(key: "mining.page.segment.making", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageListTitle = Rswift.StringResource(key: "mining.trading.page.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 提现手续费由网关手续收取
       /// 
       /// Locales: en, zh-Hans
@@ -5689,6 +5725,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawAmountLimitTitle = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 说明
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderTotalEarningsAlertTitle = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningPageSegmentInvite = Rswift.StringResource(key: "mining.page.segment.invite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 预计今日可挖
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderExpect = Rswift.StringResource(key: "mining.trading.page.header.expect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -12376,6 +12424,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningPageSegmentTrading(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.trading", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易挖矿总收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderTotalEarnings(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 单笔提现手续费为: 
       /// 
       /// Locales: en, zh-Hans
@@ -12397,6 +12459,55 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.withdraw.amount.limit.min", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
+      /// en translation: 实时挖矿数据
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderTotalRealTime(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.total.real.time", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderTotalEarningsAlertMessage(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.total.earnings.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 手续费
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderFee(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 手续费金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageCellFee(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.cell.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningPageSegmentStaking(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.staking", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 挂单挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningPageSegmentMaking(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.making", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageListTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.list.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 提现手续费由网关手续收取
       /// 
       /// Locales: en, zh-Hans
@@ -12409,6 +12520,27 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainWithdrawAmountLimitTitle(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.withdraw.amount.limit.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 说明
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderTotalEarningsAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.total.earnings.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningPageSegmentInvite(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.invite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 预计今日可挖
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderExpect(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.expect", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币
