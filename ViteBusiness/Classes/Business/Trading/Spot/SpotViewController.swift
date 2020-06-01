@@ -125,7 +125,7 @@ class SpotViewController: BaseTableViewController {
                                 let peerPrice = Double(peerPriceString),
                                 let max = info.buyRangeMax {
                                 var price = peerPrice - max * peerPrice
-                                price = price - (0.5 / pow(10, Double(info.statistic.pricePrecision)))
+                                price = price - (0.51 / pow(10, Double(info.statistic.pricePrecision)))
                                 let text = String(format: "%0.\(info.statistic.pricePrecision)f", price)
                                 self.bubbleView.textLabel.text = R.string.localizable.spotPageBuyMiningTip(text)
                             } else {
@@ -136,7 +136,7 @@ class SpotViewController: BaseTableViewController {
                                 let peerPrice = Double(peerPriceString),
                                 let max = info.sellRangeMax {
                                 var price = peerPrice + max * peerPrice
-                                price = price + (0.5 / pow(10, Double(info.statistic.pricePrecision)))
+                                price = price + (0.51 / pow(10, Double(info.statistic.pricePrecision)))
                                 let text = String(format: "%0.\(info.statistic.pricePrecision)f", price)
                                 self.bubbleView.textLabel.text = R.string.localizable.spotPageSellMiningTip((text))
                             } else {
