@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 261 images.
+  /// This `R.image` struct is generated, and contains static references to 267 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -330,6 +330,18 @@ public struct R: Rswift.Validatable {
     public static let icon_market_un_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_un_fav")
     /// Image `icon_market_up`.
     public static let icon_market_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_up")
+    /// Image `icon_mining_trading_btc`.
+    public static let icon_mining_trading_btc = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_btc")
+    /// Image `icon_mining_trading_eth`.
+    public static let icon_mining_trading_eth = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_eth")
+    /// Image `icon_mining_trading_infor`.
+    public static let icon_mining_trading_infor = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_infor")
+    /// Image `icon_mining_trading_right_white`.
+    public static let icon_mining_trading_right_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_right_white")
+    /// Image `icon_mining_trading_usdt`.
+    public static let icon_mining_trading_usdt = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_usdt")
+    /// Image `icon_mining_trading_vite`.
+    public static let icon_mining_trading_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_vite")
     /// Image `icon_mnemonic`.
     public static let icon_mnemonic = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mnemonic")
     /// Image `icon_my_home_forum`.
@@ -1321,6 +1333,36 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_market_up, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_mining_trading_btc", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_btc(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_btc, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_trading_eth", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_eth(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_eth, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_trading_infor", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_infor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_infor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_trading_right_white", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_right_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_right_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_trading_usdt", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_usdt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_usdt, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_trading_vite", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_trading_vite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_trading_vite, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_mnemonic", bundle: ..., traitCollection: ...)`
     public static func icon_mnemonic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_mnemonic, compatibleWith: traitCollection)
@@ -1851,7 +1893,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 973 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 974 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5677,6 +5719,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningTradingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.trading.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 今日挖矿预估
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningTradingPageHeaderTitle = Rswift.StringResource(key: "mining.trading.page.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 单笔提现手续费为: 
       /// 
       /// Locales: en, zh-Hans
@@ -12436,6 +12482,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func miningTradingPageHeaderTotalEarnings(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 今日挖矿预估
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningTradingPageHeaderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 单笔提现手续费为: 

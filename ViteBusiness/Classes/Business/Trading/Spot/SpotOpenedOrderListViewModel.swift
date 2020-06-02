@@ -121,7 +121,7 @@ extension SpotOpenedOrderListViewModel {
                  when(fulfilled:
                       ViteNode.dex.info.getDexVIPState(address: address),
                       ViteNode.dex.info.getDexSuperVIPState(address: address),
-                      ViteNode.dex.info.getDexMarketInfoRequest(tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId),
+                      ViteNode.dex.info.getDexMarketInfo(tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId),
                       ViteNode.dex.info.getDexInviteCodeBinding(address: address)
                 )
             )

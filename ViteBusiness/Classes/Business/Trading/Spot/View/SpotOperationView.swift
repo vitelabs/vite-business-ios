@@ -569,12 +569,12 @@ class SpotOperationView: UIView {
 
     func getDexVipPledge() ->Promise<Pledge?> {
         let address = HDWalletManager.instance.account!.address
-        return ViteNode.dex.info.getDexVIPStakeInfoListRequest(address: address, index: 0, count: 100)
+        return ViteNode.dex.info.getDexVIPStakeInfoList(address: address, index: 0, count: 100)
             .then { pledgeDetail -> Promise<Pledge?> in
                 for pledge in pledgeDetail.list where pledge.bid == 2 {
                     return Promise.value(pledge)
                 }
-                return ViteNode.dex.info.getDexVIPStakeInfoListRequest(address: address, index: 0, count: Int(pledgeDetail.totalCount))
+                return ViteNode.dex.info.getDexVIPStakeInfoList(address: address, index: 0, count: Int(pledgeDetail.totalCount))
                     .then { pledgeDetail -> Promise<Pledge?> in
                         for pledge in pledgeDetail.list where pledge.bid == 2 {
                             return Promise.value(pledge)

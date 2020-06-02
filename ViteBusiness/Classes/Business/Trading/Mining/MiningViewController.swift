@@ -54,7 +54,7 @@ class MiningViewController: BaseViewController {
     fileprivate func setupView() {
 
         let hLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xe5e5ea)
+            $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
         }
 
         view.addSubview(manager.titleView)

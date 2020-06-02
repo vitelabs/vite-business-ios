@@ -1128,6 +1128,7 @@
 "mining.trading.page.header.total.real.time" = "实时挖矿数据";
 
 "mining.trading.page.header.fee" = "手续费";
+"mining.trading.page.header.title" = "今日挖矿预估";
 "mining.trading.page.header.expect" = "预计今日可挖";
 "mining.trading.page.list.title" = "挖矿明细";
 "mining.trading.page.cell.fee" = "手续费金额";
