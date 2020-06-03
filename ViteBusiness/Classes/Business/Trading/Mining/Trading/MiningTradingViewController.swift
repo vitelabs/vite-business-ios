@@ -30,7 +30,7 @@ class MiningTradingViewController: BaseTableViewController {
                 let vm = MiningTradingListViewModel(tableView: self.tableView, address: address)
                 vm.totalViewModelBehaviorRelay.bind { [weak self] in
                     guard let `self` = self else { return }
-                    self.totalView.bind(total: $0)
+                    self.totalView.valueLabel.text = $0 ?? "--.--"
                 }.disposed(by: vm.rx.disposeBag)
                 vm.miningTradingViewModelBehaviorRelay.bind { [weak self] in
                     guard let `self` = self else { return }
@@ -38,14 +38,20 @@ class MiningTradingViewController: BaseTableViewController {
                 }.disposed(by: vm.rx.disposeBag)
                 self.viewModle = vm
             } else {
-                self.totalView.bind(total: nil)
+                self.totalView.valueLabel.text = "--.--"
                 self.detailView.bind(vm: nil)
                 self.viewModle = nil
             }
         }).disposed(by: rx.disposeBag)
     }
 
-    let totalView = TotalView()
+    let totalView = MiningColorfulView(leftText: R.string.localizable.miningTradingPageHeaderTotalEarnings(), leftClicked: {
+        Alert.show(title: R.string.localizable.miningTradingPageHeaderTotalEarningsAlertTitle(), message: R.string.localizable.miningTradingPageHeaderTotalEarningsAlertMessage(), actions: [
+        (.default(title: R.string.localizable.confirm()), nil)
+        ])
+    }, rightText: R.string.localizable.miningTradingPageHeaderTotalRealTime()) {
+        WebHandler.openViteXHomePage()
+    }
     let detailView = DetailView()
     let listHeaderView = ListHeaderView()
 
@@ -57,7 +63,7 @@ class MiningTradingViewController: BaseTableViewController {
             $0.spacing = 0
         }
         var height: CGFloat = 20
-        height += TotalView.height
+        height += MiningColorfulView.height
         height += 6
         height += DetailView.height
         height += ListHeaderView.height
@@ -75,88 +81,6 @@ class MiningTradingViewController: BaseTableViewController {
 }
 
 extension MiningTradingViewController {
-    class TotalView: UIView {
-
-        static let height: CGFloat = 78
-
-        let totalButton = UIButton().then {
-            $0.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .normal)
-            $0.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
-            $0.setImage(R.image.icon_mining_trading_infor(), for: .normal)
-            $0.setImage(R.image.icon_mining_trading_infor()?.highlighted, for: .highlighted)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.titleLabel?.adjustsFontSizeToFitWidth = true
-            $0.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
-            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(R.string.localizable.miningTradingPageHeaderTotalEarnings(), for: .normal)
-        }
-
-        let dataButton = UIButton().then {
-            $0.setTitleColor(UIColor.white, for: .normal)
-            $0.setTitleColor(UIColor.white.highlighted, for: .highlighted)
-            $0.setImage(R.image.icon_mining_trading_right_white(), for: .normal)
-            $0.setImage(R.image.icon_mining_trading_right_white()?.highlighted, for: .highlighted)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.titleLabel?.adjustsFontSizeToFitWidth = true
-            $0.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
-            $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: -2)
-            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 2)
-            $0.setTitle(R.string.localizable.miningTradingPageHeaderTotalRealTime(), for: .normal)
-        }
-
-        let earningsLabel = UILabel().then {
-            $0.textColor = .white
-            $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-            $0.numberOfLines = 1
-            $0.text = "--.--"
-        }
-
-
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-
-            layer.masksToBounds = true
-            layer.cornerRadius = 2
-            backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 24, height: type(of: self).height), colors: TokenInfo.BuildIn.vite.value.coinBackgroundGradientColors)
-
-            addSubview(totalButton)
-            addSubview(dataButton)
-            addSubview(earningsLabel)
-
-            totalButton.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(12)
-                m.left.equalToSuperview().offset(12)
-            }
-
-            dataButton.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(12)
-                m.right.equalToSuperview().offset(-12)
-            }
-
-            earningsLabel.snp.makeConstraints { (m) in
-                m.top.equalTo(totalButton.snp.bottom).offset(10)
-                m.left.right.equalToSuperview().inset(12)
-            }
-
-            snp.makeConstraints { (m) in
-                m.height.equalTo(type(of: self).height)
-            }
-
-        }
-
-        func bind(total: String?) {
-            earningsLabel.text = total ?? "--.--"
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-    }
 
     class DetailView: UIView {
 

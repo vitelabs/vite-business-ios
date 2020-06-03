@@ -32,6 +32,11 @@ public struct WebHandler {
         return url
     }
 
+    static func openViteXHomePage() {
+        let url = appendLanguagePath(urlString: "https://vitex.net")
+        NavigatorManager.instance.route(url: URL(string: url)!)
+    }
+
     static func openMarketMining() {
         var url = ViteConst.instance.market.baseWebUrl + "#/mining?activeTab=mining&hideSelectTab=true"
         url = url  + "&address=" + (HDWalletManager.instance.account?.address ?? "")
