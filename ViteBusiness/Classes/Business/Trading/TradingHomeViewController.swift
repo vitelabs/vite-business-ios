@@ -18,8 +18,8 @@ class TradingHomeViewController: BaseViewController {
     let spotVC = SpotViewController(symbol: "VITE_BTC-000")
     #endif
 
-    let miningVC = MiningViewController()
-    let dividendsVC = DividendsViewController()
+//    let miningVC = MiningViewController()
+//    let dividendsVC = DividendsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,49 +43,87 @@ class TradingHomeViewController: BaseViewController {
         }
 
         containerView.addSubview(spotVC.view)
-        containerView.addSubview(miningVC.view)
-        containerView.addSubview(dividendsVC.view)
         spotVC.view.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
-        miningVC.view.snp.makeConstraints { (m) in
-            m.edges.equalToSuperview()
-        }
-        dividendsVC.view.snp.makeConstraints { (m) in
-            m.edges.equalToSuperview()
-        }
         addChild(spotVC)
-        addChild(miningVC)
-        addChild(dividendsVC)
         spotVC.didMove(toParent: self)
-        miningVC.didMove(toParent: self)
-        dividendsVC.didMove(toParent: self)
-
-        self.spotVC.view.isHidden = false
-        self.miningVC.view.isHidden = true
-        self.dividendsVC.view.isHidden = true
     }
 
     func bind() {
-        segmentView.changed = { [weak self] index in
-            guard let `self` = self else { return }
+        segmentView.changed = { index in
             plog(level: .debug, log: index)
-
             if index == 1 {
-                self.spotVC.view.isHidden = true
-                self.miningVC.view.isHidden = false
-                self.dividendsVC.view.isHidden = true
+                WebHandler.openMarketMining()
             } else if index == 2 {
-                self.spotVC.view.isHidden = true
-                self.miningVC.view.isHidden = true
-                self.dividendsVC.view.isHidden = false
-            } else {
-                self.spotVC.view.isHidden = false
-                self.miningVC.view.isHidden = true
-                self.dividendsVC.view.isHidden = true
+                WebHandler.openMarketDividend()
+            }
+
+            DispatchQueue.main.async {
+                self.segmentView.index = 0
             }
         }
     }
+
+//    func setupView() {
+//        view.addSubview(segmentView)
+//        view.addSubview(containerView)
+//
+//        segmentView.snp.makeConstraints { (m) in
+//            m.top.equalTo(view.safeAreaLayoutGuideSnpTop)
+//            m.left.right.equalToSuperview()
+//        }
+//
+//        containerView.snp.makeConstraints { (m) in
+//            m.top.equalTo(segmentView.snp.bottom)
+//            m.left.right.equalToSuperview()
+//            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+//        }
+//
+//        containerView.addSubview(spotVC.view)
+//        containerView.addSubview(miningVC.view)
+//        containerView.addSubview(dividendsVC.view)
+//        spotVC.view.snp.makeConstraints { (m) in
+//            m.edges.equalToSuperview()
+//        }
+//        miningVC.view.snp.makeConstraints { (m) in
+//            m.edges.equalToSuperview()
+//        }
+//        dividendsVC.view.snp.makeConstraints { (m) in
+//            m.edges.equalToSuperview()
+//        }
+//        addChild(spotVC)
+//        addChild(miningVC)
+//        addChild(dividendsVC)
+//        spotVC.didMove(toParent: self)
+//        miningVC.didMove(toParent: self)
+//        dividendsVC.didMove(toParent: self)
+//
+//        self.spotVC.view.isHidden = false
+//        self.miningVC.view.isHidden = true
+//        self.dividendsVC.view.isHidden = true
+//    }
+//
+//    func bind() {
+//        segmentView.changed = { [weak self] index in
+//            guard let `self` = self else { return }
+//            plog(level: .debug, log: index)
+//
+//            if index == 1 {
+//                self.spotVC.view.isHidden = true
+//                self.miningVC.view.isHidden = false
+//                self.dividendsVC.view.isHidden = true
+//            } else if index == 2 {
+//                self.spotVC.view.isHidden = true
+//                self.miningVC.view.isHidden = true
+//                self.dividendsVC.view.isHidden = false
+//            } else {
+//                self.spotVC.view.isHidden = false
+//                self.miningVC.view.isHidden = true
+//                self.dividendsVC.view.isHidden = true
+//            }
+//        }
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
