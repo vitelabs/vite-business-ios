@@ -39,3 +39,21 @@ struct MiningTradeDetail : Mappable {
         }
     }
 }
+
+extension String {
+    func tryToTruncationDigits(_ digits: Int) -> String {
+        if let num = Double(self) {
+            return String(format: "%.\(digits)f", num)
+        } else {
+            return self
+        }
+    }
+
+    func tryToTruncation6Digits() -> String {
+        return tryToTruncationDigits(6)
+    }
+
+    func tryToTruncation8Digits() -> String {
+        return tryToTruncationDigits(8)
+    }
+}

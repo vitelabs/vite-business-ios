@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 267 images.
+  /// This `R.image` struct is generated, and contains static references to 269 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -330,6 +330,10 @@ public struct R: Rswift.Validatable {
     public static let icon_market_un_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_un_fav")
     /// Image `icon_market_up`.
     public static let icon_market_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_up")
+    /// Image `icon_mining_staking_add_bg`.
+    public static let icon_mining_staking_add_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_staking_add_bg")
+    /// Image `icon_mining_staking_list_bg`.
+    public static let icon_mining_staking_list_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_staking_list_bg")
     /// Image `icon_mining_trading_btc`.
     public static let icon_mining_trading_btc = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_trading_btc")
     /// Image `icon_mining_trading_eth`.
@@ -1333,6 +1337,16 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_market_up, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_mining_staking_add_bg", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_staking_add_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_staking_add_bg, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_mining_staking_list_bg", bundle: ..., traitCollection: ...)`
+    public static func icon_mining_staking_list_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_mining_staking_list_bg, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_mining_trading_btc", bundle: ..., traitCollection: ...)`
     public static func icon_mining_trading_btc(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_mining_trading_btc, compatibleWith: traitCollection)
@@ -1893,7 +1907,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 974 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 987 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5711,6 +5725,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmAvailableTitle = Rswift.StringResource(key: "mining.staking.page.confirm.available.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易挖矿
       /// 
       /// Locales: en, zh-Hans
@@ -5735,14 +5753,26 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawAmountLimitMin = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageDetailListButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.list.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 增加
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageDetailAddButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.add.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 实时挖矿数据
       /// 
       /// Locales: en, zh-Hans
-      public static let miningTradingPageHeaderTotalRealTime = Rswift.StringResource(key: "mining.trading.page.header.total.real.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let miningPageHeaderTotalRealTime = Rswift.StringResource(key: "mining.page.header.total.real.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费
       /// 
       /// Locales: en, zh-Hans
       public static let miningTradingPageHeaderTotalEarningsAlertMessage = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageDetailTitle = Rswift.StringResource(key: "mining.staking.page.detail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 手续费
       /// 
       /// Locales: en, zh-Hans
@@ -5751,10 +5781,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningTradingPageCellFee = Rswift.StringResource(key: "mining.trading.page.cell.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押VITE挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmTitle = Rswift.StringResource(key: "mining.staking.page.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 抵押挖矿
       /// 
       /// Locales: en, zh-Hans
       public static let miningPageSegmentStaking = Rswift.StringResource(key: "mining.page.segment.staking", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押挖矿总收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.staking.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageCellAmount = Rswift.StringResource(key: "mining.staking.page.cell.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmAmountTitle = Rswift.StringResource(key: "mining.staking.page.confirm.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageDetailAmountTitle = Rswift.StringResource(key: "mining.staking.page.detail.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 挂单挖矿
       /// 
       /// Locales: en, zh-Hans
@@ -5762,7 +5812,15 @@ public struct R: Rswift.Validatable {
       /// en translation: 挖矿明细
       /// 
       /// Locales: en, zh-Hans
-      public static let miningTradingPageListTitle = Rswift.StringResource(key: "mining.trading.page.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let miningPageListTitle = Rswift.StringResource(key: "mining.page.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提交抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmButtonTitle = Rswift.StringResource(key: "mining.staking.page.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账。
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmTip = Rswift.StringResource(key: "mining.staking.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 提现手续费由网关手续收取
       /// 
       /// Locales: en, zh-Hans
@@ -5771,10 +5829,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainWithdrawAmountLimitTitle = Rswift.StringResource(key: "crosschain.withdraw.amount.limit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁中的金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageDetailUnlockingTitle = Rswift.StringResource(key: "mining.staking.page.detail.unlocking.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 说明
       /// 
       /// Locales: en, zh-Hans
       public static let miningTradingPageHeaderTotalEarningsAlertTitle = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入抵押金额，最少134VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageConfirmAmountPlaceholder = Rswift.StringResource(key: "mining.staking.page.confirm.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 邀请挖矿
       /// 
       /// Locales: en, zh-Hans
@@ -12470,6 +12536,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmAvailableTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.available.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易挖矿
       /// 
       /// Locales: en, zh-Hans
@@ -12512,11 +12585,25 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.withdraw.amount.limit.min", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageDetailListButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.list.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 增加
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageDetailAddButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.add.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 实时挖矿数据
       /// 
       /// Locales: en, zh-Hans
-      public static func miningTradingPageHeaderTotalRealTime(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.header.total.real.time", bundle: R.hostingBundle, comment: "")
+      public static func miningPageHeaderTotalRealTime(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.header.total.real.time", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费
@@ -12524,6 +12611,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func miningTradingPageHeaderTotalEarningsAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我的抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageDetailTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 手续费
@@ -12540,11 +12634,46 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.trading.page.cell.fee", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 抵押VITE挖矿
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 抵押挖矿
       /// 
       /// Locales: en, zh-Hans
       public static func miningPageSegmentStaking(_: Void = ()) -> String {
         return NSLocalizedString("mining.page.segment.staking", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押挖矿总收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageHeaderTotalEarnings(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageCellAmount(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.cell.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageDetailAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 挂单挖矿
@@ -12557,8 +12686,22 @@ public struct R: Rswift.Validatable {
       /// en translation: 挖矿明细
       /// 
       /// Locales: en, zh-Hans
-      public static func miningTradingPageListTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.list.title", bundle: R.hostingBundle, comment: "")
+      public static func miningPageListTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.list.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提交抵押
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账。
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.tip", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 提现手续费由网关手续收取
@@ -12575,11 +12718,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.withdraw.amount.limit.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 解锁中的金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageDetailUnlockingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.unlocking.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 说明
       /// 
       /// Locales: en, zh-Hans
       public static func miningTradingPageHeaderTotalEarningsAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入抵押金额，最少134VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageConfirmAmountPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.amount.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 邀请挖矿

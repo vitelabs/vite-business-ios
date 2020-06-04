@@ -23,33 +23,11 @@ class MiningTradingViewController: BaseTableViewController {
         tableView.tableHeaderView = makeHeaderView()
     }
 
-    func bind() {
-        HDWalletManager.instance.accountDriver.drive(onNext: {[weak self] (account) in
-            guard let `self` = self else { return }
-            if let address = account?.address {
-                let vm = MiningTradingListViewModel(tableView: self.tableView, address: address)
-                vm.totalViewModelBehaviorRelay.bind { [weak self] in
-                    guard let `self` = self else { return }
-                    self.totalView.valueLabel.text = $0 ?? "--.--"
-                }.disposed(by: vm.rx.disposeBag)
-                vm.miningTradingViewModelBehaviorRelay.bind { [weak self] in
-                    guard let `self` = self else { return }
-                    self.detailView.bind(vm: $0)
-                }.disposed(by: vm.rx.disposeBag)
-                self.viewModle = vm
-            } else {
-                self.totalView.valueLabel.text = "--.--"
-                self.detailView.bind(vm: nil)
-                self.viewModle = nil
-            }
-        }).disposed(by: rx.disposeBag)
-    }
-
     let totalView = MiningColorfulView(leftText: R.string.localizable.miningTradingPageHeaderTotalEarnings(), leftClicked: {
         Alert.show(title: R.string.localizable.miningTradingPageHeaderTotalEarningsAlertTitle(), message: R.string.localizable.miningTradingPageHeaderTotalEarningsAlertMessage(), actions: [
         (.default(title: R.string.localizable.confirm()), nil)
         ])
-    }, rightText: R.string.localizable.miningTradingPageHeaderTotalRealTime()) {
+    }, rightText: R.string.localizable.miningPageHeaderTotalRealTime()) {
         WebHandler.openViteXHomePage()
     }
     let detailView = DetailView()
@@ -78,6 +56,27 @@ class MiningTradingViewController: BaseTableViewController {
         return view
     }
 
+    func bind() {
+        HDWalletManager.instance.accountDriver.drive(onNext: {[weak self] (account) in
+            guard let `self` = self else { return }
+            if let address = account?.address {
+                let vm = MiningTradingListViewModel(tableView: self.tableView, address: "vite_836ba5e4d3f75b013bf33f1a19fafdcacc59eb8eb6e66d2b24")
+                vm.totalViewModelBehaviorRelay.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.totalView.valueLabel.text = $0 ?? "--.--"
+                }.disposed(by: vm.rx.disposeBag)
+                vm.miningTradingViewModelBehaviorRelay.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.detailView.bind(vm: $0)
+                }.disposed(by: vm.rx.disposeBag)
+                self.viewModle = vm
+            } else {
+                self.totalView.valueLabel.text = "--.--"
+                self.detailView.bind(vm: nil)
+                self.viewModle = nil
+            }
+        }).disposed(by: rx.disposeBag)
+    }
 }
 
 extension MiningTradingViewController {
@@ -288,7 +287,7 @@ extension MiningTradingViewController {
         let titleLabel = UILabel().then {
             $0.textColor = UIColor(netHex: 0x3E4A59)
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-            $0.text = R.string.localizable.miningTradingPageListTitle()
+            $0.text = R.string.localizable.miningPageListTitle()
         }
 
         override init(frame: CGRect) {
@@ -307,85 +306,6 @@ extension MiningTradingViewController {
 
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
-        }
-    }
-
-    class ItemCell: BaseTableViewCell {
-        static let cellHeight: CGFloat = 70
-
-        let feeLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-        }
-
-        let earningsLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-            $0.textColor = UIColor(netHex: 0x24272B)
-        }
-
-        let symbolLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-        }
-
-        let timeLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-        }
-
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-
-            selectionStyle = .none
-
-            contentView.addSubview(feeLabel)
-            contentView.addSubview(earningsLabel)
-            contentView.addSubview(symbolLabel)
-            contentView.addSubview(timeLabel)
-
-            let hLine = UIView().then {
-                $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
-            }
-
-            addSubview(hLine)
-
-            feeLabel.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(12)
-                m.left.equalToSuperview().offset(12)
-            }
-
-            earningsLabel.snp.makeConstraints { (m) in
-                m.centerY.equalTo(feeLabel)
-            }
-
-            symbolLabel.snp.makeConstraints { (m) in
-                m.centerY.equalTo(feeLabel)
-                m.left.equalTo(earningsLabel.snp.right).offset(6)
-                m.right.equalToSuperview().offset(-12)
-            }
-
-            timeLabel.snp.makeConstraints { (m) in
-                m.bottom.equalToSuperview().offset(-12)
-                m.left.equalToSuperview().offset(12)
-            }
-
-            hLine.snp.makeConstraints { (m) in
-                m.height.equalTo(CGFloat.singleLineWidth)
-                m.bottom.equalToSuperview()
-                m.left.right.equalToSuperview().inset(12)
-            }
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        func bind(_ item: MiningTradeDetail.Trade) {
-            feeLabel.text = "\(R.string.localizable.miningTradingPageHeaderTitle()) \(item.feeAmount) \(item.miningToken)"
-            earningsLabel.text = item.miningAmount
-            symbolLabel.text = "VX"
-            timeLabel.text = Date(timeIntervalSince1970: TimeInterval(item.date)).format()
         }
     }
 }

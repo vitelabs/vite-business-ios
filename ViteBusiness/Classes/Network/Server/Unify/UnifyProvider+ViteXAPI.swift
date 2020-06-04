@@ -167,4 +167,16 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+
+    static func getMiningTradePledge(address: ViteAddress, offset: Int, limit: Int) -> Promise<MiningPledgeDetail> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getMiningPledge(address: address, offset: offset, limit: limit), responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            guard let ret = MiningPledgeDetail(JSONString: string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
 }
+

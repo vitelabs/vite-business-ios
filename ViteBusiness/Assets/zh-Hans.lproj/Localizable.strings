@@ -1132,16 +1132,34 @@
 "mining.page.segment.invite" = "邀请挖矿";
 "mining.page.segment.making" = "挂单挖矿";
 
+"mining.page.header.total.real.time" = "实时挖矿数据";
+"mining.page.list.title" = "挖矿明细";
+
 "mining.trading.page.header.total.earnings" = "交易挖矿总收益";
 "mining.trading.page.header.total.earnings.alert.title" = "说明";
 "mining.trading.page.header.total.earnings.alert.message" = "当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费";
-"mining.trading.page.header.total.real.time" = "实时挖矿数据";
+
 
 "mining.trading.page.header.fee" = "手续费";
 "mining.trading.page.header.title" = "今日挖矿预估";
 "mining.trading.page.header.expect" = "预计今日可挖";
-"mining.trading.page.list.title" = "挖矿明细";
+
 "mining.trading.page.cell.fee" = "手续费金额";
+
+"mining.staking.page.header.total.earnings" = "抵押挖矿总收益";
+"mining.staking.page.detail.title" = "我的抵押";
+"mining.staking.page.detail.amount.title" = "抵押金额";
+"mining.staking.page.detail.unlocking.title" = "解锁中的金额";
+"mining.staking.page.detail.add.button.title" = "增加";
+"mining.staking.page.detail.list.button.title" = "取回列表";
+"mining.staking.page.cell.amount" = "抵押金额";
+
+"mining.staking.page.confirm.title" = "抵押VITE挖矿";
+"mining.staking.page.confirm.available.title" = "交易所可用余额";
+"mining.staking.page.confirm.amount.title" = "抵押金额";
+"mining.staking.page.confirm.amount.placeholder" = "请输入抵押金额，最少134VITE";
+"mining.staking.page.confirm.tip" = "提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账。";
+"mining.staking.page.confirm.button.title" = "提交抵押";
 
 // Spot
 "spot.page.buy.mining.tip" = "买入价大于 %@ 时满足挂单挖矿条件";

@@ -29,7 +29,7 @@ class MiningTradingListViewModel: ListViewModel<MiningTradeDetail.Trade> {
         return UnifyProvider.vitex.getMiningTradeDetail(address: address, offset: 0, limit: type(of: self).limit)
             .map { [weak self] in
 
-                self?.totalViewModelBehaviorRelay.accept($0.miningTotal)
+                self?.totalViewModelBehaviorRelay.accept($0.miningTotal.tryToTruncation6Digits())
                 return (items: $0.list, hasMore: $0.list.count >= MiningTradingListViewModel.limit)
 
         }
@@ -45,12 +45,17 @@ class MiningTradingListViewModel: ListViewModel<MiningTradeDetail.Trade> {
     }
 
     override func cellHeight(model: MiningTradeDetail.Trade) -> CGFloat {
-        return MiningTradingViewController.ItemCell.cellHeight
+        return MiningItemCell.cellHeight
     }
 
     override func cellFor(model: MiningTradeDetail.Trade, indexPath: IndexPath) -> UITableViewCell {
-        let cell: MiningTradingViewController.ItemCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(model)
+        let cell: MiningItemCell = tableView.dequeueReusableCell(for: indexPath)
+        let vm = MiningItemCellViewModel(
+            left: "\(R.string.localizable.miningTradingPageHeaderTitle()) \(model.feeAmount.tryToTruncation8Digits()) \(model.miningToken)",
+            earnings: model.miningAmount.tryToTruncation6Digits(),
+            symbol: "VX",
+            date: model.date)
+        cell.bind(vm)
         return cell
     }
 
@@ -61,7 +66,7 @@ class MiningTradingListViewModel: ListViewModel<MiningTradeDetail.Trade> {
 
 extension MiningTradingListViewModel {
     func fetch() {
-        ViteNode.dex.info.getDexTradingMiningInfo(address: address)
+        ViteNode.dex.info.getDexMiningTradingInfo(address: address)
             .done { [weak self] (miningInfo, tradingMiningFeeInfo, addressFeeInfo) in
             self?.miningTradingViewModelBehaviorRelay.accept(MiningTradingViewModel(miningInfo: miningInfo, tradingMiningFeeInfo: tradingMiningFeeInfo, addressFeeInfo: addressFeeInfo))
         }.catch { (error) in
