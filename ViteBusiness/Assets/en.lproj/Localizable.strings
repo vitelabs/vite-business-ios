@@ -783,11 +783,11 @@
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
 "crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.amount.limit.title" = "提现金额限制";
-"crosschain.withdraw.amount.limit.min" = "单笔提现最小金额: %@ %@";
-"crosschain.withdraw.amount.limit.max" = "单笔提现最大金额: %@ %@";
-"crosschain.withdraw.fee.desc" = "提现手续费由网关手续收取";
-"crosschain.withdraw.fee.desc2" = "单笔提现手续费为: ";
+"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
+"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
+"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
@@ -1117,39 +1117,39 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
-"mining.page.segment.trading" = "交易挖矿";
-"mining.page.segment.staking" = "抵押挖矿";
-"mining.page.segment.invite" = "邀请挖矿";
-"mining.page.segment.making" = "挂单挖矿";
+"mining.page.segment.trading" = "xxxxx";
+"mining.page.segment.staking" = "xxxxx";
+"mining.page.segment.invite" = "xxxxx";
+"mining.page.segment.making" = "xxxxx";
 
-"mining.page.header.total.real.time" = "实时挖矿数据";
-"mining.page.list.title" = "挖矿明细";
+"mining.page.header.total.real.time" = "xxxxx";
+"mining.page.list.title" = "xxxxx";
 
-"mining.trading.page.header.total.earnings" = "交易挖矿总收益";
-"mining.trading.page.header.total.earnings.alert.title" = "说明";
-"mining.trading.page.header.total.earnings.alert.message" = "当前页面展示的手续费花销仅为平台基础手续费0.2%，实际估算挖矿成本时请注意不同交易对的运营手续费";
+"mining.trading.page.header.total.earnings" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
 
 
-"mining.trading.page.header.fee" = "手续费";
-"mining.trading.page.header.title" = "今日挖矿预估";
-"mining.trading.page.header.expect" = "预计今日可挖";
+"mining.trading.page.header.fee" = "xxxxx";
+"mining.trading.page.header.title" = "xxxxx";
+"mining.trading.page.header.expect" = "xxxxx";
 
-"mining.trading.page.cell.fee" = "手续费金额";
+"mining.trading.page.cell.fee" = "xxxxx";
 
-"mining.staking.page.header.total.earnings" = "抵押挖矿总收益";
-"mining.staking.page.detail.title" = "我的抵押";
-"mining.staking.page.detail.amount.title" = "抵押金额";
-"mining.staking.page.detail.unlocking.title" = "解锁中的金额";
-"mining.staking.page.detail.add.button.title" = "增加";
-"mining.staking.page.detail.list.button.title" = "取回列表";
-"mining.staking.page.cell.amount" = "抵押金额";
+"mining.staking.page.header.total.earnings" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxxx";
+"mining.staking.page.detail.amount.title" = "xxxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.add.button.title" = "xxxxx";
+"mining.staking.page.detail.list.button.title" = "xxxxx";
+"mining.staking.page.cell.amount" = "xxxxx";
 
-"mining.staking.page.confirm.title" = "抵押VITE挖矿";
-"mining.staking.page.confirm.available.title" = "交易所可用余额";
-"mining.staking.page.confirm.amount.title" = "抵押金额";
-"mining.staking.page.confirm.amount.placeholder" = "请输入抵押金额，最少134VITE";
-"mining.staking.page.confirm.tip" = "提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账。";
-"mining.staking.page.confirm.button.title" = "提交抵押";
+"mining.staking.page.confirm.title" = "xxxxx";
+"mining.staking.page.confirm.available.title" = "xxxxx";
+"mining.staking.page.confirm.amount.title" = "xxxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
+"mining.staking.page.confirm.tip" = "xxxxx";
+"mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
