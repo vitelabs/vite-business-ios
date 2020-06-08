@@ -68,7 +68,7 @@ class MarketTokenInfoViewController: BaseTableViewController {
                 let cell = TitleCell()
                 let gatewayName = info.gateway?.name ?? "--"
                 let gatewayUrlString = info.gateway?.website
-                let gatewayUrl = gatewayUrlString.map { URL(string: $0)! }
+                let gatewayUrl = gatewayUrlString.flatMap { URL(string: $0) }
                 cell.setTitle(R.string.localizable.marketDetailPageTokenInfoGateway(), text: gatewayName, url: gatewayUrl)
                 return cell
                 }())
@@ -76,7 +76,7 @@ class MarketTokenInfoViewController: BaseTableViewController {
             cells.append({
             let cell = TitleCell()
                 let urlString = info.links.website.first
-                let url = urlString.map { URL(string: $0)! }
+                let url = urlString.flatMap { URL(string: $0) }
             cell.setTitle(R.string.localizable.marketDetailPageTokenInfoOfficial(), text: urlString ?? "--", url: url)
             return cell
             }())
@@ -84,7 +84,7 @@ class MarketTokenInfoViewController: BaseTableViewController {
             cells.append({
             let cell = TitleCell()
                 let urlString = info.links.whitepaper.first
-                let url = urlString.map { URL(string: $0)! }
+                let url = urlString.flatMap { URL(string: $0) }
             cell.setTitle(R.string.localizable.marketDetailPageTokenInfoPaper(), text: urlString ?? "--", url: url)
             return cell
             }())
@@ -93,7 +93,7 @@ class MarketTokenInfoViewController: BaseTableViewController {
                 cells.append(contentsOf: info.links.explorer.map {
                     let cell = TitleCell()
                     let urlString = $0
-                    let url = URL(string: urlString)!
+                    let url = URL(string: urlString)
                     cell.setTitle(R.string.localizable.marketDetailPageTokenInfoBrowser(), text: urlString ?? "--", url: url)
                     return cell
                 })
@@ -102,7 +102,7 @@ class MarketTokenInfoViewController: BaseTableViewController {
             cells.append({
                 let cell = TitleCell()
                 let urlString = info.links.github.first
-                let url = urlString.map { URL(string: $0)! }
+                let url = urlString.flatMap { URL(string: $0) }
                 cell.setTitle(R.string.localizable.marketDetailPageTokenInfoGithub(), text: urlString ?? "--", url: url)
                 return cell
                 }())

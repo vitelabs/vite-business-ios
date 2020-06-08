@@ -82,7 +82,7 @@ class TokenInfoDetailViewController: BaseTableViewController {
                     let cell = InfoTitleValueCell()
                     let gatewayName = detail.gatewayInfo?.name ?? "--"
                     let gatewayUrlString = detail.gatewayInfo?.website
-                    let gatewayUrl = gatewayUrlString.map { URL(string: $0)! }
+                    let gatewayUrl = gatewayUrlString.flatMap { URL(string: $0) }
                     cell.setTitle(R.string.localizable.tokenInfoDetailPageGateway(), text: gatewayName, url: gatewayUrl)
                     return cell
                 }())
