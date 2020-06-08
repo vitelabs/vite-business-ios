@@ -220,7 +220,12 @@ class MarketDetailViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.tokenInfoVC.bind(info: $0)
                 self.operatorInfoVC.bind(info: $0)
-                self.navView.setOpertionIcon($0?.operatorInfo.icon)
+                if let detail = $0 {
+                    self.navView.setOpertionIcon(detail.operatorInfo?.icon)
+                } else {
+                    self.navView.clearOpertionIcon()
+                }
+
             }.disposed(by: holder.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
 

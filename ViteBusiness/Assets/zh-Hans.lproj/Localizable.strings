@@ -1118,6 +1118,7 @@
 "market.detail.page.token.info.social" = "社交媒体";
 "market.detail.page.token.info.brief" = "代币简介";
 
+"market.detail.page.token.info.anonymous" = "匿名运营商";
 "market.detail.page.token.info.address" = "运营商地址";
 "market.detail.page.token.info.pair" = "交易对";
 

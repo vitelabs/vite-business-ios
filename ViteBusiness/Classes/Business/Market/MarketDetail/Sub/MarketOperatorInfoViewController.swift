@@ -34,45 +34,57 @@ class MarketOperatorInfoViewController: BaseTableViewController {
     var info: MarketPairDetailInfo? = nil {
         didSet {
             guard oldValue?.tradeTokenDetail.tokenId != info?.tradeTokenDetail.tokenId else { return }
-            guard let info = info?.operatorInfo else { return }
+
             var cells: [BaseTableViewCell] = []
 
-            cells.append({
-                let cell = IconCell()
-                cell.setImageURL(URL(string: info.icon), name: info.name)
-                return cell
-                }())
-            cells.append({
-                let cell = MarketTokenInfoViewController.TitleCell()
-                cell.setTitle(R.string.localizable.marketDetailPageTokenInfoAddress(), text: info.address)
-            return cell
-            }())
+            if let info = info {
 
-            cells.append({
-                let cell = MarketTokenInfoViewController.BriefCell()
-                cell.setText(info.overview.value)
-            return cell
-            }())
+                if let operatorInfo = info.operatorInfo {
+                    cells.append({
+                        let cell = IconCell()
+                        cell.setImageURL(operatorInfo.icon.flatMap { URL(string: $0) }, name: operatorInfo.name ?? "--")
+                        return cell
+                        }())
+                    cells.append({
+                        let cell = MarketTokenInfoViewController.TitleCell()
+                        cell.setTitle(R.string.localizable.marketDetailPageTokenInfoAddress(), text: operatorInfo.address ?? "--")
+                    return cell
+                    }())
 
-            cells.append({
-                let cell = PairCell()
-                cell.setText(info.tradePairsArray, clicked: { [weak self] in
-                    guard let block = self?.switchPair else { return }
-                    guard let info = MarketInfoService.shared.marketInfo(symbol: $0) else { return }
-                    block(info)
-                })
-            return cell
-            }())
+                    cells.append({
+                        let cell = MarketTokenInfoViewController.BriefCell()
+                        cell.setText(operatorInfo.overview.value)
+                    return cell
+                    }())
+
+                    cells.append({
+                        let cell = PairCell()
+                        cell.setText(operatorInfo.tradePairsArray, clicked: { [weak self] in
+                            guard let block = self?.switchPair else { return }
+                            guard let info = MarketInfoService.shared.marketInfo(symbol: $0) else { return }
+                            block(info)
+                        })
+                    return cell
+                    }())
+
+
+                } else {
+                    cells.append({
+                        let cell = IconCell()
+                        cell.setImage(R.image.icon_market_anonymous(), name: R.string.localizable.marketDetailPageTokenInfoAnonymous())
+                        return cell
+                    }())
+                }
+            }
 
             cells.forEach { (cell) in
                 cell.contentView.backgroundColor = UIColor(netHex: 0x3E4A59, alpha: 0.02)
             }
-            
+
             self.cells = cells
         }
     }
     func bind(info: MarketPairDetailInfo?) {
-        guard info?.operatorInfo.name != self.info?.operatorInfo.name else { return }
         self.info = info
         tableView.reloadData()
     }
@@ -131,11 +143,18 @@ extension MarketOperatorInfoViewController {
             }
         }
 
-        func setImageURL(_ url: URL?, name: String) {
+        func setImageURL(_ url: URL?, name: String?) {
             iconView.kf.cancelDownloadTask()
             iconView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
             nameLabel.text = name
         }
+
+        func setImage(_ image: UIImage?, name: String) {
+            iconView.kf.cancelDownloadTask()
+            iconView.image = image
+            nameLabel.text = name
+        }
+
 
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")

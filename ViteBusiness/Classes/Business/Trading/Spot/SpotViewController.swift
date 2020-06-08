@@ -112,7 +112,11 @@ class SpotViewController: BaseTableViewController {
                 let viewModle = SpotOpenedOrderListViewModel(tableView: self.tableView, marketInfo: info, address: address)
                 viewModle.spotViewModelBehaviorRelay.bind { [weak self] in
                     guard let `self` = self else { return }
-                    self.navView.setOpertionIcon($0?.operatorInfoIconUrlString)
+                    if let vm = $0 {
+                        self.navView.setOpertionIcon(vm.operatorInfoIconUrlString)
+                    } else {
+                        self.navView.clearOpertionIcon()
+                    }
                     self.operationView.bind(spotViewModel: $0)
                 }.disposed(by: viewModle.rx.disposeBag)
 

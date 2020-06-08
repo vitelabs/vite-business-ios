@@ -10,7 +10,7 @@ import ObjectMapper
 struct MarketPairDetailInfo : Mappable {
     var tradeTokenDetail : TokenDetail = TokenDetail()
     var quoteTokenDetail : TokenDetail = TokenDetail()
-    var operatorInfo : OperatorInfo = OperatorInfo()
+    var operatorInfo : OperatorInfo? = nil
 
     init?(map: Map) {
 
@@ -118,14 +118,14 @@ extension MarketPairDetailInfo {
     }
 
     struct OperatorInfo : Mappable {
-        var address : String = ""
-        var name : String = ""
-        var icon : String = ""
+        var address : String?
+        var name : String?
+        var icon : String?
         var overview : Overview = Overview()
         var links : Links = Links()
         var tradePairs : [String: [String]] = [:]
-        var support : String = ""
-        var gateway : String = ""
+        var support : String?
+        var gateway : String?
         var level : Int = 0
 
         var tradePairsArray: [String] {

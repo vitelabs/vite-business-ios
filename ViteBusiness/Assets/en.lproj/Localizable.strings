@@ -1108,6 +1108,7 @@
 "market.detail.page.token.info.social" = "Social Media";
 "market.detail.page.token.info.brief" = "Introduction";
 
+"market.detail.page.token.info.anonymous" = "Anonymous";
 "market.detail.page.token.info.address" = "Operator address";
 "market.detail.page.token.info.pair" = "Trading pair";
 

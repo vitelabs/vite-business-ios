@@ -169,7 +169,14 @@ class SpotNavView: UIView {
         operatorImageView.kf.cancelDownloadTask()
         if let urlString = urlString, let url = URL(string: urlString) {
             operatorImageView.kf.setImage(with: url, placeholder: UIImage.color(UIColor(netHex: 0xF8F8F8)))
+        } else {
+            operatorImageView.image = R.image.icon_market_anonymous()
         }
+    }
+
+    func clearOpertionIcon() {
+        operatorImageView.kf.cancelDownloadTask()
+        operatorImageView.image = nil
     }
 
     func bind(marketInfo: MarketInfo?) {

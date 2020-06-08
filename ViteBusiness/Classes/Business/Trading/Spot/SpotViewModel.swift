@@ -18,6 +18,6 @@ struct SpotViewModel {
     let dexMarketInfo: DexMarketInfo
     let invited: Bool
 
-    var operatorInfoIconUrlString: String { marketPairDetailInfo.operatorInfo.icon }
-    var level: Int { marketPairDetailInfo.operatorInfo.level}
+    var operatorInfoIconUrlString: String? { marketPairDetailInfo.operatorInfo?.icon }
+    var level: Int { marketPairDetailInfo.operatorInfo?.level ?? 0 }
 }
