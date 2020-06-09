@@ -490,7 +490,7 @@
 "eth.transaction.detail.gas" = "Gas Fee";
 "eth.transaction.detail.hash" = "Transaction Hash";
 "eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Note";
+"eth.transaction.detail.note" = "Memo";
 "eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
 
 //token
@@ -783,7 +783,11 @@
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
 "crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.fee.desc" = "This fee is charged by the gateway.";
+"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
+"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
+"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
@@ -1104,6 +1108,7 @@
 "market.detail.page.token.info.social" = "Social Media";
 "market.detail.page.token.info.brief" = "Introduction";
 
+"market.detail.page.token.info.anonymous" = "Anonymous";
 "market.detail.page.token.info.address" = "Operator address";
 "market.detail.page.token.info.pair" = "Trading pair";
 
@@ -1111,6 +1116,41 @@
 "trading.home.page.segment.spot" = "Spot";
 "trading.home.page.segment.mining" = "Mining";
 "trading.home.page.segment.bonus" = "Dividend";
+
+// Mining Home
+"mining.page.segment.trading" = "xxxxx";
+"mining.page.segment.staking" = "xxxxx";
+"mining.page.segment.invite" = "xxxxx";
+"mining.page.segment.making" = "xxxxx";
+
+"mining.page.header.total.real.time" = "xxxxx";
+"mining.page.list.title" = "xxxxx";
+
+"mining.trading.page.header.total.earnings" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+
+
+"mining.trading.page.header.fee" = "xxxxx";
+"mining.trading.page.header.title" = "xxxxx";
+"mining.trading.page.header.expect" = "xxxxx";
+
+"mining.trading.page.cell.fee" = "xxxxx";
+
+"mining.staking.page.header.total.earnings" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxxx";
+"mining.staking.page.detail.amount.title" = "xxxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.add.button.title" = "xxxxx";
+"mining.staking.page.detail.list.button.title" = "xxxxx";
+"mining.staking.page.cell.amount" = "xxxxx";
+
+"mining.staking.page.confirm.title" = "xxxxx";
+"mining.staking.page.confirm.available.title" = "xxxxx";
+"mining.staking.page.confirm.amount.title" = "xxxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
+"mining.staking.page.confirm.tip" = "xxxxx";
+"mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
