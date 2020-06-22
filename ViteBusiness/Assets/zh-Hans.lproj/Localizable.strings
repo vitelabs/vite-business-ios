@@ -1080,6 +1080,8 @@
 "market.detail.page.kline.type.min1.title" = "1分钟";
 "market.detail.page.kline.type.min30.title" = "30分钟";
 "market.detail.page.kline.type.hour1.title" = "1小时";
+"market.detail.page.kline.type.hour2.title" = "2小时";
+"market.detail.page.kline.type.hour4.title" = "4小时";
 "market.detail.page.kline.type.hour6.title" = "6小时";
 "market.detail.page.kline.type.hour12.title" = "12小时";
 "market.detail.page.kline.type.day1.title" = "1天";

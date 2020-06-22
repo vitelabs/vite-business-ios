@@ -1914,7 +1914,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 988 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 990 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2004,10 +2004,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageInfoVolTitle = Rswift.StringResource(key: "market.detail.page.info.vol.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 2H
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeHour2Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 30m
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageKlineTypeMin30Title = Rswift.StringResource(key: "market.detail.page.kline.type.min30.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 4H
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketDetailPageKlineTypeHour4Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 6H
       /// 
       /// Locales: en, zh-Hans
@@ -6023,11 +6031,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.info.vol.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 2H
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeHour2Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.hour2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 30m
       /// 
       /// Locales: en, zh-Hans
       public static func marketDetailPageKlineTypeMin30Title(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.kline.type.min30.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 4H
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketDetailPageKlineTypeHour4Title(_: Void = ()) -> String {
+        return NSLocalizedString("market.detail.page.kline.type.hour4.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 6H
