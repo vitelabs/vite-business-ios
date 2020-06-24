@@ -213,6 +213,21 @@ class SelectMarketPairCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
+    
+    let miningImgView: UIImageView = {
+        let miningImgView = UIImageView()
+        miningImgView.backgroundColor = .clear
+        return miningImgView
+    }()
+
+    let miningMultiplesButton = UIButton().then {
+        $0.isUserInteractionEnabled = false
+        $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
+        $0.layer.cornerRadius = 2
+        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+    }
 
     let priceLabel: UILabel = {
         let label = UILabel()
@@ -239,12 +254,14 @@ class SelectMarketPairCell: UITableViewCell {
 
         contentView.addSubview(tradeSymbolLabel)
         contentView.addSubview(quoteSymbolLabel)
+        contentView.addSubview(miningImgView)
+        contentView.addSubview(miningMultiplesButton)
         contentView.addSubview(priceLabel)
         contentView.addSubview(persentLabel)
         contentView.addSubview(operatorNameLabel)
 
         tradeSymbolLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(contentView).offset(24)
+            make.left.equalTo(contentView).offset(12)
             make.centerY.equalTo(contentView)
         }
 
@@ -252,20 +269,31 @@ class SelectMarketPairCell: UITableViewCell {
             make.left.equalTo(tradeSymbolLabel.snp.right).offset(2)
             make.centerY.equalTo(tradeSymbolLabel)
         }
+        
+        miningImgView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(quoteSymbolLabel.snp.right).offset(5)
+            make.centerY.equalTo(quoteSymbolLabel)
+            make.width.height.equalTo(14)
+        }
+
+        miningMultiplesButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(miningImgView.snp.right).offset(9)
+            make.centerY.equalTo(quoteSymbolLabel)
+            make.height.equalTo(16)
+        }
 
         priceLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-188.0 * (kScreenW )/(375.0 ))
+            make.right.equalTo(contentView).offset(-165.0 * (kScreenW )/(375.0 ))
             make.centerY.equalTo(tradeSymbolLabel)
-            make.left.greaterThanOrEqualTo(quoteSymbolLabel.snp.right)
         }
 
         operatorNameLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-24)
+            make.right.equalTo(contentView).offset(-12)
             make.centerY.equalTo(contentView)
         }
 
         persentLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView).offset(-110.0 * (kScreenW )/(375.0 ))
+            make.right.equalTo(contentView).offset(-83.0 * (kScreenW )/(375.0 ))
             make.centerY.equalTo(contentView)
             make.left.greaterThanOrEqualTo(priceLabel.snp.right)
         }
@@ -283,6 +311,25 @@ class SelectMarketPairCell: UITableViewCell {
         persentString = persentString + String(format: "%.2f", abs(priceChangePercent)) + "%"
         persentLabel.text = persentString
         persentLabel.textColor = priceChangePercent >= 0.0 ? UIColor.init(netHex: 0x01D764) : UIColor.init(netHex: 0xE5494D)
+        
+        miningImgView.image = info.miningImage
+        miningImgView.isHidden = miningImgView.image == nil
+        miningMultiplesButton.setTitle("X\(info.miningMultiples)", for: .normal)
+        miningMultiplesButton.isHidden = info.miningMultiples.isEmpty
+        
+        if miningImgView.isHidden {
+            miningMultiplesButton.snp.remakeConstraints { (make) -> Void in
+                make.left.equalTo(quoteSymbolLabel.snp.right).offset(9)
+                make.centerY.equalTo(quoteSymbolLabel)
+                make.height.equalTo(16)
+            }
+        } else {
+            miningMultiplesButton.snp.remakeConstraints { (make) -> Void in
+                make.left.equalTo(miningImgView.snp.right).offset(9)
+                make.centerY.equalTo(quoteSymbolLabel)
+                make.height.equalTo(16)
+            }
+        }
     }
 
     required init?(coder: NSCoder) {

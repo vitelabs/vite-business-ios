@@ -2880,7 +2880,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tokenInfoDetailPageGateway = Rswift.StringResource(key: "token.info.detail.page.gateway", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Currency Unit
+      /// en translation: Currency
       /// 
       /// Locales: en, zh-Hans
       public static let systemPageCellChangeCurrency = Rswift.StringResource(key: "system.page.cell.change.currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3356,6 +3356,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let discoverPageActivityPageTitle2 = Rswift.StringResource(key: "discover.page.activity.page.title2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: History
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageOrdersButtonTitle = Rswift.StringResource(key: "spot.page.orders.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
@@ -3484,6 +3488,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteErrorRpcErrorCodeNotEnoughBalance = Rswift.StringResource(key: "vite.error.rpc.error.code.not.enough.balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Insufficient exchange balance, stake 10,000 VITE to become a VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Insufficient quota
       /// 
       /// Locales: en, zh-Hans
@@ -3624,11 +3632,11 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaSubmitPopDesc = Rswift.StringResource(key: "quota.submit.pop.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Market
+      /// en translation: Markets
       /// 
       /// Locales: en, zh-Hans
       public static let marketTitle = Rswift.StringResource(key: "market.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Market
+      /// en translation: Markets
       /// 
       /// Locales: en, zh-Hans
       public static let tabTitleMarket = Rswift.StringResource(key: "tab.title.market", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -3692,6 +3700,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tradingHomePageSegmentMining = Rswift.StringResource(key: "trading.home.page.segment.mining", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Mining Referrals
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: MintMsg
       /// 
       /// Locales: en, zh-Hans
@@ -3896,14 +3908,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageValueOpenTitle = Rswift.StringResource(key: "market.detail.page.value.open.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Open Orders
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageCurrentOrderTitle = Rswift.StringResource(key: "spot.page.current.order.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexOpenTradingPairFunctionTitle = Rswift.StringResource(key: "buildin.dex.open.trading.pair.function.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Open orders
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageCurrentOrderTitle = Rswift.StringResource(key: "spot.page.current.order.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open to Additional Issue
       /// 
       /// Locales: en, zh-Hans
@@ -3920,14 +3932,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageSegmentOperatorIntoTitle = Rswift.StringResource(key: "market.detail.page.segment.operator.into.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Operator
+      /// 
+      /// Locales: en, zh-Hans
+      public static let marketOperator = Rswift.StringResource(key: "market.operator", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Operator address
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoAddress = Rswift.StringResource(key: "market.detail.page.token.info.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Operators
-      /// 
-      /// Locales: en, zh-Hans
-      public static let marketOperator = Rswift.StringResource(key: "market.operator", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Order Cancelled
       /// 
       /// Locales: en, zh-Hans
@@ -3940,10 +3952,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageSegmentOrderBookTitle = Rswift.StringResource(key: "market.detail.page.segment.order.book.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Order history
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageOrdersButtonTitle = Rswift.StringResource(key: "spot.page.orders.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Orderly select seed phrase
       /// 
       /// Locales: en, zh-Hans
@@ -4264,14 +4272,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let ethTransactionDetailToAddress = Rswift.StringResource(key: "eth.transaction.detail.to.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Recipient
-      /// 
-      /// Locales: en, zh-Hans
-      public static let confirmTransactionAddressTitle = Rswift.StringResource(key: "confirm.transaction.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Recipient
-      /// 
-      /// Locales: en, zh-Hans
-      public static let sendPageToAddressTitle = Rswift.StringResource(key: "send.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Recipient Address
       /// 
       /// Locales: en, zh-Hans
@@ -4284,6 +4284,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let buildinDexTransferTokenOwnerItem2Title = Rswift.StringResource(key: "buildin.dex.transfer.token.owner.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let confirmTransactionAddressTitle = Rswift.StringResource(key: "confirm.transaction.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let sendPageToAddressTitle = Rswift.StringResource(key: "send.page.to.address.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Recover Trading Pair
       /// 
       /// Locales: en, zh-Hans
@@ -4292,10 +4300,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinRecoverSyncronizing = Rswift.StringResource(key: "grin.recover.syncronizing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Refer for mining
-      /// 
-      /// Locales: en, zh-Hans
-      public static let myPageInviteCellTitle = Rswift.StringResource(key: "my.page.invite.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, zh-Hans
@@ -5756,10 +5760,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: insufficient balance: 10,000 VITE staking is required to open VIP
-      /// 
-      /// Locales: en, zh-Hans
-      public static let spotPageOpenVipErrorToast = Rswift.StringResource(key: "spot.page.open.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: xxxxx
       /// 
       /// Locales: en, zh-Hans
@@ -7564,7 +7564,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("token.info.detail.page.gateway", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Currency Unit
+      /// en translation: Currency
       /// 
       /// Locales: en, zh-Hans
       public static func systemPageCellChangeCurrency(_: Void = ()) -> String {
@@ -8397,6 +8397,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.activity.page.title2", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: History
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageOrdersButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.orders.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: I have already read, understood and I agree to our 
       /// 
       /// Locales: en, zh-Hans
@@ -8619,6 +8626,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteErrorRpcErrorCodeNotEnoughBalance(_: Void = ()) -> String {
         return NSLocalizedString("vite.error.rpc.error.code.not.enough.balance", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Insufficient exchange balance, stake 10,000 VITE to become a VIP
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageOpenVipErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.open.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Insufficient quota
@@ -8866,14 +8880,14 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("quota.submit.pop.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: Market
+      /// en translation: Markets
       /// 
       /// Locales: en, zh-Hans
       public static func marketTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Market
+      /// en translation: Markets
       /// 
       /// Locales: en, zh-Hans
       public static func tabTitleMarket(_: Void = ()) -> String {
@@ -8983,6 +8997,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func tradingHomePageSegmentMining(_: Void = ()) -> String {
         return NSLocalizedString("trading.home.page.segment.mining", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Mining Referrals
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageInviteCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: MintMsg
@@ -9342,18 +9363,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.value.open.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Open Orders
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageCurrentOrderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.current.order.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, zh-Hans
       public static func buildinDexOpenTradingPairFunctionTitle(_: Void = ()) -> String {
         return NSLocalizedString("buildin.dex.open.trading.pair.function.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Open orders
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageCurrentOrderTitle(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.current.order.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Open to Additional Issue
@@ -9384,18 +9405,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.segment.operator.into.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Operator
+      /// 
+      /// Locales: en, zh-Hans
+      public static func marketOperator(_: Void = ()) -> String {
+        return NSLocalizedString("market.operator", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Operator address
       /// 
       /// Locales: en, zh-Hans
       public static func marketDetailPageTokenInfoAddress(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.address", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Operators
-      /// 
-      /// Locales: en, zh-Hans
-      public static func marketOperator(_: Void = ()) -> String {
-        return NSLocalizedString("market.operator", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Order Cancelled
@@ -9417,13 +9438,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageSegmentOrderBookTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.segment.order.book.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Order history
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageOrdersButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.orders.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Orderly select seed phrase
@@ -9986,20 +10000,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("eth.transaction.detail.to.address", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Recipient
-      /// 
-      /// Locales: en, zh-Hans
-      public static func confirmTransactionAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("confirm.transaction.address.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Recipient
-      /// 
-      /// Locales: en, zh-Hans
-      public static func sendPageToAddressTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.to.address.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Recipient Address
       /// 
       /// Locales: en, zh-Hans
@@ -10021,6 +10021,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.dex.transfer.token.owner.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func confirmTransactionAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("confirm.transaction.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Recipient Address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func sendPageToAddressTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.to.address.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Recover Trading Pair
       /// 
       /// Locales: en, zh-Hans
@@ -10033,13 +10047,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinRecoverSyncronizing(_: Void = ()) -> String {
         return NSLocalizedString("grin.recover.syncronizing", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Refer for mining
-      /// 
-      /// Locales: en, zh-Hans
-      public static func myPageInviteCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.invite.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Refresh
@@ -12595,13 +12602,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: insufficient balance: 10,000 VITE staking is required to open VIP
-      /// 
-      /// Locales: en, zh-Hans
-      public static func spotPageOpenVipErrorToast(_: Void = ()) -> String {
-        return NSLocalizedString("spot.page.open.vip.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: xxxxx

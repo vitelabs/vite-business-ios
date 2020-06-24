@@ -42,7 +42,7 @@
 
 
 "tab.title.wallet" = "Wallet";
-"tab.title.market" = "Market";
+"tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
 "tab.title.my" = "Account";
@@ -183,7 +183,7 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
 "my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Refer for mining";
+"my.page.invite.cell.title" = "Mining Referrals";
 "my.page.reward.cell.title" = "Rewards Enquiry";
 "my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
@@ -289,7 +289,7 @@
 "send.page.add.my.address.button.title" = "Mine";
 "send.page.vite.contacts.button.title" = "VITE Contact Address";
 "send.page.scan.address.button.title" = "Scan";
-"send.page.to.address.title" = "Recipient";
+"send.page.to.address.title" = "Recipient Address";
 "send.page.amount.title" = "Amount";
 "send.page.all.button.title" = "All";
 "send.page.remark.title" = "Memo";
@@ -336,7 +336,7 @@
 /* System */
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency Unit";
+"system.page.cell.change.currency" = "Currency";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
@@ -555,7 +555,7 @@
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.address.title" = "Recipient";
+"confirm.transaction.address.title" = "Recipient Address";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
 "confirm.transaction.quota.title" = "Quota";
@@ -1049,12 +1049,12 @@
 
 "market.favourite" =  "Favorites";
 "market.searchhistory" =  "Search History";
-"market.title" =  "Market";
+"market.title" =  "Markets";
 "market.about" =  "Get Started with ViteX";
 "market.name" =  "Name";
 "market.price" =  "Last Price";
 "market.percent" =  "Change";
-"market.operator" =  "Operators";
+"market.operator" =  "Operator";
 "market.switch" =  "Exchange";
 
 // market detail
@@ -1170,13 +1170,13 @@
 "spot.page.total" = "Total: %@";
 "spot.page.open.vip" = "Become a VIP";
 "spot.page.close.vip" = "Cancel VIP";
-"spot.page.open.vip.error.toast" = "insufficient balance: 10,000 VITE staking is required to open VIP";
+"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
 "spot.page.close.vip.error.toast" = "No VIP staked";
 "spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
 "spot.page.depth.price" = "Price";
 "spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open orders";
-"spot.page.orders.button.title" = "Order history";
+"spot.page.current.order.title" = "Open Orders";
+"spot.page.orders.button.title" = "History";
 
 "spot.page.post.toast.price.empty" = "Please enter the price";
 "spot.page.post.toast.price.zero" = "Value must be greater than 0";

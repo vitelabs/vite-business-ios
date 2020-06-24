@@ -99,7 +99,7 @@ class SeletcMarketPairCard: BaseViewController {
             layout.pageBottomLineHeight = 38
             layout.scale = 1
             layout.titleFont = UIFont.boldSystemFont(ofSize: 13)
-            layout.lrMargin = 24
+            layout.lrMargin = 12
             layout.titleMargin = 30
             layout.bottomLineColor = UIColor.init(netHex: 0x007aff)
             layout.pageBottomLineColor = .white
@@ -172,20 +172,20 @@ class SeletcMarketPairCard: BaseViewController {
               return label
           }()
 
-         sortView.addSubview(symbleTitleLabel)
-         sortView.addSubview(priceTitleLabel)
-         sortView.addSubview(percentTitleLabel)
+        sortView.addSubview(symbleTitleLabel)
+        sortView.addSubview(priceTitleLabel)
+        sortView.addSubview(percentTitleLabel)
         sortView.addSubview(self.sortByNameStatusImg)
         sortView.addSubview(self.sortByPriceStatusImg)
         sortView.addSubview(self.sortByPercenteStatusImg)
         sortView.addSubview(self.sortByNameButton)
-         sortView.addSubview(self.sortByPriceButton)
-         sortView.addSubview(self.sortByPercentButton)
+        sortView.addSubview(self.sortByPriceButton)
+        sortView.addSubview(self.sortByPercentButton)
         sortView.addSubview(operatorTitleLabel)
 
 
          symbleTitleLabel.snp.makeConstraints { (make) -> Void in
-             make.left.equalToSuperview().offset(24)
+             make.left.equalToSuperview().offset(12)
              make.centerY.equalToSuperview()
          }
 
@@ -195,14 +195,14 @@ class SeletcMarketPairCard: BaseViewController {
         }
 
          self.sortByPriceStatusImg.snp.makeConstraints { (make) -> Void in
-             make.right.equalToSuperview().offset(-188.0 * (kScreenW )/(375.0 ))
+             make.right.equalToSuperview().offset(-165.0 * (kScreenW )/(375.0 ))
              make.centerY.equalToSuperview()
 
          }
 
          self.sortByPercenteStatusImg.snp.makeConstraints { (make) -> Void in
              make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-110.0 * (kScreenW )/(375.0 ))
+            make.right.equalToSuperview().offset(-83.0 * (kScreenW )/(375.0 ))
 
          }
 
@@ -217,7 +217,7 @@ class SeletcMarketPairCard: BaseViewController {
         }
 
         operatorTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-24)
+            make.right.equalToSuperview().offset(-12)
             make.centerY.equalToSuperview()
         }
 
