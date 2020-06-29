@@ -241,7 +241,7 @@ class SeletcMarketPairCard: BaseViewController {
         line.backgroundColor = UIColor.init(netHex: 0xD3DFEF)
         sortView.addSubview(line)
         line.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(24)
+            m.left.right.equalToSuperview().inset(12)
             m.bottom.equalToSuperview()
             m.height.equalTo(0.5)
         }

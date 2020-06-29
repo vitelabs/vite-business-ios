@@ -252,6 +252,8 @@ class SelectMarketPairCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        
         contentView.addSubview(tradeSymbolLabel)
         contentView.addSubview(quoteSymbolLabel)
         contentView.addSubview(miningImgView)
