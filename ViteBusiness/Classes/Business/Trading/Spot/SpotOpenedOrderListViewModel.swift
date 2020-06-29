@@ -32,6 +32,12 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
         super.init(tableView: tableView)
         fetch()
         sub()
+        
+        MarketInfoService.shared.marketSocket.isConnectedBehaviorRelay.filter { $0 }.skip(1).bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.fetchDepth()
+            self.tirggerRefresh()
+        }.disposed(by: rx.disposeBag)
     }
 
     override func refresh() -> Promise<(items: [MarketOrder], hasMore: Bool)> {
@@ -94,17 +100,20 @@ extension SpotOpenedOrderListViewModel {
             self.spotViewModelBehaviorRelay.accept(spotViewModel)
         }
     }
-
-    fileprivate func fetch() {
+    
+    fileprivate func fetchDepth() {
         let symbol = self.symbol
         fetchUntilSuccess(promise: {
             UnifyProvider.vitex.getDepth(symbol: symbol, limit: 5)
         }) { [weak self] (depthList) in
             guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
-            guard self.depthListBehaviorRelay.value == nil else { return }
             self.depthListBehaviorRelay.accept(depthList)
         }
+    }
+
+    fileprivate func fetch() {
+        fetchDepth()
 
         let tradeToken = marketInfo.statistic.tradeToken
         let quoteToken = marketInfo.statistic!.quoteToken

@@ -23,6 +23,11 @@ class MarketKlineHolder: NSObject {
         self.marketInfo = marketInfo
         self.kineType = kineType
         super.init()
+        
+        MarketInfoService.shared.marketSocket.isConnectedBehaviorRelay.filter { $0 }.skip(1).bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.fetchKlines()
+        }.disposed(by: rx.disposeBag)
 
         self.klineSubId = MarketInfoService.shared.marketSocket.sub(topic: kineType.topic(symbol: symbol), ticker: { [weak self] (data) in
             guard let `self` = self else { return }
@@ -67,6 +72,7 @@ class MarketKlineHolder: NSObject {
                     }
                 }
                 self.klinesBehaviorRelay.accept(array)
+                self.tmpItems = []
             }
         }.catch { [weak self] (e) in
             plog(level: .debug, log: e, tag: .market)

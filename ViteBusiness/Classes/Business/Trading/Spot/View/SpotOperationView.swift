@@ -449,7 +449,7 @@ class SpotOperationView: UIView {
         let feeRate = calcFeeRate(vm: vm)
         let feeBigDecimal = BigDecimal(amount) * feeRate
         let fee = feeBigDecimal.round()
-        plog(level: .debug, log: "calcFee amount: \(amount.description), rate: \(feeRate.description), fee: \(fee.description)", tag: .market)
+//        plog(level: .debug, log: "calcFee amount: \(amount.description), rate: \(feeRate.description), fee: \(fee.description)", tag: .market)
         return fee
     }
 
@@ -522,7 +522,7 @@ class SpotOperationView: UIView {
     }
 
     static func checkAmount(vm: SpotViewModel, isBuy: Bool, priceText: String?, volText: String?, isShowToast: Bool) -> CheckAmountResult {
-        plog(level: .debug, log: "price: \(priceText ?? "") vol: \(volText ?? "")", tag: .market)
+//        plog(level: .debug, log: "price: \(priceText ?? "") vol: \(volText ?? "")", tag: .market)
         guard let amount = calcAmount(vm: vm, priceText: priceText, volText: volText) else { return .calcAmountFailed }
         let fee = calcFee(vm: vm, amount: amount)
 

@@ -32,6 +32,12 @@ class MarketDataIndoHolder: NSObject {
 
         self.fetchDepth()
         self.fetchPairDetailInfo()
+        
+        MarketInfoService.shared.marketSocket.isConnectedBehaviorRelay.filter { $0 }.skip(1).bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.fetchDepth()
+            self.fetchTrades()
+        }.disposed(by: rx.disposeBag)
 
         self.depthSubId = MarketInfoService.shared.marketSocket.sub(topic: depthTopic, ticker: { [weak self] (data) in
             guard let `self` = self else { return }
@@ -106,7 +112,6 @@ class MarketDataIndoHolder: NSObject {
         }) { [weak self] (depthList) in
             guard let `self` = self else { return }
             plog(level: .debug, log: "getDepth for \(self.symbol)", tag: .market)
-            guard self.depthListBehaviorRelay.value.0 == nil else { return }
             let orders = self.depthListBehaviorRelay.value.1
             self.depthListBehaviorRelay.accept((depthList, orders))
         }

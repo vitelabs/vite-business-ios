@@ -8,6 +8,8 @@
 import UIKit
 import Starscream
 import PromiseKit
+import RxSwift
+import RxCocoa
 
 typealias MarketTopic = String
 typealias SubId = String
@@ -15,6 +17,8 @@ typealias TickerBlock = (Data) -> ()
 typealias SucessSubBlock = (SubId) -> ()
 
 class MarketWebSocket: NSObject {
+    
+    let isConnectedBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     struct Topic {
         static let btc = "market.quoteTokenCategory.BTC.tickers"
@@ -39,7 +43,10 @@ class MarketWebSocket: NSObject {
     }
 
     func reStart() {
+        socket.delegate = nil
+        socket.pongDelegate = nil
         socket.disconnect()
+        
         socket = WebSocket(url: URL.init(string: ViteConst.instance.market.vitexWS)!)
         socket.delegate = self
         socket.pongDelegate = self
@@ -60,24 +67,21 @@ class MarketWebSocket: NSObject {
     }
 
     @objc private func ping()  {
-        if socket.isConnected {
-            let dexProtocol = DexProtocol.with {
-                $0.clientID = clientId
-                $0.opType = "ping"
-                $0.topics = ""
-                $0.message = Data()
-                $0.errorCode = 0
-            }
-
-            do {
-                let jsonData = try dexProtocol.serializedData()
-                socket.write(data: jsonData)
-//                //plog(level: .debug, log: "websocketSendPing", tag: .market)
-            } catch  {
-//                //plog(level: .debug, log: "websocketPingError:\(error.localizedDescription)", tag: .market)
-            }
-        } else {
-            socket.connect()
+        guard socket.isConnected else { return }
+        let dexProtocol = DexProtocol.with {
+            $0.clientID = clientId
+            $0.opType = "ping"
+            $0.topics = ""
+            $0.message = Data()
+            $0.errorCode = 0
+        }
+        
+        do {
+            let jsonData = try dexProtocol.serializedData()
+            socket.write(data: jsonData)
+//            plog(level: .debug, log: "websocketSendPing", tag: .market)
+        } catch  {
+            plog(level: .debug, log: "websocketPingError:\(error.localizedDescription)", tag: .market)
         }
     }
 
@@ -106,7 +110,7 @@ class MarketWebSocket: NSObject {
                 }
                 blockMap[topic] = newArray
             } else {
-                plog(level: .debug, log: "opType: \(dexProtocol.opType)", tag: .market)
+//                plog(level: .debug, log: "opType: \(dexProtocol.opType)", tag: .market)
             }
         } catch  {
             print(error.localizedDescription)
@@ -122,7 +126,7 @@ class MarketWebSocket: NSObject {
 extension MarketWebSocket {
 
     fileprivate func socketWriteSub(topic: String) {
-        plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
+//        plog(level: .debug, log: "sub \(topic) from socket", tag: .market)
         do {
             let dexProtocol = DexProtocol.with {
                 $0.clientID = clientId
@@ -140,7 +144,7 @@ extension MarketWebSocket {
     }
 
     func sub(topic: MarketTopic, ticker: @escaping TickerBlock, sucessSub: SucessSubBlock? = nil) -> SubId {
-        plog(level: .debug, log: "sub \(topic)", tag: .market)
+//        plog(level: .debug, log: "sub \(topic)", tag: .market)
         let subId = UUID().uuidString
         var array = blockMap[topic] ?? []
 
@@ -166,7 +170,7 @@ extension MarketWebSocket {
     func unsub(subId: SubId) {
         guard let topic = topicMap[subId] else { return }
         topicMap[subId] = nil
-        plog(level: .debug, log: "unsub \(topic)", tag: .market)
+//        plog(level: .debug, log: "unsub \(topic)", tag: .market)
         guard var array = blockMap[topic] else { return }
         for (index, item) in array.enumerated() where item.id == subId {
             array.remove(at: index)
@@ -177,7 +181,7 @@ extension MarketWebSocket {
         // need unsub
         if array.isEmpty {
             do {
-                plog(level: .debug, log: "unsub \(topic) from socket", tag: .market)
+//                plog(level: .debug, log: "unsub \(topic) from socket", tag: .market)
                 let dexProtocol = DexProtocol.with {
                     $0.clientID = clientId
                     $0.opType = "un_sub"
@@ -189,7 +193,7 @@ extension MarketWebSocket {
                 let jsonData = try dexProtocol.serializedData()
                 socket.write(data: jsonData)
             } catch  {
-                plog(level: .debug, log: "websocketSubError:\(error.localizedDescription)", tag: .market)
+                plog(level: .debug, log: "websocketUnSubError:\(error.localizedDescription)", tag: .market)
             }
         }
     }
@@ -200,26 +204,31 @@ extension MarketWebSocket {
 extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
+        self.isConnectedBehaviorRelay.accept(true)
         plog(level: .info, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
         self.ping()
         self.sub()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        self.isConnectedBehaviorRelay.accept(false)
         plog(level: .info, log: "websocketDidDisconnect, clientId:\(clientId), error: \(String(describing: error?.localizedDescription))", tag: .market)
+        GCD.delay(1) {
+            self.socket.connect()
+        }
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-//        //plog(level: .debug, log: "websocketDidReceiveMessage", tag: .market)
+//        plog(level: .debug, log: "websocketDidReceiveMessage", tag: .market)
     }
 
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-//        //plog(level: .debug, log: "websocketDidReceiveData", tag: .market)
+//        plog(level: .debug, log: "websocketDidReceiveData", tag: .market)
         self.handle(data)
     }
 
     func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-//        //plog(level: .debug, log: "websocketDidReceivePong", tag: .market)
+//        plog(level: .debug, log: "websocketDidReceivePong", tag: .market)
     }
 
 }
