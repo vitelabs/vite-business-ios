@@ -32,6 +32,7 @@ class MarketInfoService: NSObject {
     let marketSocket = MarketWebSocket()
 
     fileprivate(set) var marketLimit = MarketLimit(json: nil)
+    fileprivate(set) var closedSymbols = [String]()
 
     var operatorValue: [String: Any]?
 
@@ -85,6 +86,7 @@ class MarketInfoService: NSObject {
         requestPageList()
         marketSocket.start()
         fetchLimit()
+        fetchMarketClosed()
     }
 
     func fetchLimit() {
@@ -96,6 +98,19 @@ class MarketInfoService: NSObject {
             GCD.delay(1) {[weak self] in
                 guard let `self` = self else { return }
                 self.fetchLimit()
+            }
+        }
+    }
+    
+    func fetchMarketClosed() {
+        UnifyProvider.vitex.getMarketsClosedSymbols().done { [weak self] in
+            self?.closedSymbols = $0
+        }.catch { [weak self] (e) in
+            guard let `self` = self else { return }
+            plog(level: .debug, log: e.localizedDescription, tag: .market)
+            GCD.delay(1) {[weak self] in
+                guard let `self` = self else { return }
+                self.fetchMarketClosed()
             }
         }
     }
@@ -459,6 +474,7 @@ public class MarketInfo {
 
     var buyRangeMax: Double? = nil
     var sellRangeMax: Double? = nil
+    var isClosed: Bool { MarketInfoService.shared.closedSymbols.contains(statistic.symbol) }
 
     private(set) lazy var vitexURL: URL = {
         let tickerStatistics =  self.statistic!

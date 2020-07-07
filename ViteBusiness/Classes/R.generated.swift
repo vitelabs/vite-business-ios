@@ -1914,7 +1914,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 990 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 991 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5000,6 +5000,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let tabTitleTrading = Rswift.StringResource(key: "tab.title.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trading Suspended
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotPageButtonClosedTitle = Rswift.StringResource(key: "spot.page.button.closed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trading pair
       /// 
       /// Locales: en, zh-Hans
@@ -11272,6 +11276,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func tabTitleTrading(_: Void = ()) -> String {
         return NSLocalizedString("tab.title.trading", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Trading Suspended
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotPageButtonClosedTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.page.button.closed.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trading pair

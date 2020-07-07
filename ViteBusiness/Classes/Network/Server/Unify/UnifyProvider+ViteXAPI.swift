@@ -39,6 +39,21 @@ extension UnifyProvider.vitex {
             return string
         }
     }
+    
+    static func getMarketsClosedSymbols() -> Promise<[String]> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getMarketsClosed, responseToData: responseToData).map { string in
+            var ret = [String]()
+            if let json = JSON(parseJSON: string).array {
+                json.forEach({
+                    if let symbol = $0["symbol"].string, symbol.isNotEmpty {
+                        ret.append(symbol)
+                    }
+                })
+            }
+            return ret
+        }
+    }
 
     static func getLimit() -> Promise<MarketLimit> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()

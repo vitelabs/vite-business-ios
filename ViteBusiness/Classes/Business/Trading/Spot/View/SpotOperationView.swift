@@ -67,6 +67,10 @@ class SpotOperationView: UIView {
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x01D764)).resizable, for: .normal)
         $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x01D764)).highlighted.resizable, for: .highlighted)
+        
+        $0.setTitle(R.string.localizable.spotPageButtonClosedTitle(), for: .disabled)
+        $0.setTitleColor(UIColor.white, for: .disabled)
+        $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
     }
     let sellButton = UIButton().then {
         $0.setTitle(R.string.localizable.spotPageButtonSellTitle(), for: .normal)
@@ -74,6 +78,10 @@ class SpotOperationView: UIView {
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xE5494D)).resizable, for: .normal)
         $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xE5494D)).highlighted.resizable, for: .highlighted)
+        
+        $0.setTitle(R.string.localizable.spotPageButtonClosedTitle(), for: .disabled)
+        $0.setTitleColor(UIColor.white, for: .disabled)
+        $0.setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
     }
 
     override init(frame: CGRect) {
@@ -625,6 +633,8 @@ class SpotOperationView: UIView {
 
     func bind(marketInfo: MarketInfo?) {
         marketInfoBehaviorRelay.accept(marketInfo)
+        self.buyButton.isEnabled = !(marketInfo?.isClosed ?? false)
+        self.sellButton.isEnabled = !(marketInfo?.isClosed ?? false)
         self.setVol("")
         self.setPrice(marketInfo?.statistic.closePrice ?? "")
     }
