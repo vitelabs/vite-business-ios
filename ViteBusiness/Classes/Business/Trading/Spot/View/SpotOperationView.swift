@@ -15,7 +15,7 @@ import ActiveLabel
 
 class SpotOperationView: UIView {
 
-    static let height: CGFloat = 303
+    static let height: CGFloat = 346
 
     var lastSymbol = ""
     let segmentView = SegmentView()
@@ -109,27 +109,27 @@ class SpotOperationView: UIView {
         }
 
         limitBuyTitle.snp.makeConstraints { (m) in
-            m.top.equalTo(segmentView.snp.bottom).offset(12)
+            m.top.equalTo(segmentView.snp.bottom).offset(16)
             m.left.equalToSuperview()
         }
 
         priceTextField.snp.makeConstraints { (m) in
-            m.top.equalTo(limitBuyTitle.snp.bottom).offset(12)
+            m.top.equalTo(segmentView.snp.bottom).offset(50)
             m.left.right.equalToSuperview()
         }
 
         priceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(priceTextField.snp.bottom).offset(6)
+            m.top.equalTo(priceTextField.snp.bottom).offset(8)
             m.left.right.equalToSuperview()
         }
 
         volTextField.snp.makeConstraints { (m) in
-            m.top.equalTo(priceLabel.snp.bottom).offset(6)
+            m.top.equalTo(priceTextField.snp.bottom).offset(32)
             m.left.right.equalToSuperview()
         }
 
         percentView.snp.makeConstraints { (m) in
-            m.top.equalTo(volTextField.snp.bottom).offset(6)
+            m.top.equalTo(volTextField.snp.bottom).offset(8)
             m.left.right.equalToSuperview()
         }
 
@@ -140,23 +140,23 @@ class SpotOperationView: UIView {
         }
 
         volLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(percentView.snp.bottom).offset(12)
+            m.top.equalTo(percentView.snp.bottom).offset(16)
             m.left.equalToSuperview()
             m.right.equalTo(transferButton.snp.left).offset(15)
         }
 
         amountLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(volLabel.snp.bottom).offset(4)
+            m.top.equalTo(volLabel.snp.bottom).offset(8)
             m.left.right.equalToSuperview()
         }
 
         vipButton.snp.makeConstraints { (m) in
-            m.top.equalTo(amountLabel.snp.bottom).offset(4)
+            m.top.equalTo(amountLabel.snp.bottom).offset(8)
             m.left.equalToSuperview()
         }
 
         buyButton.snp.makeConstraints { (m) in
-            m.top.equalTo(vipButton.snp.bottom).offset(12)
+            m.top.equalTo(percentView.snp.bottom).offset(90 - 4)
             m.left.right.equalToSuperview()
             m.bottom.equalToSuperview()
             m.height.equalTo(34)

@@ -9,7 +9,7 @@ import Foundation
 
 class SpotDepthView: UIView {
 
-    static let height: CGFloat = 322
+    static let height: CGFloat = 346
 
     var priceClicked: (((price: String, vol: Double?, isBuy: Bool)) -> Void)?
 
@@ -25,7 +25,7 @@ class SpotDepthView: UIView {
         $0.text = R.string.localizable.spotPageDepthVol()
     }
 
-    lazy var sellItemViews = (0..<5).map { _ in
+    lazy var sellItemViews = (0..<6).map { _ in
         ItemView(isBuy: false) { [weak self] in
             if let _ = Double($0) {
                 self?.priceClicked?((price: $0, vol: $1, isBuy: false))
@@ -45,7 +45,7 @@ class SpotDepthView: UIView {
         $0.text = "≈--"
     }
 
-    lazy var buyItemViews = (0..<5).map { _ in
+    lazy var buyItemViews = (0..<6).map { _ in
         ItemView(isBuy: true) { [weak self] in
             if let _ = Double($0) {
                 self?.priceClicked?((price: $0, vol: $1, isBuy: true))
@@ -248,7 +248,7 @@ extension SpotDepthView {
 
             percentView.snp.makeConstraints { (m) in
                 m.top.bottom.right.equalTo(guide)
-                m.height.equalTo(24)
+                m.height.equalTo(22)
                 m.width.equalTo(guide).multipliedBy(0.5)
             }
 
@@ -280,7 +280,7 @@ extension SpotDepthView {
 
                 percentView.snp.remakeConstraints { (m) in
                     m.top.bottom.right.equalTo(guide)
-                    m.height.equalTo(24)
+                    m.height.equalTo(22)
                     m.width.equalTo(guide).multipliedBy(depth.percent)
                 }
             } else {
@@ -290,7 +290,7 @@ extension SpotDepthView {
 
                 percentView.snp.remakeConstraints { (m) in
                     m.top.bottom.right.equalTo(guide)
-                    m.height.equalTo(24)
+                    m.height.equalTo(22)
                     m.width.equalTo(guide).multipliedBy(0)
                 }
             }
