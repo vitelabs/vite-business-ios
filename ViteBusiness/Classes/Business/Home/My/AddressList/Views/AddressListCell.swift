@@ -16,6 +16,14 @@ class AddressListCell: BaseTableViewCell {
     }
 
     fileprivate let nameImageView = UIImageView()
+    
+    fileprivate let numberButton = UIButton().then {
+        $0.isUserInteractionEnabled = false
+        $0.setBackgroundImage(UIImage.image(withColor: UIColor(netHex: 0xEFF0F4), cornerRadius: 2).resizable, for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x3E4A59, alpha: 0.45), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+    }
+    
     fileprivate let nameLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
@@ -38,6 +46,7 @@ class AddressListCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(nameImageView)
+        contentView.addSubview(numberButton)
         contentView.addSubview(nameLabel)
         contentView.addSubview(typeLabel)
         contentView.addSubview(addressLabel)
@@ -46,6 +55,12 @@ class AddressListCell: BaseTableViewCell {
             m.top.equalToSuperview().offset(24)
             m.left.equalToSuperview().offset(24)
             m.size.equalTo(CGSize(width: 14, height: 14))
+        }
+        
+        numberButton.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(24)
+            m.left.equalToSuperview().offset(24)
+            m.size.equalTo(CGSize(width: 28, height: 14))
         }
 
         nameLabel.snp.makeConstraints { (m) in
@@ -94,5 +109,24 @@ class AddressListCell: BaseTableViewCell {
         style.firstLineHeadIndent = 36
         let attributes = [NSAttributedString.Key.paragraphStyle: style]
         addressLabel.attributedText = NSAttributedString(string: viewModel.address, attributes: attributes)
+        
+        if let number = viewModel.number {
+            numberButton.setTitle("#\(number)", for: .normal)
+            nameLabel.snp.remakeConstraints { (m) in
+                m.centerY.equalTo(numberButton)
+                m.left.equalTo(numberButton.snp.right).offset(4)
+                m.right.equalToSuperview().offset(-24)
+            }
+            numberButton.isHidden = false
+            nameImageView.isHidden = true
+        } else {
+            nameLabel.snp.remakeConstraints { (m) in
+                m.centerY.equalTo(nameImageView)
+                m.left.equalTo(nameImageView.snp.right).offset(4)
+                m.right.equalToSuperview().offset(-24)
+            }
+            numberButton.isHidden = true
+            nameImageView.isHidden = false
+        }
     }
 }

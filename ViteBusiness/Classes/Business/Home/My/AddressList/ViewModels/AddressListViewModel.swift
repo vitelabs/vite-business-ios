@@ -24,16 +24,20 @@ class AddressListViewModel {
         switch coinType {
         case .vite:
             return AddressListViewModel(driver: HDWalletManager.instance.accountsDriver.map({ (accounts) -> [AddressViewModel] in
+                var number: Int = 0
                 return accounts.map({ (account) -> AddressViewModel in
                     let name = AddressManageService.instance.name(for: account.address)
-                    return AddressViewModel(name: name, nameImage: R.image.icon_address_name_blue(), type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
+                    number += 1
+                    return AddressViewModel(name: name, number: number, nameImage: nil, type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
                 })
             }), title: R.string.localizable.sendPageMyAddressTitle(coinType.rawValue), emptyTip: "")
         case .eth:
             return AddressListViewModel(driver: ETHWalletManager.instance.accountsDriver.map({ (accounts) -> [AddressViewModel] in
+                var number: Int = 0
                 return accounts.map({ (account) -> AddressViewModel in
                     let name = AddressManageService.instance.name(for: account.address)
-                    return AddressViewModel(name: name, nameImage: R.image.icon_address_name_blue(), type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
+                    number += 1
+                    return AddressViewModel(name: name, number: number, nameImage: nil, type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
                 })
             }), title: R.string.localizable.sendPageMyAddressTitle(coinType.rawValue), emptyTip: "")
         case .grin, .bnb, .unsupport:
@@ -44,7 +48,7 @@ class AddressListViewModel {
     static func createAddressListViewModel(for coinType: CoinType) -> AddressListViewModel {
         return AddressListViewModel(driver: AddressManageService.instance.contactsDriver(for: coinType ).map({ (contacts) -> [AddressViewModel] in
             return contacts.map({ (contact) -> AddressViewModel in
-                return AddressViewModel(name: contact.name, nameImage: R.image.icon_contacts_contact_blue(), type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: contact.address)
+                return AddressViewModel(name: contact.name, number: nil, nameImage: R.image.icon_contacts_contact_blue(), type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: contact.address)
             })
         }), title: R.string.localizable.addressListPageOtherTitle(coinType.name), emptyTip: R.string.localizable.addressListPageNoAddressTip(coinType.name))
     }
