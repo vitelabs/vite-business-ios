@@ -1157,6 +1157,7 @@
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
 "spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
+"spot.page.button.closed.title" = "Trading Suspended";
 "spot.page.button.buy.title" = "Buy";
 "spot.page.button.sell.title" = "Sell";
 "spot.page.button.limit.buy.title" = "Limit Order";
