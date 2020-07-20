@@ -16,7 +16,7 @@ class WalletHomeNavViewModel {
         case viteX
     }
     let walletNameDriver: Driver<String>
-    let priceDriver: Driver<String>
+    let priceDriver: Driver<(String, String)>
     let isHidePriceDriver: Driver<Bool>
     var infoTypeBehaviorRelay = BehaviorRelay<InfoType>(value: InfoType.wallet)
 
@@ -29,9 +29,9 @@ class WalletHomeNavViewModel {
             ExchangeRateManager.instance.rateMapDriver,
             walletHomeBalanceInfoTableViewModel.balanceInfosDriver,
             walletHomeBalanceInfoTableViewModel.viteXBalanceInfosDriver)
-            .map({ (infoType,isHidePrice, rateMap, balanceInfos, viteXBalanceInfos) -> String in
+            .map({ (infoType,isHidePrice, rateMap, balanceInfos, viteXBalanceInfos) -> (String, String) in
                 if isHidePrice {
-                    return "****"
+                    return ("****", "****")
                 } else {
                     if infoType == .wallet {
                         var allPrice = BigDecimal()
@@ -39,8 +39,11 @@ class WalletHomeNavViewModel {
                             let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
                             allPrice = allPrice + price
                         }
+
                         let currency = AppSettingsService.instance.appSettings.currency
-                        return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+                        let price = "≈\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+                        let btc = ExchangeRateManager.instance.calculateBtcBalanceWithPrice(allPrice)
+                        return (btc, price)
                     } else if infoType == .viteX {
                         var allPrice = BigDecimal()
                         for balanceInfo in viteXBalanceInfos {
@@ -48,9 +51,11 @@ class WalletHomeNavViewModel {
                             allPrice = allPrice + price
                         }
                         let currency = AppSettingsService.instance.appSettings.currency
-                        return "\(currency.symbol) \(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+                        let price = "≈\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+                        let btc = ExchangeRateManager.instance.calculateBtcBalanceWithPrice(allPrice)
+                        return (btc, price)
                     } else {
-                        return ""
+                        return ("", "")
                     }
 
                 }

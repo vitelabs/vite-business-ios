@@ -131,7 +131,7 @@ class WalletHomeViewController: BaseViewController {
         navView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
             m.left.right.equalToSuperview()
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(130)
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(144)
         }
 
         bifrostStatusView.snp.makeConstraints { (m) in

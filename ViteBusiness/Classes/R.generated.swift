@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 275 images.
+  /// This `R.image` struct is generated, and contains static references to 276 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -368,6 +368,8 @@ public struct R: Rswift.Validatable {
     public static let icon_nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_back_black")
     /// Image `icon_nav_close_black`.
     public static let icon_nav_close_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_close_black")
+    /// Image `icon_nav_mine`.
+    public static let icon_nav_mine = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_mine")
     /// Image `icon_nav_more`.
     public static let icon_nav_more = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_more")
     /// Image `icon_nav_photo_black`.
@@ -1444,6 +1446,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_nav_close_black, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_nav_mine", bundle: ..., traitCollection: ...)`
+    public static func icon_nav_mine(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_mine, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_nav_more", bundle: ..., traitCollection: ...)`
     public static func icon_nav_more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_more, compatibleWith: traitCollection)
@@ -1949,7 +1956,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 998 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 999 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5935,6 +5942,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 资产估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let walletHomeBtcTitle = Rswift.StringResource(key: "wallet.home.btc.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -12914,6 +12925,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 资产估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func walletHomeBtcTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wallet.home.btc.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

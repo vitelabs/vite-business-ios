@@ -165,6 +165,7 @@
 "tabbar.item.title.my" = "我";
 
 /* Wallet Home */
+"wallet.home.btc.title" = "资产估值(BTC)";
 "wallet.home.balance.title" = "账户余额";
 "wallet.home.unconfirmed.title" = "待接收 %@";
 "wallet.home.toast.copy.address" = "地址已复制";

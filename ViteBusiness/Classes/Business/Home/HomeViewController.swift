@@ -32,6 +32,10 @@ class HomeViewController: UITabBarController {
             $0.automaticallyShowDismissButton = false
         }
 
+        let dexAssetVC = DexAssetsHomeViewController().then {
+            $0.automaticallyShowDismissButton = false
+        }
+
 
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {
             $0.tabBarItem.title = R.string.localizable.tabTitleWallet()
@@ -39,7 +43,7 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_wallet_select()?.withRenderingMode(.alwaysOriginal)
         }
 
-        let myNav = BaseNavigationController(rootViewController: myVC).then {
+        let dexAssetNav = BaseNavigationController(rootViewController: dexAssetVC).then {
             $0.tabBarItem.title = R.string.localizable.tabTitleMy()
             $0.tabBarItem.image = R.image.icon_tabbar_me()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_me_select()?.withRenderingMode(.alwaysOriginal)
@@ -62,9 +66,9 @@ class HomeViewController: UITabBarController {
 
 
         #if DAPP
-            var subViewControlles: [UIViewController] = [walletNav, myNav, DebugHomeViewController.createNavVC()]
+            var subViewControlles: [UIViewController] = [walletNav, dexAssetNav, DebugHomeViewController.createNavVC()]
         #else
-            var subViewControlles: [UIViewController] = [walletNav, marketNav, tradingNav, myNav]
+            var subViewControlles: [UIViewController] = [walletNav, marketNav, tradingNav, dexAssetNav]
         #endif
 
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {
