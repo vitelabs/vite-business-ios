@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 270 images.
+  /// This `R.image` struct is generated, and contains static references to 271 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -332,6 +332,8 @@ public struct R: Rswift.Validatable {
     public static let icon_market_un_fav = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_un_fav")
     /// Image `icon_market_up`.
     public static let icon_market_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_up")
+    /// Image `icon_market_zero_fee`.
+    public static let icon_market_zero_fee = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_market_zero_fee")
     /// Image `icon_mining_staking_add_bg`.
     public static let icon_mining_staking_add_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_mining_staking_add_bg")
     /// Image `icon_mining_staking_list_bg`.
@@ -1342,6 +1344,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_market_up", bundle: ..., traitCollection: ...)`
     public static func icon_market_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_market_up, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_market_zero_fee", bundle: ..., traitCollection: ...)`
+    public static func icon_market_zero_fee(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_market_zero_fee, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_mining_staking_add_bg", bundle: ..., traitCollection: ...)`

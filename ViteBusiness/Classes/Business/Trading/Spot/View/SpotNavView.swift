@@ -45,6 +45,8 @@ class SpotNavView: UIView {
         $0.setImage(R.image.icon_market_un_fav()?.highlighted, for: .highlighted)
     }
 
+    let zeroFeeImageView = UIImageView(image: R.image.icon_market_zero_fee())
+
     let percentLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.text = "--"
@@ -62,6 +64,7 @@ class SpotNavView: UIView {
         addSubview(operatorImageView)
         addSubview(klineButton)
         addSubview(favButton)
+        addSubview(zeroFeeImageView)
         addSubview(percentLabel)
 
         let vLine = UIView().then {
@@ -187,6 +190,26 @@ class SpotNavView: UIView {
         miningImgView.isHidden = miningImgView.image == nil
         percentLabel.text = marketInfo?.persentString ?? "--"
         percentLabel.textColor = marketInfo?.persentColor
+
+        if marketInfo?.isZeroFee ?? false {
+            zeroFeeImageView.isHidden = false
+            zeroFeeImageView.snp.remakeConstraints { (m) in
+                m.centerY.equalTo(percentLabel)
+                m.left.equalTo(tradeLabel)
+            }
+            percentLabel.snp.remakeConstraints { (m) in
+                m.top.equalTo(tradeLabel.snp.bottom).offset(6)
+                m.bottom.equalToSuperview().offset(-6)
+                m.left.equalTo(zeroFeeImageView.snp.right).offset(6)
+            }
+        } else {
+            zeroFeeImageView.isHidden = true
+            percentLabel.snp.remakeConstraints { (m) in
+                m.top.equalTo(tradeLabel.snp.bottom).offset(6)
+                m.bottom.equalToSuperview().offset(-6)
+                m.left.equalTo(tradeLabel)
+            }
+        }
     }
 
     required init?(coder: NSCoder) {

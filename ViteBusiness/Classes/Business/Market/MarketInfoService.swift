@@ -338,6 +338,7 @@ extension MarketInfoService {
         let bothMiningSymbols = tradeMiningSymbols.intersection(orderMiningSymbols)
         let miningMultiplesMap = m["orderMiningMultiples"] as? [String: String] ?? [:]
         let orderMiningSettings = m["orderMiningSettings"] as? [String: [String: String]] ?? [:]
+        let zeroFeePairs = Set(m["zeroFeePairs"] as? [String] ?? [])
 
         let marketDatas = [
             MarketData.init(categary: R.string.localizable.marketFavourite(), infos: []),
@@ -381,6 +382,7 @@ extension MarketInfoService {
             }
 
             info.miningMultiples = miningMultiplesMap[statistic.symbol] ?? ""
+            info.isZeroFee = zeroFeePairs.contains(statistic.symbol)
 
             if let rate = rateMap[info.statistic.quoteTokenSymbol] {
                 info.rate = rateString(price: info.statistic.closePrice, rate: rate, currency: currency)
@@ -475,6 +477,7 @@ public class MarketInfo {
     var buyRangeMax: Double? = nil
     var sellRangeMax: Double? = nil
     var isClosed: Bool { MarketInfoService.shared.closedSymbols.contains(statistic.symbol) }
+    var isZeroFee: Bool = false
 
     private(set) lazy var vitexURL: URL = {
         let tickerStatistics =  self.statistic!
