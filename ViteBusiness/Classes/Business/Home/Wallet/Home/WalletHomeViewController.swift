@@ -219,7 +219,12 @@ class WalletHomeViewController: BaseViewController {
         navView.scanButton.rx.tap.bind { [weak self] in
             self?.scanHandler.scan()
             Statistics.log(eventId: Statistics.Page.WalletHome.scanClicked.rawValue)
-            }.disposed(by: rx.disposeBag)
+        }.disposed(by: rx.disposeBag)
+
+        navView.myButton.rx.tap.bind { [weak self] in
+            let vc = MyHomeViewController()
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
 
         navView.hideButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
