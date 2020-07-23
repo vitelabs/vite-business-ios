@@ -26,7 +26,7 @@ class SpotNavView: UIView {
         $0.text = "/--"
     }
 
-    let miningImgView = UIImageView()
+    let miningImgView = MarketPairFlagView(feeType: .hide)
 
     let changeImageView = UIImageView(image: R.image.icon_market_change())
     let changeButton = UIButton().then {
@@ -90,7 +90,7 @@ class SpotNavView: UIView {
         }
 
         miningImgView.snp.makeConstraints { (m) in
-            m.centerY.equalTo(tradeLabel)
+            m.centerY.equalTo(tradeLabel).offset(-3)
             m.left.equalTo(quoteLabel.snp.right).offset(4)
         }
 
@@ -186,8 +186,7 @@ class SpotNavView: UIView {
         marketInfoBehaviorRelay.accept(marketInfo)
         tradeLabel.text = marketInfo?.statistic.tradeTokenSymbol ?? "--"
         quoteLabel.text = "/\(marketInfo?.statistic.quoteTokenSymbol ?? "--")"
-        miningImgView.image = marketInfo?.miningImage
-        miningImgView.isHidden = miningImgView.image == nil
+        miningImgView.bind(marketInfo)
         percentLabel.text = marketInfo?.persentString ?? "--"
         percentLabel.textColor = marketInfo?.persentColor
 

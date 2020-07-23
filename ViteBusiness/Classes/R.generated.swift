@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 271 images.
+  /// This `R.image` struct is generated, and contains static references to 273 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -512,8 +512,12 @@ public struct R: Rswift.Validatable {
     public static let market_ascend_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_ascend_default")
     /// Image `market_history_delet`.
     public static let market_history_delet = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_history_delet")
+    /// Image `market_mining_both_num`.
+    public static let market_mining_both_num = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_both_num")
     /// Image `market_mining_both`.
     public static let market_mining_both = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_both")
+    /// Image `market_mining_order_num`.
+    public static let market_mining_order_num = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_order_num")
     /// Image `market_mining_order`.
     public static let market_mining_order = Rswift.ImageResource(bundle: R.hostingBundle, name: "market_mining_order")
     /// Image `market_mining_trade`.
@@ -1801,9 +1805,19 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.market_mining_both, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "market_mining_both_num", bundle: ..., traitCollection: ...)`
+    public static func market_mining_both_num(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining_both_num, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "market_mining_order", bundle: ..., traitCollection: ...)`
     public static func market_mining_order(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.market_mining_order, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "market_mining_order_num", bundle: ..., traitCollection: ...)`
+    public static func market_mining_order_num(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.market_mining_order_num, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "market_mining_trade", bundle: ..., traitCollection: ...)`

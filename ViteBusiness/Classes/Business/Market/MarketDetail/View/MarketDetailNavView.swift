@@ -30,16 +30,7 @@ class MarketDetailNavView: UIView {
         $0.textColor = UIColor(netHex: 0x24272B)
     }
 
-    let miningImgView = UIImageView()
-
-    let miningMultiplesButton = UIButton().then {
-        $0.isUserInteractionEnabled = false
-        $0.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.06)
-        $0.layer.cornerRadius = 2
-        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .regular)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-    }
+    let miningImgView = MarketPairFlagView(feeType: .hide)
 
     let vLine = UIView().then {
         $0.backgroundColor = Colors.lineGray
@@ -67,7 +58,6 @@ class MarketDetailNavView: UIView {
         addSubview(tradeLabel)
         addSubview(quoteLabel)
         addSubview(miningImgView)
-        addSubview(miningMultiplesButton)
 
         addSubview(changeImageView)
         addSubview(operatorImageView)
@@ -100,20 +90,15 @@ class MarketDetailNavView: UIView {
         }
 
         miningImgView.snp.makeConstraints { (m) in
-            m.centerY.equalTo(backButton)
+            m.centerY.equalTo(backButton).offset(-3)
             m.left.equalTo(quoteLabel.snp.right).offset(4)
-        }
-
-        miningMultiplesButton.snp.makeConstraints { (m) in
-            m.centerY.equalTo(backButton)
-            m.left.equalTo(miningImgView.snp.right).offset(4)
         }
 
         vLine.snp.makeConstraints { (m) in
             m.width.equalTo(CGFloat.singleLineWidth)
             m.centerY.equalTo(backButton)
             m.height.equalTo(12)
-            m.left.equalTo(miningMultiplesButton.snp.right).offset(8)
+            m.left.equalTo(miningImgView.snp.right).offset(8)
         }
 
         changeImageView.snp.makeConstraints { (m) in
@@ -184,64 +169,13 @@ class MarketDetailNavView: UIView {
         marketInfoBehaviorRelay.accept(marketInfo)
         tradeLabel.text = marketInfo.statistic.tradeTokenSymbol
         quoteLabel.text = "/\(marketInfo.statistic.quoteTokenSymbol)"
-        miningImgView.image = marketInfo.miningImage
-        miningImgView.isHidden = miningImgView.image == nil
-        miningMultiplesButton.setTitle("X\(marketInfo.miningMultiples)", for: .normal)
-        miningMultiplesButton.isHidden = marketInfo.miningMultiples.isEmpty
+        miningImgView.bind(marketInfo)
 
-
-        if miningImgView.isHidden {
-            if miningMultiplesButton.isHidden {
-                vLine.snp.remakeConstraints { (m) in
-                    m.width.equalTo(CGFloat.singleLineWidth)
-                    m.centerY.equalTo(backButton)
-                    m.height.equalTo(12)
-                    m.left.equalTo(quoteLabel.snp.right).offset(8)
-                }
-            } else {
-                miningMultiplesButton.snp.remakeConstraints { (m) in
-                    m.centerY.equalTo(backButton)
-                    m.left.equalTo(quoteLabel.snp.right).offset(4)
-                }
-
-                vLine.snp.remakeConstraints { (m) in
-                    m.width.equalTo(CGFloat.singleLineWidth)
-                    m.centerY.equalTo(backButton)
-                    m.height.equalTo(12)
-                    m.left.equalTo(miningMultiplesButton.snp.right).offset(8)
-                }
-            }
-        } else {
-            if miningMultiplesButton.isHidden {
-                miningImgView.snp.remakeConstraints { (m) in
-                    m.centerY.equalTo(backButton)
-                    m.left.equalTo(quoteLabel.snp.right).offset(4)
-                }
-
-                vLine.snp.remakeConstraints { (m) in
-                    m.width.equalTo(CGFloat.singleLineWidth)
-                    m.centerY.equalTo(backButton)
-                    m.height.equalTo(12)
-                    m.left.equalTo(miningImgView.snp.right).offset(8)
-                }
-            } else {
-                miningImgView.snp.remakeConstraints { (m) in
-                    m.centerY.equalTo(backButton)
-                    m.left.equalTo(quoteLabel.snp.right).offset(4)
-                }
-
-                miningMultiplesButton.snp.remakeConstraints { (m) in
-                    m.centerY.equalTo(backButton)
-                    m.left.equalTo(miningImgView.snp.right).offset(4)
-                }
-
-                vLine.snp.remakeConstraints { (m) in
-                    m.width.equalTo(CGFloat.singleLineWidth)
-                    m.centerY.equalTo(backButton)
-                    m.height.equalTo(12)
-                    m.left.equalTo(miningMultiplesButton.snp.right).offset(8)
-                }
-            }
+        vLine.snp.remakeConstraints { (m) in
+            m.width.equalTo(CGFloat.singleLineWidth)
+            m.centerY.equalTo(backButton)
+            m.height.equalTo(12)
+            m.left.equalTo(miningImgView.snp.right).offset(8)
         }
     }
 

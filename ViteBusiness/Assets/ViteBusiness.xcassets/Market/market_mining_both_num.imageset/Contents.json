@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "market_mining_trade@2x.png",
+      "filename" : "market_mining_both_num@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "market_mining_trade@3x.png",
+      "filename" : "market_mining_both_num@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
