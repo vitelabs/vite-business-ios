@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import PromiseKit
 import ViteWallet
+import BigInt
 
 class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
     static let limit = 50
@@ -96,7 +97,8 @@ extension SpotOpenedOrderListViewModel {
                                               vipState: $0,
                                               svipState: vm.svipState,
                                               dexMarketInfo: vm.dexMarketInfo,
-                                              invited: vm.invited)
+                                              invited: vm.invited,
+                                              feeRate: vm.feeRate)
             self.spotViewModelBehaviorRelay.accept(spotViewModel)
         }
     }
@@ -131,7 +133,8 @@ extension SpotOpenedOrderListViewModel {
                       ViteNode.dex.info.getDexVIPState(address: address),
                       ViteNode.dex.info.getDexSuperVIPState(address: address),
                       ViteNode.dex.info.getDexMarketInfo(tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId),
-                      ViteNode.dex.info.getDexInviteCodeBinding(address: address)
+                      ViteNode.dex.info.getDexInviteCodeBinding(address: address),
+                      ViteNode.dex.info.getDexPlaceOrderInfo(address: address, tradeTokenId: tradeTokenId, quoteTokenId: quoteTokenId, side: false)
                 )
             )
         }) { [weak self] (f, s) in
@@ -142,7 +145,8 @@ extension SpotOpenedOrderListViewModel {
                                               vipState: s.0,
                                               svipState: s.1,
                                               dexMarketInfo: s.2,
-                                              invited: (s.3 != nil))
+                                              invited: (s.3 != nil),
+                                              feeRate: BigDecimal(BigInt(s.4.feeRate)) / BigDecimal(BigInt(100000)))
             self.spotViewModelBehaviorRelay.accept(spotViewModel)
             self.tirggerRefresh()
         }

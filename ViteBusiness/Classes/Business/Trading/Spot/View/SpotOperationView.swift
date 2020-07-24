@@ -433,24 +433,7 @@ class SpotOperationView: UIView {
     }
 
     static func calcFeeRate(vm: SpotViewModel) -> BigDecimal {
-        let vipReduceFeeRate: BigDecimal
-        if vm.svipState {
-            vipReduceFeeRate = BigDecimal("0.002")!
-        } else if vm.vipState {
-            vipReduceFeeRate = BigDecimal("0.001")!
-        } else {
-            vipReduceFeeRate = BigDecimal(BigInt(0))
-        }
-
-        let baseFeeRate = BigDecimal("0.002")! - vipReduceFeeRate
-        let operatorFeeRate = BigDecimal(BigInt(max(vm.dexMarketInfo.takerBrokerFeeRate, vm.dexMarketInfo.makerBrokerFeeRate))) / BigDecimal(BigInt(100000))
-        var lockFeeRate = baseFeeRate + operatorFeeRate
-
-        if vm.invited {
-            lockFeeRate = lockFeeRate * BigDecimal(BigInt(9)) / BigDecimal(BigInt(10))
-        }
-
-        return lockFeeRate
+        return vm.feeRate
     }
 
     static func calcFee(vm: SpotViewModel, amount: Amount) -> Amount {

@@ -17,6 +17,7 @@ struct SpotViewModel {
     let svipState: Bool
     let dexMarketInfo: DexMarketInfo
     let invited: Bool
+    let feeRate: BigDecimal
 
     var operatorInfoIconUrlString: String? { marketPairDetailInfo.operatorInfo?.icon }
     var level: Int { marketPairDetailInfo.operatorInfo?.level ?? 0 }
