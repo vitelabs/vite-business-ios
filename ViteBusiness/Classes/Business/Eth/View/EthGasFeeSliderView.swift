@@ -37,13 +37,17 @@ public class EthGasFeeSliderView: UIView {
             if let rateFeeStr =  ExchangeRateManager.instance.calculateBalanceWithEthRate(balance) {
                 rateFee = String(format: "≈%@",rateFeeStr)
             }
-           self.totalGasFeeLab.text = String(format: "%@ ETH %@", ethStr,rateFee)
+            self.totalGasFeeLab.text = String(format: "%@ ETH %@", ethStr,rateFee)
             self.feeSlider.value = Float(value)
         }
     }
 
     var ethStr: String = ""
     var eth: Float = 0
+
+    let indicatorView = UIActivityIndicatorView(style: .gray).then {
+        $0.startAnimating()
+    }
 
     lazy var totalGasFeeTitleLab = UILabel().then {(totalGasFeeTitleLab) in
         totalGasFeeTitleLab.textColor = UIColor(netHex: 0x3E4A59)
@@ -72,7 +76,7 @@ public class EthGasFeeSliderView: UIView {
     lazy var totalGasFeeLab = UILabel().then {(totalGasFeeLab) in
         totalGasFeeLab.textColor = UIColor(netHex: 0x24272B)
         totalGasFeeLab.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-
+        totalGasFeeLab.isHidden = true
         self.addSubview(totalGasFeeLab)
         totalGasFeeLab.snp.makeConstraints({ (m) in
             m.centerY.equalTo(self.totalGasFeeTitleLab)
@@ -82,17 +86,21 @@ public class EthGasFeeSliderView: UIView {
     }
 
     lazy var feeSlider = GasFeeSliderView().then {
-        $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
-        $0.setMinimumTrackImage(UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .selected)
-        $0.setMaximumTrackImage(UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .normal)
-        $0.setMaximumTrackImage(UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4)), for: .selected)
+        let blueImage = UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4))
+        let grayImage = UIImage.line_color(UIColor(netHex: 0xF3F6F9),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4))
+        $0.setMinimumTrackImage(grayImage, for: .normal)
+        $0.setMinimumTrackImage(grayImage, for: .selected)
+        $0.setMaximumTrackImage(grayImage, for: .normal)
+        $0.setMaximumTrackImage(grayImage, for: .selected)
         $0.minimumValue = 1
         $0.maximumValue = 100
+        $0.value = 1
         $0.isContinuous = true
-        $0.setThumbImage(R.image.gasSlider(), for: .normal)
-        $0.setThumbImage(R.image.gasSlider(), for: .highlighted)
-        $0.setThumbImage(R.image.gasSlider(), for: .selected)
+        $0.setThumbImage(UIImage(), for: .normal)
+        $0.setThumbImage(UIImage(), for: .highlighted)
+        $0.setThumbImage(UIImage(), for: .selected)
         $0.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+        $0.isUserInteractionEnabled = false
     }
 
     lazy var slowLab = UILabel().then {
@@ -110,6 +118,7 @@ public class EthGasFeeSliderView: UIView {
     lazy var valueLab = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha:0.6)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.isHidden = true
     }
 
     @objc fileprivate func valueChanged() {
@@ -120,6 +129,12 @@ public class EthGasFeeSliderView: UIView {
     init(gasLimit:Int) {
         self.gasLimit = gasLimit
         super.init(frame: CGRect.zero)
+
+        self.addSubview(indicatorView)
+        indicatorView.snp.makeConstraints({ (m) in
+            m.centerY.equalTo(totalGasFeeTitleLab)
+            m.right.equalToSuperview()
+        })
 
         self.addSubview(feeSlider)
         feeSlider.snp.makeConstraints({ (m) in
@@ -160,8 +175,43 @@ public class EthGasFeeSliderView: UIView {
             .done({ price in
                 // Gwei = 9
                 let b = BigDecimal(number: price, digits: 9)
-                self.value = Float(b.description) ?? 1.0
-            })
+                if let value = Float(b.description) {
+                    self.feeSlider.minimumValue = value / 2
+                    self.feeSlider.maximumValue = value * 3
+                    self.value = value
+                } else {
+                    self.feeSlider.minimumValue = 1
+                    self.feeSlider.maximumValue = 100
+                    self.value = 1
+                }
+
+                self.indicatorView.isHidden = true
+                self.totalGasFeeLab.isHidden = false
+                self.valueLab.isHidden = false
+                self.feeSlider.isUserInteractionEnabled = true
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .normal)
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .highlighted)
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .selected)
+
+                let blueImage = UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4))
+                self.feeSlider.setMinimumTrackImage(blueImage, for: .normal)
+                self.feeSlider.setMinimumTrackImage(blueImage, for: .selected)
+            }).catch { (_) in
+                self.feeSlider.minimumValue = 1
+                self.feeSlider.maximumValue = 100
+                self.value = 1
+                self.indicatorView.isHidden = true
+                self.totalGasFeeLab.isHidden = false
+                self.valueLab.isHidden = false
+                self.feeSlider.isUserInteractionEnabled = true
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .normal)
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .highlighted)
+                self.feeSlider.setThumbImage(R.image.gasSlider(), for: .selected)
+
+                let blueImage = UIImage.line_color(UIColor(netHex: 0x007AFF),kScreenW).resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 5, bottom: 5, right: 4))
+                self.feeSlider.setMinimumTrackImage(blueImage, for: .normal)
+                self.feeSlider.setMinimumTrackImage(blueImage, for: .selected)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
