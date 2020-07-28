@@ -46,6 +46,7 @@ public class EthGasFeeSliderView: UIView {
     var eth: Float = 0
 
     let indicatorView = UIActivityIndicatorView(style: .gray).then {
+        $0.hidesWhenStopped = true
         $0.startAnimating()
     }
 
@@ -185,7 +186,7 @@ public class EthGasFeeSliderView: UIView {
                     self.value = 1
                 }
 
-                self.indicatorView.isHidden = true
+                self.indicatorView.stopAnimating()
                 self.totalGasFeeLab.isHidden = false
                 self.valueLab.isHidden = false
                 self.feeSlider.isUserInteractionEnabled = true
@@ -200,7 +201,7 @@ public class EthGasFeeSliderView: UIView {
                 self.feeSlider.minimumValue = 1
                 self.feeSlider.maximumValue = 100
                 self.value = 1
-                self.indicatorView.isHidden = true
+                self.indicatorView.stopAnimating()
                 self.totalGasFeeLab.isHidden = false
                 self.valueLab.isHidden = false
                 self.feeSlider.isUserInteractionEnabled = true
