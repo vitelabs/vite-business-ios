@@ -29,4 +29,6 @@ extension Notification.Name {
 
     public static let goTokenInfoVC = NSNotification.Name(rawValue: "goTokenInfoVC")
     public static let goGateWayVC = NSNotification.Name(rawValue: "goGateWayVC")
+
+    public static let ViteChainSendSuccess = NSNotification.Name(rawValue: "ViteChainSendSuccess")
 }

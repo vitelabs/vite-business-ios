@@ -49,6 +49,14 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
         HDWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
             self?.bind(address: account.address)
         }).disposed(by: rx.disposeBag)
+
+        NotificationCenter.default.rx.notification(.ViteChainSendSuccess).bind { [weak self] (n) in
+            if let tokenId = n.object as? String, self?.token.id == tokenId {
+                GCD.delay(2) { [weak self] in
+                    self?.tableViewHandler.refresh()
+                }
+            }
+        }.disposed(by: rx.disposeBag)
     }
 
     func getMore(finished: @escaping (Error?) -> ()) {

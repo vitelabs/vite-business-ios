@@ -195,6 +195,7 @@ class SendViewController: BaseViewController {
                     Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             self.dismiss()
+                            NotificationCenter.default.post(name: .ViteChainSendSuccess, object: self.tokenInfo.viteTokenId)
                         }
                     })
                 case .contract:
@@ -214,6 +215,7 @@ class SendViewController: BaseViewController {
                     Workflow.sendTransactionWithConfirm(account: self.account, toAddress: address, tokenInfo: self.tokenInfo, amount: amount, data: data, utString: self.quotaView.utString, completion: { (r) in
                         if case .success = r {
                             self.dismiss()
+                            NotificationCenter.default.post(name: .ViteChainSendSuccess, object: self.tokenInfo.viteTokenId)
                         }
                     })
                 }
