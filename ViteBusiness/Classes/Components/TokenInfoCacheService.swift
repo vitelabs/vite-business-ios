@@ -18,9 +18,11 @@ public class TokenInfoCacheService {
     fileprivate var needUpdateTokenInfo: Set<TokenCode> = Set()
     private var tokenCodeMap = [TokenCode: TokenInfo]()
     private var keyMap = [String: TokenInfo]()
+    private var dexTokenCodes = [TokenCode]()
 
     private init() {
         if let cache: Cache = readMappable() {
+            dexTokenCodes = cache.dexTokenCodes
             for tokenInfo in cache.tokenInfos {
                 tokenCodeMap[tokenInfo.tokenCode] = tokenInfo
                 keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
@@ -32,6 +34,24 @@ public class TokenInfoCacheService {
             tokenCodeMap[tokenInfo.tokenCode] = tokenInfo
             keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
         }
+    }
+}
+extension TokenInfoCacheService {
+    public func fetchDexTokenInfos() {
+        func fetch() {
+            UnifyProvider.vitex.getDexTokenInfos().done { (tokenInfos) in
+                self.dexTokenCodes = tokenInfos.map { $0.tokenCode }
+                self.updateTokenInfos(tokenInfos)
+            }.catch { (error) in
+                plog(level: .warning, log: "update tokenInfo error: \(error.localizedDescription)", tag: .exchange)
+                GCD.delay(2) { fetch() }
+            }
+        }
+        fetch()
+    }
+
+    public var dexTokenInfos: [TokenInfo] {
+        dexTokenCodes.map { tokenInfo(for: $0)! }
     }
 }
 
@@ -65,7 +85,7 @@ extension TokenInfoCacheService {
             keyMap["\(tokenInfo.rawChainName)_\(tokenInfo.id.lowercased())"] = tokenInfo
             needUpdateTokenInfo.remove(tokenInfo.tokenCode)
         }
-        save(mappable: Cache(tokenInfos: tokenCodeMap.map({ $1 })))
+        save(mappable: Cache(tokenInfos: tokenCodeMap.map({ $1 }), dexTokenCodes: dexTokenCodes))
     }
 
     // MARK: sync
@@ -236,14 +256,17 @@ extension TokenInfoCacheService {
 extension TokenInfoCacheService {
     struct Cache: Mappable {
         var tokenInfos = [TokenInfo]()
+        var dexTokenCodes = [TokenCode]()
 
         init?(map: Map) { }
         mutating func mapping(map: Map) {
             tokenInfos <- map["tokenInfos"]
+            dexTokenCodes <- map["dexTokenCodes"]
         }
 
-        init(tokenInfos: [TokenInfo]) {
+        init(tokenInfos: [TokenInfo], dexTokenCodes: [TokenCode]) {
             self.tokenInfos = tokenInfos
+            self.dexTokenCodes = dexTokenCodes
         }
     }
 }

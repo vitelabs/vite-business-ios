@@ -1043,9 +1043,11 @@
 "transfer.wallet.account" =  "Wallet Account";
 "transfer.to" =  "To";
 "transfer.dex.account" =  "Exchange Account";
+"transfer.token" =  "Token";
 "transfer.amount" =  "Amount";
 "transfer.available" =  "Balance: ";
 "transfer.title" =  "Transfer";
+"transfer.search.placeholder" =  "Please input token name";
 
 "market.favourite" =  "Favorites";
 "market.searchhistory" =  "Search History";

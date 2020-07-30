@@ -21,6 +21,7 @@ enum ViteXAPI: TargetType {
     case getTokenInfoDetail(TokenCode)
     case getMiningTrade(address: ViteAddress, offset: Int, limit: Int)
     case getMiningPledge(address: ViteAddress, offset: Int, limit: Int)
+    case getDexTokenInfos
     
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -39,6 +40,7 @@ enum ViteXAPI: TargetType {
         case .getTokenInfoDetail: return "/api/v1/cryptocurrency/info/detail"
         case .getMiningTrade: return "/api/v1/mining/trade"
         case .getMiningPledge: return "/api/v1/mining/pledge"
+        case .getDexTokenInfos: return "api/v1/cryptocurrency/dex/tokens"
         }
     }
 
@@ -55,6 +57,7 @@ enum ViteXAPI: TargetType {
         case .getTokenInfoDetail: return .post
         case .getMiningTrade: return .get
         case .getMiningPledge: return .get
+        case .getDexTokenInfos: return .get
         }
     }
 
@@ -117,6 +120,8 @@ enum ViteXAPI: TargetType {
                 "limit": String(limit)
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getDexTokenInfos:
+            return .requestPlain
         }
     }
 

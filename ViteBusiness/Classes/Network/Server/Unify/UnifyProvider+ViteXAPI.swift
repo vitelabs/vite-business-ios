@@ -195,3 +195,15 @@ extension UnifyProvider.vitex {
     }
 }
 
+// Dex
+extension UnifyProvider.vitex {
+    static func getDexTokenInfos() -> Promise<[TokenInfo]> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getDexTokenInfos, responseToData: responseToData).map { string in
+            guard let ret = [TokenInfo](JSONString: string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
+}

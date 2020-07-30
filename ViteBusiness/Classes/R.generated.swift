@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 273 images.
+  /// This `R.image` struct is generated, and contains static references to 275 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -378,6 +378,8 @@ public struct R: Rswift.Validatable {
     public static let icon_nav_refresh = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_refresh")
     /// Image `icon_nav_scan_black`.
     public static let icon_nav_scan_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_scan_black")
+    /// Image `icon_nav_search`.
+    public static let icon_nav_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_search")
     /// Image `icon_nav_share_black`.
     public static let icon_nav_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_nav_share_black")
     /// Image `icon_price_hide_button`.
@@ -478,6 +480,8 @@ public struct R: Rswift.Validatable {
     public static let icon_vite_exchange = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_exchange")
     /// Image `icon_vite_logo`.
     public static let icon_vite_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vite_logo")
+    /// Image `icon_vitex_transfer_down_arrows`.
+    public static let icon_vitex_transfer_down_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vitex_transfer_down_arrows")
     /// Image `icon_vote_rank`.
     public static let icon_vote_rank = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_vote_rank")
     /// Image `icon_voteaddress`.
@@ -1465,6 +1469,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_nav_scan_black, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_nav_search", bundle: ..., traitCollection: ...)`
+    public static func icon_nav_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_nav_search, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_nav_share_black", bundle: ..., traitCollection: ...)`
     public static func icon_nav_share_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_nav_share_black, compatibleWith: traitCollection)
@@ -1715,6 +1724,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_vite_logo, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_vitex_transfer_down_arrows", bundle: ..., traitCollection: ...)`
+    public static func icon_vitex_transfer_down_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_vitex_transfer_down_arrows, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_vote_rank", bundle: ..., traitCollection: ...)`
     public static func icon_vote_rank(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_vote_rank, compatibleWith: traitCollection)
@@ -1935,7 +1949,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 991 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 993 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4097,6 +4111,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exportPageAlterTfPlaceholder = Rswift.StringResource(key: "export.page.alter.tf.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please input token name
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferSearchPlaceholder = Rswift.StringResource(key: "transfer.search.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please input token name or contract address
       /// 
       /// Locales: en, zh-Hans
@@ -4897,6 +4915,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageSegmentTokenInfoTitle = Rswift.StringResource(key: "market.detail.page.segment.token.info.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Token
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transferToken = Rswift.StringResource(key: "transfer.token", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Token Details
       /// 
       /// Locales: en, zh-Hans
@@ -9682,6 +9704,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("export.page.alter.tf.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Please input token name
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferSearchPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.search.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Please input token name or contract address
       /// 
       /// Locales: en, zh-Hans
@@ -11080,6 +11109,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketDetailPageSegmentTokenInfoTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.segment.token.info.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Token
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transferToken(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.token", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Token Details

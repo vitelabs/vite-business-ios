@@ -1051,9 +1051,11 @@
 "transfer.wallet.account" =  "钱包账户";
 "transfer.to" =  "到";
 "transfer.dex.account" =  "交易所账户";
+"transfer.token" =  "币种";
 "transfer.amount" =  "数量";
 "transfer.available" =  "可用: ";
 "transfer.title" =  "划转";
+"transfer.search.placeholder" =  "输入币种名称";
 
 "market.favourite" =  "自选";
 "market.searchhistory" =  "搜索记录";

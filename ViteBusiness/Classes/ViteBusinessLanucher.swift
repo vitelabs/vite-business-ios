@@ -62,6 +62,7 @@ public class ViteBusinessLanucher: NSObject {
         FetchQuotaManager.instance.start()
         AddressManageService.instance.start()
         AppContentService.instance.start()
+        TokenInfoCacheService.instance.fetchDexTokenInfos()
         //web
         self.handleWebUIConfig()
         self.handleWebAppBridgeConfig()

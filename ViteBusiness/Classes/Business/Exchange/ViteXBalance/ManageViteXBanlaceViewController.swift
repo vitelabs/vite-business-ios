@@ -26,7 +26,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
     let autoDismiss: Bool
     public init(tokenInfo: TokenInfo, autoDismiss: Bool) {
-        self.token = tokenInfo
+        self.tokenInfoBehaviorRelay = BehaviorRelay(value: tokenInfo)
         self.autoDismiss = autoDismiss
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,6 +89,8 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         return button
     }()
 
+    let tokenSelectorView = TokenSelectorView()
+
     lazy var amountView = EthViteExchangeAmountView().then { amountView in
         amountView.textField.keyboardType = .decimalPad
         amountView.symbolLabel.text = self.token.symbol
@@ -112,7 +114,8 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         return UIButton.init(style: .blue, title: title)
     }()
 
-    let token: TokenInfo
+    let tokenInfoBehaviorRelay: BehaviorRelay<TokenInfo>
+    var token: TokenInfo { tokenInfoBehaviorRelay.value }
     var walletBalance = Amount(0)
     var vitexBalance = Amount(0)
 
@@ -160,6 +163,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         topContainerView.addSubview(seperator)
         topContainerView.addSubview(switchButton)
 
+        view.addSubview(tokenSelectorView)
         view.addSubview(amountView)
         view.addSubview(balanceLabel)
 
@@ -212,9 +216,14 @@ public class ManageViteXBanlaceViewController: BaseViewController {
             m.left.equalToSuperview().offset(46)
         }
 
+        tokenSelectorView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview()
+            m.top.equalTo(topContainerView.snp.bottom).offset(20)
+        }
+
         amountView.snp.makeConstraints { (m) in
             m.left.right.equalToSuperview().inset(24)
-            m.top.equalTo(topContainerView.snp.bottom)
+            m.top.equalTo(tokenSelectorView.snp.bottom).offset(11)
          }
 
         handleButton.snp.makeConstraints { (m) in
@@ -230,23 +239,37 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
     func bind() {
 
+        tokenSelectorView.changeButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            let vc = ViteXTokenSelectorViewController(tokenInfo: self.token, type: self.actionType == .toVitex ? .wallet : .vitex) { [weak self] tokenInfo in
+                self?.tokenInfoBehaviorRelay.accept(tokenInfo)
+            }
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
         amountView.button.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             self.amountView.textField.text = self.balance.amount(decimals: self.token.decimals, count: min(8,self.token.decimals),groupSeparator: false)
-            }.disposed(by: rx.disposeBag)
+        }.disposed(by: rx.disposeBag)
 
-        ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: token.id)
-            .drive(onNext: { [weak self] balanceInfo in
+        tokenInfoBehaviorRelay.asDriver().drive(onNext: { [weak self] tokenInfo in
+            guard let `self` = self else { return }
+            self.tokenSelectorView.bind(tokenInfo: tokenInfo)
+        }).disposed(by: rx.disposeBag)
+
+        Driver.combineLatest(tokenInfoBehaviorRelay.asDriver(), ViteBalanceInfoManager.instance.balanceInfosDriver)
+            .drive(onNext: { [weak self] (tokenInfo, map) in
                 guard let `self` = self else { return }
-                self.walletBalance = balanceInfo?.balance ?? Amount(0)
+                self.walletBalance = map[tokenInfo.viteTokenId]?.balance ?? Amount(0)
                 if self.actionType == .toVitex {
                     self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) + " " + self.token.symbol
                 }
             }).disposed(by: rx.disposeBag)
-        ViteBalanceInfoManager.instance.dexBalanceInfoDriver(forViteTokenId: token.id)
-            .drive(onNext: { [weak self] dexBalanceInfo in
+
+        Driver.combineLatest(tokenInfoBehaviorRelay.asDriver(), ViteBalanceInfoManager.instance.dexBalanceInfosDriver)
+            .drive(onNext: { [weak self] (tokenInfo, map) in
                 guard let `self` = self else { return }
-                self.vitexBalance = dexBalanceInfo?.available ?? Amount(0)
+                self.vitexBalance =  map[tokenInfo.viteTokenId]?.available ?? Amount(0)
                 if self.actionType == .toWallet {
                     self.balanceLabel.text =  R.string.localizable.transferAvailable() +   self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
                 }
