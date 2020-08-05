@@ -211,6 +211,8 @@
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
+"transaction.list.transaction.confirmations" = "已确认 %@";
+"transaction.list.transaction.confirmations.finished" = "已完成";
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "Transaction Completed";
@@ -221,6 +223,7 @@
 "vite.transaction.detail.page.type.send" = "Transaction Type";
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.confirmations.title" = "确认数";
 "vite.transaction.detail.page.height.title" = "Block Height";
 "vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";

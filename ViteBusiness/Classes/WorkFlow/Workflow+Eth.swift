@@ -75,7 +75,7 @@ public extension Workflow {
                                               amount: Amount,
                                               gasPrice: Float,
                                               note: String, // only ether can has note
-                                              completion: @escaping (Result<String>) -> ()) {
+                                              completion: @escaping (Result<ETHTransaction>) -> ()) {
         guard let account = ETHWalletManager.instance.account else {
             completion(.failure(WalletError.accountDoesNotExist))
             return
@@ -84,7 +84,7 @@ public extension Workflow {
         let sendBlock = {
             HUD.show()
             let g = BigInt(Web3.Utils.parseToBigUInt(String(format:"%f", gasPrice), units: .Gwei)!)
-            let promise: Promise<String>
+            let promise: Promise<TransactionSendingResult>
             if tokenInfo.isEtherCoin {
                 promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g, note: note)
             } else {
@@ -95,8 +95,10 @@ public extension Workflow {
                 .always {
                     HUD.hide()
                 }
-                .done({ txHash in
-                    completion(Result.success(txHash))
+                .done({ result in
+                    let tx = ETHTransaction(result: result, contractAddress: tokenInfo.ethContractAddress, accountAddress: account.address, tokenInfo: tokenInfo, erc20Amount: tokenInfo.isEtherCoin ? nil : amount)
+                    ETHUnconfirmedManager.instance.add(tx)
+                    completion(Result.success(tx))
                     AlertControl.showCompletion(R.string.localizable.workflowToastTransferSuccess())
                 })
                 .catch({ error in

@@ -141,9 +141,9 @@ extension ETHAccount {
         }
     }
 
-    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?, note: String) -> Promise<String> {
+    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?, note: String) -> Promise<TransactionSendingResult> {
         return etherBalance()
-            .then(on: DispatchQueue.global(), { (balance) -> Promise<String> in
+            .then(on: DispatchQueue.global(), { (balance) -> Promise<TransactionSendingResult> in
                 guard balance >= amount else { throw WalletError.notEnoughBalance }
                 guard let password = ETHWalletManager.instance.password else { throw WalletError.accountDoesNotExist}
                 let walletAddress = self.ethereumAddress
@@ -177,14 +177,14 @@ extension ETHAccount {
                                               transactionOptions: options) else { fatalError() }
 
                 let result = try tx.send(password: password)
-                return .value(result.hash)
+                return .value(result)
             })
     }
 
-    public func sendToken(to address: String, amount: BigInt, gasPrice: BigInt?, contractAddress: String) -> Promise<String> {
+    public func sendToken(to address: String, amount: BigInt, gasPrice: BigInt?, contractAddress: String) -> Promise<TransactionSendingResult> {
         return getSendTokenTransaction(to: address, amount: amount, gasPrice: gasPrice, contractAddress: contractAddress)
-            .then({ (wt) -> Promise<String> in
-                return self.sendTransaction(wt).map({ $0.hash })
+            .then({ (wt) -> Promise<TransactionSendingResult> in
+                return self.sendTransaction(wt)
             })
     }
 }

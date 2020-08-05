@@ -11,7 +11,7 @@ import BigInt
 import ViteWallet
 import web3swift
 
-struct ETHTransaction: Mappable {
+public struct ETHTransaction: Mappable {
 
     enum TransactionType {
         case receive
@@ -21,6 +21,8 @@ struct ETHTransaction: Mappable {
 
     fileprivate(set) var isError: Bool = false
     fileprivate(set) var blockNumber: String = ""
+    fileprivate(set) var confirmations: String = ""
+    fileprivate(set) var nonce: BigInt = BigInt(0)
     fileprivate(set) var timeStamp: Date = Date()
     fileprivate(set) var hash: String = ""
     fileprivate(set) var blockHash: String = ""
@@ -47,11 +49,45 @@ struct ETHTransaction: Mappable {
         }
     }
 
+    var isConfirmed: Bool {
+        if let num = Int(confirmations), num == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    mutating func update(confirmations: BigInt) {
+        self.confirmations = confirmations.description
+    }
+
     public init?(map: Map) { }
 
-    mutating func mapping(map: Map) {
+    init(result: TransactionSendingResult, contractAddress: String, accountAddress: String, tokenInfo: TokenInfo, erc20Amount: Amount?) {
+        self.isError = false
+        self.blockNumber = ""
+        self.confirmations = "0"
+        self.nonce = BigInt(result.transaction.nonce)
+        self.timeStamp = Date()
+        self.hash = result.hash
+        self.blockHash = ""
+        self.fromAddress = accountAddress
+        self.toAddress = result.transaction.to.address
+        self.amount = erc20Amount ?? Amount(result.transaction.value)
+        self.gas = Amount(0)
+        self.gasUsed = Amount(0)
+        self.gasPrice = Amount(result.transaction.gasPrice)
+        self.input = "0x" + result.transaction.data.toHexString()
+        self.contractAddress = contractAddress
+        self.accountAddress = accountAddress
+        self.tokenInfo = tokenInfo
+    }
+
+    mutating public func mapping(map: Map) {
         isError <- (map["isError"], ETHTransaction.isErrorTransform)
         blockNumber <- map["blockNumber"]
+        confirmations <- map["confirmations"]
+        nonce <- (map["nonce"], JSONTransformer.bigint)
         timeStamp <- (map["timeStamp"], ETHTransaction.timestampTransform)
         hash <- map["hash"]
         blockHash <- map["blockHash"]

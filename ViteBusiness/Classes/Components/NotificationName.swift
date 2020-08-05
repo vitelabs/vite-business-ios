@@ -31,4 +31,5 @@ extension Notification.Name {
     public static let goGateWayVC = NSNotification.Name(rawValue: "goGateWayVC")
 
     public static let ViteChainSendSuccess = NSNotification.Name(rawValue: "ViteChainSendSuccess")
+    public static let EthChainSendSuccess = NSNotification.Name(rawValue: "EthChainSendSuccess")
 }

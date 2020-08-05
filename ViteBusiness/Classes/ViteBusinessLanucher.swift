@@ -59,6 +59,7 @@ public class ViteBusinessLanucher: NSObject {
         AutoGatheringManager.instance.start()
         ViteBalanceInfoManager.instance.start()
         ETHBalanceInfoManager.instance.start()
+        ETHUnconfirmedManager.instance.start()
         FetchQuotaManager.instance.start()
         AddressManageService.instance.start()
         AppContentService.instance.start()

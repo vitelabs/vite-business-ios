@@ -13,14 +13,14 @@ import RxCocoa
 class ETHTransactionCell: BaseTableViewCell {
 
     static var cellHeight: CGFloat {
-        return 103
+        return 74
     }
 
     fileprivate let typeImageView = UIImageView()
 
     fileprivate let typeNameLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x77808A)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
     }
 
     fileprivate let addressLabel = UILabel().then {
@@ -29,29 +29,19 @@ class ETHTransactionCell: BaseTableViewCell {
         $0.lineBreakMode = .byTruncatingMiddle
     }
 
+    fileprivate let confirmationsLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        $0.textColor = UIColor(netHex: 0xB5C4FF)
+    }
+
     fileprivate let timeLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
     }
 
     fileprivate let balanceLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         $0.textAlignment = .right
-    }
-
-    fileprivate let symbolLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
-    }
-
-    fileprivate let stateLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0xFF0008)
-    }
-
-    fileprivate let gasLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -65,17 +55,15 @@ class ETHTransactionCell: BaseTableViewCell {
         contentView.addSubview(typeImageView)
         contentView.addSubview(typeNameLabel)
         contentView.addSubview(addressBackView)
+        contentView.addSubview(confirmationsLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(balanceLabel)
-        contentView.addSubview(symbolLabel)
-        contentView.addSubview(stateLabel)
-        contentView.addSubview(gasLabel)
 
         typeImageView.setContentHuggingPriority(.required, for: .horizontal)
         typeImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         typeImageView.snp.makeConstraints { (m) in
-            m.top.equalTo(contentView).offset(19)
+            m.top.equalTo(contentView).offset(17)
             m.left.equalTo(contentView).offset(24)
             m.size.equalTo(CGSize(width: 14, height: 14))
         }
@@ -90,48 +78,34 @@ class ETHTransactionCell: BaseTableViewCell {
         addressBackView.snp.makeConstraints { (m) in
             m.centerY.equalTo(typeImageView)
             m.height.equalTo(20)
-            m.left.equalTo(typeNameLabel.snp.right).offset(11)
-            m.right.equalTo(contentView).offset(-24)
+            m.left.equalTo(typeNameLabel.snp.right).offset(6)
         }
 
         addressLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(addressBackView)
-            m.left.equalTo(addressBackView).offset(6)
-            m.right.equalTo(addressBackView).offset(-6)
+            m.left.equalTo(addressBackView).offset(10)
+            m.right.equalTo(addressBackView).offset(-10)
         }
 
-        stateLabel.setContentHuggingPriority(.required, for: .horizontal)
-        stateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        stateLabel.snp.makeConstraints { (m) in
-            m.left.equalToSuperview().offset(24)
-            m.centerY.equalTo(balanceLabel)
-        }
-
-        balanceLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(typeNameLabel.snp.bottom).offset(10)
-            m.left.equalTo(stateLabel.snp.right).offset(8)
-        }
-
-        symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
-        symbolLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        symbolLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(balanceLabel)
-            m.left.equalTo(balanceLabel.snp.right).offset(8)
-            m.right.equalTo(addressBackView)
+        confirmationsLabel.setContentHuggingPriority(.required, for: .horizontal)
+        confirmationsLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        confirmationsLabel.snp.makeConstraints { (m) in
+            m.centerY.equalTo(typeImageView)
+            m.right.equalToSuperview().offset(-24)
+            m.left.equalTo(addressBackView.snp.right).offset(44)
         }
 
         timeLabel.setContentHuggingPriority(.required, for: .horizontal)
         timeLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         timeLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(balanceLabel.snp.bottom).offset(9)
+            m.top.equalTo(typeImageView.snp.bottom).offset(14)
             m.left.equalToSuperview().offset(24)
-            m.bottom.equalTo(contentView).offset(-13)
         }
 
-        gasLabel.snp.makeConstraints { (m) in
+        balanceLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(timeLabel)
-            m.left.greaterThanOrEqualTo(timeLabel.snp.right).offset(8)
-            m.right.equalTo(addressBackView)
+            m.left.equalTo(timeLabel.snp.right).offset(8)
+            m.right.equalToSuperview().offset(-24)
         }
 
         let line = UIView().then {
@@ -158,8 +132,21 @@ class ETHTransactionCell: BaseTableViewCell {
         timeLabel.text = viewModel.timeString
         balanceLabel.text = viewModel.balanceString
         balanceLabel.textColor = viewModel.balanceColor
-        symbolLabel.text = viewModel.symbolString
-        gasLabel.text = viewModel.gasString
-        stateLabel.text = viewModel.stateString
+
+        if let state = viewModel.stateString {
+            confirmationsLabel.text = state
+            confirmationsLabel.textColor = UIColor(netHex: 0xFF0008)
+        } else {
+            if let num = Int(viewModel.confirmations), num <= 12 {
+                confirmationsLabel.text = R.string.localizable.transactionListTransactionConfirmations(viewModel.confirmations)
+                if num > 0 {
+                    confirmationsLabel.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+                } else {
+                    confirmationsLabel.textColor = UIColor(netHex: 0xB5C4FF)
+                }
+            } else {
+                confirmationsLabel.text = R.string.localizable.transactionListTransactionConfirmationsFinished()
+            }
+        }
     }
 }
