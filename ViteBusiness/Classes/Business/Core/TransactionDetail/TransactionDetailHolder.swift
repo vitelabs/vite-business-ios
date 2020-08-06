@@ -74,6 +74,6 @@ extension TransactionDetailHolder {
         let stateString: String
         let timeString: String
         let items: [Item]
-        let link: Link
+        let link: Link?
     }
 }

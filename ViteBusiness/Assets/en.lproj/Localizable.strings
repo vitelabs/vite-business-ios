@@ -213,6 +213,7 @@
 "transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
 "transaction.list.transaction.confirmations" = "已确认 %@";
 "transaction.list.transaction.confirmations.finished" = "已完成";
+"eth.transaction.detail.page.state.call.wait" = "待确认";
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "Transaction Completed";

@@ -190,7 +190,7 @@ public extension ViteConst {
                            growth: "https://growth.vite.net/test",
                            x: "https://api.vitex.net/test",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
-                           gateway: "http://132.232.60.116:8001",
+                           gateway: "http://150.109.51.146:9900",
                            exchange: "http://150.109.40.169:7070/test", viteXUrl: "https://vite-wallet-test2.netlify.com/mobiledex",
                            pushReportConfig: "http://150.109.40.169:8086/test",
                            pushReportBussness: "http://150.109.40.169:8079",

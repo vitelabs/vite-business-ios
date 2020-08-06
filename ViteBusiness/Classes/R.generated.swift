@@ -1949,7 +1949,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 996 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 997 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5923,6 +5923,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let transactionListTransactionConfirmations = Rswift.StringResource(key: "transaction.list.transaction.confirmations", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 待确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailPageStateCallWait = Rswift.StringResource(key: "eth.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 确认数
       /// 
       /// Locales: en, zh-Hans
@@ -12885,6 +12889,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func transactionListTransactionConfirmations(_ value1: String) -> String {
         return String(format: NSLocalizedString("transaction.list.transaction.confirmations", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 待确认
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailPageStateCallWait(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 确认数

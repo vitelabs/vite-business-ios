@@ -31,7 +31,7 @@ class ETHTransactionCell: BaseTableViewCell {
 
     fileprivate let confirmationsLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0xB5C4FF)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
     }
 
     fileprivate let timeLabel = UILabel().then {
@@ -146,6 +146,7 @@ class ETHTransactionCell: BaseTableViewCell {
                 }
             } else {
                 confirmationsLabel.text = R.string.localizable.transactionListTransactionConfirmationsFinished()
+                confirmationsLabel.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
             }
         }
     }

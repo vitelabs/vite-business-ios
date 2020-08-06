@@ -42,10 +42,10 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
 
         NotificationCenter.default.rx.notification(.EthChainSendSuccess).bind { [weak self] (n) in
             guard let `self` = self else { return }
-            if let contractAddress = n.object as? String, self.tokenInfo.id == contractAddress {
+            if tokenInfo.isEtherCoin {
                 self.transactions.accept(self.genViewModels())
                 self.hasMore.accept(self.hasMore.value)
-            } else if tokenInfo.isEtherCoin {
+            } else if let tx = n.object as? ETHUnconfirmedTransaction, self.tokenInfo.id == tx.erc20ContractAddress {
                 self.transactions.accept(self.genViewModels())
                 self.hasMore.accept(self.hasMore.value)
             }
@@ -78,11 +78,14 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
     }
 
     func genViewModels() -> [ETHTransactionViewModel] {
-        let all = ETHUnconfirmedManager.instance.unconfirmedTransactions(for: self.tokenInfo.ethContractAddress)
+        let all = self.tokenInfo.isEtherCoin ?
+            ETHUnconfirmedManager.instance.ethUnconfirmedTransactions() :
+            ETHUnconfirmedManager.instance.erc20UnconfirmedTransactions(for: self.tokenInfo.ethContractAddress)
+
         let maxNonce = self.txs.first?.nonce
 
-        var unconfirmed = [ETHTransaction]()
-        var confirmed = [ETHTransaction]()
+        var unconfirmed = [ETHUnconfirmedTransaction]()
+        var confirmed = [ETHUnconfirmedTransaction]()
 
         for tx in all {
             if let max = maxNonce, tx.nonce <= max {
@@ -92,7 +95,8 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
             }
         }
         ETHUnconfirmedManager.instance.remove(confirmed)
-        return (unconfirmed + self.txs).map { ETHTransactionViewModel(transaction: $0, isShowingInEthList: tokenInfo.isEtherCoin) }
+        return unconfirmed.map { ETHTransactionViewModel(unconfirmed: $0, isShowingInEthList: tokenInfo.isEtherCoin) } +
+            self.txs.map { ETHTransactionViewModel(transaction: $0) }
     }
 
     private func loopFetch() {

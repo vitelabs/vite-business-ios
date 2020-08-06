@@ -130,7 +130,13 @@ class TransactionDetailViewController: BaseViewController {
                 self.headerImageView.image = vm.headerImage
                 self.statusLabel.text = vm.stateString
                 self.timeLabel.text = vm.timeString
-                self.etherscanButton.setTitle(vm.link.text, for: .normal)
+                if let link = vm.link {
+                    self.etherscanButton.setTitle(link.text, for: .normal)
+                    self.etherscanButton.isHidden = false
+                } else {
+                    self.etherscanButton.isHidden = true
+                }
+
 
                 self.scrollView.stackView.arrangedSubviews.forEach {
                     self.scrollView.stackView.removeArrangedSubview($0)
@@ -159,7 +165,7 @@ class TransactionDetailViewController: BaseViewController {
         }
 
         etherscanButton.rx.tap.bind { [weak self] in
-            guard let url = self?.vm?.link.url else { return }
+            guard let url = self?.vm?.link?.url else { return }
             let vc = WKWebViewController.init(url: url)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)

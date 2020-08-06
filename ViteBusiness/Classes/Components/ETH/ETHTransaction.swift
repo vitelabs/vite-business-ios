@@ -40,14 +40,19 @@ public struct ETHTransaction: Mappable {
     fileprivate(set) var tokenInfo: TokenInfo = TokenInfo.BuildIn.eth.value
 
     var type: TransactionType {
-        if fromAddress.lowercased() == toAddress.lowercased() {
+        let from = fromAddress.lowercased()
+        let to = toAddress.lowercased()
+        let account = accountAddress.lowercased()
+
+        if from == to {
             return .me
-        } else if accountAddress.lowercased() == toAddress.lowercased() {
+        } else if account == to {
             return .receive
         } else {
             return .send
         }
     }
+
 
     var isConfirmed: Bool {
         if let num = Int(confirmations), num == 0 {
@@ -63,7 +68,7 @@ public struct ETHTransaction: Mappable {
 
     public init?(map: Map) { }
 
-    init(result: TransactionSendingResult, contractAddress: String, accountAddress: String, tokenInfo: TokenInfo, erc20Amount: Amount?) {
+    init(result: TransactionSendingResult, accountAddress: String, tokenInfo: TokenInfo) {
         self.isError = false
         self.blockNumber = ""
         self.confirmations = "0"
@@ -73,12 +78,13 @@ public struct ETHTransaction: Mappable {
         self.blockHash = ""
         self.fromAddress = accountAddress
         self.toAddress = result.transaction.to.address
-        self.amount = erc20Amount ?? Amount(result.transaction.value)
+        self.amount = Amount(result.transaction.value)
         self.gas = Amount(0)
         self.gasUsed = Amount(0)
         self.gasPrice = Amount(result.transaction.gasPrice)
         self.input = "0x" + result.transaction.data.toHexString()
-        self.contractAddress = contractAddress
+        self.contractAddress = tokenInfo.ethContractAddress
+
         self.accountAddress = accountAddress
         self.tokenInfo = tokenInfo
     }

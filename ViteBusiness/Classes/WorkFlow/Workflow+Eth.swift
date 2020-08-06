@@ -16,7 +16,7 @@ public extension Workflow {
     static func ethViteExchangeWithConfirm(viteAddress: String,
                                            amount: Amount,
                                            gasPrice: Float,
-                                           completion: @escaping (Result<String>) -> ()) {
+                                           completion: @escaping (Result<ETHUnconfirmedTransaction>) -> ()) {
         guard let account = ETHWalletManager.instance.account else {
             completion(.failure(WalletError.accountDoesNotExist))
             return
@@ -56,8 +56,12 @@ public extension Workflow {
                 }).map { _ in wt }
             }).then({ (wt) -> Promise<TransactionSendingResult> in
                 account.sendTransaction(wt)
-            }).done({ (ret) in
-                completion(Result.success(ret.hash))
+            }).done({ (result) in
+                let type = ETHUnconfirmedTransaction.CoinType.erc20(contractAddress: tokenInfo.ethContractAddress,
+                                                                    toAddress: blackHoleAddress, amount: amount)
+                let tx = ETHUnconfirmedTransaction(result: result, accountAddress: account.address, tokenInfo: tokenInfo, coinType: type)
+                ETHUnconfirmedManager.instance.add(tx)
+                completion(Result.success(tx))
             }).catch({ (error) in
                 plog(level: .warning, log: error.viteErrorMessage, tag: .exchange)
                 completion(Result.failure(error))
@@ -75,7 +79,7 @@ public extension Workflow {
                                               amount: Amount,
                                               gasPrice: Float,
                                               note: String, // only ether can has note
-                                              completion: @escaping (Result<ETHTransaction>) -> ()) {
+                                              completion: @escaping (Result<ETHUnconfirmedTransaction>) -> ()) {
         guard let account = ETHWalletManager.instance.account else {
             completion(.failure(WalletError.accountDoesNotExist))
             return
@@ -96,7 +100,14 @@ public extension Workflow {
                     HUD.hide()
                 }
                 .done({ result in
-                    let tx = ETHTransaction(result: result, contractAddress: tokenInfo.ethContractAddress, accountAddress: account.address, tokenInfo: tokenInfo, erc20Amount: tokenInfo.isEtherCoin ? nil : amount)
+                    let type: ETHUnconfirmedTransaction.CoinType
+                    if tokenInfo.isEtherCoin {
+                        type = .eth
+                    } else {
+                        type = .erc20(contractAddress: tokenInfo.ethContractAddress, toAddress: toAddress, amount: amount)
+                    }
+
+                    let tx = ETHUnconfirmedTransaction(result: result, accountAddress: account.address, tokenInfo: tokenInfo, coinType: type)
                     ETHUnconfirmedManager.instance.add(tx)
                     completion(Result.success(tx))
                     AlertControl.showCompletion(R.string.localizable.workflowToastTransferSuccess())

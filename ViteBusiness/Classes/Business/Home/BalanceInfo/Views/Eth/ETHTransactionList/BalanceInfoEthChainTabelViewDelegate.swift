@@ -132,8 +132,13 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
                     if let viewModel = (try? self.dataSource.model(at: indexPath)) as? ETHTransactionViewModel {
-                        let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(transaction: viewModel.transaction))
-                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                        if let transaction = viewModel.transaction {
+                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(transaction: transaction))
+                            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                        } else if let unconfirmed = viewModel.unconfirmed {
+                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(unconfirmed: unconfirmed, isShowingInEthList: self.tokenInfo.isEtherCoin))
+                            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                        }
                     }
                 }
                 .disposed(by: rx.disposeBag)

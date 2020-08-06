@@ -15,7 +15,7 @@ class ETHUnconfirmedManager {
     private init() {}
     fileprivate let disposeBag = DisposeBag()
 
-    fileprivate var unconfirmedTransactions: [ETHTransaction] = []
+    fileprivate var unconfirmedTransactions: [ETHUnconfirmedTransaction] = []
     var accountAddress: String = ""
 
     func start() {
@@ -31,15 +31,15 @@ class ETHUnconfirmedManager {
         }).disposed(by: disposeBag)
     }
 
-    func add(_ tx: ETHTransaction) {
+    func add(_ tx: ETHUnconfirmedTransaction) {
         unconfirmedTransactions.append(tx)
         self.save(mappable: Storage(unconfirmedTransactions: unconfirmedTransactions))
-        NotificationCenter.default.post(name: .EthChainSendSuccess, object: tx.contractAddress)
+        NotificationCenter.default.post(name: .EthChainSendSuccess, object: tx)
     }
 
-    func remove(_ txs: [ETHTransaction]) {
+    func remove(_ txs: [ETHUnconfirmedTransaction]) {
         guard txs.isNotEmpty else { return }
-        var new = [ETHTransaction]()
+        var new = [ETHUnconfirmedTransaction]()
         let set = Set(txs.map { $0.hash })
 
         for tx in unconfirmedTransactions where set.contains(tx.hash) == false {
@@ -49,24 +49,23 @@ class ETHUnconfirmedManager {
         self.save(mappable: Storage(unconfirmedTransactions: unconfirmedTransactions))
     }
 
-    // contractAddress = "" is ETH
-    func unconfirmedTransactions(for contractAddress: String) -> [ETHTransaction] {
-        if contractAddress.isEmpty {
-            return unconfirmedTransactions.reversed()
-        } else {
-            return unconfirmedTransactions.filter { $0.contractAddress == contractAddress }.reversed()
-        }
+    func ethUnconfirmedTransactions() -> [ETHUnconfirmedTransaction] {
+        return unconfirmedTransactions.reversed()
+    }
+
+    func erc20UnconfirmedTransactions(for contractAddress: String) -> [ETHUnconfirmedTransaction] {
+        return unconfirmedTransactions.filter { $0.erc20ContractAddress == contractAddress }.reversed()
     }
 }
 
 extension ETHUnconfirmedManager {
 
     class Storage: Mappable {
-        var unconfirmedTransactions: [ETHTransaction] = []
+        var unconfirmedTransactions: [ETHUnconfirmedTransaction] = []
 
         required init?(map: Map) {}
 
-        init(unconfirmedTransactions: [ETHTransaction]) {
+        init(unconfirmedTransactions: [ETHUnconfirmedTransaction]) {
             self.unconfirmedTransactions = unconfirmedTransactions
         }
 

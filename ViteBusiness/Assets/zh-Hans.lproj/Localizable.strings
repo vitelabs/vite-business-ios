@@ -215,6 +215,7 @@
 "transaction.list.transaction.netErrorAndShowAccount" = "网络错误，点击查看账户详情";
 "transaction.list.transaction.confirmations" = "已确认 %@";
 "transaction.list.transaction.confirmations.finished" = "已完成";
+"eth.transaction.detail.page.state.call.wait" = "待确认";
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "转账成功";
