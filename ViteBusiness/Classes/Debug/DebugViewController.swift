@@ -11,6 +11,9 @@ import Eureka
 import Crashlytics
 import ViteWallet
 import BigInt
+import ViteWallet
+import RxSwift
+import RxCocoa
 
 class DebugViewController: FormViewController {
 
@@ -116,6 +119,27 @@ class DebugViewController: FormViewController {
             }
             +++
             MultivaluedSection(multivaluedOptions: [],
+                               header: "Vite Connect",
+                               footer: "") { section in
+
+                                section <<< LabelRow("Add Vite Address") {
+                                    $0.title = "Add Vite Address"
+                                    $0.value = ""
+                                    }.onCellSelection { [weak self] _, _ in
+                                        self?.goToInputViteAddress()
+                                }
+
+                                for (index, string) in DebugService.instance.config.vcAddresses.enumerated() {
+                                    section <<< LabelRow(string + String(index)) {
+                                    $0.title =  string
+                                    }.onCellSelection({ [weak self] _, _  in
+                                        DebugService.instance.currentViteConnectAddress = string
+                                        WalletHomeScanHandler().scan()
+                                    })
+                                }
+            }
+            +++
+            MultivaluedSection(multivaluedOptions: [],
                                header: "Others",
                                footer: "") { section in
 
@@ -174,6 +198,26 @@ class DebugViewController: FormViewController {
         controller.addAction(cancelAction)
         controller.addAction(okAction)
         controller.show()
+    }
+
+    func goToInputViteAddress() {
+        let scanViewController = ScanViewController()
+        _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
+            if result.isViteAddress {
+                scanViewController?.navigationController?.popViewController(animated: true)
+                if !DebugService.instance.config.vcAddresses.contains(result) {
+                    DebugService.instance.config.vcAddresses.append(result)
+                }
+                DebugService.instance.currentViteConnectAddress = result
+
+                GCD.delay(1) {
+                    WalletHomeScanHandler().scan()
+                }
+            } else {
+                scanViewController?.showToast(string: "Invalid Vite Address")
+            }
+        }
+        self.navigationController?.pushViewController(scanViewController, animated: true)
     }
 
     @objc fileprivate func _onCancel() {

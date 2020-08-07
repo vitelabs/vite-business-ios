@@ -301,8 +301,19 @@ extension BifrostManager {
             guard let `self` = self else { return }
             // make sure interactor is current, otherwise ignore
             guard i === self.interactor else { return }
-            guard let currentAddress = HDWalletManager.instance.account?.address else { return }
 
+            #if DEBUG || TEST
+            let currentAddress: ViteAddress
+            if let address = DebugService.instance.currentViteConnectAddress {
+                currentAddress = address
+                DebugService.instance.currentViteConnectAddress = nil
+            } else {
+                guard let address = HDWalletManager.instance.account?.address else { return }
+                currentAddress = address
+            }
+            #else
+            guard let currentAddress = HDWalletManager.instance.account?.address else { return }
+            #endif
             self.statusBehaviorRelay.accept(.waitForUserApprove)
 
             let chainId = 1

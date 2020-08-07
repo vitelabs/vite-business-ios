@@ -23,6 +23,8 @@ public class DebugService {
     fileprivate let fileHelper = FileHelper(.library)
     fileprivate static let saveKey = "DebugService"
 
+    public var currentViteConnectAddress: ViteAddress?
+
     public enum AppEnvironment: Int {
         case test = 0
         case stage = 1
@@ -119,6 +121,7 @@ public class DebugService {
         var showStatisticsToast = false
         var reportEventInDebug = false
         var urls: [String] = []
+        var vcAddresses: [String] = []
         var ignoreCheckUpdate = true
         public var ignoreWhiteList = false
 
@@ -130,6 +133,7 @@ public class DebugService {
              showStatisticsToast: Bool?,
              reportEventInDebug: Bool?,
              urls: [String]?,
+             vcAddresses: [String]?,
              ignoreCheckUpdate: Bool?,
              ignoreWhiteList: Bool?) {
 
@@ -151,6 +155,9 @@ public class DebugService {
             if let urls = urls {
                 self.urls = urls
             }
+            if let vcAddresses = vcAddresses {
+                self.vcAddresses = vcAddresses
+            }
             if let ignoreCheckUpdate = ignoreCheckUpdate {
                 self.ignoreCheckUpdate = ignoreCheckUpdate
             }
@@ -169,6 +176,7 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls: nil,
+                          vcAddresses: nil,
                           ignoreCheckUpdate: nil,
                           ignoreWhiteList: nil)
         }
@@ -182,6 +190,7 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls:nil,
+                          vcAddresses: nil,
                           ignoreCheckUpdate: nil,
                           ignoreWhiteList: nil)
         }
@@ -195,6 +204,7 @@ public class DebugService {
                           showStatisticsToast: nil,
                           reportEventInDebug: nil,
                           urls:nil,
+                          vcAddresses: nil,
                           ignoreCheckUpdate: nil,
                           ignoreWhiteList: nil)
         }
@@ -236,6 +246,7 @@ public class DebugService {
             showStatisticsToast <- map["showStatisticsToast"]
             reportEventInDebug <- map["reportEventInDebug"]
             urls <- map["urls"]
+            vcAddresses <- map["vcAddresses"]
             ignoreCheckUpdate <- map["ignoreCheckUpdate"]
             ignoreWhiteList <- map["ignoreWhiteList"]
         }
