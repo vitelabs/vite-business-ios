@@ -494,7 +494,9 @@
 "eth.transaction.detail.to.address" = "收款地址";
 "eth.transaction.detail.from.address" = "付款地址";
 "eth.transaction.detail.amount" = "金额";
-"eth.transaction.detail.gas" = "矿工费用";
+"eth.transaction.detail.gas.fee" = "矿工费用";
+"eth.transaction.detail.gas.price" = "Gas Price";
+"eth.transaction.detail.gas.limit" = "Gas Limit";
 "eth.transaction.detail.hash" = "交易号";
 "eth.transaction.detail.block" = "区块";
 "eth.transaction.detail.note" = "备注（Memo）";

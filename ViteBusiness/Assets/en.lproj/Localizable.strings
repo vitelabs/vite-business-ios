@@ -491,7 +491,9 @@
 "eth.transaction.detail.to.address" = "Receiving Address";
 "eth.transaction.detail.from.address" = "Sending Address";
 "eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas" = "Gas Fee";
+"eth.transaction.detail.gas.fee" = "Gas Fee";
+"eth.transaction.detail.gas.price" = "Gas Price";
+"eth.transaction.detail.gas.limit" = "Gas Limit";
 "eth.transaction.detail.hash" = "Transaction Hash";
 "eth.transaction.detail.block" = "Block";
 "eth.transaction.detail.note" = "Memo";

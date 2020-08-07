@@ -1949,7 +1949,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 997 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 999 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3286,7 +3286,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
-      public static let ethTransactionDetailGas = Rswift.StringResource(key: "eth.transaction.detail.gas", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let ethTransactionDetailGasFee = Rswift.StringResource(key: "eth.transaction.detail.gas.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gas Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailGasLimit = Rswift.StringResource(key: "eth.transaction.detail.gas.limit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Gas Price
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailGasPrice = Rswift.StringResource(key: "eth.transaction.detail.gas.price", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Gateway Details
       /// 
       /// Locales: en, zh-Hans
@@ -8274,8 +8282,22 @@ public struct R: Rswift.Validatable {
       /// en translation: Gas Fee
       /// 
       /// Locales: en, zh-Hans
-      public static func ethTransactionDetailGas(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.gas", bundle: R.hostingBundle, comment: "")
+      public static func ethTransactionDetailGasFee(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.gas.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gas Limit
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailGasLimit(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.gas.limit", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gas Price
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailGasPrice(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.gas.price", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gateway Details

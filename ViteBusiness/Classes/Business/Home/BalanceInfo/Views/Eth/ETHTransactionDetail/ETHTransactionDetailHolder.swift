@@ -21,7 +21,7 @@ class ETHTransactionDetailHolder: TransactionDetailHolder {
             .address(title: R.string.localizable.ethTransactionDetailToAddress(), text: transaction.toAddress, hasSeparator: true),
             .address(title: R.string.localizable.ethTransactionDetailFromAddress(), text: transaction.fromAddress, hasSeparator: false),
             .ammount(title: R.string.localizable.ethTransactionDetailAmount(), text: transaction.amount.amountShortWithGroupSeparator(decimals: transaction.tokenInfo.decimals), symbol: transaction.tokenInfo.symbol),
-            .ammount(title: R.string.localizable.ethTransactionDetailGas(), text: (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals), symbol: TokenInfo.BuildIn.eth.value.symbol),
+            .ammount(title: R.string.localizable.ethTransactionDetailGasFee(), text: (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals), symbol: TokenInfo.BuildIn.eth.value.symbol),
             .copyable(title: R.string.localizable.ethTransactionDetailHash(), text: "\(transaction.hash.prefix(8))...\(transaction.hash.suffix(6))", rawText: transaction.hash),
             .height(title: R.string.localizable.viteTransactionDetailPageConfirmationsTitle(), text: confirmations),
             .height(title: R.string.localizable.ethTransactionDetailBlock(), text: transaction.blockNumber)
@@ -55,7 +55,9 @@ class ETHTransactionDetailHolder: TransactionDetailHolder {
             .address(title: R.string.localizable.ethTransactionDetailToAddress(), text: toAddress, hasSeparator: true),
             .address(title: R.string.localizable.ethTransactionDetailFromAddress(), text: unconfirmed.fromAddress, hasSeparator: false),
             .ammount(title: R.string.localizable.ethTransactionDetailAmount(), text: amount.amountShortWithGroupSeparator(decimals: decimals), symbol: symbol),
-            .ammount(title: R.string.localizable.ethTransactionDetailGas(), text: "--", symbol: TokenInfo.BuildIn.eth.value.symbol),
+            .ammount(title: R.string.localizable.ethTransactionDetailGasPrice(), text: unconfirmed.gasPrice.amount(decimals: 9, count: 4, groupSeparator: true), symbol: "gwei"),
+            .height(title: R.string.localizable.ethTransactionDetailGasLimit(), text: unconfirmed.gasLimit.description),
+            .ammount(title: R.string.localizable.ethTransactionDetailGasFee(), text: "--", symbol: TokenInfo.BuildIn.eth.value.symbol),
             .copyable(title: R.string.localizable.ethTransactionDetailHash(), text: "\(unconfirmed.hash.prefix(8))...\(unconfirmed.hash.suffix(6))", rawText: unconfirmed.hash),
             .height(title: R.string.localizable.viteTransactionDetailPageConfirmationsTitle(), text: confirmations),
             .height(title: R.string.localizable.ethTransactionDetailBlock(), text: R.string.localizable.ethTransactionDetailPageStateCallWait())
