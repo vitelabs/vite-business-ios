@@ -128,11 +128,6 @@ extension ETHAccount {
         }
     }
 
-    public func getTransactionCountPromise() -> Promise<BigInt> {
-        let web3 = ETHWalletManager.instance.web3!
-        return web3.eth.getTransactionCountPromise(address: self.ethereumAddress, onBlock: "latest").map { BigInt($0) }
-    }
-
     static public func fetchGasPrice() -> Promise<BigInt> {
         return Promise { seal in
             DispatchQueue.global().async {

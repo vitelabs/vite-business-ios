@@ -66,6 +66,18 @@ class ViteXTokenSelectorCell: BaseTableViewCell {
         iconImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
         symbolLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        let line = UIView().then {
+            $0.backgroundColor = Colors.lineGray
+        }
+
+        contentView.addSubview(line)
+        line.snp.makeConstraints { (m) in
+            m.height.equalTo(CGFloat.singleLineWidth)
+            m.left.equalTo(contentView).offset(24)
+            m.right.equalTo(contentView).offset(-24)
+            m.bottom.equalTo(contentView)
+        }
     }
 
     func bind(vm: ViteXTokenSelectorViewModel) {

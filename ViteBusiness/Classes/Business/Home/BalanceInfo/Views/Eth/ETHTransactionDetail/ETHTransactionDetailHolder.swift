@@ -23,7 +23,7 @@ class ETHTransactionDetailHolder: TransactionDetailHolder {
                 stateString = R.string.localizable.ethTransactionDetailSuccess()
             } else {
                 headerImage = R.image.icon_eth_detail_wait()!
-                stateString = R.string.localizable.ethTransactionDetailPageStateCallWait()
+                stateString = R.string.localizable.transactionListTransactionConfirmations(transaction.confirmations)
             }
         }
 

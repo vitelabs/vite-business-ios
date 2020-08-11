@@ -44,7 +44,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
         }
 
         ETHWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
-            self?.bind(account: account)
+            self?.bind(address: account.address)
         }).disposed(by: rx.disposeBag)
     }
 
@@ -117,10 +117,10 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
         return cell
     })
 
-    func bind(account: ETHAccount) {
+    func bind(address: String) {
 
         if tableViewModel == nil {
-            tableViewModel = ETHTransactionListTableViewModel(account: account, tokenInfo: tokenInfo)
+            tableViewModel = ETHTransactionListTableViewModel(address: address, tokenInfo: tokenInfo)
 
             tableViewModel.transactionsDriver.asObservable()
                 .map { [SectionModel(model: "transaction", items: $0)] }
@@ -143,7 +143,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
                 }
                 .disposed(by: rx.disposeBag)
         } else {
-            tableViewModel.update(account: account)
+            tableViewModel.update(address: address)
         }
         self.tableViewHandler.status = .empty
         tableViewHandler.refresh()

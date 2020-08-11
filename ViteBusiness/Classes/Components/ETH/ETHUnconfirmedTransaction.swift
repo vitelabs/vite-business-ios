@@ -57,8 +57,8 @@ public struct ETHUnconfirmedTransaction: Mappable {
         }
     }
 
-    var erc20TransactionType: TransactionType? {
-        guard erc20ToAddress.isNotEmpty else { return nil }
+    var erc20TransactionType: TransactionType {
+        guard erc20ToAddress.isNotEmpty else { fatalError() }
         let from = fromAddress.lowercased()
         let to = erc20ToAddress.lowercased()
         let account = accountAddress.lowercased()
