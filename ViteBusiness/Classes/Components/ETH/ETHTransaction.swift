@@ -55,7 +55,7 @@ public struct ETHTransaction: Mappable {
 
 
     var isConfirmed: Bool {
-        if let num = Int(confirmations), num == 0 {
+        if let num = Int(confirmations), num <= 12 {
             return false
         } else {
             return true

@@ -1949,7 +1949,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 999 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 998 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -1975,6 +1975,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatusWaitToConfirm = Rswift.StringResource(key: "crosschain.status.waitToConfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ Confirmations
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transactionListTransactionConfirmations = Rswift.StringResource(key: "transaction.list.transaction.confirmations", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: %@ UTPS
       /// 
       /// Locales: en, zh-Hans
@@ -2771,6 +2775,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxTypeConfirmed = Rswift.StringResource(key: "grin.txType.confirmed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirmed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let transactionListTransactionConfirmationsFinished = Rswift.StringResource(key: "transaction.list.transaction.confirmations.finished", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Confirmed Coinbase
       /// 
       /// Locales: en, zh-Hans
@@ -4011,6 +4019,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteCallContractTransferTitle = Rswift.StringResource(key: "confirm.transaction.page.vite.call.contract.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Pending
+      /// 
+      /// Locales: en, zh-Hans
+      public static let ethTransactionDetailPageStateCallWait = Rswift.StringResource(key: "eth.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Permission Type
       /// 
       /// Locales: en, zh-Hans
@@ -5923,22 +5935,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已完成
-      /// 
-      /// Locales: en, zh-Hans
-      public static let transactionListTransactionConfirmationsFinished = Rswift.StringResource(key: "transaction.list.transaction.confirmations.finished", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 已确认 %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let transactionListTransactionConfirmations = Rswift.StringResource(key: "transaction.list.transaction.confirmations", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 待确认
-      /// 
-      /// Locales: en, zh-Hans
-      public static let ethTransactionDetailPageStateCallWait = Rswift.StringResource(key: "eth.transaction.detail.page.state.call.wait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 确认数
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageConfirmationsTitle = Rswift.StringResource(key: "vite.transaction.detail.page.confirmations.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -5988,6 +5984,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainStatusWaitToConfirm(_ value1: String) -> String {
         return String(format: NSLocalizedString("crosschain.status.waitToConfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@ Confirmations
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transactionListTransactionConfirmations(_ value1: String) -> String {
+        return String(format: NSLocalizedString("transaction.list.transaction.confirmations", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: %@ UTPS
@@ -7381,6 +7384,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinTxTypeConfirmed(_: Void = ()) -> String {
         return NSLocalizedString("grin.txType.confirmed", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Confirmed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func transactionListTransactionConfirmationsFinished(_: Void = ()) -> String {
+        return NSLocalizedString("transaction.list.transaction.confirmations.finished", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Confirmed Coinbase
@@ -9551,6 +9561,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func confirmTransactionPageViteCallContractTransferTitle(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.vite.call.contract.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Pending
+      /// 
+      /// Locales: en, zh-Hans
+      public static func ethTransactionDetailPageStateCallWait(_: Void = ()) -> String {
+        return NSLocalizedString("eth.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Permission Type
@@ -12897,34 +12914,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 已完成
-      /// 
-      /// Locales: en, zh-Hans
-      public static func transactionListTransactionConfirmationsFinished(_: Void = ()) -> String {
-        return NSLocalizedString("transaction.list.transaction.confirmations.finished", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 已确认 %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func transactionListTransactionConfirmations(_ value1: String) -> String {
-        return String(format: NSLocalizedString("transaction.list.transaction.confirmations", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: 待确认
-      /// 
-      /// Locales: en, zh-Hans
-      public static func ethTransactionDetailPageStateCallWait(_: Void = ()) -> String {
-        return NSLocalizedString("eth.transaction.detail.page.state.call.wait", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 确认数
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageConfirmationsTitle(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.confirmations.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

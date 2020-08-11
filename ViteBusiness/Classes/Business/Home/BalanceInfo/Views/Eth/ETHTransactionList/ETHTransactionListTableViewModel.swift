@@ -24,7 +24,8 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
     let hasMore: BehaviorRelay<Bool>
 
     fileprivate var transactions: BehaviorRelay<[ETHTransactionViewModel]>
-    fileprivate var address: String
+    fileprivate var account: ETHAccount
+    fileprivate var address: String { account.address }
     fileprivate let tokenInfo: TokenInfo
     fileprivate let disposeBag = DisposeBag()
 
@@ -33,9 +34,10 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
     fileprivate var loadingStatus = LoadingStatus.no
 
     fileprivate let limit = 20
+    fileprivate var transactionCount: BigInt = BigInt(0)
 
-    init(address: String, tokenInfo: TokenInfo) {
-        self.address = address
+    init(account: ETHAccount, tokenInfo: TokenInfo) {
+        self.account = account
         self.tokenInfo = tokenInfo
         self.transactions = BehaviorRelay<[ETHTransactionViewModel]>(value: [])
         self.hasMore = BehaviorRelay<Bool>(value: false)
@@ -53,10 +55,10 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
         GCD.delay(5) { self.loopFetch() }
     }
 
-    func update(address: String) {
-        self.address = address
+    func update(account: ETHAccount) {
+        self.account = account
         txs.removeAll()
-        transactions.accept(self.genViewModels())
+        transactions.accept([])
         hasMore.accept(false)
         page = 1
         loadingStatus = .no
@@ -82,13 +84,11 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
             ETHUnconfirmedManager.instance.ethUnconfirmedTransactions() :
             ETHUnconfirmedManager.instance.erc20UnconfirmedTransactions(for: self.tokenInfo.ethContractAddress)
 
-        let maxNonce = self.txs.first?.nonce
-
         var unconfirmed = [ETHUnconfirmedTransaction]()
         var confirmed = [ETHUnconfirmedTransaction]()
 
         for tx in all {
-            if let max = maxNonce, tx.nonce <= max {
+            if tx.nonce < self.transactionCount {
                 confirmed.append(tx)
             } else {
                 unconfirmed.append(tx)
@@ -101,10 +101,12 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
 
     private func loopFetch() {
         let address = self.address
-        fetch(page: 1).done { [weak self] (transactions) in
+        let getNonce = account.getTransactionCountPromise()
+        when(fulfilled: fetch(page: page), getNonce).done { [weak self] (transactions, transactionCount) in
             guard let `self` = self else { return }
             guard address == self.address else { return }
 
+            self.transactionCount = transactionCount
             var txs = [ETHTransaction]()
             var set: Set<String> = Set()
             transactions.forEach { (t) in
@@ -114,15 +116,12 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
                 }
             }
 
-            if let currentMaxNonce = self.txs.first?.nonce,
-                let minTx = transactions.last,
-                currentMaxNonce >= minTx.nonce {
-
+            if let minTx = transactions.last {
                 var current = BigInt(minTx.blockNumber)! + BigInt(minTx.confirmations)!
-
-                for var tx in self.txs where tx.nonce < minTx.nonce {
+                for var tx in self.txs where !set.contains(tx.hash) {
                     tx.update(confirmations: current - BigInt(tx.blockNumber)!)
                     txs.append(tx)
+                    set.insert(tx.hash)
                 }
             }
 
@@ -148,9 +147,11 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
 
     private func getTransactions(completion: @escaping (Error?) -> Void) {
         let address = self.address
-        fetch(page: page).done { [weak self] (transactions) in
+        let getNonce = page == 1 ? account.getTransactionCountPromise() : Promise.value(transactionCount)
+        when(fulfilled: fetch(page: page), getNonce).done { [weak self] (transactions, transactionCount) in
             guard let `self` = self else { return }
             guard address == self.address else { return }
+            self.transactionCount = transactionCount
             var set = Set(self.txs.map { $0.hash })
             transactions.forEach { (t) in
                 if !set.contains(t.hash) {

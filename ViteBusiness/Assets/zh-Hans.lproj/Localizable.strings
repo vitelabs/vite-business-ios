@@ -215,7 +215,7 @@
 "transaction.list.transaction.netErrorAndShowAccount" = "网络错误，点击查看账户详情";
 "transaction.list.transaction.confirmations" = "已确认 %@";
 "transaction.list.transaction.confirmations.finished" = "已完成";
-"eth.transaction.detail.page.state.call.wait" = "待确认";
+"eth.transaction.detail.page.state.call.wait" = "等待确认";
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "转账成功";
@@ -226,7 +226,6 @@
 "vite.transaction.detail.page.type.send" = "请求";
 "vite.transaction.detail.page.type.receive" = "响应";
 "vite.transaction.detail.page.hash.title" = "交易 hash";
-"vite.transaction.detail.page.confirmations.title" = "确认数";
 "vite.transaction.detail.page.height.title" = "区块高度";
 "vite.transaction.detail.page.note.title" = "备注（Memo）";
 "vite.transaction.detail.page.link.button.title" = "到 Vite 浏览器查询更详细信息";

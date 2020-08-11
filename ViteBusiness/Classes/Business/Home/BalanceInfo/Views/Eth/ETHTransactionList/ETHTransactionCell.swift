@@ -132,22 +132,7 @@ class ETHTransactionCell: BaseTableViewCell {
         timeLabel.text = viewModel.timeString
         balanceLabel.text = viewModel.balanceString
         balanceLabel.textColor = viewModel.balanceColor
-
-        if let state = viewModel.stateString {
-            confirmationsLabel.text = state
-            confirmationsLabel.textColor = UIColor(netHex: 0xFF0008)
-        } else {
-            if let num = Int(viewModel.confirmations), num <= 12 {
-                confirmationsLabel.text = R.string.localizable.transactionListTransactionConfirmations(viewModel.confirmations)
-                if num > 0 {
-                    confirmationsLabel.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
-                } else {
-                    confirmationsLabel.textColor = UIColor(netHex: 0xB5C4FF)
-                }
-            } else {
-                confirmationsLabel.text = R.string.localizable.transactionListTransactionConfirmationsFinished()
-                confirmationsLabel.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
-            }
-        }
+        confirmationsLabel.text = viewModel.confirmations
+        confirmationsLabel.textColor = viewModel.confirmationsColor
     }
 }

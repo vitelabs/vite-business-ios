@@ -22,24 +22,44 @@ struct ETHTransactionViewModel {
     let transaction: ETHTransaction?
     let unconfirmed: ETHUnconfirmedTransaction?
     let confirmations: String
-    let stateString: String?
+    let confirmationsColor: UIColor
 
     init(transaction: ETHTransaction) {
         self.transaction = transaction
         self.unconfirmed = nil
         typeImage = (transaction.type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
         typeName = R.string.localizable.transactionListTransactionTypeNameTransfer()
-        address = (transaction.type == .receive) ? transaction.fromAddress : transaction.toAddress
+        address = ((transaction.type == .receive) ? transaction.fromAddress : transaction.toAddress).lowercased()
         timeString = transaction.timeStamp.format("yyyy.MM.dd HH:mm:ss")
         let amount = transaction.amount
         let symbol = ((amount == 0) || transaction.type == .me ) ? "" : (transaction.type == .receive ? "+" : "-")
         balanceString = "\(symbol)\(amount.amountShortWithGroupSeparator(decimals: transaction.tokenInfo.decimals))"
-        balanceColor = transaction.type == .send ? UIColor(netHex: 0xFF0008) : UIColor(netHex: 0x01D764)
+        balanceColor = {
+            switch transaction.type {
+            case .send:
+                return UIColor(netHex: 0xFF0008)
+            case .receive:
+                return UIColor(netHex: 0x01D764)
+            case .me:
+                return UIColor(netHex: 0xA8ADB4)
+            }
+        }()
         symbolString = transaction.tokenInfo.symbol
         gasString = R.string.localizable.ethPageGasFeeTitle() + " " + (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals)
         hash = transaction.hash
-        confirmations = transaction.confirmations
-        stateString = transaction.isError ? R.string.localizable.ethTransactionDetailFailed() : nil
+
+        if transaction.isError {
+            confirmations = R.string.localizable.ethTransactionDetailFailed()
+            confirmationsColor = UIColor(netHex: 0xFF0008)
+        } else {
+            if transaction.isConfirmed {
+                confirmations = R.string.localizable.transactionListTransactionConfirmationsFinished()
+                confirmationsColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+            } else {
+                confirmations = R.string.localizable.transactionListTransactionConfirmations(transaction.confirmations)
+                confirmationsColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+            }
+        }
     }
 
     init(unconfirmed: ETHUnconfirmedTransaction, isShowingInEthList: Bool) {
@@ -60,7 +80,7 @@ struct ETHTransactionViewModel {
         symbolString = unconfirmed.tokenInfo.symbol
         gasString = ""
         hash = unconfirmed.hash
-        confirmations = "0"
-        stateString = nil
+        confirmations = R.string.localizable.ethTransactionDetailPageStateCallWait()
+        confirmationsColor = UIColor(netHex: 0xB5C4FF)
     }
 }
