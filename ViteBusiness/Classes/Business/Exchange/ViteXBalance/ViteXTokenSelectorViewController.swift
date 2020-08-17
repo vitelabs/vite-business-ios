@@ -82,7 +82,6 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
     func update() {
         var valuable: [ViteXTokenSelectorViewModel] = []
         var unvaluable: [ViteXTokenSelectorViewModel] = []
-        var mine: [ViteXTokenSelectorViewModel] = []
 
         let dexTokenInfos = TokenInfoCacheService.instance.dexTokenInfos
         for tokenInfo in dexTokenInfos {
@@ -114,12 +113,15 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
                 amount = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.available ?? Amount(0)
             }
             let vm = ViteXTokenSelectorViewModel(tokenInfo: tokenInfo, balanceString: amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))
-            mine.append(vm)
+            if amount > 0 {
+                valuable.append(vm)
+            } else {
+                unvaluable.append(vm)
+            }
         }
 
         let all = valuable.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol } +
-            unvaluable.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol } +
-            mine.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol }
+            unvaluable.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol }
 
         if let key = self.navView.textField.text?.lowercased(), key.isNotEmpty {
             vms = all.filter { $0.tokenInfo.uniqueSymbol.lowercased().contains(key) }
