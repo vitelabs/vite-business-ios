@@ -82,8 +82,8 @@ class ViteXTokenSelectorCell: BaseTableViewCell {
 
     func bind(vm: ViteXTokenSelectorViewModel) {
         iconImageView.tokenInfo = vm.tokenInfo
-        symbolLabel.text = vm.tokenInfo.symbol
-        coinFamilyLabel.text = vm.tokenInfo.coinFamily
+        symbolLabel.text = vm.tokenInfo.uniqueSymbol
+        coinFamilyLabel.text = vm.tokenInfo.name
         balanceLabel.text = vm.balanceString
     }
 

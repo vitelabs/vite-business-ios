@@ -255,6 +255,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         tokenInfoBehaviorRelay.asDriver().drive(onNext: { [weak self] tokenInfo in
             guard let `self` = self else { return }
             self.tokenSelectorView.bind(tokenInfo: tokenInfo)
+            self.amountView.symbolLabel.text = tokenInfo.symbol
         }).disposed(by: rx.disposeBag)
 
         Driver.combineLatest(tokenInfoBehaviorRelay.asDriver(), ViteBalanceInfoManager.instance.balanceInfosDriver)
