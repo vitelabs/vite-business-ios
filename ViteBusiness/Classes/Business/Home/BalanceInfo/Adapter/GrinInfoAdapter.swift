@@ -67,8 +67,8 @@ class GrinInfoTableViewDelegate: NSObject {
         super.init()
 
         tableViewHandler.tableView.separatorStyle = .none
-        tableViewHandler.tableView.rowHeight = TransactionCell.cellHeight
-        tableViewHandler.tableView.estimatedRowHeight = TransactionCell.cellHeight
+        tableViewHandler.tableView.rowHeight = GrinTransactionCell.cellHeight
+        tableViewHandler.tableView.estimatedRowHeight = GrinTransactionCell.cellHeight
 
         tableViewHandler.tableView.delegate = self
         tableViewHandler.tableView.dataSource = self

@@ -12,6 +12,12 @@ import ViteWallet
 
 class GrinTransactionCell: UITableViewCell {
 
+    static var cellHeight: CGFloat {
+        return 72
+
+    }
+
+
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"

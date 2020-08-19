@@ -1,5 +1,5 @@
 //
-//  TransactionGenesisCell.swift
+//  ViteTransactionGenesisCell.swift
 //  Vite
 //
 //  Created by Stone on 2018/9/11.
@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TransactionGenesisCell: BaseTableViewCell {
+class ViteTransactionGenesisCell: BaseTableViewCell {
 
     static var cellHeight: CGFloat {
         return 72

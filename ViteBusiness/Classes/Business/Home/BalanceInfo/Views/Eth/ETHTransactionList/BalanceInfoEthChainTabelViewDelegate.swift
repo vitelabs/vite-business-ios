@@ -24,8 +24,8 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
         super.init()
 
         tableViewHandler.tableView.separatorStyle = .none
-        tableViewHandler.tableView.rowHeight = ETHTransactionCell.cellHeight
-        tableViewHandler.tableView.estimatedRowHeight = ETHTransactionCell.cellHeight
+        tableViewHandler.tableView.rowHeight = TransactionCell.cellHeight
+        tableViewHandler.tableView.estimatedRowHeight = TransactionCell.cellHeight
 
         tableViewHandler.didPullDown = { [weak self] finished in
             guard let `self` = self else { return }
@@ -91,7 +91,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
     }
     // BalanceInfoDetailTableViewDelegate End
 
-    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, ETHTransactionViewModel>>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TransactionViewModelType>>
 
     var tableViewModel: ETHTransactionListTableViewModel!
 
@@ -112,7 +112,7 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
     }
 
     let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell: ETHTransactionCell = tableView.dequeueReusableCell(for: indexPath)
+        let cell: TransactionCell = tableView.dequeueReusableCell(for: indexPath)
         cell.bind(viewModel: item, index: indexPath.row)
         return cell
     })
@@ -131,12 +131,12 @@ class BalanceInfoEthChainTabelViewDelegate: NSObject, BalanceInfoDetailTableView
                 .bind { [weak self] indexPath in
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
-                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? ETHTransactionViewModel {
-                        if let transaction = viewModel.transaction {
-                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(transaction: transaction))
+                    if let viewModel = (try? self.dataSource.model(at: indexPath)) {
+                        if let vm = viewModel as? ETHTransaction {
+                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(transaction: vm))
                             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                        } else if let unconfirmed = viewModel.unconfirmed {
-                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(unconfirmed: unconfirmed, isShowingInEthList: self.tokenInfo.isEtherCoin))
+                        } else if let vm = viewModel as? ETHUnconfirmedTransactionViewModel {
+                            let vc = TransactionDetailViewController(holder: ETHTransactionDetailHolder(unconfirmed: vm.unconfirmed, isShowingInEthList: self.tokenInfo.isEtherCoin))
                             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                         }
                     }

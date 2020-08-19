@@ -81,8 +81,19 @@ class ViteTransactionDetailHolder: TransactionDetailHolder {
             }
         } else {
 
-            let headerImage = R.image.icon_eth_detail_success()!
-            let stateString = R.string.localizable.viteTransactionDetailPageStateSuccess()
+            let headerImage: UIImage
+            let stateString: String
+
+            if accountBlock.isConfirmed {
+                headerImage = R.image.icon_eth_detail_success()!
+                stateString = R.string.localizable.viteTransactionDetailPageStateSuccess()
+            } else if let confirmations = accountBlock.confirmations, confirmations > 0 {
+                headerImage = R.image.icon_eth_detail_wait()!
+                stateString = R.string.localizable.transactionListTransactionConfirmations("\(confirmations)")
+            } else {
+                headerImage = R.image.icon_eth_detail_wait()!
+                stateString = R.string.localizable.ethTransactionDetailPageStateCallWait()
+            }
 
             if accountBlock.type == .receive {
                 super.init { () -> Promise<TransactionDetailHolder.ViewModel> in

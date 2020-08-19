@@ -20,10 +20,10 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
         case more
     }
 
-    lazy var transactionsDriver: Driver<[ETHTransactionViewModel]> = self.transactions.asDriver()
+    lazy var transactionsDriver: Driver<[TransactionViewModelType]> = self.transactions.asDriver()
     let hasMore: BehaviorRelay<Bool>
 
-    fileprivate var transactions: BehaviorRelay<[ETHTransactionViewModel]>
+    fileprivate var transactions: BehaviorRelay<[TransactionViewModelType]>
     fileprivate var address: String
     fileprivate let tokenInfo: TokenInfo
     fileprivate let disposeBag = DisposeBag()
@@ -37,7 +37,7 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
     init(address: String, tokenInfo: TokenInfo) {
         self.address = address
         self.tokenInfo = tokenInfo
-        self.transactions = BehaviorRelay<[ETHTransactionViewModel]>(value: [])
+        self.transactions = BehaviorRelay<[TransactionViewModelType]>(value: [])
         self.hasMore = BehaviorRelay<Bool>(value: false)
 
         NotificationCenter.default.rx.notification(.EthChainSendSuccess).bind { [weak self] (n) in
@@ -77,7 +77,7 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
         getTransactions(completion: completion)
     }
 
-    func genViewModels() -> [ETHTransactionViewModel] {
+    func genViewModels() -> [TransactionViewModelType] {
         let all = self.tokenInfo.isEtherCoin ?
             ETHUnconfirmedManager.instance.ethUnconfirmedTransactions() :
             ETHUnconfirmedManager.instance.erc20UnconfirmedTransactions(for: self.tokenInfo.ethContractAddress)
@@ -95,8 +95,7 @@ final class ETHTransactionListTableViewModel: TransactionListTableViewModelType 
             }
         }
         ETHUnconfirmedManager.instance.remove(confirmed)
-        return unconfirmed.map { ETHTransactionViewModel(unconfirmed: $0, isShowingInEthList: tokenInfo.isEtherCoin) } +
-            self.txs.map { ETHTransactionViewModel(transaction: $0) }
+        return unconfirmed.map { ETHUnconfirmedTransactionViewModel(unconfirmed: $0, isShowingInEthList: tokenInfo.isEtherCoin) } + self.txs
     }
 
     private func loopFetch() {

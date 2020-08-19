@@ -11,7 +11,7 @@ import ViteWallet
 import RxSwift
 import RxCocoa
 
-final class TransactionListTableViewModel: TransactionListTableViewModelType {
+final class ViteTransactionListTableViewModel: TransactionListTableViewModelType {
 
     enum LoadingStatus {
         case no
@@ -37,6 +37,15 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
         self.token = token
         transactions = BehaviorRelay<[TransactionViewModelType]>(value: viewModels as! [TransactionViewModelType])
         hasMore = BehaviorRelay<Bool>(value: false)
+
+        NotificationCenter.default.rx.notification(.ViteChainSendSuccess).bind { [weak self] (n) in
+            if let tokenId = n.object as? String, self?.token.id == tokenId {
+                GCD.delay(2) { [weak self] in
+                    self?.fetch(loop: false)
+                }
+            }
+        }.disposed(by: disposeBag)
+        GCD.delay(5) { self.fetch(loop: true) }
     }
 
     func update(address: ViteAddress) {
@@ -65,6 +74,50 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
         getTransactions(completion: completion)
     }
 
+    private func fetch(loop: Bool) {
+        let address = self.address
+        ViteNode.ledger.getAccountBlocks(address: address, tokenId: token.id, hash: nil, count: 10)
+            .done { [weak self] (accountBlocks, nextHash) in
+                guard let `self` = self else { return }
+                guard address == self.address else { return }
+
+                var txs = [AccountBlock]()
+
+                if let last = accountBlocks.last {
+                    txs.append(contentsOf: accountBlocks)
+
+                    if let first = self.transactions.value.first as? AccountBlock, last.height! - 1 <= first.height! {
+
+                        for item in self.transactions.value {
+                            if var i = item as? AccountBlock, i.height! < last.height! {
+                                let current = last.height! + last.confirmations!
+                                i.update(confirmations: current - i.height!)
+                                txs.append(i)
+                            }
+                        }
+                        // nextHash not changed
+                    } else {
+                        self.hash = nextHash
+                    }
+
+                } else {
+                    self.hash = nextHash
+                }
+
+                self.viewModels.removeAllObjects()
+                self.viewModels.addObjects(from: txs)
+                self.transactions.accept(self.viewModels as! [TransactionViewModelType])
+                self.hasMore.accept(nextHash != nil)
+
+            }.catch { _ in }.finally { [weak self] in
+                if loop {
+                    GCD.delay(5) { [weak self] in
+                        self?.fetch(loop: true)
+                    }
+                }
+            }
+    }
+
     private func getTransactions(completion: @escaping (Error?) -> Void) {
 
         let address = self.address
@@ -74,9 +127,7 @@ final class TransactionListTableViewModel: TransactionListTableViewModelType {
                 guard address == self.address else { return }
 
                 self.hash = nextHash
-                self.viewModels.addObjects(from: accountBlocks.map {
-                    TransactionViewModel(accountBlock: $0)
-                })
+                self.viewModels.addObjects(from: accountBlocks)
                 self.transactions.accept(self.viewModels as! [TransactionViewModelType])
                 self.hasMore.accept(nextHash != nil)
                 self.loadingStatus = .no

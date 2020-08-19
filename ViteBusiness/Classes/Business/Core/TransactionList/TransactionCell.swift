@@ -1,8 +1,8 @@
 //
-//  ETHTransactionCell.swift
+//  TransactionCell.swift
 //  ViteBusiness
 //
-//  Created by Stone on 2020/2/26.
+//  Created by Stone on 2020/8/19.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class ETHTransactionCell: BaseTableViewCell {
+class TransactionCell: BaseTableViewCell {
 
     static var cellHeight: CGFloat {
         return 74
@@ -29,7 +29,7 @@ class ETHTransactionCell: BaseTableViewCell {
         $0.lineBreakMode = .byTruncatingMiddle
     }
 
-    fileprivate let confirmationsLabel = UILabel().then {
+    fileprivate let stateLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
     }
@@ -55,7 +55,7 @@ class ETHTransactionCell: BaseTableViewCell {
         contentView.addSubview(typeImageView)
         contentView.addSubview(typeNameLabel)
         contentView.addSubview(addressBackView)
-        contentView.addSubview(confirmationsLabel)
+        contentView.addSubview(stateLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(balanceLabel)
@@ -87,12 +87,12 @@ class ETHTransactionCell: BaseTableViewCell {
             m.right.equalTo(addressBackView).offset(-10)
         }
 
-        confirmationsLabel.setContentHuggingPriority(.required, for: .horizontal)
-        confirmationsLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        confirmationsLabel.snp.makeConstraints { (m) in
+        stateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        stateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        stateLabel.snp.makeConstraints { (m) in
             m.centerY.equalTo(typeImageView)
             m.right.equalToSuperview().offset(-24)
-            m.left.equalTo(addressBackView.snp.right).offset(44)
+            m.left.equalTo(addressBackView.snp.right).offset(10)
         }
 
         timeLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -125,14 +125,14 @@ class ETHTransactionCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(viewModel: ETHTransactionViewModel, index: Int) {
+    func bind(viewModel: TransactionViewModelType, index: Int) {
         typeImageView.image = viewModel.typeImage
         typeNameLabel.text = viewModel.typeName
         addressLabel.text = viewModel.address
         timeLabel.text = viewModel.timeString
-        balanceLabel.text = viewModel.balanceString
-        balanceLabel.textColor = viewModel.balanceColor
-        confirmationsLabel.text = viewModel.confirmations
-        confirmationsLabel.textColor = viewModel.confirmationsColor
+        balanceLabel.text = viewModel.balance.text
+        balanceLabel.textColor = viewModel.balance.color
+        stateLabel.text = viewModel.state.text
+        stateLabel.textColor = viewModel.state.color
     }
 }

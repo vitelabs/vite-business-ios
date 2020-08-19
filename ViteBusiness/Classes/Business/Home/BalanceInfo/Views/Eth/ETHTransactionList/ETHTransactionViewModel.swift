@@ -8,75 +8,39 @@
 import Foundation
 import ViteWallet
 
-struct ETHTransactionViewModel {
+extension ETHTransaction: TransactionViewModelType {
+    var typeImage: UIImage {
+        (type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
+    }
 
-    let typeImage: UIImage
-    let typeName: String
-    let address: String
-    let timeString: String
-    let balanceString: String
-    let balanceColor: UIColor
-    let symbolString: String
-    let gasString: String
-    let hash: String
-    let transaction: ETHTransaction?
-    let unconfirmed: ETHUnconfirmedTransaction?
-    let confirmations: String
-    let confirmationsColor: UIColor
+    var typeName: String {
+        R.string.localizable.transactionListTransactionTypeNameTransfer()
+    }
 
-    init(transaction: ETHTransaction) {
-        self.transaction = transaction
-        self.unconfirmed = nil
-        typeImage = (transaction.type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
-        typeName = R.string.localizable.transactionListTransactionTypeNameTransfer()
-        address = ((transaction.type == .receive) ? transaction.fromAddress : transaction.toAddress).lowercased()
-        timeString = transaction.timeStamp.format("yyyy.MM.dd HH:mm:ss")
-        let amount = transaction.amount
-        let symbol = ((amount == 0) || transaction.type == .me ) ? "" : (transaction.type == .receive ? "+" : "-")
-        balanceString = "\(symbol)\(amount.amountShortWithGroupSeparator(decimals: transaction.tokenInfo.decimals))"
-        balanceColor = {
-            switch transaction.type {
-            case .send:
-                return UIColor(netHex: 0xFF0008)
-            case .receive:
-                return UIColor(netHex: 0x01D764)
-            case .me:
-                return UIColor(netHex: 0xA8ADB4)
-            }
-        }()
-        symbolString = transaction.tokenInfo.symbol
-        gasString = R.string.localizable.ethPageGasFeeTitle() + " " + (transaction.gasUsed*transaction.gasPrice).amountFullWithGroupSeparator(decimals: TokenInfo.BuildIn.eth.value.decimals)
-        hash = transaction.hash
+    var address: String {
+        ((type == .receive) ? fromAddress : toAddress).lowercased()
+    }
 
-        if transaction.isError {
-            confirmations = R.string.localizable.ethTransactionDetailFailed()
-            confirmationsColor = UIColor(netHex: 0xFF0008)
+    var state: (text: String, color: UIColor) {
+        if isError {
+            return (text: R.string.localizable.ethTransactionDetailFailed(), color: UIColor(netHex: 0xFF0008))
         } else {
-            if transaction.isConfirmed {
-                confirmations = R.string.localizable.transactionListTransactionConfirmationsFinished()
-                confirmationsColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+            if isConfirmed {
+                return (text: R.string.localizable.transactionListTransactionConfirmationsFinished(), color: UIColor(netHex: 0x3E4A59, alpha: 0.3))
             } else {
-                confirmations = R.string.localizable.transactionListTransactionConfirmations(transaction.confirmations)
-                confirmationsColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
+                return (text: R.string.localizable.transactionListTransactionConfirmations(confirmations), color: UIColor(netHex: 0x3E4A59, alpha: 0.3))
             }
         }
     }
 
-    init(unconfirmed: ETHUnconfirmedTransaction, isShowingInEthList: Bool) {
-        self.transaction = nil
-        self.unconfirmed = unconfirmed
+    var timeString: String {
+        timeStamp.format("yyyy.MM.dd HH:mm:ss")
+    }
 
-        let type = (isShowingInEthList ? unconfirmed.ethTransactionType : unconfirmed.erc20TransactionType)
-        let toAddress = isShowingInEthList ? unconfirmed.toAddress : unconfirmed.erc20ToAddress
-        let amount = isShowingInEthList ? unconfirmed.amount : unconfirmed.erc20Amount
+    var balance: (text: String, color: UIColor) {
         let symbol = ((amount == 0) || type == .me ) ? "" : (type == .receive ? "+" : "-")
-
-        typeImage = (type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
-        typeName = R.string.localizable.transactionListTransactionTypeNameTransfer()
-        address = ((type == .receive) ? unconfirmed.fromAddress : toAddress).lowercased()
-        timeString = unconfirmed.timeStamp.format("yyyy.MM.dd HH:mm:ss")
-        balanceString = "\(symbol)\(amount.amountShortWithGroupSeparator(decimals: unconfirmed.tokenInfo.decimals))"
-        balanceColor = {
+        let text = "\(symbol)\(amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))"
+        let color: UIColor = {
             switch type {
             case .send:
                 return UIColor(netHex: 0xFF0008)
@@ -86,10 +50,57 @@ struct ETHTransactionViewModel {
                 return UIColor(netHex: 0xA8ADB4)
             }
         }()
-        symbolString = unconfirmed.tokenInfo.symbol
-        gasString = ""
-        hash = unconfirmed.hash
-        confirmations = R.string.localizable.ethTransactionDetailPageStateCallWait()
-        confirmationsColor = UIColor(netHex: 0xB5C4FF)
+        return (text: text, color: color)
+    }
+}
+
+struct ETHUnconfirmedTransactionViewModel: TransactionViewModelType {
+
+    let unconfirmed: ETHUnconfirmedTransaction
+    let type: ETHUnconfirmedTransaction.TransactionType
+    private let isShowingInEthList: Bool
+
+    init(unconfirmed: ETHUnconfirmedTransaction, isShowingInEthList: Bool) {
+        self.unconfirmed = unconfirmed
+        self.isShowingInEthList = isShowingInEthList
+        self.type = (isShowingInEthList ? unconfirmed.ethTransactionType : unconfirmed.erc20TransactionType)
+    }
+
+    var typeImage: UIImage {
+        (type == .receive) ? R.image.icon_tx_receive()! : R.image.icon_tx_send()!
+    }
+
+    var typeName: String {
+        R.string.localizable.transactionListTransactionTypeNameTransfer()
+    }
+
+    var address: String {
+        let toAddress = isShowingInEthList ? unconfirmed.toAddress : unconfirmed.erc20ToAddress
+        return ((type == .receive) ? unconfirmed.fromAddress : toAddress).lowercased()
+    }
+
+    var state: (text: String, color: UIColor) {
+        return (text: R.string.localizable.ethTransactionDetailPageStateCallWait(), color: UIColor(netHex: 0xB5C4FF))
+    }
+
+    var timeString: String {
+        unconfirmed.timeStamp.format("yyyy.MM.dd HH:mm:ss")
+    }
+
+    var balance: (text: String, color: UIColor) {
+        let amount = isShowingInEthList ? unconfirmed.amount : unconfirmed.erc20Amount
+        let symbol = ((amount == 0) || type == .me ) ? "" : (type == .receive ? "+" : "-")
+        let text = "\(symbol)\(amount.amountShortWithGroupSeparator(decimals: unconfirmed.tokenInfo.decimals))"
+        let color: UIColor = {
+            switch type {
+            case .send:
+                return UIColor(netHex: 0xFF0008)
+            case .receive:
+                return UIColor(netHex: 0x01D764)
+            case .me:
+                return UIColor(netHex: 0xA8ADB4)
+            }
+        }()
+        return (text: text, color: color)
     }
 }

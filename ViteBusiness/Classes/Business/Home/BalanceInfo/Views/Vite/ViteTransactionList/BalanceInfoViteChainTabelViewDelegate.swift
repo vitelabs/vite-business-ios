@@ -49,14 +49,6 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
         HDWalletManager.instance.accountDriver.filterNil().drive(onNext: { [weak self] (account) in
             self?.bind(address: account.address)
         }).disposed(by: rx.disposeBag)
-
-        NotificationCenter.default.rx.notification(.ViteChainSendSuccess).bind { [weak self] (n) in
-            if let tokenId = n.object as? String, self?.token.id == tokenId {
-                GCD.delay(2) { [weak self] in
-                    self?.tableViewHandler.refresh()
-                }
-            }
-        }.disposed(by: rx.disposeBag)
     }
 
     func getMore(finished: @escaping (Error?) -> ()) {
@@ -105,7 +97,7 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
 
     typealias DataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TransactionViewModelType>>
 
-    var tableViewModel: TransactionListTableViewModel!
+    var tableViewModel: ViteTransactionListTableViewModel!
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return generateSectionHeaderView(title: R.string.localizable.transactionListPageTitle())
@@ -124,8 +116,8 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
     }
 
     let dataSource = DataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        if item.isGenesis {
-            let cell: TransactionGenesisCell = tableView.dequeueReusableCell(for: indexPath)
+        if let accountBlock = item as? AccountBlock, accountBlock.type == .genesisReceive {
+            let cell: ViteTransactionGenesisCell = tableView.dequeueReusableCell(for: indexPath)
             cell.bind(viewModel: item, index: indexPath.row)
             return cell
         } else {
@@ -138,7 +130,7 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
     func bind(address: ViteAddress) {
 
         if tableViewModel == nil {
-            tableViewModel = TransactionListTableViewModel(address: address, token: token)
+            tableViewModel = ViteTransactionListTableViewModel(address: address, token: token)
 
             tableViewModel.transactionsDriver.asObservable()
                 .map { [SectionModel(model: "transaction", items: $0)] }
@@ -149,8 +141,8 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
                 .bind { [weak self] indexPath in
                     guard let `self` = self else { return }
                     self.tableViewHandler.tableView.deselectRow(at: indexPath, animated: true)
-                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? TransactionViewModel {
-                        let vc = TransactionDetailViewController(holder: ViteTransactionDetailHolder(accountBlock: viewModel.accountBlock))
+                    if let viewModel = (try? self.dataSource.model(at: indexPath)) as? AccountBlock {
+                        let vc = TransactionDetailViewController(holder: ViteTransactionDetailHolder(accountBlock: viewModel))
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
 //                        if viewModel.isGenesis {
 //                            // do nothing

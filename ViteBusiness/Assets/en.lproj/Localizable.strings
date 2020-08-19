@@ -221,7 +221,7 @@
 "vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
 "vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
 "vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Transaction Type";
+"vite.transaction.detail.page.type.send" = "Request";
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
