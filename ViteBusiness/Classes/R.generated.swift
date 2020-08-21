@@ -4391,6 +4391,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinTxRepost = Rswift.StringResource(key: "grin.tx.Repost", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Request
+      /// 
+      /// Locales: en, zh-Hans
+      public static let viteTransactionDetailPageTypeSend = Rswift.StringResource(key: "vite.transaction.detail.page.type.send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Request for Vite gateway to Resend
       /// 
       /// Locales: en, zh-Hans
@@ -5147,10 +5151,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailTxStatus = Rswift.StringResource(key: "grin.detail.txStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Transaction Type
-      /// 
-      /// Locales: en, zh-Hans
-      public static let viteTransactionDetailPageTypeSend = Rswift.StringResource(key: "vite.transaction.detail.page.type.send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Transaction Type
       /// 
       /// Locales: en, zh-Hans
@@ -10214,6 +10214,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.tx.Repost", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Request
+      /// 
+      /// Locales: en, zh-Hans
+      public static func viteTransactionDetailPageTypeSend(_: Void = ()) -> String {
+        return NSLocalizedString("vite.transaction.detail.page.type.send", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Request for Vite gateway to Resend
       /// 
       /// Locales: en, zh-Hans
@@ -11535,13 +11542,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func grinDetailTxStatus(_: Void = ()) -> String {
         return NSLocalizedString("grin.detail.txStatus", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Transaction Type
-      /// 
-      /// Locales: en, zh-Hans
-      public static func viteTransactionDetailPageTypeSend(_: Void = ()) -> String {
-        return NSLocalizedString("vite.transaction.detail.page.type.send", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Transaction Type
