@@ -138,8 +138,6 @@ public class ETHWalletManager {
     }
 
     public var web3: web3swift.web3!
-    static public let defaultGasLimitForTokenTransfer = 200000
-    static public let defaultGasLimitForEthTransfer = 200000
 
     // Must be called first
     public func setProviderURL(_ providerURL: URL, net:Networks) {

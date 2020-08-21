@@ -24,7 +24,7 @@ public extension Workflow {
 
         let tokenInfo = TokenInfo.BuildIn.eth_vite.value
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let gasLimit = ETHWalletManager.defaultGasLimitForTokenTransfer
+        let gasLimit = tokenInfo.ethChainGasLimit
         let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
 
         let viewModel = ConfirmEthViteExchangeViewModel(tokenInfo: tokenInfo, addressString: viteAddress, amountString: amountString, feeString: feeString)
@@ -33,7 +33,8 @@ public extension Workflow {
             let blackHoleAddress = "0x1111111111111111111111111111111111111111"
             firstly(execute: { () -> Promise<WriteTransaction> in
                 HUD.show()
-                return account.getSendTokenTransaction(to: blackHoleAddress, amount: amount, gasPrice: nil,
+                let gasLimit = AppConfigService.instance.erc20GasLimit(contractAddress: TokenInfo.viteERC20ContractAddress)
+                return account.getSendTokenTransaction(to: blackHoleAddress, amount: amount, gasPrice: nil, gasLimit: gasLimit,
                                                                        contractAddress: TokenInfo.viteERC20ContractAddress)
             }).then({ (wt) -> Promise<(WriteTransaction, String)> in
                 account.getTransactionHash(wt).map { (wt, $0) }
@@ -90,9 +91,9 @@ public extension Workflow {
             let g = BigInt(Web3.Utils.parseToBigUInt(String(format:"%f", gasPrice), units: .Gwei)!)
             let promise: Promise<TransactionSendingResult>
             if tokenInfo.isEtherCoin {
-                promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g, note: note)
+                promise = account.sendEther(to: toAddress, amount: amount, gasPrice: g, gasLimit: tokenInfo.ethChainGasLimit, note: note)
             } else {
-                promise = account.sendToken(to: toAddress, amount: amount, gasPrice: g, contractAddress: tokenInfo.ethContractAddress)
+                promise = account.sendToken(to: toAddress, amount: amount, gasPrice: g, gasLimit: tokenInfo.ethChainGasLimit, contractAddress: tokenInfo.ethContractAddress)
             }
 
             promise
@@ -118,8 +119,7 @@ public extension Workflow {
         }
 
         let amountString = "\(amount.amountFullWithGroupSeparator(decimals: tokenInfo.decimals)) \(tokenInfo.symbol)"
-        let gasLimit = tokenInfo.isEtherCoin ? ETHWalletManager.defaultGasLimitForEthTransfer: ETHWalletManager.defaultGasLimitForTokenTransfer
-        let feeString = gasPrice.ethGasFeeDisplay(Float(gasLimit))
+        let feeString = gasPrice.ethGasFeeDisplay(Float(tokenInfo.ethChainGasLimit))
 
         let viewModel = ConfirmEthTransactionViewModel(tokenInfo: tokenInfo, addressString: toAddress, amountString: amountString, feeString: feeString)
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })

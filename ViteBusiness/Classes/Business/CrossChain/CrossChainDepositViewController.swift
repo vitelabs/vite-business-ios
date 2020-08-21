@@ -56,7 +56,7 @@ class CrossChainDepositViewController: BaseViewController {
         }
     }
 
-    let gasSliderView = EthGasFeeSliderView(gasLimit: ETHWalletManager.defaultGasLimitForTokenTransfer).then {
+    lazy var gasSliderView = EthGasFeeSliderView(gasLimit: self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken.ethChainGasLimit ?? 60000).then {
         $0.value = 1.0
     }
 

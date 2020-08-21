@@ -262,6 +262,14 @@ extension TokenInfo {
 
         return ETHToken(contractAddress: id, name: name, symbol: symbol, decimals: decimals)
     }
+
+    var ethChainGasLimit: Int {
+        if isEtherCoin {
+            return AppConfigService.instance.ethCoinGasLimit
+        } else {
+            return AppConfigService.instance.erc20GasLimit(contractAddress: ethContractAddress)
+        }
+    }
 }
 
 // UI Style
@@ -417,5 +425,13 @@ public struct MappedTokenInfo: Mappable {
         self.index = index
         self.icon = icon
         self.id = id
+    }
+
+    var ethChainGasLimit: Int {
+        if tokenCode == TokenInfo.BuildIn.eth.value.tokenCode {
+            return AppConfigService.instance.ethCoinGasLimit
+        } else {
+            return AppConfigService.instance.erc20GasLimit(contractAddress: id)
+        }
     }
 }

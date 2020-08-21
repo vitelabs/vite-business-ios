@@ -69,7 +69,7 @@ class EthViteExchangeViewController: BaseViewController {
         $0.textField.keyboardType = .decimalPad
     }
 
-    let gasSliderView = EthGasFeeSliderView(gasLimit: ETHWalletManager.defaultGasLimitForTokenTransfer).then {
+    let gasSliderView = EthGasFeeSliderView(gasLimit: TokenInfo.BuildIn.eth_vite.value.ethChainGasLimit).then {
         $0.value = 1.0
     }
 

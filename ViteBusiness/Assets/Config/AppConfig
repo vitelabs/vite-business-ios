@@ -1,19 +1,14 @@
 {
-    "my_page":{
-        "items":[
-            {
-                "type":"settings"
-            },
-            {
-                "type":"about"
-            }
-        ]
-    },
     "default_tokenCodes":[
         "1171",
         "1352",
         "1353",
         "1",
         "41"
-    ]
+    ],
+    "eth_gasLimit":{
+        "eth":21000,
+        "default":60000,
+        "0x0ba45a8b5d5575935b8158a88c631e9f9c95a2e5":140000
+    }
 }

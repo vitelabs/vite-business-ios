@@ -100,14 +100,14 @@ public class AppConfigService {
 extension AppConfigService {
 
     public struct AppConfig: Mappable {
-        fileprivate(set) var myPage: [String: Any] = [:]
         fileprivate(set) var defaultTokenCodes: [TokenCode] = []
+        fileprivate(set) var ethGasLimit: [String: Int] = [:]
 
         public init?(map: Map) { }
 
         public mutating func mapping(map: Map) {
-            myPage <- map["my_page"]
             defaultTokenCodes <- map["default_tokenCodes"]
+            ethGasLimit <- map["eth_gasLimit"]
         }
     }
 
@@ -149,5 +149,16 @@ extension AppConfigService {
             }
         }
         return false
+    }
+}
+
+// eth gas limit
+extension AppConfigService {
+    var ethCoinGasLimit: Int {
+        return self.configBehaviorRelay.value.ethGasLimit["eth"] ?? 21000
+    }
+
+    func erc20GasLimit(contractAddress: String) -> Int {
+        return self.configBehaviorRelay.value.ethGasLimit[contractAddress.lowercased()] ?? self.configBehaviorRelay.value.ethGasLimit["default"] ?? 60000
     }
 }

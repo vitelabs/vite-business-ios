@@ -66,7 +66,7 @@ extension ETHAccount {
 
 // MARK: ETHAccount - Transaction
 extension ETHAccount {
-    public func getSendTokenTransaction(to address: String, amount: BigInt, gasPrice: BigInt?, contractAddress: String) -> Promise<WriteTransaction> {
+    public func getSendTokenTransaction(to address: String, amount: BigInt, gasPrice: BigInt?, gasLimit: Int, contractAddress: String) -> Promise<WriteTransaction> {
 
         return tokenBalance(contractAddress: contractAddress)
             .then(on: DispatchQueue.global(), { (balance) -> Promise<WriteTransaction> in
@@ -88,7 +88,7 @@ extension ETHAccount {
                     let gasPrice = try web3.eth.getGasPrice()
                     options.gasPrice = .manual(gasPrice)
                 }
-                options.gasLimit = .manual(BigUInt(ETHWalletManager.defaultGasLimitForTokenTransfer))
+                options.gasLimit = .manual(BigUInt(gasLimit))
 
                 guard let tx = contract.write("transfer",
                                               parameters: [toAddress, BigUInt(amount)] as [AnyObject],
@@ -141,7 +141,7 @@ extension ETHAccount {
         }
     }
 
-    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?, note: String) -> Promise<TransactionSendingResult> {
+    public func sendEther(to address: String, amount: BigInt, gasPrice: BigInt?, gasLimit: Int, note: String) -> Promise<TransactionSendingResult> {
         return etherBalance()
             .then(on: DispatchQueue.global(), { (balance) -> Promise<TransactionSendingResult> in
                 guard balance >= amount else { throw WalletError.notEnoughBalance }
@@ -170,7 +170,7 @@ extension ETHAccount {
                     extraData = note.data(using: .utf8) ?? Data()
                 }
 
-                options.gasLimit = .manual(BigUInt(ETHWalletManager.defaultGasLimitForEthTransfer))
+                options.gasLimit = .manual(BigUInt(gasLimit))
                 guard let tx = contract.write("fallback",
                                               parameters: [AnyObject](),
                                               extraData: extraData,
@@ -181,8 +181,8 @@ extension ETHAccount {
             })
     }
 
-    public func sendToken(to address: String, amount: BigInt, gasPrice: BigInt?, contractAddress: String) -> Promise<TransactionSendingResult> {
-        return getSendTokenTransaction(to: address, amount: amount, gasPrice: gasPrice, contractAddress: contractAddress)
+    public func sendToken(to address: String, amount: BigInt, gasPrice: BigInt?, gasLimit: Int, contractAddress: String) -> Promise<TransactionSendingResult> {
+        return getSendTokenTransaction(to: address, amount: amount, gasPrice: gasPrice, gasLimit: gasLimit, contractAddress: contractAddress)
             .then({ (wt) -> Promise<TransactionSendingResult> in
                 return self.sendTransaction(wt)
             })
