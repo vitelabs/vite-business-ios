@@ -114,7 +114,7 @@ public class EthGasFeeSliderView: UIView {
     }
 
     @objc fileprivate func valueChanged() {
-        self.value = self.feeSlider.value.roundTo(4)
+        self.value = self.feeSlider.value.roundTo(5)
     }
 
     var gasLimit:Int
@@ -258,7 +258,7 @@ extension Float {
 
     func ethGasFeeDisplay(_ gasLimit:Float) -> String {
         var eth = (self * gasLimit * pow(10.0, -9))
-        eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
+        eth = eth.roundTo(5)
         return String(format: "%.5f ETH", eth)
     }
 }
