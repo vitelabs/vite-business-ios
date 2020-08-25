@@ -5483,10 +5483,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinDetailGatewayReceived = Rswift.StringResource(key: "grin.detail.gatewayReceived", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Vite.blog
-      /// 
-      /// Locales: en, zh-Hans
-      public static let aboutUsPageCellBlogWebsite = Rswift.StringResource(key: "aboutUs.page.cell.blog.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Vite.net
       /// 
       /// Locales: en, zh-Hans
@@ -5495,6 +5491,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let aboutUsPageCellOfficialWebsite = Rswift.StringResource(key: "aboutUs.page.cell.official.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Vite.wiki
+      /// 
+      /// Locales: en, zh-Hans
+      public static let aboutUsPageCellBlogWebsite = Rswift.StringResource(key: "aboutUs.page.cell.blog.website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: ViteConnect Connected
       /// 
       /// Locales: en, zh-Hans
@@ -12125,13 +12125,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.detail.gatewayReceived", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Vite.blog
-      /// 
-      /// Locales: en, zh-Hans
-      public static func aboutUsPageCellBlogWebsite(_: Void = ()) -> String {
-        return NSLocalizedString("aboutUs.page.cell.blog.website", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Vite.net
       /// 
       /// Locales: en, zh-Hans
@@ -12144,6 +12137,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func aboutUsPageCellOfficialWebsite(_: Void = ()) -> String {
         return NSLocalizedString("aboutUs.page.cell.official.website", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Vite.wiki
+      /// 
+      /// Locales: en, zh-Hans
+      public static func aboutUsPageCellBlogWebsite(_: Void = ()) -> String {
+        return NSLocalizedString("aboutUs.page.cell.blog.website", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: ViteConnect Connected

@@ -359,7 +359,7 @@
 "aboutUs.page.cell.shareUs" = "Share Vite APP";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
-"aboutUs.page.cell.blog.website" = "Vite.blog";
+"aboutUs.page.cell.blog.website" = "Vite.wiki";
 "aboutUs.page.email.title" = "Feedback";
 "aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
 

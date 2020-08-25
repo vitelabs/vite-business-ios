@@ -108,7 +108,11 @@ class AboutUsTableBottomView: UIView {
         let blogWebsiteBtn = UIButton.init(style: .white, title: R.string.localizable.aboutUsPageCellBlogWebsite())
         blogWebsiteBtn.titleLabel?.adjustsFontSizeToFitWidth = false
         blogWebsiteBtn.rx.tap.bind {_ in
-            WebHandler.open(URL.init(string: "https://vite.blog/")!)
+            if LocalizationService.sharedInstance.currentLanguage == .chinese {
+                WebHandler.open(URL.init(string: "https://vite.wiki/zh/")!)
+            } else {
+                WebHandler.open(URL.init(string: "https://vite.wiki/")!)
+            }
         }.disposed(by: rx.disposeBag)
         return blogWebsiteBtn
     }()

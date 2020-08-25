@@ -17,20 +17,11 @@ public class EthGasFeeSliderView: UIView {
             guard value != oldValue else {
                 return
             }
-            if value == self.feeSlider.minimumValue || value == self.feeSlider.maximumValue {
-                self.valueLab.text = String(format: "%.2f gwei", value)
-            }else {
-                self.valueLab.text = String(format: "%.4f gwei", value)
-            }
+            self.valueLab.text = String(format: "%.2f gwei", value)
             eth = (value * Float(self.gasLimit) * pow(10.0, -9))
-            eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
+            eth = eth.roundTo(5)
+            ethStr = String(format: "%.5f", eth)
 
-
-            if eth <= 0.0001 {
-                ethStr = String(format: "%.5f", eth)
-            } else {
-                ethStr = String(format: "%.4f", eth)
-            }
             var rateFee = ""
             let balance = ethStr.toAmount(decimals: 18) ?? Amount(0)
 
@@ -268,12 +259,7 @@ extension Float {
     func ethGasFeeDisplay(_ gasLimit:Float) -> String {
         var eth = (self * gasLimit * pow(10.0, -9))
         eth = eth <= 0.0001 ? eth.roundTo(5) :  eth.roundTo(4)
-
-        if eth <= 0.0001 {
-            return String(format: "%.5f ETH", eth)
-        } else {
-            return String(format: "%.4f ETH", eth)
-        }
+        return String(format: "%.5f ETH", eth)
     }
 }
 
