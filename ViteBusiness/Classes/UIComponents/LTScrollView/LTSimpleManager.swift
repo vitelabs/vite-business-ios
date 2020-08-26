@@ -268,6 +268,8 @@
             pageView.addSubview(titleView)
         }
         cell.contentView.addSubview(pageView)
+        cell.contentView.backgroundColor = .clear
+        cell.backgroundColor = .clear
         return cell
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -45,7 +45,7 @@
 "tab.title.market" = "行情";
 "tab.title.trading" = "交易";
 "tab.title.discover" = "发现";
-"tab.title.my" = "我的";
+"tab.title.dex" = "交易所资产";
 
 /* App */
 "Cancel" = "取消";
@@ -1221,3 +1221,16 @@
 "grin.initing.desc" = "正在初始化，点击查看注意事项";
 "grin.initing.detail" = "1、 首次添加GRIN钱包需初始化\n2、初始化预计持续15分钟\n3、初始化过程中请勿杀掉app进程\n4、初始化会消耗大量流量，尽量在wifi环境下";
 
+
+
+// DexHome
+"dex.home.page.nav.title" = "交易所资产";
+"dex.home.page.nav.btc.valuation.title" = "资产估值(BTC)";
+"dex.home.page.segment.wallet" = "资金账户";
+"dex.home.page.segment.dex" = "交易账户";
+
+"dex.home.page.header.btc.valuation.title" = "估值(BTC)";
+"dex.home.page.header.button.transfer.title" = "资金划转";
+"dex.home.page.header.button.deposit.title" = "充值";
+"dex.home.page.header.button.withdraw.title" = "提现";
+"dex.home.page.header.button.hide。small.title" = "隐藏小额币种";

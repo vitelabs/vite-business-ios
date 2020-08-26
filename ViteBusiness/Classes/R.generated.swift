@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 276 images.
+  /// This `R.image` struct is generated, and contains static references to 282 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -60,6 +60,8 @@ public struct R: Rswift.Validatable {
     public static let crosschain_status_vite = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_status_vite")
     /// Image `crosschain_withdrwa`.
     public static let crosschain_withdrwa = Rswift.ImageResource(bundle: R.hostingBundle, name: "crosschain_withdrwa")
+    /// Image `dex_nav_bg`.
+    public static let dex_nav_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "dex_nav_bg")
     /// Image `dotted_line`.
     public static let dotted_line = Rswift.ImageResource(bundle: R.hostingBundle, name: "dotted_line")
     /// Image `empty`.
@@ -284,6 +286,16 @@ public struct R: Rswift.Validatable {
     public static let icon_contacts_empty = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts_empty")
     /// Image `icon_contacts`.
     public static let icon_contacts = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_contacts")
+    /// Image `icon_dex_home_address_arrows`.
+    public static let icon_dex_home_address_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_address_arrows")
+    /// Image `icon_dex_home_hide_selected`.
+    public static let icon_dex_home_hide_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_hide_selected")
+    /// Image `icon_dex_home_hide`.
+    public static let icon_dex_home_hide = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_hide")
+    /// Image `icon_dex_home_sort_selected`.
+    public static let icon_dex_home_sort_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort_selected")
+    /// Image `icon_dex_home_sort`.
+    public static let icon_dex_home_sort = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort")
     /// Image `icon_edit_name`.
     public static let icon_edit_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_edit_name")
     /// Image `icon_eth_detail_falied`.
@@ -430,14 +442,14 @@ public struct R: Rswift.Validatable {
     public static let icon_tabbar_debug_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug_select")
     /// Image `icon_tabbar_debug`.
     public static let icon_tabbar_debug = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_debug")
+    /// Image `icon_tabbar_dex_select`.
+    public static let icon_tabbar_dex_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_dex_select")
+    /// Image `icon_tabbar_dex`.
+    public static let icon_tabbar_dex = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_dex")
     /// Image `icon_tabbar_market_select`.
     public static let icon_tabbar_market_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_market_select")
     /// Image `icon_tabbar_market`.
     public static let icon_tabbar_market = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_market")
-    /// Image `icon_tabbar_me_select`.
-    public static let icon_tabbar_me_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me_select")
-    /// Image `icon_tabbar_me`.
-    public static let icon_tabbar_me = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_me")
     /// Image `icon_tabbar_trading_select`.
     public static let icon_tabbar_trading_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_trading_select")
     /// Image `icon_tabbar_trading`.
@@ -674,6 +686,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "crosschain_withdrwa", bundle: ..., traitCollection: ...)`
     public static func crosschain_withdrwa(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crosschain_withdrwa, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "dex_nav_bg", bundle: ..., traitCollection: ...)`
+    public static func dex_nav_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.dex_nav_bg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "dotted_line", bundle: ..., traitCollection: ...)`
@@ -1236,6 +1253,31 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_contacts_empty, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_dex_home_address_arrows", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_address_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_address_arrows, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_dex_home_hide", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_hide(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_hide, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_dex_home_hide_selected", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_hide_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_hide_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_dex_home_sort", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_sort(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_sort, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_dex_home_sort_selected", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_sort_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_sort_selected, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_edit_name", bundle: ..., traitCollection: ...)`
     public static func icon_edit_name(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_edit_name, compatibleWith: traitCollection)
@@ -1601,6 +1643,16 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tabbar_debug_select, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_tabbar_dex", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_dex(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_dex, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_tabbar_dex_select", bundle: ..., traitCollection: ...)`
+    public static func icon_tabbar_dex_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_dex_select, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_tabbar_market", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_market(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_market, compatibleWith: traitCollection)
@@ -1609,16 +1661,6 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_tabbar_market_select", bundle: ..., traitCollection: ...)`
     public static func icon_tabbar_market_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tabbar_market_select, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_me", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_me(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_me, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "icon_tabbar_me_select", bundle: ..., traitCollection: ...)`
-    public static func icon_tabbar_me_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_tabbar_me_select, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_tabbar_trading", bundle: ..., traitCollection: ...)`
@@ -1956,7 +1998,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 999 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1008 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2098,10 +2140,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let myPageAboutUsCellTitle = Rswift.StringResource(key: "my.page.aboutUs.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Account
-      /// 
-      /// Locales: en, zh-Hans
-      public static let tabTitleMy = Rswift.StringResource(key: "tab.title.my", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Account Name
       /// 
       /// Locales: en, zh-Hans
@@ -5942,10 +5980,50 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageNavTitle = Rswift.StringResource(key: "dex.home.page.nav.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleDex = Rswift.StringResource(key: "tab.title.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 交易账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageSegmentDex = Rswift.StringResource(key: "dex.home.page.segment.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageHeaderBtcValuationTitle = Rswift.StringResource(key: "dex.home.page.header.btc.valuation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageHeaderButtonDepositTitle = Rswift.StringResource(key: "dex.home.page.header.button.deposit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageHeaderButtonWithdrawTitle = Rswift.StringResource(key: "dex.home.page.header.button.withdraw.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 资产估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageNavBtcValuationTitle = Rswift.StringResource(key: "dex.home.page.nav.btc.valuation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 资产估值(BTC)
       /// 
       /// Locales: en, zh-Hans
       public static let walletHomeBtcTitle = Rswift.StringResource(key: "wallet.home.btc.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 资金划转
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageHeaderButtonTransferTitle = Rswift.StringResource(key: "dex.home.page.header.button.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 资金账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageSegmentWallet = Rswift.StringResource(key: "dex.home.page.segment.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 隐藏小额币种
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexHomePageHeaderButtonHideSmallTitle = Rswift.StringResource(key: "dex.home.page.header.button.hide。small.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代币
       /// 
       /// Locales: zh-Hans
@@ -6198,13 +6276,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func myPageAboutUsCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.aboutUs.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Account
-      /// 
-      /// Locales: en, zh-Hans
-      public static func tabTitleMy(_: Void = ()) -> String {
-        return NSLocalizedString("tab.title.my", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Account Name
@@ -12927,11 +12998,81 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageNavTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.nav.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易所资产
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleDex(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.dex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 交易账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageSegmentDex(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.segment.dex", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageHeaderBtcValuationTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.header.btc.valuation.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 充值
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageHeaderButtonDepositTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.header.button.deposit.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提现
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageHeaderButtonWithdrawTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.header.button.withdraw.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 资产估值(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageNavBtcValuationTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.nav.btc.valuation.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 资产估值(BTC)
       /// 
       /// Locales: en, zh-Hans
       public static func walletHomeBtcTitle(_: Void = ()) -> String {
         return NSLocalizedString("wallet.home.btc.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 资金划转
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageHeaderButtonTransferTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.header.button.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 资金账户
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageSegmentWallet(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.segment.wallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 隐藏小额币种
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexHomePageHeaderButtonHideSmallTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.header.button.hide。small.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代币

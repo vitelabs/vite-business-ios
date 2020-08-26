@@ -23,11 +23,8 @@ public class ManageViteXBanlaceViewController: BaseViewController {
     }
 
     var actionType = ActionType.toVitex
-
-    let autoDismiss: Bool
-    public init(tokenInfo: TokenInfo, autoDismiss: Bool) {
+    public init(tokenInfo: TokenInfo, autoDismiss: Bool = true) {
         self.tokenInfoBehaviorRelay = BehaviorRelay(value: tokenInfo)
-        self.autoDismiss = autoDismiss
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -241,8 +238,9 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
         tokenSelectorView.changeButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let vc = ViteXTokenSelectorViewController(tokenInfo: self.token, type: self.actionType == .toVitex ? .wallet : .vitex) { [weak self] tokenInfo in
+            let vc = ViteXTokenSelectorViewController(type: self.actionType == .toVitex ? .wallet : .vitex, filter: .none) { [weak self] (tokenInfo, vc) in
                 self?.tokenInfoBehaviorRelay.accept(tokenInfo)
+                vc.dismiss()
             }
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
@@ -332,23 +330,6 @@ public class ManageViteXBanlaceViewController: BaseViewController {
             switch result {
             case .success(_):
                 self.navigationController?.popViewController(animated: true)
-//                if self.autoDismiss {
-//                    self.navigationController?.popViewController(animated: true)
-//                } else {
-//                    Alert.show(title: R.string.localizable.fundDepositSuccess(), message: nil, actions: [
-//                    (.default(title: R.string.localizable.cancel()), { _ in
-//                        self.navigationController?.popViewController(animated: true)
-//                    }),
-//                    (.default(title: R.string.localizable.confirm()), { _ in
-//                        let webvc = WKWebViewController(url: self.vitexPageUrl())
-//                        var vcs = self.navigationController?.viewControllers
-//                        vcs?.popLast()
-//                        vcs?.append(webvc)
-//                        if let vcs = vcs {
-//                            self.navigationController?.setViewControllers(vcs, animated: true)
-//                        }
-//                    })])
-//                }
             case .failure(let e):
                 Toast.show(e.localizedDescription)
             }

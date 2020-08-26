@@ -24,10 +24,6 @@ class HomeViewController: UITabBarController {
             $0.automaticallyShowDismissButton = false
         }
 
-        let myVC = MyHomeViewController().then {
-            $0.automaticallyShowDismissButton = false
-        }
-
         let marketVC = MarketViewController().then {
             $0.automaticallyShowDismissButton = false
         }
@@ -44,9 +40,9 @@ class HomeViewController: UITabBarController {
         }
 
         let dexAssetNav = BaseNavigationController(rootViewController: dexAssetVC).then {
-            $0.tabBarItem.title = R.string.localizable.tabTitleMy()
-            $0.tabBarItem.image = R.image.icon_tabbar_me()?.withRenderingMode(.alwaysOriginal)
-            $0.tabBarItem.selectedImage = R.image.icon_tabbar_me_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.title = R.string.localizable.tabTitleDex()
+            $0.tabBarItem.image = R.image.icon_tabbar_dex()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.selectedImage = R.image.icon_tabbar_dex_select()?.withRenderingMode(.alwaysOriginal)
         }
 
         let marketNav = BaseNavigationController(rootViewController: marketVC).then {

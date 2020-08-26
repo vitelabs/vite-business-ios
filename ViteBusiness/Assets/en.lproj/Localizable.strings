@@ -45,7 +45,7 @@
 "tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
-"tab.title.my" = "Account";
+"tab.title.dex" = "交易所资产";
 
 /* App */
 "Cancel" = "Cancel";
@@ -1210,3 +1210,15 @@
 
 "grin.initing.desc" = "Initializing, click to view details";
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+
+// DexHome
+"dex.home.page.nav.title" = "交易所资产";
+"dex.home.page.nav.btc.valuation.title" = "资产估值(BTC)";
+"dex.home.page.segment.wallet" = "资金账户";
+"dex.home.page.segment.dex" = "交易账户";
+
+"dex.home.page.header.btc.valuation.title" = "估值(BTC)";
+"dex.home.page.header.button.transfer.title" = "资金划转";
+"dex.home.page.header.button.deposit.title" = "充值";
+"dex.home.page.header.button.withdraw.title" = "提现";
+"dex.home.page.header.button.hide。small.title" = "隐藏小额币种";

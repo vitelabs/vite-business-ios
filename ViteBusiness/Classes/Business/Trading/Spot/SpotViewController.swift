@@ -182,7 +182,7 @@ class SpotViewController: BaseTableViewController {
         height += 10
         height += max(SpotOperationView.height, SpotDepthView.height)
         height += 16
-        height += 16
+        height += 10
         height += SpotOrdersHeaderView.height
         view.frame = CGRect(x: 0, y: 0, width: 0, height: height)
 
@@ -220,7 +220,7 @@ class SpotViewController: BaseTableViewController {
             m.top.greaterThanOrEqualTo(operationView.snp.bottom).offset(16)
             m.top.greaterThanOrEqualTo(depthView.snp.bottom).offset(16)
             m.left.right.equalToSuperview()
-            m.height.equalTo(16)
+            m.height.equalTo(10)
         }
 
         ordersHeaderView.snp.makeConstraints { (m) in

@@ -351,11 +351,11 @@ class SpotOperationView: UIView {
             let isBuy = self.segmentView.isBuyBehaviorRelay.value
             if isBuy {
                 guard let tokenInfo = self.spotViewModelBehaviorRelay.value?.quoteTokenInfo else { return }
-                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             } else {
                 guard let tokenInfo = self.spotViewModelBehaviorRelay.value?.tradeTokenInfo else { return }
-                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, autoDismiss: true)
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }
         }.disposed(by: rx.disposeBag)

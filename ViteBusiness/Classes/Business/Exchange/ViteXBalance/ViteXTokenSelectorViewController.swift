@@ -15,14 +15,19 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
         case vitex
     }
 
-    var tokenInfo: TokenInfo
+    enum Filter {
+        case none
+        case gateway
+    }
+
     let type: PType
-    let block: (TokenInfo) -> Void
+    let filter: Filter
+    let block: (TokenInfo, ViteXTokenSelectorViewController) -> Void
     var vms: [ViteXTokenSelectorViewModel] = []
 
-    init(tokenInfo: TokenInfo, type: PType, block: @escaping (TokenInfo) -> Void) {
-        self.tokenInfo = tokenInfo
+    init(type: PType, filter: Filter, block: @escaping (TokenInfo, ViteXTokenSelectorViewController) -> Void) {
         self.type = type
+        self.filter = filter
         self.block = block
         super.init(.plain)
     }
@@ -85,6 +90,10 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
 
         let dexTokenInfos = TokenInfoCacheService.instance.dexTokenInfos
         for tokenInfo in dexTokenInfos {
+
+            if filter == .gateway && tokenInfo.gatewayInfo == nil {
+                continue
+            }
 
             let amount: Amount
             switch self.type {
@@ -154,8 +163,7 @@ extension ViteXTokenSelectorViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         let model = vms[indexPath.row]
-        block(model.tokenInfo)
-        dismiss()
+        block(model.tokenInfo, self)
     }
 
     func emptyView() -> UIView {
