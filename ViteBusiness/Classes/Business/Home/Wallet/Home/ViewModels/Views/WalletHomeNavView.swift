@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import PPBadgeViewSwift
 
 class WalletHomeNavView: UIImageView {
 
@@ -33,6 +34,10 @@ class WalletHomeNavView: UIImageView {
     let myButton = UIButton().then {
         $0.setImage(R.image.icon_nav_mine(), for: .normal)
         $0.setImage(R.image.icon_nav_mine()?.highlighted, for: .highlighted)
+        $0.pp.addBadge(text: nil)
+        $0.pp.moveBadge(x: -5, y: 5)
+        $0.pp.setBadge(height: 4.0)
+        $0.pp.base.badgeView.backgroundColor = UIColor(netHex: 0xFF0008)
     }
 
     let scanButton = UIButton().then {
@@ -106,6 +111,16 @@ class WalletHomeNavView: UIImageView {
             m.right.equalToSuperview().offset(-20)
             m.bottom.equalToSuperview().offset(-108)
             m.size.equalTo(CGSize(width: 28, height: 28))
+        }
+
+        DispatchQueue.main.async {
+            AppSettingsService.instance.appSettingsDriver.map{ $0.guide.vitexInvite}.distinctUntilChanged().drive(onNext: { [weak self] (ret) in
+                if ret {
+                    self?.myButton.pp.showBadge()
+                } else {
+                    self?.myButton.pp.hiddenBadge()
+                }
+            }).disposed(by: self.rx.disposeBag)
         }
     }
 

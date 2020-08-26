@@ -111,18 +111,6 @@ class HomeViewController: UITabBarController {
                     Statistics.log(eventId: "charts_home")
                 }
         }.disposed(by: rx.disposeBag)
-
-        DispatchQueue.main.async {
-            AppSettingsService.instance.appSettingsDriver.map{ $0.guide.vitexInvite}.distinctUntilChanged().drive(onNext: { [weak self] (ret) in
-                if ret {
-                    self?.tabBar.showBadgeDot(at: 4)
-                } else {
-                    self?.tabBar.hideBadgeDot(at: 4)
-                }
-            }).disposed(by: self.rx.disposeBag)
-        }
-
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
