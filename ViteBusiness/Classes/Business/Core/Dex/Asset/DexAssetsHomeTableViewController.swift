@@ -6,14 +6,22 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import ViteWallet
 
 class DexAssetsHomeTableViewController: BaseTableViewController {
 
     lazy var headerCell = DexAssetsHomeHeaderViewCell(type: self.type)
 
+    let viewModelBehaviorRelay: BehaviorRelay<[DexAssetsHomeCellViewModel]> = BehaviorRelay(value: [])
+    let btcValuationBehaviorRelay: BehaviorRelay<BigDecimal> = BehaviorRelay(value: BigDecimal())
+    let sortModeBehaviorRelay: BehaviorRelay<DexAssetsHomeViewController.SortMode>
+
     let type: DexAssetsHomeViewController.PType
-    init(type: DexAssetsHomeViewController.PType) {
+    init(type: DexAssetsHomeViewController.PType, sortModeBehaviorRelay: BehaviorRelay<DexAssetsHomeViewController.SortMode>) {
         self.type = type
+        self.sortModeBehaviorRelay = sortModeBehaviorRelay
         super.init()
     }
 
@@ -38,6 +46,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
     }
 
     func bind() {
+
         HDWalletManager.instance.accountDriver.filterNil().map { $0.address }.drive(headerCell.addressButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
 
         headerCell.addressButton.rx.tap.bind {
@@ -88,6 +97,101 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
             }
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
+
+        headerCell.hideButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            var ret = AppSettingsService.instance.appSettings.dexHideSmall
+            ret.toggle()
+            AppSettingsService.instance.updateDexHideSmall(ret)
+        }.disposed(by: rx.disposeBag)
+
+        headerCell.sortButton.rx.tap.bind { [weak self] in
+            guard let `self` = self else { return }
+            let ret = self.sortModeBehaviorRelay.value.next
+            self.sortModeBehaviorRelay.accept(ret)
+        }.disposed(by: rx.disposeBag)
+
+        AppSettingsService.instance.appSettingsDriver.map { $0.dexHideSmall }.drive(headerCell.hideButton.rx.isSelected).disposed(by: rx.disposeBag)
+        sortModeBehaviorRelay.bind{[weak self] sortMode in
+            guard let `self` = self else { return }
+            switch sortMode {
+            case .default:
+                self.headerCell.sortButton.setImage(R.image.icon_dex_home_sort_default(), for: .normal)
+            case .a2z:
+                self.headerCell.sortButton.setImage(R.image.icon_dex_home_sort_a2z(), for: .normal)
+            case .z2a:
+                self.headerCell.sortButton.setImage(R.image.icon_dex_home_sort_z2a(), for: .normal)
+            }
+        }.disposed(by: rx.disposeBag)
+
+        switch type {
+        case .wallet:
+            Driver.combineLatest(ExchangeRateManager.instance.rateMapDriver, ViteBalanceInfoManager.instance.balanceInfosDriver, AppSettingsService.instance.appSettingsDriver.map { $0.dexHideSmall }, sortModeBehaviorRelay.asDriver()).drive(onNext: { [weak self] (_, _, hideSmall, sortMode) in
+                guard let `self` = self else { return }
+                let dexTokenInfos = TokenInfoCacheService.instance.dexTokenInfos
+                var vms: [DexAssetsHomeCellViewModel] = dexTokenInfos.map { tokenInfo in
+                    let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.balance ?? Amount()
+                    let balanceString = tokenInfo.amountString(amount: balance, precision: .short)
+                    let legalString = tokenInfo.legalString(amount: balance)
+                    let btcValuation = tokenInfo.btcValuationForBasicUnit(amount: balance)
+                    return DexAssetsHomeCellViewModel(tonkenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
+                }
+
+                self.btcValuationBehaviorRelay.accept(vms.map{ $0.btcValuation }.reduce(BigDecimal(), +))
+
+                if hideSmall {
+                    vms = vms.filter { $0.isValuable }
+                }
+
+                switch sortMode {
+                case .default:
+                    vms = vms.sorted { $0.btcValuation > $1.btcValuation }
+                case .a2z:
+                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol < $1.tonkenInfo.uniqueSymbol }
+                case .z2a:
+                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol > $1.tonkenInfo.uniqueSymbol }
+                }
+
+                self.viewModelBehaviorRelay.accept(vms)
+                self.tableView.reloadData()
+            }).disposed(by: rx.disposeBag)
+        case .vitex:
+            Driver.combineLatest(ExchangeRateManager.instance.rateMapDriver, ViteBalanceInfoManager.instance.dexBalanceInfosDriver, AppSettingsService.instance.appSettingsDriver.map { $0.dexHideSmall }, sortModeBehaviorRelay.asDriver()).drive(onNext: { [weak self] (_, _, hideSmall, sortMode) in
+                guard let `self` = self else { return }
+                let dexTokenInfos = TokenInfoCacheService.instance.dexTokenInfos
+                var vms: [DexAssetsHomeCellViewModel] = dexTokenInfos.map { tokenInfo in
+                    let balance = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.total ?? Amount()
+                    let balanceString = tokenInfo.amountString(amount: balance, precision: .short)
+                    let legalString = tokenInfo.legalString(amount: balance)
+                    let btcValuation = tokenInfo.btcValuationForBasicUnit(amount: balance)
+                    return DexAssetsHomeCellViewModel(tonkenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
+                }
+
+                self.btcValuationBehaviorRelay.accept(vms.map{ $0.btcValuation }.reduce(BigDecimal(), +))
+
+                if hideSmall {
+                    vms = vms.filter { $0.isValuable }
+                }
+
+                switch sortMode {
+                case .default:
+                    vms = vms.sorted { $0.btcValuation > $1.btcValuation }
+                case .a2z:
+                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol < $1.tonkenInfo.uniqueSymbol }
+                case .z2a:
+                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol > $1.tonkenInfo.uniqueSymbol }
+                }
+
+                self.viewModelBehaviorRelay.accept(vms)
+                self.tableView.reloadData()
+            }).disposed(by: rx.disposeBag)
+        }
+
+        btcValuationBehaviorRelay.asDriver().drive(onNext: { [weak self] bigDecimal in
+            guard let `self` = self else { return }
+            self.headerCell.btcLabel.text = BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalRound(8), padding: .none, options: [.groupSeparator])
+            self.headerCell.legalLabel.text = "≈" + ExchangeRateManager.instance.rateMap.btcPriceString(btc: bigDecimal)
+        }).disposed(by: rx.disposeBag)
     }
 }
 
@@ -100,7 +204,7 @@ extension DexAssetsHomeTableViewController {
         if section == 0 {
             return 1
         } else {
-            return 10
+            return viewModelBehaviorRelay.value.count
         }
     }
 
@@ -109,11 +213,16 @@ extension DexAssetsHomeTableViewController {
             return headerCell
         } else {
             let cell: DexAssetsHomeCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.bind(vm: viewModelBehaviorRelay.value[indexPath.row])
             return cell
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 199 : 66
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

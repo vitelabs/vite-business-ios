@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "icon_dex_home_sort@2x.png",
+      "filename" : "icon_dex_home_sort_a2z@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icon_dex_home_sort@3x.png",
+      "filename" : "icon_dex_home_sort_a2z@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

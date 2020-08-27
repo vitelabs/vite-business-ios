@@ -318,6 +318,41 @@ extension TokenInfo {
     }
 }
 
+// Amount
+extension TokenInfo {
+
+    public func btcValuationForBasicUnit(amount: Amount) -> BigDecimal {
+        guard let dic = ExchangeRateManager.instance.rateMap[tokenCode],
+            let string = dic["btc"] as? String,
+            let btcRate = BigDecimal(string) else {
+                return BigDecimal()
+        }
+        
+        let bigDecimal = BigDecimal(number: amount, digits: decimals)
+        return btcRate * bigDecimal
+    }
+
+    public func btcValuationForBasicUnitString(amount: Amount, decimalDigits: Int) -> String {
+        let bigDecimal = btcValuationForBasicUnit(amount: amount)
+        return BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(decimalDigits), padding: .none, options: [.groupSeparator])
+    }
+
+    public enum BalancePrecision: Int {
+        case long = 8
+        case short = 4
+    }
+
+    public func amountString(amount: Amount, precision: BalancePrecision) -> String {
+        return amount.amount(decimals: decimals, count: precision.rawValue, groupSeparator: true)
+    }
+
+    public func legalString(amount: Amount) -> String {
+        let currency = AppSettingsService.instance.appSettings.currency
+        let p = ExchangeRateManager.instance.rateMap.price(for: self, balance: amount)
+        return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+    }
+}
+
 public struct GatewayInfo: Mappable {
 
     var name =  ""

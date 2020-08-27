@@ -43,10 +43,11 @@ public class ExchangeRateService: PollService {
         }
     }
 
-    func getRateImmediately(for tokenCode: TokenCode, completion: @escaping (Ret) -> ()) {
+    func getRateImmediately(for tokenCodes: [TokenCode], completion: @escaping (Ret) -> ()) {
         let taskId = self.taskId
-        tokenCodes.append(tokenCode)
-        ExchangeProvider.instance.getRate(for: [tokenCode]) { [weak self] (ret) in
+        let new = Array(Set(tokenCodes).subtracting(Set(self.tokenCodes)))
+        self.tokenCodes.append(contentsOf: new)
+        ExchangeProvider.instance.getRate(for: tokenCodes) { [weak self] (ret) in
             guard let `self` = self else { return }
             guard taskId == self.taskId else { return }
             switch ret {

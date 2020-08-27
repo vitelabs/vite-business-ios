@@ -40,6 +40,7 @@ class DexAssetsHomeCell: BaseTableViewCell {
         contentView.addSubview(balanceLabel)
         contentView.addSubview(valuationLabel)
 
+        iconImageView.set(cornerRadius: 16)
         iconImageView.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
             m.centerY.equalToSuperview()
@@ -81,5 +82,12 @@ class DexAssetsHomeCell: BaseTableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func bind(vm: DexAssetsHomeCellViewModel) {
+        iconImageView.tokenInfo = vm.tonkenInfo
+        symbolLabel.text = vm.tonkenInfo.uniqueSymbol
+        balanceLabel.text = vm.balanceString
+        valuationLabel.text = vm.legalString
     }
 }

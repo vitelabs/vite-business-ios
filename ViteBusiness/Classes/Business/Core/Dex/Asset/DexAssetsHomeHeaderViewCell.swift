@@ -18,13 +18,11 @@ class DexAssetsHomeHeaderViewCell: BaseTableViewCell {
     let btcLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
-        $0.text = "dfsafdsaffdsafdsafdsaf"
     }
 
     let legalLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
-        $0.text = "≈¥496,947,904,51fdsfsdfs"
     }
 
     let addressButton = UIButton().then {
@@ -84,16 +82,14 @@ class DexAssetsHomeHeaderViewCell: BaseTableViewCell {
         $0.setTitle(R.string.localizable.dexHomePageHeaderButtonHideSmallTitle(), for: .normal)
     }
 
-    let sortButton = UIButton().then {
-        $0.setImage(R.image.icon_dex_home_sort(), for: .normal)
-        $0.setImage(R.image.icon_dex_home_sort_selected()?.highlighted, for: .selected)
-    }
+    let sortButton = UIButton()
 
     let type: DexAssetsHomeViewController.PType
     init(type: DexAssetsHomeViewController.PType) {
         self.type = type
         super.init(style: .default, reuseIdentifier: nil)
 
+        selectionStyle = .none
 
         contentView.addSubview(valuationTitleLabel)
         contentView.addSubview(btcLabel)

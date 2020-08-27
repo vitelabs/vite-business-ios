@@ -74,20 +74,23 @@ public final class ExchangeRateManager {
         }).disposed(by: disposeBag)
     }
 
-    func getRateImmediately(for tokenCode: TokenCode) {
+    func getRateImmediately(for tokenCodes: [TokenCode]) {
         guard let service = self.service else { return }
 
-        service.getRateImmediately(for: tokenCode) { [weak self] (ret) in
+        service.getRateImmediately(for: tokenCodes) { [weak self] (ret) in
             guard let `self` = self else { return }
             switch ret {
             case .success(let map):
                 //plog(level: .debug, log: "count: \(map.count)", tag: .exchange)
-                if let rate = map[tokenCode] {
-                    var old = self.rateMapBehaviorRelay.value
-                    old[tokenCode] = rate
-                    self.rateMapBehaviorRelay.accept(old)
-                    self.pri_save()
+
+                var old = self.rateMapBehaviorRelay.value
+                for tokenCode in tokenCodes {
+                    if let rate = map[tokenCode] {
+                        old[tokenCode] = rate
+                    }
                 }
+                self.rateMapBehaviorRelay.accept(old)
+                self.pri_save()
             case .failure(let error):
                 plog(level: .warning, log: "getRate error: \(error.localizedDescription)", tag: .exchange)
             }
@@ -144,13 +147,25 @@ public extension Dictionary where Key == String, Value == [String: String] {
             let price = String.init(format: "%0.2f", balance *  Double(string: rate)!)
             return "\(currency.symbol)\(price)"
         }
-        return "0.00"
+        return "\(currency.symbol)0.00"
     }
 
     func priceString(for tokenInfo: TokenInfo, balance: Amount) -> String {
         let currency = AppSettingsService.instance.appSettings.currency
         let p = price(for: tokenInfo, balance: balance)
         return "\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: p, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
+    }
+
+    func btcPriceString(btc: BigDecimal) -> String {
+        let currency = AppSettingsService.instance.appSettings.currency
+        guard let dic = self[TokenInfo.BuildIn.vite_btc_000.value.tokenCode] as? [String: String],
+            let string = dic[currency.rawValue] as? String,
+            let rate = BigDecimal(string) else {
+                return "\(currency.symbol)0.00"
+        }
+
+        let bigDecimal = btc * rate
+        return currency.symbol + BigDecimalFormatter.format(bigDecimal: bigDecimal, style: .decimalTruncation(2), padding: .none, options: [.groupSeparator])
     }
 }
 

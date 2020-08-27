@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 282 images.
+  /// This `R.image` struct is generated, and contains static references to 283 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -292,10 +292,12 @@ public struct R: Rswift.Validatable {
     public static let icon_dex_home_hide_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_hide_selected")
     /// Image `icon_dex_home_hide`.
     public static let icon_dex_home_hide = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_hide")
-    /// Image `icon_dex_home_sort_selected`.
-    public static let icon_dex_home_sort_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort_selected")
-    /// Image `icon_dex_home_sort`.
-    public static let icon_dex_home_sort = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort")
+    /// Image `icon_dex_home_sort_a2z`.
+    public static let icon_dex_home_sort_a2z = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort_a2z")
+    /// Image `icon_dex_home_sort_default`.
+    public static let icon_dex_home_sort_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort_default")
+    /// Image `icon_dex_home_sort_z2a`.
+    public static let icon_dex_home_sort_z2a = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_dex_home_sort_z2a")
     /// Image `icon_edit_name`.
     public static let icon_edit_name = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_edit_name")
     /// Image `icon_eth_detail_falied`.
@@ -1268,14 +1270,19 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_dex_home_hide_selected, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_dex_home_sort", bundle: ..., traitCollection: ...)`
-    public static func icon_dex_home_sort(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_dex_home_sort, compatibleWith: traitCollection)
+    /// `UIImage(named: "icon_dex_home_sort_a2z", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_sort_a2z(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_sort_a2z, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "icon_dex_home_sort_selected", bundle: ..., traitCollection: ...)`
-    public static func icon_dex_home_sort_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_dex_home_sort_selected, compatibleWith: traitCollection)
+    /// `UIImage(named: "icon_dex_home_sort_default", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_sort_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_sort_default, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_dex_home_sort_z2a", bundle: ..., traitCollection: ...)`
+    public static func icon_dex_home_sort_z2a(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_dex_home_sort_z2a, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon_edit_name", bundle: ..., traitCollection: ...)`

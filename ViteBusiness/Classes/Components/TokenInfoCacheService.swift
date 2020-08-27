@@ -42,6 +42,7 @@ extension TokenInfoCacheService {
             UnifyProvider.vitex.getDexTokenInfos().done { (tokenInfos) in
                 self.dexTokenCodes = tokenInfos.map { $0.tokenCode }
                 self.updateTokenInfos(tokenInfos)
+                ExchangeRateManager.instance.getRateImmediately(for: tokenInfos.map { $0.tokenCode} )
             }.catch { (error) in
                 plog(level: .warning, log: "update tokenInfo error: \(error.localizedDescription)", tag: .exchange)
                 GCD.delay(2) { fetch() }

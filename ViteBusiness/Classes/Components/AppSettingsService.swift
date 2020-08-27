@@ -37,6 +37,14 @@ public class AppSettingsService {
         save(mappable: appSettings)
     }
 
+    func updateDexHideSmall(_ dexHideSmall: Bool) {
+        guard dexHideSmall != appSettingsBehaviorRelay.value.dexHideSmall else { return }
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        appSettings.dexHideSmall = dexHideSmall
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
+    }
+
     func setVitexInviteFalse() {
         guard appSettingsBehaviorRelay.value.guide.vitexInvite else { return }
         var appSettings: AppSettings = appSettingsBehaviorRelay.value
@@ -49,11 +57,13 @@ public class AppSettingsService {
 extension AppSettingsService {
     public struct AppSettings: Mappable {
         public var currency: CurrencyCode = .USD
+        public var dexHideSmall: Bool = false
         public var guide = Guide()
 
         public init?(map: Map) { }
         public mutating func mapping(map: Map) {
             currency <- map["currency"]
+            dexHideSmall <- map["dexHideSmall"]
             guide <- map["guide"]
         }
 

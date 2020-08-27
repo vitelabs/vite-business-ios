@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class DexAssetsHomeViewController: BaseViewController {
 
@@ -14,8 +16,27 @@ class DexAssetsHomeViewController: BaseViewController {
         case vitex
     }
 
-    let walletVC = DexAssetsHomeTableViewController(type: .wallet)
-    let dexVC = DexAssetsHomeTableViewController(type: .vitex)
+    enum SortMode {
+        case `default`
+        case a2z
+        case z2a
+
+        var next: SortMode {
+            switch self {
+            case .default:
+                return .a2z
+            case .a2z:
+                return .z2a
+            case .z2a:
+                return .default
+            }
+        }
+    }
+
+    lazy var walletVC = DexAssetsHomeTableViewController(type: .wallet, sortModeBehaviorRelay: sortModeBehaviorRelay)
+    lazy var dexVC = DexAssetsHomeTableViewController(type: .vitex, sortModeBehaviorRelay: sortModeBehaviorRelay)
+
+    let sortModeBehaviorRelay: BehaviorRelay<SortMode> = BehaviorRelay(value: .default)
 
     let navView = NavView()
 
@@ -76,6 +97,9 @@ class DexAssetsHomeViewController: BaseViewController {
         contentView.backgroundColor = .clear
         contentView.tableView.backgroundColor = .clear
         contentView.tableView.bounces = false
+        // make sure all viewController has created
+        contentView.scrollToIndex(index: 1)
+        contentView.scrollToIndex(index: 0)
         return contentView
     }()
 
@@ -106,9 +130,16 @@ class DexAssetsHomeViewController: BaseViewController {
     }
 
     func bind() {
+
+        Driver.combineLatest(walletVC.btcValuationBehaviorRelay.asDriver(), dexVC.btcValuationBehaviorRelay.asDriver()).drive(onNext: { [weak self] (walletBtc, dexBtc) in
+            guard let `self` = self else { return }
+            let btc = walletBtc + dexBtc
+            self.navView.btcLabel.text = BigDecimalFormatter.format(bigDecimal: btc, style: .decimalRound(8), padding: .none, options: [.groupSeparator])
+            self.navView.legalLabel.text = "≈" + ExchangeRateManager.instance.rateMap.btcPriceString(btc: btc)
+        }).disposed(by: rx.disposeBag)
+
         contentView.tableView.rx.contentOffset.bind { [weak self] contentOffset in
             guard let `self` = self else { return }
-            plog(level: .debug, log: "fdsfsd \(contentOffset)")
             let statusBarH = UIApplication.shared.statusBarFrame.size.height
             let height = statusBarH + 104 - contentOffset.y
             self.navView.frame = CGRect(x: 0, y: 0, width: kScreenW, height: height)
@@ -156,13 +187,11 @@ extension DexAssetsHomeViewController {
         let btcLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
             $0.textColor = UIColor(netHex: 0xffffff)
-            $0.text = "dfsafdsafsda"
         }
 
         let legalLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
             $0.textColor = UIColor(netHex: 0xffffff, alpha: 0.7)
-            $0.text = "≈¥496,947,904,51fdsfsdfs"
         }
 
         override init(frame: CGRect) {
