@@ -8,7 +8,7 @@
 import Foundation
 
 struct DexAssetsHomeCellViewModel {
-    let tonkenInfo: TokenInfo
+    let tokenInfo: TokenInfo
     let balanceString : String
     let legalString: String
     let btcValuation: BigDecimal

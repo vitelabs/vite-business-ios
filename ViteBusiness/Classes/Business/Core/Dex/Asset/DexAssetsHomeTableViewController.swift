@@ -134,7 +134,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
                     let balanceString = tokenInfo.amountString(amount: balance, precision: .short)
                     let legalString = tokenInfo.legalString(amount: balance)
                     let btcValuation = tokenInfo.btcValuationForBasicUnit(amount: balance)
-                    return DexAssetsHomeCellViewModel(tonkenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
+                    return DexAssetsHomeCellViewModel(tokenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
                 }
 
                 self.btcValuationBehaviorRelay.accept(vms.map{ $0.btcValuation }.reduce(BigDecimal(), +))
@@ -147,9 +147,9 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
                 case .default:
                     vms = vms.sorted { $0.btcValuation > $1.btcValuation }
                 case .a2z:
-                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol < $1.tonkenInfo.uniqueSymbol }
+                    vms = vms.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol }
                 case .z2a:
-                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol > $1.tonkenInfo.uniqueSymbol }
+                    vms = vms.sorted { $0.tokenInfo.uniqueSymbol > $1.tokenInfo.uniqueSymbol }
                 }
 
                 self.viewModelBehaviorRelay.accept(vms)
@@ -164,7 +164,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
                     let balanceString = tokenInfo.amountString(amount: balance, precision: .short)
                     let legalString = tokenInfo.legalString(amount: balance)
                     let btcValuation = tokenInfo.btcValuationForBasicUnit(amount: balance)
-                    return DexAssetsHomeCellViewModel(tonkenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
+                    return DexAssetsHomeCellViewModel(tokenInfo: tokenInfo, balanceString: balanceString, legalString: legalString, btcValuation: btcValuation)
                 }
 
                 self.btcValuationBehaviorRelay.accept(vms.map{ $0.btcValuation }.reduce(BigDecimal(), +))
@@ -177,9 +177,9 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
                 case .default:
                     vms = vms.sorted { $0.btcValuation > $1.btcValuation }
                 case .a2z:
-                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol < $1.tonkenInfo.uniqueSymbol }
+                    vms = vms.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol }
                 case .z2a:
-                    vms = vms.sorted { $0.tonkenInfo.uniqueSymbol > $1.tonkenInfo.uniqueSymbol }
+                    vms = vms.sorted { $0.tokenInfo.uniqueSymbol > $1.tokenInfo.uniqueSymbol }
                 }
 
                 self.viewModelBehaviorRelay.accept(vms)
@@ -224,5 +224,7 @@ extension DexAssetsHomeTableViewController {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let vc = DexTokenDetailViewController(tokenInfo: viewModelBehaviorRelay.value[indexPath.row].tokenInfo,type: type)
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
     }
 }

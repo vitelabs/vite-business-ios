@@ -206,4 +206,16 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+
+    static func getDexDepositWithdrawList(address: ViteAddress, viteTokenId: ViteTokenId, offset: Int, limit: Int) -> Promise<[DexDepositWithdraw]> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getDexDepositWithdrawList(address: address, viteTokenId: viteTokenId, offset: offset, limit: limit), responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            guard let record = json["record"].rawString(),
+                let ret = [DexDepositWithdraw](JSONString: record) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
 }

@@ -85,8 +85,8 @@ class DexAssetsHomeCell: BaseTableViewCell {
     }
 
     func bind(vm: DexAssetsHomeCellViewModel) {
-        iconImageView.tokenInfo = vm.tonkenInfo
-        symbolLabel.text = vm.tonkenInfo.uniqueSymbol
+        iconImageView.tokenInfo = vm.tokenInfo
+        symbolLabel.text = vm.tokenInfo.uniqueSymbol
         balanceLabel.text = vm.balanceString
         valuationLabel.text = vm.legalString
     }

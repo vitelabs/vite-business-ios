@@ -1234,3 +1234,22 @@
 "dex.home.page.header.button.deposit.title" = "充值";
 "dex.home.page.header.button.withdraw.title" = "提现";
 "dex.home.page.header.button.hide。small.title" = "隐藏小额币种";
+
+"dex.token.detail.page.title" = "资产详情";
+"dex.token.detail.page.header.total" = "总额";
+"dex.token.detail.page.header.available" = "可用余额";
+"dex.token.detail.page.header.lock.place.order" = "下单冻结";
+
+"dex.token.detail.page.header.lock.vite.mining" = "挖矿冻结";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP冻结";
+"dex.token.detail.page.header.lock.vx" = "分红锁仓";
+
+"dex.token.detail.page.list.heater.title" = "划转记录";
+"dex.token.detail.page.cell.in" = "转入";
+"dex.token.detail.page.cell.out" = "转出";
+
+"dex.token.detail.page.button.deposit" = "充值";
+"dex.token.detail.page.button.withdraw" = "提现";
+"dex.token.detail.page.button.transfer" = "划转";
+"dex.token.detail.page.button.send" = "链内转账";
+"dex.token.detail.page.button.trading" = "交易";
