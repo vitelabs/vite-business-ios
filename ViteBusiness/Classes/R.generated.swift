@@ -2054,7 +2054,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1023 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1026 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6083,7 +6083,7 @@ public struct R: Rswift.Validatable {
       /// en translation: 划转记录
       /// 
       /// Locales: en, zh-Hans
-      public static let dexTokenDetailPageListHeaterTitle = Rswift.StringResource(key: "dex.token.detail.page.list.heater.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let dexTokenDetailPageListDexHeaterTitle = Rswift.StringResource(key: "dex.token.detail.page.list.dex.heater.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 可用余额
       /// 
       /// Locales: en, zh-Hans
@@ -6104,6 +6104,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dexTokenDetailPageButtonWithdraw = Rswift.StringResource(key: "dex.token.detail.page.button.withdraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexTokenDetailPageHeaderLockViteMiningCancel = Rswift.StringResource(key: "dex.token.detail.page.header.lock.vite.mining.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexTokenDetailPageHeaderLockVxCancel = Rswift.StringResource(key: "dex.token.detail.page.header.lock.vx.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 资产估值(BTC)
       /// 
       /// Locales: en, zh-Hans
@@ -6120,6 +6128,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dexHomePageHeaderButtonTransferTitle = Rswift.StringResource(key: "dex.home.page.header.button.transfer.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 资金记录
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dexTokenDetailPageListWalletHeaterTitle = Rswift.StringResource(key: "dex.token.detail.page.list.wallet.heater.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 资金账户
       /// 
       /// Locales: en, zh-Hans
@@ -13194,8 +13206,8 @@ public struct R: Rswift.Validatable {
       /// en translation: 划转记录
       /// 
       /// Locales: en, zh-Hans
-      public static func dexTokenDetailPageListHeaterTitle(_: Void = ()) -> String {
-        return NSLocalizedString("dex.token.detail.page.list.heater.title", bundle: R.hostingBundle, comment: "")
+      public static func dexTokenDetailPageListDexHeaterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.list.dex.heater.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 可用余额
@@ -13233,6 +13245,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dex.token.detail.page.button.withdraw", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexTokenDetailPageHeaderLockViteMiningCancel(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.header.lock.vite.mining.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexTokenDetailPageHeaderLockVxCancel(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.header.lock.vx.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 资产估值(BTC)
       /// 
       /// Locales: en, zh-Hans
@@ -13259,6 +13285,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func dexHomePageHeaderButtonTransferTitle(_: Void = ()) -> String {
         return NSLocalizedString("dex.home.page.header.button.transfer.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 资金记录
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexTokenDetailPageListWalletHeaterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.list.wallet.heater.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 资金账户

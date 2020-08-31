@@ -33,31 +33,16 @@ class WalletHomeNavViewModel {
                 if isHidePrice {
                     return ("****", "****")
                 } else {
-                    if infoType == .wallet {
-                        var allPrice = BigDecimal()
-                        for balanceInfo in balanceInfos {
-                            let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
-                            allPrice = allPrice + price
-                        }
-
-                        let currency = AppSettingsService.instance.appSettings.currency
-                        let price = "≈\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
-                        let btc = ExchangeRateManager.instance.calculateBtcBalanceWithPrice(allPrice)
-                        return (btc, price)
-                    } else if infoType == .viteX {
-                        var allPrice = BigDecimal()
-                        for balanceInfo in viteXBalanceInfos {
-                            let price = rateMap.price(for: balanceInfo.tokenInfo, balance: balanceInfo.balanceInfo.total)
-                            allPrice = allPrice + price
-                        }
-                        let currency = AppSettingsService.instance.appSettings.currency
-                        let price = "≈\(currency.symbol)\(BigDecimalFormatter.format(bigDecimal: allPrice, style: .decimalRound(2), padding: .padding, options: [.groupSeparator]))"
-                        let btc = ExchangeRateManager.instance.calculateBtcBalanceWithPrice(allPrice)
-                        return (btc, price)
-                    } else {
-                        return ("", "")
+                    let btcValuation: BigDecimal
+                    switch infoType {
+                    case .wallet:
+                        btcValuation = balanceInfos.map { $0.tokenInfo.btcValuationForBasicUnit(amount: $0.balance)}.reduce(BigDecimal(), +)
+                    case .viteX:
+                        btcValuation = viteXBalanceInfos.map { $0.tokenInfo.btcValuationForBasicUnit(amount: $0.balanceInfo.total)}.reduce(BigDecimal(), +)
                     }
-
+                    let btcString = BigDecimalFormatter.format(bigDecimal: btcValuation, style: .decimalRound(8), padding: .none, options: [.groupSeparator])
+                    let priceString = "≈" + ExchangeRateManager.instance.rateMap.btcPriceString(btc: btcValuation)
+                    return (btcString, priceString)
                 }
             })
     }

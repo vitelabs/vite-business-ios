@@ -1,5 +1,5 @@
 //
-//  DexTokenDetailListViewModel.swift
+//  DexTokenDetailListDexViewModel.swift
 //  ViteBusiness
 //
 //  Created by Stone on 2020/8/27.
@@ -12,7 +12,7 @@ import PromiseKit
 import ViteWallet
 import BigInt
 
-class DexTokenDetailListViewModel: ListViewModel<DexDepositWithdraw> {
+class DexTokenDetailListDexViewModel: ListViewModel<DexDepositWithdraw> {
     static let limit = 50
     let tokenInfo: TokenInfo
     let address: ViteAddress
@@ -45,7 +45,7 @@ class DexTokenDetailListViewModel: ListViewModel<DexDepositWithdraw> {
 
     override func cellFor(model: DexDepositWithdraw, indexPath: IndexPath) -> UITableViewCell {
         let cell: DexTokenDetailItemCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(vm: model)
+        cell.bind(dexDepositWithdraw: model)
         return cell
     }
 

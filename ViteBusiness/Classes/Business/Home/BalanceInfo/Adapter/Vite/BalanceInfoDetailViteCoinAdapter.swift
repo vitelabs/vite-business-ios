@@ -23,12 +23,10 @@ class BalanceInfoDetailViteCoinAdapter: BalanceInfoDetailAdapter {
     }
 
     func viewDidAppear() {
-        ViteBalanceInfoManager.instance.registerFetch()
         FetchQuotaManager.instance.retainQuota()
     }
 
     func viewDidDisappear() {
-        ViteBalanceInfoManager.instance.unregisterFetch()
         FetchQuotaManager.instance.releaseQuota()
     }
 

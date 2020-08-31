@@ -13,6 +13,7 @@ public enum NavigationBarStyle {
     case `default`
     case clear
     case custom(tintColor: UIColor, backgroundColor: UIColor)
+    case forH5
 
     public static func configStyle(_ style: NavigationBarStyle, viewController: UIViewController) {
 
@@ -24,7 +25,7 @@ public enum NavigationBarStyle {
 
         switch style {
         case .default:
-            let color = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
+            let color = UIColor(netHex: 0x3E4A59)
             navigationBar.tintColor = color
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
             navigationBar.setBackgroundImage(UIImage.color(UIColor.white), for: .default)
@@ -41,6 +42,11 @@ public enum NavigationBarStyle {
             } else {
                 navigationBar.setBackgroundImage(UIImage.color(backgroundColor), for: .default)
             }
+        case .forH5:
+            let color = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45)
+            navigationBar.tintColor = color
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+            navigationBar.setBackgroundImage(UIImage.color(UIColor.white), for: .default)
         }
     }
 }

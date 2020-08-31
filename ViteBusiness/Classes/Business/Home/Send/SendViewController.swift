@@ -50,14 +50,12 @@ class SendViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         kas_activateAutoScrollingForView(scrollView)
-        ViteBalanceInfoManager.instance.registerFetch()
         FetchQuotaManager.instance.retainQuota()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FetchQuotaManager.instance.releaseQuota()
-        ViteBalanceInfoManager.instance.unregisterFetch()
     }
 
     // View
@@ -81,7 +79,7 @@ class SendViewController: BaseViewController {
 
     private func setupView() {
 
-        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59).withAlphaComponent(0.45), backgroundColor: UIColor.clear)
+        navigationBarStyle = .custom(tintColor: UIColor(netHex: 0x3E4A59), backgroundColor: UIColor.clear)
 
         if let address = address {
             addressView = AddressLabelView(address: address)

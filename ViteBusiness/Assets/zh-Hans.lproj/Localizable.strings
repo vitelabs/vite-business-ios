@@ -1241,10 +1241,13 @@
 "dex.token.detail.page.header.lock.place.order" = "下单冻结";
 
 "dex.token.detail.page.header.lock.vite.mining" = "挖矿冻结";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "解锁中";
 "dex.token.detail.page.header.lock.vite.vip" = "VIP冻结";
 "dex.token.detail.page.header.lock.vx" = "分红锁仓";
+"dex.token.detail.page.header.lock.vx.cancel" = "解锁中";
 
-"dex.token.detail.page.list.heater.title" = "划转记录";
+"dex.token.detail.page.list.wallet.heater.title" = "资金记录";
+"dex.token.detail.page.list.dex.heater.title" = "划转记录";
 "dex.token.detail.page.cell.in" = "转入";
 "dex.token.detail.page.cell.out" = "转出";
 

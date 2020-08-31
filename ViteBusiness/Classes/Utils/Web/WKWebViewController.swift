@@ -89,7 +89,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavigationBarStyle.configStyle(.default, viewController: self)
+        NavigationBarStyle.configStyle(.forH5, viewController: self)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -99,7 +99,7 @@ public class WKWebViewController: UIViewController, WKNavigationDelegate {
     }
 
     fileprivate func handleNavBar() {
-        NavigationBarStyle.configStyle(.default, viewController: self)
+        NavigationBarStyle.configStyle(.forH5, viewController: self)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.title = self.titleStr
 

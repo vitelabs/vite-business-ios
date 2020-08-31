@@ -8,6 +8,7 @@
 
 import ViteWallet
 import PromiseKit
+import JSONRPCKit
 import enum Alamofire.Result
 
 public class FetchBalanceInfoService: PollService {
@@ -32,15 +33,55 @@ public class FetchBalanceInfoService: PollService {
 
     public func handle(completion: @escaping (Ret) -> ()) {
 
-        when(fulfilled: ViteNode.utils.getBalanceInfos(address: address),
-             ViteNode.dex.info.getDexBalanceInfos(address: address, tokenId: nil)
-                .recover({ (_) -> Promise<[DexBalanceInfo]> in
+        let batch = BatchFactory().create(
+            GetDexCurrentMiningStakingAmountByAddressRequest(address: address),
+            GetDexVIPStakeInfoListRequest(address: address, index: 0, count: 0))
+        let request = RPCRequest(for: Provider.default.server, batch: batch).promise
+
+        when(fulfilled:
+            ViteNode.utils.getBalanceInfos(address: address),
+            ViteNode.dex.info.getDexBalanceInfos(address: address, tokenId: nil)
+                .recover { (_) -> Promise<[DexBalanceInfo]> in
                     return Promise.value([])
-                }))
-            .done { (ret) in
-                completion(Result.success(ret))
-            }.catch { (e) in
-                completion(Result.failure(e))
+            },
+            ViteNode.dex.info.getDexAccountFundInfo(address: address, tokenId: nil)
+                .recover { (_) -> Promise<[ViteTokenId: DexAccountFundInfo]> in
+                    return Promise.value([:])
+            },
+            request)
+            .done { (wallet, dex, map, ret) in
+                let (viteStake, pledgeDetail) = ret
+                let vx = map[TokenInfo.BuildIn.vx.value.viteTokenId] ?? DexAccountFundInfo(token: TokenInfo.BuildIn.vx.value.toViteToken()!)
+                let vite = map[TokenInfo.BuildIn.vite.value.viteTokenId] ?? DexAccountFundInfo(token: TokenInfo.BuildIn.vite.value.toViteToken()!)
+                let lockedInfo = DexBalanceLocked(vxLocked: vx.vxLocked,
+                                                  vxUnlocking: vx.vxUnlocking,
+                                                  viteStakeForVip: pledgeDetail.totalPledgeAmount,
+                                                  viteStakeForMining: viteStake,
+                                                  viteCancellingStakeForMining: vite.viteCancellingStake)
+                
+                var merged = [DexBalanceInfo]()
+                var set = Set<String>()
+                for var balance in dex {
+                    balance.mergeLockedInfoIfNeeded(info: lockedInfo)
+                    merged.append(balance)
+                    set.insert(balance.token.id)
+                }
+
+                if !set.contains(TokenInfo.BuildIn.vite.value.viteTokenId) {
+                    var balance = DexBalanceInfo(token: TokenInfo.BuildIn.vite.value.toViteToken()!)
+                    balance.mergeLockedInfoIfNeeded(info: lockedInfo)
+                    merged.append(balance)
+                }
+
+                if !set.contains(TokenInfo.BuildIn.vx.value.viteTokenId) {
+                    var balance = DexBalanceInfo(token: TokenInfo.BuildIn.vx.value.toViteToken()!)
+                    balance.mergeLockedInfoIfNeeded(info: lockedInfo)
+                    merged.append(balance)
+                }
+
+                completion(Result.success((wallet, merged)))
+        }.catch { (e) in
+            completion(Result.failure(e))
         }
     }
 }

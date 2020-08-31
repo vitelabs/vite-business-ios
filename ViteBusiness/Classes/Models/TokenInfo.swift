@@ -220,6 +220,7 @@ extension TokenInfo: Equatable {
     }
 
     var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
+    var isVxToken: Bool { return tokenCode == TokenInfo.BuildIn.vx.value.tokenCode }
     var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
     var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
     var isBnbCoin: Bool { return tokenCode == TokenInfo.BuildIn.bnb.value.tokenCode }

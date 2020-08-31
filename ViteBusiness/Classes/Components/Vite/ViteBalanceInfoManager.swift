@@ -43,21 +43,6 @@ public class ViteBalanceInfoManager {
     fileprivate var service: FetchBalanceInfoService?
 
     fileprivate var address: ViteAddress?
-    fileprivate var remainCount = 0
-
-    func registerFetch() {
-        DispatchQueue.main.async {
-            self.remainCount += 1
-            self.triggerService()
-        }
-    }
-
-    func unregisterFetch() {
-        DispatchQueue.main.async {
-            self.remainCount = max(0, self.remainCount - 1)
-            self.triggerService()
-        }
-    }
 
     func start() {
         HDWalletManager.instance.accountDriver.drive(onNext: { [weak self] a in
@@ -93,7 +78,7 @@ public class ViteBalanceInfoManager {
     private func triggerService() {
 
 
-        if let address = self.address, self.remainCount > 0 {
+        if let address = self.address {
 
             guard address != self.service?.address else { return }
 
@@ -145,15 +130,8 @@ public class ViteBalanceInfoManager {
             self.service = service
             self.service?.startPoll()
         } else {
-            if self.remainCount == 0 {
-                //plog(level: .debug, log: "stop fetch balanceInfo", tag: .transaction)
-                self.service?.stopPoll()
-                self.service = nil
-            } else {
-                GCD.delay(1) {
-                    self.triggerService()
-                }
-            }
+            self.service?.stopPoll()
+            self.service = nil
         }
     }
 

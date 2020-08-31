@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ViteWallet
 
 class DexTokenDetailItemCell: BaseTableViewCell {
 
@@ -92,19 +93,33 @@ class DexTokenDetailItemCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(vm: DexDepositWithdraw) {
-        switch vm.type {
+    func bind(dexDepositWithdraw: DexDepositWithdraw) {
+        switch dexDepositWithdraw.type {
         case .deposit:
             typeImageView.image = R.image.icon_dex_transfer_in()
             typeNameLabel.text = R.string.localizable.dexTokenDetailPageCellIn()
-            balanceLabel.text = "+" + vm.amountString
+            balanceLabel.text = "+" + dexDepositWithdraw.amountString
         case .withdraw:
             typeImageView.image = R.image.icon_dex_transfer_out()
             typeNameLabel.text = R.string.localizable.dexTokenDetailPageCellOut()
-            balanceLabel.text = "-" + vm.amountString
+            balanceLabel.text = "-" + dexDepositWithdraw.amountString
         }
 
-        timeLabel.text = Date(timeIntervalSince1970: TimeInterval(vm.time)).format()
-        symbolLabel.text = vm.symbol
+        timeLabel.text = Date(timeIntervalSince1970: TimeInterval(dexDepositWithdraw.time)).format()
+        symbolLabel.text = dexDepositWithdraw.symbol
+    }
+
+    func bind(accountBlock: AccountBlock) {
+        if accountBlock.transactionType == .receive {
+            typeImageView.image = R.image.icon_dex_transfer_in()
+            typeNameLabel.text = R.string.localizable.dexTokenDetailPageCellIn()
+            balanceLabel.text = "+" + (accountBlock.amount ?? Amount(0)).amountFullWithGroupSeparator(decimals: accountBlock.token!.decimals)
+        } else {
+            typeImageView.image = R.image.icon_dex_transfer_out()
+            typeNameLabel.text = R.string.localizable.dexTokenDetailPageCellOut()
+            balanceLabel.text = "-" + (accountBlock.amount ?? Amount(0)).amountFullWithGroupSeparator(decimals: accountBlock.token!.decimals)
+        }
+        timeLabel.text = accountBlock.timeString
+        symbolLabel.text = accountBlock.token?.uniqueSymbol
     }
 }

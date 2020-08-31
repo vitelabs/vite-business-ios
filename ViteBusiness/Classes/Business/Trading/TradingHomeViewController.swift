@@ -137,12 +137,10 @@ class TradingHomeViewController: BaseViewController {
 
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ViteBalanceInfoManager.instance.registerFetch()
     }
 
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ViteBalanceInfoManager.instance.unregisterFetch()
     }
 }
 
