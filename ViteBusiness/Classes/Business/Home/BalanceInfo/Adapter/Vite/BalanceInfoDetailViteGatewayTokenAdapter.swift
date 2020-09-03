@@ -35,7 +35,7 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func setup(headerView: UIStackView) {
-        let cardView = BalanceInfoViteChainCardView()
+        let cardView = BalanceInfoViteChainCardView(isViteCoin: false)
         let operationView = getOperationView()
 
         cardView.bind(tokenInfo: tokenInfo)

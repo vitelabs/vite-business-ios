@@ -233,6 +233,7 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.available.amount.title" = "可用余额";
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
@@ -1221,13 +1222,16 @@
 "dex.home.page.header.button.transfer.title" = "资金划转";
 "dex.home.page.header.button.deposit.title" = "充值";
 "dex.home.page.header.button.withdraw.title" = "提现";
-"dex.home.page.header.button.hide。small.title" = "隐藏小额币种";
+"dex.home.page.header.button.hide.small.title" = "隐藏小额币种";
 
 "dex.token.detail.page.title" = "资产详情";
 "dex.token.detail.page.header.total" = "总额";
 "dex.token.detail.page.header.available" = "可用余额";
 "dex.token.detail.page.header.lock.place.order" = "下单冻结";
 
+"dex.token.detail.page.header.lock.vite.pledge" = "抵押获取配额冻结";
+"dex.token.detail.page.header.lock.vite.sbp" = "抵押SBP冻结";
+"dex.token.detail.page.header.lock.vite.full.node" = "抵押全节点冻结";
 "dex.token.detail.page.header.lock.vite.mining" = "挖矿冻结";
 "dex.token.detail.page.header.lock.vite.mining.cancel" = "解锁中";
 "dex.token.detail.page.header.lock.vite.vip" = "VIP冻结";
@@ -1244,3 +1248,5 @@
 "dex.token.detail.page.button.transfer" = "划转";
 "dex.token.detail.page.button.send" = "链内转账";
 "dex.token.detail.page.button.trading" = "交易";
+
+"dex.token.market.selector.title" = "选择交易对";

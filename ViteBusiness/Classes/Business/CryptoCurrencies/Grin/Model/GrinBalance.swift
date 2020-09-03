@@ -15,9 +15,9 @@ class GrinBalance: WalletHomeBalanceInfo {
     var tokenInfo: TokenInfo {
         return GrinManager.tokenInfo
     }
-    var balance: Amount = Amount()
+    var total: Amount = Amount()
 
-    var total = "--"
+    var totalString = "--"
     var amountAwaitingConfirmation = "--"
     var amountCurrentlySpendable = "--"
     var amountLocked = "--"
@@ -37,13 +37,13 @@ class GrinBalance: WalletHomeBalanceInfo {
         amountLocked =
             Amount(info.amountLocked)
             .amount(decimals: 9, count: 9)
-        total =
+        totalString =
             Amount(info.total)
             .amount(decimals: 9, count: 9)
         legalTenderWorthed =
             "≈" + ExchangeRateManager.instance.rateMap
                 .priceString(for: GrinManager.tokenInfo, balance: spendableBalance)
-        balance = spendableBalance
+        total = spendableBalance
         lastConfirmedHeight = info.lastConfirmedHeight
         amountAwaitingFinalization = Amount(info.amountAwaitingFinalization).amount(decimals: 9, count: 9)
     }

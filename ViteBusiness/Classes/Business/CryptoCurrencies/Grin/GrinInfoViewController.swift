@@ -93,7 +93,7 @@ class GrinInfoViewController: BaseViewController {
                 self?.spendableAcountLabel.text = info.amountCurrentlySpendable
                 self?.awaitingCountLable.text = info.amountAwaitingConfirmation
                 self?.lockedCountLabel.text = info.amountLocked
-                self?.totalCountLabel.text = info.total
+                self?.totalCountLabel.text = info.totalString
                 self?.spendableExchangeLalbe.text = info.legalTenderWorthed
                 self?.finalizationCountLabel.text = info.amountAwaitingFinalization
             })

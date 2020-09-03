@@ -31,7 +31,7 @@ class BalanceInfoDetailViteTokenAdapter: BalanceInfoDetailAdapter {
     }
 
     func setup(headerView: UIStackView) {
-        let cardView = BalanceInfoViteChainCardView()
+        let cardView = BalanceInfoViteChainCardView(isViteCoin: false)
         cardView.bind(tokenInfo: tokenInfo)
         headerView.addArrangedSubview(cardView.padding(horizontal: 24))
     }

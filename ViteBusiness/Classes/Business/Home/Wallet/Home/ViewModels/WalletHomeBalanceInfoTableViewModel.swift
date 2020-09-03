@@ -13,7 +13,7 @@ import ViteWallet
 
 protocol WalletHomeBalanceInfo {
     var tokenInfo: TokenInfo { get }
-    var balance: Amount { get }
+    var total: Amount { get }
 }
 
 extension BalanceInfo: WalletHomeBalanceInfo {
@@ -34,7 +34,9 @@ extension BalanceInfo: WalletHomeBalanceInfo {
     }
 }
 
-extension ETHBalanceInfo: WalletHomeBalanceInfo {}
+extension ETHBalanceInfo: WalletHomeBalanceInfo {
+    var total: Amount { balance }
+}
 
 final class WalletHomeBalanceInfoTableViewModel {
 

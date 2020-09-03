@@ -17,6 +17,7 @@ import APIKit
 import JSONRPCKit
 import PromiseKit
 import Alamofire
+import BigInt
 
 extension UnifyProvider {
     struct vitex {}
@@ -215,6 +216,22 @@ extension UnifyProvider.vitex {
                 let ret = [DexDepositWithdraw](JSONString: record) else {
                 throw UnifyProvider.BackendError.format
             }
+            return ret
+        }
+    }
+}
+
+// Full Node
+extension UnifyProvider.vitex {
+    static func getFullNodeTotalPledgeAmount(address: ViteAddress) -> Promise<Amount> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getFullNodeTotalPledgeAmount(address: address), responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            guard let string = json["pledgeAmount"].string,
+                let bigDecimal = BigDecimal(string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            let ret = (bigDecimal * BigDecimal(BigInt(10).power(18))).round()
             return ret
         }
     }

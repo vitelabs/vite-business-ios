@@ -130,7 +130,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
                 guard let `self` = self else { return }
                 let dexTokenInfos = TokenInfoCacheService.instance.dexTokenInfos
                 var vms: [DexAssetsHomeCellViewModel] = dexTokenInfos.map { tokenInfo in
-                    let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.balance ?? Amount()
+                    let balance = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.total ?? Amount()
                     let balanceString = tokenInfo.amountString(amount: balance, precision: .short)
                     let legalString = tokenInfo.legalString(amount: balance)
                     let btcValuation = tokenInfo.btcValuationForBasicUnit(amount: balance)

@@ -23,6 +23,7 @@ enum ViteXAPI: TargetType {
     case getMiningPledge(address: ViteAddress, offset: Int, limit: Int)
     case getDexTokenInfos
     case getDexDepositWithdrawList(address: ViteAddress, viteTokenId: ViteTokenId, offset: Int, limit: Int)
+    case getFullNodeTotalPledgeAmount(address: ViteAddress)
     
     var baseURL: URL {
         return URL(string: ViteConst.instance.vite.x)!
@@ -43,6 +44,7 @@ enum ViteXAPI: TargetType {
         case .getMiningPledge: return "/api/v1/mining/pledge"
         case .getDexTokenInfos: return "api/v1/cryptocurrency/dex/tokens"
         case .getDexDepositWithdrawList: return "/api/v2/deposit-withdraw"
+        case .getFullNodeTotalPledgeAmount: return "/reward/pledge/full/stat"
         }
     }
 
@@ -61,6 +63,7 @@ enum ViteXAPI: TargetType {
         case .getMiningPledge: return .get
         case .getDexTokenInfos: return .get
         case .getDexDepositWithdrawList: return .get
+        case .getFullNodeTotalPledgeAmount: return .get
         }
     }
 
@@ -131,6 +134,11 @@ enum ViteXAPI: TargetType {
                 "tokenId": viteTokenId,
                 "offset": String(offset),
                 "limit": String(limit)
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getFullNodeTotalPledgeAmount(address):
+            let parameters = [
+                "address": address
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }

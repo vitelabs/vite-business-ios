@@ -25,13 +25,13 @@ final class WalletHomeBalanceInfoViewModel {
 
         self.symbol = tokenInfo.uniqueSymbol
         self.coinFamily = tokenInfo.coinFamily
-        self.balance = balanceInfo.balance
+        self.balance = balanceInfo.total
         if isHidePrice {
             self.balanceString = "****"
             self.price = "****"
         } else {
-            self.balanceString = balanceInfo.balance.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)
-            self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+            self.balanceString = balanceInfo.total.amountShortWithGroupSeparator(decimals: tokenInfo.decimals)
+            self.price = "≈" + ExchangeRateManager.instance.rateMap.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.total)
         }
     }
 

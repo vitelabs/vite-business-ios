@@ -133,8 +133,6 @@ class WalletHomeNavView: UIImageView {
         viewModel.priceDriver.map{ $0.0 }.drive(btcLabel.rx.text).disposed(by: rx.disposeBag)
         viewModel.priceDriver.map{ $0.1 }.drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
-        btcLabel.text = "dfsadfsdaf"
-
         viewModel.isHidePriceDriver.drive(onNext: { [weak self] (isHide) in
             if isHide {
                 self?.hideButton.setImage(R.image.icon_price_hide_button(), for: .normal)

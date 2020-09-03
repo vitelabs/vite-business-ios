@@ -92,7 +92,7 @@ class HomeViewController: UITabBarController {
             guard let marketInfo = m.userInfo?["marketInfo"] as? MarketInfo, let isBuy = m.userInfo?["isBuy"] as? Bool else { return }
             UIViewController.current?.navigationController?.popToRootViewController(animated: false)
             self.tradingVC.spotVC.update(marketInfo: marketInfo, isBuy: isBuy)
-            self.selectedIndex = 2
+            self.selectedIndex = 3
         }.disposed(by: rx.disposeBag)
 
         GCD.delay(1) { AppUpdateService.checkUpdate() }

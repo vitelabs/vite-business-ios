@@ -67,7 +67,8 @@ class DexTokenDetailBottomView: UIView {
             }.disposed(by: rx.disposeBag)
 
             trading.button.rx.tap.bind {
-                
+                let selector = DexTokenMarrketSelector(superview: UIApplication.shared.keyWindow!, symbol: tokenInfo.uniqueSymbol)
+                selector.show()
             }.disposed(by: rx.disposeBag)
         }
 

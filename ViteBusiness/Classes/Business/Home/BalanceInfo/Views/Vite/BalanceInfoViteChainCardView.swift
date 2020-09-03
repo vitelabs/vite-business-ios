@@ -20,8 +20,9 @@ class BalanceInfoViteChainCardView: UIView {
         $0.setBackgroundImage(UIImage.color(UIColor.white.withAlphaComponent(0.2)), for: .highlighted)
     }
     let balanceView = UIView()
-    let onroadView = UIView()
+    let availableView = UIView()
     let pledgeView = UIView()
+    let onroadView = UIView()
 
     let buttonView = UIView().then {
         $0.backgroundColor = UIColor.white.withAlphaComponent(0.2)
@@ -33,19 +34,23 @@ class BalanceInfoViteChainCardView: UIView {
 
     let quotaView = BalanceInfoViteChainQuotaView()
 
+    let isViteCoin: Bool
+    let colorBackgroundViewHeight: CGFloat
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: 308)
+        return CGSize(width: 0, height: colorBackgroundViewHeight + 90)
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(isViteCoin: Bool) {
+        self.isViteCoin = isViteCoin
+        colorBackgroundViewHeight = isViteCoin ? (218 + 37 + 14) : 218
+        super.init(frame: .zero)
         layer.masksToBounds = true
         layer.cornerRadius = 2
 
         addSubview(colorBackgroundView)
         colorBackgroundView.snp.makeConstraints { (m) in
             m.top.left.right.equalToSuperview()
-            m.height.equalTo(218)
+            m.height.equalTo(colorBackgroundViewHeight)
         }
 
         setupAddressView()
@@ -53,8 +58,7 @@ class BalanceInfoViteChainCardView: UIView {
 
         setupButtonView()
 
-        setupOnroadView()
-        setupPledgeView()
+        setupOtherView()
 
         setupQuotaView()
     }
@@ -172,7 +176,72 @@ class BalanceInfoViteChainCardView: UIView {
         }
     }
 
-    func setupOnroadView() {
+    func setupOtherView() {
+        if isViteCoin {
+            availableTitleLabel = UILabel().then {
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+                $0.textColor = UIColor.white.withAlphaComponent(0.8)
+                $0.numberOfLines = 1
+                $0.text = R.string.localizable.balanceInfoDetailAvailableAmountTitle()
+            }
+
+            availableLabel = UILabel().then {
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+                $0.textColor = UIColor.white
+                $0.numberOfLines = 1
+            }
+
+            colorBackgroundView.addSubview(availableView)
+            availableView.addSubview(availableTitleLabel)
+            availableView.addSubview(availableLabel)
+
+            availableView.snp.makeConstraints { (m) in
+                m.top.equalTo(balanceView.snp.bottom).offset(14)
+                m.left.equalToSuperview().offset(14)
+                m.height.equalTo(37)
+            }
+
+            availableTitleLabel.snp.makeConstraints { (m) in
+                m.top.left.right.equalToSuperview()
+            }
+
+            availableLabel.snp.makeConstraints { (m) in
+                m.bottom.left.right.equalToSuperview()
+            }
+
+            pledgeTitleLabel = UILabel().then {
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+                $0.textColor = UIColor.white.withAlphaComponent(0.8)
+                $0.numberOfLines = 1
+                $0.text = R.string.localizable.balanceInfoDetailPledgeAmountTitle()
+            }
+
+            pledgeLabel = UILabel().then {
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+                $0.textColor = UIColor.white
+                $0.numberOfLines = 1
+            }
+
+            colorBackgroundView.addSubview(pledgeView)
+            pledgeView.addSubview(pledgeTitleLabel)
+            pledgeView.addSubview(pledgeLabel)
+
+            pledgeView.snp.makeConstraints { (m) in
+                m.top.equalTo(availableView)
+                m.left.equalTo(availableView.snp.right)
+                m.right.equalToSuperview().offset(-14)
+                m.height.equalTo(availableView)
+                m.width.equalTo(availableView)
+            }
+
+            pledgeTitleLabel.snp.makeConstraints { (m) in
+                m.top.left.right.equalToSuperview()
+            }
+
+            pledgeLabel.snp.makeConstraints { (m) in
+                m.bottom.left.right.equalToSuperview()
+            }
+        }
 
         onroadTitleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -191,8 +260,8 @@ class BalanceInfoViteChainCardView: UIView {
         onroadView.addSubview(onroadLabel)
 
         onroadView.snp.makeConstraints { (m) in
-            m.top.equalTo(balanceView.snp.bottom).offset(14)
-            m.left.equalToSuperview().offset(14)
+            m.top.equalTo(isViteCoin ? availableView.snp.bottom : balanceView.snp.bottom).offset(14)
+            m.left.right.equalToSuperview().inset(14)
             m.height.equalTo(37)
         }
 
@@ -201,42 +270,6 @@ class BalanceInfoViteChainCardView: UIView {
         }
 
         onroadLabel.snp.makeConstraints { (m) in
-            m.bottom.left.right.equalToSuperview()
-        }
-    }
-
-    func setupPledgeView() {
-
-        pledgeTitleLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.textColor = UIColor.white.withAlphaComponent(0.8)
-            $0.numberOfLines = 1
-            $0.text = R.string.localizable.balanceInfoDetailPledgeAmountTitle()
-        }
-
-        pledgeLabel = UILabel().then {
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-            $0.textColor = UIColor.white
-            $0.numberOfLines = 1
-        }
-
-        colorBackgroundView.addSubview(pledgeView)
-        pledgeView.addSubview(pledgeTitleLabel)
-        pledgeView.addSubview(pledgeLabel)
-
-        pledgeView.snp.makeConstraints { (m) in
-            m.top.equalTo(onroadView)
-            m.left.equalTo(onroadView.snp.right)
-            m.right.equalToSuperview().offset(-14)
-            m.height.equalTo(onroadView)
-            m.width.equalTo(onroadView)
-        }
-
-        pledgeTitleLabel.snp.makeConstraints { (m) in
-            m.top.left.right.equalToSuperview()
-        }
-
-        pledgeLabel.snp.makeConstraints { (m) in
             m.bottom.left.right.equalToSuperview()
         }
     }
@@ -302,6 +335,8 @@ class BalanceInfoViteChainCardView: UIView {
     var balanceLabel: UILabel!
     var receiveButton: UIButton!
     var sendButton: UIButton!
+    var availableTitleLabel: UILabel!
+    var availableLabel: UILabel!
     var onroadTitleLabel: UILabel!
     var onroadLabel: UILabel!
     var pledgeTitleLabel: UILabel!
@@ -311,17 +346,23 @@ class BalanceInfoViteChainCardView: UIView {
     func bind(tokenInfo: TokenInfo) {
         guard let token = tokenInfo.toViteToken() else { return }
 
-        pledgeView.isHidden = !tokenInfo.isViteCoin
-
         Driver.combineLatest(
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()).map({ (map, balanceInfo) -> String in
-                "≈" + map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.balance)
+                "≈" + map.priceString(for: balanceInfo.tokenInfo, balance: balanceInfo.total)
             }).drive(priceLabel.rx.text).disposed(by: rx.disposeBag)
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
-            .map({ $0.balance.amountFullWithGroupSeparator(decimals: token.decimals) })
+            .map({ $0.total.amountFullWithGroupSeparator(decimals: token.decimals) })
             .drive(balanceLabel.rx.text).disposed(by: rx.disposeBag)
+
+        if isViteCoin {
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil().drive(onNext: { [weak self] (info) in
+                guard let `self` = self else { return }
+                self.availableLabel.text = info.balance.amountFullWithGroupSeparator(decimals: token.decimals)
+                self.pledgeLabel.text = info.viteStake.amountFullWithGroupSeparator(decimals: token.decimals)
+            }).disposed(by: rx.disposeBag)
+        }
 
         ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).filterNil()
             .map({
@@ -343,10 +384,6 @@ class BalanceInfoViteChainCardView: UIView {
             self.quotaView.updateQuota(currect: quota.currentUt, max: quota.utpe)
         }).disposed(by: rx.disposeBag)
 
-        FetchQuotaManager.instance.pledgeAmountDriver
-            .map({ $0.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals) })
-            .drive(pledgeLabel.rx.text).disposed(by: rx.disposeBag)
-
         receiveButton.rx.tap.bind { [weak self] in
             Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, tokenInfo.statisticsId))
             UIViewController.current?.navigationController?.pushViewController(ReceiveViewController(tokenInfo: tokenInfo), animated: true)
@@ -358,6 +395,6 @@ class BalanceInfoViteChainCardView: UIView {
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
 
-        self.colorBackgroundView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 48, height: 308), colors: tokenInfo.coinBackgroundGradientColors)
+        self.colorBackgroundView.backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 48, height: colorBackgroundViewHeight), colors: tokenInfo.coinBackgroundGradientColors)
     }
 }

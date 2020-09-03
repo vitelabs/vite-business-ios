@@ -91,11 +91,33 @@ class DexTokenDetailHeaderView: UIView {
 
         switch type {
         case .wallet:
-            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId)
-                .map { $0?.balance ?? Amount(0) }.drive(onNext: { amount in
-                    total.valueLabel.text = tokenInfo.amountString(amount: amount, precision: .long)
-                    total.bottomLabel.text = "≈" + tokenInfo.legalString(amount: amount)
-                }).disposed(by: rx.disposeBag)
+
+            let available = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderAvailable())
+
+            let vitePledge = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderLockVitePledge())
+            let viteSBP = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderLockViteSbp())
+            let viteFullNode = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderLockViteFullNode())
+
+            ViteBalanceInfoManager.instance.balanceInfoDriver(forViteTokenId: tokenInfo.viteTokenId).drive(onNext: { balanceInfo in
+                let info = balanceInfo ?? BalanceInfo(token: tokenInfo.toViteToken()!)
+
+                if tokenInfo.isViteCoin {
+                    available.valueLabel.text = tokenInfo.amountString(amount: info.balance, precision: .long)
+                    vitePledge.valueLabel.text = tokenInfo.amountString(amount: info.viteStakeForPledge, precision: .long)
+                    viteSBP.valueLabel.text = tokenInfo.amountString(amount: info.viteStakeForSBP, precision: .long)
+                    viteFullNode.valueLabel.text = tokenInfo.amountString(amount: info.viteStakeForFullNode, precision: .long)
+                }
+
+                total.valueLabel.text = tokenInfo.amountString(amount: info.total, precision: .long)
+                total.bottomLabel.text = "≈" + tokenInfo.legalString(amount: info.total)
+            }).disposed(by: rx.disposeBag)
+
+            if tokenInfo.isViteCoin {
+                stackView.addArrangedSubview(available)
+                stackView.addArrangedSubview(vitePledge)
+                stackView.addArrangedSubview(viteSBP)
+                stackView.addArrangedSubview(viteFullNode)
+            }
         case .vitex:
             let available = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderAvailable())
             let lockPlaceOrder = ItemView(title: R.string.localizable.dexTokenDetailPageHeaderLockPlaceOrder())
