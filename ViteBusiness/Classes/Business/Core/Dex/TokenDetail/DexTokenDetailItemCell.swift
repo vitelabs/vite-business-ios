@@ -61,7 +61,7 @@ class DexTokenDetailItemCell: BaseTableViewCell {
         symbolLabel.setContentHuggingPriority(.required, for: .horizontal)
         symbolLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         symbolLabel.snp.makeConstraints { (m) in
-            m.centerY.equalToSuperview()
+            m.centerY.equalTo(typeNameLabel)
             m.right.equalToSuperview().offset(-24)
         }
 
