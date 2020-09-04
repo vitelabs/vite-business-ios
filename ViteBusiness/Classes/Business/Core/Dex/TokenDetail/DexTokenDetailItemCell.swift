@@ -120,6 +120,6 @@ class DexTokenDetailItemCell: BaseTableViewCell {
             balanceLabel.text = "-" + (accountBlock.amount ?? Amount(0)).amountFullWithGroupSeparator(decimals: accountBlock.token!.decimals)
         }
         timeLabel.text = accountBlock.timeString
-        symbolLabel.text = accountBlock.token?.uniqueSymbol
+        symbolLabel.text = accountBlock.token?.symbol
     }
 }

@@ -70,7 +70,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
 
         headerCell.depositButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let vc = ViteXTokenSelectorViewController(type: .vitex, filter: .gateway) { (tokenInfo, vc) in
+            let vc = ViteXTokenSelectorViewController(type: .wallet, filter: .gateway) { (tokenInfo, vc) in
                 let ccVC = CrossChainStatementViewController(tokenInfo: tokenInfo)
                 ccVC.isWithDraw = false
                 UIViewController.current?.navigationController?.pushViewController(ccVC, animated: true)
@@ -85,7 +85,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
 
         headerCell.withdrawButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let vc = ViteXTokenSelectorViewController(type: .vitex, filter: .gateway) { (tokenInfo, vc) in
+            let vc = ViteXTokenSelectorViewController(type: .wallet, filter: .gateway) { (tokenInfo, vc) in
                 let ccVC = CrossChainStatementViewController(tokenInfo: tokenInfo)
                 ccVC.isWithDraw = true
                 UIViewController.current?.navigationController?.pushViewController(ccVC, animated: true)
