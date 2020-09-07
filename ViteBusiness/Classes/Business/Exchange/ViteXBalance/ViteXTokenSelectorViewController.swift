@@ -103,10 +103,10 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
                 amount = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.available ?? Amount(0)
             }
             let vm = ViteXTokenSelectorViewModel(tokenInfo: tokenInfo, balanceString: amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))
-            if amount > 0 {
-                valuable.append(vm)
-            } else {
+            if vm.balanceString == "0" {
                 unvaluable.append(vm)
+            } else {
+                valuable.append(vm)
             }
         }
 
@@ -122,10 +122,10 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
                 amount = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.available ?? Amount(0)
             }
             let vm = ViteXTokenSelectorViewModel(tokenInfo: tokenInfo, balanceString: amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))
-            if amount > 0 {
-                valuable.append(vm)
-            } else {
+            if vm.balanceString == "0" {
                 unvaluable.append(vm)
+            } else {
+                valuable.append(vm)
             }
         }
 
