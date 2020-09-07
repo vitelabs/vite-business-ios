@@ -147,6 +147,7 @@ public class ManageViteXBanlaceViewController: BaseViewController {
 
         amountView.symbolLabel.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.7)
         amountView.textField.keyboardType = .decimalPad
+        amountView.textField.kas_setReturnAction(.done(block: { $0.resignFirstResponder() }), delegate: self)
 
         view.addSubview(handleButton)
         view.addSubview(topContainerView)
@@ -237,7 +238,11 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         tokenSelectorView.changeButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
             let vc = ViteXTokenSelectorViewController(type: self.actionType == .toVitex ? .wallet : .vitex, filter: .none) { [weak self] (tokenInfo, vc) in
-                self?.tokenInfoBehaviorRelay.accept(tokenInfo)
+                guard let `self` = self else { return }
+                if self.token.uniqueSymbol != tokenInfo.uniqueSymbol {
+                    self.tokenInfoBehaviorRelay.accept(tokenInfo)
+                    self.amountView.textField.text = ""
+                }
                 vc.dismiss()
             }
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
@@ -353,4 +358,17 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         return URL.init(string:urlStr)!
     }
 
+}
+
+// MARK: UITextFieldDelegate
+extension ManageViteXBanlaceViewController: UITextFieldDelegate {
+   public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == amountView.textField {
+            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, token.decimals))
+            textField.text = text
+            return ret
+        }  else {
+            return true
+        }
+    }
 }
