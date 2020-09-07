@@ -145,7 +145,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
 
                 switch sortMode {
                 case .default:
-                    vms = vms.sorted { $0.btcValuation > $1.btcValuation }
+                    vms = vms.sorted { DexAssetsHomeCellViewModel.defaultIncreasingOrder(e1: $0, e2: $1) }
                 case .a2z:
                     vms = vms.sorted { $0.tokenInfo.uniqueSymbol < $1.tokenInfo.uniqueSymbol }
                 case .z2a:
