@@ -41,7 +41,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-
+        tableView.contentInsetAdjustmentBehavior = .never
         bind()
     }
 

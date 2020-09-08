@@ -79,7 +79,7 @@ class DexAssetsHomeViewController: BaseViewController {
         let frame: CGRect =  {
             let statusBarH = UIApplication.shared.statusBarFrame.size.height
             let navH: CGFloat = 44
-            let bottomSafeH: CGFloat = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+            let bottomSafeH: CGFloat = self.tabBarController?.tabBar.frame.size.height ?? 0
             var H: CGFloat = kScreenH - statusBarH - navH - bottomSafeH
             return CGRect(x: 0, y: statusBarH + navH, width: kScreenW, height: H)
         }()
@@ -97,6 +97,7 @@ class DexAssetsHomeViewController: BaseViewController {
         contentView.backgroundColor = .clear
         contentView.tableView.backgroundColor = .clear
         contentView.tableView.bounces = false
+        contentView.tableView.contentInsetAdjustmentBehavior = .never
         // make sure all viewController has created
         contentView.scrollToIndex(index: 1)
         contentView.scrollToIndex(index: 0)
@@ -120,12 +121,6 @@ class DexAssetsHomeViewController: BaseViewController {
         navBgView.snp.makeConstraints { (m) in
             m.top.left.right.equalToSuperview()
             m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(142)
-        }
-
-        contentView.snp.makeConstraints { (m) in
-            m.top.equalTo(view.safeAreaLayoutGuideSnpTop).offset(44)
-            m.left.right.equalToSuperview()
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
         }
     }
 
