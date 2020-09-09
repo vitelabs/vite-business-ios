@@ -45,7 +45,7 @@
 "tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
-"tab.title.dex" = "DEX";
+"tab.title.dex" = "DEX Asset";
 
 /* App */
 "Cancel" = "Cancel";
@@ -1247,6 +1247,6 @@
 "dex.token.detail.page.button.withdraw" = "Withdraw";
 "dex.token.detail.page.button.transfer" = "Transfer";
 "dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.trading" = "Trading";
 
 "dex.token.market.selector.title" = "Select Trading pair";

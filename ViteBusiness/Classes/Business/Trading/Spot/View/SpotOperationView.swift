@@ -618,6 +618,9 @@ class SpotOperationView: UIView {
         marketInfoBehaviorRelay.accept(marketInfo)
         self.buyButton.isEnabled = !(marketInfo?.isClosed ?? false)
         self.sellButton.isEnabled = !(marketInfo?.isClosed ?? false)
+        let symbol = marketInfo?.statistic.tradeTokenSymbolWithoutIndex ?? ""
+        self.buyButton.setTitle("\(R.string.localizable.spotPageButtonBuyTitle()) \(symbol)", for: .normal)
+        self.sellButton.setTitle("\(R.string.localizable.spotPageButtonSellTitle()) \(symbol)", for: .normal)
         self.setVol("")
         self.setPrice(marketInfo?.statistic.closePrice ?? "")
     }

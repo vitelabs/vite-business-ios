@@ -3104,7 +3104,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let gatewayInfoDetailPageEmail = Rswift.StringResource(key: "gateway.info.detail.page.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: DEX
+      /// en translation: DEX Asset
       /// 
       /// Locales: en, zh-Hans
       public static let tabTitleDex = Rswift.StringResource(key: "tab.title.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -5259,11 +5259,11 @@ public struct R: Rswift.Validatable {
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
-      public static let dexTokenDetailPageButtonTrading = Rswift.StringResource(key: "dex.token.detail.page.button.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Trade
+      public static let tabTitleTrading = Rswift.StringResource(key: "tab.title.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trading
       /// 
       /// Locales: en, zh-Hans
-      public static let tabTitleTrading = Rswift.StringResource(key: "tab.title.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let dexTokenDetailPageButtonTrading = Rswift.StringResource(key: "dex.token.detail.page.button.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trading Suspended
       /// 
       /// Locales: en, zh-Hans
@@ -8015,7 +8015,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("gateway.info.detail.page.email", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: DEX
+      /// en translation: DEX Asset
       /// 
       /// Locales: en, zh-Hans
       public static func tabTitleDex(_: Void = ()) -> String {
@@ -11784,15 +11784,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
-      public static func dexTokenDetailPageButtonTrading(_: Void = ()) -> String {
-        return NSLocalizedString("dex.token.detail.page.button.trading", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Trade
-      /// 
-      /// Locales: en, zh-Hans
       public static func tabTitleTrading(_: Void = ()) -> String {
         return NSLocalizedString("tab.title.trading", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Trading
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dexTokenDetailPageButtonTrading(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.button.trading", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trading Suspended

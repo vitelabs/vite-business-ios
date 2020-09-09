@@ -110,22 +110,24 @@ class ViteXTokenSelectorViewController: BaseTableViewController, ViewControllerD
             }
         }
 
-        let set = Set(dexTokenInfos.map { $0.tokenCode })
-        let mineTokenInfos = MyTokenInfosService.instance.tokenInfos.filter { $0.coinType == .vite }
+        if filter == .none {
+            let set = Set(dexTokenInfos.map { $0.tokenCode })
+            let mineTokenInfos = MyTokenInfosService.instance.tokenInfos.filter { $0.coinType == .vite }
 
-        for tokenInfo in mineTokenInfos where set.contains(tokenInfo.tokenCode) == false {
-            let amount: Amount
-            switch self.type {
-            case .wallet:
-                amount = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.balance ?? Amount(0)
-            case .vitex:
-                amount = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.available ?? Amount(0)
-            }
-            let vm = ViteXTokenSelectorViewModel(tokenInfo: tokenInfo, balanceString: amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))
-            if vm.balanceString == "0" {
-                unvaluable.append(vm)
-            } else {
-                valuable.append(vm)
+            for tokenInfo in mineTokenInfos where set.contains(tokenInfo.tokenCode) == false {
+                let amount: Amount
+                switch self.type {
+                case .wallet:
+                    amount = ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.balance ?? Amount(0)
+                case .vitex:
+                    amount = ViteBalanceInfoManager.instance.dexBalanceInfo(forViteTokenId: tokenInfo.viteTokenId)?.available ?? Amount(0)
+                }
+                let vm = ViteXTokenSelectorViewModel(tokenInfo: tokenInfo, balanceString: amount.amountShortWithGroupSeparator(decimals: tokenInfo.decimals))
+                if vm.balanceString == "0" {
+                    unvaluable.append(vm)
+                } else {
+                    valuable.append(vm)
+                }
             }
         }
 

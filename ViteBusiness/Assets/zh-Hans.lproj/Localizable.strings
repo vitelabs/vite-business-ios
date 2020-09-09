@@ -1227,7 +1227,7 @@
 // DexHome
 "dex.home.page.nav.title" = "交易所资产";
 "dex.home.page.nav.btc.valuation.title" = "资产估值(BTC)";
-"dex.home.page.segment.wallet" = "资金账户";
+"dex.home.page.segment.wallet" = "钱包账户";
 "dex.home.page.segment.dex" = "交易账户";
 
 "dex.home.page.header.btc.valuation.title" = "估值(BTC)";
