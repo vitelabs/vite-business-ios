@@ -32,17 +32,10 @@ class WalletHomeViewController: BaseViewController {
         tableView.estimatedRowHeight = WalletHomeBalanceInfoCell.cellHeight
         tableView.contentInset = UIEdgeInsets.init(top: 5, left: 0, bottom: 0, right: 0)
     }
-    lazy var vitexTable = UITableView().then { tableView in
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.clear
-        tableView.rowHeight = VitexBalanceInfoCell.cellHeight
-        tableView.estimatedRowHeight = VitexBalanceInfoCell.cellHeight
-        tableView.contentInset = UIEdgeInsets.init(top: 5, left: 0, bottom: 0, right: 0)
-    }
 
     lazy var pageManager = { () -> DNSPageViewManager in
         var pageStyle = DNSPageStyle()
-        pageStyle.isShowBottomLine = true
+        pageStyle.isShowBottomLine = false
         pageStyle.bottomLineRadius = 0
         pageStyle.isTitleViewScrollEnabled = true
         pageStyle.titleViewBackgroundColor = UIColor.clear
@@ -54,16 +47,12 @@ class WalletHomeViewController: BaseViewController {
         pageStyle.bottomLineWidth = 20
 
         let vc0 = UIViewController()
-        let vc1 = UIViewController()
         vc0.view.addSubview(walletTable)
-        vc1.view.addSubview(vitexTable)
         walletTable.snp.makeConstraints { (m) in
             m.edges.equalToSuperview()
         }
-        vitexTable.snp.makeConstraints { (m) in
-            m.edges.equalToSuperview()
-        }
-        let m = DNSPageViewManager(style: pageStyle, titles: [R.string.localizable.fundTitleWallet(),R.string.localizable.fundTitleVitex()], childViewControllers: [vc0, vc1])
+
+        let m = DNSPageViewManager(style: pageStyle, titles: [R.string.localizable.fundTitleWallet()], childViewControllers: [vc0])
         return m
     }()
 
@@ -75,7 +64,6 @@ class WalletHomeViewController: BaseViewController {
     var isHidePriceBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     typealias WalletDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeBalanceInfoViewModel>>
-    typealias viteXDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, WalletHomeViteXBalanceInfoViewModel>>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,12 +94,12 @@ class WalletHomeViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     fileprivate func setupView() {
@@ -174,15 +162,6 @@ class WalletHomeViewController: BaseViewController {
         }
     })
 
-    fileprivate lazy var vitexDataSource = viteXDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        let cell: VitexBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(viewModel: item)
-        cell.handler = { [unowned self] button in
-            self.vitexTableAccessoryButton(button, didTappedForRowWith: indexPath)
-        }
-        return cell
-    })
-
     fileprivate func bind() {
 
         pageManager.titleView.clickHandler = { [unowned self] (titleView, index) in
@@ -237,14 +216,7 @@ class WalletHomeViewController: BaseViewController {
             }
             .bind(to: walletTable.rx.items(dataSource: walletDataSource)).disposed(by: rx.disposeBag)
 
-        tableViewModel.viteXBalanceInfosDriver.asObservable()
-            .map { balanceInfoViewModels in
-                [SectionModel(model: "balanceInfo", items: balanceInfoViewModels)]
-            }
-            .bind(to: vitexTable.rx.items(dataSource: vitexDataSource)).disposed(by: rx.disposeBag)
-
         walletTable.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        vitexTable.rx.setDelegate(self).disposed(by: rx.disposeBag)
 
         self.headerView.addButton.rx.tap.bind { [unowned self] in
             let vc = TokenListManageController()
