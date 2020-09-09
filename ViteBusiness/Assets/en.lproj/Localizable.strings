@@ -45,7 +45,7 @@
 "tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
-"tab.title.dex" = "交易所资产";
+"tab.title.dex" = "DEX";
 
 /* App */
 "Cancel" = "Cancel";
@@ -164,7 +164,7 @@
 "tabbar.item.title.my" = "Me";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "资产估值(BTC)";
+"wallet.home.btc.title" = "Total Value (BTC)";
 "wallet.home.balance.title" = "Balance";
 "wallet.home.unconfirmed.title" = "Unreceived %@";
 "wallet.home.toast.copy.address" = "Successfully copied!";
@@ -233,7 +233,7 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "可用余额";
+"balance.info.detail.available.amount.title" = "Available";
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
@@ -1213,40 +1213,40 @@
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "交易所资产";
-"dex.home.page.nav.btc.valuation.title" = "资产估值(BTC)";
-"dex.home.page.segment.wallet" = "资金账户";
-"dex.home.page.segment.dex" = "交易账户";
+"dex.home.page.nav.title" = "DEX Assets";
+"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
+"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.segment.dex" = "Trade";
 
-"dex.home.page.header.btc.valuation.title" = "估值(BTC)";
-"dex.home.page.header.button.transfer.title" = "资金划转";
-"dex.home.page.header.button.deposit.title" = "充值";
-"dex.home.page.header.button.withdraw.title" = "提现";
-"dex.home.page.header.button.hide.small.title" = "隐藏小额币种";
+"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
+"dex.home.page.header.button.transfer.title" = "Transfer";
+"dex.home.page.header.button.deposit.title" = "Deposit";
+"dex.home.page.header.button.withdraw.title" = "Withdraw";
+"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
 
-"dex.token.detail.page.title" = "资产详情";
-"dex.token.detail.page.header.total" = "总额";
-"dex.token.detail.page.header.available" = "可用余额";
-"dex.token.detail.page.header.lock.place.order" = "下单冻结";
+"dex.token.detail.page.title" = "Balance";
+"dex.token.detail.page.header.total" = "Total";
+"dex.token.detail.page.header.available" = "Available";
+"dex.token.detail.page.header.lock.place.order" = "In Order";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "抵押获取配额冻结";
-"dex.token.detail.page.header.lock.vite.sbp" = "抵押SBP冻结";
-"dex.token.detail.page.header.lock.vite.full.node" = "抵押全节点冻结";
-"dex.token.detail.page.header.lock.vite.mining" = "挖矿冻结";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "解锁中";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP冻结";
-"dex.token.detail.page.header.lock.vx" = "分红锁仓";
-"dex.token.detail.page.header.lock.vx.cancel" = "解锁中";
+"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.mining" = "Staked";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vx" = "Staked";
+"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
 
-"dex.token.detail.page.list.wallet.heater.title" = "资金记录";
-"dex.token.detail.page.list.dex.heater.title" = "划转记录";
-"dex.token.detail.page.cell.in" = "转入";
-"dex.token.detail.page.cell.out" = "转出";
+"dex.token.detail.page.list.wallet.heater.title" = "History";
+"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.cell.in" = "Transfer-In";
+"dex.token.detail.page.cell.out" = "Transfer-Out";
 
-"dex.token.detail.page.button.deposit" = "充值";
-"dex.token.detail.page.button.withdraw" = "提现";
-"dex.token.detail.page.button.transfer" = "划转";
-"dex.token.detail.page.button.send" = "链内转账";
-"dex.token.detail.page.button.trading" = "交易";
+"dex.token.detail.page.button.deposit" = "Deposit";
+"dex.token.detail.page.button.withdraw" = "Withdraw";
+"dex.token.detail.page.button.transfer" = "Transfer";
+"dex.token.detail.page.button.send" = "Send";
+"dex.token.detail.page.button.trading" = "Trade";
 
-"dex.token.market.selector.title" = "选择交易对";
+"dex.token.market.selector.title" = "Select Trading pair";
