@@ -223,8 +223,10 @@ extension DexAssetsHomeTableViewController {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let vc = DexTokenDetailViewController(tokenInfo: viewModelBehaviorRelay.value[indexPath.row].tokenInfo,type: type)
-        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.section == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let vc = DexTokenDetailViewController(tokenInfo: viewModelBehaviorRelay.value[indexPath.row].tokenInfo,type: type)
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
