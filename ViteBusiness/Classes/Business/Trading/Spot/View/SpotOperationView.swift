@@ -260,38 +260,48 @@ class SpotOperationView: UIView {
         }.disposed(by: rx.disposeBag)
 
         Driver.combineLatest(ViteBalanceInfoManager.instance.dexBalanceInfosDriver,
-                             marketInfoBehaviorRelay.asDriver().filterNil(),
-                             spotViewModelBehaviorRelay.asDriver().filterNil(),
+                             marketInfoBehaviorRelay.asDriver(),
+                             spotViewModelBehaviorRelay.asDriver(),
                              priceTextField.textField.rx.text.asDriver(),
                              volTextField.textField.rx.text.asDriver(),
                              segmentView.isBuyBehaviorRelay.asDriver()).drive(onNext: { [weak self] (balanceMap, info, spotViewModel, priceText, volText, isBuy) in
                                 guard let `self` = self else { return }
 
-                                let quoteTokenInfo = spotViewModel.quoteTokenInfo
-                                let tradeTokenInfo = spotViewModel.tradeTokenInfo
-                                let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
+                                if let info = info, let spotViewModel = spotViewModel {
+                                    let quoteTokenInfo = spotViewModel.quoteTokenInfo
+                                    let tradeTokenInfo = spotViewModel.tradeTokenInfo
+                                    let sourceTokenInfo = isBuy ? quoteTokenInfo : tradeTokenInfo
 
-                                let sourceToken = sourceTokenInfo.toViteToken()!
-                                let balance = balanceMap[sourceToken.id]?.available ?? Amount()
-                                self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.symbol)"
+                                    let sourceToken = sourceTokenInfo.toViteToken()!
+                                    let balance = balanceMap[sourceToken.id]?.available ?? Amount()
+                                    self.amountLabel.text = R.string.localizable.spotPageAvailable(balance.amountFullWithGroupSeparator(decimals: sourceToken.decimals)) + " \(sourceTokenInfo.symbol)"
 
-                                if let priceText = priceText, let price = BigDecimal(priceText), price != BigDecimal(0) {
-                                    self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: priceText)
+                                    if let priceText = priceText, let price = BigDecimal(priceText), price != BigDecimal(0) {
+                                        self.priceLabel.text = "≈" + MarketInfoService.shared.legalPrice(quoteTokenSymbol: quoteTokenInfo.uniqueSymbol, price: priceText)
 
-                                    if let amount = type(of: self).calcAmount(vm: spotViewModel, priceText: priceText, volText: volText) {
-                                        let totalBigInt = isBuy ? (amount + type(of: self).calcFee(vm: spotViewModel, amount: amount)) : amount
-                                        let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.pricePrecision)) + " " + quoteTokenInfo.symbol
-                                        self.volLabel.text = R.string.localizable.spotPageTotal(total)
-                                    } else {
-                                        if isBuy {
-                                            let text = type(of: self).calcVol(vm: spotViewModel, info: info, priceText: priceText, isBuy: isBuy, p: 1) ?? "--"
-                                            self.volLabel.text = R.string.localizable.spotPageBuyable(text) + " \(tradeTokenInfo.symbol)"
+                                        if let amount = type(of: self).calcAmount(vm: spotViewModel, priceText: priceText, volText: volText) {
+                                            let totalBigInt = isBuy ? (amount + type(of: self).calcFee(vm: spotViewModel, amount: amount)) : amount
+                                            let total = totalBigInt.amount(decimals: quoteTokenInfo.decimals, count: Int(info.statistic.pricePrecision)) + " " + quoteTokenInfo.symbol
+                                            self.volLabel.text = R.string.localizable.spotPageTotal(total)
                                         } else {
-                                            let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
-                                            self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [])) + " \(quoteTokenInfo.symbol)"
+                                            if isBuy {
+                                                let text = type(of: self).calcVol(vm: spotViewModel, info: info, priceText: priceText, isBuy: isBuy, p: 1) ?? "--"
+                                                self.volLabel.text = R.string.localizable.spotPageBuyable(text) + " \(tradeTokenInfo.symbol)"
+                                            } else {
+                                                let vol = BigDecimal(balance.amountFull(decimals: sourceToken.decimals))! * price
+                                                self.volLabel.text = R.string.localizable.spotPageSellable(BigDecimalFormatter.format(bigDecimal: vol, style: .decimalTruncation(Int(info.statistic.quantityPrecision)), padding: .none, options: [])) + " \(quoteTokenInfo.symbol)"
+                                            }
+                                        }
+                                    } else {
+                                        self.priceLabel.text = "≈--"
+                                        if isBuy {
+                                            self.volLabel.text = R.string.localizable.spotPageBuyable("--")
+                                        } else {
+                                            self.volLabel.text = R.string.localizable.spotPageSellable("--")
                                         }
                                     }
                                 } else {
+                                    self.amountLabel.text = R.string.localizable.spotPageAvailable("--")
                                     self.priceLabel.text = "≈--"
                                     if isBuy {
                                         self.volLabel.text = R.string.localizable.spotPageBuyable("--")
