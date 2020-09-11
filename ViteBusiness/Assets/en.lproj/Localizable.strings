@@ -1216,7 +1216,7 @@
 "dex.home.page.nav.title" = "DEX Assets";
 "dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
 "dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trade";
+"dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Value (BTC)";
 "dex.home.page.header.button.transfer.title" = "Transfer";
@@ -1247,6 +1247,6 @@
 "dex.token.detail.page.button.withdraw" = "Withdraw";
 "dex.token.detail.page.button.transfer" = "Transfer";
 "dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trading";
+"dex.token.detail.page.button.trading" = "Trade";
 
 "dex.token.market.selector.title" = "Select Trading pair";

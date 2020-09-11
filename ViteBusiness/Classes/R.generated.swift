@@ -5255,7 +5255,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
-      public static let dexHomePageSegmentDex = Rswift.StringResource(key: "dex.home.page.segment.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let dexTokenDetailPageButtonTrading = Rswift.StringResource(key: "dex.token.detail.page.button.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
@@ -5263,7 +5263,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Trading
       /// 
       /// Locales: en, zh-Hans
-      public static let dexTokenDetailPageButtonTrading = Rswift.StringResource(key: "dex.token.detail.page.button.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let dexHomePageSegmentDex = Rswift.StringResource(key: "dex.home.page.segment.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trading Suspended
       /// 
       /// Locales: en, zh-Hans
@@ -11777,8 +11777,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Trade
       /// 
       /// Locales: en, zh-Hans
-      public static func dexHomePageSegmentDex(_: Void = ()) -> String {
-        return NSLocalizedString("dex.home.page.segment.dex", bundle: R.hostingBundle, comment: "")
+      public static func dexTokenDetailPageButtonTrading(_: Void = ()) -> String {
+        return NSLocalizedString("dex.token.detail.page.button.trading", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trade
@@ -11791,8 +11791,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Trading
       /// 
       /// Locales: en, zh-Hans
-      public static func dexTokenDetailPageButtonTrading(_: Void = ()) -> String {
-        return NSLocalizedString("dex.token.detail.page.button.trading", bundle: R.hostingBundle, comment: "")
+      public static func dexHomePageSegmentDex(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.segment.dex", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trading Suspended
