@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
   s.dependency 'KeychainSwift'
   s.dependency 'Moya'
   s.dependency 'MJRefresh'
-  s.dependency 'KMNavigationBarTransition'
+  s.dependency 'KMNavigationBarTransition', '1.1.8'
   s.dependency 'XCGLogger', '~> 7.0'
   s.dependency 'pop', '~> 1.0'
   s.dependency 'DACircularProgress', '2.3.1'
