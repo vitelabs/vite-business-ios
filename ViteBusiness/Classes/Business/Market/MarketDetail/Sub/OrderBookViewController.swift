@@ -326,7 +326,7 @@ extension OrderBookViewController {
             flagImageView.isHidden = !isSelf
 
             if let depth = depth {
-                quantityLabel.text = depth.quantity
+                quantityLabel.text = depth.quantityString
                 priceLabel.text = depth.price
 
                 percentView.snp.remakeConstraints { (m) in
@@ -413,7 +413,7 @@ extension OrderBookViewController {
             flagImageView.isHidden = !isSelf
 
             if let depth = depth {
-                quantityLabel.text = depth.quantity
+                quantityLabel.text = depth.quantityString
                 priceLabel.text = depth.price
 
                 percentView.snp.remakeConstraints { (m) in

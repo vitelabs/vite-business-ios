@@ -275,7 +275,7 @@ extension SpotDepthView {
             self.vol = vol
             if let depth = depth {
                 flagImageView.isHidden = !isSelf
-                quantityLabel.text = depth.quantity
+                quantityLabel.text = depth.quantityString
                 priceLabel.text = depth.price
 
                 percentView.snp.remakeConstraints { (m) in

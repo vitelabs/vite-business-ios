@@ -6,6 +6,7 @@
 //
 
 import ObjectMapper
+import BigInt
 
 struct MarketDepthList: Mappable {
 
@@ -72,6 +73,19 @@ struct MarketDepthList: Mappable {
         fileprivate(set) var quantity: String = ""
         fileprivate(set) var amount: String = ""
         fileprivate(set) var percent: Double = 0
+
+        var quantityString: String {
+            guard let bigDecimal = BigDecimal(quantity) else { return quantity }
+            if bigDecimal < BigDecimal(BigInt(1000)) {
+                return quantity
+            } else if bigDecimal < BigDecimal(BigInt(1000000)) {
+                let ret = bigDecimal / BigDecimal(BigInt(1000))
+                return BigDecimalFormatter.format(bigDecimal: ret, style: .decimalTruncation(1), padding: .none, options: []) + "K"
+            } else {
+                let ret = bigDecimal / BigDecimal(BigInt(1000000))
+                return BigDecimalFormatter.format(bigDecimal: ret, style: .decimalTruncation(1), padding: .none, options: []) + "M"
+            }
+        }
 
         init(price: String, quantity: String, amount: String) {
             self.price = price
