@@ -76,9 +76,9 @@ struct MarketDepthList: Mappable {
 
         var quantityString: String {
             guard let bigDecimal = BigDecimal(quantity) else { return quantity }
-            if bigDecimal < BigDecimal(BigInt(1000)) {
+            if bigDecimal < BigDecimal(BigInt(100000)) {
                 return quantity
-            } else if bigDecimal < BigDecimal(BigInt(1000000)) {
+            } else if bigDecimal < BigDecimal(BigInt(100000000)) {
                 let ret = bigDecimal / BigDecimal(BigInt(1000))
                 return BigDecimalFormatter.format(bigDecimal: ret, style: .decimalTruncation(1), padding: .none, options: []) + "K"
             } else {
