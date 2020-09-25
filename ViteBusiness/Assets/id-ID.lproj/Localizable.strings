@@ -45,7 +45,7 @@
 "tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
-"tab.title.my" = "Account";
+"tab.title.dex" = "DEX Asset";
 
 /* App */
 "Cancel" = "Cancel";
@@ -164,6 +164,7 @@
 "tabbar.item.title.my" = "Me";
 
 /* Wallet Home */
+"wallet.home.btc.title" = "Total Value (BTC)";
 "wallet.home.balance.title" = "Balance";
 "wallet.home.unconfirmed.title" = "Unreceived %@";
 "wallet.home.toast.copy.address" = "Successfully copied!";
@@ -221,7 +222,7 @@
 "vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
 "vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
 "vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Transaction Type";
+"vite.transaction.detail.page.type.send" = "Request";
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
@@ -232,6 +233,7 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.available.amount.title" = "Available";
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
@@ -359,7 +361,7 @@
 "aboutUs.page.cell.shareUs" = "Share Vite APP";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
-"aboutUs.page.cell.blog.website" = "Vite.blog";
+"aboutUs.page.cell.blog.website" = "Vite.wiki";
 "aboutUs.page.email.title" = "Feedback";
 "aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
 
@@ -1209,3 +1211,42 @@
 
 "grin.initing.desc" = "Initializing, click to view details";
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+
+// DexHome
+"dex.home.page.nav.title" = "DEX Assets";
+"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
+"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.segment.dex" = "Trading";
+
+"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
+"dex.home.page.header.button.transfer.title" = "Transfer";
+"dex.home.page.header.button.deposit.title" = "Deposit";
+"dex.home.page.header.button.withdraw.title" = "Withdraw";
+"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+
+"dex.token.detail.page.title" = "Balance";
+"dex.token.detail.page.header.total" = "Total";
+"dex.token.detail.page.header.available" = "Available";
+"dex.token.detail.page.header.lock.place.order" = "In Order";
+
+"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.mining" = "Staked";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vx" = "Staked";
+"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+
+"dex.token.detail.page.list.wallet.heater.title" = "History";
+"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.cell.in" = "Transfer-In";
+"dex.token.detail.page.cell.out" = "Transfer-Out";
+
+"dex.token.detail.page.button.deposit" = "Deposit";
+"dex.token.detail.page.button.withdraw" = "Withdraw";
+"dex.token.detail.page.button.transfer" = "Transfer";
+"dex.token.detail.page.button.send" = "Send";
+"dex.token.detail.page.button.trading" = "Trade";
+
+"dex.token.market.selector.title" = "Select Trading pair";
