@@ -32,6 +32,7 @@ class ScanViewController: BaseViewController, View {
     private let scanViewWidth: CGFloat = 262.0
     private let scanViewCenterYOffset: CGFloat = 70.0
 
+    private let sessionQueue = DispatchQueue(label: "cameraManagerQueue")
     private let captureSession = AVCaptureSession()
     private let captureMetadataOutput = AVCaptureMetadataOutput()
 
@@ -71,7 +72,7 @@ class ScanViewController: BaseViewController, View {
         videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer.frame = view.bounds
         view.layer.addSublayer(videoPreviewLayer)
-        DispatchQueue.global(qos: .userInteractive).async {
+        self.sessionQueue.async {
             do {
                 let input = try AVCaptureDeviceInput(device: captureDevice)
                 self.captureSession.addInput(input)
@@ -187,14 +188,18 @@ class ScanViewController: BaseViewController, View {
     }
 
     func startCaptureSession() {
-        if captureSession.isRunning == false {
-            captureSession.startRunning()
+        self.sessionQueue.async {
+            if self.captureSession.isRunning == false {
+                self.captureSession.startRunning()
+            }
         }
     }
 
     func stopCaptureSession() {
-        if captureSession.isRunning == true {
-            captureSession.stopRunning()
+        self.sessionQueue.async {
+            if self.captureSession.isRunning == true {
+                self.captureSession.stopRunning()
+            }
         }
     }
 
@@ -241,10 +246,10 @@ class ScanViewController: BaseViewController, View {
     }
 
     func showAlertMessage(_ alertMessage: String) {
-        self.captureSession.stopRunning()
+        self.stopCaptureSession()
         let alertController = UIAlertController.init()
-        let action = UIAlertAction.init(title: R.string.localizable.finish(), style: .default) { (_) in
-            self.captureSession.startRunning()
+        let action = UIAlertAction.init(title: R.string.localizable.finish(), style: .default) { [weak self] (_) in
+            self?.startCaptureSession()
         }
         alertController.addAction(action)
         alertController.title = alertMessage
