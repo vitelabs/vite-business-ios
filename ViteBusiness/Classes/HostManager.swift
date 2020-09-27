@@ -39,7 +39,7 @@ class HostManager {
                 tryAgain()
             }
 
-        Alamofire.request("https://config.vitewallet.com/dns/hostips")
+        Alamofire.request("https://config.vite.net/dns/hostips")
             .responseJSON()
             .done { (json, resp) in
                 if HostManager.success { return }
