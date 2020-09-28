@@ -101,8 +101,8 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftLint'
 
   #crash
-  s.dependency 'Fabric'
-  s.dependency 'Crashlytics'
+  s.dependency 'Firebase/Crashlytics'
+  s.dependency 'Firebase/Analytics'
   s.dependency 'Firebase/Core'
 
 #  s.dependency 'MLeaksFinder'

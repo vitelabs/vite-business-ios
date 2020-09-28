@@ -7,7 +7,6 @@
 #if DEBUG || TEST
 import UIKit
 import Eureka
-import Crashlytics
 import ViteWallet
 import Kingfisher
 import PromiseKit
@@ -107,7 +106,7 @@ class DebugOperationViewController: FormViewController {
             <<< LabelRow("test crash") {
                 $0.title =  "test crash"
                 }.onCellSelection({_, _  in
-                    Crashlytics.sharedInstance().throwException()
+                    fatalError()
                 })
             <<< LabelRow("Clear Image Cache") {
                 $0.title =  "Clear Image Cache"

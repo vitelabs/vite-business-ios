@@ -7,8 +7,6 @@
 
 import UIKit
 import RxSwift
-import Fabric
-import Crashlytics
 import NSObject_Rx
 import Vite_HDWalletKit
 import ViteWallet

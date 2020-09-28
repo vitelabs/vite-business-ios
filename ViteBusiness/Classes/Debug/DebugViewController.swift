@@ -8,7 +8,6 @@
 #if DEBUG || TEST
 import UIKit
 import Eureka
-import Crashlytics
 import ViteWallet
 import BigInt
 import ViteWallet
