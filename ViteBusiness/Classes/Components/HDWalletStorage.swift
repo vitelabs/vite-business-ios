@@ -11,6 +11,7 @@ import Vite_HDWalletKit
 import ObjectMapper
 import CryptoSwift
 import ViteWallet
+import LocalAuthentication
 
 extension HDWalletStorage: Storageable {
     public func getStorageConfig() -> StorageConfig {
@@ -188,8 +189,8 @@ extension HDWalletStorage {
 
         fileprivate(set) var isBackedUp: Bool = true
         fileprivate(set) var isRequireAuthentication: Bool = false
-        fileprivate(set) var isAuthenticatedByBiometry: Bool = false
-        fileprivate(set) var isTransferByBiometry: Bool = false
+        fileprivate var isAuthenticatedByBiometry: Bool = false
+        fileprivate var isTransferByBiometry: Bool = false
 
         required init?(map: Map) {
             super.init(map: map)
@@ -227,6 +228,21 @@ extension HDWalletStorage {
             isRequireAuthentication <- map["isRequireAuthentication"]
             isAuthenticatedByBiometry <- map["isAuthenticatedByBiometry"]
             isTransferByBiometry <- map["isTransferByBiometry"]
+        }
+
+
+        var getAuthenticatedByBiometry: Bool {
+            guard LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
+                return false
+            }
+            return isAuthenticatedByBiometry
+        }
+
+        var getTransferByBiometry: Bool {
+            guard LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
+                return false
+            }
+            return isTransferByBiometry
         }
     }
 }

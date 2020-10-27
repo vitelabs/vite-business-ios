@@ -24,8 +24,8 @@ final class SystemViewModel: NSObject {
         HDWalletManager.instance.walletDriver.filterNil().drive(onNext: { [weak self] (wallet) in
             guard let `self` = self else { return }
             self.isRequireAuthentication = wallet.isRequireAuthentication
-            self.isAuthenticatedByBiometry = wallet.isAuthenticatedByBiometry
-            self.isTransferByBiometry = wallet.isTransferByBiometry
+            self.isAuthenticatedByBiometry = wallet.getAuthenticatedByBiometry
+            self.isTransferByBiometry = wallet.getTransferByBiometry
 
         }).disposed(by: rx.disposeBag)
 

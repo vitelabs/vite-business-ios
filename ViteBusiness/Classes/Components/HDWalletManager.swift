@@ -165,11 +165,11 @@ extension HDWalletManager {
     }
 
     var isAuthenticatedByBiometry: Bool {
-        return storage.currentWallet?.isAuthenticatedByBiometry ?? false
+        return storage.currentWallet?.getAuthenticatedByBiometry ?? false
     }
 
     var isTransferByBiometry: Bool {
-        return storage.currentWallet?.isTransferByBiometry ?? false
+        return storage.currentWallet?.getTransferByBiometry ?? false
     }
 }
 
