@@ -66,6 +66,9 @@ PODS:
     - FirebaseAnalytics (= 6.4.0)
   - Firebase/CoreOnly (6.21.0):
     - FirebaseCore (= 6.6.5)
+  - Firebase/Crashlytics (6.21.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.0.0-beta.6)
   - Firebase/Performance (6.21.0):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 3.1.11)
@@ -98,6 +101,14 @@ PODS:
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseCrashlytics (4.0.0-beta.6):
+    - FirebaseAnalyticsInterop (~> 1.2)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.1)
+    - GoogleDataTransport (~> 5.1)
+    - GoogleDataTransportCCTSupport (>= 2.0.1, ~> 2.0)
+    - nanopb (~> 0.3.901)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (1.1.1):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
@@ -169,7 +180,7 @@ PODS:
     - Result (~> 3.2.0)
   - KeychainSwift (13.0.0)
   - Kingfisher (4.10.1)
-  - KMNavigationBarTransition (1.1.5)
+  - KMNavigationBarTransition (1.1.8)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.1.15.7)
   - Moya (11.0.2):
@@ -259,17 +270,17 @@ PODS:
     - BinanceChain
     - Charts (= 3.5.0)
     - CHIPageControl
-    - Crashlytics
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
     - Eureka (~> 5.2.0)
-    - Fabric
+    - Firebase/Analytics
     - Firebase/Core
+    - Firebase/Crashlytics
     - FSPagerView
     - JSONRPCKit (~> 3.0.0)
     - KeychainSwift
     - Kingfisher (~> 4.0)
-    - KMNavigationBarTransition
+    - KMNavigationBarTransition (= 1.1.8)
     - MBProgressHUD
     - MJRefresh
     - Moya
@@ -399,6 +410,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebasePerformance
@@ -492,12 +504,12 @@ SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Eureka: c883105488e05bc65539f583246ecf9657cabbfe
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseABTesting: 821a3a3e4a145987e80fee3657c4de1cb9adf693
@@ -506,6 +518,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 9f495d3afacb7b558711e6218ebb14b1c51b5802
   FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseCrashlytics: b9e729da8b80d9c45f234f791a73b5fe647d4c31
   FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
   FirebasePerformance: 5652d2004001e886da6dca04f478c695f87c4702
@@ -521,7 +534,7 @@ SPEC CHECKSUMS:
   JSONRPCKit: 50e0dc5e7f873e87f81562feb8836b7d1974da6d
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
+  KMNavigationBarTransition: 7ee1a05ff758bce9258845a803f7a8b00585bd58
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -560,7 +573,7 @@ SPEC CHECKSUMS:
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
   Vite_GrinWallet: e8f6c83adc0dbd9adcd110a4d51807cf43700582
   Vite_HDWalletKit: b37755ff71dd8d22ab5fa8d9dc8b6f5bf2fbfec5
-  ViteBusiness: e162db19c14d7b32af0c7f3c802f59125176f55b
+  ViteBusiness: d24c9ba31bb2084433c4fd8b1c08d0d1c02283e0
   ViteWallet: 1276f22515bd7958156bc87499c1070d5aa13832
   web3.swift.pod: 66048c11416c2e7a9a4b35fe42254d0f0d9db4b1
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b

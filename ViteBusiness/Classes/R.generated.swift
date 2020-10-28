@@ -2408,6 +2408,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let grinReceiveByHttpDesc = Rswift.StringResource(key: "grin.receiveByHttp.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Asset
+      /// 
+      /// Locales: en, zh-Hans
+      public static let tabTitleDex = Rswift.StringResource(key: "tab.title.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Assets
       /// 
       /// Locales: en, zh-Hans
@@ -3104,10 +3108,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let gatewayInfoDetailPageEmail = Rswift.StringResource(key: "gateway.info.detail.page.email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: DEX Asset
-      /// 
-      /// Locales: en, zh-Hans
-      public static let tabTitleDex = Rswift.StringResource(key: "tab.title.dex", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: DEX Assets
       /// 
       /// Locales: en, zh-Hans
@@ -6797,6 +6797,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.receiveByHttp.desc", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Asset
+      /// 
+      /// Locales: en, zh-Hans
+      public static func tabTitleDex(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.dex", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Assets
       /// 
       /// Locales: en, zh-Hans
@@ -8013,13 +8020,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func gatewayInfoDetailPageEmail(_: Void = ()) -> String {
         return NSLocalizedString("gateway.info.detail.page.email", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: DEX Asset
-      /// 
-      /// Locales: en, zh-Hans
-      public static func tabTitleDex(_: Void = ()) -> String {
-        return NSLocalizedString("tab.title.dex", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: DEX Assets

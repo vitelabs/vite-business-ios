@@ -45,7 +45,7 @@
 "tab.title.market" = "行情";
 "tab.title.trading" = "交易";
 "tab.title.discover" = "发现";
-"tab.title.dex" = "交易所资产";
+"tab.title.dex" = "资产";
 
 /* App */
 "Cancel" = "取消";
