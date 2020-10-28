@@ -33,6 +33,7 @@ class MarketInfoService: NSObject {
 
     fileprivate(set) var marketLimit = MarketLimit(json: nil)
     fileprivate(set) var closedSymbols = [String]()
+    fileprivate(set) var hiddenSymbols = [String]()
 
     var operatorValue: [String: Any]?
 
@@ -72,14 +73,14 @@ class MarketInfoService: NSObject {
                     }
                 }
             }
-            self.sortedMarketDataBehaviorRelay.accept(relay)
+            self.updateSortedMarketData(marketDatas: relay)
         }
 
         NotificationCenter.default.rx.notification(.languageChanged).asObservable()
             .bind {[unowned self] _ in
                 let values = self.sortedMarketDataBehaviorRelay.value
                 values.first?.categary = R.string.localizable.marketFavourite()
-                self.sortedMarketDataBehaviorRelay.accept(values)
+                self.updateSortedMarketData(marketDatas: values)
         }.disposed(by: rx.disposeBag)
 
         readCaches()
@@ -87,6 +88,7 @@ class MarketInfoService: NSObject {
         marketSocket.start()
         fetchLimit()
         fetchMarketClosed()
+        fetchMarketHidden()
     }
 
     func fetchLimit() {
@@ -113,6 +115,36 @@ class MarketInfoService: NSObject {
                 self.fetchMarketClosed()
             }
         }
+    }
+
+    func fetchMarketHidden() {
+        Alamofire
+            .request("https://web-wallet-1257137467.cos.ap-hongkong.myqcloud.com/uiController/main.json")
+            .responseJSON()
+            .map(on: .main) { data, response -> [String] in
+                return JSON(response.data)["hideSymbols"].arrayObject as? [String] ?? []
+            }
+            .done { [weak self] in
+                guard let `self` = self else { return }
+                self.hiddenSymbols = $0
+                self.updateSortedMarketData(marketDatas: self.sortedMarketDataBehaviorRelay.value)
+            }
+            .catch { [weak self] (e) in
+                guard let `self` = self else { return }
+                plog(level: .debug, log: e.localizedDescription, tag: .market)
+                GCD.delay(1) { [weak self] in
+                    guard let `self` = self else { return }
+                    self.fetchMarketHidden()
+                }
+            }
+    }
+
+    func updateSortedMarketData(marketDatas: [MarketData]) {
+        var ret = marketDatas
+        ret.forEach { marketData in
+            marketData.infos = marketData.infos.filter { !hiddenSymbols.contains($0.statistic.symbol) }
+        }
+        self.sortedMarketDataBehaviorRelay.accept(ret)
     }
 
     //MARK: favourite
@@ -164,7 +196,7 @@ extension MarketInfoService {
         }
         sortTypes[index] = new
         let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
-        sortedMarketDataBehaviorRelay.accept(sorted)
+        self.updateSortedMarketData(marketDatas: sorted)
     }
 
     func sortByPrice(index: Int) {
@@ -183,7 +215,7 @@ extension MarketInfoService {
         }
         sortTypes[index] = new
         let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
-        sortedMarketDataBehaviorRelay.accept(sorted)
+        self.updateSortedMarketData(marketDatas: sorted)
     }
 
     func sortByPercent(index: Int) {
@@ -202,7 +234,7 @@ extension MarketInfoService {
         }
         sortTypes[index] = new
         let sorted = self.sortedMarketDatas(sortedMarketDataBehaviorRelay.value)
-        sortedMarketDataBehaviorRelay.accept(sorted)
+        self.updateSortedMarketData(marketDatas: sorted)
     }
 
     func sortedMarketDatas(_ datas:[MarketData]) -> [MarketData] {
@@ -412,7 +444,7 @@ extension MarketInfoService {
         }
 
         let sorted = sortedMarketDatas(marketDatas)
-        sortedMarketDataBehaviorRelay.accept(sorted)
+        self.updateSortedMarketData(marketDatas: sorted)
     }
 
     func rateString(price: String?, rate:Double?, currency: CurrencyCode?) -> String {
@@ -454,7 +486,7 @@ extension MarketInfoService {
                 }
                 return data
             }
-            self.sortedMarketDataBehaviorRelay.accept(relayValue)
+            self.updateSortedMarketData(marketDatas: relayValue)
         }
     }
 }
