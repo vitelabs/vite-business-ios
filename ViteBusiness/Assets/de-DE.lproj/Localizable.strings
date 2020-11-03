@@ -45,7 +45,7 @@
 "tab.title.market" = "Markets";
 "tab.title.trading" = "Trade";
 "tab.title.discover" = "Discover";
-"tab.title.dex" = "DEX Asset";
+"tab.title.dex" = "Asset";
 
 /* App */
 "Cancel" = "Cancel";
