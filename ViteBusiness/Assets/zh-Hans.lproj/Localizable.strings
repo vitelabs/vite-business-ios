@@ -906,6 +906,12 @@
 "bifrost.operation.sign.message.content" = "签名内容";
 "bifrost.operation.sign.message.type.trade.value" = "交易权限";
 
+"bifrost.create.contract.title" = "创建合约";
+"bifrost.create.contract.title.contract.address" = "合约地址";
+"bifrost.create.contract.title.amount" = "金额";
+"bifrost.create.contract.title.fee" = "Fee";
+"bifrost.create.contract.title.data" = "Data";
+
 //bnb
 "token.list.page.section.bnb.header" = "Binance网络";
 "bnb.send.page.feeView.titleLabel.title" = "矿工费用";

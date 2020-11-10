@@ -83,6 +83,7 @@ public struct Workflow {
     }
 
     static func send(account: Wallet.Account,
+                     blockType: AccountBlock.BlockType = .send,
                      toAddress: ViteAddress,
                      tokenId: ViteTokenId,
                      amount: Amount,
@@ -93,6 +94,7 @@ public struct Workflow {
                      completion: @escaping (Result<AccountBlock>) -> ()) {
         HUD.show()
         ViteNode.rawTx.send.prepare(account: account,
+                                    blockType: blockType,
                                     toAddress: toAddress,
                                     tokenId: tokenId,
                                     amount: amount,

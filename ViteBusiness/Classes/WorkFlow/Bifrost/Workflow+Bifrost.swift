@@ -22,6 +22,7 @@ public extension Workflow {
                               block: VBViteSendTx.Block,
                               completion: @escaping (Result<AccountBlock>) -> ()) {
         bifrostSendTx(needConfirm: needConfirm,
+                      isCreateContractType: block.blockType == AccountBlock.BlockType.createSend,
                       title: title,
                       account: account,
                       toAddress: block.toAddress,
@@ -33,6 +34,7 @@ public extension Workflow {
     }
 
     static func bifrostSendTx(needConfirm: Bool,
+                              isCreateContractType: Bool = false,
                               title: String,
                               account: Wallet.Account,
                               toAddress: ViteAddress,
@@ -56,6 +58,7 @@ public extension Workflow {
                     completion(Result.failure(ViteError.cancel))
                 case .success:
                     send(account: account,
+                         blockType: isCreateContractType ? .createSend : .send,
                          toAddress: toAddress,
                          tokenId: tokenId,
                          amount: amount,

@@ -131,7 +131,7 @@ class ContactsEditViewController: BaseViewController {
                     return
                 }
             case .bnb:
-                guard let toAddress : String = self.addressView.textView.text ?? "",
+                guard let toAddress = self.addressView.textView.text,
                     toAddress.checkBnbAddressIsValid() else {
                         Toast.show(R.string.localizable.sendPageToastAddressError())
                         return

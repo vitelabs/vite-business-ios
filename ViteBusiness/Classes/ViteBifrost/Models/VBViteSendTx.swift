@@ -43,6 +43,7 @@ public struct VBViteSendTx: Mappable {
 
 extension VBViteSendTx {
     public struct Block: Mappable {
+        public var blockType: AccountBlock.BlockType?
         public var toAddress: ViteAddress!
         public var tokenId: ViteTokenId!
         public var amount: Amount!
@@ -70,6 +71,7 @@ extension VBViteSendTx {
         }
 
         public mutating func mapping(map: Map) {
+            blockType <- map["blockType"]
             toAddress <- map["toAddress"]
             tokenId <- map["tokenId"]
             amount <- (map["amount"], JSONTransformer.balance)

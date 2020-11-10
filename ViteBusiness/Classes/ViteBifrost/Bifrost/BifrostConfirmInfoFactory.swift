@@ -68,12 +68,16 @@ struct BifrostConfirmInfoFactory {
                     }
                     return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                 case .contract:
-                    let map = BuildInContract.toAddressAndDataPrefixMap
-                    if let data = block.data, data.count >= 4,
-                        let type = map["\(block.toAddress!).\(data[0..<4].toHexString())"] {
-                        return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
+                    if let type = block.blockType, type == .createSend {
+                        return BuildInCreateContract.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
                     } else {
-                        return BuildInContractOthers.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
+                        let map = BuildInContract.toAddressAndDataPrefixMap
+                        if let data = block.data, data.count >= 4,
+                            let type = map["\(block.toAddress!).\(data[0..<4].toHexString())"] {
+                            return type.info.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
+                        } else {
+                            return BuildInContractOthers.confirmInfo(sendTx, tokenInfo).map { ($0, tokenInfo) }
+                        }
                     }
                 }
             })

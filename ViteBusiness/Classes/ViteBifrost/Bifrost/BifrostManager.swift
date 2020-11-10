@@ -520,6 +520,7 @@ extension BifrostManager {
             switch task.type {
             case let .sendTx(tx, tokenInfo):
                 Workflow.bifrostSendTx(needConfirm: false,
+                                       isCreateContractType: ((tx.block.blockType ?? .send) == AccountBlock.BlockType.createSend),
                                        title: task.info.title,
                                        account: account,
                                        toAddress: tx.block.toAddress,
@@ -604,6 +605,7 @@ extension BifrostManager {
                         switch task.type {
                         case let .sendTx(tx, tokenInfo):
                             Workflow.bifrostSendTx(needConfirm: true,
+                                                   isCreateContractType: ((tx.block.blockType ?? .send) == AccountBlock.BlockType.createSend),
                                                    title: task.info.title,
                                                    account: account,
                                                    toAddress: tx.block.toAddress,

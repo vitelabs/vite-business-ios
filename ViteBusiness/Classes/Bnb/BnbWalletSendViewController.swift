@@ -185,7 +185,7 @@ class BnbWalletSendViewController: BaseViewController {
             .rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
 
-                guard let toAddress : String = self.addressView.textView.text ?? "",
+                guard let toAddress = self.addressView.textView.text,
                 toAddress.checkBnbAddressIsValid() else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                 return

@@ -2054,7 +2054,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1031 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1036 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2296,6 +2296,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let sendPageAllButtonTitle = Rswift.StringResource(key: "send.page.all.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostCreateContractTitleAmount = Rswift.StringResource(key: "bifrost.create.contract.title.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
@@ -2923,6 +2927,10 @@ public struct R: Rswift.Validatable {
       /// en translation: Contract Address
       /// 
       /// Locales: en, zh-Hans
+      public static let bifrostCreateContractTitleContractAddress = Rswift.StringResource(key: "bifrost.create.contract.title.contract.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Contract Address
+      /// 
+      /// Locales: en, zh-Hans
       public static let bifrostOperationTitleContractAddress = Rswift.StringResource(key: "bifrost.operation.title.contract.address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Contract Address
       /// 
@@ -2992,6 +3000,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let createPageTitle = Rswift.StringResource(key: "create.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Create Contract
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostCreateContractTitle = Rswift.StringResource(key: "bifrost.create.contract.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Created
       /// 
       /// Locales: en, zh-Hans
@@ -3116,6 +3128,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitOneday = Rswift.StringResource(key: "exchange.limit.oneday", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Data
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostCreateContractTitleData = Rswift.StringResource(key: "bifrost.create.contract.title.data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Data
       /// 
       /// Locales: en, zh-Hans
@@ -3352,6 +3368,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketFavourite = Rswift.StringResource(key: "market.favourite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static let bifrostCreateContractTitleFee = Rswift.StringResource(key: "bifrost.create.contract.title.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Fee
       /// 
       /// Locales: en, zh-Hans
@@ -6604,6 +6624,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Amount
       /// 
       /// Locales: en, zh-Hans
+      public static func bifrostCreateContractTitleAmount(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.create.contract.title.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Amount
+      /// 
+      /// Locales: en, zh-Hans
       public static func bifrostOperationTitleAmount(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.amount", bundle: R.hostingBundle, comment: "")
       }
@@ -7696,6 +7723,13 @@ public struct R: Rswift.Validatable {
       /// en translation: Contract Address
       /// 
       /// Locales: en, zh-Hans
+      public static func bifrostCreateContractTitleContractAddress(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.create.contract.title.contract.address", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Contract Address
+      /// 
+      /// Locales: en, zh-Hans
       public static func bifrostOperationTitleContractAddress(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.operation.title.contract.address", bundle: R.hostingBundle, comment: "")
       }
@@ -7817,6 +7851,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func createPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("create.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Create Contract
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostCreateContractTitle(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.create.contract.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Created
@@ -8034,6 +8075,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exchangeLimitOneday(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("exchange.limit.oneday", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// en translation: Data
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostCreateContractTitleData(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.create.contract.title.data", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Data
@@ -8447,6 +8495,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func marketFavourite(_: Void = ()) -> String {
         return NSLocalizedString("market.favourite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fee
+      /// 
+      /// Locales: en, zh-Hans
+      public static func bifrostCreateContractTitleFee(_: Void = ()) -> String {
+        return NSLocalizedString("bifrost.create.contract.title.fee", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fee
