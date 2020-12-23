@@ -2054,7 +2054,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1036 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1037 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3348,6 +3348,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exportPageTitle = Rswift.StringResource(key: "export.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Export Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      public static let grinExportMnemonic = Rswift.StringResource(key: "grin.export.mnemonic", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, zh-Hans
@@ -8460,6 +8464,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exportPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("export.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Export Seed Phrase
+      /// 
+      /// Locales: en, zh-Hans
+      public static func grinExportMnemonic(_: Void = ()) -> String {
+        return NSLocalizedString("grin.export.mnemonic", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Export Seed Phrase

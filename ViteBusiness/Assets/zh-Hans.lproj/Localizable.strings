@@ -748,6 +748,7 @@
 "grin.detail.slateCopied" = "已复制Slate ID";
 "grin.send.illegalAmmount" = "转账金额不合法";
 "grin.detail.gatewayResend" = "请求网关重发";
+"grin.export.mnemonic" = "导出助记词";
 
 // CrossChain Deposit & Withdraw
 "crosschain.tokendetail" = "代币详情";

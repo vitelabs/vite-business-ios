@@ -17,6 +17,7 @@ import BigInt
 import Moya
 import SwiftyJSON
 import ObjectMapper
+import Vite_HDWalletKit
 
 func businessBundle() -> Bundle {
     let podBundle = Bundle(for: GrinInfoViewController.self)
@@ -134,9 +135,17 @@ class GrinInfoViewController: BaseViewController {
                     let spendableAcountLabel = self.spendableAcountLabel else {
                     return
                 }
-                FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles:
-                    [R.string.localizable.grinNodeConfigNode(),
-                     R.string.localizable.grinWalletCheck()]).show()
+
+                let titles: [String]
+                if HDWalletManager.instance.language == MnemonicCodeBook.english {
+                    titles = [R.string.localizable.grinNodeConfigNode(),
+                              R.string.localizable.grinWalletCheck()]
+                } else {
+                    titles = [R.string.localizable.grinNodeConfigNode(),
+                              R.string.localizable.grinWalletCheck(),
+                              R.string.localizable.grinExportMnemonic()]
+                }
+                FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles: titles, direction: .leftBottom, offset: CGPoint(x: 0, y: -145)).show()
             }
             .disposed(by: rx.disposeBag)
 
@@ -282,6 +291,11 @@ extension GrinInfoViewController: FloatButtonsViewDelegate {
                             self?.walletInfoVM.action.onNext(.checkWallet)
                         }),
                 ])
+        } else if index == 2 {
+            self.verifyWalletPassword(callback: { password in
+                let vc = ExportMnemonicViewController(password: password, forGrin: true)
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            })
         }
     }
 }

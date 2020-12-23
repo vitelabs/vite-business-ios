@@ -48,7 +48,7 @@ class FloatButtonsView: VisualEffectAnimationView {
     }
 
     fileprivate weak var delegate: FloatButtonsViewDelegate?
-    init(targetView: UIView, delegate: FloatButtonsViewDelegate, titles: [String], direction: Direction = .leftTop) {
+    init(targetView: UIView, delegate: FloatButtonsViewDelegate, titles: [String], direction: Direction = .leftTop, offset: CGPoint = .zero) {
 
         self.delegate = delegate
         guard let superView = targetView.ofViewController?.navigationController?.view else { fatalError() }
@@ -71,32 +71,32 @@ class FloatButtonsView: VisualEffectAnimationView {
         guard let targetSuperView = targetView.superview else { fatalError() }
         let frame = targetSuperView.convert(targetView.frame, to: superView)
 
-        let offset: CGFloat = 5.0
+        let gaps: CGFloat = 5.0
 
         switch direction {
         case .leftTop:
             containerView.layer.anchorPoint = CGPoint(x: 1, y: 1)
             containerView.snp.makeConstraints { (m) in
                 m.size.equalTo(layoutGuide)
-                m.centerX.equalTo(layoutGuide.snp.right)
-                m.centerY.equalTo(layoutGuide.snp.bottom)
+                m.centerX.equalTo(layoutGuide.snp.right).offset(offset.x)
+                m.centerY.equalTo(layoutGuide.snp.bottom).offset(offset.y)
             }
 
             layoutGuide.snp.makeConstraints { (m) in
                 m.right.equalTo(contentView).offset(frame.maxX - superView.frame.width)
-                m.bottom.equalTo(contentView).offset(frame.minY - superView.frame.height - offset)
+                m.bottom.equalTo(contentView).offset(frame.minY - superView.frame.height - gaps)
             }
         case .leftBottom:
             containerView.layer.anchorPoint = CGPoint(x: 1, y: 0)
             containerView.snp.makeConstraints { (m) in
                 m.size.equalTo(layoutGuide)
-                m.centerX.equalTo(layoutGuide.snp.right)
-                m.centerY.equalTo(layoutGuide.snp.top)
+                m.centerX.equalTo(layoutGuide.snp.right).offset(offset.x)
+                m.centerY.equalTo(layoutGuide.snp.top).offset(offset.y)
             }
 
             layoutGuide.snp.makeConstraints { (m) in
                 m.right.equalTo(contentView).offset(frame.maxX - superView.frame.width)
-                m.top.equalTo(contentView).offset(frame.maxY + offset)
+                m.top.equalTo(contentView).offset(frame.maxY + gaps)
             }
         }
     }

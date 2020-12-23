@@ -742,6 +742,7 @@
 "grin.detail.slateCopied" = "Slate ID Copied.";
 "grin.send.illegalAmmount" = "Illegal transfer amount";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
+"grin.export.mnemonic" = "Export Seed Phrase";
 
 // CrossChain Transfer & Receive
 

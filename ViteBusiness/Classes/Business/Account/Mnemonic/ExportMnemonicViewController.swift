@@ -39,8 +39,10 @@ extension UIViewController {
 class ExportMnemonicViewController: BaseViewController {
 
     let password: String
-    init(password: String) {
+    let forGrin: Bool
+    init(password: String, forGrin: Bool = false) {
         self.password = password
+        self.forGrin = forGrin
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -53,7 +55,9 @@ class ExportMnemonicViewController: BaseViewController {
 
         self._setupView()
 
-        updateQRImageView(name: HDWalletManager.instance.wallet!.name, mnemonic: HDWalletManager.instance.mnemonic!, language: HDWalletManager.instance.language!, password: password)
+        if forGrin == false {
+            updateQRImageView(name: HDWalletManager.instance.wallet!.name, mnemonic: HDWalletManager.instance.mnemonic!, language: HDWalletManager.instance.language!, password: password)
+        }
     }
 
     lazy var contentView: UIView = {
@@ -75,7 +79,7 @@ class ExportMnemonicViewController: BaseViewController {
         let label = UILabel().then {
             $0.font = Fonts.Font18
             $0.textColor = Colors.descGray
-            $0.text = HDWalletManager.instance.mnemonic ?? ""
+            $0.text = (self.forGrin ? HDWalletManager.instance.mnemonicForGrin : HDWalletManager.instance.mnemonic) ?? ""
             $0.numberOfLines = 0
         }
 
@@ -123,27 +127,29 @@ extension ExportMnemonicViewController {
 
         scrollView.stackView.addArrangedSubview(contentTextView)
 
-        let tip1View = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x24272B)
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-            $0.text = R.string.localizable.mnemonicBackupPageTip1()
+        if forGrin == false {
+            let tip1View = UILabel().then {
+                $0.textColor = UIColor(netHex: 0x24272B)
+                $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+                $0.text = R.string.localizable.mnemonicBackupPageTip1()
+            }
+
+            let tip2View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip2())
+            let tip3View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip3())
+
+            qrImageView.snp.makeConstraints { (m) in
+                m.size.equalTo(CGSize(width: 140, height: 140))
+            }
+
+            scrollView.stackView.addPlaceholder(height: 16)
+            scrollView.stackView.addArrangedSubview(tip1View)
+            scrollView.stackView.addPlaceholder(height: 10)
+            scrollView.stackView.addArrangedSubview(tip2View)
+            scrollView.stackView.addPlaceholder(height: 4)
+            scrollView.stackView.addArrangedSubview(tip3View)
+            scrollView.stackView.addPlaceholder(height: 20)
+            scrollView.stackView.addArrangedSubview(qrImageView.centerX())
         }
-
-        let tip2View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip2())
-        let tip3View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip3())
-
-        qrImageView.snp.makeConstraints { (m) in
-            m.size.equalTo(CGSize(width: 140, height: 140))
-        }
-
-        scrollView.stackView.addPlaceholder(height: 16)
-        scrollView.stackView.addArrangedSubview(tip1View)
-        scrollView.stackView.addPlaceholder(height: 10)
-        scrollView.stackView.addArrangedSubview(tip2View)
-        scrollView.stackView.addPlaceholder(height: 4)
-        scrollView.stackView.addArrangedSubview(tip3View)
-        scrollView.stackView.addPlaceholder(height: 20)
-        scrollView.stackView.addArrangedSubview(qrImageView.centerX())
 
         self.view.addSubview(self.confirmBtn)
         self.confirmBtn.snp.makeConstraints { (make) -> Void in
