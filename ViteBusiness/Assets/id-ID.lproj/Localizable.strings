@@ -742,6 +742,7 @@
 "grin.detail.slateCopied" = "Slate ID Copied.";
 "grin.send.illegalAmmount" = "Illegal transfer amount";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
+"grin.export.mnemonic" = "Export Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -898,6 +899,12 @@
 "bifrost.operation.sign.message.type" = "Permission Type";
 "bifrost.operation.sign.message.content" = "Signature Content";
 "bifrost.operation.sign.message.type.trade.value" = "Trade";
+
+"bifrost.create.contract.title" = "Create Contract";
+"bifrost.create.contract.title.contract.address" = "Contract Address";
+"bifrost.create.contract.title.amount" = "Amount";
+"bifrost.create.contract.title.fee" = "Fee";
+"bifrost.create.contract.title.data" = "Data";
 
 //bnb
 "token.list.page.section.bnb.header" = "Binance Network";
