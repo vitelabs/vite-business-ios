@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
   s.dependency 'MBProgressHUD'
   s.dependency 'RxOptional'
   s.dependency 'Vite_HDWalletKit'
-  s.dependency 'Eureka'
   s.dependency 'KeychainSwift'
   s.dependency 'Alamofire'
   s.dependency 'Moya'
@@ -82,7 +81,7 @@ Pod::Spec.new do |s|
   s.dependency 'PPBadgeViewSwift', '3.1.0'
 
   #table static form
-  s.dependency 'Eureka', '~> 5.2.0'
+  s.dependency 'Eureka', '~> 5.3.0'
 
   #RX
   s.dependency 'RxSwift', '~> 4.0'
