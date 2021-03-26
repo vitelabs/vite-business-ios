@@ -19,10 +19,13 @@ class ReceiveEthViewModel: ReceiveViewModelType {
     var tipStringDriver: Driver<String> {
         return self.amountStringBehaviorRelay.asDriver().map({ [weak self] (amountString) -> String in
             guard let `self` = self else { return "" }
+            
+            let symbol = self.token.contractAddress.isEmpty ? self.token.symbol : "\(self.token.symbol)(ERC20)"
+            
             if let amountString = amountString {
-                return R.string.localizable.receivePageTokenNameLabel("\(amountString) \(self.token.symbol)")
+                return R.string.localizable.receivePageTokenNameLabel("\(amountString) \(symbol)")
             } else {
-                return R.string.localizable.receivePageTokenNameLabel(self.token.symbol)
+                return R.string.localizable.receivePageTokenNameLabel(symbol)
             }
         })
     }

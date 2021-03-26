@@ -15,6 +15,7 @@ class CrossChainHistoryViewController: BaseViewController {
     }
 
     let tableView = UITableView.listView()
+    lazy var chainSelectView = ChainSelectView(chainName: self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName)
 
     var style: (CrossChainHistoryViewController.Style)!
     var gatewayInfoService: CrossChainGatewayInfoService!
@@ -29,11 +30,18 @@ class CrossChainHistoryViewController: BaseViewController {
          super.viewDidLoad()
         navigationTitleView = createNavigationTitleView()
 
+        view.addSubview(chainSelectView)
         view.addSubview(tableView)
+
+        chainSelectView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.top.equalTo(navigationTitleView!.snp.bottom)
+        }
+        
 
         tableView.snp.makeConstraints { (m) in
             m.left.right.bottom.equalToSuperview()
-            m.top.equalTo(navigationTitleView!.snp.bottom)
+            m.top.equalTo(chainSelectView.snp.bottom).offset(15)
         }
         tableView.delegate = self
         tableView.dataSource = self

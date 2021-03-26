@@ -66,13 +66,15 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
 
         let info = self.depositInfo
+        let standard = self.gatewayInfoService.tokenInfo.gatewayInfo!.standard
         let mapped = self.gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
         if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
-            let subStirng = minimumDepositAmountStr +  " " + mapped.symbol
-            let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(mapped.symbol, minimumDepositAmountStr)
-            let range = NSString.init(string: fullString).range(of: minimumDepositAmountStr)
+            let symbol = standard == nil ? "\(mapped.symbol)" : "\(mapped.symbol)(\(standard!))"
+            let num = "\(minimumDepositAmountStr) \(symbol)"
+            let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num)
             let attributeString = NSMutableAttributedString.init(string: fullString)
-            attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: range)
+            attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: symbol))
+            attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: num))
             $0.attributedText = attributeString
         }
     }
@@ -93,6 +95,21 @@ class GatewayDepositInfoViewController: BaseViewController {
     }
 
     let pointView1: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(netHex:0x007AFF)
+        view.layer.cornerRadius = 3
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    lazy var descriptionLabel2 = UILabel().then {
+        $0.text = R.string.localizable.crosschainDepositSelectDesc()
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
+    }
+
+    let pointView2: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.init(netHex:0x007AFF)
         view.layer.cornerRadius = 3
@@ -132,6 +149,8 @@ class GatewayDepositInfoViewController: BaseViewController {
     var mappedChainTokenDecimals: Int {
         return gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals ?? viteChainTokenDecimals
     }
+    
+    lazy var chainSelectView = ChainSelectView(chainName: self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -181,6 +200,9 @@ class GatewayDepositInfoViewController: BaseViewController {
         scrollView.addSubview(descriptionLabel0)
         scrollView.addSubview(pointView1)
         scrollView.addSubview(descriptionLabel1)
+        scrollView.addSubview(pointView2)
+        scrollView.addSubview(descriptionLabel2)
+        scrollView.addSubview(chainSelectView)
         scrollView.addSubview(addressView)
         scrollView.addSubview(scanQRCodeLable0)
         scrollView.addSubview(qrcodeView0)
@@ -208,11 +230,28 @@ class GatewayDepositInfoViewController: BaseViewController {
             m.top.equalTo(pointView1.snp.bottom).offset(-10)
             m.right.equalToSuperview().offset(-20)
         }
+        
+        pointView2.snp.makeConstraints { (m) in
+            m.left.equalToSuperview().offset(20)
+            m.height.width.equalTo(6)
+            m.top.equalTo(descriptionLabel1.snp.bottom).offset(10)
+        }
+
+        descriptionLabel2.snp.makeConstraints { (m) in
+            m.left.equalTo(pointView2.snp.right).offset(5)
+            m.top.equalTo(pointView2.snp.bottom).offset(-10)
+            m.right.equalToSuperview().offset(-20)
+        }
+        
+        chainSelectView.snp.makeConstraints { (m) in
+            m.left.right.equalToSuperview().inset(24)
+            m.top.equalTo(descriptionLabel2.snp.bottom).offset(20)
+        }
 
         addressView.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(16)
             m.right.equalToSuperview().offset(-16)
-            m.top.equalTo(descriptionLabel1.snp.bottom).offset(20)
+            m.top.equalTo(chainSelectView.snp.bottom).offset(18)
         }
 
         scanQRCodeLable0.snp.makeConstraints { (m) in

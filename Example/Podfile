@@ -48,7 +48,7 @@ target 'ViteBusiness_Example' do
   pod 'CHIPageControl'
 
   #table static form
-  pod 'Eureka', '~> 5.2.0'
+  pod 'Eureka', '~> 5.3.0'
 
   #RX
   pod 'RxSwift', '~> 4.0'

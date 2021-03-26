@@ -357,7 +357,7 @@ extension TokenInfo {
 public struct GatewayInfo: Mappable {
 
     var name =  ""
-    var url = ""
+    private var url = ""
     var icon = ""
     var website: String? = nil
     var overview = [String:String]()
@@ -375,7 +375,19 @@ public struct GatewayInfo: Mappable {
     var policyString: String {
         return (LocalizationService.sharedInstance.currentLanguage == .chinese ? policy["zh"] : policy["en"]) ?? policy["en"] ?? ""
     }
-
+    
+    var urlString: String {
+        let url = mappedTokenInfo.url
+        return url.isEmpty ? url : url
+    }
+    
+    var standard: String? {
+        return mappedTokenInfo.standard.isEmpty ? nil : mappedTokenInfo.standard
+    }
+    
+    var chainName: String {
+        standard ?? mappedToken.symbol
+    }
 
     public init?(map: Map) {
         guard let mapped = map.JSON["mappedToken"] as? [String: Any], let _ = mapped["tokenCode"] as? String else {
@@ -414,6 +426,9 @@ public struct MappedTokenInfo: Mappable {
     public fileprivate(set)  var index: Int = 0
     public fileprivate(set)  var icon: String = ""
     public fileprivate(set)  var id: String = ""
+    
+    public fileprivate(set)  var url: String = ""
+    public fileprivate(set)  var standard: String = ""
 
     public var uniqueSymbol: String {
         if case .vite = coinType {
@@ -441,6 +456,8 @@ public struct MappedTokenInfo: Mappable {
         index <- map["tokenIndex"]
         icon <- map["icon"]
         id <- map["tokenAddress"]
+        url <- map["url"]
+        standard <- map["standard"]
     }
 
     private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
@@ -451,7 +468,7 @@ public struct MappedTokenInfo: Mappable {
         return coinType.rawValue
     })
 
-    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String) {
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, url: String, standard: String) {
         self.tokenCode = tokenCode
         self.coinType = coinType
         self.rawChainName = rawChainName
@@ -461,6 +478,9 @@ public struct MappedTokenInfo: Mappable {
         self.index = index
         self.icon = icon
         self.id = id
+        
+        self.url = url
+        self.standard = standard
     }
 
     var ethChainGasLimit: Int {

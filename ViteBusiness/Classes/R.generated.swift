@@ -2054,7 +2054,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1037 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1039 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4116,10 +4116,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoOfficial = Rswift.StringResource(key: "market.detail.page.token.info.official", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Only %@ is accepted by the address below, and the minimum amount should be no less than %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open
       /// 
       /// Locales: en, zh-Hans
@@ -4336,6 +4332,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainDepositScanAddress = Rswift.StringResource(key: "crosschain.deposit.scanAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please select the correct mainnet or you will be unable to retrieve any lost tokens.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositSelectDesc = Rswift.StringResource(key: "crosschain.deposit.selectDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please sign for the transaction
       /// 
       /// Locales: en, zh-Hans
@@ -4684,6 +4684,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let loginPageBtnChooseName = Rswift.StringResource(key: "login.page.btn.chooseName", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Select Network
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainChainSelectTitle = Rswift.StringResource(key: "crosschain.chain.select.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Select Trading pair
       /// 
       /// Locales: en, zh-Hans
@@ -5024,6 +5028,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainStatementDetail = Rswift.StringResource(key: "crosschain.statement.detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The account will update after %@ network confirmations. Please wait.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositMinComfirm = Rswift.StringResource(key: "crosschain.deposit.minComfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The address you scanned now is not consistent with the one on web platform. Continue login with App address? (%@)
       /// 
       /// Locales: en, zh-Hans
@@ -5068,10 +5076,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowCongestionWithPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: The process should take %@ confirmation(s), please wait.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let crosschainDepositMinComfirm = Rswift.StringResource(key: "crosschain.deposit.minComfirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -6008,6 +6012,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowFastGetQuotaTip = Rswift.StringResource(key: "workflow.fast.get.quota.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You can only deposit %@ through the address provided below. No less than %@ will be accepted.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?
       /// 
       /// Locales: en, zh-Hans
@@ -9810,13 +9818,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.official", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Only %@ is accepted by the address below, and the minimum amount should be no less than %@
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositMinAmountDesc(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
       /// en translation: Open
       /// 
       /// Locales: en, zh-Hans
@@ -10193,6 +10194,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainDepositScanAddress(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.deposit.scanAddress", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please select the correct mainnet or you will be unable to retrieve any lost tokens.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositSelectDesc(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.deposit.selectDesc", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please sign for the transaction
@@ -10804,6 +10812,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("login.page.btn.chooseName", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Select Network
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainChainSelectTitle(_: Void = ()) -> String {
+        return NSLocalizedString("crosschain.chain.select.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Select Trading pair
       /// 
       /// Locales: en, zh-Hans
@@ -11399,6 +11414,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("crosschain.statement.detail", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: The account will update after %@ network confirmations. Please wait.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositMinComfirm(_ value1: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.minComfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: The address you scanned now is not consistent with the one on web platform. Continue login with App address? (%@)
       /// 
       /// Locales: en, zh-Hans
@@ -11474,13 +11496,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowCongestionWithPowAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("workflow.congestion.with.pow.alert.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: The process should take %@ confirmation(s), please wait.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func crosschainDepositMinComfirm(_ value1: String) -> String {
-        return String(format: NSLocalizedString("crosschain.deposit.minComfirm", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: The receipt has been confirmed
@@ -13119,6 +13134,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowFastGetQuotaTip(_ value1: String) -> String {
         return String(format: NSLocalizedString("workflow.fast.get.quota.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: You can only deposit %@ through the address provided below. No less than %@ will be accepted.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func crosschainDepositMinAmountDesc(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?

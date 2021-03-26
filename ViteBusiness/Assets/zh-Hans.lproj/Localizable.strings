@@ -760,8 +760,9 @@
 "crosschain.deposit.otherwallet" = "其他钱包转入";
 "crosschain.deposit.history" = "充值记录";
 "crosschain.withdraw.history" = "提现记录";
-"crosschain.deposit.minAmountDesc" = "通过下方充值地址只能充值%@，且金额不得低于%@";
+"crosschain.deposit.minAmountDesc" = "通过下方地址只能充值%@，且单笔金额不低于%@";
 "crosschain.deposit.minComfirm" = "%@个网络确认之后到账，请耐心等待";
+"crosschain.deposit.selectDesc" = "请选择正确的主网，否则代币丢失将无法找回";
 "crosschain.deposit.address" = "充值地址";
 "crosschain.deposit.scanAddress" = "请扫描地址二维码";
 "crosschain.deposit.scanLabel" = "请扫描%@二维码";
@@ -826,6 +827,7 @@
 "crosschain.statement.detail" = "服务条款，交易条件，限制及隐私政策";
 "crosschain.statement.agree" = "点击下一步代表您已同意%@的%@";
 "crosschain.statement.title" = "重要通知";
+"crosschain.chain.select.title" = "选择主网";
 
 "unit.Million" = " Million";
 "unit.Billion" = " Billion";

@@ -35,7 +35,7 @@ class CrossChainGatewayInfoService {
         }
         self.tokenInfo = tokenInfo
 
-        CrossChainGatewayInfoService.gateway[tokenInfo.id] = tokenInfo.gatewayInfo!.url
+        CrossChainGatewayInfoService.gateway[tokenInfo.id] = tokenInfo.gatewayInfo!.urlString
     }
 
     func getMetaInfo() -> Promise<TokenMetaInfo>  {

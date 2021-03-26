@@ -755,8 +755,9 @@
 "crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
 "crosschain.deposit.history" = "Deposit History";
 "crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Deposit Address";
 "crosschain.deposit.scanAddress" = "Please scan the address QR code";
 "crosschain.deposit.scanLabel" = "Please scan the %@ code";
@@ -819,6 +820,7 @@
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
 "crosschain.statement.title" = "Important Notice";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Million";
 "unit.Billion" = " Billion";

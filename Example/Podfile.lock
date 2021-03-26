@@ -52,7 +52,7 @@ PODS:
   - CryptoSwift (1.0.0)
   - DACircularProgress (2.3.1)
   - Differentiator (3.1.0)
-  - Eureka (5.2.1)
+  - Eureka (5.3.3)
   - Fabric (1.10.2)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -272,7 +272,7 @@ PODS:
     - CHIPageControl
     - CryptoSwift
     - DACircularProgress (= 2.3.1)
-    - Eureka (~> 5.2.0)
+    - Eureka (~> 5.3.0)
     - Firebase/Analytics
     - Firebase/Core
     - Firebase/Crashlytics
@@ -343,7 +343,7 @@ DEPENDENCIES:
   - CHIPageControl
   - Crashlytics
   - DACircularProgress (= 2.3.1)
-  - Eureka (~> 5.2.0)
+  - Eureka (~> 5.3.0)
   - Fabric
   - FBSnapshotTestCase (~> 2.1.4)
   - Firebase/Analytics
@@ -400,7 +400,6 @@ SPEC REPOS:
     - CryptoSwift
     - DACircularProgress
     - Differentiator
-    - Eureka
     - Fabric
     - FBSnapshotTestCase
     - Firebase
@@ -465,6 +464,8 @@ SPEC REPOS:
     - URLNavigator
     - web3.swift.pod
     - XCGLogger
+  trunk:
+    - Eureka
 
 EXTERNAL SOURCES:
   BinanceChain:
@@ -508,7 +509,7 @@ SPEC CHECKSUMS:
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  Eureka: c883105488e05bc65539f583246ecf9657cabbfe
+  Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
@@ -573,11 +574,11 @@ SPEC CHECKSUMS:
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
   Vite_GrinWallet: e8f6c83adc0dbd9adcd110a4d51807cf43700582
   Vite_HDWalletKit: b37755ff71dd8d22ab5fa8d9dc8b6f5bf2fbfec5
-  ViteBusiness: d24c9ba31bb2084433c4fd8b1c08d0d1c02283e0
+  ViteBusiness: de570daedff01b4616ef21196ec7558cd2c13d96
   ViteWallet: 1276f22515bd7958156bc87499c1070d5aa13832
   web3.swift.pod: 66048c11416c2e7a9a4b35fe42254d0f0d9db4b1
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: f190b8de8bbabf31da964e0e5c51e67c2d9e7921
+PODFILE CHECKSUM: 210b40e1176c02a125318609bd6b81afa465381f
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.8.4

@@ -112,6 +112,9 @@ class GatewayWithdrawViewController: BaseViewController {
     let withdrawButton = UIButton.init(style: .blue, title: R.string.localizable.crosschainWithdrawBtnTitle())
 
     let rightBarItemBtn = UIButton.init(style: .navigationItemCustomView, title: R.string.localizable.crosschainWithdrawHistory())
+    
+    lazy var chainSelectView = ChainSelectView(chainName: self.gateWayInfoService.tokenInfo.gatewayInfo!.chainName)
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +143,9 @@ class GatewayWithdrawViewController: BaseViewController {
 
 
         scrollView.stackView.addArrangedSubview(abstractView)
-        scrollView.stackView.addPlaceholder(height: 30)
+        scrollView.stackView.addPlaceholder(height: 7)
+        scrollView.stackView.addArrangedSubview(chainSelectView)
+        scrollView.stackView.addPlaceholder(height: 15)
         scrollView.stackView.addArrangedSubview(addressView)
 
         if let labelname = self.withDrawInfo.labelName {
