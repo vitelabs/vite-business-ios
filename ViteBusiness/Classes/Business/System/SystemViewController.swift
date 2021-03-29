@@ -164,6 +164,14 @@ class SystemViewController: FormViewController {
                         }.disposed(by: self.rx.disposeBag)
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
+            <<< ImageRow("nodeSettings") {
+                $0.cell.titleLab.text = R.string.localizable.systemPageCellNodeSettings()
+                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
+                $0.cell.bottomSeparatorLine.isHidden = false
+            }.onCellSelection({ [unowned self] _, _  in
+                let vc = NodeSettingsListViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
 
             <<< ViteSwitchRow("systemPageCellLoginPwd") {[unowned self] in
                 $0.title = R.string.localizable.systemPageCellLoginPwd()

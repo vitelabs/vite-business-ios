@@ -344,6 +344,7 @@
 "system.page.logout.loading" = "退出中";
 "system.page.cell.change.language" = "语言选择";
 "system.page.cell.change.currency" = "货币单位";
+"system.page.cell.node.settings" = "节点设置";
 "system.page.cell.login.pwd" = "密码解锁";
 "system.page.cell.login.faceId" = "Face ID 解锁";
 "system.page.cell.login.touchId" = "Touch ID 解锁";
@@ -354,6 +355,13 @@
 "system.page.cell.upload.log.toast.success" = "日志已上传";
 "system.page.cell.delete.wallet.title" = "删除当前账户";
 "system.page.cell.delete.wallet.alert.title" = "删除账户后只能通过助记词恢复账户，确认删除该账户吗？";
+
+/* node settings */
+"node.settings.page.title" = "节点设置";
+"node.settings.page.add.button.title" = "添加自定义节点";
+"node.settings.page.add.alert.title" = "请输入有效的节点地址";
+"node.settings.page.add.alert.tip" = "当前节点为 %@ ，网络为 Mainnet";
+"node.settings.page.node.invalid.error" = "节点无效";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "当前区块高度";

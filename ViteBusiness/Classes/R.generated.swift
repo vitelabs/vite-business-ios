@@ -2054,7 +2054,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1039 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1045 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2228,6 +2228,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let contactsEditPageAddTitle = Rswift.StringResource(key: "contacts.edit.page.add.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Add Custom Node
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageAddButtonTitle = Rswift.StringResource(key: "node.settings.page.add.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Add New Full Node
       /// 
       /// Locales: en, zh-Hans
@@ -3732,6 +3736,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let votePageVoteStatusVoteInvalid = Rswift.StringResource(key: "vote.page.voteStatus.voteInvalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Invalid node
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageNodeInvalidError = Rswift.StringResource(key: "node.settings.page.node.invalid.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Invitation Code(Optional)
       /// 
       /// Locales: en, zh-Hans
@@ -4072,6 +4080,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let confirmTransactionPageViteVoteNodeName = Rswift.StringResource(key: "confirm.transaction.page.vite.vote.node.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Node Settings
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageTitle = Rswift.StringResource(key: "node.settings.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Node Settings
+      /// 
+      /// Locales: en, zh-Hans
+      public static let systemPageCellNodeSettings = Rswift.StringResource(key: "system.page.cell.node.settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Not common stake, please try withdrawal where you placed the stake.
       /// 
       /// Locales: en, zh-Hans
@@ -4224,6 +4240,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let crosschainDepositLabelDesc = Rswift.StringResource(key: "crosschain.deposit.labelDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please enter a valid node address
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageAddAlertTitle = Rswift.StringResource(key: "node.settings.page.add.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please enter password to back up the Mnemonic Words.
       /// 
       /// Locales: en, zh-Hans
@@ -5048,6 +5068,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitAlert = Rswift.StringResource(key: "exchange.limit.alert", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The current node is %@, network is Mainnet
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageAddAlertTip = Rswift.StringResource(key: "node.settings.page.add.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
       /// 
       /// Locales: en, zh-Hans
@@ -6512,6 +6536,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func contactsEditPageAddTitle(_: Void = ()) -> String {
         return NSLocalizedString("contacts.edit.page.add.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Add Custom Node
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageAddButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.add.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Add New Full Node
@@ -9146,6 +9177,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.voteStatus.voteInvalid", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Invalid node
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageNodeInvalidError(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.node.invalid.error", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Invitation Code(Optional)
       /// 
       /// Locales: en, zh-Hans
@@ -9741,6 +9779,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("confirm.transaction.page.vite.vote.node.name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Node Settings
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Node Settings
+      /// 
+      /// Locales: en, zh-Hans
+      public static func systemPageCellNodeSettings(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.node.settings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Not common stake, please try withdrawal where you placed the stake.
       /// 
       /// Locales: en, zh-Hans
@@ -10005,6 +10057,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func crosschainDepositLabelDesc(_ value1: String) -> String {
         return String(format: NSLocalizedString("crosschain.deposit.labelDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Please enter a valid node address
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageAddAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.add.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Please enter password to back up the Mnemonic Words.
@@ -11447,6 +11506,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exchangeLimitAlert(_ value1: String, _ value2: String, _ value3: String) -> String {
         return String(format: NSLocalizedString("exchange.limit.alert", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
+      }
+      
+      /// en translation: The current node is %@, network is Mainnet
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageAddAlertTip(_ value1: String) -> String {
+        return String(format: NSLocalizedString("node.settings.page.add.alert.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.

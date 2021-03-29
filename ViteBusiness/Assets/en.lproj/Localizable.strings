@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
 "system.page.cell.change.currency" = "Currency";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
@@ -352,6 +353,13 @@
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
 "system.page.cell.delete.wallet.title" = "Delete Current Account";
 "system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";

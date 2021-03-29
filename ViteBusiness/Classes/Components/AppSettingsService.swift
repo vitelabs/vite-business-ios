@@ -58,12 +58,17 @@ extension AppSettingsService {
     public struct AppSettings: Mappable {
         public var currency: CurrencyCode = .USD
         public var dexHideSmall: Bool = false
+        public var chainNodeConfigs: [ChainNodeConfig] = [
+            ChainNodeConfig(type: .vite, current: nil),
+            ChainNodeConfig(type: .eth, current: nil),
+            ]
         public var guide = Guide()
 
         public init?(map: Map) { }
         public mutating func mapping(map: Map) {
             currency <- map["currency"]
             dexHideSmall <- map["dexHideSmall"]
+            chainNodeConfigs <- map["chainNodeConfigs"]
             guide <- map["guide"]
         }
 
@@ -79,6 +84,45 @@ extension AppSettingsService {
         }
 
         public init() {}
+    }
+    
+    
+}
+
+extension AppSettingsService {
+    public enum ChainType: String {
+        case vite = "VITE"
+        case eth = "ETHEREUM"
+    }
+    
+    public struct ChainNodeConfig: Mappable {
+        public var type: ChainType = .vite
+        public var nodes: [String] = []
+        public var current: String? = nil // nil means use official
+        
+        public init(type: ChainType, current: String?) {
+            self.type = type
+            self.current = current
+        }
+        
+        public init?(map: Map) { }
+        public mutating func mapping(map: Map) {
+            type <- map["type"]
+            nodes <- map["nodes"]
+            current <- map["current"]
+        }
+
+        public init() {}
+    }
+    
+    public func getNode(type: ChainType) -> String {
+        let config = appSettings.chainNodeConfigs.filter { $0.type == type }[0]
+        switch type {
+        case .vite:
+            return config.current ?? ViteConst.instance.vite.nodeHttp
+        case .eth:
+            return config.current ?? ViteConst.instance.eth.nodeHttp
+        }
     }
 }
 
