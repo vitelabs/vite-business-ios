@@ -362,6 +362,7 @@
 "node.settings.page.add.alert.title" = "请输入有效的节点地址";
 "node.settings.page.add.alert.tip" = "当前节点为 %@ ，网络为 Mainnet";
 "node.settings.page.node.invalid.error" = "节点无效";
+"node.settings.page.node.exist.error" = "节点已经存在";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "当前区块高度";

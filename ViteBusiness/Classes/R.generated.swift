@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 290 images.
+  /// This `R.image` struct is generated, and contains static references to 291 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -474,6 +474,8 @@ public struct R: Rswift.Validatable {
     public static let icon_tabbar_wallet_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet_select")
     /// Image `icon_tabbar_wallet`.
     public static let icon_tabbar_wallet = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_wallet")
+    /// Image `icon_tick`.
+    public static let icon_tick = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tick")
     /// Image `icon_token_info_add_button`.
     public static let icon_token_info_add_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_token_info_add_button")
     /// Image `icon_token_info_frame`.
@@ -1739,6 +1741,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_tabbar_wallet_select, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_tick", bundle: ..., traitCollection: ...)`
+    public static func icon_tick(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tick, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_token_info_add_button", bundle: ..., traitCollection: ...)`
     public static func icon_token_info_add_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_token_info_add_button, compatibleWith: traitCollection)
@@ -2054,7 +2061,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1045 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1046 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -5100,6 +5107,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let workflowCongestionWithPowAlertMessage = Rswift.StringResource(key: "workflow.congestion.with.pow.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: The node already exists
+      /// 
+      /// Locales: en, zh-Hans
+      public static let nodeSettingsPageNodeExistError = Rswift.StringResource(key: "node.settings.page.node.exist.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: The receipt has been confirmed
       /// 
       /// Locales: en, zh-Hans
@@ -11562,6 +11573,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func workflowCongestionWithPowAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("workflow.congestion.with.pow.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: The node already exists
+      /// 
+      /// Locales: en, zh-Hans
+      public static func nodeSettingsPageNodeExistError(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.node.exist.error", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: The receipt has been confirmed

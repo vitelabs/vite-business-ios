@@ -152,6 +152,20 @@ public class ETHWalletManager {
     public func isContractAddress(_ address: String) -> Promise<Bool> {
         return web3.eth.getCode(address: address).map { $0 != "0x" }
     }
+    
+    public static func check(node: URL, result: @escaping (Bool) -> ()) {
+        DispatchQueue.global().async {
+            do {
+                let infura = InfuraProvider(.Mainnet)!
+                infura.url = node
+                let web3 = web3swift.web3(provider: infura)
+                let number = try web3.eth.getBlockNumber()
+                DispatchQueue.main.async { result(true) }
+            } catch {
+                DispatchQueue.main.async { result(false) }
+            }
+        }
+    }
 }
 
 // MARK: - DEBUG function

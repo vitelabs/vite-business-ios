@@ -27,6 +27,10 @@ class NodeSettingsListViewController: BaseTableViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
         tableView.contentInsetAdjustmentBehavior = .never
+        
+        AppSettingsService.instance.appSettingsDriver.map { $0.chainNodeConfigs }.drive(onNext: { [weak self] (_) in
+            self?.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
     }
 }
 

@@ -19,7 +19,7 @@ class NodeSettingsDetailCell: BaseTableViewCell {
         $0.numberOfLines = 1
     }
     
-    let flagView = UIImageView(image: R.image.icon_right_white())
+    let flagView = UIImageView(image: R.image.icon_tick())
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

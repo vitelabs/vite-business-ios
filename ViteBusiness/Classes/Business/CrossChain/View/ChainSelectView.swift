@@ -47,7 +47,7 @@ class ChainSelectView: UIView {
     
     static func makeSegmentButton(title: String) -> UIButton {
         let ret = UIButton()
-        ret.backgroundColor = UIColor(netHex: 0xF3F6F9)
+        ret.backgroundColor = UIColor(netHex: 0x007AFF, alpha: 0.05)
         ret.setTitle(title, for: .normal)
         ret.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         ret.setTitleColor(UIColor(netHex: 0x5E6875), for: .normal)

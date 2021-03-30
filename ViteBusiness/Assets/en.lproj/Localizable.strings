@@ -360,6 +360,7 @@
 "node.settings.page.add.alert.title" = "Please enter a valid node address";
 "node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
 "node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";

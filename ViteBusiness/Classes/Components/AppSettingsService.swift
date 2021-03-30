@@ -9,6 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 import ObjectMapper
+import APIKit
+import JSONRPCKit
+import PromiseKit
+import ViteWallet
 
 public class AppSettingsService {
     public static let instance = AppSettingsService()
@@ -93,6 +97,23 @@ extension AppSettingsService {
     public enum ChainType: String {
         case vite = "VITE"
         case eth = "ETHEREUM"
+        
+        func check(node: String, result: @escaping (Bool) -> ()) {
+            guard let url = URL(string: node) else {
+                result(false)
+                return
+            }
+            switch self {
+            case .vite:
+                RPCRequest(for: ViteWallet.RPCServer(url: url), batch: BatchFactory().create(GetSnapshotChainHeightRequest())).promise.done { _ in
+                    result(true)
+                }.catch { _ in
+                    result(false)
+                }
+            case .eth:
+                ETHWalletManager.check(node: url, result: result)
+            }
+        }
     }
     
     public struct ChainNodeConfig: Mappable {
@@ -115,6 +136,10 @@ extension AppSettingsService {
         public init() {}
     }
     
+    public func getNodeConfig(type: ChainType) -> ChainNodeConfig {
+        appSettings.chainNodeConfigs.filter { $0.type == type }[0]
+    }
+    
     public func getNode(type: ChainType) -> String {
         let config = appSettings.chainNodeConfigs.filter { $0.type == type }[0]
         switch type {
@@ -123,6 +148,18 @@ extension AppSettingsService {
         case .eth:
             return config.current ?? ViteConst.instance.eth.nodeHttp
         }
+    }
+    
+    public func updateNode(type: ChainType, config: ChainNodeConfig) {
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        var index: Int?
+        for (i, config) in appSettings.chainNodeConfigs.enumerated() where config.type == type {
+            index = i
+        }
+        guard let i = index else { return }
+        appSettings.chainNodeConfigs[i] = config
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
     }
 }
 
