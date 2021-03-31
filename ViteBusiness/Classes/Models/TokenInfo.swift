@@ -386,7 +386,7 @@ public struct GatewayInfo: Mappable {
     }
     
     var chainName: String {
-        standard ?? mappedToken.symbol
+        standard ?? "Native"
     }
 
     public init?(map: Map) {

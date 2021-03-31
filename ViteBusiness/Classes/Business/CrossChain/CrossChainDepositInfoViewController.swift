@@ -66,10 +66,10 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
 
         let info = self.depositInfo
-        let standard = self.gatewayInfoService.tokenInfo.gatewayInfo!.standard
+        let chainName = self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName
         let mapped = self.gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
         if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
-            let symbol = standard == nil ? "\(mapped.symbol)" : "\(mapped.symbol)(\(standard!))"
+            let symbol = "\(mapped.symbol)(\(chainName))"
             let num = "\(minimumDepositAmountStr) \(symbol)"
             let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num)
             let attributeString = NSMutableAttributedString.init(string: fullString)

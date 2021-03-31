@@ -2061,7 +2061,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1046 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1048 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3981,8 +3981,8 @@ public struct R: Rswift.Validatable {
       public static let addressListPageMyTitle = Rswift.StringResource(key: "address.list.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: My Votes
       /// 
-      /// Locales: en, zh-Hans
-      public static let votePageVoteInfoNodePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.nodePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// Locales: en
+      public static let votePageVoteInfoNodePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.nodePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: NO
       /// 
       /// Locales: en, zh-Hans
@@ -4069,8 +4069,8 @@ public struct R: Rswift.Validatable {
       public static let spotPageCloseVipErrorToast = Rswift.StringResource(key: "spot.page.close.vip.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: No Vote
       /// 
-      /// Locales: en, zh-Hans
-      public static let votePageInfoNodataTitle = Rswift.StringResource(key: "vote.page.info.nodata.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// Locales: en
+      public static let votePageInfoNodataTitle = Rswift.StringResource(key: "vote.page.info.nodata.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: No more data
       /// 
       /// Locales: en, zh-Hans
@@ -6239,11 +6239,19 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// zh-Hans translation: 原生代币
+      /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueNative = Rswift.StringResource(key: "token.info.detail.page.type.value.native", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 跨链代币
+      /// zh-Hans translation: 我的投票數
+      /// 
+      /// Locales: zh-Hans
+      public static let votePageVoteInfoNoDePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.no​​dePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 暫無投票
+      /// 
+      /// Locales: zh-Hans
+      public static let votePageInfoNoDataTitle = Rswift.StringResource(key: "vote.page.info.no​​data.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 跨鏈代幣
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueOther = Rswift.StringResource(key: "token.info.detail.page.type.value.other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
@@ -9603,7 +9611,7 @@ public struct R: Rswift.Validatable {
       
       /// en translation: My Votes
       /// 
-      /// Locales: en, zh-Hans
+      /// Locales: en
       public static func votePageVoteInfoNodePollsTitle(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteInfo.nodePolls.title", bundle: R.hostingBundle, comment: "")
       }
@@ -9757,7 +9765,7 @@ public struct R: Rswift.Validatable {
       
       /// en translation: No Vote
       /// 
-      /// Locales: en, zh-Hans
+      /// Locales: en
       public static func votePageInfoNodataTitle(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.info.nodata.title", bundle: R.hostingBundle, comment: "")
       }
@@ -13556,14 +13564,28 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 原生代币
+      /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
       public static func tokenInfoDetailPageTypeValueNative(_: Void = ()) -> String {
         return NSLocalizedString("token.info.detail.page.type.value.native", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 跨链代币
+      /// zh-Hans translation: 我的投票數
+      /// 
+      /// Locales: zh-Hans
+      public static func votePageVoteInfoNoDePollsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vote.page.voteInfo.no​​dePolls.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 暫無投票
+      /// 
+      /// Locales: zh-Hans
+      public static func votePageInfoNoDataTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vote.page.info.no​​data.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 跨鏈代幣
       /// 
       /// Locales: zh-Hans
       public static func tokenInfoDetailPageTypeValueOther(_: Void = ()) -> String {
