@@ -133,6 +133,7 @@ class QuotaManageViewController: BaseViewController {
 extension QuotaManageViewController {
 
     func initBtnAction() {
+        let a = account
         sendButton.rx.tap
             .bind { [weak self] in
                 Statistics.log(eventId: Statistics.Page.WalletQuota.submit.rawValue)
@@ -166,13 +167,12 @@ extension QuotaManageViewController {
                     return
                 }
 
-                let vc = QuotaSubmitPopViewController(money: amountString, beneficialAddress: address, amount: amount)
-                vc.delegate = self
-                vc.modalPresentationStyle = .overCurrentContext
-                let delegate =  StyleActionSheetTranstionDelegate()
-                vc.transitioningDelegate = delegate
-                self.present(vc, animated: true, completion: nil)
-
+                Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
+                Workflow.pledgeWithConfirm(account: a, beneficialAddress: address, amount: amount) { (r) in
+                    if case .success = r {
+                        self.refreshDataBySuccess()
+                    }
+                }
             }
             .disposed(by: rx.disposeBag)
 
@@ -218,18 +218,6 @@ extension QuotaManageViewController: FloatButtonsViewDelegate {
                 }
             }
             UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
-        }
-    }
-}
-
-extension QuotaManageViewController: QuotaSubmitPopViewControllerDelegate {
-    func confirmAction(beneficialAddress: ViteAddress, amountString: String, amount: Amount) {
-        Statistics.log(eventId: Statistics.Page.WalletQuota.confirm.rawValue)
-        let amount = amountString.toAmount(decimals: ViteWalletConst.viteToken.decimals)!
-        Workflow.pledgeWithConfirm(account: account, beneficialAddress: beneficialAddress, amount: amount) { (r) in
-            if case .success = r {
-                self.refreshDataBySuccess()
-            }
         }
     }
 }

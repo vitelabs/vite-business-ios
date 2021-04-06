@@ -125,7 +125,24 @@ public struct Workflow {
                 } else {
                     let start = Date()
                     if context.isNeedToCalcPoW {
-                        return getPowWorkflow(context: context).map { ($0, start) }
+                        if case .pledge(let beneficialAddress) = type {
+                            return getPowWorkflow(context: context).map { ($0, start) }
+                        } else {
+                            return Promise { seal in
+                                GetPowTipFloatView(superview: UIApplication.shared.keyWindow!, address: account.address) {
+                                    let vc = QuotaManageViewController()
+                                    vc.amountView.textField.text = "1000"
+                                    UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+                                    seal.reject(ViteError.cancel)
+                                } notNowClick: {
+                                    seal.fulfill(())
+                                } cancelClick: {
+                                    seal.reject(ViteError.cancel)
+                                }.show()
+                            }.then {
+                                getPowWorkflow(context: context).map { ($0, start) }
+                            }
+                        }
                     } else {
                         return Promise.value((context, start))
                     }
@@ -138,16 +155,7 @@ public struct Workflow {
             }.always {
                 HUD.hide()
             }.done { (context, accountBlock, duration) in
-                if case .pledge(let beneficialAddress) = type, beneficialAddress == account.address {
-                    AlertControl.showCompletion(successToast)
-                } else if context.isNeedToCalcPoW {
-                    GetPowFinishedFloatView(superview: UIApplication.shared.keyWindow!, timeString: duration, utString: context.quota.utRequired.utToString(), pledgeClick: {
-                        let vc = QuotaManageViewController()
-                        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-                    }, cancelClick: {}).show()
-                } else {
-                    AlertControl.showCompletion(successToast)
-                }
+                AlertControl.showCompletion(successToast)
                 completion(Result.success(accountBlock))
             }.catch { (e) in
                 let error = ViteError.conversion(from: e)

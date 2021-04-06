@@ -26,6 +26,8 @@ public class AppConfigService {
                                             "vite.wiki",
                                             "vite.blog"]
     public var pDelay: Int = 3
+    public var getPowTimesPreDay: Int = 5
+
 
     public var isOnlineVersion: Bool {
         if let lastBuildNumber = lastBuildNumber, lastBuildNumber >= Bundle.main.buildNumberInt {
@@ -63,6 +65,7 @@ public class AppConfigService {
                 guard let configHash = ConfigHash(JSONString: string) else { return }
                 self.lastBuildNumber = configHash.lastBuildNumber
                 self.pDelay = configHash.pDelay ?? self.pDelay
+                self.getPowTimesPreDay = configHash.getPowTimesPreDay ?? self.getPowTimesPreDay
                 self.getAppSettingsConfig(hash: configHash.appConfig)
                 LocalizationService.sharedInstance.updateLocalizableIfNeeded(localizationHash: configHash.localization)
             case .failure(let error):
@@ -115,6 +118,7 @@ extension AppConfigService {
         fileprivate(set) var appConfig: String?
         fileprivate(set) var lastBuildNumber: Int?
         fileprivate(set) var pDelay: Int?
+        fileprivate(set) var getPowTimesPreDay: Int?
         fileprivate(set) var localization: [String: Any] = [:]
 
         public init?(map: Map) { }
@@ -123,6 +127,7 @@ extension AppConfigService {
             appConfig <- map["AppConfig"]
             lastBuildNumber <- map["LastBuildNumber"]
             pDelay <- map["pDelay"]
+            getPowTimesPreDay <- map["getPowTimesPreDay"]
             localization <- map["Localization"]
         }
     }
