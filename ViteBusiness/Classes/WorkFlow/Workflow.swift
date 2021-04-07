@@ -25,6 +25,7 @@ public struct Workflow {
     enum workflowType {
         case other
         case pledge(beneficialAddress: ViteAddress)
+        case cancelPledge
         case vote
     }
 
@@ -126,6 +127,8 @@ public struct Workflow {
                     let start = Date()
                     if context.isNeedToCalcPoW {
                         if case .pledge(let beneficialAddress) = type {
+                            return getPowWorkflow(context: context).map { ($0, start) }
+                        } else if case .cancelPledge = type {
                             return getPowWorkflow(context: context).map { ($0, start) }
                         } else {
                             return Promise { seal in
@@ -303,7 +306,7 @@ public extension Workflow {
                  fee: Amount(0),
                  data: ABI.BuildIn.getCancelPledgeData(beneficialAddress: beneficialAddress, amount: amount),
                  successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
-                 type: .other,
+                 type: .cancelPledge,
                  completion: completion)
         }
 
@@ -313,11 +316,11 @@ public extension Workflow {
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
 
-    static func CancelQuotaStakingWithConfirm(account: Wallet.Account,
-                                        id: String,
-                                        beneficialAddress: ViteAddress,
-                                        amount: Amount,
-                                        completion: @escaping (Result<AccountBlock>) -> ()) {
+    static func cancelQuotaStakingWithConfirm(account: Wallet.Account,
+                                              id: String,
+                                              beneficialAddress: ViteAddress,
+                                              amount: Amount,
+                                              completion: @escaping (Result<AccountBlock>) -> ()) {
         let sendBlock = {
             send(account: account,
                  toAddress: ViteWalletConst.ContractAddress.pledge.address,
@@ -326,7 +329,7 @@ public extension Workflow {
                  fee: Amount(0),
                  data: ABI.BuildIn.getCancelQuotaStakingData(id: id),
                  successToast: R.string.localizable.workflowToastCancelPledgeSuccess(),
-                 type: .other,
+                 type: .cancelPledge,
                  completion: completion)
         }
 

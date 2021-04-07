@@ -35,7 +35,19 @@ class GetPowTipFloatView: VisualEffectAnimationView {
     }
 
     let pledgeButton = UIButton(style: .blue, title: R.string.localizable.quotaPowTipFloatViewPledge())
-    let notNewButton = UIButton(style: .whiteWithShadow, title: R.string.localizable.quotaPowTipFloatViewNotNow())
+    let notNewButton = UIButton().then {
+        $0.setTitle(R.string.localizable.quotaPowTipFloatViewNotNow(), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    }
+    
+    let onlyPledgeButton = UIButton().then {
+        $0.setTitle(R.string.localizable.quotaPowTipFloatViewPledge(), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    }
 
     let cancelButton = UIButton().then {
         $0.setImage(R.image.icon_quota_close(), for: .normal)
@@ -51,7 +63,6 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         containerView.addSubview(titleLabel)
         containerView.addSubview(h1Label)
         containerView.addSubview(cancelButton)
-        containerView.addSubview(pledgeButton)
 
         containerView.snp.makeConstraints { (m) in
             m.center.equalTo(contentView)
@@ -66,7 +77,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
 
 
         h1Label.snp.makeConstraints { (m) in
-            m.top.equalTo(titleLabel.snp.bottom).offset(20)
+            m.top.equalTo(titleLabel.snp.bottom).offset(12)
             m.left.right.equalTo(titleLabel)
         }
 
@@ -79,30 +90,49 @@ class GetPowTipFloatView: VisualEffectAnimationView {
             
             h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage2()
             
+            containerView.addSubview(pledgeButton)
+            containerView.addSubview(notNewButton)
+            
             pledgeButton.snp.makeConstraints { (m) in
                 m.top.equalTo(h1Label.snp.bottom).offset(12)
                 m.height.equalTo(50)
-                m.left.right.equalToSuperview().inset(24)
+                m.left.right.equalToSuperview().inset(16)
             }
             
-            containerView.addSubview(notNewButton)
             notNewButton.snp.makeConstraints { (m) in
-                m.top.equalTo(pledgeButton.snp.bottom).offset(20)
-                m.height.equalTo(50)
-                m.left.right.equalToSuperview().inset(24)
-                m.bottom.equalToSuperview().offset(-24)
+                m.top.equalTo(pledgeButton.snp.bottom)
+                m.height.equalTo(44)
+                m.left.right.equalToSuperview().inset(16)
+                m.bottom.equalToSuperview()
             }
         } else {
             
             h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1(String(AppConfigService.instance.getPowTimesPreDay))
             
-            pledgeButton.snp.makeConstraints { (m) in
+            containerView.addSubview(onlyPledgeButton)
+            
+            onlyPledgeButton.snp.makeConstraints { (m) in
                 m.top.equalTo(h1Label.snp.bottom).offset(12)
-                m.height.equalTo(50)
-                m.left.right.equalToSuperview().inset(24)
-                m.bottom.equalToSuperview().offset(-24)
+                m.height.equalTo(49)
+                m.left.right.bottom.equalToSuperview()
+            }
+
+            let line = UIView().then {
+                $0.backgroundColor = Colors.lineGray
+            }
+
+            containerView.addSubview(line)
+            line.snp.makeConstraints { (m) in
+                m.height.equalTo(CGFloat.singleLineWidth)
+                m.left.right.equalToSuperview()
+                m.bottom.equalTo((onlyPledgeButton).snp.top)
             }
         }
+        
+        onlyPledgeButton.rx.tap.bind { [weak self] in
+            self?.hide()
+            pledgeClick()
+            }.disposed(by: rx.disposeBag)
 
         pledgeButton.rx.tap.bind { [weak self] in
             self?.hide()

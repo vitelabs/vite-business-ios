@@ -121,7 +121,7 @@ class PledgeHistoryViewController: BaseViewController, View {
                     let account = HDWalletManager.instance.account!
 
                     if let id = pledge.id {
-                        Workflow.CancelQuotaStakingWithConfirm(account: account, id:id, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount) { (ret) in
+                        Workflow.cancelQuotaStakingWithConfirm(account: account, id:id, beneficialAddress: pledge.beneficialAddress, amount: pledge.amount) { (ret) in
                             switch ret {
                             case .success:
                                 self?.withdrawingAddressSet.insert(pledge.withdrawingKey)
