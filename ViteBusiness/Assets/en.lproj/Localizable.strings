@@ -403,7 +403,7 @@
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
 "quota.pow.tip.float.view.title" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all 50 transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
 "quota.pow.tip.float.view.message.2" = "Insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days.";
 "quota.pow.tip.float.view.pledge" = "Get quota now";
 "quota.pow.tip.float.view.notNow" = "Skip";

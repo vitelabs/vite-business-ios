@@ -407,7 +407,7 @@
 "quota.float.view.tip" = "本次交易需消耗%@UT";
 
 "quota.pow.tip.float.view.title" = "配額不足";
-"quota.pow.tip.float.view.message.1" = "每個地址每天有%@筆交易不需要抵押，您當前地址次數已用盡，請前往配額頁面抵押VITE";
+"quota.pow.tip.float.view.message.1" = "每個地址每天有%@筆交易不需要抵押，您當前地址%@次已用盡，請前往配額頁面抵押VITE";
 "quota.pow.tip.float.view.message.2" = "配額不足，請前往配額頁面抵押VITE獲取配額，抵押的VITE三天后可取回";
 "quota.pow.tip.float.view.pledge" = "去抵押";
 "quota.pow.tip.float.view.notNow" = "跳过抵押";

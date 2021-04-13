@@ -107,7 +107,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
             }
         } else {
             
-            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1(String(AppConfigService.instance.getPowTimesPreDay))
+            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1(String(AppConfigService.instance.getPowTimesPreDay), String(AppConfigService.instance.getPowTimesPreDay))
             
             containerView.addSubview(onlyPledgeButton)
             

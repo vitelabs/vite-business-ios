@@ -4155,7 +4155,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let marketDetailPageTokenInfoOfficial = Rswift.StringResource(key: "market.detail.page.token.info.official", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all 50 transactions. Please go to the quota page and stake your VITE to perform more transactions.
+      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.
       /// 
       /// Locales: en, zh-Hans
       public static let quotaPowTipFloatViewMessage1 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -9941,11 +9941,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.official", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all 50 transactions. Please go to the quota page and stake your VITE to perform more transactions.
+      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.
       /// 
       /// Locales: en, zh-Hans
-      public static func quotaPowTipFloatViewMessage1(_ value1: String) -> String {
-        return String(format: NSLocalizedString("quota.pow.tip.float.view.message.1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      public static func quotaPowTipFloatViewMessage1(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("quota.pow.tip.float.view.message.1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// en translation: Open
