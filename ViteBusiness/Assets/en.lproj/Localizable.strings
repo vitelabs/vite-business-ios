@@ -403,10 +403,10 @@
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
 "quota.pow.tip.float.view.title" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "VITE Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all 5 transactions. Please go to the quota page and stake your VITE to perform more transactions.";
-"quota.pow.tip.float.view.message.2" = "Transaction cannot be executed due to insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days. ";
-"quota.pow.tip.float.view.pledge" = "Stake now";
-"quota.pow.tip.float.view.notNow" = "Cancel";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all 50 transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.message.2" = "Insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days.";
+"quota.pow.tip.float.view.pledge" = "Get quota now";
+"quota.pow.tip.float.view.notNow" = "Skip";
 
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
@@ -631,6 +631,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Spendable";
 "grin.balance.awaiting" = "Awaiting Confirmation";

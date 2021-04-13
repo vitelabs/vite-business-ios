@@ -179,6 +179,8 @@ class GrinInfoViewController: BaseViewController {
     }
 
     @IBAction func sendAciton(_ sender: Any) {
+        Toast.show(R.string.localizable.grinCloseTips())
+        return
         Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsSendClicked.rawValue, "grin_grin"))
         let a0 = UIAlertAction.init(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
           self.send(use: .vite)
@@ -228,6 +230,8 @@ class GrinInfoViewController: BaseViewController {
     }
 
     @IBAction func receiveAction(_ sender: Any) {
+        Toast.show(R.string.localizable.grinCloseTips())
+        return
         Statistics.log(eventId: String(format: Statistics.Page.WalletHome.tokenDetailsReceiveClicked.rawValue, "grin_grin"))
         let a0 = UIAlertAction(title: R.string.localizable.grinTxUseVite(), style: .default) { (_) in
             let notTeach = UserDefaults.standard.bool(forKey: "grin_don't_show_vite_teach")
