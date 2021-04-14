@@ -47,11 +47,10 @@ public final class ExchangeRateManager {
             if let _ = uuid {
                 //plog(level: .debug, log: "start fetch", tag: .exchange)
                 self.rateMapBehaviorRelay.accept(self.read())
-                var tokenCodes = MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode })
-                if !tokenCodes.contains(TokenInfo.BuildIn.vite_btc_000.value.tokenCode) {
-                    tokenCodes.append(TokenInfo.BuildIn.vite_btc_000.value.tokenCode)
-                }
-                let service = ExchangeRateService(tokenCodes: tokenCodes, interval: 5 * 60, completion: { [weak self] (r) in
+                var tokenCodes = Set(MyTokenInfosService.instance.tokenInfos.map({ $0.tokenCode }))
+                tokenCodes.insert(TokenInfo.BuildIn.vite_btc_000.value.tokenCode)
+                tokenCodes = tokenCodes.union(TokenInfoCacheService.instance.dexTokenInfos.map({$0.tokenCode}))
+                let service = ExchangeRateService(tokenCodes: Array(tokenCodes), interval: 5 * 60, completion: { [weak self] (r) in
                     guard let `self` = self else { return }
                     switch r {
                     case .success(let map):
