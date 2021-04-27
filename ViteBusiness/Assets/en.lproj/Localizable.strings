@@ -402,11 +402,15 @@
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
-"quota.pow.tip.float.view.title" = "Insufficient quota";
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
-"quota.pow.tip.float.view.message.2" = "Insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days.";
-"quota.pow.tip.float.view.pledge" = "Get quota now";
-"quota.pow.tip.float.view.notNow" = "Skip";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
 
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";

@@ -22,7 +22,6 @@ class GetPowTipFloatView: VisualEffectAnimationView {
     fileprivate let titleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x242728)
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        $0.text = R.string.localizable.quotaPowTipFloatViewTitle()
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -34,16 +33,16 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         $0.textAlignment = .center
     }
 
-    let pledgeButton = UIButton(style: .blue, title: R.string.localizable.quotaPowTipFloatViewPledge())
-    let notNewButton = UIButton().then {
-        $0.setTitle(R.string.localizable.quotaPowTipFloatViewNotNow(), for: .normal)
+    let pledgeButton = UIButton(style: .blue, title: R.string.localizable.quotaPowTipFloatViewPledge2())
+    let notNowButton = UIButton().then {
+        $0.setTitle(R.string.localizable.quotaPowTipFloatViewNotNow2(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
     let onlyPledgeButton = UIButton().then {
-        $0.setTitle(R.string.localizable.quotaPowTipFloatViewPledge(), for: .normal)
+        $0.setTitle(R.string.localizable.quotaPowTipFloatViewPledge1(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -88,10 +87,11 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         
         if PowManager.instance.canGetPow(address: address) {
             
+            titleLabel.text = R.string.localizable.quotaPowTipFloatViewTitle2()
             h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage2()
             
             containerView.addSubview(pledgeButton)
-            containerView.addSubview(notNewButton)
+            containerView.addSubview(notNowButton)
             
             pledgeButton.snp.makeConstraints { (m) in
                 m.top.equalTo(h1Label.snp.bottom).offset(12)
@@ -99,7 +99,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
                 m.left.right.equalToSuperview().inset(16)
             }
             
-            notNewButton.snp.makeConstraints { (m) in
+            notNowButton.snp.makeConstraints { (m) in
                 m.top.equalTo(pledgeButton.snp.bottom)
                 m.height.equalTo(44)
                 m.left.right.equalToSuperview().inset(16)
@@ -107,6 +107,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
             }
         } else {
             
+            titleLabel.text = R.string.localizable.quotaPowTipFloatViewTitle1()
             h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1(String(AppConfigService.instance.getPowTimesPreDay), String(AppConfigService.instance.getPowTimesPreDay))
             
             containerView.addSubview(onlyPledgeButton)
@@ -139,7 +140,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
             pledgeClick()
             }.disposed(by: rx.disposeBag)
         
-        notNewButton.rx.tap.bind { [weak self] in
+        notNowButton.rx.tap.bind { [weak self] in
             self?.hide()
             PowManager.instance.update(address: address)
             notNowClick()

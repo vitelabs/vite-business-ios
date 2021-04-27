@@ -2061,7 +2061,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1054 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1056 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3523,6 +3523,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaManagePageTitle = Rswift.StringResource(key: "quota.manage.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Get Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowTipFloatViewTitle2 = Rswift.StringResource(key: "quota.pow.tip.float.view.title.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Get Started with ViteX
       /// 
       /// Locales: en, zh-Hans
@@ -3534,7 +3538,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Get quota now
       /// 
       /// Locales: en, zh-Hans
-      public static let quotaPowTipFloatViewPledge = Rswift.StringResource(key: "quota.pow.tip.float.view.pledge", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let quotaPowTipFloatViewPledge1 = Rswift.StringResource(key: "quota.pow.tip.float.view.pledge.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Github
       /// 
       /// Locales: en, zh-Hans
@@ -3730,7 +3734,7 @@ public struct R: Rswift.Validatable {
       /// en translation: Insufficient quota
       /// 
       /// Locales: en, zh-Hans
-      public static let quotaPowTipFloatViewTitle = Rswift.StringResource(key: "quota.pow.tip.float.view.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      public static let quotaPowTipFloatViewTitle1 = Rswift.StringResource(key: "quota.pow.tip.float.view.title.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Insufficient quota
       /// 
       /// Locales: en, zh-Hans
@@ -3739,10 +3743,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let quotaAlertNeedQuotaMessage = Rswift.StringResource(key: "quota.alert.need.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days.
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowTipFloatViewMessage2 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Introduction
       /// 
       /// Locales: en, zh-Hans
@@ -3835,6 +3835,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let viteRefreshBackFooterRefreshingText = Rswift.StringResource(key: "Vite.RefreshBackFooter.RefreshingText", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Lock VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowTipFloatViewPledge2 = Rswift.StringResource(key: "quota.pow.tip.float.view.pledge.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Locked by Previous Transaction
       /// 
       /// Locales: en, zh-Hans
@@ -4683,6 +4687,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let myPageRewardCellTitle = Rswift.StringResource(key: "my.page.reward.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Run POW
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowTipFloatViewNotNow2 = Rswift.StringResource(key: "quota.pow.tip.float.view.notNow.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Run PoW
       /// 
       /// Locales: en, zh-Hans
@@ -4875,10 +4883,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let exchangeLimitOnetime = Rswift.StringResource(key: "exchange.limit.onetime", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Skip
-      /// 
-      /// Locales: en, zh-Hans
-      public static let quotaPowTipFloatViewNotNow = Rswift.StringResource(key: "quota.pow.tip.float.view.notNow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Slate ID Copied.
       /// 
       /// Locales: en, zh-Hans
@@ -5919,6 +5923,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let manageWalletPageErrorTypeName = Rswift.StringResource(key: "manage.wallet.page.error.type.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.
+      /// 
+      /// Locales: en, zh-Hans
+      public static let quotaPowTipFloatViewMessage2 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: We recommend the two following backup methods:
       /// 
       /// Locales: en, zh-Hans
@@ -8835,6 +8843,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Get Quota
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowTipFloatViewTitle2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.title.2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Get Started with ViteX
       /// 
       /// Locales: en, zh-Hans
@@ -8852,8 +8867,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Get quota now
       /// 
       /// Locales: en, zh-Hans
-      public static func quotaPowTipFloatViewPledge(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.pledge", bundle: R.hostingBundle, comment: "")
+      public static func quotaPowTipFloatViewPledge1(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.pledge.1", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Github
@@ -9195,8 +9210,8 @@ public struct R: Rswift.Validatable {
       /// en translation: Insufficient quota
       /// 
       /// Locales: en, zh-Hans
-      public static func quotaPowTipFloatViewTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.title", bundle: R.hostingBundle, comment: "")
+      public static func quotaPowTipFloatViewTitle1(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.title.1", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Insufficient quota
@@ -9211,13 +9226,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func quotaAlertNeedQuotaMessage(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.need.quota.message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Insufficient quota. Please go to the quota page and stake your VITE to increase quota. Staked VITE can be redeemed after 3 days.
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowTipFloatViewMessage2(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.message.2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Introduction
@@ -9379,6 +9387,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func viteRefreshBackFooterRefreshingText(_: Void = ()) -> String {
         return NSLocalizedString("Vite.RefreshBackFooter.RefreshingText", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Lock VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowTipFloatViewPledge2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.pledge.2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Locked by Previous Transaction
@@ -10865,6 +10880,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("my.page.reward.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Run POW
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowTipFloatViewNotNow2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.notNow.2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Run PoW
       /// 
       /// Locales: en, zh-Hans
@@ -11199,13 +11221,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func exchangeLimitOnetime(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("exchange.limit.onetime", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
-      /// en translation: Skip
-      /// 
-      /// Locales: en, zh-Hans
-      public static func quotaPowTipFloatViewNotNow(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.notNow", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Slate ID Copied.
@@ -13026,6 +13041,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func manageWalletPageErrorTypeName(_: Void = ()) -> String {
         return NSLocalizedString("manage.wallet.page.error.type.name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.
+      /// 
+      /// Locales: en, zh-Hans
+      public static func quotaPowTipFloatViewMessage2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.message.2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: We recommend the two following backup methods:
