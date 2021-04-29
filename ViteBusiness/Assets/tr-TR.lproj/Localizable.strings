@@ -803,7 +803,7 @@
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
 "crosschain.gatewaydetail.title" = "Ağ Geçidi Ayrıntıları";
 "crosschain.gatewaydetail.name" = "Ağ Geçidi Adı";
-"crosschain.gatewaydetail.webset" = "Resmi Website";
+"crosschain.gatewaydetail.webset" = "Resmi Web Site";
 "crosschain.gatewaydetail.email" = "Hizmet Posta Kutusu";
 "crosschain.gatewaydetail.statement" = "Hizmet Şartları";
 "crosschain.gatewaydetail.host" = "Ağ geçidi URL'si";
@@ -1118,7 +1118,7 @@
 "market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
 "market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Resmi site";
+"market.detail.page.token.info.official" = "Resmi web site";
 "market.detail.page.token.info.paper" = "Teknikİnceleme";
 "market.detail.page.token.info.browser" = "Explorer";
 "market.detail.page.token.info.github" = "GitHub";
