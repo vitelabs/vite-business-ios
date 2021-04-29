@@ -14,7 +14,7 @@
 
 "discover.page.title" = "Keşfet";
 "discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Son Olaylar";
+"discover.page.activity.page.title1" = "Güncel Etkinlikler";
 "discover.page.activity.page.title2" = "Geçmiş";
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Şimdi";
@@ -23,7 +23,7 @@
 "discover.page.headerTitle.activity" = "Kampanya Merkezi";
 "discover.page.headerTitle.game" = "Vite Oyunları";
 "discover.page.headerTitle.news" = "Vite Haberleri";
-"discover.page.VCWebTitle.activity" = "Vite Olayları";
+"discover.page.VCWebTitle.activity" = "Vite Etkinlikleri";
 "discover.page.VCWebTitle.game" = "Vite Oyunları";
 "discover.page.VCWebTitle.news" = "Vite Haberleri";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
