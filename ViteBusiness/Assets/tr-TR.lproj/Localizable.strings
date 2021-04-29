@@ -413,18 +413,18 @@
 "vote.page.voteStatus.voting" = "Oylama";
 "vote.page.voteStatus.cancelVoting" = "İptal ediliyor";
 "vote.page.voteStatus.voteInvalid" = "Geçersiz Oy";
-"vote.page.voteInfo.nodePolls.title" = "My Votes";
-"vote.page.nodeStatus.valid.title" = "Active";
-"vote.page.nodeStatus.invalid.title" = "Inactive";
+"vote.page.voteInfo.nodePolls.title" = "Oylarım";
+"vote.page.nodeStatus.valid.title" = "Etkin";
+"vote.page.nodeStatus.invalid.title" = "Etkin değil";
 "vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
 
 /* Vote List*/
-"vote" = "Vote";
-"vote.list.title" = "Candidate Nodes";
+"vote" = "Oy";
+"vote.list.title" = "Aday Düğümler";
 "vote.list.search" = "Search for name or address of candidate nodes";
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
-"vote.list.confirm.revote" = "Confirm";
-"vote.list.count" = "Votes";
+"vote.list.confirm.revote" = "Onayla";
+"vote.list.count" = "Oylar";
 "vote.list.address" = "Adres";
 "vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
 "vote.list.search.empty" = "Sonuç yok, lütfen başka bir giriş deneyin";
@@ -503,16 +503,16 @@
 //token
 "token.list.page.search.title" = "Lütfen token adı veya sözleşme adresi girin";
 "token.list.page.section.vite.header" = "Vite Ağı";
-"token.list.page.section.eth.header" = "Ethereum Network";
-"token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
+"token.list.page.section.eth.header" = "Ethereum Ağı";
+"token.list.page.section.grin.header" = "GRIN Ağı";
+"token.list.page.ignore.btn.title" = "Yoksay";
 "token.list.page.ignore.lab.title" = "%d new asset(s)";
 "token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
 // Contacts Home
-"contacts.home.page.title" = "Contact Address";
-"contacts.home.page.no.contact.tip" = "Add your first address";
+"contacts.home.page.title" = "İletişim Adresi";
+"contacts.home.page.no.contact.tip" = "İlk adresini ekle";
 "contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
+"contacts.home.page.filter.all" = "Tümü";
 "contacts.home.page.add.button.title" = "Add";
 
 // Contacts Edit
@@ -544,8 +544,8 @@
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Başarılı";
-"workflow.toast.place.order.success" = "Order Placed";
-"workflow.toast.cancel.order.success" = "Order Cancelled";
+"workflow.toast.place.order.success" = "Sipariş Verildi";
+"workflow.toast.cancel.order.success" = "Sipariş İptal Edildi";
 
 "workflow.congestion.without.pow.alert.title" = "Uyarı";
 "workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
@@ -558,61 +558,61 @@
 "workflow.fast.get.quota.title" = "Instantly Getting Quota";
 "workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
 "workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
-"workflow.fast.get.quota.link" = "clicking here";
+"workflow.fast.get.quota.link" = "buraya tıklayın";
 
 /* Confirm Transaction Page */
-"confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.address.title" = "Recipient Address";
-"confirm.transaction.amount.title" = "Amount";
-"confirm.transaction.fee.title" = "Fee";
-"confirm.transaction.quota.title" = "Quota";
-"confirm.transaction.page.use.password" = "Use password";
-"confirm.transaction.page.pw.title" = "Please input password";
+"confirm.transaction.page.biometry.confirm.reason" = "Doğrula";
+"confirm.transaction.address.title" = "Alıcı Adresi";
+"confirm.transaction.amount.title" = "Miktar";
+"confirm.transaction.fee.title" = "Komisyon";
+"confirm.transaction.quota.title" = "Kota";
+"confirm.transaction.page.use.password" = "Parola kullan";
+"confirm.transaction.page.pw.title" = "Lütfen parola girin";
 // vite transfer
-"confirm.transaction.page.vite.transfer.title" = "Send";
-"confirm.transaction.page.vite.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.transfer.title" = "Gönder";
+"confirm.transaction.page.vite.confirm.button" = "Onayla";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "Get Quota";
-"confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
-"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Çekme";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Onayla";
 // vite vote & cancel
-"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
-"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.vote.node.name" = "Node Name";
-"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
-"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.vote.transfer.title" = "Oy";
+"confirm.transaction.page.vite.vote.confirm.button" = "Onayla";
+"confirm.transaction.page.vite.vote.node.name" = "Düğüm Adı";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Oylamayı İptal Et";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Onayla";
 // vite dex desposit & withdraw
 "confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
-"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Onayla";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
-"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.buy.title" = "Buy %@";
-"confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
-"confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Onayla";
+"confirm.transaction.page.vite.dex.buy.title" = "%@ Al";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "Onayla";
+"confirm.transaction.page.vite.dex.sell.title" = "%@ Sat";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Onayla";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "İptal";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Onayla";
 
-"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
-"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
+"confirm.transaction.page.vite.dex.vip.title" = "VIP olun";
+"confirm.transaction.page.vite.dex.vip.balance" = "Mevcut Exchange Bakiyesi";
+"confirm.transaction.page.vite.dex.vip.amount" = "VIP Olmak İçin Gereken Stake Miktarı";
 "confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
-"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
-"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
-"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Onayla";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "VIP'yi iptal et";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Onayla";
 
 // vite call contract
-"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
-"confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Ödeme";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Onayla";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Send";
-"confirm.transaction.page.eth.confirm.button" = "Confirm";
+"confirm.transaction.page.eth.transfer.title" = "Gönder";
+"confirm.transaction.page.eth.confirm.button" = "Onayla";
 // eth vite exchange
-"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
-"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+"confirm.transaction.page.eth.vite.exchange.title" = "VITE Dönüşümü";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Dönüştür";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Send";
-"confirm.transaction.page.grin.confirm.button" = "Confirm";
+"confirm.transaction.page.grin.transfer.title" = "Gönder";
+"confirm.transaction.page.grin.confirm.button" = "Onayla";
 
 // Grin
 "grin.balance.total" = "Total";
@@ -657,33 +657,33 @@
 "grin.sent.next" = "Next";
 "grin.sent.suggest.useVite.title" = "Notice";
 "grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.";
-"grin.sent.switch" = "VITE Address";
-"grin.sent.stillUseHttp" = "HTTP Address";
-"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
-"grin.sent.vite.success" = "Your transaction has sent.";
+"grin.sent.switch" = "VITE Adresi";
+"grin.sent.stillUseHttp" = "HTTP Adresi";
+"grin.sent.http.success" = "GRIN transfer talebini başarıyla gönderdiniz";
+"grin.sent.vite.success" = "İşleminiz gönderildi.";
 "grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
 "grin.receiveByVite.desc" = "Please note that web wallet doesn't support native GRIN. If you receive the VITE transaction with GRIN file, you should contact the sender to cancel the transaction and resend GRIN.";
-"grin.iknow" = "I know";
-"grin.thisIsFirstViteAddress" = "This is your first VITE address";
+"grin.iknow" = "Biliyorum";
+"grin.thisIsFirstViteAddress" = "Bu ilk VITE adresinizdir";
 "grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
 "grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
-"grin.receive.title" = "Receive GRIN";
-"grin.receive.sented" = "Created";
-"grin.creatTime" = "Creation Time";
+"grin.receive.title" = "GRIN Al";
+"grin.receive.sented" = "Oluşturuldu";
+"grin.creatTime" = "Oluşturma Zamanı";
 "grin.signAndShare" = "Receive and Share";
-"grin.sent.btnTitle" = "Send";
-"grin.receive.BtnTitle" = "Receive";
-"grin.notice.title" = "Notice";
-"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
-"grin.teach.http.receive.title" = "Receive GRIN though HTTP Address";
-"grin.teach.vite.sent.title" = "Send GRIN through VITE Address";
-"grin.teach.http.sent.title" = "Send GRIN though HTTP Address";
-"grin.txid.title" = "Transaction ID";
-"grin.switchAddress" = "Switch Address";
-"grin.http.address" = "HTTP Address";
-"grin.vite.address" = "VITE Address";
-"grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
-"grin.canceled" = "Canceled";
+"grin.sent.btnTitle" = "Gönder";
+"grin.receive.BtnTitle" = "Alma";
+"grin.notice.title" = "Uyarı";
+"grin.teach.vite.receive.title" = "VITE Adresi aracılığıyla GRIN alın";
+"grin.teach.http.receive.title" = "HTTP Adresi aracılığıyla GRIN alın";
+"grin.teach.vite.sent.title" = "VITE Adresi aracılığıyla GRIN gönderin";
+"grin.teach.http.sent.title" = "HTTP Adresi aracılığıyla GRIN gönderin";
+"grin.txid.title" = "İşlem kimliği";
+"grin.switchAddress" = "Adres Değiştir";
+"grin.http.address" = "HTTP Adresi";
+"grin.vite.address" = "VITE Adresi";
+"grin.sendPageViteContactsButtonTitle" = "GRIN İletişim Adresi";
+"grin.canceled" = "İptal edildi";
 "grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
