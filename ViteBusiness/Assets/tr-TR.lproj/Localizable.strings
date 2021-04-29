@@ -371,7 +371,7 @@
 /* quota manage */
 "quota.manage.page.title" = "Get Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
-"quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.quota.money.title" = "Stake Miktarı";
 "quota.manage.page.quota.quota.title" = "Kota";
 "quota.manage.page.quota.money.placeholder" = "Lütfen miktarı girin, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
@@ -757,40 +757,40 @@
 "crosschain.withdraw.history" = "Çekim Geçmişi";
 "crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
 "crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Deposit Address";
-"crosschain.deposit.scanAddress" = "Please scan the address QR code";
-"crosschain.deposit.scanLabel" = "Please scan the %@ code";
+"crosschain.deposit.address" = "Yatırma Adresi";
+"crosschain.deposit.scanAddress" = "Lütfen adres QR kodunu tarayın";
+"crosschain.deposit.scanLabel" = "Lütfen %@ kodunu tarayın";
 "crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
 
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
-"crosschain.deposit.all" = "Deposit All";
-"crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.withdraw.all" = "Withdraw All";
-"crosschain.withdraw.amount" = "Withdrawal Amount";
-"crosschain.tokenDetail.shortname" = "Symbol";
-"crosschain.tokenDetail.id" = "Token ID";
-"crosschain.tokenDetail.name" = "Token Name";
+"crosschain.withdraw.eth.myAddress" = "ETH Adresim";
+"crosschain.deposit.min" = "Minimum Yatırma Miktarı ";
+"crosschain.withdraw.min" = "Minimum Çekme Miktarı ";
+"crosschain.deposit.min.alert" = "Yatırma miktarı 'den az olamaz ";
+"crosschain.deposit.all" = "Tümünü Yatır";
+"crosschain.deposit.amount" = "Yatırma Miktarı";
+"crosschain.withdraw.all" = "Tümünü Çek";
+"crosschain.withdraw.amount" = "Çekim Miktarı";
+"crosschain.tokenDetail.shortname" = "Sembol";
+"crosschain.tokenDetail.id" = "Token Kimliği";
+"crosschain.tokenDetail.name" = "Token Adı";
 "crosschain.tokenDetail.address" = "Coin Forging Address";
 "crosschain.tokenDetail.amount" = "Total Issuance";
-"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.tokenDetail.digit" = "Ondalık sayılar";
 "crosschain.tokenDetail.unit" = "";
 "crosschain.tokenDetail.issuance" = "Open to Additional Issue";
-"crosschain.tokenDetail.issuance.true" = "Yes";
-"crosschain.tokenDetail.issuance.false" = "No";
+"crosschain.tokenDetail.issuance.true" = "Evet";
+"crosschain.tokenDetail.issuance.false" = "Hayır";
 "crosschain.tokenDetail.date" = "Issuance Date";
-"crosschain.tokenDetail.desc" = "Description";
+"crosschain.tokenDetail.desc" = "Açıklama";
 "crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
-"crosschain.status.confirmed" = "Confirmed";
-"crosschain.status.tot.exceed.limit" = "Exceed the limit";
-"crosschain.status.wrong.address" = "Wrong transfer address";
+"crosschain.status.confirmed" = "Onaylandı";
+"crosschain.status.tot.exceed.limit" = "Limit aşıldı";
+"crosschain.status.wrong.address" = "Yanlış transfer adresi";
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
-"crosschain.status.withdraw.failed" = "Withdrawal Failed";
-"crosschain.status.failedBecausePoor" = "Insufficient amount";
+"crosschain.status.withdraw.failed" = "Çekim Başarısız";
+"crosschain.status.failedBecausePoor" = "Yetersiz miktar";
 "crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
 "crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
 "crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
@@ -827,9 +827,9 @@
 "exchange.history" = "Purchase History";
 "exchange.card.title" = "Buy VITE";
 "exchange.titley" = "Instant Purchase";
-"exchange.buy" = "Buy";
+"exchange.buy" = "Al";
 "exchange.price" = "Rate: ";
-"exchange.amount" = "Amount: ";
+"exchange.amount" = "Miktar: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
 "exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
@@ -890,7 +890,7 @@
 
 "bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.amount" = "Miktar";
 "bifrost.operation.title.fee" = "Fee";
 "bifrost.operation.title.data" = "Data";
 
@@ -902,7 +902,7 @@
 
 "bifrost.create.contract.title" = "Create Contract";
 "bifrost.create.contract.title.contract.address" = "Contract Address";
-"bifrost.create.contract.title.amount" = "Amount";
+"bifrost.create.contract.title.amount" = "Miktar";
 "bifrost.create.contract.title.fee" = "Fee";
 "bifrost.create.contract.title.data" = "Data";
 
@@ -1037,12 +1037,12 @@
 "fund.walletAddress" = "My Address";
 "fund.walletFound" = "Wallet Balance";
 "fund.quotaInfo" = "Spendable Quota/Quota Limit";
-"fund.deposit.amount" = "Transfer Amount";
+"fund.deposit.amount" = "Transfer Miktarı";
 "fund.deposit.all" = "All";
 "fund.quotaSpend" = "Quota";
 "fund.deposit" = "Transfer";
 "fund.vitexFound" = "Available Balance";
-"fund.withdraw.amount" = "Transfer Amount";
+"fund.withdraw.amount" = "Transfer Miktarı";
 "fund.withdraw" = "Transfer";
 "fund.vitex.all" = "Exchange Total Balance";
 "fund.vitex.available" = "Exchange Available Balance";
@@ -1058,7 +1058,7 @@
 "transfer.to" = "To";
 "transfer.dex.account" = "Exchange Account";
 "transfer.token" = "Token";
-"transfer.amount" = "Amount";
+"transfer.amount" = "Miktar";
 "transfer.available" = "Balance: ";
 "transfer.title" = "Transfer";
 "transfer.search.placeholder" = "Please input token name";
@@ -1102,12 +1102,12 @@
 "market.detail.page.value.extent.title" = "chg%";
 "market.detail.page.value.vol.title" = "Volume";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
+"market.detail.page.depth.vol.title" = "Miktar(%@)";
 "market.detail.page.depth.price.title" = "Price(%@)";
 
 "market.detail.page.trade.time.title" = "Time";
 "market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
+"market.detail.page.trade.vol.title" = "Miktar";
 "market.detail.page.buy.button.title" = "Buy";
 "market.detail.page.sell.button.title" = "Sell";
 
@@ -1178,9 +1178,9 @@
 "spot.page.button.sell.title" = "Sell";
 "spot.page.button.limit.buy.title" = "Limit Order";
 "spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
+"spot.page.vol.buy.placeholder" = "Miktar";
 "spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.vol.sell.placeholder" = "Miktar";
 "spot.page.available" = "Avail.: %@";
 "spot.page.buyable" = "Max Buy: %@";
 "spot.page.sellable" = "Max Sell: %@";
@@ -1191,15 +1191,15 @@
 "spot.page.close.vip.error.toast" = "No VIP staked";
 "spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
 "spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
+"spot.page.depth.vol" = "Miktar";
 "spot.page.current.order.title" = "Open Orders";
 "spot.page.orders.button.title" = "History";
 
 "spot.page.post.toast.price.empty" = "Please enter the price";
 "spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
+"spot.page.post.toast.vol.empty" = "Lütfen miktarı girin";
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.amount.min" = "Toplam varlık en az %@ olmalıdır";
 
 "spot.page.confirm.tip" = "Do not ask again in 24 hours";
 
