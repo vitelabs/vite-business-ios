@@ -155,7 +155,7 @@
 
 /* login */
 "login.page.btn.chooseName" = "Hesapları Seçin";
-"login.page.btn.login" = "Oturum aç";
+"login.page.btn.login" = "Giriş Yap";
 "login.page.loading.title" = "Processing";
 "login.page.error.toast.title" = "Yanlış parola! Lütfen bunun yerine kurtarma kelimelerini içe aktarmayı deneyin";
 
