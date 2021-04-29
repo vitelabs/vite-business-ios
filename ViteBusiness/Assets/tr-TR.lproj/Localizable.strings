@@ -347,49 +347,49 @@
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
 "system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.logout.title" = "Çıkış/cüzdan değiştir";
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
+"system.page.cell.delete.wallet.title" = "Mevcut Hesabı Sil";
 "system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.blockHeight" = "Mevcut Yükseklik";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Yükleniyor";
+"aboutUs.page.cell.version" = "Sürüm";
+"aboutUs.page.cell.contact" = "Bizimle İletişime Geçin";
+"aboutUs.page.cell.shareUs" = "Vite APP'i Paylaş";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
+"aboutUs.page.email.title" = "Geri bildirim";
 "aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "Giriş Hatası";
 
 /* quota manage */
 "quota.manage.page.title" = "Get Quota";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.quota.title" = "Quota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
+"quota.manage.page.quota.quota.title" = "Kota";
+"quota.manage.page.quota.money.placeholder" = "Lütfen miktarı girin, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
+"quota.manage.page.toast.money.error" = "Stake miktarı 134'ten az olmamalıdır";
 "quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.submit.pop.submit.btn.title" = "Onayla";
+"quota.submit.pop.cancel.btn.title" = "İptal";
+"quota.submit.page.quota.address.placeholder" = "Lütfen faydalanıcı adresini girin";
 
 /* quota alert */
 "quota.alert.title" = "Insufficient Quota";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
-"quota.alert.quota.button.title" = "Stake VITE";
+"quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
@@ -425,19 +425,19 @@
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
 "vote.list.confirm.revote" = "Confirm";
 "vote.list.count" = "Votes";
-"vote.list.address" = "Address";
+"vote.list.address" = "Adres";
 "vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
-"vote.list.search.empty" = "No result, please try another input";
+"vote.list.search.empty" = "Sonuç yok, lütfen başka bir giriş deneyin";
 "vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
 
 // Contract
-"contract.confirm.info" = "Contract Address";
+"contract.confirm.info" = "Sözleşme Adresi";
 
 //RefreshFooter
 "vite.RefreshBackFooter.IdleText" = "Pull up to load more";
 "Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"Vite.RefreshBackFooter.RefreshingText" = "Yükleniyor...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "Daha fazla veri yok";
 
 //Welcome
 "introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
@@ -453,9 +453,9 @@
 /* Error Message */
 
 "vite.error.network.error" = "Something went wrong with network, please try again later";
-"vite.error.operation.failure" = "Operation failed";
-"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
+"vite.error.operation.failure" = "İşlem başarısız oldu";
+"vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
+"vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Kota";
 "vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
@@ -464,7 +464,7 @@
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
 "vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
 
-"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"eth.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
 "eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
 
 /* Tip String */
@@ -477,20 +477,20 @@
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
 
 // eth
-"eth.send.page.my.address.title" = "ETH Address";
-"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.send.page.my.address.title" = "ETH Adresi";
+"eth.send.page.eth.contacts.button.title" = "ETH İletişim Adresi";
+"eth.receive.page.my.address.title" = "ETH Adresim";
+"eth.page.gasFee.title" = "Gas Ücreti";
+"eth.page.gasFee.slow.title" = "Yavaş";
+"eth.page.gasFee.fast.title" = "Hızlı";
+"eth.page.gasFee.notice.title" = "Geri kalan gas ücretini hesabınıza iade edeceğiz";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
+"eth.transaction.detail.page.title" = "Ayrıntılar";
+"eth.transaction.detail.failed" = "İşlem Başarısız";
+"eth.transaction.detail.success" = "İşlem Tamamlandı";
 "eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
+"eth.transaction.detail.from.address" = "Gönderim Adresi";
 "eth.transaction.detail.amount" = "Amount";
 "eth.transaction.detail.gas.fee" = "Gas Fee";
 "eth.transaction.detail.gas.price" = "Gas Price";
