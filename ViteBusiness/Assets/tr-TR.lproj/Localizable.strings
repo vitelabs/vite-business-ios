@@ -103,23 +103,23 @@
 
 "mnemonic.backup.scan.alert.title" = "Notice";
 "mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.ok.title" = "Onayla";
+"mnemonic.backup.scan.alert.cancel.title" = "İptal";
 
 "mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
-"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
-"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
+"mnemonic.backup.page.tip.anewBtn.title" = "Yeniden oluştur";
+"mnemonic.backup.page.tip.nextBtn.title" = "Yedeklendi";
+"mnemonic.backup.page.tip.skip.title" = "Daha Sonra Yedekle";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
-"mnemonic.backup.page.alter.cancel" = "No";
-"mnemonic.backup.page.alter.confirm" = "Yes";
-"mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
+"mnemonic.backup.page.alter.cancel" = "Hayır";
+"mnemonic.backup.page.alter.confirm" = "Evet";
+"mnemonic.backup.page.error.type.name" = "Lütfen hesap adı veya şifre girin";
+"mnemonic.backup.page.error.type.nameValid" = "Hesap adı yalnızca Çince ve İngilizce karakterlerin yanı sıra alt çizgileri destekler.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Kullanıcı adı yalnızca 32 karakterden azını destekliyor";
 "mnemonic.backup.page.error.type.difference" = "Lütfen aynı parolayı girin!";
 "mnemonic.backup.page.error.type.pwd.illegal" = "Parolanız en az 8 karakter içermelidir";
@@ -213,8 +213,8 @@
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
 "transaction.list.transaction.confirmations" = "%@ Confirmations";
-"transaction.list.transaction.confirmations.finished" = "Confirmed";
-"eth.transaction.detail.page.state.call.wait" = "Pending";
+"transaction.list.transaction.confirmations.finished" = "Onaylandı";
+"eth.transaction.detail.page.state.call.wait" = "Bekliyor";
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "Transaction Completed";
