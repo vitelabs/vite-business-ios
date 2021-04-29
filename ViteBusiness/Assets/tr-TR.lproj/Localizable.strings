@@ -56,18 +56,18 @@
 "No" = "Hayır";
 "Loading" = "Yükleniyor";
 "Retry" = "Yeniden Dene";
-"Confirm" = "Confirm";
+"Confirm" = "Onayla";
 "Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
+"Close" = "Anladım";
+"Update.app" = "Uygulamayı Güncelle";
+"Submit.cancel" = "İptal";
+"Close" = "Kapat";
+"Quit" = "Çıkış";
 "web.page.host.tip" = "This page is provided by %@";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
+"create.account" = "Hesap Oluşturun";
+"import.account" = "Hesabı İçe Aktar";
 "select.wallet.account" = "Select your account";
 
 /* Lock */
@@ -120,9 +120,9 @@
 "mnemonic.backup.page.alter.confirm" = "Yes";
 "mnemonic.backup.page.error.type.name" = "Please input account name or password";
 "mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
-"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Kullanıcı adı yalnızca 32 karakterden azını destekliyor";
+"mnemonic.backup.page.error.type.difference" = "Lütfen aynı parolayı girin!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Parolanız en az 8 karakter içermelidir";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
@@ -130,61 +130,61 @@
 "mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
 "mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
 
-"mnemonic.affirm.page.title" = "Confirm";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.page.title" = "Onayla";
+"mnemonic.affirm.page.tip.title" = "Sırayla kurtarma kelimelelerini seçin";
+"mnemonic.affirm.alter.title" = "Bu eylem kurtarma kelimelerini yeniden oluşturacak, geri dönmeye hazır mısın?";
+"mnemonic.affirm.alter.check.title" = "Hatalı kurtarma kelimeleri!";
+"mnemonic.affirm.page.add.loading" = "Ekleniyor...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
+"import.page.title" = "Lütfen kurtarma kelimelerinizi girin";
+"import.page.submit.btn" = "Hesabı Geri Yükle";
+"import.page.submit.invalid.mnemonic" = "Kurtarma kelimelerinizde bir sorun var, lütfen tekrar deneyin!";
+"import.page.submit.loading" = "İçe aktarılıyor...";
+"import.page.submit.success" = "Içe aktarma başarılı";
 "import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.alert.exist.ok" = "Onayla";
+"import.page.alert.exist.cancel" = "İptal";
 
 
 /* export mnemonic */
-"export.page.title" = "Export Seed Phrase";
-"export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.title" = "Kurtarma Kelimelerini Dışa Aktar";
+"export.page.alter.title" = "Lütfen Parola Girin";
+"export.page.alter.tf.placeholder" = "Lütfen parola girin";
+"export.page.alter.password.error" = "Yanlış Parola!";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
+"login.page.btn.chooseName" = "Hesapları Seçin";
+"login.page.btn.login" = "Oturum aç";
 "login.page.loading.title" = "Processing";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.error.toast.title" = "Yanlış parola! Lütfen bunun yerine kurtarma kelimelerini içe aktarmayı deneyin";
 
 /* Home */
-"tabbar.item.title.wallet" = "Wallet";
-"tabbar.item.title.my" = "Me";
+"tabbar.item.title.wallet" = "Cüzdan";
+"tabbar.item.title.my" = "Ben";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
+"wallet.home.btc.title" = "Toplam Değer (BTC)";
+"wallet.home.balance.title" = "Bakiye";
+"wallet.home.unconfirmed.title" = "Alınmadı %@";
+"wallet.home.toast.copy.address" = "Kopyalama başarılı!";
+"wallet.home.scan.url.alert.title" = "UYARI";
 "wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.header.title" = "Varlıklar";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.title" = "Cüzdan Yönetimi";
+"manage.wallet.page.name.cell.title" = "Hesap Adı";
+"manage.wallet.page.addressManage.cell.title" = "Adres Yönetimi";
+"manage.wallet.page.importMnemonic.cell.title" = "Kurtarma Kelimelerini Dışa Aktar";
+"manage.wallet.page.alter.changeName" = "Cüzdan Adını Düzenle";
+"manage.wallet.page.changeName.loading" = "Düzenleme";
+"manage.wallet.page.error.type.name" = "Cüzdan adı boş bırakılamaz";
 
-"my.page.contacts.cell.title" = "Contact Address";
-"my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Mining Referrals";
+"my.page.contacts.cell.title" = "İletişim Adresi";
+"my.page.mnemonic.cell.title" = "Anımsatıcı Kelimeler";
+"my.page.system.cell.title" = "Ayarlar";
+"my.page.invite.cell.title" = "Madencilik Referansları";
 "my.page.reward.cell.title" = "Rewards Enquiry";
 "my.page.forum.cell.title" = "Official Forum";
 "my.page.aboutUs.cell.title" = "About Us";
@@ -233,61 +233,61 @@
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "Available";
-"balance.info.detail.pledge.amount.title" = "Staked";
-"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
+"balance.info.detail.available.amount.title" = "Kullanılabilir";
+"balance.info.detail.pledge.amount.title" = "Stake Edilmiş";
+"balance.info.detail.show.transactions.button.title" = "Ethereum Explorer'da işlem geçmişini kontrol edin";
 "balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Send";
-"balance.info.detail.vote" = "Vote";
+"balance.info.detail.send.button.title" = "Gönder";
+"balance.info.detail.vote" = "Oy";
 "balance.info.detail.pledge" = "Get Quota";
-"balance.info.detail.exchange.vite" = "VITE Conversion";
+"balance.info.detail.exchange.vite" = "VITE Dönüşümü";
 "balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
-"gateway.info.detail.page.title" = "Gateway Details";
-"gateway.info.detail.page.name" = "Gateway Name";
-"gateway.info.detail.page.webside" = "Gateway Official Site";
-"gateway.info.detail.page.brief" = "Gateway Introduction";
-"gateway.info.detail.page.email" = "Customer Service";
-"gateway.info.detail.page.agreement" = "Service Terms";
-"gateway.info.detail.page.link" = "Gateway Link";
+"gateway.info.detail.page.title" = "Ağ Geçidi Ayrıntıları";
+"gateway.info.detail.page.name" = "Ağ Geçidi Adı";
+"gateway.info.detail.page.webside" = "Ağ Geçidi Resmi Sitesi";
+"gateway.info.detail.page.brief" = "Ağ Geçidi Tanıtımı";
+"gateway.info.detail.page.email" = "Müşteri Hizmetleri";
+"gateway.info.detail.page.agreement" = "Hizmet Şartları";
+"gateway.info.detail.page.link" = "Ağ Geçidi Linki";
 
-"token.info.detail.page.title" = "Token Details";
-"token.info.detail.page.name" = "Token Name";
-"token.info.detail.page.id" = "Token ID";
-"token.info.detail.page.brief" = "Introduction";
+"token.info.detail.page.title" = "Token Ayrıntıları";
+"token.info.detail.page.name" = "Token Adı";
+"token.info.detail.page.id" = "Token Kimliği";
+"token.info.detail.page.brief" = "Giriş";
 "token.info.detail.page.total" = "Total Issuance";
-"token.info.detail.page.type" = "Token Type";
-"market.detail.page.token.info.type.value.native" = "Native";
+"token.info.detail.page.type" = "Token Türü";
+"market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
 "token.info.detail.page.gateway" = "Cross-Chain gateway";
-"token.info.detail.page.webside" = "Website";
-"token.info.detail.page.paper" = "WhitePaper";
+"token.info.detail.page.webside" = "Web Sitesi";
+"token.info.detail.page.paper" = "Teknikİnceleme";
 "token.info.detail.page.browser" = "Explorer";
-"token.info.detail.page.github" = "Github";
-"token.info.detail.page.social" = "Social Media";
+"token.info.detail.page.github" = "GitHub";
+"token.info.detail.page.social" = "Sosyal Medya";
 
 /* Address Manage Page */
-"address.manage.page.title" = "My %@ Address";
-"address.manage.default.address.cell.title" = "Default Address";
-"address.manage.address.header.title" = "Addresses";
-"address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
-"address.manage.address.generate.button.already.toast" = "Address already exists";
-"address.manage.address.generate.button.error.toast" = "Please input a number";
+"address.manage.page.title" = "%@ Adresim";
+"address.manage.default.address.cell.title" = "Varsayılan Adres";
+"address.manage.address.header.title" = "Adresler";
+"address.manage.address.generate.button.title" = "Adres Ekle";
+"address.manage.address.generate.button.toast" = "En fazla 100 adres ekleyin!";
+"address.manage.address.generate.button.already.toast" = "Adres zaten var";
+"address.manage.address.generate.button.error.toast" = "Lütfen bir numara girin";
 "address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
-"address.manage.alert.title" = "Generate New Addresses";
-"address.manage.alert.placeholder" = "Input a number between 1 and 100";
+"address.manage.alert.title" = "Yeni Adresler Oluşturun";
+"address.manage.alert.placeholder" = "1 ile 100 arasında bir sayı girin";
 "address.manage.alert.tip" = "Bulk generate a specified number of addresses";
-"address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "Untitled";
+"address.manage.tip.alert.ok" = "Biliyorum";
+"address.manage.default.address.name" = "Başlıksız";
 "address.manage.change.name.alert.title" = "Edit Address Alias";
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
-"send.page.title" = "Send";
-"send.page.my.address.title" = "My %@ Address";
-"send.page.my.balance.title" = "Balance";
+"send.page.title" = "Gönder";
+"send.page.my.address.title" = "%@ Adresim";
+"send.page.my.balance.title" = "Bakiye";
 "send.page.my.pledge.title" = "Benefited Stake";
 "send.page.my.quota.title" = "Spendable Quota/Quota Limit";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
@@ -331,18 +331,18 @@
 "Receive.page.token.amount.button.title" = "Input Amount";
 "Receive.page.token.note.label" = "Comment";
 "Receive.page.token.amount.alert.title" = "Input Amount";
-"Receive.page.wallet.name" = "Vite Wallet";
+"Receive.page.wallet.name" = "Vite Cüzdanı";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.title" = "Tara";
+"Scan.page.qccode.not.identifiable" = "QRKod tanımlanamıyor";
+"Scan.page.qccode.not.found" = "QR kodu bulunamadı";
 
 /* System */
-"system.page.logout.loading" = "Logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
-"system.page.cell.login.pwd" = "Unlock By Password";
+"system.page.logout.loading" = "Çıkış";
+"system.page.cell.change.language" = "Dil";
+"system.page.cell.change.currency" = "Para Birimi";
+"system.page.cell.login.pwd" = "Parola ile Kilidi Aç";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
 "system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
