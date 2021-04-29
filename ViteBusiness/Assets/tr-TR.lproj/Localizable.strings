@@ -856,66 +856,66 @@
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.toast.operation.success" = "İşlem Başarılı";
 
 "bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.status.pending" = "İmza Bekleniyor";
+"bifrost.list.page.status.processing" = "İmzalama";
+"bifrost.list.page.status.failed" = "Başarısız";
+"bifrost.list.page.status.finished" = "Başarılı";
+"bifrost.list.page.status.canceled" = "İptal edildi";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "İmzalanan İşlem Ayrıntıları";
 
-"bifrost.error.message.timeout" = "Connection time out, please try again later";
-"bifrost.error.message.unknown" = "Connection Error, please try again later";
+"bifrost.error.message.timeout" = "Bağlantı zaman aşımına uğradı, lütfen daha sonra tekrar deneyin";
+"bifrost.error.message.unknown" = "Bağlantı Hatası, lütfen daha sonra tekrar deneyin";
 
 // operation
-"bifrost.operation.register.sbp" = "Register SBP";
-"bifrost.operation.register.update.sbp" = "Update SBP";
-"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
-"bifrost.operation.vote" = "Voting";
-"bifrost.operation.cancel.vote" = "Revoke Voting";
-"bifrost.operation.extract.reward" = "Claim Rewards";
+"bifrost.operation.register.sbp" = "SBP'ye kaydol";
+"bifrost.operation.register.update.sbp" = "SBP'yi güncelle";
+"bifrost.operation.cancel.register.sbp" = "SBP Kaydını iptal et";
+"bifrost.operation.vote" = "Oylama";
+"bifrost.operation.cancel.vote" = "Oylamayı İptal Et";
+"bifrost.operation.extract.reward" = "Ödülleri Topla";
 "bifrost.operation.pledge" = "Get Quota";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Send";
-"bifrost.operation.vx.deposit" = "ViteX Deposit";
-"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
+"bifrost.operation.transfer" = "Gönder";
+"bifrost.operation.vx.deposit" = "ViteX Yatırımı";
+"bifrost.operation.vx.withdraw" = "ViteX Çekimi";
 "bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
-"bifrost.operation.vx.order" = "Place Order on ViteX";
-"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+"bifrost.operation.vx.order" = "ViteX'te Emir Gir";
+"bifrost.operation.vx.cancel.order" = "ViteX'teki Emri İptal Et";
 
 "bifrost.operation.function.title" = "Contract Invoke";
-"bifrost.operation.title.contract.address" = "Contract Address";
+"bifrost.operation.title.contract.address" = "Sözleşme Adresi";
 "bifrost.operation.title.amount" = "Miktar";
-"bifrost.operation.title.fee" = "Fee";
-"bifrost.operation.title.data" = "Data";
+"bifrost.operation.title.fee" = "Komisyon";
+"bifrost.operation.title.data" = "Veri";
 
-"bifrost.operation.sign.message.title" = "Create API";
-"bifrost.operation.sign.message.address" = "Current Address";
-"bifrost.operation.sign.message.type" = "Permission Type";
-"bifrost.operation.sign.message.content" = "Signature Content";
-"bifrost.operation.sign.message.type.trade.value" = "Trade";
+"bifrost.operation.sign.message.title" = "API Oluştur";
+"bifrost.operation.sign.message.address" = "Mevcut Adres";
+"bifrost.operation.sign.message.type" = "İzin Türü";
+"bifrost.operation.sign.message.content" = "İmza İçeriği";
+"bifrost.operation.sign.message.type.trade.value" = "Alım Satım";
 
-"bifrost.create.contract.title" = "Create Contract";
-"bifrost.create.contract.title.contract.address" = "Contract Address";
+"bifrost.create.contract.title" = "Sözleşme Oluştur";
+"bifrost.create.contract.title.contract.address" = "Sözleşme Adresi";
 "bifrost.create.contract.title.amount" = "Miktar";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title.fee" = "Komisyon";
+"bifrost.create.contract.title.data" = "Veri";
 
 //bnb
-"token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
+"token.list.page.section.bnb.header" = "Binance Ağı";
+"bnb.send.page.feeView.titleLabel.title" = "Komisyon";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Adresi";
+"bnb.send.page.eth.contacts.button.title" = "BNB kişileri";
+"bnb.txType.newOrder.title" = "Emir Gir";
 "bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
-"bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.burnToken.title" = "Yakmak";
+"bnb.txType.listToken.title" = "Listeleme";
+"bnb.txType.cancelOrder.title" = "Emri İptal Et";
 "bnb.txType.freezeToken.title" = "Freeze Token";
 "bnb.txType.unfreezeToken.title" = "Unfreeze Token";
 "bnb.txType.transfer.title" = "Transfer";
@@ -969,79 +969,79 @@
 
 "buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
 "buildin.dex.transfer.token.owner.item0.title" = "Token Name";
-"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
-"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+"buildin.dex.transfer.token.owner.item1.title" = "Token Sembolü";
+"buildin.dex.transfer.token.owner.item2.title" = "Alıcı Adresi";
 
 "buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.item0.title" = "Ad";
+"buildin.dex.transfer.pair.item1.title" = "Alıcı Adresi";
 
 "buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
+"buildin.dex.adjust.fees.item0.title" = "Ad";
+"buildin.dex.adjust.fees.item1.title" = "Mevcut Adres";
 "buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
 "buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
 
 "buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.item0.title" = "Ad";
+"buildin.dex.open.trading.pair.item1.title" = "Mevcut Adres";
+"buildin.dex.open.trading.pair.item2.title" = "Listeleme Komisyonu";
 
 "buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.item0.title" = "Ad";
+"buildin.dex.suspend.trading.pair.item1.title" = "Mevcut Adres";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "Alım Satım Paritesini Kurtar";
+"buildin.dex.recover.trading.pair.item0.title" = "Ad";
+"buildin.dex.recover.trading.pair.item1.title" = "Mevcut Adres";
 
 "buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.staking.as.mining.item0.title" = "Mevcut Adres";
 "buildin.dex.staking.as.mining.item1.title" = "Miktar";
 
 "buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Mevcut Adres";
 "buildin.dex.cancel.staking.as.mining.item1.title" = "Miktar";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
+"buildin.dex.become.vip.function.title" = "VIP olun";
+"buildin.dex.become.vip.item0.title" = "Mevcut Adres";
 "buildin.dex.become.vip.item1.title" = "Miktar";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.function.title" = "VIP'yi iptal et";
+"buildin.dex.cancel.vip.item0.title" = "Mevcut Adres";
 "buildin.dex.cancel.vip.item1.title" = "Miktar";
 
-"buildin.dex.lock.vx.function.title" = "Stake";
-"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.function.title" = "Stake Et";
+"buildin.dex.lock.vx.item0.title" = "Mevcut Adres";
 "buildin.dex.lock.vx.item1.title" = "Miktar";
 
 "buildin.dex.un.lock.vx.function.title" = "Retrieve";
-"buildin.dex.un.lock.vx.item0.title" = "Current Address";
+"buildin.dex.un.lock.vx.item0.title" = "Mevcut Adres";
 "buildin.dex.un.lock.vx.item1.title" = "Miktar";
 
 "buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.item0.title" = "Mevcut Adres";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
+"app.scheme.home.page.busy.header" = "İşlem Onayı";
 "app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.network.error" = "Ağ Hatası";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "Kopyalama başarılı";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
+"fund.title.wallet" = "Cüzdan Varlığı";
+"fund.title.vitex" = "Exchange Varlığı";
 "fund.title.toWallet" = "Withdraw to Wallet";
 "fund.title.toVitex" = "Deposit to Exchange";
-"fund.walletAddress" = "My Address";
-"fund.walletFound" = "Wallet Balance";
+"fund.walletAddress" = "Adresim";
+"fund.walletFound" = "Cüzdan Bakiyesi";
 "fund.quotaInfo" = "Spendable Quota/Quota Limit";
 "fund.deposit.amount" = "Transfer Miktarı";
-"fund.deposit.all" = "All";
-"fund.quotaSpend" = "Quota";
+"fund.deposit.all" = "Tümü";
+"fund.quotaSpend" = "Kota";
 "fund.deposit" = "Transfer";
-"fund.vitexFound" = "Available Balance";
+"fund.vitexFound" = "Kullanılabilir Bakiye";
 "fund.withdraw.amount" = "Transfer Miktarı";
 "fund.withdraw" = "Transfer";
 "fund.vitex.all" = "Exchange Total Balance";
@@ -1090,26 +1090,26 @@
 "market.detail.page.kline.type.hour4.title" = "4H";
 "market.detail.page.kline.type.hour6.title" = "6H";
 "market.detail.page.kline.type.hour12.title" = "12H";
-"market.detail.page.kline.type.day1.title" = "1D";
-"market.detail.page.kline.type.week1.title" = "1W";
+"market.detail.page.kline.type.day1.title" = "1G";
+"market.detail.page.kline.type.week1.title" = "1H";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.time.title" = "Zaman";
+"market.detail.page.value.open.title" = "Açık";
+"market.detail.page.value.high.title" = "Yüksek";
+"market.detail.page.value.low.title" = "Düşük";
+"market.detail.page.value.close.title" = "Kapat";
 "market.detail.page.value.diff.title" = "chg";
 "market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.vol.title" = "Hacim";
 
 "market.detail.page.depth.vol.title" = "Miktar(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.price.title" = "Fiyat(%@)";
 
-"market.detail.page.trade.time.title" = "Time";
-"market.detail.page.trade.price.title" = "Price";
+"market.detail.page.trade.time.title" = "Zaman";
+"market.detail.page.trade.price.title" = "Fiyat";
 "market.detail.page.trade.vol.title" = "Miktar";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.buy.button.title" = "Al";
+"market.detail.page.sell.button.title" = "Sat";
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
