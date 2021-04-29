@@ -689,14 +689,14 @@
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
 "grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
-"grin.txbyfile.initStatus.sender" = "Created";
+"grin.txbyfile.initStatus.sender" = "Oluşturuldu";
 "grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
 "grin.txbyfile.receivedStatus.receiver" = "Received";
-"grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
+"grin.txbyfile.receivedStatus.sender" = "Tamamlanma bekleniyor";
 "grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
 "grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
 "grin.creating" = "Grin wallet initializing, please wait a moment.";
-"grin.pay.title.creat" = "Create";
+"grin.pay.title.creat" = "Oluştur";
 "grin.pay.title.finalize" = "Finalize";
 
 "grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
@@ -705,8 +705,8 @@
 "grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
 "grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
 "grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
-"grin.teach.vite.send.startSend" = "Start to Send";
-"grin.txMethod.http" = "HTTP Address";
+"grin.teach.vite.send.startSend" = "Göndermeye Başlayın";
+"grin.txMethod.http" = "HTTP Adresi";
 "grin.txMethod.vite" = "VITE Address";
 "grin.txMethod.file" = "Transaction File";
 
@@ -735,26 +735,26 @@
 "grin.detail.gatewaysend" = "VITE Transaction Send";
 "grin.detail.repoat" = "Repost";
 "grin.node.configNode" = "Configurate Full Node.";
-"grin.node.addNode" = "Add New Full Node";
-"grin.node.edit.nodeAddressTitle" = "Full Node Address";
-"grin.node.edit.apiSecretTitle" = "Key";
-"grin.node.select.canNotConnect" = "Failed to connect with the full node.";
+"grin.node.addNode" = "Yeni Tam Düğüm Ekle";
+"grin.node.edit.nodeAddressTitle" = "Tam Düğüm Adresi";
+"grin.node.edit.apiSecretTitle" = "Anahtar";
+"grin.node.select.canNotConnect" = "Tam düğüme bağlanılamadı.";
 "grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Illegal transfer amount";
+"grin.send.illegalAmmount" = "Yasadışı transfer miktarı";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.export.mnemonic" = "Kurtarma Kelimelerini Dışa Aktar";
 
 // CrossChain Transfer & Receive
 
-"crosschain.tokendetail" = "Token Details";
+"crosschain.tokendetail" = "Token Ayrıntıları";
 "crosschain.deposit" = "Cross-Chain Deposit";
 "crosschain.withdraw" = "Cross-Chain Withdraw";
-"crosschain.withdraw.btnTitle" = "Withdraw";
-"crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
-"crosschain.deposit.history" = "Deposit History";
-"crosschain.withdraw.history" = "Withdrawal History";
+"crosschain.withdraw.btnTitle" = "Çekme";
+"crosschain.deposit.btnTitle" = "Yatırma";
+"crosschain.deposit.vitewallet" = "Vite Cüzdanından Yatırma";
+"crosschain.deposit.otherwallet" = "Başka Cüzdandan Yatırma";
+"crosschain.deposit.history" = "Yatırma Geçmişi";
+"crosschain.withdraw.history" = "Çekim Geçmişi";
 "crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
 "crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
 "crosschain.deposit.address" = "Deposit Address";
