@@ -729,12 +729,12 @@
 "grin.detail.txFileCreatedAndCanShare" = "Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.";
 "grin.detail.txFile" = "İşlem Dosyası";
 "grin.detail.txFinaziledAndPosting" = "Transaction has been finalized and broadcast.";
-"grin.detail.txisPostingPlsWait" = "Transaction is in broadcast, please wait for confirmation.";
-"grin.detail.waitHerOpenViteWalletToReceive" = "Please wait for the recipient to open Vite wallet and receive the transaction.";
+"grin.detail.txisPostingPlsWait" = "İşlem yayında, lütfen onay için bekleyin.";
+"grin.detail.waitHerOpenViteWalletToReceive" = "Alıcının Vite cüzdanını açması ve işlemi alması için lütfen bekleyin.";
 "grin.detail.pleaseReciveAndShare" = "Please sign the transaction and share the file with the sender, you can choose whichever way you prefer.";
-"grin.detail.gatewaysend" = "VITE Transaction Send";
+"grin.detail.gatewaysend" = "VITE İşlemi Gönderildi";
 "grin.detail.repoat" = "Repost";
-"grin.node.configNode" = "Configurate Full Node.";
+"grin.node.configNode" = "Tam Düğümü Yapılandırın.";
 "grin.node.addNode" = "Yeni Tam Düğüm Ekle";
 "grin.node.edit.nodeAddressTitle" = "Tam Düğüm Adresi";
 "grin.node.edit.apiSecretTitle" = "Anahtar";
@@ -796,10 +796,10 @@
 "crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
 "crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
 "crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
-"crosschain.withdraw.aboutfee" = "About Fee";
-"crosschain.status.failed" = "Deposit Failed";
+"crosschain.withdraw.aboutfee" = "Komisyon Hakkında";
+"crosschain.status.failed" = "Yatırma Başarısız";
 "crosschain.beta.alert" = "Mevcut bir beta sürümüdür, Lütfen hesabınıza büyük miktarda para yatırmayın.";
-"crosschain.fee" = "Fee";
+"crosschain.fee" = "Komisyon";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
 "crosschain.gatewaydetail.title" = "Gateway Details";
 "crosschain.gatewaydetail.name" = "Gateway Name";
@@ -820,15 +820,15 @@
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
 "crosschain.statement.title" = "Important Notice";
 
-"unit.Million" = " Million";
-"unit.Billion" = " Billion";
-"unit.Trillion" = " Trillion";
+"unit.Million" = " Milyon";
+"unit.Billion" = " Milyar";
+"unit.Trillion" = " Trilyon";
 
-"exchange.history" = "Purchase History";
-"exchange.card.title" = "Buy VITE";
-"exchange.titley" = "Instant Purchase";
+"exchange.history" = "Ödeme Geçmişi";
+"exchange.card.title" = "VITE Al";
+"exchange.titley" = "Anında Satın Alma";
 "exchange.buy" = "Al";
-"exchange.price" = "Rate: ";
+"exchange.price" = "Oran: ";
 "exchange.amount" = "Miktar: ";
 "exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
 "exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
@@ -836,14 +836,14 @@
 
 
 /* ViteConnect */
-"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
-"bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect Bağlandı";
+"bifrost.alert.tip.title" = "Uyarı";
+"bifrost.alert.approve.session.message" = "Lütfen aşağıdaki linki onaylayın\n%@";
 "bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Girişi onayla";
 "bifrost.alert.approve.session.another.address.cancel" = "Geri";
 
-"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "ViteConnect bağlandı, adres değişimi ağ bağlantısını kesecek. Adres değiştirdiğinizden emin olun";
 
 "bifrost.alert.quit.title" = "ViteConnect'ten çıkış yaptığınızdan emin misiniz?";
 
@@ -851,11 +851,11 @@
 "bifrost.home.page.free.content" = "Henüz işleminiz yok";
 "bifrost.home.page.free.address.title" = "Adres";
 "bifrost.home.page.free.history.title" = "İmzalanan İşlemler";
-"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.title" = "Otomatik İmza";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Parola";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
+"bifrost.home.page.busy.content" = "Lütfen aşağıdaki işlem bilgilerini onaylayın";
 "bifrost.toast.operation.success" = "İşlem Başarılı";
 
 "bifrost.list.page.title" = "Signing Transaction List";
@@ -920,23 +920,23 @@
 "bnb.txType.unfreezeToken.title" = "Unfreeze Token";
 "bnb.txType.transfer.title" = "Transfer";
 "bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"bnb.txType.vote.title" = "Oy";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "Yatırma";
 
 // Buildin
 
 "buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item0.title" = "İşlem Adresi";
 "buildin.transfer.utf8string.item1.title" = "Miktar";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.item2.title" = "Yorum";
 
 "buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
 "buildin.transfer.cross.chain.item0.title" = "Miktar";
-"buildin.transfer.cross.chain.item1.title" = "Fee";
-"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+"buildin.transfer.cross.chain.item1.title" = "Komisyon";
+"buildin.transfer.cross.chain.item2.title" = "Adresi Al";
 
-"buildin.vote.function.title" = "Vote";
+"buildin.vote.function.title" = "Oy";
 "buildin.vote.item0.title" = "SBP Candidates";
 "buildin.vote.item1.title" = "Votes";
 
