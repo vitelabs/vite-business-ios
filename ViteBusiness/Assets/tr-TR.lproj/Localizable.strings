@@ -196,14 +196,14 @@
 "transaction.list.page.empty" = "Boş";
 "transaction.list.page.network.error" = "Yenile";
 "transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
-"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
+"transaction.list.page.header.refresh.idle" = "Yenilemek için aşağıya çekin";
 "transaction.list.page.header.refresh.pulling" = "Yenilemek için serbest bırakın";
 "transaction.list.page.header.refresh.refreshing" = "Yükleniyor...";
 "transaction.list.transaction.type.name.contract" = "Ara";
 "transaction.list.transaction.type.name.register" = "Kayıt";
 "transaction.list.transaction.type.name.registerUpdate" = "Kaydı Güncelle";
 "transaction.list.transaction.type.name.cancelRegister" = "Kaydı İptal Et";
-"transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
+"transaction.list.transaction.type.name.extractReward" = "Ödülleri Al";
 "transaction.list.transaction.type.name.vote" = "Oylama";
 "transaction.list.transaction.type.name.cancelVote" = "Oylamayı İptal Et";
 "transaction.list.transaction.type.name.pledge" = "Get TPS quota";
@@ -212,13 +212,13 @@
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Ağda bir sorun oluştu, hesap ayrıntılarını kontrol etmek için burayı tıklayın";
-"transaction.list.transaction.confirmations" = "%@ Confirmations";
+"transaction.list.transaction.confirmations" = "%@ Onaylı";
 "transaction.list.transaction.confirmations.finished" = "Onaylandı";
 "eth.transaction.detail.page.state.call.wait" = "Bekliyor";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "Transaction Completed";
-"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
+"vite.transaction.detail.page.state.success" = "İşlem Tamamlandı";
+"vite.transaction.detail.page.state.call.success" = "Görüşme Başarılı";
 "vite.transaction.detail.page.state.call.failed" = "Görüşme Başarısız Oldu";
 "vite.transaction.detail.page.state.call.wait" = "Akıllı Sözleşme Yanıtı bekleniyor";
 "vite.transaction.detail.page.type.title" = "İşlem Türü";
@@ -326,8 +326,8 @@
 
 /* Receive Page */
 "Receive.page.token.title" = "Alma";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
+"Receive.page.mine.title" = "QRKodum";
+"Receive.page.token.name.label" = "Tara ve %@ Gönder";
 "Receive.page.token.amount.button.title" = "Miktar Girin";
 "Receive.page.token.note.label" = "Yorum";
 "Receive.page.token.amount.alert.title" = "Miktar Girin";
@@ -351,7 +351,7 @@
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
 "system.page.cell.delete.wallet.title" = "Mevcut Hesabı Sil";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.cell.delete.wallet.alert.title" = "Bir hesabı sildikten sonra hesabınızı ancak anımsatıcı kelime ile kurtarabilirsiniz, bu hesabı silmeyi onaylıyor musunuz?";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Mevcut Yükseklik";
@@ -400,7 +400,7 @@
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
 "peldge.deadline" = "Due Date";
-"peldge.title" = "Staking History";
+"peldge.title" = "Stake Geçmişi";
 "peldge.address.title" = "Yararlanıcı";
 "peldge.cancel.peldge.button.title" = "Çekme";
 "peldge.cancel.pledge.withdrawing.title" = "Çekiliyor";
@@ -428,7 +428,7 @@
 "vote.list.address" = "Adres";
 "vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
 "vote.list.search.empty" = "Sonuç yok, lütfen başka bir giriş deneyin";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote.list.search.no.transaction.before" = "Adresinizde işlem kaydı olmadığı için şimdilik oy veremezsiniz";
 
 // Contract
 "contract.confirm.info" = "Sözleşme Adresi";
@@ -452,13 +452,13 @@
 //"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 /* Error Message */
 
-"vite.error.network.error" = "Something went wrong with network, please try again later";
+"vite.error.network.error" = "Ağda bir sorun oluştu, lütfen daha sonra tekrar deneyin";
 "vite.error.operation.failure" = "İşlem başarısız oldu";
 "vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
 "vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Kota";
 "vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
-"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
