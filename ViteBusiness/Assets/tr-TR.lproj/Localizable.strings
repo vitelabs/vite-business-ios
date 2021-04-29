@@ -8,21 +8,21 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "Onayla";
+"cancel.button.title" = "İptal";
+"alter.title" = "UYARI";
 
-"discover.page.title" = "Discovery";
+"discover.page.title" = "Keşfet";
 "discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
-"discover.page.activity.page.title2" = "History";
+"discover.page.activity.page.title1" = "Son Olaylar";
+"discover.page.activity.page.title2" = "Geçmiş";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
+"discover.page.news.cell.time.minute" = "Şimdi";
+"discover.page.news.cell.time.hour" = "%@saat önce";
+"discover.page.news.cell.time.day" = "%@gün önce";
+"discover.page.headerTitle.activity" = "Kampanya Merkezi";
+"discover.page.headerTitle.game" = "Vite Oyunları";
+"discover.page.headerTitle.news" = "Vite Haberleri";
 "discover.page.VCWebTitle.activity" = "Vite Events";
 "discover.page.VCWebTitle.game" = "Vite Games";
 "discover.page.VCWebTitle.news" = "Vite News";
