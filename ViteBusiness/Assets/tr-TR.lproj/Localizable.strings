@@ -489,20 +489,20 @@
 "eth.transaction.detail.page.title" = "Ayrıntılar";
 "eth.transaction.detail.failed" = "İşlem Başarısız";
 "eth.transaction.detail.success" = "İşlem Tamamlandı";
-"eth.transaction.detail.to.address" = "Receiving Address";
+"eth.transaction.detail.to.address" = "Alıcı Adresi";
 "eth.transaction.detail.from.address" = "Gönderim Adresi";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
+"eth.transaction.detail.amount" = "Miktar";
+"eth.transaction.detail.gas.fee" = "Gas Ücreti";
+"eth.transaction.detail.gas.price" = "Gas Fiyatı";
+"eth.transaction.detail.gas.limit" = "Gas Limiti";
 "eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
+"eth.transaction.detail.block" = "Engelle";
 "eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.go.button.title" = "Etherscan'de Daha Fazla Ayrıntı Göster";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite Network";
+"token.list.page.search.title" = "Lütfen token adı veya sözleşme adresi girin";
+"token.list.page.section.vite.header" = "Vite Ağı";
 "token.list.page.section.eth.header" = "Ethereum Network";
 "token.list.page.section.grin.header" = "GRIN Network";
 "token.list.page.ignore.btn.title" = "Ignore";
@@ -543,17 +543,17 @@
 "workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
-"workflow.toast.contract.success" = "Success";
+"workflow.toast.contract.success" = "Başarılı";
 "workflow.toast.place.order.success" = "Order Placed";
 "workflow.toast.cancel.order.success" = "Order Cancelled";
 
-"workflow.congestion.without.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.title" = "Uyarı";
 "workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
-"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
-"workflow.congestion.without.pow.alert.ok" = "Transact Now";
-"workflow.congestion.with.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.cancel" = "Daha Sonra İşlem Yapın";
+"workflow.congestion.without.pow.alert.ok" = "Şimdi İşlem Yapın";
+"workflow.congestion.with.pow.alert.title" = "Uyarı";
 "workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
-"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.with.pow.alert.cancel" = "Daha Sonra İşlem Yapın";
 
 "workflow.fast.get.quota.title" = "Instantly Getting Quota";
 "workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
