@@ -71,7 +71,7 @@
 "select.wallet.account" = "Hesabınızı seçin";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Şifre ile giriş";
+"lock.page.pwd.btn.title" = "Parola ile giriş";
 "lock.page.fingerprint.btn.title" = "Biyometrik Doğrulama";
 "lock.page.fingerprint.alter.title" = "Touch ID'yi etkinleştirmek için parmak izini doğrulayın";
 "lock.page.changeUser.btn.title" = "Hesap Değiştir";
@@ -79,8 +79,8 @@
 /* create */
 "create.page.title" = "Hesap Oluştur";
 "create.page.tf.title" = "Hesap Adı";
-"create.page.pw.title" = "Lütfen şifrenizi girin";
-"create.page.pw.repeate.title" = "Lütfen şifrenizi yeniden girin";
+"create.page.pw.title" = "Lütfen parola girin";
+"create.page.pw.repeate.title" = "Lütfen parolanızı yeniden girin";
 "create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
 "create.page.invite.code.placeholder" = "Davet Kodu(İsteğe Bağlı)";
 "create.page.submit.btn.title" = "Oluştur";
@@ -118,7 +118,7 @@
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "Hayır";
 "mnemonic.backup.page.alter.confirm" = "Evet";
-"mnemonic.backup.page.error.type.name" = "Lütfen hesap adı veya şifre girin";
+"mnemonic.backup.page.error.type.name" = "Lütfen hesap adı veya parola girin";
 "mnemonic.backup.page.error.type.nameValid" = "Hesap adı yalnızca Çince ve İngilizce karakterlerin yanı sıra alt çizgileri destekler.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Kullanıcı adı yalnızca 32 karakterden azını destekliyor";
 "mnemonic.backup.page.error.type.difference" = "Lütfen aynı parolayı girin!";
@@ -126,7 +126,7 @@
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
+"mnemonic.backup.tip.alert.message" = "Anımsatıcı Kelimeleri yedeklemek için lütfen parolayı girin.";
 "mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
 "mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
 
@@ -328,9 +328,9 @@
 "Receive.page.token.title" = "Alma";
 "Receive.page.mine.title" = "My QRCode";
 "Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
+"Receive.page.token.amount.button.title" = "Miktar Girin";
 "Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.token.amount.alert.title" = "Miktar Girin";
 "Receive.page.wallet.name" = "Vite Cüzdanı";
 
 /* Scan Page */
@@ -535,8 +535,8 @@
 /* WorkFlow */
 "workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
 "workflow.confirm.page.biometryAuthFailed.back" = "Back";
-"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
-"workflow.confirm.page.toast.password.error" = "Wrong password!";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Yeniden Dene";
+"workflow.confirm.page.toast.password.error" = "Yanlış parola!";
 
 "workflow.toast.transfer.success" = "Send Success";
 "workflow.toast.submit.success" = "Submit Successful";
@@ -640,8 +640,8 @@
 "grin.know" = "I know";
 "grin.notSeeAgain" = "Don't show me again";
 "grin.sent.title" = "Send GRIN";
-"grin.sent.amount" = "Amount";
-"grin.receive.ture.amount" = "Actual Amount";
+"grin.sent.amount" = "Miktar";
+"grin.receive.ture.amount" = "Gerçek Miktar";
 "grin.sent.fee" = "Fees";
 "grin.sent.creatFile" = "Generate Transaction File";
 "grin.shareFile.desc" = "Please sign for the transaction";
@@ -798,7 +798,7 @@
 "crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
-"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
+"crosschain.beta.alert" = "Mevcut bir beta sürümüdür, Lütfen hesabınıza büyük miktarda para yatırmayın.";
 "crosschain.fee" = "Fee";
 "crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
 "crosschain.gatewaydetail.title" = "Gateway Details";
@@ -840,19 +840,19 @@
 "bifrost.alert.tip.title" = "Notice";
 "bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
 "bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
-"bifrost.alert.approve.session.another.address.cancel" = "Back";
+"bifrost.alert.approve.session.another.address.ok" = "Girişi onayla";
+"bifrost.alert.approve.session.another.address.cancel" = "Geri";
 
 "bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+"bifrost.alert.quit.title" = "ViteConnect'ten çıkış yaptığınızdan emin misiniz?";
 
-"bifrost.home.page.free.header" = "ViteConnect Connected";
-"bifrost.home.page.free.content" = "You have no transaction yet";
-"bifrost.home.page.free.address.title" = "Address";
-"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.header" = "ViteConnect Bağlandı";
+"bifrost.home.page.free.content" = "Henüz işleminiz yok";
+"bifrost.home.page.free.address.title" = "Adres";
+"bifrost.home.page.free.history.title" = "İmzalanan İşlemler";
 "bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Parola";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
 "bifrost.home.page.busy.content" = "Please confirm transaction information below";
@@ -928,11 +928,11 @@
 
 "buildin.transfer.utf8string.function.title" = "Transfer";
 "buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item1.title" = "Miktar";
 "buildin.transfer.utf8string.item2.title" = "Comment";
 
 "buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.item0.title" = "Miktar";
 "buildin.transfer.cross.chain.item1.title" = "Fee";
 "buildin.transfer.cross.chain.item2.title" = "Receive Address";
 
@@ -961,7 +961,7 @@
 "buildin.coin.reissue.token.item0.title" = "Token Name";
 "buildin.coin.reissue.token.item1.title" = "Token Symbol";
 "buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
-"buildin.coin.reissue.token.item3.title" = "Amount";
+"buildin.coin.reissue.token.item3.title" = "Miktar";
 
 "buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
 "buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
@@ -997,27 +997,27 @@
 
 "buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
 "buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.item1.title" = "Miktar";
 
 "buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
 "buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Miktar";
 
 "buildin.dex.become.vip.function.title" = "Become a VIP";
 "buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.item1.title" = "Miktar";
 
 "buildin.dex.cancel.vip.function.title" = "Cancel VIP";
 "buildin.dex.cancel.vip.item0.title" = "Current Address";
-"buildin.dex.cancel.vip.item1.title" = "Amount";
+"buildin.dex.cancel.vip.item1.title" = "Miktar";
 
 "buildin.dex.lock.vx.function.title" = "Stake";
 "buildin.dex.lock.vx.item0.title" = "Current Address";
-"buildin.dex.lock.vx.item1.title" = "Amount";
+"buildin.dex.lock.vx.item1.title" = "Miktar";
 
 "buildin.dex.un.lock.vx.function.title" = "Retrieve";
 "buildin.dex.un.lock.vx.item0.title" = "Current Address";
-"buildin.dex.un.lock.vx.item1.title" = "Amount";
+"buildin.dex.un.lock.vx.item1.title" = "Miktar";
 
 "buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
 "buildin.dex.cancel.stake.item0.title" = "Current Address";
@@ -1046,9 +1046,9 @@
 "fund.withdraw" = "Transfer";
 "fund.vitex.all" = "Exchange Total Balance";
 "fund.vitex.available" = "Exchange Available Balance";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
-"fund.withdraw.placeholder" = "Please enter transfer amount";
-"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.tooBig" = "Girdiğiniz miktar kullanılabilir bakiyeyi aşıyor, lütfen tekrar girin";
+"fund.withdraw.placeholder" = "Lütfen transfer miktarını girin";
+"fund.deposit.placeholder" = "Lütfen transfer miktarını girin";
 "fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
 "fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
 "fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
