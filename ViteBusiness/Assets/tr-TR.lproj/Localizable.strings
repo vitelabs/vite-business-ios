@@ -382,7 +382,7 @@
 "quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
 "quota.submit.pop.submit.btn.title" = "Onayla";
 "quota.submit.pop.cancel.btn.title" = "İptal";
-"quota.submit.page.quota.address.placeholder" = "Lütfen faydalanıcı adresini girin";
+"quota.submit.page.quota.address.placeholder" = "Lütfen yararlanıcı adresini girin";
 
 /* quota alert */
 "quota.alert.title" = "Insufficient Quota";
@@ -960,7 +960,7 @@
 "buildin.coin.reissue.token.function.title" = "Re-issue Token";
 "buildin.coin.reissue.token.item0.title" = "Token Adı";
 "buildin.coin.reissue.token.item1.title" = "Token Sembolü";
-"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
+"buildin.coin.reissue.token.item2.title" = "Yararlanıcı Adresi";
 "buildin.coin.reissue.token.item3.title" = "Miktar";
 
 "buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
