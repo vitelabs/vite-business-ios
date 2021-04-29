@@ -109,7 +109,7 @@
 "mnemonic.backup.page.check.button1.title" = "Anımsatıcı kelimeleri kaybedersem, varlığımı asla geri bulamayacağımı anlıyorum";
 "mnemonic.backup.page.check.button2.title" = "Anımsatıcı kelimeleri unutursam veya kaybedersem, kimsenin düzeltmeye yardım edemeyeceğini anlıyorum";
 "mnemonic.backup.page.check.button3.title" = "Zaten okudum, anladım ve kabul ediyorum ";
-"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
+"mnemonic.backup.page.clause.button.title" = "Şartlar ve Koşullar";
 "mnemonic.backup.page.tip.lab.title" = "Kurtarma Kelimeleri";
 "mnemonic.backup.page.tip.anewBtn.title" = "Yeniden oluştur";
 "mnemonic.backup.page.tip.nextBtn.title" = "Yedeklendi";
@@ -329,7 +329,7 @@
 "Receive.page.mine.title" = "My QRCode";
 "Receive.page.token.name.label" = "Scan and Send %@";
 "Receive.page.token.amount.button.title" = "Miktar Girin";
-"Receive.page.token.note.label" = "Comment";
+"Receive.page.token.note.label" = "Yorum";
 "Receive.page.token.amount.alert.title" = "Miktar Girin";
 "Receive.page.wallet.name" = "Vite Cüzdanı";
 
@@ -513,36 +513,36 @@
 "contacts.home.page.no.contact.tip" = "İlk adresini ekle";
 "contacts.home.page.single.no.contact.tip" = "No %@ address yet";
 "contacts.home.page.filter.all" = "Tümü";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.add.button.title" = "Ekle";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
+"contacts.edit.page.add.title" = "İletişim Adresi Ekleyin";
+"contacts.edit.page.edit.title" = "İletişim Adresini Düzenleyin";
 "contacts.edit.page.name.title" = "Name";
 "contacts.edit.page.address.title" = "Please input address";
 "contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.save.button.title" = "Kaydet";
+"contacts.edit.page.save.success.tip" = "Başarıyla eklendi";
+"contacts.edit.page.edit.success.tip" = "Başarıyla kaydedildi";
+"contacts.edit.page.delete.button.title" = "Sil";
+"contacts.edit.page.delete.alert.title" = "Bu adresi silmek istediğinizden emin misiniz?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
-"address.list.page.other.title" = "%@ contact address";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.my.title" = "VITE Adresim";
+"address.list.page.other.title" = "%@ iletişim adresi";
+"address.list.page.no.address.tip" = "Henüz %@ adresi yoktur";
 
 /* WorkFlow */
-"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
-"workflow.confirm.page.biometryAuthFailed.back" = "Back";
+"workflow.confirm.page.biometryAuthFailed.title" = "Tanımlanamıyor";
+"workflow.confirm.page.biometryAuthFailed.back" = "Geri";
 "workflow.confirm.page.passwordAuthFailed.retry" = "Yeniden Dene";
 "workflow.confirm.page.toast.password.error" = "Yanlış parola!";
 
-"workflow.toast.transfer.success" = "Send Success";
+"workflow.toast.transfer.success" = "Gönderim Başarılı";
 "workflow.toast.submit.success" = "Gönderim Başarılı";
 "workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
-"workflow.toast.vote.success" = "Successfully send vote request";
-"workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
+"workflow.toast.vote.success" = "Oylama talebi başarıyla gönderildi";
+"workflow.toast.cancel.vote.success" = "Oylama iptal talebi başarıyla gönderildi";
 "workflow.toast.contract.success" = "Başarılı";
 "workflow.toast.place.order.success" = "Sipariş Verildi";
 "workflow.toast.cancel.order.success" = "Sipariş İptal Edildi";
@@ -582,9 +582,9 @@
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Oylamayı İptal Et";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Onayla";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Exchange'e Yatırma";
 "confirm.transaction.page.vite.dex.deposit.confirm.button" = "Onayla";
-"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Cüzdana Çekme";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Onayla";
 "confirm.transaction.page.vite.dex.buy.title" = "%@ Al";
 "confirm.transaction.page.vite.dex.buy.confirm.button" = "Onayla";
@@ -615,35 +615,35 @@
 "confirm.transaction.page.grin.confirm.button" = "Onayla";
 
 // Grin
-"grin.balance.total" = "Total";
-"grin.balance.spendable" = "Spendable";
-"grin.balance.awaiting" = "Awaiting Confirmation";
+"grin.balance.total" = "Toplam";
+"grin.balance.spendable" = "Harcanabilir";
+"grin.balance.awaiting" = "Onay Bekleniyor";
 "grin.balance.locked" = "Locked by Previous Transaction";
-"grin.wallet.check" = "Check";
+"grin.wallet.check" = "Kontrol et";
 "grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
-"grin.txType.sent" = "Created";
-"grin.txType.waitToSign" = "Unreceived";
-"grin.txType.received" = "Received";
+"grin.txType.sent" = "Oluşturuldu";
+"grin.txType.waitToSign" = "Alınmadı";
+"grin.txType.received" = "Alındı";
 "grin.txType.waitToFinalize" = "Unfinalized";
 "grin.txType.finalized" = "Posting";
-"grin.txType.confirmed" = "Confirmed";
-"grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
-"grin.txType.Canceled" = "Canceled";
-"grin.tx.Cancele" = "Canceled";
+"grin.txType.confirmed" = "Onaylandı";
+"grin.txType.confirmedCoinbase" = "Coinbase Onaylandı";
+"grin.txType.Canceled" = "İptal edildi";
+"grin.tx.Cancele" = "İptal edildi";
 "grin.tx.Repost" = "Repost";
-"grin.tx.copyId" = "Copy";
-"grin.tx.useVite" = "Use VITE Address";
+"grin.tx.copyId" = "Kopyala";
+"grin.tx.useVite" = "VITE Adresini kullan";
 "grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
-"grin.sent.useHttp" = "Use HTTP Address";
+"grin.sent.useHttp" = "HTTP Adresini kullan";
 "grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
-"grin.sent.useFile" = "Use Transaction File";
-"grin.know" = "I know";
-"grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "Send GRIN";
+"grin.sent.useFile" = "İşlem Dosyasını kullan";
+"grin.know" = "Biliyorum";
+"grin.notSeeAgain" = "Bir daha gösterme";
+"grin.sent.title" = "GRIN Gönder";
 "grin.sent.amount" = "Miktar";
 "grin.receive.ture.amount" = "Gerçek Miktar";
-"grin.sent.fee" = "Fees";
-"grin.sent.creatFile" = "Generate Transaction File";
+"grin.sent.fee" = "Komisyonlar";
+"grin.sent.creatFile" = "İşlem Dosyası Oluştur";
 "grin.shareFile.desc" = "Please sign for the transaction";
 "grin.txFile.init.status" = "Created";
 "grin.txFile.id" = "Transaction ID";
@@ -707,27 +707,27 @@
 "grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
 "grin.teach.vite.send.startSend" = "Göndermeye Başlayın";
 "grin.txMethod.http" = "HTTP Adresi";
-"grin.txMethod.vite" = "VITE Address";
-"grin.txMethod.file" = "Transaction File";
+"grin.txMethod.vite" = "VITE Adresi";
+"grin.txMethod.file" = "İşlem Dosyası";
 
 "grin.detail.fromMine" = "Coinbase";
-"grin.detail.txStatus" = "Transaction State";
-"grin.detail.txCompleted" = "Transaction has completed.";
-"grin.detail.txCancelled" = "Transaction has been canceled.";
+"grin.detail.txStatus" = "İşlem Durumu";
+"grin.detail.txCompleted" = "İşlem tamamlandı.";
+"grin.detail.txCancelled" = "İşlem iptal edildi.";
 "grin.detail.txFileReecivedAndCanShare" = "Transaction has been received, please share the file with the sender, you can choose the way as you like.";
-"grin.detail.txReceived" = "Transaction has been received.";
+"grin.detail.txReceived" = "İşlem alındı.";
 "grin.detail.txReceivedAndCanAskGatewaytoSend" = "You have already received the transaction, if the state doesn't go to \"Confirmed\", please try \"Request for Vite gateway to resend\".";
 "grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "If the state stays \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
-"grin.detail.gateway.confirmConntLessThanTen" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
+"grin.detail.gateway.confirmConntLessThanTen" = "İşlem Vite ağ geçidine ulaştı ve 10 onaydan sonra size transfer edilecektir.";
 "grin.detail.gateway.confirmConntBiggerThanTen" = "Vite gateway confirmation has reached 10, if the state not changing to \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
 "grin.detail.confirmLessThanThen" = "Transaction has been confirmed, after 10 confirmation, \"Actual Amount\" will go to \"Spendable Amount\".";
 "grin.detail.gateway" = "Vite Gateway Collection";
-"grin.detail.gatewayReceived" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
+"grin.detail.gatewayReceived" = "İşlem Vite ağ geçidine ulaştı ve 10 onaydan sonra size transfer edilecektir.";
 "grin.detail.txpostingAndCanRepost" = "Transaction has started to be broadcast, you can click \"Repost\" to try again if the transaction hasn't been confirmed for long";
-"grin.detail.pleaseFinalize" = "Please finalize the transaction";
-"grin.detail.pleaseFinalize2" = "Please wait for the transaction to be broadcast";
+"grin.detail.pleaseFinalize" = "Lütfen işlemi tamamlayın";
+"grin.detail.pleaseFinalize2" = "Lütfen işlemin yayınlanmasını bekleyin";
 "grin.detail.txFileCreatedAndCanShare" = "Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.";
-"grin.detail.txFile" = "Transaction File";
+"grin.detail.txFile" = "İşlem Dosyası";
 "grin.detail.txFinaziledAndPosting" = "Transaction has been finalized and broadcast.";
 "grin.detail.txisPostingPlsWait" = "Transaction is in broadcast, please wait for confirmation.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Please wait for the recipient to open Vite wallet and receive the transaction.";
