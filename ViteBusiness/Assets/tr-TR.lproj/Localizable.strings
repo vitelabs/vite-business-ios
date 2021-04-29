@@ -101,7 +101,7 @@
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
+"mnemonic.backup.scan.alert.title" = "Uyarı";
 "mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
 "mnemonic.backup.scan.alert.ok.title" = "Onayla";
 "mnemonic.backup.scan.alert.cancel.title" = "İptal";
@@ -186,20 +186,20 @@
 "my.page.system.cell.title" = "Ayarlar";
 "my.page.invite.cell.title" = "Madencilik Referansları";
 "my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+"my.page.forum.cell.title" = "Resmi Forum";
+"my.page.aboutUs.cell.title" = "Hakkımızda";
+"my.page.change.wallet.name.alter.title" = "Hesap Adını Düzenle";
+"my.page.aboutUs.wechat.alert.title" = "Vite WeChat Resmi Hesabına ulaşmak için QR kodu tarayın";
 
 /* Transaction List */
-"transaction.list.page.title" = "Transaction History";
-"transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.title" = "İşlem Geçmişi";
+"transaction.list.page.empty" = "Boş";
+"transaction.list.page.network.error" = "Yenile";
 "transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
-"transaction.list.page.header.refresh.refreshing" = "Loading...";
-"transaction.list.transaction.type.name.contract" = "Call";
+"transaction.list.page.header.refresh.refreshing" = "Yükleniyor...";
+"transaction.list.transaction.type.name.contract" = "Ara";
 "transaction.list.transaction.type.name.register" = "Registration";
 "transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
 "transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
