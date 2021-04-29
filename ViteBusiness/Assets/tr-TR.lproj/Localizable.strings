@@ -34,9 +34,9 @@
 "airdrop.profit" = "Faydalar";
 "airdrop.validationFailed" = "Doğrulama Başarısız";
 "airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.leftTime" = "Geri sayım";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
+"airdrop.error.tip.need.update" = "Airdrop yalnızca iOS 11 ve üzeri sürümlerde desteklenir.";
 "airdrop.error.tip.not.support" = "Cihazınız airdrop'u desteklemiyor.";
 "airdrop.error.tip.unknown.error" = "Bilinmeyen Hata.";
 
@@ -63,35 +63,35 @@
 "Submit.cancel" = "İptal";
 "Close" = "Kapat";
 "Quit" = "Çıkış";
-"web.page.host.tip" = "This page is provided by %@";
+"web.page.host.tip" = "Bu sayfa %@ tarafından sağlanmaktadır";
 
 /* Login */
 "create.account" = "Hesap Oluşturun";
 "import.account" = "Hesabı İçe Aktar";
-"select.wallet.account" = "Select your account";
+"select.wallet.account" = "Hesabınızı seçin";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.pwd.btn.title" = "Şifre ile giriş";
+"lock.page.fingerprint.btn.title" = "Biyometrik Doğrulama";
+"lock.page.fingerprint.alter.title" = "Touch ID'yi etkinleştirmek için parmak izini doğrulayın";
+"lock.page.changeUser.btn.title" = "Hesap Değiştir";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
+"create.page.title" = "Hesap Oluştur";
+"create.page.tf.title" = "Hesap Adı";
+"create.page.pw.title" = "Lütfen şifrenizi girin";
+"create.page.pw.repeate.title" = "Lütfen şifrenizi yeniden girin";
 "create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.invite.code.placeholder" = "Davet Kodu(İsteğe Bağlı)";
+"create.page.submit.btn.title" = "Oluştur";
+"create.page.toast.error.invite.code" = "Yanlış Davet Kodu";
 
-"create.page.tip.title" = "Backup Instructions";
+"create.page.tip.title" = "Yedekleme Talimatları";
 "create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
 "create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
 "create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
 "create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.button.next.title" = "Yedeklendi";
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
