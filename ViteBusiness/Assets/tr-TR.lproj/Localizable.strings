@@ -57,7 +57,7 @@
 "Loading" = "Yükleniyor";
 "Retry" = "Yeniden Dene";
 "Confirm" = "Onayla";
-"Submit" = "Submit";
+"Submit" = "Gönder";
 "Close" = "Anladım";
 "Update.app" = "Uygulamayı Güncelle";
 "Submit.cancel" = "İptal";
@@ -87,10 +87,10 @@
 "create.page.toast.error.invite.code" = "Yanlış Davet Kodu";
 
 "create.page.tip.title" = "Yedekleme Talimatları";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
+"create.page.tip.content1" = "Dikkat! Anımsatıcı kelimelerin kaybı, cüzdandaki tüm dijital varlıkların kaybına neden olacaktır.";
+"create.page.tip.content2" = "Anımsatıcı kelimeleri içe aktarmak, uygulamayı sildikten veya yeniden yükledikten sonra bir hesabı almanın tek yoludur.";
+"create.page.tip.content3" = "Lütfen anımsatıcı kelimelerinizi güvenli bir yerde saklayın.";
+"create.page.tip.button.skip.title" = "Daha Sonra Yedekle";
 "create.page.tip.button.next.title" = "Yedeklendi";
 
 /* mnemonic */
@@ -108,14 +108,14 @@
 
 "mnemonic.backup.page.check.button1.title" = "Anımsatıcı kelimeleri kaybedersem, varlığımı asla geri bulamayacağımı anlıyorum";
 "mnemonic.backup.page.check.button2.title" = "Anımsatıcı kelimeleri unutursam veya kaybedersem, kimsenin düzeltmeye yardım edemeyeceğini anlıyorum";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
+"mnemonic.backup.page.check.button3.title" = "Zaten okudum, anladım ve kabul ediyorum ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
-"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
+"mnemonic.backup.page.tip.lab.title" = "Kurtarma Kelimeleri";
 "mnemonic.backup.page.tip.anewBtn.title" = "Yeniden oluştur";
 "mnemonic.backup.page.tip.nextBtn.title" = "Yedeklendi";
 "mnemonic.backup.page.tip.skip.title" = "Daha Sonra Yedekle";
 "mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
+"mnemonic.backup.page.alter.message" = "Yeni kurtarma kelimeleri oluşturmak ister misiniz?";
 "mnemonic.backup.page.alter.cancel" = "Hayır";
 "mnemonic.backup.page.alter.confirm" = "Evet";
 "mnemonic.backup.page.error.type.name" = "Lütfen hesap adı veya parola girin";
@@ -123,12 +123,12 @@
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Kullanıcı adı yalnızca 32 karakterden azını destekliyor";
 "mnemonic.backup.page.error.type.difference" = "Lütfen aynı parolayı girin!";
 "mnemonic.backup.page.error.type.pwd.illegal" = "Parolanız en az 8 karakter içermelidir";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.switch.mode.title" = "%@ anımsatıcı kelimeye geç";
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
 "mnemonic.backup.tip.alert.message" = "Anımsatıcı Kelimeleri yedeklemek için lütfen parolayı girin.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.ok.title" = "Şimdi Yedekle";
+"mnemonic.backup.tip.alert.cancel.title" = "Daha Sonra Yedekle";
 
 "mnemonic.affirm.page.title" = "Onayla";
 "mnemonic.affirm.page.tip.title" = "Sırayla kurtarma kelimelelerini seçin";
@@ -219,8 +219,8 @@
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "Transaction Completed";
 "vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
-"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
-"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
+"vite.transaction.detail.page.state.call.failed" = "Görüşme Başarısız Oldu";
+"vite.transaction.detail.page.state.call.wait" = "Akıllı Sözleşme Yanıtı bekleniyor";
 "vite.transaction.detail.page.type.title" = "İşlem Türü";
 "vite.transaction.detail.page.type.send" = "Talep";
 "vite.transaction.detail.page.type.receive" = "Yanıt";
@@ -539,7 +539,7 @@
 "workflow.confirm.page.toast.password.error" = "Yanlış parola!";
 
 "workflow.toast.transfer.success" = "Send Success";
-"workflow.toast.submit.success" = "Submit Successful";
+"workflow.toast.submit.success" = "Gönderim Başarılı";
 "workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
