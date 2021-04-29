@@ -23,39 +23,39 @@
 "discover.page.headerTitle.activity" = "Kampanya Merkezi";
 "discover.page.headerTitle.game" = "Vite Oyunları";
 "discover.page.headerTitle.news" = "Vite Haberleri";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
+"discover.page.VCWebTitle.activity" = "Vite Olayları";
+"discover.page.VCWebTitle.game" = "Vite Oyunları";
+"discover.page.VCWebTitle.news" = "Vite Haberleri";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
+"airdrop.help" = "Yardım";
+"airdrop.vpower" = "Kazananlar";
+"airdrop.profit" = "Faydalar";
+"airdrop.validationFailed" = "Doğrulama Başarısız";
 "airdrop.enabled" = "Pick up 10~1000";
 "airdrop.leftTime" = "Countdown";
 
 "airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.not.support" = "Cihazınız airdrop'u desteklemiyor.";
+"airdrop.error.tip.unknown.error" = "Bilinmeyen Hata.";
 
 
-"tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
-"tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
-"tab.title.dex" = "Asset";
+"tab.title.wallet" = "Cüzdan";
+"tab.title.market" = "Marketler";
+"tab.title.trading" = "Alım Satım";
+"tab.title.discover" = "Keşfet";
+"tab.title.dex" = "Varlık";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
-"Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
+"Cancel" = "İptal";
+"Finish" = "Tamam";
+"Delete" = "Sil";
+"Hint" = "Komut istemi";
+"Yes" = "Evet";
+"No" = "Hayır";
+"Loading" = "Yükleniyor";
+"Retry" = "Yeniden Dene";
 "Confirm" = "Confirm";
 "Submit" = "Submit";
 "Close" = "I understand";
