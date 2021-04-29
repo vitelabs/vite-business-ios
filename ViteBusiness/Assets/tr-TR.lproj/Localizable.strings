@@ -94,10 +94,10 @@
 "create.page.tip.button.next.title" = "Yedeklendi";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
+"mnemonic.backup.page.title" = "Anımsatıcı Kelimeleri Yedekleme";
 "mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.page.tip2" = "Anımsatıcı kelimeleri bir kağıda not edin, ardından güvenli bir yerde saklayın.";
+"mnemonic.backup.page.tip3" = "Başka bir cihazda yüklü olan Vite cüzdanını kullanarak aşağıdaki QR kodunu tarayın.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
@@ -106,8 +106,8 @@
 "mnemonic.backup.scan.alert.ok.title" = "Onayla";
 "mnemonic.backup.scan.alert.cancel.title" = "İptal";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
-"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
+"mnemonic.backup.page.check.button1.title" = "Anımsatıcı kelimeleri kaybedersem, varlığımı asla geri bulamayacağımı anlıyorum";
+"mnemonic.backup.page.check.button2.title" = "Anımsatıcı kelimeleri unutursam veya kaybedersem, kimsenin düzeltmeye yardım edemeyeceğini anlıyorum";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
@@ -211,7 +211,7 @@
 "transaction.list.transaction.type.name.coin" = "Token Issuance";
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
-"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
+"transaction.list.transaction.netErrorAndShowAccount" = "Ağda bir sorun oluştu, hesap ayrıntılarını kontrol etmek için burayı tıklayın";
 "transaction.list.transaction.confirmations" = "%@ Confirmations";
 "transaction.list.transaction.confirmations.finished" = "Onaylandı";
 "eth.transaction.detail.page.state.call.wait" = "Bekliyor";
@@ -221,9 +221,9 @@
 "vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
 "vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
 "vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
-"vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Request";
-"vite.transaction.detail.page.type.receive" = "Response";
+"vite.transaction.detail.page.type.title" = "İşlem Türü";
+"vite.transaction.detail.page.type.send" = "Talep";
+"vite.transaction.detail.page.type.receive" = "Yanıt";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
 "vite.transaction.detail.page.note.title" = "Memo";
@@ -1113,26 +1113,26 @@
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.total" = "Dolaşımdaki Tokenlar";
+"market.detail.page.token.info.type" = "Tür";
+"market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
 "market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
-"market.detail.page.token.info.paper" = "WhitePaper";
+"market.detail.page.token.info.official" = "Resmi site";
+"market.detail.page.token.info.paper" = "Teknikİnceleme";
 "market.detail.page.token.info.browser" = "Explorer";
-"market.detail.page.token.info.github" = "Github";
+"market.detail.page.token.info.github" = "GitHub";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "Sosyal Medya";
+"market.detail.page.token.info.brief" = "Giriş";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "Anonim";
+"market.detail.page.token.info.address" = "Operatör adresi";
+"market.detail.page.token.info.pair" = "Alım Satım paritesi";
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.mining" = "Madencilik";
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
@@ -1221,39 +1221,39 @@
 
 // DexHome
 "dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trading";
+"dex.home.page.nav.btc.valuation.title" = "Toplam Değer (BTC)";
+"dex.home.page.segment.wallet" = "Cüzdan";
+"dex.home.page.segment.dex" = "Alım Satım";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
+"dex.home.page.header.btc.valuation.title" = "Değer (BTC)";
 "dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.button.deposit.title" = "Yatırma";
+"dex.home.page.header.button.withdraw.title" = "Çekme";
+"dex.home.page.header.button.hide.small.title" = "Küçük Bakiyeleri Gizle";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
+"dex.token.detail.page.title" = "Bakiye";
+"dex.token.detail.page.header.total" = "Toplam";
+"dex.token.detail.page.header.available" = "Kullanılabilir";
 "dex.token.detail.page.header.lock.place.order" = "In Order";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
 "dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
-"dex.token.detail.page.header.lock.vite.mining" = "Staked";
+"dex.token.detail.page.header.lock.vite.mining" = "Stake Edilmiş";
 "dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
 "dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
-"dex.token.detail.page.header.lock.vx" = "Staked";
+"dex.token.detail.page.header.lock.vx" = "Stake Edilmiş";
 "dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.list.wallet.heater.title" = "Geçmiş";
+"dex.token.detail.page.list.dex.heater.title" = "Transfer Geçmişi";
 "dex.token.detail.page.cell.in" = "Transfer-In";
 "dex.token.detail.page.cell.out" = "Transfer-Out";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
+"dex.token.detail.page.button.deposit" = "Yatırma";
+"dex.token.detail.page.button.withdraw" = "Çekme";
 "dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.send" = "Gönder";
+"dex.token.detail.page.button.trading" = "Alım Satım";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "Alım Satım paritesi seçin";
