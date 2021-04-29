@@ -937,17 +937,17 @@
 "buildin.transfer.cross.chain.item2.title" = "Adresi Al";
 
 "buildin.vote.function.title" = "Oy";
-"buildin.vote.item0.title" = "SBP Candidates";
-"buildin.vote.item1.title" = "Votes";
+"buildin.vote.item0.title" = "SBP Adayları";
+"buildin.vote.item1.title" = "Oylar";
 
 "buildin.coin.issuance.function.title" = "Token Issuance";
 "buildin.coin.issuance.item0.title" = "Issuance Address";
-"buildin.coin.issuance.item1.title" = "Token Name";
-"buildin.coin.issuance.item2.title" = "Token Symbol";
-"buildin.coin.issuance.item3.title" = "Total Supply";
-"buildin.coin.issuance.item4.title" = "Decimals";
+"buildin.coin.issuance.item1.title" = "Token Adı";
+"buildin.coin.issuance.item2.title" = "Token Sembolü";
+"buildin.coin.issuance.item3.title" = "Toplam Arz";
+"buildin.coin.issuance.item4.title" = "Ondalık sayılar";
 "buildin.coin.issuance.item5.title" = "Re-issuable";
-"buildin.coin.issuance.item5.yes.value" = "YES";
+"buildin.coin.issuance.item5.yes.value" = "EVET";
 "buildin.coin.issuance.item5.no.value" = "NO";
 "buildin.coin.issuance.item6.title" = "Max Supply";
 "buildin.coin.issuance.item7.title" = "Issuance Fee";
@@ -1051,45 +1051,45 @@
 "fund.deposit.placeholder" = "Lütfen transfer miktarını girin";
 "fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
 "fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.DepositSuccess" = "İşlem başarılı. Exchange bakiyesini kontrol etmek ister misin?";
 
 "transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
+"transfer.wallet.account" = "Cüzdan Hesabı";
 "transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
+"transfer.dex.account" = "Exchange Hesabı";
 "transfer.token" = "Token";
 "transfer.amount" = "Miktar";
-"transfer.available" = "Balance: ";
+"transfer.available" = "Bakiye: ";
 "transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.search.placeholder" = "Lütfen token adı girin";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
-"market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
-"market.operator" = "Operator";
+"market.favourite" = "Favoriler";
+"market.searchhistory" = "Arama Geçmişi";
+"market.title" = "Marketler";
+"market.about" = "ViteX ile Başlayın";
+"market.name" = "Ad";
+"market.price" = "Son Fiyat";
+"market.percent" = "Değiştir";
+"market.operator" = "Operatör";
 "market.switch" = "Exchange";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.order.book.title" = "Emir defteri";
+"market.detail.page.segment.last.trades.title" = "Son Alım Satımlar";
 "market.detail.page.segment.token.info.title" = "Token";
-"market.detail.page.segment.operator.into.title" = "Operator";
+"market.detail.page.segment.operator.into.title" = "Operatör";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
-"market.detail.page.info.vol.title" = "24H";
+"market.detail.page.info.high.title" = "Yüksek";
+"market.detail.page.info.low.title" = "Düşük";
+"market.detail.page.info.vol.title" = "24S";
 
-"market.detail.page.kline.type.min1.title" = "1m";
-"market.detail.page.kline.type.min30.title" = "30m";
-"market.detail.page.kline.type.hour1.title" = "1H";
-"market.detail.page.kline.type.hour2.title" = "2H";
-"market.detail.page.kline.type.hour4.title" = "4H";
-"market.detail.page.kline.type.hour6.title" = "6H";
-"market.detail.page.kline.type.hour12.title" = "12H";
+"market.detail.page.kline.type.min1.title" = "1dk";
+"market.detail.page.kline.type.min30.title" = "30dk";
+"market.detail.page.kline.type.hour1.title" = "1S";
+"market.detail.page.kline.type.hour2.title" = "2S";
+"market.detail.page.kline.type.hour4.title" = "4S";
+"market.detail.page.kline.type.hour6.title" = "6S";
+"market.detail.page.kline.type.hour12.title" = "12S";
 "market.detail.page.kline.type.day1.title" = "1G";
 "market.detail.page.kline.type.week1.title" = "1H";
 
@@ -1099,7 +1099,7 @@
 "market.detail.page.value.low.title" = "Düşük";
 "market.detail.page.value.close.title" = "Kapat";
 "market.detail.page.value.diff.title" = "chg";
-"market.detail.page.value.extent.title" = "chg%";
+"market.detail.page.value.extent.title" = "%chg";
 "market.detail.page.value.vol.title" = "Hacim";
 
 "market.detail.page.depth.vol.title" = "Miktar(%@)";
