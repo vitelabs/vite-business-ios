@@ -1011,7 +1011,7 @@
 "buildin.dex.cancel.vip.item0.title" = "Mevcut Adres";
 "buildin.dex.cancel.vip.item1.title" = "Miktar";
 
-"buildin.dex.lock.vx.function.title" = "Stake Et";
+"buildin.dex.lock.vx.function.title" = "Stake";
 "buildin.dex.lock.vx.item0.title" = "Mevcut Adres";
 "buildin.dex.lock.vx.item1.title" = "Miktar";
 
