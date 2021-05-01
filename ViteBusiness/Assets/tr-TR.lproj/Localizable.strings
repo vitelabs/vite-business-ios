@@ -398,8 +398,8 @@
 "quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
 /* Peldge History */
-"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
-"peldge.deadline" = "Due Date";
+"peldge.message" = "Şu anda Vite App sadece stake listesinin kontrol edilmesini desteklemektedir, lütfen gerekli olması halinde stake edilmiş tokenları bitiş tarihinde geri çekmek için Web Cüzdanına gidin.";
+"peldge.deadline" = "Bitiş Tarihi";
 "peldge.title" = "Stake Geçmişi";
 "peldge.address.title" = "Yararlanıcı";
 "peldge.cancel.peldge.button.title" = "Çekme";
@@ -1049,8 +1049,8 @@
 "fund.tooBig" = "Girdiğiniz miktar kullanılabilir bakiyeyi aşıyor, lütfen tekrar girin";
 "fund.withdraw.placeholder" = "Lütfen transfer miktarını girin";
 "fund.deposit.placeholder" = "Lütfen transfer miktarını girin";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
+"fund.cannotDeposit" = "Yetersiz cüzdan bakiyesi nedeniyle aktarılamıyor";
+"fund.cannotWithDraw" = "Yetersiz exchange bakiyesi nedeniyle aktarılamıyor";
 "fund.DepositSuccess" = "İşlem başarılı. Exchange bakiyesini kontrol etmek ister misin?";
 
 "transfer.from" = "From";
