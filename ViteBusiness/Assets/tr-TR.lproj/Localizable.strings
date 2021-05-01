@@ -260,7 +260,7 @@
 "token.info.detail.page.type" = "Token Türü";
 "market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"token.info.detail.page.gateway" = "Cross-Chain gateway";
+"token.info.detail.page.gateway" = "Cross-Chain ağ geçidi";
 "token.info.detail.page.webside" = "Web Sitesi";
 "token.info.detail.page.paper" = "Teknikİnceleme";
 "token.info.detail.page.browser" = "Explorer";
@@ -747,15 +747,15 @@
 // CrossChain Transfer & Receive
 
 "crosschain.tokendetail" = "Token Ayrıntıları";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
+"crosschain.deposit" = "Cross-Chain Yatırma";
+"crosschain.withdraw" = "Cross-Chain Çekme";
 "crosschain.withdraw.btnTitle" = "Çekme";
 "crosschain.deposit.btnTitle" = "Yatırma";
 "crosschain.deposit.vitewallet" = "Vite Cüzdanından Yatırma";
 "crosschain.deposit.otherwallet" = "Başka Cüzdandan Yatırma";
 "crosschain.deposit.history" = "Yatırma Geçmişi";
 "crosschain.withdraw.history" = "Çekim Geçmişi";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
+"crosschain.deposit.minAmountDesc" = "Aşağıdaki adres tarafından yalnızca %@ kabul edilir ve minimum tutar %@'den az olmamalıdır";
 "crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
 "crosschain.deposit.address" = "Yatırma Adresi";
 "crosschain.deposit.scanAddress" = "Lütfen adres QR kodunu tarayın";
@@ -791,11 +791,11 @@
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Çekim Başarısız";
 "crosschain.status.failedBecausePoor" = "Yetersiz miktar";
-"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
-"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.title" = "Cross-chain çekim limiti";
+"crosschain.withdraw.amount.limit.min" = "Tek seferde minimum cross-chain çekim miktarı: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Tek seferde maksimum cross-chain çekim miktarı: %@ %@";
 "crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
-"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
+"crosschain.withdraw.fee.desc2" = "Cross-chain çekim komisyonu: ";
 "crosschain.withdraw.aboutfee" = "Komisyon Hakkında";
 "crosschain.status.failed" = "Yatırma Başarısız";
 "crosschain.beta.alert" = "Mevcut bir beta sürümüdür, Lütfen hesabınıza büyük miktarda para yatırmayın.";
@@ -884,7 +884,7 @@
 "bifrost.operation.transfer" = "Gönder";
 "bifrost.operation.vx.deposit" = "ViteX Yatırımı";
 "bifrost.operation.vx.withdraw" = "ViteX Çekimi";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
+"bifrost.operation.across.chain.withdraw" = "Cross-Chain Gönderimi";
 "bifrost.operation.vx.order" = "ViteX'te Emir Gir";
 "bifrost.operation.vx.cancel.order" = "ViteX'teki Emri İptal Et";
 
@@ -931,7 +931,7 @@
 "buildin.transfer.utf8string.item1.title" = "Miktar";
 "buildin.transfer.utf8string.item2.title" = "Yorum";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Gönderimi";
 "buildin.transfer.cross.chain.item0.title" = "Miktar";
 "buildin.transfer.cross.chain.item1.title" = "Komisyon";
 "buildin.transfer.cross.chain.item2.title" = "Adresi Al";
@@ -1117,7 +1117,7 @@
 "market.detail.page.token.info.type" = "Tür";
 "market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
+"market.detail.page.token.info.gateway" = "Cross-Chain ağ geçidi";
 "market.detail.page.token.info.official" = "Resmi web site";
 "market.detail.page.token.info.paper" = "Teknikİnceleme";
 "market.detail.page.token.info.browser" = "Explorer";
