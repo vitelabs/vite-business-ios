@@ -1053,7 +1053,7 @@
 "fund.cannotWithDraw" = "Yetersiz exchange bakiyesi nedeniyle aktarılamıyor";
 "fund.DepositSuccess" = "İşlem başarılı. Exchange bakiyesini kontrol etmek ister misin?";
 
-"transfer.from" = "From";
+"transfer.from" = "Gönderici";
 "transfer.wallet.account" = "Cüzdan Hesabı";
 "transfer.to" = "To";
 "transfer.dex.account" = "Exchange Hesabı";
