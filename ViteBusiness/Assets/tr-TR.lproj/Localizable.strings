@@ -375,7 +375,7 @@
 "quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Lütfen miktarı girin, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
+"quota.manage.page.quota.snapshoot.height.desc" = "Yaklaşık %@ gün";
 "quota.manage.page.submit.btn.title" = "Stake'i Gönder";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
 "quota.manage.page.toast.money.error" = "Stake miktarı 134'ten az olmamalıdır";
@@ -395,7 +395,7 @@
 "quota.pow.finished.float.view.title" = "İşlem Gönderildi";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
+"quota.pow.finished.float.view.pledge.button.title" = "Stake ile Daha Hızlı İşlem Yapın";
 
 /* Peldge History */
 "peldge.message" = "Şu anda Vite App sadece stake listesinin kontrol edilmesini desteklemektedir, lütfen gerekli olması halinde stake edilmiş tokenları bitiş tarihinde geri çekmek için Web Cüzdanına gidin.";
