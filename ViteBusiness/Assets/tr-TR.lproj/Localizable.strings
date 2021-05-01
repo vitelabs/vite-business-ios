@@ -760,7 +760,7 @@
 "crosschain.deposit.address" = "Yatırma Adresi";
 "crosschain.deposit.scanAddress" = "Lütfen adres QR kodunu tarayın";
 "crosschain.deposit.scanLabel" = "Lütfen %@ kodunu tarayın";
-"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+"crosschain.deposit.labelDesc" = "Lütfen Yatırma Adresi ile birlikte %@ kullanın, aksi takdirde token(lar)ınızı kaybedebilirsiniz.";
 
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
@@ -784,7 +784,7 @@
 "crosschain.tokenDetail.issuance.false" = "Hayır";
 "crosschain.tokenDetail.date" = "Issuance Date";
 "crosschain.tokenDetail.desc" = "Açıklama";
-"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
+"crosschain.status.waitToConfirm" = "Onaylanmayan Zincir %@";
 "crosschain.status.confirmed" = "Onaylandı";
 "crosschain.status.tot.exceed.limit" = "Limit aşıldı";
 "crosschain.status.wrong.address" = "Yanlış transfer adresi";
@@ -800,7 +800,7 @@
 "crosschain.status.failed" = "Yatırma Başarısız";
 "crosschain.beta.alert" = "Mevcut bir beta sürümüdür, Lütfen hesabınıza büyük miktarda para yatırmayın.";
 "crosschain.fee" = "Komisyon";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
+"crosschain.withdraw.gatewayispoor" = "Miktar %@-%@ limitini aşıyor, lütfen göndermek için gateway@vite.org ile iletişime geçin.";
 "crosschain.gatewaydetail.title" = "Ağ Geçidi Ayrıntıları";
 "crosschain.gatewaydetail.name" = "Ağ Geçidi Adı";
 "crosschain.gatewaydetail.webset" = "Resmi Web Site";
@@ -811,7 +811,7 @@
 "crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
 "crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc2" = "Doğrulama veya ödeme işlemiyle ilgili bir problem yaşandığında, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
 "crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc0" = "Bu Hizmet %@ tarafından sağlanmaktadır.";
 "crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
