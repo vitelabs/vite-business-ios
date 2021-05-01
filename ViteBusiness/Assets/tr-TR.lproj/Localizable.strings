@@ -208,7 +208,7 @@
 "transaction.list.transaction.type.name.cancelVote" = "Oylamayı İptal Et";
 "transaction.list.transaction.type.name.pledge" = "Get TPS quota";
 "transaction.list.transaction.type.name.cancelPledge" = "Withdrawal of staking quota";
-"transaction.list.transaction.type.name.coin" = "Token Issuance";
+"transaction.list.transaction.type.name.coin" = "Token Yayını";
 "transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Ağda bir sorun oluştu, hesap ayrıntılarını kontrol etmek için burayı tıklayın";
@@ -256,7 +256,7 @@
 "token.info.detail.page.name" = "Token Adı";
 "token.info.detail.page.id" = "Token Kimliği";
 "token.info.detail.page.brief" = "Giriş";
-"token.info.detail.page.total" = "Total Issuance";
+"token.info.detail.page.total" = "Toplam Yayın";
 "token.info.detail.page.type" = "Token Türü";
 "market.detail.page.token.info.type.value.native" = "Yerel";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
@@ -776,13 +776,13 @@
 "crosschain.tokenDetail.id" = "Token Kimliği";
 "crosschain.tokenDetail.name" = "Token Adı";
 "crosschain.tokenDetail.address" = "Coin Forging Address";
-"crosschain.tokenDetail.amount" = "Total Issuance";
+"crosschain.tokenDetail.amount" = "Toplam Yayın";
 "crosschain.tokenDetail.digit" = "Ondalık sayılar";
 "crosschain.tokenDetail.unit" = "";
 "crosschain.tokenDetail.issuance" = "Open to Additional Issue";
 "crosschain.tokenDetail.issuance.true" = "Evet";
 "crosschain.tokenDetail.issuance.false" = "Hayır";
-"crosschain.tokenDetail.date" = "Issuance Date";
+"crosschain.tokenDetail.date" = "Yayın Tarihi";
 "crosschain.tokenDetail.desc" = "Açıklama";
 "crosschain.status.waitToConfirm" = "Onaylanmayan Zincir %@";
 "crosschain.status.confirmed" = "Onaylandı";
@@ -879,7 +879,7 @@
 "bifrost.operation.extract.reward" = "Ödülleri Topla";
 "bifrost.operation.pledge" = "Quota Al";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
-"bifrost.operation.coin" = "Token Issuance";
+"bifrost.operation.coin" = "Token Yayını";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
 "bifrost.operation.transfer" = "Gönder";
 "bifrost.operation.vx.deposit" = "ViteX Yatırımı";
@@ -946,11 +946,11 @@
 "buildin.coin.issuance.item2.title" = "Token Sembolü";
 "buildin.coin.issuance.item3.title" = "Toplam Arz";
 "buildin.coin.issuance.item4.title" = "Ondalık sayılar";
-"buildin.coin.issuance.item5.title" = "Re-issuable";
+"buildin.coin.issuance.item5.title" = "Yeniden Yayınlanabilir";
 "buildin.coin.issuance.item5.yes.value" = "EVET";
 "buildin.coin.issuance.item5.no.value" = "HAYIR";
 "buildin.coin.issuance.item6.title" = "Maks. Arz";
-"buildin.coin.issuance.item7.title" = "Issuance Fee";
+"buildin.coin.issuance.item7.title" = "Yayın Komisyonu";
 
 "buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
 "buildin.coin.transfer.ownership.item0.title" = "Token Adı";
