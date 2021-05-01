@@ -815,9 +815,9 @@
 "crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc0" = "Bu Hizmet %@ tarafından sağlanmaktadır.";
 "crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc2" = "Doğrulama veya ödeme işlemiyle ilgili bir problem yaşandığında, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
 "crosschain.statement.detail" = "Hizmet Şartları";
-"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
+"crosschain.statement.agree" = "İleri'ye tıkladığınızda, %@'in %@'ini kabul etmiş olursunuz";
 "crosschain.statement.title" = "Önemli Uyarı";
 
 "unit.Million" = " Milyon";
