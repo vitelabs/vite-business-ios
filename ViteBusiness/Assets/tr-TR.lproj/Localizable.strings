@@ -125,7 +125,7 @@
 "mnemonic.backup.page.error.type.pwd.illegal" = "Parolanız en az 8 karakter içermelidir";
 "mnemonic.backup.page.switch.mode.title" = "%@ anımsatıcı kelimeye geç";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
+"mnemonic.backup.tip.alert.title" = "Anımsatıcı Kelimeler Yedeklenmedi";
 "mnemonic.backup.tip.alert.message" = "Anımsatıcı Kelimeleri yedeklemek için lütfen parolayı girin.";
 "mnemonic.backup.tip.alert.ok.title" = "Şimdi Yedekle";
 "mnemonic.backup.tip.alert.cancel.title" = "Daha Sonra Yedekle";
@@ -236,12 +236,12 @@
 "balance.info.detail.available.amount.title" = "Kullanılabilir";
 "balance.info.detail.pledge.amount.title" = "Stake Edilmiş";
 "balance.info.detail.show.transactions.button.title" = "Ethereum Explorer'da işlem geçmişini kontrol edin";
-"balance.info.detail.reveice.button.title" = "Receive";
+"balance.info.detail.reveice.button.title" = "Alma";
 "balance.info.detail.send.button.title" = "Gönder";
 "balance.info.detail.vote" = "Oy";
 "balance.info.detail.pledge" = "Quota Al";
 "balance.info.detail.exchange.vite" = "VITE Dönüşümü";
-"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.pledge.count.content" = "Harcanabilir Quota/Quota Sınırı";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 "gateway.info.detail.page.title" = "Ağ Geçidi Ayrıntıları";
@@ -281,8 +281,8 @@
 "address.manage.alert.tip" = "Bulk generate a specified number of addresses";
 "address.manage.tip.alert.ok" = "Biliyorum";
 "address.manage.default.address.name" = "Başlıksız";
-"address.manage.change.name.alert.title" = "Edit Address Alias";
-"address.manage.change.name.alert.placeholder" = "Please input new alias";
+"address.manage.change.name.alert.title" = "Adres Başlıklarını Düzenle";
+"address.manage.change.name.alert.placeholder" = "Lütfen yeni başlık girin";
 
 /* Send Page */
 "send.page.title" = "Gönder";
@@ -343,10 +343,10 @@
 "system.page.cell.change.language" = "Dil";
 "system.page.cell.change.currency" = "Para Birimi";
 "system.page.cell.login.pwd" = "Parola ile Kilidi Aç";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
+"system.page.cell.login.faceId" = "Yüz Tanıma Kimliği ile Kilit Aç";
+"system.page.cell.login.touchId" = "Parmak İzi Kimliği ile Kilit Aç";
+"system.page.cell.transfer.faceId" = "İşlem için Yüz Tanıma Kimliğini Kullan";
+"system.page.cell.transfer.touchId" = "İşlem için Parmak İzi Kimliğini Kullan";
 "system.page.cell.logout.title" = "Çıkış/cüzdan değiştir";
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
