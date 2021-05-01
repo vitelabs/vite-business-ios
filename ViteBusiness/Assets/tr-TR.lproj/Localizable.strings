@@ -239,7 +239,7 @@
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Gönder";
 "balance.info.detail.vote" = "Oy";
-"balance.info.detail.pledge" = "Get Quota";
+"balance.info.detail.pledge" = "Quota Al";
 "balance.info.detail.exchange.vite" = "VITE Dönüşümü";
 "balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
@@ -289,7 +289,7 @@
 "send.page.my.address.title" = "%@ Adresim";
 "send.page.my.balance.title" = "Bakiye";
 "send.page.my.pledge.title" = "Benefited Stake";
-"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
+"send.page.my.quota.title" = "Harcanabilir Quota/Quota Sınırı";
 "send.page.my.max.tx.count.title" = "Maksimum Tx Miktarı";
 "send.page.add.my.address.button.title" = "Maden";
 "send.page.vite.contacts.button.title" = "VITE İletişim Adresi";
@@ -369,14 +369,14 @@
 "toast.error.login" = "Giriş Hatası";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
+"quota.manage.page.title" = "Quota Al";
+"quota.manage.page.input.address.title" = "Quota Yararlanıcısı";
 "quota.manage.page.quota.money.title" = "Stake Miktarı";
-"quota.manage.page.quota.quota.title" = "Kota";
+"quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Lütfen miktarı girin, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
+"quota.manage.page.submit.btn.title" = "Stake'i Gönder";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
 "quota.manage.page.toast.money.error" = "Stake miktarı 134'ten az olmamalıdır";
 "quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
@@ -385,14 +385,14 @@
 "quota.submit.page.quota.address.placeholder" = "Lütfen yararlanıcı adresini girin";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
+"quota.alert.title" = "Yetersiz Quota";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
-"quota.pow.finished.float.view.title" = "Transaction Sent";
+"quota.pow.finished.float.view.title" = "İşlem Gönderildi";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
@@ -455,7 +455,7 @@
 "vite.error.network.error" = "Ağda bir sorun oluştu, lütfen daha sonra tekrar deneyin";
 "vite.error.operation.failure" = "İşlem başarısız oldu";
 "vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
-"vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Kota";
+"vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Quota";
 "vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
@@ -565,14 +565,14 @@
 "confirm.transaction.address.title" = "Alıcı Adresi";
 "confirm.transaction.amount.title" = "Miktar";
 "confirm.transaction.fee.title" = "Komisyon";
-"confirm.transaction.quota.title" = "Kota";
+"confirm.transaction.quota.title" = "Quota";
 "confirm.transaction.page.use.password" = "Parola kullan";
 "confirm.transaction.page.pw.title" = "Lütfen parola girin";
 // vite transfer
 "confirm.transaction.page.vite.transfer.title" = "Gönder";
 "confirm.transaction.page.vite.confirm.button" = "Onayla";
 // vite pledge
-"confirm.transaction.page.vite.pledge.title" = "Get Quota";
+"confirm.transaction.page.vite.pledge.title" = "Quota Al";
 "confirm.transaction.page.vite.cancel.pledge.title" = "Çekme";
 "confirm.transaction.page.vite.pledge.confirm.button" = "Onayla";
 // vite vote & cancel
@@ -877,7 +877,7 @@
 "bifrost.operation.vote" = "Oylama";
 "bifrost.operation.cancel.vote" = "Oylamayı İptal Et";
 "bifrost.operation.extract.reward" = "Ödülleri Topla";
-"bifrost.operation.pledge" = "Get Quota";
+"bifrost.operation.pledge" = "Quota Al";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
@@ -1036,10 +1036,10 @@
 "fund.title.toVitex" = "Deposit to Exchange";
 "fund.walletAddress" = "Adresim";
 "fund.walletFound" = "Cüzdan Bakiyesi";
-"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.quotaInfo" = "Harcanabilir Quota/Quota Sınırı";
 "fund.deposit.amount" = "Transfer Miktarı";
 "fund.deposit.all" = "Tümü";
-"fund.quotaSpend" = "Kota";
+"fund.quotaSpend" = "Quota";
 "fund.deposit" = "Transfer";
 "fund.vitexFound" = "Kullanılabilir Bakiye";
 "fund.withdraw.amount" = "Transfer Miktarı";
@@ -1236,7 +1236,7 @@
 "dex.token.detail.page.header.available" = "Kullanılabilir";
 "dex.token.detail.page.header.lock.place.order" = "In Order";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
+"dex.token.detail.page.header.lock.vite.pledge" = "Quota için Stake Edilmiş";
 "dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
 "dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
 "dex.token.detail.page.header.lock.vite.mining" = "Stake Edilmiş";
