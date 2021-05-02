@@ -114,7 +114,7 @@
 "mnemonic.backup.page.tip.anewBtn.title" = "Yeniden oluştur";
 "mnemonic.backup.page.tip.nextBtn.title" = "Yedeklendi";
 "mnemonic.backup.page.tip.skip.title" = "Daha Sonra Yedekle";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.alter.title" = "Kurtarma kelimelerinin ekran görüntüsünü almamanızı şiddetle tavsiye ederiz. Kurtarma kelimelerini bir kağıda yazmanızı ve güvenli bir yerde saklamanızı öneririz.";
 "mnemonic.backup.page.alter.message" = "Yeni kurtarma kelimeleri oluşturmak ister misiniz?";
 "mnemonic.backup.page.alter.cancel" = "Hayır";
 "mnemonic.backup.page.alter.confirm" = "Evet";
@@ -387,7 +387,7 @@
 /* quota alert */
 "quota.alert.title" = "Yetersiz Quota";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
+"quota.alert.need.quota.message" = "Yetersiz PoW quotası, quota elde etmek için VITE stake etmenizi tavsiye ederiz.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
@@ -440,7 +440,7 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "Daha fazla veri yok";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+"introduction.tip.title" = "İşlem maliyet quotası.\nÜcretsiz Quota Almak İçin Stake Edin.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -507,7 +507,7 @@
 "token.list.page.section.grin.header" = "GRIN Ağı";
 "token.list.page.ignore.btn.title" = "Yoksay";
 "token.list.page.ignore.lab.title" = "%d yeni varlık(lar)";
-"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
+"token.list.page.ignore.alter.title" = "Yok sayılan varlıklar tekrar bilgilendirilmeyecek, aşağıdaki varlıkları yok saymak istediğinizden emin misiniz?";
 // Contacts Home
 "contacts.home.page.title" = "İletişim Adresi";
 "contacts.home.page.no.contact.tip" = "İlk adresini ekle";
@@ -540,7 +540,7 @@
 
 "workflow.toast.transfer.success" = "Gönderim Başarılı";
 "workflow.toast.submit.success" = "Gönderim Başarılı";
-"workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
+"workflow.toast.cancel.pledge.success" = "Stake'i geri alma talebi gönderildi";
 "workflow.toast.vote.success" = "Oylama talebi başarıyla gönderildi";
 "workflow.toast.cancel.vote.success" = "Oylama iptal talebi başarıyla gönderildi";
 "workflow.toast.contract.success" = "Başarılı";
@@ -596,7 +596,7 @@
 "confirm.transaction.page.vite.dex.vip.title" = "VIP olun";
 "confirm.transaction.page.vite.dex.vip.balance" = "Kullanılabilir Exchange Bakiyesi";
 "confirm.transaction.page.vite.dex.vip.amount" = "VIP Olmak İçin Gereken Stake Miktarı";
-"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
+"confirm.transaction.page.vite.dex.vip.tip" = "%0.1 alım satım komisyonu indirimi VIP ayrıcalıklarından yararlanın. VIP olmak için 10.000 VITE stake edin (Minimum Stake Süresi: 30 gündür)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "Onayla";
 "confirm.transaction.page.vite.dex.cancel.vip.title" = "VIP'i iptal et";
 "confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Onayla";
@@ -620,7 +620,7 @@
 "grin.balance.awaiting" = "Onay Bekleniyor";
 "grin.balance.locked" = "Locked by Previous Transaction";
 "grin.wallet.check" = "Kontrol et";
-"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
+"grin.wallet.check.desc" = "Cüzdan kontrolü zinciri tarar ve bekleyen tüm işlemleri iptal eder, kilitli çıktıların kilidini açar, eksik çıktıları geri yükler ve cüzdanınızın içeriğinin zincirin sürümüyle tutarlı olmasını sağlar. İşlem büyük miktarda hücresel veri tüketecek, işleme Wi-Fi üzerinden devam etmeniz önerilir";
 "grin.txType.sent" = "Oluşturuldu";
 "grin.txType.waitToSign" = "Alınmadı";
 "grin.txType.received" = "Alındı";
@@ -832,14 +832,14 @@
 "exchange.amount" = "Miktar: ";
 "exchange.limit.onetime" = "Tek İşlem Limiti: %@ - %@ VITE";
 "exchange.limit.oneday" = "Günlük İşlem Limiti %@ VITE; Kullanılmayan Günlük Limit: %@ VITE";
-"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+"exchange.limit.alert" = "Girdiğiniz miktar geçersiz. Tek bir işlem en az %@ VITE ve en fazla %@ VITE olmalıdır ve günlük işlem limiti %@ VITE'tir.";
 
 
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect Bağlandı";
 "bifrost.alert.tip.title" = "Uyarı";
 "bifrost.alert.approve.session.message" = "Lütfen aşağıdaki linki onaylayın\n%@";
-"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
+"bifrost.alert.approve.session.another.address.message" = "Şu anda taradığınız adres web platformundaki adresle tutarlı değil. Uygulama adresiyle giriş yapmaya devam edilsin mi?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Girişi onayla";
 "bifrost.alert.approve.session.another.address.cancel" = "Geri";
 
@@ -964,8 +964,8 @@
 "buildin.coin.reissue.token.item3.title" = "Miktar";
 
 "buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
-"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
-"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+"buildin.coin.change.to.nonissuable.item0.title" = "Token Adı";
+"buildin.coin.change.to.nonissuable.item1.title" = "Token Sembolü";
 
 "buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
 "buildin.dex.transfer.token.owner.item0.title" = "Token Adı";
