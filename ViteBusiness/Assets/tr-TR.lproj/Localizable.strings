@@ -102,7 +102,7 @@
 "mnemonic.backup.language.en" = "EN";
 
 "mnemonic.backup.scan.alert.title" = "Uyarı";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
+"mnemonic.backup.scan.alert.message" = "Aşağıdaki anımsatıcı kelimelerle hesap oluşturmayı onaylıyor musunuz?";
 "mnemonic.backup.scan.alert.ok.title" = "Onayla";
 "mnemonic.backup.scan.alert.cancel.title" = "İptal";
 
