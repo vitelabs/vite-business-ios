@@ -13,7 +13,7 @@
 "alter.title" = "UYARI";
 
 "discover.page.title" = "Keşfet";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
+"discover.page.game.cell.palyNum" = "%@ oyuncu şu an oynuyor";
 "discover.page.activity.page.title1" = "Güncel Etkinlikler";
 "discover.page.activity.page.title2" = "Geçmiş";
 "discover.page.news.cell.official" = "Vite";
@@ -81,7 +81,7 @@
 "create.page.tf.title" = "Hesap Adı";
 "create.page.pw.title" = "Lütfen parola girin";
 "create.page.pw.repeate.title" = "Lütfen parolanızı yeniden girin";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
+"create.page.invite.code.title" = "Alım satım komisyonlarında ve birinci sınıf madencilikte kullanabileceğiniz %10 indirimden yararlanmak için davetiye kodunu girin veya davetiye QR kodunu tarayın";
 "create.page.invite.code.placeholder" = "Davet Kodu(İsteğe Bağlı)";
 "create.page.submit.btn.title" = "Oluştur";
 "create.page.toast.error.invite.code" = "Yanlış Davet Kodu";
@@ -95,7 +95,7 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Anımsatıcı Kelimeleri Yedekleme";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
+"mnemonic.backup.page.tip1" = "Aşağıdaki iki yedekleme yöntemini öneriyoruz:";
 "mnemonic.backup.page.tip2" = "Anımsatıcı kelimeleri bir kağıda not edin, ardından güvenli bir yerde saklayın.";
 "mnemonic.backup.page.tip3" = "Başka bir cihazda yüklü olan Vite cüzdanını kullanarak aşağıdaki QR kodunu tarayın.";
 "mnemonic.backup.language.zh" = "中";
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Kurtarma kelimelerinizde bir sorun var, lütfen tekrar deneyin!";
 "import.page.submit.loading" = "İçe aktarılıyor...";
 "import.page.submit.success" = "Içe aktarma başarılı";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
+"import.page.alert.exist.title" = "Girdiğiniz kurtarma kelimeleri, mevcut cihazda zaten \"%@\" hesap adına sahip mevcut hesabın üzerine yazmak istediğinizden emin misiniz";
 "import.page.alert.exist.ok" = "Onayla";
 "import.page.alert.exist.cancel" = "İptal";
 
@@ -209,7 +209,7 @@
 "transaction.list.transaction.type.name.pledge" = "TPS quota al";
 "transaction.list.transaction.type.name.cancelPledge" = "Stake edilmiş quota çekimi";
 "transaction.list.transaction.type.name.coin" = "Token Issuance";
-"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
+"transaction.list.transaction.type.name.cancelCoin" = "Stake edilmiş tokenların çekimi";
 "transaction.list.transaction.type.name.transfer" = "Transfer";
 "transaction.list.transaction.netErrorAndShowAccount" = "Ağda bir sorun oluştu, hesap ayrıntılarını kontrol etmek için burayı tıklayın";
 "transaction.list.transaction.confirmations" = "%@ Onaylı";
@@ -224,7 +224,7 @@
 "vite.transaction.detail.page.type.title" = "İşlem Türü";
 "vite.transaction.detail.page.type.send" = "Talep";
 "vite.transaction.detail.page.type.receive" = "Yanıt";
-"vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.hash.title" = "İşlem Hash'i";
 "vite.transaction.detail.page.height.title" = "Block Height";
 "vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "Vite Explorer'da Daha Fazla Ayrıntı Görüntüle";
@@ -278,7 +278,7 @@
 "address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
 "address.manage.alert.title" = "Yeni Adresler Oluşturun";
 "address.manage.alert.placeholder" = "1 ile 100 arasında bir sayı girin";
-"address.manage.alert.tip" = "Bulk generate a specified number of addresses";
+"address.manage.alert.tip" = "Toplu olarak belirli sayıda adres oluştur";
 "address.manage.tip.alert.ok" = "Biliyorum";
 "address.manage.default.address.name" = "Başlıksız";
 "address.manage.change.name.alert.title" = "Adres Başlıklarını Düzenle";
@@ -305,7 +305,7 @@
 "send.page.toast.amount.empty" = "Lütfen bakiye girin";
 "send.page.toast.amount.zero" = "Miktar pozitif olmalıdır";
 "send.page.toast.note.too.long" = "Notların uzunluğu sınırlara ulaştı";
-"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
+"send.page.toast.contract.address.support.hex" = "Transfer ettiğiniz hedef adres bir sözleşme adresidir, not onaltılık karakterlerle yazılmalıdır";
 "send.page.not.enough.balance.alert.title" = "Yetersiz Bakiye";
 "send.page.not.enough.balance.alert.button" = "İptal";
 "send.page.token.info.error" = "Token Bilgi Hatası";
@@ -374,12 +374,12 @@
 "quota.manage.page.quota.money.title" = "Stake Miktarı";
 "quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Lütfen miktarı girin, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
+"quota.manage.page.quota.snapshoot.height.title" = "Stake Dondurma Süresi";
 "quota.manage.page.quota.snapshoot.height.desc" = "Yaklaşık %@ gün";
 "quota.manage.page.submit.btn.title" = "Stake'i Gönder";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
+"quota.manage.page.check.quotaList.btn.title" = "Stake Listesi";
 "quota.manage.page.toast.money.error" = "Stake miktarı 134'ten az olmamalıdır";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
+"quota.submit.pop.desc" = "Quota almak için %@ stake ettiğinizden emin olun, stakelerin yürürlüğe girmesinden yaklaşık 3 gün sonrasına kadar çekim yapamazsınız.";
 "quota.submit.pop.submit.btn.title" = "Onayla";
 "quota.submit.pop.cancel.btn.title" = "İptal";
 "quota.submit.page.quota.address.placeholder" = "Lütfen yararlanıcı adresini girin";
@@ -1204,20 +1204,20 @@
 "spot.page.confirm.tip" = "24 saat içinde tekrar sorma";
 
 "spot.page.alert.title" = "Önemli hatırlatma";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.message" = "Mevcut alım satım paritesi %@, Cryptocurrency yatırımı yüksek piyasa riskine ve fiyat oynaklığına tabidir. Lütfen potansiyel risklerle başa çıkma yeteneğinizi dikkatlice değerlendirin ve tedbirli alım satım kararları verin.";
 "spot.page.alert.ok" = "Onayla";
 
 "spot.page.order.empty" = "Emir yok";
 "spot.page.cell.type.buy" = "Al";
 "spot.page.cell.type.sell" = "Sat";
 "spot.page.cell.button.cancel.title" = "İptal";
-"spot.page.cell.vol" = "Amt.: %@";
+"spot.page.cell.vol" = "Miktar: %@";
 "spot.page.cell.price" = "Fiyat: %@";
 "spot.page.cell.deal" = "Tamamlanan: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.cell.average" = "Ort.: %@";
 
 "grin.initing.desc" = "Başlatılıyor, ayrıntıları görüntülemek için tıklayın";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.detail" = "1. GRIN cüzdanı eklendikten sonra başlatma gereklidir\n2. İşlemin 15 dakika sürmesi beklenmektedir\n3. Başlatma sırasında APP'i kesintiye uğratmayın veya sonlandırmayın\n4. Başlatma büyük miktarda hücresel veri tüketir, işleme Wi-Fi üzerinden devam etmeniz önerilir.";
 
 // DexHome
 "dex.home.page.nav.title" = "Dex Varlıkları";
@@ -1237,13 +1237,13 @@
 "dex.token.detail.page.header.lock.place.order" = "In Order";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Quota için Stake Edilmiş";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.sbp" = "SBP için Stake Edilmiş";
+"dex.token.detail.page.header.lock.vite.full.node" = "Tam Düğüm için Stake Edilmiş";
 "dex.token.detail.page.header.lock.vite.mining" = "Stake Edilmiş";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Geri alınıyor";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP Kilitli";
 "dex.token.detail.page.header.lock.vx" = "Stake Edilmiş";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vx.cancel" = "Geri alınıyor";
 
 "dex.token.detail.page.list.wallet.heater.title" = "Geçmiş";
 "dex.token.detail.page.list.dex.heater.title" = "Transfer Geçmişi";
