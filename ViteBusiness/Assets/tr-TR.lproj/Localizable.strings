@@ -456,7 +456,7 @@
 "vite.error.operation.failure" = "İşlem başarısız oldu";
 "vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
 "vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Quota";
-"vite.error.rpc.error.code.id.conflict" = "Bir kimlik çakışması meydana geldi, lütfen daha sonra tekrar gönderin";
+"vite.error.rpc.error.code.id.conflict" = "Bir kimlik karmaşası meydana geldi, lütfen daha sonra yeniden gönderin";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
