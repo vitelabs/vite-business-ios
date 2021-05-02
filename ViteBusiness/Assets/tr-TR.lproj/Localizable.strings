@@ -723,15 +723,15 @@
 "grin.detail.confirmLessThanThen" = "İşlem onaylandı, 10 onaydan sonra \"Gerçek Miktar\" \"Harcanabilir Miktar\" kısmına gelecektir.";
 "grin.detail.gateway" = "Vite Gateway Collection";
 "grin.detail.gatewayReceived" = "İşlem Vite ağ geçidine ulaştı ve 10 onaydan sonra size transfer edilecektir.";
-"grin.detail.txpostingAndCanRepost" = "Transaction has started to be broadcast, you can click \"Repost\" to try again if the transaction hasn't been confirmed for long";
+"grin.detail.txpostingAndCanRepost" = "İşlem yayınlanmaya başladı, işlem uzun süre onaylanmazsa tekrar denemek için \"Yeniden Gönder\" e tıklayabilirsiniz";
 "grin.detail.pleaseFinalize" = "Lütfen işlemi tamamlayın";
 "grin.detail.pleaseFinalize2" = "Lütfen işlemin yayınlanmasını bekleyin";
-"grin.detail.txFileCreatedAndCanShare" = "Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.";
+"grin.detail.txFileCreatedAndCanShare" = "İşlem dosyası oluşturuldu, lütfen dosyayı alıcıyla paylaştığınızdan (istediğiniz gibi paylaşın) ve alınan bir dosyanın iade edilmesini istediğinizden emin olun.";
 "grin.detail.txFile" = "İşlem Dosyası";
-"grin.detail.txFinaziledAndPosting" = "Transaction has been finalized and broadcast.";
+"grin.detail.txFinaziledAndPosting" = "İşlem tamamlandı ve yayınlandı.";
 "grin.detail.txisPostingPlsWait" = "İşlem yayında, lütfen onay için bekleyin.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Alıcının Vite cüzdanını açması ve işlemi alması için lütfen bekleyin.";
-"grin.detail.pleaseReciveAndShare" = "Please sign the transaction and share the file with the sender, you can choose whichever way you prefer.";
+"grin.detail.pleaseReciveAndShare" = "Lütfen işlemi imzalayın ve dosyayı gönderen ile paylaşın, istediğiniz yolu tercih edebilirsiniz.";
 "grin.detail.gatewaysend" = "VITE İşlemi Gönderildi";
 "grin.detail.repoat" = "Repost";
 "grin.node.configNode" = "Tam Düğümü Yapılandırın.";
@@ -756,7 +756,7 @@
 "crosschain.deposit.history" = "Yatırma Geçmişi";
 "crosschain.withdraw.history" = "Çekim Geçmişi";
 "crosschain.deposit.minAmountDesc" = "Aşağıdaki adres tarafından yalnızca %@ kabul edilir ve minimum tutar %@'den az olmamalıdır";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
+"crosschain.deposit.minComfirm" = "İşlem %@ onay almalı, lütfen bekleyin.";
 "crosschain.deposit.address" = "Yatırma Adresi";
 "crosschain.deposit.scanAddress" = "Lütfen adres QR kodunu tarayın";
 "crosschain.deposit.scanLabel" = "Lütfen %@ kodunu tarayın";
@@ -968,7 +968,7 @@
 "buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
 
 "buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
-"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
+"buildin.dex.transfer.token.owner.item0.title" = "Token Adı";
 "buildin.dex.transfer.token.owner.item1.title" = "Token Sembolü";
 "buildin.dex.transfer.token.owner.item2.title" = "Alıcı Adresi";
 
@@ -976,18 +976,18 @@
 "buildin.dex.transfer.pair.item0.title" = "Ad";
 "buildin.dex.transfer.pair.item1.title" = "Alıcı Adresi";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
+"buildin.dex.adjust.fees.function.title" = "Komisyonları Ayarla";
 "buildin.dex.adjust.fees.item0.title" = "Ad";
 "buildin.dex.adjust.fees.item1.title" = "Mevcut Adres";
 "buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
 "buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
+"buildin.dex.open.trading.pair.function.title" = "Alım Satım Paritesini Aç";
 "buildin.dex.open.trading.pair.item0.title" = "Ad";
 "buildin.dex.open.trading.pair.item1.title" = "Mevcut Adres";
 "buildin.dex.open.trading.pair.item2.title" = "Listeleme Komisyonu";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
+"buildin.dex.suspend.trading.pair.function.title" = "Alım Satım Paritesini Askıya Al";
 "buildin.dex.suspend.trading.pair.item0.title" = "Ad";
 "buildin.dex.suspend.trading.pair.item1.title" = "Mevcut Adres";
 
@@ -1024,7 +1024,7 @@
 
 // app scheme
 "app.scheme.home.page.busy.header" = "İşlem Onayı";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.home.page.busy.content" = "Lütfen aşağıdaki işlem bilgilerini onaylayın";
 "app.scheme.network.error" = "Ağ Hatası";
 
 
@@ -1032,8 +1032,8 @@
 
 "fund.title.wallet" = "Cüzdan Varlığı";
 "fund.title.vitex" = "Exchange Varlığı";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
+"fund.title.toWallet" = "Cüzdana Çekme";
+"fund.title.toVitex" = "Exchange'e Yatırma";
 "fund.walletAddress" = "Adresim";
 "fund.walletFound" = "Cüzdan Bakiyesi";
 "fund.quotaInfo" = "Harcanabilir Quota/Quota Sınırı";
@@ -1044,7 +1044,7 @@
 "fund.vitexFound" = "Kullanılabilir Bakiye";
 "fund.withdraw.amount" = "Transfer Miktarı";
 "fund.withdraw" = "Transfer";
-"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.all" = "Toplam Exchange Bakiyesi";
 "fund.vitex.available" = "Kullanılabilir Exchange Bakiyesi";
 "fund.tooBig" = "Girdiğiniz miktar kullanılabilir bakiyeyi aşıyor, lütfen tekrar girin";
 "fund.withdraw.placeholder" = "Lütfen transfer miktarını girin";
@@ -1055,7 +1055,7 @@
 
 "transfer.from" = "Gönderici";
 "transfer.wallet.account" = "Cüzdan Hesabı";
-"transfer.to" = "To";
+"transfer.to" = "Alıcı";
 "transfer.dex.account" = "Exchange Hesabı";
 "transfer.token" = "Token";
 "transfer.amount" = "Miktar";
@@ -1171,9 +1171,9 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
+"spot.page.buy.mining.tip" = "Fiyat %@'den yüksek olduğu zaman madencilik için uygundur";
+"spot.page.sell.mining.tip" = "Fiyat %@'den düşük olduğu zaman madencilik için uygundur";
+"spot.page.button.closed.title" = "Alım Satım Askıya Alındı";
 "spot.page.button.buy.title" = "Al";
 "spot.page.button.sell.title" = "Sat";
 "spot.page.button.limit.buy.title" = "Limit Emri";
@@ -1189,7 +1189,7 @@
 "spot.page.close.vip" = "VIP'i iptal et";
 "spot.page.open.vip.error.toast" = "Yetersiz exchange bakiyesi, VIP olabilmek için 10.000 VITE stake edin";
 "spot.page.close.vip.error.toast" = "No VIP staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
+"spot.page.close.vip.un.expire.error.toast" = "Stake süresi 30 günden azdır ve geri alınamaz";
 "spot.page.depth.price" = "Fiyat";
 "spot.page.depth.vol" = "Miktar";
 "spot.page.current.order.title" = "Açık Emirler";
