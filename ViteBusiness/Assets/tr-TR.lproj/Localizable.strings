@@ -391,10 +391,10 @@
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
+"quota.float.view.tip" = "Bu İşlemin maliyeti %@UT";
 "quota.pow.finished.float.view.title" = "İşlem Gönderildi";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
-"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
+"quota.pow.finished.float.view.h1" = "Bu PoW hesaplamasında %1$@S harcadınız ve %2$@UT'u güvence altına alıp kullandınız.";
+"quota.pow.finished.float.view.h2" = "Stake ettiğiniz VITE'inizi 3 gün sonra çekebilirsiniz. Stake yoluyla aldığınız quota bir işlem için yeterliyse, PoW'un bu adımını atlayabilirsiniz.";
 "quota.pow.finished.float.view.pledge.button.title" = "Stake ile Daha Hızlı İşlem Yapın";
 
 /* Peldge History */
@@ -434,8 +434,8 @@
 "contract.confirm.info" = "Sözleşme Adresi";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
+"vite.RefreshBackFooter.IdleText" = "Daha fazla yüklemek için aşağı çekin";
+"Vite.RefreshBackFooter.PullingText" = "Daha fazla yüklemek için serbest bırakın.";
 "Vite.RefreshBackFooter.RefreshingText" = "Yükleniyor...";
 "Vite.RefreshBackFooter.NoMoreDataText" = "Daha fazla veri yok";
 
@@ -456,7 +456,7 @@
 "vite.error.operation.failure" = "İşlem başarısız oldu";
 "vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
 "vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Quota";
-"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
+"vite.error.rpc.error.code.id.conflict" = "Bir kimlik çakışması meydana geldi, lütfen daha sonra tekrar gönderin";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
@@ -775,7 +775,7 @@
 "crosschain.tokenDetail.shortname" = "Sembol";
 "crosschain.tokenDetail.id" = "Token Kimliği";
 "crosschain.tokenDetail.name" = "Token Adı";
-"crosschain.tokenDetail.address" = "Coin Forging Address";
+"crosschain.tokenDetail.address" = "Koin Forging Adresi";
 "crosschain.tokenDetail.amount" = "Total Issuance";
 "crosschain.tokenDetail.digit" = "Ondalık sayılar";
 "crosschain.tokenDetail.unit" = "";
@@ -794,7 +794,7 @@
 "crosschain.withdraw.amount.limit.title" = "Cross-chain çekim limiti";
 "crosschain.withdraw.amount.limit.min" = "Tek seferde minimum cross-chain çekim miktarı: %@ %@";
 "crosschain.withdraw.amount.limit.max" = "Tek seferde maksimum cross-chain çekim miktarı: %@ %@";
-"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
+"crosschain.withdraw.fee.desc" = "Çekme ücreti ağ geçidi tarafından tahsil edilir";
 "crosschain.withdraw.fee.desc2" = "Cross-chain çekim komisyonu: ";
 "crosschain.withdraw.aboutfee" = "Komisyon Hakkında";
 "crosschain.status.failed" = "Yatırma Başarısız";
@@ -808,13 +808,13 @@
 "crosschain.gatewaydetail.statement" = "Hizmet Şartları";
 "crosschain.gatewaydetail.host" = "Ağ geçidi URL'si";
 "crosschain.gatewaydetail.abstract" = "Giriş";
-"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
-"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.other.desc" = "Bu Hizmet %@ tarafından sağlanmaktadır. Vite Platformu, %@ tarafından gerçekleştirilen etkinlikler için        hiçbir sorumluluk kabul etmez ve %@ ile Vite Platform kullanıcıları arasındaki ilişkide rol oynamaz.\n\n%@ tarafından sağlanan hizmetleri kullanarak, %@ %@ tarafından bağlanmayı kabul etmiş olursunuz.\nBu şartları kabul etmiyorsanız, lütfen %@ hizmetlerini kullanmaktan kaçının.\n\nDoğrulama veya ödeme işlemeyle ilgili sorun olması durumunda, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
+"crosschain.statement.other.desc0" = "Bu Hizmet %@ tarafından sağlanmaktadır. Vite Platformu %@ tarafından gerçekleştirilen etkinlikler için hiçbir sorumluluk kabul etmez ve %@ ile Vite Platform kullanıcıları arasındaki ilişkide rol oynamaz.";
+"crosschain.statement.other.desc1" = "%@ tarafından sağlanan hizmetleri kullanarak, %@ %@ tarafından bağlanmayı kabul etmiş olursunuz.\nBu şartları kabul etmiyorsanız, lütfen %@ hizmetlerini kullanmaktan kaçının.";
 "crosschain.statement.other.desc2" = "Doğrulama veya ödeme işlemiyle ilgili bir problem yaşandığında, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
-"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "Bu Hizmet %@ tarafından sağlanmaktadır.\n\n%@ tarafından sağlanan hizmetleri kullanarak, %@ %@ tarafından bağlanmayı kabul etmiş olursunuz.\nBu şartları kabul etmiyorsanız, lütfen %@ hizmetlerini kullanmaktan kaçının.\n\nDoğrulama veya ödeme işlemeyle ilgili sorun olması durumunda, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
 "crosschain.statement.vite.desc0" = "Bu Hizmet %@ tarafından sağlanmaktadır.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.vite.desc1" = "%@ tarafından sağlanan hizmetleri kullanarak, %@ %@ tarafından bağlanmayı kabul etmiş olursunuz.\nBu şartları kabul etmiyorsanız, lütfen %@ hizmetlerini kullanmaktan kaçının.";
 "crosschain.statement.vite.desc2" = "Doğrulama veya ödeme işlemiyle ilgili bir problem yaşandığında, lütfen %@ adresinden %@ destek ekibiyle iletişime geçin.";
 "crosschain.statement.detail" = "Hizmet Şartları";
 "crosschain.statement.agree" = "İleri'ye tıkladığınızda, %@'in %@'ini kabul etmiş olursunuz";
@@ -830,8 +830,8 @@
 "exchange.buy" = "Al";
 "exchange.price" = "Oran: ";
 "exchange.amount" = "Miktar: ";
-"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
+"exchange.limit.onetime" = "Tek İşlem Limiti: %@ - %@ VITE";
+"exchange.limit.oneday" = "Günlük İşlem Limiti %@ VITE; Kullanılmayan Günlük Limit: %@ VITE";
 "exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
 
 
