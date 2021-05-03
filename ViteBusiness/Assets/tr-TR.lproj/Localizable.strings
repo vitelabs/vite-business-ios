@@ -740,7 +740,7 @@
 "grin.node.edit.apiSecretTitle" = "Anahtar";
 "grin.node.select.canNotConnect" = "Tam düğüme bağlanılamadı.";
 "grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Yasadışı transfer miktarı";
+"grin.send.illegalAmmount" = "İllegal transfer miktarı";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
 "grin.export.mnemonic" = "Kurtarma Kelimelerini Dışa Aktar";
 
