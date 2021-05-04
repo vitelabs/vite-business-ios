@@ -542,7 +542,7 @@
 "workflow.toast.submit.success" = "Gönderim Başarılı";
 "workflow.toast.cancel.pledge.success" = "Stake'i geri alma talebi gönderildi";
 "workflow.toast.vote.success" = "Oylama talebi başarıyla gönderildi";
-"workflow.toast.cancel.vote.success" = "Oylama iptal talebi başarıyla gönderildi";
+"workflow.toast.cancel.vote.success" = "Oylama iptali talebi başarıyla gönderildi";
 "workflow.toast.contract.success" = "Başarılı";
 "workflow.toast.place.order.success" = "Sipariş Verildi";
 "workflow.toast.cancel.order.success" = "Sipariş İptal Edildi";
