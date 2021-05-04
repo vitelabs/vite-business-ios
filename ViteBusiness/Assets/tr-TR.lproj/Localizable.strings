@@ -388,7 +388,7 @@
 "quota.alert.title" = "Yetersiz Quota";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Yetersiz PoW quotası, quota elde etmek için VITE stake etmenizi tavsiye ederiz.";
-"quota.alert.pow.button.title" = "Run PoW";
+"quota.alert.pow.button.title" = "PoW'u çalıştır";
 "quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "Bu İşlemin maliyeti %@UT";
@@ -422,7 +422,7 @@
 "vote" = "Oy";
 "vote.list.title" = "Aday Düğümler";
 "vote.list.search" = "Search for name or address of candidate nodes";
-"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
+"vote.list.alert.already.voted" = "%@ için oy verdiniz, lütfen bu işlemin mevcut oylama sonucunun üzerine yazacağından emin olun";
 "vote.list.confirm.revote" = "Onayla";
 "vote.list.count" = "Oylar";
 "vote.list.address" = "Adres";
@@ -465,7 +465,7 @@
 "vite.error.rpc.error.code.verify.failure" = "Sistem doğrulaması başarısız oldu, lütfen daha sonra tekrar deneyiniz (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
-"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
+"eth.error.rpc.error.code.not.enough.fee" = "Komisyon Dışı";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
@@ -952,7 +952,7 @@
 "buildin.coin.issuance.item6.title" = "Maks. Arz";
 "buildin.coin.issuance.item7.title" = "Yayınlama Komisyonu";
 
-"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
+"buildin.coin.transfer.ownership.function.title" = "Sahipliği Devret";
 "buildin.coin.transfer.ownership.item0.title" = "Token Adı";
 "buildin.coin.transfer.ownership.item1.title" = "Token Sembolü";
 "buildin.coin.transfer.ownership.item2.title" = "Alıcı Adresi";
