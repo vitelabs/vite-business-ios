@@ -33,7 +33,7 @@
 "airdrop.vpower" = "Kazananlar";
 "airdrop.profit" = "Faydalar";
 "airdrop.validationFailed" = "Doğrulama Başarısız";
-"airdrop.enabled" = "Pick up 10~1000";
+"airdrop.enabled" = "10~1000 Al";
 "airdrop.leftTime" = "Geri sayım";
 
 "airdrop.error.tip.need.update" = "Airdrop yalnızca iOS 11 ve üzeri sürümlerde desteklenir.";
@@ -195,7 +195,7 @@
 "transaction.list.page.title" = "İşlem Geçmişi";
 "transaction.list.page.empty" = "Boş";
 "transaction.list.page.network.error" = "Yenile";
-"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
+"transaction.list.page.genesis.cell.name" = "Genesis Blok Kayıtlarını Kontrol Edin";
 "transaction.list.page.header.refresh.idle" = "Yenilemek için aşağıya çekin";
 "transaction.list.page.header.refresh.pulling" = "Yenilemek için serbest bırakın";
 "transaction.list.page.header.refresh.refreshing" = "Yükleniyor...";
@@ -225,7 +225,7 @@
 "vite.transaction.detail.page.type.send" = "Talep";
 "vite.transaction.detail.page.type.receive" = "Yanıt";
 "vite.transaction.detail.page.hash.title" = "İşlem Hash'i";
-"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.height.title" = "Blok Yüksekliği";
 "vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "Vite Explorer'da Daha Fazla Ayrıntı Görüntüle";
 
@@ -461,7 +461,7 @@
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "Bir işlem gerçekleşmeden başka transfer yapamazsınız.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Blok kayıt yüksekliği illegal, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.verify.failure" = "Sistem doğrulaması başarısız oldu, lütfen daha sonra tekrar deneyiniz (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
