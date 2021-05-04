@@ -26,7 +26,7 @@
 "discover.page.VCWebTitle.activity" = "Vite Etkinlikleri";
 "discover.page.VCWebTitle.game" = "Vite Oyunları";
 "discover.page.VCWebTitle.news" = "Vite Haberleri";
-"discover.page.game.alter.title" = "Vite App'ten ayrılan bir sayfayı ziyaret ediyorsunuz ve üçüncü taraf bir dApp'e yönlendirileceksiniz. Bu dApp'ı kullanımınız, dApp'in Kullanıcı Sözleşmesi ve Gizlilik Politikası Koşullarına uygun olacaktır. Vite Labs; üçüncü taraf dApp'in kalitesi, içeriği, güvenilirliği veya güvenliği üzerinde herhangi bir denetime veya kontrole sahip değildir ve kullanımından Vite Labs sorumlu olmayacaktır.";
+"discover.page.game.alter.title" = "Vite App'ten ayrılan bir sayfayı ziyaret ediyorsunuz ve üçüncü taraf bir dApp'e yönlendirileceksiniz. Bu dApp'ı kullanımınız, dApp'in Kullanıcı Sözleşmesi Koşullarına ve Gizlilik Politikası uygun olacaktır. Vite Labs; üçüncü taraf dApp'in kalitesi, içeriği, güvenilirliği veya güvenliği üzerinde herhangi bir denetime veya kontrole sahip değildir ve kullanımından Vite Labs sorumlu olmayacaktır.";
 
 //AirDrop
 "airdrop.help" = "Yardım";
@@ -169,7 +169,7 @@
 "wallet.home.unconfirmed.title" = "Alınmadı %@";
 "wallet.home.toast.copy.address" = "Kopyalama başarılı!";
 "wallet.home.scan.url.alert.title" = "UYARI";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"wallet.home.scan.url.alert.message" = "Vite App'ten ayrılan üçüncü taraf sayfasını ziyaret edeceksiniz. Bu sayfadaki kullanımınız, üçüncü taraf Kullanıcı Sözleşmesi Koşullarına ve Gizlilik Politikası uygun olacaktır. Vite Labs; üçüncü taraf dApp'in kalitesi, içeriği, güvenilirliği veya güvenliği üzerinde herhangi bir denetim veya kontrole sahip olmadığı gibi kullanımından da sorumlu değildir.";
 "wallet.home.header.title" = "Varlıklar";
 
 /* Manage Wallet */
