@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Kurtarma kelimelerinizde bir sorun var, lütfen tekrar deneyin!";
 "import.page.submit.loading" = "İçe aktarılıyor...";
 "import.page.submit.success" = "Içe aktarma başarılı";
-"import.page.alert.exist.title" = "Girdiğiniz kurtarma kelimeleri, mevcut cihazda zaten \"%@\" hesap adına sahip mevcut hesabın üzerine yazmak istediğinizden emin misiniz";
+"import.page.alert.exist.title" = "Girdiğiniz kurtarma kelimeleri, mevcut cihazda zaten \"%@\" hesap adına sahip, mevcut hesabın üzerine yazmak istediğinizden emin misiniz";
 "import.page.alert.exist.ok" = "Onayla";
 "import.page.alert.exist.cancel" = "İptal";
 
@@ -1234,7 +1234,7 @@
 "dex.token.detail.page.title" = "Bakiye";
 "dex.token.detail.page.header.total" = "Toplam";
 "dex.token.detail.page.header.available" = "Kullanılabilir";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.header.lock.place.order" = "Emirde";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Quota için Stake Edilmiş";
 "dex.token.detail.page.header.lock.vite.sbp" = "SBP için Stake Edilmiş";
