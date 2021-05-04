@@ -26,7 +26,7 @@
 "discover.page.VCWebTitle.activity" = "Vite Etkinlikleri";
 "discover.page.VCWebTitle.game" = "Vite Oyunları";
 "discover.page.VCWebTitle.news" = "Vite Haberleri";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.game.alter.title" = "Vite App'ten ayrılan bir sayfayı ziyaret ediyorsunuz ve üçüncü taraf bir dApp'e yönlendirileceksiniz. Bu dApp'ı kullanımınız, dApp'in Kullanıcı Sözleşmesi ve Gizlilik Politikası Koşullarına uygun olacaktır. Vite Labs; üçüncü taraf dApp'in kalitesi, içeriği, güvenilirliği veya güvenliği üzerinde herhangi bir denetime veya kontrole sahip değildir ve kullanımından Vite Labs sorumlu olmayacaktır.";
 
 //AirDrop
 "airdrop.help" = "Yardım";
@@ -156,7 +156,7 @@
 /* login */
 "login.page.btn.chooseName" = "Hesapları Seçin";
 "login.page.btn.login" = "Giriş Yap";
-"login.page.loading.title" = "Processing";
+"login.page.loading.title" = "İşlem yapılıyor";
 "login.page.error.toast.title" = "Yanlış parola! Lütfen bunun yerine kurtarma kelimelerini içe aktarmayı deneyin";
 
 /* Home */
