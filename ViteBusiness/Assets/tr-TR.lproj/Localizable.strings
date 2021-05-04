@@ -697,7 +697,7 @@
 "grin.recover.syncronizing" = "Kurtarın ve senkronize edin, bu tahmini 3 dakika sürecektir";
 "grin.creating" = "Grin cüzdan başlatılıyor, lütfen bir süre bekleyin.";
 "grin.pay.title.creat" = "Oluştur";
-"grin.pay.title.finalize" = "Finalize";
+"grin.pay.title.finalize" = "Tamamla";
 
 "grin.teach.file.send.desc" = "Vite cüzdanını kullanarak transfer yapmak için tek yapmanız gereken işlem dosyasını alıcıyla paylaşmak, alıcı tarafından Vite cüzdan ile iade edilen dosyayı açmak ve işlemi tamamlamaktır. \"İşlem dosyasını paylaş\" a tıkladıktan sonra Vite cüzdan uygulaması cep telefonunuzda kullanılabilir olarak gözükecektir, istediğiniz şekilde seçebilir, dosyayı cep telefonunuza kaydedebilir ve kendiniz paylaşabilirsiniz.";
 "grin.teach.file.receive.desc" = "Vite cüzdanını kullanarak transfer yapmak için tek yapmanız gereken dosyayı açmak, \"Al ve paylaş\" düğmesine tıklamak ve almak için onaylanan dosyayı gönderene iade etmektir. \"Al ve paylaş\" a tıkladıktan sonra Vite wallet uygulaması cep telefonunuzda kullanılabilir ifadesini gösterecektir, istediğiniz şekilde seçebilir, dosyayı cep telefonunuza kaydedebilir ve kendiniz paylaşabilirsiniz. Vite cüzdanı .grinslate dosyasını ve .json dosyasını destekler ve yalnızca \"yanıt\" içeren dosya adını tanıyarak başarıyla açar.";
@@ -957,22 +957,22 @@
 "buildin.coin.transfer.ownership.item1.title" = "Token Sembolü";
 "buildin.coin.transfer.ownership.item2.title" = "Alıcı Adresi";
 
-"buildin.coin.reissue.token.function.title" = "Re-issue Token";
+"buildin.coin.reissue.token.function.title" = "Tokenı Yeniden yayınla";
 "buildin.coin.reissue.token.item0.title" = "Token Adı";
 "buildin.coin.reissue.token.item1.title" = "Token Sembolü";
 "buildin.coin.reissue.token.item2.title" = "Yararlanıcı Adresi";
 "buildin.coin.reissue.token.item3.title" = "Miktar";
 
-"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
+"buildin.coin.change.to.nonissuable.function.title" = "Yayınlanamaz Olarak Değiştir";
 "buildin.coin.change.to.nonissuable.item0.title" = "Token Adı";
 "buildin.coin.change.to.nonissuable.item1.title" = "Token Sembolü";
 
-"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
+"buildin.dex.transfer.token.owner.function.title" = "Token Sahipliğini Devret";
 "buildin.dex.transfer.token.owner.item0.title" = "Token Adı";
 "buildin.dex.transfer.token.owner.item1.title" = "Token Sembolü";
 "buildin.dex.transfer.token.owner.item2.title" = "Alıcı Adresi";
 
-"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
+"buildin.dex.transfer.pair.function.title" = "Alım Satın Paritelerinin Sahipliğini Devret";
 "buildin.dex.transfer.pair.item0.title" = "Ad";
 "buildin.dex.transfer.pair.item1.title" = "Alıcı Adresi";
 
@@ -1133,7 +1133,7 @@
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
 "trading.home.page.segment.mining" = "Madencilik";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.bonus" = "Kar payı";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
