@@ -779,7 +779,7 @@
 "crosschain.tokenDetail.amount" = "Token Yayınlama";
 "crosschain.tokenDetail.digit" = "Ondalık sayılar";
 "crosschain.tokenDetail.unit" = "";
-"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
+"crosschain.tokenDetail.issuance" = "İlave Yayını Aç";
 "crosschain.tokenDetail.issuance.true" = "Evet";
 "crosschain.tokenDetail.issuance.false" = "Hayır";
 "crosschain.tokenDetail.date" = "Yayınlama Tarihi";
@@ -878,9 +878,9 @@
 "bifrost.operation.cancel.vote" = "Oylamayı İptal Et";
 "bifrost.operation.extract.reward" = "Ödülleri Topla";
 "bifrost.operation.pledge" = "Quota Al";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
+"bifrost.operation.cancel.pledge" = "Quota için Stake'i Geri Al";
 "bifrost.operation.coin" = "Token Yayınlama";
-"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
+"bifrost.operation.cancel.coin" = "Yayınlama için Stake'i Geri Al";
 "bifrost.operation.transfer" = "Gönder";
 "bifrost.operation.vx.deposit" = "ViteX Yatırımı";
 "bifrost.operation.vx.withdraw" = "ViteX Çekimi";
@@ -1015,11 +1015,11 @@
 "buildin.dex.lock.vx.item0.title" = "Mevcut Adres";
 "buildin.dex.lock.vx.item1.title" = "Miktar";
 
-"buildin.dex.un.lock.vx.function.title" = "Retrieve";
+"buildin.dex.un.lock.vx.function.title" = "Geri al";
 "buildin.dex.un.lock.vx.item0.title" = "Mevcut Adres";
 "buildin.dex.un.lock.vx.item1.title" = "Miktar";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
+"buildin.dex.cancel.stake.function.title" = "Stake'i Geri Al";
 "buildin.dex.cancel.stake.item0.title" = "Mevcut Adres";
 
 // app scheme
