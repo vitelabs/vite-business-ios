@@ -471,7 +471,7 @@
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Quota Nedir?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite sisteminde, kullanıcılar işlem için gerekli gas'i komisyon ödeyerek satın almazlar, ancak quota tabanlı bir model aracılığıyla bilgi işlem kaynağını edinir. Bir işlemi göndermek için gerekli quota = temel quota (talep) + quota (ekli metin verileri), bir işlemi kabul etmek için gereken quota = temel quota (yanıt). Bu quota tabanlı kaynak yapılandırma protokolü, kullanıcıların iki şekilde daha yüksek kaynak quotaları elde etmesine olanak tanır:</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Quota elde etmek için VITE stake etme</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. PoW'u çalıştırma</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Quota Birimi: UTPS, Saniye Başına İşlem Birimi.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Stake Nedir?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite sisteminde, kullanıcı belirli bir miktarda quota elde etmek için VITE stake edebilir. Stake için minimum değer 134 VITE'dir ve maksimum sınır yoktur; Bu arada, Vite sistemi ayrıca A adresinin VITE'ın bir parçası olduğunu destekler ve elde edilen quotayı B adresine tahsis eder. Kullanıcılar stake için başvurduklarında VITE, başka bir kullanıcı yerine akıllı sözleşme adresine gönderilecek ve sadece stake için başvuran kullanıcının stake miktarını yönetme erişimi olacaktır.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">PoW Nedir?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), belirli miktarda iş yaptığınızı doğrulayan bir protokoldür ve aynı zamanda DDoS saldırılarını ve diğer hizmet suistimallerini caydırmak için ekonomik bir önlemdir. Başlayanın belirli bir miktarda hesaplama yapmasını gerektirir, bu da bilgisayar için biraz zaman alabileceği anlamına gelir. Vite sisteminde, kullanıcılar PoW çalıştırarak ücretsiz quota elde edebilir ve ayrıca elde edilen quota üzerinden herhangi bir açıklama olmadan işlem gönderebilir.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Oylama Hakkında</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">25 SBP'ye (Snapshot Block Producer) katılabilir ve oy verebilirsiniz, her oylama turu 75 saniye sürer, oylarınız oy adresinizin bakiyesine eşittir. Oyunuzu iptal etmediğiniz veya başka bir düğüm için oy kullanmadığınız sürece oyunuz sonraki turlarda aynı kalır. İlk 25 adayın rastgele 23'ü ve 26. ile 100. sıradaki adayların 2'si SBP olarak seçilecek.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Oy verdiğiniz %@ SBP kampanyasını durdurdu, tekrar oy verebilir veya oyunuzu iptal edebilirsiniz. Bunu yapmazsanız, %@ yeniden kaydolduktan sonra orijinal oyunuz geri alınacaktır.</p>";
-"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">VITE Dönüşümünü Anlamak</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">ERC20 VITE'i VITE Pre-Mainnet'te VITE dönüşümü aracılığıyla VITE'e dönüştürebilirsiniz. Dönüştürme sırasında, ERC20 VITE'iniz Ethereum kara delik adresine aktarılacaktır: 0x11111111111111111111111111111111111111 ve Ethereum kara delik adresinde işlem tamamlandıktan sonra Vite adresinize aynı miktarda VITE alacaksınız. Dönüştürme sırasında, Ethereum kara delik adresine işlem komisyonu mevcut ETH adresinizden ödenir. Dönüşümü gönderdikten sonra, lütfen Ethereum ağında en az 30 onay bekleyin, işlem geçmişini dönüşüm geçmişinde bulabilirsiniz.</p>";
 
 // ViteURI
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
@@ -552,7 +552,7 @@
 "workflow.congestion.without.pow.alert.cancel" = "Daha Sonra İşlem Yapın";
 "workflow.congestion.without.pow.alert.ok" = "Şimdi İşlem Yapın";
 "workflow.congestion.with.pow.alert.title" = "Uyarı";
-"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
+"workflow.congestion.with.pow.alert.message" = "Ağ şu anda Dinamik Quota modunda. Quota Limitiniz düşürüldü ve Harcanabilir Quotanız bu işlemi göndermek için yeterli değil. Lütfen daha sonra işlem yapın";
 "workflow.congestion.with.pow.alert.cancel" = "Daha Sonra İşlem Yapın";
 
 "workflow.fast.get.quota.title" = "Anında Quota Alımı";
@@ -618,7 +618,7 @@
 "grin.balance.total" = "Toplam";
 "grin.balance.spendable" = "Harcanabilir";
 "grin.balance.awaiting" = "Onay Bekleniyor";
-"grin.balance.locked" = "Locked by Previous Transaction";
+"grin.balance.locked" = "Önceki İşlem Tarafından Kilitlendi";
 "grin.wallet.check" = "Kontrol et";
 "grin.wallet.check.desc" = "Cüzdan kontrolü zinciri tarar ve bekleyen tüm işlemleri iptal eder, kilitli çıktıların kilidini açar, eksik çıktıları geri yükler ve cüzdanınızın içeriğinin zincirin sürümüyle tutarlı olmasını sağlar. İşlem büyük miktarda hücresel veri tüketecek, işleme Wi-Fi üzerinden devam etmeniz önerilir";
 "grin.txType.sent" = "Oluşturuldu";
@@ -630,7 +630,7 @@
 "grin.txType.confirmedCoinbase" = "Coinbase Onaylandı";
 "grin.txType.Canceled" = "İptal edildi";
 "grin.tx.Cancele" = "İptal edildi";
-"grin.tx.Repost" = "Repost";
+"grin.tx.Repost" = "Yeniden paylaş";
 "grin.tx.copyId" = "Kopyala";
 "grin.tx.useVite" = "VITE Adresini kullan";
 "grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
@@ -912,7 +912,7 @@
 "bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Adresi";
 "bnb.send.page.eth.contacts.button.title" = "BNB kişileri";
 "bnb.txType.newOrder.title" = "Emir Gir";
-"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.issueToken.title" = "Varlık Yayınla";
 "bnb.txType.burnToken.title" = "Yakmak";
 "bnb.txType.listToken.title" = "Listeleme";
 "bnb.txType.cancelOrder.title" = "Emri İptal Et";
