@@ -416,17 +416,17 @@
 "vote.page.voteInfo.nodePolls.title" = "Oylarım";
 "vote.page.nodeStatus.valid.title" = "Etkin";
 "vote.page.nodeStatus.invalid.title" = "Etkin değil";
-"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+"vote.page.voteInfo.alert.quota" = "Oy iptal edilemiyor, TPS quotasının oylamayı iptal etmesi için PoW'u çalıştırmanız veya VITE stake etmeniz gerekir";
 
 /* Vote List*/
 "vote" = "Oy";
 "vote.list.title" = "Aday Düğümler";
-"vote.list.search" = "Search for name or address of candidate nodes";
+"vote.list.search" = "Aday düğümlerin adını veya adresini arayın";
 "vote.list.alert.already.voted" = "%@ için oy verdiniz, lütfen bu işlemin mevcut oylama sonucunun üzerine yazacağından emin olun";
 "vote.list.confirm.revote" = "Onayla";
 "vote.list.count" = "Oylar";
 "vote.list.address" = "Adres";
-"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
+"vote.list.alert.quota" = "Oy verilemiyor, TPS kotasının oylanması için PoW'u çalıştırmanız veya VITE stake etmeniz gerekir";
 "vote.list.search.empty" = "Sonuç yok, lütfen başka bir giriş deneyin";
 "vote.list.search.no.transaction.before" = "Adresinizde işlem kaydı olmadığı için şimdilik oy veremezsiniz";
 
