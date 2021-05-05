@@ -348,8 +348,8 @@
 "system.page.cell.transfer.faceId" = "İşlem için Yüz Tanıma Kimliğini Kullan";
 "system.page.cell.transfer.touchId" = "İşlem için Parmak İzi Kimliğini Kullan";
 "system.page.cell.logout.title" = "Çıkış/cüzdan değiştir";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
+"system.page.cell.upload.log.title" = "Kaydı Yükle";
+"system.page.cell.upload.log.toast.success" = "Kayıt Yüklendi";
 "system.page.cell.delete.wallet.title" = "Mevcut Hesabı Sil";
 "system.page.cell.delete.wallet.alert.title" = "Bir hesabı sildikten sonra hesabınızı ancak anımsatıcı kelime ile kurtarabilirsiniz, bu hesabı silmeyi onaylıyor musunuz?";
 
@@ -405,7 +405,7 @@
 "peldge.cancel.peldge.button.title" = "Çekme";
 "peldge.cancel.pledge.withdrawing.title" = "Çekiliyor";
 "peldge.cancel.pledge.amount.error.toast" = "Minimum çekme miktarı 134 VITE'dir, lütfen önce yeteri kadar VITE'i stake edin.";
-"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
+"peldge.cancel.pledge.agent.error.toast" = "Ortak stake değildir, lütfen stake'i koyduğunuz yerden çekmeyi deneyin.";
 /* Vote */
 "vote.page.title" = "Oy";
 "vote.page.info.nodata.title" = "Oy Yok";
