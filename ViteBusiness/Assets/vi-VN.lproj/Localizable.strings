@@ -814,53 +814,53 @@
 "crosschain.statement.other.desc2" = "Trong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
 "crosschain.statement.vite.desc" = "Dịch vụ này được cung cấp bởi %@.\n\nBằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.\n\nTrong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
 "crosschain.statement.vite.desc0" = "Dịch vụ này được cung cấp bởi %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.detail" = "Terms of Service";
-"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
-"crosschain.statement.title" = "Important Notice";
+"crosschain.statement.vite.desc1" = "Bằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.";
+"crosschain.statement.vite.desc2" = "Trong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
+"crosschain.statement.detail" = "Điều khoản Dịch vụ";
+"crosschain.statement.agree" = "Bằng việc nhấp Tiếp theo, bạn đồng ý với %@ của %@";
+"crosschain.statement.title" = "Thông báo Quan trọng";
 
-"unit.Million" = " Million";
-"unit.Billion" = " Billion";
-"unit.Trillion" = " Trillion";
+"unit.Million" = " Triệu";
+"unit.Billion" = " Tỷ";
+"unit.Trillion" = " Nghìn Tỷ";
 
-"exchange.history" = "Purchase History";
-"exchange.card.title" = "Buy VITE";
-"exchange.titley" = "Instant Purchase";
-"exchange.buy" = "Buy";
-"exchange.price" = "Rate: ";
-"exchange.amount" = "Amount: ";
-"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
-"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+"exchange.history" = "Lịch sử Mua";
+"exchange.card.title" = "Mua VITE";
+"exchange.titley" = "Giao dịch Nhanh";
+"exchange.buy" = "Mua";
+"exchange.price" = "Tỷ giá: ";
+"exchange.amount" = "Số lượng: ";
+"exchange.limit.onetime" = "Giới hạn Một Giao dịch %@ - %@ VITE";
+"exchange.limit.oneday" = "Giới hạn giao dịch hàng ngày %@VITE; Giới hạn hàng ngày chưa sử dụng: %@ VITE\n\n\n";
+"exchange.limit.alert" = "Số lượng bạn đã nhập không hợp lệ. Một giao dịch ít nhất phải là %@ VITE và tối đa %@ VITE, và giới hạn giao dịch hàng ngày là %@ VITE.";
 
 
 /* ViteConnect */
-"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
-"bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
-"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
-"bifrost.alert.approve.session.another.address.cancel" = "Back";
+"bifrost.connect.tip.in.wallet.home" = "Đã kết nối ViteConnect";
+"bifrost.alert.tip.title" = "Chú ý";
+"bifrost.alert.approve.session.message" = "Vui lòng xác nhận theo đường dẫn\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Địa chỉ bạn quét bây giờ không khớp với địa chỉ trên nền tảng web. Tiếp tục đăng nhập bằng địa chỉ App?\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Xác nhận đăng nhập";
+"bifrost.alert.approve.session.another.address.cancel" = "Quay lại";
 
-"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "ViteConnect đã được kết nối, chuyển đổi địa chỉ sẽ gián đoạn kết nối. Đảm bảo chuyển đổi địa chỉ";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+"bifrost.alert.quit.title" = "Chắc chắn đăng xuất ViteConnect?";
 
-"bifrost.home.page.free.header" = "ViteConnect Connected";
-"bifrost.home.page.free.content" = "You have no transaction yet";
-"bifrost.home.page.free.address.title" = "Address";
-"bifrost.home.page.free.history.title" = "Transactions Signed";
-"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+"bifrost.home.page.free.header" = "Đã kết nối ViteConnect";
+"bifrost.home.page.free.content" = "Bạn chưa có giao dịch nào";
+"bifrost.home.page.free.address.title" = "Địa chỉ";
+"bifrost.home.page.free.history.title" = "Giao dịch đã ký";
+"bifrost.home.page.free.auto.sign.title" = "Tự động ký";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Mật khẩu";
 
-"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.home.page.busy.header" = "Bạn đang thực hiện các thay đổi trên ViteX & Ví web";
+"bifrost.home.page.busy.content" = "Vui lòng xác nhận thông tin giao dịch như sau";
+"bifrost.toast.operation.success" = "Thao tác Thành công";
 
-"bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.title" = "Danh sách Giao dịch đang ký";
+"bifrost.list.page.status.pending" = "Đợi xác nhận";
+"bifrost.list.page.status.processing" = "Đang xác nhận";
 "bifrost.list.page.status.failed" = "Failure";
 "bifrost.list.page.status.finished" = "Success";
 "bifrost.list.page.status.canceled" = "Canceled";
@@ -920,57 +920,57 @@
 "bnb.txType.unfreezeToken.title" = "Unfreeze Token";
 "bnb.txType.transfer.title" = "Transfer";
 "bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"bnb.txType.vote.title" = "Bỏ phiếu";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "Nạp";
 
 // Buildin
 
-"buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.function.title" = "Chuyển";
+"buildin.transfer.utf8string.item0.title" = "Địa chỉ Giao dịch";
+"buildin.transfer.utf8string.item1.title" = "Số lượng";
+"buildin.transfer.utf8string.item2.title" = "Memo";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
-"buildin.transfer.cross.chain.item1.title" = "Fee";
-"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+"buildin.transfer.cross.chain.function.title" = "Gửi cross-chain";
+"buildin.transfer.cross.chain.item0.title" = "Số lượng";
+"buildin.transfer.cross.chain.item1.title" = "Phí";
+"buildin.transfer.cross.chain.item2.title" = "Địa chỉ nhận";
 
-"buildin.vote.function.title" = "Vote";
-"buildin.vote.item0.title" = "SBP Candidates";
-"buildin.vote.item1.title" = "Votes";
+"buildin.vote.function.title" = "Bỏ phiếu";
+"buildin.vote.item0.title" = "Ứng cử viên SBP";
+"buildin.vote.item1.title" = "Số phiếu";
 
-"buildin.coin.issuance.function.title" = "Token Issuance";
-"buildin.coin.issuance.item0.title" = "Issuance Address";
-"buildin.coin.issuance.item1.title" = "Token Name";
-"buildin.coin.issuance.item2.title" = "Token Symbol";
-"buildin.coin.issuance.item3.title" = "Total Supply";
-"buildin.coin.issuance.item4.title" = "Decimals";
-"buildin.coin.issuance.item5.title" = "Re-issuable";
-"buildin.coin.issuance.item5.yes.value" = "YES";
-"buildin.coin.issuance.item5.no.value" = "NO";
-"buildin.coin.issuance.item6.title" = "Max Supply";
-"buildin.coin.issuance.item7.title" = "Issuance Fee";
+"buildin.coin.issuance.function.title" = "Phát hành Token";
+"buildin.coin.issuance.item0.title" = "Địa chỉ Phát hành";
+"buildin.coin.issuance.item1.title" = "Tên Token";
+"buildin.coin.issuance.item2.title" = "Kí hiệu Token";
+"buildin.coin.issuance.item3.title" = "Tổng cung";
+"buildin.coin.issuance.item4.title" = "Số thập phân";
+"buildin.coin.issuance.item5.title" = "Tái phát hành";
+"buildin.coin.issuance.item5.yes.value" = "CÓ";
+"buildin.coin.issuance.item5.no.value" = "KHÔNG";
+"buildin.coin.issuance.item6.title" = "Số cung tối đa";
+"buildin.coin.issuance.item7.title" = "Phí phát hành";
 
-"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
-"buildin.coin.transfer.ownership.item0.title" = "Token Name";
-"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
-"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+"buildin.coin.transfer.ownership.function.title" = "Chuyển Quyền sở hữu";
+"buildin.coin.transfer.ownership.item0.title" = "Tên Token";
+"buildin.coin.transfer.ownership.item1.title" = "Kí hiệu Token";
+"buildin.coin.transfer.ownership.item2.title" = "Địa chỉ nhận";
 
-"buildin.coin.reissue.token.function.title" = "Re-issue Token";
-"buildin.coin.reissue.token.item0.title" = "Token Name";
-"buildin.coin.reissue.token.item1.title" = "Token Symbol";
-"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
-"buildin.coin.reissue.token.item3.title" = "Amount";
+"buildin.coin.reissue.token.function.title" = "Tái phát hành Token";
+"buildin.coin.reissue.token.item0.title" = "Tên Token";
+"buildin.coin.reissue.token.item1.title" = "Kí hiệu Token";
+"buildin.coin.reissue.token.item2.title" = "Địa chỉ thụ hưởng";
+"buildin.coin.reissue.token.item3.title" = "Số lượng";
 
-"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
-"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
-"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+"buildin.coin.change.to.nonissuable.function.title" = "Thay đổi thành Không thể phát hành";
+"buildin.coin.change.to.nonissuable.item0.title" = "Tên Token";
+"buildin.coin.change.to.nonissuable.item1.title" = "Kí hiệu Token";
 
-"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
-"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
-"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
-"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+"buildin.dex.transfer.token.owner.function.title" = "Chuyển quyền sở hữu Token";
+"buildin.dex.transfer.token.owner.item0.title" = "Tên Token";
+"buildin.dex.transfer.token.owner.item1.title" = "Kí hiệu Token";
+"buildin.dex.transfer.token.owner.item2.title" = "Địa chỉ nhận";
 
 "buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
 "buildin.dex.transfer.pair.item0.title" = "Name";
