@@ -8,217 +8,217 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "Xác nhận";
+"cancel.button.title" = "Hủy";
+"alter.title" = "THÔNG BÁO";
 
-"discover.page.title" = "Discovery";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
-"discover.page.activity.page.title2" = "History";
+"discover.page.title" = "Khám phá";
+"discover.page.game.cell.palyNum" = "%@ người đang chơi";
+"discover.page.activity.page.title1" = "Sự kiện Mới nhất";
+"discover.page.activity.page.title2" = "Lịch sử";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.news.cell.time.minute" = "Bây giờ";
+"discover.page.news.cell.time.hour" = "%@h trước";
+"discover.page.news.cell.time.day" = "%@d trước";
+"discover.page.headerTitle.activity" = "Trung tâm Chiến dịch";
+"discover.page.headerTitle.game" = "Trò chơi Vite";
+"discover.page.headerTitle.news" = "Tin tức Vite";
+"discover.page.VCWebTitle.activity" = "Sự kiện Vite";
+"discover.page.VCWebTitle.game" = "Trò chơi Vite";
+"discover.page.VCWebTitle.news" = "Tin tức Vite";
+"discover.page.game.alter.title" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
-"airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.help" = "Trợ giúp";
+"airdrop.vpower" = "Người chiến thắng";
+"airdrop.profit" = "Lợi ích";
+"airdrop.validationFailed" = "Xác thực thất bại";
+"airdrop.enabled" = "Nhận 10 ~ 1000";
+"airdrop.leftTime" = "Đếm ngược";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop trên iOS 11 và cao hơn.";
+"airdrop.error.tip.not.support" = "Thiết bị của bạn không hỗ trợ airdrop.";
+"airdrop.error.tip.unknown.error" = "Lỗi không xác định.";
 
 
-"tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
-"tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
-"tab.title.dex" = "Asset";
+"tab.title.wallet" = "Ví";
+"tab.title.market" = "Thị trường";
+"tab.title.trading" = "Giao dịch";
+"tab.title.discover" = "Khám phá";
+"tab.title.dex" = "Tài sản";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
-"Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
-"web.page.host.tip" = "This page is provided by %@";
+"Cancel" = "Hủy";
+"Finish" = "Hoàn thành";
+"Delete" = "Xóa";
+"Hint" = "Nhắc nhở";
+"Yes" = "Có";
+"No" = "Không";
+"Loading" = "Đang tải";
+"Retry" = "Thử lại";
+"Confirm" = "Xác nhận";
+"Submit" = "Gửi";
+"Close" = "Tôi hiểu";
+"Update.app" = "Cập nhật ứng dụng";
+"Submit.cancel" = "Hủy";
+"Close" = "Đóng";
+"Quit" = "Thoát";
+"web.page.host.tip" = "Trang này được cung cấp bởi %@";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
-"select.wallet.account" = "Select your account";
+"create.account" = "Tạo Tài khoản";
+"import.account" = "Nhập Tài khoản";
+"select.wallet.account" = "Chọn tài khoản của bạn";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.pwd.btn.title" = "Đặng nhập bằng mật khẩu";
+"lock.page.fingerprint.btn.title" = "Xác thực Sinh trắc học";
+"lock.page.fingerprint.alter.title" = "Xác minh dấu vân tay để kích hoạt Touch ID";
+"lock.page.changeUser.btn.title" = "Chuyển Tài khoản";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.title" = "Tạo Tài khoản";
+"create.page.tf.title" = "Tên Tài khoản";
+"create.page.pw.title" = "Vui lòng nhập mật khẩu";
+"create.page.pw.repeate.title" = "Vui lòng nhập lại mật khẩu";
+"create.page.invite.code.title" = "Nhập mã giới thiệu hoặc quét mã QR giới thiệu để được giảm 10% phí giao dịch và khai thác";
+"create.page.invite.code.placeholder" = "Mã Giới thiệu (tùy chọn)";
+"create.page.submit.btn.title" = "Tạo mới";
+"create.page.toast.error.invite.code" = "Sai mã giới thiệu";
 
-"create.page.tip.title" = "Backup Instructions";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.title" = "Hướng dẫn Sao lưu";
+"create.page.tip.content1" = "Thận trọng! Mất cụm từ khôi phục ví sẽ dẫn đến mất tất cả tài sản kỹ thuật số trong ví.";
+"create.page.tip.content2" = "Nhập cụm từ khôi phục ví là cách duy nhất để lấy lại tài khoản sau khi xóa hoặc cài đặt lại Ứng dụng.";
+"create.page.tip.content3" = "Vui lòng lưu trữ những từ khôi phục ví của bạn ở một nơi an toàn.";
+"create.page.tip.button.skip.title" = "Sao lưu sau";
+"create.page.tip.button.next.title" = "Đã sao lưu";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
-"mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.page.title" = "Cụm từ khôi phục ví Mnemonic";
+"mnemonic.backup.page.tip1" = "Chúng tôi đề xuất hai phương pháp sao lưu sau:";
+"mnemonic.backup.page.tip2" = "Viết cụm từ khôi phục ví vào một tờ giấy, sau đó giữ ở một nơi an toàn.";
+"mnemonic.backup.page.tip3" = "Quét mã QR bên dưới bằng cách sử dụng ví Vite được cài đặt trên một thiết bị khác.";
+"mnemonic.backup.language.zh" = "VN";
+"mnemonic.backup.language.en" = "VN";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.title" = "Chú ý";
+"mnemonic.backup.scan.alert.message" = "Xác nhận tạo tại khoản với cụm từ khôi phục ví sau?";
+"mnemonic.backup.scan.alert.ok.title" = "Xác nhận";
+"mnemonic.backup.scan.alert.cancel.title" = "Hủy";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
-"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
-"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
-"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
-"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
-"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
-"mnemonic.backup.page.alter.cancel" = "No";
-"mnemonic.backup.page.alter.confirm" = "Yes";
-"mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
-"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.check.button1.title" = "Tôi hiểu nếu tôi đánh mất cụm từ khôi phục ví, tôi sẽ không bao giờ tìm lại được tài sản của mình";
+"mnemonic.backup.page.check.button2.title" = "Tôi hiểu nếu tôi quên hoặc mất các từ khôi phục ví, không ai có thể giúp tôi phục hồi";
+"mnemonic.backup.page.check.button3.title" = "Tôi đã đọc, hiểu và tôi đồng ý với ";
+"mnemonic.backup.page.clause.button.title" = "Điều khoản và Điều kiện";
+"mnemonic.backup.page.tip.lab.title" = "Cụm từ khôi phục ví";
+"mnemonic.backup.page.tip.anewBtn.title" = "Tạo lại";
+"mnemonic.backup.page.tip.nextBtn.title" = "Đã sao lưu";
+"mnemonic.backup.page.tip.skip.title" = "Sao lưu sau";
+"mnemonic.backup.page.alter.title" = "Chúng tôi đặc biệt khuyên bạn không nên chụp ảnh màn hình của cụm từ khôi phục ví. Chúng tôi khuyên bạn nên viết cụm từ khôi phục ví ra một tờ giấy và giữ nó trong một nơi an toàn.";
+"mnemonic.backup.page.alter.message" = "Bạn có muốn tạo cụm từ khôi phục ví mới?";
+"mnemonic.backup.page.alter.cancel" = "Không";
+"mnemonic.backup.page.alter.confirm" = "Có";
+"mnemonic.backup.page.error.type.name" = "Vui lòng nhập tên tài khoản hoặc mật khẩu";
+"mnemonic.backup.page.error.type.nameValid" = "Tên tài khoản chỉ hỗ trợ các ký tự tiếng Trung và tiếng Anh và gạch dưới.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Tên người dùng dùng chỉ hỗ trợ ít hơn 32 ký tự";
+"mnemonic.backup.page.error.type.difference" = "Vui lòng nhập đúng mật khẩu!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Mật khẩu bắt buộc phải chứa ít nhất 8 ký tự";
+"mnemonic.backup.page.switch.mode.title" = "Chuyển sang cụm %@ từ khôi phục ví";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.title" = "Chưa sao lưu Mnemonic";
+"mnemonic.backup.tip.alert.message" = "Vui lòng nhập mật khẩu để sao lưu Mnemonic.";
+"mnemonic.backup.tip.alert.ok.title" = "Sao lưu bây giờ";
+"mnemonic.backup.tip.alert.cancel.title" = "Sao lưu sau";
 
-"mnemonic.affirm.page.title" = "Confirm";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.page.title" = "Xác nhận";
+"mnemonic.affirm.page.tip.title" = "Chọn các từ khôi phục ví theo thứ tự";
+"mnemonic.affirm.alter.title" = "Hành động này sẽ tạo lại cụm từ khôi phục ví, sẵn sàng quay lại?";
+"mnemonic.affirm.alter.check.title" = "Sai cụm từ khôi phục ví!";
+"mnemonic.affirm.page.add.loading" = "Đang thêm...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.title" = "Vui lòng nhập Cụm từ khôi phục ví";
+"import.page.submit.btn" = "Khôi phục Tài khoản";
+"import.page.submit.invalid.mnemonic" = "Có lỗi với cụm từ khôi phục ví, vui lòng thử lại!";
+"import.page.submit.loading" = "Đang nhập...";
+"import.page.submit.success" = "Nhập thành công";
+"import.page.alert.exist.title" = "Cụm từ khôi phục ví bạn vừa nhập đã có tài khoản tên '%@' trên thiết bị này, bạn chắc chắn muốn ghi đè lên tài khoản đã tồn tại";
+"import.page.alert.exist.ok" = "Xác nhận";
+"import.page.alert.exist.cancel" = "Hủy";
 
 
 /* export mnemonic */
-"export.page.title" = "Export Seed Phrase";
-"export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.title" = "Xuất Cụm từ khôi phục ví";
+"export.page.alter.title" = "Vui lòng nhập mật khẩu";
+"export.page.alter.tf.placeholder" = "Vui lòng nhập mật khẩu";
+"export.page.alter.password.error" = "Sai mật khẩu!";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
-"login.page.loading.title" = "Processing";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.btn.chooseName" = "Chọn tài khoản";
+"login.page.btn.login" = "Đăng nhập";
+"login.page.loading.title" = "Đang xử lý";
+"login.page.error.toast.title" = "Sai mật khẩu! Vui lòng thử nhập lại cụm từ khôi phục ví";
 
 /* Home */
-"tabbar.item.title.wallet" = "Wallet";
-"tabbar.item.title.my" = "Me";
+"tabbar.item.title.wallet" = "Ví";
+"tabbar.item.title.my" = "Tôi";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.btc.title" = "Tổng giá trị (BTC)";
+"wallet.home.balance.title" = "Số dư";
+"wallet.home.unconfirmed.title" = "Chưa nhận được %@";
+"wallet.home.toast.copy.address" = "Sao chép thành công!";
+"wallet.home.scan.url.alert.title" = "THÔNG BÁO";
+"wallet.home.scan.url.alert.message" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
+"wallet.home.header.title" = "Tài sản";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.title" = "Quản lý Ví";
+"manage.wallet.page.name.cell.title" = "Tên Tài khoản";
+"manage.wallet.page.addressManage.cell.title" = "Quản lý Địa chỉ";
+"manage.wallet.page.importMnemonic.cell.title" = "Xuất Cụm từ khôi phục ví";
+"manage.wallet.page.alter.changeName" = "Chỉnh sửa Tên Ví";
+"manage.wallet.page.changeName.loading" = "Đang sửa";
+"manage.wallet.page.error.type.name" = "Tên không thể để trống";
 
-"my.page.contacts.cell.title" = "Contact Address";
-"my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Mining Referrals";
-"my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+"my.page.contacts.cell.title" = "Địa chỉ liên hệ";
+"my.page.mnemonic.cell.title" = "Cụm từ khôi phục ví";
+"my.page.system.cell.title" = "Cài đặt";
+"my.page.invite.cell.title" = "Khai thác Giới thiệu";
+"my.page.reward.cell.title" = "Yêu cầu Phần thưởng";
+"my.page.forum.cell.title" = "Diễn đàn Chính thức";
+"my.page.aboutUs.cell.title" = "Giới thiệu về chúng tôi";
+"my.page.change.wallet.name.alter.title" = "Sửa tên tài khoản";
+"my.page.aboutUs.wechat.alert.title" = "Quét mã QR để theo dõi Tài khoản Wechat chính thức của Vite";
 
 /* Transaction List */
-"transaction.list.page.title" = "Transaction History";
-"transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
-"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
-"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
-"transaction.list.page.header.refresh.pulling" = "Release to refresh";
-"transaction.list.page.header.refresh.refreshing" = "Loading...";
-"transaction.list.transaction.type.name.contract" = "Call";
-"transaction.list.transaction.type.name.register" = "Registration";
-"transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
-"transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
-"transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
-"transaction.list.transaction.type.name.vote" = "Voting";
-"transaction.list.transaction.type.name.cancelVote" = "Revoke Voting";
-"transaction.list.transaction.type.name.pledge" = "Get TPS quota";
-"transaction.list.transaction.type.name.cancelPledge" = "Withdrawal of staking quota";
-"transaction.list.transaction.type.name.coin" = "Token Issuance";
-"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
-"transaction.list.transaction.type.name.transfer" = "Transfer";
-"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
-"transaction.list.transaction.confirmations" = "%@ Confirmations";
-"transaction.list.transaction.confirmations.finished" = "Confirmed";
-"eth.transaction.detail.page.state.call.wait" = "Pending";
+"transaction.list.page.title" = "Lịch sử Giao dịch";
+"transaction.list.page.empty" = "Trống";
+"transaction.list.page.network.error" = "Làm mới";
+"transaction.list.page.genesis.cell.name" = "Kiểm tra Bản ghi Khối Genesis";
+"transaction.list.page.header.refresh.idle" = "Kéo xuống để làm mới";
+"transaction.list.page.header.refresh.pulling" = "Thả ra để làm mới";
+"transaction.list.page.header.refresh.refreshing" = "Đang tải...";
+"transaction.list.transaction.type.name.contract" = "Gọi";
+"transaction.list.transaction.type.name.register" = "Đăng ký";
+"transaction.list.transaction.type.name.registerUpdate" = "Cập nhật Đăng ký";
+"transaction.list.transaction.type.name.cancelRegister" = "Thu hồi Đăng ký";
+"transaction.list.transaction.type.name.extractReward" = "Truy hồi Phần thưởng";
+"transaction.list.transaction.type.name.vote" = "Bỏ phiếu";
+"transaction.list.transaction.type.name.cancelVote" = "Hủy bỏ Bỏ phiếu";
+"transaction.list.transaction.type.name.pledge" = "Nhận TPS quota";
+"transaction.list.transaction.type.name.cancelPledge" = "Rút token đã stake";
+"transaction.list.transaction.type.name.coin" = "Phát hành Token";
+"transaction.list.transaction.type.name.cancelCoin" = "Rút token đã stake";
+"transaction.list.transaction.type.name.transfer" = "Chuyển";
+"transaction.list.transaction.netErrorAndShowAccount" = "Đã có lỗi với mạng lưới, vui lòng nhấp vào đây để kiểm tra chi tiết tài khoản";
+"transaction.list.transaction.confirmations" = "%@ Xác nhận";
+"transaction.list.transaction.confirmations.finished" = "Đã xác nhận";
+"eth.transaction.detail.page.state.call.wait" = "Đang chờ xử lý";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "Transaction Completed";
-"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
+"vite.transaction.detail.page.state.success" = "Giao dịch hoàn thành";
+"vite.transaction.detail.page.state.call.success" = "Gọi Hợp đồng Thành công";
 "vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
 "vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
 "vite.transaction.detail.page.type.title" = "Transaction Type";
