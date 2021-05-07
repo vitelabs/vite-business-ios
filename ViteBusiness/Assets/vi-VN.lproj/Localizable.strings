@@ -779,28 +779,28 @@
 "crosschain.tokenDetail.amount" = "Tổng Phát hành";
 "crosschain.tokenDetail.digit" = "Decimals";
 "crosschain.tokenDetail.unit" = "";
-"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
-"crosschain.tokenDetail.issuance.true" = "Yes";
-"crosschain.tokenDetail.issuance.false" = "No";
-"crosschain.tokenDetail.date" = "Issuance Date";
-"crosschain.tokenDetail.desc" = "Description";
-"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
-"crosschain.status.confirmed" = "Confirmed";
-"crosschain.status.tot.exceed.limit" = "Exceed the limit";
-"crosschain.status.wrong.address" = "Wrong transfer address";
-"crosschain.status.gatewayReceived" = "Deposit by Gateway";
-"crosschain.status.withdraw.failed" = "Withdrawal Failed";
-"crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
-"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
-"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
-"crosschain.withdraw.aboutfee" = "About Fee";
-"crosschain.status.failed" = "Deposit Failed";
-"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
-"crosschain.fee" = "Fee";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
+"crosschain.tokenDetail.issuance" = "Mở cho Vấn đề bổ sung";
+"crosschain.tokenDetail.issuance.true" = "Có";
+"crosschain.tokenDetail.issuance.false" = "Không";
+"crosschain.tokenDetail.date" = "Ngày phát hành";
+"crosschain.tokenDetail.desc" = "Mô tả";
+"crosschain.status.waitToConfirm" = "Chuỗi %@ chưa xác nhận";
+"crosschain.status.confirmed" = "Đã xác nhân";
+"crosschain.status.tot.exceed.limit" = "Đạt giới hạn";
+"crosschain.status.wrong.address" = "Sai địa chỉ chuyển";
+"crosschain.status.gatewayReceived" = "Nạp bởi Gateway";
+"crosschain.status.withdraw.failed" = "Rút không thành công";
+"crosschain.status.failedBecausePoor" = "Không đủ số lượng";
+"crosschain.withdraw.amount.limit.title" = "Giới hạn rút cross-chain";
+"crosschain.withdraw.amount.limit.min" = "Số lượng tối thiểu trong giao dịch rút cross-chain: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Số lượng tối đa trong giao dịch rút cross-chain: %@ %@";
+"crosschain.withdraw.fee.desc" = "Phí rút được tính bởi gateway";
+"crosschain.withdraw.fee.desc2" = "Phí của mỗi giao dịch rút cross-chain: ";
+"crosschain.withdraw.aboutfee" = "Về Phí";
+"crosschain.status.failed" = "Nạp thất bại";
+"crosschain.beta.alert" = "Đang ở phiên bản beta, vui lòng không nạp số lượng lớn vào tài khoản.";
+"crosschain.fee" = "Phí";
+"crosschain.withdraw.gatewayispoor" = "Số lượng vượt quá giới hạn %@ - %@, vui lòng liên hệ gateway@vite.org.";
 "crosschain.gatewaydetail.title" = "Thông tin chi tiết Gateway";
 "crosschain.gatewaydetail.name" = "Tên Gateway";
 "crosschain.gatewaydetail.webset" = "Trang web chính thức";
@@ -917,9 +917,9 @@
 "bnb.txType.listToken.title" = "Listing";
 "bnb.txType.cancelOrder.title" = "Cancel Order";
 "bnb.txType.freezeToken.title" = "Freeze Token";
-"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
-"bnb.txType.transfer.title" = "Transfer";
-"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.unfreezeToken.title" = "Giải phóng Token";
+"bnb.txType.transfer.title" = "Chuyển";
+"bnb.txType.proposal.title" = "Yêu cầu Đề xuất";
 "bnb.txType.vote.title" = "Bỏ phiếu";
 "bnb.txType.mint.title" = "MintMsg";
 "bnb.txType.deposit.title" = "Nạp";
@@ -983,36 +983,36 @@
 "buildin.dex.adjust.fees.item.taker.title" = "Phí taker đã được điều chỉnh";
 
 "buildin.dex.open.trading.pair.function.title" = "Mở Cặp Giao dịch";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.item0.title" = "Tên";
+"buildin.dex.open.trading.pair.item1.title" = "Địa chỉ Hiện tại";
+"buildin.dex.open.trading.pair.item2.title" = "Phí Niêm yết";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "Đóng Cặp giao dịch";
+"buildin.dex.suspend.trading.pair.item0.title" = "Tên";
+"buildin.dex.suspend.trading.pair.item1.title" = "Địa chỉ Hiện tại";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "Khôi phục Cặp giao dịch";
+"buildin.dex.recover.trading.pair.item0.title" = "Tên";
+"buildin.dex.recover.trading.pair.item1.title" = "Địa chỉ Hiện tại";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "Khai thác bằng Stake";
+"buildin.dex.staking.as.mining.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.staking.as.mining.item1.title" = "Số lượng";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Huỷ Khai thác bằng Stake";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Số lượng";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "Trở thành VIP";
+"buildin.dex.become.vip.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.become.vip.item1.title" = "Số lượng";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
-"buildin.dex.cancel.vip.item1.title" = "Amount";
+"buildin.dex.cancel.vip.function.title" = "Hủy VIP";
+"buildin.dex.cancel.vip.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.cancel.vip.item1.title" = "Số lượng";
 
 "buildin.dex.lock.vx.function.title" = "Stake";
-"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.item0.title" = "Địa chỉ Hiện tại";
 "buildin.dex.lock.vx.item1.title" = "Amount";
 
 "buildin.dex.un.lock.vx.function.title" = "Retrieve";
