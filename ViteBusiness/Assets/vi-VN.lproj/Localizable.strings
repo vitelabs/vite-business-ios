@@ -240,62 +240,62 @@
 "balance.info.detail.send.button.title" = "Gửi";
 "balance.info.detail.vote" = "Bỏ phiếu";
 "balance.info.detail.pledge" = "Nhận Quota";
-"balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.exchange.vite" = "Chuyển đổi VITE";
+"balance.info.detail.pledge.count.content" = "Quota có thể dùng/Hạn mức Quota";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
-"gateway.info.detail.page.title" = "Gateway Details";
-"gateway.info.detail.page.name" = "Gateway Name";
-"gateway.info.detail.page.webside" = "Gateway Official Site";
-"gateway.info.detail.page.brief" = "Gateway Introduction";
-"gateway.info.detail.page.email" = "Customer Service";
-"gateway.info.detail.page.agreement" = "Service Terms";
-"gateway.info.detail.page.link" = "Gateway Link";
+"gateway.info.detail.page.title" = "Thông tin chi tiết Gateway";
+"gateway.info.detail.page.name" = "Tên Gateway";
+"gateway.info.detail.page.webside" = "Trang web chính thức của Gateway";
+"gateway.info.detail.page.brief" = "Mô tả Gateway";
+"gateway.info.detail.page.email" = "Dịch vụ Khách hàng";
+"gateway.info.detail.page.agreement" = "Điều khoản Dịch vụ";
+"gateway.info.detail.page.link" = "Đường dẫn Gateway";
 
-"token.info.detail.page.title" = "Token Details";
-"token.info.detail.page.name" = "Token Name";
-"token.info.detail.page.id" = "Token ID";
-"token.info.detail.page.brief" = "Introduction";
-"token.info.detail.page.total" = "Total Issuance";
-"token.info.detail.page.type" = "Token Type";
+"token.info.detail.page.title" = "Chi tiết Token";
+"token.info.detail.page.name" = "Tên Token";
+"token.info.detail.page.id" = "Mã Token";
+"token.info.detail.page.brief" = "Giới thiệu";
+"token.info.detail.page.total" = "Tổng Phát hành";
+"token.info.detail.page.type" = "Loại Token";
 "market.detail.page.token.info.type.value.native" = "Native";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"token.info.detail.page.gateway" = "Cross-Chain gateway";
+"token.info.detail.page.gateway" = "Cổng Cross-chain";
 "token.info.detail.page.webside" = "Website";
 "token.info.detail.page.paper" = "WhitePaper";
-"token.info.detail.page.browser" = "Explorer";
+"token.info.detail.page.browser" = "Trình duyệt";
 "token.info.detail.page.github" = "Github";
-"token.info.detail.page.social" = "Social Media";
+"token.info.detail.page.social" = "Mạng Xã hội";
 
 /* Address Manage Page */
-"address.manage.page.title" = "My %@ Address";
-"address.manage.default.address.cell.title" = "Default Address";
-"address.manage.address.header.title" = "Addresses";
-"address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
-"address.manage.address.generate.button.already.toast" = "Address already exists";
-"address.manage.address.generate.button.error.toast" = "Please input a number";
-"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
-"address.manage.alert.title" = "Generate New Addresses";
-"address.manage.alert.placeholder" = "Input a number between 1 and 100";
-"address.manage.alert.tip" = "Bulk generate a specified number of addresses";
-"address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "Untitled";
-"address.manage.change.name.alert.title" = "Edit Address Alias";
-"address.manage.change.name.alert.placeholder" = "Please input new alias";
+"address.manage.page.title" = "Địa chỉ %@ của tôi";
+"address.manage.default.address.cell.title" = "Địa chỉ Mặc định";
+"address.manage.address.header.title" = "Địa chỉ";
+"address.manage.address.generate.button.title" = "Thêm Địa chỉ";
+"address.manage.address.generate.button.toast" = "Thêm tối đa 100 địa chỉ!";
+"address.manage.address.generate.button.already.toast" = "Địa chỉ đã tồn tại";
+"address.manage.address.generate.button.error.toast" = "Vui lòng nhập một số";
+"address.manage.tip.alert.message" = "Tạo tối đa: 100 địa chỉ; Truy xuất địa chỉ bắt buộc thực hiện thủ công đối với tất cả các địa chỉ khác trừ địa chỉ số 1 trong danh sách";
+"address.manage.alert.title" = "Tạo Địa chỉ Ví mới";
+"address.manage.alert.placeholder" = "Nhập một số từ 1 đến 100";
+"address.manage.alert.tip" = "Tạo hàng loạt một số lượng địa chỉ cụ thể";
+"address.manage.tip.alert.ok" = "Tôi đã hiểu";
+"address.manage.default.address.name" = "Chưa Đặt Tên";
+"address.manage.change.name.alert.title" = "Sửa Bí danh Địa chỉ";
+"address.manage.change.name.alert.placeholder" = "Hãy nhập bí danh mới";
 
 /* Send Page */
-"send.page.title" = "Send";
-"send.page.my.address.title" = "My %@ Address";
-"send.page.my.balance.title" = "Balance";
-"send.page.my.pledge.title" = "Benefited Stake";
-"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
-"send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
-"send.page.add.my.address.button.title" = "Mine";
-"send.page.vite.contacts.button.title" = "VITE Contact Address";
-"send.page.scan.address.button.title" = "Scan";
-"send.page.to.address.title" = "Recipient Address";
-"send.page.amount.title" = "Amount";
+"send.page.title" = "Gửi";
+"send.page.my.address.title" = "Địa chỉ %@ của tôi";
+"send.page.my.balance.title" = "Số dư";
+"send.page.my.pledge.title" = "Đang stake";
+"send.page.my.quota.title" = "Quota có thể dùng/Hạn mức Quota";
+"send.page.my.max.tx.count.title" = "Số Giao dịch Tối đa";
+"send.page.add.my.address.button.title" = "Khai thác";
+"send.page.vite.contacts.button.title" = "Danh bạ Địa chỉ VITE";
+"send.page.scan.address.button.title" = "Quét";
+"send.page.to.address.title" = "Địa chỉ Người nhận";
+"send.page.amount.title" = "Số lượng";
 "send.page.all.button.title" = "Tất cả";
 "send.page.remark.title" = "Memo";
 "send.page.send.button.title" = "Gửi";
@@ -474,39 +474,39 @@
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tìm hiểu về Chuyển đổi VITE<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Bạn có thể chuyển đổi VITE ERC10 sang VITE coin thông qua Chuyển đổi VITE. Trong quá trình chuyển đổi, VITE ERC20 sẽ được chuyển tới địa chỉ đen mạng Ethereum 0x1111111111111111111111111111111111111111, và bạn sẽ nhận số VITE coin tương ứng tới địa chỉ Vite của mình sau khi giao dịch tới địa chỉ đen Ethereum hoàn tất. Trong thời gian chuyển đổi, phí giao dịch sẽ tính vào địa chỉ mạng ETH hiện tại của bạn. Sau khi gửi chuyển đổi, vui lòng đợi ít nhất 30 xác nhận trong mạng Ethereum, bạn có thể tìm thấy lịch sử giao dịch trong lịch sử chuyển đổi.</p>";
 
 // ViteURI
-"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+"vite.uri.amount.format.error" = "Định dạng sai với số lượng giao dịch";
 
 // eth
-"eth.send.page.my.address.title" = "ETH Address";
-"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.send.page.my.address.title" = "Địa chỉ ETH";
+"eth.send.page.eth.contacts.button.title" = "Danh bạ Địa chỉ ETH";
+"eth.receive.page.my.address.title" = "Địa chỉ ETH của tôi";
+"eth.page.gasFee.title" = "Phí Gas";
+"eth.page.gasFee.slow.title" = "Chậm";
+"eth.page.gasFee.fast.title" = "Nhanh";
+"eth.page.gasFee.notice.title" = "Chúng tôi sẽ hoàn trả phần phí gas còn lại vào tài khoản của bạn";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
-"eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
-"eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
+"eth.transaction.detail.page.title" = "Chi tiết";
+"eth.transaction.detail.failed" = "Giao dịch không thành công";
+"eth.transaction.detail.success" = "Giao dịch hoàn thành";
+"eth.transaction.detail.to.address" = "Địa chỉ nhận";
+"eth.transaction.detail.from.address" = "Địa chỉ gửi";
+"eth.transaction.detail.amount" = "Số lượng";
+"eth.transaction.detail.gas.fee" = "Phí Gas";
+"eth.transaction.detail.gas.price" = "Giá Gas";
+"eth.transaction.detail.gas.limit" = "Giới hạn Gas";
+"eth.transaction.detail.hash" = "Hash Giao dịch";
+"eth.transaction.detail.block" = "Khối";
 "eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.go.button.title" = "Xem thêm thông tin trên Etherscan";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite Network";
-"token.list.page.section.eth.header" = "Ethereum Network";
-"token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
-"token.list.page.ignore.lab.title" = "%d new asset(s)";
+"token.list.page.search.title" = "Vui lòng nhập tên token hoặc địa chỉ danh bạ";
+"token.list.page.section.vite.header" = "Mạng Vite";
+"token.list.page.section.eth.header" = "Mạng Ethereum";
+"token.list.page.section.grin.header" = "Mạng GRIN";
+"token.list.page.ignore.btn.title" = "Bỏ qua";
+"token.list.page.ignore.lab.title" = "%d tài sản mới";
 "token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
 // Contacts Home
 "contacts.home.page.title" = "Contact Address";
