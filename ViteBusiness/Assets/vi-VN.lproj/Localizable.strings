@@ -356,33 +356,33 @@
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
 "aboutUs.page.cell.blockHeight.loading.tip" = "Đang tải";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.version" = "Phiên bản";
+"aboutUs.page.cell.contact" = "Liên hệ Chúng tôi";
+"aboutUs.page.cell.shareUs" = "Chia sẻ Vite App";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.title" = "Ý kiến phản hồi";
+"aboutUs.page.email.content" = "\n\n\n\n\nMôi trường sử dụng đề xuất như sau:\n1. Thiết bị hệ thống: %@\n2. Phiên bản hệ thống: %@\n3. Phiên bản APP: %@\n4. Ngôn ngữ: %@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "Lỗi Đăng nhập";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
-"quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.title" = "Nhận Quota";
+"quota.manage.page.input.address.title" = "Địa chỉ thụ hưởng Quota";
+"quota.manage.page.quota.money.title" = "Số lượng Stake";
 "quota.manage.page.quota.quota.title" = "Quota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.manage.page.quota.money.placeholder" = "Vui lòng nhập số lượng stake, ít nhất 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Thời gian đóng băng stake";
+"quota.manage.page.quota.snapshoot.height.desc" = "Dự kiến %@ ngày";
+"quota.manage.page.submit.btn.title" = "Tiến hành Stake";
+"quota.manage.page.check.quotaList.btn.title" = "Danh sách Stake của tôi";
+"quota.manage.page.toast.money.error" = "Số lượng stake không được ít hơn 134";
+"quota.submit.pop.desc" = "Đảm bảo thế chấp %@ Vite để nhận quota, bạn chỉ có thể rút sau 3 ngày sau khi hết hạn stake.";
+"quota.submit.pop.submit.btn.title" = "Xác nhận";
+"quota.submit.pop.cancel.btn.title" = "Hủy";
+"quota.submit.page.quota.address.placeholder" = "Vui lòng điền địa chỉ thụ hưởng";
 
 /* quota alert */
 "quota.alert.title" = "Insufficient Quota";
@@ -762,9 +762,9 @@
 "crosschain.deposit.scanLabel" = "Vui lòng quét mã %@";
 "crosschain.deposit.labelDesc" = "Vui lòng sử dụng %@ với Địa chỉ Nạp này, bạn sẽ mất vĩnh viễn nếu nạp token khác.";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Thực hiện giao dịch nạp crosschain cho phép %@ được chéo chuỗi vào mạng Vite. Số dư %@ trong ví Vite sẽ giảm tương ứng khi bạn nạp cross-chain từ ví Vite của mình.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Thực thiện nạp cross-chain cho phép %@ chuyển sang mạng Vite. Sau đó bạn cũng có thể thực hiện rút cross-chain.</p>";
+"crosschain.withdraw.eth.myAddress" = "Địa chỉ ETH của tôi";
 "crosschain.deposit.min" = "Minimum Deposit Amount ";
 "crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
 "crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
