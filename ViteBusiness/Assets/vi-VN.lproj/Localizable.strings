@@ -507,33 +507,33 @@
 "token.list.page.section.grin.header" = "Mạng GRIN";
 "token.list.page.ignore.btn.title" = "Bỏ qua";
 "token.list.page.ignore.lab.title" = "%d tài sản mới";
-"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
+"token.list.page.ignore.alter.title" = "Nội dung bị bỏ qua sẽ không được thông báo lại, bạn có chắc chắn bỏ qua các nội dung bên dưới không?";
 // Contacts Home
-"contacts.home.page.title" = "Contact Address";
-"contacts.home.page.no.contact.tip" = "Add your first address";
-"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.title" = "Địa chỉ Danh bạ";
+"contacts.home.page.no.contact.tip" = "Thêm địa chỉ đầu tiên của bạn";
+"contacts.home.page.single.no.contact.tip" = "Số địa chỉ %@";
+"contacts.home.page.filter.all" = "Tất cả";
+"contacts.home.page.add.button.title" = "Thêm";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
-"contacts.edit.page.name.title" = "Name";
-"contacts.edit.page.address.title" = "Please input address";
-"contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.add.title" = "Thêm Địa chỉ Danh bạ";
+"contacts.edit.page.edit.title" = "Sửa Địa chỉ Danh bạ";
+"contacts.edit.page.name.title" = "Tên";
+"contacts.edit.page.address.title" = "Vui lòng nhập địa chỉ";
+"contacts.edit.page.type.select.title" = "Chỉnh sửa loại token";
+"contacts.edit.page.save.button.title" = "Lưu";
+"contacts.edit.page.save.success.tip" = "Thêm Thành công";
+"contacts.edit.page.edit.success.tip" = "Lưu thành công";
+"contacts.edit.page.delete.button.title" = "Xóa";
+"contacts.edit.page.delete.alert.title" = "Bạn chắc chắn muốn xóa địa chỉ này?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
-"address.list.page.other.title" = "%@ contact address";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.my.title" = "Địa chỉ VITE của tôi";
+"address.list.page.other.title" = "%@ địa chỉ danh bạ";
+"address.list.page.no.address.tip" = "Số địa chỉ %@";
 
 /* WorkFlow */
-"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
+"workflow.confirm.page.biometryAuthFailed.title" = "Không thể xác định";
 "workflow.confirm.page.biometryAuthFailed.back" = "Back";
 "workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
 "workflow.confirm.page.toast.password.error" = "Wrong password!";
@@ -590,64 +590,64 @@
 "confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
 "confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
 "confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Hủy";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Xác nhận";
 
-"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
-"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
-"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
-"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
-"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
-"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.vip.title" = "Trở thành VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Số dư Sàn Khả dụng";
+"confirm.transaction.page.vite.dex.vip.amount" = "Stake để trở thành VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP hưởng chiết khấu 0,1% phí giao dịch. Stake 10.000 VITE để trở thành VIP (Thời gian Stake tối thiểu: 30 ngày)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Hủy VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Xác nhận";
 
 // vite call contract
-"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
-"confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Thanh toán";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Xác nhận";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Send";
-"confirm.transaction.page.eth.confirm.button" = "Confirm";
+"confirm.transaction.page.eth.transfer.title" = "Gửi";
+"confirm.transaction.page.eth.confirm.button" = "Xác nhận";
 // eth vite exchange
-"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
-"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+"confirm.transaction.page.eth.vite.exchange.title" = "Chuyển đổi VITE";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Chuyển đổi";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Send";
-"confirm.transaction.page.grin.confirm.button" = "Confirm";
+"confirm.transaction.page.grin.transfer.title" = "Gửi";
+"confirm.transaction.page.grin.confirm.button" = "Xác nhận";
 
 // Grin
-"grin.balance.total" = "Total";
-"grin.balance.spendable" = "Spendable";
-"grin.balance.awaiting" = "Awaiting Confirmation";
-"grin.balance.locked" = "Locked by Previous Transaction";
-"grin.wallet.check" = "Check";
-"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
-"grin.txType.sent" = "Created";
-"grin.txType.waitToSign" = "Unreceived";
-"grin.txType.received" = "Received";
-"grin.txType.waitToFinalize" = "Unfinalized";
-"grin.txType.finalized" = "Posting";
-"grin.txType.confirmed" = "Confirmed";
-"grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
-"grin.txType.Canceled" = "Canceled";
-"grin.tx.Cancele" = "Canceled";
-"grin.tx.Repost" = "Repost";
-"grin.tx.copyId" = "Copy";
-"grin.tx.useVite" = "Use VITE Address";
-"grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
-"grin.sent.useHttp" = "Use HTTP Address";
-"grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
-"grin.sent.useFile" = "Use Transaction File";
-"grin.know" = "I know";
-"grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "Send GRIN";
-"grin.sent.amount" = "Amount";
-"grin.receive.ture.amount" = "Actual Amount";
-"grin.sent.fee" = "Fees";
-"grin.sent.creatFile" = "Generate Transaction File";
-"grin.shareFile.desc" = "Please sign for the transaction";
-"grin.txFile.init.status" = "Created";
-"grin.txFile.id" = "Transaction ID";
-"grin.shareFile" = "Share Transaction File";
+"grin.balance.total" = "Tổng";
+"grin.balance.spendable" = "Có thể sử dụng";
+"grin.balance.awaiting" = "Đợi xác nhận";
+"grin.balance.locked" = "Bị khoá bởi Giao dịch trước đó";
+"grin.wallet.check" = "Kiểm tra";
+"grin.wallet.check.desc" = "Kiểm tra ví sẽ quét chuỗi và hủy tất cả các giao dịch đang chờ xử lý, mở khóa mọi output bị khóa, khôi phục mọi output bị thiếu và đảm bảo nội dung ví của bạn nhất quán với phiên bản của chuỗi. Quá trình này sẽ tiêu tốn một lượng lớn dữ liệu di động, bạn nên tiếp tục quá trình trên Wi-Fi";
+"grin.txType.sent" = "Đã tạo";
+"grin.txType.waitToSign" = "Chưa nhận";
+"grin.txType.received" = "Đã nhận";
+"grin.txType.waitToFinalize" = "Chưa hoàn thành";
+"grin.txType.finalized" = "Tiến hành";
+"grin.txType.confirmed" = "Đã xác nhân";
+"grin.txType.confirmedCoinbase" = "Coinbase Đã xác nhận";
+"grin.txType.Canceled" = "Đã hủy";
+"grin.tx.Cancele" = "Đã hủy";
+"grin.tx.Repost" = "Đăng lại";
+"grin.tx.copyId" = "Sao chép";
+"grin.tx.useVite" = "Sử dụng Địa chỉ VITE";
+"grin.sent.useVite.desc" = "Gửi GRIN qua địa chỉ VITE là chia sẻ tệp giao dịch được mã hóa bởi Vite thông qua địa chỉ VITE, đảm bảo chỉ người nhận thực mới có thể giải mã tệp.";
+"grin.sent.useHttp" = "Sử dụng Địa chỉ HTTP";
+"grin.sent.useHttp.desc" = "Bạn có thể chuyển GRIN đến bất kỳ ví nào hỗ trợ nhận GRIN thông qua địa chỉ HTTP, tuy nhiên, chúng tôi khuyên bạn nên sử dụng địa chỉ hoặc tệp VITE để chuyển GRIN cho người dùng sử dụng ví Vite.";
+"grin.sent.useFile" = "Sử dụng Tệp Giao dịch";
+"grin.know" = "Tôi đã hiểu";
+"grin.notSeeAgain" = "Không hiển thị lại";
+"grin.sent.title" = "Gửi GRIN";
+"grin.sent.amount" = "Số lượng";
+"grin.receive.ture.amount" = "Số lượng Thực tế";
+"grin.sent.fee" = "Phí";
+"grin.sent.creatFile" = "Tạo Tệp Giao dịch";
+"grin.shareFile.desc" = "Vui lòng hoàn tất giao dịch";
+"grin.txFile.init.status" = "Đã tạo";
+"grin.txFile.id" = "ID Giao dịch";
+"grin.shareFile" = "Chia sẻ Tệp Giao dịch";
 "grin.finalize.title" = "Send GRIN";
 "grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
 "grin.txFile.received.status" = "The receipt has been confirmed";
@@ -699,22 +699,22 @@
 "grin.pay.title.creat" = "Create";
 "grin.pay.title.finalize" = "Finalize";
 
-"grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
-"grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
-"grin.teach.file.send.title" = "Send GRIN through Transaction File";
-"grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
-"grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
-"grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
-"grin.teach.vite.send.startSend" = "Start to Send";
-"grin.txMethod.http" = "HTTP Address";
-"grin.txMethod.vite" = "VITE Address";
-"grin.txMethod.file" = "Transaction File";
+"grin.teach.file.send.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là chia sẻ tệp giao dịch với người nhận, mở tệp do người nhận gửi lại bằng ví Vite và hoàn tất giao dịch. Sau khi nhấp vào \"Chia sẻ tệp giao dịch\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ.";
+"grin.teach.file.receive.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là mở tệp, nhấp vào nút \"Nhận và chia sẻ\" và gửi lại tệp xác nhận nhận với người gửi. Sau khi nhấp vào \"Nhận và chia sẻ\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ. Ví Vite hỗ trợ tệp .grinslate và tệp .json và chỉ khi tên tệp chứa \"phản hồi\" thì nó mới được nhận dạng và mở thành công.";
+"grin.teach.file.send.title" = "Gửi GRIN bằng Tệp Giao dịch";
+"grin.teach.file.receive.title" = "Nhận GRIN bằng Tệp Giao dịch";
+"grin.teach.http.receive.copyHttpAddress" = "Sao chép Địa chỉ HTTP";
+"grin.teach.vite.receive.copyViteAddress" = "Sao chép Địa chỉ VITE";
+"grin.teach.vite.send.startSend" = "Bắt đầu gửi";
+"grin.txMethod.http" = "Địa chỉ HTTP";
+"grin.txMethod.vite" = "Địa chỉ VITE";
+"grin.txMethod.file" = "Tệp Giao dịch";
 
 "grin.detail.fromMine" = "Coinbase";
-"grin.detail.txStatus" = "Transaction State";
-"grin.detail.txCompleted" = "Transaction has completed.";
-"grin.detail.txCancelled" = "Transaction has been canceled.";
-"grin.detail.txFileReecivedAndCanShare" = "Transaction has been received, please share the file with the sender, you can choose the way as you like.";
+"grin.detail.txStatus" = "Trạng thái Giao dịch";
+"grin.detail.txCompleted" = "Giao dịch đã được hoàn thành.";
+"grin.detail.txCancelled" = "Giao dịch đã bị hủy.";
+"grin.detail.txFileReecivedAndCanShare" = "Giao dịch đã được nhận, vui lòng chia sẻ tệp với người gửi, bạn có thể chọn cách tùy thích.";
 "grin.detail.txReceived" = "Transaction has been received.";
 "grin.detail.txReceivedAndCanAskGatewaytoSend" = "You have already received the transaction, if the state doesn't go to \"Confirmed\", please try \"Request for Vite gateway to resend\".";
 "grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "If the state stays \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
