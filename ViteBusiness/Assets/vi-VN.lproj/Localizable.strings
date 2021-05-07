@@ -385,26 +385,26 @@
 "quota.submit.page.quota.address.placeholder" = "Vui lòng điền địa chỉ thụ hưởng";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
-"quota.alert.pow.button.title" = "Run PoW";
+"quota.alert.title" = "Không đủ Quota";
+"quota.alert.pow.and.quota.message" = "Thiếu quota, bạn có thể kiếm quota bằng cách chạy PoW hoặc stake VITE.";
+"quota.alert.need.quota.message" = "Không đủ hạn ngạch từ PoW, chúng tôi khuyên bạn nên stake VITE để nhận quota.";
+"quota.alert.pow.button.title" = "Chạy PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
-"quota.pow.finished.float.view.title" = "Transaction Sent";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
-"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
+"quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
+"quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+"quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
+"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
+"quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
+"quota.pow.finished.float.view.pledge.button.title" = "Chuyển giao Nhanh hơn bằng Stake";
 
 /* Peldge History */
-"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
-"peldge.deadline" = "Due Date";
-"peldge.title" = "Staking History";
-"peldge.address.title" = "Beneficiary";
-"peldge.cancel.peldge.button.title" = "Withdraw";
-"peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
-"peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
+"peldge.message" = "Hiện tại Vite App chỉ hỗ trợ kiểm tra danh sách staking, nếu cần thiết, vui lòng truy cập Ví Vite Web để rút token đã stake trong ngày đáo hạn.";
+"peldge.deadline" = "Ngày Đáo hạn";
+"peldge.title" = "Lịch sử Stake";
+"peldge.address.title" = "Người thụ hưởng";
+"peldge.cancel.peldge.button.title" = "Rút";
+"peldge.cancel.pledge.withdrawing.title" = "Đang rút";
+"peldge.cancel.pledge.amount.error.toast" = "Số lượng rút tối thiểu là 134 VITE, vui lòng stake đủ VITE trước.";
 "peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
 /* Vote */
 "vote.page.title" = "Vote";
