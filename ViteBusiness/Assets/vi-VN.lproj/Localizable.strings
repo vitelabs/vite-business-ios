@@ -972,17 +972,17 @@
 "buildin.dex.transfer.token.owner.item1.title" = "Kí hiệu Token";
 "buildin.dex.transfer.token.owner.item2.title" = "Địa chỉ nhận";
 
-"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.function.title" = "Chuyển Quyền sở hữu cặp giao dịch";
+"buildin.dex.transfer.pair.item0.title" = "Tên";
+"buildin.dex.transfer.pair.item1.title" = "Địa chỉ nhận";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.function.title" = "Điều chỉnh Phí";
+"buildin.dex.adjust.fees.item0.title" = "Tên";
+"buildin.dex.adjust.fees.item1.title" = "Địa chỉ Hiện tại";
+"buildin.dex.adjust.fees.item.maker.title" = "Phí maker đã được điều chỉnh";
+"buildin.dex.adjust.fees.item.taker.title" = "Phí taker đã được điều chỉnh";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
+"buildin.dex.open.trading.pair.function.title" = "Mở Cặp Giao dịch";
 "buildin.dex.open.trading.pair.item0.title" = "Name";
 "buildin.dex.open.trading.pair.item1.title" = "Current Address";
 "buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
@@ -1047,40 +1047,40 @@
 "fund.vitex.all" = "Exchange Total Balance";
 "fund.vitex.available" = "Exchange Available Balance";
 "fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
-"fund.withdraw.placeholder" = "Please enter transfer amount";
-"fund.deposit.placeholder" = "Please enter transfer amount";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.withdraw.placeholder" = "Vui lòng nhập số lượng chuyển";
+"fund.deposit.placeholder" = "Vui lòng nhập số lượng chuyển";
+"fund.cannotDeposit" = "Không thể chuyển do không đủ số dư trong ví";
+"fund.cannotWithDraw" = "Không thể chuyển do không đủ số dư trong sàn";
+"fund.DepositSuccess" = "Chuyển thành công. Kiểm tra số dư sàn?";
 
-"transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
-"transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
+"transfer.from" = "Từ";
+"transfer.wallet.account" = "Tài khoản Ví";
+"transfer.to" = "Đến";
+"transfer.dex.account" = "Tài khoản Sàn";
 "transfer.token" = "Token";
-"transfer.amount" = "Amount";
-"transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.amount" = "Số lượng";
+"transfer.available" = "Số dư: ";
+"transfer.title" = "Chuyển";
+"transfer.search.placeholder" = "Vui lòng điền tên token";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
-"market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
-"market.operator" = "Operator";
-"market.switch" = "Exchange";
+"market.favourite" = "Yêu thích";
+"market.searchhistory" = "Tìm kiếm Lịch sử";
+"market.title" = "Thị trường";
+"market.about" = "Bắt đầu cùng ViteX";
+"market.name" = "Tên";
+"market.price" = "Giá gần nhất";
+"market.percent" = "Thay đổi";
+"market.operator" = "Nhà vận hành";
+"market.switch" = "Sàn giao dịch";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.order.book.title" = "Sổ lệnh";
+"market.detail.page.segment.last.trades.title" = "Giao dịch mới nhất";
 "market.detail.page.segment.token.info.title" = "Token";
-"market.detail.page.segment.operator.into.title" = "Operator";
+"market.detail.page.segment.operator.into.title" = "Nhà vận hành";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
+"market.detail.page.info.high.title" = "Cao";
+"market.detail.page.info.low.title" = "Thấp";
 "market.detail.page.info.vol.title" = "24H";
 
 "market.detail.page.kline.type.min1.title" = "1m";
@@ -1093,19 +1093,19 @@
 "market.detail.page.kline.type.day1.title" = "1D";
 "market.detail.page.kline.type.week1.title" = "1W";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.time.title" = "Thời gian";
+"market.detail.page.value.open.title" = "Mở";
+"market.detail.page.value.high.title" = "Cao";
+"market.detail.page.value.low.title" = "Thấp";
+"market.detail.page.value.close.title" = "Đóng";
 "market.detail.page.value.diff.title" = "chg";
 "market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.vol.title" = "Khối lượng";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.vol.title" = "Số lượng(%@)";
+"market.detail.page.depth.price.title" = "Giá(%@)";
 
-"market.detail.page.trade.time.title" = "Time";
+"market.detail.page.trade.time.title" = "Thời gian";
 "market.detail.page.trade.price.title" = "Price";
 "market.detail.page.trade.vol.title" = "Amount";
 "market.detail.page.buy.button.title" = "Buy";
@@ -1173,50 +1173,50 @@
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
 "spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
-"spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
-"spot.page.available" = "Avail.: %@";
-"spot.page.buyable" = "Max Buy: %@";
-"spot.page.sellable" = "Max Sell: %@";
-"spot.page.total" = "Total: %@";
-"spot.page.open.vip" = "Become a VIP";
-"spot.page.close.vip" = "Cancel VIP";
-"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
-"spot.page.close.vip.error.toast" = "No VIP staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
-"spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open Orders";
-"spot.page.orders.button.title" = "History";
+"spot.page.button.closed.title" = "Giao dịch tạm dừng";
+"spot.page.button.buy.title" = "Mua";
+"spot.page.button.sell.title" = "Bán";
+"spot.page.button.limit.buy.title" = "Lệnh giới hạn";
+"spot.page.price.buy.placeholder" = "Giá";
+"spot.page.vol.buy.placeholder" = "Số lượng";
+"spot.page.price.sell.placeholder" = "Giá";
+"spot.page.vol.sell.placeholder" = "Số lượng";
+"spot.page.available" = "Hiện có: %@";
+"spot.page.buyable" = "Mua tối đa: %@";
+"spot.page.sellable" = "Bán tối đa: %@";
+"spot.page.total" = "Tổng: %@";
+"spot.page.open.vip" = "Trở thành VIP";
+"spot.page.close.vip" = "Hủy VIP";
+"spot.page.open.vip.error.toast" = "Không đủ số dư sàn, stake 10.000 VITE để trở thành VIP";
+"spot.page.close.vip.error.toast" = "Không có stake VIP";
+"spot.page.close.vip.un.expire.error.toast" = "Thời gian stake dưới 30 ngày và không thể truy hồi trong thời gian stake";
+"spot.page.depth.price" = "Giá";
+"spot.page.depth.vol" = "Số lượng";
+"spot.page.current.order.title" = "Lệnh đang mở";
+"spot.page.orders.button.title" = "Lịch sử";
 
-"spot.page.post.toast.price.empty" = "Please enter the price";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.price.empty" = "Vui lòng nhập giá";
+"spot.page.post.toast.price.zero" = "Giá trị phải lớn hơn 0";
+"spot.page.post.toast.vol.empty" = "Vui lòng điền số lượng";
+"spot.page.post.toast.vol.zero" = "Giá trị phải lớn hơn 0";
+"spot.page.post.toast.amount.min" = "Tổng giá trị tối thiếu phải là %@";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "Không hỏi lại sau 24 giờ";
 
-"spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.title" = "Nhắc nhở quan trọng";
+"spot.page.alert.message" = "Cặp giao dịch hiện tại là %@, đầu tư tiền mã hoá có rủi ro thị trường và biến động giá cao. Vui lòng đánh giá cẩn thận khả năng xử lý rủi ro tiềm ẩn của bạn và đưa ra quyết định giao dịch thận trọng.";
+"spot.page.alert.ok" = "Xác nhận";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.order.empty" = "Không lệnh";
+"spot.page.cell.type.buy" = "Mua";
+"spot.page.cell.type.sell" = "Bán";
+"spot.page.cell.button.cancel.title" = "Hủy";
+"spot.page.cell.vol" = "Số lượng: %@";
+"spot.page.cell.price" = "Giá: %@";
+"spot.page.cell.deal" = "Đã khớp: %@";
+"spot.page.cell.average" = "Trung bình: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
+"grin.initing.desc" = "Đang khởi tạo, nhấp để xem chi tiết";
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
 
 // DexHome
