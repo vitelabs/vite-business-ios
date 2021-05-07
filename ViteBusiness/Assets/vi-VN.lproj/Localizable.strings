@@ -861,62 +861,62 @@
 "bifrost.list.page.title" = "Danh sách Giao dịch đang ký";
 "bifrost.list.page.status.pending" = "Đợi xác nhận";
 "bifrost.list.page.status.processing" = "Đang xác nhận";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.status.failed" = "Thất bại";
+"bifrost.list.page.status.finished" = "Thành công";
+"bifrost.list.page.status.canceled" = "Đã hủy";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "Chi tiết Giao dịch đã ký";
 
-"bifrost.error.message.timeout" = "Connection time out, please try again later";
-"bifrost.error.message.unknown" = "Connection Error, please try again later";
+"bifrost.error.message.timeout" = "Hết thời gian kết nối, xin vui lòng thử lại";
+"bifrost.error.message.unknown" = "Lỗi kết nối, xin vui lòng thử lại";
 
 // operation
-"bifrost.operation.register.sbp" = "Register SBP";
-"bifrost.operation.register.update.sbp" = "Update SBP";
-"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
-"bifrost.operation.vote" = "Voting";
-"bifrost.operation.cancel.vote" = "Revoke Voting";
-"bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Get Quota";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
-"bifrost.operation.coin" = "Token Issuance";
-"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Send";
-"bifrost.operation.vx.deposit" = "ViteX Deposit";
-"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
-"bifrost.operation.vx.order" = "Place Order on ViteX";
-"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+"bifrost.operation.register.sbp" = "Đăng ký SBP";
+"bifrost.operation.register.update.sbp" = "Cập nhật SBP";
+"bifrost.operation.cancel.register.sbp" = "Hủy Đăng ký SBP";
+"bifrost.operation.vote" = "Bỏ phiếu";
+"bifrost.operation.cancel.vote" = "Hủy bỏ Bỏ phiếu";
+"bifrost.operation.extract.reward" = "Nhận thưởng";
+"bifrost.operation.pledge" = "Nhận Quota";
+"bifrost.operation.cancel.pledge" = "Truy xuất Stake cho quota";
+"bifrost.operation.coin" = "Phát hành Token";
+"bifrost.operation.cancel.coin" = "Truy xuất Stake cho Phát hành";
+"bifrost.operation.transfer" = "Gửi";
+"bifrost.operation.vx.deposit" = "Nạp ViteX";
+"bifrost.operation.vx.withdraw" = "Rút ViteX";
+"bifrost.operation.across.chain.withdraw" = "Gửi Cross-chain";
+"bifrost.operation.vx.order" = "Đặt lệnh trên ViteX";
+"bifrost.operation.vx.cancel.order" = "Huỷ lệnh trên ViteX";
 
-"bifrost.operation.function.title" = "Contract Invoke";
-"bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.amount" = "Amount";
-"bifrost.operation.title.fee" = "Fee";
-"bifrost.operation.title.data" = "Data";
+"bifrost.operation.function.title" = "Kêu gọi Hợp đồng";
+"bifrost.operation.title.contract.address" = "Địa chỉ Hợp đồng";
+"bifrost.operation.title.amount" = "Số lượng";
+"bifrost.operation.title.fee" = "Phí";
+"bifrost.operation.title.data" = "Dữ liệu";
 
-"bifrost.operation.sign.message.title" = "Create API";
-"bifrost.operation.sign.message.address" = "Current Address";
-"bifrost.operation.sign.message.type" = "Permission Type";
-"bifrost.operation.sign.message.content" = "Signature Content";
-"bifrost.operation.sign.message.type.trade.value" = "Trade";
+"bifrost.operation.sign.message.title" = "Tạo API";
+"bifrost.operation.sign.message.address" = "Địa chỉ Hiện tại";
+"bifrost.operation.sign.message.type" = "Kiểu Phân quyền";
+"bifrost.operation.sign.message.content" = "Nội dung Chữ ký";
+"bifrost.operation.sign.message.type.trade.value" = "Giao dịch";
 
-"bifrost.create.contract.title" = "Create Contract";
-"bifrost.create.contract.title.contract.address" = "Contract Address";
-"bifrost.create.contract.title.amount" = "Amount";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title" = "Tạo Hợp đồng";
+"bifrost.create.contract.title.contract.address" = "Địa chỉ Hợp đồng";
+"bifrost.create.contract.title.amount" = "Số lượng";
+"bifrost.create.contract.title.fee" = "Phí";
+"bifrost.create.contract.title.data" = "Dữ liệu";
 
 //bnb
-"token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
-"bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
-"bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
-"bnb.txType.freezeToken.title" = "Freeze Token";
+"token.list.page.section.bnb.header" = "Mạng Binance";
+"bnb.send.page.feeView.titleLabel.title" = "Phí";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "Địa chỉ BNB";
+"bnb.send.page.eth.contacts.button.title" = "Danh bạ BNB";
+"bnb.txType.newOrder.title" = "Đặt lệnh";
+"bnb.txType.issueToken.title" = "Tài sản Phát hành";
+"bnb.txType.burnToken.title" = "Đốt";
+"bnb.txType.listToken.title" = "Niêm yết";
+"bnb.txType.cancelOrder.title" = "Huỷ lệnh";
+"bnb.txType.freezeToken.title" = "Đóng băng Token";
 "bnb.txType.unfreezeToken.title" = "Giải phóng Token";
 "bnb.txType.transfer.title" = "Chuyển";
 "bnb.txType.proposal.title" = "Yêu cầu Đề xuất";
@@ -1013,37 +1013,37 @@
 
 "buildin.dex.lock.vx.function.title" = "Stake";
 "buildin.dex.lock.vx.item0.title" = "Địa chỉ Hiện tại";
-"buildin.dex.lock.vx.item1.title" = "Amount";
+"buildin.dex.lock.vx.item1.title" = "Số lượng";
 
-"buildin.dex.un.lock.vx.function.title" = "Retrieve";
-"buildin.dex.un.lock.vx.item0.title" = "Current Address";
-"buildin.dex.un.lock.vx.item1.title" = "Amount";
+"buildin.dex.un.lock.vx.function.title" = "Thu hồi";
+"buildin.dex.un.lock.vx.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.un.lock.vx.item1.title" = "Số lượng";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.function.title" = "Thu thồi stake";
+"buildin.dex.cancel.stake.item0.title" = "Địa chỉ Hiện tại";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.busy.header" = "Xác nhận Giao dịch";
+"app.scheme.home.page.busy.content" = "Vui lòng xác nhận thông tin giao dịch như sau";
+"app.scheme.network.error" = "Lỗi Mạng";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "Sao chép thành công";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
-"fund.walletAddress" = "My Address";
-"fund.walletFound" = "Wallet Balance";
-"fund.quotaInfo" = "Spendable Quota/Quota Limit";
-"fund.deposit.amount" = "Transfer Amount";
-"fund.deposit.all" = "All";
+"fund.title.wallet" = "Tài sản Ví";
+"fund.title.vitex" = "Tài sản Sàn";
+"fund.title.toWallet" = "Rút về Ví";
+"fund.title.toVitex" = "Nạp và Sàn";
+"fund.walletAddress" = "Địa chỉ của tôi";
+"fund.walletFound" = "Số dư Ví";
+"fund.quotaInfo" = "Quota có thể dùng/Hạn mức Quota";
+"fund.deposit.amount" = "Số lượng chuyển";
+"fund.deposit.all" = "Tất cả";
 "fund.quotaSpend" = "Quota";
-"fund.deposit" = "Transfer";
-"fund.vitexFound" = "Available Balance";
-"fund.withdraw.amount" = "Transfer Amount";
-"fund.withdraw" = "Transfer";
+"fund.deposit" = "Chuyển";
+"fund.vitexFound" = "Số dư khả dụng";
+"fund.withdraw.amount" = "Số lượng chuyển";
+"fund.withdraw" = "Chuyển";
 "fund.vitex.all" = "Exchange Total Balance";
 "fund.vitex.available" = "Exchange Available Balance";
 "fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
@@ -1171,8 +1171,8 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
+"spot.page.buy.mining.tip" = "Hợp lệ khai thác khi giá lớn hơn %@";
+"spot.page.sell.mining.tip" = "Hợp lệ khai thác khi giá nhỏ hơn %@";
 "spot.page.button.closed.title" = "Giao dịch tạm dừng";
 "spot.page.button.buy.title" = "Mua";
 "spot.page.button.sell.title" = "Bán";
