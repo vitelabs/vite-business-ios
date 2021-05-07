@@ -686,18 +686,18 @@
 "grin.canceled" = "Đã hủy";
 "grin.makeSureToShare" = "Chắc chẵn đã chia sẻ tệp giao dịch với người gửi";
 "grin.txbyfile.shareSentFileDesc" = "Chắc chắn chia sẻ tệp giao dịch với người nhận và yêu cầu trả tệp xác nhận.";
-"grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
-"grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
-"grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
-"grin.txbyfile.initStatus.sender" = "Created";
-"grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
-"grin.txbyfile.receivedStatus.receiver" = "Received";
-"grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
-"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
-"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
-"grin.creating" = "Grin wallet initializing, please wait a moment.";
-"grin.pay.title.creat" = "Create";
-"grin.pay.title.finalize" = "Finalize";
+"grin.txbyfile.receiveSentFileDesc" = "Vui lòng hoàn tất giao dịch";
+"grin.txbyfile.shareReceiveFileDesc" = "Chắc chẵn đã chia sẻ tệp giao dịch với người gửi";
+"grin.txbyfile.finalizeReceiveFileDesc" = "Người nhận đã nhận được giao dịch. Vui lòng hoàn tất và thực thi giao dịch.";
+"grin.txbyfile.initStatus.sender" = "Đã tạo";
+"grin.txbyfile.initStatus.receiver" = "Đang chờ xử lý";
+"grin.txbyfile.receivedStatus.receiver" = "Đã nhận";
+"grin.txbyfile.receivedStatus.sender" = "Đợi xác nhận";
+"grin.creat.syncronizing" = "Tạo và đồng bộ hoá, dự kiến 3 phút";
+"grin.recover.syncronizing" = "Khôi phục và đồng bộ hoá, dự kiến 3 phút";
+"grin.creating" = "Ví Grin đang khởi chạy, vui lòng đợi trong giây lát.";
+"grin.pay.title.creat" = "Tạo mới";
+"grin.pay.title.finalize" = "Kết thúc";
 
 "grin.teach.file.send.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là chia sẻ tệp giao dịch với người nhận, mở tệp do người nhận gửi lại bằng ví Vite và hoàn tất giao dịch. Sau khi nhấp vào \"Chia sẻ tệp giao dịch\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ.";
 "grin.teach.file.receive.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là mở tệp, nhấp vào nút \"Nhận và chia sẻ\" và gửi lại tệp xác nhận nhận với người gửi. Sau khi nhấp vào \"Nhận và chia sẻ\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ. Ví Vite hỗ trợ tệp .grinslate và tệp .json và chỉ khi tên tệp chứa \"phản hồi\" thì nó mới được nhận dạng và mở thành công.";
@@ -765,18 +765,18 @@
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Thực hiện giao dịch nạp crosschain cho phép %@ được chéo chuỗi vào mạng Vite. Số dư %@ trong ví Vite sẽ giảm tương ứng khi bạn nạp cross-chain từ ví Vite của mình.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Thực thiện nạp cross-chain cho phép %@ chuyển sang mạng Vite. Sau đó bạn cũng có thể thực hiện rút cross-chain.</p>";
 "crosschain.withdraw.eth.myAddress" = "Địa chỉ ETH của tôi";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
-"crosschain.deposit.all" = "Deposit All";
-"crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.withdraw.all" = "Withdraw All";
-"crosschain.withdraw.amount" = "Withdrawal Amount";
-"crosschain.tokenDetail.shortname" = "Symbol";
+"crosschain.deposit.min" = "Số lượng nạp tối thiểu ";
+"crosschain.withdraw.min" = "Số tiền rút tối thiểu ";
+"crosschain.deposit.min.alert" = "Số lượng rút không thể ít hơn ";
+"crosschain.deposit.all" = "Nạp tất cả";
+"crosschain.deposit.amount" = "Sô lượng Nạp";
+"crosschain.withdraw.all" = "Rút tất cả";
+"crosschain.withdraw.amount" = "Số lượng rút";
+"crosschain.tokenDetail.shortname" = "Ký hiệu";
 "crosschain.tokenDetail.id" = "Token ID";
-"crosschain.tokenDetail.name" = "Token Name";
-"crosschain.tokenDetail.address" = "Coin Forging Address";
-"crosschain.tokenDetail.amount" = "Total Issuance";
+"crosschain.tokenDetail.name" = "Tên Token";
+"crosschain.tokenDetail.address" = "Địa chỉ Forge Coin";
+"crosschain.tokenDetail.amount" = "Tổng Phát hành";
 "crosschain.tokenDetail.digit" = "Decimals";
 "crosschain.tokenDetail.unit" = "";
 "crosschain.tokenDetail.issuance" = "Open to Additional Issue";
@@ -1217,43 +1217,43 @@
 "spot.page.cell.average" = "Trung bình: %@";
 
 "grin.initing.desc" = "Đang khởi tạo, nhấp để xem chi tiết";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.detail" = "1 Khởi tạo là bắt buộc khi thêm ví GRIN \n2. Quá trình này dự kiến sẽ kéo dài 15 phút \n3. Không làm gián đoạn hoặc tắt APP trong quá trình khởi tạo \n4. Khởi tạo sẽ tiêu tốn một lượng lớn dữ liệu di động, bạn nên sử dụng Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trading";
+"dex.home.page.nav.title" = "Tài sản DEX";
+"dex.home.page.nav.btc.valuation.title" = "Tổng giá trị (BTC)";
+"dex.home.page.segment.wallet" = "Ví";
+"dex.home.page.segment.dex" = "Giao dịch";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.btc.valuation.title" = "Giá trị (BTC)";
+"dex.home.page.header.button.transfer.title" = "Chuyển";
+"dex.home.page.header.button.deposit.title" = "Nạp";
+"dex.home.page.header.button.withdraw.title" = "Rút";
+"dex.home.page.header.button.hide.small.title" = "Ẩn số dư nhỏ";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.title" = "Số dư";
+"dex.token.detail.page.header.total" = "Tổng";
+"dex.token.detail.page.header.available" = "Khả dụng";
+"dex.token.detail.page.header.lock.place.order" = "Đang đặt hàng";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
-"dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
-"dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.pledge" = "Stake cho Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Stake cho SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Stake cho Full Node";
+"dex.token.detail.page.header.lock.vite.mining" = "Đã stake";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Đang thu hồi";
+"dex.token.detail.page.header.lock.vite.vip" = "Đã khoá VIP";
+"dex.token.detail.page.header.lock.vx" = "Đã stake";
+"dex.token.detail.page.header.lock.vx.cancel" = "Đang thu hồi";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
-"dex.token.detail.page.cell.in" = "Transfer-In";
-"dex.token.detail.page.cell.out" = "Transfer-Out";
+"dex.token.detail.page.list.wallet.heater.title" = "Lịch sử";
+"dex.token.detail.page.list.dex.heater.title" = "Lịch sử chuyển";
+"dex.token.detail.page.cell.in" = "Chuyển vào";
+"dex.token.detail.page.cell.out" = "Chuyển ra";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
-"dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.deposit" = "Nạp";
+"dex.token.detail.page.button.withdraw" = "Rút";
+"dex.token.detail.page.button.transfer" = "Chuyển";
+"dex.token.detail.page.button.send" = "Gửi";
+"dex.token.detail.page.button.trading" = "Giao dịch";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "Chọn Cặp Giao dịch";
