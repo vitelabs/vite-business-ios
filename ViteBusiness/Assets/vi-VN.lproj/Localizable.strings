@@ -469,8 +469,8 @@
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
-"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
-"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Bỏ phiếu <p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Bạn có thể tham gia và bỏ phiếu cho 25 SBP (Snapshot Block Producer), mỗi vòng bỏ phiếu kéo dài 75 giây, số phiếu bầu của bạn bằng với số dư của địa chỉ bỏ phiếu. Phiếu bầu của bạn vẫn giữ nguyên trong các vòng tiếp theo trừ khi bạn thu hồi phiếu bầu của mình hoặc bỏ phiếu cho một node khác. Ngẫu nhiên 23 trong số 25 ứng cử viên hàng đầu cộng với 2 trong số các ứng viên xếp hạng từ 26 đến 100, tổng cộng 25 node sẽ được bầu làm SBP. </p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ bạn đã bỏ phiếu cho đã ngừng hoạt động SBP, bạn có thể bỏ phiếu lại hoặc thu hồi phiếu bầu của mình. Nếu không thao tác như vậy, phiếu bầu ban đầu của bạn sẽ được khôi phục sau khi %@ đăng ký vận hành lại SBP. </p>";
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tìm hiểu về Chuyển đổi VITE<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Bạn có thể chuyển đổi VITE ERC10 sang VITE coin thông qua Chuyển đổi VITE. Trong quá trình chuyển đổi, VITE ERC20 sẽ được chuyển tới địa chỉ đen mạng Ethereum 0x1111111111111111111111111111111111111111, và bạn sẽ nhận số VITE coin tương ứng tới địa chỉ Vite của mình sau khi giao dịch tới địa chỉ đen Ethereum hoàn tất. Trong thời gian chuyển đổi, phí giao dịch sẽ tính vào địa chỉ mạng ETH hiện tại của bạn. Sau khi gửi chuyển đổi, vui lòng đợi ít nhất 30 xác nhận trong mạng Ethereum, bạn có thể tìm thấy lịch sử giao dịch trong lịch sử chuyển đổi.</p>";
 
 // ViteURI
@@ -1044,9 +1044,9 @@
 "fund.vitexFound" = "Số dư khả dụng";
 "fund.withdraw.amount" = "Số lượng chuyển";
 "fund.withdraw" = "Chuyển";
-"fund.vitex.all" = "Exchange Total Balance";
-"fund.vitex.available" = "Exchange Available Balance";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.vitex.all" = "Tổng số dư Sàn";
+"fund.vitex.available" = "Số dư Sàn Khả dụng";
+"fund.tooBig" = "Số lượng bạn đã nhập vượt quá số dư khả dụng, vui lòng nhập lại";
 "fund.withdraw.placeholder" = "Vui lòng nhập số lượng chuyển";
 "fund.deposit.placeholder" = "Vui lòng nhập số lượng chuyển";
 "fund.cannotDeposit" = "Không thể chuyển do không đủ số dư trong ví";
@@ -1106,33 +1106,33 @@
 "market.detail.page.depth.price.title" = "Giá(%@)";
 
 "market.detail.page.trade.time.title" = "Thời gian";
-"market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.trade.price.title" = "Giá";
+"market.detail.page.trade.vol.title" = "Số lượng";
+"market.detail.page.buy.button.title" = "Mua";
+"market.detail.page.sell.button.title" = "Bán";
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
+"market.detail.page.token.info.total" = "Token trong Lưu thông";
+"market.detail.page.token.info.type" = "Loại";
 "market.detail.page.token.info.type.value.native" = "Native";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
+"market.detail.page.token.info.gateway" = "Cổng Cross-chain";
+"market.detail.page.token.info.official" = "Website chính thức";
 "market.detail.page.token.info.paper" = "WhitePaper";
-"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.browser" = "Trình duyệt";
 "market.detail.page.token.info.github" = "Github";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "Mạng Xã hội";
+"market.detail.page.token.info.brief" = "Giới thiệu";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "Ẩn danh";
+"market.detail.page.token.info.address" = "Địa chỉ Nhà vận hành";
+"market.detail.page.token.info.pair" = "Cặp Giao dịch";
 
 // Trading Home
-"trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.spot" = "Giao ngay";
+"trading.home.page.segment.mining" = "Khai thác";
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
