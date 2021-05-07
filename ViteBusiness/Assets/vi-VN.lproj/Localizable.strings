@@ -219,27 +219,27 @@
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "Giao dịch hoàn thành";
 "vite.transaction.detail.page.state.call.success" = "Gọi Hợp đồng Thành công";
-"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
-"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
-"vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Request";
-"vite.transaction.detail.page.type.receive" = "Response";
-"vite.transaction.detail.page.hash.title" = "Transaction Hash";
-"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.state.call.failed" = "Gọi Hợp đồng Thất bại";
+"vite.transaction.detail.page.state.call.wait" = "Đợi Phản hồi Hợp đồng thông minh";
+"vite.transaction.detail.page.type.title" = "Loại giao dịch";
+"vite.transaction.detail.page.type.send" = "Yêu cầu";
+"vite.transaction.detail.page.type.receive" = "Phản hồi";
+"vite.transaction.detail.page.hash.title" = "Hash Giao dịch";
+"vite.transaction.detail.page.height.title" = "Chiều cao Khối";
 "vite.transaction.detail.page.note.title" = "Memo";
-"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
+"vite.transaction.detail.page.link.button.title" = "Kiểm tra thêm thông tin tại Trình duyệt Vite";
 
 /* BalanceInfo */
-"balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.balance.title" = "Số dư";
+"balance.info.detail.unconfirmed.title" = "Chưa nhận";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "Available";
-"balance.info.detail.pledge.amount.title" = "Staked";
-"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
-"balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Send";
-"balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Get Quota";
+"balance.info.detail.available.amount.title" = "Khả dụng";
+"balance.info.detail.pledge.amount.title" = "Đã stake";
+"balance.info.detail.show.transactions.button.title" = "Kiểm tra lịch sử giao dịch trên Trình duyệt Ethereum";
+"balance.info.detail.reveice.button.title" = "Nhận";
+"balance.info.detail.send.button.title" = "Gửi";
+"balance.info.detail.vote" = "Bỏ phiếu";
+"balance.info.detail.pledge" = "Nhận Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
@@ -296,66 +296,66 @@
 "send.page.scan.address.button.title" = "Scan";
 "send.page.to.address.title" = "Recipient Address";
 "send.page.amount.title" = "Amount";
-"send.page.all.button.title" = "All";
+"send.page.all.button.title" = "Tất cả";
 "send.page.remark.title" = "Memo";
-"send.page.send.button.title" = "Send";
-"send.page.amount.toolbar.button.title" = "Next";
-"send.page.toast.address.error" = "Wrong address, please check the format";
-"send.page.toast.amount.error" = "Insufficient Balance";
-"send.page.toast.amount.empty" = "Please input balance";
-"send.page.toast.amount.zero" = "The amount has to be positive";
-"send.page.toast.note.too.long" = "The length of notes has reached limitations";
-"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
-"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
-"send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.token.info.error" = "Token Info Error";
+"send.page.send.button.title" = "Gửi";
+"send.page.amount.toolbar.button.title" = "Tiếp theo";
+"send.page.toast.address.error" = "Sai địa chỉ, vui lòng check lại định dạng";
+"send.page.toast.amount.error" = "Không đủ số dư";
+"send.page.toast.amount.empty" = "Vui lòng nhập số dư";
+"send.page.toast.amount.zero" = "Số lượng phải là số dương";
+"send.page.toast.note.too.long" = "Độ dài của ghi chú đã đạt đến giới hạn";
+"send.page.toast.contract.address.support.hex" = "Địa chỉ đích mà bạn chuyển đến là một hợp đồng, ghi chú phải được viết bằng các chữ cái thập lục phân hợp lệ";
+"send.page.not.enough.balance.alert.title" = "Không đủ Số dư";
+"send.page.not.enough.balance.alert.button" = "Hủy";
+"send.page.token.info.error" = "Lỗi Thông tin Token";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
+"send.page.eth.failed" = "(%@). Vui lòng kiểm tra lịch sử giao dịch trước khi thử lại";
 
 /* eth vite exchange */
-"eth.vite.exchange.page.title" = "VITE Conversion";
-"eth.vite.exchange.page.my.address.title" = "ETH Address";
-"eth.vite.exchange.page.my.balance.title" = "Balance";
-"eth.vite.exchange.page.to.address.title" = "VITE Address";
-"eth.vite.exchange.page.amount.title" = "Conversion Amount";
-"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
-"eth.vite.exchange.page.send.button.title" = "Convert";
-"eth.vite.exchange.page.address.change.button.title" = "Switch";
-"eth.vite.exchange.page.exchange.all.button.title" = "All";
-"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+"eth.vite.exchange.page.title" = "Chuyển đổi VITE";
+"eth.vite.exchange.page.my.address.title" = "Địa chỉ ETH";
+"eth.vite.exchange.page.my.balance.title" = "Số dư";
+"eth.vite.exchange.page.to.address.title" = "Địa chỉ VITE";
+"eth.vite.exchange.page.amount.title" = "Số lượng Chuyển đổi";
+"eth.vite.exchange.page.amount.placeholder" = "Chuyển đổi tối đa %@ VITE";
+"eth.vite.exchange.page.send.button.title" = "Chuyển đổi";
+"eth.vite.exchange.page.address.change.button.title" = "Chuyển";
+"eth.vite.exchange.page.exchange.all.button.title" = "Tất cả";
+"eth.vite.exchange.page.exchange.history.button.title" = "Lịch sử Chuyển đổi";
 
 /* Receive Page */
-"Receive.page.token.title" = "Receive";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
-"Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
-"Receive.page.wallet.name" = "Vite Wallet";
+"Receive.page.token.title" = "Nhận";
+"Receive.page.mine.title" = "QRCode của tôi";
+"Receive.page.token.name.label" = "Quét và Gửi %@";
+"Receive.page.token.amount.button.title" = "Nhập Số lượng";
+"Receive.page.token.note.label" = "Bình luận";
+"Receive.page.token.amount.alert.title" = "Nhập Số lượng";
+"Receive.page.wallet.name" = "Ví Vite";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.title" = "Quét";
+"Scan.page.qccode.not.identifiable" = "Mã QR không thể được xác định";
+"Scan.page.qccode.not.found" = "Không tìm thấy mã QR";
 
 /* System */
-"system.page.logout.loading" = "Logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
-"system.page.cell.login.pwd" = "Unlock By Password";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.logout.loading" = "Đăng xuất";
+"system.page.cell.change.language" = "Ngôn ngữ";
+"system.page.cell.change.currency" = "Tiền tệ";
+"system.page.cell.login.pwd" = "Mở khoá bằng Mật khẩu";
+"system.page.cell.login.faceId" = "Mở khoá bằng Face ID";
+"system.page.cell.login.touchId" = "Mở khóa bằng Touch ID";
+"system.page.cell.transfer.faceId" = "Sử dụng Face ID để giao dịch";
+"system.page.cell.transfer.touchId" = "Sử dụng Touch ID để giao dịch";
+"system.page.cell.logout.title" = "Đăng xuất/Đổi ví";
+"system.page.cell.upload.log.title" = "Tải lên Log";
+"system.page.cell.upload.log.toast.success" = "Đã tải lên Log";
+"system.page.cell.delete.wallet.title" = "Xoá Tài khoản hiện tại";
+"system.page.cell.delete.wallet.alert.title" = "Bạn chỉ có thể khôi phục tài khoản của mình bằng các cụm từ khôi phục ví khi xóa tài khoản, bạn có xác nhận xóa tài khoản này không?";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
+"aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Đang tải";
 "aboutUs.page.cell.version" = "Version";
 "aboutUs.page.cell.contact" = "Contact Us";
 "aboutUs.page.cell.shareUs" = "Share Vite APP";
@@ -415,13 +415,13 @@
 "vote.page.voteStatus.voteInvalid" = "Invalid Voting";
 "vote.page.voteInfo.nodePolls.title" = "My Votes";
 "vote.page.nodeStatus.valid.title" = "Active";
-"vote.page.nodeStatus.invalid.title" = "Inactive";
-"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+"vote.page.nodeStatus.invalid.title" = "Không hoạt động";
+"vote.page.voteInfo.alert.quota" = "Không thể thu hồi phiếu bầu, bạn phải chạy PoW hoặc stake VITE cho quota TPS để thu hồi phiếu bầu";
 
 /* Vote List*/
-"vote" = "Vote";
-"vote.list.title" = "Candidate Nodes";
-"vote.list.search" = "Search for name or address of candidate nodes";
+"vote" = "Bỏ phiếu";
+"vote.list.title" = "Các Node ứng cử viên";
+"vote.list.search" = "Tìm kiếm tên hoặc địa chỉ của các node ứng cử viên";
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
 "vote.list.confirm.revote" = "Confirm";
 "vote.list.count" = "Votes";
