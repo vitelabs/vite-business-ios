@@ -422,25 +422,25 @@
 "vote" = "Bỏ phiếu";
 "vote.list.title" = "Các Node ứng cử viên";
 "vote.list.search" = "Tìm kiếm tên hoặc địa chỉ của các node ứng cử viên";
-"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
-"vote.list.confirm.revote" = "Confirm";
-"vote.list.count" = "Votes";
-"vote.list.address" = "Address";
-"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
-"vote.list.search.empty" = "No result, please try another input";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote.list.alert.already.voted" = "Bạn đã bỏ phiếu cho %@, vui lòng đảm bảo rằng hành động này sẽ ghi đè kết quả bỏ phiếu hiện tại";
+"vote.list.confirm.revote" = "Xác nhận";
+"vote.list.count" = "Số phiếu";
+"vote.list.address" = "Địa chỉ";
+"vote.list.alert.quota" = "Không thể bỏ phiếu, bạn phải chạy PoW hoặc stake VITE cho quota TPS để vote";
+"vote.list.search.empty" = "Không tìm thấy nội dung, vui lòng thử lại";
+"vote.list.search.no.transaction.before" = "Bạn không thể bỏ phiếu ngay bây giờ vì không có hồ sơ giao dịch trong địa chỉ của bạn";
 
 // Contract
-"contract.confirm.info" = "Contract Address";
+"contract.confirm.info" = "Địa chỉ Hợp đồng";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"vite.RefreshBackFooter.IdleText" = "Kéo lên để tải nhiều hơn";
+"Vite.RefreshBackFooter.PullingText" = "Thả ra để tải nhiều hơn.";
+"Vite.RefreshBackFooter.RefreshingText" = "Đang tải...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "Không còn dữ liệu";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+"introduction.tip.title" = "Giao dịch tiêu tốn quota.\nStake để nhận quota miễn phí.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -452,26 +452,26 @@
 //"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 /* Error Message */
 
-"vite.error.network.error" = "Something went wrong with network, please try again later";
-"vite.error.operation.failure" = "Operation failed";
-"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
-"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
-"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
-"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
-"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
-"vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
-"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
+"vite.error.network.error" = "Đã xảy ra sự cố mạng, vui lòng thử lại sau";
+"vite.error.operation.failure" = "Thao tác thất bại";
+"vite.error.rpc.error.code.not.enough.balance" = "Không đủ số dư";
+"vite.error.rpc.error.code.not.enough.quota" = "Không đủ quota";
+"vite.error.rpc.error.code.id.conflict" = "Xung đột ID, vui lòng thử lại sau";
+"vite.error.rpc.error.code.contract.data.illegal" = "Phương thức hợp đồng tích hợp không tồn tại, vui lòng thử lại sau (-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Giao dịch được gửi quá thường xuyên, vui lòng thử lại sau";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Phương thức hợp đồng tích hợp không tồn tại, vui lòng thử lại sau (-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "Bạn không thể thực hiện bất kỳ chuyển khoản nào cho đến khi bạn nhận được một giao dịch.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Chiều cao khối snapshot không hợp lệ, vui lòng thử lại sau";
+"vite.error.rpc.error.code.verify.failure" = "Xác minh hệ thống không thành công, vui lòng thử lại sau (%@)";
 
-"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
+"eth.error.rpc.error.code.not.enough.balance" = "Không đủ số dư";
+"eth.error.rpc.error.code.not.enough.fee" = "Hết phí";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
-"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tìm hiểu về Chuyển đổi VITE<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Bạn có thể chuyển đổi VITE ERC10 sang VITE coin thông qua Chuyển đổi VITE. Trong quá trình chuyển đổi, VITE ERC20 sẽ được chuyển tới địa chỉ đen mạng Ethereum 0x1111111111111111111111111111111111111111, và bạn sẽ nhận số VITE coin tương ứng tới địa chỉ Vite của mình sau khi giao dịch tới địa chỉ đen Ethereum hoàn tất. Trong thời gian chuyển đổi, phí giao dịch sẽ tính vào địa chỉ mạng ETH hiện tại của bạn. Sau khi gửi chuyển đổi, vui lòng đợi ít nhất 30 xác nhận trong mạng Ethereum, bạn có thể tìm thấy lịch sử giao dịch trong lịch sử chuyển đổi.</p>";
 
 // ViteURI
 "vite.uri.amount.format.error" = "Wrong format with transaction amount";
