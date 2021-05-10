@@ -32,7 +32,7 @@
 "airdrop.help" = "Help";
 "airdrop.vpower" = "Winners";
 "airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
+"airdrop.validationFailed" = "Verifizierung fehlgeschlagen";
 "airdrop.enabled" = "Pick up 10~1000";
 "airdrop.leftTime" = "Countdown";
 
