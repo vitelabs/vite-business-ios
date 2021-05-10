@@ -119,10 +119,10 @@
 "mnemonic.backup.page.alter.cancel" = "No";
 "mnemonic.backup.page.alter.confirm" = "Yes";
 "mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
+"mnemonic.backup.page.error.type.nameValid" = "Dein Benutzername darf nur aus Chinesischen und Englischen Zeichen sowie Unterstrichen bestehen.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Dein Benutzername darf nicht mehr als 32 Zeichen enthalten";
 "mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Dein Passwort muss aus mindestens 8 Zeichen bestehen";
 "mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
@@ -134,11 +134,11 @@
 "mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
 "mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
 "mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.page.add.loading" = "Wird hinzugefügt...";
 
 /* import mnemonic*/
 "import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
+"import.page.submit.btn" = "Account wiederherstellen";
 "import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
 "import.page.submit.loading" = "Import...";
 "import.page.submit.success" = "Import success";
