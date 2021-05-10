@@ -140,18 +140,18 @@
 "import.page.title" = "Please input your seed phrase";
 "import.page.submit.btn" = "Account wiederherstellen";
 "import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
+"import.page.submit.loading" = "Importieren...";
+"import.page.submit.success" = "Importieren erfolgreich";
 "import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.alert.exist.ok" = "Bestätigen";
+"import.page.alert.exist.cancel" = "Abbrechen";
 
 
 /* export mnemonic */
 "export.page.title" = "Export Seed Phrase";
 "export.page.alter.title" = "Please Input Password";
 "export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.alter.password.error" = "Falsches Passwort!";
 
 /* login */
 "login.page.btn.chooseName" = "Select Accounts";
@@ -183,24 +183,24 @@
 
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
+"my.page.system.cell.title" = "Einstellungen";
 "my.page.invite.cell.title" = "Mining Referrals";
 "my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
+"my.page.forum.cell.title" = "Offizielles Forum";
+"my.page.aboutUs.cell.title" = "Über uns";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 "my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
 
 /* Transaction List */
 "transaction.list.page.title" = "Transaction History";
 "transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.network.error" = "Aktualisieren";
 "transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
-"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
+"transaction.list.page.header.refresh.idle" = "Zum Aktualisieren nach unten streichen";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
-"transaction.list.page.header.refresh.refreshing" = "Loading...";
-"transaction.list.transaction.type.name.contract" = "Call";
-"transaction.list.transaction.type.name.register" = "Registration";
+"transaction.list.page.header.refresh.refreshing" = "Lädt...";
+"transaction.list.transaction.type.name.contract" = "Anrufen";
+"transaction.list.transaction.type.name.register" = "Registrieren";
 "transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
 "transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
 "transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
