@@ -8,8 +8,8 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
+"confirm.button.title" = "Bestätigen";
+"cancel.button.title" = "Abbrechen";
 "alter.title" = "NOTICE";
 
 "discover.page.title" = "Discovery";
