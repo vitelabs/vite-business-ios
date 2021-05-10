@@ -63,10 +63,10 @@
 "Submit.cancel" = "Abbrechen";
 "Close" = "Schließen";
 "Quit" = "Beenden";
-"web.page.host.tip" = "This page is provided by %@";
+"web.page.host.tip" = "Diese Seite wird von %@ bereitgestellt";
 
 /* Login */
-"create.account" = "Create Account";
+"create.account" = "Registrieren";
 "import.account" = "Import Account";
 "select.wallet.account" = "Select your account";
 
@@ -97,7 +97,7 @@
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
 "mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
 "mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.page.tip3" = "Scannen Sie den folgenden QR-Code mit der auf einem anderen Gerät installierten Vite-wallet App.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
