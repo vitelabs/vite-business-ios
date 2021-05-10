@@ -36,9 +36,9 @@
 "airdrop.enabled" = "Pick up 10~1000";
 "airdrop.leftTime" = "Countdown";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.need.update" = "Airdrop wird nur von iOS 11 oder höher unterstützt.";
+"airdrop.error.tip.not.support" = "Airdrop wird von deinem Gerät nicht unterstützt.";
+"airdrop.error.tip.unknown.error" = "Unbekannter Fehler.";
 
 
 "tab.title.wallet" = "Wallet";
@@ -49,20 +49,20 @@
 
 /* App */
 "Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
+"Finish" = "Fertig";
+"Delete" = "Löschen";
 "Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
+"Yes" = "Ja";
+"No" = "Nein";
 "Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
+"Retry" = "Erneut versuchen";
+"Confirm" = "Bestätigen";
+"Submit" = "Absenden";
 "Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
+"Update.app" = "App aktualisieren";
+"Submit.cancel" = "Abbrechen";
+"Close" = "Schließen";
+"Quit" = "Beenden";
 "web.page.host.tip" = "This page is provided by %@";
 
 /* Login */
