@@ -237,7 +237,7 @@
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Send";
+"balance.info.detail.send.button.title" = "Senden";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
@@ -248,7 +248,7 @@
 "gateway.info.detail.page.name" = "Gateway Name";
 "gateway.info.detail.page.webside" = "Gateway Official Site";
 "gateway.info.detail.page.brief" = "Gateway Introduction";
-"gateway.info.detail.page.email" = "Customer Service";
+"gateway.info.detail.page.email" = "Kundenservice";
 "gateway.info.detail.page.agreement" = "Service Terms";
 "gateway.info.detail.page.link" = "Gateway Link";
 
