@@ -141,36 +141,36 @@
 "import.page.submit.btn" = "Восстановить аккаунт";
 "import.page.submit.invalid.mnemonic" = "Что-то не так с вашей seed фразой, пожалуйста, попробуйте еще раз!";
 "import.page.submit.loading" = "Импорт...";
-"import.page.submit.success" = "Import success";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.submit.success" = "Успешный импорт";
+"import.page.alert.exist.title" = "Введенная вами фраза уже имела имя учетной записи '%@' на текущем устройстве, вы уверены, что хотите перезаписать существующую учетную запись";
+"import.page.alert.exist.ok" = "Подтвердить";
+"import.page.alert.exist.cancel" = "Отмена";
 
 
 /* export mnemonic */
-"export.page.title" = "Export Seed Phrase";
-"export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.title" = "Экспорт сид-фразы";
+"export.page.alter.title" = "Введите пароль";
+"export.page.alter.tf.placeholder" = "Пожалуйста, введите пароль";
+"export.page.alter.password.error" = "Неверный пароль!";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
-"login.page.loading.title" = "Processing";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.btn.chooseName" = "Выберите учетную запись";
+"login.page.btn.login" = "Логин";
+"login.page.loading.title" = "Обработка";
+"login.page.error.toast.title" = "Неверный пароль! Попробуйте импортировать мнемоническую фразу";
 
 /* Home */
-"tabbar.item.title.wallet" = "Wallet";
-"tabbar.item.title.my" = "Me";
+"tabbar.item.title.wallet" = "Кошелек";
+"tabbar.item.title.my" = "Я";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.btc.title" = "Общее значение (BTC)";
+"wallet.home.balance.title" = "Баланс";
+"wallet.home.unconfirmed.title" = "Не получено %@";
+"wallet.home.toast.copy.address" = "Успешно скопировано!";
+"wallet.home.scan.url.alert.title" = "ЗАМЕЧАНИЕ";
+"wallet.home.scan.url.alert.message" = "Вы собираетесь посетить стороннюю страницу, которая покидает Vite App. Компания Vite Labs не имеет контроля над качеством, содержанием, надежностью или безопасностью сервиса dApp. Vite Labs не несут ответственности за использование сторонних сервисов и возможный ущерб от них.";
+"wallet.home.header.title" = "Активы";
 
 /* Manage Wallet */
 "manage.wallet.page.title" = "Wallet Management";
