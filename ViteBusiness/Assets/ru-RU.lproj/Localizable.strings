@@ -8,66 +8,66 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "Подтвердить";
+"cancel.button.title" = "Отменить";
+"alter.title" = "ЗАМЕЧАНИЕ";
 
-"discover.page.title" = "Discovery";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
-"discover.page.activity.page.title2" = "History";
+"discover.page.title" = "Исследовать";
+"discover.page.game.cell.palyNum" = "%@ игроков играют";
+"discover.page.activity.page.title1" = "Последние события";
+"discover.page.activity.page.title2" = "История";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.news.cell.time.minute" = "Сейчас";
+"discover.page.news.cell.time.hour" = "%@ч назад";
+"discover.page.news.cell.time.day" = "%@ дн. назад";
+"discover.page.headerTitle.activity" = "Центр Кампании";
+"discover.page.headerTitle.game" = "VITE Игры";
+"discover.page.headerTitle.news" = "Vite Новости";
+"discover.page.VCWebTitle.activity" = "Vite События";
+"discover.page.VCWebTitle.game" = "VITE Игры";
+"discover.page.VCWebTitle.news" = "Vite Новости";
+"discover.page.game.alter.title" = "Вы посетили страницу, которая покидает Vite App, и вы будете перенаправлены на сторонние dApp. Ваше использование в dApp будет соответствовать условиям Соглашения dApp и Политике конфиденциальности. Компания Vite Labs не имеет никакого контроля над качеством, содержанием, надежностью или безопасность сервиса dApp, и компания Vite Labs не несет ответственности за ее использование.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
-"airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.help" = "Справка";
+"airdrop.vpower" = "Победители";
+"airdrop.profit" = "Выгоды";
+"airdrop.validationFailed" = "Ошибка подтверждения";
+"airdrop.enabled" = "Подобрать от 10 до 1000";
+"airdrop.leftTime" = "Обратный отсчет";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.need.update" = "Airdrop поддерживается только на iOS 11 и выше.";
+"airdrop.error.tip.not.support" = "Ваше устройство не поддерживает Airdrop.";
+"airdrop.error.tip.unknown.error" = "Неизвестная ошибка.";
 
 
-"tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
-"tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
-"tab.title.dex" = "Asset";
+"tab.title.wallet" = "Кошелек";
+"tab.title.market" = "Рынки";
+"tab.title.trading" = "Торговля";
+"tab.title.discover" = "Узнайте";
+"tab.title.dex" = "Активы";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
+"Cancel" = "Отмена";
+"Finish" = "Готово";
+"Delete" = "Удалить";
 "Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
-"web.page.host.tip" = "This page is provided by %@";
+"Yes" = "Да";
+"No" = "Нет";
+"Loading" = "Загрузка";
+"Retry" = "Повторить";
+"Confirm" = "Подтвердить";
+"Submit" = "Отправить";
+"Close" = "Я понимаю";
+"Update.app" = "Обновить приложение";
+"Submit.cancel" = "Отмена";
+"Close" = "Закрыть";
+"Quit" = "Выйти";
+"web.page.host.tip" = "Эта страница предоставлена %@";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
+"create.account" = "Создать Аккаунт";
+"import.account" = "Восстановить аккаунт";
 "select.wallet.account" = "Select your account";
 
 /* Lock */
@@ -127,20 +127,20 @@
 
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
 "mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.ok.title" = "Резервное копирование сейчас";
+"mnemonic.backup.tip.alert.cancel.title" = "Резервное копирование позже";
 
-"mnemonic.affirm.page.title" = "Confirm";
+"mnemonic.affirm.page.title" = "Подтвердить";
 "mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.alter.title" = "Это действие будет регенерировать мнемоническую фразу, вернуться?";
+"mnemonic.affirm.alter.check.title" = "Некорректная seed фраза!";
+"mnemonic.affirm.page.add.loading" = "Добавление...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
+"import.page.title" = "Пожалуйста, введите вашу seed фразу";
+"import.page.submit.btn" = "Восстановить аккаунт";
+"import.page.submit.invalid.mnemonic" = "Что-то не так с вашей seed фразой, пожалуйста, попробуйте еще раз!";
+"import.page.submit.loading" = "Импорт...";
 "import.page.submit.success" = "Import success";
 "import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
 "import.page.alert.exist.ok" = "Confirm";
