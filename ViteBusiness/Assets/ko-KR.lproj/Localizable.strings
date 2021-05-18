@@ -8,13 +8,13 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "확인하기";
+"cancel.button.title" = "취소하기";
+"alter.title" = "공지";
 
-"discover.page.title" = "Discovery";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
+"discover.page.title" = "탐색하기";
+"discover.page.game.cell.palyNum" = "%@명이 참여중입니다.";
+"discover.page.activity.page.title1" = "최신 이벤트";
 "discover.page.activity.page.title2" = "History";
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Now";
