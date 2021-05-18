@@ -166,39 +166,39 @@
 /* Wallet Home */
 "wallet.home.btc.title" = "전체 금액(BTC)";
 "wallet.home.balance.title" = "잔액";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.unconfirmed.title" = "%@ 미수신";
+"wallet.home.toast.copy.address" = "성공적으로 복사되었습니다.";
+"wallet.home.scan.url.alert.title" = "공지";
+"wallet.home.scan.url.alert.message" = "Vite 어플이 아닌 다른 페이지를 방문했으며 dApp으로 리디렉션됩니다. 이 dApp에 대한 귀하의 사용은 dApp의 사용자 계약 기간 및 개인 정보 보호 정책을 준수합니다. Vite Labs는 제 3자 dApp의 품질, 콘텐츠, 신뢰성을 보안 또는 감독하거나 통제하지 않으며 Vite Labs는 그 사용에 대해 책임을지지 않습니다.";
+"wallet.home.header.title" = "자산";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.title" = "지갑 관리";
+"manage.wallet.page.name.cell.title" = "계정 이름";
+"manage.wallet.page.addressManage.cell.title" = "주소 관리";
+"manage.wallet.page.importMnemonic.cell.title" = "시드 문구 내보내기";
+"manage.wallet.page.alter.changeName" = "지갑 이름 수정하기";
+"manage.wallet.page.changeName.loading" = "수정";
+"manage.wallet.page.error.type.name" = "지갑 이름을 입력해주세요";
 
-"my.page.contacts.cell.title" = "Contact Address";
-"my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Mining Referrals";
-"my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+"my.page.contacts.cell.title" = "연락처 주소";
+"my.page.mnemonic.cell.title" = "니모닉 단어";
+"my.page.system.cell.title" = "설정";
+"my.page.invite.cell.title" = "채굴 추천인";
+"my.page.reward.cell.title" = "보상 문의";
+"my.page.forum.cell.title" = "공식 포럼";
+"my.page.aboutUs.cell.title" = "회사 소개";
+"my.page.change.wallet.name.alter.title" = "계정 이름 수정하기";
+"my.page.aboutUs.wechat.alert.title" = "QR코드를 스캔하고 Vite WeChat 공식 계정을 팔로우하세요";
 
 /* Transaction List */
-"transaction.list.page.title" = "Transaction History";
-"transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
-"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
-"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
-"transaction.list.page.header.refresh.pulling" = "Release to refresh";
-"transaction.list.page.header.refresh.refreshing" = "Loading...";
+"transaction.list.page.title" = "거래 내역";
+"transaction.list.page.empty" = "비어있음";
+"transaction.list.page.network.error" = "새로고침";
+"transaction.list.page.genesis.cell.name" = "제네시스 블록 기록을 확인해주세요";
+"transaction.list.page.header.refresh.idle" = "아래로 당겨 새로고침";
+"transaction.list.page.header.refresh.pulling" = "놓아서 새로고침";
+"transaction.list.page.header.refresh.refreshing" = "로딩 중...";
 "transaction.list.transaction.type.name.contract" = "Call";
 "transaction.list.transaction.type.name.register" = "Registration";
 "transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
