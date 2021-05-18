@@ -17,97 +17,97 @@
 "discover.page.activity.page.title1" = "최신 이벤트";
 "discover.page.activity.page.title2" = "기록";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.news.cell.time.minute" = "현재";
+"discover.page.news.cell.time.hour" = "%@시간 전";
+"discover.page.news.cell.time.day" = "%@일 전";
+"discover.page.headerTitle.activity" = "캠페인 센터";
+"discover.page.headerTitle.game" = "Vite 게임";
+"discover.page.headerTitle.news" = "Vite 뉴스";
+"discover.page.VCWebTitle.activity" = "Vite 이벤트";
+"discover.page.VCWebTitle.game" = "Vite 게임";
+"discover.page.VCWebTitle.news" = "Vite 뉴스";
+"discover.page.game.alter.title" = "Vite 어플이 아닌 다른 페이지를 방문했으며 dApp으로 리디렉션됩니다. 이 dApp에 대한 귀하의 사용은 dApp의 사용자 계약 기간 및 개인 정보 보호 정책을 준수합니다. Vite Labs는 제 3자 dApp의 품질, 콘텐츠, 신뢰성을 보안 또는 감독하거나 통제하지 않으며 Vite Labs는 그 사용에 대해 책임을지지 않습니다.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
-"airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.help" = "도움말";
+"airdrop.vpower" = "승자";
+"airdrop.profit" = "이윤";
+"airdrop.validationFailed" = "인증에 실패했습니다";
+"airdrop.enabled" = "10~1000사이의 숫자를 고르세요";
+"airdrop.leftTime" = "카운트다운";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.need.update" = "에어드롭은 iOS 11 이상에서만 지원됩니다.";
+"airdrop.error.tip.not.support" = "본 기기 장치는 에어드롭이 지원되지 않습니다.";
+"airdrop.error.tip.unknown.error" = "알 수 없는 오류";
 
 
-"tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
-"tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
-"tab.title.dex" = "Asset";
+"tab.title.wallet" = "지갑";
+"tab.title.market" = "마켓";
+"tab.title.trading" = "거래하기";
+"tab.title.discover" = "찾기";
+"tab.title.dex" = "자산";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
-"Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
-"web.page.host.tip" = "This page is provided by %@";
+"Cancel" = "취소하기";
+"Finish" = "완료";
+"Delete" = "삭제하기";
+"Hint" = "알림";
+"Yes" = "네";
+"No" = "아니오";
+"Loading" = "로딩 중";
+"Retry" = "재시도";
+"Confirm" = "확인하기";
+"Submit" = "제출하기";
+"Close" = "이해했습니다";
+"Update.app" = "어플 업데이트";
+"Submit.cancel" = "취소하기";
+"Close" = "닫기";
+"Quit" = "나가기";
+"web.page.host.tip" = "해당 페이지는 %@에서 제공됩니다.";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
-"select.wallet.account" = "Select your account";
+"create.account" = "계정 만들기";
+"import.account" = "계정 가져오기";
+"select.wallet.account" = "계정을 선택해주세요.";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.pwd.btn.title" = "비밀번호로 로그인하기";
+"lock.page.fingerprint.btn.title" = "생체정보 인증";
+"lock.page.fingerprint.alter.title" = "지문 확인하여 터치 ID 활성화하기";
+"lock.page.changeUser.btn.title" = "계정 전환하기";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.title" = "계정 만들기";
+"create.page.tf.title" = "계정 이름";
+"create.page.pw.title" = "비밀번호를 입력하세요.";
+"create.page.pw.repeate.title" = "비밀번호를 다시 입력해주세요.";
+"create.page.invite.code.title" = "초대코드를 입력하거나 초대 QR코드를 스캔하고 거래수수료 10%할인받고 프리미어 채굴을 즐겨보세요.";
+"create.page.invite.code.placeholder" = "초대 코드 (선택 사항)";
+"create.page.submit.btn.title" = "만들기";
+"create.page.toast.error.invite.code" = "잘못된 초대코드";
 
-"create.page.tip.title" = "Backup Instructions";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.title" = "백업 지침";
+"create.page.tip.content1" = "주의! 니모닉 단어를 잃어버리면 지갑 내 모든 디지털 자산을 잃어버릴 수 있습니다.";
+"create.page.tip.content2" = "니모닉 단어 불러오기는 어플을 삭제하거나 다시 설치하신 후에 계정을 복구하기 위해 사용됩니다.";
+"create.page.tip.content3" = "니모닉 단어를 안전한 곳에 보관해주세요.";
+"create.page.tip.button.skip.title" = "나중에 백업하기";
+"create.page.tip.button.next.title" = "백업 완료";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.page.title" = "니모닉 단어가 백업되지 않았습니다.";
+"mnemonic.backup.page.tip1" = "다음 두 가지 방법의 백업 방식을 추천합니다:";
+"mnemonic.backup.page.tip2" = "종이에 니모닉 단어를 적어서 안전한 곳에 보관해주세요.";
+"mnemonic.backup.page.tip3" = "다른 기기 장치에 Vite 지갑을 다운 받으신 후, 아래 QR 코드를 스캔해주세요.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.title" = "공지";
+"mnemonic.backup.scan.alert.message" = "다음의 니모닉 단어들로 계정 생성을 확인하시겠습니까?";
+"mnemonic.backup.scan.alert.ok.title" = "확인하기";
+"mnemonic.backup.scan.alert.cancel.title" = "취소하기";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
-"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
+"mnemonic.backup.page.check.button1.title" = "니모닉 단어를 잃어 버리면 내 자산을 찾을 수 없다는 것을 이해했습니다";
+"mnemonic.backup.page.check.button2.title" = "니모닉 단어를 잃어 버리면 아무도 복구를 도와줄 수 없다는 것을 이해했습니다";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
 "mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
@@ -128,12 +128,12 @@
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
 "mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
 "mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.cancel.title" = "나중에 백업하기";
 
-"mnemonic.affirm.page.title" = "Confirm";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
+"mnemonic.affirm.page.title" = "확인하기";
+"mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요";
+"mnemonic.affirm.alter.title" = "\"네\"를 누르시면 새로운 시드 문구를 생성합니다. 뒤로 돌아가시겠습니까?";
+"mnemonic.affirm.alter.check.title" = "잘못된 시드 문구입니다.";
 "mnemonic.affirm.page.add.loading" = "Adding...";
 
 /* import mnemonic*/
