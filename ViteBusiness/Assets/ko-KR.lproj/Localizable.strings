@@ -15,7 +15,7 @@
 "discover.page.title" = "탐색하기";
 "discover.page.game.cell.palyNum" = "%@명이 참여중입니다.";
 "discover.page.activity.page.title1" = "최신 이벤트";
-"discover.page.activity.page.title2" = "History";
+"discover.page.activity.page.title2" = "기록";
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Now";
 "discover.page.news.cell.time.hour" = "%@h ago";
