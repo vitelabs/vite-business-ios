@@ -108,64 +108,64 @@
 
 "mnemonic.backup.page.check.button1.title" = "니모닉 단어를 잃어 버리면 내 자산을 찾을 수 없다는 것을 이해했습니다";
 "mnemonic.backup.page.check.button2.title" = "니모닉 단어를 잃어 버리면 아무도 복구를 도와줄 수 없다는 것을 이해했습니다";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
-"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
-"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
-"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
-"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
-"mnemonic.backup.page.alter.cancel" = "No";
-"mnemonic.backup.page.alter.confirm" = "Yes";
-"mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
-"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.check.button3.title" = " 다음을 읽고 이해했으며 이에 동의합니다.";
+"mnemonic.backup.page.clause.button.title" = "이용 약관";
+"mnemonic.backup.page.tip.lab.title" = "시드 문구";
+"mnemonic.backup.page.tip.anewBtn.title" = "다시 생성하기";
+"mnemonic.backup.page.tip.nextBtn.title" = "백업 완료";
+"mnemonic.backup.page.tip.skip.title" = "나중에 백업하기";
+"mnemonic.backup.page.alter.title" = "시드 문구 캡쳐하는 것을 추천드리지 않으며, 종이에 시드 문구를 적어 안전한 곳에 보관하는 것을 추천드립니다.";
+"mnemonic.backup.page.alter.message" = "새로운 시드 문구를 지금 생성 하시겠습니까?";
+"mnemonic.backup.page.alter.cancel" = "아니오";
+"mnemonic.backup.page.alter.confirm" = "네";
+"mnemonic.backup.page.error.type.name" = "새로운 계정 혹은 비밀번호를 입력해주세요";
+"mnemonic.backup.page.error.type.nameValid" = "계정 이름은 중국어, 영어, _(밑줄)만 지원합니다.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "사용자 이름은 32글자를 넘을 수 없습니다.";
+"mnemonic.backup.page.error.type.difference" = "동일한 비밀번호를 입력해주세요!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "비밀번호는 최소 8글자 이상을이어야 합니다.";
+"mnemonic.backup.page.switch.mode.title" = "%@ 니모닉 단어로 전환하기";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
+"mnemonic.backup.tip.alert.title" = "니모닉 단어가 백업되지 않았습니다.";
+"mnemonic.backup.tip.alert.message" = "니모닉 단어 백업을 위해 비밀번호를 입력해주세요.";
+"mnemonic.backup.tip.alert.ok.title" = "지금 백업하기";
 "mnemonic.backup.tip.alert.cancel.title" = "나중에 백업하기";
 
 "mnemonic.affirm.page.title" = "확인하기";
-"mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요";
+"mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요.";
 "mnemonic.affirm.alter.title" = "\"네\"를 누르시면 새로운 시드 문구를 생성합니다. 뒤로 돌아가시겠습니까?";
 "mnemonic.affirm.alter.check.title" = "잘못된 시드 문구입니다.";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.page.add.loading" = "추가 중...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.title" = "시드 문구를 입력해주세요.";
+"import.page.submit.btn" = "계정 복구하기";
+"import.page.submit.invalid.mnemonic" = "시드 문구가 잘 못 되었습니다. 다시 시도해주세요!";
+"import.page.submit.loading" = "가져오는 중...";
+"import.page.submit.success" = "가져오기 성공";
+"import.page.alert.exist.title" = "입력하신 시드 문구는 현재 기기장치에  '%@'이름의 계정이 존재합니다. 본 계정에 중복으로 입력하는게 맞습니까?";
+"import.page.alert.exist.ok" = "확인하기";
+"import.page.alert.exist.cancel" = "취소하기";
 
 
 /* export mnemonic */
-"export.page.title" = "Export Seed Phrase";
-"export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.title" = "시드 문구 내보내기";
+"export.page.alter.title" = "비밀번호를 입력하세요.";
+"export.page.alter.tf.placeholder" = "비밀번호를 입력하세요.";
+"export.page.alter.password.error" = "잘못된 비밀번호입니다.";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
-"login.page.loading.title" = "Processing";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.btn.chooseName" = "계정을 선택하세요";
+"login.page.btn.login" = "로그인";
+"login.page.loading.title" = "처리중";
+"login.page.error.toast.title" = "잘못된 비밀번호입니다! 시드 문구 가져오기를 시도해주세요.";
 
 /* Home */
-"tabbar.item.title.wallet" = "Wallet";
+"tabbar.item.title.wallet" = "지갑";
 "tabbar.item.title.my" = "Me";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
+"wallet.home.btc.title" = "전체 금액(BTC)";
+"wallet.home.balance.title" = "잔액";
 "wallet.home.unconfirmed.title" = "Unreceived %@";
 "wallet.home.toast.copy.address" = "Successfully copied!";
 "wallet.home.scan.url.alert.title" = "NOTICE";
