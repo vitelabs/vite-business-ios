@@ -322,54 +322,54 @@
 "eth.vite.exchange.page.send.button.title" = "전환하기";
 "eth.vite.exchange.page.address.change.button.title" = "바꾸기";
 "eth.vite.exchange.page.exchange.all.button.title" = "전체";
-"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+"eth.vite.exchange.page.exchange.history.button.title" = "전환 내역";
 
 /* Receive Page */
-"Receive.page.token.title" = "Receive";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
-"Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
-"Receive.page.wallet.name" = "Vite Wallet";
+"Receive.page.token.title" = "수신하기";
+"Receive.page.mine.title" = "내 QR코드";
+"Receive.page.token.name.label" = "스캔하고 %@보내기";
+"Receive.page.token.amount.button.title" = "수량 입력";
+"Receive.page.token.note.label" = "댓글";
+"Receive.page.token.amount.alert.title" = "수량 입력";
+"Receive.page.wallet.name" = "Vite 지갑";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.title" = "스캔하기";
+"Scan.page.qccode.not.identifiable" = "QR코드를 인식할 수 없습니다.";
+"Scan.page.qccode.not.found" = "QR코드를 찾을 수 없습니다.";
 
 /* System */
-"system.page.logout.loading" = "Logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
-"system.page.cell.login.pwd" = "Unlock By Password";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.logout.loading" = "로그아웃";
+"system.page.cell.change.language" = "언어";
+"system.page.cell.change.currency" = "통화";
+"system.page.cell.login.pwd" = "비밀번호로 잠금해제";
+"system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
+"system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
+"system.page.cell.transfer.faceId" = "거래를 위해 페이스 아이디 사용";
+"system.page.cell.transfer.touchId" = "거래를 위해 터치 아이디 사용";
+"system.page.cell.logout.title" = "로그아웃/지갑 변경";
+"system.page.cell.upload.log.title" = "업로드 로그";
+"system.page.cell.upload.log.toast.success" = "업로드된 로그";
+"system.page.cell.delete.wallet.title" = "현재 계정 삭제하기";
+"system.page.cell.delete.wallet.alert.title" = "계정 삭제 후에는 니모닉 단어로만 복구가 가능합니다. 계정을 삭제하시겠습니까?";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.blockHeight" = "현재 높이";
+"aboutUs.page.cell.blockHeight.loading.tip" = "로딩 중";
+"aboutUs.page.cell.version" = "버전";
+"aboutUs.page.cell.contact" = "문의하기";
+"aboutUs.page.cell.shareUs" = "Vite 어플 공유하기";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.title" = "피드백";
+"aboutUs.page.email.content" = "\n\n\n\n\n본 장치는 아래와 같은 환경을 사용합니다:\n1. 시스템 장치: %@\n2. 시스템 버전: %@\n3. 어플 버전: %@\n4. 언어: %@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "로그인 에러";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
+"quota.manage.page.title" = "쿼타 얻기";
 "quota.manage.page.input.address.title" = "Quota Beneficiary";
 "quota.manage.page.quota.money.title" = "Staking Amount";
 "quota.manage.page.quota.quota.title" = "Quota";
