@@ -440,7 +440,7 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "데이터가 없습니다.";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+"introduction.tip.title" = "거래는 쿼타로 지불됩니다.\n무료 쿼타를 얻기 위해 스테이킹하기.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -452,20 +452,20 @@
 //"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 /* Error Message */
 
-"vite.error.network.error" = "Something went wrong with network, please try again later";
-"vite.error.operation.failure" = "Operation failed";
-"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
-"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
-"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
-"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
-"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
-"vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
-"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
+"vite.error.network.error" = "네트워크에 오류가 생겼습니다. 다시 시도해주세요.";
+"vite.error.operation.failure" = "작업 실패";
+"vite.error.rpc.error.code.not.enough.balance" = "잔액 부족";
+"vite.error.rpc.error.code.not.enough.quota" = "쿼타 부족";
+"vite.error.rpc.error.code.id.conflict" = " ID 충돌 발생, 잠시후 다시 제출해주세요.";
+"vite.error.rpc.error.code.contract.data.illegal" = "빌트인 컨트렉트 오류, 잠시후 다시 시도해주세요(-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "다량의 거래가 요청되었습니다. 잠시후 다시 시도해주세요.";
+"vite.error.rpc.error.code.contract.method.not.exist" = "빌트인 컨트렉트 오류, 잠시후 다시 시도해주세요(-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "거래가 수신되기 전까지 전송할 수 없습니다.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "스냅샷 블록 높이가 잘못되었습니다. 잠시후 다시 시도해주세요.";
+"vite.error.rpc.error.code.verify.failure" = "시스템 확인에 실패했습니다. 잠시후 다시 시도해주세요 (%@)";
 
-"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
+"eth.error.rpc.error.code.not.enough.balance" = "잔액 부족";
+"eth.error.rpc.error.code.not.enough.fee" = "수수료 부족";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
@@ -790,7 +790,7 @@
 "crosschain.status.wrong.address" = "Wrong transfer address";
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
-"crosschain.status.failedBecausePoor" = "Insufficient amount";
+"crosschain.status.failedBecausePoor" = "수량 부족";
 "crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
 "crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
 "crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
