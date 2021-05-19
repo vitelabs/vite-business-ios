@@ -305,23 +305,23 @@
 "send.page.toast.amount.empty" = "잔액을 입력해주세요.";
 "send.page.toast.amount.zero" = "수량은 음수가 될 수 없습니다.";
 "send.page.toast.note.too.long" = "노트 길이의 최대치입니다.";
-"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
-"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
-"send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.token.info.error" = "Token Info Error";
+"send.page.toast.contract.address.support.hex" = "전송이 될 주소는 컨트렉트입니다. 메모는 유효한 16 진수 문자로 작성되어야합니다.";
+"send.page.not.enough.balance.alert.title" = "잔액 부족";
+"send.page.not.enough.balance.alert.button" = "취소하기";
+"send.page.token.info.error" = "토큰 정보 에러";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
+"send.page.eth.failed" = "(%@). 다시 시도하기 전에 거래 내역을 확인해주세요";
 
 /* eth vite exchange */
-"eth.vite.exchange.page.title" = "VITE Conversion";
-"eth.vite.exchange.page.my.address.title" = "ETH Address";
-"eth.vite.exchange.page.my.balance.title" = "Balance";
-"eth.vite.exchange.page.to.address.title" = "VITE Address";
-"eth.vite.exchange.page.amount.title" = "Conversion Amount";
-"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
-"eth.vite.exchange.page.send.button.title" = "Convert";
-"eth.vite.exchange.page.address.change.button.title" = "Switch";
-"eth.vite.exchange.page.exchange.all.button.title" = "All";
+"eth.vite.exchange.page.title" = "VITE 전환";
+"eth.vite.exchange.page.my.address.title" = "ETH 주소";
+"eth.vite.exchange.page.my.balance.title" = "잔액";
+"eth.vite.exchange.page.to.address.title" = "VITE 주소";
+"eth.vite.exchange.page.amount.title" = "전환 수량";
+"eth.vite.exchange.page.amount.placeholder" = "최대 %@ VITE 전환하기";
+"eth.vite.exchange.page.send.button.title" = "전환하기";
+"eth.vite.exchange.page.address.change.button.title" = "바꾸기";
+"eth.vite.exchange.page.exchange.all.button.title" = "전체";
 "eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
 
 /* Receive Page */
