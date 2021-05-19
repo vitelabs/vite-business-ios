@@ -197,7 +197,7 @@
 "transaction.list.page.network.error" = "새로고침";
 "transaction.list.page.genesis.cell.name" = "제네시스 블록 기록을 확인해주세요";
 "transaction.list.page.header.refresh.idle" = "아래로 당겨 새로고침";
-"transaction.list.page.header.refresh.pulling" = "놓아서 새로고침";
+"transaction.list.page.header.refresh.pulling" = "손을 놓아서 새로고침";
 "transaction.list.page.header.refresh.refreshing" = "로딩 중...";
 "transaction.list.transaction.type.name.contract" = "콜";
 "transaction.list.transaction.type.name.register" = "등록";
@@ -426,18 +426,18 @@
 "vote.list.confirm.revote" = "확인하기";
 "vote.list.count" = "투표";
 "vote.list.address" = "주소";
-"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
-"vote.list.search.empty" = "No result, please try another input";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote.list.alert.quota" = "투표 철회가 불가능합니다. 투표 철회를 위한 TPS 쿼타를 위해 PoW 운영 혹은 VITE 스테이킹을 해야합니다.";
+"vote.list.search.empty" = "내용을 찾을 수 없습니다. 다시 입력을 해주세요";
+"vote.list.search.no.transaction.before" = "주소 내 거래 기록이 없기 때문에 투표를 할 수 없습니다.";
 
 // Contract
-"contract.confirm.info" = "Contract Address";
+"contract.confirm.info" = "컨트렉트 주소";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"vite.RefreshBackFooter.IdleText" = "아래로 드래그하여 더 보기";
+"Vite.RefreshBackFooter.PullingText" = "손을 놓아서 더 보기";
+"Vite.RefreshBackFooter.RefreshingText" = "로딩 중...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "데이터가 없습니다.";
 
 //Welcome
 "introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
