@@ -370,27 +370,27 @@
 
 /* quota manage */
 "quota.manage.page.title" = "쿼타 얻기";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
-"quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.quota.title" = "Quota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.manage.page.input.address.title" = "쿼타 수령인";
+"quota.manage.page.quota.money.title" = "스테이킹 수량";
+"quota.manage.page.quota.quota.title" = "쿼타";
+"quota.manage.page.quota.money.placeholder" = "최소 134 VITE의 수량을 적어주세요";
+"quota.manage.page.quota.snapshoot.height.title" = "스테이킹 동결 기간";
+"quota.manage.page.quota.snapshoot.height.desc" = "약 %@일";
+"quota.manage.page.submit.btn.title" = "스테이킹 제출하기";
+"quota.manage.page.check.quotaList.btn.title" = "스테이킹 목록";
+"quota.manage.page.toast.money.error" = "134 VITE 이상부터 스테이킹이 가능합니다.";
+"quota.submit.pop.desc" = "할당량을 얻기 위해 %@ VITE를 스테이킹해야합니다. 스테이킹이 시작된 후 약 3일이 지나야 출금할 수 있습니다";
+"quota.submit.pop.submit.btn.title" = "확인하기";
+"quota.submit.pop.cancel.btn.title" = "취소하기";
+"quota.submit.page.quota.address.placeholder" = "수령인 주소를 입력하세요";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
-"quota.alert.pow.button.title" = "Run PoW";
-"quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
+"quota.alert.title" = "쿼타 부족";
+"quota.alert.pow.and.quota.message" = "쿼타가 부족합니다. PoW 운영 혹은 VITE 스테이킹을 통해 쿼타를 얻을 수 있습니다.";
+"quota.alert.need.quota.message" = "PoW 쿼타가 충분하지 않습니다. VITE를 스태이킹해서 쿼타 얻기를 추천드립니다.";
+"quota.alert.pow.button.title" = "PoW 운영";
+"quota.alert.quota.button.title" = "VITE 스테이킹하기";
+"quota.float.view.title" = "이 거래에 대한 쿼타를 확보하기 위해 PoW 계산 중...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
