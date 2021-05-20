@@ -470,67 +470,67 @@
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">쿼타란 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite 시스템에서는 사용자가 수수료를 지불하여 거래에 필요한 가스를 구매하지 않고 쿼타 기반 모델을 통해 컴퓨팅 리소스를 획득합니다. 거래 전송에 필요한 쿼타 = 기본 쿼타(요청) + 쿼타(첨부된 텍스트 데이터), 거래 확인에 필요한 쿼타 = 기본 쿼타(응답) 이 쿼타기반 리소스 구성 프로토콜을 통해 사용자는 두 가지 방법으로 더 높은 리소스의 쿼타를 얻을 수 있습니다.</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. VITE 스테이킹하여 쿼타 얻기</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.PoW 운영하기</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">쿼타 단위: UTPS, 초당 거래 단위</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">스테이킹은 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite 시스템에서 사용자는 VITE를 스테이킹하여 일정량의 쿼타를 얻을 수 있습니다. 스테이킹의 최소 수량은 134 VITE이며 최대 제한은 없습니다. 한편 Vite 시스템은 A 주소가 VITE의 일부를 스테이킹하고 얻은 쿼타를 B 주소에 할당하도록 지원합니다. 사용자가 스테이킹을 신청하면 VITE가 다른 사용자가 아닌 스마트 계약 주소로 전송되며 스테이킹을 신청한 사용자만 스테이킹 금액을 관리할 수 있습니다.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">PoW는 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">작업 증명(PoW)은 사용자가 일정량의 작업을 수행했는지 확인하는 프로토콜이며 DDoS 공격 및 기타 서비스 남용을 방지하기 위한 경제적 수단이기도 합니다. 개시자가 일정량의 컴퓨팅을 수행해야하므로 어느 정도 시간이 소요될 수 있습니다. Vite 시스템에서 사용자는 PoW를 실행하여 무료 쿼타를 얻을 수 있으며 획득한 쿼타를 통해 주석이 달린 정보 없이 트랜잭션을 보낼 수도 있습니다.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">투표에 대하여</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">25개의 SBP(스냅샷 블록 생산자)에 가입하고 투표할 수 있으며, 각 투표는 75초 동안 지속되며 투표수는 투표 주소의 잔액과 같습니다. 투표를 취소하거나 다른 노드에 투표하지 않는 한 다음 라운드에서 투표는 동일하게 유지됩니다. 상위 25개 후보 중 23 명과 26~100 위 후보 중 2명을 무작위로 추가하면 총 25 개의 노드가 SBP로 선출됩니다.</p>";
-"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
-"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ 귀하가 투표한 SBP가 캠페인을 중단한 경우, 다시 투표하거나 투표를 취소할 수 있습니다. 그렇게하지 않으면 %@ 재등록 후 원래 투표가 복구됩니다. </p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">VITE 전환 이해하기</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">VITE 전환 을 통해 Vite Pre-Mainnet에서 ERC20 VITE를 VITE로 전환할 수 있습니다. 전환하는 동안 ERC20 VITE는 이더리움 블랙홀 주소 0x1111111111111111111111111111111111111111로 전송되며, Ethereum 블랙홀 주소로의 거래가 완료된 후 Vite 주소로 동일한 양의 VITE를 받게됩니다. 변환하는 동안 이더리움 블랙홀 주소로의 거래 수수료는 현재 ETH 주소에서 나옵니다. 전환을 제출한 후 이더 리움 네트워크에서 최소 30 번의 확인을 기다려주세요. 전환 내역에서 거래 내역을 찾을 수 있습니다.</p>";
 
 // ViteURI
-"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+"vite.uri.amount.format.error" = "잘못된 형식의 거래 수량";
 
 // eth
-"eth.send.page.my.address.title" = "ETH Address";
-"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.send.page.my.address.title" = "ETH 주소";
+"eth.send.page.eth.contacts.button.title" = "ETH 연락처 주소";
+"eth.receive.page.my.address.title" = "나의 ETH 주소";
+"eth.page.gasFee.title" = "가스 수수료";
+"eth.page.gasFee.slow.title" = "느리게";
+"eth.page.gasFee.fast.title" = "빠르게";
+"eth.page.gasFee.notice.title" = "귀하의 계정으로 남은 가스 수수료를 돌려드립니다.";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
-"eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
-"eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.page.title" = "상세정보";
+"eth.transaction.detail.failed" = "거래 실패";
+"eth.transaction.detail.success" = "거래 완료";
+"eth.transaction.detail.to.address" = "수신 주소";
+"eth.transaction.detail.from.address" = "발신 주소";
+"eth.transaction.detail.amount" = "수량";
+"eth.transaction.detail.gas.fee" = "가스 수수료";
+"eth.transaction.detail.gas.price" = "가스 가격";
+"eth.transaction.detail.gas.limit" = "가스 한도";
+"eth.transaction.detail.hash" = "트랜젝션 해시";
+"eth.transaction.detail.block" = "블럭";
+"eth.transaction.detail.note" = "메모";
+"eth.transaction.detail.go.button.title" = "이더스캔에서 자세한 정보 보기";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite Network";
-"token.list.page.section.eth.header" = "Ethereum Network";
-"token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
-"token.list.page.ignore.lab.title" = "%d new asset(s)";
-"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
+"token.list.page.search.title" = "토큰 이름 혹은 컨트렉트 주소를 입력하세요.";
+"token.list.page.section.vite.header" = "Vite 네트워크";
+"token.list.page.section.eth.header" = "이더리움 네트워크";
+"token.list.page.section.grin.header" = "GRIN 네트워크";
+"token.list.page.ignore.btn.title" = "무시하기";
+"token.list.page.ignore.lab.title" = "%d 새로운 자산";
+"token.list.page.ignore.alter.title" = "무시된 자산은 다시 알리지 않습니다. 아래 자산을 무시하시겠습니까?";
 // Contacts Home
-"contacts.home.page.title" = "Contact Address";
-"contacts.home.page.no.contact.tip" = "Add your first address";
-"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.title" = "연락처 주소";
+"contacts.home.page.no.contact.tip" = "첫 번째 주소 추가하기";
+"contacts.home.page.single.no.contact.tip" = "%@ 주소가 없습니다.";
+"contacts.home.page.filter.all" = "전체";
+"contacts.home.page.add.button.title" = "추가하기";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
-"contacts.edit.page.name.title" = "Name";
-"contacts.edit.page.address.title" = "Please input address";
-"contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.add.title" = "연락처 주소 추가하기";
+"contacts.edit.page.edit.title" = "연락처 주소 편집하기";
+"contacts.edit.page.name.title" = "이름";
+"contacts.edit.page.address.title" = "주소를 입력하세요.";
+"contacts.edit.page.type.select.title" = "토큰형식 선택하기";
+"contacts.edit.page.save.button.title" = "저장하기";
+"contacts.edit.page.save.success.tip" = "성공적으로 추가되었습니다.";
+"contacts.edit.page.edit.success.tip" = "성공적으로 저장되었습니다.";
+"contacts.edit.page.delete.button.title" = "삭제하기";
+"contacts.edit.page.delete.alert.title" = "이 주소를 삭제할까요?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
-"address.list.page.other.title" = "%@ contact address";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.my.title" = "나의 VITE 주소";
+"address.list.page.other.title" = "%@ 연락처 주소";
+"address.list.page.no.address.tip" = "%@ 주소가 없습니다.";
 
 /* WorkFlow */
 "workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
