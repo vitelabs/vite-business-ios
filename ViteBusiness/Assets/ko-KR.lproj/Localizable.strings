@@ -693,15 +693,15 @@
 "grin.txbyfile.initStatus.receiver" = "수신 대기중";
 "grin.txbyfile.receivedStatus.receiver" = "수신됨";
 "grin.txbyfile.receivedStatus.sender" = "완료 대기중";
-"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
-"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
-"grin.creating" = "Grin wallet initializing, please wait a moment.";
-"grin.pay.title.creat" = "Create";
-"grin.pay.title.finalize" = "Finalize";
+"grin.creat.syncronizing" = "생성 및 동기화, 3분 예상됨";
+"grin.recover.syncronizing" = "복구 및 동기화, 3분 예상됨";
+"grin.creating" = "Grin 지갑을 초기화 중입니다. 잠시만 기다려주세요.";
+"grin.pay.title.creat" = "생성하기";
+"grin.pay.title.finalize" = "완료하기";
 
-"grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
-"grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
-"grin.teach.file.send.title" = "Send GRIN through Transaction File";
+"grin.teach.file.send.desc" = "Vite 지갑을 사용하여 전송하려면 거래 파일을 수신자와 공유하고 수신자가 Vite 지갑에서 반환한 파일을 열고 거래를 완료하면 됩니다. \"거래 파일 공유\"를 클릭하면 Vite 지갑에 휴대폰에서 사용할 수있는 앱이 표시되며 원하는 방식을 선택할 수 있으며 파일을 휴대폰에 저장하고 직접 공유할 수도 있습니다.";
+"grin.teach.file.receive.desc" = "Vite 지갑을 사용하여 전송하려면 파일을 열고 \"수신 및 공유\"버튼을 클릭 한 다음 보낸 사람에게 수신확인 파일을 돌려주면 됩니다. \"수신 및 공유\"를 클릭하면 Viite 지갑에 핸드폰에서 사용할 수있는 앱이 표시되며 원하는 방식을 선택할 수 있으며, 파일을 휴대폰에 저장하고 직접 공유할 수도 있습니다. Vite 지갑은 .grinslate 파일과 .json 파일을 지원하며, \"응답\"이 포함 된 파일 이름이 인식되고 성공적으로 열립니다.";
+"grin.teach.file.send.title" = "거래 파일을 통해 GRIN 보내기";
 "grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
 "grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
 "grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
