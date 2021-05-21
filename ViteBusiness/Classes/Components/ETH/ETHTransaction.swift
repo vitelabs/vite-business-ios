@@ -78,7 +78,7 @@ public struct ETHTransaction: Mappable {
         self.blockHash = ""
         self.fromAddress = accountAddress
         self.toAddress = result.transaction.to.address
-        self.amount = Amount(result.transaction.value)
+        self.amount = Amount(result.transaction.value ?? 0)
         self.gas = Amount(0)
         self.gasUsed = Amount(0)
         self.gasPrice = Amount(result.transaction.gasPrice)

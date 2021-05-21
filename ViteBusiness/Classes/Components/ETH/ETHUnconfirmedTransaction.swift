@@ -84,7 +84,7 @@ public struct ETHUnconfirmedTransaction: Mappable {
 
         self.fromAddress = accountAddress
         self.toAddress = result.transaction.to.address
-        self.amount = Amount(result.transaction.value)
+        self.amount = Amount(result.transaction.value ?? 0)
 
         self.gasLimit = Amount(result.transaction.gasLimit)
         self.gasPrice = Amount(result.transaction.gasPrice)

@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
   s.dependency 'NYXImagesKit', '2.3'
   s.dependency 'FSPagerView'
   s.dependency 'URLNavigator'
-  s.dependency 'web3.swift.pod', '~> 2.2.0'
+  s.dependency 'web3swift'
   s.dependency 'Charts', '3.5.0'
   #request
   s.dependency 'SwiftyJSON'
