@@ -732,37 +732,37 @@
 "grin.detail.txisPostingPlsWait" = "Транзакция транслируется, пожалуйста, дождитесь подтверждения.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Пожалуйста, дождитесь пока получатель откроет Vite wallet и получит транзакцию.";
 "grin.detail.pleaseReciveAndShare" = "Пожалуйста, подпишите транзакцию и поделитесь файлом с отправителем, вы можете выбрать наиболее удобный для вас способ.";
-"grin.detail.gatewaysend" = "VITE Transaction Send";
-"grin.detail.repoat" = "Repost";
-"grin.node.configNode" = "Configurate Full Node.";
-"grin.node.addNode" = "Add New Full Node";
-"grin.node.edit.nodeAddressTitle" = "Full Node Address";
-"grin.node.edit.apiSecretTitle" = "Key";
-"grin.node.select.canNotConnect" = "Failed to connect with the full node.";
-"grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Illegal transfer amount";
-"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.detail.gatewaysend" = "Отправить транзакцию через VITE";
+"grin.detail.repoat" = "Репост";
+"grin.node.configNode" = "Конфигурация полного узла.";
+"grin.node.addNode" = "Добавить новый полный узел";
+"grin.node.edit.nodeAddressTitle" = "Адрес полного узла";
+"grin.node.edit.apiSecretTitle" = "Ключ";
+"grin.node.select.canNotConnect" = "Не удалось подключиться к полному узлу.";
+"grin.detail.slateCopied" = "Slate ID скопирован.";
+"grin.send.illegalAmmount" = "Неверная сумма перевода";
+"grin.detail.gatewayResend" = "Запрос на повторную отправку шлюза Vite";
+"grin.export.mnemonic" = "Экспорт мнемонических слов";
 
 // CrossChain Transfer & Receive
 
-"crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
-"crosschain.withdraw.btnTitle" = "Withdraw";
-"crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
-"crosschain.deposit.history" = "Deposit History";
-"crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Deposit Address";
-"crosschain.deposit.scanAddress" = "Please scan the address QR code";
-"crosschain.deposit.scanLabel" = "Please scan the %@ code";
-"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+"crosschain.tokendetail" = "Детали токена";
+"crosschain.deposit" = "Кросс-чейн пополнение";
+"crosschain.withdraw" = "Кросс-чейн вывод";
+"crosschain.withdraw.btnTitle" = "Вывести";
+"crosschain.deposit.btnTitle" = "Пополнение";
+"crosschain.deposit.vitewallet" = "Пополнение из Vite wallet";
+"crosschain.deposit.otherwallet" = "Пополнение из другого кошелька";
+"crosschain.deposit.history" = "История пополнений";
+"crosschain.withdraw.history" = "История выводов";
+"crosschain.deposit.minAmountDesc" = "Принимается только %@ и минимальная сумма должна быть не менее %@";
+"crosschain.deposit.minComfirm" = "Процесс должен получить %@ подтверждений, пожалуйста, подождите.";
+"crosschain.deposit.address" = "Адрес пополнения";
+"crosschain.deposit.scanAddress" = "Отсканируйте QR-код адреса";
+"crosschain.deposit.scanLabel" = "Пожалуйста, отсканируйте код %@";
+"crosschain.deposit.labelDesc" = "Пожалуйста, используйте %@ вместе с адресом пополнения, иначе Вы потеряете токен(ы)    ";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
+"crosschain.deposit.about" = "Кросс-чейн пополнение позволяет перевести %@ в сеть Vite. После этого вы также сможете совершать кросс-чейн переводы. При кросс-чейн пополнении баланс %@ на вашем Vite кошельке будет уменьшен соответственно.";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
 "crosschain.deposit.min" = "Minimum Deposit Amount ";
@@ -814,70 +814,70 @@
 "crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc0" = "This Service is provided by %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.detail" = "Terms of Service";
-"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
-"crosschain.statement.title" = "Important Notice";
+"crosschain.statement.vite.desc1" = "Используя сервисы %@, вы соглашаетесь с тем, что будете связаны с %@ %@. Если вы не согласны с этими условиями, пожалуйста, воздержитесь от использования сервиса от %@.";
+"crosschain.statement.vite.desc2" = "В случае проблем с верификацией или обработкой платежа, пожалуйста, свяжитесь со службой поддержки %@ по адресу %@.";
+"crosschain.statement.detail" = "Условия предоставления услуг";
+"crosschain.statement.agree" = "Нажав Далее, вы соглашаетесь с %@ %@";
+"crosschain.statement.title" = "Важное уведомление";
 
-"unit.Million" = " Million";
-"unit.Billion" = " Billion";
-"unit.Trillion" = " Trillion";
+"unit.Million" = " Миллион";
+"unit.Billion" = "Миллиард";
+"unit.Trillion" = "Триллион";
 
-"exchange.history" = "Purchase History";
-"exchange.card.title" = "Buy VITE";
-"exchange.titley" = "Instant Purchase";
-"exchange.buy" = "Buy";
-"exchange.price" = "Rate: ";
-"exchange.amount" = "Amount: ";
-"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
-"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+"exchange.history" = "История покупок";
+"exchange.card.title" = "Купить VITE";
+"exchange.titley" = "Мгновенная покупка";
+"exchange.buy" = "Купить";
+"exchange.price" = "Курс: ";
+"exchange.amount" = "Сумма: ";
+"exchange.limit.onetime" = "Лимит одной транзакции%@-%@ VITE";
+"exchange.limit.oneday" = "Ежедневный лимит транзакций %@ VITE; Неиспользованный дневной лимит %@ VITE";
+"exchange.limit.alert" = "Введенная вами сумма неверна. Одна транзакция должна быть как минимум %@ VITE и не более %@ VITE. Ежедневный лимит транзакций составляет %@ VITE.";
 
 
 /* ViteConnect */
-"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
-"bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
-"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
-"bifrost.alert.approve.session.another.address.cancel" = "Back";
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect подключен";
+"bifrost.alert.tip.title" = "Уведомление";
+"bifrost.alert.approve.session.message" = "Пожалуйста, подтвердите следующую ссылку\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Подключаемый вами адрес не соответствует адресу на веб-версии. Продолжить вход с помощью адреса из приложения? (%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Подтвердите вход";
+"bifrost.alert.approve.session.another.address.cancel" = "Назад";
 
-"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "ViteConnect подключен, переключение между адресами инициирует его отключение. Переключить адрес?    ";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+"bifrost.alert.quit.title" = "Хотите выйти из ViteConnect?";
 
-"bifrost.home.page.free.header" = "ViteConnect Connected";
-"bifrost.home.page.free.content" = "You have no transaction yet";
-"bifrost.home.page.free.address.title" = "Address";
-"bifrost.home.page.free.history.title" = "Transactions Signed";
-"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+"bifrost.home.page.free.header" = "ViteConnect подключен";
+"bifrost.home.page.free.content" = "У вас еще нет транзакций";
+"bifrost.home.page.free.address.title" = "Адрес";
+"bifrost.home.page.free.history.title" = "Транзакции подписаны";
+"bifrost.home.page.free.auto.sign.title" = "Автоподпись";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Пароль";
 
-"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.home.page.busy.header" = "Вы вносите изменения на ViteX & Web Wallet";
+"bifrost.home.page.busy.content" = "Пожалуйста, подтвердите информацию о транзакции ниже";
+"bifrost.toast.operation.success" = "Операция выполнена";
 
-"bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.title" = "Список подписываемых транзакций";
+"bifrost.list.page.status.pending" = "Ожидание подписи";
+"bifrost.list.page.status.processing" = "Подписание";
+"bifrost.list.page.status.failed" = "Сбой";
+"bifrost.list.page.status.finished" = "Успешно";
+"bifrost.list.page.status.canceled" = "Отменено";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "Детали подписанных транзакций";
 
-"bifrost.error.message.timeout" = "Connection time out, please try again later";
-"bifrost.error.message.unknown" = "Connection Error, please try again later";
+"bifrost.error.message.timeout" = "Время ожидания истекло, повторите попытку позже";
+"bifrost.error.message.unknown" = "Возникла ошибка подключения к серверу. Пожалуйста, повторите запрос позже";
 
 // operation
-"bifrost.operation.register.sbp" = "Register SBP";
-"bifrost.operation.register.update.sbp" = "Update SBP";
-"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
-"bifrost.operation.vote" = "Voting";
-"bifrost.operation.cancel.vote" = "Revoke Voting";
-"bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Get Quota";
+"bifrost.operation.register.sbp" = "Регистрация SBP";
+"bifrost.operation.register.update.sbp" = "Обновить SBP";
+"bifrost.operation.cancel.register.sbp" = "Отменить регистрацию SBP";
+"bifrost.operation.vote" = "Голосование";
+"bifrost.operation.cancel.vote" = "Отозвать голос";
+"bifrost.operation.extract.reward" = "Получить награду";
+"bifrost.operation.pledge" = "Получить Квоту";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
@@ -938,14 +938,14 @@
 
 "buildin.vote.function.title" = "Vote";
 "buildin.vote.item0.title" = "SBP Candidates";
-"buildin.vote.item1.title" = "Votes";
+"buildin.vote.item1.title" = "Голоса";
 
-"buildin.coin.issuance.function.title" = "Token Issuance";
-"buildin.coin.issuance.item0.title" = "Issuance Address";
-"buildin.coin.issuance.item1.title" = "Token Name";
-"buildin.coin.issuance.item2.title" = "Token Symbol";
-"buildin.coin.issuance.item3.title" = "Total Supply";
-"buildin.coin.issuance.item4.title" = "Decimals";
+"buildin.coin.issuance.function.title" = "Выпуск актива";
+"buildin.coin.issuance.item0.title" = "Адрес Выпуска";
+"buildin.coin.issuance.item1.title" = "Имя Токена";
+"buildin.coin.issuance.item2.title" = "Тикер";
+"buildin.coin.issuance.item3.title" = "Общее предложение";
+"buildin.coin.issuance.item4.title" = "Знаков после запятой";
 "buildin.coin.issuance.item5.title" = "Re-issuable";
 "buildin.coin.issuance.item5.yes.value" = "YES";
 "buildin.coin.issuance.item5.no.value" = "NO";
