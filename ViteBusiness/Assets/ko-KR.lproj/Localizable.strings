@@ -1196,64 +1196,64 @@
 "spot.page.orders.button.title" = "내역";
 
 "spot.page.post.toast.price.empty" = "금액을 입력하세요.";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.price.zero" = "값은 0 보다 커야 합니다.";
+"spot.page.post.toast.vol.empty" = "수량을 입력해주세요.";
+"spot.page.post.toast.vol.zero" = "값은 0 보다 커야 합니다.";
+"spot.page.post.toast.amount.min" = "전체 금액는 최소 %@ 이여야 합니다.";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "24시간 후에 다시 요청해주세요.";
 
-"spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.title" = "중요 알림";
+"spot.page.alert.message" = "현재 거래쌍은 %@입니다. 암호화폐 투자는 높은 시장 위험과 변동성이 존재합니다. 잠재적인 위험을 처리하는 능력을평가하고 신중한 거래 결정을 내려주세요.";
+"spot.page.alert.ok" = "확인하기";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.order.empty" = "주문 없음";
+"spot.page.cell.type.buy" = "매수";
+"spot.page.cell.type.sell" = "매도";
+"spot.page.cell.button.cancel.title" = "취소하기";
+"spot.page.cell.vol" = "수량: %@";
+"spot.page.cell.price" = "가격: %@";
+"spot.page.cell.deal" = "완료됨: %@";
+"spot.page.cell.average" = "평균가: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.desc" = "초기화 중, 클릭해서 자세한 내용 보기";
+"grin.initing.detail" = "1 GRIN 지갑을 추가할 때 초기화가 필요합니다.\n2. 프로세스 시간은 15분 예상됩니다.\n3. 초기화 중에는 앱을 중단하거나 종료하지 마십시오.\n4. 초기화는 많은 양의 셀룰러 데이터를 소비하므로 와이파이 사용을 권장합니다.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trading";
+"dex.home.page.nav.title" = "DEX 자산";
+"dex.home.page.nav.btc.valuation.title" = "전체 금액(BTC)";
+"dex.home.page.segment.wallet" = "지갑";
+"dex.home.page.segment.dex" = "거래";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.btc.valuation.title" = "금액(BTC)";
+"dex.home.page.header.button.transfer.title" = "전송하기";
+"dex.home.page.header.button.deposit.title" = "입금하기";
+"dex.home.page.header.button.withdraw.title" = "출금하기";
+"dex.home.page.header.button.hide.small.title" = "적은 잔액 숨기기";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.title" = "보유자산";
+"dex.token.detail.page.header.total" = "총합";
+"dex.token.detail.page.header.available" = "이용 가능";
+"dex.token.detail.page.header.lock.place.order" = "주문중";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
-"dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
-"dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.pledge" = "쿼타를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.sbp" = "SBP를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.full.node" = "풀노드를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.mining" = "스테이킹됨";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "회수 중";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP 잠김";
+"dex.token.detail.page.header.lock.vx" = "스테이킹됨";
+"dex.token.detail.page.header.lock.vx.cancel" = "회수 중";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
-"dex.token.detail.page.cell.in" = "Transfer-In";
-"dex.token.detail.page.cell.out" = "Transfer-Out";
+"dex.token.detail.page.list.wallet.heater.title" = "내역";
+"dex.token.detail.page.list.dex.heater.title" = "전송 내역";
+"dex.token.detail.page.cell.in" = "가져오기";
+"dex.token.detail.page.cell.out" = "내보내기";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
-"dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.deposit" = "입금하기";
+"dex.token.detail.page.button.withdraw" = "출금하기";
+"dex.token.detail.page.button.transfer" = "전송하기";
+"dex.token.detail.page.button.send" = "보내기";
+"dex.token.detail.page.button.trading" = "거래하기";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "거래쌍 선택하기";
