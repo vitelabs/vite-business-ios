@@ -739,28 +739,28 @@
 "grin.node.edit.nodeAddressTitle" = "풀노드 주소";
 "grin.node.edit.apiSecretTitle" = "Key";
 "grin.node.select.canNotConnect" = "풀노드 연결에 실패했습니다.";
-"grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Illegal transfer amount";
-"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.detail.slateCopied" = "슬레이트 ID가 복사되었습니다.";
+"grin.send.illegalAmmount" = "불가능한 전송 금액";
+"grin.detail.gatewayResend" = "Vite 게이트웨이 요청 다시 보내기";
+"grin.export.mnemonic" = "시드 문구 내보내기";
 
 // CrossChain Transfer & Receive
 
-"crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
-"crosschain.withdraw.btnTitle" = "Withdraw";
-"crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
-"crosschain.deposit.history" = "Deposit History";
-"crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Deposit Address";
-"crosschain.deposit.scanAddress" = "Please scan the address QR code";
-"crosschain.deposit.scanLabel" = "Please scan the %@ code";
-"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+"crosschain.tokendetail" = "토큰 상세정보";
+"crosschain.deposit" = "크로스체인 입금";
+"crosschain.withdraw" = "크로스체인 출금";
+"crosschain.withdraw.btnTitle" = "출금하기";
+"crosschain.deposit.btnTitle" = "입금하기";
+"crosschain.deposit.vitewallet" = "Vite 지갑으로 부터 입금하기";
+"crosschain.deposit.otherwallet" = "다른 지갑으로 부터 입금하기";
+"crosschain.deposit.history" = "입금 내역";
+"crosschain.withdraw.history" = "출금 내역";
+"crosschain.deposit.minAmountDesc" = "아래 주소에 의해 %@만 허용됩니다. 최소 금액은 %@보다 커야 합니다.";
+"crosschain.deposit.minComfirm" = "이 과정은 %@개의 확인이 필요합니다. 잠시만 기다려주세요.";
+"crosschain.deposit.address" = "입금 주소";
+"crosschain.deposit.scanAddress" = "주소 QR코드를 스캔해주세요.";
+"crosschain.deposit.scanLabel" = "%@ 코드를 스캔해주세요.";
+"crosschain.deposit.labelDesc" = "%@를 입금 주소와 함께 사용해주세요. 그렇지 않으면 토큰을 잃어버릴 수 있습니다.";
 
 "crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
 "crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
