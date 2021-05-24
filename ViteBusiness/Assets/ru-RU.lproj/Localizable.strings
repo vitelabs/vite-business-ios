@@ -395,13 +395,13 @@
 "quota.pow.finished.float.view.title" = "Транзакция отправлена";
 "quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
 "quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
+"quota.pow.finished.float.view.pledge.button.title" = "Транзакции быстрее при заморозке VITE";
 
 /* Peldge History */
-"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
-"peldge.deadline" = "Due Date";
-"peldge.title" = "Staking History";
-"peldge.address.title" = "Beneficiary";
+"peldge.message" = "В настоящее время приложение поддерживает только проверку списков заморозки, пожалуйста, перейдите в Web Wallet        чтобы при необходимости разморозить токены.";
+"peldge.deadline" = "Дата исполнения";
+"peldge.title" = "Мои заморозки";
+"peldge.address.title" = "Выгодоприобретатель";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
@@ -479,68 +479,68 @@
 // eth
 "eth.send.page.my.address.title" = "ETH Address";
 "eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.receive.page.my.address.title" = "Мой ETH адрес";
+"eth.page.gasFee.title" = "Комиссия ETH (Gas)";
+"eth.page.gasFee.slow.title" = "Медленно";
+"eth.page.gasFee.fast.title" = "Быстро";
+"eth.page.gasFee.notice.title" = "Мы вернем остаток газа обратно на ваш аккаунт";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
-"eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
-"eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.page.title" = "Подробнее";
+"eth.transaction.detail.failed" = "Транзакция не удалась";
+"eth.transaction.detail.success" = "Транзакция завершена";
+"eth.transaction.detail.to.address" = "Адрес получателя";
+"eth.transaction.detail.from.address" = "Исходящий адрес";
+"eth.transaction.detail.amount" = "Сумма";
+"eth.transaction.detail.gas.fee" = "Комиссия ETH (Gas)";
+"eth.transaction.detail.gas.price" = "Цена газа";
+"eth.transaction.detail.gas.limit" = "Лимит газа";
+"eth.transaction.detail.hash" = "Хеш транзакции";
+"eth.transaction.detail.block" = "Блок";
+"eth.transaction.detail.note" = "Комментарий (Memo)";
+"eth.transaction.detail.go.button.title" = "Подробнее на Etherscan";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite Network";
-"token.list.page.section.eth.header" = "Ethereum Network";
-"token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
-"token.list.page.ignore.lab.title" = "%d new asset(s)";
-"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
+"token.list.page.search.title" = "Пожалуйста, введите название токена или адрес контракта";
+"token.list.page.section.vite.header" = "Сеть Vite";
+"token.list.page.section.eth.header" = "Сеть Ethereum";
+"token.list.page.section.grin.header" = "Сеть GRIN";
+"token.list.page.ignore.btn.title" = "Пропустить";
+"token.list.page.ignore.lab.title" = "%d новых активов";
+"token.list.page.ignore.alter.title" = "Не уведомлять об активах. Вы уверены, что хотите проигнорировать активы ниже?";
 // Contacts Home
-"contacts.home.page.title" = "Contact Address";
-"contacts.home.page.no.contact.tip" = "Add your first address";
-"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.title" = "Адрес контакта";
+"contacts.home.page.no.contact.tip" = "Добавьте свой первый адрес";
+"contacts.home.page.single.no.contact.tip" = "Пока нет %@ адреса";
+"contacts.home.page.filter.all" = "Все";
+"contacts.home.page.add.button.title" = "Добавить";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
-"contacts.edit.page.name.title" = "Name";
-"contacts.edit.page.address.title" = "Please input address";
-"contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.add.title" = "Добавить адрес контакта";
+"contacts.edit.page.edit.title" = "Изменить адрес контакта";
+"contacts.edit.page.name.title" = "Имя";
+"contacts.edit.page.address.title" = "Пожалуйста, введите адрес";
+"contacts.edit.page.type.select.title" = "Выберите тип токена";
+"contacts.edit.page.save.button.title" = "Сохранить";
+"contacts.edit.page.save.success.tip" = "Успешно добавлено";
+"contacts.edit.page.edit.success.tip" = "Успешно сохранено";
+"contacts.edit.page.delete.button.title" = "Удалить";
+"contacts.edit.page.delete.alert.title" = "Вы уверены, что хотите удалить этот адрес?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
-"address.list.page.other.title" = "%@ contact address";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.my.title" = "Мой VITE адрес";
+"address.list.page.other.title" = "%@ адрес контакта";
+"address.list.page.no.address.tip" = "Ещё нет %@ адреса";
 
 /* WorkFlow */
-"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
-"workflow.confirm.page.biometryAuthFailed.back" = "Back";
-"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
-"workflow.confirm.page.toast.password.error" = "Wrong password!";
+"workflow.confirm.page.biometryAuthFailed.title" = "Не удается идентифицировать";
+"workflow.confirm.page.biometryAuthFailed.back" = "Назад";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Повторить";
+"workflow.confirm.page.toast.password.error" = "Неверный пароль!";
 
-"workflow.toast.transfer.success" = "Send Success";
-"workflow.toast.submit.success" = "Submit Successful";
-"workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
+"workflow.toast.transfer.success" = "Успешно отправлено";
+"workflow.toast.submit.success" = "Успешно подтверждено";
+"workflow.toast.cancel.pledge.success" = "Запрос на разморозку отправлен";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
@@ -602,57 +602,57 @@
 "confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
 
 // vite call contract
-"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
-"confirm.transaction.page.vite.call.contract.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Платеж";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Подтвердить";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Send";
-"confirm.transaction.page.eth.confirm.button" = "Confirm";
+"confirm.transaction.page.eth.transfer.title" = "Отправить";
+"confirm.transaction.page.eth.confirm.button" = "Подтвердить";
 // eth vite exchange
-"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
-"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+"confirm.transaction.page.eth.vite.exchange.title" = "Конвертация VITE";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Конвертировать";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Send";
-"confirm.transaction.page.grin.confirm.button" = "Confirm";
+"confirm.transaction.page.grin.transfer.title" = "Отправить";
+"confirm.transaction.page.grin.confirm.button" = "Подтвердить";
 
 // Grin
-"grin.balance.total" = "Total";
-"grin.balance.spendable" = "Spendable";
-"grin.balance.awaiting" = "Awaiting Confirmation";
-"grin.balance.locked" = "Locked by Previous Transaction";
-"grin.wallet.check" = "Check";
-"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
-"grin.txType.sent" = "Created";
-"grin.txType.waitToSign" = "Unreceived";
-"grin.txType.received" = "Received";
-"grin.txType.waitToFinalize" = "Unfinalized";
-"grin.txType.finalized" = "Posting";
-"grin.txType.confirmed" = "Confirmed";
-"grin.txType.confirmedCoinbase" = "Confirmed Coinbase";
-"grin.txType.Canceled" = "Canceled";
-"grin.tx.Cancele" = "Canceled";
-"grin.tx.Repost" = "Repost";
-"grin.tx.copyId" = "Copy";
-"grin.tx.useVite" = "Use VITE Address";
-"grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
-"grin.sent.useHttp" = "Use HTTP Address";
-"grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
-"grin.sent.useFile" = "Use Transaction File";
-"grin.know" = "I know";
-"grin.notSeeAgain" = "Don't show me again";
-"grin.sent.title" = "Send GRIN";
-"grin.sent.amount" = "Amount";
-"grin.receive.ture.amount" = "Actual Amount";
-"grin.sent.fee" = "Fees";
-"grin.sent.creatFile" = "Generate Transaction File";
-"grin.shareFile.desc" = "Please sign for the transaction";
-"grin.txFile.init.status" = "Created";
-"grin.txFile.id" = "Transaction ID";
-"grin.shareFile" = "Share Transaction File";
-"grin.finalize.title" = "Send GRIN";
-"grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
-"grin.txFile.received.status" = "The receipt has been confirmed";
-"grin.finalize" = "Finalize and Broadcast";
-"grin.finalized.alertTitle" = "Transaction Finalized";
+"grin.balance.total" = "Итого";
+"grin.balance.spendable" = "Можно тратить";
+"grin.balance.awaiting" = "Ожидание подтверждения";
+"grin.balance.locked" = "Заблокировано предыдущей транзакцией";
+"grin.wallet.check" = "Проверить";
+"grin.wallet.check.desc" = "Vite wallet отсканирует блокчейн и отменит все ожидающие транзакции, разблокирует заблокированные выводы, восстановит все недостающие выходы и убедится, что содержимое вашего кошелька соответствует версии блокчейна. Расходует большое количество трафика, рекомендуется продолжить процесс по Wi-Fi";
+"grin.txType.sent" = "Создано";
+"grin.txType.waitToSign" = "Не получено";
+"grin.txType.received" = "Получено";
+"grin.txType.waitToFinalize" = "Не финализированный";
+"grin.txType.finalized" = "Публикация";
+"grin.txType.confirmed" = "Подтверждено";
+"grin.txType.confirmedCoinbase" = "Подтверждено Coinbase";
+"grin.txType.Canceled" = "Отменено";
+"grin.tx.Cancele" = "Отменено";
+"grin.tx.Repost" = "Репост";
+"grin.tx.copyId" = "Копировать";
+"grin.tx.useVite" = "Использовать VITE адрес";
+"grin.sent.useVite.desc" = "Отправка GRIN через VITE адрес - обмен файлом транзакций, зашифрованным Vite, что гарантирует, что только реальный получатель может расшифровать файл.";
+"grin.sent.useHttp" = "Использовать HTTP адрес";
+"grin.sent.useHttp.desc" = "Вы можете перенести GRIN в любой кошелек, поддерживающий получение GRIN через HTTP адрес, Тем не менее, мы предлагаем использовать VITE адрес или файл для передачи GRIN пользователям, использующим Vite кошелек.";
+"grin.sent.useFile" = "Использовать файл транзакции";
+"grin.know" = "Я знаю";
+"grin.notSeeAgain" = "Больше не показывать";
+"grin.sent.title" = "Отправить GRIN";
+"grin.sent.amount" = "Сумма";
+"grin.receive.ture.amount" = "Фактическая сумма";
+"grin.sent.fee" = "Комиссия";
+"grin.sent.creatFile" = "Создать файл транзакции";
+"grin.shareFile.desc" = "Пожалуйста, подпишите транзакцию";
+"grin.txFile.init.status" = "Создано";
+"grin.txFile.id" = "ID транзакции";
+"grin.shareFile" = "Поделиться файлом транзакции";
+"grin.finalize.title" = "Отправить GRIN";
+"grin.finalize.desc" = "Транзакция была получена получателем. Пожалуйста, финализируйте и опубликуйте транзакцию.";
+"grin.txFile.received.status" = "Получение подтверждено";
+"grin.finalize" = "Завершение и публикация";
+"grin.finalized.alertTitle" = "Транзакция финализирована";
 "grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
 "grin.sent.next" = "Next";
 "grin.sent.suggest.useVite.title" = "Notice";
