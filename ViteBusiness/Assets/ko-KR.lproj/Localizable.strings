@@ -738,7 +738,7 @@
 "grin.node.addNode" = "새 노드 추가하기";
 "grin.node.edit.nodeAddressTitle" = "풀노드 주소";
 "grin.node.edit.apiSecretTitle" = "Key";
-"grin.node.select.canNotConnect" = "Failed to connect with the full node.";
+"grin.node.select.canNotConnect" = "풀노드 연결에 실패했습니다.";
 "grin.detail.slateCopied" = "Slate ID Copied.";
 "grin.send.illegalAmmount" = "Illegal transfer amount";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
