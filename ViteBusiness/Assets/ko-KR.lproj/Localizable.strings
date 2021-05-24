@@ -762,12 +762,12 @@
 "crosschain.deposit.scanLabel" = "%@ 코드를 스캔해주세요.";
 "crosschain.deposit.labelDesc" = "%@를 입금 주소와 함께 사용해주세요. 그렇지 않으면 토큰을 잃어버릴 수 있습니다.";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">크로스체인 입금</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">크로스체인 입금은 %@를 Vite 네트워크에 매핑되도록 합니다. 그 후, 크로스체인 입금이 가능합니다. Vite 지갑의 %@잔액은 Vite 지갑에서 크로스체인 입금 할 때, 그에 상응하여 감소될 것입니다.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">크로스체인 입금</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">크로스체인 입금은 %@를 Vite 네트워크에 매핑되도록 합니다. 그 후, 크로스체인 입금이 가능합니다.</p>";
+"crosschain.withdraw.eth.myAddress" = "나의 ETH 주소";
+"crosschain.deposit.min" = "최소 입금 수량 ";
+"crosschain.withdraw.min" = "최소 출금 수량 ";
+"crosschain.deposit.min.alert" = "입금 수량은 다음 수량보다 커야 합니다 ";
 "crosschain.deposit.all" = "Deposit All";
 "crosschain.deposit.amount" = "Deposit Amount";
 "crosschain.withdraw.all" = "Withdraw All";
