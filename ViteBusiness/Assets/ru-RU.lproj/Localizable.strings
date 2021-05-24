@@ -51,7 +51,7 @@
 "Cancel" = "Отмена";
 "Finish" = "Готово";
 "Delete" = "Удалить";
-"Hint" = "Prompt";
+"Hint" = "Быстрый";
 "Yes" = "Да";
 "No" = "Нет";
 "Loading" = "Загрузка";
@@ -1236,17 +1236,17 @@
 "dex.token.detail.page.header.available" = "Доступно";
 "dex.token.detail.page.header.lock.place.order" = "В заявках";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
-"dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
-"dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.pledge" = "Заморожено для Квоты";
+"dex.token.detail.page.header.lock.vite.sbp" = "Заморожено для SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Заморожено для Full node";
+"dex.token.detail.page.header.lock.vite.mining" = "Заморожено";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Ожидает разморозки";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP заблокирован";
+"dex.token.detail.page.header.lock.vx" = "Заморожено";
+"dex.token.detail.page.header.lock.vx.cancel" = "Ожидает разморозки";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.list.wallet.heater.title" = "История";
+"dex.token.detail.page.list.dex.heater.title" = "История Переводов";
 "dex.token.detail.page.cell.in" = "Transfer-In";
 "dex.token.detail.page.cell.out" = "Transfer-Out";
 
