@@ -68,65 +68,65 @@
 /* Login */
 "create.account" = "Создать Аккаунт";
 "import.account" = "Восстановить аккаунт";
-"select.wallet.account" = "Select your account";
+"select.wallet.account" = "Выберите аккаунт";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.pwd.btn.title" = "Войти с помощью пароля";
+"lock.page.fingerprint.btn.title" = "Биометрическая верификация";
+"lock.page.fingerprint.alter.title" = "Подтвердите отпечаток пальца для активации Touch ID";
+"lock.page.changeUser.btn.title" = "Сменить аккаунт";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.title" = "Создать Аккаунт";
+"create.page.tf.title" = "Имя аккаунта";
+"create.page.pw.title" = "Пожалуйста, введите пароль";
+"create.page.pw.repeate.title" = "Пожалуйста, введите пароль еще раз";
+"create.page.invite.code.title" = "Введите пригласительный код или отсканируйте QR-код, чтобы получить 10% скидку на торговые комиссии и дополнительные множители наград";
+"create.page.invite.code.placeholder" = "Пригласительный код (необязательно)";
+"create.page.submit.btn.title" = "Создать";
+"create.page.toast.error.invite.code" = "Неправильный код приглашения";
 
-"create.page.tip.title" = "Backup Instructions";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.title" = "Инструкции по созданию резервной копии";
+"create.page.tip.content1" = "Внимание! Потеря мнемонических слов приведет к потере всех цифровых активов в кошельке.";
+"create.page.tip.content2" = "Импорт мнемонических слов - это единственный способ восстановить учетную запись после удаления или переустановки приложения.";
+"create.page.tip.content3" = "Пожалуйста, храните мнемонические слова в надежном месте.";
+"create.page.tip.button.skip.title" = "Резервное копирование позже";
+"create.page.tip.button.next.title" = "Резервное копирование";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
+"mnemonic.backup.page.title" = "Резервная копия мнемонических слов";
+"mnemonic.backup.page.tip1" = "Мы рекомендуем два следующих метода резервного копирования:";
+"mnemonic.backup.page.tip2" = "Запишите мнемонические слова на листе бумаги, а затем сохраните их в надежном месте.";
+"mnemonic.backup.page.tip3" = "Сканируйте QR-код ниже с помощью Vite wallet, установленного на другом устройстве.";
 "mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.language.en" = "Английский";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.title" = "Уведомление";
+"mnemonic.backup.scan.alert.message" = "Подтвердите создание учетной записи со следующими мнемоническими словами?";
+"mnemonic.backup.scan.alert.ok.title" = "Подтвердить";
+"mnemonic.backup.scan.alert.cancel.title" = "Отмена";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
-"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
-"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
-"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
-"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
-"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
-"mnemonic.backup.page.alter.cancel" = "No";
-"mnemonic.backup.page.alter.confirm" = "Yes";
-"mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
-"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.check.button1.title" = "Я понимаю, если я потеряю мнемонические слова, я никогда не смогу восстановить доступ к моим активам";
+"mnemonic.backup.page.check.button2.title" = "Я понимаю, если я забуду или потеряю мнемонические слова, никто не сможет помочь восстановить аккаунт";
+"mnemonic.backup.page.check.button3.title" = "Я уже прочитал, понял и согласен с пользовательским соглашением ";
+"mnemonic.backup.page.clause.button.title" = "Правила и Условия";
+"mnemonic.backup.page.tip.lab.title" = "Мнемонические слова (главный пароль)";
+"mnemonic.backup.page.tip.anewBtn.title" = "Перегенерировать";
+"mnemonic.backup.page.tip.nextBtn.title" = "Резервное копирование";
+"mnemonic.backup.page.tip.skip.title" = "Резервное копирование позже";
+"mnemonic.backup.page.alter.title" = "Мы настоятельно рекомендуем не делать скриншот мнемонических слов. Мы предлагаем вам записать фразу на листе бумаги и хранить его в надежном месте.";
+"mnemonic.backup.page.alter.message" = "Вы хотите создать новую seed фразу?";
+"mnemonic.backup.page.alter.cancel" = "Нет";
+"mnemonic.backup.page.alter.confirm" = "Да";
+"mnemonic.backup.page.error.type.name" = "Пожалуйста, введите имя аккаунта или пароль";
+"mnemonic.backup.page.error.type.nameValid" = "Имя аккаунта поддерживает только китайские и английские символы, а также символ подчеркивания.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Имя пользователя поддерживает не более 32 символов";
+"mnemonic.backup.page.error.type.difference" = "Пожалуйста, введите тот же пароль!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Ваш пароль должен содержать не менее 8 символов";
+"mnemonic.backup.page.switch.mode.title" = "Переключиться на %@ мнемонических слов";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
+"mnemonic.backup.tip.alert.title" = "Резервная копия мнемонических слов не сделана";
+"mnemonic.backup.tip.alert.message" = "Пожалуйста, введите пароль для резервного копирования мнемонических слов.";
 "mnemonic.backup.tip.alert.ok.title" = "Резервное копирование сейчас";
 "mnemonic.backup.tip.alert.cancel.title" = "Резервное копирование позже";
 
@@ -226,62 +226,62 @@
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
-"vite.transaction.detail.page.note.title" = "Memo";
-"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
+"vite.transaction.detail.page.note.title" = "Комментарий (Memo)";
+"vite.transaction.detail.page.link.button.title" = "Подробнее в Vite Explorer";
 
 /* BalanceInfo */
-"balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.balance.title" = "Баланс";
+"balance.info.detail.unconfirmed.title" = "Не получено";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "Available";
-"balance.info.detail.pledge.amount.title" = "Staked";
-"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
-"balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Send";
-"balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Get Quota";
-"balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.available.amount.title" = "Доступно";
+"balance.info.detail.pledge.amount.title" = "Заморожено";
+"balance.info.detail.show.transactions.button.title" = "Проверьте историю транзакций в Ethereum Explorer";
+"balance.info.detail.reveice.button.title" = "Получить";
+"balance.info.detail.send.button.title" = "Отправить";
+"balance.info.detail.vote" = "Голосовать";
+"balance.info.detail.pledge" = "Получить Квоту";
+"balance.info.detail.exchange.vite" = "Конвертация VITE";
+"balance.info.detail.pledge.count.content" = "Лимит расхода квоты/квот";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
-"gateway.info.detail.page.title" = "Gateway Details";
-"gateway.info.detail.page.name" = "Gateway Name";
-"gateway.info.detail.page.webside" = "Gateway Official Site";
-"gateway.info.detail.page.brief" = "Gateway Introduction";
-"gateway.info.detail.page.email" = "Customer Service";
-"gateway.info.detail.page.agreement" = "Service Terms";
-"gateway.info.detail.page.link" = "Gateway Link";
+"gateway.info.detail.page.title" = "Детали шлюза";
+"gateway.info.detail.page.name" = "Название шлюза";
+"gateway.info.detail.page.webside" = "Официальный сайт шлюза";
+"gateway.info.detail.page.brief" = "О шлюзе";
+"gateway.info.detail.page.email" = "Служба поддержки";
+"gateway.info.detail.page.agreement" = "Условия обслуживания";
+"gateway.info.detail.page.link" = "Ссылка шлюза";
 
-"token.info.detail.page.title" = "Token Details";
-"token.info.detail.page.name" = "Token Name";
-"token.info.detail.page.id" = "Token ID";
-"token.info.detail.page.brief" = "Introduction";
-"token.info.detail.page.total" = "Total Issuance";
-"token.info.detail.page.type" = "Token Type";
-"market.detail.page.token.info.type.value.native" = "Native";
-"market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"token.info.detail.page.gateway" = "Cross-Chain gateway";
-"token.info.detail.page.webside" = "Website";
-"token.info.detail.page.paper" = "WhitePaper";
-"token.info.detail.page.browser" = "Explorer";
+"token.info.detail.page.title" = "Параметры токена";
+"token.info.detail.page.name" = "Имя токена";
+"token.info.detail.page.id" = "ID Токена";
+"token.info.detail.page.brief" = "Введение";
+"token.info.detail.page.total" = "Общий выпуск";
+"token.info.detail.page.type" = "Тип токена";
+"market.detail.page.token.info.type.value.native" = "Нативный";
+"market.detail.page.token.info.type.value.other" = "Кросс-чейн";
+"token.info.detail.page.gateway" = "Кросс-чейн шлюз";
+"token.info.detail.page.webside" = "Сайт";
+"token.info.detail.page.paper" = "Белая бумага";
+"token.info.detail.page.browser" = "Обозреватель блоков";
 "token.info.detail.page.github" = "Github";
-"token.info.detail.page.social" = "Social Media";
+"token.info.detail.page.social" = "Социальные сети";
 
 /* Address Manage Page */
-"address.manage.page.title" = "My %@ Address";
-"address.manage.default.address.cell.title" = "Default Address";
-"address.manage.address.header.title" = "Addresses";
-"address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
-"address.manage.address.generate.button.already.toast" = "Address already exists";
-"address.manage.address.generate.button.error.toast" = "Please input a number";
-"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
-"address.manage.alert.title" = "Generate New Addresses";
-"address.manage.alert.placeholder" = "Input a number between 1 and 100";
-"address.manage.alert.tip" = "Bulk generate a specified number of addresses";
-"address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "Untitled";
-"address.manage.change.name.alert.title" = "Edit Address Alias";
+"address.manage.page.title" = "Мой %@ адрес";
+"address.manage.default.address.cell.title" = "Адрес по умолчанию";
+"address.manage.address.header.title" = "Адреса";
+"address.manage.address.generate.button.title" = "Добавить адрес";
+"address.manage.address.generate.button.toast" = "Добавьте до 100 адресов!";
+"address.manage.address.generate.button.already.toast" = "Адрес уже существует";
+"address.manage.address.generate.button.error.toast" = "Пожалуйста, введите число";
+"address.manage.tip.alert.message" = "Макс. генерация: 100 адресов; требуется получение адреса вручную для всех остальных адресов, кроме #1 в списке";
+"address.manage.alert.title" = "Сгенерировать новые адреса";
+"address.manage.alert.placeholder" = "Введите число от 1 до 100";
+"address.manage.alert.tip" = "Массово сгенерировать указанное количество адресов";
+"address.manage.tip.alert.ok" = "Я знаю";
+"address.manage.default.address.name" = "Без названия";
+"address.manage.change.name.alert.title" = "Изменить псевдоним адреса";
 "address.manage.change.name.alert.placeholder" = "Please input new alias";
 
 /* Send Page */
@@ -342,59 +342,59 @@
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
 "system.page.cell.change.currency" = "Currency";
-"system.page.cell.login.pwd" = "Unlock By Password";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.cell.login.pwd" = "Разблокировать по паролю";
+"system.page.cell.login.faceId" = "Разблокировать по Face ID";
+"system.page.cell.login.touchId" = "Разблокировать по Touch ID";
+"system.page.cell.transfer.faceId" = "Использовать Face ID для транзакций";
+"system.page.cell.transfer.touchId" = "Использовать Touch ID для транзакций";
+"system.page.cell.logout.title" = "Выйти/Сменить аккаунт";
+"system.page.cell.upload.log.title" = "Загрузить журнал";
+"system.page.cell.upload.log.toast.success" = "Журнал загружен";
+"system.page.cell.delete.wallet.title" = "Удалить текущий аккаунт";
+"system.page.cell.delete.wallet.alert.title" = "Вы можете восстановить свою учетную запись только мнемоническими словами. Хотите удалить эту учетную запись?";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.blockHeight" = "Текущая высота";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Загрузка";
+"aboutUs.page.cell.version" = "Версия";
+"aboutUs.page.cell.contact" = "Свяжитесь с нами";
+"aboutUs.page.cell.shareUs" = "Поделиться Vite APP";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.title" = "Отзыв";
+"aboutUs.page.email.content" = "Совет, полученный из среды использования\n1. Системное устройство: %@\n2. Системная версия:%@\n3. APP версия: %@\n4. Язык:%@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "Ошибка входа";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
-"quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.quota.title" = "Quota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.manage.page.title" = "Получить Квоту";
+"quota.manage.page.input.address.title" = "Выгодоприобретатель Квоты";
+"quota.manage.page.quota.money.title" = "Сумма заморозки";
+"quota.manage.page.quota.quota.title" = "Квота";
+"quota.manage.page.quota.money.placeholder" = "Введите сумму, минимум 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Длительность замораживания";
+"quota.manage.page.quota.snapshoot.height.desc" = "Приблизительно %@ дней";
+"quota.manage.page.submit.btn.title" = "Подтвердить заморозку";
+"quota.manage.page.check.quotaList.btn.title" = "Мои заморозки";
+"quota.manage.page.toast.money.error" = "Стейк не может быть меньше 134 VITE";
+"quota.submit.pop.desc" = "Удостоверьтесь, что заморозили %@ VITE для получения квоты. Вы не сможете разморозить средства ранее, чем через 3 дня после начала заморозки.";
+"quota.submit.pop.submit.btn.title" = "Подтвердить";
+"quota.submit.pop.cancel.btn.title" = "Отмена";
+"quota.submit.page.quota.address.placeholder" = "Пожалуйста, введите адрес выгодоприобретателя";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
+"quota.alert.title" = "Недостаточно Квоты";
+"quota.alert.pow.and.quota.message" = "Недостаток квоты, вы можете получить квоту, запустив PoW или заморозив VITE.";
+"quota.alert.need.quota.message" = "Недостаточно квоты PoW, мы рекомендуем вам застейкать VITE для получения квоты.";
 "quota.alert.pow.button.title" = "Run PoW";
-"quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
-"quota.pow.finished.float.view.title" = "Transaction Sent";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
-"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
+"quota.alert.quota.button.title" = "Заморозка VITE";
+"quota.float.view.title" = "Вычисления PoW для получения квоты для этой транзакции...";
+"quota.float.view.tip" = "Эта транзакция стоит %@UT";
+"quota.pow.finished.float.view.title" = "Транзакция отправлена";
+"quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
+"quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
 /* Peldge History */
