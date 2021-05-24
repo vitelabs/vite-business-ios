@@ -1054,18 +1054,18 @@
 "fund.DepositSuccess" = "성공적으로 전송되었습니다. 거래소 잔액을 확인하시겠습니까?";
 
 "transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
+"transfer.wallet.account" = "지갑 주소";
 "transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
-"transfer.token" = "Token";
-"transfer.amount" = "Amount";
-"transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.dex.account" = "거래소 계정";
+"transfer.token" = "토큰";
+"transfer.amount" = "수량";
+"transfer.available" = "잔액: ";
+"transfer.title" = "전송하기";
+"transfer.search.placeholder" = "토큰명을 입력하세요.";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
+"market.favourite" = "즐겨찾기";
+"market.searchhistory" = "검색 기록";
+"market.title" = "마켓";
 "market.about" = "Get Started with ViteX";
 "market.name" = "Name";
 "market.price" = "Last Price";
