@@ -946,60 +946,60 @@
 "buildin.coin.issuance.item2.title" = "Тикер";
 "buildin.coin.issuance.item3.title" = "Общее предложение";
 "buildin.coin.issuance.item4.title" = "Знаков после запятой";
-"buildin.coin.issuance.item5.title" = "Re-issuable";
-"buildin.coin.issuance.item5.yes.value" = "YES";
-"buildin.coin.issuance.item5.no.value" = "NO";
-"buildin.coin.issuance.item6.title" = "Max Supply";
-"buildin.coin.issuance.item7.title" = "Issuance Fee";
+"buildin.coin.issuance.item5.title" = "Перевыпуск";
+"buildin.coin.issuance.item5.yes.value" = "ДА";
+"buildin.coin.issuance.item5.no.value" = "НЕТ";
+"buildin.coin.issuance.item6.title" = "Макс. выпуск";
+"buildin.coin.issuance.item7.title" = "Комиссия за выпуск";
 
-"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
-"buildin.coin.transfer.ownership.item0.title" = "Token Name";
-"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
-"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+"buildin.coin.transfer.ownership.function.title" = "Передать право собственности";
+"buildin.coin.transfer.ownership.item0.title" = "Имя токена";
+"buildin.coin.transfer.ownership.item1.title" = "Тикер";
+"buildin.coin.transfer.ownership.item2.title" = "Адрес получателя";
 
-"buildin.coin.reissue.token.function.title" = "Re-issue Token";
-"buildin.coin.reissue.token.item0.title" = "Token Name";
-"buildin.coin.reissue.token.item1.title" = "Token Symbol";
-"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
-"buildin.coin.reissue.token.item3.title" = "Amount";
+"buildin.coin.reissue.token.function.title" = "Токен перевыпуска";
+"buildin.coin.reissue.token.item0.title" = "Имя токена";
+"buildin.coin.reissue.token.item1.title" = "Тикер";
+"buildin.coin.reissue.token.item2.title" = "Адрес выгодоприобретателя";
+"buildin.coin.reissue.token.item3.title" = "Сумма";
 
-"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
-"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
-"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+"buildin.coin.change.to.nonissuable.function.title" = "Изменить на Не выпускаемый";
+"buildin.coin.change.to.nonissuable.item0.title" = "Имя токена";
+"buildin.coin.change.to.nonissuable.item1.title" = "Тикер";
 
-"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
-"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
-"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
-"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+"buildin.dex.transfer.token.owner.function.title" = "Передача права собственности";
+"buildin.dex.transfer.token.owner.item0.title" = "Имя токена";
+"buildin.dex.transfer.token.owner.item1.title" = "Тикер";
+"buildin.dex.transfer.token.owner.item2.title" = "Адрес получателя";
 
-"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.function.title" = "Передать владение торговой парой";
+"buildin.dex.transfer.pair.item0.title" = "Наименование";
+"buildin.dex.transfer.pair.item1.title" = "Адрес получателя";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.function.title" = "Настроить комиссию";
+"buildin.dex.adjust.fees.item0.title" = "Наименование";
+"buildin.dex.adjust.fees.item1.title" = "Текущий адрес";
+"buildin.dex.adjust.fees.item.maker.title" = "Скорректированные комиссионные (Maker)";
+"buildin.dex.adjust.fees.item.taker.title" = "Скорректированные комиссионные (Taker)";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.function.title" = "Открыть торговую пару";
+"buildin.dex.open.trading.pair.item0.title" = "Наименование";
+"buildin.dex.open.trading.pair.item1.title" = "Текущий адрес";
+"buildin.dex.open.trading.pair.item2.title" = "Комиссия за Листинг";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "Приостановить торговую пару";
+"buildin.dex.suspend.trading.pair.item0.title" = "Наименование";
+"buildin.dex.suspend.trading.pair.item1.title" = "Текущий адрес";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "Восстановить торговую пару";
+"buildin.dex.recover.trading.pair.item0.title" = "Наименование";
+"buildin.dex.recover.trading.pair.item1.title" = "Текущий адрес";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "Заморозка";
+"buildin.dex.staking.as.mining.item0.title" = "Текущий адрес";
+"buildin.dex.staking.as.mining.item1.title" = "Сумма";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Разморозка";
 "buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
 "buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
 
@@ -1061,66 +1061,66 @@
 "transfer.amount" = "Amount";
 "transfer.available" = "Balance: ";
 "transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.search.placeholder" = "Пожалуйста, введите имя токена";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
-"market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
-"market.operator" = "Operator";
-"market.switch" = "Exchange";
+"market.favourite" = "Избранное";
+"market.searchhistory" = "История поиска";
+"market.title" = "Рынки";
+"market.about" = "Начать работу с ViteX";
+"market.name" = "Наименование";
+"market.price" = "Последняя цена";
+"market.percent" = "Изменить";
+"market.operator" = "Оператор";
+"market.switch" = "Обмен";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
-"market.detail.page.segment.token.info.title" = "Token";
-"market.detail.page.segment.operator.into.title" = "Operator";
+"market.detail.page.segment.order.book.title" = "Книга заказов";
+"market.detail.page.segment.last.trades.title" = "Последние торги";
+"market.detail.page.segment.token.info.title" = "Токен";
+"market.detail.page.segment.operator.into.title" = "Оператор";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
-"market.detail.page.info.vol.title" = "24H";
+"market.detail.page.info.high.title" = "Макс.";
+"market.detail.page.info.low.title" = "Мин.";
+"market.detail.page.info.vol.title" = "24Ч";
 
-"market.detail.page.kline.type.min1.title" = "1m";
-"market.detail.page.kline.type.min30.title" = "30m";
-"market.detail.page.kline.type.hour1.title" = "1H";
-"market.detail.page.kline.type.hour2.title" = "2H";
-"market.detail.page.kline.type.hour4.title" = "4H";
-"market.detail.page.kline.type.hour6.title" = "6H";
-"market.detail.page.kline.type.hour12.title" = "12H";
-"market.detail.page.kline.type.day1.title" = "1D";
-"market.detail.page.kline.type.week1.title" = "1W";
+"market.detail.page.kline.type.min1.title" = "1мин";
+"market.detail.page.kline.type.min30.title" = "30мин";
+"market.detail.page.kline.type.hour1.title" = "1Ч";
+"market.detail.page.kline.type.hour2.title" = "2Ч";
+"market.detail.page.kline.type.hour4.title" = "4Ч";
+"market.detail.page.kline.type.hour6.title" = "6Ч";
+"market.detail.page.kline.type.hour12.title" = "12Ч";
+"market.detail.page.kline.type.day1.title" = "1Д";
+"market.detail.page.kline.type.week1.title" = "1Нед";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
-"market.detail.page.value.diff.title" = "chg";
-"market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.time.title" = "Время";
+"market.detail.page.value.open.title" = "Открытие";
+"market.detail.page.value.high.title" = "Макс.";
+"market.detail.page.value.low.title" = "Мин.";
+"market.detail.page.value.close.title" = "Закрытие";
+"market.detail.page.value.diff.title" = "изм";
+"market.detail.page.value.extent.title" = "изм%";
+"market.detail.page.value.vol.title" = "Объём";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.vol.title" = "Сумма (%@)";
+"market.detail.page.depth.price.title" = "Цена(%@)";
 
-"market.detail.page.trade.time.title" = "Time";
-"market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.trade.time.title" = "Время";
+"market.detail.page.trade.price.title" = "Цена";
+"market.detail.page.trade.vol.title" = "Сумма";
+"market.detail.page.buy.button.title" = "Купить";
+"market.detail.page.sell.button.title" = "Продать";
 
 
-"market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
-"market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
-"market.detail.page.token.info.paper" = "WhitePaper";
-"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.token.id" = "ID Токена";
+"market.detail.page.token.info.total" = "Монет в обороте";
+"market.detail.page.token.info.type" = "Тип";
+"market.detail.page.token.info.type.value.native" = "Нативный";
+"market.detail.page.token.info.type.value.other" = "Кросс-чейн";
+"market.detail.page.token.info.gateway" = "Кросс-чейн шлюз";
+"market.detail.page.token.info.official" = "Официальный сайт";
+"market.detail.page.token.info.paper" = "Белая бумага";
+"market.detail.page.token.info.browser" = "Обозреватель";
 "market.detail.page.token.info.github" = "Github";
 
 "market.detail.page.token.info.social" = "Social Media";
@@ -1186,55 +1186,55 @@
 "spot.page.sellable" = "Max Sell: %@";
 "spot.page.total" = "Total: %@";
 "spot.page.open.vip" = "Become a VIP";
-"spot.page.close.vip" = "Cancel VIP";
-"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
-"spot.page.close.vip.error.toast" = "No VIP staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
-"spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open Orders";
-"spot.page.orders.button.title" = "History";
+"spot.page.close.vip" = "Отменить VIP";
+"spot.page.open.vip.error.toast" = "Недостаточный биржевой баланс, заморозьте 10000 VITE, чтобы стать VIP";
+"spot.page.close.vip.error.toast" = "Нет VIP, замороженных";
+"spot.page.close.vip.un.expire.error.toast" = "Заморозка на 30 дней и сумма не может быть затребована ранее";
+"spot.page.depth.price" = "Цена";
+"spot.page.depth.vol" = "Сумма";
+"spot.page.current.order.title" = "Открытые Ордера";
+"spot.page.orders.button.title" = "История";
 
-"spot.page.post.toast.price.empty" = "Please enter the price";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.price.empty" = "Пожалуйста введите цену";
+"spot.page.post.toast.price.zero" = "Значение должно быть больше 0";
+"spot.page.post.toast.vol.empty" = "Пожалуйста, введите сумму";
+"spot.page.post.toast.vol.zero" = "Значение должно быть больше 0";
+"spot.page.post.toast.amount.min" = "Общее значение должно быть не менее %@";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "24 часа не спрашивать снова";
 
-"spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.title" = "Важное напоминание";
+"spot.page.alert.message" = "Текущая торговая пара %@, инвестиции в криптовалюту подвержены высоким рискам и колебаниям цен. Пожалуйста, тщательно оцените потенциальные риски и принимайте взвешенные торговые решения.";
+"spot.page.alert.ok" = "Подтвердить";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.order.empty" = "Нет заказов";
+"spot.page.cell.type.buy" = "Купить";
+"spot.page.cell.type.sell" = "Продать";
+"spot.page.cell.button.cancel.title" = "Отменить";
+"spot.page.cell.vol" = "Сум.: %@";
+"spot.page.cell.price" = "Цена: %@";
+"spot.page.cell.deal" = "Заполнено: %@";
+"spot.page.cell.average" = "Ср.: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.desc" = "Синхронизация, нажмите для просмотра подробностей";
+"grin.initing.detail" = "1 Синхронизация требуется после добавления GRIN кошелька\n 2.Процесс должен длиться не менее 15 минут\n 3. Не прерывать или закрывать приложение во время синхронизации\n 4. Синхронизация расходует большое количество трафика, рекомендуется использовать Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trading";
+"dex.home.page.nav.title" = "Биржевые активы";
+"dex.home.page.nav.btc.valuation.title" = "Общее значение (BTC)";
+"dex.home.page.segment.wallet" = "Кошелек";
+"dex.home.page.segment.dex" = "Торговля";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.btc.valuation.title" = "Значение (BTC)";
+"dex.home.page.header.button.transfer.title" = "Перевод";
+"dex.home.page.header.button.deposit.title" = "Пополнить";
+"dex.home.page.header.button.withdraw.title" = "Вывести";
+"dex.home.page.header.button.hide.small.title" = "Скрыть малые балансы";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.title" = "Баланс";
+"dex.token.detail.page.header.total" = "Всего";
+"dex.token.detail.page.header.available" = "Доступно";
+"dex.token.detail.page.header.lock.place.order" = "В заявках";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
