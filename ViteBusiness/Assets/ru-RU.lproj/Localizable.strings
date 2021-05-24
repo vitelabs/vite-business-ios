@@ -131,7 +131,7 @@
 "mnemonic.backup.tip.alert.cancel.title" = "Резервное копирование позже";
 
 "mnemonic.affirm.page.title" = "Подтвердить";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
+"mnemonic.affirm.page.tip.title" = "Соберите мнемонические слова в правильном порядке";
 "mnemonic.affirm.alter.title" = "Это действие будет регенерировать мнемоническую фразу, вернуться?";
 "mnemonic.affirm.alter.check.title" = "Некорректная seed фраза!";
 "mnemonic.affirm.page.add.loading" = "Добавление...";
