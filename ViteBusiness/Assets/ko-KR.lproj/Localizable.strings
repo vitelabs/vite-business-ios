@@ -973,41 +973,41 @@
 "buildin.dex.transfer.token.owner.item2.title" = "수신자 주소";
 
 "buildin.dex.transfer.pair.function.title" = "거래쌍의 소유권 이전하기";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.item0.title" = "이름";
+"buildin.dex.transfer.pair.item1.title" = "수신자 주소";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.function.title" = "수수료 조정하기";
+"buildin.dex.adjust.fees.item0.title" = "이름";
+"buildin.dex.adjust.fees.item1.title" = "현재 주소";
+"buildin.dex.adjust.fees.item.maker.title" = "조정된 Maker 수수료";
+"buildin.dex.adjust.fees.item.taker.title" = "조정된 테이커 수수료";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.function.title" = "거래쌍 열기";
+"buildin.dex.open.trading.pair.item0.title" = "이름";
+"buildin.dex.open.trading.pair.item1.title" = "현재 주소";
+"buildin.dex.open.trading.pair.item2.title" = "상장 수수료";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "거래쌍 중지하기";
+"buildin.dex.suspend.trading.pair.item0.title" = "이름";
+"buildin.dex.suspend.trading.pair.item1.title" = "현재 주소";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "거래쌍 회복하기";
+"buildin.dex.recover.trading.pair.item0.title" = "이름";
+"buildin.dex.recover.trading.pair.item1.title" = "현재 주소";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "마이닝 스테이킹하기";
+"buildin.dex.staking.as.mining.item0.title" = "현재 주소";
+"buildin.dex.staking.as.mining.item1.title" = "수량";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.function.title" = "마이닝 스테이킹 취소하기";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "현재 주소";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "수량";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "VIP되기";
+"buildin.dex.become.vip.item0.title" = "현재 주소";
+"buildin.dex.become.vip.item1.title" = "수량";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
+"buildin.dex.cancel.vip.function.title" = "VIP 취소하기";
 "buildin.dex.cancel.vip.item0.title" = "현재 주소";
 "buildin.dex.cancel.vip.item1.title" = "수량";
 
@@ -1020,32 +1020,32 @@
 "buildin.dex.un.lock.vx.item1.title" = "수량";
 
 "buildin.dex.cancel.stake.function.title" = "스테이킹 철회하기";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.item0.title" = "현재 주소";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.busy.header" = "거래 확인";
+"app.scheme.home.page.busy.content" = "아래 거래 정보를 확인해주세요.";
+"app.scheme.network.error" = "네트워크 오류";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "성공적으로 복사되었습니다.";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
-"fund.walletAddress" = "My Address";
-"fund.walletFound" = "Wallet Balance";
-"fund.quotaInfo" = "Spendable Quota/Quota Limit";
-"fund.deposit.amount" = "Transfer Amount";
-"fund.deposit.all" = "All";
-"fund.quotaSpend" = "Quota";
-"fund.deposit" = "Transfer";
-"fund.vitexFound" = "Available Balance";
-"fund.withdraw.amount" = "Transfer Amount";
-"fund.withdraw" = "Transfer";
-"fund.vitex.all" = "Exchange Total Balance";
-"fund.vitex.available" = "Exchange Available Balance";
+"fund.title.wallet" = "지갑 자산";
+"fund.title.vitex" = "거래소 자산";
+"fund.title.toWallet" = "지갑으로 출금하기";
+"fund.title.toVitex" = "거래소에 입금하기";
+"fund.walletAddress" = "나의 주소";
+"fund.walletFound" = "지갑 잔액";
+"fund.quotaInfo" = "사용 가능한 쿼타/쿼타 한도";
+"fund.deposit.amount" = "전송 수량";
+"fund.deposit.all" = "전체";
+"fund.quotaSpend" = "쿼타";
+"fund.deposit" = "전송하기";
+"fund.vitexFound" = "사용 가능한 잔액";
+"fund.withdraw.amount" = "전송 금액";
+"fund.withdraw" = "전송하기";
+"fund.vitex.all" = "거래소 전체 잔액";
+"fund.vitex.available" = "거래소 거래가능 잔액";
 "fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
 "fund.withdraw.placeholder" = "Please enter transfer amount";
 "fund.deposit.placeholder" = "Please enter transfer amount";
