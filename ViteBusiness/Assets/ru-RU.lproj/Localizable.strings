@@ -286,62 +286,62 @@
 
 /* Send Page */
 "send.page.title" = "Отправить";
-"send.page.my.address.title" = "My %@ Address";
-"send.page.my.balance.title" = "Balance";
-"send.page.my.pledge.title" = "Benefited Stake";
-"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
-"send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
-"send.page.add.my.address.button.title" = "Mine";
-"send.page.vite.contacts.button.title" = "VITE Contact Address";
-"send.page.scan.address.button.title" = "Scan";
-"send.page.to.address.title" = "Recipient Address";
-"send.page.amount.title" = "Amount";
-"send.page.all.button.title" = "All";
-"send.page.remark.title" = "Memo";
-"send.page.send.button.title" = "Send";
-"send.page.amount.toolbar.button.title" = "Next";
-"send.page.toast.address.error" = "Wrong address, please check the format";
-"send.page.toast.amount.error" = "Insufficient Balance";
-"send.page.toast.amount.empty" = "Please input balance";
-"send.page.toast.amount.zero" = "The amount has to be positive";
-"send.page.toast.note.too.long" = "The length of notes has reached limitations";
-"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
-"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
-"send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.token.info.error" = "Token Info Error";
+"send.page.my.address.title" = "Мой %@ адрес";
+"send.page.my.balance.title" = "Баланс";
+"send.page.my.pledge.title" = "Предоставленный стейк";
+"send.page.my.quota.title" = "Лимит расхода квоты/квот";
+"send.page.my.max.tx.count.title" = "Максимальная сумма Tx";
+"send.page.add.my.address.button.title" = "Мой";
+"send.page.vite.contacts.button.title" = "Адрес контракта VITE";
+"send.page.scan.address.button.title" = "Сканировать";
+"send.page.to.address.title" = "Адрес Получателя";
+"send.page.amount.title" = "Сумма";
+"send.page.all.button.title" = "Все";
+"send.page.remark.title" = "Комментарий (Memo)";
+"send.page.send.button.title" = "Отправить";
+"send.page.amount.toolbar.button.title" = "Далее";
+"send.page.toast.address.error" = "Неверный адрес, проверьте формат";
+"send.page.toast.amount.error" = "Недостаточный баланс";
+"send.page.toast.amount.empty" = "Пожалуйста, введите баланс";
+"send.page.toast.amount.zero" = "Значение должно быть положительным";
+"send.page.toast.note.too.long" = "Длительность комментария достигла ограничений";
+"send.page.toast.contract.address.support.hex" = "Адрес назначения, который вы передаете является контрактом, примечание должно быть написано валидными шестнадцатеричными символами";
+"send.page.not.enough.balance.alert.title" = "Недостаточный баланс";
+"send.page.not.enough.balance.alert.button" = "Отмена";
+"send.page.token.info.error" = "Ошибка информации о токене";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
+"send.page.eth.failed" = "(%@). Пожалуйста, проверьте историю транзакций перед повторной попыткой";
 
 /* eth vite exchange */
-"eth.vite.exchange.page.title" = "VITE Conversion";
-"eth.vite.exchange.page.my.address.title" = "ETH Address";
-"eth.vite.exchange.page.my.balance.title" = "Balance";
-"eth.vite.exchange.page.to.address.title" = "VITE Address";
-"eth.vite.exchange.page.amount.title" = "Conversion Amount";
-"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
-"eth.vite.exchange.page.send.button.title" = "Convert";
-"eth.vite.exchange.page.address.change.button.title" = "Switch";
-"eth.vite.exchange.page.exchange.all.button.title" = "All";
-"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+"eth.vite.exchange.page.title" = "Конвертация VITE";
+"eth.vite.exchange.page.my.address.title" = "ETH адрес";
+"eth.vite.exchange.page.my.balance.title" = "Баланс";
+"eth.vite.exchange.page.to.address.title" = "VITE Адрес";
+"eth.vite.exchange.page.amount.title" = "Сумма Конвертации";
+"eth.vite.exchange.page.amount.placeholder" = "Конвертировать максимум %@ VITE";
+"eth.vite.exchange.page.send.button.title" = "Конвертировать";
+"eth.vite.exchange.page.address.change.button.title" = "Переключить";
+"eth.vite.exchange.page.exchange.all.button.title" = "Все";
+"eth.vite.exchange.page.exchange.history.button.title" = "История преобразований";
 
 /* Receive Page */
-"Receive.page.token.title" = "Receive";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
-"Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
-"Receive.page.wallet.name" = "Vite Wallet";
+"Receive.page.token.title" = "Получить";
+"Receive.page.mine.title" = "Мой QRCode";
+"Receive.page.token.name.label" = "Сканировать и отправить %@";
+"Receive.page.token.amount.button.title" = "Введите сумму";
+"Receive.page.token.note.label" = "Комментарий";
+"Receive.page.token.amount.alert.title" = "Введите сумму";
+"Receive.page.wallet.name" = "Vite Кошелек";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.title" = "Сканировать";
+"Scan.page.qccode.not.identifiable" = "Не удается идентифицировать QR-код";
+"Scan.page.qccode.not.found" = "QR-код не найден";
 
 /* System */
-"system.page.logout.loading" = "Logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
+"system.page.logout.loading" = "Выйти";
+"system.page.cell.change.language" = "Язык";
+"system.page.cell.change.currency" = "Валюта";
 "system.page.cell.login.pwd" = "Разблокировать по паролю";
 "system.page.cell.login.faceId" = "Разблокировать по Face ID";
 "system.page.cell.login.touchId" = "Разблокировать по Touch ID";
@@ -402,8 +402,8 @@
 "peldge.deadline" = "Дата исполнения";
 "peldge.title" = "Мои заморозки";
 "peldge.address.title" = "Выгодоприобретатель";
-"peldge.cancel.peldge.button.title" = "Withdraw";
-"peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
+"peldge.cancel.peldge.button.title" = "Вывести Средства";
+"peldge.cancel.pledge.withdrawing.title" = "Вывод";
 "peldge.cancel.pledge.amount.error.toast" = "Минимальная сумма вывода составляет 134 VITE";
 "peldge.cancel.pledge.agent.error.toast" = "Нетипичная заморозка. Попробуйте разморозить средства там, где замораживали.";
 /* Vote */
@@ -707,7 +707,7 @@
 "grin.teach.vite.receive.copyViteAddress" = "Копировать адрес VITE";
 "grin.teach.vite.send.startSend" = "Начать отправку";
 "grin.txMethod.http" = "HTTP адрес";
-"grin.txMethod.vite" = "VITE Address";
+"grin.txMethod.vite" = "VITE Адрес";
 "grin.txMethod.file" = "Файл транзакции";
 
 "grin.detail.fromMine" = "Coinbase";
@@ -763,35 +763,35 @@
 "crosschain.deposit.labelDesc" = "Пожалуйста, используйте %@ вместе с адресом пополнения, иначе Вы потеряете токен(ы)    ";
 
 "crosschain.deposit.about" = "Кросс-чейн пополнение позволяет перевести %@ в сеть Vite. После этого вы также сможете совершать кросс-чейн переводы. При кросс-чейн пополнении баланс %@ на вашем Vite кошельке будет уменьшен соответственно.";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
-"crosschain.deposit.all" = "Deposit All";
-"crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.withdraw.all" = "Withdraw All";
-"crosschain.withdraw.amount" = "Withdrawal Amount";
-"crosschain.tokenDetail.shortname" = "Symbol";
-"crosschain.tokenDetail.id" = "Token ID";
-"crosschain.tokenDetail.name" = "Token Name";
-"crosschain.tokenDetail.address" = "Coin Forging Address";
-"crosschain.tokenDetail.amount" = "Total Issuance";
-"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.deposit.other.about" = "Кросс-чейн пополнение позволяет перевести %@ в сеть Vite. После этого вы также сможете совершать кросс-чейн переводы. При кросс-чейн пополнении баланс %@ на вашем Vite кошельке будет уменьшен соответственно.";
+"crosschain.withdraw.eth.myAddress" = "Мой ETH адрес";
+"crosschain.deposit.min" = "Минимальная сумма депозита";
+"crosschain.withdraw.min" = "Минимальная сумма вывода";
+"crosschain.deposit.min.alert" = "Сумма депозита не может быть меньше, чем ";
+"crosschain.deposit.all" = "Пополнить все";
+"crosschain.deposit.amount" = "Сумма Пополения";
+"crosschain.withdraw.all" = "Вывести все";
+"crosschain.withdraw.amount" = "Сумма для Вывода";
+"crosschain.tokenDetail.shortname" = "Тикер";
+"crosschain.tokenDetail.id" = "ID Токена";
+"crosschain.tokenDetail.name" = "Имя Токена";
+"crosschain.tokenDetail.address" = "Адрес форжинга монет";
+"crosschain.tokenDetail.amount" = "Общий выпуск";
+"crosschain.tokenDetail.digit" = "Знаков после запятой";
 "crosschain.tokenDetail.unit" = "";
-"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
-"crosschain.tokenDetail.issuance.true" = "Yes";
-"crosschain.tokenDetail.issuance.false" = "No";
-"crosschain.tokenDetail.date" = "Issuance Date";
-"crosschain.tokenDetail.desc" = "Description";
-"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
-"crosschain.status.confirmed" = "Confirmed";
-"crosschain.status.tot.exceed.limit" = "Exceed the limit";
-"crosschain.status.wrong.address" = "Wrong transfer address";
-"crosschain.status.gatewayReceived" = "Deposit by Gateway";
-"crosschain.status.withdraw.failed" = "Withdrawal Failed";
-"crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
+"crosschain.tokenDetail.issuance" = "Открыть в дополнительном выпуске";
+"crosschain.tokenDetail.issuance.true" = "Да";
+"crosschain.tokenDetail.issuance.false" = "Нет";
+"crosschain.tokenDetail.date" = "Дата Выпуска";
+"crosschain.tokenDetail.desc" = "Описание";
+"crosschain.status.waitToConfirm" = "Блокчейн %@ не подтвержден";
+"crosschain.status.confirmed" = "Подтверждено";
+"crosschain.status.tot.exceed.limit" = "Превышен лимит";
+"crosschain.status.wrong.address" = "Неправильный адрес для передачи";
+"crosschain.status.gatewayReceived" = "Пополнение по шлюзу";
+"crosschain.status.withdraw.failed" = "Вывод не Выполнен";
+"crosschain.status.failedBecausePoor" = "Недостаточный баланс";
+"crosschain.withdraw.amount.limit.title" = "Лимит снятия кросс-чейн";
 "crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
 "crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
 "crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
@@ -931,12 +931,12 @@
 "buildin.transfer.utf8string.item1.title" = "Сумма";
 "buildin.transfer.utf8string.item2.title" = "Комментарий";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
-"buildin.transfer.cross.chain.item1.title" = "Fee";
-"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+"buildin.transfer.cross.chain.function.title" = "Кросс-Чейн отправка";
+"buildin.transfer.cross.chain.item0.title" = "Сумма";
+"buildin.transfer.cross.chain.item1.title" = "Комиссия";
+"buildin.transfer.cross.chain.item2.title" = "Адрес Получателя";
 
-"buildin.vote.function.title" = "Vote";
+"buildin.vote.function.title" = "Голосовать";
 "buildin.vote.item0.title" = "SBP Candidates";
 "buildin.vote.item1.title" = "Голоса";
 
@@ -1060,7 +1060,7 @@
 "transfer.token" = "Token";
 "transfer.amount" = "Amount";
 "transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
+"transfer.title" = "Перевод";
 "transfer.search.placeholder" = "Пожалуйста, введите имя токена";
 
 "market.favourite" = "Избранное";
@@ -1121,19 +1121,19 @@
 "market.detail.page.token.info.official" = "Официальный сайт";
 "market.detail.page.token.info.paper" = "Белая бумага";
 "market.detail.page.token.info.browser" = "Обозреватель";
-"market.detail.page.token.info.github" = "Github";
+"market.detail.page.token.info.github" = "GitHub";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "Социальные сети";
+"market.detail.page.token.info.brief" = "Введение";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "Анонимный";
+"market.detail.page.token.info.address" = "Адрес оператора";
+"market.detail.page.token.info.pair" = "Торговая пара";
 
 // Trading Home
-"trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.spot" = "Спот";
+"trading.home.page.segment.mining" = "Добыча";
+"trading.home.page.segment.bonus" = "Дивиденды";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
@@ -1171,20 +1171,20 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
-"spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
-"spot.page.available" = "Avail.: %@";
-"spot.page.buyable" = "Max Buy: %@";
-"spot.page.sellable" = "Max Sell: %@";
-"spot.page.total" = "Total: %@";
+"spot.page.buy.mining.tip" = "Цена, выше чем %@, доступна для наград за торговлю.";
+"spot.page.sell.mining.tip" = "Цена, ниже чем %@, доступна для наград за торговлю.";
+"spot.page.button.closed.title" = "Торговля приостановлена";
+"spot.page.button.buy.title" = "Купить";
+"spot.page.button.sell.title" = "Продать";
+"spot.page.button.limit.buy.title" = "Лимит-ордер";
+"spot.page.price.buy.placeholder" = "Цена";
+"spot.page.vol.buy.placeholder" = "Сумма";
+"spot.page.price.sell.placeholder" = "Цена";
+"spot.page.vol.sell.placeholder" = "Сумма";
+"spot.page.available" = "Доступно.: %@";
+"spot.page.buyable" = "Макс. Купить: %@";
+"spot.page.sellable" = "Макс. прод.: %@";
+"spot.page.total" = "Всего: %@";
 "spot.page.open.vip" = "Become a VIP";
 "spot.page.close.vip" = "Отменить VIP";
 "spot.page.open.vip.error.toast" = "Недостаточный биржевой баланс, заморозьте 10000 VITE, чтобы стать VIP";
