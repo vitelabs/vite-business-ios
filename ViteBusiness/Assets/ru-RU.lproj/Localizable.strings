@@ -700,13 +700,13 @@
 "grin.pay.title.finalize" = "Финализировать";
 
 "grin.teach.file.send.desc" = "Чтобы перевести с помощью Vite кошелека, все, что вам нужно сделать, — это поделиться файлом транзакции с получателем, открыть файл, возвращаемый получателем через Vite кошелек и завершить транзакцию. После нажатия \"Поделиться файлом транзакций\" кошелек Vite будет показывать приложение для использования в вашем мобильном телефоне, Вы можете выбрать какой бы то ни было способ сохранить этот файл на свой мобильный телефон и поделиться им самостоятельно.";
-"grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
-"grin.teach.file.send.title" = "Send GRIN through Transaction File";
-"grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
-"grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
-"grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
-"grin.teach.vite.send.startSend" = "Start to Send";
-"grin.txMethod.http" = "HTTP Address";
+"grin.teach.file.receive.desc" = "Чтобы перевести с помощью Vite wallet, просто откройте файл, нажмите на кнопку \"Принять и поделиться\" и верните файл подтверждения для получения с отправителем. После нажатия на \"Принять и поделиться\", кошелек Vite будет показывать приложение для использования в вашем мобильном телефоне, Вы можете выбрать какой бы то ни было способ сохранить этот файл на свой мобильный телефон и поделиться им самостоятельно. Vite кошелек поддерживает файл .grinslate и .json файл, и только тогда, когда имя файла, содержащее «ответ», будет распознано и открыто успешно.»";
+"grin.teach.file.send.title" = "Отправить GRIN через файл транзакции";
+"grin.teach.file.receive.title" = "Получить GRIN через файл транзакций";
+"grin.teach.http.receive.copyHttpAddress" = "Копировать HTTP адрес";
+"grin.teach.vite.receive.copyViteAddress" = "Копировать адрес VITE";
+"grin.teach.vite.send.startSend" = "Начать отправку";
+"grin.txMethod.http" = "HTTP адрес";
 "grin.txMethod.vite" = "VITE Address";
 "grin.txMethod.file" = "Файл транзакции";
 
@@ -813,7 +813,7 @@
 "crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
 "crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
 "crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
+"crosschain.statement.vite.desc0" = "Эта услуга предоставляется %@.";
 "crosschain.statement.vite.desc1" = "Используя сервисы %@, вы соглашаетесь с тем, что будете связаны с %@ %@. Если вы не согласны с этими условиями, пожалуйста, воздержитесь от использования сервиса от %@.";
 "crosschain.statement.vite.desc2" = "В случае проблем с верификацией или обработкой платежа, пожалуйста, свяжитесь со службой поддержки %@ по адресу %@.";
 "crosschain.statement.detail" = "Условия предоставления услуг";
@@ -878,58 +878,58 @@
 "bifrost.operation.cancel.vote" = "Отозвать голос";
 "bifrost.operation.extract.reward" = "Получить награду";
 "bifrost.operation.pledge" = "Получить Квоту";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
-"bifrost.operation.coin" = "Token Issuance";
-"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Send";
-"bifrost.operation.vx.deposit" = "ViteX Deposit";
-"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
-"bifrost.operation.vx.order" = "Place Order on ViteX";
-"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+"bifrost.operation.cancel.pledge" = "Разморозка из Квоты";
+"bifrost.operation.coin" = "Выпуск Актива";
+"bifrost.operation.cancel.coin" = "Запросить разморозку для эмиссии";
+"bifrost.operation.transfer" = "Отправить";
+"bifrost.operation.vx.deposit" = "ViteX пополнение";
+"bifrost.operation.vx.withdraw" = "ViteX Вывод Средств";
+"bifrost.operation.across.chain.withdraw" = "Кросс-Чейн отправка";
+"bifrost.operation.vx.order" = "Разместить ордер на ViteX";
+"bifrost.operation.vx.cancel.order" = "Отменить ордер на ViteX";
 
-"bifrost.operation.function.title" = "Contract Invoke";
-"bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.amount" = "Amount";
-"bifrost.operation.title.fee" = "Fee";
-"bifrost.operation.title.data" = "Data";
+"bifrost.operation.function.title" = "Вызвать контракт";
+"bifrost.operation.title.contract.address" = "Адрес контракта";
+"bifrost.operation.title.amount" = "Сумма";
+"bifrost.operation.title.fee" = "Комиссия";
+"bifrost.operation.title.data" = "Дата";
 
-"bifrost.operation.sign.message.title" = "Create API";
-"bifrost.operation.sign.message.address" = "Current Address";
-"bifrost.operation.sign.message.type" = "Permission Type";
-"bifrost.operation.sign.message.content" = "Signature Content";
-"bifrost.operation.sign.message.type.trade.value" = "Trade";
+"bifrost.operation.sign.message.title" = "Создать API";
+"bifrost.operation.sign.message.address" = "Текущий адрес";
+"bifrost.operation.sign.message.type" = "Тип разрешений";
+"bifrost.operation.sign.message.content" = "Подпишите данные";
+"bifrost.operation.sign.message.type.trade.value" = "Торговля";
 
-"bifrost.create.contract.title" = "Create Contract";
-"bifrost.create.contract.title.contract.address" = "Contract Address";
-"bifrost.create.contract.title.amount" = "Amount";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title" = "Создать Контракт";
+"bifrost.create.contract.title.contract.address" = "Адрес контракта";
+"bifrost.create.contract.title.amount" = "Сумма";
+"bifrost.create.contract.title.fee" = "Комиссия";
+"bifrost.create.contract.title.data" = "Дата";
 
 //bnb
-"token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
-"bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
-"bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
-"bnb.txType.freezeToken.title" = "Freeze Token";
-"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
-"bnb.txType.transfer.title" = "Transfer";
-"bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"token.list.page.section.bnb.header" = "Сеть Binance";
+"bnb.send.page.feeView.titleLabel.title" = "Комиссия";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB адрес";
+"bnb.send.page.eth.contacts.button.title" = "Контакты BNB";
+"bnb.txType.newOrder.title" = "Разместить заявку";
+"bnb.txType.issueToken.title" = "Эмитировать актив";
+"bnb.txType.burnToken.title" = "Сжечь";
+"bnb.txType.listToken.title" = "Листинг";
+"bnb.txType.cancelOrder.title" = "Отменить заказ";
+"bnb.txType.freezeToken.title" = "Заморозить токен";
+"bnb.txType.unfreezeToken.title" = "Разморозить токен";
+"bnb.txType.transfer.title" = "Перевод";
+"bnb.txType.proposal.title" = "Запрос предложения";
+"bnb.txType.vote.title" = "Голосовать";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "Пополнить";
 
 // Buildin
 
-"buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.function.title" = "Перевод";
+"buildin.transfer.utf8string.item0.title" = "Адрес транзакции";
+"buildin.transfer.utf8string.item1.title" = "Сумма";
+"buildin.transfer.utf8string.item2.title" = "Комментарий";
 
 "buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
 "buildin.transfer.cross.chain.item0.title" = "Amount";
