@@ -404,40 +404,40 @@
 "peldge.address.title" = "Выгодоприобретатель";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
-"peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
-"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
+"peldge.cancel.pledge.amount.error.toast" = "Минимальная сумма вывода составляет 134 VITE";
+"peldge.cancel.pledge.agent.error.toast" = "Нетипичная заморозка. Попробуйте разморозить средства там, где замораживали.";
 /* Vote */
-"vote.page.title" = "Vote";
-"vote.page.info.nodata.title" = "No Vote";
-"vote.page.voteStatus.voteSuccess" = "Successful Vote";
-"vote.page.voteStatus.voting" = "Voting";
-"vote.page.voteStatus.cancelVoting" = "Revoking";
-"vote.page.voteStatus.voteInvalid" = "Invalid Voting";
-"vote.page.voteInfo.nodePolls.title" = "My Votes";
-"vote.page.nodeStatus.valid.title" = "Active";
-"vote.page.nodeStatus.invalid.title" = "Inactive";
-"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+"vote.page.title" = "Голосовать";
+"vote.page.info.nodata.title" = "Нет голоса!";
+"vote.page.voteStatus.voteSuccess" = "Успешное голосование";
+"vote.page.voteStatus.voting" = "Голосование";
+"vote.page.voteStatus.cancelVoting" = "Отзыв";
+"vote.page.voteStatus.voteInvalid" = "Ошибка голосования";
+"vote.page.voteInfo.nodePolls.title" = "Мои голоса";
+"vote.page.nodeStatus.valid.title" = "Активный";
+"vote.page.nodeStatus.invalid.title" = "Неактивный";
+"vote.page.voteInfo.alert.quota" = "Не удалось отозвать голос, вы должны запустить PoW или заморозить VITE для квоты";
 
 /* Vote List*/
-"vote" = "Vote";
-"vote.list.title" = "Candidate Nodes";
-"vote.list.search" = "Search for name or address of candidate nodes";
-"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
-"vote.list.confirm.revote" = "Confirm";
-"vote.list.count" = "Votes";
-"vote.list.address" = "Address";
-"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
-"vote.list.search.empty" = "No result, please try another input";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote" = "Голосовать";
+"vote.list.title" = "Кандидаты";
+"vote.list.search" = "Поиск имени или адресу узла кандидата";
+"vote.list.alert.already.voted" = "Вы проголосовали за %@. Учтите, что данное действие отменило результат предыдущего голосования";
+"vote.list.confirm.revote" = "Подтвердить";
+"vote.list.count" = "Голоса";
+"vote.list.address" = "Адрес";
+"vote.list.alert.quota" = "Не удалось проголосовать, вам нужно запустить PoW или заморозить VITE для квоты";
+"vote.list.search.empty" = "Результат отсутствует. Попробуйте иные данными";
+"vote.list.search.no.transaction.before" = "Вы не можете голосовать сейчас, так как нет записей транзакций в вашем адресе";
 
 // Contract
-"contract.confirm.info" = "Contract Address";
+"contract.confirm.info" = "Адрес контракта";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"vite.RefreshBackFooter.IdleText" = "Прокрутите, чтобы загрузить больше";
+"Vite.RefreshBackFooter.PullingText" = "Отпустите, чтобы загрузить больше.";
+"Vite.RefreshBackFooter.RefreshingText" = "Загрузка...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "Больше нет данных";
 
 //Welcome
 "introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
