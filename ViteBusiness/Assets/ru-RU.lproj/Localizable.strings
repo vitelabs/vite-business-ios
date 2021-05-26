@@ -469,9 +469,9 @@
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Что такое квота?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">В системе Vite пользователи не покупают газ, необходимый для транзакции, оплачивая комиссию, но приобретать вычислительный ресурс с с использованием квотируемой модели. Необходимая квота для отправки транзакции = базовая квота (запрос) + квота (прилагаемые текстовые данные), квота, необходимая для принятия транзакции = базовая квота (ответ). Этот протокол настройки ресурсов на основе квот позволяет пользователям получать более высокие квоты ресурсов двумя способами: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Заморозив VITE для получения квоты</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. Запуск PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Что такое заморозка для квоты?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">В системе Vite, пользователь может заморозить VITE для получения определенной квоты. Минимальное значение для разбивки составляет 134 vite и не существует максимального предела; Между тем система Vite также поддерживает, что адрес A предоставляет часть VITE и выделяет полученную квоту на адрес B. Когда пользователи замораживают Vite, через смарт-контракт квота будет предоставлена адресу B, но управляет средствами по прежнему аккаунт A.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Что такое PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Подтверждение работы (PoW), является протоколом, подтверждающим, что вы выполнили определенное количество вычислений, и также является экономической мерой для сдерживания DDoS атак и других злоупотреблений в сфере услуг. Он требует инициатора провести определенное количество вычислений, что означает, что это может занять некоторое время для устройства. В системе Vite пользователи могут получить бесплатную квоту, запустив PoW, , а также может отправить транзакцию без аннотированной информации через полученную квоту.</p>";
-"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
-"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
-"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">О Голосовании</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Вы можете присоединиться и проголосовать за 25 SBPs(Snapshot Block Producer), каждый раунд голосования длится 75с, ваши голоса равны балансу вашего адреса голосования. Ваш голос остается таким же в следующем раунде, если вы не отмените свой голос или не проголосуете за другой узел. Случайно 23 из 25 лучших кандидатов плюс 2 из кандидатов 26-100, в общей сложности 25 узлов будут избраны в качестве SBP.</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ вы проголосовали за прекращение кампании за SBP, вы можете проголосовать снова или отозвать свой голос. Если вы этого не сделаете, ваш первоначальный голос будет восстановлен после перерегистрации %@</p>";
+"pop.page.tip.ethViteExchange" = "Вы можете конвертировать ERC20 VITE в Vite Pre-Mainnet через VITE конвертацию.\n        Во время конвертации, ваш ERC20 VITE будет передан на Ethereum черный адрес:\n        0x1111111111111111111111111111111111111111111111111111111111111111111111, 111111, и вы получите одинаковую сумму VITE на ваш адрес\n        после транзакции по адресу Ethereum черная дыра. В процессе конвертации плата за транзакцию\n        от черной дыры адреса Ethereum приходит с вашего текущего ETH адреса. После отправки преобразования, пожалуйста, подождите\n        не менее 30 подтверждений в сети Ethereum, вы можете найти историю транзакций в истории конверсий.\n    ";
 
 // ViteURI
 "vite.uri.amount.format.error" = "Неверный формат суммы транзакции";
@@ -1000,66 +1000,66 @@
 "buildin.dex.staking.as.mining.item1.title" = "Сумма";
 
 "buildin.dex.cancel.staking.as.mining.function.title" = "Разморозка";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Текущий адрес";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Сумма";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "Стать VIP";
+"buildin.dex.become.vip.item0.title" = "Текущий адрес";
+"buildin.dex.become.vip.item1.title" = "Сумма";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
-"buildin.dex.cancel.vip.item1.title" = "Amount";
+"buildin.dex.cancel.vip.function.title" = "Отменить VIP";
+"buildin.dex.cancel.vip.item0.title" = "Текущий адрес";
+"buildin.dex.cancel.vip.item1.title" = "Сумма";
 
-"buildin.dex.lock.vx.function.title" = "Stake";
-"buildin.dex.lock.vx.item0.title" = "Current Address";
-"buildin.dex.lock.vx.item1.title" = "Amount";
+"buildin.dex.lock.vx.function.title" = "Заморозка";
+"buildin.dex.lock.vx.item0.title" = "Текущий адрес";
+"buildin.dex.lock.vx.item1.title" = "Сумма";
 
-"buildin.dex.un.lock.vx.function.title" = "Retrieve";
-"buildin.dex.un.lock.vx.item0.title" = "Current Address";
-"buildin.dex.un.lock.vx.item1.title" = "Amount";
+"buildin.dex.un.lock.vx.function.title" = "Вернуть";
+"buildin.dex.un.lock.vx.item0.title" = "Текущий адрес";
+"buildin.dex.un.lock.vx.item1.title" = "Сумма";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.function.title" = "Разморозить";
+"buildin.dex.cancel.stake.item0.title" = "Текущий адрес";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.busy.header" = "Подтверждение транзакции";
+"app.scheme.home.page.busy.content" = "Пожалуйста, подтвердите информацию о транзакции ниже";
+"app.scheme.network.error" = "Ошибка сети";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "Успешно скопировано";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
-"fund.walletAddress" = "My Address";
-"fund.walletFound" = "Wallet Balance";
-"fund.quotaInfo" = "Spendable Quota/Quota Limit";
-"fund.deposit.amount" = "Transfer Amount";
-"fund.deposit.all" = "All";
-"fund.quotaSpend" = "Quota";
-"fund.deposit" = "Transfer";
-"fund.vitexFound" = "Available Balance";
-"fund.withdraw.amount" = "Transfer Amount";
-"fund.withdraw" = "Transfer";
-"fund.vitex.all" = "Exchange Total Balance";
-"fund.vitex.available" = "Exchange Available Balance";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
-"fund.withdraw.placeholder" = "Please enter transfer amount";
-"fund.deposit.placeholder" = "Please enter transfer amount";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.title.wallet" = "Актив кошелька";
+"fund.title.vitex" = "Биржевые активы";
+"fund.title.toWallet" = "Вывод на Кошелек";
+"fund.title.toVitex" = "Депозит на Биржу";
+"fund.walletAddress" = "Мой Адрес";
+"fund.walletFound" = "Баланс Кошелька";
+"fund.quotaInfo" = "Лимит расхода квоты/квот";
+"fund.deposit.amount" = "Сумма перевода";
+"fund.deposit.all" = "Все";
+"fund.quotaSpend" = "Квота";
+"fund.deposit" = "Перевод";
+"fund.vitexFound" = "Доступный Баланс";
+"fund.withdraw.amount" = "Сумма перевода";
+"fund.withdraw" = "Перевод";
+"fund.vitex.all" = "Общий Баланс на Бирже";
+"fund.vitex.available" = "Доступный Баланс на Бирже";
+"fund.tooBig" = "Введенная вами сумма превышает доступный баланс, пожалуйста, введите снова";
+"fund.withdraw.placeholder" = "Введите сумму перевода";
+"fund.deposit.placeholder" = "Введите сумму перевода";
+"fund.cannotDeposit" = "Перевод невозможен из-за недостаточного баланса кошелька";
+"fund.cannotWithDraw" = "Перевод невозможен из-за нехватки средств на биржевом балансе";
+"fund.DepositSuccess" = "Успешный перевод. Проверить биржевой баланс?";
 
-"transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
-"transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
-"transfer.token" = "Token";
-"transfer.amount" = "Amount";
-"transfer.available" = "Balance: ";
+"transfer.from" = "Из";
+"transfer.wallet.account" = "Кошелька";
+"transfer.to" = "В";
+"transfer.dex.account" = "Баланс биржи";
+"transfer.token" = "Токен";
+"transfer.amount" = "Сумма";
+"transfer.available" = "Баланс: ";
 "transfer.title" = "Перевод";
 "transfer.search.placeholder" = "Пожалуйста, введите имя токена";
 
