@@ -1,0 +1,1259 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Stone on 2018/12/5.
+  
+*/
+/* ViteCommunity */
+
+
+"confirm.button.title" = "Подтвердить";
+"cancel.button.title" = "Отменить";
+"alter.title" = "ЗАМЕЧАНИЕ";
+
+"discover.page.title" = "Исследовать";
+"discover.page.game.cell.palyNum" = "%@ игроков играют";
+"discover.page.activity.page.title1" = "Последние события";
+"discover.page.activity.page.title2" = "История";
+"discover.page.news.cell.official" = "Vite";
+"discover.page.news.cell.time.minute" = "Сейчас";
+"discover.page.news.cell.time.hour" = "%@ч назад";
+"discover.page.news.cell.time.day" = "%@ дн. назад";
+"discover.page.headerTitle.activity" = "Центр Кампании";
+"discover.page.headerTitle.game" = "VITE Игры";
+"discover.page.headerTitle.news" = "Vite Новости";
+"discover.page.VCWebTitle.activity" = "Vite События";
+"discover.page.VCWebTitle.game" = "VITE Игры";
+"discover.page.VCWebTitle.news" = "Vite Новости";
+"discover.page.game.alter.title" = "Вы посетили страницу, которая покидает Vite App, и вы будете перенаправлены на сторонние dApp. Ваше использование в dApp будет соответствовать условиям Соглашения dApp и Политике конфиденциальности. Компания Vite Labs не имеет никакого контроля над качеством, содержанием, надежностью или безопасность сервиса dApp, и компания Vite Labs не несет ответственности за ее использование.";
+
+//AirDrop
+"airdrop.help" = "Справка";
+"airdrop.vpower" = "Победители";
+"airdrop.profit" = "Выгоды";
+"airdrop.validationFailed" = "Ошибка подтверждения";
+"airdrop.enabled" = "Подобрать от 10 до 1000";
+"airdrop.leftTime" = "Обратный отсчет";
+
+"airdrop.error.tip.need.update" = "Airdrop поддерживается только на iOS 11 и выше.";
+"airdrop.error.tip.not.support" = "Ваше устройство не поддерживает Airdrop.";
+"airdrop.error.tip.unknown.error" = "Неизвестная ошибка.";
+
+
+"tab.title.wallet" = "Кошелек";
+"tab.title.market" = "Рынки";
+"tab.title.trading" = "Торговля";
+"tab.title.discover" = "Узнайте";
+"tab.title.dex" = "Активы";
+
+/* App */
+"Cancel" = "Отмена";
+"Finish" = "Готово";
+"Delete" = "Удалить";
+"Hint" = "Быстрый";
+"Yes" = "Да";
+"No" = "Нет";
+"Loading" = "Загрузка";
+"Retry" = "Повторить";
+"Confirm" = "Подтвердить";
+"Submit" = "Отправить";
+"Close" = "Я понимаю";
+"Update.app" = "Обновить приложение";
+"Submit.cancel" = "Отмена";
+"Close" = "Закрыть";
+"Quit" = "Выйти";
+"web.page.host.tip" = "Эта страница предоставлена %@";
+
+/* Login */
+"create.account" = "Создать Аккаунт";
+"import.account" = "Восстановить аккаунт";
+"select.wallet.account" = "Выберите аккаунт";
+
+/* Lock */
+"lock.page.pwd.btn.title" = "Войти с помощью пароля";
+"lock.page.fingerprint.btn.title" = "Биометрическая верификация";
+"lock.page.fingerprint.alter.title" = "Подтвердите отпечаток пальца для активации Touch ID";
+"lock.page.changeUser.btn.title" = "Сменить аккаунт";
+
+/* create */
+"create.page.title" = "Создать Аккаунт";
+"create.page.tf.title" = "Имя аккаунта";
+"create.page.pw.title" = "Пожалуйста, введите пароль";
+"create.page.pw.repeate.title" = "Пожалуйста, введите пароль еще раз";
+"create.page.invite.code.title" = "Введите пригласительный код или отсканируйте QR-код, чтобы получить 10% скидку на торговые комиссии и дополнительные множители наград";
+"create.page.invite.code.placeholder" = "Пригласительный код (необязательно)";
+"create.page.submit.btn.title" = "Создать";
+"create.page.toast.error.invite.code" = "Неправильный код приглашения";
+
+"create.page.tip.title" = "Инструкции по созданию резервной копии";
+"create.page.tip.content1" = "Внимание! Потеря мнемонических слов приведет к потере всех цифровых активов в кошельке.";
+"create.page.tip.content2" = "Импорт мнемонических слов - это единственный способ восстановить учетную запись после удаления или переустановки приложения.";
+"create.page.tip.content3" = "Пожалуйста, храните мнемонические слова в надежном месте.";
+"create.page.tip.button.skip.title" = "Резервное копирование позже";
+"create.page.tip.button.next.title" = "Резервное копирование";
+
+/* mnemonic */
+"mnemonic.backup.page.title" = "Резервная копия мнемонических слов";
+"mnemonic.backup.page.tip1" = "Мы рекомендуем два следующих метода резервного копирования:";
+"mnemonic.backup.page.tip2" = "Запишите мнемонические слова на листе бумаги, а затем сохраните их в надежном месте.";
+"mnemonic.backup.page.tip3" = "Сканируйте QR-код ниже с помощью Vite wallet, установленного на другом устройстве.";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "Английский";
+
+"mnemonic.backup.scan.alert.title" = "Уведомление";
+"mnemonic.backup.scan.alert.message" = "Подтвердите создание учетной записи со следующими мнемоническими словами?";
+"mnemonic.backup.scan.alert.ok.title" = "Подтвердить";
+"mnemonic.backup.scan.alert.cancel.title" = "Отмена";
+
+"mnemonic.backup.page.check.button1.title" = "Я понимаю, если я потеряю мнемонические слова, я никогда не смогу восстановить доступ к моим активам";
+"mnemonic.backup.page.check.button2.title" = "Я понимаю, если я забуду или потеряю мнемонические слова, никто не сможет помочь восстановить аккаунт";
+"mnemonic.backup.page.check.button3.title" = "Я уже прочитал, понял и согласен с пользовательским соглашением ";
+"mnemonic.backup.page.clause.button.title" = "Правила и Условия";
+"mnemonic.backup.page.tip.lab.title" = "Мнемонические слова (главный пароль)";
+"mnemonic.backup.page.tip.anewBtn.title" = "Перегенерировать";
+"mnemonic.backup.page.tip.nextBtn.title" = "Резервное копирование";
+"mnemonic.backup.page.tip.skip.title" = "Резервное копирование позже";
+"mnemonic.backup.page.alter.title" = "Мы настоятельно рекомендуем не делать скриншот мнемонических слов. Мы предлагаем вам записать фразу на листе бумаги и хранить его в надежном месте.";
+"mnemonic.backup.page.alter.message" = "Вы хотите создать новую seed фразу?";
+"mnemonic.backup.page.alter.cancel" = "Нет";
+"mnemonic.backup.page.alter.confirm" = "Да";
+"mnemonic.backup.page.error.type.name" = "Пожалуйста, введите имя аккаунта или пароль";
+"mnemonic.backup.page.error.type.nameValid" = "Имя аккаунта поддерживает только китайские и английские символы, а также символ подчеркивания.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Имя пользователя поддерживает не более 32 символов";
+"mnemonic.backup.page.error.type.difference" = "Пожалуйста, введите тот же пароль!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Ваш пароль должен содержать не менее 8 символов";
+"mnemonic.backup.page.switch.mode.title" = "Переключиться на %@ мнемонических слов";
+
+"mnemonic.backup.tip.alert.title" = "Резервная копия мнемонических слов не сделана";
+"mnemonic.backup.tip.alert.message" = "Пожалуйста, введите пароль для резервного копирования мнемонических слов.";
+"mnemonic.backup.tip.alert.ok.title" = "Резервное копирование сейчас";
+"mnemonic.backup.tip.alert.cancel.title" = "Резервное копирование позже";
+
+"mnemonic.affirm.page.title" = "Подтвердить";
+"mnemonic.affirm.page.tip.title" = "Соберите мнемонические слова в правильном порядке";
+"mnemonic.affirm.alter.title" = "Это действие будет регенерировать мнемоническую фразу, вернуться?";
+"mnemonic.affirm.alter.check.title" = "Некорректная seed фраза!";
+"mnemonic.affirm.page.add.loading" = "Добавление...";
+
+/* import mnemonic*/
+"import.page.title" = "Пожалуйста, введите вашу seed фразу";
+"import.page.submit.btn" = "Восстановить аккаунт";
+"import.page.submit.invalid.mnemonic" = "Что-то не так с вашей seed фразой, пожалуйста, попробуйте еще раз!";
+"import.page.submit.loading" = "Импорт...";
+"import.page.submit.success" = "Успешный импорт";
+"import.page.alert.exist.title" = "Введенная вами фраза уже имела имя учетной записи '%@' на текущем устройстве, вы уверены, что хотите перезаписать существующую учетную запись";
+"import.page.alert.exist.ok" = "Подтвердить";
+"import.page.alert.exist.cancel" = "Отмена";
+
+
+/* export mnemonic */
+"export.page.title" = "Экспорт сид-фразы";
+"export.page.alter.title" = "Введите пароль";
+"export.page.alter.tf.placeholder" = "Пожалуйста, введите пароль";
+"export.page.alter.password.error" = "Неверный пароль!";
+
+/* login */
+"login.page.btn.chooseName" = "Выберите учетную запись";
+"login.page.btn.login" = "Логин";
+"login.page.loading.title" = "Обработка";
+"login.page.error.toast.title" = "Неверный пароль! Попробуйте импортировать мнемоническую фразу";
+
+/* Home */
+"tabbar.item.title.wallet" = "Кошелек";
+"tabbar.item.title.my" = "Я";
+
+/* Wallet Home */
+"wallet.home.btc.title" = "Общее значение (BTC)";
+"wallet.home.balance.title" = "Баланс";
+"wallet.home.unconfirmed.title" = "Не получено %@";
+"wallet.home.toast.copy.address" = "Успешно скопировано!";
+"wallet.home.scan.url.alert.title" = "ЗАМЕЧАНИЕ";
+"wallet.home.scan.url.alert.message" = "Вы собираетесь посетить стороннюю страницу, которая покидает Vite App. Компания Vite Labs не имеет контроля над качеством, содержанием, надежностью или безопасностью сервиса dApp. Vite Labs не несут ответственности за использование сторонних сервисов и возможный ущерб от них.";
+"wallet.home.header.title" = "Активы";
+
+/* Manage Wallet */
+"manage.wallet.page.title" = "Wallet Management";
+"manage.wallet.page.name.cell.title" = "Account Name";
+"manage.wallet.page.addressManage.cell.title" = "Address Management";
+"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
+"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
+"manage.wallet.page.changeName.loading" = "Editing";
+"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+
+"my.page.contacts.cell.title" = "Contact Address";
+"my.page.mnemonic.cell.title" = "Mnemonic Words";
+"my.page.system.cell.title" = "Settings";
+"my.page.invite.cell.title" = "Mining Referrals";
+"my.page.reward.cell.title" = "Rewards Enquiry";
+"my.page.forum.cell.title" = "Official Forum";
+"my.page.aboutUs.cell.title" = "About Us";
+"my.page.change.wallet.name.alter.title" = "Edit Account Name";
+"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+
+/* Transaction List */
+"transaction.list.page.title" = "Transaction History";
+"transaction.list.page.empty" = "Empty";
+"transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
+"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
+"transaction.list.page.header.refresh.pulling" = "Release to refresh";
+"transaction.list.page.header.refresh.refreshing" = "Loading...";
+"transaction.list.transaction.type.name.contract" = "Call";
+"transaction.list.transaction.type.name.register" = "Registration";
+"transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
+"transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
+"transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
+"transaction.list.transaction.type.name.vote" = "Voting";
+"transaction.list.transaction.type.name.cancelVote" = "Revoke Voting";
+"transaction.list.transaction.type.name.pledge" = "Get TPS quota";
+"transaction.list.transaction.type.name.cancelPledge" = "Withdrawal of staking quota";
+"transaction.list.transaction.type.name.coin" = "Token Issuance";
+"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
+"transaction.list.transaction.type.name.transfer" = "Transfer";
+"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
+"transaction.list.transaction.confirmations" = "%@ Confirmations";
+"transaction.list.transaction.confirmations.finished" = "Confirmed";
+"eth.transaction.detail.page.state.call.wait" = "Pending";
+
+/* Transaction Detail */
+"vite.transaction.detail.page.state.success" = "Transaction Completed";
+"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
+"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
+"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
+"vite.transaction.detail.page.type.title" = "Transaction Type";
+"vite.transaction.detail.page.type.send" = "Request";
+"vite.transaction.detail.page.type.receive" = "Response";
+"vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.note.title" = "Комментарий (Memo)";
+"vite.transaction.detail.page.link.button.title" = "Подробнее в Vite Explorer";
+
+/* BalanceInfo */
+"balance.info.detail.balance.title" = "Баланс";
+"balance.info.detail.unconfirmed.title" = "Не получено";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.available.amount.title" = "Доступно";
+"balance.info.detail.pledge.amount.title" = "Заморожено";
+"balance.info.detail.show.transactions.button.title" = "Проверьте историю транзакций в Ethereum Explorer";
+"balance.info.detail.reveice.button.title" = "Получить";
+"balance.info.detail.send.button.title" = "Отправить";
+"balance.info.detail.vote" = "Голосовать";
+"balance.info.detail.pledge" = "Получить Квоту";
+"balance.info.detail.exchange.vite" = "Конвертация VITE";
+"balance.info.detail.pledge.count.content" = "Лимит расхода квоты/квот";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+
+"gateway.info.detail.page.title" = "Детали шлюза";
+"gateway.info.detail.page.name" = "Название шлюза";
+"gateway.info.detail.page.webside" = "Официальный сайт шлюза";
+"gateway.info.detail.page.brief" = "О шлюзе";
+"gateway.info.detail.page.email" = "Служба поддержки";
+"gateway.info.detail.page.agreement" = "Условия обслуживания";
+"gateway.info.detail.page.link" = "Ссылка шлюза";
+
+"token.info.detail.page.title" = "Параметры токена";
+"token.info.detail.page.name" = "Имя токена";
+"token.info.detail.page.id" = "ID Токена";
+"token.info.detail.page.brief" = "Введение";
+"token.info.detail.page.total" = "Общий выпуск";
+"token.info.detail.page.type" = "Тип токена";
+"market.detail.page.token.info.type.value.native" = "Нативный";
+"market.detail.page.token.info.type.value.other" = "Кросс-чейн";
+"token.info.detail.page.gateway" = "Кросс-чейн шлюз";
+"token.info.detail.page.webside" = "Сайт";
+"token.info.detail.page.paper" = "Белая бумага";
+"token.info.detail.page.browser" = "Обозреватель блоков";
+"token.info.detail.page.github" = "Github";
+"token.info.detail.page.social" = "Социальные сети";
+
+/* Address Manage Page */
+"address.manage.page.title" = "Мой %@ адрес";
+"address.manage.default.address.cell.title" = "Адрес по умолчанию";
+"address.manage.address.header.title" = "Адреса";
+"address.manage.address.generate.button.title" = "Добавить адрес";
+"address.manage.address.generate.button.toast" = "Добавьте до 100 адресов!";
+"address.manage.address.generate.button.already.toast" = "Адрес уже существует";
+"address.manage.address.generate.button.error.toast" = "Пожалуйста, введите число";
+"address.manage.tip.alert.message" = "Макс. генерация: 100 адресов; требуется получение адреса вручную для всех остальных адресов, кроме #1 в списке";
+"address.manage.alert.title" = "Сгенерировать новые адреса";
+"address.manage.alert.placeholder" = "Введите число от 1 до 100";
+"address.manage.alert.tip" = "Массово сгенерировать указанное количество адресов";
+"address.manage.tip.alert.ok" = "Я знаю";
+"address.manage.default.address.name" = "Без названия";
+"address.manage.change.name.alert.title" = "Изменить псевдоним адреса";
+"address.manage.change.name.alert.placeholder" = "Please input new alias";
+
+/* Send Page */
+"send.page.title" = "Send";
+"send.page.my.address.title" = "My %@ Address";
+"send.page.my.balance.title" = "Balance";
+"send.page.my.pledge.title" = "Benefited Stake";
+"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
+"send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
+"send.page.add.my.address.button.title" = "Mine";
+"send.page.vite.contacts.button.title" = "VITE Contact Address";
+"send.page.scan.address.button.title" = "Scan";
+"send.page.to.address.title" = "Recipient Address";
+"send.page.amount.title" = "Amount";
+"send.page.all.button.title" = "All";
+"send.page.remark.title" = "Memo";
+"send.page.send.button.title" = "Send";
+"send.page.amount.toolbar.button.title" = "Next";
+"send.page.toast.address.error" = "Wrong address, please check the format";
+"send.page.toast.amount.error" = "Insufficient Balance";
+"send.page.toast.amount.empty" = "Please input balance";
+"send.page.toast.amount.zero" = "The amount has to be positive";
+"send.page.toast.note.too.long" = "The length of notes has reached limitations";
+"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
+"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
+"send.page.not.enough.balance.alert.button" = "Cancel";
+"send.page.token.info.error" = "Token Info Error";
+"send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
+
+/* eth vite exchange */
+"eth.vite.exchange.page.title" = "VITE Conversion";
+"eth.vite.exchange.page.my.address.title" = "ETH Address";
+"eth.vite.exchange.page.my.balance.title" = "Balance";
+"eth.vite.exchange.page.to.address.title" = "VITE Address";
+"eth.vite.exchange.page.amount.title" = "Conversion Amount";
+"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
+"eth.vite.exchange.page.send.button.title" = "Convert";
+"eth.vite.exchange.page.address.change.button.title" = "Switch";
+"eth.vite.exchange.page.exchange.all.button.title" = "All";
+"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+
+/* Receive Page */
+"Receive.page.token.title" = "Receive";
+"Receive.page.mine.title" = "My QRCode";
+"Receive.page.token.name.label" = "Scan and Send %@";
+"Receive.page.token.amount.button.title" = "Input Amount";
+"Receive.page.token.note.label" = "Comment";
+"Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.wallet.name" = "Vite Wallet";
+
+/* Scan Page */
+"Scan.page.title" = "Scan";
+"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
+"Scan.page.qccode.not.found" = "No QR code found";
+
+/* System */
+"system.page.logout.loading" = "Logout";
+"system.page.cell.change.language" = "Language";
+"system.page.cell.change.currency" = "Currency";
+"system.page.cell.login.pwd" = "Разблокировать по паролю";
+"system.page.cell.login.faceId" = "Разблокировать по Face ID";
+"system.page.cell.login.touchId" = "Разблокировать по Touch ID";
+"system.page.cell.transfer.faceId" = "Использовать Face ID для транзакций";
+"system.page.cell.transfer.touchId" = "Использовать Touch ID для транзакций";
+"system.page.cell.logout.title" = "Выйти/Сменить аккаунт";
+"system.page.cell.upload.log.title" = "Загрузить журнал";
+"system.page.cell.upload.log.toast.success" = "Журнал загружен";
+"system.page.cell.delete.wallet.title" = "Удалить текущий аккаунт";
+"system.page.cell.delete.wallet.alert.title" = "Вы можете восстановить свою учетную запись только мнемоническими словами. Хотите удалить эту учетную запись?";
+
+/* about us */
+"aboutUs.page.cell.blockHeight" = "Текущая высота";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Загрузка";
+"aboutUs.page.cell.version" = "Версия";
+"aboutUs.page.cell.contact" = "Свяжитесь с нами";
+"aboutUs.page.cell.shareUs" = "Поделиться Vite APP";
+"aboutUs.page.cell.official.website" = "Vite.org";
+"aboutUs.page.cell.portal.website" = "Vite.net";
+"aboutUs.page.cell.blog.website" = "Vite.wiki";
+"aboutUs.page.email.title" = "Отзыв";
+"aboutUs.page.email.content" = "Совет, полученный из среды использования\n1. Системное устройство: %@\n2. Системная версия:%@\n3. APP версия: %@\n4. Язык:%@";
+
+/* toast error */
+"toast.error.login" = "Ошибка входа";
+
+/* quota manage */
+"quota.manage.page.title" = "Получить Квоту";
+"quota.manage.page.input.address.title" = "Выгодоприобретатель Квоты";
+"quota.manage.page.quota.money.title" = "Сумма заморозки";
+"quota.manage.page.quota.quota.title" = "Квота";
+"quota.manage.page.quota.money.placeholder" = "Введите сумму, минимум 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Длительность замораживания";
+"quota.manage.page.quota.snapshoot.height.desc" = "Приблизительно %@ дней";
+"quota.manage.page.submit.btn.title" = "Подтвердить заморозку";
+"quota.manage.page.check.quotaList.btn.title" = "Мои заморозки";
+"quota.manage.page.toast.money.error" = "Стейк не может быть меньше 134 VITE";
+"quota.submit.pop.desc" = "Удостоверьтесь, что заморозили %@ VITE для получения квоты. Вы не сможете разморозить средства ранее, чем через 3 дня после начала заморозки.";
+"quota.submit.pop.submit.btn.title" = "Подтвердить";
+"quota.submit.pop.cancel.btn.title" = "Отмена";
+"quota.submit.page.quota.address.placeholder" = "Пожалуйста, введите адрес выгодоприобретателя";
+
+/* quota alert */
+"quota.alert.title" = "Недостаточно Квоты";
+"quota.alert.pow.and.quota.message" = "Недостаток квоты, вы можете получить квоту, запустив PoW или заморозив VITE.";
+"quota.alert.need.quota.message" = "Недостаточно квоты PoW, мы рекомендуем вам застейкать VITE для получения квоты.";
+"quota.alert.pow.button.title" = "Run PoW";
+"quota.alert.quota.button.title" = "Заморозка VITE";
+"quota.float.view.title" = "Вычисления PoW для получения квоты для этой транзакции...";
+"quota.float.view.tip" = "Эта транзакция стоит %@UT";
+"quota.pow.finished.float.view.title" = "Транзакция отправлена";
+"quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
+"quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
+"quota.pow.finished.float.view.pledge.button.title" = "Транзакции быстрее при заморозке VITE";
+
+/* Peldge History */
+"peldge.message" = "В настоящее время приложение поддерживает только проверку списков заморозки, пожалуйста, перейдите в Web Wallet        чтобы при необходимости разморозить токены.";
+"peldge.deadline" = "Дата исполнения";
+"peldge.title" = "Мои заморозки";
+"peldge.address.title" = "Выгодоприобретатель";
+"peldge.cancel.peldge.button.title" = "Withdraw";
+"peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
+"peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
+"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
+/* Vote */
+"vote.page.title" = "Vote";
+"vote.page.info.nodata.title" = "No Vote";
+"vote.page.voteStatus.voteSuccess" = "Successful Vote";
+"vote.page.voteStatus.voting" = "Voting";
+"vote.page.voteStatus.cancelVoting" = "Revoking";
+"vote.page.voteStatus.voteInvalid" = "Invalid Voting";
+"vote.page.voteInfo.nodePolls.title" = "My Votes";
+"vote.page.nodeStatus.valid.title" = "Active";
+"vote.page.nodeStatus.invalid.title" = "Inactive";
+"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+
+/* Vote List*/
+"vote" = "Vote";
+"vote.list.title" = "Candidate Nodes";
+"vote.list.search" = "Search for name or address of candidate nodes";
+"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
+"vote.list.confirm.revote" = "Confirm";
+"vote.list.count" = "Votes";
+"vote.list.address" = "Address";
+"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
+"vote.list.search.empty" = "No result, please try another input";
+"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+
+// Contract
+"contract.confirm.info" = "Contract Address";
+
+//RefreshFooter
+"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
+"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
+"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+
+//Welcome
+"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+//"introduction.page.tip1.title" = "Cross-chain multiple token types";
+//"introduction.page.tip2.title" = "Decentralized wallet";
+//"introduction.page.tip3.title" = "Zero transaction fees";
+//"introduction.page.tip4.title" = "Fast transactions";
+//"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+//"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+//"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+//"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+//"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+/* Error Message */
+
+"vite.error.network.error" = "Something went wrong with network, please try again later";
+"vite.error.operation.failure" = "Operation failed";
+"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
+"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
+"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
+"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
+
+"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
+
+/* Tip String */
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can join and vote for 25 SBPs(Snapshot Block Producer), each round of voting lasts 75s, your votes equals the balance of your vote address. Your vote keeps the same the next rounds unless you revoke your vote or vote for another node. Random 23 out of top 25 candidates plus 2 out of candidates ranking 26th to 100th, 25 nodes in total will be elected as SBPs.</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ you had voted for has stopped campaigning for SBP, you may vote again or revoke your vote. If you do not do so, your original vote will be recovered after %@ re-registering.</p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+
+// eth
+"eth.send.page.my.address.title" = "ETH Address";
+"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
+"eth.receive.page.my.address.title" = "Мой ETH адрес";
+"eth.page.gasFee.title" = "Комиссия ETH (Gas)";
+"eth.page.gasFee.slow.title" = "Медленно";
+"eth.page.gasFee.fast.title" = "Быстро";
+"eth.page.gasFee.notice.title" = "Мы вернем остаток газа обратно на ваш аккаунт";
+
+// eth transaction detail
+"eth.transaction.detail.page.title" = "Подробнее";
+"eth.transaction.detail.failed" = "Транзакция не удалась";
+"eth.transaction.detail.success" = "Транзакция завершена";
+"eth.transaction.detail.to.address" = "Адрес получателя";
+"eth.transaction.detail.from.address" = "Исходящий адрес";
+"eth.transaction.detail.amount" = "Сумма";
+"eth.transaction.detail.gas.fee" = "Комиссия ETH (Gas)";
+"eth.transaction.detail.gas.price" = "Цена газа";
+"eth.transaction.detail.gas.limit" = "Лимит газа";
+"eth.transaction.detail.hash" = "Хеш транзакции";
+"eth.transaction.detail.block" = "Блок";
+"eth.transaction.detail.note" = "Комментарий (Memo)";
+"eth.transaction.detail.go.button.title" = "Подробнее на Etherscan";
+
+//token
+"token.list.page.search.title" = "Пожалуйста, введите название токена или адрес контракта";
+"token.list.page.section.vite.header" = "Сеть Vite";
+"token.list.page.section.eth.header" = "Сеть Ethereum";
+"token.list.page.section.grin.header" = "Сеть GRIN";
+"token.list.page.ignore.btn.title" = "Пропустить";
+"token.list.page.ignore.lab.title" = "%d новых активов";
+"token.list.page.ignore.alter.title" = "Не уведомлять об активах. Вы уверены, что хотите проигнорировать активы ниже?";
+// Contacts Home
+"contacts.home.page.title" = "Адрес контакта";
+"contacts.home.page.no.contact.tip" = "Добавьте свой первый адрес";
+"contacts.home.page.single.no.contact.tip" = "Пока нет %@ адреса";
+"contacts.home.page.filter.all" = "Все";
+"contacts.home.page.add.button.title" = "Добавить";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "Добавить адрес контакта";
+"contacts.edit.page.edit.title" = "Изменить адрес контакта";
+"contacts.edit.page.name.title" = "Имя";
+"contacts.edit.page.address.title" = "Пожалуйста, введите адрес";
+"contacts.edit.page.type.select.title" = "Выберите тип токена";
+"contacts.edit.page.save.button.title" = "Сохранить";
+"contacts.edit.page.save.success.tip" = "Успешно добавлено";
+"contacts.edit.page.edit.success.tip" = "Успешно сохранено";
+"contacts.edit.page.delete.button.title" = "Удалить";
+"contacts.edit.page.delete.alert.title" = "Вы уверены, что хотите удалить этот адрес?";
+
+// Address List
+"address.list.page.my.title" = "Мой VITE адрес";
+"address.list.page.other.title" = "%@ адрес контакта";
+"address.list.page.no.address.tip" = "Ещё нет %@ адреса";
+
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "Не удается идентифицировать";
+"workflow.confirm.page.biometryAuthFailed.back" = "Назад";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Повторить";
+"workflow.confirm.page.toast.password.error" = "Неверный пароль!";
+
+"workflow.toast.transfer.success" = "Успешно отправлено";
+"workflow.toast.submit.success" = "Успешно подтверждено";
+"workflow.toast.cancel.pledge.success" = "Запрос на разморозку отправлен";
+"workflow.toast.vote.success" = "Successfully send vote request";
+"workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
+"workflow.toast.contract.success" = "Success";
+"workflow.toast.place.order.success" = "Order Placed";
+"workflow.toast.cancel.order.success" = "Order Cancelled";
+
+"workflow.congestion.without.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
+"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.without.pow.alert.ok" = "Transact Now";
+"workflow.congestion.with.pow.alert.title" = "Notice";
+"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
+"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
+
+"workflow.fast.get.quota.title" = "Instantly Getting Quota";
+"workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
+"workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
+"workflow.fast.get.quota.link" = "clicking here";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "Verify";
+"confirm.transaction.address.title" = "Recipient Address";
+"confirm.transaction.amount.title" = "Amount";
+"confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.quota.title" = "Quota";
+"confirm.transaction.page.use.password" = "Use password";
+"confirm.transaction.page.pw.title" = "Please input password";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "Send";
+"confirm.transaction.page.vite.confirm.button" = "Confirm";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "Get Quota";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
+"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.vote.node.name" = "Node Name";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.buy.title" = "Buy %@";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+
+"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
+"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirm";
+
+// vite call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Платеж";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Подтвердить";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "Отправить";
+"confirm.transaction.page.eth.confirm.button" = "Подтвердить";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "Конвертация VITE";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Конвертировать";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "Отправить";
+"confirm.transaction.page.grin.confirm.button" = "Подтвердить";
+
+// Grin
+"grin.balance.total" = "Итого";
+"grin.balance.spendable" = "Можно тратить";
+"grin.balance.awaiting" = "Ожидание подтверждения";
+"grin.balance.locked" = "Заблокировано предыдущей транзакцией";
+"grin.wallet.check" = "Проверить";
+"grin.wallet.check.desc" = "Vite wallet отсканирует блокчейн и отменит все ожидающие транзакции, разблокирует заблокированные выводы, восстановит все недостающие выходы и убедится, что содержимое вашего кошелька соответствует версии блокчейна. Расходует большое количество трафика, рекомендуется продолжить процесс по Wi-Fi";
+"grin.txType.sent" = "Создано";
+"grin.txType.waitToSign" = "Не получено";
+"grin.txType.received" = "Получено";
+"grin.txType.waitToFinalize" = "Не финализированный";
+"grin.txType.finalized" = "Публикация";
+"grin.txType.confirmed" = "Подтверждено";
+"grin.txType.confirmedCoinbase" = "Подтверждено Coinbase";
+"grin.txType.Canceled" = "Отменено";
+"grin.tx.Cancele" = "Отменено";
+"grin.tx.Repost" = "Репост";
+"grin.tx.copyId" = "Копировать";
+"grin.tx.useVite" = "Использовать VITE адрес";
+"grin.sent.useVite.desc" = "Отправка GRIN через VITE адрес - обмен файлом транзакций, зашифрованным Vite, что гарантирует, что только реальный получатель может расшифровать файл.";
+"grin.sent.useHttp" = "Использовать HTTP адрес";
+"grin.sent.useHttp.desc" = "Вы можете перенести GRIN в любой кошелек, поддерживающий получение GRIN через HTTP адрес, Тем не менее, мы предлагаем использовать VITE адрес или файл для передачи GRIN пользователям, использующим Vite кошелек.";
+"grin.sent.useFile" = "Использовать файл транзакции";
+"grin.know" = "Я знаю";
+"grin.notSeeAgain" = "Больше не показывать";
+"grin.sent.title" = "Отправить GRIN";
+"grin.sent.amount" = "Сумма";
+"grin.receive.ture.amount" = "Фактическая сумма";
+"grin.sent.fee" = "Комиссия";
+"grin.sent.creatFile" = "Создать файл транзакции";
+"grin.shareFile.desc" = "Пожалуйста, подпишите транзакцию";
+"grin.txFile.init.status" = "Создано";
+"grin.txFile.id" = "ID транзакции";
+"grin.shareFile" = "Поделиться файлом транзакции";
+"grin.finalize.title" = "Отправить GRIN";
+"grin.finalize.desc" = "Транзакция была получена получателем. Пожалуйста, финализируйте и опубликуйте транзакцию.";
+"grin.txFile.received.status" = "Получение подтверждено";
+"grin.finalize" = "Завершение и публикация";
+"grin.finalized.alertTitle" = "Транзакция финализирована";
+"grin.finalized.alertDesc" = "Ваша транзакция GRIN начала транслироваться";
+"grin.sent.next" = "Следующий";
+"grin.sent.suggest.useVite.title" = "Уведомление";
+"grin.sent.suggest.useVite.desc" = "Если вы хотите отправить GRIN пользователю Vite Wallet, рекомендуется посылать его через VITE адрес - это безопаснее и дешевле.";
+"grin.sent.switch" = "VITE Address";
+"grin.sent.stillUseHttp" = "HTTP Address";
+"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
+"grin.sent.vite.success" = "Your transaction has sent.";
+"grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
+"grin.receiveByVite.desc" = "Please note that web wallet doesn't support native GRIN. If you receive the VITE transaction with GRIN file, you should contact the sender to cancel the transaction and resend GRIN.";
+"grin.iknow" = "I know";
+"grin.thisIsFirstViteAddress" = "This is your first VITE address";
+"grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
+"grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
+"grin.receive.title" = "Receive GRIN";
+"grin.receive.sented" = "Created";
+"grin.creatTime" = "Creation Time";
+"grin.signAndShare" = "Receive and Share";
+"grin.sent.btnTitle" = "Send";
+"grin.receive.BtnTitle" = "Receive";
+"grin.notice.title" = "Notice";
+"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
+"grin.teach.http.receive.title" = "Receive GRIN though HTTP Address";
+"grin.teach.vite.sent.title" = "Send GRIN through VITE Address";
+"grin.teach.http.sent.title" = "Send GRIN though HTTP Address";
+"grin.txid.title" = "Transaction ID";
+"grin.switchAddress" = "Switch Address";
+"grin.http.address" = "HTTP Address";
+"grin.vite.address" = "VITE Address";
+"grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
+"grin.canceled" = "Canceled";
+"grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
+"grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
+"grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
+"grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
+"grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
+"grin.txbyfile.initStatus.sender" = "Created";
+"grin.txbyfile.initStatus.receiver" = "Awaiting Receiving";
+"grin.txbyfile.receivedStatus.receiver" = "Received";
+"grin.txbyfile.receivedStatus.sender" = "Awaiting Finalization";
+"grin.creat.syncronizing" = "Creat and sync, 3 mins estimated";
+"grin.recover.syncronizing" = "Recover and sync, 3 mins estimated";
+"grin.creating" = "Grin wallet initializing, please wait a moment.";
+"grin.pay.title.creat" = "Create";
+"grin.pay.title.finalize" = "Finalize";
+
+"grin.teach.file.send.desc" = "To transfer using Vite wallet, all you need to do is to share the transaction file with the recipient, open the file returned by the recipient by Vite wallet and finalize the transaction. After clicking \"Share the transaction file\", Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself.";
+"grin.teach.file.receive.desc" = "To transfer using Vite wallet, all you need to do is to open the file, click the \"Receive and share\" button, and return the confirm-to-receive file with the sender. After clicking \"Receive and share\",Vite wallet will show App usable in your mobile phone, you can choose whichever way you like, you can also save the file into your mobilephone and share by yourself. Vite wallet supports .grinslate file and .json file, and only when the file name containing \"response\" will it be recognized and opened successfully.";
+"grin.teach.file.send.title" = "Send GRIN through Transaction File";
+"grin.teach.file.receive.title" = "Receive GRIN through Transaction File";
+"grin.teach.http.receive.copyHttpAddress" = "Copy HTTP Address";
+"grin.teach.vite.receive.copyViteAddress" = "Copy VITE Address";
+"grin.teach.vite.send.startSend" = "Start to Send";
+"grin.txMethod.http" = "HTTP Address";
+"grin.txMethod.vite" = "VITE Address";
+"grin.txMethod.file" = "Файл транзакции";
+
+"grin.detail.fromMine" = "Coinbase";
+"grin.detail.txStatus" = "Состояние транзакции";
+"grin.detail.txCompleted" = "Транзакция завершена.";
+"grin.detail.txCancelled" = "Транзакция была отменена.";
+"grin.detail.txFileReecivedAndCanShare" = "Транзакция была получена, пожалуйста, поделитесь файлом финализации с отправителем.";
+"grin.detail.txReceived" = "Транзакция была получена.";
+"grin.detail.txReceivedAndCanAskGatewaytoSend" = "Вы уже получили транзакцию, если состояние не переходит в \"Подтвержденный\", пожалуйста, попробуйте \"Запрос для шлюза Vite на переотправку\".";
+"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "Если в течении длительного времени остается «Неполученным», попробуйте «Запрос для шлюза Vite на переотправку ».";
+"grin.detail.gateway.confirmConntLessThanTen" = "Vite шлюз получил транзакцию и передаст вам после 10 подтверждений.";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Подтверждение шлюза достигло 10, если состояние не меняется на «Неполученный» длительное время, пожалуйста, попробуйте «Запрос на повторный запуск».";
+"grin.detail.confirmLessThanThen" = "После 10 подтверждений «Фактическая сумма» будет переведена на «Доступную к тратам сумму».";
+"grin.detail.gateway" = "Коллекция VITE шлюзов";
+"grin.detail.gatewayReceived" = "Vite шлюз получил транзакцию и передаст вам после 10 подтверждений.";
+"grin.detail.txpostingAndCanRepost" = "Транзакция начала трансляцию, вы можете нажать кнопку «Повтор», чтобы попробовать еще раз, если транзакция долго не подтверждается";
+"grin.detail.pleaseFinalize" = "Пожалуйста, финализируйте транзакцию";
+"grin.detail.pleaseFinalize2" = "Транзакция обрабатывается, пожалуйста, подождите.";
+"grin.detail.txFileCreatedAndCanShare" = "Файл транзакции был создан, пожалуйста, убедитесь, что вы хотите поделиться файлом с получателем (поделиться, как вам нравится) и запросить ответный файл финализации.";
+"grin.detail.txFile" = "Файл транзакции";
+"grin.detail.txFinaziledAndPosting" = "Транзакция финализирована и транслирована.";
+"grin.detail.txisPostingPlsWait" = "Транзакция транслируется, пожалуйста, дождитесь подтверждения.";
+"grin.detail.waitHerOpenViteWalletToReceive" = "Пожалуйста, дождитесь пока получатель откроет Vite wallet и получит транзакцию.";
+"grin.detail.pleaseReciveAndShare" = "Пожалуйста, подпишите транзакцию и поделитесь файлом с отправителем, вы можете выбрать наиболее удобный для вас способ.";
+"grin.detail.gatewaysend" = "Отправить транзакцию через VITE";
+"grin.detail.repoat" = "Репост";
+"grin.node.configNode" = "Конфигурация полного узла.";
+"grin.node.addNode" = "Добавить новый полный узел";
+"grin.node.edit.nodeAddressTitle" = "Адрес полного узла";
+"grin.node.edit.apiSecretTitle" = "Ключ";
+"grin.node.select.canNotConnect" = "Не удалось подключиться к полному узлу.";
+"grin.detail.slateCopied" = "Slate ID скопирован.";
+"grin.send.illegalAmmount" = "Неверная сумма перевода";
+"grin.detail.gatewayResend" = "Запрос на повторную отправку шлюза Vite";
+"grin.export.mnemonic" = "Экспорт мнемонических слов";
+
+// CrossChain Transfer & Receive
+
+"crosschain.tokendetail" = "Детали токена";
+"crosschain.deposit" = "Кросс-чейн пополнение";
+"crosschain.withdraw" = "Кросс-чейн вывод";
+"crosschain.withdraw.btnTitle" = "Вывести";
+"crosschain.deposit.btnTitle" = "Пополнение";
+"crosschain.deposit.vitewallet" = "Пополнение из Vite wallet";
+"crosschain.deposit.otherwallet" = "Пополнение из другого кошелька";
+"crosschain.deposit.history" = "История пополнений";
+"crosschain.withdraw.history" = "История выводов";
+"crosschain.deposit.minAmountDesc" = "Принимается только %@ и минимальная сумма должна быть не менее %@";
+"crosschain.deposit.minComfirm" = "Процесс должен получить %@ подтверждений, пожалуйста, подождите.";
+"crosschain.deposit.address" = "Адрес пополнения";
+"crosschain.deposit.scanAddress" = "Отсканируйте QR-код адреса";
+"crosschain.deposit.scanLabel" = "Пожалуйста, отсканируйте код %@";
+"crosschain.deposit.labelDesc" = "Пожалуйста, используйте %@ вместе с адресом пополнения, иначе Вы потеряете токен(ы)    ";
+
+"crosschain.deposit.about" = "Кросс-чейн пополнение позволяет перевести %@ в сеть Vite. После этого вы также сможете совершать кросс-чейн переводы. При кросс-чейн пополнении баланс %@ на вашем Vite кошельке будет уменьшен соответственно.";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
+"crosschain.withdraw.eth.myAddress" = "My ETH Address";
+"crosschain.deposit.min" = "Minimum Deposit Amount ";
+"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
+"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.all" = "Deposit All";
+"crosschain.deposit.amount" = "Deposit Amount";
+"crosschain.withdraw.all" = "Withdraw All";
+"crosschain.withdraw.amount" = "Withdrawal Amount";
+"crosschain.tokenDetail.shortname" = "Symbol";
+"crosschain.tokenDetail.id" = "Token ID";
+"crosschain.tokenDetail.name" = "Token Name";
+"crosschain.tokenDetail.address" = "Coin Forging Address";
+"crosschain.tokenDetail.amount" = "Total Issuance";
+"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.tokenDetail.unit" = "";
+"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
+"crosschain.tokenDetail.issuance.true" = "Yes";
+"crosschain.tokenDetail.issuance.false" = "No";
+"crosschain.tokenDetail.date" = "Issuance Date";
+"crosschain.tokenDetail.desc" = "Description";
+"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
+"crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.tot.exceed.limit" = "Exceed the limit";
+"crosschain.status.wrong.address" = "Wrong transfer address";
+"crosschain.status.gatewayReceived" = "Deposit by Gateway";
+"crosschain.status.withdraw.failed" = "Withdrawal Failed";
+"crosschain.status.failedBecausePoor" = "Insufficient amount";
+"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
+"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
+"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
+"crosschain.withdraw.aboutfee" = "About Fee";
+"crosschain.status.failed" = "Deposit Failed";
+"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
+"crosschain.fee" = "Fee";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
+"crosschain.gatewaydetail.title" = "Gateway Details";
+"crosschain.gatewaydetail.name" = "Gateway Name";
+"crosschain.gatewaydetail.webset" = "Official Website";
+"crosschain.gatewaydetail.email" = "Service Mailbox";
+"crosschain.gatewaydetail.statement" = "Terms of Service";
+"crosschain.gatewaydetail.host" = "Gateway URL";
+"crosschain.gatewaydetail.abstract" = "Introduction";
+"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
+"crosschain.statement.vite.desc1" = "Используя сервисы %@, вы соглашаетесь с тем, что будете связаны с %@ %@. Если вы не согласны с этими условиями, пожалуйста, воздержитесь от использования сервиса от %@.";
+"crosschain.statement.vite.desc2" = "В случае проблем с верификацией или обработкой платежа, пожалуйста, свяжитесь со службой поддержки %@ по адресу %@.";
+"crosschain.statement.detail" = "Условия предоставления услуг";
+"crosschain.statement.agree" = "Нажав Далее, вы соглашаетесь с %@ %@";
+"crosschain.statement.title" = "Важное уведомление";
+
+"unit.Million" = " Миллион";
+"unit.Billion" = "Миллиард";
+"unit.Trillion" = "Триллион";
+
+"exchange.history" = "История покупок";
+"exchange.card.title" = "Купить VITE";
+"exchange.titley" = "Мгновенная покупка";
+"exchange.buy" = "Купить";
+"exchange.price" = "Курс: ";
+"exchange.amount" = "Сумма: ";
+"exchange.limit.onetime" = "Лимит одной транзакции%@-%@ VITE";
+"exchange.limit.oneday" = "Ежедневный лимит транзакций %@ VITE; Неиспользованный дневной лимит %@ VITE";
+"exchange.limit.alert" = "Введенная вами сумма неверна. Одна транзакция должна быть как минимум %@ VITE и не более %@ VITE. Ежедневный лимит транзакций составляет %@ VITE.";
+
+
+/* ViteConnect */
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect подключен";
+"bifrost.alert.tip.title" = "Уведомление";
+"bifrost.alert.approve.session.message" = "Пожалуйста, подтвердите следующую ссылку\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Подключаемый вами адрес не соответствует адресу на веб-версии. Продолжить вход с помощью адреса из приложения? (%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Подтвердите вход";
+"bifrost.alert.approve.session.another.address.cancel" = "Назад";
+
+"bifrost.alert.switch.address.message" = "ViteConnect подключен, переключение между адресами инициирует его отключение. Переключить адрес?    ";
+
+"bifrost.alert.quit.title" = "Хотите выйти из ViteConnect?";
+
+"bifrost.home.page.free.header" = "ViteConnect подключен";
+"bifrost.home.page.free.content" = "У вас еще нет транзакций";
+"bifrost.home.page.free.address.title" = "Адрес";
+"bifrost.home.page.free.history.title" = "Транзакции подписаны";
+"bifrost.home.page.free.auto.sign.title" = "Автоподпись";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Пароль";
+
+"bifrost.home.page.busy.header" = "Вы вносите изменения на ViteX & Web Wallet";
+"bifrost.home.page.busy.content" = "Пожалуйста, подтвердите информацию о транзакции ниже";
+"bifrost.toast.operation.success" = "Операция выполнена";
+
+"bifrost.list.page.title" = "Список подписываемых транзакций";
+"bifrost.list.page.status.pending" = "Ожидание подписи";
+"bifrost.list.page.status.processing" = "Подписание";
+"bifrost.list.page.status.failed" = "Сбой";
+"bifrost.list.page.status.finished" = "Успешно";
+"bifrost.list.page.status.canceled" = "Отменено";
+
+"bifrost.task.detail.page.busy.header" = "Детали подписанных транзакций";
+
+"bifrost.error.message.timeout" = "Время ожидания истекло, повторите попытку позже";
+"bifrost.error.message.unknown" = "Возникла ошибка подключения к серверу. Пожалуйста, повторите запрос позже";
+
+// operation
+"bifrost.operation.register.sbp" = "Регистрация SBP";
+"bifrost.operation.register.update.sbp" = "Обновить SBP";
+"bifrost.operation.cancel.register.sbp" = "Отменить регистрацию SBP";
+"bifrost.operation.vote" = "Голосование";
+"bifrost.operation.cancel.vote" = "Отозвать голос";
+"bifrost.operation.extract.reward" = "Получить награду";
+"bifrost.operation.pledge" = "Получить Квоту";
+"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
+"bifrost.operation.coin" = "Token Issuance";
+"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
+"bifrost.operation.transfer" = "Send";
+"bifrost.operation.vx.deposit" = "ViteX Deposit";
+"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
+"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
+"bifrost.operation.vx.order" = "Place Order on ViteX";
+"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+
+"bifrost.operation.function.title" = "Contract Invoke";
+"bifrost.operation.title.contract.address" = "Contract Address";
+"bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.fee" = "Fee";
+"bifrost.operation.title.data" = "Data";
+
+"bifrost.operation.sign.message.title" = "Create API";
+"bifrost.operation.sign.message.address" = "Current Address";
+"bifrost.operation.sign.message.type" = "Permission Type";
+"bifrost.operation.sign.message.content" = "Signature Content";
+"bifrost.operation.sign.message.type.trade.value" = "Trade";
+
+"bifrost.create.contract.title" = "Create Contract";
+"bifrost.create.contract.title.contract.address" = "Contract Address";
+"bifrost.create.contract.title.amount" = "Amount";
+"bifrost.create.contract.title.fee" = "Fee";
+"bifrost.create.contract.title.data" = "Data";
+
+//bnb
+"token.list.page.section.bnb.header" = "Binance Network";
+"bnb.send.page.feeView.titleLabel.title" = "Fee";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
+"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
+"bnb.txType.newOrder.title" = "Place Order";
+"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.listToken.title" = "Listing";
+"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.transfer.title" = "Transfer";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "Vote";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Deposit";
+
+// Buildin
+
+"buildin.transfer.utf8string.function.title" = "Transfer";
+"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item2.title" = "Comment";
+
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
+"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.item1.title" = "Fee";
+"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
+"buildin.vote.function.title" = "Vote";
+"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item1.title" = "Голоса";
+
+"buildin.coin.issuance.function.title" = "Выпуск актива";
+"buildin.coin.issuance.item0.title" = "Адрес Выпуска";
+"buildin.coin.issuance.item1.title" = "Имя Токена";
+"buildin.coin.issuance.item2.title" = "Тикер";
+"buildin.coin.issuance.item3.title" = "Общее предложение";
+"buildin.coin.issuance.item4.title" = "Знаков после запятой";
+"buildin.coin.issuance.item5.title" = "Перевыпуск";
+"buildin.coin.issuance.item5.yes.value" = "ДА";
+"buildin.coin.issuance.item5.no.value" = "НЕТ";
+"buildin.coin.issuance.item6.title" = "Макс. выпуск";
+"buildin.coin.issuance.item7.title" = "Комиссия за выпуск";
+
+"buildin.coin.transfer.ownership.function.title" = "Передать право собственности";
+"buildin.coin.transfer.ownership.item0.title" = "Имя токена";
+"buildin.coin.transfer.ownership.item1.title" = "Тикер";
+"buildin.coin.transfer.ownership.item2.title" = "Адрес получателя";
+
+"buildin.coin.reissue.token.function.title" = "Токен перевыпуска";
+"buildin.coin.reissue.token.item0.title" = "Имя токена";
+"buildin.coin.reissue.token.item1.title" = "Тикер";
+"buildin.coin.reissue.token.item2.title" = "Адрес выгодоприобретателя";
+"buildin.coin.reissue.token.item3.title" = "Сумма";
+
+"buildin.coin.change.to.nonissuable.function.title" = "Изменить на Не выпускаемый";
+"buildin.coin.change.to.nonissuable.item0.title" = "Имя токена";
+"buildin.coin.change.to.nonissuable.item1.title" = "Тикер";
+
+"buildin.dex.transfer.token.owner.function.title" = "Передача права собственности";
+"buildin.dex.transfer.token.owner.item0.title" = "Имя токена";
+"buildin.dex.transfer.token.owner.item1.title" = "Тикер";
+"buildin.dex.transfer.token.owner.item2.title" = "Адрес получателя";
+
+"buildin.dex.transfer.pair.function.title" = "Передать владение торговой парой";
+"buildin.dex.transfer.pair.item0.title" = "Наименование";
+"buildin.dex.transfer.pair.item1.title" = "Адрес получателя";
+
+"buildin.dex.adjust.fees.function.title" = "Настроить комиссию";
+"buildin.dex.adjust.fees.item0.title" = "Наименование";
+"buildin.dex.adjust.fees.item1.title" = "Текущий адрес";
+"buildin.dex.adjust.fees.item.maker.title" = "Скорректированные комиссионные (Maker)";
+"buildin.dex.adjust.fees.item.taker.title" = "Скорректированные комиссионные (Taker)";
+
+"buildin.dex.open.trading.pair.function.title" = "Открыть торговую пару";
+"buildin.dex.open.trading.pair.item0.title" = "Наименование";
+"buildin.dex.open.trading.pair.item1.title" = "Текущий адрес";
+"buildin.dex.open.trading.pair.item2.title" = "Комиссия за Листинг";
+
+"buildin.dex.suspend.trading.pair.function.title" = "Приостановить торговую пару";
+"buildin.dex.suspend.trading.pair.item0.title" = "Наименование";
+"buildin.dex.suspend.trading.pair.item1.title" = "Текущий адрес";
+
+"buildin.dex.recover.trading.pair.function.title" = "Восстановить торговую пару";
+"buildin.dex.recover.trading.pair.item0.title" = "Наименование";
+"buildin.dex.recover.trading.pair.item1.title" = "Текущий адрес";
+
+"buildin.dex.staking.as.mining.function.title" = "Заморозка";
+"buildin.dex.staking.as.mining.item0.title" = "Текущий адрес";
+"buildin.dex.staking.as.mining.item1.title" = "Сумма";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "Разморозка";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.become.vip.function.title" = "Become a VIP";
+"buildin.dex.become.vip.item0.title" = "Current Address";
+"buildin.dex.become.vip.item1.title" = "Amount";
+
+"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
+"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.item1.title" = "Amount";
+
+"buildin.dex.lock.vx.function.title" = "Stake";
+"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.un.lock.vx.function.title" = "Retrieve";
+"buildin.dex.un.lock.vx.item0.title" = "Current Address";
+"buildin.dex.un.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
+"buildin.dex.cancel.stake.item0.title" = "Current Address";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "Transaction Confirmation";
+"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.network.error" = "Network Error";
+
+
+"copyed" = "Successfully copied";
+
+"fund.title.wallet" = "Wallet Asset";
+"fund.title.vitex" = "Exchange Asset";
+"fund.title.toWallet" = "Withdraw to Wallet";
+"fund.title.toVitex" = "Deposit to Exchange";
+"fund.walletAddress" = "My Address";
+"fund.walletFound" = "Wallet Balance";
+"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.deposit.amount" = "Transfer Amount";
+"fund.deposit.all" = "All";
+"fund.quotaSpend" = "Quota";
+"fund.deposit" = "Transfer";
+"fund.vitexFound" = "Available Balance";
+"fund.withdraw.amount" = "Transfer Amount";
+"fund.withdraw" = "Transfer";
+"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.available" = "Exchange Available Balance";
+"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.withdraw.placeholder" = "Please enter transfer amount";
+"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
+"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
+"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+
+"transfer.from" = "From";
+"transfer.wallet.account" = "Wallet Account";
+"transfer.to" = "To";
+"transfer.dex.account" = "Exchange Account";
+"transfer.token" = "Token";
+"transfer.amount" = "Amount";
+"transfer.available" = "Balance: ";
+"transfer.title" = "Transfer";
+"transfer.search.placeholder" = "Пожалуйста, введите имя токена";
+
+"market.favourite" = "Избранное";
+"market.searchhistory" = "История поиска";
+"market.title" = "Рынки";
+"market.about" = "Начать работу с ViteX";
+"market.name" = "Наименование";
+"market.price" = "Последняя цена";
+"market.percent" = "Изменить";
+"market.operator" = "Оператор";
+"market.switch" = "Обмен";
+
+// market detail
+"market.detail.page.segment.order.book.title" = "Книга заказов";
+"market.detail.page.segment.last.trades.title" = "Последние торги";
+"market.detail.page.segment.token.info.title" = "Токен";
+"market.detail.page.segment.operator.into.title" = "Оператор";
+
+"market.detail.page.info.high.title" = "Макс.";
+"market.detail.page.info.low.title" = "Мин.";
+"market.detail.page.info.vol.title" = "24Ч";
+
+"market.detail.page.kline.type.min1.title" = "1мин";
+"market.detail.page.kline.type.min30.title" = "30мин";
+"market.detail.page.kline.type.hour1.title" = "1Ч";
+"market.detail.page.kline.type.hour2.title" = "2Ч";
+"market.detail.page.kline.type.hour4.title" = "4Ч";
+"market.detail.page.kline.type.hour6.title" = "6Ч";
+"market.detail.page.kline.type.hour12.title" = "12Ч";
+"market.detail.page.kline.type.day1.title" = "1Д";
+"market.detail.page.kline.type.week1.title" = "1Нед";
+
+"market.detail.page.value.time.title" = "Время";
+"market.detail.page.value.open.title" = "Открытие";
+"market.detail.page.value.high.title" = "Макс.";
+"market.detail.page.value.low.title" = "Мин.";
+"market.detail.page.value.close.title" = "Закрытие";
+"market.detail.page.value.diff.title" = "изм";
+"market.detail.page.value.extent.title" = "изм%";
+"market.detail.page.value.vol.title" = "Объём";
+
+"market.detail.page.depth.vol.title" = "Сумма (%@)";
+"market.detail.page.depth.price.title" = "Цена(%@)";
+
+"market.detail.page.trade.time.title" = "Время";
+"market.detail.page.trade.price.title" = "Цена";
+"market.detail.page.trade.vol.title" = "Сумма";
+"market.detail.page.buy.button.title" = "Купить";
+"market.detail.page.sell.button.title" = "Продать";
+
+
+"market.detail.page.token.info.token.id" = "ID Токена";
+"market.detail.page.token.info.total" = "Монет в обороте";
+"market.detail.page.token.info.type" = "Тип";
+"market.detail.page.token.info.type.value.native" = "Нативный";
+"market.detail.page.token.info.type.value.other" = "Кросс-чейн";
+"market.detail.page.token.info.gateway" = "Кросс-чейн шлюз";
+"market.detail.page.token.info.official" = "Официальный сайт";
+"market.detail.page.token.info.paper" = "Белая бумага";
+"market.detail.page.token.info.browser" = "Обозреватель";
+"market.detail.page.token.info.github" = "Github";
+
+"market.detail.page.token.info.social" = "Social Media";
+"market.detail.page.token.info.brief" = "Introduction";
+
+"market.detail.page.token.info.anonymous" = "Anonymous";
+"market.detail.page.token.info.address" = "Operator address";
+"market.detail.page.token.info.pair" = "Trading pair";
+
+// Trading Home
+"trading.home.page.segment.spot" = "Spot";
+"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.bonus" = "Dividend";
+
+// Mining Home
+"mining.page.segment.trading" = "xxxxx";
+"mining.page.segment.staking" = "xxxxx";
+"mining.page.segment.invite" = "xxxxx";
+"mining.page.segment.making" = "xxxxx";
+
+"mining.page.header.total.real.time" = "xxxxx";
+"mining.page.list.title" = "xxxxx";
+
+"mining.trading.page.header.total.earnings" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+
+
+"mining.trading.page.header.fee" = "xxxxx";
+"mining.trading.page.header.title" = "xxxxx";
+"mining.trading.page.header.expect" = "xxxxx";
+
+"mining.trading.page.cell.fee" = "xxxxx";
+
+"mining.staking.page.header.total.earnings" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxxx";
+"mining.staking.page.detail.amount.title" = "xxxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.add.button.title" = "xxxxx";
+"mining.staking.page.detail.list.button.title" = "xxxxx";
+"mining.staking.page.cell.amount" = "xxxxx";
+
+"mining.staking.page.confirm.title" = "xxxxx";
+"mining.staking.page.confirm.available.title" = "xxxxx";
+"mining.staking.page.confirm.amount.title" = "xxxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
+"mining.staking.page.confirm.tip" = "xxxxx";
+"mining.staking.page.confirm.button.title" = "xxxxx";
+
+// Spot
+"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
+"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
+"spot.page.button.closed.title" = "Trading Suspended";
+"spot.page.button.buy.title" = "Buy";
+"spot.page.button.sell.title" = "Sell";
+"spot.page.button.limit.buy.title" = "Limit Order";
+"spot.page.price.buy.placeholder" = "Price";
+"spot.page.vol.buy.placeholder" = "Amount";
+"spot.page.price.sell.placeholder" = "Price";
+"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.available" = "Avail.: %@";
+"spot.page.buyable" = "Max Buy: %@";
+"spot.page.sellable" = "Max Sell: %@";
+"spot.page.total" = "Total: %@";
+"spot.page.open.vip" = "Become a VIP";
+"spot.page.close.vip" = "Отменить VIP";
+"spot.page.open.vip.error.toast" = "Недостаточный биржевой баланс, заморозьте 10000 VITE, чтобы стать VIP";
+"spot.page.close.vip.error.toast" = "Нет VIP, замороженных";
+"spot.page.close.vip.un.expire.error.toast" = "Заморозка на 30 дней и сумма не может быть затребована ранее";
+"spot.page.depth.price" = "Цена";
+"spot.page.depth.vol" = "Сумма";
+"spot.page.current.order.title" = "Открытые Ордера";
+"spot.page.orders.button.title" = "История";
+
+"spot.page.post.toast.price.empty" = "Пожалуйста введите цену";
+"spot.page.post.toast.price.zero" = "Значение должно быть больше 0";
+"spot.page.post.toast.vol.empty" = "Пожалуйста, введите сумму";
+"spot.page.post.toast.vol.zero" = "Значение должно быть больше 0";
+"spot.page.post.toast.amount.min" = "Общее значение должно быть не менее %@";
+
+"spot.page.confirm.tip" = "24 часа не спрашивать снова";
+
+"spot.page.alert.title" = "Важное напоминание";
+"spot.page.alert.message" = "Текущая торговая пара %@, инвестиции в криптовалюту подвержены высоким рискам и колебаниям цен. Пожалуйста, тщательно оцените потенциальные риски и принимайте взвешенные торговые решения.";
+"spot.page.alert.ok" = "Подтвердить";
+
+"spot.page.order.empty" = "Нет заказов";
+"spot.page.cell.type.buy" = "Купить";
+"spot.page.cell.type.sell" = "Продать";
+"spot.page.cell.button.cancel.title" = "Отменить";
+"spot.page.cell.vol" = "Сум.: %@";
+"spot.page.cell.price" = "Цена: %@";
+"spot.page.cell.deal" = "Заполнено: %@";
+"spot.page.cell.average" = "Ср.: %@";
+
+"grin.initing.desc" = "Синхронизация, нажмите для просмотра подробностей";
+"grin.initing.detail" = "1 Синхронизация требуется после добавления GRIN кошелька\n 2.Процесс должен длиться не менее 15 минут\n 3. Не прерывать или закрывать приложение во время синхронизации\n 4. Синхронизация расходует большое количество трафика, рекомендуется использовать Wi-Fi.";
+
+// DexHome
+"dex.home.page.nav.title" = "Биржевые активы";
+"dex.home.page.nav.btc.valuation.title" = "Общее значение (BTC)";
+"dex.home.page.segment.wallet" = "Кошелек";
+"dex.home.page.segment.dex" = "Торговля";
+
+"dex.home.page.header.btc.valuation.title" = "Значение (BTC)";
+"dex.home.page.header.button.transfer.title" = "Перевод";
+"dex.home.page.header.button.deposit.title" = "Пополнить";
+"dex.home.page.header.button.withdraw.title" = "Вывести";
+"dex.home.page.header.button.hide.small.title" = "Скрыть малые балансы";
+
+"dex.token.detail.page.title" = "Баланс";
+"dex.token.detail.page.header.total" = "Всего";
+"dex.token.detail.page.header.available" = "Доступно";
+"dex.token.detail.page.header.lock.place.order" = "В заявках";
+
+"dex.token.detail.page.header.lock.vite.pledge" = "Заморожено для Квоты";
+"dex.token.detail.page.header.lock.vite.sbp" = "Заморожено для SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Заморожено для Full node";
+"dex.token.detail.page.header.lock.vite.mining" = "Заморожено";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Ожидает разморозки";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP заблокирован";
+"dex.token.detail.page.header.lock.vx" = "Заморожено";
+"dex.token.detail.page.header.lock.vx.cancel" = "Ожидает разморозки";
+
+"dex.token.detail.page.list.wallet.heater.title" = "История";
+"dex.token.detail.page.list.dex.heater.title" = "История Переводов";
+"dex.token.detail.page.cell.in" = "Transfer-In";
+"dex.token.detail.page.cell.out" = "Transfer-Out";
+
+"dex.token.detail.page.button.deposit" = "Deposit";
+"dex.token.detail.page.button.withdraw" = "Withdraw";
+"dex.token.detail.page.button.transfer" = "Transfer";
+"dex.token.detail.page.button.send" = "Send";
+"dex.token.detail.page.button.trading" = "Trade";
+
+"dex.token.market.selector.title" = "Select Trading pair";
