@@ -173,59 +173,59 @@
 "wallet.home.header.title" = "Активы";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.title" = "Управление кошельком";
+"manage.wallet.page.name.cell.title" = "Имя аккаунта";
+"manage.wallet.page.addressManage.cell.title" = "Управление адресами";
+"manage.wallet.page.importMnemonic.cell.title" = "Экспорт мнемонических слов";
+"manage.wallet.page.alter.changeName" = "Изменить имя кошелька";
+"manage.wallet.page.changeName.loading" = "Редактирование";
+"manage.wallet.page.error.type.name" = "Имя кошелька не может быть пустым";
 
-"my.page.contacts.cell.title" = "Contact Address";
-"my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Mining Referrals";
-"my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+"my.page.contacts.cell.title" = "Адрес контакта";
+"my.page.mnemonic.cell.title" = "Мнемонические слова";
+"my.page.system.cell.title" = "Настройки";
+"my.page.invite.cell.title" = "Награды приглашенных";
+"my.page.reward.cell.title" = "Запрос на награду";
+"my.page.forum.cell.title" = "Официальный форум";
+"my.page.aboutUs.cell.title" = "О нас";
+"my.page.change.wallet.name.alter.title" = "Изменить имя аккаунта";
+"my.page.aboutUs.wechat.alert.title" = "Отсканируйте QR-код, чтобы подписаться на официальный аккаунт Vite WeChat";
 
 /* Transaction List */
-"transaction.list.page.title" = "Transaction History";
-"transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
-"transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
-"transaction.list.page.header.refresh.idle" = "Pull down to refresh";
-"transaction.list.page.header.refresh.pulling" = "Release to refresh";
-"transaction.list.page.header.refresh.refreshing" = "Loading...";
-"transaction.list.transaction.type.name.contract" = "Call";
-"transaction.list.transaction.type.name.register" = "Registration";
-"transaction.list.transaction.type.name.registerUpdate" = "Update Registration";
-"transaction.list.transaction.type.name.cancelRegister" = "Revoke Registration";
-"transaction.list.transaction.type.name.extractReward" = "Retrieve Rewards";
-"transaction.list.transaction.type.name.vote" = "Voting";
-"transaction.list.transaction.type.name.cancelVote" = "Revoke Voting";
-"transaction.list.transaction.type.name.pledge" = "Get TPS quota";
-"transaction.list.transaction.type.name.cancelPledge" = "Withdrawal of staking quota";
-"transaction.list.transaction.type.name.coin" = "Token Issuance";
-"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
-"transaction.list.transaction.type.name.transfer" = "Transfer";
-"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
-"transaction.list.transaction.confirmations" = "%@ Confirmations";
-"transaction.list.transaction.confirmations.finished" = "Confirmed";
-"eth.transaction.detail.page.state.call.wait" = "Pending";
+"transaction.list.page.title" = "История транзакций";
+"transaction.list.page.empty" = "Пусто";
+"transaction.list.page.network.error" = "Обновить";
+"transaction.list.page.genesis.cell.name" = "Проверить записи генезис блока";
+"transaction.list.page.header.refresh.idle" = "Потяните вниз для обновления";
+"transaction.list.page.header.refresh.pulling" = "Отпустите, чтобы обновить";
+"transaction.list.page.header.refresh.refreshing" = "Загрузка...";
+"transaction.list.transaction.type.name.contract" = "Контракт";
+"transaction.list.transaction.type.name.register" = "Регистрация";
+"transaction.list.transaction.type.name.registerUpdate" = "Обновить Регистрацию";
+"transaction.list.transaction.type.name.cancelRegister" = "Отменить регистрацию";
+"transaction.list.transaction.type.name.extractReward" = "Получить награды";
+"transaction.list.transaction.type.name.vote" = "Голосование";
+"transaction.list.transaction.type.name.cancelVote" = "Отозвать голос";
+"transaction.list.transaction.type.name.pledge" = "Получить TPS квоту";
+"transaction.list.transaction.type.name.cancelPledge" = "Разморозка из Квоты";
+"transaction.list.transaction.type.name.coin" = "Выпуск токена";
+"transaction.list.transaction.type.name.cancelCoin" = "Разморозка токенов";
+"transaction.list.transaction.type.name.transfer" = "Перевод";
+"transaction.list.transaction.netErrorAndShowAccount" = "Что-то пошло не так с сетью, нажмите здесь, чтобы проверить детали учетной записи";
+"transaction.list.transaction.confirmations" = "%@ подтверждений";
+"transaction.list.transaction.confirmations.finished" = "Подтверждено";
+"eth.transaction.detail.page.state.call.wait" = "В ожидании";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "Transaction Completed";
-"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
-"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
-"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
-"vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Request";
-"vite.transaction.detail.page.type.receive" = "Response";
-"vite.transaction.detail.page.hash.title" = "Transaction Hash";
-"vite.transaction.detail.page.height.title" = "Block Height";
+"vite.transaction.detail.page.state.success" = "Транзакция завершена";
+"vite.transaction.detail.page.state.call.success" = "Контракт выполнен успешно";
+"vite.transaction.detail.page.state.call.failed" = "Не удалось заключить договор";
+"vite.transaction.detail.page.state.call.wait" = "Ожидание ответа смарт-контракта";
+"vite.transaction.detail.page.type.title" = "Тип транзакции";
+"vite.transaction.detail.page.type.send" = "Запрос";
+"vite.transaction.detail.page.type.receive" = "Ответ";
+"vite.transaction.detail.page.hash.title" = "Хеш транзакции";
+"vite.transaction.detail.page.height.title" = "Высота блока";
 "vite.transaction.detail.page.note.title" = "Комментарий (Memo)";
 "vite.transaction.detail.page.link.button.title" = "Подробнее в Vite Explorer";
 
@@ -282,10 +282,10 @@
 "address.manage.tip.alert.ok" = "Я знаю";
 "address.manage.default.address.name" = "Без названия";
 "address.manage.change.name.alert.title" = "Изменить псевдоним адреса";
-"address.manage.change.name.alert.placeholder" = "Please input new alias";
+"address.manage.change.name.alert.placeholder" = "Пожалуйста, введите новый псевдоним";
 
 /* Send Page */
-"send.page.title" = "Send";
+"send.page.title" = "Отправить";
 "send.page.my.address.title" = "My %@ Address";
 "send.page.my.balance.title" = "Balance";
 "send.page.my.pledge.title" = "Benefited Stake";
