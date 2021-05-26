@@ -545,60 +545,60 @@
 "workflow.toast.cancel.vote.success" = "Запрос на отозыв голоса успешно отправлен";
 "workflow.toast.contract.success" = "Успешно";
 "workflow.toast.place.order.success" = "Ордер размещен";
-"workflow.toast.cancel.order.success" = "Order Cancelled";
+"workflow.toast.cancel.order.success" = "Ордер отменен";
 
-"workflow.congestion.without.pow.alert.title" = "Notice";
-"workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
-"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
-"workflow.congestion.without.pow.alert.ok" = "Transact Now";
-"workflow.congestion.with.pow.alert.title" = "Notice";
-"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
-"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.without.pow.alert.title" = "Уведомление";
+"workflow.congestion.without.pow.alert.message" = "В настоящее время сеть находится в режиме динамической квоты. Это означает, что ваш лимит Квоты        был сокращен и вы можете отправлять меньше транзакций в секунду. Вы все еще хотите отправить транзакцию сейчас?";
+"workflow.congestion.without.pow.alert.cancel" = "Перевести позже";
+"workflow.congestion.without.pow.alert.ok" = "Перевести сейчас";
+"workflow.congestion.with.pow.alert.title" = "Уведомление";
+"workflow.congestion.with.pow.alert.message" = "В настоящее время сеть находится в режиме динамической квоты. Лимит Квоты был уменьшен и ваших потраченных квот недостаточно для отправки этой транзакции. Пожалуйста, сделайте это позже";
+"workflow.congestion.with.pow.alert.cancel" = "Перевести позже";
 
-"workflow.fast.get.quota.title" = "Instantly Getting Quota";
-"workflow.fast.get.quota.message" = "Please confirm that you'd like to get quota by staking 134 VITE from current address. You can withdraw the staked amount from the Stake History section 3 days later.";
-"workflow.fast.get.quota.tip" = "You can also get quota for any other address by %@.";
-"workflow.fast.get.quota.link" = "clicking here";
+"workflow.fast.get.quota.title" = "Мгновенное получение квоты";
+"workflow.fast.get.quota.message" = "Пожалуйста, подтвердите, что вы хотите получить квоту, заморозив 134 VITE с текущего адреса. 3 дня спустя вы можете снять выделенную сумму из раздела История заморозки    ";
+"workflow.fast.get.quota.tip" = "Вы также можете предоставить квоту на любой другой адрес от %@    ";
+"workflow.fast.get.quota.link" = "нажмите здесь";
 
 /* Confirm Transaction Page */
-"confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.address.title" = "Recipient Address";
-"confirm.transaction.amount.title" = "Amount";
-"confirm.transaction.fee.title" = "Fee";
-"confirm.transaction.quota.title" = "Quota";
-"confirm.transaction.page.use.password" = "Use password";
-"confirm.transaction.page.pw.title" = "Please input password";
+"confirm.transaction.page.biometry.confirm.reason" = "Подтвердить";
+"confirm.transaction.address.title" = "Адрес Получателя";
+"confirm.transaction.amount.title" = "Сумма";
+"confirm.transaction.fee.title" = "Комиссия";
+"confirm.transaction.quota.title" = "Квота";
+"confirm.transaction.page.use.password" = "Использовать пароль";
+"confirm.transaction.page.pw.title" = "Пожалуйста введите пароль";
 // vite transfer
-"confirm.transaction.page.vite.transfer.title" = "Send";
-"confirm.transaction.page.vite.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.transfer.title" = "Отправить";
+"confirm.transaction.page.vite.confirm.button" = "Подтвердить";
 // vite pledge
-"confirm.transaction.page.vite.pledge.title" = "Get Quota";
-"confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
-"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.pledge.title" = "Получить Квоту";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Вывести Средства";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Подтвердить";
 // vite vote & cancel
-"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
-"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.vote.node.name" = "Node Name";
-"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
-"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.vote.transfer.title" = "Голосовать";
+"confirm.transaction.page.vite.vote.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.vote.node.name" = "Имя узла";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Отозвать голос";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Подтвердить";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Deposit to Exchange";
-"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Withdraw to Wallet";
-"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.buy.title" = "Buy %@";
-"confirm.transaction.page.vite.dex.buy.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
-"confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Депозит на Биржу";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Вывод на Кошелек";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.dex.buy.title" = "Купить %@";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.dex.sell.title" = "Продать %@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Отменить";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Подтвердить";
 
-"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
-"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
-"confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
-"confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
-"confirm.transaction.page.vite.dex.cancel.vip.title" = "Cancel VIP";
+"confirm.transaction.page.vite.dex.vip.title" = "Стать VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Доступный биржевой баланс";
+"confirm.transaction.page.vite.dex.vip.amount" = "Сумма заморозки для статуса VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "Станьте VIP и получите скидку 0.1% на торговые комиссии. Заморозьте 10000 VITE, чтобы стать VIP (минимальная длительность статуса: 30 дней)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Подтвердить";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Отменить VIP";
 "confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Подтвердить";
 
 // vite call contract
@@ -937,7 +937,7 @@
 "buildin.transfer.cross.chain.item2.title" = "Адрес Получателя";
 
 "buildin.vote.function.title" = "Голосовать";
-"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item0.title" = "Кандидаты SBP";
 "buildin.vote.item1.title" = "Голоса";
 
 "buildin.coin.issuance.function.title" = "Выпуск актива";
