@@ -1019,16 +1019,16 @@
 "buildin.dex.un.lock.vx.item0.title" = "Kasalukuyang Address";
 "buildin.dex.un.lock.vx.item1.title" = "Halaga";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.function.title" = "Kunin ang Staking";
+"buildin.dex.cancel.stake.item0.title" = "Kasalukuyang Address";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.busy.header" = "Pagkumpirma sa Transaksyon";
+"app.scheme.home.page.busy.content" = "Mangyaring kumpirmahin ang impormasyon sa transaksyon sa ibaba";
+"app.scheme.network.error" = "Error sa Network";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "Matagumpay na nakopya";
 
 "fund.title.wallet" = "Asset sa Wallet";
 "fund.title.vitex" = "Exchange Asset";
@@ -1046,12 +1046,12 @@
 "fund.withdraw" = "Ilipat";
 "fund.vitex.all" = "Kabuuang Balanse ng Palitan";
 "fund.vitex.available" = "Magagamit na Balanse sa Palitan";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.tooBig" = "Ang halagang inilagay mo ay lumampas sa magagamit na balanse, mangyaring ipasok muli";
 "fund.withdraw.placeholder" = "Mangyaring ipasok ang halaga ng ililipat";
 "fund.deposit.placeholder" = "Mangyaring ipasok ang halaga ng ililipat";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.cannotDeposit" = "Hindi mailipat dahil sa hindi sapat na balanse sa wallet";
+"fund.cannotWithDraw" = "Hindi mailipat dahil sa hindi sapat na balanse ng palitan";
+"fund.DepositSuccess" = "Matagumpay ang paglipat. Suriin ang balanse ng palitan?";
 
 "transfer.from" = "Mula sa";
 "transfer.wallet.account" = "Account sa Wallet";
