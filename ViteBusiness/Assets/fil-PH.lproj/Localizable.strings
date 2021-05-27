@@ -386,10 +386,10 @@
 
 /* quota alert */
 "quota.alert.title" = "Hindi sapat ang Quota";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
-"quota.alert.pow.button.title" = "Run PoW";
-"quota.alert.quota.button.title" = "Stake VITE";
+"quota.alert.pow.and.quota.message" = "Kinulang sa quota, maaari kang makakuha ng quota sa pamamagitan ng pagpapatakbo ng PoW o staking VITE.";
+"quota.alert.need.quota.message" = "Hindi sapat ang quota ng PoW, inirerekumenda namin na mag-stake ka ng VITE upang makakuha ng quota.";
+"quota.alert.pow.button.title" = "Patakbuhin ang Pow";
+"quota.alert.quota.button.title" = "Mag-Stake ng VITE";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 "quota.pow.finished.float.view.title" = "Transaction Sent";
