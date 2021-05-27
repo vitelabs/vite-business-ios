@@ -340,25 +340,25 @@
 
 /* System */
 "system.page.logout.loading" = "Mag-logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
-"system.page.cell.login.pwd" = "Unlock By Password";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.cell.change.language" = "Wika";
+"system.page.cell.change.currency" = "Salapi";
+"system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
+"system.page.cell.login.faceId" = "I-unlock Sa pamamagitan ng Face ID";
+"system.page.cell.login.touchId" = "I-unlock ng Touch ID";
+"system.page.cell.transfer.faceId" = "Gumamit ng Face ID Para sa Transaksyon";
+"system.page.cell.transfer.touchId" = "Gumamit ng Touch ID Para sa Transaksyon";
+"system.page.cell.logout.title" = "Pag-logout / magpalit ng wallet";
+"system.page.cell.upload.log.title" = "Mag-upload ng Log";
+"system.page.cell.upload.log.toast.success" = "Na-upload ang Log";
+"system.page.cell.delete.wallet.title" = "Tanggalin ang Kasalukuyang Account";
+"system.page.cell.delete.wallet.alert.title" = "Maaari mo lamang makuha ang iyong account sa pamamagitan ng mnemonic word pagkatapos tanggalin ang isang account, kumpirmahing tanggalin mo ang account na ito?";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.blockHeight" = "Kasalukuyang Taas";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Naglo-load";
+"aboutUs.page.cell.version" = "Bersyon";
+"aboutUs.page.cell.contact" = "Makig-ugnayan sa amin";
+"aboutUs.page.cell.shareUs" = "Ibahagi ang Vite APP";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
