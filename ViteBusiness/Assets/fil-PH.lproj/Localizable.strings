@@ -1189,21 +1189,21 @@
 "spot.page.close.vip" = "Kanselahin ang VIP";
 "spot.page.open.vip.error.toast" = "Hindi sapat ang balanse ng palitan, mag-stake ng 10,000 VITE upang maging isang VIP";
 "spot.page.close.vip.error.toast" = "Walang VIP na pag-Staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
-"spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open Orders";
-"spot.page.orders.button.title" = "History";
+"spot.page.close.vip.un.expire.error.toast" = "Ang staking ay mas mababa sa 30 araw at hindi makukuha";
+"spot.page.depth.price" = "Presyo";
+"spot.page.depth.vol" = "Halaga";
+"spot.page.current.order.title" = "Buksan ang mga Order";
+"spot.page.orders.button.title" = "Kasaysayan";
 
-"spot.page.post.toast.price.empty" = "Please enter the price";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.price.empty" = "Mangyaring ilagay ang presyo";
+"spot.page.post.toast.price.zero" = "Ang halaga ay dapat mas malaki kaysa sa '0'";
+"spot.page.post.toast.vol.empty" = "Pakipasok ninyo ang halaga";
+"spot.page.post.toast.vol.zero" = "Ang halaga ay dapat mas malaki kaysa sa '0'";
+"spot.page.post.toast.amount.min" = "Ang kabuuang halaga ay dapat na hindi bababa sa %@";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "Huwag magtanong muli sa loob ng 24 na oras";
 
-"spot.page.alert.title" = "Important reminder";
+"spot.page.alert.title" = "Mahalagang paalala";
 "spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
 "spot.page.alert.ok" = "Confirm";
 
