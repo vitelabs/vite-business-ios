@@ -362,30 +362,30 @@
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.title" = "Puna";
+"aboutUs.page.email.content" = "\n\n\n\n\nAng payo ay nagmula sa paggamit ng kapaligiran tulad ng nasa ibaba:\n1.System ng device:%@\n2. Bersyon ng system:%@\n3. Bersyon ng APP:%@\n4. Wika:%@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "Error sa pag-login";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
-"quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.title" = "Kumuha ng Quota";
+"quota.manage.page.input.address.title" = "Makikinabang sa Quota";
+"quota.manage.page.quota.money.title" = "Halaga ng Staking";
 "quota.manage.page.quota.quota.title" = "Quota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.manage.page.quota.money.placeholder" = "Mangyaring mag-input ng halaga, minimum na 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Tagal ng Staking Freeze";
+"quota.manage.page.quota.snapshoot.height.desc" = "Tinatayang %@ araw";
+"quota.manage.page.submit.btn.title" = "Magsumite ng Staking";
+"quota.manage.page.check.quotaList.btn.title" = "Ang Staking List";
+"quota.manage.page.toast.money.error" = "Ang halaga ng stake ay hindi dapat mas mababa sa 134";
+"quota.submit.pop.desc" = "Siguraduhing magtaya ng %@ Vite upang makakuha ng quota, hindi ka maaaring mag-withdraw hanggang sa halos 3 araw pagkatapos magkabisa.";
+"quota.submit.pop.submit.btn.title" = "Kumpirmahin";
+"quota.submit.pop.cancel.btn.title" = "Kanselahin";
+"quota.submit.page.quota.address.placeholder" = "Mangyaring maglagay ng address ng makikinabang";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
+"quota.alert.title" = "Hindi sapat ang Quota";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
