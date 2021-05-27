@@ -8,14 +8,14 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "Kumpirmahin";
+"cancel.button.title" = "Kanselahin";
+"alter.title" = "PAUNAWA";
 
-"discover.page.title" = "Discovery";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
-"discover.page.activity.page.title2" = "History";
+"discover.page.title" = "Pagtuklas";
+"discover.page.game.cell.palyNum" = "%@ ang mga manlalaro ay naglalaro";
+"discover.page.activity.page.title1" = "Pinakabagong Kaganapan";
+"discover.page.activity.page.title2" = "Kasaysayan";
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Now";
 "discover.page.news.cell.time.hour" = "%@h ago";
