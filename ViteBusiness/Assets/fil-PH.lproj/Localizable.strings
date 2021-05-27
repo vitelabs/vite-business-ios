@@ -1212,21 +1212,21 @@
 "spot.page.cell.type.sell" = "Pagbenta";
 "spot.page.cell.button.cancel.title" = "Kanselahin";
 "spot.page.cell.vol" = "Halaga.:%@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
+"spot.page.cell.price" = "Presyo: %@";
+"spot.page.cell.deal" = "Punan: %@";
 "spot.page.cell.average" = "Avg.: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.desc" = "Nagsisimula, mag-click upang matingnan ang mga detalye";
+"grin.initing.detail" = "1. Kinakailangan ang pauna sa pagdaragdag ng GRIN wallet\n2. Inaasahan na tatagal ng 15 minuto ang proseso\n3. Huwag magambala o patayin ang APP sa panahon ng pagsisimula\n4. Ang pagsisimula ay magkokonsume ng isang malaking halaga ng data ng cellular, inirerekumenda na ipagpatuloy ang proseso sa Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
+"dex.home.page.nav.title" = "Mga Asset ng Dex";
+"dex.home.page.nav.btc.valuation.title" = "Kabuuang Halaga (BTC)";
 "dex.home.page.segment.wallet" = "Wallet";
 "dex.home.page.segment.dex" = "Trading";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
+"dex.home.page.header.btc.valuation.title" = "Halaga (BTC)";
+"dex.home.page.header.button.transfer.title" = "Ilipat";
 "dex.home.page.header.button.deposit.title" = "Deposit";
 "dex.home.page.header.button.withdraw.title" = "Withdraw";
 "dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
