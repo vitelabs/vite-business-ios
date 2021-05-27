@@ -140,8 +140,8 @@
 "import.page.title" = "Mangyaring i-input ang iyong seed phrase";
 "import.page.submit.btn" = "Ibalik ang Account";
 "import.page.submit.invalid.mnemonic" = "May mali sa iyong seed phrase, mangyaring subukang muli!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
+"import.page.submit.loading" = "I-import...";
+"import.page.submit.success" = "Tagumpay ang pag-import";
 "import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
 "import.page.alert.exist.ok" = "Confirm";
 "import.page.alert.exist.cancel" = "Cancel";
