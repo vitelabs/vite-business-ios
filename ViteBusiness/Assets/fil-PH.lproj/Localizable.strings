@@ -122,17 +122,17 @@
 "mnemonic.backup.page.error.type.nameValid" = "Sinusuportahan lamang ng pangalan ng account ang mga character na Tsino at Ingles pati na rin mga underscore.";
 "mnemonic.backup.page.error.type.validWalletNameCount" = "Sinusuportahan lamang ng username ang mas mababa sa 32 mga character";
 "mnemonic.backup.page.error.type.difference" = "Mangyaring ipasok ang parehong password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Ang iyong password ay dapat maglaman ng 8 mga character";
+"mnemonic.backup.page.switch.mode.title" = "Lumipat sa %@ mnemonic na mga salita";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.title" = "Hindi Na-back Up Mnemonic na Salita";
+"mnemonic.backup.tip.alert.message" = "Mangyaring ipasok ang password upang mai-back up ang Mnemonic na Salita.";
+"mnemonic.backup.tip.alert.ok.title" = "I-back Up Ngayon";
+"mnemonic.backup.tip.alert.cancel.title" = "I-back Up Mamaya";
 
-"mnemonic.affirm.page.title" = "Confirm";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
+"mnemonic.affirm.page.title" = "Kumpirmahin";
+"mnemonic.affirm.page.tip.title" = "Maayos na pumili ng seed phrase";
+"mnemonic.affirm.alter.title" = "Ang pagkilos na ito ay magbubunga ng seed phrase, handa nang bumalik?";
 "mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
 "mnemonic.affirm.page.add.loading" = "Adding...";
 
