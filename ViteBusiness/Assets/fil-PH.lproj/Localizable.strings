@@ -169,17 +169,17 @@
 "wallet.home.unconfirmed.title" = "Hindi natanggap %@";
 "wallet.home.toast.copy.address" = "Matagumpay na nakopya!";
 "wallet.home.scan.url.alert.title" = "PAUNAWA";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.scan.url.alert.message" = "Bibisitahin mo ang isang pahina ng third party na umalis sa Vite App. Ang iyong paggamit sa pahinang ito ay susundin ng Termino ng Kasunduan ng Gumagamit at Patakaran sa Privacy ng third party, ang Vite Labs ay mayroong pangangasiwa o kontrol sa kalidad, nilalaman, pagiging maaasahan o seguridad ng third party dApp, at hindi mananagot ang Vite Labs para sa paggamit nito.";
+"wallet.home.header.title" = "Mga Asset";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.title" = "Pamamahala sa Wallet";
+"manage.wallet.page.name.cell.title" = "Pangalan ng account";
+"manage.wallet.page.addressManage.cell.title" = "Pamamahala sa Address";
+"manage.wallet.page.importMnemonic.cell.title" = "I-export ang Seed Phrase";
+"manage.wallet.page.alter.changeName" = "I-edit ang Pangalan ng Wallet";
+"manage.wallet.page.changeName.loading" = "Nag-eedit";
+"manage.wallet.page.error.type.name" = "Ang pangalan ng wallet ay hindi maaaring walang laman";
 
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mnemonic Words";
