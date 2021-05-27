@@ -151,20 +151,20 @@
 "export.page.title" = "I-export ang Seed Phrase";
 "export.page.alter.title" = "Mangyaring Maglagay ng Password";
 "export.page.alter.tf.placeholder" = "Mangyaring maglagay ng password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.alter.password.error" = "Maling password!";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
-"login.page.loading.title" = "Processing";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.btn.chooseName" = "Pumili ng mga account";
+"login.page.btn.login" = "Mag-login";
+"login.page.loading.title" = "Pinoproseso";
+"login.page.error.toast.title" = "Maling password! Mangyaring subukang mag-import seed phrase sa halip";
 
 /* Home */
 "tabbar.item.title.wallet" = "Wallet";
-"tabbar.item.title.my" = "Me";
+"tabbar.item.title.my" = "Ako";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
+"wallet.home.btc.title" = "Kabuuang Halaga (BTC)";
 "wallet.home.balance.title" = "Balanse";
 "wallet.home.unconfirmed.title" = "Hindi natanggap %@";
 "wallet.home.toast.copy.address" = "Matagumpay na nakopya!";
