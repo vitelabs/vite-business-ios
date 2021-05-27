@@ -980,20 +980,20 @@
 "buildin.dex.adjust.fees.item0.title" = "Pangalan";
 "buildin.dex.adjust.fees.item1.title" = "Kasalukuyang Address";
 "buildin.dex.adjust.fees.item.maker.title" = "Naayos ang mga Bayad sa Gumagawa";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.item.taker.title" = "Inayos ang mga Bayad sa Taker";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.function.title" = "Buksan ang Trading Pair";
+"buildin.dex.open.trading.pair.item0.title" = "Pangalan";
+"buildin.dex.open.trading.pair.item1.title" = "Kasalukuyang Address";
+"buildin.dex.open.trading.pair.item2.title" = "Bayarin sa Listing";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "Suspindihin ang Trading Pair";
+"buildin.dex.suspend.trading.pair.item0.title" = "Pangalan";
+"buildin.dex.suspend.trading.pair.item1.title" = "Kasalukuyang Address";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "Alisin ang Trading Pair";
+"buildin.dex.recover.trading.pair.item0.title" = "Pangalan";
+"buildin.dex.recover.trading.pair.item1.title" = "Kasalukuyang Address";
 
 "buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
 "buildin.dex.staking.as.mining.item0.title" = "Current Address";
