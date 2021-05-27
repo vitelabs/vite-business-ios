@@ -32,11 +32,11 @@
 "airdrop.help" = "Tulong";
 "airdrop.vpower" = "Mga Nanalo";
 "airdrop.profit" = "Mga benepisyo";
-"airdrop.validationFailed" = "Verification Failed";
-"airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.validationFailed" = "Nabigo ang pag-verify";
+"airdrop.enabled" = "Pumili ng 10 ~ 1000";
+"airdrop.leftTime" = "Pagbibilang";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
+"airdrop.error.tip.need.update" = "Sinusuportahan lamang ang Airdrop sa iOS 11 at mas mataas.";
 "airdrop.error.tip.not.support" = "Your device not support airdrop.";
 "airdrop.error.tip.unknown.error" = "Unknown Error.";
 
