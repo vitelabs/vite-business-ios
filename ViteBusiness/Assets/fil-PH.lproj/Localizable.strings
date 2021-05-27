@@ -88,18 +88,18 @@
 
 "create.page.tip.title" = "Mga Tagubilin sa Pag-backup";
 "create.page.tip.content1" = "Pag-iingat! Ang pagkawala ng mga mnemonic na salita ay magreresulta sa pagkawala ng lahat ng mga digital na assets sa wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.content2" = "Ang pag-import ng mga mnemonic na salita ay ang tanging paraan upang makuha ang isang account pagkatapos ng pagtanggal o muling pag-install ng App.";
+"create.page.tip.content3" = "Mangyaring itago ang iyong mga mnemonic na salita sa isang ligtas na lugar.";
+"create.page.tip.button.skip.title" = "I-back Up Mamaya";
+"create.page.tip.button.next.title" = "Naka-backup";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
-"mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.page.title" = "Ang Mnemonic na Salita ay naka-backup";
+"mnemonic.backup.page.tip1" = "Inirerekumenda namin ang dalawang sumusunod na mga backup na pamamaraan:";
+"mnemonic.backup.page.tip2" = "Isulat ang mga mnemonic na salita sa isang piraso ng papel, at pagkatapos ay itago ito sa isang ligtas na lugar.";
+"mnemonic.backup.page.tip3" = "I-scan ang QR code sa ibaba gamit ang naka-install na Vite wallet sa isa pang aparato.";
+"mnemonic.backup.language.zh" = "sa";
+"mnemonic.backup.language.en" = "FIL";
 
 "mnemonic.backup.scan.alert.title" = "Notice";
 "mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
@@ -165,10 +165,10 @@
 
 /* Wallet Home */
 "wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
+"wallet.home.balance.title" = "Balanse";
+"wallet.home.unconfirmed.title" = "Hindi natanggap %@";
+"wallet.home.toast.copy.address" = "Matagumpay na nakopya!";
+"wallet.home.scan.url.alert.title" = "PAUNAWA";
 "wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 "wallet.home.header.title" = "Assets";
 
