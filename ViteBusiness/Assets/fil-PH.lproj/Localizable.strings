@@ -390,12 +390,12 @@
 "quota.alert.need.quota.message" = "Hindi sapat ang quota ng PoW, inirerekumenda namin na mag-stake ka ng VITE upang makakuha ng quota.";
 "quota.alert.pow.button.title" = "Patakbuhin ang Pow";
 "quota.alert.quota.button.title" = "Mag-Stake ng VITE";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
-"quota.pow.finished.float.view.title" = "Transaction Sent";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
-"quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
-"quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
+"quota.float.view.title" = "Pag-compute ng PoW upang I-secure ang Quota para sa Transaksyon na ito...";
+"quota.float.view.tip" = "Ang Transaksyon na ito ay nagkakahalaga ng %@ UT";
+"quota.pow.finished.float.view.title" = "Naipadala na ang Transaksyon";
+"quota.pow.finished.float.view.h1" = "Nagastos mo ang %1$@S sa pagkalkulang PoW na ito, at na-secure at ginamit ang %2$@UT.";
+"quota.pow.finished.float.view.h2" = "Maaari mong bawiin ang iyong na-staked na VITE pagkalipas ng 3 araw. Kung ang natanggap mong quota mula sa staking ay sapat para sa isang transaksyon, maaari mong laktawan ang hakbang na ito ng PoW.";
+"quota.pow.finished.float.view.pledge.button.title" = "Mag-transact nang mas mabilis sa pamamagitan ng Staking";
 
 /* Peldge History */
 "peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
@@ -1058,29 +1058,29 @@
 "transfer.to" = "To";
 "transfer.dex.account" = "Exchange Account";
 "transfer.token" = "Token";
-"transfer.amount" = "Amount";
-"transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.amount" = "Halaga";
+"transfer.available" = "Balanse: ";
+"transfer.title" = "Ilipat";
+"transfer.search.placeholder" = "Mangyaring ilagay ang pangalan ng token";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
-"market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
+"market.favourite" = "Mga paborito";
+"market.searchhistory" = "Kasaysayan sa Paghahanap";
+"market.title" = "Mga merkado";
+"market.about" = "Magsimula sa ViteX";
+"market.name" = "Pangalan";
+"market.price" = "Huling presyo";
+"market.percent" = "Baguhin";
 "market.operator" = "Operator";
-"market.switch" = "Exchange";
+"market.switch" = "Palitan";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.order.book.title" = "Order Book";
+"market.detail.page.segment.last.trades.title" = "Mga Huling Trade";
 "market.detail.page.segment.token.info.title" = "Token";
 "market.detail.page.segment.operator.into.title" = "Operator";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
+"market.detail.page.info.high.title" = "Mataas";
+"market.detail.page.info.low.title" = "Mababa";
 "market.detail.page.info.vol.title" = "24H";
 
 "market.detail.page.kline.type.min1.title" = "1m";
@@ -1093,29 +1093,29 @@
 "market.detail.page.kline.type.day1.title" = "1D";
 "market.detail.page.kline.type.week1.title" = "1W";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.time.title" = "Oras";
+"market.detail.page.value.open.title" = "Buksan";
+"market.detail.page.value.high.title" = "Mataas";
+"market.detail.page.value.low.title" = "Mababa";
+"market.detail.page.value.close.title" = "Isara";
 "market.detail.page.value.diff.title" = "chg";
 "market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.vol.title" = "Dami";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.vol.title" = "Halaga (%@)";
+"market.detail.page.depth.price.title" = "Presyo (%@)";
 
-"market.detail.page.trade.time.title" = "Time";
-"market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.trade.time.title" = "Oras";
+"market.detail.page.trade.price.title" = "Presyo";
+"market.detail.page.trade.vol.title" = "Halaga";
+"market.detail.page.buy.button.title" = "Pagbili";
+"market.detail.page.sell.button.title" = "Pagbenta";
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.total" = "Mga Token sa Pag-ikot";
+"market.detail.page.token.info.type" = "Uri";
+"market.detail.page.token.info.type.value.native" = "Katutubo";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
 "market.detail.page.token.info.gateway" = "Gateway ng Cross-Chain";
 "market.detail.page.token.info.official" = "Opisyal na website";
