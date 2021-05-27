@@ -133,13 +133,13 @@
 "mnemonic.affirm.page.title" = "Kumpirmahin";
 "mnemonic.affirm.page.tip.title" = "Maayos na pumili ng seed phrase";
 "mnemonic.affirm.alter.title" = "Ang pagkilos na ito ay magbubunga ng seed phrase, handa nang bumalik?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.alter.check.title" = "Maling seed phrase!";
+"mnemonic.affirm.page.add.loading" = "Nagdaragdag...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
+"import.page.title" = "Mangyaring i-input ang iyong seed phrase";
+"import.page.submit.btn" = "Ibalik ang Account";
+"import.page.submit.invalid.mnemonic" = "May mali sa iyong seed phrase, mangyaring subukang muli!";
 "import.page.submit.loading" = "Import...";
 "import.page.submit.success" = "Import success";
 "import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
