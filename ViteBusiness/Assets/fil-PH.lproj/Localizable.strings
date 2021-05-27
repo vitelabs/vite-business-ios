@@ -73,21 +73,21 @@
 /* Lock */
 "lock.page.pwd.btn.title" = "Mag-login sa pamamagitan ng password";
 "lock.page.fingerprint.btn.title" = "Pag-verify ng Biometric";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.fingerprint.alter.title" = "I-verify ang fingerprint upang maisaaktibo ang Touch ID";
+"lock.page.changeUser.btn.title" = "Lumipat ng Account";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.title" = "Gumawa ng Account";
+"create.page.tf.title" = "Pangalan ng account";
+"create.page.pw.title" = "Mangyaring maglagay ng password";
+"create.page.pw.repeate.title" = "Mangyaring i-input muli ang iyong password";
+"create.page.invite.code.title" = "Ipasok ang code ng paanyaya o i-scan ang paanyaya ng QR code upang masiyahan sa 10% na diskwento sa pangangalakal at pagmimina sa premiere";
+"create.page.invite.code.placeholder" = "Code sa Imbitasyon (Opsyonal)";
+"create.page.submit.btn.title" = "Lumikha";
+"create.page.toast.error.invite.code" = "Maling Code sa Imbitasyon";
 
-"create.page.tip.title" = "Backup Instructions";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
+"create.page.tip.title" = "Mga Tagubilin sa Pag-backup";
+"create.page.tip.content1" = "Pag-iingat! Ang pagkawala ng mga mnemonic na salita ay magreresulta sa pagkawala ng lahat ng mga digital na assets sa wallet.";
 "create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
 "create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
 "create.page.tip.button.skip.title" = "Back Up Later";
