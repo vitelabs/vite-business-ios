@@ -253,14 +253,14 @@
 "gateway.info.detail.page.link" = "Link ng Gateway";
 
 "token.info.detail.page.title" = "Mga Detalye ng Token";
-"token.info.detail.page.name" = "Token Name";
+"token.info.detail.page.name" = "Pangalan ng Token";
 "token.info.detail.page.id" = "Token ID";
-"token.info.detail.page.brief" = "Introduction";
-"token.info.detail.page.total" = "Total Issuance";
-"token.info.detail.page.type" = "Token Type";
-"market.detail.page.token.info.type.value.native" = "Native";
+"token.info.detail.page.brief" = "Panimula";
+"token.info.detail.page.total" = "Kabuuang Paglabas";
+"token.info.detail.page.type" = "Uri ng Token";
+"market.detail.page.token.info.type.value.native" = "Katutubo";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"token.info.detail.page.gateway" = "Cross-Chain gateway";
+"token.info.detail.page.gateway" = "Gateway ng Cross-Chain";
 "token.info.detail.page.webside" = "Website";
 "token.info.detail.page.paper" = "WhitePaper";
 "token.info.detail.page.browser" = "Explorer";
@@ -268,11 +268,11 @@
 "token.info.detail.page.social" = "Social Media";
 
 /* Address Manage Page */
-"address.manage.page.title" = "My %@ Address";
-"address.manage.default.address.cell.title" = "Default Address";
-"address.manage.address.header.title" = "Addresses";
-"address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
+"address.manage.page.title" = "Ang aking %@ address";
+"address.manage.default.address.cell.title" = "Default na Address";
+"address.manage.address.header.title" = "Mga address";
+"address.manage.address.generate.button.title" = "Magdagdag ng Address";
+"address.manage.address.generate.button.toast" = "Magdagdag ng hanggang sa maximum na 100 na mga address!";
 "address.manage.address.generate.button.already.toast" = "Address already exists";
 "address.manage.address.generate.button.error.toast" = "Please input a number";
 "address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
