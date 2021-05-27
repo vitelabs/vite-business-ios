@@ -114,7 +114,7 @@
 "mnemonic.backup.page.tip.anewBtn.title" = "Muling buohin";
 "mnemonic.backup.page.tip.nextBtn.title" = "Naka-backup";
 "mnemonic.backup.page.tip.skip.title" = "I-back Up Mamaya";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.alter.title" = "Masidhi naming pinapayuhan laban sa pagkuha ng isang screenshot ng  seed phrase.  Iminumungkahi namin na isulat mo ang  seed phrase.  sa isang piraso ng papel at itago ito sa isang ligtas na lugar.";
 "mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
 "mnemonic.backup.page.alter.cancel" = "No";
 "mnemonic.backup.page.alter.confirm" = "Yes";
