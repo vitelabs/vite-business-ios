@@ -273,11 +273,11 @@
 "address.manage.address.header.title" = "Mga address";
 "address.manage.address.generate.button.title" = "Magdagdag ng Address";
 "address.manage.address.generate.button.toast" = "Magdagdag ng hanggang sa maximum na 100 na mga address!";
-"address.manage.address.generate.button.already.toast" = "Address already exists";
-"address.manage.address.generate.button.error.toast" = "Please input a number";
-"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
-"address.manage.alert.title" = "Generate New Addresses";
-"address.manage.alert.placeholder" = "Input a number between 1 and 100";
+"address.manage.address.generate.button.already.toast" = "Mayroon nang ganyang address";
+"address.manage.address.generate.button.error.toast" = "Mangyaring maglagay ng numero";
+"address.manage.tip.alert.message" = "Pinakamataas na henerasyon: 100 mga address; Kinakailangan ang pagkuha ng manu-manong address para sa lahat ng iba pa ngunit #1 na address sa listahan";
+"address.manage.alert.title" = "Bumuo ng bagong address";
+"address.manage.alert.placeholder" = "Magpasok ng isang numero sa pagitan ng 1 at 100";
 "address.manage.alert.tip" = "Bulk generate a specified number of addresses";
 "address.manage.tip.alert.ok" = "I know";
 "address.manage.default.address.name" = "Untitled";
@@ -336,10 +336,10 @@
 /* Scan Page */
 "Scan.page.title" = "Scan";
 "Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.qccode.not.found" = "Walang nahanap na QR code";
 
 /* System */
-"system.page.logout.loading" = "Logout";
+"system.page.logout.loading" = "Mag-logout";
 "system.page.cell.change.language" = "Language";
 "system.page.cell.change.currency" = "Currency";
 "system.page.cell.login.pwd" = "Unlock By Password";
