@@ -17,21 +17,21 @@
 "discover.page.activity.page.title1" = "Pinakabagong Kaganapan";
 "discover.page.activity.page.title2" = "Kasaysayan";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.news.cell.time.minute" = "Ngayon";
+"discover.page.news.cell.time.hour" = "%@h na nakalipas";
+"discover.page.news.cell.time.day" = "%@d na nakalipas";
+"discover.page.headerTitle.activity" = "Center sa Kampanya";
+"discover.page.headerTitle.game" = "Mga Laro ng Vite";
+"discover.page.headerTitle.news" = "Balita sa Vite";
+"discover.page.VCWebTitle.activity" = "Pangyayari sa Vite";
+"discover.page.VCWebTitle.game" = "Mga Laro ng Vite";
+"discover.page.VCWebTitle.news" = "Balita sa Vite";
+"discover.page.game.alter.title" = "Binisita mo ang isang pahina kung saan umalis sa Vite App, at maire-redirect ka sa isang third party dApp. Ang iyong paggamit sa dApp na ito ay susunod sa Term ng Kasunduan ng Gumagamit at Patakaran sa Privacy ng dApp. Ang Vite Labs ay walang pangangasiwa o kontrol sa kalidad, nilalaman, pagiging maaasahan o seguridad ng third party dApp, o mananagot din sa Vite Labs para sa paggamit nito.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
+"airdrop.help" = "Tulong";
+"airdrop.vpower" = "Mga Nanalo";
+"airdrop.profit" = "Mga benepisyo";
 "airdrop.validationFailed" = "Verification Failed";
 "airdrop.enabled" = "Pick up 10~1000";
 "airdrop.leftTime" = "Countdown";
