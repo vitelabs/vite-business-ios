@@ -222,37 +222,37 @@
 "vite.transaction.detail.page.state.call.failed" = "Nabigo ang Kontrata sa Pagtawag";
 "vite.transaction.detail.page.state.call.wait" = "Naghihintay para sa Tugon ng Smart Contract";
 "vite.transaction.detail.page.type.title" = "Uri ng transaksyon";
-"vite.transaction.detail.page.type.send" = "Request";
-"vite.transaction.detail.page.type.receive" = "Response";
-"vite.transaction.detail.page.hash.title" = "Transaction Hash";
+"vite.transaction.detail.page.type.send" = "Kahilingan";
+"vite.transaction.detail.page.type.receive" = "Tugon";
+"vite.transaction.detail.page.hash.title" = "Hash ng Transaksyon";
 "vite.transaction.detail.page.height.title" = "Block Height";
-"vite.transaction.detail.page.note.title" = "Memo";
-"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
+"vite.transaction.detail.page.note.title" = "Mga puna";
+"vite.transaction.detail.page.link.button.title" = "Tingnan ang Higit Pang Mga Detalye sa Vite Explorer";
 
 /* BalanceInfo */
-"balance.info.detail.balance.title" = "Balance";
-"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.balance.title" = "Balanse";
+"balance.info.detail.unconfirmed.title" = "Hindi Natanggap";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "Available";
+"balance.info.detail.available.amount.title" = "Pwedeng gamitin";
 "balance.info.detail.pledge.amount.title" = "Staked";
-"balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
-"balance.info.detail.reveice.button.title" = "Receive";
-"balance.info.detail.send.button.title" = "Send";
-"balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Get Quota";
-"balance.info.detail.exchange.vite" = "VITE Conversion";
-"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.show.transactions.button.title" = "Suriin ang kasaysayan ng transaksyon sa Ethereum Explorer";
+"balance.info.detail.reveice.button.title" = "Natanggap";
+"balance.info.detail.send.button.title" = "Ipadala";
+"balance.info.detail.vote" = "Bumoto";
+"balance.info.detail.pledge" = "Kumuha ng Quota";
+"balance.info.detail.exchange.vite" = "Palitan sa VITE";
+"balance.info.detail.pledge.count.content" = "Pwede Gastusin na Quota / Limitasyon ng Quota";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
-"gateway.info.detail.page.title" = "Gateway Details";
-"gateway.info.detail.page.name" = "Gateway Name";
-"gateway.info.detail.page.webside" = "Gateway Official Site";
-"gateway.info.detail.page.brief" = "Gateway Introduction";
-"gateway.info.detail.page.email" = "Customer Service";
-"gateway.info.detail.page.agreement" = "Service Terms";
-"gateway.info.detail.page.link" = "Gateway Link";
+"gateway.info.detail.page.title" = "Mga Detalye ng Gateway";
+"gateway.info.detail.page.name" = "Pangalan ng Gateway";
+"gateway.info.detail.page.webside" = "Opisyal na Site ng Gateway";
+"gateway.info.detail.page.brief" = "Panimula sa Gateway";
+"gateway.info.detail.page.email" = "Serbisyo para sa kustomer";
+"gateway.info.detail.page.agreement" = "Mga Tuntunin sa Serbisyo";
+"gateway.info.detail.page.link" = "Link ng Gateway";
 
-"token.info.detail.page.title" = "Token Details";
+"token.info.detail.page.title" = "Mga Detalye ng Token";
 "token.info.detail.page.name" = "Token Name";
 "token.info.detail.page.id" = "Token ID";
 "token.info.detail.page.brief" = "Introduction";
@@ -1117,22 +1117,22 @@
 "market.detail.page.token.info.type" = "Type";
 "market.detail.page.token.info.type.value.native" = "Native";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
+"market.detail.page.token.info.gateway" = "Gateway ng Cross-Chain";
+"market.detail.page.token.info.official" = "Opisyal na website";
 "market.detail.page.token.info.paper" = "WhitePaper";
 "market.detail.page.token.info.browser" = "Explorer";
 "market.detail.page.token.info.github" = "Github";
 
 "market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.brief" = "Panimula";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
+"market.detail.page.token.info.anonymous" = "Hindi Kilala";
+"market.detail.page.token.info.address" = "Address ng Operator";
 "market.detail.page.token.info.pair" = "Trading pair";
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.mining" = "Pagmimina";
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
@@ -1171,17 +1171,17 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
-"spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
-"spot.page.available" = "Avail.: %@";
+"spot.page.buy.mining.tip" = "Karapat-dapat para sa pagmimina kung ang presyo ay higit sa %@";
+"spot.page.sell.mining.tip" = "Karapat-dapat para sa pagmimina kung ang presyo ay mas mababa sa %@";
+"spot.page.button.closed.title" = "Nasuspinde ang Trading";
+"spot.page.button.buy.title" = "Pagbili";
+"spot.page.button.sell.title" = "Pagbenta";
+"spot.page.button.limit.buy.title" = "Limitadong Order";
+"spot.page.price.buy.placeholder" = "Presyo";
+"spot.page.vol.buy.placeholder" = "Halaga";
+"spot.page.price.sell.placeholder" = "Presyo";
+"spot.page.vol.sell.placeholder" = "Halaga";
+"spot.page.available" = "Magagamit.: %@";
 "spot.page.buyable" = "Pinakamataas na Pagbili:%@";
 "spot.page.sellable" = "Pinakamataas na Pagbenta:%@";
 "spot.page.total" = "Kabuuan:%@";
@@ -1241,7 +1241,7 @@
 "dex.token.detail.page.header.lock.vite.full.node" = "Staked para sa Full Node";
 "dex.token.detail.page.header.lock.vite.mining" = "Staked";
 "dex.token.detail.page.header.lock.vite.mining.cancel" = "Kinukuhang muli";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vite.vip" = "Naka-lock ang VIP";
 "dex.token.detail.page.header.lock.vx" = "Staked";
 "dex.token.detail.page.header.lock.vx.cancel" = "Kinukuhang muli";
 
