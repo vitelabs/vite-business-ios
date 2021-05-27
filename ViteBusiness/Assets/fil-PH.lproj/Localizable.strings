@@ -1227,20 +1227,20 @@
 
 "dex.home.page.header.btc.valuation.title" = "Halaga (BTC)";
 "dex.home.page.header.button.transfer.title" = "Ilipat";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.button.deposit.title" = "Deposito";
+"dex.home.page.header.button.withdraw.title" = "Pag-withdraw";
+"dex.home.page.header.button.hide.small.title" = "Itago ang maliit na balanse";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.title" = "Balanse";
+"dex.token.detail.page.header.total" = "Kabuuan";
+"dex.token.detail.page.header.available" = "Pwedeng gamitin";
+"dex.token.detail.page.header.lock.place.order" = "Sa Order";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.pledge" = "Staked para sa Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Staked para sa SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Staked para sa Full Node";
 "dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Kinukuhang muli";
 "dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
 "dex.token.detail.page.header.lock.vx" = "Staked";
 "dex.token.detail.page.header.lock.vx.cancel" = "Kinukuhang muli";
