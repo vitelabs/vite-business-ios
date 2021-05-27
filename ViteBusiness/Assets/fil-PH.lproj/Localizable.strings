@@ -101,12 +101,12 @@
 "mnemonic.backup.language.zh" = "sa";
 "mnemonic.backup.language.en" = "FIL";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.title" = "Abiso";
+"mnemonic.backup.scan.alert.message" = "Kumpirmahin ang paglikha ng account sa mga sumusunod na mnemonic na salita?";
+"mnemonic.backup.scan.alert.ok.title" = "Kumpirmahin";
+"mnemonic.backup.scan.alert.cancel.title" = "Kanselahin";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
+"mnemonic.backup.page.check.button1.title" = "Naiintindihan ko na kung mawawala sa akin ang mga mnemonic na salita, hindi ko na mababalik ang aking mga assets";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
@@ -211,17 +211,17 @@
 "transaction.list.transaction.type.name.coin" = "Pagbibigay ng Token";
 "transaction.list.transaction.type.name.cancelCoin" = "Pag-withdraw ng token ng staking";
 "transaction.list.transaction.type.name.transfer" = "Ilipat";
-"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
-"transaction.list.transaction.confirmations" = "%@ Confirmations";
-"transaction.list.transaction.confirmations.finished" = "Confirmed";
-"eth.transaction.detail.page.state.call.wait" = "Pending";
+"transaction.list.transaction.netErrorAndShowAccount" = "Mayroong problema sa network, mag-click dito upang suriin ang mga detalye ng account";
+"transaction.list.transaction.confirmations" = "%@ Mga Pagkumpirma";
+"transaction.list.transaction.confirmations.finished" = "Kumpirmahin";
+"eth.transaction.detail.page.state.call.wait" = "Nakabinbin";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "Transaction Completed";
-"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
-"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
-"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
-"vite.transaction.detail.page.type.title" = "Transaction Type";
+"vite.transaction.detail.page.state.success" = "Nakumpleto ang Transaksyon";
+"vite.transaction.detail.page.state.call.success" = "Nagtagumpay ang Kontrata sa Pagtawag";
+"vite.transaction.detail.page.state.call.failed" = "Nabigo ang Kontrata sa Pagtawag";
+"vite.transaction.detail.page.state.call.wait" = "Naghihintay para sa Tugon ng Smart Contract";
+"vite.transaction.detail.page.type.title" = "Uri ng transaksyon";
 "vite.transaction.detail.page.type.send" = "Request";
 "vite.transaction.detail.page.type.receive" = "Response";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
@@ -1243,17 +1243,17 @@
 "dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
 "dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
 "dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vx.cancel" = "Kinukuhang muli";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.list.wallet.heater.title" = "Kasaysayan";
+"dex.token.detail.page.list.dex.heater.title" = "Kasaysayan ng Paglipat";
 "dex.token.detail.page.cell.in" = "Transfer-In";
 "dex.token.detail.page.cell.out" = "Transfer-Out";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
-"dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
+"dex.token.detail.page.button.deposit" = "Deposito";
+"dex.token.detail.page.button.withdraw" = "I-withdraw";
+"dex.token.detail.page.button.transfer" = "Ilipat";
+"dex.token.detail.page.button.send" = "Ipadala";
 "dex.token.detail.page.button.trading" = "Trade";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "Piliin ang Trading Pair";
