@@ -1204,14 +1204,14 @@
 "spot.page.confirm.tip" = "Huwag magtanong muli sa loob ng 24 na oras";
 
 "spot.page.alert.title" = "Mahalagang paalala";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.message" = "Ang kasalukuyang pares ng kalakalan ay %@, ang pamumuhunan sa Cryptocurrency ay napapailalim sa mataas na peligro sa merkado at pagkasumpungin ng presyo. Mangyaring suriin nang mabuti ang iyong kakayahan sa paghawak ng mga potensyal na peligro at gumawa ng mga maingat na pagpapasya sa kalakalan.";
+"spot.page.alert.ok" = "Kumpirmahin";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
+"spot.page.order.empty" = "Walang order";
+"spot.page.cell.type.buy" = "Bumili";
+"spot.page.cell.type.sell" = "Pagbenta";
+"spot.page.cell.button.cancel.title" = "Kanselahin";
+"spot.page.cell.vol" = "Halaga.:%@";
 "spot.page.cell.price" = "Price: %@";
 "spot.page.cell.deal" = "Filled: %@";
 "spot.page.cell.average" = "Avg.: %@";
