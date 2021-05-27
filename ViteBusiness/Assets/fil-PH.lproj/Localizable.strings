@@ -37,42 +37,42 @@
 "airdrop.leftTime" = "Pagbibilang";
 
 "airdrop.error.tip.need.update" = "Sinusuportahan lamang ang Airdrop sa iOS 11 at mas mataas.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.not.support" = "Hindi sinusuportahan ng iyong aparato ang airdrop.";
+"airdrop.error.tip.unknown.error" = "Hindi matukoy na mali.";
 
 
 "tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
+"tab.title.market" = "Mga merkado";
 "tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
+"tab.title.discover" = "Tuklasin";
 "tab.title.dex" = "Asset";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
+"Cancel" = "Kanselahin";
+"Finish" = "Tapos na";
+"Delete" = "Burahin";
 "Hint" = "Prompt";
-"Yes" = "Yes";
-"No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
-"web.page.host.tip" = "This page is provided by %@";
+"Yes" = "Oo";
+"No" = "Hindi";
+"Loading" = "Naglo-load";
+"Retry" = "Subukang muli";
+"Confirm" = "Kumpirmahin";
+"Submit" = "Isumite";
+"Close" = "Naiintindihan ko";
+"Update.app" = "I-update ang App";
+"Submit.cancel" = "Kanselahin";
+"Close" = "Isara";
+"Quit" = "Umalis";
+"web.page.host.tip" = "Ang pahinang ito ay ibinigay ng %@";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
-"select.wallet.account" = "Select your account";
+"create.account" = "Gumawa ng Account";
+"import.account" = "Mag-import ng Account";
+"select.wallet.account" = "Piliin ang iyong account";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
+"lock.page.pwd.btn.title" = "Mag-login sa pamamagitan ng password";
+"lock.page.fingerprint.btn.title" = "Pag-verify ng Biometric";
 "lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
 "lock.page.changeUser.btn.title" = "Switch Account";
 
