@@ -821,27 +821,27 @@
 "crosschain.statement.title" = "Mahalagang Paunawa";
 
 "unit.Million" = " Milyon";
-"unit.Billion" = " Billion";
-"unit.Trillion" = " Trillion";
+"unit.Billion" = " Bilyon";
+"unit.Trillion" = " Trilyon";
 
-"exchange.history" = "Purchase History";
-"exchange.card.title" = "Buy VITE";
-"exchange.titley" = "Instant Purchase";
-"exchange.buy" = "Buy";
+"exchange.history" = "Kasaysayan sa Pagbili";
+"exchange.card.title" = "Bumili ng VITE";
+"exchange.titley" = "Agarang Pagbili";
+"exchange.buy" = "Pagbili";
 "exchange.price" = "Rate: ";
-"exchange.amount" = "Amount: ";
-"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
-"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+"exchange.amount" = "Halaga: ";
+"exchange.limit.onetime" = "Isang Limitasyon sa Transaksyon:%@-%@ VITE";
+"exchange.limit.oneday" = "Limitasyon sa Pang-araw-araw na Transaksyon %@ VITE ； Hindi Ginamit na Pang-araw-araw na Limitasyon:%@ VITE\n\n\n";
+"exchange.limit.alert" = "Ang halaga na iyong ipinasok ay hindi wasto. Ang isang solong transaksyon ay dapat na hindi bababa sa%@ VITE at hindi hihigit sa%@ VITE, at ang pang-araw-araw na limitasyon sa transaksyon ay%@ VITE.";
 
 
 /* ViteConnect */
-"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
-"bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
-"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
-"bifrost.alert.approve.session.another.address.cancel" = "Back";
+"bifrost.connect.tip.in.wallet.home" = "Nakakonekta ang ViteConnect";
+"bifrost.alert.tip.title" = "Abiso";
+"bifrost.alert.approve.session.message" = "Mangyaring kumpirmahin ang sumusunod na link\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Ang address na na-scan mo ngayon ay hindi naaayon sa isa sa web platform. Magpatuloy sa pag-login gamit ang App address?\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Kumpirmahin ang pag-login";
+"bifrost.alert.approve.session.another.address.cancel" = "Bumalik";
 
 "bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
 
