@@ -787,7 +787,7 @@
 "crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
 "crosschain.status.confirmed" = "Confirmed";
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
-"crosschain.status.wrong.address" = "Wrong transfer address";
+"crosschain.status.wrong.address" = "Maling address sa paglipat";
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
 "crosschain.status.failedBecausePoor" = "Insufficient amount";
@@ -890,28 +890,28 @@
 
 "bifrost.operation.function.title" = "Pinatawag ang Kontrata";
 "bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.amount" = "Amount";
-"bifrost.operation.title.fee" = "Fee";
-"bifrost.operation.title.data" = "Data";
+"bifrost.operation.title.amount" = "Halaga";
+"bifrost.operation.title.fee" = "Bayarin";
+"bifrost.operation.title.data" = "Datos";
 
-"bifrost.operation.sign.message.title" = "Create API";
-"bifrost.operation.sign.message.address" = "Current Address";
-"bifrost.operation.sign.message.type" = "Permission Type";
-"bifrost.operation.sign.message.content" = "Signature Content";
+"bifrost.operation.sign.message.title" = "Lumikha ng API";
+"bifrost.operation.sign.message.address" = "Kasalukuyang Address";
+"bifrost.operation.sign.message.type" = "Ang uri ng pahintulot";
+"bifrost.operation.sign.message.content" = "Nilalaman ng Lagda";
 "bifrost.operation.sign.message.type.trade.value" = "Trade";
 
-"bifrost.create.contract.title" = "Create Contract";
+"bifrost.create.contract.title" = "Lumikha ng Kontrata";
 "bifrost.create.contract.title.contract.address" = "Contract Address";
-"bifrost.create.contract.title.amount" = "Amount";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title.amount" = "Halaga";
+"bifrost.create.contract.title.fee" = "Bayarin";
+"bifrost.create.contract.title.data" = "Datos";
 
 //bnb
 "token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
+"bnb.send.page.feeView.titleLabel.title" = "Bayarin";
 "bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
+"bnb.send.page.eth.contacts.button.title" = "Mga contact sa BNB";
+"bnb.txType.newOrder.title" = "Maglagay ng Order";
 "bnb.txType.issueToken.title" = "Isyu ng Asset";
 "bnb.txType.burnToken.title" = "I-Burn";
 "bnb.txType.listToken.title" = "Listing";
