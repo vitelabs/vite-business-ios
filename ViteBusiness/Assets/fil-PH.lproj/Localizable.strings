@@ -880,13 +880,13 @@
 "bifrost.operation.pledge" = "Kumuha ng Quota";
 "bifrost.operation.cancel.pledge" = "Kunin ang Staking para sa Quota";
 "bifrost.operation.coin" = "Pagbibigay ng Token";
-"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Send";
-"bifrost.operation.vx.deposit" = "ViteX Deposit";
-"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
-"bifrost.operation.vx.order" = "Place Order on ViteX";
-"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+"bifrost.operation.cancel.coin" = "Kunin ang Staking para sa Pagbibigay";
+"bifrost.operation.transfer" = "Ipadala";
+"bifrost.operation.vx.deposit" = "Deposito sa ViteX";
+"bifrost.operation.vx.withdraw" = "Pag-Withdraw ng ViteX";
+"bifrost.operation.across.chain.withdraw" = "Ipadala ang Cross-Chain";
+"bifrost.operation.vx.order" = "Maglagay ng Order sa ViteX";
+"bifrost.operation.vx.cancel.order" = "Kanselahin ang Order sa ViteX";
 
 "bifrost.operation.function.title" = "Contract Invoke";
 "bifrost.operation.title.contract.address" = "Contract Address";
