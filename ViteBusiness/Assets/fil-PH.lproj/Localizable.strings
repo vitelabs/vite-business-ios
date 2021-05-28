@@ -562,7 +562,7 @@
 
 /* Confirm Transaction Page */
 "confirm.transaction.page.biometry.confirm.reason" = "Patunayan";
-"confirm.transaction.address.title" = "Recipient Address";
+"confirm.transaction.address.title" = "Address ng tatanggap";
 "confirm.transaction.amount.title" = "Amount";
 "confirm.transaction.fee.title" = "Fee";
 "confirm.transaction.quota.title" = "Quota";
@@ -851,16 +851,16 @@
 "bifrost.home.page.free.content" = "You have no transaction yet";
 "bifrost.home.page.free.address.title" = "Address";
 "bifrost.home.page.free.history.title" = "Transactions Signed";
-"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.title" = "Pag-sign ng Auto";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Password";
 
-"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.home.page.busy.header" = "Gumagawa ka ng mga pagbabago sa ViteX & Web Wallet";
+"bifrost.home.page.busy.content" = "Mangyaring kumpirmahin ang impormasyon sa transaksyon sa ibaba";
+"bifrost.toast.operation.success" = "Matagumpay ang operasyon";
 
-"bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.title" = "Listahan ng Transaksyon sa Pag-sign";
+"bifrost.list.page.status.pending" = "Naghihintay ng Lagda";
+"bifrost.list.page.status.processing" = "Pagpirma";
 "bifrost.list.page.status.failed" = "Failure";
 "bifrost.list.page.status.finished" = "Success";
 "bifrost.list.page.status.canceled" = "Canceled";
