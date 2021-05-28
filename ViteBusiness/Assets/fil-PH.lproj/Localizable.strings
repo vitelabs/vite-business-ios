@@ -739,35 +739,35 @@
 "grin.node.edit.nodeAddressTitle" = "Address ng Full Node";
 "grin.node.edit.apiSecretTitle" = "Susi";
 "grin.node.select.canNotConnect" = "Nabigong kumonekta sa full node.";
-"grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Illegal transfer amount";
-"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.detail.slateCopied" = "Nakopya ang Slate ID.";
+"grin.send.illegalAmmount" = "Ilegal na halaga ng paglipat";
+"grin.detail.gatewayResend" = "Humiling para sa Vite gateway upang Muling Ipadala";
+"grin.export.mnemonic" = "I-export ang Seed Phrase";
 
 // CrossChain Transfer & Receive
 
-"crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
-"crosschain.withdraw.btnTitle" = "Withdraw";
-"crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
-"crosschain.deposit.history" = "Deposit History";
-"crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Deposit Address";
+"crosschain.tokendetail" = "Mga Detalye ng Token";
+"crosschain.deposit" = "Deposito sa Cross-Chain";
+"crosschain.withdraw" = "Pag-Withdraw sa Cross-Chain";
+"crosschain.withdraw.btnTitle" = "Pag-withdraw";
+"crosschain.deposit.btnTitle" = "Pagdedeposito";
+"crosschain.deposit.vitewallet" = "Mag-Deposito mula sa Vite Wallet";
+"crosschain.deposit.otherwallet" = "Deposit mula sa Isa pang Wallet";
+"crosschain.deposit.history" = "History ng Deposito";
+"crosschain.withdraw.history" = "Kasaysayan sa Pag-withdraw";
+"crosschain.deposit.minAmountDesc" = "Ang %@ lamang ang tinatanggap ng address sa ibaba, at ang minimum na halaga ay dapat na hindi mas mababa sa %@";
+"crosschain.deposit.minComfirm" = "Dapat tumagal ang proseso ng %@ (mga) kumpirmasyon, mangyaring maghintay.";
+"crosschain.deposit.address" = "Address ng Deposito";
 "crosschain.deposit.scanAddress" = "Mangyaring i-scan ang address ng QR code";
 "crosschain.deposit.scanLabel" = "Mangyaring i-scan ang %@ code";
 "crosschain.deposit.labelDesc" = "Mangyaring gamitin ang %@ kasama ang Deposit Address, o mawawala sa iyo ang (mga) token.";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tungkol sa Deposito ng Cross-Chain</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Pinapayagan ang paggawa ng isang deposito ng cross-chain %@ upang mai-map sa Vite network. Pagkatapos nito, makakagawa ka rin ng isang pag-urong ng cross-chain. Ang %@ balanse sa iyong Vite wallet ay mababawasan nang naaayon kapag gumawa ka ng isang cross-chain na deposito mula sa iyong Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tungkol sa Deposito ng Cross-Chain</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Pinapayagan ang paggawa ng isang deposito ng cross-chain %@ upang mai-map sa Vite network. Pagkatapos nito, makakagawa ka rin ng isang pag-withdraw ng cross-chain.</p>";
+"crosschain.withdraw.eth.myAddress" = "Ang aking ETH address";
+"crosschain.deposit.min" = "Minimum na Halaga ng Deposit ";
+"crosschain.withdraw.min" = "Minimum na Halaga ng Withdrawal ";
+"crosschain.deposit.min.alert" = "Ang halaga ng deposito ay hindi maaaring mas mababa sa ";
 "crosschain.deposit.all" = "Deposit All";
 "crosschain.deposit.amount" = "Deposit Amount";
 "crosschain.withdraw.all" = "Withdraw All";
