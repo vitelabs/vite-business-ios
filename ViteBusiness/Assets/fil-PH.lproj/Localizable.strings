@@ -400,28 +400,28 @@
 /* Peldge History */
 "peldge.message" = "Kasalukuyan lamang sinusuportahan ng Vite App ang pag-check ng listahan ng staking, mangyaring pumunta sa Web Wallet upang mag-withdraw ng mga naka-stake na token sa takdang petsa kung kinakailangan.";
 "peldge.deadline" = "Takdang petsa";
-"peldge.title" = "Staking History";
-"peldge.address.title" = "Beneficiary";
-"peldge.cancel.peldge.button.title" = "Withdraw";
-"peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
-"peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
-"peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
+"peldge.title" = "Kasaysayan ng Staking";
+"peldge.address.title" = "Benepisyaryo";
+"peldge.cancel.peldge.button.title" = "Pag-withdraw";
+"peldge.cancel.pledge.withdrawing.title" = "Pag-withdraw";
+"peldge.cancel.pledge.amount.error.toast" = "Ang minimum na halaga ng pag-atras ay 134 VITE, mangyaring mag-stake muna ng sapat na VITE.";
+"peldge.cancel.pledge.agent.error.toast" = "Hindi karaniwang stake, mangyaring subukan ang pag-withdraw kung saan mo inilagay ang stake.";
 /* Vote */
-"vote.page.title" = "Vote";
-"vote.page.info.nodata.title" = "No Vote";
-"vote.page.voteStatus.voteSuccess" = "Successful Vote";
-"vote.page.voteStatus.voting" = "Voting";
-"vote.page.voteStatus.cancelVoting" = "Revoking";
-"vote.page.voteStatus.voteInvalid" = "Invalid Voting";
-"vote.page.voteInfo.nodePolls.title" = "My Votes";
-"vote.page.nodeStatus.valid.title" = "Active";
-"vote.page.nodeStatus.invalid.title" = "Inactive";
-"vote.page.voteInfo.alert.quota" = "Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote";
+"vote.page.title" = "Bumoto";
+"vote.page.info.nodata.title" = "Walang boto";
+"vote.page.voteStatus.voteSuccess" = "Matagumpay na Pagboto";
+"vote.page.voteStatus.voting" = "Pagboto";
+"vote.page.voteStatus.cancelVoting" = "Pagpapawalang-bisa";
+"vote.page.voteStatus.voteInvalid" = "Di-wastong Pagboto";
+"vote.page.voteInfo.nodePolls.title" = "Aking Mga Boto";
+"vote.page.nodeStatus.valid.title" = "Aktibo";
+"vote.page.nodeStatus.invalid.title" = "Hindi aktibo";
+"vote.page.voteInfo.alert.quota" = "Hindi mapawalang bisa ang boto, kailangan mong patakbuhin ang PoW o mag-stake VITE para sa quota ng TPS upang bawiin ang boto";
 
 /* Vote List*/
-"vote" = "Vote";
-"vote.list.title" = "Candidate Nodes";
-"vote.list.search" = "Search for name or address of candidate nodes";
+"vote" = "Bumoto";
+"vote.list.title" = "Mga Node ng Kandidato";
+"vote.list.search" = "Maghanap para sa pangalan o address ng mga kandidato node";
 "vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
 "vote.list.confirm.revote" = "Confirm";
 "vote.list.count" = "Votes";
