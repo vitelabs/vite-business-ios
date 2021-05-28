@@ -719,9 +719,9 @@
 "grin.detail.txReceivedAndCanAskGatewaytoSend" = "You have already received the transaction, if the state doesn't go to \"Confirmed\", please try \"Request for Vite gateway to resend\".";
 "grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "If the state stays \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
 "grin.detail.gateway.confirmConntLessThanTen" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
-"grin.detail.gateway.confirmConntBiggerThanTen" = "Vite gateway confirmation has reached 10, if the state not changing to \"Unreceived\" for a long time, please try \"Request for Vite gateway to resend\".";
-"grin.detail.confirmLessThanThen" = "Transaction has been confirmed, after 10 confirmation, \"Actual Amount\" will go to \"Spendable Amount\".";
-"grin.detail.gateway" = "Vite Gateway Collection";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Ang kumpirmasyon ng Vite gateway ay umabot sa 10, kung ang estado ay hindi nagbabago sa \"Hindi Natanggap\" sa mahabang panahon, mangyaring subukan ang \"Humiling para sa Vite gateway upang muling ipadala.\".";
+"grin.detail.confirmLessThanThen" = "Ang transaksyon ay nakumpirma, pagkatapos ng 10 kumpirmasyon, ang \"Aktwal na Halaga\" ay pupunta sa \" Halagang Pwedeng Gatusin\".";
+"grin.detail.gateway" = "Koleksyon ng Vite Gateway";
 "grin.detail.gatewayReceived" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
 "grin.detail.txpostingAndCanRepost" = "Transaction has started to be broadcast, you can click \"Repost\" to try again if the transaction hasn't been confirmed for long";
 "grin.detail.pleaseFinalize" = "Please finalize the transaction";
@@ -843,14 +843,14 @@
 "bifrost.alert.approve.session.another.address.ok" = "Kumpirmahin ang pag-login";
 "bifrost.alert.approve.session.another.address.cancel" = "Bumalik";
 
-"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "Ang ViteConnect ay konektado, ang pagpalit address ay makakasira sa koneksyon sa network. Siguraduhing palitan ng address";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+"bifrost.alert.quit.title" = "Tiyaking mag-logout sa ViteConnect?";
 
-"bifrost.home.page.free.header" = "ViteConnect Connected";
-"bifrost.home.page.free.content" = "You have no transaction yet";
+"bifrost.home.page.free.header" = "Nakakonekta ang ViteConnect";
+"bifrost.home.page.free.content" = "Wala ka pang transaksyon";
 "bifrost.home.page.free.address.title" = "Address";
-"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.history.title" = "Nilagdaan ang Mga Transaksyon";
 "bifrost.home.page.free.auto.sign.title" = "Pag-sign ng Auto";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Password";
 
