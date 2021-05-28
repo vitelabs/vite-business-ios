@@ -888,7 +888,7 @@
 "bifrost.operation.vx.order" = "Maglagay ng Order sa ViteX";
 "bifrost.operation.vx.cancel.order" = "Kanselahin ang Order sa ViteX";
 
-"bifrost.operation.function.title" = "Contract Invoke";
+"bifrost.operation.function.title" = "Pinatawag ang Kontrata";
 "bifrost.operation.title.contract.address" = "Contract Address";
 "bifrost.operation.title.amount" = "Amount";
 "bifrost.operation.title.fee" = "Fee";
