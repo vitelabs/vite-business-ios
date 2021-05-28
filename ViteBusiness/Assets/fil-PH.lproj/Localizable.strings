@@ -861,25 +861,25 @@
 "bifrost.list.page.title" = "Listahan ng Transaksyon sa Pag-sign";
 "bifrost.list.page.status.pending" = "Naghihintay ng Lagda";
 "bifrost.list.page.status.processing" = "Pagpirma";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.status.failed" = "Pagkabigo";
+"bifrost.list.page.status.finished" = "Tagumpay";
+"bifrost.list.page.status.canceled" = "Kinansela";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "Mga Detalye ng Mga Transaksyon na Naka-sign";
 
-"bifrost.error.message.timeout" = "Connection time out, please try again later";
-"bifrost.error.message.unknown" = "Connection Error, please try again later";
+"bifrost.error.message.timeout" = "Nag-timeout na ang koneksyon, pakisubukan ulit sa ibang pagkakataon";
+"bifrost.error.message.unknown" = "Error sa Koneksyon, pakisubukan ulit sa ibang pagkakataon";
 
 // operation
-"bifrost.operation.register.sbp" = "Register SBP";
-"bifrost.operation.register.update.sbp" = "Update SBP";
-"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
-"bifrost.operation.vote" = "Voting";
-"bifrost.operation.cancel.vote" = "Revoke Voting";
-"bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Get Quota";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
-"bifrost.operation.coin" = "Token Issuance";
+"bifrost.operation.register.sbp" = "Magrehistro sa SBP";
+"bifrost.operation.register.update.sbp" = "I-update ang SBP";
+"bifrost.operation.cancel.register.sbp" = "Kanselahin ang Rehistro sa SBP";
+"bifrost.operation.vote" = "Pagboto";
+"bifrost.operation.cancel.vote" = "Bawiin ang Pagboto";
+"bifrost.operation.extract.reward" = "Kunin ang Gantimpala";
+"bifrost.operation.pledge" = "Kumuha ng Quota";
+"bifrost.operation.cancel.pledge" = "Kunin ang Staking para sa Quota";
+"bifrost.operation.coin" = "Pagbibigay ng Token";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
 "bifrost.operation.transfer" = "Send";
 "bifrost.operation.vx.deposit" = "ViteX Deposit";
