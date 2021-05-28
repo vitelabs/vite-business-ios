@@ -398,8 +398,8 @@
 "quota.pow.finished.float.view.pledge.button.title" = "Mag-transact nang mas mabilis sa pamamagitan ng Staking";
 
 /* Peldge History */
-"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
-"peldge.deadline" = "Due Date";
+"peldge.message" = "Kasalukuyan lamang sinusuportahan ng Vite App ang pag-check ng listahan ng staking, mangyaring pumunta sa Web Wallet upang mag-withdraw ng mga naka-stake na token sa takdang petsa kung kinakailangan.";
+"peldge.deadline" = "Takdang petsa";
 "peldge.title" = "Staking History";
 "peldge.address.title" = "Beneficiary";
 "peldge.cancel.peldge.button.title" = "Withdraw";
