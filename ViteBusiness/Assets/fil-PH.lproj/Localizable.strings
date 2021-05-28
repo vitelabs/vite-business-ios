@@ -302,40 +302,40 @@
 "send.page.amount.toolbar.button.title" = "Susunod";
 "send.page.toast.address.error" = "Maling address, mangyaring suriin ang format";
 "send.page.toast.amount.error" = "Hindi sapat ang balanse";
-"send.page.toast.amount.empty" = "Please input balance";
-"send.page.toast.amount.zero" = "The amount has to be positive";
-"send.page.toast.note.too.long" = "The length of notes has reached limitations";
-"send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
-"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
-"send.page.not.enough.balance.alert.button" = "Cancel";
-"send.page.token.info.error" = "Token Info Error";
+"send.page.toast.amount.empty" = "Mangyaring mag-input ng balanse";
+"send.page.toast.amount.zero" = "Ang halaga ay dapat na maging positibo";
+"send.page.toast.note.too.long" = "Ang haba ng mga nakatala ay umabot sa mga limitasyon";
+"send.page.toast.contract.address.support.hex" = "Ang patutunguhang address na inililipat mo sa isang kontrata, ang tala ay dapat na nakasulat na may ligal na hexadecimal character";
+"send.page.not.enough.balance.alert.title" = "Hindi sapat ang balanse";
+"send.page.not.enough.balance.alert.button" = "Kanselahin";
+"send.page.token.info.error" = "Nag-Error sa Impormasyon ng Token";
 "send.page.quota.content" = "%@ UTPS";
-"send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
+"send.page.eth.failed" = "(%@). Mangyaring suriin ang kasaysayan ng transaksyon bago subukang muli";
 
 /* eth vite exchange */
-"eth.vite.exchange.page.title" = "VITE Conversion";
-"eth.vite.exchange.page.my.address.title" = "ETH Address";
-"eth.vite.exchange.page.my.balance.title" = "Balance";
-"eth.vite.exchange.page.to.address.title" = "VITE Address";
-"eth.vite.exchange.page.amount.title" = "Conversion Amount";
-"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
-"eth.vite.exchange.page.send.button.title" = "Convert";
-"eth.vite.exchange.page.address.change.button.title" = "Switch";
-"eth.vite.exchange.page.exchange.all.button.title" = "All";
-"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+"eth.vite.exchange.page.title" = "Konbersyon ng VITE";
+"eth.vite.exchange.page.my.address.title" = "Address ng ETH";
+"eth.vite.exchange.page.my.balance.title" = "Balanse";
+"eth.vite.exchange.page.to.address.title" = "Address ng VITE";
+"eth.vite.exchange.page.amount.title" = "Halaga ng Palitan";
+"eth.vite.exchange.page.amount.placeholder" = "I-convert ang%@ VITE nang higit pa";
+"eth.vite.exchange.page.send.button.title" = "Palitan";
+"eth.vite.exchange.page.address.change.button.title" = "Lumipat";
+"eth.vite.exchange.page.exchange.all.button.title" = "Lahat";
+"eth.vite.exchange.page.exchange.history.button.title" = "Kasaysayan ng Palitan";
 
 /* Receive Page */
-"Receive.page.token.title" = "Receive";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
-"Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
+"Receive.page.token.title" = "Natanggap";
+"Receive.page.mine.title" = "Ang aking QRCode";
+"Receive.page.token.name.label" = "I-scan at ipadala ang %@";
+"Receive.page.token.amount.button.title" = "Ilagay ang Halaga";
+"Receive.page.token.note.label" = "Mag-Kumento";
+"Receive.page.token.amount.alert.title" = "Ilagay ang Halaga";
 "Receive.page.wallet.name" = "Vite Wallet";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
+"Scan.page.title" = "Suriin";
+"Scan.page.qccode.not.identifiable" = "Hindi makilala ang QRCode";
 "Scan.page.qccode.not.found" = "Walang nahanap na QR code";
 
 /* System */
