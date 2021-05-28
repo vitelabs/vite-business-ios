@@ -501,47 +501,47 @@
 "eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
+"token.list.page.search.title" = "Mangyaring maglagay ng pangalan ng token o address ng kontrata";
 "token.list.page.section.vite.header" = "Vite Network";
 "token.list.page.section.eth.header" = "Ethereum Network";
 "token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
-"token.list.page.ignore.lab.title" = "%d new asset(s)";
-"token.list.page.ignore.alter.title" = "Assets ignored will not be informed again, are you sure to ignore the assets below?";
+"token.list.page.ignore.btn.title" = "Balewalain";
+"token.list.page.ignore.lab.title" = "%d bagong (mga) asset";
+"token.list.page.ignore.alter.title" = "Hindi bibigyan ng kaalaman ang mga hindi pinapansin na assets, sigurado ka bang balewalain ang mga asset sa ibaba?";
 // Contacts Home
-"contacts.home.page.title" = "Contact Address";
-"contacts.home.page.no.contact.tip" = "Add your first address";
-"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.title" = "Address sa Pakikipag-ugnayan";
+"contacts.home.page.no.contact.tip" = "Idagdag ang iyong unang address";
+"contacts.home.page.single.no.contact.tip" = "Wala pang %@ ang address";
+"contacts.home.page.filter.all" = "Lahat";
+"contacts.home.page.add.button.title" = "Magdagdag";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
-"contacts.edit.page.name.title" = "Name";
-"contacts.edit.page.address.title" = "Please input address";
-"contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.add.title" = "Magdagdag ng Address sa Pakikipag-ugnay";
+"contacts.edit.page.edit.title" = "I-edit ang Address sa Pakikipag-ugnay";
+"contacts.edit.page.name.title" = "Pangalan";
+"contacts.edit.page.address.title" = "Mangyaring mag-input ng address";
+"contacts.edit.page.type.select.title" = "Piliin ang uri ng token";
+"contacts.edit.page.save.button.title" = "I-save";
+"contacts.edit.page.save.success.tip" = "Matagumpay na naidagdag";
+"contacts.edit.page.edit.success.tip" = "Matagumpay na nai-save";
+"contacts.edit.page.delete.button.title" = "Burahin";
+"contacts.edit.page.delete.alert.title" = "Sigurado ka bang buburahin ang address na ito?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
+"address.list.page.my.title" = "Ang VITE Address ko";
 "address.list.page.other.title" = "%@ contact address";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.no.address.tip" = "Wala pang %@ ang address";
 
 /* WorkFlow */
-"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
-"workflow.confirm.page.biometryAuthFailed.back" = "Back";
-"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
-"workflow.confirm.page.toast.password.error" = "Wrong password!";
+"workflow.confirm.page.biometryAuthFailed.title" = "Hindi makilala";
+"workflow.confirm.page.biometryAuthFailed.back" = "Bumalik";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Subukang muli";
+"workflow.confirm.page.toast.password.error" = "Maling password!";
 
-"workflow.toast.transfer.success" = "Send Success";
-"workflow.toast.submit.success" = "Submit Successful";
-"workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
-"workflow.toast.vote.success" = "Successfully send vote request";
+"workflow.toast.transfer.success" = "Magpadala ng Tagumpay";
+"workflow.toast.submit.success" = "Nasumite ng Matagumpay";
+"workflow.toast.cancel.pledge.success" = "Kunin ang staking na kahilingan na ipinadala";
+"workflow.toast.vote.success" = "Matagumpay na naipadala ng kahilingan sa boto";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
 "workflow.toast.place.order.success" = "Order Placed";
@@ -922,17 +922,17 @@
 "bnb.txType.proposal.title" = "Kahilingan sa Panukala";
 "bnb.txType.vote.title" = "Bumoto";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "Deposito";
 
 // Buildin
 
-"buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.function.title" = "Ilipat";
+"buildin.transfer.utf8string.item0.title" = "Address ng Transaksyon";
+"buildin.transfer.utf8string.item1.title" = "Halaga";
+"buildin.transfer.utf8string.item2.title" = "Mag-Kumento";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.function.title" = "Ipadala ang Cross-Chain";
+"buildin.transfer.cross.chain.item0.title" = "Halaga";
 "buildin.transfer.cross.chain.item1.title" = "Bayarin";
 "buildin.transfer.cross.chain.item2.title" = "Tumanggap ng Address";
 
@@ -995,20 +995,20 @@
 "buildin.dex.recover.trading.pair.item0.title" = "Pangalan";
 "buildin.dex.recover.trading.pair.item1.title" = "Kasalukuyang Address";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "Staking bilang Pagmimina";
+"buildin.dex.staking.as.mining.item0.title" = "Kasalukuyang Address";
+"buildin.dex.staking.as.mining.item1.title" = "Halaga";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Kanselahin ang Staking bilang Pagmimina";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Kasalukuyang Address";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Halaga";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "Maging VIP";
+"buildin.dex.become.vip.item0.title" = "Kasalukuyang Address";
+"buildin.dex.become.vip.item1.title" = "Halaga";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.function.title" = "Kanselahin ang VIP";
+"buildin.dex.cancel.vip.item0.title" = "Kasalukuyang Address";
 "buildin.dex.cancel.vip.item1.title" = "Halaga";
 
 "buildin.dex.lock.vx.function.title" = "Stake";
