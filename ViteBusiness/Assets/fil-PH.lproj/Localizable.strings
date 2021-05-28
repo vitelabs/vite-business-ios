@@ -808,19 +808,19 @@
 "crosschain.gatewaydetail.statement" = "Mga Tuntunin ng Serbisyo";
 "crosschain.gatewaydetail.host" = "Gateway URL";
 "crosschain.gatewaydetail.abstract" = "Panimula";
-"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
-"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.detail" = "Terms of Service";
-"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
-"crosschain.statement.title" = "Important Notice";
+"crosschain.statement.other.desc" = "Ang Serbisyong ito ay ibinibigay ng%@. Walang pananagutan ang Vite Platform para sa mga aktibidad na isinagawa ng%@ at hindi gumaganap ng papel sa ugnayan sa pagitan ng%@ at mga gumagamit ng Vite Platform.\n\nSa pamamagitan ng paggamit ng mga serbisyo mula sa%@, %@sumasang-ayon ka na mabigkis ng%@ %@. Kung hindi ka sumasang-ayon sa mga term na ito, mangyaring pigilin ang paggamit ng serbisyo mula sa %@.\n\nKung sakaling may mga problema sa pag-verify o pagproseso ng pagbabayad, mangyaring makipag-ugnay sa koponan ng %@sa suporta sa %@.";
+"crosschain.statement.other.desc0" = "Ang Serbisyong ito ay ibinibigay ng %@. Walang pananagutan ang Vite Platform para sa mga aktibidad na isinagawa ng %@ at hindi gumaganap ng papel sa ugnayan sa pagitan ng %@ at mga gumagamit ng Vite Platform.";
+"crosschain.statement.other.desc1" = "Sa pamamagitan ng paggamit ng mga serbisyo mula sa%@,, sumasang-ayon kasa tuntunin ng%@ %@. Kung hindi ka sumasang-ayon sa mga tuntunin na ito, mangyaring pigilin ang paggamit ng serbisyo mula sa%@.";
+"crosschain.statement.other.desc2" = "Kung sakaling may mga problema sa pag-verify o pagproseso ng pagbabayad, mangyaring makipag-ugnay sa koponan ng%@ sa suporta sa%@.";
+"crosschain.statement.vite.desc" = "Ang Serbisyong ito ay ibinibigay ng %@.\n\nSa pamamagitan ng paggamit ng mga serbisyo mula sa %@, sumasang-ayon ka na mabigkis ng%@%@. Kung hindi ka sumasang-ayon sa mga term na ito, mangyaring pigilin ang paggamit ng serbisyo mula sa%@.\n\nKung sakaling may mga problema sa pag-verify o pagproseso ng pagbabayad, mangyaring makipag-ugnay sa koponan ng%@ sa suporta sa%@.";
+"crosschain.statement.vite.desc0" = "Ang Serbisyong ito ay ibinibigay ng%@.";
+"crosschain.statement.vite.desc1" = "Sa pamamagitan ng paggamit ng mga serbisyo mula sa%@,, sumasang-ayon kasa tuntunin ng%@ %@. Kung hindi ka sumasang-ayon sa mga tuntunin na ito, mangyaring pigilin ang paggamit ng serbisyo mula sa%@.";
+"crosschain.statement.vite.desc2" = "Kung sakaling may mga problema sa pag-verify o pagproseso ng pagbabayad, mangyaring makipag-ugnay sa koponan ng%@ sa suporta sa%@.";
+"crosschain.statement.detail" = "Mga Tuntunin ng Serbisyo";
+"crosschain.statement.agree" = "Sa pamamagitan ng pag-click sa Susunod, sumasang-ayon ka sa%@'s %@";
+"crosschain.statement.title" = "Mahalagang Paunawa";
 
-"unit.Million" = " Million";
+"unit.Million" = " Milyon";
 "unit.Billion" = " Billion";
 "unit.Trillion" = " Trillion";
 
