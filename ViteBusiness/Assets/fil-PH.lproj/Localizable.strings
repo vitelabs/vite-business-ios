@@ -912,15 +912,15 @@
 "bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
 "bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
 "bnb.txType.newOrder.title" = "Place Order";
-"bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.issueToken.title" = "Isyu ng Asset";
+"bnb.txType.burnToken.title" = "I-Burn";
 "bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
-"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.cancelOrder.title" = "Kanselahin ang Order";
+"bnb.txType.freezeToken.title" = "Mag-freeze ng Token";
 "bnb.txType.unfreezeToken.title" = "Unfreeze Token";
-"bnb.txType.transfer.title" = "Transfer";
-"bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"bnb.txType.transfer.title" = "Ilipat";
+"bnb.txType.proposal.title" = "Kahilingan sa Panukala";
+"bnb.txType.vote.title" = "Bumoto";
 "bnb.txType.mint.title" = "MintMsg";
 "bnb.txType.deposit.title" = "Deposit";
 
