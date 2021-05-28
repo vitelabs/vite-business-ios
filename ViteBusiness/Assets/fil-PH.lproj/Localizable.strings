@@ -465,7 +465,7 @@
 "vite.error.rpc.error.code.verify.failure" = "Nabigo ang pag-verify ng system, pakisubukan ulit sa ibang pagkakataon (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Hindi sapat na balanse";
-"eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
+"eth.error.rpc.error.code.not.enough.fee" = "Kinulang sa Bayarin";
 
 /* Tip String */
 "pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, users do not purchase the gas required for a transaction by paying a fee, but acquire the computing resource through a quota-based model. Required quota for sending a transaction = the basic quota (request) + quota (the attached text data), quota required to accept a transaction = the basic quota (response). This quota-based resource configuration protocol allows users to obtain higher resource quotas in two ways: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a.Staking VITE to obtain quota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.Running PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unit of Quota: UTPS, Unit of Transaction per Second.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is Staking?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">In the Vite system, the user can stake VITE to obtain a certain amount of quota. The minimum value for staking is 134 VITE, and there is no maximum limit; meanwhile, Vite system also supports that the A-address stakes a part of the VITE and allocates the obtained quota to the B address. When users apply to stake, VITE will be sent to the smart contract address instead of another user, and only the user who applies for staking has access to manage the staking amount.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">What is PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Proof of Work (PoW), is a protocol to confirm that you have done a certain amount of work, and is also an economic measure to deter DDoS attacks and other service abuse. It requires the initiator to conduct a certain amount of computing, which means that it may take some time for the computer. In the Vite system, users can obtain a free quota by running the PoW, and also can send a transaction without any annotated information through obtained quota.</p>";
@@ -474,31 +474,31 @@
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Understand VITE Conversion</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">You can convert ERC20 VITE  into VITE at Vite Pre-Mainnet through VITE conversion. During conversion, your ERC20 VITE will be transferred to Ethereum black hole address: 0x1111111111111111111111111111111111111111, and you will receive the same amount of VITE in your Vite address after the transaction to Ethereum black hole address has completed. During the conversion, fee of transaction to the Ethereum black hole address come from your current ETH address. After submitting the conversion, please wait at least 30 confirmations in Ethereum network, you can find the transaction history in conversion history.</p>";
 
 // ViteURI
-"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+"vite.uri.amount.format.error" = "Maling format na may halagang transaksyon";
 
 // eth
-"eth.send.page.my.address.title" = "ETH Address";
-"eth.send.page.eth.contacts.button.title" = "ETH Contact Address";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.send.page.my.address.title" = "Address ng ETH";
+"eth.send.page.eth.contacts.button.title" = "Contact ng ETH Address";
+"eth.receive.page.my.address.title" = "Ang aking ETH address";
+"eth.page.gasFee.title" = "Bayad sa Gas";
+"eth.page.gasFee.slow.title" = "Mabagal";
+"eth.page.gasFee.fast.title" = "Mabilis";
+"eth.page.gasFee.notice.title" = "Ibabalik namin ang natitirang gas sa iyong account";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
-"eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
-"eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.page.title" = "Mga Detalye";
+"eth.transaction.detail.failed" = "Transaksyon na nabigo";
+"eth.transaction.detail.success" = "Nakumpleto ang Transaksyon";
+"eth.transaction.detail.to.address" = "Address ng tatanggap";
+"eth.transaction.detail.from.address" = "Address ng Magpapadala";
+"eth.transaction.detail.amount" = "Halaga";
+"eth.transaction.detail.gas.fee" = "Bayad sa Gas";
+"eth.transaction.detail.gas.price" = "Presyo ng Gas";
+"eth.transaction.detail.gas.limit" = "Hangganan ng Gas";
+"eth.transaction.detail.hash" = "Hash ng Transaksyon";
+"eth.transaction.detail.block" = "I-block";
+"eth.transaction.detail.note" = "Mga puna";
+"eth.transaction.detail.go.button.title" = "Tingnan ang Iba Pang Mga Detalye sa Etherscan";
 
 //token
 "token.list.page.search.title" = "Mangyaring maglagay ng pangalan ng token o address ng kontrata";
