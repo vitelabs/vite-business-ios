@@ -422,25 +422,25 @@
 "vote" = "Bumoto";
 "vote.list.title" = "Mga Node ng Kandidato";
 "vote.list.search" = "Maghanap para sa pangalan o address ng mga kandidato node";
-"vote.list.alert.already.voted" = "You have voted for %@, please make sure this action will overwrite current voting result";
-"vote.list.confirm.revote" = "Confirm";
-"vote.list.count" = "Votes";
+"vote.list.alert.already.voted" = "Bumoto ka para sa %@, mangyaring tiyakin na ang aksyong ito ay mai-o-overlap ang kasalukuyang resulta sa pagboto";
+"vote.list.confirm.revote" = "Kumpirmahin";
+"vote.list.count" = "Mga boto";
 "vote.list.address" = "Address";
-"vote.list.alert.quota" = "Unable to vote, you have to run PoW or stake VITE for TPS quota to vote";
-"vote.list.search.empty" = "No result, please try another input";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote.list.alert.quota" = "Hindi makaboto, kailangan mong patakbuhin ang PoW o stake VITE para sa quota ng TPS upang bumoto";
+"vote.list.search.empty" = "Walang resulta, mangyaring subukan ang ibang input";
+"vote.list.search.no.transaction.before" = "Hindi ka maaaring bumoto para sa ngayon dahil walang tala ng transaksyon sa iyong address";
 
 // Contract
 "contract.confirm.info" = "Contract Address";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"vite.RefreshBackFooter.IdleText" = "Hilahin upang mag-load pa";
+"Vite.RefreshBackFooter.PullingText" = "Hilahin upang mag-load pa.";
+"Vite.RefreshBackFooter.RefreshingText" = "Naglo-load...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "Wala nang data";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+"introduction.tip.title" = "Ang quota ng gastos sa mga transaksyon.\nMag-Stake upang Kumuha ng Libreng Quota.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -452,19 +452,19 @@
 //"introduction.page.nextBtn.title" = "Start Your Vite Journey";
 /* Error Message */
 
-"vite.error.network.error" = "Something went wrong with network, please try again later";
-"vite.error.operation.failure" = "Operation failed";
-"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
-"vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
-"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
-"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
-"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
-"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
-"vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
-"vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
+"vite.error.network.error" = "Mayroong problema sa network, mangyaring subukan ulit sa ibang pagkakataon";
+"vite.error.operation.failure" = "Ang operasyon ay bigo";
+"vite.error.rpc.error.code.not.enough.balance" = "Hindi sapat na balanse";
+"vite.error.rpc.error.code.not.enough.quota" = "Hindi sapat na quota";
+"vite.error.rpc.error.code.id.conflict" = "Nangyayari ang isang salungatan sa ID, mangyaring muling isumite sa ibang pagkakataon";
+"vite.error.rpc.error.code.contract.data.illegal" = "Error sa built-in na kontrata, pakisubukan ulit sa ibang pagkakataon (-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Napadalas na ipinadala ang mga transaksyon, mangyaring subukang muli sa ibang pagkakataon";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Wala ang pamamaraan ng built-in na kontrata, pakisubukan ulit sa ibang pagkakataon (-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "Hindi ka makakagawa ng anumang paglilipat hanggang sa makatanggap ka ng isang transaksyon.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Ang taas ng snapshot block ay iligal, mangyaring subukang muli sa ibang pagkakataon";
+"vite.error.rpc.error.code.verify.failure" = "Nabigo ang pag-verify ng system, pakisubukan ulit sa ibang pagkakataon (%@)";
 
-"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"eth.error.rpc.error.code.not.enough.balance" = "Hindi sapat na balanse";
 "eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
 
 /* Tip String */
@@ -588,14 +588,14 @@
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Kumpirmahin";
 "confirm.transaction.page.vite.dex.buy.title" = "Bumili ng %@";
 "confirm.transaction.page.vite.dex.buy.confirm.button" = "Kumpirmahin";
-"confirm.transaction.page.vite.dex.sell.title" = "Sell %@";
-"confirm.transaction.page.vite.dex.sell.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.dex.cancel.order.title" = "Cancel";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.dex.sell.title" = "Ibenta ang%@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Kumpirmahin";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Kanselahin";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Kumpirmahin";
 
-"confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
-"confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
+"confirm.transaction.page.vite.dex.vip.title" = "Maging VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Magagamit na Balanse sa Palitan";
+"confirm.transaction.page.vite.dex.vip.amount" = "Halaga ng Staking para Maging isang VIP";
 "confirm.transaction.page.vite.dex.vip.tip" = "Masisiyahan ang VIP sa mga pribilehiyo ng 0.1% na diskwento sa bayad sa kalakalan. Stake 10,000 VITE upang maging isang VIP (Minimum na Tagal ng Staking: 30 araw)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "Kumpirmahin";
 "confirm.transaction.page.vite.dex.cancel.vip.title" = "Kanselahin ang VIP";
@@ -635,38 +635,38 @@
 "grin.tx.useVite" = "Gumamit ng VITE Address";
 "grin.sent.useVite.desc" = "Ang pagpapadala ng GRIN sa pamamagitan ng VITE address ay pagbabahagi ng file ng transaksyon na naka-encrypt ng Vite sa pamamagitan ng VITE address, na tinitiyak na ang tunay na tatanggap lamang ang maaaring makapag-decrypt ng file.";
 "grin.sent.useHttp" = "Gumamit ng HTTP Address";
-"grin.sent.useHttp.desc" = "You can transfer GRIN to any wallet supporting receiving GRIN through HTTP address, however we suggest using VITE address or file to transfer GRIN to users who use Vite wallet.";
-"grin.sent.useFile" = "Use Transaction File";
-"grin.know" = "I know";
-"grin.notSeeAgain" = "Don't show me again";
+"grin.sent.useHttp.desc" = "Maaari mong ilipat ang GRIN sa anumang wallet na sumusuporta sa pagtanggap ng GRIN sa pamamagitan ng HTTP address, subalit iminumungkahi namin ang paggamit ng VITE address o file upang ilipat ang GRIN sa mga gumagamit na nagamit ng Vite wallet.";
+"grin.sent.useFile" = "Gumamit ng Transaction File";
+"grin.know" = "Alam Ko";
+"grin.notSeeAgain" = "Wag mo na ulit ipakita sa akin";
 "grin.sent.title" = "Magpadala ng GRIN";
 "grin.sent.amount" = "Halaga";
 "grin.receive.ture.amount" = "Tunay na Halaga";
 "grin.sent.fee" = "Mga Bayarin";
-"grin.sent.creatFile" = "Generate Transaction File";
-"grin.shareFile.desc" = "Please sign for the transaction";
+"grin.sent.creatFile" = "Bumuo ng File ng Transaksyon";
+"grin.shareFile.desc" = "Mangyaring mag-sign para sa transaksyon";
 "grin.txFile.init.status" = "Nalikha na";
 "grin.txFile.id" = "Transaksyon ID";
 "grin.shareFile" = "Ibahagi ang File ng Transaksyon";
 "grin.finalize.title" = "Magpadala ng GRIN";
-"grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
-"grin.txFile.received.status" = "The receipt has been confirmed";
+"grin.finalize.desc" = "Ang transaksyon ay natanggap ng tatanggap. Mangyaring i-finalize at i-broadcast ang transaksyon.";
+"grin.txFile.received.status" = "Ang resibo ay nakumpirma na";
 "grin.finalize" = "Tapusin at I-broadcast";
 "grin.finalized.alertTitle" = "Natapos ang Transaksyon";
-"grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
-"grin.sent.next" = "Next";
-"grin.sent.suggest.useVite.title" = "Notice";
-"grin.sent.suggest.useVite.desc" = "If you want to send GRIN to a Vite Wallet user, sending through VITE address is recommended for it is safer and cheaper.";
-"grin.sent.switch" = "VITE Address";
-"grin.sent.stillUseHttp" = "HTTP Address";
-"grin.sent.http.success" = "You have successfully sent GRIN transfer request";
-"grin.sent.vite.success" = "Your transaction has sent.";
-"grin.receiveByVite.addressCopyed" = "Your VITE address for receiving GRIN has been copied to the clipboard.";
-"grin.receiveByVite.desc" = "Please note that web wallet doesn't support native GRIN. If you receive the VITE transaction with GRIN file, you should contact the sender to cancel the transaction and resend GRIN.";
-"grin.iknow" = "I know";
-"grin.thisIsFirstViteAddress" = "This is your first VITE address";
-"grin.receiveByHttp.addressCopyed" = "Your HTTP address for receiving GRIN has been copied to the clipboard";
-"grin.receiveByHttp.desc" = "As shown in the picture above, Vite will do the collection and remit for you when you choose to transfer or receive GRIN through HTTP address. There are transaction fees in both the two steps above.";
+"grin.finalized.alertDesc" = "Ang iyong transaksyon sa GRIN ay nagsimulang mai-broadcast";
+"grin.sent.next" = "Susunod";
+"grin.sent.suggest.useVite.title" = "Abiso";
+"grin.sent.suggest.useVite.desc" = "Kung nais mong magpadala ng GRIN sa isang gumagamit ng Vite Wallet, inirerekomenda ang pagpapadala sa pamamagitan ng VITE address para mas ligtas at mas mura ito.";
+"grin.sent.switch" = "Address ng VITE";
+"grin.sent.stillUseHttp" = "Address ng HTTP";
+"grin.sent.http.success" = "Matagumpay mong naipadala ang kahilingan sa paglipat ng GRIN";
+"grin.sent.vite.success" = "Naipadala na ang iyong transaksyon.";
+"grin.receiveByVite.addressCopyed" = "Ang iyong VITE address para sa pagtanggap ng GRIN ay nakopya na sa clipboard.";
+"grin.receiveByVite.desc" = "Mangyaring tandaan na ang web wallet ay hindi sumusuporta sa katutubong GRIN. Kung natanggap mo ang VITE transaksyon na may GRIN file, dapat kang makipag-ugnay sa nagpadala upang kanselahin ang transaksyon at ipadala muli ang GRIN.";
+"grin.iknow" = "Alam Ko";
+"grin.thisIsFirstViteAddress" = "Ito ang iyong unang address sa VITE";
+"grin.receiveByHttp.addressCopyed" = "Ang iyong HTTP address para sa pagtanggap ng GRIN ay nakopya na sa clipboard";
+"grin.receiveByHttp.desc" = "Tulad ng ipinakita sa larawan sa itaas, gagawa ang Vite ng koleksyon at magpapadala para sa iyo kapag pinili mong ilipat o makatanggap ng GRIN sa pamamagitan ng HTTP address. Mayroong mga bayarin sa transaksyon sa parehong dalawang hakbang sa itaas.";
 "grin.receive.title" = "Tumanggap ng GRIN";
 "grin.receive.sented" = "Nalikha na";
 "grin.creatTime" = "Oras ng Paglikha";
