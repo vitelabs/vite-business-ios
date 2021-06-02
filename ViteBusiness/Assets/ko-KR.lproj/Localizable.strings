@@ -8,8 +8,8 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "확인하기";
-"cancel.button.title" = "취소하기";
+"confirm.button.title" = "확인";
+"cancel.button.title" = "취소";
 "alter.title" = "공지";
 
 "discover.page.title" = "탐색하기";
@@ -48,7 +48,7 @@
 "tab.title.dex" = "자산";
 
 /* App */
-"Cancel" = "취소하기";
+"Cancel" = "취소";
 "Finish" = "완료";
 "Delete" = "삭제하기";
 "Hint" = "알림";
@@ -56,11 +56,11 @@
 "No" = "아니오";
 "Loading" = "로딩 중";
 "Retry" = "재시도";
-"Confirm" = "확인하기";
+"Confirm" = "확인";
 "Submit" = "제출하기";
 "Close" = "이해했습니다";
 "Update.app" = "어플 업데이트";
-"Submit.cancel" = "취소하기";
+"Submit.cancel" = "취소";
 "Close" = "닫기";
 "Quit" = "나가기";
 "web.page.host.tip" = "해당 페이지는 %@에서 제공됩니다.";
@@ -103,8 +103,8 @@
 
 "mnemonic.backup.scan.alert.title" = "공지";
 "mnemonic.backup.scan.alert.message" = "다음의 니모닉 단어들로 계정 생성을 확인하시겠습니까?";
-"mnemonic.backup.scan.alert.ok.title" = "확인하기";
-"mnemonic.backup.scan.alert.cancel.title" = "취소하기";
+"mnemonic.backup.scan.alert.ok.title" = "확인";
+"mnemonic.backup.scan.alert.cancel.title" = "취소";
 
 "mnemonic.backup.page.check.button1.title" = "니모닉 단어를 잃어 버리면 내 자산을 찾을 수 없다는 것을 이해했습니다";
 "mnemonic.backup.page.check.button2.title" = "니모닉 단어를 잃어 버리면 아무도 복구를 도와줄 수 없다는 것을 이해했습니다";
@@ -130,7 +130,7 @@
 "mnemonic.backup.tip.alert.ok.title" = "지금 백업하기";
 "mnemonic.backup.tip.alert.cancel.title" = "나중에 백업하기";
 
-"mnemonic.affirm.page.title" = "확인하기";
+"mnemonic.affirm.page.title" = "확인";
 "mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요.";
 "mnemonic.affirm.alter.title" = "\"네\"를 누르시면 새로운 시드 문구를 생성합니다. 뒤로 돌아가시겠습니까?";
 "mnemonic.affirm.alter.check.title" = "잘못된 시드 문구입니다.";
@@ -143,8 +143,8 @@
 "import.page.submit.loading" = "가져오는 중...";
 "import.page.submit.success" = "가져오기 성공";
 "import.page.alert.exist.title" = "입력하신 시드 문구는 현재 기기장치에  '%@'이름의 계정이 존재합니다. 본 계정에 중복으로 입력하는게 맞습니까?";
-"import.page.alert.exist.ok" = "확인하기";
-"import.page.alert.exist.cancel" = "취소하기";
+"import.page.alert.exist.ok" = "확인";
+"import.page.alert.exist.cancel" = "취소";
 
 
 /* export mnemonic */
@@ -307,7 +307,7 @@
 "send.page.toast.note.too.long" = "노트 길이의 최대치입니다.";
 "send.page.toast.contract.address.support.hex" = "전송이 될 주소는 컨트렉트입니다. 메모는 유효한 16 진수 문자로 작성되어야합니다.";
 "send.page.not.enough.balance.alert.title" = "잔액 부족";
-"send.page.not.enough.balance.alert.button" = "취소하기";
+"send.page.not.enough.balance.alert.button" = "취소";
 "send.page.token.info.error" = "토큰 정보 에러";
 "send.page.quota.content" = "%@ UTPS";
 "send.page.eth.failed" = "(%@). 다시 시도하기 전에 거래 내역을 확인해주세요";
@@ -380,8 +380,8 @@
 "quota.manage.page.check.quotaList.btn.title" = "스테이킹 목록";
 "quota.manage.page.toast.money.error" = "134 VITE 이상부터 스테이킹이 가능합니다.";
 "quota.submit.pop.desc" = "할당량을 얻기 위해 %@ VITE를 스테이킹해야합니다. 스테이킹이 시작된 후 약 3일이 지나야 출금할 수 있습니다";
-"quota.submit.pop.submit.btn.title" = "확인하기";
-"quota.submit.pop.cancel.btn.title" = "취소하기";
+"quota.submit.pop.submit.btn.title" = "확인";
+"quota.submit.pop.cancel.btn.title" = "취소";
 "quota.submit.page.quota.address.placeholder" = "수령인 주소를 입력하세요";
 
 /* quota alert */
@@ -402,7 +402,7 @@
 "peldge.deadline" = "기한";
 "peldge.title" = "스테이킹 내역";
 "peldge.address.title" = "수령인";
-"peldge.cancel.peldge.button.title" = "출금하기";
+"peldge.cancel.peldge.button.title" = "출금";
 "peldge.cancel.pledge.withdrawing.title" = "출금중";
 "peldge.cancel.pledge.amount.error.toast" = "최소 출금 수량은 134 VITE 입니다. 우선 충분한 양의 VITE를 스테이킹 해주세요.";
 "peldge.cancel.pledge.agent.error.toast" = "잘못된 스테이킹 입니다. 스테이킹한 곳에서 출금을 시도해주세요.";
@@ -423,7 +423,7 @@
 "vote.list.title" = "후보 노드";
 "vote.list.search" = "후보 노드의 이름 혹은 주소 검색하기";
 "vote.list.alert.already.voted" = "%@에 투표했습니다.이 작업이 현재 투표 결과를 덮어 쓰도록해주세요.";
-"vote.list.confirm.revote" = "확인하기";
+"vote.list.confirm.revote" = "확인";
 "vote.list.count" = "투표";
 "vote.list.address" = "주소";
 "vote.list.alert.quota" = "투표 철회가 불가능합니다. 투표 철회를 위한 TPS 쿼타를 위해 PoW 운영 혹은 VITE 스테이킹을 해야합니다.";
@@ -570,28 +570,28 @@
 "confirm.transaction.page.pw.title" = "비밀번호를 입력하세요";
 // vite transfer
 "confirm.transaction.page.vite.transfer.title" = "보내기";
-"confirm.transaction.page.vite.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.confirm.button" = "확인";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "쿼타 얻기";
-"confirm.transaction.page.vite.cancel.pledge.title" = "출금하기";
-"confirm.transaction.page.vite.pledge.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.cancel.pledge.title" = "출금";
+"confirm.transaction.page.vite.pledge.confirm.button" = "확인";
 // vite vote & cancel
 "confirm.transaction.page.vite.vote.transfer.title" = "투표";
-"confirm.transaction.page.vite.vote.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.vote.confirm.button" = "확인";
 "confirm.transaction.page.vite.vote.node.name" = "노드명";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "투표 철회하기";
-"confirm.transaction.page.vite.cancel.vote.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "확인";
 // vite dex desposit & withdraw
 "confirm.transaction.page.vite.dex.deposit.transfer.title" = "거래소에 입금하기";
-"confirm.transaction.page.vite.dex.deposit.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "지갑으로 출금하기";
-"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.buy.title" = "%@ 매수하기";
-"confirm.transaction.page.vite.dex.buy.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.sell.title" = "%@ 매도하기";
-"confirm.transaction.page.vite.dex.sell.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.cancel.order.title" = "취소하기";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "확인";
 
 "confirm.transaction.page.vite.dex.vip.title" = "VIP되기";
 "confirm.transaction.page.vite.dex.vip.balance" = "거래가능 거래소 잔액";
@@ -599,20 +599,20 @@
 "confirm.transaction.page.vite.dex.vip.tip" = "VIP는 0.1%의 거래수수료 할인 혜택을 누릴 수 있습니다. 10,000 VITE를 스테이킹하여 VIP가 되보세요(최소 스테이킹 기간: 30일)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "확인하기";
 "confirm.transaction.page.vite.dex.cancel.vip.title" = "VIP 취소하기";
-"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "확인";
 
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "결제";
-"confirm.transaction.page.vite.call.contract.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "확인";
 // eth transfer
 "confirm.transaction.page.eth.transfer.title" = "보내기";
-"confirm.transaction.page.eth.confirm.button" = "확인하기";
+"confirm.transaction.page.eth.confirm.button" = "확인";
 // eth vite exchange
 "confirm.transaction.page.eth.vite.exchange.title" = "VITE 전환";
 "confirm.transaction.page.eth.vite.exchange.confirm.button" = "전환하기";
 // grin transfer
 "confirm.transaction.page.grin.transfer.title" = "보내기";
-"confirm.transaction.page.grin.confirm.button" = "확인하기";
+"confirm.transaction.page.grin.confirm.button" = "확인";
 
 // Grin
 "grin.balance.total" = "총합";
@@ -749,8 +749,8 @@
 "crosschain.tokendetail" = "토큰 상세정보";
 "crosschain.deposit" = "크로스체인 입금";
 "crosschain.withdraw" = "크로스체인 출금";
-"crosschain.withdraw.btnTitle" = "출금하기";
-"crosschain.deposit.btnTitle" = "입금하기";
+"crosschain.withdraw.btnTitle" = "출금";
+"crosschain.deposit.btnTitle" = "입금";
 "crosschain.deposit.vitewallet" = "Vite 지갑으로 부터 입금하기";
 "crosschain.deposit.otherwallet" = "다른 지갑으로 부터 입금하기";
 "crosschain.deposit.history" = "입금 내역";
@@ -922,7 +922,7 @@
 "bnb.txType.proposal.title" = "제안 요청하기";
 "bnb.txType.vote.title" = "투표하기";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "입금하기";
+"bnb.txType.deposit.title" = "입금";
 
 // Buildin
 
@@ -1007,7 +1007,7 @@
 "buildin.dex.become.vip.item0.title" = "현재 주소";
 "buildin.dex.become.vip.item1.title" = "수량";
 
-"buildin.dex.cancel.vip.function.title" = "VIP 취소하기";
+"buildin.dex.cancel.vip.function.title" = "VIP 취소";
 "buildin.dex.cancel.vip.item0.title" = "현재 주소";
 "buildin.dex.cancel.vip.item1.title" = "수량";
 
@@ -1186,7 +1186,7 @@
 "spot.page.sellable" = "최대 매도: %@";
 "spot.page.total" = "전체: %@";
 "spot.page.open.vip" = "VIP되기";
-"spot.page.close.vip" = "VIP 취소하기";
+"spot.page.close.vip" = "VIP 취소";
 "spot.page.open.vip.error.toast" = "거래소 잔액 부족, 10,000 VITE 스테이킹 하고 VIP 되기";
 "spot.page.close.vip.error.toast" = "VIP 스테이킹이 없습니다.";
 "spot.page.close.vip.un.expire.error.toast" = "스테이킹은 최소 30일간 취소가 불가합니다.";
@@ -1205,12 +1205,12 @@
 
 "spot.page.alert.title" = "중요 알림";
 "spot.page.alert.message" = "현재 거래쌍은 %@입니다. 암호화폐 투자는 높은 시장 위험과 변동성이 존재합니다. 잠재적인 위험을 처리하는 능력을평가하고 신중한 거래 결정을 내려주세요.";
-"spot.page.alert.ok" = "확인하기";
+"spot.page.alert.ok" = "확인";
 
 "spot.page.order.empty" = "주문 없음";
 "spot.page.cell.type.buy" = "매수";
 "spot.page.cell.type.sell" = "매도";
-"spot.page.cell.button.cancel.title" = "취소하기";
+"spot.page.cell.button.cancel.title" = "취소";
 "spot.page.cell.vol" = "수량: %@";
 "spot.page.cell.price" = "가격: %@";
 "spot.page.cell.deal" = "완료됨: %@";
@@ -1227,8 +1227,8 @@
 
 "dex.home.page.header.btc.valuation.title" = "금액(BTC)";
 "dex.home.page.header.button.transfer.title" = "전송하기";
-"dex.home.page.header.button.deposit.title" = "입금하기";
-"dex.home.page.header.button.withdraw.title" = "출금하기";
+"dex.home.page.header.button.deposit.title" = "입금";
+"dex.home.page.header.button.withdraw.title" = "출금";
 "dex.home.page.header.button.hide.small.title" = "적은 잔액 숨기기";
 
 "dex.token.detail.page.title" = "보유자산";
@@ -1250,8 +1250,8 @@
 "dex.token.detail.page.cell.in" = "가져오기";
 "dex.token.detail.page.cell.out" = "내보내기";
 
-"dex.token.detail.page.button.deposit" = "입금하기";
-"dex.token.detail.page.button.withdraw" = "출금하기";
+"dex.token.detail.page.button.deposit" = "입금";
+"dex.token.detail.page.button.withdraw" = "출금";
 "dex.token.detail.page.button.transfer" = "전송하기";
 "dex.token.detail.page.button.send" = "보내기";
 "dex.token.detail.page.button.trading" = "거래하기";
