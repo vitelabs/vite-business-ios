@@ -1113,27 +1113,27 @@
 
 
 "market.detail.page.token.info.token.id" = "토큰ID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
-"market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
-"market.detail.page.token.info.paper" = "WhitePaper";
-"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.total" = "유통되는 토큰";
+"market.detail.page.token.info.type" = "타입";
+"market.detail.page.token.info.type.value.native" = "네이티브";
+"market.detail.page.token.info.type.value.other" = "크로스체인";
+"market.detail.page.token.info.gateway" = "크로스체인 게이트웨이";
+"market.detail.page.token.info.official" = "공식 웹사이트";
+"market.detail.page.token.info.paper" = "백서";
+"market.detail.page.token.info.browser" = "둘러보기";
 "market.detail.page.token.info.github" = "Github";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "SNS";
+"market.detail.page.token.info.brief" = "소개";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "익명";
+"market.detail.page.token.info.address" = "오퍼레이터 주소";
+"market.detail.page.token.info.pair" = "거래쌍";
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.mining" = "채굴";
+"trading.home.page.segment.bonus" = "배당";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
@@ -1171,13 +1171,13 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
+"spot.page.buy.mining.tip" = "가격이 %@ 이상일 때, 채굴이 가능합니다.";
+"spot.page.sell.mining.tip" = "가격이 %@ 이하일 때, 채굴이 가능합니다.";
+"spot.page.button.closed.title" = "거래 중지";
+"spot.page.button.buy.title" = "매수";
+"spot.page.button.sell.title" = "매도";
+"spot.page.button.limit.buy.title" = "지정가 주문";
+"spot.page.price.buy.placeholder" = "가격";
 "spot.page.vol.buy.placeholder" = "수량";
 "spot.page.price.sell.placeholder" = "가격";
 "spot.page.vol.sell.placeholder" = "수량";
