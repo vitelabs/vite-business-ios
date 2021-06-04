@@ -19,7 +19,7 @@
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Bây giờ";
 "discover.page.news.cell.time.hour" = "%@h trước";
-"discover.page.news.cell.time.day" = "%@d trước";
+"discover.page.news.cell.time.day" = "%@ngày trước";
 "discover.page.headerTitle.activity" = "Trung tâm Chiến dịch";
 "discover.page.headerTitle.game" = "Trò chơi Vite";
 "discover.page.headerTitle.news" = "Tin tức Vite";
@@ -36,7 +36,7 @@
 "airdrop.enabled" = "Nhận 10 ~ 1000";
 "airdrop.leftTime" = "Đếm ngược";
 
-"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop trên iOS 11 và cao hơn.";
+"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop cho iOS 11 và cao hơn.";
 "airdrop.error.tip.not.support" = "Thiết bị của bạn không hỗ trợ airdrop.";
 "airdrop.error.tip.unknown.error" = "Lỗi không xác định.";
 
@@ -98,8 +98,8 @@
 "mnemonic.backup.page.tip1" = "Chúng tôi đề xuất hai phương pháp sao lưu sau:";
 "mnemonic.backup.page.tip2" = "Viết cụm từ khôi phục ví vào một tờ giấy, sau đó giữ ở một nơi an toàn.";
 "mnemonic.backup.page.tip3" = "Quét mã QR bên dưới bằng cách sử dụng ví Vite được cài đặt trên một thiết bị khác.";
-"mnemonic.backup.language.zh" = "VN";
-"mnemonic.backup.language.en" = "VN";
+"mnemonic.backup.language.zh" = "Tiếng Trung";
+"mnemonic.backup.language.en" = "Tiếng Anh";
 
 "mnemonic.backup.scan.alert.title" = "Chú ý";
 "mnemonic.backup.scan.alert.message" = "Xác nhận tạo tại khoản với cụm từ khôi phục ví sau?";
@@ -166,7 +166,7 @@
 /* Wallet Home */
 "wallet.home.btc.title" = "Tổng giá trị (BTC)";
 "wallet.home.balance.title" = "Số dư";
-"wallet.home.unconfirmed.title" = "Chưa nhận được %@";
+"wallet.home.unconfirmed.title" = "Đang chuyển giao %@";
 "wallet.home.toast.copy.address" = "Sao chép thành công!";
 "wallet.home.scan.url.alert.title" = "THÔNG BÁO";
 "wallet.home.scan.url.alert.message" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
