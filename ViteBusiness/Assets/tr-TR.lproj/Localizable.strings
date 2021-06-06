@@ -363,7 +363,7 @@
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
 "aboutUs.page.email.title" = "Geri bildirim";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.content" = "\n\n\n\n\nKullanım önerileri aşağıdaki gibidir:\n1.Cihaz sistemi: %@\n2.Sistem sürümü: %@\n3.APP sürümü: %@\n4.Dil: %@";
 
 /* toast error */
 "toast.error.login" = "Giriş Hatası";
@@ -386,11 +386,11 @@
 
 /* quota alert */
 "quota.alert.title" = "Yetersiz Quota";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
+"quota.alert.pow.and.quota.message" = "Quota için kısaca, PoW çalıştırabilir veya VITE stake edebilirsiniz.";
 "quota.alert.need.quota.message" = "Yetersiz PoW quotası, quota elde etmek için VITE stake etmenizi tavsiye ederiz.";
 "quota.alert.pow.button.title" = "PoW'u çalıştır";
 "quota.alert.quota.button.title" = "VITE Stake et";
-"quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
+"quota.float.view.title" = "Quota'yı Korumak İçin PoW Hesaplanıyor...";
 "quota.float.view.tip" = "Bu İşlemin maliyeti %@UT";
 "quota.pow.finished.float.view.title" = "İşlem Gönderildi";
 "quota.pow.finished.float.view.h1" = "Bu PoW hesaplamasında %1$@S harcadınız ve %2$@UT'u güvence altına alıp kullandınız.";
@@ -457,9 +457,9 @@
 "vite.error.rpc.error.code.not.enough.balance" = "Yetersiz bakiye";
 "vite.error.rpc.error.code.not.enough.quota" = "Yetersiz Quota";
 "vite.error.rpc.error.code.id.conflict" = "Bir kimlik karmaşası meydana geldi, lütfen daha sonra yeniden gönderin";
-"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
+"vite.error.rpc.error.code.contract.data.illegal" = "Sözleşme içi hata, lütfen daha sonra tekrar deneyin(-35004)";
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "İşlemler çok sık gönderiliyor, lütfen daha sonra tekrar deneyin";
-"vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Sözleşme içi yöntem bulunamadı, lütfen daha sonra tekrar deneyin(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "Bir işlem gerçekleşmeden başka transfer yapamazsınız.";
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Blok kayıt yüksekliği illegal, lütfen daha sonra tekrar deneyin";
 "vite.error.rpc.error.code.verify.failure" = "Sistem doğrulaması başarısız oldu, lütfen daha sonra tekrar deneyiniz (%@)";
@@ -474,7 +474,7 @@
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">VITE Dönüşümünü Anlamak</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">ERC20 VITE'i VITE Pre-Mainnet'te VITE dönüşümü aracılığıyla VITE'e dönüştürebilirsiniz. Dönüştürme sırasında, ERC20 VITE'iniz Ethereum kara delik adresine aktarılacaktır: 0x11111111111111111111111111111111111111 ve Ethereum kara delik adresinde işlem tamamlandıktan sonra Vite adresinize aynı miktarda VITE alacaksınız. Dönüştürme sırasında, Ethereum kara delik adresine işlem komisyonu mevcut ETH adresinizden ödenir. Dönüşümü gönderdikten sonra, lütfen Ethereum ağında en az 30 onay bekleyin, işlem geçmişini dönüşüm geçmişinde bulabilirsiniz.</p>";
 
 // ViteURI
-"vite.uri.amount.format.error" = "Wrong format with transaction amount";
+"vite.uri.amount.format.error" = "Hatalı işlem miktarı";
 
 // eth
 "eth.send.page.my.address.title" = "ETH Adresi";
@@ -633,7 +633,7 @@
 "grin.tx.Repost" = "Yeniden paylaş";
 "grin.tx.copyId" = "Kopyala";
 "grin.tx.useVite" = "VITE Adresini kullan";
-"grin.sent.useVite.desc" = "Send GRIN through VITE address is sharing transaction file encrypted by Vite through VITE address, which ensures only the real recipient can decrypt the file.";
+"grin.sent.useVite.desc" = "VITE adresi üzerinden GRIN gönderimi Vite tarafından şifrelenmiş işlem dosyasının VITE adresi aracılığıyla paylaşılmasıdır, bu da yalnızca gerçek alıcının dosyanın şifresini çözebilmesini sağlar.";
 "grin.sent.useHttp" = "HTTP Adresini kullan";
 "grin.sent.useHttp.desc" = "GRIN'i, HTTP adresi aracılığıyla GRIN almayı destekleyen herhangi bir cüzdana aktarabilirsiniz, ancak GRIN'i Vite cüzdan kullanan kullanıcılara aktarmak için VITE adresini veya dosyasını kullanmanızı öneririz.";
 "grin.sent.useFile" = "İşlem Dosyasını kullan";
@@ -739,9 +739,9 @@
 "grin.node.edit.nodeAddressTitle" = "Tam Düğüm Adresi";
 "grin.node.edit.apiSecretTitle" = "Anahtar";
 "grin.node.select.canNotConnect" = "Tam düğüme bağlanılamadı.";
-"grin.detail.slateCopied" = "Slate ID Copied.";
+"grin.detail.slateCopied" = "Slate Kimliği Kopyalandı.";
 "grin.send.illegalAmmount" = "İllegal transfer miktarı";
-"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
+"grin.detail.gatewayResend" = "Yeniden gönderim için Vite ağ geçidi talebi";
 "grin.export.mnemonic" = "Kurtarma Kelimelerini Dışa Aktar";
 
 // CrossChain Transfer & Receive
@@ -858,7 +858,7 @@
 "bifrost.home.page.busy.content" = "Lütfen aşağıdaki işlem bilgilerini onaylayın";
 "bifrost.toast.operation.success" = "İşlem Başarılı";
 
-"bifrost.list.page.title" = "Signing Transaction List";
+"bifrost.list.page.title" = "İşlem Listesi İmzalanıyor";
 "bifrost.list.page.status.pending" = "İmza Bekleniyor";
 "bifrost.list.page.status.processing" = "İmzalama";
 "bifrost.list.page.status.failed" = "Başarısız";
@@ -888,7 +888,7 @@
 "bifrost.operation.vx.order" = "ViteX'te Emir Gir";
 "bifrost.operation.vx.cancel.order" = "ViteX'teki Emri İptal Et";
 
-"bifrost.operation.function.title" = "Contract Invoke";
+"bifrost.operation.function.title" = "Sözleşme Çağrısı";
 "bifrost.operation.title.contract.address" = "Sözleşme Adresi";
 "bifrost.operation.title.amount" = "Miktar";
 "bifrost.operation.title.fee" = "Komisyon";
@@ -916,8 +916,8 @@
 "bnb.txType.burnToken.title" = "Yakmak";
 "bnb.txType.listToken.title" = "Listeleme";
 "bnb.txType.cancelOrder.title" = "Emri İptal Et";
-"bnb.txType.freezeToken.title" = "Freeze Token";
-"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.freezeToken.title" = "Kilitli Token";
+"bnb.txType.unfreezeToken.title" = "Kilidi Açılmış Token";
 "bnb.txType.transfer.title" = "Transfer";
 "bnb.txType.proposal.title" = "Teklif Talebi";
 "bnb.txType.vote.title" = "Oy";
