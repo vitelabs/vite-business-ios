@@ -185,7 +185,7 @@
 "my.page.mnemonic.cell.title" = "Anımsatıcı Kelimeler";
 "my.page.system.cell.title" = "Ayarlar";
 "my.page.invite.cell.title" = "Madencilik Referansları";
-"my.page.reward.cell.title" = "Rewards Enquiry";
+"my.page.reward.cell.title" = "Ödül Sorgulama";
 "my.page.forum.cell.title" = "Resmi Forum";
 "my.page.aboutUs.cell.title" = "Hakkımızda";
 "my.page.change.wallet.name.alter.title" = "Hesap Adını Düzenle";
@@ -275,7 +275,7 @@
 "address.manage.address.generate.button.toast" = "En fazla 100 adres ekleyin!";
 "address.manage.address.generate.button.already.toast" = "Adres zaten var";
 "address.manage.address.generate.button.error.toast" = "Lütfen bir numara girin";
-"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
+"address.manage.tip.alert.message" = "Maksimum 100 adres oluşturulabilir; #1 adresi hariç listedeki tüm adresler için manuel adres alımı gereklidir";
 "address.manage.alert.title" = "Yeni Adresler Oluşturun";
 "address.manage.alert.placeholder" = "1 ile 100 arasında bir sayı girin";
 "address.manage.alert.tip" = "Toplu olarak belirli sayıda adres oluştur";
@@ -288,7 +288,7 @@
 "send.page.title" = "Gönder";
 "send.page.my.address.title" = "%@ Adresim";
 "send.page.my.balance.title" = "Bakiye";
-"send.page.my.pledge.title" = "Benefited Stake";
+"send.page.my.pledge.title" = "Avantajlı Stake";
 "send.page.my.quota.title" = "Harcanabilir Quota/Quota Sınırı";
 "send.page.my.max.tx.count.title" = "Maksimum Tx Miktarı";
 "send.page.add.my.address.button.title" = "Maden";
@@ -721,7 +721,7 @@
 "grin.detail.gateway.confirmConntLessThanTen" = "İşlem Vite ağ geçidine ulaştı ve 10 onaydan sonra size transfer edilecektir.";
 "grin.detail.gateway.confirmConntBiggerThanTen" = "Vite ağ geçidi onayı 10'a ulaştı, eğer durum uzun bir süre \"Alınmadı\" olarak değişmezse, lütfen \"Vite ağ geçidinin yeniden gönderilmesi talebi\" ni deneyin.";
 "grin.detail.confirmLessThanThen" = "İşlem onaylandı, 10 onaydan sonra \"Gerçek Miktar\" \"Harcanabilir Miktar\" kısmına gelecektir.";
-"grin.detail.gateway" = "Vite Gateway Collection";
+"grin.detail.gateway" = "VITE Ağ Geçidi Derlemesi";
 "grin.detail.gatewayReceived" = "İşlem Vite ağ geçidine ulaştı ve 10 onaydan sonra size transfer edilecektir.";
 "grin.detail.txpostingAndCanRepost" = "İşlem yayınlanmaya başladı, işlem uzun süre onaylanmazsa tekrar denemek için \"Yeniden Gönder\" e tıklayabilirsiniz";
 "grin.detail.pleaseFinalize" = "Lütfen işlemi tamamlayın";
