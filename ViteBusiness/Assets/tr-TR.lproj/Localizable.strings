@@ -218,8 +218,8 @@
 
 /* Transaction Detail */
 "vite.transaction.detail.page.state.success" = "İşlem Tamamlandı";
-"vite.transaction.detail.page.state.call.success" = "Görüşme Başarılı";
-"vite.transaction.detail.page.state.call.failed" = "Görüşme Başarısız Oldu";
+"vite.transaction.detail.page.state.call.success" = "Sözleşme Talebi Başarılı";
+"vite.transaction.detail.page.state.call.failed" = "Sözleşme Talebi Başarısız Oldu";
 "vite.transaction.detail.page.state.call.wait" = "Akıllı Sözleşme Yanıtı bekleniyor";
 "vite.transaction.detail.page.type.title" = "İşlem Türü";
 "vite.transaction.detail.page.type.send" = "Talep";
@@ -501,7 +501,7 @@
 "eth.transaction.detail.go.button.title" = "Etherscan'de Daha Fazla Ayrıntı Göster";
 
 //token
-"token.list.page.search.title" = "Lütfen token adı veya sözleşme adresi girin";
+"token.list.page.search.title" = "Lütfen token adı veya contract adresi girin";
 "token.list.page.section.vite.header" = "Vite Ağı";
 "token.list.page.section.eth.header" = "Ethereum Ağı";
 "token.list.page.section.grin.header" = "GRIN Ağı";
@@ -979,8 +979,8 @@
 "buildin.dex.adjust.fees.function.title" = "Komisyonları Ayarla";
 "buildin.dex.adjust.fees.item0.title" = "Ad";
 "buildin.dex.adjust.fees.item1.title" = "Mevcut Adres";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.item.maker.title" = "Düzeltilmiş Yapıcı Komisyonları";
+"buildin.dex.adjust.fees.item.taker.title" = "Düzeltilmiş Alıcı Komisyonları";
 
 "buildin.dex.open.trading.pair.function.title" = "Alım Satım Paritesini Aç";
 "buildin.dex.open.trading.pair.item0.title" = "Ad";
@@ -995,11 +995,11 @@
 "buildin.dex.recover.trading.pair.item0.title" = "Ad";
 "buildin.dex.recover.trading.pair.item1.title" = "Mevcut Adres";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
+"buildin.dex.staking.as.mining.function.title" = "Madencilik için Stake";
 "buildin.dex.staking.as.mining.item0.title" = "Mevcut Adres";
 "buildin.dex.staking.as.mining.item1.title" = "Miktar";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Madencilik için Stake İptali";
 "buildin.dex.cancel.staking.as.mining.item0.title" = "Mevcut Adres";
 "buildin.dex.cancel.staking.as.mining.item1.title" = "Miktar";
 
@@ -1188,7 +1188,7 @@
 "spot.page.open.vip" = "VIP olun";
 "spot.page.close.vip" = "VIP'i iptal et";
 "spot.page.open.vip.error.toast" = "Yetersiz exchange bakiyesi, VIP olabilmek için 10.000 VITE stake edin";
-"spot.page.close.vip.error.toast" = "No VIP staked";
+"spot.page.close.vip.error.toast" = "VIP stake'i bulunmamaktadır";
 "spot.page.close.vip.un.expire.error.toast" = "Stake süresi 30 günden azdır ve geri alınamaz";
 "spot.page.depth.price" = "Fiyat";
 "spot.page.depth.vol" = "Miktar";
@@ -1247,8 +1247,8 @@
 
 "dex.token.detail.page.list.wallet.heater.title" = "Geçmiş";
 "dex.token.detail.page.list.dex.heater.title" = "Transfer Geçmişi";
-"dex.token.detail.page.cell.in" = "Transfer-In";
-"dex.token.detail.page.cell.out" = "Transfer-Out";
+"dex.token.detail.page.cell.in" = "İçe Transfer";
+"dex.token.detail.page.cell.out" = "Dışa Transfer";
 
 "dex.token.detail.page.button.deposit" = "Yatırma";
 "dex.token.detail.page.button.withdraw" = "Çekme";
