@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "로그아웃";
 "system.page.cell.change.language" = "언어";
 "system.page.cell.change.currency" = "통화";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "비밀번호로 잠금해제";
 "system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
 "system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";
 "system.page.cell.delete.wallet.title" = "현재 계정 삭제하기";
 "system.page.cell.delete.wallet.alert.title" = "계정 삭제 후에는 니모닉 단어로만 복구가 가능합니다. 계정을 삭제하시겠습니까?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "현재 높이";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "VITE 스테이킹하기";
 "quota.float.view.title" = "이 거래에 대한 쿼타를 확보하기 위해 PoW 계산 중...";
 "quota.float.view.tip" = "거래 비용은 %@ UT 입니다.";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "거래 전송됨";
 "quota.pow.finished.float.view.h1" = "PoW 작업에 %1$@S를 사용했고, 보증되었으며,  %2$@UT를 사용했습니다.";
 "quota.pow.finished.float.view.h2" = "스테이킹 된 VITE는 3일 후에 출금이 가능합니다. 스테이킹으로 받은 쿼타가 충분하다면, PoW 단계를 건너뛸 수 있습니다.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "확인";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "총합";
 "grin.balance.spendable" = "사용 가능";
 "grin.balance.awaiting" = "확인 대기 중";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "다른 지갑으로 부터 입금하기";
 "crosschain.deposit.history" = "입금 내역";
 "crosschain.withdraw.history" = "출금 내역";
-"crosschain.deposit.minAmountDesc" = "아래 주소에 의해 %@만 허용됩니다. 최소 금액은 %@보다 커야 합니다.";
-"crosschain.deposit.minComfirm" = "이 과정은 %@개의 확인이 필요합니다. 잠시만 기다려주세요.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "입금 주소";
 "crosschain.deposit.scanAddress" = "주소 QR코드를 스캔해주세요.";
 "crosschain.deposit.scanLabel" = "%@ 코드를 스캔해주세요.";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "서비스 약관";
 "crosschain.statement.agree" = "다음을 선택하면 %@의 %@에 동의합니다.";
 "crosschain.statement.title" = "중요 공지";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " 백만";
 "unit.Billion" = " 십억";
