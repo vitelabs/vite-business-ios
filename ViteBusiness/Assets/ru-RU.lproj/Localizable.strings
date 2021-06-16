@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Выйти";
 "system.page.cell.change.language" = "Язык";
 "system.page.cell.change.currency" = "Валюта";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Разблокировать по паролю";
 "system.page.cell.login.faceId" = "Разблокировать по Face ID";
 "system.page.cell.login.touchId" = "Разблокировать по Touch ID";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "Журнал загружен";
 "system.page.cell.delete.wallet.title" = "Удалить текущий аккаунт";
 "system.page.cell.delete.wallet.alert.title" = "Вы можете восстановить свою учетную запись только мнемоническими словами. Хотите удалить эту учетную запись?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Текущая высота";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "Заморозка VITE";
 "quota.float.view.title" = "Вычисления PoW для получения квоты для этой транзакции...";
 "quota.float.view.tip" = "Эта транзакция стоит %@UT";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "Транзакция отправлена";
 "quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
 "quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Подтвердить";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Итого";
 "grin.balance.spendable" = "Можно тратить";
 "grin.balance.awaiting" = "Ожидание подтверждения";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "Пополнение из другого кошелька";
 "crosschain.deposit.history" = "История пополнений";
 "crosschain.withdraw.history" = "История выводов";
-"crosschain.deposit.minAmountDesc" = "Принимается только %@ и минимальная сумма должна быть не менее %@";
-"crosschain.deposit.minComfirm" = "Процесс должен получить %@ подтверждений, пожалуйста, подождите.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Адрес пополнения";
 "crosschain.deposit.scanAddress" = "Отсканируйте QR-код адреса";
 "crosschain.deposit.scanLabel" = "Пожалуйста, отсканируйте код %@";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "Условия предоставления услуг";
 "crosschain.statement.agree" = "Нажав Далее, вы соглашаетесь с %@ %@";
 "crosschain.statement.title" = "Важное уведомление";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Миллион";
 "unit.Billion" = "Миллиард";
