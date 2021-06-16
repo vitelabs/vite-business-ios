@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Logout";
 "system.page.cell.change.language" = "Language";
 "system.page.cell.change.currency" = "Currency";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
 "system.page.cell.login.touchId" = "Unlock By Touch ID";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
 "system.page.cell.delete.wallet.title" = "Delete Current Account";
 "system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Current Height";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "Transaction Sent";
 "quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Confirm";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Spendable";
 "grin.balance.awaiting" = "Awaiting Confirmation";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
 "crosschain.deposit.history" = "Deposit History";
 "crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Deposit Address";
 "crosschain.deposit.scanAddress" = "Please scan the address QR code";
 "crosschain.deposit.scanLabel" = "Please scan the %@ code";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "Terms of Service";
 "crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
 "crosschain.statement.title" = "Important Notice";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Million";
 "unit.Billion" = " Billion";
