@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Đăng xuất";
 "system.page.cell.change.language" = "Ngôn ngữ";
 "system.page.cell.change.currency" = "Tiền tệ";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Mở khoá bằng Mật khẩu";
 "system.page.cell.login.faceId" = "Mở khoá bằng Face ID";
 "system.page.cell.login.touchId" = "Mở khóa bằng Touch ID";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "Đã tải lên Log";
 "system.page.cell.delete.wallet.title" = "Xoá Tài khoản hiện tại";
 "system.page.cell.delete.wallet.alert.title" = "Bạn chỉ có thể khôi phục tài khoản của mình bằng các cụm từ khôi phục ví khi xóa tài khoản, bạn có xác nhận xóa tài khoản này không?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
 "quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
 "quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
 "quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Xác nhận";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Tổng";
 "grin.balance.spendable" = "Có thể sử dụng";
 "grin.balance.awaiting" = "Đợi xác nhận";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "Nạp từ Ví khác";
 "crosschain.deposit.history" = "Lịch sử Nạp";
 "crosschain.withdraw.history" = "Lịch sử Rút";
-"crosschain.deposit.minAmountDesc" = "Địa chỉ bên dưới chỉ chấp nhận %@ và số lượng tối thiểu phải nhiều hơn %@";
-"crosschain.deposit.minComfirm" = "Quá trình xử lý có thể mất %@ xác nhận, vui lòng đợi.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Địa chỉ Nạp";
 "crosschain.deposit.scanAddress" = "Vui lòng quét mã QR địa chỉ";
 "crosschain.deposit.scanLabel" = "Vui lòng quét mã %@";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "Điều khoản Dịch vụ";
 "crosschain.statement.agree" = "Bằng việc nhấp Tiếp theo, bạn đồng ý với %@ của %@";
 "crosschain.statement.title" = "Thông báo Quan trọng";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Triệu";
 "unit.Billion" = " Tỷ";
