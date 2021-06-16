@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Mag-logout";
 "system.page.cell.change.language" = "Wika";
 "system.page.cell.change.currency" = "Salapi";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
 "system.page.cell.login.faceId" = "I-unlock Sa pamamagitan ng Face ID";
 "system.page.cell.login.touchId" = "I-unlock ng Touch ID";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "Na-upload ang Log";
 "system.page.cell.delete.wallet.title" = "Tanggalin ang Kasalukuyang Account";
 "system.page.cell.delete.wallet.alert.title" = "Maaari mo lamang makuha ang iyong account sa pamamagitan ng mnemonic word pagkatapos tanggalin ang isang account, kumpirmahing tanggalin mo ang account na ito?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Kasalukuyang Taas";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "Mag-Stake ng VITE";
 "quota.float.view.title" = "Pag-compute ng PoW upang I-secure ang Quota para sa Transaksyon na ito...";
 "quota.float.view.tip" = "Ang Transaksyon na ito ay nagkakahalaga ng %@ UT";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "Naipadala na ang Transaksyon";
 "quota.pow.finished.float.view.h1" = "Nagastos mo ang %1$@S sa pagkalkulang PoW na ito, at na-secure at ginamit ang %2$@UT.";
 "quota.pow.finished.float.view.h2" = "Maaari mong bawiin ang iyong na-staked na VITE pagkalipas ng 3 araw. Kung ang natanggap mong quota mula sa staking ay sapat para sa isang transaksyon, maaari mong laktawan ang hakbang na ito ng PoW.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Kumpirmahin";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Kabuuan";
 "grin.balance.spendable" = "Puwedeng gastusin";
 "grin.balance.awaiting" = "Naghihintay ng kumpirmasyon";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "Deposit mula sa Isa pang Wallet";
 "crosschain.deposit.history" = "History ng Deposito";
 "crosschain.withdraw.history" = "Kasaysayan sa Pag-withdraw";
-"crosschain.deposit.minAmountDesc" = "Ang %@ lamang ang tinatanggap ng address sa ibaba, at ang minimum na halaga ay dapat na hindi mas mababa sa %@";
-"crosschain.deposit.minComfirm" = "Dapat tumagal ang proseso ng %@ (mga) kumpirmasyon, mangyaring maghintay.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Address ng Deposito";
 "crosschain.deposit.scanAddress" = "Mangyaring i-scan ang address ng QR code";
 "crosschain.deposit.scanLabel" = "Mangyaring i-scan ang %@ code";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "Mga Tuntunin ng Serbisyo";
 "crosschain.statement.agree" = "Sa pamamagitan ng pag-click sa Susunod, sumasang-ayon ka sa%@'s %@";
 "crosschain.statement.title" = "Mahalagang Paunawa";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Milyon";
 "unit.Billion" = " Bilyon";
