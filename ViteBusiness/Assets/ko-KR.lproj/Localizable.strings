@@ -8,8 +8,8 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "확인하기";
-"cancel.button.title" = "취소하기";
+"confirm.button.title" = "확인";
+"cancel.button.title" = "취소";
 "alter.title" = "공지";
 
 "discover.page.title" = "탐색하기";
@@ -48,7 +48,7 @@
 "tab.title.dex" = "자산";
 
 /* App */
-"Cancel" = "취소하기";
+"Cancel" = "취소";
 "Finish" = "완료";
 "Delete" = "삭제하기";
 "Hint" = "알림";
@@ -56,11 +56,11 @@
 "No" = "아니오";
 "Loading" = "로딩 중";
 "Retry" = "재시도";
-"Confirm" = "확인하기";
+"Confirm" = "확인";
 "Submit" = "제출하기";
 "Close" = "이해했습니다";
 "Update.app" = "어플 업데이트";
-"Submit.cancel" = "취소하기";
+"Submit.cancel" = "취소";
 "Close" = "닫기";
 "Quit" = "나가기";
 "web.page.host.tip" = "해당 페이지는 %@에서 제공됩니다.";
@@ -103,8 +103,8 @@
 
 "mnemonic.backup.scan.alert.title" = "공지";
 "mnemonic.backup.scan.alert.message" = "다음의 니모닉 단어들로 계정 생성을 확인하시겠습니까?";
-"mnemonic.backup.scan.alert.ok.title" = "확인하기";
-"mnemonic.backup.scan.alert.cancel.title" = "취소하기";
+"mnemonic.backup.scan.alert.ok.title" = "확인";
+"mnemonic.backup.scan.alert.cancel.title" = "취소";
 
 "mnemonic.backup.page.check.button1.title" = "니모닉 단어를 잃어 버리면 내 자산을 찾을 수 없다는 것을 이해했습니다";
 "mnemonic.backup.page.check.button2.title" = "니모닉 단어를 잃어 버리면 아무도 복구를 도와줄 수 없다는 것을 이해했습니다";
@@ -130,7 +130,7 @@
 "mnemonic.backup.tip.alert.ok.title" = "지금 백업하기";
 "mnemonic.backup.tip.alert.cancel.title" = "나중에 백업하기";
 
-"mnemonic.affirm.page.title" = "확인하기";
+"mnemonic.affirm.page.title" = "확인";
 "mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요.";
 "mnemonic.affirm.alter.title" = "\"네\"를 누르시면 새로운 시드 문구를 생성합니다. 뒤로 돌아가시겠습니까?";
 "mnemonic.affirm.alter.check.title" = "잘못된 시드 문구입니다.";
@@ -143,8 +143,8 @@
 "import.page.submit.loading" = "가져오는 중...";
 "import.page.submit.success" = "가져오기 성공";
 "import.page.alert.exist.title" = "입력하신 시드 문구는 현재 기기장치에  '%@'이름의 계정이 존재합니다. 본 계정에 중복으로 입력하는게 맞습니까?";
-"import.page.alert.exist.ok" = "확인하기";
-"import.page.alert.exist.cancel" = "취소하기";
+"import.page.alert.exist.ok" = "확인";
+"import.page.alert.exist.cancel" = "취소";
 
 
 /* export mnemonic */
@@ -307,7 +307,7 @@
 "send.page.toast.note.too.long" = "노트 길이의 최대치입니다.";
 "send.page.toast.contract.address.support.hex" = "전송이 될 주소는 컨트렉트입니다. 메모는 유효한 16 진수 문자로 작성되어야합니다.";
 "send.page.not.enough.balance.alert.title" = "잔액 부족";
-"send.page.not.enough.balance.alert.button" = "취소하기";
+"send.page.not.enough.balance.alert.button" = "취소";
 "send.page.token.info.error" = "토큰 정보 에러";
 "send.page.quota.content" = "%@ UTPS";
 "send.page.eth.failed" = "(%@). 다시 시도하기 전에 거래 내역을 확인해주세요";
@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "로그아웃";
 "system.page.cell.change.language" = "언어";
 "system.page.cell.change.currency" = "통화";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "비밀번호로 잠금해제";
 "system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
 "system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";
 "system.page.cell.delete.wallet.title" = "현재 계정 삭제하기";
 "system.page.cell.delete.wallet.alert.title" = "계정 삭제 후에는 니모닉 단어로만 복구가 가능합니다. 계정을 삭제하시겠습니까?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "현재 높이";
@@ -380,8 +389,8 @@
 "quota.manage.page.check.quotaList.btn.title" = "스테이킹 목록";
 "quota.manage.page.toast.money.error" = "134 VITE 이상부터 스테이킹이 가능합니다.";
 "quota.submit.pop.desc" = "할당량을 얻기 위해 %@ VITE를 스테이킹해야합니다. 스테이킹이 시작된 후 약 3일이 지나야 출금할 수 있습니다";
-"quota.submit.pop.submit.btn.title" = "확인하기";
-"quota.submit.pop.cancel.btn.title" = "취소하기";
+"quota.submit.pop.submit.btn.title" = "확인";
+"quota.submit.pop.cancel.btn.title" = "취소";
 "quota.submit.page.quota.address.placeholder" = "수령인 주소를 입력하세요";
 
 /* quota alert */
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "VITE 스테이킹하기";
 "quota.float.view.title" = "이 거래에 대한 쿼타를 확보하기 위해 PoW 계산 중...";
 "quota.float.view.tip" = "거래 비용은 %@ UT 입니다.";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "거래 전송됨";
 "quota.pow.finished.float.view.h1" = "PoW 작업에 %1$@S를 사용했고, 보증되었으며,  %2$@UT를 사용했습니다.";
 "quota.pow.finished.float.view.h2" = "스테이킹 된 VITE는 3일 후에 출금이 가능합니다. 스테이킹으로 받은 쿼타가 충분하다면, PoW 단계를 건너뛸 수 있습니다.";
@@ -402,7 +422,7 @@
 "peldge.deadline" = "기한";
 "peldge.title" = "스테이킹 내역";
 "peldge.address.title" = "수령인";
-"peldge.cancel.peldge.button.title" = "출금하기";
+"peldge.cancel.peldge.button.title" = "출금";
 "peldge.cancel.pledge.withdrawing.title" = "출금중";
 "peldge.cancel.pledge.amount.error.toast" = "최소 출금 수량은 134 VITE 입니다. 우선 충분한 양의 VITE를 스테이킹 해주세요.";
 "peldge.cancel.pledge.agent.error.toast" = "잘못된 스테이킹 입니다. 스테이킹한 곳에서 출금을 시도해주세요.";
@@ -423,7 +443,7 @@
 "vote.list.title" = "후보 노드";
 "vote.list.search" = "후보 노드의 이름 혹은 주소 검색하기";
 "vote.list.alert.already.voted" = "%@에 투표했습니다.이 작업이 현재 투표 결과를 덮어 쓰도록해주세요.";
-"vote.list.confirm.revote" = "확인하기";
+"vote.list.confirm.revote" = "확인";
 "vote.list.count" = "투표";
 "vote.list.address" = "주소";
 "vote.list.alert.quota" = "투표 철회가 불가능합니다. 투표 철회를 위한 TPS 쿼타를 위해 PoW 운영 혹은 VITE 스테이킹을 해야합니다.";
@@ -570,28 +590,28 @@
 "confirm.transaction.page.pw.title" = "비밀번호를 입력하세요";
 // vite transfer
 "confirm.transaction.page.vite.transfer.title" = "보내기";
-"confirm.transaction.page.vite.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.confirm.button" = "확인";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "쿼타 얻기";
-"confirm.transaction.page.vite.cancel.pledge.title" = "출금하기";
-"confirm.transaction.page.vite.pledge.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.cancel.pledge.title" = "출금";
+"confirm.transaction.page.vite.pledge.confirm.button" = "확인";
 // vite vote & cancel
 "confirm.transaction.page.vite.vote.transfer.title" = "투표";
-"confirm.transaction.page.vite.vote.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.vote.confirm.button" = "확인";
 "confirm.transaction.page.vite.vote.node.name" = "노드명";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "투표 철회하기";
-"confirm.transaction.page.vite.cancel.vote.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "확인";
 // vite dex desposit & withdraw
 "confirm.transaction.page.vite.dex.deposit.transfer.title" = "거래소에 입금하기";
-"confirm.transaction.page.vite.dex.deposit.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "지갑으로 출금하기";
-"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.buy.title" = "%@ 매수하기";
-"confirm.transaction.page.vite.dex.buy.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.sell.title" = "%@ 매도하기";
-"confirm.transaction.page.vite.dex.sell.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "확인";
 "confirm.transaction.page.vite.dex.cancel.order.title" = "취소하기";
-"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "확인";
 
 "confirm.transaction.page.vite.dex.vip.title" = "VIP되기";
 "confirm.transaction.page.vite.dex.vip.balance" = "거래가능 거래소 잔액";
@@ -599,22 +619,23 @@
 "confirm.transaction.page.vite.dex.vip.tip" = "VIP는 0.1%의 거래수수료 할인 혜택을 누릴 수 있습니다. 10,000 VITE를 스테이킹하여 VIP가 되보세요(최소 스테이킹 기간: 30일)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "확인하기";
 "confirm.transaction.page.vite.dex.cancel.vip.title" = "VIP 취소하기";
-"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "확인";
 
 // vite call contract
 "confirm.transaction.page.vite.call.contract.transfer.title" = "결제";
-"confirm.transaction.page.vite.call.contract.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "확인";
 // eth transfer
 "confirm.transaction.page.eth.transfer.title" = "보내기";
-"confirm.transaction.page.eth.confirm.button" = "확인하기";
+"confirm.transaction.page.eth.confirm.button" = "확인";
 // eth vite exchange
 "confirm.transaction.page.eth.vite.exchange.title" = "VITE 전환";
 "confirm.transaction.page.eth.vite.exchange.confirm.button" = "전환하기";
 // grin transfer
 "confirm.transaction.page.grin.transfer.title" = "보내기";
-"confirm.transaction.page.grin.confirm.button" = "확인하기";
+"confirm.transaction.page.grin.confirm.button" = "확인";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "총합";
 "grin.balance.spendable" = "사용 가능";
 "grin.balance.awaiting" = "확인 대기 중";
@@ -738,402 +759,404 @@
 "grin.node.addNode" = "새 노드 추가하기";
 "grin.node.edit.nodeAddressTitle" = "풀노드 주소";
 "grin.node.edit.apiSecretTitle" = "Key";
-"grin.node.select.canNotConnect" = "Failed to connect with the full node.";
-"grin.detail.slateCopied" = "Slate ID Copied.";
-"grin.send.illegalAmmount" = "Illegal transfer amount";
-"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.node.select.canNotConnect" = "풀노드 연결에 실패했습니다.";
+"grin.detail.slateCopied" = "슬레이트 ID가 복사되었습니다.";
+"grin.send.illegalAmmount" = "불가능한 전송 금액";
+"grin.detail.gatewayResend" = "Vite 게이트웨이 요청 다시 보내기";
+"grin.export.mnemonic" = "시드 문구 내보내기";
 
 // CrossChain Transfer & Receive
 
-"crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
-"crosschain.withdraw.btnTitle" = "Withdraw";
-"crosschain.deposit.btnTitle" = "Deposit";
-"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
-"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
-"crosschain.deposit.history" = "Deposit History";
-"crosschain.withdraw.history" = "Withdrawal History";
-"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
-"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
-"crosschain.deposit.address" = "Deposit Address";
-"crosschain.deposit.scanAddress" = "Please scan the address QR code";
-"crosschain.deposit.scanLabel" = "Please scan the %@ code";
-"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+"crosschain.tokendetail" = "토큰 상세정보";
+"crosschain.deposit" = "크로스체인 입금";
+"crosschain.withdraw" = "크로스체인 출금";
+"crosschain.withdraw.btnTitle" = "출금";
+"crosschain.deposit.btnTitle" = "입금";
+"crosschain.deposit.vitewallet" = "Vite 지갑으로 부터 입금하기";
+"crosschain.deposit.otherwallet" = "다른 지갑으로 부터 입금하기";
+"crosschain.deposit.history" = "입금 내역";
+"crosschain.withdraw.history" = "출금 내역";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
+"crosschain.deposit.address" = "입금 주소";
+"crosschain.deposit.scanAddress" = "주소 QR코드를 스캔해주세요.";
+"crosschain.deposit.scanLabel" = "%@ 코드를 스캔해주세요.";
+"crosschain.deposit.labelDesc" = "%@를 입금 주소와 함께 사용해주세요. 그렇지 않으면 토큰을 잃어버릴 수 있습니다.";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
-"crosschain.withdraw.eth.myAddress" = "My ETH Address";
-"crosschain.deposit.min" = "Minimum Deposit Amount ";
-"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
-"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
-"crosschain.deposit.all" = "Deposit All";
-"crosschain.deposit.amount" = "Deposit Amount";
-"crosschain.withdraw.all" = "Withdraw All";
-"crosschain.withdraw.amount" = "Withdrawal Amount";
-"crosschain.tokenDetail.shortname" = "Symbol";
-"crosschain.tokenDetail.id" = "Token ID";
-"crosschain.tokenDetail.name" = "Token Name";
-"crosschain.tokenDetail.address" = "Coin Forging Address";
-"crosschain.tokenDetail.amount" = "Total Issuance";
-"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">크로스체인 입금</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">크로스체인 입금은 %@를 Vite 네트워크에 매핑되도록 합니다. 그 후, 크로스체인 입금이 가능합니다. Vite 지갑의 %@잔액은 Vite 지갑에서 크로스체인 입금 할 때, 그에 상응하여 감소될 것입니다.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">크로스체인 입금</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">크로스체인 입금은 %@를 Vite 네트워크에 매핑되도록 합니다. 그 후, 크로스체인 입금이 가능합니다.</p>";
+"crosschain.withdraw.eth.myAddress" = "나의 ETH 주소";
+"crosschain.deposit.min" = "최소 입금 수량 ";
+"crosschain.withdraw.min" = "최소 출금 수량 ";
+"crosschain.deposit.min.alert" = "입금 수량은 다음 수량보다 커야 합니다 ";
+"crosschain.deposit.all" = "모두 입금하기";
+"crosschain.deposit.amount" = "입금 수량";
+"crosschain.withdraw.all" = "모두 출금하기";
+"crosschain.withdraw.amount" = "출금 수량";
+"crosschain.tokenDetail.shortname" = "심볼";
+"crosschain.tokenDetail.id" = "토큰 ID";
+"crosschain.tokenDetail.name" = "토큰 이름";
+"crosschain.tokenDetail.address" = "코인 구축 주소";
+"crosschain.tokenDetail.amount" = "전체 발행";
+"crosschain.tokenDetail.digit" = "10진수";
 "crosschain.tokenDetail.unit" = "";
-"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
-"crosschain.tokenDetail.issuance.true" = "Yes";
-"crosschain.tokenDetail.issuance.false" = "No";
-"crosschain.tokenDetail.date" = "Issuance Date";
-"crosschain.tokenDetail.desc" = "Description";
-"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
-"crosschain.status.confirmed" = "Confirmed";
-"crosschain.status.tot.exceed.limit" = "Exceed the limit";
-"crosschain.status.wrong.address" = "Wrong transfer address";
-"crosschain.status.gatewayReceived" = "Deposit by Gateway";
-"crosschain.status.withdraw.failed" = "Withdrawal Failed";
+"crosschain.tokenDetail.issuance" = "추가 발행을 위해 열기";
+"crosschain.tokenDetail.issuance.true" = "네";
+"crosschain.tokenDetail.issuance.false" = "아니오";
+"crosschain.tokenDetail.date" = "발행일";
+"crosschain.tokenDetail.desc" = "설명";
+"crosschain.status.waitToConfirm" = "%@ 체인이 확인되지 않았습니다.";
+"crosschain.status.confirmed" = "확인됨";
+"crosschain.status.tot.exceed.limit" = "한도 초과";
+"crosschain.status.wrong.address" = "잘못된 전송 주소";
+"crosschain.status.gatewayReceived" = "게이트웨이로 입금하기";
+"crosschain.status.withdraw.failed" = "출금에 실패했습니다.";
 "crosschain.status.failedBecausePoor" = "수량 부족";
-"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
-"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
-"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
-"crosschain.withdraw.aboutfee" = "About Fee";
-"crosschain.status.failed" = "Deposit Failed";
-"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
-"crosschain.fee" = "Fee";
-"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
-"crosschain.gatewaydetail.title" = "Gateway Details";
-"crosschain.gatewaydetail.name" = "Gateway Name";
-"crosschain.gatewaydetail.webset" = "Official Website";
-"crosschain.gatewaydetail.email" = "Service Mailbox";
-"crosschain.gatewaydetail.statement" = "Terms of Service";
-"crosschain.gatewaydetail.host" = "Gateway URL";
-"crosschain.gatewaydetail.abstract" = "Introduction";
-"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
-"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
-"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
-"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
-"crosschain.statement.detail" = "Terms of Service";
-"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
-"crosschain.statement.title" = "Important Notice";
+"crosschain.withdraw.amount.limit.title" = "크로스체인 출금 한도";
+"crosschain.withdraw.amount.limit.min" = "단일 크로스체인 최소 출금: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "단일 크로스체인 최대 출금: %@ %@";
+"crosschain.withdraw.fee.desc" = "출금 수수료는 게이트웨이에서 부과됩니다.";
+"crosschain.withdraw.fee.desc2" = "단일 크로스체인 출금 수수료: ";
+"crosschain.withdraw.aboutfee" = "수수료에 관하여";
+"crosschain.status.failed" = "입금 실패";
+"crosschain.beta.alert" = "현재 버전은 베타 버전입니다, 많은 수량을 입금하지 말아주세요.";
+"crosschain.fee" = "수수료";
+"crosschain.withdraw.gatewayispoor" = "총 수량이 %@-%@ 한도를 초과합니다. gateway@vite.org로 연락주세요.";
+"crosschain.gatewaydetail.title" = "게이트웨이 세부사항";
+"crosschain.gatewaydetail.name" = "게이트웨이 이름";
+"crosschain.gatewaydetail.webset" = "공식 웹사이트";
+"crosschain.gatewaydetail.email" = "서비스 사서함";
+"crosschain.gatewaydetail.statement" = "서비스 약관";
+"crosschain.gatewaydetail.host" = "게이트웨이 URL";
+"crosschain.gatewaydetail.abstract" = "소개";
+"crosschain.statement.other.desc" = "이 서비스는 %@에서 제공됩니다. Vite 플랫폼은 %@에서 수행한 활동에 대해 책임을지지 않습니다. 또한 %@와 Vite 플랫폼 사용자 간의 관계에서 역할을 수행하지 않습니다. \n\n%@의 서비스를 이용함으로써 %@ %@에 따름을 동의합니다. 이 약관에 동의하지 않을 경우, %@ 서비스 사용을 거절해주세요.\n\n확인 또는 결제 처리에 문제가있는 경우 %@의 %@지원팀에 문의해주세요.";
+"crosschain.statement.other.desc0" = "이 서비스는 %@에서 제공됩니다. Vite 플랫폼은 %@에서 수행한 활동에 대해 책임을지지 않습니다. 또한 %@와 Vite 플랫폼 사용자 간의 관계에서 역할을 수행하지 않습니다.";
+"crosschain.statement.other.desc1" = "%@의 서비스를 이용함으로써 %@ %@에 따름을 동의합니다. 이 약관에 동의하지 않을 경우, %@ 서비스 사용을 거절해주세요.";
+"crosschain.statement.other.desc2" = "확인 또는 결제 처리에 문제가있는 경우 %@의 %@지원팀에 문의해주세요.";
+"crosschain.statement.vite.desc" = "이 서비스는 %@에서 제공됩니다. \n\n%@의 서비스를 이용함으로써 %@ %@에 따름을 동의합니다. 이 약관에 동의하지 않을 경우, %@ 서비스 사용을 거절해주세요.\n\n확인 또는 결제 처리에 문제가있는 경우 %@의 %@지원팀에 문의해주세요.";
+"crosschain.statement.vite.desc0" = "해당 서비스는 %@에서 제공합니다.";
+"crosschain.statement.vite.desc1" = "%@의 서비스를 이용함으로써 %@ %@에 따름을 동의합니다. 이 약관에 동의하지 않을 경우, %@ 서비스 사용을 거절해주세요.";
+"crosschain.statement.vite.desc2" = "확인 또는 결제 처리에 문제가있는 경우 %@의 %@지원팀에 문의해주세요.";
+"crosschain.statement.detail" = "서비스 약관";
+"crosschain.statement.agree" = "다음을 선택하면 %@의 %@에 동의합니다.";
+"crosschain.statement.title" = "중요 공지";
+"crosschain.chain.select.title" = "Select Network";
 
-"unit.Million" = " Million";
-"unit.Billion" = " Billion";
-"unit.Trillion" = " Trillion";
+"unit.Million" = " 백만";
+"unit.Billion" = " 십억";
+"unit.Trillion" = " 조";
 
-"exchange.history" = "Purchase History";
-"exchange.card.title" = "Buy VITE";
-"exchange.titley" = "Instant Purchase";
-"exchange.buy" = "Buy";
+"exchange.history" = "구매 내역";
+"exchange.card.title" = "VITE 구매하기";
+"exchange.titley" = "바로 구매하기";
+"exchange.buy" = "매수";
 "exchange.price" = "Rate: ";
-"exchange.amount" = "Amount: ";
-"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
-"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
-"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+"exchange.amount" = "수량: ";
+"exchange.limit.onetime" = "단일 거래 한도: %@ - %@ VITE";
+"exchange.limit.oneday" = "일일 거래 한도 %@ VITE; 미이용 일일 한도: %@ VITE\n\n\n";
+"exchange.limit.alert" = "입력하신 금액이 불가합니다. 단일 거래는 최소 %@ VITE, 최대 %@ VITE 로 가능합니다. 일일 거래 한도는 %@ VITE 입니다.";
 
 
 /* ViteConnect */
-"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
-"bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
-"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
-"bifrost.alert.approve.session.another.address.cancel" = "Back";
+"bifrost.connect.tip.in.wallet.home" = "Vite커넥트 연결됨";
+"bifrost.alert.tip.title" = "공지";
+"bifrost.alert.approve.session.message" = "다음 링크를 확인해주세요.\n%@";
+"bifrost.alert.approve.session.another.address.message" = "스캔된 주소는 웹 플랫폼 주소와 일치하지 않습니다. 어플 주소를 통해 로그인하시겠습니까?\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "로그인 확인하기";
+"bifrost.alert.approve.session.another.address.cancel" = "돌아가기";
 
-"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+"bifrost.alert.switch.address.message" = "Vite커넥트가 연결되었습니다. 주소를 변경하면 네트워크 연결이 해지됩니다. 주소를 변경 해주세요.";
 
-"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+"bifrost.alert.quit.title" = "Vite커넥트에서 로그아웃 하시겠습니까?";
 
-"bifrost.home.page.free.header" = "ViteConnect Connected";
-"bifrost.home.page.free.content" = "You have no transaction yet";
-"bifrost.home.page.free.address.title" = "Address";
-"bifrost.home.page.free.history.title" = "Transactions Signed";
-"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+"bifrost.home.page.free.header" = "Vite커넥트 연결됨";
+"bifrost.home.page.free.content" = "거래 내역이 없습니다.";
+"bifrost.home.page.free.address.title" = "주소";
+"bifrost.home.page.free.history.title" = "서명된 거래";
+"bifrost.home.page.free.auto.sign.title" = "자동 서명";
+"bifrost.home.page.free.auto.sign.confirm.title" = "비밀번호";
 
-"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.home.page.busy.header" = "ViteX & 웹지갑에서 변경 중입니다.";
+"bifrost.home.page.busy.content" = "아래 거래 정보를 확인해주세요.";
+"bifrost.toast.operation.success" = "작업 성공";
 
-"bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.title" = "거래 목록 서명중";
+"bifrost.list.page.status.pending" = "서명 대기중";
+"bifrost.list.page.status.processing" = "서명중";
+"bifrost.list.page.status.failed" = "실패";
+"bifrost.list.page.status.finished" = "성공";
+"bifrost.list.page.status.canceled" = "취소됨";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "서명된 거래 상세내역";
 
-"bifrost.error.message.timeout" = "Connection time out, please try again later";
-"bifrost.error.message.unknown" = "Connection Error, please try again later";
+"bifrost.error.message.timeout" = "연결 시간이 초과했습니다. 나중에 다시 시도해주세요.";
+"bifrost.error.message.unknown" = "연결 에러, 나중에 다시 시도해주세요.";
 
 // operation
-"bifrost.operation.register.sbp" = "Register SBP";
-"bifrost.operation.register.update.sbp" = "Update SBP";
-"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
-"bifrost.operation.vote" = "Voting";
-"bifrost.operation.cancel.vote" = "Revoke Voting";
-"bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Get Quota";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
-"bifrost.operation.coin" = "Token Issuance";
-"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
-"bifrost.operation.transfer" = "Send";
-"bifrost.operation.vx.deposit" = "ViteX Deposit";
-"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
-"bifrost.operation.vx.order" = "Place Order on ViteX";
-"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+"bifrost.operation.register.sbp" = "SBP 등록하기";
+"bifrost.operation.register.update.sbp" = "SBP 업데이트";
+"bifrost.operation.cancel.register.sbp" = "SBP 등록 취소하기";
+"bifrost.operation.vote" = "투표";
+"bifrost.operation.cancel.vote" = "투표 철회";
+"bifrost.operation.extract.reward" = "보상 받기";
+"bifrost.operation.pledge" = "쿼타 얻기";
+"bifrost.operation.cancel.pledge" = "쿼타를 위해 스테이킹 되찾기";
+"bifrost.operation.coin" = "토큰 발행";
+"bifrost.operation.cancel.coin" = "발행을 위해 스테이킹 되찾기";
+"bifrost.operation.transfer" = "보내기";
+"bifrost.operation.vx.deposit" = "ViteX 입금하기";
+"bifrost.operation.vx.withdraw" = "ViteX 출금하기";
+"bifrost.operation.across.chain.withdraw" = "크로스체인 보내기";
+"bifrost.operation.vx.order" = "ViteX에서 거래하기";
+"bifrost.operation.vx.cancel.order" = "ViteX에서 거래 취소하기";
 
-"bifrost.operation.function.title" = "Contract Invoke";
-"bifrost.operation.title.contract.address" = "Contract Address";
-"bifrost.operation.title.amount" = "Amount";
-"bifrost.operation.title.fee" = "Fee";
-"bifrost.operation.title.data" = "Data";
+"bifrost.operation.function.title" = "컨트렉트 호출하기";
+"bifrost.operation.title.contract.address" = "컨트렉트 주소";
+"bifrost.operation.title.amount" = "수량";
+"bifrost.operation.title.fee" = "수수료";
+"bifrost.operation.title.data" = "데이터";
 
-"bifrost.operation.sign.message.title" = "Create API";
-"bifrost.operation.sign.message.address" = "Current Address";
-"bifrost.operation.sign.message.type" = "Permission Type";
-"bifrost.operation.sign.message.content" = "Signature Content";
-"bifrost.operation.sign.message.type.trade.value" = "Trade";
+"bifrost.operation.sign.message.title" = "API 생성하기";
+"bifrost.operation.sign.message.address" = "현재 주소";
+"bifrost.operation.sign.message.type" = "승인 유형";
+"bifrost.operation.sign.message.content" = "서명 내용";
+"bifrost.operation.sign.message.type.trade.value" = "거래하기";
 
-"bifrost.create.contract.title" = "Create Contract";
-"bifrost.create.contract.title.contract.address" = "Contract Address";
-"bifrost.create.contract.title.amount" = "Amount";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title" = "컨트랙트 작성하기";
+"bifrost.create.contract.title.contract.address" = "컨트렉트 주소";
+"bifrost.create.contract.title.amount" = "수량";
+"bifrost.create.contract.title.fee" = "수수료";
+"bifrost.create.contract.title.data" = "데이터";
 
 //bnb
-"token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
-"bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
-"bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
-"bnb.txType.freezeToken.title" = "Freeze Token";
-"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
-"bnb.txType.transfer.title" = "Transfer";
-"bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"token.list.page.section.bnb.header" = "바이낸스 네트워크";
+"bnb.send.page.feeView.titleLabel.title" = "수수료";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB 주소";
+"bnb.send.page.eth.contacts.button.title" = "BNB 연락처";
+"bnb.txType.newOrder.title" = "주문하기";
+"bnb.txType.issueToken.title" = "자산 발행하기";
+"bnb.txType.burnToken.title" = "소각하기";
+"bnb.txType.listToken.title" = "목록";
+"bnb.txType.cancelOrder.title" = "주문 취소하기";
+"bnb.txType.freezeToken.title" = "토큰 정지하기";
+"bnb.txType.unfreezeToken.title" = "토큰 정지 철회하기";
+"bnb.txType.transfer.title" = "전송하기";
+"bnb.txType.proposal.title" = "제안 요청하기";
+"bnb.txType.vote.title" = "투표하기";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "입금";
 
 // Buildin
 
-"buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.function.title" = "전송하기";
+"buildin.transfer.utf8string.item0.title" = "트랜잭션 주소";
+"buildin.transfer.utf8string.item1.title" = "수량";
+"buildin.transfer.utf8string.item2.title" = "댓글";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
-"buildin.transfer.cross.chain.item1.title" = "Fee";
-"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+"buildin.transfer.cross.chain.function.title" = "크로스체인 보내기";
+"buildin.transfer.cross.chain.item0.title" = "수량";
+"buildin.transfer.cross.chain.item1.title" = "수수료";
+"buildin.transfer.cross.chain.item2.title" = "입금 주소";
 
-"buildin.vote.function.title" = "Vote";
-"buildin.vote.item0.title" = "SBP Candidates";
-"buildin.vote.item1.title" = "Votes";
+"buildin.vote.function.title" = "투표";
+"buildin.vote.item0.title" = "SBP 후보";
+"buildin.vote.item1.title" = "투표";
 
-"buildin.coin.issuance.function.title" = "Token Issuance";
-"buildin.coin.issuance.item0.title" = "Issuance Address";
-"buildin.coin.issuance.item1.title" = "Token Name";
-"buildin.coin.issuance.item2.title" = "Token Symbol";
-"buildin.coin.issuance.item3.title" = "Total Supply";
-"buildin.coin.issuance.item4.title" = "Decimals";
-"buildin.coin.issuance.item5.title" = "Re-issuable";
-"buildin.coin.issuance.item5.yes.value" = "YES";
-"buildin.coin.issuance.item5.no.value" = "NO";
-"buildin.coin.issuance.item6.title" = "Max Supply";
-"buildin.coin.issuance.item7.title" = "Issuance Fee";
+"buildin.coin.issuance.function.title" = "토큰 발행";
+"buildin.coin.issuance.item0.title" = "발행 주소";
+"buildin.coin.issuance.item1.title" = "토큰 이름";
+"buildin.coin.issuance.item2.title" = "토큰 심볼";
+"buildin.coin.issuance.item3.title" = "총 발행량";
+"buildin.coin.issuance.item4.title" = "10진수";
+"buildin.coin.issuance.item5.title" = "재발행 가능";
+"buildin.coin.issuance.item5.yes.value" = "네";
+"buildin.coin.issuance.item5.no.value" = "아니오";
+"buildin.coin.issuance.item6.title" = "최대 공급량";
+"buildin.coin.issuance.item7.title" = "발행 수수료";
 
-"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
-"buildin.coin.transfer.ownership.item0.title" = "Token Name";
-"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
-"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+"buildin.coin.transfer.ownership.function.title" = "소유권 이전하기";
+"buildin.coin.transfer.ownership.item0.title" = "토큰 이름";
+"buildin.coin.transfer.ownership.item1.title" = "토큰 심볼";
+"buildin.coin.transfer.ownership.item2.title" = "수신자 주소";
 
-"buildin.coin.reissue.token.function.title" = "Re-issue Token";
-"buildin.coin.reissue.token.item0.title" = "Token Name";
-"buildin.coin.reissue.token.item1.title" = "Token Symbol";
-"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
-"buildin.coin.reissue.token.item3.title" = "Amount";
+"buildin.coin.reissue.token.function.title" = "재발행 토큰";
+"buildin.coin.reissue.token.item0.title" = "토큰 이름";
+"buildin.coin.reissue.token.item1.title" = "토큰 심볼";
+"buildin.coin.reissue.token.item2.title" = "수취인 주소";
+"buildin.coin.reissue.token.item3.title" = "수량";
 
-"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
-"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
-"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+"buildin.coin.change.to.nonissuable.function.title" = "발행 불가로 변경하기";
+"buildin.coin.change.to.nonissuable.item0.title" = "토큰 이름";
+"buildin.coin.change.to.nonissuable.item1.title" = "토큰 심볼";
 
-"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
-"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
-"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
-"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+"buildin.dex.transfer.token.owner.function.title" = "토큰 소유권 이전하기";
+"buildin.dex.transfer.token.owner.item0.title" = "토큰 이름";
+"buildin.dex.transfer.token.owner.item1.title" = "토큰 심볼";
+"buildin.dex.transfer.token.owner.item2.title" = "수신자 주소";
 
-"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.function.title" = "거래쌍의 소유권 이전하기";
+"buildin.dex.transfer.pair.item0.title" = "이름";
+"buildin.dex.transfer.pair.item1.title" = "수신자 주소";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.function.title" = "수수료 조정하기";
+"buildin.dex.adjust.fees.item0.title" = "이름";
+"buildin.dex.adjust.fees.item1.title" = "현재 주소";
+"buildin.dex.adjust.fees.item.maker.title" = "조정된 Maker 수수료";
+"buildin.dex.adjust.fees.item.taker.title" = "조정된 테이커 수수료";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.function.title" = "거래쌍 열기";
+"buildin.dex.open.trading.pair.item0.title" = "이름";
+"buildin.dex.open.trading.pair.item1.title" = "현재 주소";
+"buildin.dex.open.trading.pair.item2.title" = "상장 수수료";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "거래쌍 중지하기";
+"buildin.dex.suspend.trading.pair.item0.title" = "이름";
+"buildin.dex.suspend.trading.pair.item1.title" = "현재 주소";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "거래쌍 회복하기";
+"buildin.dex.recover.trading.pair.item0.title" = "이름";
+"buildin.dex.recover.trading.pair.item1.title" = "현재 주소";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "마이닝 스테이킹하기";
+"buildin.dex.staking.as.mining.item0.title" = "현재 주소";
+"buildin.dex.staking.as.mining.item1.title" = "수량";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.function.title" = "마이닝 스테이킹 취소하기";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "현재 주소";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "수량";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "VIP되기";
+"buildin.dex.become.vip.item0.title" = "현재 주소";
+"buildin.dex.become.vip.item1.title" = "수량";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
-"buildin.dex.cancel.vip.item1.title" = "Amount";
+"buildin.dex.cancel.vip.function.title" = "VIP 취소";
+"buildin.dex.cancel.vip.item0.title" = "현재 주소";
+"buildin.dex.cancel.vip.item1.title" = "수량";
 
-"buildin.dex.lock.vx.function.title" = "Stake";
-"buildin.dex.lock.vx.item0.title" = "Current Address";
-"buildin.dex.lock.vx.item1.title" = "Amount";
+"buildin.dex.lock.vx.function.title" = "스테이크하기";
+"buildin.dex.lock.vx.item0.title" = "현재 주소";
+"buildin.dex.lock.vx.item1.title" = "수량";
 
-"buildin.dex.un.lock.vx.function.title" = "Retrieve";
-"buildin.dex.un.lock.vx.item0.title" = "Current Address";
-"buildin.dex.un.lock.vx.item1.title" = "Amount";
+"buildin.dex.un.lock.vx.function.title" = "회수하기";
+"buildin.dex.un.lock.vx.item0.title" = "현재 주소";
+"buildin.dex.un.lock.vx.item1.title" = "수량";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.function.title" = "스테이킹 철회하기";
+"buildin.dex.cancel.stake.item0.title" = "현재 주소";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.home.page.busy.header" = "거래 확인";
+"app.scheme.home.page.busy.content" = "아래 거래 정보를 확인해주세요.";
+"app.scheme.network.error" = "네트워크 오류";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "성공적으로 복사되었습니다.";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
-"fund.walletAddress" = "My Address";
-"fund.walletFound" = "Wallet Balance";
-"fund.quotaInfo" = "Spendable Quota/Quota Limit";
-"fund.deposit.amount" = "Transfer Amount";
-"fund.deposit.all" = "All";
-"fund.quotaSpend" = "Quota";
-"fund.deposit" = "Transfer";
-"fund.vitexFound" = "Available Balance";
-"fund.withdraw.amount" = "Transfer Amount";
-"fund.withdraw" = "Transfer";
-"fund.vitex.all" = "Exchange Total Balance";
-"fund.vitex.available" = "Exchange Available Balance";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
-"fund.withdraw.placeholder" = "Please enter transfer amount";
-"fund.deposit.placeholder" = "Please enter transfer amount";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.title.wallet" = "지갑 자산";
+"fund.title.vitex" = "거래소 자산";
+"fund.title.toWallet" = "지갑으로 출금하기";
+"fund.title.toVitex" = "거래소에 입금하기";
+"fund.walletAddress" = "나의 주소";
+"fund.walletFound" = "지갑 잔액";
+"fund.quotaInfo" = "사용 가능한 쿼타/쿼타 한도";
+"fund.deposit.amount" = "전송 수량";
+"fund.deposit.all" = "전체";
+"fund.quotaSpend" = "쿼타";
+"fund.deposit" = "전송하기";
+"fund.vitexFound" = "사용 가능한 잔액";
+"fund.withdraw.amount" = "전송 금액";
+"fund.withdraw" = "전송하기";
+"fund.vitex.all" = "거래소 전체 잔액";
+"fund.vitex.available" = "거래소 거래가능 잔액";
+"fund.tooBig" = "입력한 금액이 사용 가능한 잔액을 초과합니다. 다시 입력해주세요.";
+"fund.withdraw.placeholder" = "전송 수량을 입력하세요.";
+"fund.deposit.placeholder" = "전송 수량을 입력하세요.";
+"fund.cannotDeposit" = "지갑 잔액이 충분하지 않아 전송이 불가합니다.";
+"fund.cannotWithDraw" = "거래소 잔액이 충분하지 않아 전송이 불가합니다.";
+"fund.DepositSuccess" = "성공적으로 전송되었습니다. 거래소 잔액을 확인하시겠습니까?";
 
 "transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
+"transfer.wallet.account" = "지갑 주소";
 "transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
-"transfer.token" = "Token";
-"transfer.amount" = "Amount";
-"transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.dex.account" = "거래소 계정";
+"transfer.token" = "토큰";
+"transfer.amount" = "수량";
+"transfer.available" = "잔액: ";
+"transfer.title" = "전송하기";
+"transfer.search.placeholder" = "토큰명을 입력하세요.";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
-"market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
-"market.operator" = "Operator";
-"market.switch" = "Exchange";
+"market.favourite" = "즐겨찾기";
+"market.searchhistory" = "검색 기록";
+"market.title" = "마켓";
+"market.about" = "ViteX로 시작하기";
+"market.name" = "이름";
+"market.price" = "종가";
+"market.percent" = "변경하기";
+"market.operator" = "오퍼레이터";
+"market.switch" = "거래소";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
-"market.detail.page.segment.token.info.title" = "Token";
-"market.detail.page.segment.operator.into.title" = "Operator";
+"market.detail.page.segment.order.book.title" = "오더북";
+"market.detail.page.segment.last.trades.title" = "마지막 거래";
+"market.detail.page.segment.token.info.title" = "토큰";
+"market.detail.page.segment.operator.into.title" = "오퍼레이터";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
-"market.detail.page.info.vol.title" = "24H";
+"market.detail.page.info.high.title" = "고가";
+"market.detail.page.info.low.title" = "저가";
+"market.detail.page.info.vol.title" = "24시간";
 
-"market.detail.page.kline.type.min1.title" = "1m";
-"market.detail.page.kline.type.min30.title" = "30m";
-"market.detail.page.kline.type.hour1.title" = "1H";
-"market.detail.page.kline.type.hour2.title" = "2H";
-"market.detail.page.kline.type.hour4.title" = "4H";
-"market.detail.page.kline.type.hour6.title" = "6H";
-"market.detail.page.kline.type.hour12.title" = "12H";
-"market.detail.page.kline.type.day1.title" = "1D";
-"market.detail.page.kline.type.week1.title" = "1W";
+"market.detail.page.kline.type.min1.title" = "1분";
+"market.detail.page.kline.type.min30.title" = "30분";
+"market.detail.page.kline.type.hour1.title" = "1시간";
+"market.detail.page.kline.type.hour2.title" = "2시간";
+"market.detail.page.kline.type.hour4.title" = "4시간";
+"market.detail.page.kline.type.hour6.title" = "6시간";
+"market.detail.page.kline.type.hour12.title" = "12시간";
+"market.detail.page.kline.type.day1.title" = "1일";
+"market.detail.page.kline.type.week1.title" = "1주";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.time.title" = "시간";
+"market.detail.page.value.open.title" = "열기";
+"market.detail.page.value.high.title" = "고가";
+"market.detail.page.value.low.title" = "저가";
+"market.detail.page.value.close.title" = "닫기";
 "market.detail.page.value.diff.title" = "chg";
 "market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.vol.title" = "체결량";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.vol.title" = "수량(%@)";
+"market.detail.page.depth.price.title" = "가격(%@)";
 
-"market.detail.page.trade.time.title" = "Time";
-"market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.trade.time.title" = "시각";
+"market.detail.page.trade.price.title" = "가격";
+"market.detail.page.trade.vol.title" = "수량";
+"market.detail.page.buy.button.title" = "매수";
+"market.detail.page.sell.button.title" = "매도";
 
 
-"market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
-"market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
-"market.detail.page.token.info.paper" = "WhitePaper";
-"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.token.id" = "토큰ID";
+"market.detail.page.token.info.total" = "유통되는 토큰";
+"market.detail.page.token.info.type" = "타입";
+"market.detail.page.token.info.type.value.native" = "네이티브";
+"market.detail.page.token.info.type.value.other" = "크로스체인";
+"market.detail.page.token.info.gateway" = "크로스체인 게이트웨이";
+"market.detail.page.token.info.official" = "공식 웹사이트";
+"market.detail.page.token.info.paper" = "백서";
+"market.detail.page.token.info.browser" = "둘러보기";
 "market.detail.page.token.info.github" = "Github";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "SNS";
+"market.detail.page.token.info.brief" = "소개";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "익명";
+"market.detail.page.token.info.address" = "오퍼레이터 주소";
+"market.detail.page.token.info.pair" = "거래쌍";
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.mining" = "채굴";
+"trading.home.page.segment.bonus" = "배당";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
@@ -1171,89 +1194,89 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
-"spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
-"spot.page.available" = "Avail.: %@";
-"spot.page.buyable" = "Max Buy: %@";
-"spot.page.sellable" = "Max Sell: %@";
-"spot.page.total" = "Total: %@";
-"spot.page.open.vip" = "Become a VIP";
-"spot.page.close.vip" = "Cancel VIP";
-"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
-"spot.page.close.vip.error.toast" = "No VIP staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
-"spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open Orders";
-"spot.page.orders.button.title" = "History";
+"spot.page.buy.mining.tip" = "가격이 %@ 이상일 때, 채굴이 가능합니다.";
+"spot.page.sell.mining.tip" = "가격이 %@ 이하일 때, 채굴이 가능합니다.";
+"spot.page.button.closed.title" = "거래 중지";
+"spot.page.button.buy.title" = "매수";
+"spot.page.button.sell.title" = "매도";
+"spot.page.button.limit.buy.title" = "지정가 주문";
+"spot.page.price.buy.placeholder" = "가격";
+"spot.page.vol.buy.placeholder" = "수량";
+"spot.page.price.sell.placeholder" = "가격";
+"spot.page.vol.sell.placeholder" = "수량";
+"spot.page.available" = "가능: %@";
+"spot.page.buyable" = "최대 매수: %@";
+"spot.page.sellable" = "최대 매도: %@";
+"spot.page.total" = "전체: %@";
+"spot.page.open.vip" = "VIP되기";
+"spot.page.close.vip" = "VIP 취소";
+"spot.page.open.vip.error.toast" = "거래소 잔액 부족, 10,000 VITE 스테이킹 하고 VIP 되기";
+"spot.page.close.vip.error.toast" = "VIP 스테이킹이 없습니다.";
+"spot.page.close.vip.un.expire.error.toast" = "스테이킹은 최소 30일간 취소가 불가합니다.";
+"spot.page.depth.price" = "가격";
+"spot.page.depth.vol" = "수량";
+"spot.page.current.order.title" = "미체결 주문";
+"spot.page.orders.button.title" = "내역";
 
-"spot.page.post.toast.price.empty" = "Please enter the price";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.price.empty" = "금액을 입력하세요.";
+"spot.page.post.toast.price.zero" = "값은 0 보다 커야 합니다.";
+"spot.page.post.toast.vol.empty" = "수량을 입력해주세요.";
+"spot.page.post.toast.vol.zero" = "값은 0 보다 커야 합니다.";
+"spot.page.post.toast.amount.min" = "전체 금액는 최소 %@ 이여야 합니다.";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "24시간 후에 다시 요청해주세요.";
 
-"spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.title" = "중요 알림";
+"spot.page.alert.message" = "현재 거래쌍은 %@입니다. 암호화폐 투자는 높은 시장 위험과 변동성이 존재합니다. 잠재적인 위험을 처리하는 능력을평가하고 신중한 거래 결정을 내려주세요.";
+"spot.page.alert.ok" = "확인";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.order.empty" = "주문 없음";
+"spot.page.cell.type.buy" = "매수";
+"spot.page.cell.type.sell" = "매도";
+"spot.page.cell.button.cancel.title" = "취소";
+"spot.page.cell.vol" = "수량: %@";
+"spot.page.cell.price" = "가격: %@";
+"spot.page.cell.deal" = "완료됨: %@";
+"spot.page.cell.average" = "평균가: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.desc" = "초기화 중, 클릭해서 자세한 내용 보기";
+"grin.initing.detail" = "1 GRIN 지갑을 추가할 때 초기화가 필요합니다.\n2. 프로세스 시간은 15분 예상됩니다.\n3. 초기화 중에는 앱을 중단하거나 종료하지 마십시오.\n4. 초기화는 많은 양의 셀룰러 데이터를 소비하므로 와이파이 사용을 권장합니다.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
-"dex.home.page.segment.dex" = "Trading";
+"dex.home.page.nav.title" = "DEX 자산";
+"dex.home.page.nav.btc.valuation.title" = "전체 금액(BTC)";
+"dex.home.page.segment.wallet" = "지갑";
+"dex.home.page.segment.dex" = "거래";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.btc.valuation.title" = "금액(BTC)";
+"dex.home.page.header.button.transfer.title" = "전송하기";
+"dex.home.page.header.button.deposit.title" = "입금";
+"dex.home.page.header.button.withdraw.title" = "출금";
+"dex.home.page.header.button.hide.small.title" = "적은 잔액 숨기기";
 
-"dex.token.detail.page.title" = "Balance";
-"dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.title" = "보유자산";
+"dex.token.detail.page.header.total" = "총합";
+"dex.token.detail.page.header.available" = "이용 가능";
+"dex.token.detail.page.header.lock.place.order" = "주문중";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
-"dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
-"dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.pledge" = "쿼타를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.sbp" = "SBP를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.full.node" = "풀노드를 위해 스테이킹 됨";
+"dex.token.detail.page.header.lock.vite.mining" = "스테이킹됨";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "회수 중";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP 잠김";
+"dex.token.detail.page.header.lock.vx" = "스테이킹됨";
+"dex.token.detail.page.header.lock.vx.cancel" = "회수 중";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
-"dex.token.detail.page.cell.in" = "Transfer-In";
-"dex.token.detail.page.cell.out" = "Transfer-Out";
+"dex.token.detail.page.list.wallet.heater.title" = "내역";
+"dex.token.detail.page.list.dex.heater.title" = "전송 내역";
+"dex.token.detail.page.cell.in" = "가져오기";
+"dex.token.detail.page.cell.out" = "내보내기";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
-"dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.deposit" = "입금";
+"dex.token.detail.page.button.withdraw" = "출금";
+"dex.token.detail.page.button.transfer" = "전송하기";
+"dex.token.detail.page.button.send" = "보내기";
+"dex.token.detail.page.button.trading" = "거래하기";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "거래쌍 선택하기";

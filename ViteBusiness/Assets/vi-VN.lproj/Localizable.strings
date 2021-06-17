@@ -19,7 +19,7 @@
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Bây giờ";
 "discover.page.news.cell.time.hour" = "%@h trước";
-"discover.page.news.cell.time.day" = "%@d trước";
+"discover.page.news.cell.time.day" = "%@ngày trước";
 "discover.page.headerTitle.activity" = "Trung tâm Chiến dịch";
 "discover.page.headerTitle.game" = "Trò chơi Vite";
 "discover.page.headerTitle.news" = "Tin tức Vite";
@@ -36,7 +36,7 @@
 "airdrop.enabled" = "Nhận 10 ~ 1000";
 "airdrop.leftTime" = "Đếm ngược";
 
-"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop trên iOS 11 và cao hơn.";
+"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop cho iOS 11 và cao hơn.";
 "airdrop.error.tip.not.support" = "Thiết bị của bạn không hỗ trợ airdrop.";
 "airdrop.error.tip.unknown.error" = "Lỗi không xác định.";
 
@@ -98,8 +98,8 @@
 "mnemonic.backup.page.tip1" = "Chúng tôi đề xuất hai phương pháp sao lưu sau:";
 "mnemonic.backup.page.tip2" = "Viết cụm từ khôi phục ví vào một tờ giấy, sau đó giữ ở một nơi an toàn.";
 "mnemonic.backup.page.tip3" = "Quét mã QR bên dưới bằng cách sử dụng ví Vite được cài đặt trên một thiết bị khác.";
-"mnemonic.backup.language.zh" = "VN";
-"mnemonic.backup.language.en" = "VN";
+"mnemonic.backup.language.zh" = "Tiếng Trung";
+"mnemonic.backup.language.en" = "Tiếng Anh";
 
 "mnemonic.backup.scan.alert.title" = "Chú ý";
 "mnemonic.backup.scan.alert.message" = "Xác nhận tạo tại khoản với cụm từ khôi phục ví sau?";
@@ -166,7 +166,7 @@
 /* Wallet Home */
 "wallet.home.btc.title" = "Tổng giá trị (BTC)";
 "wallet.home.balance.title" = "Số dư";
-"wallet.home.unconfirmed.title" = "Chưa nhận được %@";
+"wallet.home.unconfirmed.title" = "Đang chuyển giao %@";
 "wallet.home.toast.copy.address" = "Sao chép thành công!";
 "wallet.home.scan.url.alert.title" = "THÔNG BÁO";
 "wallet.home.scan.url.alert.message" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
@@ -342,6 +342,7 @@
 "system.page.logout.loading" = "Đăng xuất";
 "system.page.cell.change.language" = "Ngôn ngữ";
 "system.page.cell.change.currency" = "Tiền tệ";
+"system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Mở khoá bằng Mật khẩu";
 "system.page.cell.login.faceId" = "Mở khoá bằng Face ID";
 "system.page.cell.login.touchId" = "Mở khóa bằng Touch ID";
@@ -352,6 +353,14 @@
 "system.page.cell.upload.log.toast.success" = "Đã tải lên Log";
 "system.page.cell.delete.wallet.title" = "Xoá Tài khoản hiện tại";
 "system.page.cell.delete.wallet.alert.title" = "Bạn chỉ có thể khôi phục tài khoản của mình bằng các cụm từ khôi phục ví khi xóa tài khoản, bạn có xác nhận xóa tài khoản này không?";
+
+/* node settings */
+"node.settings.page.title" = "Node Settings";
+"node.settings.page.add.button.title" = "Add Custom Node";
+"node.settings.page.add.alert.title" = "Please enter a valid node address";
+"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
+"node.settings.page.node.invalid.error" = "Invalid node";
+"node.settings.page.node.exist.error" = "The node already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
@@ -392,6 +401,17 @@
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
 "quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+
+"quota.pow.tip.float.view.title.1" = "Insufficient quota";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+
+"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
+"quota.pow.tip.float.view.notNow.2" = "Run POW";
+
+
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
 "quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
 "quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
@@ -615,6 +635,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Xác nhận";
 
 // Grin
+"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Tổng";
 "grin.balance.spendable" = "Có thể sử dụng";
 "grin.balance.awaiting" = "Đợi xác nhận";
@@ -755,8 +776,9 @@
 "crosschain.deposit.otherwallet" = "Nạp từ Ví khác";
 "crosschain.deposit.history" = "Lịch sử Nạp";
 "crosschain.withdraw.history" = "Lịch sử Rút";
-"crosschain.deposit.minAmountDesc" = "Địa chỉ bên dưới chỉ chấp nhận %@ và số lượng tối thiểu phải nhiều hơn %@";
-"crosschain.deposit.minComfirm" = "Quá trình xử lý có thể mất %@ xác nhận, vui lòng đợi.";
+"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
+"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Địa chỉ Nạp";
 "crosschain.deposit.scanAddress" = "Vui lòng quét mã QR địa chỉ";
 "crosschain.deposit.scanLabel" = "Vui lòng quét mã %@";
@@ -819,6 +841,7 @@
 "crosschain.statement.detail" = "Điều khoản Dịch vụ";
 "crosschain.statement.agree" = "Bằng việc nhấp Tiếp theo, bạn đồng ý với %@ của %@";
 "crosschain.statement.title" = "Thông báo Quan trọng";
+"crosschain.chain.select.title" = "Select Network";
 
 "unit.Million" = " Triệu";
 "unit.Billion" = " Tỷ";
