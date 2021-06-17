@@ -310,7 +310,7 @@ PODS:
     - Vite_GrinWallet
     - Vite_HDWalletKit
     - ViteWallet
-    - web3.swift.pod (~> 2.2.0)
+    - web3swift
     - XCGLogger (~> 7.0)
   - ViteWallet (0.1.0):
     - APIKit
@@ -320,7 +320,7 @@ PODS:
     - ObjectMapper
     - PromiseKit
     - Vite_HDWalletKit
-  - web3.swift.pod (2.2.1):
+  - web3swift (2.3.0):
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0.0)
     - PromiseKit (~> 6.8.4)
@@ -462,10 +462,10 @@ SPEC REPOS:
     - Toast-Swift
     - TrezorCryptoEd25519WithBlake2b
     - URLNavigator
-    - web3.swift.pod
     - XCGLogger
   trunk:
     - Eureka
+    - web3swift
 
 EXTERNAL SOURCES:
   BinanceChain:
@@ -574,11 +574,11 @@ SPEC CHECKSUMS:
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
   Vite_GrinWallet: e8f6c83adc0dbd9adcd110a4d51807cf43700582
   Vite_HDWalletKit: b37755ff71dd8d22ab5fa8d9dc8b6f5bf2fbfec5
-  ViteBusiness: de570daedff01b4616ef21196ec7558cd2c13d96
+  ViteBusiness: a093a3003bff6bc48dce4539fe1aa91b7aa19938
   ViteWallet: 1276f22515bd7958156bc87499c1070d5aa13832
-  web3.swift.pod: 66048c11416c2e7a9a4b35fe42254d0f0d9db4b1
+  web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
 PODFILE CHECKSUM: 210b40e1176c02a125318609bd6b81afa465381f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

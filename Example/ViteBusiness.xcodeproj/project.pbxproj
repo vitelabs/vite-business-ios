@@ -18,6 +18,24 @@
 		8E7675E121C393B900FD22AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E7675DB21C393B900FD22AC /* Localizable.strings */; };
 		8E7675E221C393B900FD22AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E7675DE21C393B900FD22AC /* Localizable.strings */; };
 		8E7675E321C393B900FD22AC /* ViteBusiness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7675E021C393B900FD22AC /* ViteBusiness.xcassets */; };
+		8ECFC6DB267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C1267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6DC267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C1267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6DD267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C4267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6DE267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C4267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6DF267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C7267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6E0267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6C7267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6E1267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6CA267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6E2267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6CA267AEBE700A3D948 /* Localizable.strings */; };
+		8ECFC6E3267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6CD267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E4267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6CD267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E5267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D0267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E6267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D0267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E7267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D3267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E8267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D3267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6E9267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D6267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6EA267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D6267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6EB267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D9267AEBE800A3D948 /* Localizable.strings */; };
+		8ECFC6EC267AEBE800A3D948 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFC6D9267AEBE800A3D948 /* Localizable.strings */; };
 		A9B81ACC60FA5ACD71D11BCF /* Pods_ViteBusiness_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17545168B86EC86F8DE41AB0 /* Pods_ViteBusiness_Example.framework */; };
 		FF7FEC42978E18560F3BD80A /* Pods_UpdateRswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304579412ABE3157BE94418C /* Pods_UpdateRswift.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +83,15 @@
 		8E7675DC21C393B900FD22AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		8E7675DF21C393B900FD22AC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		8E7675E021C393B900FD22AC /* ViteBusiness.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ViteBusiness.xcassets; path = ../../../ViteBusiness/Assets/ViteBusiness.xcassets; sourceTree = "<group>"; };
+		8ECFC6C2267AEBE700A3D948 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6C5267AEBE700A3D948 /* id-ID */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "id-ID"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6C8267AEBE700A3D948 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6CB267AEBE700A3D948 /* fr-FR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-FR"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6CE267AEBE800A3D948 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6D1267AEBE800A3D948 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6D4267AEBE800A3D948 /* de-DE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "de-DE"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6D7267AEBE800A3D948 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = Localizable.strings; sourceTree = "<group>"; };
+		8ECFC6DA267AEBE800A3D948 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = Localizable.strings; sourceTree = "<group>"; };
 		BB0994D933B36644CF69078F /* Pods-ViteBusiness_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViteBusiness_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViteBusiness_Example/Pods-ViteBusiness_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C7E7124D6C60B8767FE3A18B /* Pods-UpdateRswift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpdateRswift.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpdateRswift/Pods-UpdateRswift.release.xcconfig"; sourceTree = "<group>"; };
 		D8D1BDB038C2A953F7682592 /* Pods_ViteBusiness_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViteBusiness_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +199,15 @@
 		8E7675BC21C3921100FD22AC /* Pods-Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8ECFC6D2267AEBE800A3D948 /* de-DE.lproj */,
+				8ECFC6D5267AEBE800A3D948 /* fil-PH.lproj */,
+				8ECFC6C9267AEBE700A3D948 /* fr-FR.lproj */,
+				8ECFC6C3267AEBE700A3D948 /* id-ID.lproj */,
+				8ECFC6C0267AEBE700A3D948 /* ja-JP.lproj */,
+				8ECFC6D8267AEBE800A3D948 /* ko-KR.lproj */,
+				8ECFC6C6267AEBE700A3D948 /* ru-RU.lproj */,
+				8ECFC6CF267AEBE800A3D948 /* tr-TR.lproj */,
+				8ECFC6CC267AEBE800A3D948 /* vi-VN.lproj */,
 				8E7675DA21C393B900FD22AC /* en.lproj */,
 				8E7675E021C393B900FD22AC /* ViteBusiness.xcassets */,
 				8E7675DD21C393B900FD22AC /* zh-Hans.lproj */,
@@ -206,6 +242,87 @@
 			);
 			name = "zh-Hans.lproj";
 			path = "../../../ViteBusiness/Assets/zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6C0267AEBE700A3D948 /* ja-JP.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6C1267AEBE700A3D948 /* Localizable.strings */,
+			);
+			name = "ja-JP.lproj";
+			path = "../../../ViteBusiness/Assets/ja-JP.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6C3267AEBE700A3D948 /* id-ID.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6C4267AEBE700A3D948 /* Localizable.strings */,
+			);
+			name = "id-ID.lproj";
+			path = "../../../ViteBusiness/Assets/id-ID.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6C6267AEBE700A3D948 /* ru-RU.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6C7267AEBE700A3D948 /* Localizable.strings */,
+			);
+			name = "ru-RU.lproj";
+			path = "../../../ViteBusiness/Assets/ru-RU.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6C9267AEBE700A3D948 /* fr-FR.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6CA267AEBE700A3D948 /* Localizable.strings */,
+			);
+			name = "fr-FR.lproj";
+			path = "../../../ViteBusiness/Assets/fr-FR.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6CC267AEBE800A3D948 /* vi-VN.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6CD267AEBE800A3D948 /* Localizable.strings */,
+			);
+			name = "vi-VN.lproj";
+			path = "../../../ViteBusiness/Assets/vi-VN.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6CF267AEBE800A3D948 /* tr-TR.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6D0267AEBE800A3D948 /* Localizable.strings */,
+			);
+			name = "tr-TR.lproj";
+			path = "../../../ViteBusiness/Assets/tr-TR.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6D2267AEBE800A3D948 /* de-DE.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6D3267AEBE800A3D948 /* Localizable.strings */,
+			);
+			name = "de-DE.lproj";
+			path = "../../../ViteBusiness/Assets/de-DE.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6D5267AEBE800A3D948 /* fil-PH.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6D6267AEBE800A3D948 /* Localizable.strings */,
+			);
+			name = "fil-PH.lproj";
+			path = "../../../ViteBusiness/Assets/fil-PH.lproj";
+			sourceTree = "<group>";
+		};
+		8ECFC6D8267AEBE800A3D948 /* ko-KR.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFC6D9267AEBE800A3D948 /* Localizable.strings */,
+			);
+			name = "ko-KR.lproj";
+			path = "../../../ViteBusiness/Assets/ko-KR.lproj";
 			sourceTree = "<group>";
 		};
 		B1CEBF817ED7F5FCFA9A41EE /* Pods */ = {
@@ -333,6 +450,15 @@
 				en,
 				Base,
 				"zh-Hans",
+				"ja-JP",
+				"id-ID",
+				"ru-RU",
+				"fr-FR",
+				"vi-VN",
+				"tr-TR",
+				"de-DE",
+				"fil-PH",
+				"ko-KR",
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
@@ -351,7 +477,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECFC6DF267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E1267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6EB267AEBE800A3D948 /* Localizable.strings in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				8ECFC6E3267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E7267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E9267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6DD267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E5267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6DB267AEBE800A3D948 /* Localizable.strings in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,7 +502,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECFC6DE267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6EC267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E0267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6EA267AEBE800A3D948 /* Localizable.strings in Resources */,
 				8E7675E121C393B900FD22AC /* Localizable.strings in Resources */,
+				8ECFC6E2267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E6267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E8267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6DC267AEBE800A3D948 /* Localizable.strings in Resources */,
+				8ECFC6E4267AEBE800A3D948 /* Localizable.strings in Resources */,
 				8E7675E221C393B900FD22AC /* Localizable.strings in Resources */,
 				8E7675E321C393B900FD22AC /* ViteBusiness.xcassets in Resources */,
 			);
@@ -443,7 +587,7 @@
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.c/secp256k1.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
-				"${BUILT_PRODUCTS_DIR}/web3.swift.pod/web3swift.framework",
+				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -736,6 +880,78 @@
 			isa = PBXVariantGroup;
 			children = (
 				8E7675DF21C393B900FD22AC /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6C1267AEBE700A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6C2267AEBE700A3D948 /* ja-JP */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6C4267AEBE700A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6C5267AEBE700A3D948 /* id-ID */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6C7267AEBE700A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6C8267AEBE700A3D948 /* ru-RU */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6CA267AEBE700A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6CB267AEBE700A3D948 /* fr-FR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6CD267AEBE800A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6CE267AEBE800A3D948 /* vi-VN */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6D0267AEBE800A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6D1267AEBE800A3D948 /* tr-TR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6D3267AEBE800A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6D4267AEBE800A3D948 /* de-DE */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6D6267AEBE800A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6D7267AEBE800A3D948 /* fil-PH */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8ECFC6D9267AEBE800A3D948 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECFC6DA267AEBE800A3D948 /* ko-KR */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

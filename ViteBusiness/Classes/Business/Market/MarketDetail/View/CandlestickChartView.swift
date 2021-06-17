@@ -552,7 +552,8 @@ extension CandlestickChartView {
         let extentTitleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
             $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.text = R.string.localizable.marketDetailPageValueExtentTitle()
+            // fix tr-TR %chg problem
+            $0.text = R.string.localizable.marketDetailPageValueExtentTitle().replacingOccurrences(of: " ", with: "")
         }
         let volTitleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)

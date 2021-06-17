@@ -1122,7 +1122,7 @@
 "market.detail.page.value.low.title" = "Düşük";
 "market.detail.page.value.close.title" = "Kapat";
 "market.detail.page.value.diff.title" = "chg";
-"market.detail.page.value.extent.title" = "%chg";
+"market.detail.page.value.extent.title" = "% chg";
 "market.detail.page.value.vol.title" = "Hacim";
 
 "market.detail.page.depth.vol.title" = "Miktar(%@)";

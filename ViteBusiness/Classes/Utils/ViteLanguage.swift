@@ -10,6 +10,10 @@ import Foundation
 public enum ViteLanguage: String {
     case base = "en"
     case chinese = "zh"
+    case russia = "ru"
+    case turkey = "tr"
+    case korea = "ko"
+    case vietnam = "vi"
 
     // only used for local file
     public var resourceName: String {
@@ -18,6 +22,14 @@ public enum ViteLanguage: String {
             return "en"
         case .chinese:
             return "zh-Hans"
+        case .russia:
+            return "ru-RU"
+        case .turkey:
+            return "tr-TR"
+        case .korea:
+            return "ko-KR"
+        case .vietnam:
+            return "vi-VN"
         }
     }
 
@@ -27,6 +39,14 @@ public enum ViteLanguage: String {
             return "English"
         case .chinese:
             return "中文"
+        case .russia:
+            return "русский"
+        case .turkey:
+            return "Türk"
+        case .korea:
+            return "한국어"
+        case .vietnam:
+            return "Tiếng Việt"
         }
     }
 
@@ -35,6 +55,6 @@ public enum ViteLanguage: String {
     }
 
     public static var allLanguages: [ViteLanguage] {
-        return [.base, .chinese]
+        return [.base, .chinese, .russia, .turkey, .korea, .vietnam]
     }
 }

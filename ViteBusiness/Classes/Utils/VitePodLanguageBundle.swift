@@ -63,15 +63,18 @@ open class VitePodLanguageBundle: Bundle {
             return ret
         }
 
-        var bundle = Bundle(for: type(of: self).self)
-        if let resourcePath = bundle.path(forResource: serviceSharedInstance.bundleName, ofType: "bundle"),
+        var appBundle = Bundle(for: type(of: self).self)
+        if let resourcePath = appBundle.path(forResource: serviceSharedInstance.bundleName, ofType: "bundle"),
             let resourcesBundle = Bundle(path: resourcePath) {
-            bundle = resourcesBundle
+            appBundle = resourcesBundle
         }
 
-        if let path = bundle.path(forResource: serviceSharedInstance.currentLanguage.resourceName, ofType: "lproj"),
-            let bundle = Bundle(path: path) {
-            return bundle.localizedString(forKey: key, value: value, table: tableName)
+        if let path = appBundle.path(forResource: serviceSharedInstance.currentLanguage.resourceName, ofType: "lproj"),
+           let bundle = Bundle(path: path),
+           let basePath = appBundle.path(forResource: ViteLanguage.base.resourceName, ofType: "lproj"),
+           let baseBundle = Bundle(path: basePath) {
+            let baseValue = baseBundle.localizedString(forKey: key, value: value, table: tableName)
+            return bundle.localizedString(forKey: key, value: baseValue, table: tableName)
         }
 
         return super.localizedString(forKey: key, value: value, table: tableName)
