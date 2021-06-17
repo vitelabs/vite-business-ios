@@ -1,0 +1,1259 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Stone on 2018/12/5.
+  
+*/
+/* ViteCommunity */
+
+
+"confirm.button.title" = "Xác nhận";
+"cancel.button.title" = "Hủy";
+"alter.title" = "THÔNG BÁO";
+
+"discover.page.title" = "Khám phá";
+"discover.page.game.cell.palyNum" = "%@ người đang chơi";
+"discover.page.activity.page.title1" = "Sự kiện Mới nhất";
+"discover.page.activity.page.title2" = "Lịch sử";
+"discover.page.news.cell.official" = "Vite";
+"discover.page.news.cell.time.minute" = "Bây giờ";
+"discover.page.news.cell.time.hour" = "%@h trước";
+"discover.page.news.cell.time.day" = "%@d trước";
+"discover.page.headerTitle.activity" = "Trung tâm Chiến dịch";
+"discover.page.headerTitle.game" = "Trò chơi Vite";
+"discover.page.headerTitle.news" = "Tin tức Vite";
+"discover.page.VCWebTitle.activity" = "Sự kiện Vite";
+"discover.page.VCWebTitle.game" = "Trò chơi Vite";
+"discover.page.VCWebTitle.news" = "Tin tức Vite";
+"discover.page.game.alter.title" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
+
+//AirDrop
+"airdrop.help" = "Trợ giúp";
+"airdrop.vpower" = "Người chiến thắng";
+"airdrop.profit" = "Lợi ích";
+"airdrop.validationFailed" = "Xác thực thất bại";
+"airdrop.enabled" = "Nhận 10 ~ 1000";
+"airdrop.leftTime" = "Đếm ngược";
+
+"airdrop.error.tip.need.update" = "Chỉ hỗ trợ airdrop trên iOS 11 và cao hơn.";
+"airdrop.error.tip.not.support" = "Thiết bị của bạn không hỗ trợ airdrop.";
+"airdrop.error.tip.unknown.error" = "Lỗi không xác định.";
+
+
+"tab.title.wallet" = "Ví";
+"tab.title.market" = "Thị trường";
+"tab.title.trading" = "Giao dịch";
+"tab.title.discover" = "Khám phá";
+"tab.title.dex" = "Tài sản";
+
+/* App */
+"Cancel" = "Hủy";
+"Finish" = "Hoàn thành";
+"Delete" = "Xóa";
+"Hint" = "Nhắc nhở";
+"Yes" = "Có";
+"No" = "Không";
+"Loading" = "Đang tải";
+"Retry" = "Thử lại";
+"Confirm" = "Xác nhận";
+"Submit" = "Gửi";
+"Close" = "Tôi hiểu";
+"Update.app" = "Cập nhật ứng dụng";
+"Submit.cancel" = "Hủy";
+"Close" = "Đóng";
+"Quit" = "Thoát";
+"web.page.host.tip" = "Trang này được cung cấp bởi %@";
+
+/* Login */
+"create.account" = "Tạo Tài khoản";
+"import.account" = "Nhập Tài khoản";
+"select.wallet.account" = "Chọn tài khoản của bạn";
+
+/* Lock */
+"lock.page.pwd.btn.title" = "Đặng nhập bằng mật khẩu";
+"lock.page.fingerprint.btn.title" = "Xác thực Sinh trắc học";
+"lock.page.fingerprint.alter.title" = "Xác minh dấu vân tay để kích hoạt Touch ID";
+"lock.page.changeUser.btn.title" = "Chuyển Tài khoản";
+
+/* create */
+"create.page.title" = "Tạo Tài khoản";
+"create.page.tf.title" = "Tên Tài khoản";
+"create.page.pw.title" = "Vui lòng nhập mật khẩu";
+"create.page.pw.repeate.title" = "Vui lòng nhập lại mật khẩu";
+"create.page.invite.code.title" = "Nhập mã giới thiệu hoặc quét mã QR giới thiệu để được giảm 10% phí giao dịch và khai thác";
+"create.page.invite.code.placeholder" = "Mã Giới thiệu (tùy chọn)";
+"create.page.submit.btn.title" = "Tạo mới";
+"create.page.toast.error.invite.code" = "Sai mã giới thiệu";
+
+"create.page.tip.title" = "Hướng dẫn Sao lưu";
+"create.page.tip.content1" = "Thận trọng! Mất cụm từ khôi phục ví sẽ dẫn đến mất tất cả tài sản kỹ thuật số trong ví.";
+"create.page.tip.content2" = "Nhập cụm từ khôi phục ví là cách duy nhất để lấy lại tài khoản sau khi xóa hoặc cài đặt lại Ứng dụng.";
+"create.page.tip.content3" = "Vui lòng lưu trữ những từ khôi phục ví của bạn ở một nơi an toàn.";
+"create.page.tip.button.skip.title" = "Sao lưu sau";
+"create.page.tip.button.next.title" = "Đã sao lưu";
+
+/* mnemonic */
+"mnemonic.backup.page.title" = "Cụm từ khôi phục ví Mnemonic";
+"mnemonic.backup.page.tip1" = "Chúng tôi đề xuất hai phương pháp sao lưu sau:";
+"mnemonic.backup.page.tip2" = "Viết cụm từ khôi phục ví vào một tờ giấy, sau đó giữ ở một nơi an toàn.";
+"mnemonic.backup.page.tip3" = "Quét mã QR bên dưới bằng cách sử dụng ví Vite được cài đặt trên một thiết bị khác.";
+"mnemonic.backup.language.zh" = "VN";
+"mnemonic.backup.language.en" = "VN";
+
+"mnemonic.backup.scan.alert.title" = "Chú ý";
+"mnemonic.backup.scan.alert.message" = "Xác nhận tạo tại khoản với cụm từ khôi phục ví sau?";
+"mnemonic.backup.scan.alert.ok.title" = "Xác nhận";
+"mnemonic.backup.scan.alert.cancel.title" = "Hủy";
+
+"mnemonic.backup.page.check.button1.title" = "Tôi hiểu nếu tôi đánh mất cụm từ khôi phục ví, tôi sẽ không bao giờ tìm lại được tài sản của mình";
+"mnemonic.backup.page.check.button2.title" = "Tôi hiểu nếu tôi quên hoặc mất các từ khôi phục ví, không ai có thể giúp tôi phục hồi";
+"mnemonic.backup.page.check.button3.title" = "Tôi đã đọc, hiểu và tôi đồng ý với ";
+"mnemonic.backup.page.clause.button.title" = "Điều khoản và Điều kiện";
+"mnemonic.backup.page.tip.lab.title" = "Cụm từ khôi phục ví";
+"mnemonic.backup.page.tip.anewBtn.title" = "Tạo lại";
+"mnemonic.backup.page.tip.nextBtn.title" = "Đã sao lưu";
+"mnemonic.backup.page.tip.skip.title" = "Sao lưu sau";
+"mnemonic.backup.page.alter.title" = "Chúng tôi đặc biệt khuyên bạn không nên chụp ảnh màn hình của cụm từ khôi phục ví. Chúng tôi khuyên bạn nên viết cụm từ khôi phục ví ra một tờ giấy và giữ nó trong một nơi an toàn.";
+"mnemonic.backup.page.alter.message" = "Bạn có muốn tạo cụm từ khôi phục ví mới?";
+"mnemonic.backup.page.alter.cancel" = "Không";
+"mnemonic.backup.page.alter.confirm" = "Có";
+"mnemonic.backup.page.error.type.name" = "Vui lòng nhập tên tài khoản hoặc mật khẩu";
+"mnemonic.backup.page.error.type.nameValid" = "Tên tài khoản chỉ hỗ trợ các ký tự tiếng Trung và tiếng Anh và gạch dưới.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "Tên người dùng dùng chỉ hỗ trợ ít hơn 32 ký tự";
+"mnemonic.backup.page.error.type.difference" = "Vui lòng nhập đúng mật khẩu!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Mật khẩu bắt buộc phải chứa ít nhất 8 ký tự";
+"mnemonic.backup.page.switch.mode.title" = "Chuyển sang cụm %@ từ khôi phục ví";
+
+"mnemonic.backup.tip.alert.title" = "Chưa sao lưu Mnemonic";
+"mnemonic.backup.tip.alert.message" = "Vui lòng nhập mật khẩu để sao lưu Mnemonic.";
+"mnemonic.backup.tip.alert.ok.title" = "Sao lưu bây giờ";
+"mnemonic.backup.tip.alert.cancel.title" = "Sao lưu sau";
+
+"mnemonic.affirm.page.title" = "Xác nhận";
+"mnemonic.affirm.page.tip.title" = "Chọn các từ khôi phục ví theo thứ tự";
+"mnemonic.affirm.alter.title" = "Hành động này sẽ tạo lại cụm từ khôi phục ví, sẵn sàng quay lại?";
+"mnemonic.affirm.alter.check.title" = "Sai cụm từ khôi phục ví!";
+"mnemonic.affirm.page.add.loading" = "Đang thêm...";
+
+/* import mnemonic*/
+"import.page.title" = "Vui lòng nhập Cụm từ khôi phục ví";
+"import.page.submit.btn" = "Khôi phục Tài khoản";
+"import.page.submit.invalid.mnemonic" = "Có lỗi với cụm từ khôi phục ví, vui lòng thử lại!";
+"import.page.submit.loading" = "Đang nhập...";
+"import.page.submit.success" = "Nhập thành công";
+"import.page.alert.exist.title" = "Cụm từ khôi phục ví bạn vừa nhập đã có tài khoản tên '%@' trên thiết bị này, bạn chắc chắn muốn ghi đè lên tài khoản đã tồn tại";
+"import.page.alert.exist.ok" = "Xác nhận";
+"import.page.alert.exist.cancel" = "Hủy";
+
+
+/* export mnemonic */
+"export.page.title" = "Xuất Cụm từ khôi phục ví";
+"export.page.alter.title" = "Vui lòng nhập mật khẩu";
+"export.page.alter.tf.placeholder" = "Vui lòng nhập mật khẩu";
+"export.page.alter.password.error" = "Sai mật khẩu!";
+
+/* login */
+"login.page.btn.chooseName" = "Chọn tài khoản";
+"login.page.btn.login" = "Đăng nhập";
+"login.page.loading.title" = "Đang xử lý";
+"login.page.error.toast.title" = "Sai mật khẩu! Vui lòng thử nhập lại cụm từ khôi phục ví";
+
+/* Home */
+"tabbar.item.title.wallet" = "Ví";
+"tabbar.item.title.my" = "Tôi";
+
+/* Wallet Home */
+"wallet.home.btc.title" = "Tổng giá trị (BTC)";
+"wallet.home.balance.title" = "Số dư";
+"wallet.home.unconfirmed.title" = "Chưa nhận được %@";
+"wallet.home.toast.copy.address" = "Sao chép thành công!";
+"wallet.home.scan.url.alert.title" = "THÔNG BÁO";
+"wallet.home.scan.url.alert.message" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
+"wallet.home.header.title" = "Tài sản";
+
+/* Manage Wallet */
+"manage.wallet.page.title" = "Quản lý Ví";
+"manage.wallet.page.name.cell.title" = "Tên Tài khoản";
+"manage.wallet.page.addressManage.cell.title" = "Quản lý Địa chỉ";
+"manage.wallet.page.importMnemonic.cell.title" = "Xuất Cụm từ khôi phục ví";
+"manage.wallet.page.alter.changeName" = "Chỉnh sửa Tên Ví";
+"manage.wallet.page.changeName.loading" = "Đang sửa";
+"manage.wallet.page.error.type.name" = "Tên không thể để trống";
+
+"my.page.contacts.cell.title" = "Địa chỉ liên hệ";
+"my.page.mnemonic.cell.title" = "Cụm từ khôi phục ví";
+"my.page.system.cell.title" = "Cài đặt";
+"my.page.invite.cell.title" = "Khai thác Giới thiệu";
+"my.page.reward.cell.title" = "Yêu cầu Phần thưởng";
+"my.page.forum.cell.title" = "Diễn đàn Chính thức";
+"my.page.aboutUs.cell.title" = "Giới thiệu về chúng tôi";
+"my.page.change.wallet.name.alter.title" = "Sửa tên tài khoản";
+"my.page.aboutUs.wechat.alert.title" = "Quét mã QR để theo dõi Tài khoản Wechat chính thức của Vite";
+
+/* Transaction List */
+"transaction.list.page.title" = "Lịch sử Giao dịch";
+"transaction.list.page.empty" = "Trống";
+"transaction.list.page.network.error" = "Làm mới";
+"transaction.list.page.genesis.cell.name" = "Kiểm tra Bản ghi Khối Genesis";
+"transaction.list.page.header.refresh.idle" = "Kéo xuống để làm mới";
+"transaction.list.page.header.refresh.pulling" = "Thả ra để làm mới";
+"transaction.list.page.header.refresh.refreshing" = "Đang tải...";
+"transaction.list.transaction.type.name.contract" = "Gọi";
+"transaction.list.transaction.type.name.register" = "Đăng ký";
+"transaction.list.transaction.type.name.registerUpdate" = "Cập nhật Đăng ký";
+"transaction.list.transaction.type.name.cancelRegister" = "Thu hồi Đăng ký";
+"transaction.list.transaction.type.name.extractReward" = "Truy hồi Phần thưởng";
+"transaction.list.transaction.type.name.vote" = "Bỏ phiếu";
+"transaction.list.transaction.type.name.cancelVote" = "Hủy bỏ Bỏ phiếu";
+"transaction.list.transaction.type.name.pledge" = "Nhận TPS quota";
+"transaction.list.transaction.type.name.cancelPledge" = "Rút token đã stake";
+"transaction.list.transaction.type.name.coin" = "Phát hành Token";
+"transaction.list.transaction.type.name.cancelCoin" = "Rút token đã stake";
+"transaction.list.transaction.type.name.transfer" = "Chuyển";
+"transaction.list.transaction.netErrorAndShowAccount" = "Đã có lỗi với mạng lưới, vui lòng nhấp vào đây để kiểm tra chi tiết tài khoản";
+"transaction.list.transaction.confirmations" = "%@ Xác nhận";
+"transaction.list.transaction.confirmations.finished" = "Đã xác nhận";
+"eth.transaction.detail.page.state.call.wait" = "Đang chờ xử lý";
+
+/* Transaction Detail */
+"vite.transaction.detail.page.state.success" = "Giao dịch hoàn thành";
+"vite.transaction.detail.page.state.call.success" = "Gọi Hợp đồng Thành công";
+"vite.transaction.detail.page.state.call.failed" = "Gọi Hợp đồng Thất bại";
+"vite.transaction.detail.page.state.call.wait" = "Đợi Phản hồi Hợp đồng thông minh";
+"vite.transaction.detail.page.type.title" = "Loại giao dịch";
+"vite.transaction.detail.page.type.send" = "Yêu cầu";
+"vite.transaction.detail.page.type.receive" = "Phản hồi";
+"vite.transaction.detail.page.hash.title" = "Hash Giao dịch";
+"vite.transaction.detail.page.height.title" = "Chiều cao Khối";
+"vite.transaction.detail.page.note.title" = "Memo";
+"vite.transaction.detail.page.link.button.title" = "Kiểm tra thêm thông tin tại Trình duyệt Vite";
+
+/* BalanceInfo */
+"balance.info.detail.balance.title" = "Số dư";
+"balance.info.detail.unconfirmed.title" = "Chưa nhận";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.available.amount.title" = "Khả dụng";
+"balance.info.detail.pledge.amount.title" = "Đã stake";
+"balance.info.detail.show.transactions.button.title" = "Kiểm tra lịch sử giao dịch trên Trình duyệt Ethereum";
+"balance.info.detail.reveice.button.title" = "Nhận";
+"balance.info.detail.send.button.title" = "Gửi";
+"balance.info.detail.vote" = "Bỏ phiếu";
+"balance.info.detail.pledge" = "Nhận Quota";
+"balance.info.detail.exchange.vite" = "Chuyển đổi VITE";
+"balance.info.detail.pledge.count.content" = "Quota có thể dùng/Hạn mức Quota";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+
+"gateway.info.detail.page.title" = "Thông tin chi tiết Gateway";
+"gateway.info.detail.page.name" = "Tên Gateway";
+"gateway.info.detail.page.webside" = "Trang web chính thức của Gateway";
+"gateway.info.detail.page.brief" = "Mô tả Gateway";
+"gateway.info.detail.page.email" = "Dịch vụ Khách hàng";
+"gateway.info.detail.page.agreement" = "Điều khoản Dịch vụ";
+"gateway.info.detail.page.link" = "Đường dẫn Gateway";
+
+"token.info.detail.page.title" = "Chi tiết Token";
+"token.info.detail.page.name" = "Tên Token";
+"token.info.detail.page.id" = "Mã Token";
+"token.info.detail.page.brief" = "Giới thiệu";
+"token.info.detail.page.total" = "Tổng Phát hành";
+"token.info.detail.page.type" = "Loại Token";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"token.info.detail.page.gateway" = "Cổng Cross-chain";
+"token.info.detail.page.webside" = "Website";
+"token.info.detail.page.paper" = "WhitePaper";
+"token.info.detail.page.browser" = "Trình duyệt";
+"token.info.detail.page.github" = "Github";
+"token.info.detail.page.social" = "Mạng Xã hội";
+
+/* Address Manage Page */
+"address.manage.page.title" = "Địa chỉ %@ của tôi";
+"address.manage.default.address.cell.title" = "Địa chỉ Mặc định";
+"address.manage.address.header.title" = "Địa chỉ";
+"address.manage.address.generate.button.title" = "Thêm Địa chỉ";
+"address.manage.address.generate.button.toast" = "Thêm tối đa 100 địa chỉ!";
+"address.manage.address.generate.button.already.toast" = "Địa chỉ đã tồn tại";
+"address.manage.address.generate.button.error.toast" = "Vui lòng nhập một số";
+"address.manage.tip.alert.message" = "Tạo tối đa: 100 địa chỉ; Truy xuất địa chỉ bắt buộc thực hiện thủ công đối với tất cả các địa chỉ khác trừ địa chỉ số 1 trong danh sách";
+"address.manage.alert.title" = "Tạo Địa chỉ Ví mới";
+"address.manage.alert.placeholder" = "Nhập một số từ 1 đến 100";
+"address.manage.alert.tip" = "Tạo hàng loạt một số lượng địa chỉ cụ thể";
+"address.manage.tip.alert.ok" = "Tôi đã hiểu";
+"address.manage.default.address.name" = "Chưa Đặt Tên";
+"address.manage.change.name.alert.title" = "Sửa Bí danh Địa chỉ";
+"address.manage.change.name.alert.placeholder" = "Hãy nhập bí danh mới";
+
+/* Send Page */
+"send.page.title" = "Gửi";
+"send.page.my.address.title" = "Địa chỉ %@ của tôi";
+"send.page.my.balance.title" = "Số dư";
+"send.page.my.pledge.title" = "Đang stake";
+"send.page.my.quota.title" = "Quota có thể dùng/Hạn mức Quota";
+"send.page.my.max.tx.count.title" = "Số Giao dịch Tối đa";
+"send.page.add.my.address.button.title" = "Khai thác";
+"send.page.vite.contacts.button.title" = "Danh bạ Địa chỉ VITE";
+"send.page.scan.address.button.title" = "Quét";
+"send.page.to.address.title" = "Địa chỉ Người nhận";
+"send.page.amount.title" = "Số lượng";
+"send.page.all.button.title" = "Tất cả";
+"send.page.remark.title" = "Memo";
+"send.page.send.button.title" = "Gửi";
+"send.page.amount.toolbar.button.title" = "Tiếp theo";
+"send.page.toast.address.error" = "Sai địa chỉ, vui lòng check lại định dạng";
+"send.page.toast.amount.error" = "Không đủ số dư";
+"send.page.toast.amount.empty" = "Vui lòng nhập số dư";
+"send.page.toast.amount.zero" = "Số lượng phải là số dương";
+"send.page.toast.note.too.long" = "Độ dài của ghi chú đã đạt đến giới hạn";
+"send.page.toast.contract.address.support.hex" = "Địa chỉ đích mà bạn chuyển đến là một hợp đồng, ghi chú phải được viết bằng các chữ cái thập lục phân hợp lệ";
+"send.page.not.enough.balance.alert.title" = "Không đủ Số dư";
+"send.page.not.enough.balance.alert.button" = "Hủy";
+"send.page.token.info.error" = "Lỗi Thông tin Token";
+"send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "(%@). Vui lòng kiểm tra lịch sử giao dịch trước khi thử lại";
+
+/* eth vite exchange */
+"eth.vite.exchange.page.title" = "Chuyển đổi VITE";
+"eth.vite.exchange.page.my.address.title" = "Địa chỉ ETH";
+"eth.vite.exchange.page.my.balance.title" = "Số dư";
+"eth.vite.exchange.page.to.address.title" = "Địa chỉ VITE";
+"eth.vite.exchange.page.amount.title" = "Số lượng Chuyển đổi";
+"eth.vite.exchange.page.amount.placeholder" = "Chuyển đổi tối đa %@ VITE";
+"eth.vite.exchange.page.send.button.title" = "Chuyển đổi";
+"eth.vite.exchange.page.address.change.button.title" = "Chuyển";
+"eth.vite.exchange.page.exchange.all.button.title" = "Tất cả";
+"eth.vite.exchange.page.exchange.history.button.title" = "Lịch sử Chuyển đổi";
+
+/* Receive Page */
+"Receive.page.token.title" = "Nhận";
+"Receive.page.mine.title" = "QRCode của tôi";
+"Receive.page.token.name.label" = "Quét và Gửi %@";
+"Receive.page.token.amount.button.title" = "Nhập Số lượng";
+"Receive.page.token.note.label" = "Bình luận";
+"Receive.page.token.amount.alert.title" = "Nhập Số lượng";
+"Receive.page.wallet.name" = "Ví Vite";
+
+/* Scan Page */
+"Scan.page.title" = "Quét";
+"Scan.page.qccode.not.identifiable" = "Mã QR không thể được xác định";
+"Scan.page.qccode.not.found" = "Không tìm thấy mã QR";
+
+/* System */
+"system.page.logout.loading" = "Đăng xuất";
+"system.page.cell.change.language" = "Ngôn ngữ";
+"system.page.cell.change.currency" = "Tiền tệ";
+"system.page.cell.login.pwd" = "Mở khoá bằng Mật khẩu";
+"system.page.cell.login.faceId" = "Mở khoá bằng Face ID";
+"system.page.cell.login.touchId" = "Mở khóa bằng Touch ID";
+"system.page.cell.transfer.faceId" = "Sử dụng Face ID để giao dịch";
+"system.page.cell.transfer.touchId" = "Sử dụng Touch ID để giao dịch";
+"system.page.cell.logout.title" = "Đăng xuất/Đổi ví";
+"system.page.cell.upload.log.title" = "Tải lên Log";
+"system.page.cell.upload.log.toast.success" = "Đã tải lên Log";
+"system.page.cell.delete.wallet.title" = "Xoá Tài khoản hiện tại";
+"system.page.cell.delete.wallet.alert.title" = "Bạn chỉ có thể khôi phục tài khoản của mình bằng các cụm từ khôi phục ví khi xóa tài khoản, bạn có xác nhận xóa tài khoản này không?";
+
+/* about us */
+"aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Đang tải";
+"aboutUs.page.cell.version" = "Phiên bản";
+"aboutUs.page.cell.contact" = "Liên hệ Chúng tôi";
+"aboutUs.page.cell.shareUs" = "Chia sẻ Vite App";
+"aboutUs.page.cell.official.website" = "Vite.org";
+"aboutUs.page.cell.portal.website" = "Vite.net";
+"aboutUs.page.cell.blog.website" = "Vite.wiki";
+"aboutUs.page.email.title" = "Ý kiến phản hồi";
+"aboutUs.page.email.content" = "\n\n\n\n\nMôi trường sử dụng đề xuất như sau:\n1. Thiết bị hệ thống: %@\n2. Phiên bản hệ thống: %@\n3. Phiên bản APP: %@\n4. Ngôn ngữ: %@";
+
+/* toast error */
+"toast.error.login" = "Lỗi Đăng nhập";
+
+/* quota manage */
+"quota.manage.page.title" = "Nhận Quota";
+"quota.manage.page.input.address.title" = "Địa chỉ thụ hưởng Quota";
+"quota.manage.page.quota.money.title" = "Số lượng Stake";
+"quota.manage.page.quota.quota.title" = "Quota";
+"quota.manage.page.quota.money.placeholder" = "Vui lòng nhập số lượng stake, ít nhất 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Thời gian đóng băng stake";
+"quota.manage.page.quota.snapshoot.height.desc" = "Dự kiến %@ ngày";
+"quota.manage.page.submit.btn.title" = "Tiến hành Stake";
+"quota.manage.page.check.quotaList.btn.title" = "Danh sách Stake của tôi";
+"quota.manage.page.toast.money.error" = "Số lượng stake không được ít hơn 134";
+"quota.submit.pop.desc" = "Đảm bảo thế chấp %@ Vite để nhận quota, bạn chỉ có thể rút sau 3 ngày sau khi hết hạn stake.";
+"quota.submit.pop.submit.btn.title" = "Xác nhận";
+"quota.submit.pop.cancel.btn.title" = "Hủy";
+"quota.submit.page.quota.address.placeholder" = "Vui lòng điền địa chỉ thụ hưởng";
+
+/* quota alert */
+"quota.alert.title" = "Không đủ Quota";
+"quota.alert.pow.and.quota.message" = "Thiếu quota, bạn có thể kiếm quota bằng cách chạy PoW hoặc stake VITE.";
+"quota.alert.need.quota.message" = "Không đủ hạn ngạch từ PoW, chúng tôi khuyên bạn nên stake VITE để nhận quota.";
+"quota.alert.pow.button.title" = "Chạy PoW";
+"quota.alert.quota.button.title" = "Stake VITE";
+"quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
+"quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+"quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
+"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
+"quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
+"quota.pow.finished.float.view.pledge.button.title" = "Chuyển giao Nhanh hơn bằng Stake";
+
+/* Peldge History */
+"peldge.message" = "Hiện tại Vite App chỉ hỗ trợ kiểm tra danh sách staking, nếu cần thiết, vui lòng truy cập Ví Vite Web để rút token đã stake trong ngày đáo hạn.";
+"peldge.deadline" = "Ngày Đáo hạn";
+"peldge.title" = "Lịch sử Stake";
+"peldge.address.title" = "Người thụ hưởng";
+"peldge.cancel.peldge.button.title" = "Rút";
+"peldge.cancel.pledge.withdrawing.title" = "Đang rút";
+"peldge.cancel.pledge.amount.error.toast" = "Số lượng rút tối thiểu là 134 VITE, vui lòng stake đủ VITE trước.";
+"peldge.cancel.pledge.agent.error.toast" = "Không phải là stake phổ biến, vui lòng thử rút tại nơi bạn đã stake.";
+/* Vote */
+"vote.page.title" = "Bỏ phiếu";
+"vote.page.info.nodata.title" = "Không phiếu";
+"vote.page.voteStatus.voteSuccess" = "Vote Thành công";
+"vote.page.voteStatus.voting" = "Bỏ phiếu";
+"vote.page.voteStatus.cancelVoting" = "Thu hồi";
+"vote.page.voteStatus.voteInvalid" = "Vote không hợp lệ";
+"vote.page.voteInfo.nodePolls.title" = "Vote của tôi";
+"vote.page.nodeStatus.valid.title" = "Đang hoạt động";
+"vote.page.nodeStatus.invalid.title" = "Không hoạt động";
+"vote.page.voteInfo.alert.quota" = "Không thể thu hồi phiếu bầu, bạn phải chạy PoW hoặc stake VITE cho quota TPS để thu hồi phiếu bầu";
+
+/* Vote List*/
+"vote" = "Bỏ phiếu";
+"vote.list.title" = "Các Node ứng cử viên";
+"vote.list.search" = "Tìm kiếm tên hoặc địa chỉ của các node ứng cử viên";
+"vote.list.alert.already.voted" = "Bạn đã bỏ phiếu cho %@, vui lòng đảm bảo rằng hành động này sẽ ghi đè kết quả bỏ phiếu hiện tại";
+"vote.list.confirm.revote" = "Xác nhận";
+"vote.list.count" = "Số phiếu";
+"vote.list.address" = "Địa chỉ";
+"vote.list.alert.quota" = "Không thể bỏ phiếu, bạn phải chạy PoW hoặc stake VITE cho quota TPS để vote";
+"vote.list.search.empty" = "Không tìm thấy nội dung, vui lòng thử lại";
+"vote.list.search.no.transaction.before" = "Bạn không thể bỏ phiếu ngay bây giờ vì không có hồ sơ giao dịch trong địa chỉ của bạn";
+
+// Contract
+"contract.confirm.info" = "Địa chỉ Hợp đồng";
+
+//RefreshFooter
+"vite.RefreshBackFooter.IdleText" = "Kéo lên để tải nhiều hơn";
+"Vite.RefreshBackFooter.PullingText" = "Thả ra để tải nhiều hơn.";
+"Vite.RefreshBackFooter.RefreshingText" = "Đang tải...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "Không còn dữ liệu";
+
+//Welcome
+"introduction.tip.title" = "Giao dịch tiêu tốn quota.\nStake để nhận quota miễn phí.";
+//"introduction.page.tip1.title" = "Cross-chain multiple token types";
+//"introduction.page.tip2.title" = "Decentralized wallet";
+//"introduction.page.tip3.title" = "Zero transaction fees";
+//"introduction.page.tip4.title" = "Fast transactions";
+//"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+//"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+//"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+//"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+//"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+/* Error Message */
+
+"vite.error.network.error" = "Đã xảy ra sự cố mạng, vui lòng thử lại sau";
+"vite.error.operation.failure" = "Thao tác thất bại";
+"vite.error.rpc.error.code.not.enough.balance" = "Không đủ số dư";
+"vite.error.rpc.error.code.not.enough.quota" = "Không đủ quota";
+"vite.error.rpc.error.code.id.conflict" = "Xung đột ID, vui lòng thử lại sau";
+"vite.error.rpc.error.code.contract.data.illegal" = "Phương thức hợp đồng tích hợp không tồn tại, vui lòng thử lại sau (-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Giao dịch được gửi quá thường xuyên, vui lòng thử lại sau";
+"vite.error.rpc.error.code.contract.method.not.exist" = "Phương thức hợp đồng tích hợp không tồn tại, vui lòng thử lại sau (-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "Bạn không thể thực hiện bất kỳ chuyển khoản nào cho đến khi bạn nhận được một giao dịch.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Chiều cao khối snapshot không hợp lệ, vui lòng thử lại sau";
+"vite.error.rpc.error.code.verify.failure" = "Xác minh hệ thống không thành công, vui lòng thử lại sau (%@)";
+
+"eth.error.rpc.error.code.not.enough.balance" = "Không đủ số dư";
+"eth.error.rpc.error.code.not.enough.fee" = "Hết phí";
+
+/* Tip String */
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Quota là gì?<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Trong hệ thống Vite, người dùng không mua phí gas để trả cho giao dịch, nhưng cần tính toán tài nguyên máy tính để tạo ra quota. Quota bắt buộc để gửi giao dịch = quota cơ bản (yêu cầu) + quota (dữ liệu đi kèm trong giao dịch); quota bắt buộc để chấp nhận giao dịch = quota cơ bản (phản hồi). Giao thức cấu hình tài nguyên dựa trên quota này cho phép người dùng có được tài nguyên quota cao hơn qua 2 cách: <p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> 1. Stake VITE để nhận quota <p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">2. Chạy PoW<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Đơn vị quota: UTPS, Đơn vị Giao dịch mỗi giây. <h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Stake là gì?<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Trong hệ thống Vite, người dùng có thể stake VITE để nhận được một số lượng quota nhất định. Giá trị tối thiểu để stake là 134 VITE và không có giới hạn tối đa; trong khi đó, hệ thống Vite cũng hỗ trợ địa chỉ A stake một phần VITE và phân bổ hạn ngạch thu được cho địa chỉ B. Khi người dùng đăng ký stake, VITE của A sẽ được gửi đến địa chỉ hợp đồng thông minh thay vì ví của người dùng B và chỉ người dùng stake mới có quyền truy cập để quản lý số token stake.<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">PoW là gì?<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Proof of Work (PoW), là một giao thức để xác nhận rằng bạn đã thực hiện một lượng công việc nhất định và cũng là một biện pháp kinh tế để ngăn chặn các cuộc tấn công DDoS và lạm dụng dịch vụ khác trong mạng Vite. Nó yêu cầu trình khởi tạo phải tiến hành một lượng tính toán nhất định, có nghĩa là máy tính có thể mất một khoảng thời gian. Trong hệ thống Vite, người dùng có thể nhận được quota miễn phí bằng cách chạy PoW và cũng có thể gửi giao dịch mà không có bất kỳ thông tin chú thích nào thông qua quota có được. </p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Bỏ phiếu <p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Bạn có thể tham gia và bỏ phiếu cho 25 SBP (Snapshot Block Producer), mỗi vòng bỏ phiếu kéo dài 75 giây, số phiếu bầu của bạn bằng với số dư của địa chỉ bỏ phiếu. Phiếu bầu của bạn vẫn giữ nguyên trong các vòng tiếp theo trừ khi bạn thu hồi phiếu bầu của mình hoặc bỏ phiếu cho một node khác. Ngẫu nhiên 23 trong số 25 ứng cử viên hàng đầu cộng với 2 trong số các ứng viên xếp hạng từ 26 đến 100, tổng cộng 25 node sẽ được bầu làm SBP. </p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ bạn đã bỏ phiếu cho đã ngừng hoạt động SBP, bạn có thể bỏ phiếu lại hoặc thu hồi phiếu bầu của mình. Nếu không thao tác như vậy, phiếu bầu ban đầu của bạn sẽ được khôi phục sau khi %@ đăng ký vận hành lại SBP. </p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Tìm hiểu về Chuyển đổi VITE<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Bạn có thể chuyển đổi VITE ERC10 sang VITE coin thông qua Chuyển đổi VITE. Trong quá trình chuyển đổi, VITE ERC20 sẽ được chuyển tới địa chỉ đen mạng Ethereum 0x1111111111111111111111111111111111111111, và bạn sẽ nhận số VITE coin tương ứng tới địa chỉ Vite của mình sau khi giao dịch tới địa chỉ đen Ethereum hoàn tất. Trong thời gian chuyển đổi, phí giao dịch sẽ tính vào địa chỉ mạng ETH hiện tại của bạn. Sau khi gửi chuyển đổi, vui lòng đợi ít nhất 30 xác nhận trong mạng Ethereum, bạn có thể tìm thấy lịch sử giao dịch trong lịch sử chuyển đổi.</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "Định dạng sai với số lượng giao dịch";
+
+// eth
+"eth.send.page.my.address.title" = "Địa chỉ ETH";
+"eth.send.page.eth.contacts.button.title" = "Danh bạ Địa chỉ ETH";
+"eth.receive.page.my.address.title" = "Địa chỉ ETH của tôi";
+"eth.page.gasFee.title" = "Phí Gas";
+"eth.page.gasFee.slow.title" = "Chậm";
+"eth.page.gasFee.fast.title" = "Nhanh";
+"eth.page.gasFee.notice.title" = "Chúng tôi sẽ hoàn trả phần phí gas còn lại vào tài khoản của bạn";
+
+// eth transaction detail
+"eth.transaction.detail.page.title" = "Chi tiết";
+"eth.transaction.detail.failed" = "Giao dịch không thành công";
+"eth.transaction.detail.success" = "Giao dịch hoàn thành";
+"eth.transaction.detail.to.address" = "Địa chỉ nhận";
+"eth.transaction.detail.from.address" = "Địa chỉ gửi";
+"eth.transaction.detail.amount" = "Số lượng";
+"eth.transaction.detail.gas.fee" = "Phí Gas";
+"eth.transaction.detail.gas.price" = "Giá Gas";
+"eth.transaction.detail.gas.limit" = "Giới hạn Gas";
+"eth.transaction.detail.hash" = "Hash Giao dịch";
+"eth.transaction.detail.block" = "Khối";
+"eth.transaction.detail.note" = "Memo";
+"eth.transaction.detail.go.button.title" = "Xem thêm thông tin trên Etherscan";
+
+//token
+"token.list.page.search.title" = "Vui lòng nhập tên token hoặc địa chỉ danh bạ";
+"token.list.page.section.vite.header" = "Mạng Vite";
+"token.list.page.section.eth.header" = "Mạng Ethereum";
+"token.list.page.section.grin.header" = "Mạng GRIN";
+"token.list.page.ignore.btn.title" = "Bỏ qua";
+"token.list.page.ignore.lab.title" = "%d tài sản mới";
+"token.list.page.ignore.alter.title" = "Nội dung bị bỏ qua sẽ không được thông báo lại, bạn có chắc chắn bỏ qua các nội dung bên dưới không?";
+// Contacts Home
+"contacts.home.page.title" = "Địa chỉ Danh bạ";
+"contacts.home.page.no.contact.tip" = "Thêm địa chỉ đầu tiên của bạn";
+"contacts.home.page.single.no.contact.tip" = "Số địa chỉ %@";
+"contacts.home.page.filter.all" = "Tất cả";
+"contacts.home.page.add.button.title" = "Thêm";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "Thêm Địa chỉ Danh bạ";
+"contacts.edit.page.edit.title" = "Sửa Địa chỉ Danh bạ";
+"contacts.edit.page.name.title" = "Tên";
+"contacts.edit.page.address.title" = "Vui lòng nhập địa chỉ";
+"contacts.edit.page.type.select.title" = "Chỉnh sửa loại token";
+"contacts.edit.page.save.button.title" = "Lưu";
+"contacts.edit.page.save.success.tip" = "Thêm Thành công";
+"contacts.edit.page.edit.success.tip" = "Lưu thành công";
+"contacts.edit.page.delete.button.title" = "Xóa";
+"contacts.edit.page.delete.alert.title" = "Bạn chắc chắn muốn xóa địa chỉ này?";
+
+// Address List
+"address.list.page.my.title" = "Địa chỉ VITE của tôi";
+"address.list.page.other.title" = "%@ địa chỉ danh bạ";
+"address.list.page.no.address.tip" = "Số địa chỉ %@";
+
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "Không thể xác định";
+"workflow.confirm.page.biometryAuthFailed.back" = "Quay lại";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Thử lại";
+"workflow.confirm.page.toast.password.error" = "Sai mật khẩu!";
+
+"workflow.toast.transfer.success" = "Gửi thành công";
+"workflow.toast.submit.success" = "Gửi đi thành công";
+"workflow.toast.cancel.pledge.success" = "Yêu cầu thu hồi stake đã được gửi";
+"workflow.toast.vote.success" = "Yêu cầu vote đã gửi đi thành công";
+"workflow.toast.cancel.vote.success" = "Yêu cầu huỷ bỏ vote đã được gửi thành công";
+"workflow.toast.contract.success" = "Thành công";
+"workflow.toast.place.order.success" = "Lệnh đã đặt";
+"workflow.toast.cancel.order.success" = "Lệnh đã huỷ";
+
+"workflow.congestion.without.pow.alert.title" = "Chú ý";
+"workflow.congestion.without.pow.alert.message" = "Mạng hiện đang ở chế độ Quota động. Điều này có nghĩa là Giới hạn Quota của bạn đã giảm và bạn có thể gửi ít giao dịch hơn mỗi giây. Bạn vẫn muốn gửi giao dịch bây giờ?";
+"workflow.congestion.without.pow.alert.cancel" = "Giao dịch sau";
+"workflow.congestion.without.pow.alert.ok" = "Giao dịch bây giờ";
+"workflow.congestion.with.pow.alert.title" = "Chú ý";
+"workflow.congestion.with.pow.alert.message" = "Mạng hiện đang ở chế độ Quota động. Điều này có nghĩa là Giới hạn Quota của bạn đã giảm và Quota có thể dùng không đủ để thực hiện giao dịch. Vui lòng thử lại sau";
+"workflow.congestion.with.pow.alert.cancel" = "Giao dịch sau";
+
+"workflow.fast.get.quota.title" = "Nhận Quota Ngay";
+"workflow.fast.get.quota.message" = "Vui lòng xác nhận rằng bạn muốn nhận Quota bằng cách stake 134 VITE từ địa chỉ hiện tại. Bạn có thể rút số stake tại Lịch sử Stake 3 ngày sau đó.";
+"workflow.fast.get.quota.tip" = "Bạn có thể gửi quota tới địa chỉ khác bằng %@.";
+"workflow.fast.get.quota.link" = "bấm vào đây";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "Xác nhận";
+"confirm.transaction.address.title" = "Địa chỉ nhận";
+"confirm.transaction.amount.title" = "Số lượng";
+"confirm.transaction.fee.title" = "Phí";
+"confirm.transaction.quota.title" = "Quota";
+"confirm.transaction.page.use.password" = "Sử dụng mật khẩu";
+"confirm.transaction.page.pw.title" = "Vui lòng nhập mật khẩu";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "Gửi";
+"confirm.transaction.page.vite.confirm.button" = "Xác nhận";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "Nhận Quota";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Rút";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Xác nhận";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "Bỏ phiếu";
+"confirm.transaction.page.vite.vote.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.vote.node.name" = "Tên Node";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "Hủy bỏ Bỏ phiếu";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "Xác nhận";
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Nạp và Sàn";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Rút về Ví";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.buy.title" = "Mua %@";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.sell.title" = "Bán %@";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "Hủy";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Xác nhận";
+
+"confirm.transaction.page.vite.dex.vip.title" = "Trở thành VIP";
+"confirm.transaction.page.vite.dex.vip.balance" = "Số dư Sàn Khả dụng";
+"confirm.transaction.page.vite.dex.vip.amount" = "Stake để trở thành VIP";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP hưởng chiết khấu 0,1% phí giao dịch. Stake 10.000 VITE để trở thành VIP (Thời gian Stake tối thiểu: 30 ngày)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "Xác nhận";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "Hủy VIP";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Xác nhận";
+
+// vite call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Thanh toán";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "Xác nhận";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "Gửi";
+"confirm.transaction.page.eth.confirm.button" = "Xác nhận";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "Chuyển đổi VITE";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Chuyển đổi";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "Gửi";
+"confirm.transaction.page.grin.confirm.button" = "Xác nhận";
+
+// Grin
+"grin.balance.total" = "Tổng";
+"grin.balance.spendable" = "Có thể sử dụng";
+"grin.balance.awaiting" = "Đợi xác nhận";
+"grin.balance.locked" = "Bị khoá bởi Giao dịch trước đó";
+"grin.wallet.check" = "Kiểm tra";
+"grin.wallet.check.desc" = "Kiểm tra ví sẽ quét chuỗi và hủy tất cả các giao dịch đang chờ xử lý, mở khóa mọi output bị khóa, khôi phục mọi output bị thiếu và đảm bảo nội dung ví của bạn nhất quán với phiên bản của chuỗi. Quá trình này sẽ tiêu tốn một lượng lớn dữ liệu di động, bạn nên tiếp tục quá trình trên Wi-Fi";
+"grin.txType.sent" = "Đã tạo";
+"grin.txType.waitToSign" = "Chưa nhận";
+"grin.txType.received" = "Đã nhận";
+"grin.txType.waitToFinalize" = "Chưa hoàn thành";
+"grin.txType.finalized" = "Tiến hành";
+"grin.txType.confirmed" = "Đã xác nhân";
+"grin.txType.confirmedCoinbase" = "Coinbase Đã xác nhận";
+"grin.txType.Canceled" = "Đã hủy";
+"grin.tx.Cancele" = "Đã hủy";
+"grin.tx.Repost" = "Đăng lại";
+"grin.tx.copyId" = "Sao chép";
+"grin.tx.useVite" = "Sử dụng Địa chỉ VITE";
+"grin.sent.useVite.desc" = "Gửi GRIN qua địa chỉ VITE là chia sẻ tệp giao dịch được mã hóa bởi Vite thông qua địa chỉ VITE, đảm bảo chỉ người nhận thực mới có thể giải mã tệp.";
+"grin.sent.useHttp" = "Sử dụng Địa chỉ HTTP";
+"grin.sent.useHttp.desc" = "Bạn có thể chuyển GRIN đến bất kỳ ví nào hỗ trợ nhận GRIN thông qua địa chỉ HTTP, tuy nhiên, chúng tôi khuyên bạn nên sử dụng địa chỉ hoặc tệp VITE để chuyển GRIN cho người dùng sử dụng ví Vite.";
+"grin.sent.useFile" = "Sử dụng Tệp Giao dịch";
+"grin.know" = "Tôi đã hiểu";
+"grin.notSeeAgain" = "Không hiển thị lại";
+"grin.sent.title" = "Gửi GRIN";
+"grin.sent.amount" = "Số lượng";
+"grin.receive.ture.amount" = "Số lượng Thực tế";
+"grin.sent.fee" = "Phí";
+"grin.sent.creatFile" = "Tạo Tệp Giao dịch";
+"grin.shareFile.desc" = "Vui lòng hoàn tất giao dịch";
+"grin.txFile.init.status" = "Đã tạo";
+"grin.txFile.id" = "ID Giao dịch";
+"grin.shareFile" = "Chia sẻ Tệp Giao dịch";
+"grin.finalize.title" = "Gửi GRIN";
+"grin.finalize.desc" = "Người nhận đã nhận được giao dịch. Vui lòng hoàn tất và thực thi giao dịch.";
+"grin.txFile.received.status" = "Biên lai đã được xác nhận";
+"grin.finalize" = "Hoàn thiện và Thực thi";
+"grin.finalized.alertTitle" = "Giao dịch Hoàn thành";
+"grin.finalized.alertDesc" = "GRIN của bạn đang được thực thi";
+"grin.sent.next" = "Tiếp theo";
+"grin.sent.suggest.useVite.title" = "Chú ý";
+"grin.sent.suggest.useVite.desc" = "Nếu bạn muốn gửi GRIN cho người dùng Vite Wallet, bạn nên gửi qua Địa chỉ VITE vì nó an toàn hơn và rẻ hơn.";
+"grin.sent.switch" = "Địa chỉ VITE";
+"grin.sent.stillUseHttp" = "Địa chỉ HTTP";
+"grin.sent.http.success" = "Bạn đã gửi yêu cầu chuyển GRIN thành công";
+"grin.sent.vite.success" = "Giao dịch của bạn đã được gửi.";
+"grin.receiveByVite.addressCopyed" = "Địa chỉ VITE để nhận GRIN của bạn đã được sao chép vào khay nhớ tạm.";
+"grin.receiveByVite.desc" = "Xin lưu ý rằng ví web không hỗ trợ GRIN native. Nếu bạn nhận được giao dịch VITE với tệp GRIN, vui lòn liên hệ với người gửi để hủy giao dịch và gửi lại GRIN.";
+"grin.iknow" = "Tôi đã hiểu";
+"grin.thisIsFirstViteAddress" = "Đây là địa chỉ VITE đầu tiên của bạn";
+"grin.receiveByHttp.addressCopyed" = "Địa chỉ HTTP để nhận GRIN của bạn đã được sao chép vào khay nhớ tạm";
+"grin.receiveByHttp.desc" = "Như trong hình trên, Vite sẽ thực hiện việc thu và chuyển cho bạn khi bạn chọn chuyển hoặc nhận GRIN thông qua địa chỉ HTTP. Có tính phí giao dịch trong cả hai bước trên.";
+"grin.receive.title" = "Nhận GRIN";
+"grin.receive.sented" = "Đã tạo";
+"grin.creatTime" = "Thời gian tạo";
+"grin.signAndShare" = "Nhận và Chia sẻ";
+"grin.sent.btnTitle" = "Gửi";
+"grin.receive.BtnTitle" = "Nhận";
+"grin.notice.title" = "Chú ý";
+"grin.teach.vite.receive.title" = "Nhận GRIN qua địa chỉ VITE";
+"grin.teach.http.receive.title" = "Nhận GRIN qua địa chỉ HTTP";
+"grin.teach.vite.sent.title" = "Gửi GRIN qua địa chỉ VITE";
+"grin.teach.http.sent.title" = "Gửi GRIN qua địa chỉ HTTP";
+"grin.txid.title" = "ID Giao dịch";
+"grin.switchAddress" = "Đổi Địa chỉ";
+"grin.http.address" = "Địa chỉ HTTP";
+"grin.vite.address" = "Địa chỉ VITE";
+"grin.sendPageViteContactsButtonTitle" = "Địa chỉ Danh bạ GRIN";
+"grin.canceled" = "Đã hủy";
+"grin.makeSureToShare" = "Chắc chẵn đã chia sẻ tệp giao dịch với người gửi";
+"grin.txbyfile.shareSentFileDesc" = "Chắc chắn chia sẻ tệp giao dịch với người nhận và yêu cầu trả tệp xác nhận.";
+"grin.txbyfile.receiveSentFileDesc" = "Vui lòng hoàn tất giao dịch";
+"grin.txbyfile.shareReceiveFileDesc" = "Chắc chẵn đã chia sẻ tệp giao dịch với người gửi";
+"grin.txbyfile.finalizeReceiveFileDesc" = "Người nhận đã nhận được giao dịch. Vui lòng hoàn tất và thực thi giao dịch.";
+"grin.txbyfile.initStatus.sender" = "Đã tạo";
+"grin.txbyfile.initStatus.receiver" = "Đang chờ xử lý";
+"grin.txbyfile.receivedStatus.receiver" = "Đã nhận";
+"grin.txbyfile.receivedStatus.sender" = "Đợi xác nhận";
+"grin.creat.syncronizing" = "Tạo và đồng bộ hoá, dự kiến 3 phút";
+"grin.recover.syncronizing" = "Khôi phục và đồng bộ hoá, dự kiến 3 phút";
+"grin.creating" = "Ví Grin đang khởi chạy, vui lòng đợi trong giây lát.";
+"grin.pay.title.creat" = "Tạo mới";
+"grin.pay.title.finalize" = "Kết thúc";
+
+"grin.teach.file.send.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là chia sẻ tệp giao dịch với người nhận, mở tệp do người nhận gửi lại bằng ví Vite và hoàn tất giao dịch. Sau khi nhấp vào \"Chia sẻ tệp giao dịch\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ.";
+"grin.teach.file.receive.desc" = "Để chuyển bằng ví Vite, tất cả những gì bạn cần làm là mở tệp, nhấp vào nút \"Nhận và chia sẻ\" và gửi lại tệp xác nhận nhận với người gửi. Sau khi nhấp vào \"Nhận và chia sẻ\", ví Vite sẽ hiển thị Ứng dụng có thể sử dụng trên điện thoại di động của bạn, bạn có thể chọn cách nào bạn thích, bạn cũng có thể lưu tệp vào điện thoại di động của mình và tự chia sẻ. Ví Vite hỗ trợ tệp .grinslate và tệp .json và chỉ khi tên tệp chứa \"phản hồi\" thì nó mới được nhận dạng và mở thành công.";
+"grin.teach.file.send.title" = "Gửi GRIN bằng Tệp Giao dịch";
+"grin.teach.file.receive.title" = "Nhận GRIN bằng Tệp Giao dịch";
+"grin.teach.http.receive.copyHttpAddress" = "Sao chép Địa chỉ HTTP";
+"grin.teach.vite.receive.copyViteAddress" = "Sao chép Địa chỉ VITE";
+"grin.teach.vite.send.startSend" = "Bắt đầu gửi";
+"grin.txMethod.http" = "Địa chỉ HTTP";
+"grin.txMethod.vite" = "Địa chỉ VITE";
+"grin.txMethod.file" = "Tệp Giao dịch";
+
+"grin.detail.fromMine" = "Coinbase";
+"grin.detail.txStatus" = "Trạng thái Giao dịch";
+"grin.detail.txCompleted" = "Giao dịch đã được hoàn thành.";
+"grin.detail.txCancelled" = "Giao dịch đã bị hủy.";
+"grin.detail.txFileReecivedAndCanShare" = "Giao dịch đã được nhận, vui lòng chia sẻ tệp với người gửi, bạn có thể chọn cách tùy thích.";
+"grin.detail.txReceived" = "Giao dịch đã được nhận.";
+"grin.detail.txReceivedAndCanAskGatewaytoSend" = "Bạn đã nhận được giao dịch, nếu trạng thái không chuyển sang \"Đã xác nhận\", vui lòng thử \"Yêu cầu cổng Vite gửi lại\".";
+"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "Nếu trạng thái ở trạng thái \"Chưa nhận được\" trong một thời gian dài, vui lòng thử \"Yêu cầu cổng Vite gửi lại\".";
+"grin.detail.gateway.confirmConntLessThanTen" = "Cổng Vite đã nhận được giao dịch và sẽ chuyển cho bạn sau 10 xác nhận mạng lưới.";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Xác nhận gateway Vite đã đạt đến 10, nếu trạng thái không chuyển thành \"Chưa nhận được\" trong một thời gian dài, vui lòng thử \"Yêu cầu gateway Vite gửi lại\".";
+"grin.detail.confirmLessThanThen" = "Giao dịch đã được xác nhận, sau 10 lần xác nhận, \"Số dư thực tế\" sẽ chuyển đến \"Số dư có thể chi tiêu\".";
+"grin.detail.gateway" = "Bộ sưu tập Vite Gateway";
+"grin.detail.gatewayReceived" = "Cổng Vite đã nhận được giao dịch và sẽ chuyển cho bạn sau 10 xác nhận mạng lưới.";
+"grin.detail.txpostingAndCanRepost" = "Giao dịch đã bắt đầu được broadcase, bạn có thể nhấp vào \"Đăng lại\" để thử lại nếu giao dịch chưa được xác nhận trong thời gian dài";
+"grin.detail.pleaseFinalize" = "Vui lòng hoàn tất giao dịch";
+"grin.detail.pleaseFinalize2" = "Vui lòng đợi giao dịch được hoàn tất";
+"grin.detail.txFileCreatedAndCanShare" = "Tệp giao dịch đã được tạo, vui lòng đảm bảo chia sẻ tệp với người nhận (chia sẻ tùy thích) và yêu cầu trả lại tệp đã nhận.";
+"grin.detail.txFile" = "Tệp Giao dịch";
+"grin.detail.txFinaziledAndPosting" = "Giao dịch đã được hoàn tất và thực thi.";
+"grin.detail.txisPostingPlsWait" = "Giao dịch đang được thực thi, vui lòng đợi xác nhận.";
+"grin.detail.waitHerOpenViteWalletToReceive" = "Vui lòng đợi người nhận mở ví Vite và nhận giao dịch.";
+"grin.detail.pleaseReciveAndShare" = "Vui lòng ký giao dịch và chia sẻ tệp với người gửi, bạn có thể chọn bất kỳ cách nào bạn muốn.";
+"grin.detail.gatewaysend" = "Giao dịch gửi VITE";
+"grin.detail.repoat" = "Đăng lại";
+"grin.node.configNode" = "Định cấu hình Full Node.";
+"grin.node.addNode" = "Thêm Full node mới";
+"grin.node.edit.nodeAddressTitle" = "Địa chỉ Full Node";
+"grin.node.edit.apiSecretTitle" = "Khóa";
+"grin.node.select.canNotConnect" = "Lỗi kết nối đến full node.";
+"grin.detail.slateCopied" = "Đã sao chép Slate ID.";
+"grin.send.illegalAmmount" = "Số lượng chuyển không hợp lệ";
+"grin.detail.gatewayResend" = "Yêu cầu gateway Vite gửi lại";
+"grin.export.mnemonic" = "Xuất Cụm từ khôi phục ví";
+
+// CrossChain Transfer & Receive
+
+"crosschain.tokendetail" = "Chi tiết Token";
+"crosschain.deposit" = "Nạp Cross-chain";
+"crosschain.withdraw" = "Rút Cross-chain";
+"crosschain.withdraw.btnTitle" = "Rút";
+"crosschain.deposit.btnTitle" = "Nạp";
+"crosschain.deposit.vitewallet" = "Nạp từ Ví Vite";
+"crosschain.deposit.otherwallet" = "Nạp từ Ví khác";
+"crosschain.deposit.history" = "Lịch sử Nạp";
+"crosschain.withdraw.history" = "Lịch sử Rút";
+"crosschain.deposit.minAmountDesc" = "Địa chỉ bên dưới chỉ chấp nhận %@ và số lượng tối thiểu phải nhiều hơn %@";
+"crosschain.deposit.minComfirm" = "Quá trình xử lý có thể mất %@ xác nhận, vui lòng đợi.";
+"crosschain.deposit.address" = "Địa chỉ Nạp";
+"crosschain.deposit.scanAddress" = "Vui lòng quét mã QR địa chỉ";
+"crosschain.deposit.scanLabel" = "Vui lòng quét mã %@";
+"crosschain.deposit.labelDesc" = "Vui lòng sử dụng %@ với Địa chỉ Nạp này, bạn sẽ mất vĩnh viễn nếu nạp token khác.";
+
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Thực hiện giao dịch nạp crosschain cho phép %@ được chéo chuỗi vào mạng Vite. Số dư %@ trong ví Vite sẽ giảm tương ứng khi bạn nạp cross-chain từ ví Vite của mình.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Về Nạp Cross-chain<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\"> Thực thiện nạp cross-chain cho phép %@ chuyển sang mạng Vite. Sau đó bạn cũng có thể thực hiện rút cross-chain.</p>";
+"crosschain.withdraw.eth.myAddress" = "Địa chỉ ETH của tôi";
+"crosschain.deposit.min" = "Số lượng nạp tối thiểu ";
+"crosschain.withdraw.min" = "Số tiền rút tối thiểu ";
+"crosschain.deposit.min.alert" = "Số lượng rút không thể ít hơn ";
+"crosschain.deposit.all" = "Nạp tất cả";
+"crosschain.deposit.amount" = "Sô lượng Nạp";
+"crosschain.withdraw.all" = "Rút tất cả";
+"crosschain.withdraw.amount" = "Số lượng rút";
+"crosschain.tokenDetail.shortname" = "Ký hiệu";
+"crosschain.tokenDetail.id" = "Token ID";
+"crosschain.tokenDetail.name" = "Tên Token";
+"crosschain.tokenDetail.address" = "Địa chỉ Forge Coin";
+"crosschain.tokenDetail.amount" = "Tổng Phát hành";
+"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.tokenDetail.unit" = "";
+"crosschain.tokenDetail.issuance" = "Mở cho Vấn đề bổ sung";
+"crosschain.tokenDetail.issuance.true" = "Có";
+"crosschain.tokenDetail.issuance.false" = "Không";
+"crosschain.tokenDetail.date" = "Ngày phát hành";
+"crosschain.tokenDetail.desc" = "Mô tả";
+"crosschain.status.waitToConfirm" = "Chuỗi %@ chưa xác nhận";
+"crosschain.status.confirmed" = "Đã xác nhân";
+"crosschain.status.tot.exceed.limit" = "Đạt giới hạn";
+"crosschain.status.wrong.address" = "Sai địa chỉ chuyển";
+"crosschain.status.gatewayReceived" = "Nạp bởi Gateway";
+"crosschain.status.withdraw.failed" = "Rút không thành công";
+"crosschain.status.failedBecausePoor" = "Không đủ số lượng";
+"crosschain.withdraw.amount.limit.title" = "Giới hạn rút cross-chain";
+"crosschain.withdraw.amount.limit.min" = "Số lượng tối thiểu trong giao dịch rút cross-chain: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Số lượng tối đa trong giao dịch rút cross-chain: %@ %@";
+"crosschain.withdraw.fee.desc" = "Phí rút được tính bởi gateway";
+"crosschain.withdraw.fee.desc2" = "Phí của mỗi giao dịch rút cross-chain: ";
+"crosschain.withdraw.aboutfee" = "Về Phí";
+"crosschain.status.failed" = "Nạp thất bại";
+"crosschain.beta.alert" = "Đang ở phiên bản beta, vui lòng không nạp số lượng lớn vào tài khoản.";
+"crosschain.fee" = "Phí";
+"crosschain.withdraw.gatewayispoor" = "Số lượng vượt quá giới hạn %@ - %@, vui lòng liên hệ gateway@vite.org.";
+"crosschain.gatewaydetail.title" = "Thông tin chi tiết Gateway";
+"crosschain.gatewaydetail.name" = "Tên Gateway";
+"crosschain.gatewaydetail.webset" = "Trang web chính thức";
+"crosschain.gatewaydetail.email" = "Dịch vụ Hộp Thư";
+"crosschain.gatewaydetail.statement" = "Điều khoản Dịch vụ";
+"crosschain.gatewaydetail.host" = "URL Gateway";
+"crosschain.gatewaydetail.abstract" = "Giới thiệu";
+"crosschain.statement.other.desc" = "Dịch vụ này được cung cấp bởi %@. Vite Platform không chịu trách nhiệm về các hoạt động do %@ thực hiện và không đóng vai trò trong mối quan hệ giữa %@ và người dùng Vite Platform. Bằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.";
+"crosschain.statement.other.desc0" = "Dịch vụ này được cung cấp bởi %@. Vite Platform không chịu trách nhiệm về các hoạt động do %@ thực hiện và không đóng vai trò gì trong mối quan hệ giữa %@ và người dùng Vite Platform.";
+"crosschain.statement.other.desc1" = "Bằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.";
+"crosschain.statement.other.desc2" = "Trong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
+"crosschain.statement.vite.desc" = "Dịch vụ này được cung cấp bởi %@.\n\nBằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.\n\nTrong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
+"crosschain.statement.vite.desc0" = "Dịch vụ này được cung cấp bởi %@.";
+"crosschain.statement.vite.desc1" = "Bằng việc sử dụng các dịch vụ từ %@, bạn đồng ý bị ràng buộc bởi %@ %@. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng các dịch vụ từ %@.";
+"crosschain.statement.vite.desc2" = "Trong trường hợp có vấn đề với việc xác minh hoặc xử lý thanh toán, vui lòng liên hệ với đội ngũ hỗ trợ %@ tại %@.";
+"crosschain.statement.detail" = "Điều khoản Dịch vụ";
+"crosschain.statement.agree" = "Bằng việc nhấp Tiếp theo, bạn đồng ý với %@ của %@";
+"crosschain.statement.title" = "Thông báo Quan trọng";
+
+"unit.Million" = " Triệu";
+"unit.Billion" = " Tỷ";
+"unit.Trillion" = " Nghìn Tỷ";
+
+"exchange.history" = "Lịch sử Mua";
+"exchange.card.title" = "Mua VITE";
+"exchange.titley" = "Giao dịch Nhanh";
+"exchange.buy" = "Mua";
+"exchange.price" = "Tỷ giá: ";
+"exchange.amount" = "Số lượng: ";
+"exchange.limit.onetime" = "Giới hạn Một Giao dịch %@ - %@ VITE";
+"exchange.limit.oneday" = "Giới hạn giao dịch hàng ngày %@VITE; Giới hạn hàng ngày chưa sử dụng: %@ VITE\n\n\n";
+"exchange.limit.alert" = "Số lượng bạn đã nhập không hợp lệ. Một giao dịch ít nhất phải là %@ VITE và tối đa %@ VITE, và giới hạn giao dịch hàng ngày là %@ VITE.";
+
+
+/* ViteConnect */
+"bifrost.connect.tip.in.wallet.home" = "Đã kết nối ViteConnect";
+"bifrost.alert.tip.title" = "Chú ý";
+"bifrost.alert.approve.session.message" = "Vui lòng xác nhận theo đường dẫn\n%@";
+"bifrost.alert.approve.session.another.address.message" = "Địa chỉ bạn quét bây giờ không khớp với địa chỉ trên nền tảng web. Tiếp tục đăng nhập bằng địa chỉ App?\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Xác nhận đăng nhập";
+"bifrost.alert.approve.session.another.address.cancel" = "Quay lại";
+
+"bifrost.alert.switch.address.message" = "ViteConnect đã được kết nối, chuyển đổi địa chỉ sẽ gián đoạn kết nối. Đảm bảo chuyển đổi địa chỉ";
+
+"bifrost.alert.quit.title" = "Chắc chắn đăng xuất ViteConnect?";
+
+"bifrost.home.page.free.header" = "Đã kết nối ViteConnect";
+"bifrost.home.page.free.content" = "Bạn chưa có giao dịch nào";
+"bifrost.home.page.free.address.title" = "Địa chỉ";
+"bifrost.home.page.free.history.title" = "Giao dịch đã ký";
+"bifrost.home.page.free.auto.sign.title" = "Tự động ký";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Mật khẩu";
+
+"bifrost.home.page.busy.header" = "Bạn đang thực hiện các thay đổi trên ViteX & Ví web";
+"bifrost.home.page.busy.content" = "Vui lòng xác nhận thông tin giao dịch như sau";
+"bifrost.toast.operation.success" = "Thao tác Thành công";
+
+"bifrost.list.page.title" = "Danh sách Giao dịch đang ký";
+"bifrost.list.page.status.pending" = "Đợi xác nhận";
+"bifrost.list.page.status.processing" = "Đang xác nhận";
+"bifrost.list.page.status.failed" = "Thất bại";
+"bifrost.list.page.status.finished" = "Thành công";
+"bifrost.list.page.status.canceled" = "Đã hủy";
+
+"bifrost.task.detail.page.busy.header" = "Chi tiết Giao dịch đã ký";
+
+"bifrost.error.message.timeout" = "Hết thời gian kết nối, xin vui lòng thử lại";
+"bifrost.error.message.unknown" = "Lỗi kết nối, xin vui lòng thử lại";
+
+// operation
+"bifrost.operation.register.sbp" = "Đăng ký SBP";
+"bifrost.operation.register.update.sbp" = "Cập nhật SBP";
+"bifrost.operation.cancel.register.sbp" = "Hủy Đăng ký SBP";
+"bifrost.operation.vote" = "Bỏ phiếu";
+"bifrost.operation.cancel.vote" = "Hủy bỏ Bỏ phiếu";
+"bifrost.operation.extract.reward" = "Nhận thưởng";
+"bifrost.operation.pledge" = "Nhận Quota";
+"bifrost.operation.cancel.pledge" = "Truy xuất Stake cho quota";
+"bifrost.operation.coin" = "Phát hành Token";
+"bifrost.operation.cancel.coin" = "Truy xuất Stake cho Phát hành";
+"bifrost.operation.transfer" = "Gửi";
+"bifrost.operation.vx.deposit" = "Nạp ViteX";
+"bifrost.operation.vx.withdraw" = "Rút ViteX";
+"bifrost.operation.across.chain.withdraw" = "Gửi Cross-chain";
+"bifrost.operation.vx.order" = "Đặt lệnh trên ViteX";
+"bifrost.operation.vx.cancel.order" = "Huỷ lệnh trên ViteX";
+
+"bifrost.operation.function.title" = "Kêu gọi Hợp đồng";
+"bifrost.operation.title.contract.address" = "Địa chỉ Hợp đồng";
+"bifrost.operation.title.amount" = "Số lượng";
+"bifrost.operation.title.fee" = "Phí";
+"bifrost.operation.title.data" = "Dữ liệu";
+
+"bifrost.operation.sign.message.title" = "Tạo API";
+"bifrost.operation.sign.message.address" = "Địa chỉ Hiện tại";
+"bifrost.operation.sign.message.type" = "Kiểu Phân quyền";
+"bifrost.operation.sign.message.content" = "Nội dung Chữ ký";
+"bifrost.operation.sign.message.type.trade.value" = "Giao dịch";
+
+"bifrost.create.contract.title" = "Tạo Hợp đồng";
+"bifrost.create.contract.title.contract.address" = "Địa chỉ Hợp đồng";
+"bifrost.create.contract.title.amount" = "Số lượng";
+"bifrost.create.contract.title.fee" = "Phí";
+"bifrost.create.contract.title.data" = "Dữ liệu";
+
+//bnb
+"token.list.page.section.bnb.header" = "Mạng Binance";
+"bnb.send.page.feeView.titleLabel.title" = "Phí";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "Địa chỉ BNB";
+"bnb.send.page.eth.contacts.button.title" = "Danh bạ BNB";
+"bnb.txType.newOrder.title" = "Đặt lệnh";
+"bnb.txType.issueToken.title" = "Tài sản Phát hành";
+"bnb.txType.burnToken.title" = "Đốt";
+"bnb.txType.listToken.title" = "Niêm yết";
+"bnb.txType.cancelOrder.title" = "Huỷ lệnh";
+"bnb.txType.freezeToken.title" = "Đóng băng Token";
+"bnb.txType.unfreezeToken.title" = "Giải phóng Token";
+"bnb.txType.transfer.title" = "Chuyển";
+"bnb.txType.proposal.title" = "Yêu cầu Đề xuất";
+"bnb.txType.vote.title" = "Bỏ phiếu";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Nạp";
+
+// Buildin
+
+"buildin.transfer.utf8string.function.title" = "Chuyển";
+"buildin.transfer.utf8string.item0.title" = "Địa chỉ Giao dịch";
+"buildin.transfer.utf8string.item1.title" = "Số lượng";
+"buildin.transfer.utf8string.item2.title" = "Memo";
+
+"buildin.transfer.cross.chain.function.title" = "Gửi cross-chain";
+"buildin.transfer.cross.chain.item0.title" = "Số lượng";
+"buildin.transfer.cross.chain.item1.title" = "Phí";
+"buildin.transfer.cross.chain.item2.title" = "Địa chỉ nhận";
+
+"buildin.vote.function.title" = "Bỏ phiếu";
+"buildin.vote.item0.title" = "Ứng cử viên SBP";
+"buildin.vote.item1.title" = "Số phiếu";
+
+"buildin.coin.issuance.function.title" = "Phát hành Token";
+"buildin.coin.issuance.item0.title" = "Địa chỉ Phát hành";
+"buildin.coin.issuance.item1.title" = "Tên Token";
+"buildin.coin.issuance.item2.title" = "Kí hiệu Token";
+"buildin.coin.issuance.item3.title" = "Tổng cung";
+"buildin.coin.issuance.item4.title" = "Số thập phân";
+"buildin.coin.issuance.item5.title" = "Tái phát hành";
+"buildin.coin.issuance.item5.yes.value" = "CÓ";
+"buildin.coin.issuance.item5.no.value" = "KHÔNG";
+"buildin.coin.issuance.item6.title" = "Số cung tối đa";
+"buildin.coin.issuance.item7.title" = "Phí phát hành";
+
+"buildin.coin.transfer.ownership.function.title" = "Chuyển Quyền sở hữu";
+"buildin.coin.transfer.ownership.item0.title" = "Tên Token";
+"buildin.coin.transfer.ownership.item1.title" = "Kí hiệu Token";
+"buildin.coin.transfer.ownership.item2.title" = "Địa chỉ nhận";
+
+"buildin.coin.reissue.token.function.title" = "Tái phát hành Token";
+"buildin.coin.reissue.token.item0.title" = "Tên Token";
+"buildin.coin.reissue.token.item1.title" = "Kí hiệu Token";
+"buildin.coin.reissue.token.item2.title" = "Địa chỉ thụ hưởng";
+"buildin.coin.reissue.token.item3.title" = "Số lượng";
+
+"buildin.coin.change.to.nonissuable.function.title" = "Thay đổi thành Không thể phát hành";
+"buildin.coin.change.to.nonissuable.item0.title" = "Tên Token";
+"buildin.coin.change.to.nonissuable.item1.title" = "Kí hiệu Token";
+
+"buildin.dex.transfer.token.owner.function.title" = "Chuyển quyền sở hữu Token";
+"buildin.dex.transfer.token.owner.item0.title" = "Tên Token";
+"buildin.dex.transfer.token.owner.item1.title" = "Kí hiệu Token";
+"buildin.dex.transfer.token.owner.item2.title" = "Địa chỉ nhận";
+
+"buildin.dex.transfer.pair.function.title" = "Chuyển Quyền sở hữu cặp giao dịch";
+"buildin.dex.transfer.pair.item0.title" = "Tên";
+"buildin.dex.transfer.pair.item1.title" = "Địa chỉ nhận";
+
+"buildin.dex.adjust.fees.function.title" = "Điều chỉnh Phí";
+"buildin.dex.adjust.fees.item0.title" = "Tên";
+"buildin.dex.adjust.fees.item1.title" = "Địa chỉ Hiện tại";
+"buildin.dex.adjust.fees.item.maker.title" = "Phí maker đã được điều chỉnh";
+"buildin.dex.adjust.fees.item.taker.title" = "Phí taker đã được điều chỉnh";
+
+"buildin.dex.open.trading.pair.function.title" = "Mở Cặp Giao dịch";
+"buildin.dex.open.trading.pair.item0.title" = "Tên";
+"buildin.dex.open.trading.pair.item1.title" = "Địa chỉ Hiện tại";
+"buildin.dex.open.trading.pair.item2.title" = "Phí Niêm yết";
+
+"buildin.dex.suspend.trading.pair.function.title" = "Đóng Cặp giao dịch";
+"buildin.dex.suspend.trading.pair.item0.title" = "Tên";
+"buildin.dex.suspend.trading.pair.item1.title" = "Địa chỉ Hiện tại";
+
+"buildin.dex.recover.trading.pair.function.title" = "Khôi phục Cặp giao dịch";
+"buildin.dex.recover.trading.pair.item0.title" = "Tên";
+"buildin.dex.recover.trading.pair.item1.title" = "Địa chỉ Hiện tại";
+
+"buildin.dex.staking.as.mining.function.title" = "Khai thác bằng Stake";
+"buildin.dex.staking.as.mining.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.staking.as.mining.item1.title" = "Số lượng";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "Huỷ Khai thác bằng Stake";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Số lượng";
+
+"buildin.dex.become.vip.function.title" = "Trở thành VIP";
+"buildin.dex.become.vip.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.become.vip.item1.title" = "Số lượng";
+
+"buildin.dex.cancel.vip.function.title" = "Hủy VIP";
+"buildin.dex.cancel.vip.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.cancel.vip.item1.title" = "Số lượng";
+
+"buildin.dex.lock.vx.function.title" = "Stake";
+"buildin.dex.lock.vx.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.lock.vx.item1.title" = "Số lượng";
+
+"buildin.dex.un.lock.vx.function.title" = "Thu hồi";
+"buildin.dex.un.lock.vx.item0.title" = "Địa chỉ Hiện tại";
+"buildin.dex.un.lock.vx.item1.title" = "Số lượng";
+
+"buildin.dex.cancel.stake.function.title" = "Thu thồi stake";
+"buildin.dex.cancel.stake.item0.title" = "Địa chỉ Hiện tại";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "Xác nhận Giao dịch";
+"app.scheme.home.page.busy.content" = "Vui lòng xác nhận thông tin giao dịch như sau";
+"app.scheme.network.error" = "Lỗi Mạng";
+
+
+"copyed" = "Sao chép thành công";
+
+"fund.title.wallet" = "Tài sản Ví";
+"fund.title.vitex" = "Tài sản Sàn";
+"fund.title.toWallet" = "Rút về Ví";
+"fund.title.toVitex" = "Nạp và Sàn";
+"fund.walletAddress" = "Địa chỉ của tôi";
+"fund.walletFound" = "Số dư Ví";
+"fund.quotaInfo" = "Quota có thể dùng/Hạn mức Quota";
+"fund.deposit.amount" = "Số lượng chuyển";
+"fund.deposit.all" = "Tất cả";
+"fund.quotaSpend" = "Quota";
+"fund.deposit" = "Chuyển";
+"fund.vitexFound" = "Số dư khả dụng";
+"fund.withdraw.amount" = "Số lượng chuyển";
+"fund.withdraw" = "Chuyển";
+"fund.vitex.all" = "Tổng số dư Sàn";
+"fund.vitex.available" = "Số dư Sàn Khả dụng";
+"fund.tooBig" = "Số lượng bạn đã nhập vượt quá số dư khả dụng, vui lòng nhập lại";
+"fund.withdraw.placeholder" = "Vui lòng nhập số lượng chuyển";
+"fund.deposit.placeholder" = "Vui lòng nhập số lượng chuyển";
+"fund.cannotDeposit" = "Không thể chuyển do không đủ số dư trong ví";
+"fund.cannotWithDraw" = "Không thể chuyển do không đủ số dư trong sàn";
+"fund.DepositSuccess" = "Chuyển thành công. Kiểm tra số dư sàn?";
+
+"transfer.from" = "Từ";
+"transfer.wallet.account" = "Tài khoản Ví";
+"transfer.to" = "Đến";
+"transfer.dex.account" = "Tài khoản Sàn";
+"transfer.token" = "Token";
+"transfer.amount" = "Số lượng";
+"transfer.available" = "Số dư: ";
+"transfer.title" = "Chuyển";
+"transfer.search.placeholder" = "Vui lòng điền tên token";
+
+"market.favourite" = "Yêu thích";
+"market.searchhistory" = "Tìm kiếm Lịch sử";
+"market.title" = "Thị trường";
+"market.about" = "Bắt đầu cùng ViteX";
+"market.name" = "Tên";
+"market.price" = "Giá gần nhất";
+"market.percent" = "Thay đổi";
+"market.operator" = "Nhà vận hành";
+"market.switch" = "Sàn giao dịch";
+
+// market detail
+"market.detail.page.segment.order.book.title" = "Sổ lệnh";
+"market.detail.page.segment.last.trades.title" = "Giao dịch mới nhất";
+"market.detail.page.segment.token.info.title" = "Token";
+"market.detail.page.segment.operator.into.title" = "Nhà vận hành";
+
+"market.detail.page.info.high.title" = "Cao";
+"market.detail.page.info.low.title" = "Thấp";
+"market.detail.page.info.vol.title" = "24H";
+
+"market.detail.page.kline.type.min1.title" = "1m";
+"market.detail.page.kline.type.min30.title" = "30m";
+"market.detail.page.kline.type.hour1.title" = "1H";
+"market.detail.page.kline.type.hour2.title" = "2H";
+"market.detail.page.kline.type.hour4.title" = "4H";
+"market.detail.page.kline.type.hour6.title" = "6H";
+"market.detail.page.kline.type.hour12.title" = "12H";
+"market.detail.page.kline.type.day1.title" = "1D";
+"market.detail.page.kline.type.week1.title" = "1W";
+
+"market.detail.page.value.time.title" = "Thời gian";
+"market.detail.page.value.open.title" = "Mở";
+"market.detail.page.value.high.title" = "Cao";
+"market.detail.page.value.low.title" = "Thấp";
+"market.detail.page.value.close.title" = "Đóng";
+"market.detail.page.value.diff.title" = "chg";
+"market.detail.page.value.extent.title" = "chg%";
+"market.detail.page.value.vol.title" = "Khối lượng";
+
+"market.detail.page.depth.vol.title" = "Số lượng(%@)";
+"market.detail.page.depth.price.title" = "Giá(%@)";
+
+"market.detail.page.trade.time.title" = "Thời gian";
+"market.detail.page.trade.price.title" = "Giá";
+"market.detail.page.trade.vol.title" = "Số lượng";
+"market.detail.page.buy.button.title" = "Mua";
+"market.detail.page.sell.button.title" = "Bán";
+
+
+"market.detail.page.token.info.token.id" = "TokenID";
+"market.detail.page.token.info.total" = "Token trong Lưu thông";
+"market.detail.page.token.info.type" = "Loại";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"market.detail.page.token.info.gateway" = "Cổng Cross-chain";
+"market.detail.page.token.info.official" = "Website chính thức";
+"market.detail.page.token.info.paper" = "WhitePaper";
+"market.detail.page.token.info.browser" = "Trình duyệt";
+"market.detail.page.token.info.github" = "Github";
+
+"market.detail.page.token.info.social" = "Mạng Xã hội";
+"market.detail.page.token.info.brief" = "Giới thiệu";
+
+"market.detail.page.token.info.anonymous" = "Ẩn danh";
+"market.detail.page.token.info.address" = "Địa chỉ Nhà vận hành";
+"market.detail.page.token.info.pair" = "Cặp Giao dịch";
+
+// Trading Home
+"trading.home.page.segment.spot" = "Giao ngay";
+"trading.home.page.segment.mining" = "Khai thác";
+"trading.home.page.segment.bonus" = "Dividend";
+
+// Mining Home
+"mining.page.segment.trading" = "xxxxx";
+"mining.page.segment.staking" = "xxxxx";
+"mining.page.segment.invite" = "xxxxx";
+"mining.page.segment.making" = "xxxxx";
+
+"mining.page.header.total.real.time" = "xxxxx";
+"mining.page.list.title" = "xxxxx";
+
+"mining.trading.page.header.total.earnings" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+
+
+"mining.trading.page.header.fee" = "xxxxx";
+"mining.trading.page.header.title" = "xxxxx";
+"mining.trading.page.header.expect" = "xxxxx";
+
+"mining.trading.page.cell.fee" = "xxxxx";
+
+"mining.staking.page.header.total.earnings" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxxx";
+"mining.staking.page.detail.amount.title" = "xxxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.add.button.title" = "xxxxx";
+"mining.staking.page.detail.list.button.title" = "xxxxx";
+"mining.staking.page.cell.amount" = "xxxxx";
+
+"mining.staking.page.confirm.title" = "xxxxx";
+"mining.staking.page.confirm.available.title" = "xxxxx";
+"mining.staking.page.confirm.amount.title" = "xxxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
+"mining.staking.page.confirm.tip" = "xxxxx";
+"mining.staking.page.confirm.button.title" = "xxxxx";
+
+// Spot
+"spot.page.buy.mining.tip" = "Hợp lệ khai thác khi giá lớn hơn %@";
+"spot.page.sell.mining.tip" = "Hợp lệ khai thác khi giá nhỏ hơn %@";
+"spot.page.button.closed.title" = "Giao dịch tạm dừng";
+"spot.page.button.buy.title" = "Mua";
+"spot.page.button.sell.title" = "Bán";
+"spot.page.button.limit.buy.title" = "Lệnh giới hạn";
+"spot.page.price.buy.placeholder" = "Giá";
+"spot.page.vol.buy.placeholder" = "Số lượng";
+"spot.page.price.sell.placeholder" = "Giá";
+"spot.page.vol.sell.placeholder" = "Số lượng";
+"spot.page.available" = "Hiện có: %@";
+"spot.page.buyable" = "Mua tối đa: %@";
+"spot.page.sellable" = "Bán tối đa: %@";
+"spot.page.total" = "Tổng: %@";
+"spot.page.open.vip" = "Trở thành VIP";
+"spot.page.close.vip" = "Hủy VIP";
+"spot.page.open.vip.error.toast" = "Không đủ số dư sàn, stake 10.000 VITE để trở thành VIP";
+"spot.page.close.vip.error.toast" = "Không có stake VIP";
+"spot.page.close.vip.un.expire.error.toast" = "Thời gian stake dưới 30 ngày và không thể truy hồi trong thời gian stake";
+"spot.page.depth.price" = "Giá";
+"spot.page.depth.vol" = "Số lượng";
+"spot.page.current.order.title" = "Lệnh đang mở";
+"spot.page.orders.button.title" = "Lịch sử";
+
+"spot.page.post.toast.price.empty" = "Vui lòng nhập giá";
+"spot.page.post.toast.price.zero" = "Giá trị phải lớn hơn 0";
+"spot.page.post.toast.vol.empty" = "Vui lòng điền số lượng";
+"spot.page.post.toast.vol.zero" = "Giá trị phải lớn hơn 0";
+"spot.page.post.toast.amount.min" = "Tổng giá trị tối thiếu phải là %@";
+
+"spot.page.confirm.tip" = "Không hỏi lại sau 24 giờ";
+
+"spot.page.alert.title" = "Nhắc nhở quan trọng";
+"spot.page.alert.message" = "Cặp giao dịch hiện tại là %@, đầu tư tiền mã hoá có rủi ro thị trường và biến động giá cao. Vui lòng đánh giá cẩn thận khả năng xử lý rủi ro tiềm ẩn của bạn và đưa ra quyết định giao dịch thận trọng.";
+"spot.page.alert.ok" = "Xác nhận";
+
+"spot.page.order.empty" = "Không lệnh";
+"spot.page.cell.type.buy" = "Mua";
+"spot.page.cell.type.sell" = "Bán";
+"spot.page.cell.button.cancel.title" = "Hủy";
+"spot.page.cell.vol" = "Số lượng: %@";
+"spot.page.cell.price" = "Giá: %@";
+"spot.page.cell.deal" = "Đã khớp: %@";
+"spot.page.cell.average" = "Trung bình: %@";
+
+"grin.initing.desc" = "Đang khởi tạo, nhấp để xem chi tiết";
+"grin.initing.detail" = "1 Khởi tạo là bắt buộc khi thêm ví GRIN \n2. Quá trình này dự kiến sẽ kéo dài 15 phút \n3. Không làm gián đoạn hoặc tắt APP trong quá trình khởi tạo \n4. Khởi tạo sẽ tiêu tốn một lượng lớn dữ liệu di động, bạn nên sử dụng Wi-Fi.";
+
+// DexHome
+"dex.home.page.nav.title" = "Tài sản DEX";
+"dex.home.page.nav.btc.valuation.title" = "Tổng giá trị (BTC)";
+"dex.home.page.segment.wallet" = "Ví";
+"dex.home.page.segment.dex" = "Giao dịch";
+
+"dex.home.page.header.btc.valuation.title" = "Giá trị (BTC)";
+"dex.home.page.header.button.transfer.title" = "Chuyển";
+"dex.home.page.header.button.deposit.title" = "Nạp";
+"dex.home.page.header.button.withdraw.title" = "Rút";
+"dex.home.page.header.button.hide.small.title" = "Ẩn số dư nhỏ";
+
+"dex.token.detail.page.title" = "Số dư";
+"dex.token.detail.page.header.total" = "Tổng";
+"dex.token.detail.page.header.available" = "Khả dụng";
+"dex.token.detail.page.header.lock.place.order" = "Đang đặt hàng";
+
+"dex.token.detail.page.header.lock.vite.pledge" = "Stake cho Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Stake cho SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Stake cho Full Node";
+"dex.token.detail.page.header.lock.vite.mining" = "Đã stake";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Đang thu hồi";
+"dex.token.detail.page.header.lock.vite.vip" = "Đã khoá VIP";
+"dex.token.detail.page.header.lock.vx" = "Đã stake";
+"dex.token.detail.page.header.lock.vx.cancel" = "Đang thu hồi";
+
+"dex.token.detail.page.list.wallet.heater.title" = "Lịch sử";
+"dex.token.detail.page.list.dex.heater.title" = "Lịch sử chuyển";
+"dex.token.detail.page.cell.in" = "Chuyển vào";
+"dex.token.detail.page.cell.out" = "Chuyển ra";
+
+"dex.token.detail.page.button.deposit" = "Nạp";
+"dex.token.detail.page.button.withdraw" = "Rút";
+"dex.token.detail.page.button.transfer" = "Chuyển";
+"dex.token.detail.page.button.send" = "Gửi";
+"dex.token.detail.page.button.trading" = "Giao dịch";
+
+"dex.token.market.selector.title" = "Chọn Cặp Giao dịch";

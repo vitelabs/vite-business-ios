@@ -1,0 +1,1259 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Stone on 2018/12/5.
+  
+*/
+/* ViteCommunity */
+
+
+"confirm.button.title" = "확인하기";
+"cancel.button.title" = "취소하기";
+"alter.title" = "공지";
+
+"discover.page.title" = "탐색하기";
+"discover.page.game.cell.palyNum" = "%@명이 참여중입니다.";
+"discover.page.activity.page.title1" = "최신 이벤트";
+"discover.page.activity.page.title2" = "기록";
+"discover.page.news.cell.official" = "Vite";
+"discover.page.news.cell.time.minute" = "현재";
+"discover.page.news.cell.time.hour" = "%@시간 전";
+"discover.page.news.cell.time.day" = "%@일 전";
+"discover.page.headerTitle.activity" = "캠페인 센터";
+"discover.page.headerTitle.game" = "Vite 게임";
+"discover.page.headerTitle.news" = "Vite 뉴스";
+"discover.page.VCWebTitle.activity" = "Vite 이벤트";
+"discover.page.VCWebTitle.game" = "Vite 게임";
+"discover.page.VCWebTitle.news" = "Vite 뉴스";
+"discover.page.game.alter.title" = "Vite 어플이 아닌 다른 페이지를 방문했으며 dApp으로 리디렉션됩니다. 이 dApp에 대한 귀하의 사용은 dApp의 사용자 계약 기간 및 개인 정보 보호 정책을 준수합니다. Vite Labs는 제 3자 dApp의 품질, 콘텐츠, 신뢰성을 보안 또는 감독하거나 통제하지 않으며 Vite Labs는 그 사용에 대해 책임을지지 않습니다.";
+
+//AirDrop
+"airdrop.help" = "도움말";
+"airdrop.vpower" = "승자";
+"airdrop.profit" = "이윤";
+"airdrop.validationFailed" = "인증에 실패했습니다";
+"airdrop.enabled" = "10~1000사이의 숫자를 고르세요";
+"airdrop.leftTime" = "카운트다운";
+
+"airdrop.error.tip.need.update" = "에어드롭은 iOS 11 이상에서만 지원됩니다.";
+"airdrop.error.tip.not.support" = "본 기기 장치는 에어드롭이 지원되지 않습니다.";
+"airdrop.error.tip.unknown.error" = "알 수 없는 오류";
+
+
+"tab.title.wallet" = "지갑";
+"tab.title.market" = "마켓";
+"tab.title.trading" = "거래하기";
+"tab.title.discover" = "찾기";
+"tab.title.dex" = "자산";
+
+/* App */
+"Cancel" = "취소하기";
+"Finish" = "완료";
+"Delete" = "삭제하기";
+"Hint" = "알림";
+"Yes" = "네";
+"No" = "아니오";
+"Loading" = "로딩 중";
+"Retry" = "재시도";
+"Confirm" = "확인하기";
+"Submit" = "제출하기";
+"Close" = "이해했습니다";
+"Update.app" = "어플 업데이트";
+"Submit.cancel" = "취소하기";
+"Close" = "닫기";
+"Quit" = "나가기";
+"web.page.host.tip" = "해당 페이지는 %@에서 제공됩니다.";
+
+/* Login */
+"create.account" = "계정 만들기";
+"import.account" = "계정 가져오기";
+"select.wallet.account" = "계정을 선택해주세요.";
+
+/* Lock */
+"lock.page.pwd.btn.title" = "비밀번호로 로그인하기";
+"lock.page.fingerprint.btn.title" = "생체정보 인증";
+"lock.page.fingerprint.alter.title" = "지문 확인하여 터치 ID 활성화하기";
+"lock.page.changeUser.btn.title" = "계정 전환하기";
+
+/* create */
+"create.page.title" = "계정 만들기";
+"create.page.tf.title" = "계정 이름";
+"create.page.pw.title" = "비밀번호를 입력하세요.";
+"create.page.pw.repeate.title" = "비밀번호를 다시 입력해주세요.";
+"create.page.invite.code.title" = "초대코드를 입력하거나 초대 QR코드를 스캔하고 거래수수료 10%할인받고 프리미어 채굴을 즐겨보세요.";
+"create.page.invite.code.placeholder" = "초대 코드 (선택 사항)";
+"create.page.submit.btn.title" = "만들기";
+"create.page.toast.error.invite.code" = "잘못된 초대코드";
+
+"create.page.tip.title" = "백업 지침";
+"create.page.tip.content1" = "주의! 니모닉 단어를 잃어버리면 지갑 내 모든 디지털 자산을 잃어버릴 수 있습니다.";
+"create.page.tip.content2" = "니모닉 단어 불러오기는 어플을 삭제하거나 다시 설치하신 후에 계정을 복구하기 위해 사용됩니다.";
+"create.page.tip.content3" = "니모닉 단어를 안전한 곳에 보관해주세요.";
+"create.page.tip.button.skip.title" = "나중에 백업하기";
+"create.page.tip.button.next.title" = "백업 완료";
+
+/* mnemonic */
+"mnemonic.backup.page.title" = "니모닉 단어가 백업되지 않았습니다.";
+"mnemonic.backup.page.tip1" = "다음 두 가지 방법의 백업 방식을 추천합니다:";
+"mnemonic.backup.page.tip2" = "종이에 니모닉 단어를 적어서 안전한 곳에 보관해주세요.";
+"mnemonic.backup.page.tip3" = "다른 기기 장치에 Vite 지갑을 다운 받으신 후, 아래 QR 코드를 스캔해주세요.";
+"mnemonic.backup.language.zh" = "中";
+"mnemonic.backup.language.en" = "EN";
+
+"mnemonic.backup.scan.alert.title" = "공지";
+"mnemonic.backup.scan.alert.message" = "다음의 니모닉 단어들로 계정 생성을 확인하시겠습니까?";
+"mnemonic.backup.scan.alert.ok.title" = "확인하기";
+"mnemonic.backup.scan.alert.cancel.title" = "취소하기";
+
+"mnemonic.backup.page.check.button1.title" = "니모닉 단어를 잃어 버리면 내 자산을 찾을 수 없다는 것을 이해했습니다";
+"mnemonic.backup.page.check.button2.title" = "니모닉 단어를 잃어 버리면 아무도 복구를 도와줄 수 없다는 것을 이해했습니다";
+"mnemonic.backup.page.check.button3.title" = " 다음을 읽고 이해했으며 이에 동의합니다.";
+"mnemonic.backup.page.clause.button.title" = "이용 약관";
+"mnemonic.backup.page.tip.lab.title" = "시드 문구";
+"mnemonic.backup.page.tip.anewBtn.title" = "다시 생성하기";
+"mnemonic.backup.page.tip.nextBtn.title" = "백업 완료";
+"mnemonic.backup.page.tip.skip.title" = "나중에 백업하기";
+"mnemonic.backup.page.alter.title" = "시드 문구 캡쳐하는 것을 추천드리지 않으며, 종이에 시드 문구를 적어 안전한 곳에 보관하는 것을 추천드립니다.";
+"mnemonic.backup.page.alter.message" = "새로운 시드 문구를 지금 생성 하시겠습니까?";
+"mnemonic.backup.page.alter.cancel" = "아니오";
+"mnemonic.backup.page.alter.confirm" = "네";
+"mnemonic.backup.page.error.type.name" = "새로운 계정 혹은 비밀번호를 입력해주세요";
+"mnemonic.backup.page.error.type.nameValid" = "계정 이름은 중국어, 영어, _(밑줄)만 지원합니다.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "사용자 이름은 32글자를 넘을 수 없습니다.";
+"mnemonic.backup.page.error.type.difference" = "동일한 비밀번호를 입력해주세요!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "비밀번호는 최소 8글자 이상을이어야 합니다.";
+"mnemonic.backup.page.switch.mode.title" = "%@ 니모닉 단어로 전환하기";
+
+"mnemonic.backup.tip.alert.title" = "니모닉 단어가 백업되지 않았습니다.";
+"mnemonic.backup.tip.alert.message" = "니모닉 단어 백업을 위해 비밀번호를 입력해주세요.";
+"mnemonic.backup.tip.alert.ok.title" = "지금 백업하기";
+"mnemonic.backup.tip.alert.cancel.title" = "나중에 백업하기";
+
+"mnemonic.affirm.page.title" = "확인하기";
+"mnemonic.affirm.page.tip.title" = "순서대로 시드문구를 선택해주세요.";
+"mnemonic.affirm.alter.title" = "\"네\"를 누르시면 새로운 시드 문구를 생성합니다. 뒤로 돌아가시겠습니까?";
+"mnemonic.affirm.alter.check.title" = "잘못된 시드 문구입니다.";
+"mnemonic.affirm.page.add.loading" = "추가 중...";
+
+/* import mnemonic*/
+"import.page.title" = "시드 문구를 입력해주세요.";
+"import.page.submit.btn" = "계정 복구하기";
+"import.page.submit.invalid.mnemonic" = "시드 문구가 잘 못 되었습니다. 다시 시도해주세요!";
+"import.page.submit.loading" = "가져오는 중...";
+"import.page.submit.success" = "가져오기 성공";
+"import.page.alert.exist.title" = "입력하신 시드 문구는 현재 기기장치에  '%@'이름의 계정이 존재합니다. 본 계정에 중복으로 입력하는게 맞습니까?";
+"import.page.alert.exist.ok" = "확인하기";
+"import.page.alert.exist.cancel" = "취소하기";
+
+
+/* export mnemonic */
+"export.page.title" = "시드 문구 내보내기";
+"export.page.alter.title" = "비밀번호를 입력하세요.";
+"export.page.alter.tf.placeholder" = "비밀번호를 입력하세요.";
+"export.page.alter.password.error" = "잘못된 비밀번호입니다.";
+
+/* login */
+"login.page.btn.chooseName" = "계정을 선택하세요";
+"login.page.btn.login" = "로그인";
+"login.page.loading.title" = "처리중";
+"login.page.error.toast.title" = "잘못된 비밀번호입니다! 시드 문구 가져오기를 시도해주세요.";
+
+/* Home */
+"tabbar.item.title.wallet" = "지갑";
+"tabbar.item.title.my" = "Me";
+
+/* Wallet Home */
+"wallet.home.btc.title" = "전체 금액(BTC)";
+"wallet.home.balance.title" = "잔액";
+"wallet.home.unconfirmed.title" = "%@ 미수신";
+"wallet.home.toast.copy.address" = "성공적으로 복사되었습니다.";
+"wallet.home.scan.url.alert.title" = "공지";
+"wallet.home.scan.url.alert.message" = "Vite 어플이 아닌 다른 페이지를 방문했으며 dApp으로 리디렉션됩니다. 이 dApp에 대한 귀하의 사용은 dApp의 사용자 계약 기간 및 개인 정보 보호 정책을 준수합니다. Vite Labs는 제 3자 dApp의 품질, 콘텐츠, 신뢰성을 보안 또는 감독하거나 통제하지 않으며 Vite Labs는 그 사용에 대해 책임을지지 않습니다.";
+"wallet.home.header.title" = "자산";
+
+/* Manage Wallet */
+"manage.wallet.page.title" = "지갑 관리";
+"manage.wallet.page.name.cell.title" = "계정 이름";
+"manage.wallet.page.addressManage.cell.title" = "주소 관리";
+"manage.wallet.page.importMnemonic.cell.title" = "시드 문구 내보내기";
+"manage.wallet.page.alter.changeName" = "지갑 이름 수정하기";
+"manage.wallet.page.changeName.loading" = "수정";
+"manage.wallet.page.error.type.name" = "지갑 이름을 입력해주세요";
+
+"my.page.contacts.cell.title" = "연락처 주소";
+"my.page.mnemonic.cell.title" = "니모닉 단어";
+"my.page.system.cell.title" = "설정";
+"my.page.invite.cell.title" = "채굴 추천인";
+"my.page.reward.cell.title" = "보상 문의";
+"my.page.forum.cell.title" = "공식 포럼";
+"my.page.aboutUs.cell.title" = "회사 소개";
+"my.page.change.wallet.name.alter.title" = "계정 이름 수정하기";
+"my.page.aboutUs.wechat.alert.title" = "QR코드를 스캔하고 Vite WeChat 공식 계정을 팔로우하세요";
+
+/* Transaction List */
+"transaction.list.page.title" = "거래 내역";
+"transaction.list.page.empty" = "비어있음";
+"transaction.list.page.network.error" = "새로고침";
+"transaction.list.page.genesis.cell.name" = "제네시스 블록 기록을 확인해주세요";
+"transaction.list.page.header.refresh.idle" = "아래로 당겨 새로고침";
+"transaction.list.page.header.refresh.pulling" = "손을 놓아서 새로고침";
+"transaction.list.page.header.refresh.refreshing" = "로딩 중...";
+"transaction.list.transaction.type.name.contract" = "콜";
+"transaction.list.transaction.type.name.register" = "등록";
+"transaction.list.transaction.type.name.registerUpdate" = "업데이트 등록";
+"transaction.list.transaction.type.name.cancelRegister" = "등록 철회";
+"transaction.list.transaction.type.name.extractReward" = "보상 찾기";
+"transaction.list.transaction.type.name.vote" = "투표";
+"transaction.list.transaction.type.name.cancelVote" = "투표 철회";
+"transaction.list.transaction.type.name.pledge" = "TPS quota 얻기";
+"transaction.list.transaction.type.name.cancelPledge" = "스테이킹 쿼타 출금";
+"transaction.list.transaction.type.name.coin" = "토큰 발행";
+"transaction.list.transaction.type.name.cancelCoin" = "스테이킹 토큰 출금";
+"transaction.list.transaction.type.name.transfer" = "전송하기";
+"transaction.list.transaction.netErrorAndShowAccount" = "네트워크에 문제가 생겼습니다. 계정 상세정보를 확인하기 위해 여기를 클릭해주세요.";
+"transaction.list.transaction.confirmations" = "%@ 확인";
+"transaction.list.transaction.confirmations.finished" = "확인됨";
+"eth.transaction.detail.page.state.call.wait" = "대기중";
+
+/* Transaction Detail */
+"vite.transaction.detail.page.state.success" = "거래 완료";
+"vite.transaction.detail.page.state.call.success" = "콜 컨트렉트 성공";
+"vite.transaction.detail.page.state.call.failed" = "콜 컨트렉트 실패";
+"vite.transaction.detail.page.state.call.wait" = "스마트 계약 응답 대기중";
+"vite.transaction.detail.page.type.title" = "거래 유형";
+"vite.transaction.detail.page.type.send" = "요청";
+"vite.transaction.detail.page.type.receive" = "응답";
+"vite.transaction.detail.page.hash.title" = "거래 해시";
+"vite.transaction.detail.page.height.title" = "블록 높이";
+"vite.transaction.detail.page.note.title" = "메모";
+"vite.transaction.detail.page.link.button.title" = "Vite 둘러보기에서 더 자세한 정보 보기";
+
+/* BalanceInfo */
+"balance.info.detail.balance.title" = "잔액";
+"balance.info.detail.unconfirmed.title" = "미수신";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.available.amount.title" = "이용 가능";
+"balance.info.detail.pledge.amount.title" = "스테이킹됨";
+"balance.info.detail.show.transactions.button.title" = "Ethereum Explorer에서 거래 내역을 확인하세요.";
+"balance.info.detail.reveice.button.title" = "수신하기";
+"balance.info.detail.send.button.title" = "보내기";
+"balance.info.detail.vote" = "투표";
+"balance.info.detail.pledge" = "Quota 얻기";
+"balance.info.detail.exchange.vite" = "VITE 전환";
+"balance.info.detail.pledge.count.content" = "사용 가능한 쿼타/쿼타 한도";
+"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+
+"gateway.info.detail.page.title" = "게이트웨이 세부사항";
+"gateway.info.detail.page.name" = "게이트웨이 이름";
+"gateway.info.detail.page.webside" = "게이트에이 공식 사이트";
+"gateway.info.detail.page.brief" = "게이트웨이 소개";
+"gateway.info.detail.page.email" = "고객지원";
+"gateway.info.detail.page.agreement" = "서비스 약관";
+"gateway.info.detail.page.link" = "게이트웨이 링크";
+
+"token.info.detail.page.title" = "토큰 상세정보";
+"token.info.detail.page.name" = "토큰 이름";
+"token.info.detail.page.id" = "토큰 ID";
+"token.info.detail.page.brief" = "소개";
+"token.info.detail.page.total" = "전체 발행";
+"token.info.detail.page.type" = "토큰 유형";
+"market.detail.page.token.info.type.value.native" = "네이티브";
+"market.detail.page.token.info.type.value.other" = "크로스체인";
+"token.info.detail.page.gateway" = "크로스체인 게이트웨이";
+"token.info.detail.page.webside" = "웹사이트";
+"token.info.detail.page.paper" = "백서";
+"token.info.detail.page.browser" = "둘러보기";
+"token.info.detail.page.github" = "Github";
+"token.info.detail.page.social" = "SNS";
+
+/* Address Manage Page */
+"address.manage.page.title" = "나의 %@주소";
+"address.manage.default.address.cell.title" = "기본 주소";
+"address.manage.address.header.title" = "주소";
+"address.manage.address.generate.button.title" = "주소 추가하기";
+"address.manage.address.generate.button.toast" = "최대 100개의 주소를 추가하세요!";
+"address.manage.address.generate.button.already.toast" = "이미 동일 주소가 존재합니다.";
+"address.manage.address.generate.button.error.toast" = "숫자를 입력하세요.";
+"address.manage.tip.alert.message" = "최대 생성 : 100개 주소; 목록에서 # 1 주소를 제외한 다른 모든 주소는 수동으로 주소 검색이 필요합니다. ";
+"address.manage.alert.title" = "새 주소 생성하기";
+"address.manage.alert.placeholder" = "1에서 100 사이의 숫자를 넣어주세요.";
+"address.manage.alert.tip" = "지정된 숫자만큼의 주소 대량생성";
+"address.manage.tip.alert.ok" = "알고 있습니다.";
+"address.manage.default.address.name" = "제목없음";
+"address.manage.change.name.alert.title" = "주소 명칭 수정";
+"address.manage.change.name.alert.placeholder" = "새로운 명칭을 입력하세요.";
+
+/* Send Page */
+"send.page.title" = "보내기";
+"send.page.my.address.title" = "나의 %@ 주소";
+"send.page.my.balance.title" = "잔액";
+"send.page.my.pledge.title" = "스테이킹 혜택";
+"send.page.my.quota.title" = "사용 가능한 쿼타/쿼타 한도";
+"send.page.my.max.tx.count.title" = "최대 Tx 수량";
+"send.page.add.my.address.button.title" = "채굴하기";
+"send.page.vite.contacts.button.title" = "VITE 연락처 주소";
+"send.page.scan.address.button.title" = "스캔하기";
+"send.page.to.address.title" = "수신자 주소";
+"send.page.amount.title" = "수량";
+"send.page.all.button.title" = "전체";
+"send.page.remark.title" = "메모";
+"send.page.send.button.title" = "보내기";
+"send.page.amount.toolbar.button.title" = "다음";
+"send.page.toast.address.error" = "잘못된 주소입니다, 다시 확인해주세요.";
+"send.page.toast.amount.error" = "잔액 부족";
+"send.page.toast.amount.empty" = "잔액을 입력해주세요.";
+"send.page.toast.amount.zero" = "수량은 음수가 될 수 없습니다.";
+"send.page.toast.note.too.long" = "노트 길이의 최대치입니다.";
+"send.page.toast.contract.address.support.hex" = "전송이 될 주소는 컨트렉트입니다. 메모는 유효한 16 진수 문자로 작성되어야합니다.";
+"send.page.not.enough.balance.alert.title" = "잔액 부족";
+"send.page.not.enough.balance.alert.button" = "취소하기";
+"send.page.token.info.error" = "토큰 정보 에러";
+"send.page.quota.content" = "%@ UTPS";
+"send.page.eth.failed" = "(%@). 다시 시도하기 전에 거래 내역을 확인해주세요";
+
+/* eth vite exchange */
+"eth.vite.exchange.page.title" = "VITE 전환";
+"eth.vite.exchange.page.my.address.title" = "ETH 주소";
+"eth.vite.exchange.page.my.balance.title" = "잔액";
+"eth.vite.exchange.page.to.address.title" = "VITE 주소";
+"eth.vite.exchange.page.amount.title" = "전환 수량";
+"eth.vite.exchange.page.amount.placeholder" = "최대 %@ VITE 전환하기";
+"eth.vite.exchange.page.send.button.title" = "전환하기";
+"eth.vite.exchange.page.address.change.button.title" = "바꾸기";
+"eth.vite.exchange.page.exchange.all.button.title" = "전체";
+"eth.vite.exchange.page.exchange.history.button.title" = "전환 내역";
+
+/* Receive Page */
+"Receive.page.token.title" = "수신하기";
+"Receive.page.mine.title" = "내 QR코드";
+"Receive.page.token.name.label" = "스캔하고 %@보내기";
+"Receive.page.token.amount.button.title" = "수량 입력";
+"Receive.page.token.note.label" = "댓글";
+"Receive.page.token.amount.alert.title" = "수량 입력";
+"Receive.page.wallet.name" = "Vite 지갑";
+
+/* Scan Page */
+"Scan.page.title" = "스캔하기";
+"Scan.page.qccode.not.identifiable" = "QR코드를 인식할 수 없습니다.";
+"Scan.page.qccode.not.found" = "QR코드를 찾을 수 없습니다.";
+
+/* System */
+"system.page.logout.loading" = "로그아웃";
+"system.page.cell.change.language" = "언어";
+"system.page.cell.change.currency" = "통화";
+"system.page.cell.login.pwd" = "비밀번호로 잠금해제";
+"system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
+"system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
+"system.page.cell.transfer.faceId" = "거래를 위해 페이스 아이디 사용";
+"system.page.cell.transfer.touchId" = "거래를 위해 터치 아이디 사용";
+"system.page.cell.logout.title" = "로그아웃/지갑 변경";
+"system.page.cell.upload.log.title" = "업로드 로그";
+"system.page.cell.upload.log.toast.success" = "업로드된 로그";
+"system.page.cell.delete.wallet.title" = "현재 계정 삭제하기";
+"system.page.cell.delete.wallet.alert.title" = "계정 삭제 후에는 니모닉 단어로만 복구가 가능합니다. 계정을 삭제하시겠습니까?";
+
+/* about us */
+"aboutUs.page.cell.blockHeight" = "현재 높이";
+"aboutUs.page.cell.blockHeight.loading.tip" = "로딩 중";
+"aboutUs.page.cell.version" = "버전";
+"aboutUs.page.cell.contact" = "문의하기";
+"aboutUs.page.cell.shareUs" = "Vite 어플 공유하기";
+"aboutUs.page.cell.official.website" = "Vite.org";
+"aboutUs.page.cell.portal.website" = "Vite.net";
+"aboutUs.page.cell.blog.website" = "Vite.wiki";
+"aboutUs.page.email.title" = "피드백";
+"aboutUs.page.email.content" = "\n\n\n\n\n본 장치는 아래와 같은 환경을 사용합니다:\n1. 시스템 장치: %@\n2. 시스템 버전: %@\n3. 어플 버전: %@\n4. 언어: %@";
+
+/* toast error */
+"toast.error.login" = "로그인 에러";
+
+/* quota manage */
+"quota.manage.page.title" = "쿼타 얻기";
+"quota.manage.page.input.address.title" = "쿼타 수령인";
+"quota.manage.page.quota.money.title" = "스테이킹 수량";
+"quota.manage.page.quota.quota.title" = "쿼타";
+"quota.manage.page.quota.money.placeholder" = "최소 134 VITE의 수량을 적어주세요";
+"quota.manage.page.quota.snapshoot.height.title" = "스테이킹 동결 기간";
+"quota.manage.page.quota.snapshoot.height.desc" = "약 %@일";
+"quota.manage.page.submit.btn.title" = "스테이킹 제출하기";
+"quota.manage.page.check.quotaList.btn.title" = "스테이킹 목록";
+"quota.manage.page.toast.money.error" = "134 VITE 이상부터 스테이킹이 가능합니다.";
+"quota.submit.pop.desc" = "할당량을 얻기 위해 %@ VITE를 스테이킹해야합니다. 스테이킹이 시작된 후 약 3일이 지나야 출금할 수 있습니다";
+"quota.submit.pop.submit.btn.title" = "확인하기";
+"quota.submit.pop.cancel.btn.title" = "취소하기";
+"quota.submit.page.quota.address.placeholder" = "수령인 주소를 입력하세요";
+
+/* quota alert */
+"quota.alert.title" = "쿼타 부족";
+"quota.alert.pow.and.quota.message" = "쿼타가 부족합니다. PoW 운영 혹은 VITE 스테이킹을 통해 쿼타를 얻을 수 있습니다.";
+"quota.alert.need.quota.message" = "PoW 쿼타가 충분하지 않습니다. VITE를 스태이킹해서 쿼타 얻기를 추천드립니다.";
+"quota.alert.pow.button.title" = "PoW 운영";
+"quota.alert.quota.button.title" = "VITE 스테이킹하기";
+"quota.float.view.title" = "이 거래에 대한 쿼타를 확보하기 위해 PoW 계산 중...";
+"quota.float.view.tip" = "거래 비용은 %@ UT 입니다.";
+"quota.pow.finished.float.view.title" = "거래 전송됨";
+"quota.pow.finished.float.view.h1" = "PoW 작업에 %1$@S를 사용했고, 보증되었으며,  %2$@UT를 사용했습니다.";
+"quota.pow.finished.float.view.h2" = "스테이킹 된 VITE는 3일 후에 출금이 가능합니다. 스테이킹으로 받은 쿼타가 충분하다면, PoW 단계를 건너뛸 수 있습니다.";
+"quota.pow.finished.float.view.pledge.button.title" = "스테이킹을 통해 빠르게 거래하기";
+
+/* Peldge History */
+"peldge.message" = "현재 Vite 어플은 스테이킹 목록 확인만 지원하고 있습니다. 스테이킹 중인 토큰 출금을 위해선 웹 월렛을 사용해주시기 바랍니다.";
+"peldge.deadline" = "기한";
+"peldge.title" = "스테이킹 내역";
+"peldge.address.title" = "수령인";
+"peldge.cancel.peldge.button.title" = "출금하기";
+"peldge.cancel.pledge.withdrawing.title" = "출금중";
+"peldge.cancel.pledge.amount.error.toast" = "최소 출금 수량은 134 VITE 입니다. 우선 충분한 양의 VITE를 스테이킹 해주세요.";
+"peldge.cancel.pledge.agent.error.toast" = "잘못된 스테이킹 입니다. 스테이킹한 곳에서 출금을 시도해주세요.";
+/* Vote */
+"vote.page.title" = "투표";
+"vote.page.info.nodata.title" = "투표 없음";
+"vote.page.voteStatus.voteSuccess" = "완료된 투표";
+"vote.page.voteStatus.voting" = "투표중";
+"vote.page.voteStatus.cancelVoting" = "철회중";
+"vote.page.voteStatus.voteInvalid" = "유효하지 않은 투표";
+"vote.page.voteInfo.nodePolls.title" = "나의 투표";
+"vote.page.nodeStatus.valid.title" = "활성화하기";
+"vote.page.nodeStatus.invalid.title" = "비활성화하기";
+"vote.page.voteInfo.alert.quota" = "투표 철회가 불가능합니다. 투표 철회를 위한 TPS 쿼타를 위해 PoW 운영 혹은 VITE 스테이킹을 해야합니다.";
+
+/* Vote List*/
+"vote" = "투표";
+"vote.list.title" = "후보 노드";
+"vote.list.search" = "후보 노드의 이름 혹은 주소 검색하기";
+"vote.list.alert.already.voted" = "%@에 투표했습니다.이 작업이 현재 투표 결과를 덮어 쓰도록해주세요.";
+"vote.list.confirm.revote" = "확인하기";
+"vote.list.count" = "투표";
+"vote.list.address" = "주소";
+"vote.list.alert.quota" = "투표 철회가 불가능합니다. 투표 철회를 위한 TPS 쿼타를 위해 PoW 운영 혹은 VITE 스테이킹을 해야합니다.";
+"vote.list.search.empty" = "내용을 찾을 수 없습니다. 다시 입력을 해주세요";
+"vote.list.search.no.transaction.before" = "주소 내 거래 기록이 없기 때문에 투표를 할 수 없습니다.";
+
+// Contract
+"contract.confirm.info" = "컨트렉트 주소";
+
+//RefreshFooter
+"vite.RefreshBackFooter.IdleText" = "아래로 드래그하여 더 보기";
+"Vite.RefreshBackFooter.PullingText" = "손을 놓아서 더 보기";
+"Vite.RefreshBackFooter.RefreshingText" = "로딩 중...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "데이터가 없습니다.";
+
+//Welcome
+"introduction.tip.title" = "거래는 쿼타로 지불됩니다.\n무료 쿼타를 얻기 위해 스테이킹하기.";
+//"introduction.page.tip1.title" = "Cross-chain multiple token types";
+//"introduction.page.tip2.title" = "Decentralized wallet";
+//"introduction.page.tip3.title" = "Zero transaction fees";
+//"introduction.page.tip4.title" = "Fast transactions";
+//"introduction.page.tip1.desc" = "Multi-token support, easy assets management";
+//"introduction.page.tip2.desc" = "Private key locally stored, open-sourced assurance";
+//"introduction.page.tip3.desc" = "Transactions consume quota, PoW running acquires free quota";
+//"introduction.page.tip4.desc" = "Asynchronous architecture, smooth trade";
+//"introduction.page.nextBtn.title" = "Start Your Vite Journey";
+/* Error Message */
+
+"vite.error.network.error" = "네트워크에 오류가 생겼습니다. 다시 시도해주세요.";
+"vite.error.operation.failure" = "작업 실패";
+"vite.error.rpc.error.code.not.enough.balance" = "잔액 부족";
+"vite.error.rpc.error.code.not.enough.quota" = "쿼타 부족";
+"vite.error.rpc.error.code.id.conflict" = " ID 충돌 발생, 잠시후 다시 제출해주세요.";
+"vite.error.rpc.error.code.contract.data.illegal" = "빌트인 컨트렉트 오류, 잠시후 다시 시도해주세요(-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "다량의 거래가 요청되었습니다. 잠시후 다시 시도해주세요.";
+"vite.error.rpc.error.code.contract.method.not.exist" = "빌트인 컨트렉트 오류, 잠시후 다시 시도해주세요(-35006)";
+"vite.error.rpc.error.code.no.transaction.before" = "거래가 수신되기 전까지 전송할 수 없습니다.";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "스냅샷 블록 높이가 잘못되었습니다. 잠시후 다시 시도해주세요.";
+"vite.error.rpc.error.code.verify.failure" = "시스템 확인에 실패했습니다. 잠시후 다시 시도해주세요 (%@)";
+
+"eth.error.rpc.error.code.not.enough.balance" = "잔액 부족";
+"eth.error.rpc.error.code.not.enough.fee" = "수수료 부족";
+
+/* Tip String */
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">쿼타란 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite 시스템에서는 사용자가 수수료를 지불하여 거래에 필요한 가스를 구매하지 않고 쿼타 기반 모델을 통해 컴퓨팅 리소스를 획득합니다. 거래 전송에 필요한 쿼타 = 기본 쿼타(요청) + 쿼타(첨부된 텍스트 데이터), 거래 확인에 필요한 쿼타 = 기본 쿼타(응답) 이 쿼타기반 리소스 구성 프로토콜을 통해 사용자는 두 가지 방법으로 더 높은 리소스의 쿼타를 얻을 수 있습니다.</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. VITE 스테이킹하여 쿼타 얻기</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b.PoW 운영하기</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">쿼타 단위: UTPS, 초당 거래 단위</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">스테이킹은 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Vite 시스템에서 사용자는 VITE를 스테이킹하여 일정량의 쿼타를 얻을 수 있습니다. 스테이킹의 최소 수량은 134 VITE이며 최대 제한은 없습니다. 한편 Vite 시스템은 A 주소가 VITE의 일부를 스테이킹하고 얻은 쿼타를 B 주소에 할당하도록 지원합니다. 사용자가 스테이킹을 신청하면 VITE가 다른 사용자가 아닌 스마트 계약 주소로 전송되며 스테이킹을 신청한 사용자만 스테이킹 금액을 관리할 수 있습니다.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">PoW는 무엇인가요?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">작업 증명(PoW)은 사용자가 일정량의 작업을 수행했는지 확인하는 프로토콜이며 DDoS 공격 및 기타 서비스 남용을 방지하기 위한 경제적 수단이기도 합니다. 개시자가 일정량의 컴퓨팅을 수행해야하므로 어느 정도 시간이 소요될 수 있습니다. Vite 시스템에서 사용자는 PoW를 실행하여 무료 쿼타를 얻을 수 있으며 획득한 쿼타를 통해 주석이 달린 정보 없이 트랜잭션을 보낼 수도 있습니다.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">투표에 대하여</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">25개의 SBP(스냅샷 블록 생산자)에 가입하고 투표할 수 있으며, 각 투표는 75초 동안 지속되며 투표수는 투표 주소의 잔액과 같습니다. 투표를 취소하거나 다른 노드에 투표하지 않는 한 다음 라운드에서 투표는 동일하게 유지됩니다. 상위 25개 후보 중 23 명과 26~100 위 후보 중 2명을 무작위로 추가하면 총 25 개의 노드가 SBP로 선출됩니다.</p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">%@ 귀하가 투표한 SBP가 캠페인을 중단한 경우, 다시 투표하거나 투표를 취소할 수 있습니다. 그렇게하지 않으면 %@ 재등록 후 원래 투표가 복구됩니다. </p>";
+"pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">VITE 전환 이해하기</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">VITE 전환 을 통해 Vite Pre-Mainnet에서 ERC20 VITE를 VITE로 전환할 수 있습니다. 전환하는 동안 ERC20 VITE는 이더리움 블랙홀 주소 0x1111111111111111111111111111111111111111로 전송되며, Ethereum 블랙홀 주소로의 거래가 완료된 후 Vite 주소로 동일한 양의 VITE를 받게됩니다. 변환하는 동안 이더리움 블랙홀 주소로의 거래 수수료는 현재 ETH 주소에서 나옵니다. 전환을 제출한 후 이더 리움 네트워크에서 최소 30 번의 확인을 기다려주세요. 전환 내역에서 거래 내역을 찾을 수 있습니다.</p>";
+
+// ViteURI
+"vite.uri.amount.format.error" = "잘못된 형식의 거래 수량";
+
+// eth
+"eth.send.page.my.address.title" = "ETH 주소";
+"eth.send.page.eth.contacts.button.title" = "ETH 연락처 주소";
+"eth.receive.page.my.address.title" = "나의 ETH 주소";
+"eth.page.gasFee.title" = "가스 수수료";
+"eth.page.gasFee.slow.title" = "느리게";
+"eth.page.gasFee.fast.title" = "빠르게";
+"eth.page.gasFee.notice.title" = "귀하의 계정으로 남은 가스 수수료를 돌려드립니다.";
+
+// eth transaction detail
+"eth.transaction.detail.page.title" = "상세정보";
+"eth.transaction.detail.failed" = "거래 실패";
+"eth.transaction.detail.success" = "거래 완료";
+"eth.transaction.detail.to.address" = "수신 주소";
+"eth.transaction.detail.from.address" = "발신 주소";
+"eth.transaction.detail.amount" = "수량";
+"eth.transaction.detail.gas.fee" = "가스 수수료";
+"eth.transaction.detail.gas.price" = "가스 가격";
+"eth.transaction.detail.gas.limit" = "가스 한도";
+"eth.transaction.detail.hash" = "트랜젝션 해시";
+"eth.transaction.detail.block" = "블럭";
+"eth.transaction.detail.note" = "메모";
+"eth.transaction.detail.go.button.title" = "이더스캔에서 자세한 정보 보기";
+
+//token
+"token.list.page.search.title" = "토큰 이름 혹은 컨트렉트 주소를 입력하세요.";
+"token.list.page.section.vite.header" = "Vite 네트워크";
+"token.list.page.section.eth.header" = "이더리움 네트워크";
+"token.list.page.section.grin.header" = "GRIN 네트워크";
+"token.list.page.ignore.btn.title" = "무시하기";
+"token.list.page.ignore.lab.title" = "%d 새로운 자산";
+"token.list.page.ignore.alter.title" = "무시된 자산은 다시 알리지 않습니다. 아래 자산을 무시하시겠습니까?";
+// Contacts Home
+"contacts.home.page.title" = "연락처 주소";
+"contacts.home.page.no.contact.tip" = "첫 번째 주소 추가하기";
+"contacts.home.page.single.no.contact.tip" = "%@ 주소가 없습니다.";
+"contacts.home.page.filter.all" = "전체";
+"contacts.home.page.add.button.title" = "추가하기";
+
+// Contacts Edit
+"contacts.edit.page.add.title" = "연락처 주소 추가하기";
+"contacts.edit.page.edit.title" = "연락처 주소 편집하기";
+"contacts.edit.page.name.title" = "이름";
+"contacts.edit.page.address.title" = "주소를 입력하세요.";
+"contacts.edit.page.type.select.title" = "토큰형식 선택하기";
+"contacts.edit.page.save.button.title" = "저장하기";
+"contacts.edit.page.save.success.tip" = "성공적으로 추가되었습니다.";
+"contacts.edit.page.edit.success.tip" = "성공적으로 저장되었습니다.";
+"contacts.edit.page.delete.button.title" = "삭제하기";
+"contacts.edit.page.delete.alert.title" = "이 주소를 삭제할까요?";
+
+// Address List
+"address.list.page.my.title" = "나의 VITE 주소";
+"address.list.page.other.title" = "%@ 연락처 주소";
+"address.list.page.no.address.tip" = "%@ 주소가 없습니다.";
+
+/* WorkFlow */
+"workflow.confirm.page.biometryAuthFailed.title" = "식별할 수 없습니다.";
+"workflow.confirm.page.biometryAuthFailed.back" = "돌아가기";
+"workflow.confirm.page.passwordAuthFailed.retry" = "재시도 하기";
+"workflow.confirm.page.toast.password.error" = "잘못된 비밀번호입니다.";
+
+"workflow.toast.transfer.success" = "전송 성공";
+"workflow.toast.submit.success" = "제출 성공";
+"workflow.toast.cancel.pledge.success" = "스테이킹 철회 요청이 전송되었습니다.";
+"workflow.toast.vote.success" = "투표 요청이 성공적으로 전송되었습니다.";
+"workflow.toast.cancel.vote.success" = "투표 철회 요청이 성공적으로 전송되었습니다.";
+"workflow.toast.contract.success" = "성공";
+"workflow.toast.place.order.success" = "주문완료";
+"workflow.toast.cancel.order.success" = "주문 취소됨";
+
+"workflow.congestion.without.pow.alert.title" = "공지";
+"workflow.congestion.without.pow.alert.message" = "현재 네트워크는 다이나믹 쿼타 모드입니다. 즉 쿼타 한도가 감소되었고, 초당 더 적은 거래만 가능합니다. 거래를 계속 하시겠습니까?";
+"workflow.congestion.without.pow.alert.cancel" = "나중에 거래하기";
+"workflow.congestion.without.pow.alert.ok" = "지금 거래하기";
+"workflow.congestion.with.pow.alert.title" = "공지";
+"workflow.congestion.with.pow.alert.message" = "현재 네트워크는 다이나믹 쿼타 모드입니다. 즉 쿼타 한도가 감소되었고, 이 거래를 보내기 위한 쿼타가 충분하지 않습니다. 잠시 후 다시 거래해주세요.";
+"workflow.congestion.with.pow.alert.cancel" = "나중에 거래하기";
+
+"workflow.fast.get.quota.title" = "쿼타 바로 얻기";
+"workflow.fast.get.quota.message" = "현재 주소에서 134VITE 스테이킹을 통해 쿼타를 얻습니다. 스테이킹 히스토리 섹션에서 3일 후에 스테이킹 된 금액이 인출 가능합니다.";
+"workflow.fast.get.quota.tip" = "다른 주소에 대한 쿼타를 %@까지 얻을 수 있습니다.";
+"workflow.fast.get.quota.link" = "여기를 클릭하세요";
+
+/* Confirm Transaction Page */
+"confirm.transaction.page.biometry.confirm.reason" = "검증하기";
+"confirm.transaction.address.title" = "수신자 주소";
+"confirm.transaction.amount.title" = "수량";
+"confirm.transaction.fee.title" = "수수료";
+"confirm.transaction.quota.title" = "쿼타";
+"confirm.transaction.page.use.password" = "비밀번호 사용하기";
+"confirm.transaction.page.pw.title" = "비밀번호를 입력하세요";
+// vite transfer
+"confirm.transaction.page.vite.transfer.title" = "보내기";
+"confirm.transaction.page.vite.confirm.button" = "확인하기";
+// vite pledge
+"confirm.transaction.page.vite.pledge.title" = "쿼타 얻기";
+"confirm.transaction.page.vite.cancel.pledge.title" = "출금하기";
+"confirm.transaction.page.vite.pledge.confirm.button" = "확인하기";
+// vite vote & cancel
+"confirm.transaction.page.vite.vote.transfer.title" = "투표";
+"confirm.transaction.page.vite.vote.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.vote.node.name" = "노드명";
+"confirm.transaction.page.vite.cancel.vote.transfer.title" = "투표 철회하기";
+"confirm.transaction.page.vite.cancel.vote.confirm.button" = "확인하기";
+// vite dex desposit & withdraw
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "거래소에 입금하기";
+"confirm.transaction.page.vite.dex.deposit.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.withdraw.transfer.title" = "지갑으로 출금하기";
+"confirm.transaction.page.vite.dex.withdraw.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.buy.title" = "%@ 매수하기";
+"confirm.transaction.page.vite.dex.buy.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.sell.title" = "%@ 매도하기";
+"confirm.transaction.page.vite.dex.sell.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.order.title" = "취소하기";
+"confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "확인하기";
+
+"confirm.transaction.page.vite.dex.vip.title" = "VIP되기";
+"confirm.transaction.page.vite.dex.vip.balance" = "거래가능 거래소 잔액";
+"confirm.transaction.page.vite.dex.vip.amount" = "VIP가 되기 위한 스테이킹 수량";
+"confirm.transaction.page.vite.dex.vip.tip" = "VIP는 0.1%의 거래수수료 할인 혜택을 누릴 수 있습니다. 10,000 VITE를 스테이킹하여 VIP가 되보세요(최소 스테이킹 기간: 30일)";
+"confirm.transaction.page.vite.dex.vip.confirm.button" = "확인하기";
+"confirm.transaction.page.vite.dex.cancel.vip.title" = "VIP 취소하기";
+"confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "확인하기";
+
+// vite call contract
+"confirm.transaction.page.vite.call.contract.transfer.title" = "결제";
+"confirm.transaction.page.vite.call.contract.confirm.button" = "확인하기";
+// eth transfer
+"confirm.transaction.page.eth.transfer.title" = "보내기";
+"confirm.transaction.page.eth.confirm.button" = "확인하기";
+// eth vite exchange
+"confirm.transaction.page.eth.vite.exchange.title" = "VITE 전환";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "전환하기";
+// grin transfer
+"confirm.transaction.page.grin.transfer.title" = "보내기";
+"confirm.transaction.page.grin.confirm.button" = "확인하기";
+
+// Grin
+"grin.balance.total" = "총합";
+"grin.balance.spendable" = "사용 가능";
+"grin.balance.awaiting" = "확인 대기 중";
+"grin.balance.locked" = "이전 거래에 의해 잠김";
+"grin.wallet.check" = "확인하기";
+"grin.wallet.check.desc" = "지갑확인은 체인을 스캔하고 보류중인 모든 거래를 취소하며, 잠긴 아웃풋을 해제하고, 누락된 아웃풋을 복원하며, 지갑의 콘텐츠가 체인의 버전과 일치하는지 확인합니다.";
+"grin.txType.sent" = "생성됨";
+"grin.txType.waitToSign" = "미수신";
+"grin.txType.received" = "수신됨";
+"grin.txType.waitToFinalize" = "미완료";
+"grin.txType.finalized" = "게시중";
+"grin.txType.confirmed" = "확인됨";
+"grin.txType.confirmedCoinbase" = "코인베이스 확인됨";
+"grin.txType.Canceled" = "취소됨";
+"grin.tx.Cancele" = "취소됨";
+"grin.tx.Repost" = "다시 게시하기";
+"grin.tx.copyId" = "복사하기";
+"grin.tx.useVite" = "VITE 주소 사용하기";
+"grin.sent.useVite.desc" = "VITE 주소를 통한 GRIN 전송은 VITE 주소를 통해 Vite가 암호화한 거래 파일을 공유하여 실제 수신자만 파일을 복호화할 수 있도록 합니다.";
+"grin.sent.useHttp" = "HTTP 주소 사용하기";
+"grin.sent.useHttp.desc" = "HTTP 주소를 통해 GRIN 수신을 지원하는 모든 지갑으로 GRIN을 전송할 수 있지만, Vite 지갑을 사용하는 사용자에게 GRIN을 전송하려면 VITE 주소 또는 파일을 사용하는 것이 좋습니다.";
+"grin.sent.useFile" = "거래파일 사용하기";
+"grin.know" = "알고 있습니다.";
+"grin.notSeeAgain" = "더 이상 표시하지 않음";
+"grin.sent.title" = "GRIN 보내기";
+"grin.sent.amount" = "수량";
+"grin.receive.ture.amount" = "실제 수량";
+"grin.sent.fee" = "수수료";
+"grin.sent.creatFile" = "거래파일 생성하기";
+"grin.shareFile.desc" = "거래를 위해 서명해주세요.";
+"grin.txFile.init.status" = "생성됨";
+"grin.txFile.id" = "거래 ID";
+"grin.shareFile" = "거래파일 공유하기";
+"grin.finalize.title" = "GRIN 보내기";
+"grin.finalize.desc" = "수신자가 거래를 수신했습니다. 거래를 완료하고 송출해주세요.";
+"grin.txFile.received.status" = "영수증이 확인되었습니다";
+"grin.finalize" = "송출 끝내기";
+"grin.finalized.alertTitle" = "거래 완료됨";
+"grin.finalized.alertDesc" = "GRIN 거래가 송출되기 시작했습니다.";
+"grin.sent.next" = "다음";
+"grin.sent.suggest.useVite.title" = "공지";
+"grin.sent.suggest.useVite.desc" = "Vite 지갑 사용자에게 GRIN을 보내려면 더 안전하고 저렴하게 VITE 주소를 통해 보내는 것을 추천합니다.";
+"grin.sent.switch" = "VITE 주소";
+"grin.sent.stillUseHttp" = "HTTP 주소";
+"grin.sent.http.success" = "성공적으로 GRIN 전송 요청이 보내졌습니다.";
+"grin.sent.vite.success" = "거래가 보내졌습니다.";
+"grin.receiveByVite.addressCopyed" = "GRIN을 수신할 VITE 주소가 클립보드에 복사되었습니다.";
+"grin.receiveByVite.desc" = "웹 지갑은 네이티브 GRIN을 지원하지 않습니다. GRIN 파일로 VITE 거래를 받으면 발신자에게 연락하여 거래를 취소하고, GRIN을 다시 보내야합니다.";
+"grin.iknow" = "알고 있습니다.";
+"grin.thisIsFirstViteAddress" = "첫번째 VITE 주소입니다.";
+"grin.receiveByHttp.addressCopyed" = "GRIN을 수신할 HTTP 주소가 클립보드에 복사되었습니다";
+"grin.receiveByHttp.desc" = "위 그림과 같이 Vite는 귀하가 HTTP 주소를 통해 GRIN을 전송 또는 수신하도록 선택하면, 수집 및 송금을 수행합니다. 위의 두 단계 모두 거래 수수료가 있습니다.";
+"grin.receive.title" = "GRIN 수신하기";
+"grin.receive.sented" = "생성됨";
+"grin.creatTime" = "생성 시간";
+"grin.signAndShare" = "수신 및 공유하기";
+"grin.sent.btnTitle" = "보내기";
+"grin.receive.BtnTitle" = "수신하기";
+"grin.notice.title" = "공지";
+"grin.teach.vite.receive.title" = "VITE 주소로 GRIN 수신하기";
+"grin.teach.http.receive.title" = "HTTP 주소로 GRIN 수신하기";
+"grin.teach.vite.sent.title" = "VITE 주소로 GRIN 보내기";
+"grin.teach.http.sent.title" = "HTTP 주소로 GRIN 보내기";
+"grin.txid.title" = "거래 ID";
+"grin.switchAddress" = "주소 전환하기";
+"grin.http.address" = "HTTP 주소";
+"grin.vite.address" = "VITE 주소";
+"grin.sendPageViteContactsButtonTitle" = "GRIN 연락처 주소";
+"grin.canceled" = "취소됨";
+"grin.makeSureToShare" = "발신자와 거래 파일을 공유해주세요.";
+"grin.txbyfile.shareSentFileDesc" = "수신자와 거래 파일을 공유하고 확인 파일을 요청하세요.";
+"grin.txbyfile.receiveSentFileDesc" = "거래를 위해 서명해주세요.";
+"grin.txbyfile.shareReceiveFileDesc" = "발신자와 거래 파일을 공유해주세요.";
+"grin.txbyfile.finalizeReceiveFileDesc" = "수신자가 거래를 수신했습니다. 거래를 완료하고 송출해주세요.";
+"grin.txbyfile.initStatus.sender" = "생성됨";
+"grin.txbyfile.initStatus.receiver" = "수신 대기중";
+"grin.txbyfile.receivedStatus.receiver" = "수신됨";
+"grin.txbyfile.receivedStatus.sender" = "완료 대기중";
+"grin.creat.syncronizing" = "생성 및 동기화, 3분 예상됨";
+"grin.recover.syncronizing" = "복구 및 동기화, 3분 예상됨";
+"grin.creating" = "Grin 지갑을 초기화 중입니다. 잠시만 기다려주세요.";
+"grin.pay.title.creat" = "생성하기";
+"grin.pay.title.finalize" = "완료하기";
+
+"grin.teach.file.send.desc" = "Vite 지갑을 사용하여 전송하려면 거래 파일을 수신자와 공유하고 수신자가 Vite 지갑에서 반환한 파일을 열고 거래를 완료하면 됩니다. \"거래 파일 공유\"를 클릭하면 Vite 지갑에 휴대폰에서 사용할 수있는 앱이 표시되며 원하는 방식을 선택할 수 있으며 파일을 휴대폰에 저장하고 직접 공유할 수도 있습니다.";
+"grin.teach.file.receive.desc" = "Vite 지갑을 사용하여 전송하려면 파일을 열고 \"수신 및 공유\"버튼을 클릭 한 다음 보낸 사람에게 수신확인 파일을 돌려주면 됩니다. \"수신 및 공유\"를 클릭하면 Viite 지갑에 핸드폰에서 사용할 수있는 앱이 표시되며 원하는 방식을 선택할 수 있으며, 파일을 휴대폰에 저장하고 직접 공유할 수도 있습니다. Vite 지갑은 .grinslate 파일과 .json 파일을 지원하며, \"응답\"이 포함 된 파일 이름이 인식되고 성공적으로 열립니다.";
+"grin.teach.file.send.title" = "거래 파일을 통해 GRIN 보내기";
+"grin.teach.file.receive.title" = "거래파일을 통해 GRIN 받기";
+"grin.teach.http.receive.copyHttpAddress" = "HTTP 주소 복사하기";
+"grin.teach.vite.receive.copyViteAddress" = "VITE 주소 복사하기";
+"grin.teach.vite.send.startSend" = "보내기 시작";
+"grin.txMethod.http" = "HTTP 주소";
+"grin.txMethod.vite" = "VITE 주소";
+"grin.txMethod.file" = "거래파일";
+
+"grin.detail.fromMine" = "코인베이스";
+"grin.detail.txStatus" = "거래 상태";
+"grin.detail.txCompleted" = "거래가 완료되었습니다.";
+"grin.detail.txCancelled" = "거래가 취소되었습니다.";
+"grin.detail.txFileReecivedAndCanShare" = "거래가 수신되었습니다. 원하는 방식을 선택하여 파일을 발신자와 공유하세요.";
+"grin.detail.txReceived" = "거래가 수신되었습니다.";
+"grin.detail.txReceivedAndCanAskGatewaytoSend" = "이미 거래를 수신되었습니다. 상태가 \"확인됨\"으로 변경되지 않으면, \"Vite 게이트웨이 재전송 요청\"을 시도해주세요.";
+"grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "상태가 오랫동안 \"수신되지 않음\"으로 유지되는 경우 \"Vite 게이트웨이 재전송 요청\"을 시도해주세요.";
+"grin.detail.gateway.confirmConntLessThanTen" = "Vite 게이트웨이가 거래를 수신했으며 10개의 확인 후 귀하에게 전송됩니다.";
+"grin.detail.gateway.confirmConntBiggerThanTen" = "Vite 게이트웨이 확인이 10에 도달했습니다. 상태가 오랫동안 \"수신되지 않음\"으로 변경되지 않으면 \"Vite 게이트웨이 재전송 요청\"을 시도해주세요.";
+"grin.detail.confirmLessThanThen" = "거래가 확인 되었습니다. 10개의 확인 후, \"실제 금액\"이 \"이용가능 금액\"으로 변경됩니다.";
+"grin.detail.gateway" = "Vite 게이트웨이 콜렉션";
+"grin.detail.gatewayReceived" = "Vite 게이트웨이가 거래를 수신했으며 10개의 확인 후 귀하에게 전송됩니다.";
+"grin.detail.txpostingAndCanRepost" = "거래가 송출되기 시작했습니다. 거래가 오랫동안 확인되지 않은 경우 \"재게시\"를 클릭하여 다시 시도 할 수 있습니다";
+"grin.detail.pleaseFinalize" = "거래를 완료해주세요.";
+"grin.detail.pleaseFinalize2" = "거래가 송출될 때까지 기다려주세요";
+"grin.detail.txFileCreatedAndCanShare" = "거래 파일이 생성되었습니다. (원할 경우)수신자와 파일을 공유하고, 수신된 파일의 반환을 요청하세요.";
+"grin.detail.txFile" = "거래파일";
+"grin.detail.txFinaziledAndPosting" = "거래가 완료되고 송출되었습니다.";
+"grin.detail.txisPostingPlsWait" = "거래가 송출 중에 있습니다. 확인을 기다려주세요.";
+"grin.detail.waitHerOpenViteWalletToReceive" = "수신자가 Vite 지갑을 열고 거래를 받을 때까지 기다려주세요.";
+"grin.detail.pleaseReciveAndShare" = "거래에 서명하고 원하는 방식을 선택하여 파일을 발신자와 공유하세요.";
+"grin.detail.gatewaysend" = "VITE 거래 보내기";
+"grin.detail.repoat" = "다시 게시하기";
+"grin.node.configNode" = "풀노드 수정";
+"grin.node.addNode" = "새 노드 추가하기";
+"grin.node.edit.nodeAddressTitle" = "풀노드 주소";
+"grin.node.edit.apiSecretTitle" = "Key";
+"grin.node.select.canNotConnect" = "Failed to connect with the full node.";
+"grin.detail.slateCopied" = "Slate ID Copied.";
+"grin.send.illegalAmmount" = "Illegal transfer amount";
+"grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
+"grin.export.mnemonic" = "Export Seed Phrase";
+
+// CrossChain Transfer & Receive
+
+"crosschain.tokendetail" = "Token Details";
+"crosschain.deposit" = "Cross-Chain Deposit";
+"crosschain.withdraw" = "Cross-Chain Withdraw";
+"crosschain.withdraw.btnTitle" = "Withdraw";
+"crosschain.deposit.btnTitle" = "Deposit";
+"crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
+"crosschain.deposit.otherwallet" = "Deposit from Another Wallet";
+"crosschain.deposit.history" = "Deposit History";
+"crosschain.withdraw.history" = "Withdrawal History";
+"crosschain.deposit.minAmountDesc" = "Only %@ is accepted by the address below, and the minimum amount should be no less than %@";
+"crosschain.deposit.minComfirm" = "The process should take %@ confirmation(s), please wait.";
+"crosschain.deposit.address" = "Deposit Address";
+"crosschain.deposit.scanAddress" = "Please scan the address QR code";
+"crosschain.deposit.scanLabel" = "Please scan the %@ code";
+"crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
+
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
+"crosschain.withdraw.eth.myAddress" = "My ETH Address";
+"crosschain.deposit.min" = "Minimum Deposit Amount ";
+"crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
+"crosschain.deposit.min.alert" = "The deposit amount cannot be less than ";
+"crosschain.deposit.all" = "Deposit All";
+"crosschain.deposit.amount" = "Deposit Amount";
+"crosschain.withdraw.all" = "Withdraw All";
+"crosschain.withdraw.amount" = "Withdrawal Amount";
+"crosschain.tokenDetail.shortname" = "Symbol";
+"crosschain.tokenDetail.id" = "Token ID";
+"crosschain.tokenDetail.name" = "Token Name";
+"crosschain.tokenDetail.address" = "Coin Forging Address";
+"crosschain.tokenDetail.amount" = "Total Issuance";
+"crosschain.tokenDetail.digit" = "Decimals";
+"crosschain.tokenDetail.unit" = "";
+"crosschain.tokenDetail.issuance" = "Open to Additional Issue";
+"crosschain.tokenDetail.issuance.true" = "Yes";
+"crosschain.tokenDetail.issuance.false" = "No";
+"crosschain.tokenDetail.date" = "Issuance Date";
+"crosschain.tokenDetail.desc" = "Description";
+"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
+"crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.tot.exceed.limit" = "Exceed the limit";
+"crosschain.status.wrong.address" = "Wrong transfer address";
+"crosschain.status.gatewayReceived" = "Deposit by Gateway";
+"crosschain.status.withdraw.failed" = "Withdrawal Failed";
+"crosschain.status.failedBecausePoor" = "수량 부족";
+"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
+"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
+"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
+"crosschain.withdraw.aboutfee" = "About Fee";
+"crosschain.status.failed" = "Deposit Failed";
+"crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
+"crosschain.fee" = "Fee";
+"crosschain.withdraw.gatewayispoor" = "Amount exceeds the %@-%@ limit, please contact gateway@vite.org to send out.";
+"crosschain.gatewaydetail.title" = "Gateway Details";
+"crosschain.gatewaydetail.name" = "Gateway Name";
+"crosschain.gatewaydetail.webset" = "Official Website";
+"crosschain.gatewaydetail.email" = "Service Mailbox";
+"crosschain.gatewaydetail.statement" = "Terms of Service";
+"crosschain.gatewaydetail.host" = "Gateway URL";
+"crosschain.gatewaydetail.abstract" = "Introduction";
+"crosschain.statement.other.desc" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.\n\nBy using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.other.desc0" = "This Service is provided by %@. Vite Platform assumes no responsibility for the activities performed by %@ and does not play a role in the relationship between %@ and users of Vite Platform.";
+"crosschain.statement.other.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.other.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc" = "This Service is provided by %@.\n\nBy using services from %@, you agree to be bound by %@%@. If you do not agree to these terms, please refrain from using service from %@.\n\nIn case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.vite.desc0" = "This Service is provided by %@.";
+"crosschain.statement.vite.desc1" = "By using services from %@, you agree to be bound by %@ %@. If you do not agree to these terms, please refrain from using service from %@.";
+"crosschain.statement.vite.desc2" = "In case of problems with verification or payment processing, please contact %@ support team at %@.";
+"crosschain.statement.detail" = "Terms of Service";
+"crosschain.statement.agree" = "By clicking Next, you agree with the %@'s %@";
+"crosschain.statement.title" = "Important Notice";
+
+"unit.Million" = " Million";
+"unit.Billion" = " Billion";
+"unit.Trillion" = " Trillion";
+
+"exchange.history" = "Purchase History";
+"exchange.card.title" = "Buy VITE";
+"exchange.titley" = "Instant Purchase";
+"exchange.buy" = "Buy";
+"exchange.price" = "Rate: ";
+"exchange.amount" = "Amount: ";
+"exchange.limit.onetime" = "Single Transaction Limit: %@ - %@ VITE";
+"exchange.limit.oneday" = "Daily Transaction Limit %@ VITE; Unused Daily Limit: %@ VITE\n\n\n";
+"exchange.limit.alert" = "The amount you entered is invalid. A single transaction should be at least %@ VITE and at most %@ VITE, and the daily transaction limit is %@ VITE.";
+
+
+/* ViteConnect */
+"bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
+"bifrost.alert.tip.title" = "Notice";
+"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
+"bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
+"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
+"bifrost.alert.approve.session.another.address.cancel" = "Back";
+
+"bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
+
+"bifrost.alert.quit.title" = "Make sure to logout ViteConnect?";
+
+"bifrost.home.page.free.header" = "ViteConnect Connected";
+"bifrost.home.page.free.content" = "You have no transaction yet";
+"bifrost.home.page.free.address.title" = "Address";
+"bifrost.home.page.free.history.title" = "Transactions Signed";
+"bifrost.home.page.free.auto.sign.title" = "Auto Sign";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+
+"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
+"bifrost.home.page.busy.content" = "Please confirm transaction information below";
+"bifrost.toast.operation.success" = "Operation Successful";
+
+"bifrost.list.page.title" = "Signing Transaction List";
+"bifrost.list.page.status.pending" = "Awaiting Signature";
+"bifrost.list.page.status.processing" = "Signing";
+"bifrost.list.page.status.failed" = "Failure";
+"bifrost.list.page.status.finished" = "Success";
+"bifrost.list.page.status.canceled" = "Canceled";
+
+"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+
+"bifrost.error.message.timeout" = "Connection time out, please try again later";
+"bifrost.error.message.unknown" = "Connection Error, please try again later";
+
+// operation
+"bifrost.operation.register.sbp" = "Register SBP";
+"bifrost.operation.register.update.sbp" = "Update SBP";
+"bifrost.operation.cancel.register.sbp" = "Cancel SBP Registration";
+"bifrost.operation.vote" = "Voting";
+"bifrost.operation.cancel.vote" = "Revoke Voting";
+"bifrost.operation.extract.reward" = "Claim Rewards";
+"bifrost.operation.pledge" = "Get Quota";
+"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
+"bifrost.operation.coin" = "Token Issuance";
+"bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
+"bifrost.operation.transfer" = "Send";
+"bifrost.operation.vx.deposit" = "ViteX Deposit";
+"bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
+"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
+"bifrost.operation.vx.order" = "Place Order on ViteX";
+"bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
+
+"bifrost.operation.function.title" = "Contract Invoke";
+"bifrost.operation.title.contract.address" = "Contract Address";
+"bifrost.operation.title.amount" = "Amount";
+"bifrost.operation.title.fee" = "Fee";
+"bifrost.operation.title.data" = "Data";
+
+"bifrost.operation.sign.message.title" = "Create API";
+"bifrost.operation.sign.message.address" = "Current Address";
+"bifrost.operation.sign.message.type" = "Permission Type";
+"bifrost.operation.sign.message.content" = "Signature Content";
+"bifrost.operation.sign.message.type.trade.value" = "Trade";
+
+"bifrost.create.contract.title" = "Create Contract";
+"bifrost.create.contract.title.contract.address" = "Contract Address";
+"bifrost.create.contract.title.amount" = "Amount";
+"bifrost.create.contract.title.fee" = "Fee";
+"bifrost.create.contract.title.data" = "Data";
+
+//bnb
+"token.list.page.section.bnb.header" = "Binance Network";
+"bnb.send.page.feeView.titleLabel.title" = "Fee";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
+"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
+"bnb.txType.newOrder.title" = "Place Order";
+"bnb.txType.issueToken.title" = "Issue Asset";
+"bnb.txType.burnToken.title" = "Burn";
+"bnb.txType.listToken.title" = "Listing";
+"bnb.txType.cancelOrder.title" = "Cancel Order";
+"bnb.txType.freezeToken.title" = "Freeze Token";
+"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
+"bnb.txType.transfer.title" = "Transfer";
+"bnb.txType.proposal.title" = "Proposal Request";
+"bnb.txType.vote.title" = "Vote";
+"bnb.txType.mint.title" = "MintMsg";
+"bnb.txType.deposit.title" = "Deposit";
+
+// Buildin
+
+"buildin.transfer.utf8string.function.title" = "Transfer";
+"buildin.transfer.utf8string.item0.title" = "Transaction Address";
+"buildin.transfer.utf8string.item1.title" = "Amount";
+"buildin.transfer.utf8string.item2.title" = "Comment";
+
+"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
+"buildin.transfer.cross.chain.item0.title" = "Amount";
+"buildin.transfer.cross.chain.item1.title" = "Fee";
+"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+
+"buildin.vote.function.title" = "Vote";
+"buildin.vote.item0.title" = "SBP Candidates";
+"buildin.vote.item1.title" = "Votes";
+
+"buildin.coin.issuance.function.title" = "Token Issuance";
+"buildin.coin.issuance.item0.title" = "Issuance Address";
+"buildin.coin.issuance.item1.title" = "Token Name";
+"buildin.coin.issuance.item2.title" = "Token Symbol";
+"buildin.coin.issuance.item3.title" = "Total Supply";
+"buildin.coin.issuance.item4.title" = "Decimals";
+"buildin.coin.issuance.item5.title" = "Re-issuable";
+"buildin.coin.issuance.item5.yes.value" = "YES";
+"buildin.coin.issuance.item5.no.value" = "NO";
+"buildin.coin.issuance.item6.title" = "Max Supply";
+"buildin.coin.issuance.item7.title" = "Issuance Fee";
+
+"buildin.coin.transfer.ownership.function.title" = "Transfer Ownership";
+"buildin.coin.transfer.ownership.item0.title" = "Token Name";
+"buildin.coin.transfer.ownership.item1.title" = "Token Symbol";
+"buildin.coin.transfer.ownership.item2.title" = "Recipient Address";
+
+"buildin.coin.reissue.token.function.title" = "Re-issue Token";
+"buildin.coin.reissue.token.item0.title" = "Token Name";
+"buildin.coin.reissue.token.item1.title" = "Token Symbol";
+"buildin.coin.reissue.token.item2.title" = "Beneficiary Address";
+"buildin.coin.reissue.token.item3.title" = "Amount";
+
+"buildin.coin.change.to.nonissuable.function.title" = "Change to Non-issuable";
+"buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
+"buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
+
+"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
+"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
+"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
+"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+
+"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
+"buildin.dex.transfer.pair.item0.title" = "Name";
+"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+
+"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
+"buildin.dex.adjust.fees.item0.title" = "Name";
+"buildin.dex.adjust.fees.item1.title" = "Current Address";
+"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
+"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+
+"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
+"buildin.dex.open.trading.pair.item0.title" = "Name";
+"buildin.dex.open.trading.pair.item1.title" = "Current Address";
+"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+
+"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
+"buildin.dex.suspend.trading.pair.item0.title" = "Name";
+"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
+"buildin.dex.recover.trading.pair.item0.title" = "Name";
+"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+
+"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
+"buildin.dex.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+
+"buildin.dex.become.vip.function.title" = "Become a VIP";
+"buildin.dex.become.vip.item0.title" = "Current Address";
+"buildin.dex.become.vip.item1.title" = "Amount";
+
+"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
+"buildin.dex.cancel.vip.item0.title" = "Current Address";
+"buildin.dex.cancel.vip.item1.title" = "Amount";
+
+"buildin.dex.lock.vx.function.title" = "Stake";
+"buildin.dex.lock.vx.item0.title" = "Current Address";
+"buildin.dex.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.un.lock.vx.function.title" = "Retrieve";
+"buildin.dex.un.lock.vx.item0.title" = "Current Address";
+"buildin.dex.un.lock.vx.item1.title" = "Amount";
+
+"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
+"buildin.dex.cancel.stake.item0.title" = "Current Address";
+
+// app scheme
+"app.scheme.home.page.busy.header" = "Transaction Confirmation";
+"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.network.error" = "Network Error";
+
+
+"copyed" = "Successfully copied";
+
+"fund.title.wallet" = "Wallet Asset";
+"fund.title.vitex" = "Exchange Asset";
+"fund.title.toWallet" = "Withdraw to Wallet";
+"fund.title.toVitex" = "Deposit to Exchange";
+"fund.walletAddress" = "My Address";
+"fund.walletFound" = "Wallet Balance";
+"fund.quotaInfo" = "Spendable Quota/Quota Limit";
+"fund.deposit.amount" = "Transfer Amount";
+"fund.deposit.all" = "All";
+"fund.quotaSpend" = "Quota";
+"fund.deposit" = "Transfer";
+"fund.vitexFound" = "Available Balance";
+"fund.withdraw.amount" = "Transfer Amount";
+"fund.withdraw" = "Transfer";
+"fund.vitex.all" = "Exchange Total Balance";
+"fund.vitex.available" = "Exchange Available Balance";
+"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
+"fund.withdraw.placeholder" = "Please enter transfer amount";
+"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
+"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
+"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+
+"transfer.from" = "From";
+"transfer.wallet.account" = "Wallet Account";
+"transfer.to" = "To";
+"transfer.dex.account" = "Exchange Account";
+"transfer.token" = "Token";
+"transfer.amount" = "Amount";
+"transfer.available" = "Balance: ";
+"transfer.title" = "Transfer";
+"transfer.search.placeholder" = "Please input token name";
+
+"market.favourite" = "Favorites";
+"market.searchhistory" = "Search History";
+"market.title" = "Markets";
+"market.about" = "Get Started with ViteX";
+"market.name" = "Name";
+"market.price" = "Last Price";
+"market.percent" = "Change";
+"market.operator" = "Operator";
+"market.switch" = "Exchange";
+
+// market detail
+"market.detail.page.segment.order.book.title" = "Order book";
+"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.token.info.title" = "Token";
+"market.detail.page.segment.operator.into.title" = "Operator";
+
+"market.detail.page.info.high.title" = "High";
+"market.detail.page.info.low.title" = "Low";
+"market.detail.page.info.vol.title" = "24H";
+
+"market.detail.page.kline.type.min1.title" = "1m";
+"market.detail.page.kline.type.min30.title" = "30m";
+"market.detail.page.kline.type.hour1.title" = "1H";
+"market.detail.page.kline.type.hour2.title" = "2H";
+"market.detail.page.kline.type.hour4.title" = "4H";
+"market.detail.page.kline.type.hour6.title" = "6H";
+"market.detail.page.kline.type.hour12.title" = "12H";
+"market.detail.page.kline.type.day1.title" = "1D";
+"market.detail.page.kline.type.week1.title" = "1W";
+
+"market.detail.page.value.time.title" = "Time";
+"market.detail.page.value.open.title" = "Open";
+"market.detail.page.value.high.title" = "High";
+"market.detail.page.value.low.title" = "Low";
+"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.diff.title" = "chg";
+"market.detail.page.value.extent.title" = "chg%";
+"market.detail.page.value.vol.title" = "Volume";
+
+"market.detail.page.depth.vol.title" = "Amount(%@)";
+"market.detail.page.depth.price.title" = "Price(%@)";
+
+"market.detail.page.trade.time.title" = "Time";
+"market.detail.page.trade.price.title" = "Price";
+"market.detail.page.trade.vol.title" = "Amount";
+"market.detail.page.buy.button.title" = "Buy";
+"market.detail.page.sell.button.title" = "Sell";
+
+
+"market.detail.page.token.info.token.id" = "TokenID";
+"market.detail.page.token.info.total" = "Tokens in Circulation";
+"market.detail.page.token.info.type" = "Type";
+"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.type.value.other" = "Cross-Chain";
+"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
+"market.detail.page.token.info.official" = "Official website";
+"market.detail.page.token.info.paper" = "WhitePaper";
+"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.github" = "Github";
+
+"market.detail.page.token.info.social" = "Social Media";
+"market.detail.page.token.info.brief" = "Introduction";
+
+"market.detail.page.token.info.anonymous" = "Anonymous";
+"market.detail.page.token.info.address" = "Operator address";
+"market.detail.page.token.info.pair" = "Trading pair";
+
+// Trading Home
+"trading.home.page.segment.spot" = "Spot";
+"trading.home.page.segment.mining" = "Mining";
+"trading.home.page.segment.bonus" = "Dividend";
+
+// Mining Home
+"mining.page.segment.trading" = "xxxxx";
+"mining.page.segment.staking" = "xxxxx";
+"mining.page.segment.invite" = "xxxxx";
+"mining.page.segment.making" = "xxxxx";
+
+"mining.page.header.total.real.time" = "xxxxx";
+"mining.page.list.title" = "xxxxx";
+
+"mining.trading.page.header.total.earnings" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
+"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+
+
+"mining.trading.page.header.fee" = "xxxxx";
+"mining.trading.page.header.title" = "xxxxx";
+"mining.trading.page.header.expect" = "xxxxx";
+
+"mining.trading.page.cell.fee" = "xxxxx";
+
+"mining.staking.page.header.total.earnings" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxxx";
+"mining.staking.page.detail.amount.title" = "xxxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.add.button.title" = "xxxxx";
+"mining.staking.page.detail.list.button.title" = "xxxxx";
+"mining.staking.page.cell.amount" = "xxxxx";
+
+"mining.staking.page.confirm.title" = "xxxxx";
+"mining.staking.page.confirm.available.title" = "xxxxx";
+"mining.staking.page.confirm.amount.title" = "xxxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
+"mining.staking.page.confirm.tip" = "xxxxx";
+"mining.staking.page.confirm.button.title" = "xxxxx";
+
+// Spot
+"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
+"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
+"spot.page.button.closed.title" = "Trading Suspended";
+"spot.page.button.buy.title" = "Buy";
+"spot.page.button.sell.title" = "Sell";
+"spot.page.button.limit.buy.title" = "Limit Order";
+"spot.page.price.buy.placeholder" = "Price";
+"spot.page.vol.buy.placeholder" = "Amount";
+"spot.page.price.sell.placeholder" = "Price";
+"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.available" = "Avail.: %@";
+"spot.page.buyable" = "Max Buy: %@";
+"spot.page.sellable" = "Max Sell: %@";
+"spot.page.total" = "Total: %@";
+"spot.page.open.vip" = "Become a VIP";
+"spot.page.close.vip" = "Cancel VIP";
+"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
+"spot.page.close.vip.error.toast" = "No VIP staked";
+"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
+"spot.page.depth.price" = "Price";
+"spot.page.depth.vol" = "Amount";
+"spot.page.current.order.title" = "Open Orders";
+"spot.page.orders.button.title" = "History";
+
+"spot.page.post.toast.price.empty" = "Please enter the price";
+"spot.page.post.toast.price.zero" = "Value must be greater than 0";
+"spot.page.post.toast.vol.empty" = "Please enter the amount";
+"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
+"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+
+"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+
+"spot.page.alert.title" = "Important reminder";
+"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.ok" = "Confirm";
+
+"spot.page.order.empty" = "No order";
+"spot.page.cell.type.buy" = "Buy";
+"spot.page.cell.type.sell" = "Sell";
+"spot.page.cell.button.cancel.title" = "Cancel";
+"spot.page.cell.vol" = "Amt.: %@";
+"spot.page.cell.price" = "Price: %@";
+"spot.page.cell.deal" = "Filled: %@";
+"spot.page.cell.average" = "Avg.: %@";
+
+"grin.initing.desc" = "Initializing, click to view details";
+"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+
+// DexHome
+"dex.home.page.nav.title" = "DEX Assets";
+"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
+"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.segment.dex" = "Trading";
+
+"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
+"dex.home.page.header.button.transfer.title" = "Transfer";
+"dex.home.page.header.button.deposit.title" = "Deposit";
+"dex.home.page.header.button.withdraw.title" = "Withdraw";
+"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+
+"dex.token.detail.page.title" = "Balance";
+"dex.token.detail.page.header.total" = "Total";
+"dex.token.detail.page.header.available" = "Available";
+"dex.token.detail.page.header.lock.place.order" = "In Order";
+
+"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
+"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.mining" = "Staked";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vx" = "Staked";
+"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+
+"dex.token.detail.page.list.wallet.heater.title" = "History";
+"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
+"dex.token.detail.page.cell.in" = "Transfer-In";
+"dex.token.detail.page.cell.out" = "Transfer-Out";
+
+"dex.token.detail.page.button.deposit" = "Deposit";
+"dex.token.detail.page.button.withdraw" = "Withdraw";
+"dex.token.detail.page.button.transfer" = "Transfer";
+"dex.token.detail.page.button.send" = "Send";
+"dex.token.detail.page.button.trading" = "Trade";
+
+"dex.token.market.selector.title" = "Select Trading pair";
