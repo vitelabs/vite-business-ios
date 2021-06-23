@@ -188,10 +188,21 @@ extension CrossChainGatewayProvider {
         }
     }
 
-    enum CrossChainGatewayError: Error {
+    enum CrossChainGatewayError: Error, DisplayableError {
         case format
         case response(Int, String)
         case notFound
+        
+        var errorMessage: String {
+            switch self {
+            case .format:
+                return "format error"
+            case .response(let code, let string):
+                return string
+            case .notFound:
+                return "not found"
+            }
+        }
     }
 }
 

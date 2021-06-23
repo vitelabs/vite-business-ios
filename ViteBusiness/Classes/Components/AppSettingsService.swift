@@ -26,7 +26,22 @@ public class AppSettingsService {
         if let appSettings:AppSettings = readMappable() {
             appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)
         } else {
-            let currency = LocalizationService.sharedInstance.currentLanguage == .chinese ? CurrencyCode.CNY : CurrencyCode.USD
+            let currency: CurrencyCode = {
+                switch LocalizationService.sharedInstance.currentLanguage {
+                case .chinese:
+                    return CurrencyCode.CNY
+                case .korea:
+                    return CurrencyCode.KRW
+                case .russia:
+                    return CurrencyCode.RUB
+                case .turkey:
+                    return CurrencyCode.TRY
+                case .vietnam:
+                    return CurrencyCode.VND
+                case .base:
+                    return CurrencyCode.USD
+                }
+            }()
             var appSettings = AppSettings()
             appSettings.currency = currency
             appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)

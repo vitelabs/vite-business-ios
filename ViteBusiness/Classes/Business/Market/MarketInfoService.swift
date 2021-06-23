@@ -384,10 +384,19 @@ extension MarketInfoService {
         var rateMap = [String: Double]()
         for i in r {
             guard let key = JSON(i)["tokenSymbol"].string else { return }
-            if CurrencyCode.CNY == currency {
-                rateMap[key] = JSON(i)["cnyRate"].double
-            } else {
+            switch currency {
+            case .USD:
                 rateMap[key] = JSON(i)["usdRate"].double
+            case .CNY:
+                rateMap[key] = JSON(i)["cnyRate"].double
+            case .RUB:
+                rateMap[key] = JSON(i)["rubRate"].double
+            case .KRW:
+                rateMap[key] = JSON(i)["krwRate"].double
+            case .TRY:
+                rateMap[key] = JSON(i)["tryRate"].double
+            case .VND:
+                rateMap[key] = JSON(i)["vndRate"].double
             }
         }
         self.rateMap = rateMap

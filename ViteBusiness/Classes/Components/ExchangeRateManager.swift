@@ -100,6 +100,11 @@ public final class ExchangeRateManager {
 public enum CurrencyCode: String {
     case USD = "usd"
     case CNY = "cny"
+    case RUB = "rub"
+    case KRW = "krw"
+    case TRY = "try"
+    case VND = "vnd"
+    
 
     var symbol: String {
         switch self {
@@ -107,6 +112,14 @@ public enum CurrencyCode: String {
             return "$"
         case .CNY:
             return "¥"
+        case .RUB:
+            return "₽"
+        case .KRW:
+            return "₩"
+        case .TRY:
+            return "₺"
+        case .VND:
+            return "₫"
         }
     }
 
@@ -116,11 +129,19 @@ public enum CurrencyCode: String {
             return "USD"
         case .CNY:
             return "CNY"
+        case .RUB:
+            return "RUB"
+        case .KRW:
+            return "KRW"
+        case .TRY:
+            return "TRY"
+        case .VND:
+            return "VND"
         }
     }
 
     static var allValues: [CurrencyCode] {
-        return [.CNY, .USD]
+        return [.CNY, .USD, .RUB, .KRW, .TRY, .VND]
     }
 }
 
