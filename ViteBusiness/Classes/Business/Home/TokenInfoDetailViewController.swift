@@ -34,7 +34,7 @@ class TokenInfoDetailViewController: BaseTableViewController {
                 cells.append({
                     let cell = InfoTitleValueCell()
                     let text = "\(detail.name) (\(detail.uniqueSymbol))"
-                    var u = "https://explorer.vite.net"
+                    var u = "https://vitescan.io"
                     if LocalizationService.sharedInstance.currentLanguage == .chinese {
                         u.append("/zh")
                     }
@@ -47,7 +47,7 @@ class TokenInfoDetailViewController: BaseTableViewController {
                 cells.append({
                     let cell = InfoTitleValueCell()
                     let text = detail.id
-                    var u = "https://explorer.vite.net"
+                    var u = "https://vitescan.io"
                     if LocalizationService.sharedInstance.currentLanguage == .chinese {
                         u.append("/zh")
                     }

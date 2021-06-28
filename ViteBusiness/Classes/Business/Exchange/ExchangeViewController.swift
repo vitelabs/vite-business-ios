@@ -315,13 +315,9 @@ class ExchangeViewController: BaseViewController {
 extension ExchangeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == card.ethInfo.inputTextField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.eth.value.decimals)
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.eth.value.decimals)
         } else if textField == card.viteInfo.inputTextField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.vite.value.decimals)
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: TokenInfo.BuildIn.vite.value.decimals)
         } else {
             return true
         }

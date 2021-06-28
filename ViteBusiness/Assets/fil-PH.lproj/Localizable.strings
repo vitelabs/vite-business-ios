@@ -288,6 +288,7 @@
 "send.page.title" = "Ipadala";
 "send.page.my.address.title" = "Ang aking %@ address";
 "send.page.my.balance.title" = "Balanse";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "Nakinabang na Pag-Stake";
 "send.page.my.quota.title" = "Pwede Gastusin na Quota / Limitasyon ng Quota";
 "send.page.my.max.tx.count.title" = "Maximum na Halaga ng Tx";

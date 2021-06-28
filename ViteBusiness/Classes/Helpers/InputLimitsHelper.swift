@@ -18,6 +18,50 @@ struct InputLimitsHelper {
             return text.utf8.count + string.utf8.count - str.utf8.count <= maxCount
         }
     }
+    
+    static func canDecimalPointWithDigitalText(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String, decimals: Int) -> Bool {
+        var t = (text as NSString).replacingCharacters(in: range, with: string)
+        
+        t = t.replacingOccurrences(of: ",", with: ".")
+        
+        let array = t.split(separator: ".", omittingEmptySubsequences: false)
+        
+        if array.count == 0 {
+            return true
+        } else if array.count == 1 {
+            if array[0].isEmpty {
+                return true
+            }
+            
+            if let _ = Int(array[0]) {
+                return true
+            } else {
+                return false
+            }
+            
+        } else if array.count == 2 {
+            guard let _ = Int(array[0]) else {
+                return false
+            }
+            
+            if array[1].isEmpty {
+                return true
+            }
+            
+            guard let _ = Int(array[1]) else {
+                return false
+            }
+            
+            if array[1].count <= decimals {
+                return true
+            } else {
+                return false
+            }
+            
+        } else {
+            return false
+        }
+    }
 
     static func allowDecimalPointWithDigitalText(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String, decimals: Int) -> (Bool, String) {
 

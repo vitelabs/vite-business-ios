@@ -51,12 +51,6 @@ class BalanceInfoViteChainQuotaView: UIView {
         $0.numberOfLines = 1
     }
 
-    let maxLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
-        $0.numberOfLines = 1
-    }
-
     let tipLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x3E4A59)
@@ -79,7 +73,6 @@ class BalanceInfoViteChainQuotaView: UIView {
         addSubview(maxImageView)
         addSubview(currentImageView)
         addSubview(currentLabel)
-        addSubview(maxLabel)
         addSubview(tipLabel)
 
         quotaLabel.snp.makeConstraints { (m) in
@@ -106,11 +99,6 @@ class BalanceInfoViteChainQuotaView: UIView {
 
         currentLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(14)
-            m.bottom.equalToSuperview().offset(-10)
-        }
-
-        maxLabel.snp.makeConstraints { (m) in
-            m.right.equalToSuperview().offset(-14)
             m.bottom.equalToSuperview().offset(-10)
         }
 
@@ -151,17 +139,14 @@ class BalanceInfoViteChainQuotaView: UIView {
             currentImageView.isHidden = true
             maxImageView.isHidden = true
             currentLabel.isHidden = true
-            maxLabel.isHidden = true
             tipLabel.isHidden = false
         } else {
             currentImageView.isHidden = false
             maxImageView.isHidden = false
             currentLabel.isHidden = false
-            maxLabel.isHidden = false
             tipLabel.isHidden = true
 
-            currentLabel.text = currect.utToString() + " UT"
-            maxLabel.text = max.utToString() + " UT"
+            currentLabel.text = currect.utToString() + " Quota/" + max.utToString() + " Quota"
 
             let mu = currect / max
 

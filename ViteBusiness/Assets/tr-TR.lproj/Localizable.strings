@@ -288,6 +288,7 @@
 "send.page.title" = "Gönder";
 "send.page.my.address.title" = "%@ Adresim";
 "send.page.my.balance.title" = "Bakiye";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "Avantajlı Stake";
 "send.page.my.quota.title" = "Harcanabilir Quota/Quota Sınırı";
 "send.page.my.max.tx.count.title" = "Maksimum Tx Miktarı";

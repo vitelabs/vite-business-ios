@@ -158,8 +158,6 @@ class ReceiveViewController: BaseViewController {
 extension ReceiveViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, tokenInfo.decimals))
-        textField.text = text
-        return ret
+        return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, tokenInfo.decimals))
     }
 }

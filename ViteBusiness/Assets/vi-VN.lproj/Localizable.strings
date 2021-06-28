@@ -288,6 +288,7 @@
 "send.page.title" = "Gửi";
 "send.page.my.address.title" = "Địa chỉ %@ của tôi";
 "send.page.my.balance.title" = "Số dư";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "Đang stake";
 "send.page.my.quota.title" = "Quota có thể dùng/Hạn mức Quota";
 "send.page.my.max.tx.count.title" = "Số Giao dịch Tối đa";

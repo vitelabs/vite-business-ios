@@ -2061,7 +2061,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1056 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1057 localization keys.
     public struct localizable {
       /// id-ID translation: 
       /// 
@@ -2563,10 +2563,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let buildinCoinReissueTokenItem2Title = Rswift.StringResource(key: "buildin.coin.reissue.token.item2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Benefited Stake
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Benefits
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -3259,10 +3255,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let finish = Rswift.StringResource(key: "Finish", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Due Date
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: EN
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -3327,10 +3319,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let marketSwitch = Rswift.StringResource(key: "market.switch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Exchange Account
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let transferDexAccount = Rswift.StringResource(key: "transfer.dex.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Exchange Asset
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -3839,10 +3827,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaPowTipFloatViewPledge2 = Rswift.StringResource(key: "quota.pow.tip.float.view.pledge.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Lock period
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let quotaManagePageQuotaSnapshootHeightTitle = Rswift.StringResource(key: "quota.manage.page.quota.snapshoot.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Locked Amount
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let quotaManagePageQuotaMoneyTitle = Rswift.StringResource(key: "quota.manage.page.quota.money.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Locked Amount
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let sendPageMyPledgeTitle = Rswift.StringResource(key: "send.page.my.pledge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Locked by Previous Transaction
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let grinBalanceLocked = Rswift.StringResource(key: "grin.balance.locked", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Locking Record
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let peldgeTitle = Rswift.StringResource(key: "peldge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Locking Record
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let quotaManagePageCheckQuotaListBtnTitle = Rswift.StringResource(key: "quota.manage.page.check.quotaList.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Log Uploaded
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -3875,6 +3883,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let marketDetailPageValueLowTitle = Rswift.StringResource(key: "market.detail.page.value.low.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Main
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let dexHomePageSegmentWallet = Rswift.StringResource(key: "dex.home.page.segment.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Main Account
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let transferWalletAccount = Rswift.StringResource(key: "transfer.wallet.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Make sure to logout ViteConnect?
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -4483,6 +4499,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaManagePageQuotaQuotaTitle = Rswift.StringResource(key: "quota.manage.page.quota.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Quota Available/Quota Limit
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Quota Available/Quota Limit
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Quota Beneficiary
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -4922,15 +4946,7 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Spendable Quota/Quota Limit
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let balanceInfoDetailPledgeCountContent = Rswift.StringResource(key: "balance.info.detail.pledge.count.content", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Spendable Quota/Quota Limit
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let fundQuotaInfo = Rswift.StringResource(key: "fund.quotaInfo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Spendable Quota/Quota Limit
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let sendPageMyQuotaTitle = Rswift.StringResource(key: "send.page.my.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Spot
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -4967,26 +4983,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let dexTokenDetailPageHeaderLockViteSbp = Rswift.StringResource(key: "dex.token.detail.page.header.lock.vite.sbp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Staking Amount
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let quotaManagePageQuotaMoneyTitle = Rswift.StringResource(key: "quota.manage.page.quota.money.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Staking Amount for Becoming a VIP
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let confirmTransactionPageViteDexVipAmount = Rswift.StringResource(key: "confirm.transaction.page.vite.dex.vip.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Staking Freeze Duration
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let quotaManagePageQuotaSnapshootHeightTitle = Rswift.StringResource(key: "quota.manage.page.quota.snapshoot.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Staking History
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let peldgeTitle = Rswift.StringResource(key: "peldge.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Staking List
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let quotaManagePageCheckQuotaListBtnTitle = Rswift.StringResource(key: "quota.manage.page.check.quotaList.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Staking amount should not be less than 134
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5003,14 +5003,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let submit = Rswift.StringResource(key: "Submit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Submit Staking
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let quotaManagePageSubmitBtnTitle = Rswift.StringResource(key: "quota.manage.page.submit.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Submit Successful
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let workflowToastSubmitSuccess = Rswift.StringResource(key: "workflow.toast.submit.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Submit to lock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let quotaManagePageSubmitBtnTitle = Rswift.StringResource(key: "quota.manage.page.submit.btn.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Success
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5191,6 +5191,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let marketDetailPageValueTimeTitle = Rswift.StringResource(key: "market.detail.page.value.time.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Time available to unlock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let peldgeDeadline = Rswift.StringResource(key: "peldge.deadline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: To
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5359,6 +5363,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let spotPageButtonClosedTitle = Rswift.StringResource(key: "spot.page.button.closed.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Trading Wallet
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let transferDexAccount = Rswift.StringResource(key: "transfer.dex.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Trading pair
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5890,19 +5898,11 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Wallet
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let dexHomePageSegmentWallet = Rswift.StringResource(key: "dex.home.page.segment.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Wallet
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let tabTitleWallet = Rswift.StringResource(key: "tab.title.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Wallet
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let tabbarItemTitleWallet = Rswift.StringResource(key: "tabbar.item.title.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Wallet Account
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let transferWalletAccount = Rswift.StringResource(key: "transfer.wallet.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Wallet Asset
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5911,6 +5911,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let fundWalletFound = Rswift.StringResource(key: "fund.walletFound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Wallet Balance
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let sendPageWalletBalanceTitle = Rswift.StringResource(key: "send.page.wallet.balance.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Wallet Management
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -7163,13 +7167,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("buildin.coin.reissue.token.item2.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: Benefited Stake
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// id-ID translation: Benefits
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -8381,13 +8378,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("Finish", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: Due Date
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func peldgeDeadline(_: Void = ()) -> String {
-        return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// id-ID translation: EN
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -8498,13 +8488,6 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func marketSwitch(_: Void = ()) -> String {
         return NSLocalizedString("market.switch", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Exchange Account
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func transferDexAccount(_: Void = ()) -> String {
-        return NSLocalizedString("transfer.dex.account", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Exchange Asset
@@ -9396,11 +9379,46 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.pow.tip.float.view.pledge.2", bundle: R.hostingBundle, comment: "")
       }
       
+      /// id-ID translation: Lock period
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func quotaManagePageQuotaSnapshootHeightTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.manage.page.quota.snapshoot.height.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Locked Amount
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func quotaManagePageQuotaMoneyTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.manage.page.quota.money.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Locked Amount
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func sendPageMyPledgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.pledge.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// id-ID translation: Locked by Previous Transaction
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func grinBalanceLocked(_: Void = ()) -> String {
         return NSLocalizedString("grin.balance.locked", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Locking Record
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func peldgeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Locking Record
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func quotaManagePageCheckQuotaListBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.manage.page.check.quotaList.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Log Uploaded
@@ -9457,6 +9475,20 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func marketDetailPageValueLowTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.value.low.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Main
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func dexHomePageSegmentWallet(_: Void = ()) -> String {
+        return NSLocalizedString("dex.home.page.segment.wallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Main Account
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func transferWalletAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.wallet.account", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Make sure to logout ViteConnect?
@@ -10523,6 +10555,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.quota.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// id-ID translation: Quota Available/Quota Limit
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func balanceInfoDetailPledgeCountContent(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Quota Available/Quota Limit
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func sendPageMyQuotaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// id-ID translation: Quota Beneficiary
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -11289,22 +11335,8 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Spendable Quota/Quota Limit
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func balanceInfoDetailPledgeCountContent(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.pledge.count.content", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Spendable Quota/Quota Limit
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func fundQuotaInfo(_: Void = ()) -> String {
         return NSLocalizedString("fund.quotaInfo", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Spendable Quota/Quota Limit
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func sendPageMyQuotaTitle(_: Void = ()) -> String {
-        return NSLocalizedString("send.page.my.quota.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Spot
@@ -11370,39 +11402,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dex.token.detail.page.header.lock.vite.sbp", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: Staking Amount
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func quotaManagePageQuotaMoneyTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.manage.page.quota.money.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// id-ID translation: Staking Amount for Becoming a VIP
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func confirmTransactionPageViteDexVipAmount(_: Void = ()) -> String {
         return NSLocalizedString("confirm.transaction.page.vite.dex.vip.amount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Staking Freeze Duration
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func quotaManagePageQuotaSnapshootHeightTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.manage.page.quota.snapshoot.height.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Staking History
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func peldgeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("peldge.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Staking List
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func quotaManagePageCheckQuotaListBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.manage.page.check.quotaList.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Staking amount should not be less than 134
@@ -11433,18 +11437,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("Submit", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: Submit Staking
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func quotaManagePageSubmitBtnTitle(_: Void = ()) -> String {
-        return NSLocalizedString("quota.manage.page.submit.btn.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// id-ID translation: Submit Successful
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func workflowToastSubmitSuccess(_: Void = ()) -> String {
         return NSLocalizedString("workflow.toast.submit.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Submit to lock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func quotaManagePageSubmitBtnTitle(_: Void = ()) -> String {
+        return NSLocalizedString("quota.manage.page.submit.btn.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Success
@@ -11762,6 +11766,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.value.time.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// id-ID translation: Time available to unlock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func peldgeDeadline(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.deadline", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// id-ID translation: To
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -12054,6 +12065,13 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func spotPageButtonClosedTitle(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.button.closed.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Trading Wallet
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func transferDexAccount(_: Void = ()) -> String {
+        return NSLocalizedString("transfer.dex.account", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Trading pair
@@ -12983,13 +13001,6 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Wallet
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func dexHomePageSegmentWallet(_: Void = ()) -> String {
-        return NSLocalizedString("dex.home.page.segment.wallet", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Wallet
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func tabTitleWallet(_: Void = ()) -> String {
         return NSLocalizedString("tab.title.wallet", bundle: R.hostingBundle, comment: "")
       }
@@ -12999,13 +13010,6 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func tabbarItemTitleWallet(_: Void = ()) -> String {
         return NSLocalizedString("tabbar.item.title.wallet", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Wallet Account
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func transferWalletAccount(_: Void = ()) -> String {
-        return NSLocalizedString("transfer.wallet.account", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Wallet Asset
@@ -13020,6 +13024,13 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func fundWalletFound(_: Void = ()) -> String {
         return NSLocalizedString("fund.walletFound", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// id-ID translation: Wallet Balance
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func sendPageWalletBalanceTitle(_: Void = ()) -> String {
+        return NSLocalizedString("send.page.wallet.balance.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Wallet Management

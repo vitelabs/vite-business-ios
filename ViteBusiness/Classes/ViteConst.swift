@@ -157,7 +157,7 @@ public extension ViteConst {
                          discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
                          strapi: "https://config.vite.net"),
                 vite: Vite(nodeHttp: "https://node.vite.net/gvite",
-                           explorer: "https://explorer.vite.net",
+                           explorer: "https://vitescan.io",
                            growth: "https://growth.vite.net",
                            x: "https://api.vitex.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",
@@ -214,7 +214,7 @@ public extension ViteConst {
                          discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com",// stage
                          strapi: "https://config.vite.net"),
                 vite: Vite(nodeHttp: "https://node.vite.net/gvite",
-                           explorer: "https://explorer.vite.net",
+                           explorer: "https://vitescan.io",
                            growth: "https://growth.vite.net",
                            x: "https://api.vitex.net",
                            genesisPageUrl: "https://x.vite.net/balance?address=%@",

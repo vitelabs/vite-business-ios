@@ -660,13 +660,9 @@ extension SpotOperationView: UITextFieldDelegate {
         }
 
         if textField == priceTextField.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.pricePrecision))
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.pricePrecision))
         } else if textField == volTextField.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.quantityPrecision))
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: Int(info.statistic.quantityPrecision))
         } else {
             return true
         }

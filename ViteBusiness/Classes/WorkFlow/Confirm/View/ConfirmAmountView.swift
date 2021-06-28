@@ -84,7 +84,7 @@ class ConfirmAmountView: UIView {
         case .fee:
             textLabel.text = text
         case .quota:
-            textLabel.text = text + " UT"
+            textLabel.text = text + " Quota"
         case .custom:
             textLabel.text = text
         }

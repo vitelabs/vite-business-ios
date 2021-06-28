@@ -379,9 +379,7 @@ extension CrossChainDepositViewController: UITextFieldDelegate {
         if textField == amountView.textField {
             var decimals = self.mappedChainTokenDecimals!
             exchangeAll = false
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, decimals))
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, decimals))
         } else {
             return true
         }

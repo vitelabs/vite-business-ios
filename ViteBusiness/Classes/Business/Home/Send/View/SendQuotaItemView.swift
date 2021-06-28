@@ -28,7 +28,7 @@ class SendQuotaItemView: SendStaticItemView {
     }
 
     static fileprivate func utStringToAttributedString(utString: String) -> NSAttributedString {
-        let string = "\(utString) UT"
+        let string = "\(utString) Quota"
         let range = string.range(of: utString)!
         let ret = NSMutableAttributedString(string: string)
         ret.addAttributes([NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x3E4A59)], range: NSRange(range, in: string))

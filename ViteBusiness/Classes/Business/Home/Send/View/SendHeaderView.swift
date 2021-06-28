@@ -93,8 +93,9 @@ class SendHeaderView: UIView {
         stackView.addArrangedSubview(balanceView)
         switch type {
         case .send:
-            break
+            balanceView.titleLabel.text = R.string.localizable.sendPageMyBalanceTitle()
         case .pledge:
+            balanceView.titleLabel.text = R.string.localizable.sendPageWalletBalanceTitle()
             stackView.addArrangedSubview(pledgeView)
         }
         stackView.addArrangedSubview(quotaView)
@@ -122,7 +123,7 @@ class SendHeaderView: UIView {
             .drive(onNext: { [weak self] (quota) in
                 guard let `self` = self else { return }
                 self.pledgeView.textLabel.text = quota.pledgeAmount.amountFullWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
-                self.quotaView.textLabel.text = "\(quota.currentUt.utToString())/\(quota.utpe.utToString()) UT"
+                self.quotaView.textLabel.text = "\(quota.currentUt.utToString())/\(quota.utpe.utToString()) Quota"
             }).disposed(by: rx.disposeBag)
     }
 

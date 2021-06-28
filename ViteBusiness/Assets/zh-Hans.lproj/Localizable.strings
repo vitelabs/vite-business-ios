@@ -235,7 +235,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "賬戶餘額";
 "balance.info.detail.unconfirmed.title" = "在途";
-"balance.info.detail.unconfirmed.quota.title" = "(配額 %@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(配額 %@ Quota)";
 "balance.info.detail.available.amount.title" = "可用餘額";
 "balance.info.detail.pledge.amount.title" = "已抵押";
 "balance.info.detail.show.transactions.button.title" = "到以太坊瀏覽器查看交易記錄";
@@ -245,7 +245,7 @@
 "balance.info.detail.pledge" = "獲取配額";
 "balance.info.detail.exchange.vite" = "置換 VITE";
 "balance.info.detail.pledge.count.content" = "可用配額/配額上限";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "網關詳情";
 "gateway.info.detail.page.name" = "網關名稱";
@@ -291,6 +291,7 @@
 "send.page.title" = "轉賬";
 "send.page.my.address.title" = "我的%@地址";
 "send.page.my.balance.title" = "餘額";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "已獲得抵押";
 "send.page.my.quota.title" = "配額餘額/上限";
 "send.page.my.max.tx.count.title" = "最大交易筆數";
@@ -404,7 +405,7 @@
 "quota.alert.pow.button.title" = "運行 PoW";
 "quota.alert.quota.button.title" = "抵押 VITE";
 "quota.float.view.title" = "正在為您計算PoW獲取配額";
-"quota.float.view.tip" = "本次交易需消耗%@UT";
+"quota.float.view.tip" = "本次交易需消耗%@Quota";
 
 "quota.pow.tip.float.view.title.1" = "配額不足";
 "quota.pow.tip.float.view.message.1" = "每個地址每天有%@筆交易不需要抵押，您當前地址%@次已用盡，請前往配額頁面抵押VITE";
@@ -416,7 +417,7 @@
 "quota.pow.tip.float.view.notNow.2" = "跳过抵押";
 
 "quota.pow.finished.float.view.title" = "交易已發出";
-"quota.pow.finished.float.view.h1" = "計算PoW花費%1$@秒，為您獲得%2$@UT";
+"quota.pow.finished.float.view.h1" = "計算PoW花費%1$@秒，為您獲得%2$@Quota";
 "quota.pow.finished.float.view.h2" = "抵押三天后可免費取回。當抵押獲得的配額足夠交易時，您將直接跳過PoW步驟及本彈窗。";
 "quota.pow.finished.float.view.pledge.button.title" = "抵押加速交易";
 

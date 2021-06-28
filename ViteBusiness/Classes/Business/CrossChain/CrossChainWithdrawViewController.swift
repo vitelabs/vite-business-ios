@@ -494,9 +494,7 @@ extension GatewayWithdrawViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == amountView.textField {
-            let (ret, text) = InputLimitsHelper.allowDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, self.viteChainTokenDecimals))
-            textField.text = text
-            return ret
+            return InputLimitsHelper.canDecimalPointWithDigitalText(textField.text ?? "", shouldChangeCharactersIn: range, replacementString: string, decimals: min(8, self.viteChainTokenDecimals))
         } else {
             return true
         }

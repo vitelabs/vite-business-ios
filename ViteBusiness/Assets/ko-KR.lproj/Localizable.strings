@@ -288,6 +288,7 @@
 "send.page.title" = "보내기";
 "send.page.my.address.title" = "나의 %@ 주소";
 "send.page.my.balance.title" = "잔액";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "스테이킹 혜택";
 "send.page.my.quota.title" = "사용 가능한 쿼타/쿼타 한도";
 "send.page.my.max.tx.count.title" = "최대 Tx 수량";

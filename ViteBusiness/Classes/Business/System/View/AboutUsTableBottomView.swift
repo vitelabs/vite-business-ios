@@ -32,8 +32,6 @@ class AboutUsTableBottomView: UIView {
                 ["img": "icon_button_youtube", "web": "https://www.youtube.com/channel/UC8qft2rEzBnP9yJOGdsJBVg"],
                 ["img": "icon_button_forum", "web": "https://forum.vite.net/"],
                 ["img": "icon_button_bitcointalk", "web": "https://bitcointalk.org/index.php?topic=5056409"],
-                ["img": "icon_button_weibo", "web": "https://weibo.com/u/6572727462?sudaref=vite.org&display=0&retcode=6102"],
-                ["img": "icon_button_wechat", "custom": "wechat"],
                 ["img": "icon_button_facebook", "web": "https://www.facebook.com/vitelabs/"],
                 ]
         super.init(frame: frame)
@@ -108,11 +106,7 @@ class AboutUsTableBottomView: UIView {
         let blogWebsiteBtn = UIButton.init(style: .white, title: R.string.localizable.aboutUsPageCellBlogWebsite())
         blogWebsiteBtn.titleLabel?.adjustsFontSizeToFitWidth = false
         blogWebsiteBtn.rx.tap.bind {_ in
-            if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                WebHandler.open(URL.init(string: "https://vite.wiki/zh/")!)
-            } else {
-                WebHandler.open(URL.init(string: "https://vite.wiki/")!)
-            }
+            WebHandler.open(URL.init(string: "https://docs.vite.org/")!)
         }.disposed(by: rx.disposeBag)
         return blogWebsiteBtn
     }()

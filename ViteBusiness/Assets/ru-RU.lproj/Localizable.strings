@@ -288,6 +288,7 @@
 "send.page.title" = "Отправить";
 "send.page.my.address.title" = "Мой %@ адрес";
 "send.page.my.balance.title" = "Баланс";
+"send.page.wallet.balance.title" = "Wallet Balance";
 "send.page.my.pledge.title" = "Предоставленный стейк";
 "send.page.my.quota.title" = "Лимит расхода квоты/квот";
 "send.page.my.max.tx.count.title" = "Максимальная сумма Tx";
