@@ -37,11 +37,19 @@ extension ExchangeProvider {
                 if let json = json as? [[String: Any]] {
                     json.forEach({
                         if let tokenCode = $0["tokenCode"] as? String,
-                            let btc = $0["btc"] as? String,
+                           let btc = $0["btc"] as? String,
+                           let rub = $0["rub"] as? String,
+                           let krw = $0["krw"] as? String,
+                           let `try` = $0["try"] as? String,
+                           let vnd = $0["vnd"] as? String,
                             let usd = $0["usd"] as? String,
                             let cny = $0["cny"] as? String {
                             map[tokenCode] = [
                                 "btc": btc,
+                                "rub": rub,
+                                "krw": krw,
+                                "try": `try`,
+                                "vnd": vnd,
                                 "usd": usd,
                                 "cny": cny
                             ]

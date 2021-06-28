@@ -390,13 +390,13 @@ extension MarketInfoService {
             case .CNY:
                 rateMap[key] = JSON(i)["cnyRate"].double
             case .RUB:
-                rateMap[key] = JSON(i)["rubRate"].double
+                rateMap[key] = Double(JSON(i)["rubRate"].string ?? "0")
             case .KRW:
-                rateMap[key] = JSON(i)["krwRate"].double
+                rateMap[key] = Double(JSON(i)["krwRate"].string ?? "0")
             case .TRY:
-                rateMap[key] = JSON(i)["tryRate"].double
+                rateMap[key] = Double(JSON(i)["tryRate"].string ?? "0")
             case .VND:
-                rateMap[key] = JSON(i)["vndRate"].double
+                rateMap[key] = Double(JSON(i)["vndRate"].string ?? "0")
             }
         }
         self.rateMap = rateMap
