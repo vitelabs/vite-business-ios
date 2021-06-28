@@ -45,7 +45,7 @@ class DexTokenDetailBottomView: UIView {
             }.disposed(by: rx.disposeBag)
 
             transfer.button.rx.tap.bind {
-                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toVitex)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 
@@ -62,7 +62,7 @@ class DexTokenDetailBottomView: UIView {
             buttons.append(trading)
 
             transfer.button.rx.tap.bind {
-                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo)
+                let vc = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: .toWallet)
                 UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
             }.disposed(by: rx.disposeBag)
 

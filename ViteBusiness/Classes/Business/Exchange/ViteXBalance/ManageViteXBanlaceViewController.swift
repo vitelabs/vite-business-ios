@@ -17,14 +17,15 @@ import RxSwift
 
 public class ManageViteXBanlaceViewController: BaseViewController {
 
-    enum ActionType {
+    public enum ActionType {
         case toVitex
         case toWallet
     }
 
-    var actionType = ActionType.toVitex
-    public init(tokenInfo: TokenInfo, autoDismiss: Bool = true) {
+    var actionType: ActionType
+    public init(tokenInfo: TokenInfo, actionType: ActionType = .toVitex, autoDismiss: Bool = true) {
         self.tokenInfoBehaviorRelay = BehaviorRelay(value: tokenInfo)
+        self.actionType = actionType
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -54,7 +55,6 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59)
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = R.string.localizable.transferWalletAccount()
         return label
     }()
 
@@ -70,7 +70,6 @@ public class ManageViteXBanlaceViewController: BaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(netHex: 0x3e4a59)
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = R.string.localizable.transferDexAccount()
         return label
     }()
 
@@ -234,6 +233,16 @@ public class ManageViteXBanlaceViewController: BaseViewController {
     }
 
     func bind() {
+        
+        if self.actionType == .toWallet {
+            self.fromLabel.text = R.string.localizable.transferDexAccount()
+            self.destLabel.text = R.string.localizable.transferWalletAccount()
+            self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
+        } else {
+            self.destLabel.text = R.string.localizable.transferDexAccount()
+            self.fromLabel.text = R.string.localizable.transferWalletAccount()
+            self.balanceLabel.text =  R.string.localizable.transferAvailable() + self.balance.amountFullWithGroupSeparator(decimals: self.token.decimals) +  " " + self.token.symbol
+        }
 
         tokenSelectorView.changeButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }

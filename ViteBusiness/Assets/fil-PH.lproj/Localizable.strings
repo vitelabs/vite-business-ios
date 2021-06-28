@@ -1079,7 +1079,7 @@
 "transfer.from" = "Mula sa";
 "transfer.wallet.account" = "Account sa Wallet";
 "transfer.to" = "Para kay";
-"transfer.dex.account" = "Exchange Account";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "Token";
 "transfer.amount" = "Halaga";
 "transfer.available" = "Balanse: ";
@@ -1245,7 +1245,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Mga Asset ng Dex";
 "dex.home.page.nav.btc.valuation.title" = "Kabuuang Halaga (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Halaga (BTC)";

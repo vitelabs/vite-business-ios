@@ -1077,9 +1077,9 @@
 "fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
 
 "transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
+"transfer.wallet.account" = "Main Account";
 "transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "Token";
 "transfer.amount" = "Amount";
 "transfer.available" = "Balance: ";
@@ -1245,7 +1245,7 @@
 // DexHome
 "dex.home.page.nav.title" = "DEX Assets";
 "dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Value (BTC)";
