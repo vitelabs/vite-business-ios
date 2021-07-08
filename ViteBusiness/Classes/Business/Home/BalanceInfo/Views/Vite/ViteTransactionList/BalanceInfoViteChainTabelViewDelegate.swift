@@ -86,7 +86,7 @@ class BalanceInfoViteChainTabelViewDelegate: NSObject, BalanceInfoDetailTableVie
 
     var networkErrorTipView: UIView {
         return TableViewPlaceholderView(imageType: .networkError, viewType: .button(R.string.localizable.transactionListTransactionNetErrorAndShowAccount(), {
-            var urlStr = "\(ViteConst.instance.vite.explorer)/account/\(HDWalletManager.instance.account?.address ?? "")"
+            var urlStr = "\(ViteConst.instance.vite.explorer)/address/\(HDWalletManager.instance.account?.address ?? "")"
             let vc = WKWebViewController(url: URL.init(string: urlStr)!)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }))

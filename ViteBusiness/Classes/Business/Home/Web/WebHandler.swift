@@ -26,9 +26,9 @@ public struct WebHandler {
     }
 
     static func viteTranscationDetailPageURL(hash: String) -> URL? {
-        let host = appendLanguagePath(urlString: browserUrlString)
+        let host = browserUrlString
         guard let string = hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return nil }
-        guard let url = URL(string: "\(host)/transaction/\(string)") else { return nil }
+        guard let url = URL(string: "\(host)/tx/\(string)") else { return nil }
         return url
     }
 
@@ -62,9 +62,9 @@ public struct WebHandler {
     }
 
     static func openAddressDetailPage(address: ViteAddress) {
-        let host = appendLanguagePath(urlString: browserUrlString)
+        let host = browserUrlString
         guard let string = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
-        guard let url = URL(string: "\(host)/account/\(string)") else { return }
+        guard let url = URL(string: "\(host)/address/\(string)") else { return }
         open(url)
     }
 
@@ -80,9 +80,9 @@ public struct WebHandler {
     }
 
     static func openSBPDetailPage(name: String) {
-        let host = appendLanguagePath(urlString: browserUrlString)
+        let host = browserUrlString
         guard let string = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
-        guard let url = URL(string: "\(host)/SBPDetail/\(string)") else { return }
+        guard let url = URL(string: "\(host)/sbp/\(string)") else { return }
         open(url)
     }
 

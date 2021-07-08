@@ -35,9 +35,6 @@ class TokenInfoDetailViewController: BaseTableViewController {
                     let cell = InfoTitleValueCell()
                     let text = "\(detail.name) (\(detail.uniqueSymbol))"
                     var u = "https://vitescan.io"
-                    if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                        u.append("/zh")
-                    }
                     u.append("/token/\(detail.id)")
                     let url = URL(string: u)
                     cell.setTitle(R.string.localizable.tokenInfoDetailPageName(), text: text, url: url)
@@ -48,9 +45,6 @@ class TokenInfoDetailViewController: BaseTableViewController {
                     let cell = InfoTitleValueCell()
                     let text = detail.id
                     var u = "https://vitescan.io"
-                    if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                        u.append("/zh")
-                    }
                     u.append("/token/\(detail.id)")
                     let url = URL(string: u)
                     cell.setTitle(R.string.localizable.tokenInfoDetailPageId(), text: text, url: url)
