@@ -8,17 +8,29 @@
 import UIKit
 
 class ChainSelectView: UIView {
-    let titleLabel = UILabel().then {
+    fileprivate let titleLabel = UILabel().then {
         $0.textColor = UIColor(netHex: 0x3E4A59)
         $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         $0.text = R.string.localizable.crosschainChainSelectTitle()
     }
     
-    let scrollableView = HorizontalScrollableView().then {
+    fileprivate let scrollableView = HorizontalScrollableView().then {
         $0.stackView.spacing = 19
     }
     
-    init(chainName: String) {
+    fileprivate var buttons: [UIButton] = []
+    
+    var clicked: ((Int) -> ())? = nil
+    
+    func select(_ index: Int) {
+        guard index < buttons.count else { return }
+        for i in 0..<buttons.count {
+            buttons[i].isSelected = (index == i)
+        }
+    }
+    
+    init(mappedTokenExtraInfos: [MappedTokenExtraInfo]) {
+        
         super.init(frame: .zero)
         
         addSubview(titleLabel)
@@ -36,9 +48,23 @@ class ChainSelectView: UIView {
             m.height.equalTo(24)
         }
         
-        let button = type(of: self).makeSegmentButton(title: chainName)
-        button.isSelected = true
-        scrollableView.stackView.addArrangedSubview(button)
+        for i in 0..<mappedTokenExtraInfos.count {
+            let info = mappedTokenExtraInfos[i]
+            
+            let button = type(of: self).makeSegmentButton(title: info.chainName)
+            buttons.append(button)
+            scrollableView.stackView.addArrangedSubview(button)
+            
+            if i == 0 {
+                button.isSelected = true
+            }
+            
+            button.rx.tap.bind { [weak self] in
+                guard let `self` = self else { return }
+                guard !self.buttons[i].isSelected else { return }
+                self.clicked?(i)
+            }.disposed(by: rx.disposeBag)
+        }
     }
     
     required init?(coder: NSCoder) {

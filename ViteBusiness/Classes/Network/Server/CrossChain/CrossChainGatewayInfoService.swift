@@ -18,36 +18,68 @@ import enum Alamofire.Result
 
 class CrossChainGatewayInfoService {
 
-    static var gateway = [ViteConst.instance.crossChain.eth.tokenId: ViteConst.instance.crossChain.eth.gateway]
-
     var tokenId: String {
         return self.tokenInfo.id
     }
 
-    let provider = CrossChainGatewayProvider()
-
     let tokenInfo: TokenInfo
-
+    fileprivate let providers: [CrossChainGatewayProvider]
+    
+    fileprivate(set) var index = 0
+    
+    fileprivate var provider: CrossChainGatewayProvider {
+        providers[index]
+    }
+    
+    fileprivate var allMappedTokenExtraInfos: [MappedTokenExtraInfo]
+    
+    var currentMappedToken: MappedTokenExtraInfo {
+        allMappedTokenExtraInfos[index]
+    }
 
     init(tokenInfo: TokenInfo) {
-        if !tokenInfo.isGateway {
+        guard let gatewayInfo = tokenInfo.gatewayInfo else  {
             fatalError()
         }
         self.tokenInfo = tokenInfo
-
-        CrossChainGatewayInfoService.gateway[tokenInfo.id] = tokenInfo.gatewayInfo!.urlString
+        self.allMappedTokenExtraInfos = gatewayInfo.allMappedTokenExtraInfos
+        self.providers = allMappedTokenExtraInfos.map {
+            CrossChainGatewayProvider(baseURL: URL(string: $0.url)!)
+        }
     }
+
 
     func getMetaInfo() -> Promise<TokenMetaInfo>  {
          return provider.getMetaInfo(for: tokenId)
     }
+    
+    fileprivate var depositInfoMap: [Int: DepositInfo] = [:]
+    fileprivate var withdrawInfoMap: [Int: WithdrawInfo] = [:]
 
-    func depositInfo(viteAddress: String) -> Promise<DepositInfo> {
-        return provider.depositInfo(for: tokenId, viteAddress: viteAddress)
+    func depositInfo(viteAddress: String, index: Int) -> Promise<DepositInfo> {
+        if let info = depositInfoMap[index] {
+            self.index = index
+            return Promise.value(info)
+        }
+        
+        return providers[index].depositInfo(for: tokenId, viteAddress: viteAddress).then {[weak self] info -> Promise<DepositInfo> in
+            self?.depositInfoMap[index] = info
+            self?.index = index
+            return Promise.value(info)
+        }
     }
 
-    func withdrawInfo(viteAddress: String) -> Promise<WithdrawInfo> {
-        return provider.withdrawInfo(for: tokenId, viteAddress: viteAddress)
+    func withdrawInfo(viteAddress: String, index: Int) -> Promise<WithdrawInfo> {
+        if let info = withdrawInfoMap[index] {
+            self.index = index
+            return Promise.value(info)
+        }
+        
+        return providers[index].withdrawInfo(for: tokenId, viteAddress: viteAddress).then {[weak self] info -> Promise<WithdrawInfo> in
+            self?.withdrawInfoMap[index] = info
+            self?.index = index
+            return Promise.value(info)
+        }
     }
 
     func verifyWithdrawAddress(withdrawAddress: String, label: String?) -> Promise<Bool> {

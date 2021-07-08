@@ -28,7 +28,7 @@ class CrossChainDepositETH {
     func deposit(to viteAddress: String, totId: String, amount: String, gasPrice: Float, completion: @escaping (() -> ())) {
 
         let metalInfo = gatewayInfoService.getMetaInfo()
-        let withdrawInfo = gatewayInfoService.depositInfo(viteAddress: viteAddress)
+        let withdrawInfo = gatewayInfoService.depositInfo(viteAddress: viteAddress, index: self.gatewayInfoService.index)
         UIViewController.current?.view.displayLoading()
         when(fulfilled: metalInfo, withdrawInfo)
             .done { (metalInfo, withdrawInfo) in

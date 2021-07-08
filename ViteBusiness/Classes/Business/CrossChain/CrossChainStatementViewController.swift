@@ -106,7 +106,7 @@ class CrossChainStatementViewController: BaseViewController {
                     return
                 }
                 self.view.displayLoading()
-                service.withdrawInfo(viteAddress: address)
+                service.withdrawInfo(viteAddress: address, index: 0)
                     .done { [weak self] (info) in
                         self?.view.hideLoading()
                         vc = GatewayWithdrawViewController.init(gateWayInfoService: service, withdrawInfo: info)
@@ -123,7 +123,7 @@ class CrossChainStatementViewController: BaseViewController {
 
                 self.view.displayLoading()
 
-                service.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
+                service.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "", index: 0)
                     .done { [weak self] (info) in
                         self?.view.hideLoading()
                         vc = GatewayDepositInfoViewController.init(gatewayInfoService:service, depositInfo: info)

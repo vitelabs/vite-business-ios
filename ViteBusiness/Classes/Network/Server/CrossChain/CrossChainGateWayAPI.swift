@@ -12,38 +12,34 @@ import BigInt
 import ViteWallet
 
 enum CrossChainGateWayAPI {
-    case metalInfo(tokenId: String)
-    case depositInfo(tokenId: String, viteAddress: String)
-    case withdrawInfo(tokenId: String, viteAddress: String)
-    case verifyWithdrawAddress(tokenId: String, withdrawAddress: String, label: String?)
-    case withdrawFee(tokenId: String, viteAddress: String, amount: String, containsFee: Bool)
-    case depositRecords(tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
-    case withdrawRecords(tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
+    case metalInfo(baseURL: URL, tokenId: String)
+    case depositInfo(baseURL: URL, tokenId: String, viteAddress: String)
+    case withdrawInfo(baseURL: URL, tokenId: String, viteAddress: String)
+    case verifyWithdrawAddress(baseURL: URL, tokenId: String, withdrawAddress: String, label: String?)
+    case withdrawFee(baseURL: URL, tokenId: String, viteAddress: String, amount: String, containsFee: Bool)
+    case depositRecords(baseURL: URL, tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
+    case withdrawRecords(baseURL: URL, tokenId: String, viteAddress: String, pageNum: Int, pageSize: Int)
 }
 
 extension CrossChainGateWayAPI: TargetType {
 
     var baseURL: URL {
-        var tokenId = ""
         switch self {
         case .metalInfo(let args):
-            tokenId = args
+            return args.baseURL
         case .depositInfo(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         case .withdrawInfo(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         case .verifyWithdrawAddress(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         case .withdrawFee(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         case .depositRecords(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         case .withdrawRecords(let args):
-            tokenId = args.tokenId
+            return args.baseURL
         }
-        let gateway = CrossChainGatewayInfoService.gateway[tokenId] ?? ""
-        return URL(string: gateway)!
-
     }
 
     var path: String {
@@ -71,18 +67,18 @@ extension CrossChainGateWayAPI: TargetType {
 
     var task: Task {
         switch self {
-        case .metalInfo(let tokenId):
+        case .metalInfo(let _, let tokenId):
             return .requestParameters(parameters: ["tokenId": tokenId],
                                       encoding: URLEncoding.queryString)
-        case .depositInfo(let tokenId, let viteAddress):
+        case .depositInfo(let _, let tokenId, let viteAddress):
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": viteAddress],
                                       encoding: URLEncoding.queryString)
-        case .withdrawInfo(let tokenId, let viteAddress):
+        case .withdrawInfo(let _, let tokenId, let viteAddress):
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": viteAddress],
                                       encoding: URLEncoding.queryString)
-        case .verifyWithdrawAddress(let tokenId, let withdrawAddress, let label):
+        case .verifyWithdrawAddress(let _, let tokenId, let withdrawAddress, let label):
             var parameters = ["tokenId": tokenId,
                               "withdrawAddress": withdrawAddress]
             if let label = label {
@@ -90,19 +86,19 @@ extension CrossChainGateWayAPI: TargetType {
             }
             return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.queryString)
-        case .withdrawFee(let tokenId, let walletAddress, let amount, let containsFee):
+        case .withdrawFee(let _, let tokenId, let walletAddress, let amount, let containsFee):
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": walletAddress,
                                                    "amount": amount,
                                                    "containsFee": containsFee],
                                       encoding: URLEncoding.queryString)
-        case .depositRecords(let tokenId, let viteAddress, let pageNum, let pageSize):
+        case .depositRecords(let _, let tokenId, let viteAddress, let pageNum, let pageSize):
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": viteAddress,
                                                    "pageNum": pageNum,
                                                    "pageSize": pageSize],
                                       encoding: URLEncoding.queryString)
-        case .withdrawRecords(let tokenId, let viteAddress, let pageNum, let pageSize):
+        case .withdrawRecords(let _, let tokenId, let viteAddress, let pageNum, let pageSize):
             return .requestParameters(parameters: ["tokenId": tokenId,
                                                    "walletAddress": viteAddress,
                                                    "pageNum": pageNum,

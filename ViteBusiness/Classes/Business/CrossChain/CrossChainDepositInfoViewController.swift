@@ -10,12 +10,14 @@ import web3swift
 import BigInt
 import PromiseKit
 import ViteWallet
+import RxSwift
+import RxCocoa
 
 class GatewayDepositInfoViewController: BaseViewController {
 
     init(gatewayInfoService: CrossChainGatewayInfoService, depositInfo: DepositInfo) {
         self.gatewayInfoService = gatewayInfoService
-        self.depositInfo = depositInfo
+        self.depositInfo = BehaviorRelay(value: depositInfo)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -25,7 +27,6 @@ class GatewayDepositInfoViewController: BaseViewController {
 
     lazy var addressView = EthViteExchangeViteAddressView.addressView(style: .copyButton).then { addressView in
         addressView.titleLabel.text = R.string.localizable.crosschainDepositAddress()
-        addressView.textLabel.text = self.depositInfo.depositAddress
     }
 
     let scanQRCodeLable0 = UILabel().then {
@@ -38,16 +39,11 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.snp.makeConstraints { m in
             m.size.equalTo(CGSize(width: 170, height: 170))
         }
-        $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken ??  self.gatewayInfoService.tokenInfo, content: self.depositInfo.depositAddress)
     }
 
-    lazy var labelView = EthViteExchangeViteAddressView.addressView(style: .copyButton).then { labelView in
-        labelView.titleLabel.text = self.depositInfo.labelName
-        labelView.textLabel.text = self.depositInfo.label
-    }
+    lazy var labelView = EthViteExchangeViteAddressView.addressView(style: .copyButton)
 
     lazy var scanQRCodeLable1 = UILabel().then {
-        $0.text = R.string.localizable.crosschainDepositScanLabel(self.depositInfo.labelName ?? "")
         $0.numberOfLines = 0
         $0.font = UIFont.boldSystemFont(ofSize: 18)
     }
@@ -56,7 +52,6 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.snp.makeConstraints { m in
             m.size.equalTo(CGSize(width: 170, height: 170))
         }
-        $0.bind(tokenInfo: self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken ??  self.gatewayInfoService.tokenInfo, content: self.depositInfo.label ?? "")
     }
 
     lazy var descriptionLabel0 = UILabel().then {
@@ -64,19 +59,6 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
-
-        let info = self.depositInfo
-        let chainName = self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName
-        let mapped = self.gatewayInfoService.tokenInfo.gatewayInfo!.mappedToken
-        if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
-            let symbol = "\(mapped.symbol)(\(chainName))"
-            let num = "\(minimumDepositAmountStr) \(symbol)"
-            let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num)
-            let attributeString = NSMutableAttributedString.init(string: fullString)
-            attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: symbol))
-            attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: num))
-            $0.attributedText = attributeString
-        }
     }
 
     let pointView0: UIView = {
@@ -88,7 +70,6 @@ class GatewayDepositInfoViewController: BaseViewController {
     }()
 
     lazy var descriptionLabel1 = UILabel().then {
-        $0.text = R.string.localizable.crosschainDepositMinComfirm(String(self.depositInfo.confirmationCount))
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
@@ -122,7 +103,6 @@ class GatewayDepositInfoViewController: BaseViewController {
         $0.setImage(R.image.crosschain_deposie_switch(), for: .normal)
         $0.setImage(R.image.crosschain_deposie_switch(), for: .highlighted)
         $0.setTitle(R.string.localizable.crosschainDepositVitewallet(), for: .normal)
-        $0.isHidden = self.gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType != .eth
     }
 
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 24, bottom: 30, right: 24)).then {
@@ -135,7 +115,8 @@ class GatewayDepositInfoViewController: BaseViewController {
         }
     }
 
-    var depositInfo: DepositInfo
+    var depositInfo: BehaviorRelay<DepositInfo>
+    
     let gatewayInfoService: CrossChainGatewayInfoService
     var tokenInfo: TokenInfo {
         return gatewayInfoService.tokenInfo
@@ -150,7 +131,7 @@ class GatewayDepositInfoViewController: BaseViewController {
         return gatewayInfoService.tokenInfo.gatewayInfo?.mappedToken.decimals ?? viteChainTokenDecimals
     }
     
-    lazy var chainSelectView = ChainSelectView(chainName: self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName)
+    lazy var chainSelectView = ChainSelectView(mappedTokenExtraInfos: self.gatewayInfoService.tokenInfo.gatewayInfo!.allMappedTokenExtraInfos)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,9 +159,103 @@ class GatewayDepositInfoViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
 
         useViteWalletButton.rx.tap.bind { [unowned self] in
-            let vc = CrossChainDepositViewController.init(gatewayInfoService: self.gatewayInfoService, depositInfo: self.depositInfo)
+            let vc = CrossChainDepositViewController.init(gatewayInfoService: self.gatewayInfoService, depositInfo: self.depositInfo.value)
 
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: rx.disposeBag)
+
+        // 需要查看index所有为0的时候的逻辑！！！！！！！！！！❌❌❌❌❌❌❌❌
+        chainSelectView.clicked = { [weak self] index in
+            guard let `self` = self else { return }
+            guard let address = HDWalletManager.instance.account?.address else {
+                return
+            }
+            self.view.displayLoading()
+            self.gatewayInfoService.depositInfo(viteAddress: address, index: index).done { [weak self] info in
+                guard let `self` = self else { return }
+                self.view.hideLoading()
+                
+                self.chainSelectView.select(index)
+                self.depositInfo.accept(info)
+            }.catch { [weak self] (e) in
+                self?.view.hideLoading()
+                Toast.show(e.localizedDescription)
+            }
+        }
+        
+        depositInfo.asDriver().drive { [weak self] info in
+            guard let `self` = self else { return }
+            
+            self.addressView.textLabel.text = info.depositAddress
+            self.qrcodeView0.bind(tokenInfo: self.gatewayInfoService.currentMappedToken.tokenInfo, content: info.depositAddress)
+            
+            self.labelView.titleLabel.text = info.labelName
+            self.labelView.textLabel.text = info.label
+            
+            self.scanQRCodeLable1.text = R.string.localizable.crosschainDepositScanLabel(info.labelName ?? "")
+            self.qrcodeView1.bind(tokenInfo: self.gatewayInfoService.currentMappedToken.tokenInfo, content: info.label ?? "")
+            
+            
+            let mapped = self.gatewayInfoService.currentMappedToken
+            let chainName = mapped.chainName
+            
+            if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
+                let symbol = "\(mapped.symbol)(\(chainName))"
+                let num = "\(minimumDepositAmountStr) \(symbol)"
+                let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num)
+                let attributeString = NSMutableAttributedString.init(string: fullString)
+                attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: symbol))
+                attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: num))
+                self.descriptionLabel0.attributedText = attributeString
+            }
+            
+            self.descriptionLabel1.text = R.string.localizable.crosschainDepositMinComfirm(String(info.confirmationCount))
+            
+            self.useViteWalletButton.isHidden = self.gatewayInfoService.currentMappedToken.coinType != .eth
+            
+            
+            if let labelName = info.labelName, let _ = info.label {
+                self.scrollView.addSubview(self.labelView)
+                self.scrollView.addSubview(self.scanQRCodeLable1)
+                self.scrollView.addSubview(self.qrcodeView1)
+
+                self.qrcodeView0.snp.remakeConstraints { (m) in
+                    m.centerX.equalToSuperview()
+                    m.top.equalTo(self.scanQRCodeLable0.snp.bottom).offset(29)
+                }
+
+                self.labelView.snp.makeConstraints { (m) in
+                    m.left.equalToSuperview().offset(16)
+                    m.right.equalToSuperview().offset(-16)
+                    m.top.equalTo(self.qrcodeView0.snp.bottom).offset(40)
+                }
+
+                self.scanQRCodeLable1.snp.makeConstraints { (m) in
+                    m.centerX.equalToSuperview()
+                    m.top.equalTo(self.labelView.snp.bottom).offset(30)
+                }
+
+                self.qrcodeView1.snp.makeConstraints { (m) in
+                    m.centerX.equalToSuperview()
+                    m.top.equalTo(self.scanQRCodeLable1.snp.bottom).offset(29)
+                    m.bottom.equalToSuperview().offset(-10)
+                }
+
+                Alert.show(title: R.string.localizable.grinNoticeTitle(), message: R.string.localizable.crosschainDepositLabelDesc(labelName), actions: [
+                    (.default(title: R.string.localizable.confirm()), nil),
+                    ])
+
+            } else {
+                self.labelView.removeFromSuperview()
+                self.scanQRCodeLable1.removeFromSuperview()
+                self.qrcodeView1.removeFromSuperview()
+                
+                self.qrcodeView0.snp.remakeConstraints { (m) in
+                    m.centerX.equalToSuperview()
+                    m.top.equalTo(self.scanQRCodeLable0.snp.bottom).offset(29)
+                    m.bottom.equalToSuperview().offset(-10)
+                }
+            }
         }.disposed(by: rx.disposeBag)
 
     }
@@ -258,45 +333,6 @@ class GatewayDepositInfoViewController: BaseViewController {
             m.centerX.equalToSuperview()
             m.top.equalTo(addressView.snp.bottom).offset(30)
         }
-
-        if let labelName = self.depositInfo.labelName, let _ = self.depositInfo.label {
-            scrollView.addSubview(labelView)
-            scrollView.addSubview(scanQRCodeLable1)
-            scrollView.addSubview(qrcodeView1)
-
-            qrcodeView0.snp.makeConstraints { (m) in
-                m.centerX.equalToSuperview()
-                m.top.equalTo(scanQRCodeLable0.snp.bottom).offset(29)
-            }
-
-            labelView.snp.makeConstraints { (m) in
-                m.left.equalToSuperview().offset(16)
-                m.right.equalToSuperview().offset(-16)
-                m.top.equalTo(qrcodeView0.snp.bottom).offset(40)
-            }
-
-            scanQRCodeLable1.snp.makeConstraints { (m) in
-                m.centerX.equalToSuperview()
-                m.top.equalTo(labelView.snp.bottom).offset(30)
-            }
-
-            qrcodeView1.snp.makeConstraints { (m) in
-                m.centerX.equalToSuperview()
-                m.top.equalTo(scanQRCodeLable1.snp.bottom).offset(29)
-                m.bottom.equalToSuperview().offset(-10)
-            }
-
-            Alert.show(title: R.string.localizable.grinNoticeTitle(), message: R.string.localizable.crosschainDepositLabelDesc(labelName), actions: [
-                (.default(title: R.string.localizable.confirm()), nil),
-                ])
-
-        } else {
-            qrcodeView0.snp.makeConstraints { (m) in
-                m.centerX.equalToSuperview()
-                m.top.equalTo(scanQRCodeLable0.snp.bottom).offset(29)
-                m.bottom.equalToSuperview().offset(-10)
-            }
-        }
     }
 
     private func setupNavBar() {
@@ -310,9 +346,7 @@ class GatewayDepositInfoViewController: BaseViewController {
             guard let `self` = self else {
                 return
             }
-            let vc = CrossChainHistoryViewController()
-            vc.style = .desposit
-            vc.gatewayInfoService = self.gatewayInfoService
+            let vc = CrossChainHistoryViewController(tokenInfo: self.tokenInfo, index: self.gatewayInfoService.index, style: .desposit)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
 
             }.disposed(by: rx.disposeBag)

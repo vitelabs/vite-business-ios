@@ -17,7 +17,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
     init(gateWayInfoService: CrossChainGatewayInfoService, withdrawInfo: WithdrawInfo) {
         self.gateWayInfoService =  gateWayInfoService
-        self.withDrawInfo = withdrawInfo
+        self.withDrawInfo = BehaviorRelay(value: withdrawInfo)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -26,7 +26,7 @@ class GatewayWithdrawViewController: BaseViewController {
     }
 
     var gateWayInfoService: CrossChainGatewayInfoService
-    var withDrawInfo: WithdrawInfo
+    var withDrawInfo: BehaviorRelay<WithdrawInfo>
 
     var tokenInfo: TokenInfo {
         return gateWayInfoService.tokenInfo
@@ -69,7 +69,8 @@ class GatewayWithdrawViewController: BaseViewController {
             $0.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
         }
     }
-
+    
+    let topGapslabelView = UIView.placeholderView(height: 10)
     let labelView = AddressTextViewView().then { labelView in
         labelView.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
     }
@@ -78,7 +79,7 @@ class GatewayWithdrawViewController: BaseViewController {
         guard let `self` = self else { return }
         guard let symbol = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
 
-        let info = self.withDrawInfo
+        let info = self.withDrawInfo.value
 
         guard !info.minimumWithdrawAmount.isEmpty, !info.maximumWithdrawAmount.isEmpty,
             let min = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals),
@@ -113,14 +114,13 @@ class GatewayWithdrawViewController: BaseViewController {
 
     let rightBarItemBtn = UIButton.init(style: .navigationItemCustomView, title: R.string.localizable.crosschainWithdrawHistory())
     
-    lazy var chainSelectView = ChainSelectView(chainName: self.gateWayInfoService.tokenInfo.gatewayInfo!.chainName)
+    lazy var chainSelectView = ChainSelectView(mappedTokenExtraInfos: self.gateWayInfoService.tokenInfo.gatewayInfo!.allMappedTokenExtraInfos)
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpview()
         bind()
-        self.configWithdrawInfo()
     }
 
     func setUpview()  {
@@ -148,14 +148,13 @@ class GatewayWithdrawViewController: BaseViewController {
         scrollView.stackView.addPlaceholder(height: 15)
         scrollView.stackView.addArrangedSubview(addressView)
 
-        if let labelname = self.withDrawInfo.labelName {
-            scrollView.stackView.addPlaceholder(height: 10)
-            scrollView.stackView.addArrangedSubview(labelView)
-            labelView.snp.makeConstraints { (m) in
-                m.height.equalTo(78)
-            }
-            labelView.titleLabel.text = labelname
+
+        scrollView.stackView.addArrangedSubview(topGapslabelView)
+        scrollView.stackView.addArrangedSubview(labelView)
+        labelView.snp.makeConstraints { (m) in
+            m.height.equalTo(78)
         }
+        
         scrollView.stackView.addArrangedSubview(amountView)
         scrollView.stackView.addArrangedSubview(feeView)
 
@@ -194,14 +193,6 @@ class GatewayWithdrawViewController: BaseViewController {
         done.rx.tap.bind { [weak self] in self?.amountView.textField.resignFirstResponder() }.disposed(by: rx.disposeBag)
         amountView.textField.inputAccessoryView = toolbar
         amountView.textField.delegate = self
-
-        if withDrawInfo.labelName != nil {
-            addressView.textView.kas_setReturnAction(.next(responder: labelView.textView))
-            labelView.textView.kas_setReturnAction(.next(responder: amountView.textField))
-        } else {
-            addressView.textView.kas_setReturnAction(.next(responder: amountView.textField))
-        }
-
     }
 
     func bind() {
@@ -234,9 +225,7 @@ class GatewayWithdrawViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
 
         rightBarItemBtn.rx.tap.bind { [unowned self] in
-            let vc = CrossChainHistoryViewController()
-            vc.style = .withdraw
-            vc.gatewayInfoService = self.gateWayInfoService
+            let vc = CrossChainHistoryViewController(tokenInfo: self.tokenInfo, index: self.gateWayInfoService.index, style: .withdraw)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }
 
@@ -313,6 +302,69 @@ class GatewayWithdrawViewController: BaseViewController {
             }
 
         }.disposed(by: rx.disposeBag)
+        
+        chainSelectView.clicked = { [weak self] index in
+            guard let `self` = self else { return }
+            guard let address = HDWalletManager.instance.account?.address else {
+                return
+            }
+            self.view.displayLoading()
+            self.gateWayInfoService.withdrawInfo(viteAddress: address, index: index).done { [weak self] info in
+                guard let `self` = self else { return }
+                self.view.hideLoading()
+                
+                self.chainSelectView.select(index)
+                self.withDrawInfo.accept(info)
+            }.catch { [weak self] (e) in
+                self?.view.hideLoading()
+                Toast.show(e.localizedDescription)
+            }
+        }
+        
+        withDrawInfo.asDriver().drive { [weak self] info in
+            guard let `self` = self else { return }
+            
+            
+            
+            if let name = info.labelName {
+                
+                self.topGapslabelView.snp_remakeConstraints { m in
+                    m.height.equalTo(10)
+                }
+                
+                self.labelView.snp.remakeConstraints { (m) in
+                    m.height.equalTo(78)
+                }
+                
+                self.topGapslabelView.isHidden = false
+                self.labelView.isHidden = false
+                
+                
+                self.labelView.titleLabel.text = name
+                self.addressView.textView.kas_setReturnAction(.next(responder: self.labelView.textView))
+                self.labelView.textView.kas_setReturnAction(.next(responder: self.amountView.textField))
+            } else {
+                
+                self.topGapslabelView.snp_remakeConstraints { m in
+                    m.height.equalTo(0)
+                }
+                
+                self.labelView.snp.remakeConstraints { (m) in
+                    m.height.equalTo(0)
+                }
+                
+                self.topGapslabelView.isHidden = true
+                self.labelView.isHidden = true
+                
+                self.addressView.textView.kas_setReturnAction(.next(responder: self.amountView.textField))
+            }
+            
+            let symble = self.gateWayInfoService.currentMappedToken.symbol
+            if !info.minimumWithdrawAmount.isEmpty,
+                let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals) {
+                self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
+            }
+        }.disposed(by: rx.disposeBag)
     }
 
     func withdraw()  {
@@ -355,11 +407,11 @@ class GatewayWithdrawViewController: BaseViewController {
         let metalInfo = gateWayInfoService.getMetaInfo()
 
         var label: String? = nil
-        if let _ = self.withDrawInfo.labelName {
+        if let _ = self.withDrawInfo.value.labelName {
             label = self.labelView.textView.text ?? ""
         }
         let verify = gateWayInfoService.verifyWithdrawAddress(withdrawAddress: withDrawAddress, label: label)
-        let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress)
+        let withdrawInfo = gateWayInfoService.withdrawInfo(viteAddress: viteAddress, index: gateWayInfoService.index)
         let fee = gateWayInfoService.withdrawFee(viteAddress: viteAddress, amount: amount.amountFull(decimals: 0), containsFee: false)
 
         view.displayLoading()
@@ -377,10 +429,10 @@ class GatewayWithdrawViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
-
+                
                 if !info.minimumWithdrawAmount.isEmpty,
-                    let min = Amount(info.minimumWithdrawAmount) {
-                guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: self.viteChainTokenDecimals))")
+                   let min = Amount(info.minimumWithdrawAmount) {
+                    guard amount >= min else {                        Toast.show("\(R.string.localizable.crosschainWithdrawMin())\(min.amountShort(decimals: self.viteChainTokenDecimals))")
                         return
                     }
                 }
@@ -430,9 +482,7 @@ class GatewayWithdrawViewController: BaseViewController {
                 Workflow.sendTransactionWithConfirm(account: account, toAddress: info.gatewayAddress, tokenInfo: self.tokenInfo, amount: amountWithFee, data: data, utString:nil,  completion: { (result) in
                     switch result {
                     case .success(_):
-                        let vc = CrossChainHistoryViewController()
-                        vc.style = .withdraw
-                        vc.gatewayInfoService = self.gateWayInfoService
+                        let vc = CrossChainHistoryViewController(tokenInfo: self.tokenInfo, index: self.gateWayInfoService.index, style: .withdraw)
                         UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                     case .failure(let error):
                         Toast.show(error.localizedDescription)
@@ -477,16 +527,6 @@ extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
                 scanAddress()
             }
         }
-    }
-
-    func configWithdrawInfo()  {
-        let info = self.withDrawInfo
-        guard let symble = self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.symbol else { return }
-        if !info.minimumWithdrawAmount.isEmpty,
-            let amount = Amount(info.minimumWithdrawAmount)?.amountShort(decimals: self.viteChainTokenDecimals) {
-            self.amountView.textField.placeholder = "\(R.string.localizable.crosschainWithdrawMin())\(amount) \(symble)"
-        }
-
     }
 }
 

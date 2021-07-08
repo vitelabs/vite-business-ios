@@ -16,10 +16,16 @@ import PromiseKit
 import enum Alamofire.Result
 
 class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
+    
+    let baseURL: URL
+    
+    init(baseURL: URL) {
+        self.baseURL = baseURL
+    }
 
     func getMetaInfo(for tokenId: String) -> Promise<TokenMetaInfo> {
         return Promise { seal in
-            sendRequest(api: .metalInfo(tokenId: tokenId), completion: { (ret) in
+            sendRequest(api: .metalInfo(baseURL: baseURL, tokenId: tokenId), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let info = TokenMetaInfo.init(JSON: json) {
@@ -36,7 +42,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func depositInfo(for tokenId: String, viteAddress: String) -> Promise<DepositInfo> {
         return Promise { seal in
-            sendRequest(api: .depositInfo(tokenId: tokenId, viteAddress: viteAddress), completion: { (ret) in
+            sendRequest(api: .depositInfo(baseURL: baseURL, tokenId: tokenId, viteAddress: viteAddress), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let info = DepositInfo.init(JSON: json) {
@@ -53,7 +59,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func withdrawInfo(for tokenId: String, viteAddress: String) -> Promise<WithdrawInfo> {
         return Promise { seal in
-            sendRequest(api: .withdrawInfo(tokenId: tokenId, viteAddress: viteAddress), completion: { (ret) in
+            sendRequest(api: .withdrawInfo(baseURL: baseURL, tokenId: tokenId, viteAddress: viteAddress), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let info = WithdrawInfo.init(JSON: json) {
@@ -70,7 +76,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func verifyWithdrawAddress(for tokenId: String, withdrawAddress: String, label: String?) -> Promise<Bool> {
         return Promise { seal in
-            sendRequest(api: .verifyWithdrawAddress(tokenId: tokenId, withdrawAddress: withdrawAddress, label: label), completion: { (ret) in
+            sendRequest(api: .verifyWithdrawAddress(baseURL: baseURL, tokenId: tokenId, withdrawAddress: withdrawAddress, label: label), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let isValidAddress = json["isValidAddress"] as? Bool {
@@ -87,7 +93,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func withdrawFee(for tokenId: String, viteAddress: String,amount: String,containsFee: Bool) -> Promise<String> {
         return Promise { seal in
-            sendRequest(api: .withdrawFee(tokenId: tokenId, viteAddress: viteAddress, amount: amount, containsFee: containsFee), completion: { (ret) in
+            sendRequest(api: .withdrawFee(baseURL: baseURL, tokenId: tokenId, viteAddress: viteAddress, amount: amount, containsFee: containsFee), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if let fee = json["fee"] as? String {
@@ -104,7 +110,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func depositRecords(for tokenId: String, viteAddress: String,pageNum: Int,pageSize: Int) -> Promise<DepositRecordInfos> {
         return Promise { seal in
-            sendRequest(api: .depositRecords(tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
+            sendRequest(api: .depositRecords(baseURL: baseURL, tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if var depositRecordInfos = DepositRecordInfos.init(JSON: json) {
@@ -127,7 +133,7 @@ class CrossChainGatewayProvider: MoyaProvider<CrossChainGateWayAPI> {
 
     func withdrawRecords(for tokenId: String, viteAddress: String,pageNum: Int,pageSize: Int) -> Promise<WithdrawRecordInfos> {
         return Promise { seal in
-            sendRequest(api: .withdrawRecords(tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
+            sendRequest(api: .withdrawRecords(baseURL: baseURL, tokenId: tokenId, viteAddress: viteAddress, pageNum: pageNum, pageSize: pageSize), completion: { (ret) in
                 switch ret {
                 case .success(let json):
                     if var withdrawRecordInfos = WithdrawRecordInfos.init(JSON: json) {

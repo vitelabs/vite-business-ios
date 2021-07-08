@@ -413,9 +413,108 @@ public struct GatewayInfo: Mappable {
         let mapped = mappedTokenInfo
         return TokenInfo(tokenCode: mapped.tokenCode, coinType: mapped.coinType, rawChainName: mapped.rawChainName, name: mapped.name, symbol: mapped.symbol, decimals: mapped.decimals, index: mapped.index, icon: mapped.icon, id: mapped.id)
     }
+    
+    var allMappedTokenExtraInfos: [MappedTokenExtraInfo] {
+        return [mappedTokenInfo.mappedTokenExtraInfo] + mappedTokenInfo.mappedTokenExtras
+    }
 }
 
 public struct MappedTokenInfo: Mappable {
+
+    public fileprivate(set)  var tokenCode: TokenCode = ""
+    public fileprivate(set)  var name: String = ""
+    public fileprivate(set)  var symbol: String = ""
+    public fileprivate(set)  var coinType: CoinType = .unsupport
+    public fileprivate(set)  var rawChainName: String = ""
+    public fileprivate(set)  var decimals: Int = 0
+    public fileprivate(set)  var index: Int = 0
+    public fileprivate(set)  var icon: String = ""
+    public fileprivate(set)  var id: String = ""
+    
+    public fileprivate(set)  var url: String = ""
+    public fileprivate(set)  var standard: String = ""
+    
+    public fileprivate(set)  var mappedTokenExtras: [MappedTokenExtraInfo] = []
+
+    public var uniqueSymbol: String {
+        if case .vite = coinType {
+            return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index).uniqueSymbol
+        } else {
+            return symbol
+        }
+    }
+
+    public init?(map: Map) {
+
+    }
+
+    init() {
+
+    }
+
+    public mutating func mapping(map: Map) {
+        tokenCode <- map["tokenCode"]
+        name <- map["name"]
+        symbol <- map["symbol"]
+        coinType <- (map["platform"], coinTypeTransform)
+        rawChainName <- map["platform"]
+        decimals <- map["decimal"]
+        index <- map["tokenIndex"]
+        icon <- map["icon"]
+        id <- map["tokenAddress"]
+        url <- map["url"]
+        standard <- map["standard"]
+        mappedTokenExtras <- map["mappedTokenExtras"]
+    }
+
+    private let coinTypeTransform = TransformOf<CoinType, String>(fromJSON: { (string) -> CoinType? in
+        guard let string = string else { return nil }
+        return CoinType(rawValue: string)
+    }, toJSON: { (coinType) -> String? in
+        guard let coinType = coinType else { return nil }
+        return coinType.rawValue
+    })
+
+    init(tokenCode: TokenCode, coinType: CoinType, rawChainName: String, name: String, symbol: String, decimals: Int, index: Int, icon: String, id: String, url: String, standard: String, mappedTokenExtras: [MappedTokenExtraInfo]) {
+        self.tokenCode = tokenCode
+        self.coinType = coinType
+        self.rawChainName = rawChainName
+        self.name = name
+        self.symbol = symbol
+        self.decimals = decimals
+        self.index = index
+        self.icon = icon
+        self.id = id
+        
+        self.url = url
+        self.standard = standard
+        self.mappedTokenExtras = mappedTokenExtras
+    }
+
+    var ethChainGasLimit: Int {
+        if tokenCode == TokenInfo.BuildIn.eth.value.tokenCode {
+            return AppConfigService.instance.ethCoinGasLimit
+        } else {
+            return AppConfigService.instance.erc20GasLimit(contractAddress: id)
+        }
+    }
+    
+    var mappedTokenExtraInfo: MappedTokenExtraInfo {
+        return MappedTokenExtraInfo(tokenCode: tokenCode,
+                                    coinType: coinType,
+                                    rawChainName: rawChainName,
+                                    name: name,
+                                    symbol: symbol,
+                                    decimals: decimals,
+                                    index: index,
+                                    icon: icon,
+                                    id: id,
+                                    url: url,
+                                    standard: standard)
+    }
+}
+
+public struct MappedTokenExtraInfo: Mappable {
 
     public fileprivate(set)  var tokenCode: TokenCode = ""
     public fileprivate(set)  var name: String = ""
@@ -489,5 +588,14 @@ public struct MappedTokenInfo: Mappable {
         } else {
             return AppConfigService.instance.erc20GasLimit(contractAddress: id)
         }
+    }
+    
+    var chainName: String {
+        standard.isEmpty ? "Native" : standard
+    }
+
+    
+    var tokenInfo: TokenInfo {
+        return TokenInfo(tokenCode: tokenCode, coinType: coinType, rawChainName: rawChainName, name: name, symbol: symbol, decimals: decimals, index: index, icon: icon, id: id)
     }
 }

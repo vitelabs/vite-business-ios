@@ -15,11 +15,31 @@ class CrossChainHistoryViewController: BaseViewController {
     }
 
     let tableView = UITableView.listView()
-    lazy var chainSelectView = ChainSelectView(chainName: self.gatewayInfoService.tokenInfo.gatewayInfo!.chainName)
+    lazy var chainSelectView = ChainSelectView(mappedTokenExtraInfos: self.tokenInfo.gatewayInfo!.allMappedTokenExtraInfos)
 
-    var style: (CrossChainHistoryViewController.Style)!
-    var gatewayInfoService: CrossChainGatewayInfoService!
-
+    let style: CrossChainHistoryViewController.Style
+    let tokenInfo: TokenInfo
+    var index: Int
+    
+    fileprivate let providers: [CrossChainGatewayProvider]
+    fileprivate var provider: CrossChainGatewayProvider {
+        providers[index]
+    }
+    
+    init(tokenInfo: TokenInfo, index: Int, style: CrossChainHistoryViewController.Style) {
+        self.tokenInfo = tokenInfo
+        self.index = index
+        self.style = style
+        self.providers = tokenInfo.gatewayInfo!.allMappedTokenExtraInfos.map {
+            CrossChainGatewayProvider(baseURL: URL(string: $0.url)!)
+        }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var currentpageNum = 1
     let pageSize = 20
 
@@ -57,6 +77,18 @@ class CrossChainHistoryViewController: BaseViewController {
 
         tableView.mj_header.beginRefreshing()
         tableView.mj_footer.isHidden = true
+        
+        chainSelectView.select(self.index)
+        chainSelectView.clicked = { [weak self] index in
+            guard let `self` = self else { return }
+            self.chainSelectView.select(index)
+            self.index = index
+            
+            self.depositRecords.removeAll()
+            self.withdrawRecord.removeAll()
+            self.tableView.reloadData()
+            self.tableView.mj_header.beginRefreshing()
+        }
     }
 
     func createNavigationTitleView() -> UIView {
@@ -91,7 +123,7 @@ class CrossChainHistoryViewController: BaseViewController {
             return
         }
         if self.style == .desposit {
-            self.gatewayInfoService.depositRecords(viteAddress: address, pageNum: currentpageNum, pageSize: pageSize)
+            self.provider.depositRecords(for: tokenInfo.id, viteAddress: address, pageNum: currentpageNum, pageSize: pageSize)
                 .done { [weak self](info) in
                     self?.depositRecords.removeAll()
                     self?.depositRecords.append(contentsOf: info.depositRecords)
@@ -111,7 +143,7 @@ class CrossChainHistoryViewController: BaseViewController {
             }
 
         } else if self.style == .withdraw  {
-            self.gatewayInfoService.withdrawRecords(viteAddress: address, pageNum: currentpageNum, pageSize: pageSize)
+            self.provider.withdrawRecords(for: tokenInfo.id, viteAddress: address, pageNum: currentpageNum, pageSize: pageSize)
                 .done { [weak self] (info) in
                     self?.withdrawRecord.removeAll()
                     self?.withdrawRecord.append(contentsOf: info.withdrawRecords)
@@ -140,7 +172,7 @@ class CrossChainHistoryViewController: BaseViewController {
             return
         }
         if self.style == .desposit {
-            self.gatewayInfoService.depositRecords(viteAddress: address, pageNum: currentpageNum + 1, pageSize: pageSize)
+            self.provider.depositRecords(for: tokenInfo.id, viteAddress: address, pageNum: currentpageNum + 1, pageSize: pageSize)
                 .done { [weak self](info) in
                     self?.depositRecords.append(contentsOf: info.depositRecords)
                     self?.currentpageNum = self?.currentpageNum ?? 0 + 1
@@ -160,7 +192,7 @@ class CrossChainHistoryViewController: BaseViewController {
             }
 
         } else if self.style == .withdraw  {
-            self.gatewayInfoService.withdrawRecords(viteAddress: address, pageNum: currentpageNum + 1, pageSize: pageSize)
+            self.provider.withdrawRecords(for: tokenInfo.id, viteAddress: address, pageNum: currentpageNum + 1, pageSize: pageSize)
                 .done { [weak self] (info) in
                     self?.withdrawRecord.append(contentsOf: info.withdrawRecords)
                     self?.tableView.mj_footer.endRefreshing()
@@ -204,10 +236,10 @@ extension CrossChainHistoryViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "CrossChainHistoryCell") as! CrossChainHistoryCell
         if self.style == .desposit {
             let desposit = self.depositRecords[indexPath.row]
-            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, depositRecord: desposit)
+            cell.bind(tokenInfo: self.tokenInfo, depositRecord: desposit)
         } else if self.style == .withdraw  {
             let withdrawRecord = self.withdrawRecord[indexPath.row]
-            cell.bind(tokenInfo:gatewayInfoService.tokenInfo, withdrawRecord: withdrawRecord)
+            cell.bind(tokenInfo: self.tokenInfo, withdrawRecord: withdrawRecord)
         }
         return cell
     }

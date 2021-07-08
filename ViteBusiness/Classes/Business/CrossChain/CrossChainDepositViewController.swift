@@ -149,7 +149,7 @@ extension CrossChainDepositViewController {
                 self.headerView.balanceLabel.text = text
             }).disposed(by: rx.disposeBag)
 
-        self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "")
+        self.gatewayInfoService.depositInfo(viteAddress: HDWalletManager.instance.account?.address ?? "", index: self.gatewayInfoService.index)
             .done { [weak self] (info) in
                 guard let `self` = self else { return }
                 self.depositInfo = info
@@ -289,10 +289,8 @@ extension CrossChainDepositViewController {
         rightItem.setTitleTextAttributes([NSAttributedString.Key.font: Fonts.Font14, NSAttributedString.Key.foregroundColor: Colors.blueBg], for: .highlighted)
         self.navigationItem.rightBarButtonItem = rightItem
         self.navigationItem.rightBarButtonItem?.rx.tap.bind { [weak self] in
-
-            let vc = CrossChainHistoryViewController()
-            vc.style = .desposit
-            vc.gatewayInfoService = self?.gatewayInfoService
+            guard let `self` = self else { return }
+            let vc = CrossChainHistoryViewController(tokenInfo: self.tokenInfo, index: self.gatewayInfoService.index, style: .desposit)
             var vcs = UIViewController.current?.navigationController?.viewControllers
             vcs?.popLast()
             vcs?.append(vc)
