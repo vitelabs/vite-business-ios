@@ -234,7 +234,7 @@
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Available";
-"balance.info.detail.pledge.amount.title" = "Staked";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Send";
@@ -423,7 +423,7 @@
 "peldge.deadline" = "Time available to unlock";
 "peldge.title" = "Locking Record";
 "peldge.address.title" = "Beneficiary";
-"peldge.cancel.peldge.button.title" = "Withdraw";
+"peldge.cancel.peldge.button.title" = "Unlock";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
 "peldge.cancel.pledge.agent.error.toast" = "Not common stake, please try withdrawal where you placed the stake.";
@@ -1078,7 +1078,7 @@
 "fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
 
 "transfer.from" =  "From";
-"transfer.wallet.account" =  "Main Account";
+"transfer.wallet.account" = "Main Wallet";
 "transfer.to" =  "To";
 "transfer.dex.account" =  "Trading Wallet";
 "transfer.token" =  "Token";

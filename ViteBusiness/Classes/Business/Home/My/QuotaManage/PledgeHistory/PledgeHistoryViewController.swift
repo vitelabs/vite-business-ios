@@ -96,7 +96,7 @@ class PledgeHistoryViewController: BaseViewController, View {
                 guard let `self` = self else { return }
                 let cell = cell as! PledgeHistoryCell
                 cell.addressLabel.text = self.nameAndAddress(pledge.beneficialAddress)
-                cell.timeLabel.text = pledge.timestamp.format() + R.string.localizable.peldgeDeadline()
+                cell.timeLabel.text = pledge.timestamp.format()
                 cell.balanceLabel.text =  pledge.amount.amountShortWithGroupSeparator(decimals: ViteWalletConst.viteToken.decimals)
                 cell.symbolLabel.text = "VITE"
                 if self.withdrawingAddressSet.contains(pledge.withdrawingKey) {

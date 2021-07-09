@@ -3831,6 +3831,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaManagePageQuotaSnapshootHeightTitle = Rswift.StringResource(key: "quota.manage.page.quota.snapshoot.height.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Locked
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let balanceInfoDetailPledgeAmountTitle = Rswift.StringResource(key: "balance.info.detail.pledge.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Locked Amount
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -3887,7 +3891,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let dexHomePageSegmentWallet = Rswift.StringResource(key: "dex.home.page.segment.wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Main Account
+      /// id-ID translation: Main Wallet
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let transferWalletAccount = Rswift.StringResource(key: "transfer.wallet.account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
@@ -4962,10 +4966,6 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Staked
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let balanceInfoDetailPledgeAmountTitle = Rswift.StringResource(key: "balance.info.detail.pledge.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Staked
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let dexTokenDetailPageHeaderLockViteMining = Rswift.StringResource(key: "dex.token.detail.page.header.lock.vite.mining", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Staked
       /// 
@@ -5607,6 +5607,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let airdropErrorTipUnknownError = Rswift.StringResource(key: "airdrop.error.tip.unknown.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
+      /// id-ID translation: Unlock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static let peldgeCancelPeldgeButtonTitle = Rswift.StringResource(key: "peldge.cancel.peldge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Unlock By Face ID
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -5975,10 +5979,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let dexTokenDetailPageButtonWithdraw = Rswift.StringResource(key: "dex.token.detail.page.button.withdraw", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: Withdraw
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static let peldgeCancelPeldgeButtonTitle = Rswift.StringResource(key: "peldge.cancel.peldge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
       /// id-ID translation: Withdraw All
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -9386,6 +9386,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.manage.page.quota.snapshoot.height.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// id-ID translation: Locked
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func balanceInfoDetailPledgeAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("balance.info.detail.pledge.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// id-ID translation: Locked Amount
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -9484,7 +9491,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dex.home.page.segment.wallet", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: Main Account
+      /// id-ID translation: Main Wallet
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func transferWalletAccount(_: Void = ()) -> String {
@@ -11363,13 +11370,6 @@ public struct R: Rswift.Validatable {
       /// id-ID translation: Staked
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func balanceInfoDetailPledgeAmountTitle(_: Void = ()) -> String {
-        return NSLocalizedString("balance.info.detail.pledge.amount.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Staked
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func dexTokenDetailPageHeaderLockViteMining(_: Void = ()) -> String {
         return NSLocalizedString("dex.token.detail.page.header.lock.vite.mining", bundle: R.hostingBundle, comment: "")
       }
@@ -12494,6 +12494,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("airdrop.error.tip.unknown.error", bundle: R.hostingBundle, comment: "")
       }
       
+      /// id-ID translation: Unlock
+      /// 
+      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
+      public static func peldgeCancelPeldgeButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("peldge.cancel.peldge.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// id-ID translation: Unlock By Face ID
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
@@ -13136,13 +13143,6 @@ public struct R: Rswift.Validatable {
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func dexTokenDetailPageButtonWithdraw(_: Void = ()) -> String {
         return NSLocalizedString("dex.token.detail.page.button.withdraw", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// id-ID translation: Withdraw
-      /// 
-      /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
-      public static func peldgeCancelPeldgeButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("peldge.cancel.peldge.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// id-ID translation: Withdraw All

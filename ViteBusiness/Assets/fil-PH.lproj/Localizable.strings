@@ -234,7 +234,7 @@
 "balance.info.detail.unconfirmed.title" = "Hindi Natanggap";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
 "balance.info.detail.available.amount.title" = "Pwedeng gamitin";
-"balance.info.detail.pledge.amount.title" = "Staked";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Suriin ang kasaysayan ng transaksyon sa Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Natanggap";
 "balance.info.detail.send.button.title" = "Ipadala";

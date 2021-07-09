@@ -31,6 +31,12 @@ final class PledgeHistoryCell: BaseTableViewCell {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
         $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.60)
     }
+    
+    let timeTitleLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        $0.textColor = UIColor(netHex: 0x3E4A59).withAlphaComponent(0.60)
+        $0.text = R.string.localizable.peldgeDeadline()
+    }
 
     let balanceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -62,6 +68,7 @@ final class PledgeHistoryCell: BaseTableViewCell {
         contentView.addSubview(balanceLabel)
         contentView.addSubview(symbolLabel)
         contentView.addSubview(timeLabel)
+        contentView.addSubview(timeTitleLabel)
         contentView.addSubview(cancelButton)
 
         addressTitleLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -96,14 +103,19 @@ final class PledgeHistoryCell: BaseTableViewCell {
             m.right.equalToSuperview().offset(-24)
             m.centerY.equalTo(balanceLabel)
         }
-
+        
         timeLabel.snp.makeConstraints { (m) in
+            m.bottom.greaterThanOrEqualTo(timeTitleLabel.snp.top).offset(-5)
+            m.left.equalToSuperview().offset(24)
+        }
+
+        timeTitleLabel.snp.makeConstraints { (m) in
             m.bottom.equalToSuperview().offset(-13)
             m.left.equalToSuperview().offset(24)
         }
 
         cancelButton.snp.makeConstraints { (m) in
-            m.centerY.equalTo(timeLabel)
+            m.centerY.equalTo(timeTitleLabel)
             m.right.equalToSuperview().offset(-24)
         }
     }
