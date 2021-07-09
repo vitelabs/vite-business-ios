@@ -2115,7 +2115,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let tokenListPageIgnoreLabTitle = Rswift.StringResource(key: "token.list.page.ignore.lab.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: (%@ UT)
+      /// id-ID translation: (%@ Quota)
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let balanceInfoDetailUnconfirmedQuotaTitle = Rswift.StringResource(key: "balance.info.detail.unconfirmed.quota.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
@@ -2123,7 +2123,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let sendPageEthFailed = Rswift.StringResource(key: "send.page.eth.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: 0 UT/0 UT
+      /// id-ID translation: 0 Quota/0 Quota
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
@@ -5167,7 +5167,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let crosschainStatementOtherDesc = Rswift.StringResource(key: "crosschain.statement.other.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: This Transaction costs %@UT
+      /// id-ID translation: This Transaction costs %@Quota
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaFloatViewTip = Rswift.StringResource(key: "quota.float.view.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
@@ -6127,7 +6127,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaPowFinishedFloatViewH2 = Rswift.StringResource(key: "quota.pow.finished.float.view.h2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
-      /// id-ID translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
+      /// id-ID translation: You spent %1$@S in this PoW computation, and secured and used %2$@Quota.
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static let quotaPowFinishedFloatViewH1 = Rswift.StringResource(key: "quota.pow.finished.float.view.h1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["id-ID", "ko-KR", "ru-RU", "fil-PH", "en", "fr-FR", "tr-TR", "de-DE", "ja-JP", "vi-VN", "zh-Hans"], comment: nil)
@@ -6383,7 +6383,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("token.list.page.ignore.lab.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// id-ID translation: (%@ UT)
+      /// id-ID translation: (%@ Quota)
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func balanceInfoDetailUnconfirmedQuotaTitle(_ value1: String) -> String {
@@ -6397,7 +6397,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("send.page.eth.failed", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// id-ID translation: 0 UT/0 UT
+      /// id-ID translation: 0 Quota/0 Quota
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func balanceInfoDetailPledgeNoneTip(_: Void = ()) -> String {
@@ -11724,7 +11724,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.statement.other.desc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10)
       }
       
-      /// id-ID translation: This Transaction costs %@UT
+      /// id-ID translation: This Transaction costs %@Quota
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func quotaFloatViewTip(_ value1: String) -> String {
@@ -13404,7 +13404,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("quota.pow.finished.float.view.h2", bundle: R.hostingBundle, comment: "")
       }
       
-      /// id-ID translation: You spent %1$@S in this PoW computation, and secured and used %2$@UT.
+      /// id-ID translation: You spent %1$@S in this PoW computation, and secured and used %2$@Quota.
       /// 
       /// Locales: id-ID, ko-KR, ru-RU, fil-PH, en, fr-FR, tr-TR, de-DE, ja-JP, vi-VN, zh-Hans
       public static func quotaPowFinishedFloatViewH1(_ value1: String, _ value2: String) -> String {

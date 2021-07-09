@@ -232,7 +232,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "잔액";
 "balance.info.detail.unconfirmed.title" = "미수신";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "이용 가능";
 "balance.info.detail.pledge.amount.title" = "스테이킹됨";
 "balance.info.detail.show.transactions.button.title" = "Ethereum Explorer에서 거래 내역을 확인하세요.";
@@ -242,7 +242,7 @@
 "balance.info.detail.pledge" = "Quota 얻기";
 "balance.info.detail.exchange.vite" = "VITE 전환";
 "balance.info.detail.pledge.count.content" = "사용 가능한 쿼타/쿼타 한도";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "게이트웨이 세부사항";
 "gateway.info.detail.page.name" = "게이트웨이 이름";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "PoW 운영";
 "quota.alert.quota.button.title" = "VITE 스테이킹하기";
 "quota.float.view.title" = "이 거래에 대한 쿼타를 확보하기 위해 PoW 계산 중...";
-"quota.float.view.tip" = "거래 비용은 %@ UT 입니다.";
+"quota.float.view.tip" = "거래 비용은 %@ Quota 입니다.";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -414,7 +414,7 @@
 
 
 "quota.pow.finished.float.view.title" = "거래 전송됨";
-"quota.pow.finished.float.view.h1" = "PoW 작업에 %1$@S를 사용했고, 보증되었으며,  %2$@UT를 사용했습니다.";
+"quota.pow.finished.float.view.h1" = "PoW 작업에 %1$@S를 사용했고, 보증되었으며,  %2$@Quota를 사용했습니다.";
 "quota.pow.finished.float.view.h2" = "스테이킹 된 VITE는 3일 후에 출금이 가능합니다. 스테이킹으로 받은 쿼타가 충분하다면, PoW 단계를 건너뛸 수 있습니다.";
 "quota.pow.finished.float.view.pledge.button.title" = "스테이킹을 통해 빠르게 거래하기";
 

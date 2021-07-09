@@ -12,43 +12,18 @@ import PromiseKit
 
 class HostManager {
 
-    static var success = false
-    static var failed0 = false
-    static var failed1 = false
-
     static func fetchAndConfigHostInfo() {
 
         func tryAgain() {
-            if HostManager.failed0 && HostManager.failed1 {
-                HostManager.failed0 = false
-                HostManager.failed1 = false
-                GCD.delay(8) { HostManager.fetchAndConfigHostInfo() }
-            }
+            GCD.delay(8) { HostManager.fetchAndConfigHostInfo() }
         }
-
-        Alamofire.request("https://config.zaokaidian.com/dns/hostips")
-            .responseJSON()
-            .done { (json, resp) in
-                if HostManager.success { return }
-                HostManager.success = true
-                HostManager.handleData(json)
-            }
-            .catch { (error) in
-                HostManager.failed0 = true
-                if HostManager.success { return }
-                tryAgain()
-            }
 
         Alamofire.request("https://config.vite.net/dns/hostips")
             .responseJSON()
             .done { (json, resp) in
-                if HostManager.success { return }
-                HostManager.success = true
                 HostManager.handleData(json)
             }
             .catch { (error) in
-                HostManager.failed1 = true
-                if HostManager.success { return }
                 tryAgain()
             }
     }

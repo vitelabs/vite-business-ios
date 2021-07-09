@@ -232,7 +232,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Баланс";
 "balance.info.detail.unconfirmed.title" = "Не получено";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Доступно";
 "balance.info.detail.pledge.amount.title" = "Заморожено";
 "balance.info.detail.show.transactions.button.title" = "Проверьте историю транзакций в Ethereum Explorer";
@@ -242,7 +242,7 @@
 "balance.info.detail.pledge" = "Получить Квоту";
 "balance.info.detail.exchange.vite" = "Конвертация VITE";
 "balance.info.detail.pledge.count.content" = "Лимит расхода квоты/квот";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Детали шлюза";
 "gateway.info.detail.page.name" = "Название шлюза";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Заморозка VITE";
 "quota.float.view.title" = "Вычисления PoW для получения квоты для этой транзакции...";
-"quota.float.view.tip" = "Эта транзакция стоит %@UT";
+"quota.float.view.tip" = "Эта транзакция стоит %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -414,7 +414,7 @@
 
 
 "quota.pow.finished.float.view.title" = "Транзакция отправлена";
-"quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
+"quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@Quota.";
 "quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Транзакции быстрее при заморозке VITE";
 

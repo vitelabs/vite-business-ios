@@ -232,7 +232,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Bakiye";
 "balance.info.detail.unconfirmed.title" = "Alınmadı";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Kullanılabilir";
 "balance.info.detail.pledge.amount.title" = "Stake Edilmiş";
 "balance.info.detail.show.transactions.button.title" = "Ethereum Explorer'da işlem geçmişini kontrol edin";
@@ -242,7 +242,7 @@
 "balance.info.detail.pledge" = "Quota Al";
 "balance.info.detail.exchange.vite" = "VITE Dönüşümü";
 "balance.info.detail.pledge.count.content" = "Harcanabilir Quota/Quota Sınırı";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Ağ Geçidi Ayrıntıları";
 "gateway.info.detail.page.name" = "Ağ Geçidi Adı";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "PoW'u çalıştır";
 "quota.alert.quota.button.title" = "VITE Stake et";
 "quota.float.view.title" = "Quota'yı Korumak İçin PoW Hesaplanıyor...";
-"quota.float.view.tip" = "Bu İşlemin maliyeti %@UT";
+"quota.float.view.tip" = "Bu İşlemin maliyeti %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -414,7 +414,7 @@
 
 
 "quota.pow.finished.float.view.title" = "İşlem Gönderildi";
-"quota.pow.finished.float.view.h1" = "Bu PoW hesaplamasında %1$@S harcadınız ve %2$@UT'u güvence altına alıp kullandınız.";
+"quota.pow.finished.float.view.h1" = "Bu PoW hesaplamasında %1$@S harcadınız ve %2$@Quota'u güvence altına alıp kullandınız.";
 "quota.pow.finished.float.view.h2" = "Stake ettiğiniz VITE'inizi 3 gün sonra çekebilirsiniz. Stake yoluyla aldığınız quota bir işlem için yeterliyse, PoW'un bu adımını atlayabilirsiniz.";
 "quota.pow.finished.float.view.pledge.button.title" = "Stake ile Daha Hızlı İşlem Yapın";
 

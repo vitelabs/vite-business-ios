@@ -232,7 +232,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Số dư";
 "balance.info.detail.unconfirmed.title" = "Chưa nhận";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Khả dụng";
 "balance.info.detail.pledge.amount.title" = "Đã stake";
 "balance.info.detail.show.transactions.button.title" = "Kiểm tra lịch sử giao dịch trên Trình duyệt Ethereum";
@@ -242,7 +242,7 @@
 "balance.info.detail.pledge" = "Nhận Quota";
 "balance.info.detail.exchange.vite" = "Chuyển đổi VITE";
 "balance.info.detail.pledge.count.content" = "Quota có thể dùng/Hạn mức Quota";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Thông tin chi tiết Gateway";
 "gateway.info.detail.page.name" = "Tên Gateway";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "Chạy PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
-"quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+"quota.float.view.tip" = "Giao dịch có chi phí %@ Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -414,7 +414,7 @@
 
 
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
-"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
+"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@Quota.";
 "quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Chuyển giao Nhanh hơn bằng Stake";
 

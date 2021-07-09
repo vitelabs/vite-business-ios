@@ -232,7 +232,7 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Balance";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Available";
 "balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
@@ -242,7 +242,7 @@
 "balance.info.detail.pledge" = "Get Quota";
 "balance.info.detail.exchange.vite" = "VITE Conversion";
 "balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Gateway Details";
 "gateway.info.detail.page.name" = "Gateway Name";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Computing PoW to Secure Quota for this Transaction...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
+"quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -414,7 +414,7 @@
 
 
 "quota.pow.finished.float.view.title" = "Transaction Sent";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
+"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
