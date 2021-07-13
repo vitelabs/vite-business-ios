@@ -61,7 +61,8 @@ final class PledgeHistoryCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.separatorInset = UIEdgeInsets.init(top: 0, left: 24, bottom: 0, right: -24)
-
+        self.selectionStyle = .none
+        
         contentView.addSubview(addressTitleLabel)
         contentView.addSubview(addressBackView)
         contentView.addSubview(addressLabel)
