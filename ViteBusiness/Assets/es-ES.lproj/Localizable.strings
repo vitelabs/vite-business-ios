@@ -239,8 +239,8 @@
 "balance.info.detail.reveice.button.title" = "Receive";
 "balance.info.detail.send.button.title" = "Send";
 "balance.info.detail.vote" = "Vote";
-"balance.info.detail.pledge" = "Get Quota";
-"balance.info.detail.exchange.vite" = "VITE Conversion";
+"balance.info.detail.pledge" = "Obtener Cuota";
+"balance.info.detail.exchange.vite" = "Conversión de VITE";
 "balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
