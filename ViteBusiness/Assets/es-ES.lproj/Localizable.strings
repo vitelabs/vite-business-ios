@@ -26,15 +26,15 @@
 "discover.page.VCWebTitle.activity" = "Eventos de Vite";
 "discover.page.VCWebTitle.game" = "Juegos en Vite";
 "discover.page.VCWebTitle.news" = "Noticias de Vite";
-"discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"discover.page.game.alter.title" = "Has visitado una página que sale de Vite App, y serás redirigido a un dApp de terceros. El uso en esta dApp se ajustará a los términos del acuerdo de usuario y la política de privacidad de aquella dApp. Vite Labs no tiene supervisión ni control sobre la calidad, contenido, la fiabilidad o la seguridad de dApp de terceros, ni será responsable de su uso.";
 
 //AirDrop
-"airdrop.help" = "Help";
-"airdrop.vpower" = "Winners";
-"airdrop.profit" = "Benefits";
-"airdrop.validationFailed" = "Verification Failed";
-"airdrop.enabled" = "Pick up 10~1000";
-"airdrop.leftTime" = "Countdown";
+"airdrop.help" = "Ayuda";
+"airdrop.vpower" = "Ganadores";
+"airdrop.profit" = "Beneficios";
+"airdrop.validationFailed" = "Error al verificar";
+"airdrop.enabled" = "Recoge 10~1000";
+"airdrop.leftTime" = "Cuenta regresiva";
 
 "airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
 "airdrop.error.tip.not.support" = "Your device not support airdrop.";
