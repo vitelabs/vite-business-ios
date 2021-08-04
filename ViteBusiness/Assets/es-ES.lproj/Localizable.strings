@@ -15,17 +15,17 @@
 "discover.page.title" = "Descubrir";
 "discover.page.game.cell.palyNum" = "%@ jugadores están jugando";
 "discover.page.activity.page.title1" = "Últimos eventos";
-"discover.page.activity.page.title2" = "History";
+"discover.page.activity.page.title2" = "Histórico";
 "discover.page.news.cell.official" = "Vite";
-"discover.page.news.cell.time.minute" = "Now";
-"discover.page.news.cell.time.hour" = "%@h ago";
-"discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
+"discover.page.news.cell.time.minute" = "Ahora";
+"discover.page.news.cell.time.hour" = "Hace %@ horas";
+"discover.page.news.cell.time.day" = "Hace %@ días";
+"discover.page.headerTitle.activity" = "Centro de Campañas";
+"discover.page.headerTitle.game" = "Juegos en Vite";
+"discover.page.headerTitle.news" = "Noticias de Vite";
+"discover.page.VCWebTitle.activity" = "Eventos de Vite";
+"discover.page.VCWebTitle.game" = "Juegos en Vite";
+"discover.page.VCWebTitle.news" = "Noticias de Vite";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 //AirDrop
