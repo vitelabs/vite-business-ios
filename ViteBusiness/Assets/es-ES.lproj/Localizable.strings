@@ -8,13 +8,13 @@
 /* ViteCommunity */
 
 
-"confirm.button.title" = "Confirm";
-"cancel.button.title" = "Cancel";
-"alter.title" = "NOTICE";
+"confirm.button.title" = "Confirmar";
+"cancel.button.title" = "Cancelar";
+"alter.title" = "AVISO";
 
-"discover.page.title" = "Discovery";
-"discover.page.game.cell.palyNum" = "%@ players are playing";
-"discover.page.activity.page.title1" = "Latest Events";
+"discover.page.title" = "Descubrir";
+"discover.page.game.cell.palyNum" = "%@ jugadores están jugando";
+"discover.page.activity.page.title1" = "Últimos eventos";
 "discover.page.activity.page.title2" = "History";
 "discover.page.news.cell.official" = "Vite";
 "discover.page.news.cell.time.minute" = "Now";
