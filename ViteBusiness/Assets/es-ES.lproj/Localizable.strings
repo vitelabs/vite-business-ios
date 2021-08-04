@@ -177,24 +177,24 @@
 "manage.wallet.page.name.cell.title" = "Nombre de la cuenta";
 "manage.wallet.page.addressManage.cell.title" = "Gestión de direcciones";
 "manage.wallet.page.importMnemonic.cell.title" = "Exportar frase semilla";
-"manage.wallet.page.alter.changeName" = "Editar nombre de billetera";
+"manage.wallet.page.alter.changeName" = "Editar nombre";
 "manage.wallet.page.changeName.loading" = "Editando";
-"manage.wallet.page.error.type.name" = "Wallet name can not be empty";
+"manage.wallet.page.error.type.name" = "El nombre no puede estar vacío";
 
-"my.page.contacts.cell.title" = "Contact Address";
-"my.page.mnemonic.cell.title" = "Mnemonic Words";
-"my.page.system.cell.title" = "Settings";
-"my.page.invite.cell.title" = "Mining Referrals";
-"my.page.reward.cell.title" = "Rewards Enquiry";
-"my.page.forum.cell.title" = "Official Forum";
-"my.page.aboutUs.cell.title" = "About Us";
-"my.page.change.wallet.name.alter.title" = "Edit Account Name";
-"my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
+"my.page.contacts.cell.title" = "Dirección de contacto";
+"my.page.mnemonic.cell.title" = "Palabras mnemónicas";
+"my.page.system.cell.title" = "Ajustes";
+"my.page.invite.cell.title" = "Minería por referidos";
+"my.page.reward.cell.title" = "Consulta de recompensas";
+"my.page.forum.cell.title" = "Foro oficial";
+"my.page.aboutUs.cell.title" = "Sobre Nosotros";
+"my.page.change.wallet.name.alter.title" = "Editar nombre de cuenta";
+"my.page.aboutUs.wechat.alert.title" = "Escanea el código QR para seguir la cuenta oficial de Vite en WeChat";
 
 /* Transaction List */
-"transaction.list.page.title" = "Transaction History";
-"transaction.list.page.empty" = "Empty";
-"transaction.list.page.network.error" = "Refresh";
+"transaction.list.page.title" = "Historial de transacciones";
+"transaction.list.page.empty" = "Vacío";
+"transaction.list.page.network.error" = "Actualizar";
 "transaction.list.page.genesis.cell.name" = "Check Genesis Block Records";
 "transaction.list.page.header.refresh.idle" = "Pull down to refresh";
 "transaction.list.page.header.refresh.pulling" = "Release to refresh";
