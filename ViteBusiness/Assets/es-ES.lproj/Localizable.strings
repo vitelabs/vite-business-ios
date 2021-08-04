@@ -133,30 +133,30 @@
 "mnemonic.affirm.page.title" = "Confirmar";
 "mnemonic.affirm.page.tip.title" = "Seleccione ordenadamente su frase semilla";
 "mnemonic.affirm.alter.title" = "Esta acción regenerará la frase semilla, ¿listo para regresar?";
-"mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
-"mnemonic.affirm.page.add.loading" = "Adding...";
+"mnemonic.affirm.alter.check.title" = "¡Frase semilla incorrecta!";
+"mnemonic.affirm.page.add.loading" = "Agregando...";
 
 /* import mnemonic*/
-"import.page.title" = "Please input your seed phrase";
-"import.page.submit.btn" = "Restore Account";
-"import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
-"import.page.submit.loading" = "Import...";
-"import.page.submit.success" = "Import success";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
-"import.page.alert.exist.ok" = "Confirm";
-"import.page.alert.exist.cancel" = "Cancel";
+"import.page.title" = "Por favor, introduce tu frase semilla";
+"import.page.submit.btn" = "Restaurar cuenta";
+"import.page.submit.invalid.mnemonic" = "Algo salió mal con tu frase semilla, ¡por favor inténtalo de nuevo!";
+"import.page.submit.loading" = "Importando...";
+"import.page.submit.success" = "Importación exitosa";
+"import.page.alert.exist.title" = "La frase semilla que introdujiste ya esta asociada a la cuenta '%@' de este dispositivo, estás seguro que deseas sobrescribir la cuenta existente";
+"import.page.alert.exist.ok" = "Confirmar";
+"import.page.alert.exist.cancel" = "Cancelar";
 
 
 /* export mnemonic */
-"export.page.title" = "Export Seed Phrase";
-"export.page.alter.title" = "Please Input Password";
-"export.page.alter.tf.placeholder" = "Please input password";
-"export.page.alter.password.error" = "Wrong Password!";
+"export.page.title" = "Exportar frase semilla";
+"export.page.alter.title" = "Por favor, introduzca una contraseña";
+"export.page.alter.tf.placeholder" = "Por favor, introduzca una contraseña";
+"export.page.alter.password.error" = "¡Contraseña incorrecta!";
 
 /* login */
-"login.page.btn.chooseName" = "Select Accounts";
-"login.page.btn.login" = "Login";
-"login.page.loading.title" = "Processing";
+"login.page.btn.chooseName" = "Seleccionar cuenta";
+"login.page.btn.login" = "Ingresar";
+"login.page.loading.title" = "Procesando";
 "login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
 
 /* Home */
