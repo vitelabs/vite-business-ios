@@ -209,21 +209,21 @@
 "transaction.list.transaction.type.name.pledge" = "Obtener cuota TPS";
 "transaction.list.transaction.type.name.cancelPledge" = "Retiro de cuota en stake";
 "transaction.list.transaction.type.name.coin" = "Emisión de Token";
-"transaction.list.transaction.type.name.cancelCoin" = "Withdrawal of staking tokens";
-"transaction.list.transaction.type.name.transfer" = "Transfer";
-"transaction.list.transaction.netErrorAndShowAccount" = "Something went wrong with network, click here to check account details";
-"transaction.list.transaction.confirmations" = "%@ Confirmations";
-"transaction.list.transaction.confirmations.finished" = "Confirmed";
-"eth.transaction.detail.page.state.call.wait" = "Pending";
+"transaction.list.transaction.type.name.cancelCoin" = "Retiros de token en stake";
+"transaction.list.transaction.type.name.transfer" = "Transferencia";
+"transaction.list.transaction.netErrorAndShowAccount" = "Algo salió mal con la red, haga clic aquí para comprobar los detalles de la cuenta";
+"transaction.list.transaction.confirmations" = "%@ Confirmaciones";
+"transaction.list.transaction.confirmations.finished" = "Confirmado";
+"eth.transaction.detail.page.state.call.wait" = "Pendiente";
 
 /* Transaction Detail */
-"vite.transaction.detail.page.state.success" = "Transaction Completed";
-"vite.transaction.detail.page.state.call.success" = "Call Contract Succeeded";
-"vite.transaction.detail.page.state.call.failed" = "Call Contract Failed";
-"vite.transaction.detail.page.state.call.wait" = "Waiting for Smart Contract Response";
-"vite.transaction.detail.page.type.title" = "Transaction Type";
-"vite.transaction.detail.page.type.send" = "Request";
-"vite.transaction.detail.page.type.receive" = "Response";
+"vite.transaction.detail.page.state.success" = "Transacción completada";
+"vite.transaction.detail.page.state.call.success" = "Llamada de contrato exitosa";
+"vite.transaction.detail.page.state.call.failed" = "Llamada de contrato fallida";
+"vite.transaction.detail.page.state.call.wait" = "Esperando respuesta de contrato inteligente";
+"vite.transaction.detail.page.type.title" = "Tipo de transacción";
+"vite.transaction.detail.page.type.send" = "Solicitar";
+"vite.transaction.detail.page.type.receive" = "Respuesta";
 "vite.transaction.detail.page.hash.title" = "Transaction Hash";
 "vite.transaction.detail.page.height.title" = "Block Height";
 "vite.transaction.detail.page.note.title" = "Memo";
