@@ -45,7 +45,7 @@
 "tab.title.market" = "Mercados";
 "tab.title.trading" = "Comercio";
 "tab.title.discover" = "Descubrir";
-"tab.title.dex" = "Recursos";
+"tab.title.dex" = "Activos";
 
 /* App */
 "Cancel" = "Cancelar";
@@ -68,19 +68,19 @@
 /* Login */
 "create.account" = "Crear cuenta";
 "import.account" = "Importar cuenta";
-"select.wallet.account" = "Select your account";
+"select.wallet.account" = "Selecciona tu cuenta";
 
 /* Lock */
-"lock.page.pwd.btn.title" = "Login via password";
-"lock.page.fingerprint.btn.title" = "Biometric Verification";
-"lock.page.fingerprint.alter.title" = "Verify fingerprint to activate Touch ID";
-"lock.page.changeUser.btn.title" = "Switch Account";
+"lock.page.pwd.btn.title" = "Iniciar sesión usando contraseña";
+"lock.page.fingerprint.btn.title" = "Verificación biométrica";
+"lock.page.fingerprint.alter.title" = "Verificar huella dactilar para activar Touch ID";
+"lock.page.changeUser.btn.title" = "Cambiar cuenta";
 
 /* create */
-"create.page.title" = "Create Account";
-"create.page.tf.title" = "Account Name";
-"create.page.pw.title" = "Please input password";
-"create.page.pw.repeate.title" = "Please input your password again";
+"create.page.title" = "Crear cuenta";
+"create.page.tf.title" = "Nombre de la cuenta";
+"create.page.pw.title" = "Por favor, introduzca una contraseña";
+"create.page.pw.repeate.title" = "Por favor, introduce tu contraseña de nuevo";
 "create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
 "create.page.invite.code.placeholder" = "Invitation Code(Optional)";
 "create.page.submit.btn.title" = "Create";
@@ -157,19 +157,19 @@
 "login.page.btn.chooseName" = "Seleccionar cuenta";
 "login.page.btn.login" = "Ingresar";
 "login.page.loading.title" = "Procesando";
-"login.page.error.toast.title" = "Wrong password! Please try to import seed phrase instead";
+"login.page.error.toast.title" = "¡Contraseña incorrecta! Por favor intente importar la frase semilla en su lugar";
 
 /* Home */
-"tabbar.item.title.wallet" = "Wallet";
-"tabbar.item.title.my" = "Me";
+"tabbar.item.title.wallet" = "Billetera";
+"tabbar.item.title.my" = "Yo";
 
 /* Wallet Home */
-"wallet.home.btc.title" = "Total Value (BTC)";
-"wallet.home.balance.title" = "Balance";
-"wallet.home.unconfirmed.title" = "Unreceived %@";
-"wallet.home.toast.copy.address" = "Successfully copied!";
-"wallet.home.scan.url.alert.title" = "NOTICE";
-"wallet.home.scan.url.alert.message" = "You are going to visit a third party page which leaves Vite App. Your use on this page will abide by third party Term of User Agreement and Privacy Policy, Vite Labs has any supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
+"wallet.home.btc.title" = "Valor total (BTC)";
+"wallet.home.balance.title" = "Saldo";
+"wallet.home.unconfirmed.title" = "Sin recibir %@";
+"wallet.home.toast.copy.address" = "¡Copiado con éxito!";
+"wallet.home.scan.url.alert.title" = "AVISO";
+"wallet.home.scan.url.alert.message" = "Has visitado una página que sale de Vite App, y serás redirigido a un dApp de terceros. El uso en esta dApp se ajustará a los términos del acuerdo de usuario y la política de privacidad de aquella dApp. Vite Labs no tiene supervisión ni control sobre la calidad, contenido, la fiabilidad o la seguridad de dApp de terceros, ni será responsable de su uso.";
 "wallet.home.header.title" = "Assets";
 
 /* Manage Wallet */
