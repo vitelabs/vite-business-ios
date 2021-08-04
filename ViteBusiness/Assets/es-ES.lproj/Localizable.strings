@@ -54,20 +54,20 @@
 "Hint" = "Sugerencia";
 "Yes" = "Si";
 "No" = "No";
-"Loading" = "Loading";
-"Retry" = "Retry";
-"Confirm" = "Confirm";
-"Submit" = "Submit";
-"Close" = "I understand";
-"Update.app" = "Update App";
-"Submit.cancel" = "Cancel";
-"Close" = "Close";
-"Quit" = "Quit";
-"web.page.host.tip" = "This page is provided by %@";
+"Loading" = "Cargando";
+"Retry" = "Reintentar";
+"Confirm" = "Confirmar";
+"Submit" = "Enviar";
+"Close" = "Entiendo";
+"Update.app" = "Actualizar aplicación";
+"Submit.cancel" = "Cancelar";
+"Close" = "Cerrar";
+"Quit" = "Salir";
+"web.page.host.tip" = "Esta página esta proporcionada por %@";
 
 /* Login */
-"create.account" = "Create Account";
-"import.account" = "Import Account";
+"create.account" = "Crear cuenta";
+"import.account" = "Importar cuenta";
 "select.wallet.account" = "Select your account";
 
 /* Lock */
@@ -128,11 +128,11 @@
 "mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
 "mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
 "mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
-"mnemonic.backup.tip.alert.cancel.title" = "Back Up Later";
+"mnemonic.backup.tip.alert.cancel.title" = "Respaldar después";
 
-"mnemonic.affirm.page.title" = "Confirm";
-"mnemonic.affirm.page.tip.title" = "Orderly select seed phrase";
-"mnemonic.affirm.alter.title" = "This action will regenerate seed phrase, ready to go back?";
+"mnemonic.affirm.page.title" = "Confirmar";
+"mnemonic.affirm.page.tip.title" = "Seleccione ordenadamente su frase semilla";
+"mnemonic.affirm.alter.title" = "Esta acción regenerará la frase semilla, ¿listo para regresar?";
 "mnemonic.affirm.alter.check.title" = "Incorrect seed phrase!";
 "mnemonic.affirm.page.add.loading" = "Adding...";
 
