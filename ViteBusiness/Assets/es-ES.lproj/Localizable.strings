@@ -240,8 +240,8 @@
 "balance.info.detail.send.button.title" = "Send";
 "balance.info.detail.vote" = "Vote";
 "balance.info.detail.pledge" = "Obtener Cuota";
-"balance.info.detail.exchange.vite" = "Conversión de VITE";
-"balance.info.detail.pledge.count.content" = "Spendable Quota/Quota Limit";
+"balance.info.detail.exchange.vite" = "Convertir VITE";
+"balance.info.detail.pledge.count.content" = "Cuotas disponibles/Cuota Límite";
 "balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
 
 "gateway.info.detail.page.title" = "Gateway Details";
