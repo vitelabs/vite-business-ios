@@ -87,26 +87,26 @@
 "create.page.toast.error.invite.code" = "Código de invitación incorrecto";
 
 "create.page.tip.title" = "Instrucciones para la copia de seguridad";
-"create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
-"create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
-"create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
-"create.page.tip.button.skip.title" = "Back Up Later";
-"create.page.tip.button.next.title" = "Backed Up";
+"create.page.tip.content1" = "Precaución! La pérdida de las palabras mnemónicas resultará en la pérdida total de los activos digitales de la billetera.";
+"create.page.tip.content2" = "La importación de palabras mnemónicas es la única forma de recuperar una cuenta después de eliminar o reinstalar la aplicación.";
+"create.page.tip.content3" = "Por favor, almacena tus palabras mnemónicas en un lugar seguro.";
+"create.page.tip.button.skip.title" = "Respaldar después";
+"create.page.tip.button.next.title" = "Respaldado";
 
 /* mnemonic */
-"mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below using the Vite wallet installed on another device.";
-"mnemonic.backup.language.zh" = "中";
-"mnemonic.backup.language.en" = "EN";
+"mnemonic.backup.page.title" = "Copia de seguridad de palabras mnemónicas";
+"mnemonic.backup.page.tip1" = "Recomendamos los dos siguientes métodos de copia de seguridad:";
+"mnemonic.backup.page.tip2" = "Escriba las palabras mnemónicas en un pedazo de papel, luego guárdelas en un lugar seguro.";
+"mnemonic.backup.page.tip3" = "Escanea el código QR de abajo usando la billetera Vite instalada en otro dispositivo.";
+"mnemonic.backup.language.zh" = "Chino";
+"mnemonic.backup.language.en" = "Inglés";
 
-"mnemonic.backup.scan.alert.title" = "Notice";
-"mnemonic.backup.scan.alert.message" = "Confirm account creation with the following mnemonic words?";
-"mnemonic.backup.scan.alert.ok.title" = "Confirm";
-"mnemonic.backup.scan.alert.cancel.title" = "Cancel";
+"mnemonic.backup.scan.alert.title" = "Aviso";
+"mnemonic.backup.scan.alert.message" = "¿Confirmar la creación de la cuenta con las siguientes palabras mnemonicas?";
+"mnemonic.backup.scan.alert.ok.title" = "Confirmar";
+"mnemonic.backup.scan.alert.cancel.title" = "Cancelar";
 
-"mnemonic.backup.page.check.button1.title" = "I understand if I lose the mnemonic words, I would never find back my assets";
+"mnemonic.backup.page.check.button1.title" = "Entiendo que si pierdo las palabras mnemónicas, nunca recuperaré mis activos";
 "mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
 "mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
 "mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
