@@ -81,12 +81,12 @@
 "create.page.tf.title" = "Nombre de la cuenta";
 "create.page.pw.title" = "Por favor, introduzca una contraseña";
 "create.page.pw.repeate.title" = "Por favor, introduce tu contraseña de nuevo";
-"create.page.invite.code.title" = "Enter invitation code or scan invitation QR code to enjoy 10% off trading fees and premiere mining";
-"create.page.invite.code.placeholder" = "Invitation Code(Optional)";
-"create.page.submit.btn.title" = "Create";
-"create.page.toast.error.invite.code" = "Wrong Invitation Code";
+"create.page.invite.code.title" = "Ingresa el código de invitación o escanee el código QR de invitación para disfrutar de un 10% descuento en comisiones de trading y potenciar las recompensas de minado";
+"create.page.invite.code.placeholder" = "Código de invitación (opcional)";
+"create.page.submit.btn.title" = "Crear";
+"create.page.toast.error.invite.code" = "Código de invitación incorrecto";
 
-"create.page.tip.title" = "Backup Instructions";
+"create.page.tip.title" = "Instrucciones para la copia de seguridad";
 "create.page.tip.content1" = "Caution! Loss of mnemonic words will result in loss of all digital assets in the wallet.";
 "create.page.tip.content2" = "Importing mnemonic words is the only way to retrieve an account after deleting or reinstalling the App.";
 "create.page.tip.content3" = "Please store your mnemonic words in a safe place.";
