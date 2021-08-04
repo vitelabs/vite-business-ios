@@ -36,23 +36,23 @@
 "airdrop.enabled" = "Recoge 10~1000";
 "airdrop.leftTime" = "Cuenta regresiva";
 
-"airdrop.error.tip.need.update" = "Airdrop is only supported on iOS 11 and above.";
-"airdrop.error.tip.not.support" = "Your device not support airdrop.";
-"airdrop.error.tip.unknown.error" = "Unknown Error.";
+"airdrop.error.tip.need.update" = "Airdrop disponible únicamente para iOS 11 o superior.";
+"airdrop.error.tip.not.support" = "Tu dispositivo no es compatible con este airdrop.";
+"airdrop.error.tip.unknown.error" = "Error desconocido.";
 
 
-"tab.title.wallet" = "Wallet";
-"tab.title.market" = "Markets";
-"tab.title.trading" = "Trade";
-"tab.title.discover" = "Discover";
-"tab.title.dex" = "Asset";
+"tab.title.wallet" = "Billetera";
+"tab.title.market" = "Mercados";
+"tab.title.trading" = "Comercio";
+"tab.title.discover" = "Descubrir";
+"tab.title.dex" = "Recursos";
 
 /* App */
-"Cancel" = "Cancel";
-"Finish" = "Done";
-"Delete" = "Delete";
-"Hint" = "Prompt";
-"Yes" = "Yes";
+"Cancel" = "Cancelar";
+"Finish" = "Aceptar";
+"Delete" = "Borrar";
+"Hint" = "Sugerencia";
+"Yes" = "Si";
 "No" = "No";
 "Loading" = "Loading";
 "Retry" = "Retry";
