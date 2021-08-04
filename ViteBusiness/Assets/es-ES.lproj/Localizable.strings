@@ -107,27 +107,27 @@
 "mnemonic.backup.scan.alert.cancel.title" = "Cancelar";
 
 "mnemonic.backup.page.check.button1.title" = "Entiendo que si pierdo las palabras mnemónicas, nunca recuperaré mis activos";
-"mnemonic.backup.page.check.button2.title" = "I understand if I forget or lose the mnemonic words, nobody can help to recover";
-"mnemonic.backup.page.check.button3.title" = "I have already read, understood and I agree to our ";
-"mnemonic.backup.page.clause.button.title" = "Terms and Conditions";
-"mnemonic.backup.page.tip.lab.title" = "Seed Phrase";
-"mnemonic.backup.page.tip.anewBtn.title" = "Regenerate";
-"mnemonic.backup.page.tip.nextBtn.title" = "Backed Up";
-"mnemonic.backup.page.tip.skip.title" = "Back Up Later";
-"mnemonic.backup.page.alter.title" = "We strongly advise against taking a screenshot of the seed phrase.  We suggest that you write down the seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.alter.message" = "Would you like to create a new seed phrase?";
+"mnemonic.backup.page.check.button2.title" = "Entiendo que si olvido o pierdo las palabras mnemónicas, nadie me puede ayudar a recuperlas";
+"mnemonic.backup.page.check.button3.title" = "Ya he leído, entendí y estoy de acuerdo con nuestro ";
+"mnemonic.backup.page.clause.button.title" = "Términos y condiciones";
+"mnemonic.backup.page.tip.lab.title" = "Frase semilla";
+"mnemonic.backup.page.tip.anewBtn.title" = "Regenerar";
+"mnemonic.backup.page.tip.nextBtn.title" = "Respaldado";
+"mnemonic.backup.page.tip.skip.title" = "Respaldar después";
+"mnemonic.backup.page.alter.title" = "Recomendamos encarecidamente no tomar una captura de pantalla de la frase semilla. Sugerimos que escriba la frase semilla en un pedazo de papel y que la guarde en un lugar seguro.";
+"mnemonic.backup.page.alter.message" = "¿Quieres crear una nueva frase semilla?";
 "mnemonic.backup.page.alter.cancel" = "No";
-"mnemonic.backup.page.alter.confirm" = "Yes";
-"mnemonic.backup.page.error.type.name" = "Please input account name or password";
-"mnemonic.backup.page.error.type.nameValid" = "Account name only supports Chinese and English characters as well as underscores.";
-"mnemonic.backup.page.error.type.validWalletNameCount" = "Username only supports less than 32 characters";
-"mnemonic.backup.page.error.type.difference" = "Please enter the same password!";
-"mnemonic.backup.page.error.type.pwd.illegal" = "Your password should contain at lease 8 characters";
-"mnemonic.backup.page.switch.mode.title" = "Switch to %@ mnemonic words";
+"mnemonic.backup.page.alter.confirm" = "Si";
+"mnemonic.backup.page.error.type.name" = "Por favor ingrese el nombre de la cuenta o la contraseña";
+"mnemonic.backup.page.error.type.nameValid" = "El nombre de la cuenta sólo admite caracteres en chino, inglés y guiones bajos.";
+"mnemonic.backup.page.error.type.validWalletNameCount" = "El nombre de usuario debe contener menos de 32 caracteres";
+"mnemonic.backup.page.error.type.difference" = "¡Por favor, introduzce la misma contraseña!";
+"mnemonic.backup.page.error.type.pwd.illegal" = "Su contraseña debe contener al menos 8 caracteres";
+"mnemonic.backup.page.switch.mode.title" = "Cambiar a %@ palabras mnemónicas";
 
-"mnemonic.backup.tip.alert.title" = "Mnemonic Words Unbacked Up";
-"mnemonic.backup.tip.alert.message" = "Please enter password to back up the Mnemonic Words.";
-"mnemonic.backup.tip.alert.ok.title" = "Back Up Now";
+"mnemonic.backup.tip.alert.title" = "Palabras mnemónicas sin respaldadar";
+"mnemonic.backup.tip.alert.message" = "Por favor, introduzce la contraseña para hacer una copia de seguridad de las palabras mnemónicas.";
+"mnemonic.backup.tip.alert.ok.title" = "Respaldar ahora";
 "mnemonic.backup.tip.alert.cancel.title" = "Respaldar después";
 
 "mnemonic.affirm.page.title" = "Confirmar";
@@ -170,15 +170,15 @@
 "wallet.home.toast.copy.address" = "¡Copiado con éxito!";
 "wallet.home.scan.url.alert.title" = "AVISO";
 "wallet.home.scan.url.alert.message" = "Has visitado una página que sale de Vite App, y serás redirigido a un dApp de terceros. El uso en esta dApp se ajustará a los términos del acuerdo de usuario y la política de privacidad de aquella dApp. Vite Labs no tiene supervisión ni control sobre la calidad, contenido, la fiabilidad o la seguridad de dApp de terceros, ni será responsable de su uso.";
-"wallet.home.header.title" = "Assets";
+"wallet.home.header.title" = "Activos";
 
 /* Manage Wallet */
-"manage.wallet.page.title" = "Wallet Management";
-"manage.wallet.page.name.cell.title" = "Account Name";
-"manage.wallet.page.addressManage.cell.title" = "Address Management";
-"manage.wallet.page.importMnemonic.cell.title" = "Export Seed Phrase";
-"manage.wallet.page.alter.changeName" = "Edit Wallet Name";
-"manage.wallet.page.changeName.loading" = "Editing";
+"manage.wallet.page.title" = "Administración de Billetera";
+"manage.wallet.page.name.cell.title" = "Nombre de la cuenta";
+"manage.wallet.page.addressManage.cell.title" = "Gestión de direcciones";
+"manage.wallet.page.importMnemonic.cell.title" = "Exportar frase semilla";
+"manage.wallet.page.alter.changeName" = "Editar nombre de billetera";
+"manage.wallet.page.changeName.loading" = "Editando";
 "manage.wallet.page.error.type.name" = "Wallet name can not be empty";
 
 "my.page.contacts.cell.title" = "Contact Address";
