@@ -768,8 +768,8 @@
 // CrossChain Transfer & Receive
 
 "crosschain.tokendetail" = "Token Details";
-"crosschain.deposit" = "Cross-Chain Deposit";
-"crosschain.withdraw" = "Cross-Chain Withdraw";
+"crosschain.deposit" = "Depósito Cross-Chain";
+"crosschain.withdraw" = "Retiro Cross-Chain";
 "crosschain.withdraw.btnTitle" = "Withdraw";
 "crosschain.deposit.btnTitle" = "Deposit";
 "crosschain.deposit.vitewallet" = "Deposit from Vite Wallet";
