@@ -260,7 +260,7 @@
 "token.info.detail.page.type" = "Token Type";
 "market.detail.page.token.info.type.value.native" = "Native";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"token.info.detail.page.gateway" = "Cross-Chain gateway";
+"token.info.detail.page.gateway" = "Gateway Cross-Chain";
 "token.info.detail.page.webside" = "Website";
 "token.info.detail.page.paper" = "WhitePaper";
 "token.info.detail.page.browser" = "Explorer";
@@ -784,8 +784,8 @@
 "crosschain.deposit.scanLabel" = "Please scan the %@ code";
 "crosschain.deposit.labelDesc" = "Please do use %@ together with the Deposit Address, or you will lose the token(s).";
 
-"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal. %@ balance in your Vite wallet will be reduced accordingly when you make a cross-chain deposit from your Vite wallet.</p>";
-"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Cross-Chain Deposit</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Making a cross-chain deposit allows %@ to be mapped into the Vite network. After that, you will also be able to make a cross-chain withdrawal.</p>";
+"crosschain.deposit.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Acerca del depósito Cross-Chain</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Hacer un depósito Cross-Chain permite que %@ se mapee a la red de Vite. Usted también podrá hacer retiros Cross-Chain más adelante. Un saldo de %@ se reducirá en su billetera Vite en consecuencia cuando haga un depósito Cross-Chain desde su billetera Vite.</p>";
+"crosschain.deposit.other.about" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Acerca del depósito Cross-Chain</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Hacer un depósito Cross-Chain permite que %@ se mapee a la red de Vite. Usted también podrá hacer retiros Cross-Chain más adelante.</p>";
 "crosschain.withdraw.eth.myAddress" = "My ETH Address";
 "crosschain.deposit.min" = "Minimum Deposit Amount ";
 "crosschain.withdraw.min" = "Minimum Withdrawal Amount ";
@@ -813,11 +813,11 @@
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
 "crosschain.status.withdraw.failed" = "Withdrawal Failed";
 "crosschain.status.failedBecausePoor" = "Insufficient amount";
-"crosschain.withdraw.amount.limit.title" = "Limit of cross-chain withdrawal";
-"crosschain.withdraw.amount.limit.min" = "Min amount of single cross-chain withdrawal: %@ %@";
-"crosschain.withdraw.amount.limit.max" = "Max amount of single cross-chain withdrawal: %@ %@";
+"crosschain.withdraw.amount.limit.title" = "Límite de retiro cross-chain";
+"crosschain.withdraw.amount.limit.min" = "Cantidad mínima para retiro cross-chain: %@ %@";
+"crosschain.withdraw.amount.limit.max" = "Cantidad máxima para retiro cross-chain: %@ %@";
 "crosschain.withdraw.fee.desc" = "Withdrawal fee is charged by gateway";
-"crosschain.withdraw.fee.desc2" = "Fee of single cross-chain withdrawal: ";
+"crosschain.withdraw.fee.desc2" = "Comisión de retiro cross-chain: ";
 "crosschain.withdraw.aboutfee" = "About Fee";
 "crosschain.status.failed" = "Deposit Failed";
 "crosschain.beta.alert" = "Current is a beta version, Please don't deposit large amount in your account.";
@@ -907,7 +907,7 @@
 "bifrost.operation.transfer" = "Send";
 "bifrost.operation.vx.deposit" = "ViteX Deposit";
 "bifrost.operation.vx.withdraw" = "ViteX Withdrawal";
-"bifrost.operation.across.chain.withdraw" = "Cross-Chain Send";
+"bifrost.operation.across.chain.withdraw" = "Envío Cross-Chain";
 "bifrost.operation.vx.order" = "Place Order on ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancel Order on ViteX";
 
@@ -954,7 +954,7 @@
 "buildin.transfer.utf8string.item1.title" = "Amount";
 "buildin.transfer.utf8string.item2.title" = "Comment";
 
-"buildin.transfer.cross.chain.function.title" = "Cross-Chain Send";
+"buildin.transfer.cross.chain.function.title" = "Envío Cross-Chain";
 "buildin.transfer.cross.chain.item0.title" = "Amount";
 "buildin.transfer.cross.chain.item1.title" = "Fee";
 "buildin.transfer.cross.chain.item2.title" = "Receive Address";
