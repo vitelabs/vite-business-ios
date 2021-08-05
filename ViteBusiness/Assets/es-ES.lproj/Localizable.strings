@@ -302,7 +302,7 @@
 "send.page.amount.toolbar.button.title" = "Next";
 "send.page.toast.address.error" = "Wrong address, please check the format";
 "send.page.toast.amount.error" = "Saldo insuficiente";
-"send.page.toast.amount.empty" = "Please input balance";
+"send.page.toast.amount.empty" = "Por favor ingrese un monto";
 "send.page.toast.amount.zero" = "The amount has to be positive";
 "send.page.toast.note.too.long" = "The length of notes has reached limitations";
 "send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
@@ -614,7 +614,7 @@
 "confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirm";
 
 "confirm.transaction.page.vite.dex.vip.title" = "Become a VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Exchange Available Balance";
+"confirm.transaction.page.vite.dex.vip.balance" = "Saldo disponible para Intercambios";
 "confirm.transaction.page.vite.dex.vip.amount" = "Staking Amount for Becoming a VIP";
 "confirm.transaction.page.vite.dex.vip.tip" = "VIP enjoy the privileges of 0.1% trading fee discount. Stake 10,000 VITE to become a VIP(Minimum Staking Duration: 30 days)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "Comfirm";
