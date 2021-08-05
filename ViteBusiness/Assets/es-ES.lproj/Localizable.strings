@@ -226,11 +226,11 @@
 "vite.transaction.detail.page.type.receive" = "Respuesta";
 "vite.transaction.detail.page.hash.title" = "Hash de transacción";
 "vite.transaction.detail.page.height.title" = "Altura del bloque";
-"vite.transaction.detail.page.note.title" = "Memo";
-"vite.transaction.detail.page.link.button.title" = "View More Details on Vite Explorer";
+"vite.transaction.detail.page.note.title" = "Nota";
+"vite.transaction.detail.page.link.button.title" = "Ver más detalles en Vite Explorer";
 
 /* BalanceInfo */
-"balance.info.detail.balance.title" = "Balance";
+"balance.info.detail.balance.title" = "Saldo";
 "balance.info.detail.unconfirmed.title" = "Unreceived";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
 "balance.info.detail.available.amount.title" = "Available";
@@ -287,7 +287,7 @@
 /* Send Page */
 "send.page.title" = "Send";
 "send.page.my.address.title" = "My %@ Address";
-"send.page.my.balance.title" = "Balance";
+"send.page.my.balance.title" = "Saldo";
 "send.page.my.pledge.title" = "Benefited Stake";
 "send.page.my.quota.title" = "Spendable Quota/Quota Limit";
 "send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
@@ -301,13 +301,13 @@
 "send.page.send.button.title" = "Send";
 "send.page.amount.toolbar.button.title" = "Next";
 "send.page.toast.address.error" = "Wrong address, please check the format";
-"send.page.toast.amount.error" = "Insufficient Balance";
+"send.page.toast.amount.error" = "Saldo insuficiente";
 "send.page.toast.amount.empty" = "Please input balance";
 "send.page.toast.amount.zero" = "The amount has to be positive";
 "send.page.toast.note.too.long" = "The length of notes has reached limitations";
 "send.page.toast.contract.address.support.hex" = "The destination address you transfer to is a contract, the note must be written with legal hexadecimal characters";
-"send.page.not.enough.balance.alert.title" = "Insufficient Balance";
-"send.page.not.enough.balance.alert.button" = "Cancel";
+"send.page.not.enough.balance.alert.title" = "Saldo insuficiente";
+"send.page.not.enough.balance.alert.button" = "Cancelar";
 "send.page.token.info.error" = "Token Info Error";
 "send.page.quota.content" = "%@ UTPS";
 "send.page.eth.failed" = "(%@). Please check the transaction history before trying again";
@@ -315,7 +315,7 @@
 /* eth vite exchange */
 "eth.vite.exchange.page.title" = "VITE Conversion";
 "eth.vite.exchange.page.my.address.title" = "ETH Address";
-"eth.vite.exchange.page.my.balance.title" = "Balance";
+"eth.vite.exchange.page.my.balance.title" = "Saldo";
 "eth.vite.exchange.page.to.address.title" = "VITE Address";
 "eth.vite.exchange.page.amount.title" = "Conversion Amount";
 "eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
@@ -474,7 +474,7 @@
 
 "vite.error.network.error" = "Something went wrong with network, please try again later";
 "vite.error.operation.failure" = "Operation failed";
-"vite.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"vite.error.rpc.error.code.not.enough.balance" = "Saldo insuficiente";
 "vite.error.rpc.error.code.not.enough.quota" = "Insufficient quota";
 "vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
 "vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
@@ -484,7 +484,7 @@
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
 "vite.error.rpc.error.code.verify.failure" = "System verify failed, please try again later (%@)";
 
-"eth.error.rpc.error.code.not.enough.balance" = "Insufficient balance";
+"eth.error.rpc.error.code.not.enough.balance" = "Saldo insuficiente";
 "eth.error.rpc.error.code.not.enough.fee" = "Out of Fee";
 
 /* Tip String */
