@@ -317,31 +317,31 @@
 "eth.vite.exchange.page.my.address.title" = "Dirección ETH";
 "eth.vite.exchange.page.my.balance.title" = "Saldo";
 "eth.vite.exchange.page.to.address.title" = "Dirección VITE";
-"eth.vite.exchange.page.amount.title" = "Conversion Amount";
-"eth.vite.exchange.page.amount.placeholder" = "Convert %@ VITE at most";
-"eth.vite.exchange.page.send.button.title" = "Convert";
-"eth.vite.exchange.page.address.change.button.title" = "Switch";
-"eth.vite.exchange.page.exchange.all.button.title" = "All";
-"eth.vite.exchange.page.exchange.history.button.title" = "Conversion History";
+"eth.vite.exchange.page.amount.title" = "Cantidad a convertir";
+"eth.vite.exchange.page.amount.placeholder" = "Convertir %@ VITE como máximo";
+"eth.vite.exchange.page.send.button.title" = "Convertir";
+"eth.vite.exchange.page.address.change.button.title" = "Cambiar";
+"eth.vite.exchange.page.exchange.all.button.title" = "Todo";
+"eth.vite.exchange.page.exchange.history.button.title" = "Historial de conversión";
 
 /* Receive Page */
-"Receive.page.token.title" = "Receive";
-"Receive.page.mine.title" = "My QRCode";
-"Receive.page.token.name.label" = "Scan and Send %@";
-"Receive.page.token.amount.button.title" = "Input Amount";
-"Receive.page.token.note.label" = "Comment";
-"Receive.page.token.amount.alert.title" = "Input Amount";
-"Receive.page.wallet.name" = "Vite Wallet";
+"Receive.page.token.title" = "Recibir";
+"Receive.page.mine.title" = "Mi QRCode";
+"Receive.page.token.name.label" = "Escanear y enviar %@";
+"Receive.page.token.amount.button.title" = "Ingrese el monto";
+"Receive.page.token.note.label" = "Comentario";
+"Receive.page.token.amount.alert.title" = "Ingrese el monto";
+"Receive.page.wallet.name" = "Billetera Vite";
 
 /* Scan Page */
-"Scan.page.title" = "Scan";
-"Scan.page.qccode.not.identifiable" = "QRCode cannot be identified";
-"Scan.page.qccode.not.found" = "No QR code found";
+"Scan.page.title" = "Escanear";
+"Scan.page.qccode.not.identifiable" = "El código QR no puede ser identificado";
+"Scan.page.qccode.not.found" = "Código QR no encontrado";
 
 /* System */
-"system.page.logout.loading" = "Logout";
-"system.page.cell.change.language" = "Language";
-"system.page.cell.change.currency" = "Currency";
+"system.page.logout.loading" = "Cerrar sesión";
+"system.page.cell.change.language" = "Idioma";
+"system.page.cell.change.currency" = "Tipo de moneda";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Unlock By Password";
 "system.page.cell.login.faceId" = "Unlock By Face ID";
@@ -403,10 +403,10 @@
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
-"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin dejar VITE en stake. Tu dirección ha agotado todas las %@ transacciones. Por favor, ve a la página de cuotas y deja VITE en stake para realizar más transacciones.";
+"quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
 
-"quota.pow.tip.float.view.title.2" = "Get Quota";
+"quota.pow.tip.float.view.title.2" = "Obtener Cuota";
 "quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
 "quota.pow.tip.float.view.pledge.2" = "Lock VITE";
 "quota.pow.tip.float.view.notNow.2" = "Run POW";
