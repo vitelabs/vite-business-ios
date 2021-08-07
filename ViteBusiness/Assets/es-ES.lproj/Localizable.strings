@@ -1094,16 +1094,16 @@
 "market.price" = "Último precio";
 "market.percent" = "Cambiar";
 "market.operator" = "Operador";
-"market.switch" = "Exchange";
+"market.switch" = "Mercados";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Order book";
-"market.detail.page.segment.last.trades.title" = "Last Trades";
+"market.detail.page.segment.order.book.title" = "Libros de órdenes";
+"market.detail.page.segment.last.trades.title" = "Últimas transacciones";
 "market.detail.page.segment.token.info.title" = "Token";
-"market.detail.page.segment.operator.into.title" = "Operator";
+"market.detail.page.segment.operator.into.title" = "Operador";
 
-"market.detail.page.info.high.title" = "High";
-"market.detail.page.info.low.title" = "Low";
+"market.detail.page.info.high.title" = "Máximo";
+"market.detail.page.info.low.title" = "Mínimo";
 "market.detail.page.info.vol.title" = "24H";
 
 "market.detail.page.kline.type.min1.title" = "1m";
@@ -1114,16 +1114,16 @@
 "market.detail.page.kline.type.hour6.title" = "6H";
 "market.detail.page.kline.type.hour12.title" = "12H";
 "market.detail.page.kline.type.day1.title" = "1D";
-"market.detail.page.kline.type.week1.title" = "1W";
+"market.detail.page.kline.type.week1.title" = "1S";
 
-"market.detail.page.value.time.title" = "Time";
-"market.detail.page.value.open.title" = "Open";
-"market.detail.page.value.high.title" = "High";
-"market.detail.page.value.low.title" = "Low";
-"market.detail.page.value.close.title" = "Close";
+"market.detail.page.value.time.title" = "Tiempo";
+"market.detail.page.value.open.title" = "Apertura";
+"market.detail.page.value.high.title" = "Máximo";
+"market.detail.page.value.low.title" = "Mínimo";
+"market.detail.page.value.close.title" = "Cierre";
 "market.detail.page.value.diff.title" = "chg";
 "market.detail.page.value.extent.title" = "chg%";
-"market.detail.page.value.vol.title" = "Volume";
+"market.detail.page.value.vol.title" = "Volumen";
 
 "market.detail.page.depth.vol.title" = "Amount(%@)";
 "market.detail.page.depth.price.title" = "Price(%@)";
