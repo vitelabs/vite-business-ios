@@ -289,7 +289,7 @@
 "send.page.my.address.title" = "Mi dirección %@";
 "send.page.my.balance.title" = "Saldo";
 "send.page.my.pledge.title" = "Stake beneficiado";
-"send.page.my.quota.title" = "Cuotas disponibles/Cuota Límite";
+"send.page.my.quota.title" = "Cuota disponible/Cuota límite";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
 "send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
@@ -388,7 +388,7 @@
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
 "quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después de que el bloqueo entre en rigor.";
+"quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después que el bloqueo entre en rigor.";
 "quota.submit.pop.submit.btn.title" = "Confirm";
 "quota.submit.pop.cancel.btn.title" = "Cancel";
 "quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
@@ -396,15 +396,15 @@
 /* quota alert */
 "quota.alert.title" = "Cuota insuficiente";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
-"quota.alert.need.quota.message" = "Cuota insuficiente para realizar PoW, te recomendamos que bloquees VITE para obtener cuota.";
+"quota.alert.need.quota.message" = "Cuota insuficiente para realizar el PoW, te recomendamos que bloquees VITE para obtener cuota.";
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
-"quota.float.view.title" = "Calculando el PoW para asegurar la cuota para esta transacción...";
+"quota.float.view.title" = "Calculando el PoW necesario para asegurar la cuota para esta transacción...";
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
 "quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones disponibles. Por favor, ve a la página de cuotas y deja bloqueado VITE para realizar más transacciones.";
-"quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
+"quota.pow.tip.float.view.pledge.1" = "Obtén cuota ahora";
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
 "quota.pow.tip.float.view.message.2" = "Notamos que no tienes bloqueado VITE para cuota. Por favor bloquee VITE o si lo prefiere, puede ejecutar el PoW para obtener cuota.";
