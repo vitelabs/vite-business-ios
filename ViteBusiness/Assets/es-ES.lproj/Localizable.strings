@@ -231,9 +231,9 @@
 
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Saldo";
-"balance.info.detail.unconfirmed.title" = "Unreceived";
+"balance.info.detail.unconfirmed.title" = "Sin recibir";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
-"balance.info.detail.available.amount.title" = "Available";
+"balance.info.detail.available.amount.title" = "Disponible";
 "balance.info.detail.pledge.amount.title" = "Staked";
 "balance.info.detail.show.transactions.button.title" = "Check transaction history in Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Receive";
