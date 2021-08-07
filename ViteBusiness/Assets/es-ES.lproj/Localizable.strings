@@ -275,7 +275,7 @@
 "address.manage.address.generate.button.toast" = "¡Añade hasta un máximo de 100 direcciones!";
 "address.manage.address.generate.button.already.toast" = "La dirección ya existe";
 "address.manage.address.generate.button.error.toast" = "Por favor ingrese un número";
-"address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
+"address.manage.tip.alert.message" = "Un máximo de 100 direcciones pueden ser creadas; Se requiere la recuperación manual de la dirección #1 en la lista direcciones para recuperar todas las demás";
 "address.manage.alert.title" = "Generate New Addresses";
 "address.manage.alert.placeholder" = "Input a number between 1 and 100";
 "address.manage.alert.tip" = "Bulk generate a specified number of addresses";
