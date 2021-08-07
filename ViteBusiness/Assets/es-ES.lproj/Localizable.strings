@@ -1125,33 +1125,33 @@
 "market.detail.page.value.extent.title" = "chg%";
 "market.detail.page.value.vol.title" = "Volumen";
 
-"market.detail.page.depth.vol.title" = "Amount(%@)";
-"market.detail.page.depth.price.title" = "Price(%@)";
+"market.detail.page.depth.vol.title" = "Cantidad (%@)";
+"market.detail.page.depth.price.title" = "Precio(%@)";
 
-"market.detail.page.trade.time.title" = "Time";
-"market.detail.page.trade.price.title" = "Price";
-"market.detail.page.trade.vol.title" = "Amount";
-"market.detail.page.buy.button.title" = "Buy";
-"market.detail.page.sell.button.title" = "Sell";
+"market.detail.page.trade.time.title" = "Tiempo";
+"market.detail.page.trade.price.title" = "Precio";
+"market.detail.page.trade.vol.title" = "Cantidad";
+"market.detail.page.buy.button.title" = "Comprar";
+"market.detail.page.sell.button.title" = "Vender";
 
 
 "market.detail.page.token.info.token.id" = "TokenID";
-"market.detail.page.token.info.total" = "Tokens in Circulation";
-"market.detail.page.token.info.type" = "Type";
-"market.detail.page.token.info.type.value.native" = "Native";
+"market.detail.page.token.info.total" = "Tokens en circulación";
+"market.detail.page.token.info.type" = "Tipo";
+"market.detail.page.token.info.type.value.native" = "Nativo";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
-"market.detail.page.token.info.gateway" = "Cross-Chain gateway";
-"market.detail.page.token.info.official" = "Official website";
-"market.detail.page.token.info.paper" = "WhitePaper";
-"market.detail.page.token.info.browser" = "Explorer";
+"market.detail.page.token.info.gateway" = "Gateway Cross-Chain";
+"market.detail.page.token.info.official" = "Sitio web oficial";
+"market.detail.page.token.info.paper" = "Whitepaper";
+"market.detail.page.token.info.browser" = "Explorador";
 "market.detail.page.token.info.github" = "Github";
 
-"market.detail.page.token.info.social" = "Social Media";
-"market.detail.page.token.info.brief" = "Introduction";
+"market.detail.page.token.info.social" = "Redes Sociales";
+"market.detail.page.token.info.brief" = "Introducción";
 
-"market.detail.page.token.info.anonymous" = "Anonymous";
-"market.detail.page.token.info.address" = "Operator address";
-"market.detail.page.token.info.pair" = "Trading pair";
+"market.detail.page.token.info.anonymous" = "Anónimo";
+"market.detail.page.token.info.address" = "Dirección del operador";
+"market.detail.page.token.info.pair" = "Par de comercio";
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
@@ -1215,10 +1215,10 @@
 "spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
 "spot.page.depth.price" = "Price";
 "spot.page.depth.vol" = "Amount";
-"spot.page.current.order.title" = "Open Orders";
-"spot.page.orders.button.title" = "History";
+"spot.page.current.order.title" = "Órdenes abiertas";
+"spot.page.orders.button.title" = "Historial";
 
-"spot.page.post.toast.price.empty" = "Please enter the price";
+"spot.page.post.toast.price.empty" = "Por favor, introduzca el precio";
 "spot.page.post.toast.price.zero" = "Value must be greater than 0";
 "spot.page.post.toast.vol.empty" = "Please enter the amount";
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
