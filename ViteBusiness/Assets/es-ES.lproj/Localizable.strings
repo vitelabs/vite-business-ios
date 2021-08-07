@@ -1219,7 +1219,7 @@
 "spot.page.orders.button.title" = "Historial";
 
 "spot.page.post.toast.price.empty" = "Por favor, introduzca el precio";
-"spot.page.post.toast.price.zero" = "Value must be greater than 0";
+"spot.page.post.toast.price.zero" = "El valor debe ser mayor que 0";
 "spot.page.post.toast.vol.empty" = "Please enter the amount";
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
 "spot.page.post.toast.amount.min" = "Total value must be at least %@";
