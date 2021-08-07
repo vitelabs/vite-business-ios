@@ -263,18 +263,18 @@
 "token.info.detail.page.gateway" = "Gateway Cross-Chain";
 "token.info.detail.page.webside" = "Sitio web";
 "token.info.detail.page.paper" = "Whitepaper";
-"token.info.detail.page.browser" = "Explorer";
+"token.info.detail.page.browser" = "Explorador";
 "token.info.detail.page.github" = "Github";
-"token.info.detail.page.social" = "Social Media";
+"token.info.detail.page.social" = "Redes Sociales";
 
 /* Address Manage Page */
-"address.manage.page.title" = "My %@ Address";
-"address.manage.default.address.cell.title" = "Default Address";
-"address.manage.address.header.title" = "Addresses";
-"address.manage.address.generate.button.title" = "Add Address";
-"address.manage.address.generate.button.toast" = "Add up to maximum 100 addresses!";
-"address.manage.address.generate.button.already.toast" = "Address already exists";
-"address.manage.address.generate.button.error.toast" = "Please input a number";
+"address.manage.page.title" = "Mi dirección %@";
+"address.manage.default.address.cell.title" = "Dirección predeterminada";
+"address.manage.address.header.title" = "Direcciones";
+"address.manage.address.generate.button.title" = "Agregar dirección";
+"address.manage.address.generate.button.toast" = "¡Añade hasta un máximo de 100 direcciones!";
+"address.manage.address.generate.button.already.toast" = "La dirección ya existe";
+"address.manage.address.generate.button.error.toast" = "Por favor ingrese un número";
 "address.manage.tip.alert.message" = "Max generation: 100 addresses; Manual address retrieval is required for all other but #1 address on the list";
 "address.manage.alert.title" = "Generate New Addresses";
 "address.manage.alert.placeholder" = "Input a number between 1 and 100";
