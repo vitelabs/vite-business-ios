@@ -407,13 +407,13 @@
 "quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
 
 "quota.pow.tip.float.view.title.2" = "Obtener Cuota";
-"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
-"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
-"quota.pow.tip.float.view.notNow.2" = "Run POW";
+"quota.pow.tip.float.view.message.2" = "Notamos que no tiene ningún VITE en stake para cuota. Por favor deje VITE en stake o si lo prefiere, puede ejecutar el POW para obtener cuota.";
+"quota.pow.tip.float.view.pledge.2" = "Stake VITE";
+"quota.pow.tip.float.view.notNow.2" = "Ejecutar POW";
 
 
-"quota.pow.finished.float.view.title" = "Transaction Sent";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@UT.";
+"quota.pow.finished.float.view.title" = "Transacción enviada";
+"quota.pow.finished.float.view.h1" = "Has gastado %1$@S en el cálculo para este PoW, y has asegurado y usado %2$@UT.";
 "quota.pow.finished.float.view.h2" = "You may withdraw your staked VITE after 3 days. If the quota you received from staking is sufficient for a transaction, you can skip this step of PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Transact Faster via Staking";
 
@@ -1091,9 +1091,9 @@
 "market.title" = "Markets";
 "market.about" = "Get Started with ViteX";
 "market.name" = "Name";
-"market.price" = "Last Price";
-"market.percent" = "Change";
-"market.operator" = "Operator";
+"market.price" = "Último precio";
+"market.percent" = "Cambiar";
+"market.operator" = "Operador";
 "market.switch" = "Exchange";
 
 // market detail
