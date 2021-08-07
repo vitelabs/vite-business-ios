@@ -276,21 +276,21 @@
 "address.manage.address.generate.button.already.toast" = "La dirección ya existe";
 "address.manage.address.generate.button.error.toast" = "Por favor ingrese un número";
 "address.manage.tip.alert.message" = "Un máximo de 100 direcciones pueden ser creadas; Se requiere la recuperación manual de la dirección #1 en la lista direcciones para recuperar todas las demás";
-"address.manage.alert.title" = "Generate New Addresses";
-"address.manage.alert.placeholder" = "Input a number between 1 and 100";
-"address.manage.alert.tip" = "Bulk generate a specified number of addresses";
-"address.manage.tip.alert.ok" = "I know";
-"address.manage.default.address.name" = "Untitled";
-"address.manage.change.name.alert.title" = "Edit Address Alias";
-"address.manage.change.name.alert.placeholder" = "Please input new alias";
+"address.manage.alert.title" = "Generar direcciones nuevas";
+"address.manage.alert.placeholder" = "Ingrese un número entre 1 y 100";
+"address.manage.alert.tip" = "Generar en masa un número específico de direcciones";
+"address.manage.tip.alert.ok" = "Entendido";
+"address.manage.default.address.name" = "Sin título";
+"address.manage.change.name.alert.title" = "Editar alias de dirección";
+"address.manage.change.name.alert.placeholder" = "Por favor, introduce un nuevo alias";
 
 /* Send Page */
-"send.page.title" = "Send";
-"send.page.my.address.title" = "My %@ Address";
+"send.page.title" = "Enviar";
+"send.page.my.address.title" = "Mi dirección %@";
 "send.page.my.balance.title" = "Saldo";
-"send.page.my.pledge.title" = "Benefited Stake";
-"send.page.my.quota.title" = "Spendable Quota/Quota Limit";
-"send.page.my.max.tx.count.title" = "Maximum Amount of Tx";
+"send.page.my.pledge.title" = "Stake beneficiado";
+"send.page.my.quota.title" = "Cuotas disponibles/Cuota Límite";
+"send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mine";
 "send.page.vite.contacts.button.title" = "VITE Contact Address";
 "send.page.scan.address.button.title" = "Scan";
