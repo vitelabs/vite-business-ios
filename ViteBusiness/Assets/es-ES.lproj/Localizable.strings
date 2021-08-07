@@ -378,10 +378,10 @@
 "toast.error.login" = "Login Error";
 
 /* quota manage */
-"quota.manage.page.title" = "Get Quota";
-"quota.manage.page.input.address.title" = "Quota Beneficiary";
+"quota.manage.page.title" = "Obtener cuota";
+"quota.manage.page.input.address.title" = "Beneficiario de la cuota";
 "quota.manage.page.quota.money.title" = "Staking Amount";
-"quota.manage.page.quota.quota.title" = "Quota";
+"quota.manage.page.quota.quota.title" = "Cuota";
 "quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
 "quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
 "quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
@@ -403,7 +403,7 @@
 "quota.float.view.tip" = "This Transaction costs %@UT";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin dejar VITE en stake. Tu dirección ha agotado todas las %@ transacciones. Por favor, ve a la página de cuotas y deja VITE en stake para realizar más transacciones.";
+"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones disponibles. Por favor, ve a la página de cuotas y deja bloqueado VITE para realizar más transacciones.";
 "quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
 
 "quota.pow.tip.float.view.title.2" = "Obtener Cuota";
