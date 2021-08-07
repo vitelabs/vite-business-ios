@@ -388,13 +388,13 @@
 "quota.manage.page.submit.btn.title" = "Submit Staking";
 "quota.manage.page.check.quotaList.btn.title" = "Staking List";
 "quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
-"quota.submit.pop.desc" = "Make sure to stake %@ to obtain quota, you cannot withdraw until about 3 days after staking comes into effect.";
+"quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después de que el bloqueo entre en rigor.";
 "quota.submit.pop.submit.btn.title" = "Confirm";
 "quota.submit.pop.cancel.btn.title" = "Cancel";
 "quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
 
 /* quota alert */
-"quota.alert.title" = "Insufficient Quota";
+"quota.alert.title" = "Cuota insuficiente";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Insufficient quota of PoW, we would recommend that you stake VITE to obtain quota.";
 "quota.alert.pow.button.title" = "Run PoW";
