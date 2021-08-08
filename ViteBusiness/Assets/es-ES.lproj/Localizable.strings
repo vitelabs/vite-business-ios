@@ -1204,12 +1204,12 @@
 "spot.page.vol.buy.placeholder" = "Cantidad";
 "spot.page.price.sell.placeholder" = "Precio";
 "spot.page.vol.sell.placeholder" = "Cantidad";
-"spot.page.available" = "Avail.: %@";
-"spot.page.buyable" = "Max Buy: %@";
-"spot.page.sellable" = "Max Sell: %@";
+"spot.page.available" = "Disponible: %@";
+"spot.page.buyable" = "Compra máxima: %@";
+"spot.page.sellable" = "Venta máxima: %@";
 "spot.page.total" = "Total: %@";
-"spot.page.open.vip" = "Become a VIP";
-"spot.page.close.vip" = "Cancel VIP";
+"spot.page.open.vip" = "Hazte VIP";
+"spot.page.close.vip" = "Cancelar VIP";
 "spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
 "spot.page.close.vip.error.toast" = "No VIP staked";
 "spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
