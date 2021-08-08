@@ -371,11 +371,11 @@
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
-"aboutUs.page.email.title" = "Feedback";
-"aboutUs.page.email.content" = "\n\n\n\n\nThe advice comes from the using environment as below:\n1.System device: %@\n2.System version:%@\n3.APP version: %@\n4.Language:%@";
+"aboutUs.page.email.title" = "Comentarios y sugerencias";
+"aboutUs.page.email.content" = "\n\n\n\n\nLa sugerencia proviene de la utilización del siguiente entorno:\n1.Sistema del dispositivo: %@\n2.Versión del sistema:%@\n3.Versión de la aplicación: %@\n4. Idioma:%@";
 
 /* toast error */
-"toast.error.login" = "Login Error";
+"toast.error.login" = "Error de acceso";
 
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
@@ -418,10 +418,10 @@
 "quota.pow.finished.float.view.pledge.button.title" = "Realiza transacciones más rápido al bloquear VITE";
 
 /* Peldge History */
-"peldge.message" = "Currently Vite App only supports checking staking list, please go to Web Wallet to withdraw staked tokens on due date if needed.";
-"peldge.deadline" = "Due Date";
-"peldge.title" = "Staking History";
-"peldge.address.title" = "Beneficiary";
+"peldge.message" = "Actualmente la aplicación de Vite sólo soporta comprobar la lista de staking, por favor vaya a la billetera Web si necesita retirar los token en stake que estén con la fecha de vencimiento cumplida.";
+"peldge.deadline" = "Fecha de vencimiento";
+"peldge.title" = "Historial de Staking";
+"peldge.address.title" = "Beneficiario";
 "peldge.cancel.peldge.button.title" = "Withdraw";
 "peldge.cancel.pledge.withdrawing.title" = "Withdrawing";
 "peldge.cancel.pledge.amount.error.toast" = "The minimum withdraw amount is 134 VITE, please stake enough VITE first.";
