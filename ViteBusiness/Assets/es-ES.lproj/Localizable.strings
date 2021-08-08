@@ -1176,12 +1176,12 @@
 "mining.trading.page.header.title" = "xxxxx";
 "mining.trading.page.header.expect" = "xxxxx";
 
-"mining.trading.page.cell.fee" = "xxxxx";
+"mining.trading.page.cell.fee" = "xxxx";
 
 "mining.staking.page.header.total.earnings" = "xxxxx";
-"mining.staking.page.detail.title" = "xxxxx";
-"mining.staking.page.detail.amount.title" = "xxxxx";
-"mining.staking.page.detail.unlocking.title" = "xxxxx";
+"mining.staking.page.detail.title" = "xxxx";
+"mining.staking.page.detail.amount.title" = "xxxx";
+"mining.staking.page.detail.unlocking.title" = "xxxx";
 "mining.staking.page.detail.add.button.title" = "xxxxx";
 "mining.staking.page.detail.list.button.title" = "xxxxx";
 "mining.staking.page.cell.amount" = "xxxxx";
@@ -1194,16 +1194,16 @@
 "mining.staking.page.confirm.button.title" = "xxxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
-"spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
-"spot.page.button.closed.title" = "Trading Suspended";
-"spot.page.button.buy.title" = "Buy";
-"spot.page.button.sell.title" = "Sell";
-"spot.page.button.limit.buy.title" = "Limit Order";
-"spot.page.price.buy.placeholder" = "Price";
-"spot.page.vol.buy.placeholder" = "Amount";
-"spot.page.price.sell.placeholder" = "Price";
-"spot.page.vol.sell.placeholder" = "Amount";
+"spot.page.buy.mining.tip" = "Elegible para minar cuando el precio es mayor que %@";
+"spot.page.sell.mining.tip" = "Elegible para minar cuando el precio es menor que %@";
+"spot.page.button.closed.title" = "Intercambio suspendido";
+"spot.page.button.buy.title" = "Comprar";
+"spot.page.button.sell.title" = "Vender";
+"spot.page.button.limit.buy.title" = "Orden Límite";
+"spot.page.price.buy.placeholder" = "Precio";
+"spot.page.vol.buy.placeholder" = "Cantidad";
+"spot.page.price.sell.placeholder" = "Precio";
+"spot.page.vol.sell.placeholder" = "Cantidad";
 "spot.page.available" = "Avail.: %@";
 "spot.page.buyable" = "Max Buy: %@";
 "spot.page.sellable" = "Max Sell: %@";
@@ -1260,23 +1260,23 @@
 "dex.token.detail.page.header.lock.place.order" = "En orden";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Bloqueado para cuota";
-"dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
-"dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
+"dex.token.detail.page.header.lock.vite.sbp" = "Bloqueado para SBP";
+"dex.token.detail.page.header.lock.vite.full.node" = "Bloqueado para Full Nodo";
 "dex.token.detail.page.header.lock.vite.mining" = "Staked";
-"dex.token.detail.page.header.lock.vite.mining.cancel" = "Retrieving";
-"dex.token.detail.page.header.lock.vite.vip" = "VIP Locked";
+"dex.token.detail.page.header.lock.vite.mining.cancel" = "Recuperando";
+"dex.token.detail.page.header.lock.vite.vip" = "Bloqueado para VIP";
 "dex.token.detail.page.header.lock.vx" = "Staked";
-"dex.token.detail.page.header.lock.vx.cancel" = "Retrieving";
+"dex.token.detail.page.header.lock.vx.cancel" = "Recuperando";
 
-"dex.token.detail.page.list.wallet.heater.title" = "History";
-"dex.token.detail.page.list.dex.heater.title" = "Transfer History";
-"dex.token.detail.page.cell.in" = "Transfer-In";
-"dex.token.detail.page.cell.out" = "Transfer-Out";
+"dex.token.detail.page.list.wallet.heater.title" = "Historial";
+"dex.token.detail.page.list.dex.heater.title" = "Historial de transferencias";
+"dex.token.detail.page.cell.in" = "Transferencia-Entrada";
+"dex.token.detail.page.cell.out" = "Transferencia-Salida";
 
-"dex.token.detail.page.button.deposit" = "Deposit";
-"dex.token.detail.page.button.withdraw" = "Withdraw";
-"dex.token.detail.page.button.transfer" = "Transfer";
-"dex.token.detail.page.button.send" = "Send";
-"dex.token.detail.page.button.trading" = "Trade";
+"dex.token.detail.page.button.deposit" = "Depositar";
+"dex.token.detail.page.button.withdraw" = "Retirar";
+"dex.token.detail.page.button.transfer" = "Transferir";
+"dex.token.detail.page.button.send" = "Enviar";
+"dex.token.detail.page.button.trading" = "Intercambiar";
 
-"dex.token.market.selector.title" = "Select Trading pair";
+"dex.token.market.selector.title" = "Seleccionar par de Trading";
