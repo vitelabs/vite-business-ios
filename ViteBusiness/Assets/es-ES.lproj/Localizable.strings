@@ -460,7 +460,7 @@
 "Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
 
 //Welcome
-"introduction.tip.title" = "Transactions cost quota.\nStake to Get Free Quota.";
+"introduction.tip.title" = "Costo de cuota para transacciones.\nBloquear para obtener cuota gratuita.";
 //"introduction.page.tip1.title" = "Cross-chain multiple token types";
 //"introduction.page.tip2.title" = "Decentralized wallet";
 //"introduction.page.tip3.title" = "Zero transaction fees";
@@ -568,11 +568,11 @@
 "workflow.toast.cancel.order.success" = "Order Cancelled";
 
 "workflow.congestion.without.pow.alert.title" = "Notice";
-"workflow.congestion.without.pow.alert.message" = "The network is currently in Dynamic Quota mode. This means your Quota Limit has been reduced and you can send fewer transactions per second. Do you still want to send a transaction now?";
+"workflow.congestion.without.pow.alert.message" = "La red está actualmente en modo de Cuota Dinámica. Esto significa que su límite de cuotas ha sido reducido y usted podrá enviar menos transacciones por segundo. ¿Aún desea enviar una transacción ahora?";
 "workflow.congestion.without.pow.alert.cancel" = "Transact Later";
 "workflow.congestion.without.pow.alert.ok" = "Transact Now";
 "workflow.congestion.with.pow.alert.title" = "Notice";
-"workflow.congestion.with.pow.alert.message" = "The network is currently in Dynamic Quota mode. Your Quota Limit has been reduced and your Spendable Quota is not enough to send this transaction. Please transact later";
+"workflow.congestion.with.pow.alert.message" = "La red está actualmente en modo de Cuota Dinámica. Su límite de cuotas ha sido reducido y su cuota disponible no es suficiente para enviar esta transacción. Por favor intente más tarde";
 "workflow.congestion.with.pow.alert.cancel" = "Transact Later";
 
 "workflow.fast.get.quota.title" = "Obtener cuota al instante";
@@ -592,7 +592,7 @@
 "confirm.transaction.page.vite.transfer.title" = "Send";
 "confirm.transaction.page.vite.confirm.button" = "Confirm";
 // vite pledge
-"confirm.transaction.page.vite.pledge.title" = "Get Quota";
+"confirm.transaction.page.vite.pledge.title" = "Obtener Cuota";
 "confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
 "confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
 // vite vote & cancel
@@ -900,7 +900,7 @@
 "bifrost.operation.vote" = "Voting";
 "bifrost.operation.cancel.vote" = "Revoke Voting";
 "bifrost.operation.extract.reward" = "Claim Rewards";
-"bifrost.operation.pledge" = "Get Quota";
+"bifrost.operation.pledge" = "Obtener Cuota";
 "bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
