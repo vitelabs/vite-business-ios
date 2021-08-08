@@ -380,27 +380,27 @@
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
 "quota.manage.page.input.address.title" = "Beneficiario de la cuota";
-"quota.manage.page.quota.money.title" = "Staking Amount";
+"quota.manage.page.quota.money.title" = "Cantidad bloqueada";
 "quota.manage.page.quota.quota.title" = "Cuota";
-"quota.manage.page.quota.money.placeholder" = "Please input amount, minimum 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Staking Freeze Duration";
-"quota.manage.page.quota.snapshoot.height.desc" = "Approx %@ days";
-"quota.manage.page.submit.btn.title" = "Submit Staking";
-"quota.manage.page.check.quotaList.btn.title" = "Staking List";
-"quota.manage.page.toast.money.error" = "Staking amount should not be less than 134";
+"quota.manage.page.quota.money.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
+"quota.manage.page.quota.snapshoot.height.title" = "Duración del bloqueo";
+"quota.manage.page.quota.snapshoot.height.desc" = "Aproximadamente %@ días";
+"quota.manage.page.submit.btn.title" = "Confirmar bloqueo";
+"quota.manage.page.check.quotaList.btn.title" = "Lista de bloqueos";
+"quota.manage.page.toast.money.error" = "La cantidad a bloquear no debe ser menor que 134";
 "quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después que el bloqueo entre en rigor.";
-"quota.submit.pop.submit.btn.title" = "Confirm";
-"quota.submit.pop.cancel.btn.title" = "Cancel";
-"quota.submit.page.quota.address.placeholder" = "Please input beneficiary address";
+"quota.submit.pop.submit.btn.title" = "Confirmar";
+"quota.submit.pop.cancel.btn.title" = "Cancelar";
+"quota.submit.page.quota.address.placeholder" = "Por favor introduzca la dirección del beneficiario";
 
 /* quota alert */
 "quota.alert.title" = "Cuota insuficiente";
 "quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
 "quota.alert.need.quota.message" = "Cuota insuficiente para realizar el PoW, te recomendamos que bloquees VITE para obtener cuota.";
-"quota.alert.pow.button.title" = "Run PoW";
-"quota.alert.quota.button.title" = "Stake VITE";
+"quota.alert.pow.button.title" = "Ejecutar el PoW";
+"quota.alert.quota.button.title" = "Bloquear VITE";
 "quota.float.view.title" = "Calculando el PoW necesario para asegurar la cuota para esta transacción...";
-"quota.float.view.tip" = "This Transaction costs %@UT";
+"quota.float.view.tip" = "Esta transacción cuesta %@UT";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
 "quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones disponibles. Por favor, ve a la página de cuotas y deja bloqueado VITE para realizar más transacciones.";
@@ -408,8 +408,8 @@
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
 "quota.pow.tip.float.view.message.2" = "Notamos que no tienes bloqueado VITE para cuota. Por favor bloquee VITE o si lo prefiere, puede ejecutar el PoW para obtener cuota.";
-"quota.pow.tip.float.view.pledge.2" = "Stake VITE";
-"quota.pow.tip.float.view.notNow.2" = "Ejecutar POW";
+"quota.pow.tip.float.view.pledge.2" = "Bloquear VITE";
+"quota.pow.tip.float.view.notNow.2" = "Ejecutar el PoW";
 
 
 "quota.pow.finished.float.view.title" = "Transacción enviada";
@@ -901,7 +901,7 @@
 "bifrost.operation.cancel.vote" = "Revoke Voting";
 "bifrost.operation.extract.reward" = "Claim Rewards";
 "bifrost.operation.pledge" = "Obtener Cuota";
-"bifrost.operation.cancel.pledge" = "Retrieve Staking for Quota";
+"bifrost.operation.cancel.pledge" = "Recuperar bloqueo para cuota";
 "bifrost.operation.coin" = "Token Issuance";
 "bifrost.operation.cancel.coin" = "Retrieve Staking for Issuance";
 "bifrost.operation.transfer" = "Send";
@@ -1259,7 +1259,7 @@
 "dex.token.detail.page.header.available" = "Available";
 "dex.token.detail.page.header.lock.place.order" = "In Order";
 
-"dex.token.detail.page.header.lock.vite.pledge" = "Staked for Quota";
+"dex.token.detail.page.header.lock.vite.pledge" = "Bloqueado para cuota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
 "dex.token.detail.page.header.lock.vite.full.node" = "Staked for Full Node";
 "dex.token.detail.page.header.lock.vite.mining" = "Staked";
