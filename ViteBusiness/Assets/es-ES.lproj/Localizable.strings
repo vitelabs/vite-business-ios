@@ -342,32 +342,32 @@
 "system.page.logout.loading" = "Cerrar sesión";
 "system.page.cell.change.language" = "Idioma";
 "system.page.cell.change.currency" = "Tipo de moneda";
-"system.page.cell.node.settings" = "Ajustes del Nodo";
+"system.page.cell.node.settings" = "Ajustes del nodo";
 "system.page.cell.login.pwd" = "Desbloquear por contraseña";
 "system.page.cell.login.faceId" = "Desbloquear con Face ID";
 "system.page.cell.login.touchId" = "Desbloquear con Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
-"system.page.cell.logout.title" = "Logout/switch wallet";
-"system.page.cell.upload.log.title" = "Upload Log";
-"system.page.cell.upload.log.toast.success" = "Log Uploaded";
-"system.page.cell.delete.wallet.title" = "Delete Current Account";
-"system.page.cell.delete.wallet.alert.title" = "You can only recover your account by mnemonic word after deleting an account, do you confirm to delete this account?";
+"system.page.cell.transfer.faceId" = "Usar el FaceID para confirmar transacción";
+"system.page.cell.transfer.touchId" = "Usar el TouchID para confirmar transacción";
+"system.page.cell.logout.title" = "Cerrar sesión/cambiar de billetera";
+"system.page.cell.upload.log.title" = "Subir registro";
+"system.page.cell.upload.log.toast.success" = "Registro subido";
+"system.page.cell.delete.wallet.title" = "Eliminar cuenta actual";
+"system.page.cell.delete.wallet.alert.title" = "Después de eliminar tu cuenta, sólo podrás recuperarla nuevamente con las palabras mnemónica, ¿confirma eliminar esta cuenta?";
 
 /* node settings */
-"node.settings.page.title" = "Node Settings";
-"node.settings.page.add.button.title" = "Add Custom Node";
-"node.settings.page.add.alert.title" = "Please enter a valid node address";
-"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
-"node.settings.page.node.invalid.error" = "Invalid node";
-"node.settings.page.node.exist.error" = "The node already exists";
+"node.settings.page.title" = "Ajustes del nodo";
+"node.settings.page.add.button.title" = "Agregar un nodo personalizado";
+"node.settings.page.add.alert.title" = "Por favor, introduzca una dirección válida para el nodo";
+"node.settings.page.add.alert.tip" = "El nodo actual es %@, conectado a la red principal";
+"node.settings.page.node.invalid.error" = "Nodo inválido";
+"node.settings.page.node.exist.error" = "El nodo ya existe";
 
 /* about us */
-"aboutUs.page.cell.blockHeight" = "Current Height";
-"aboutUs.page.cell.blockHeight.loading.tip" = "Loading";
-"aboutUs.page.cell.version" = "Version";
-"aboutUs.page.cell.contact" = "Contact Us";
-"aboutUs.page.cell.shareUs" = "Share Vite APP";
+"aboutUs.page.cell.blockHeight" = "Bloque actual";
+"aboutUs.page.cell.blockHeight.loading.tip" = "Cargando";
+"aboutUs.page.cell.version" = "Versión";
+"aboutUs.page.cell.contact" = "Contáctenos";
+"aboutUs.page.cell.shareUs" = "Compartir Vite APP";
 "aboutUs.page.cell.official.website" = "Vite.org";
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
