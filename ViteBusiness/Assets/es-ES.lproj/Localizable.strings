@@ -531,25 +531,25 @@
 // Contacts Home
 "contacts.home.page.title" = "Direcciones de contacto";
 "contacts.home.page.no.contact.tip" = "Añade tu primera dirección";
-"contacts.home.page.single.no.contact.tip" = "No %@ address yet";
-"contacts.home.page.filter.all" = "All";
-"contacts.home.page.add.button.title" = "Add";
+"contacts.home.page.single.no.contact.tip" = "Aún no hay %@ dirección";
+"contacts.home.page.filter.all" = "Todo";
+"contacts.home.page.add.button.title" = "Agregar";
 
 // Contacts Edit
-"contacts.edit.page.add.title" = "Add Contact Address";
-"contacts.edit.page.edit.title" = "Edit Contact Address";
-"contacts.edit.page.name.title" = "Name";
-"contacts.edit.page.address.title" = "Please input address";
-"contacts.edit.page.type.select.title" = "Select token type";
-"contacts.edit.page.save.button.title" = "Save";
-"contacts.edit.page.save.success.tip" = "Successfully added";
-"contacts.edit.page.edit.success.tip" = "Successfully saved";
-"contacts.edit.page.delete.button.title" = "Delete";
-"contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
+"contacts.edit.page.add.title" = "Agregar dirección de contacto";
+"contacts.edit.page.edit.title" = "Editar dirección de contacto";
+"contacts.edit.page.name.title" = "Nombre";
+"contacts.edit.page.address.title" = "Introduzca la dirección";
+"contacts.edit.page.type.select.title" = "Seleccione tipo de token";
+"contacts.edit.page.save.button.title" = "Guardar";
+"contacts.edit.page.save.success.tip" = "Agregado correctamente";
+"contacts.edit.page.edit.success.tip" = "Guardado con éxito";
+"contacts.edit.page.delete.button.title" = "Borrar";
+"contacts.edit.page.delete.alert.title" = "¿Está seguro que desea eliminar esta dirección?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
-"address.list.page.other.title" = "%@ contact address";
+"address.list.page.my.title" = "Mis direcciones VITE";
+"address.list.page.other.title" = "%@ direcciones de contacto";
 "address.list.page.no.address.tip" = "No %@ address yet";
 
 /* WorkFlow */
