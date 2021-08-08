@@ -550,17 +550,17 @@
 // Address List
 "address.list.page.my.title" = "Mis direcciones VITE";
 "address.list.page.other.title" = "%@ direcciones de contacto";
-"address.list.page.no.address.tip" = "No %@ address yet";
+"address.list.page.no.address.tip" = "Aún no hay %@ dirección";
 
 /* WorkFlow */
-"workflow.confirm.page.biometryAuthFailed.title" = "Cannot be identified";
-"workflow.confirm.page.biometryAuthFailed.back" = "Back";
-"workflow.confirm.page.passwordAuthFailed.retry" = "Retry";
-"workflow.confirm.page.toast.password.error" = "Wrong password!";
+"workflow.confirm.page.biometryAuthFailed.title" = "No se puede identificar";
+"workflow.confirm.page.biometryAuthFailed.back" = "Atrás";
+"workflow.confirm.page.passwordAuthFailed.retry" = "Reintentar";
+"workflow.confirm.page.toast.password.error" = "Contraseña incorrecta!";
 
-"workflow.toast.transfer.success" = "Send Success";
-"workflow.toast.submit.success" = "Submit Successful";
-"workflow.toast.cancel.pledge.success" = "Retrieve staking request has sent";
+"workflow.toast.transfer.success" = "Enviado con éxito";
+"workflow.toast.submit.success" = "Enviado con éxito";
+"workflow.toast.cancel.pledge.success" = "Recuperar solicitud de staking enviada";
 "workflow.toast.vote.success" = "Successfully send vote request";
 "workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
 "workflow.toast.contract.success" = "Success";
@@ -1239,25 +1239,25 @@
 "spot.page.cell.deal" = "Filled: %@";
 "spot.page.cell.average" = "Avg.: %@";
 
-"grin.initing.desc" = "Initializing, click to view details";
+"grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "DEX Assets";
-"dex.home.page.nav.btc.valuation.title" = "Total Value (BTC)";
-"dex.home.page.segment.wallet" = "Wallet";
+"dex.home.page.nav.title" = "Activos";
+"dex.home.page.nav.btc.valuation.title" = "Valor total (BTC)";
+"dex.home.page.segment.wallet" = "Billetera";
 "dex.home.page.segment.dex" = "Trading";
 
-"dex.home.page.header.btc.valuation.title" = "Value (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transfer";
-"dex.home.page.header.button.deposit.title" = "Deposit";
-"dex.home.page.header.button.withdraw.title" = "Withdraw";
-"dex.home.page.header.button.hide.small.title" = "Hide Small Balances";
+"dex.home.page.header.btc.valuation.title" = "Valor (BTC)";
+"dex.home.page.header.button.transfer.title" = "Transferencia";
+"dex.home.page.header.button.deposit.title" = "Depósito";
+"dex.home.page.header.button.withdraw.title" = "Retirar";
+"dex.home.page.header.button.hide.small.title" = "Ocultar saldos pequeños";
 
-"dex.token.detail.page.title" = "Balance";
+"dex.token.detail.page.title" = "Saldo";
 "dex.token.detail.page.header.total" = "Total";
-"dex.token.detail.page.header.available" = "Available";
-"dex.token.detail.page.header.lock.place.order" = "In Order";
+"dex.token.detail.page.header.available" = "Disponible";
+"dex.token.detail.page.header.lock.place.order" = "En orden";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Bloqueado para cuota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Staked for SBP";
