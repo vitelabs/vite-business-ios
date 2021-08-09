@@ -515,18 +515,18 @@
 "eth.transaction.detail.gas.fee" = "Tarifa de gas";
 "eth.transaction.detail.gas.price" = "Precio del gas";
 "eth.transaction.detail.gas.limit" = "Límite del gas";
-"eth.transaction.detail.hash" = "Transaction Hash";
-"eth.transaction.detail.block" = "Block";
-"eth.transaction.detail.note" = "Memo";
-"eth.transaction.detail.go.button.title" = "View More Details on Etherscan";
+"eth.transaction.detail.hash" = "Hash de transacción";
+"eth.transaction.detail.block" = "Bloque";
+"eth.transaction.detail.note" = "Nota";
+"eth.transaction.detail.go.button.title" = "Ver más detalles en Etherscan";
 
 //token
-"token.list.page.search.title" = "Please input token name or contract address";
-"token.list.page.section.vite.header" = "Vite Network";
-"token.list.page.section.eth.header" = "Ethereum Network";
-"token.list.page.section.grin.header" = "GRIN Network";
-"token.list.page.ignore.btn.title" = "Ignore";
-"token.list.page.ignore.lab.title" = "%d new asset(s)";
+"token.list.page.search.title" = "Por favor, introduzca el nombre del token o la dirección del contrato";
+"token.list.page.section.vite.header" = "Red Vite";
+"token.list.page.section.eth.header" = "Red Ethereum";
+"token.list.page.section.grin.header" = "Red GRIN";
+"token.list.page.ignore.btn.title" = "Ignorar";
+"token.list.page.ignore.lab.title" = "%d nuevo(s) activo(s)";
 "token.list.page.ignore.alter.title" = "Los activos ignorados no serán mostrados de nuevo, ¿estás seguro de ignorar los activos de abajo?";
 // Contacts Home
 "contacts.home.page.title" = "Direcciones de contacto";
@@ -561,8 +561,8 @@
 "workflow.toast.transfer.success" = "Enviado con éxito";
 "workflow.toast.submit.success" = "Enviado con éxito";
 "workflow.toast.cancel.pledge.success" = "Recuperar solicitud de staking enviada";
-"workflow.toast.vote.success" = "Successfully send vote request";
-"workflow.toast.cancel.vote.success" = "Vote revoking request is successfully sent";
+"workflow.toast.vote.success" = "Envío exitoso de solicitud de voto";
+"workflow.toast.cancel.vote.success" = "La solicitud de revocación de voto se ha enviado correctamente";
 "workflow.toast.contract.success" = "Success";
 "workflow.toast.place.order.success" = "Order Placed";
 "workflow.toast.cancel.order.success" = "Order Cancelled";
