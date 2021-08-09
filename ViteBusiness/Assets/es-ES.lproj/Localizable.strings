@@ -499,22 +499,22 @@
 // eth
 "eth.send.page.my.address.title" = "Dirección ETH";
 "eth.send.page.eth.contacts.button.title" = "Dirección de contacto ETH";
-"eth.receive.page.my.address.title" = "My ETH Address";
-"eth.page.gasFee.title" = "Gas Fee";
-"eth.page.gasFee.slow.title" = "Slow";
-"eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.receive.page.my.address.title" = "Mis direcciones ETH";
+"eth.page.gasFee.title" = "Tarifa de gas";
+"eth.page.gasFee.slow.title" = "Lento";
+"eth.page.gasFee.fast.title" = "Rápido";
+"eth.page.gasFee.notice.title" = "Devolveremos el resto de gas a su cuenta";
 
 // eth transaction detail
-"eth.transaction.detail.page.title" = "Details";
-"eth.transaction.detail.failed" = "Transaction Failed";
-"eth.transaction.detail.success" = "Transaction Completed";
-"eth.transaction.detail.to.address" = "Receiving Address";
-"eth.transaction.detail.from.address" = "Sending Address";
-"eth.transaction.detail.amount" = "Amount";
-"eth.transaction.detail.gas.fee" = "Gas Fee";
-"eth.transaction.detail.gas.price" = "Gas Price";
-"eth.transaction.detail.gas.limit" = "Gas Limit";
+"eth.transaction.detail.page.title" = "Detalles";
+"eth.transaction.detail.failed" = "Transacción fallida";
+"eth.transaction.detail.success" = "Transacción completada";
+"eth.transaction.detail.to.address" = "Dirección de recepción";
+"eth.transaction.detail.from.address" = "Dirección de envío";
+"eth.transaction.detail.amount" = "Cantidad";
+"eth.transaction.detail.gas.fee" = "Tarifa de gas";
+"eth.transaction.detail.gas.price" = "Precio del gas";
+"eth.transaction.detail.gas.limit" = "Límite del gas";
 "eth.transaction.detail.hash" = "Transaction Hash";
 "eth.transaction.detail.block" = "Block";
 "eth.transaction.detail.note" = "Memo";
