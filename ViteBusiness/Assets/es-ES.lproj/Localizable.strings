@@ -443,21 +443,21 @@
 "vote.list.title" = "Nodos Candidados";
 "vote.list.search" = "Buscar por nombre o dirección de los nodos candidatos";
 "vote.list.alert.already.voted" = "Has votado por %@, por favor asegúrate de que esta acción sobrescribirá el resultado de votación actual";
-"vote.list.confirm.revote" = "Confirm";
-"vote.list.count" = "Votes";
-"vote.list.address" = "Address";
+"vote.list.confirm.revote" = "Confirmar";
+"vote.list.count" = "Votos";
+"vote.list.address" = "Dirección";
 "vote.list.alert.quota" = "No se puede votar, deberás ejecutar el PoW o bloquear VITE por cuota para votar";
-"vote.list.search.empty" = "No result, please try another input";
-"vote.list.search.no.transaction.before" = "You cannot vote for now as there is no transaction record in your address";
+"vote.list.search.empty" = "No hay resultados, por favor intenta otra entrada";
+"vote.list.search.no.transaction.before" = "No puede votar por ahora ya que no hay ningún registro de transacción en su dirección";
 
 // Contract
-"contract.confirm.info" = "Contract Address";
+"contract.confirm.info" = "Dirección del contrato";
 
 //RefreshFooter
-"vite.RefreshBackFooter.IdleText" = "Pull up to load more";
-"Vite.RefreshBackFooter.PullingText" = "Release to load more.";
-"Vite.RefreshBackFooter.RefreshingText" = "Loading...";
-"Vite.RefreshBackFooter.NoMoreDataText" = "No more data";
+"vite.RefreshBackFooter.IdleText" = "Desliza hacia arriba para cargar más";
+"Vite.RefreshBackFooter.PullingText" = "Suelte para cargar más.";
+"Vite.RefreshBackFooter.RefreshingText" = "Cargando...";
+"Vite.RefreshBackFooter.NoMoreDataText" = "No hay más datos";
 
 //Welcome
 "introduction.tip.title" = "Costo de cuota para transacciones.\nBloquear para obtener cuota gratuita.";
@@ -473,12 +473,12 @@
 /* Error Message */
 
 "vite.error.network.error" = "Algo ha fallado en la red, por favor inténtalo de nuevo más tarde";
-"vite.error.operation.failure" = "Operation failed";
+"vite.error.operation.failure" = "Operación fallida";
 "vite.error.rpc.error.code.not.enough.balance" = "Saldo insuficiente";
 "vite.error.rpc.error.code.not.enough.quota" = "Cuota insuficiente";
-"vite.error.rpc.error.code.id.conflict" = "An ID conflict occurs, please re-submit later";
-"vite.error.rpc.error.code.contract.data.illegal" = "Built-in contract error, please try again later(-35004)";
-"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Transactions are sent too frequent, please try again later";
+"vite.error.rpc.error.code.id.conflict" = "Ha ocurrido un conflicto de ID, por favor vuelva a enviarlo más tarde";
+"vite.error.rpc.error.code.contract.data.illegal" = "Error de contrato integrado, por favor inténtalo de nuevo más tarde (-35004)";
+"vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Las transacciones han sido enviadas con demasiada frecuencia, por favor inténtalo de nuevo más tarde";
 "vite.error.rpc.error.code.contract.method.not.exist" = "Built-in contract method not exist, please try again later(-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "You cannot make any transfer until you receive a transaction.";
 "vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "Snapshot block height is illegal, please try again later";
