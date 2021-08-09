@@ -567,13 +567,13 @@
 "workflow.toast.place.order.success" = "Orden realizada";
 "workflow.toast.cancel.order.success" = "Orden cancelada";
 
-"workflow.congestion.without.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.title" = "Aviso";
 "workflow.congestion.without.pow.alert.message" = "La red está actualmente en modo de Cuota Dinámica. Esto significa que su límite de cuotas ha sido reducido y usted podrá enviar menos transacciones por segundo. ¿Aún desea enviar una transacción ahora?";
-"workflow.congestion.without.pow.alert.cancel" = "Transact Later";
-"workflow.congestion.without.pow.alert.ok" = "Transact Now";
-"workflow.congestion.with.pow.alert.title" = "Notice";
+"workflow.congestion.without.pow.alert.cancel" = "Realizar más tarde";
+"workflow.congestion.without.pow.alert.ok" = "Realizar ahora";
+"workflow.congestion.with.pow.alert.title" = "Aviso";
 "workflow.congestion.with.pow.alert.message" = "La red está actualmente en modo de Cuota Dinámica. Su límite de cuotas ha sido reducido y su cuota disponible no es suficiente para enviar esta transacción. Por favor intente más tarde";
-"workflow.congestion.with.pow.alert.cancel" = "Transact Later";
+"workflow.congestion.with.pow.alert.cancel" = "Realizar más tarde";
 
 "workflow.fast.get.quota.title" = "Obtener cuota al instante";
 "workflow.fast.get.quota.message" = "Por favor, confirme que le gustaría obtener cuota bloqueando 134 VITE desde la dirección actual. Podrás retirar la cantidad bloqueada desde la sección Historial de bloqueo después de 3 días.";
@@ -581,24 +581,24 @@
 "workflow.fast.get.quota.link" = "click aquí";
 
 /* Confirm Transaction Page */
-"confirm.transaction.page.biometry.confirm.reason" = "Verify";
-"confirm.transaction.address.title" = "Recipient Address";
-"confirm.transaction.amount.title" = "Amount";
-"confirm.transaction.fee.title" = "Fee";
+"confirm.transaction.page.biometry.confirm.reason" = "Verificar";
+"confirm.transaction.address.title" = "Dirección del destinatario";
+"confirm.transaction.amount.title" = "Cantidad";
+"confirm.transaction.fee.title" = "Comisión";
 "confirm.transaction.quota.title" = "Cuota";
-"confirm.transaction.page.use.password" = "Use password";
-"confirm.transaction.page.pw.title" = "Please input password";
+"confirm.transaction.page.use.password" = "Usar contraseña";
+"confirm.transaction.page.pw.title" = "Por favor, introduzca una contraseña";
 // vite transfer
-"confirm.transaction.page.vite.transfer.title" = "Send";
-"confirm.transaction.page.vite.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.transfer.title" = "Enviar";
+"confirm.transaction.page.vite.confirm.button" = "Confirmar";
 // vite pledge
 "confirm.transaction.page.vite.pledge.title" = "Obtener Cuota";
-"confirm.transaction.page.vite.cancel.pledge.title" = "Withdraw";
-"confirm.transaction.page.vite.pledge.confirm.button" = "Confirm";
+"confirm.transaction.page.vite.cancel.pledge.title" = "Retiro";
+"confirm.transaction.page.vite.pledge.confirm.button" = "Confirmar";
 // vite vote & cancel
-"confirm.transaction.page.vite.vote.transfer.title" = "Vote";
-"confirm.transaction.page.vite.vote.confirm.button" = "Confirm";
-"confirm.transaction.page.vite.vote.node.name" = "Node Name";
+"confirm.transaction.page.vite.vote.transfer.title" = "Voto";
+"confirm.transaction.page.vite.vote.confirm.button" = "Confirmar";
+"confirm.transaction.page.vite.vote.node.name" = "Nombre del nodo";
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Revoke Voting";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirm";
 // vite dex desposit & withdraw
