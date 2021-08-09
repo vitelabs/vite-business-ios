@@ -563,9 +563,9 @@
 "workflow.toast.cancel.pledge.success" = "Recuperar solicitud de staking enviada";
 "workflow.toast.vote.success" = "Envío exitoso de solicitud de voto";
 "workflow.toast.cancel.vote.success" = "La solicitud de revocación de voto se ha enviado correctamente";
-"workflow.toast.contract.success" = "Success";
-"workflow.toast.place.order.success" = "Order Placed";
-"workflow.toast.cancel.order.success" = "Order Cancelled";
+"workflow.toast.contract.success" = "Realizado correctamente";
+"workflow.toast.place.order.success" = "Orden realizada";
+"workflow.toast.cancel.order.success" = "Orden cancelada";
 
 "workflow.congestion.without.pow.alert.title" = "Notice";
 "workflow.congestion.without.pow.alert.message" = "La red está actualmente en modo de Cuota Dinámica. Esto significa que su límite de cuotas ha sido reducido y usted podrá enviar menos transacciones por segundo. ¿Aún desea enviar una transacción ahora?";
