@@ -622,16 +622,16 @@
 "confirm.transaction.page.vite.dex.cancel.vip.confirm.button" = "Confirmar";
 
 // vite call contract
-"confirm.transaction.page.vite.call.contract.transfer.title" = "Payment";
+"confirm.transaction.page.vite.call.contract.transfer.title" = "Pago";
 "confirm.transaction.page.vite.call.contract.confirm.button" = "Confirmar";
 // eth transfer
-"confirm.transaction.page.eth.transfer.title" = "Send";
+"confirm.transaction.page.eth.transfer.title" = "Enviar";
 "confirm.transaction.page.eth.confirm.button" = "Confirmar";
 // eth vite exchange
-"confirm.transaction.page.eth.vite.exchange.title" = "VITE Conversion";
-"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convert";
+"confirm.transaction.page.eth.vite.exchange.title" = "Convertir VITE";
+"confirm.transaction.page.eth.vite.exchange.confirm.button" = "Convertir";
 // grin transfer
-"confirm.transaction.page.grin.transfer.title" = "Send";
+"confirm.transaction.page.grin.transfer.title" = "Enviar";
 "confirm.transaction.page.grin.confirm.button" = "Confirmar";
 
 // Grin
@@ -744,13 +744,13 @@
 "grin.detail.confirmLessThanThen" = "La transacción ha sido confirmada, después de 10 confirmaciones, \"Monto actual\" irá a \"Monto disponible\".";
 "grin.detail.gateway" = "Vite Gateway Collection";
 "grin.detail.gatewayReceived" = "Vite gateway ya ha recibido la transacción, y la transferirá después de 10 confirmaciones.";
-"grin.detail.txpostingAndCanRepost" = "Transaction has started to be broadcast, you can click \"Repost\" to try again if the transaction hasn't been confirmed for long";
+"grin.detail.txpostingAndCanRepost" = "La transacción ha comenzado a ser transmitida, puedes hacer clic en \"Republicar\" para intentarlo de nuevo si la transacción no ha sido confirmada durante mucho tiempo";
 "grin.detail.pleaseFinalize" = "Please finalize the transaction";
 "grin.detail.pleaseFinalize2" = "Please wait for the transaction to be broadcast";
 "grin.detail.txFileCreatedAndCanShare" = "Transaction file has been created, please make sure to share the file with the recipient(share as you like)and ask for a received file returned.";
 "grin.detail.txFile" = "Transaction File";
 "grin.detail.txFinaziledAndPosting" = "Transaction has been finalized and broadcast.";
-"grin.detail.txisPostingPlsWait" = "Transaction is in broadcast, please wait for confirmation.";
+"grin.detail.txisPostingPlsWait" = "La transacción está en transmisión, por favor espere recibir la confirmación.";
 "grin.detail.waitHerOpenViteWalletToReceive" = "Please wait for the recipient to open Vite wallet and receive the transaction.";
 "grin.detail.pleaseReciveAndShare" = "Please sign the transaction and share the file with the sender, you can choose whichever way you prefer.";
 "grin.detail.gatewaysend" = "VITE Transaction Send";
@@ -777,7 +777,7 @@
 "crosschain.deposit.history" = "Deposit History";
 "crosschain.withdraw.history" = "Withdrawal History";
 "crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
-"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.minComfirm" = "La cuenta se actualizará después de %@ confirmaciones de red. Por favor espere.";
 "crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Deposit Address";
 "crosschain.deposit.scanAddress" = "Please scan the address QR code";
@@ -861,9 +861,9 @@
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect Connected";
 "bifrost.alert.tip.title" = "Notice";
-"bifrost.alert.approve.session.message" = "Please confirm the following link\n%@";
+"bifrost.alert.approve.session.message" = "Por favor, confirma el siguiente enlace\n%@";
 "bifrost.alert.approve.session.another.address.message" = "The address you scanned now is not consistent with the one on web platform. Continue login with App address?\n(%@)";
-"bifrost.alert.approve.session.another.address.ok" = "Confirm to login";
+"bifrost.alert.approve.session.another.address.ok" = "Confirmar para iniciar sesión";
 "bifrost.alert.approve.session.another.address.cancel" = "Back";
 
 "bifrost.alert.switch.address.message" = "ViteConnect is connected, switch address will break network connection. Make sure to switch address";
@@ -875,10 +875,10 @@
 "bifrost.home.page.free.address.title" = "Address";
 "bifrost.home.page.free.history.title" = "Transactions Signed";
 "bifrost.home.page.free.auto.sign.title" = "Auto Sign";
-"bifrost.home.page.free.auto.sign.confirm.title" = "Password";
+"bifrost.home.page.free.auto.sign.confirm.title" = "Contraseña";
 
 "bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
-"bifrost.home.page.busy.content" = "Please confirm transaction information below";
+"bifrost.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
 "bifrost.toast.operation.success" = "Operation Successful";
 
 "bifrost.list.page.title" = "Signing Transaction List";
@@ -1046,8 +1046,8 @@
 "buildin.dex.cancel.stake.item0.title" = "Current Address";
 
 // app scheme
-"app.scheme.home.page.busy.header" = "Transaction Confirmation";
-"app.scheme.home.page.busy.content" = "Please confirm transaction information below";
+"app.scheme.home.page.busy.header" = "Confirmación de Transacción";
+"app.scheme.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
 "app.scheme.network.error" = "Network Error";
 
 
@@ -1186,12 +1186,12 @@
 "mining.staking.page.detail.list.button.title" = "xxxxx";
 "mining.staking.page.cell.amount" = "xxxxx";
 
-"mining.staking.page.confirm.title" = "xxxxx";
-"mining.staking.page.confirm.available.title" = "xxxxx";
-"mining.staking.page.confirm.amount.title" = "xxxxx";
-"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
-"mining.staking.page.confirm.tip" = "xxxxx";
-"mining.staking.page.confirm.button.title" = "xxxxx";
+"mining.staking.page.confirm.title" = "xxxx";
+"mining.staking.page.confirm.available.title" = "xxxx";
+"mining.staking.page.confirm.amount.title" = "xxxx";
+"mining.staking.page.confirm.amount.placeholder" = "xxxx";
+"mining.staking.page.confirm.tip" = "xxxx";
+"mining.staking.page.confirm.button.title" = "xxxx";
 
 // Spot
 "spot.page.buy.mining.tip" = "Elegible para minar cuando el precio es mayor que %@";
@@ -1224,11 +1224,11 @@
 "spot.page.post.toast.vol.zero" = "Value must be greater than 0";
 "spot.page.post.toast.amount.min" = "Total value must be at least %@";
 
-"spot.page.confirm.tip" = "Do not ask again in 24 hours";
+"spot.page.confirm.tip" = "No volver a preguntar en 24 horas";
 
 "spot.page.alert.title" = "Important reminder";
 "spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
-"spot.page.alert.ok" = "Confirm";
+"spot.page.alert.ok" = "Confirmar";
 
 "spot.page.order.empty" = "No order";
 "spot.page.cell.type.buy" = "Buy";
