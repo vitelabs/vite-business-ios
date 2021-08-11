@@ -637,7 +637,7 @@
 // Grin
 "grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Total";
-"grin.balance.spendable" = "Spendable";
+"grin.balance.spendable" = "Disponible";
 "grin.balance.awaiting" = "Awaiting Confirmation";
 "grin.balance.locked" = "Locked by Previous Transaction";
 "grin.wallet.check" = "Check";
@@ -741,7 +741,7 @@
 "grin.detail.txNotReceivedAndCanAskGatewaytoSend" = "Si el estado permanece \"Sin recibir\" durante mucho tiempo, por favor intente \"Solicitar a Vite gateway reenviar\".";
 "grin.detail.gateway.confirmConntLessThanTen" = "Vite gateway ha recibido la transacción, y le transferirá después de 10 confirmaciones.";
 "grin.detail.gateway.confirmConntBiggerThanTen" = "Vite gateway ha alcanzado las 10 confirmaciones, si el estado no cambia a \"Sin recibir\" durante mucho tiempo, por favor intente \"Solicitar a Vite gateway reenviar\".";
-"grin.detail.confirmLessThanThen" = "Transaction has been confirmed, after 10 confirmation, \"Actual Amount\" will go to \"Spendable Amount\".";
+"grin.detail.confirmLessThanThen" = "La transacción ha sido confirmada, después de 10 confirmaciones, \"Monto actual\" irá a \"Monto disponible\".";
 "grin.detail.gateway" = "Vite Gateway Collection";
 "grin.detail.gatewayReceived" = "Vite gateway has received the transaction, and will transfer to you after 10 confirmations.";
 "grin.detail.txpostingAndCanRepost" = "Transaction has started to be broadcast, you can click \"Repost\" to try again if the transaction hasn't been confirmed for long";
@@ -806,7 +806,7 @@
 "crosschain.tokenDetail.issuance.false" = "No";
 "crosschain.tokenDetail.date" = "Issuance Date";
 "crosschain.tokenDetail.desc" = "Description";
-"crosschain.status.waitToConfirm" = "%@ Chain Unconfirmed";
+"crosschain.status.waitToConfirm" = "%@ cadena sin confirmar";
 "crosschain.status.confirmed" = "Confirmed";
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
 "crosschain.status.wrong.address" = "Wrong transfer address";
