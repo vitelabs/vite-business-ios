@@ -638,7 +638,7 @@
 "grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Disponible";
-"grin.balance.awaiting" = "Awaiting Confirmation";
+"grin.balance.awaiting" = "Esperando confirmación";
 "grin.balance.locked" = "Locked by Previous Transaction";
 "grin.wallet.check" = "Check";
 "grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
@@ -671,7 +671,7 @@
 "grin.shareFile" = "Share Transaction File";
 "grin.finalize.title" = "Send GRIN";
 "grin.finalize.desc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
-"grin.txFile.received.status" = "The receipt has been confirmed";
+"grin.txFile.received.status" = "El recibo ha sido confirmado";
 "grin.finalize" = "Finalize and Broadcast";
 "grin.finalized.alertTitle" = "Transaction Finalized";
 "grin.finalized.alertDesc" = "Your GRIN transaction has started to be broadcast";
@@ -706,7 +706,7 @@
 "grin.sendPageViteContactsButtonTitle" = "GRIN Contact Address";
 "grin.canceled" = "Canceled";
 "grin.makeSureToShare" = "Please make sure to share the transaction file with sender";
-"grin.txbyfile.shareSentFileDesc" = "Please make sure to share the transaction file with the recipient and ask for a confirmation file.";
+"grin.txbyfile.shareSentFileDesc" = "Por favor, asegúrese de compartir el archivo de transacción con el destinatario y solicitar un archivo de confirmación.";
 "grin.txbyfile.receiveSentFileDesc" = "Please sign for the transaction";
 "grin.txbyfile.shareReceiveFileDesc" = "Please make sure to share the transaction file with sender";
 "grin.txbyfile.finalizeReceiveFileDesc" = "Transaction has been received by the recipient. Please finalize and broadcast the transaction.";
@@ -807,7 +807,7 @@
 "crosschain.tokenDetail.date" = "Issuance Date";
 "crosschain.tokenDetail.desc" = "Description";
 "crosschain.status.waitToConfirm" = "%@ cadena sin confirmar";
-"crosschain.status.confirmed" = "Confirmed";
+"crosschain.status.confirmed" = "Confirmado";
 "crosschain.status.tot.exceed.limit" = "Exceed the limit";
 "crosschain.status.wrong.address" = "Wrong transfer address";
 "crosschain.status.gatewayReceived" = "Deposit by Gateway";
