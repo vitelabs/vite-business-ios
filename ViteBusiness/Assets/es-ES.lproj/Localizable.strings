@@ -635,12 +635,12 @@
 "confirm.transaction.page.grin.confirm.button" = "Confirmar";
 
 // Grin
-"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
+"grin.close.tips" = "La billetera Grin esta temporalmente no disponible. Accede a tu cuenta Grin en otra aplicación compatible con tu frase de recuperación.";
 "grin.balance.total" = "Total";
 "grin.balance.spendable" = "Disponible";
 "grin.balance.awaiting" = "Esperando confirmación";
-"grin.balance.locked" = "Locked by Previous Transaction";
-"grin.wallet.check" = "Check";
+"grin.balance.locked" = "Bloqueado por la transacción anterior";
+"grin.wallet.check" = "Verificar";
 "grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
 "grin.txType.sent" = "Created";
 "grin.txType.waitToSign" = "Sin recibir";
