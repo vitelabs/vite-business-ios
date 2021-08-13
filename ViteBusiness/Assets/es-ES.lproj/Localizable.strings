@@ -877,16 +877,16 @@
 "bifrost.home.page.free.auto.sign.title" = "Auto Sign";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Contraseña";
 
-"bifrost.home.page.busy.header" = "You are making changes on ViteX & Web Wallet";
+"bifrost.home.page.busy.header" = "Está haciendo cambios en ViteX & billetera Web";
 "bifrost.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
-"bifrost.toast.operation.success" = "Operation Successful";
+"bifrost.toast.operation.success" = "Operación exitosa";
 
-"bifrost.list.page.title" = "Signing Transaction List";
-"bifrost.list.page.status.pending" = "Awaiting Signature";
-"bifrost.list.page.status.processing" = "Signing";
-"bifrost.list.page.status.failed" = "Failure";
-"bifrost.list.page.status.finished" = "Success";
-"bifrost.list.page.status.canceled" = "Canceled";
+"bifrost.list.page.title" = "Lista de transacciones firmadas";
+"bifrost.list.page.status.pending" = "Esperando firma";
+"bifrost.list.page.status.processing" = "Firmando";
+"bifrost.list.page.status.failed" = "Error";
+"bifrost.list.page.status.finished" = "Realizado correctamente";
+"bifrost.list.page.status.canceled" = "Cancelado";
 
 "bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
 
