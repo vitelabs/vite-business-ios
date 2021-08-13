@@ -888,7 +888,7 @@
 "bifrost.list.page.status.finished" = "Realizado correctamente";
 "bifrost.list.page.status.canceled" = "Cancelado";
 
-"bifrost.task.detail.page.busy.header" = "Signed Transactions Details";
+"bifrost.task.detail.page.busy.header" = "Detalles de las transacciones firmadas";
 
 "bifrost.error.message.timeout" = "Connection time out, please try again later";
 "bifrost.error.message.unknown" = "Connection Error, please try again later";
