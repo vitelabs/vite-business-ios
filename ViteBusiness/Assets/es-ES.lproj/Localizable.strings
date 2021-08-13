@@ -641,12 +641,12 @@
 "grin.balance.awaiting" = "Esperando confirmación";
 "grin.balance.locked" = "Bloqueado por la transacción anterior";
 "grin.wallet.check" = "Verificar";
-"grin.wallet.check.desc" = "Wallet check will scan the chain and cancel all pending transactions, unlock any locked outputs, restore any missing outputs, and ensure your wallet's content is consistent with the chain's version.Will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi";
-"grin.txType.sent" = "Created";
+"grin.wallet.check.desc" = "La verificación de billetera escaneará la cadena y cancelará todas las transacciones pendientes, desbloqueará cualquier salida bloqueada, restaurará cualquier salida que falte y asegurará de que el contenido de su billetera sea consistente con la última versión de la cadena. Esta acción consumiría una gran cantidad de datos celulares, se recomienda continuar el proceso conectado a una red Wi-Fi";
+"grin.txType.sent" = "Creado";
 "grin.txType.waitToSign" = "Sin recibir";
-"grin.txType.received" = "Received";
-"grin.txType.waitToFinalize" = "Unfinalized";
-"grin.txType.finalized" = "Posting";
+"grin.txType.received" = "Recibido";
+"grin.txType.waitToFinalize" = "Sin finalizar";
+"grin.txType.finalized" = "Publicando";
 "grin.txType.confirmed" = "Confirmado";
 "grin.txType.confirmedCoinbase" = "Coinbase confirmado";
 "grin.txType.Canceled" = "Canceled";
