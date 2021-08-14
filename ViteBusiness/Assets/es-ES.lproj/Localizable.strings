@@ -395,7 +395,7 @@
 
 /* quota alert */
 "quota.alert.title" = "Cuota insuficiente";
-"quota.alert.pow.and.quota.message" = "Short in quota, you can acquire quota by running PoW or staking VITE.";
+"quota.alert.pow.and.quota.message" = "En resumen, usted puede adquirir cuota ejecutando el PoW o bloqueando VITE.";
 "quota.alert.need.quota.message" = "Cuota insuficiente para realizar el PoW, te recomendamos que bloquees VITE para obtener cuota.";
 "quota.alert.pow.button.title" = "Ejecutar el PoW";
 "quota.alert.quota.button.title" = "Bloquear VITE";
