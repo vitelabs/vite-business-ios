@@ -91,7 +91,7 @@
 "create.page.tip.content2" = "La importación de palabras mnemónicas es la única forma de recuperar una cuenta después de eliminar o reinstalar la aplicación.";
 "create.page.tip.content3" = "Por favor, almacena tus palabras mnemónicas en un lugar seguro.";
 "create.page.tip.button.skip.title" = "Respaldar después";
-"create.page.tip.button.next.title" = "Respaldado";
+"create.page.tip.button.next.title" = "Respaldar";
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Copia de seguridad de palabras mnemónicas";
@@ -112,7 +112,7 @@
 "mnemonic.backup.page.clause.button.title" = "Términos y condiciones";
 "mnemonic.backup.page.tip.lab.title" = "Frase semilla";
 "mnemonic.backup.page.tip.anewBtn.title" = "Regenerar";
-"mnemonic.backup.page.tip.nextBtn.title" = "Respaldado";
+"mnemonic.backup.page.tip.nextBtn.title" = "Respaldar";
 "mnemonic.backup.page.tip.skip.title" = "Respaldar después";
 "mnemonic.backup.page.alter.title" = "Recomendamos encarecidamente no tomar una captura de pantalla de la frase semilla. Sugerimos que escriba la frase semilla en un pedazo de papel y que la guarde en un lugar seguro.";
 "mnemonic.backup.page.alter.message" = "¿Quieres crear una nueva frase semilla?";
