@@ -690,14 +690,14 @@
 "grin.receiveByHttp.desc" = "Como se muestra en la imagen de arriba, Vite hará la colección y la asignará por ti cuando elijas transferir o recibir GRIN a través de la dirección HTTP. Hay tarifas de transacción en los dos pasos anteriores.";
 "grin.receive.title" = "Recibir GRIN";
 "grin.receive.sented" = "Creado";
-"grin.creatTime" = "Creation Time";
-"grin.signAndShare" = "Receive and Share";
-"grin.sent.btnTitle" = "Send";
-"grin.receive.BtnTitle" = "Receive";
-"grin.notice.title" = "Notice";
-"grin.teach.vite.receive.title" = "Receive GRIN through VITE Address";
-"grin.teach.http.receive.title" = "Receive GRIN though HTTP Address";
-"grin.teach.vite.sent.title" = "Send GRIN through VITE Address";
+"grin.creatTime" = "Fecha de creación";
+"grin.signAndShare" = "Recibir y compartir";
+"grin.sent.btnTitle" = "Enviar";
+"grin.receive.BtnTitle" = "Recibir";
+"grin.notice.title" = "Aviso";
+"grin.teach.vite.receive.title" = "Recibir GRIN a través de la dirección VITE";
+"grin.teach.http.receive.title" = "Recibir GRIN a través de dirección HTTP";
+"grin.teach.vite.sent.title" = "Enviar GRIN a través de la dirección VITE";
 "grin.teach.http.sent.title" = "Send GRIN though HTTP Address";
 "grin.txid.title" = "Transaction ID";
 "grin.switchAddress" = "Switch Address";
@@ -1240,7 +1240,7 @@
 "spot.page.cell.average" = "Promedio: %@";
 
 "grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
-"grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
+"grin.initing.detail" = "1. Es necesaria la inicialización al añadir una billetera GRIN\n2. Se espera que el proceso dure 15 minutos\n3. No interrumpir o matar la APP durante la inicialización\n4. La inicialización consumirá una gran cantidad de datos celulares, se recomienda continuar el proceso mediante Wi-Fi.";
 
 // DexHome
 "dex.home.page.nav.title" = "Activos DEX";
