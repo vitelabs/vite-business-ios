@@ -328,9 +328,9 @@
 "Receive.page.token.title" = "Recibir";
 "Receive.page.mine.title" = "Mi QRCode";
 "Receive.page.token.name.label" = "Escanear y enviar %@";
-"Receive.page.token.amount.button.title" = "Ingrese el monto";
+"Receive.page.token.amount.button.title" = "Ingrese cantidad";
 "Receive.page.token.note.label" = "Comentario";
-"Receive.page.token.amount.alert.title" = "Ingrese el monto";
+"Receive.page.token.amount.alert.title" = "Ingrese cantidad";
 "Receive.page.wallet.name" = "Billetera Vite";
 
 /* Scan Page */
@@ -424,7 +424,7 @@
 "peldge.address.title" = "Beneficiario";
 "peldge.cancel.peldge.button.title" = "Retirar";
 "peldge.cancel.pledge.withdrawing.title" = "Retirando";
-"peldge.cancel.pledge.amount.error.toast" = "El monto mínimo a retirar es 134 VITE, por favor deje VITE suficiente en stake primero.";
+"peldge.cancel.pledge.amount.error.toast" = "El cantidad mínima a retirar es 134 VITE, por favor deje VITE suficiente en stake primero.";
 "peldge.cancel.pledge.agent.error.toast" = "Stake no común, por favor intenta retirar donde has colocado el stake.";
 /* Vote */
 "vote.page.title" = "Votar";
@@ -793,7 +793,7 @@
 "crosschain.deposit.all" = "Depositar todo";
 "crosschain.deposit.amount" = "Cantidad del depósito";
 "crosschain.withdraw.all" = "Retirar todo";
-"crosschain.withdraw.amount" = "Monto a retirar";
+"crosschain.withdraw.amount" = "Cantidad del retiro";
 "crosschain.tokenDetail.shortname" = "Símbolo";
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Nombre del Token";
@@ -1069,9 +1069,9 @@
 "fund.withdraw" = "Transferir";
 "fund.vitex.all" = "Saldo disponible en Exchange";
 "fund.vitex.available" = "Saldo disponible en Exchange";
-"fund.tooBig" = "The amount you entered exceeds available balance, please enter again";
-"fund.withdraw.placeholder" = "Please enter transfer amount";
-"fund.deposit.placeholder" = "Please enter transfer amount";
+"fund.tooBig" = "La cantidad introducida excede el saldo disponible, por favor ingrese de nuevo";
+"fund.withdraw.placeholder" = "Por favor ingrese la cantidad";
+"fund.deposit.placeholder" = "Por favor ingrese la cantidad";
 "fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
 "fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
 "fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
@@ -1081,7 +1081,7 @@
 "transfer.to" = "To";
 "transfer.dex.account" = "Cuenta de Exchange";
 "transfer.token" = "Token";
-"transfer.amount" = "Amount";
+"transfer.amount" = "Cantidad";
 "transfer.available" = "Balance: ";
 "transfer.title" = "Transfer";
 "transfer.search.placeholder" = "Please input token name";
