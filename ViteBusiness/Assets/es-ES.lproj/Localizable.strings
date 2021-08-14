@@ -990,73 +990,73 @@
 "buildin.coin.change.to.nonissuable.item0.title" = "Token Name";
 "buildin.coin.change.to.nonissuable.item1.title" = "Token Symbol";
 
-"buildin.dex.transfer.token.owner.function.title" = "Transfer Token's Ownership";
-"buildin.dex.transfer.token.owner.item0.title" = "Token Name";
-"buildin.dex.transfer.token.owner.item1.title" = "Token Symbol";
-"buildin.dex.transfer.token.owner.item2.title" = "Recipient Address";
+"buildin.dex.transfer.token.owner.function.title" = "Transferir propiedad del token";
+"buildin.dex.transfer.token.owner.item0.title" = "Nombre del Token";
+"buildin.dex.transfer.token.owner.item1.title" = "Símbolo del token";
+"buildin.dex.transfer.token.owner.item2.title" = "Dirección del destinatario";
 
-"buildin.dex.transfer.pair.function.title" = "Transfer Trading pair's Ownership";
-"buildin.dex.transfer.pair.item0.title" = "Name";
-"buildin.dex.transfer.pair.item1.title" = "Recipient Address";
+"buildin.dex.transfer.pair.function.title" = "Transferir propiedad del par de comercio";
+"buildin.dex.transfer.pair.item0.title" = "Nombre";
+"buildin.dex.transfer.pair.item1.title" = "Dirección del destinatario";
 
-"buildin.dex.adjust.fees.function.title" = "Adjust Fees";
-"buildin.dex.adjust.fees.item0.title" = "Name";
-"buildin.dex.adjust.fees.item1.title" = "Current Address";
-"buildin.dex.adjust.fees.item.maker.title" = "Adjusted Maker Fees";
-"buildin.dex.adjust.fees.item.taker.title" = "Adjusted Taker Fees";
+"buildin.dex.adjust.fees.function.title" = "Ajustar comisión";
+"buildin.dex.adjust.fees.item0.title" = "Nombre";
+"buildin.dex.adjust.fees.item1.title" = "Dirección actual";
+"buildin.dex.adjust.fees.item.maker.title" = "Comisión Maker ajustada";
+"buildin.dex.adjust.fees.item.taker.title" = "Comisión taker ajustada";
 
-"buildin.dex.open.trading.pair.function.title" = "Open Trading Pair";
-"buildin.dex.open.trading.pair.item0.title" = "Name";
-"buildin.dex.open.trading.pair.item1.title" = "Current Address";
-"buildin.dex.open.trading.pair.item2.title" = "Listing Fee";
+"buildin.dex.open.trading.pair.function.title" = "Par de comercio abierto";
+"buildin.dex.open.trading.pair.item0.title" = "Nombre";
+"buildin.dex.open.trading.pair.item1.title" = "Dirección actual";
+"buildin.dex.open.trading.pair.item2.title" = "Comisión de listado";
 
-"buildin.dex.suspend.trading.pair.function.title" = "Suspend Trading Pair";
-"buildin.dex.suspend.trading.pair.item0.title" = "Name";
-"buildin.dex.suspend.trading.pair.item1.title" = "Current Address";
+"buildin.dex.suspend.trading.pair.function.title" = "Suspender comercio de par";
+"buildin.dex.suspend.trading.pair.item0.title" = "Nombre";
+"buildin.dex.suspend.trading.pair.item1.title" = "Dirección actual";
 
-"buildin.dex.recover.trading.pair.function.title" = "Recover Trading Pair";
-"buildin.dex.recover.trading.pair.item0.title" = "Name";
-"buildin.dex.recover.trading.pair.item1.title" = "Current Address";
+"buildin.dex.recover.trading.pair.function.title" = "Restaurar comercio de par";
+"buildin.dex.recover.trading.pair.item0.title" = "Nombre";
+"buildin.dex.recover.trading.pair.item1.title" = "Dirección actual";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking as Mining";
-"buildin.dex.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.staking.as.mining.function.title" = "Staking como minado";
+"buildin.dex.staking.as.mining.item0.title" = "Dirección actual";
+"buildin.dex.staking.as.mining.item1.title" = "Cantidad";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancel Staking as Mining";
-"buildin.dex.cancel.staking.as.mining.item0.title" = "Current Address";
-"buildin.dex.cancel.staking.as.mining.item1.title" = "Amount";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancelar Staking como minado";
+"buildin.dex.cancel.staking.as.mining.item0.title" = "Dirección actual";
+"buildin.dex.cancel.staking.as.mining.item1.title" = "Cantidad";
 
-"buildin.dex.become.vip.function.title" = "Become a VIP";
-"buildin.dex.become.vip.item0.title" = "Current Address";
-"buildin.dex.become.vip.item1.title" = "Amount";
+"buildin.dex.become.vip.function.title" = "Hazte VIP";
+"buildin.dex.become.vip.item0.title" = "Dirección actual";
+"buildin.dex.become.vip.item1.title" = "Cantidad";
 
-"buildin.dex.cancel.vip.function.title" = "Cancel VIP";
-"buildin.dex.cancel.vip.item0.title" = "Current Address";
-"buildin.dex.cancel.vip.item1.title" = "Amount";
+"buildin.dex.cancel.vip.function.title" = "Cancelar VIP";
+"buildin.dex.cancel.vip.item0.title" = "Dirección actual";
+"buildin.dex.cancel.vip.item1.title" = "Cantidad";
 
 "buildin.dex.lock.vx.function.title" = "Stake";
-"buildin.dex.lock.vx.item0.title" = "Current Address";
-"buildin.dex.lock.vx.item1.title" = "Amount";
+"buildin.dex.lock.vx.item0.title" = "Dirección actual";
+"buildin.dex.lock.vx.item1.title" = "Cantidad";
 
-"buildin.dex.un.lock.vx.function.title" = "Retrieve";
-"buildin.dex.un.lock.vx.item0.title" = "Current Address";
-"buildin.dex.un.lock.vx.item1.title" = "Amount";
+"buildin.dex.un.lock.vx.function.title" = "Recuperar";
+"buildin.dex.un.lock.vx.item0.title" = "Dirección actual";
+"buildin.dex.un.lock.vx.item1.title" = "Cantidad";
 
-"buildin.dex.cancel.stake.function.title" = "Retrieve Staking";
-"buildin.dex.cancel.stake.item0.title" = "Current Address";
+"buildin.dex.cancel.stake.function.title" = "Cancelar stake";
+"buildin.dex.cancel.stake.item0.title" = "Dirección actual";
 
 // app scheme
 "app.scheme.home.page.busy.header" = "Confirmación de Transacción";
 "app.scheme.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
-"app.scheme.network.error" = "Network Error";
+"app.scheme.network.error" = "Error de red";
 
 
-"copyed" = "Successfully copied";
+"copyed" = "Copiado Exitosamente";
 
-"fund.title.wallet" = "Wallet Asset";
-"fund.title.vitex" = "Exchange Asset";
-"fund.title.toWallet" = "Withdraw to Wallet";
-"fund.title.toVitex" = "Deposit to Exchange";
+"fund.title.wallet" = "Activos en billetera";
+"fund.title.vitex" = "Activos en Exchange";
+"fund.title.toWallet" = "Retirar a billetera";
+"fund.title.toVitex" = "Depositar al Exchange";
 "fund.walletAddress" = "My Address";
 "fund.walletFound" = "Wallet Balance";
 "fund.quotaInfo" = "Cuota disponible/Cuota límite";
@@ -1079,7 +1079,7 @@
 "transfer.from" = "From";
 "transfer.wallet.account" = "Wallet Account";
 "transfer.to" = "To";
-"transfer.dex.account" = "Exchange Account";
+"transfer.dex.account" = "Cuenta de Exchange";
 "transfer.token" = "Token";
 "transfer.amount" = "Amount";
 "transfer.available" = "Balance: ";
@@ -1243,7 +1243,7 @@
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
 
 // DexHome
-"dex.home.page.nav.title" = "Activos";
+"dex.home.page.nav.title" = "Activos DEX";
 "dex.home.page.nav.btc.valuation.title" = "Valor total (BTC)";
 "dex.home.page.segment.wallet" = "Billetera";
 "dex.home.page.segment.dex" = "Trading";
