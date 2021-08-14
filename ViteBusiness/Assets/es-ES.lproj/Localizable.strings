@@ -207,7 +207,7 @@
 "transaction.list.transaction.type.name.vote" = "Votación";
 "transaction.list.transaction.type.name.cancelVote" = "Cancelar voto";
 "transaction.list.transaction.type.name.pledge" = "Obtener cuota TPS";
-"transaction.list.transaction.type.name.cancelPledge" = "Retiro de cuota en stake";
+"transaction.list.transaction.type.name.cancelPledge" = "Retirar lo bloqueado por cuota";
 "transaction.list.transaction.type.name.coin" = "Emisión de Token";
 "transaction.list.transaction.type.name.cancelCoin" = "Retiros de token en stake";
 "transaction.list.transaction.type.name.transfer" = "Transferencia";
