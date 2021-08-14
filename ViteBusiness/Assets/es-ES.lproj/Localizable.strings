@@ -1072,24 +1072,24 @@
 "fund.tooBig" = "La cantidad introducida excede el saldo disponible, por favor ingrese de nuevo";
 "fund.withdraw.placeholder" = "Por favor ingrese la cantidad";
 "fund.deposit.placeholder" = "Por favor ingrese la cantidad";
-"fund.cannotDeposit" = "Unable to transfer due to insufficient wallet balance";
-"fund.cannotWithDraw" = "Unable to transfer due to insufficient exchange balance";
-"fund.DepositSuccess" = "Transfer successful. Check exchange balance?";
+"fund.cannotDeposit" = "No se puede transferir debido a que tienes saldo insuficiente en tu billetera";
+"fund.cannotWithDraw" = "No se puede transferir debido a que tienes saldo insuficiente en el exchange";
+"fund.DepositSuccess" = "Transferencia exitosa. ¿Comprobar el saldo del exchange?";
 
-"transfer.from" = "From";
-"transfer.wallet.account" = "Wallet Account";
-"transfer.to" = "To";
+"transfer.from" = "Desde";
+"transfer.wallet.account" = "Billetera";
+"transfer.to" = "A";
 "transfer.dex.account" = "Cuenta de Exchange";
 "transfer.token" = "Token";
 "transfer.amount" = "Cantidad";
-"transfer.available" = "Balance: ";
-"transfer.title" = "Transfer";
-"transfer.search.placeholder" = "Please input token name";
+"transfer.available" = "Saldo: ";
+"transfer.title" = "Transferir";
+"transfer.search.placeholder" = "Por favor ingrese el nombre del token";
 
-"market.favourite" = "Favorites";
-"market.searchhistory" = "Search History";
-"market.title" = "Markets";
-"market.about" = "Get Started with ViteX";
+"market.favourite" = "Favoritos";
+"market.searchhistory" = "Historial de búsquedas";
+"market.title" = "Mercados";
+"market.about" = "Primeros pasos con ViteX";
 "market.name" = "Nombre";
 "market.price" = "Último precio";
 "market.percent" = "Cambiar";
