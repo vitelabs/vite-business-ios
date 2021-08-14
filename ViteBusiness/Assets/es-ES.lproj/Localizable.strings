@@ -602,7 +602,7 @@
 "confirm.transaction.page.vite.cancel.vote.transfer.title" = "Cancelar voto";
 "confirm.transaction.page.vite.cancel.vote.confirm.button" = "Confirmar";
 // vite dex desposit & withdraw
-"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Depositar al DEX";
+"confirm.transaction.page.vite.dex.deposit.transfer.title" = "Depositar al Exchange";
 "confirm.transaction.page.vite.dex.deposit.confirm.button" = "Confirmar";
 "confirm.transaction.page.vite.dex.withdraw.transfer.title" = "Retirar a billetera";
 "confirm.transaction.page.vite.dex.withdraw.confirm.button" = "Confirmar";
@@ -614,7 +614,7 @@
 "confirm.transaction.page.vite.dex.cancel.order.confirm.button" = "Confirmar";
 
 "confirm.transaction.page.vite.dex.vip.title" = "Hazte VIP";
-"confirm.transaction.page.vite.dex.vip.balance" = "Saldo disponible para Intercambios";
+"confirm.transaction.page.vite.dex.vip.balance" = "Saldo disponible paren Exchange";
 "confirm.transaction.page.vite.dex.vip.amount" = "Bloquear monto para ser VIP";
 "confirm.transaction.page.vite.dex.vip.tip" = "Los usuarios VIP disfrutan el privilegio de un 0,1% de descuento en las comisiones de trading. Se deben bloquear 10.000 VITE para convertirte en VIP (Duración mínima de bloqueo: 30 días)";
 "confirm.transaction.page.vite.dex.vip.confirm.button" = "Confirmar";
@@ -1090,7 +1090,7 @@
 "market.searchhistory" = "Search History";
 "market.title" = "Markets";
 "market.about" = "Get Started with ViteX";
-"market.name" = "Name";
+"market.name" = "Nombre";
 "market.price" = "Último precio";
 "market.percent" = "Cambiar";
 "market.operator" = "Operador";
@@ -1155,8 +1155,8 @@
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Mining";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.mining" = "Minado";
+"trading.home.page.segment.bonus" = "Dividendo";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
@@ -1210,29 +1210,29 @@
 "spot.page.total" = "Total: %@";
 "spot.page.open.vip" = "Hazte VIP";
 "spot.page.close.vip" = "Cancelar VIP";
-"spot.page.open.vip.error.toast" = "Insufficient exchange balance, stake 10,000 VITE to become a VIP";
-"spot.page.close.vip.error.toast" = "No VIP staked";
-"spot.page.close.vip.un.expire.error.toast" = "The staking is less than 30 days and cannot be retrieved";
-"spot.page.depth.price" = "Price";
-"spot.page.depth.vol" = "Amount";
+"spot.page.open.vip.error.toast" = "Saldo insuficiente en Exchange, bloquee 10.000 VITE para convertirse en VIP";
+"spot.page.close.vip.error.toast" = "No hay fondos bloqueados para VIP";
+"spot.page.close.vip.un.expire.error.toast" = "El bloqueo ha durado menos de 30 días y no se puede recuperar";
+"spot.page.depth.price" = "Precio";
+"spot.page.depth.vol" = "Cantidad";
 "spot.page.current.order.title" = "Órdenes abiertas";
 "spot.page.orders.button.title" = "Historial";
 
 "spot.page.post.toast.price.empty" = "Por favor, introduzca el precio";
 "spot.page.post.toast.price.zero" = "El valor debe ser mayor que 0";
-"spot.page.post.toast.vol.empty" = "Please enter the amount";
-"spot.page.post.toast.vol.zero" = "Value must be greater than 0";
-"spot.page.post.toast.amount.min" = "Total value must be at least %@";
+"spot.page.post.toast.vol.empty" = "Por favor ingrese la cantidad";
+"spot.page.post.toast.vol.zero" = "El valor debe ser mayor que 0";
+"spot.page.post.toast.amount.min" = "El valor total debe ser al menos %@";
 
 "spot.page.confirm.tip" = "No volver a preguntar en 24 horas";
 
-"spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.title" = "Recordatorio importante";
+"spot.page.alert.message" = "El par de comercio actual es %@. La inversión en criptomonedas está sujeta a un alto riesgo de mercado y a la volatilidad de los precios. Por favor, evalúe cuidadosamente su capacidad de manejar riesgos potenciales y tome decisiones comerciales prudentes.";
 "spot.page.alert.ok" = "Confirmar";
 
-"spot.page.order.empty" = "No order";
-"spot.page.cell.type.buy" = "Buy";
-"spot.page.cell.type.sell" = "Sell";
+"spot.page.order.empty" = "Sin órdenes";
+"spot.page.cell.type.buy" = "Comprar";
+"spot.page.cell.type.sell" = "Vender";
 "spot.page.cell.button.cancel.title" = "Cancel";
 "spot.page.cell.vol" = "Amt.: %@";
 "spot.page.cell.price" = "Price: %@";
