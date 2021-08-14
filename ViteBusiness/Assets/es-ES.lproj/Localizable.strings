@@ -1233,11 +1233,11 @@
 "spot.page.order.empty" = "Sin órdenes";
 "spot.page.cell.type.buy" = "Comprar";
 "spot.page.cell.type.sell" = "Vender";
-"spot.page.cell.button.cancel.title" = "Cancel";
-"spot.page.cell.vol" = "Amt.: %@";
-"spot.page.cell.price" = "Price: %@";
-"spot.page.cell.deal" = "Filled: %@";
-"spot.page.cell.average" = "Avg.: %@";
+"spot.page.cell.button.cancel.title" = "Cancelar";
+"spot.page.cell.vol" = "Monto: %@";
+"spot.page.cell.price" = "Precio: %@";
+"spot.page.cell.deal" = "Completado: %@";
+"spot.page.cell.average" = "Promedio: %@";
 
 "grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
 "grin.initing.detail" = "1. Initialization is required upon adding GRIN wallet\n2. The process is expected to last 15 minutes\n3. Do not interrupt or kill the APP during initialization\n4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.";
