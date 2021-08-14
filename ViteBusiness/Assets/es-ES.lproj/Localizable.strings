@@ -297,7 +297,7 @@
 "send.page.to.address.title" = "Dirección del destinatario";
 "send.page.amount.title" = "Cantidad";
 "send.page.all.button.title" = "Todo";
-"send.page.remark.title" = "Memo";
+"send.page.remark.title" = "Nota";
 "send.page.send.button.title" = "Enviar";
 "send.page.amount.toolbar.button.title" = "Siguiente";
 "send.page.toast.address.error" = "Dirección incorrecta, por favor compruebe el formato";
