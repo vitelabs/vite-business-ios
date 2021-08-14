@@ -925,45 +925,45 @@
 
 "bifrost.create.contract.title" = "Crear contrato";
 "bifrost.create.contract.title.contract.address" = "Dirección del contrato";
-"bifrost.create.contract.title.amount" = "Amount";
-"bifrost.create.contract.title.fee" = "Fee";
-"bifrost.create.contract.title.data" = "Data";
+"bifrost.create.contract.title.amount" = "Cantidad";
+"bifrost.create.contract.title.fee" = "Comisión";
+"bifrost.create.contract.title.data" = "Datos";
 
 //bnb
-"token.list.page.section.bnb.header" = "Binance Network";
-"bnb.send.page.feeView.titleLabel.title" = "Fee";
-"bnb.send.page.addressTitleLabel.titleLabel.title" = "BNB Address";
-"bnb.send.page.eth.contacts.button.title" = "BNB Contacts";
-"bnb.txType.newOrder.title" = "Place Order";
-"bnb.txType.issueToken.title" = "Issue Asset";
-"bnb.txType.burnToken.title" = "Burn";
-"bnb.txType.listToken.title" = "Listing";
-"bnb.txType.cancelOrder.title" = "Cancel Order";
-"bnb.txType.freezeToken.title" = "Freeze Token";
-"bnb.txType.unfreezeToken.title" = "Unfreeze Token";
-"bnb.txType.transfer.title" = "Transfer";
-"bnb.txType.proposal.title" = "Proposal Request";
-"bnb.txType.vote.title" = "Vote";
+"token.list.page.section.bnb.header" = "Red Binance";
+"bnb.send.page.feeView.titleLabel.title" = "Comisión";
+"bnb.send.page.addressTitleLabel.titleLabel.title" = "Dirección BNB";
+"bnb.send.page.eth.contacts.button.title" = "Contactos BNB";
+"bnb.txType.newOrder.title" = "Hacer una orden";
+"bnb.txType.issueToken.title" = "Emitir activo";
+"bnb.txType.burnToken.title" = "Quemar";
+"bnb.txType.listToken.title" = "Listando";
+"bnb.txType.cancelOrder.title" = "Cancelar orden";
+"bnb.txType.freezeToken.title" = "Congelar token";
+"bnb.txType.unfreezeToken.title" = "Descongelar token";
+"bnb.txType.transfer.title" = "Transferencia";
+"bnb.txType.proposal.title" = "Solicitud de propuesta";
+"bnb.txType.vote.title" = "Votar";
 "bnb.txType.mint.title" = "MintMsg";
-"bnb.txType.deposit.title" = "Deposit";
+"bnb.txType.deposit.title" = "Depositar";
 
 // Buildin
 
-"buildin.transfer.utf8string.function.title" = "Transfer";
-"buildin.transfer.utf8string.item0.title" = "Transaction Address";
-"buildin.transfer.utf8string.item1.title" = "Amount";
-"buildin.transfer.utf8string.item2.title" = "Comment";
+"buildin.transfer.utf8string.function.title" = "Transferir";
+"buildin.transfer.utf8string.item0.title" = "Dirección de la transacción";
+"buildin.transfer.utf8string.item1.title" = "Cantidad";
+"buildin.transfer.utf8string.item2.title" = "Comentario";
 
 "buildin.transfer.cross.chain.function.title" = "Envío Cross-Chain";
-"buildin.transfer.cross.chain.item0.title" = "Amount";
-"buildin.transfer.cross.chain.item1.title" = "Fee";
-"buildin.transfer.cross.chain.item2.title" = "Receive Address";
+"buildin.transfer.cross.chain.item0.title" = "Cantidad";
+"buildin.transfer.cross.chain.item1.title" = "Comisión";
+"buildin.transfer.cross.chain.item2.title" = "Dirección de recepción";
 
-"buildin.vote.function.title" = "Vote";
-"buildin.vote.item0.title" = "SBP Candidates";
-"buildin.vote.item1.title" = "Votes";
+"buildin.vote.function.title" = "Votar";
+"buildin.vote.item0.title" = "Candidatos SBP";
+"buildin.vote.item1.title" = "Votos";
 
-"buildin.coin.issuance.function.title" = "Token Issuance";
+"buildin.coin.issuance.function.title" = "Emisión de Token";
 "buildin.coin.issuance.item0.title" = "Issuance Address";
 "buildin.coin.issuance.item1.title" = "Token Name";
 "buildin.coin.issuance.item2.title" = "Token Symbol";
