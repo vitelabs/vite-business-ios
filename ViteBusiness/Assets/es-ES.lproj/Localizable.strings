@@ -1194,8 +1194,8 @@
 "mining.staking.page.confirm.button.title" = "xxxx";
 
 // Spot
-"spot.page.buy.mining.tip" = "Elegible para minar cuando el precio es mayor que %@";
-"spot.page.sell.mining.tip" = "Elegible para minar cuando el precio es menor que %@";
+"spot.page.buy.mining.tip" = "Elegible para minar cuando el precio sea mayor que %@";
+"spot.page.sell.mining.tip" = "Elegible para minar cuando el precio sea menor que %@";
 "spot.page.button.closed.title" = "Intercambio suspendido";
 "spot.page.button.buy.title" = "Comprar";
 "spot.page.button.sell.title" = "Vender";
