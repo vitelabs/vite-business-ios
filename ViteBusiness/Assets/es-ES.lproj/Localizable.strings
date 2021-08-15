@@ -1094,7 +1094,7 @@
 "market.price" = "Último precio";
 "market.percent" = "Cambiar";
 "market.operator" = "Operador";
-"market.switch" = "Mercados";
+"market.switch" = "Cambiar";
 
 // market detail
 "market.detail.page.segment.order.book.title" = "Libros de órdenes";
