@@ -921,7 +921,7 @@
 "bifrost.operation.sign.message.address" = "Dirección actual";
 "bifrost.operation.sign.message.type" = "Tipo de permiso";
 "bifrost.operation.sign.message.content" = "Contenido de la firma";
-"bifrost.operation.sign.message.type.trade.value" = "Operar";
+"bifrost.operation.sign.message.type.trade.value" = "Comercio";
 
 "bifrost.create.contract.title" = "Crear contrato";
 "bifrost.create.contract.title.contract.address" = "Dirección del contrato";
@@ -1277,6 +1277,6 @@
 "dex.token.detail.page.button.withdraw" = "Retirar";
 "dex.token.detail.page.button.transfer" = "Transferir";
 "dex.token.detail.page.button.send" = "Enviar";
-"dex.token.detail.page.button.trading" = "Intercambiar";
+"dex.token.detail.page.button.trading" = "Comercio";
 
 "dex.token.market.selector.title" = "Seleccionar par de Trading";
