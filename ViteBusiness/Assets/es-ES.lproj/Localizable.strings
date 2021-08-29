@@ -965,7 +965,7 @@
 
 "buildin.coin.issuance.function.title" = "Emisión de Token";
 "buildin.coin.issuance.item0.title" = "Dirección de emisión";
-"buildin.coin.issuance.item1.title" = "Nombre del Token";
+"buildin.coin.issuance.item1.title" = "Nombre del token";
 "buildin.coin.issuance.item2.title" = "Símbolo del token";
 "buildin.coin.issuance.item3.title" = "Suministro total";
 "buildin.coin.issuance.item4.title" = "Decimales";
@@ -981,13 +981,13 @@
 "buildin.coin.transfer.ownership.item2.title" = "Dirección del destinatario";
 
 "buildin.coin.reissue.token.function.title" = "Re-emitir token";
-"buildin.coin.reissue.token.item0.title" = "Nombre del Token";
+"buildin.coin.reissue.token.item0.title" = "Nombre del token";
 "buildin.coin.reissue.token.item1.title" = "Símbolo del token";
 "buildin.coin.reissue.token.item2.title" = "Dirección del beneficiario";
 "buildin.coin.reissue.token.item3.title" = "Cantidad";
 
 "buildin.coin.change.to.nonissuable.function.title" = "Cambiar a No-Emisible";
-"buildin.coin.change.to.nonissuable.item0.title" = "Nombre del Token";
+"buildin.coin.change.to.nonissuable.item0.title" = "Nombre del token";
 "buildin.coin.change.to.nonissuable.item1.title" = "Símbolo del token";
 
 "buildin.dex.transfer.token.owner.function.title" = "Transferir propiedad del token";
