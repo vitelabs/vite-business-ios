@@ -104,6 +104,8 @@ public enum CurrencyCode: String {
     case KRW = "krw"
     case TRY = "try"
     case VND = "vnd"
+    case EUR = "eur"
+    case GBP = "gbp"
     
 
     var symbol: String {
@@ -120,6 +122,10 @@ public enum CurrencyCode: String {
             return "₺"
         case .VND:
             return "₫"
+        case .EUR:
+            return "€"
+        case .GBP:
+            return "£"
         }
     }
 
@@ -137,11 +143,15 @@ public enum CurrencyCode: String {
             return "TRY"
         case .VND:
             return "VND"
+        case .EUR:
+            return "EUR"
+        case .GBP:
+            return "GBP"
         }
     }
 
     static var allValues: [CurrencyCode] {
-        return [.CNY, .USD, .RUB, .KRW, .TRY, .VND]
+        return [.CNY, .USD, .RUB, .KRW, .TRY, .VND, .EUR, .GBP]
     }
 }
 
