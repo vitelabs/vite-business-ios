@@ -232,17 +232,17 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Баланс";
 "balance.info.detail.unconfirmed.title" = "Не получено";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Доступно";
-"balance.info.detail.pledge.amount.title" = "Заморожено";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Проверьте историю транзакций в Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Получить";
 "balance.info.detail.send.button.title" = "Отправить";
 "balance.info.detail.vote" = "Голосовать";
 "balance.info.detail.pledge" = "Получить Квоту";
 "balance.info.detail.exchange.vite" = "Конвертация VITE";
-"balance.info.detail.pledge.count.content" = "Лимит расхода квоты/квот";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Детали шлюза";
 "gateway.info.detail.page.name" = "Название шлюза";
@@ -288,8 +288,9 @@
 "send.page.title" = "Отправить";
 "send.page.my.address.title" = "Мой %@ адрес";
 "send.page.my.balance.title" = "Баланс";
-"send.page.my.pledge.title" = "Предоставленный стейк";
-"send.page.my.quota.title" = "Лимит расхода квоты/квот";
+"send.page.wallet.balance.title" = "Wallet Balance";
+"send.page.my.pledge.title" = "Locked Amount";
+"send.page.my.quota.title" = "Quota Available/Quota Limit";
 "send.page.my.max.tx.count.title" = "Максимальная сумма Tx";
 "send.page.add.my.address.button.title" = "Мой";
 "send.page.vite.contacts.button.title" = "Адрес контракта VITE";
@@ -380,13 +381,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Получить Квоту";
 "quota.manage.page.input.address.title" = "Выгодоприобретатель Квоты";
-"quota.manage.page.quota.money.title" = "Сумма заморозки";
+"quota.manage.page.quota.money.title" = "Locked Amount";
 "quota.manage.page.quota.quota.title" = "Квота";
 "quota.manage.page.quota.money.placeholder" = "Введите сумму, минимум 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Длительность замораживания";
+"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
 "quota.manage.page.quota.snapshoot.height.desc" = "Приблизительно %@ дней";
-"quota.manage.page.submit.btn.title" = "Подтвердить заморозку";
-"quota.manage.page.check.quotaList.btn.title" = "Мои заморозки";
+"quota.manage.page.submit.btn.title" = "Submit to lock";
+"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
 "quota.manage.page.toast.money.error" = "Стейк не может быть меньше 134 VITE";
 "quota.submit.pop.desc" = "Удостоверьтесь, что заморозили %@ VITE для получения квоты. Вы не сможете разморозить средства ранее, чем через 3 дня после начала заморозки.";
 "quota.submit.pop.submit.btn.title" = "Подтвердить";
@@ -400,7 +401,7 @@
 "quota.alert.pow.button.title" = "Run PoW";
 "quota.alert.quota.button.title" = "Заморозка VITE";
 "quota.float.view.title" = "Вычисления PoW для получения квоты для этой транзакции...";
-"quota.float.view.tip" = "Эта транзакция стоит %@UT";
+"quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -413,16 +414,16 @@
 
 
 "quota.pow.finished.float.view.title" = "Транзакция отправлена";
-"quota.pow.finished.float.view.h1" = "Вы потратили %1$@S на это PoW вычисление и использовали %2$@UT.";
+"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
 "quota.pow.finished.float.view.h2" = "Вы можете запросить свой замороженный баланс VITE после 3 дней. Если вы получили от стейка достаточно квоты, можете пропустить этот шаг в PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Транзакции быстрее при заморозке VITE";
 
 /* Peldge History */
 "peldge.message" = "В настоящее время приложение поддерживает только проверку списков заморозки, пожалуйста, перейдите в Web Wallet        чтобы при необходимости разморозить токены.";
-"peldge.deadline" = "Дата исполнения";
-"peldge.title" = "Мои заморозки";
+"peldge.deadline" = "Time available to unlock";
+"peldge.title" = "Locking Record";
 "peldge.address.title" = "Выгодоприобретатель";
-"peldge.cancel.peldge.button.title" = "Вывести Средства";
+"peldge.cancel.peldge.button.title" = "Unlock";
 "peldge.cancel.pledge.withdrawing.title" = "Вывод";
 "peldge.cancel.pledge.amount.error.toast" = "Минимальная сумма вывода составляет 134 VITE";
 "peldge.cancel.pledge.agent.error.toast" = "Нетипичная заморозка. Попробуйте разморозить средства там, где замораживали.";
@@ -1077,9 +1078,9 @@
 "fund.DepositSuccess" = "Успешный перевод. Проверить биржевой баланс?";
 
 "transfer.from" = "Из";
-"transfer.wallet.account" = "Кошелька";
+"transfer.wallet.account" = "Main Wallet";
 "transfer.to" = "В";
-"transfer.dex.account" = "Баланс биржи";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "Токен";
 "transfer.amount" = "Сумма";
 "transfer.available" = "Баланс: ";
@@ -1245,7 +1246,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Биржевые активы";
 "dex.home.page.nav.btc.valuation.title" = "Общее значение (BTC)";
-"dex.home.page.segment.wallet" = "Кошелек";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "Торговля";
 
 "dex.home.page.header.btc.valuation.title" = "Значение (BTC)";
