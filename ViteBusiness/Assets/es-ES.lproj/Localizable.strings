@@ -414,16 +414,16 @@
 
 
 "quota.pow.finished.float.view.title" = "Transacción enviada";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
+"quota.pow.finished.float.view.h1" = "Has gastado %1$@S en el computo de este PoW, y has asegurado y usado %2$@Cuota.";
 "quota.pow.finished.float.view.h2" = "Puedes retirar el VITE bloqueado después de 3 días. Si la cuota que recibiste al bloquear es suficiente para una transacción, puedes saltarte este paso de PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Realiza transacciones más rápido al bloquear VITE";
 
 /* Peldge History */
 "peldge.message" = "Actualmente la aplicación de Vite sólo soporta comprobar la lista de staking, por favor vaya a la billetera Web si necesita retirar los token en stake que estén con la fecha de vencimiento cumplida.";
-"peldge.deadline" = "Time available to unlock";
-"peldge.title" = "Locking Record";
+"peldge.deadline" = "Tiempo disponible para desbloquear";
+"peldge.title" = "Registros de bloqueos";
 "peldge.address.title" = "Beneficiario";
-"peldge.cancel.peldge.button.title" = "Unlock";
+"peldge.cancel.peldge.button.title" = "Desbloquear";
 "peldge.cancel.pledge.withdrawing.title" = "Retirando";
 "peldge.cancel.pledge.amount.error.toast" = "El cantidad mínima a retirar es 134 VITE, por favor deje VITE suficiente en stake primero.";
 "peldge.cancel.pledge.agent.error.toast" = "Stake no común, por favor intenta retirar donde has colocado el stake.";
@@ -1078,9 +1078,9 @@
 "fund.DepositSuccess" = "Transferencia exitosa. ¿Comprobar el saldo del exchange?";
 
 "transfer.from" = "Desde";
-"transfer.wallet.account" = "Main Wallet";
+"transfer.wallet.account" = "Billetera principal";
 "transfer.to" = "A";
-"transfer.dex.account" = "Trading Wallet";
+"transfer.dex.account" = "Billetera de trading";
 "transfer.token" = "Token";
 "transfer.amount" = "Cantidad";
 "transfer.available" = "Saldo: ";
@@ -1246,7 +1246,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Activos DEX";
 "dex.home.page.nav.btc.valuation.title" = "Valor total (BTC)";
-"dex.home.page.segment.wallet" = "Main";
+"dex.home.page.segment.wallet" = "Principal";
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Valor (BTC)";
