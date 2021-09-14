@@ -234,7 +234,7 @@
 "balance.info.detail.unconfirmed.title" = "Не получено";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Доступно";
-"balance.info.detail.pledge.amount.title" = "Заморожено";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Проверьте историю транзакций в Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Получить";
 "balance.info.detail.send.button.title" = "Отправить";
@@ -381,13 +381,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Получить Квоту";
 "quota.manage.page.input.address.title" = "Выгодоприобретатель Квоты";
-"quota.manage.page.quota.money.title" = "Сумма заморозки";
+"quota.manage.page.quota.money.title" = "Locked Amount";
 "quota.manage.page.quota.quota.title" = "Квота";
 "quota.manage.page.quota.money.placeholder" = "Введите сумму, минимум 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Длительность замораживания";
+"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
 "quota.manage.page.quota.snapshoot.height.desc" = "Приблизительно %@ дней";
-"quota.manage.page.submit.btn.title" = "Подтвердить заморозку";
-"quota.manage.page.check.quotaList.btn.title" = "Мои заморозки";
+"quota.manage.page.submit.btn.title" = "Submit to lock";
+"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
 "quota.manage.page.toast.money.error" = "Стейк не может быть меньше 134 VITE";
 "quota.submit.pop.desc" = "Удостоверьтесь, что заморозили %@ VITE для получения квоты. Вы не сможете разморозить средства ранее, чем через 3 дня после начала заморозки.";
 "quota.submit.pop.submit.btn.title" = "Подтвердить";
@@ -420,10 +420,10 @@
 
 /* Peldge History */
 "peldge.message" = "В настоящее время приложение поддерживает только проверку списков заморозки, пожалуйста, перейдите в Web Wallet        чтобы при необходимости разморозить токены.";
-"peldge.deadline" = "Дата исполнения";
-"peldge.title" = "Мои заморозки";
+"peldge.deadline" = "Time available to unlock";
+"peldge.title" = "Locking Record";
 "peldge.address.title" = "Выгодоприобретатель";
-"peldge.cancel.peldge.button.title" = "Вывести Средства";
+"peldge.cancel.peldge.button.title" = "Unlock";
 "peldge.cancel.pledge.withdrawing.title" = "Вывод";
 "peldge.cancel.pledge.amount.error.toast" = "Минимальная сумма вывода составляет 134 VITE";
 "peldge.cancel.pledge.agent.error.toast" = "Нетипичная заморозка. Попробуйте разморозить средства там, где замораживали.";
@@ -1078,9 +1078,9 @@
 "fund.DepositSuccess" = "Успешный перевод. Проверить биржевой баланс?";
 
 "transfer.from" = "Из";
-"transfer.wallet.account" = "Кошелька";
+"transfer.wallet.account" = "Main Wallet";
 "transfer.to" = "В";
-"transfer.dex.account" = "Баланс биржи";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "Токен";
 "transfer.amount" = "Сумма";
 "transfer.available" = "Баланс: ";
@@ -1246,7 +1246,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Биржевые активы";
 "dex.home.page.nav.btc.valuation.title" = "Общее значение (BTC)";
-"dex.home.page.segment.wallet" = "Кошелек";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "Торговля";
 
 "dex.home.page.header.btc.valuation.title" = "Значение (BTC)";

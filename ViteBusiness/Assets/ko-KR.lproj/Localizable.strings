@@ -234,7 +234,7 @@
 "balance.info.detail.unconfirmed.title" = "미수신";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "이용 가능";
-"balance.info.detail.pledge.amount.title" = "스테이킹됨";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Ethereum Explorer에서 거래 내역을 확인하세요.";
 "balance.info.detail.reveice.button.title" = "수신하기";
 "balance.info.detail.send.button.title" = "보내기";
@@ -381,13 +381,13 @@
 /* quota manage */
 "quota.manage.page.title" = "쿼타 얻기";
 "quota.manage.page.input.address.title" = "쿼타 수령인";
-"quota.manage.page.quota.money.title" = "스테이킹 수량";
+"quota.manage.page.quota.money.title" = "Locked Amount";
 "quota.manage.page.quota.quota.title" = "쿼타";
 "quota.manage.page.quota.money.placeholder" = "최소 134 VITE의 수량을 적어주세요";
-"quota.manage.page.quota.snapshoot.height.title" = "스테이킹 동결 기간";
+"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
 "quota.manage.page.quota.snapshoot.height.desc" = "약 %@일";
-"quota.manage.page.submit.btn.title" = "스테이킹 제출하기";
-"quota.manage.page.check.quotaList.btn.title" = "스테이킹 목록";
+"quota.manage.page.submit.btn.title" = "Submit to lock";
+"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
 "quota.manage.page.toast.money.error" = "134 VITE 이상부터 스테이킹이 가능합니다.";
 "quota.submit.pop.desc" = "할당량을 얻기 위해 %@ VITE를 스테이킹해야합니다. 스테이킹이 시작된 후 약 3일이 지나야 출금할 수 있습니다";
 "quota.submit.pop.submit.btn.title" = "확인";
@@ -420,10 +420,10 @@
 
 /* Peldge History */
 "peldge.message" = "현재 Vite 어플은 스테이킹 목록 확인만 지원하고 있습니다. 스테이킹 중인 토큰 출금을 위해선 웹 월렛을 사용해주시기 바랍니다.";
-"peldge.deadline" = "기한";
-"peldge.title" = "스테이킹 내역";
+"peldge.deadline" = "Time available to unlock";
+"peldge.title" = "Locking Record";
 "peldge.address.title" = "수령인";
-"peldge.cancel.peldge.button.title" = "출금";
+"peldge.cancel.peldge.button.title" = "Unlock";
 "peldge.cancel.pledge.withdrawing.title" = "출금중";
 "peldge.cancel.pledge.amount.error.toast" = "최소 출금 수량은 134 VITE 입니다. 우선 충분한 양의 VITE를 스테이킹 해주세요.";
 "peldge.cancel.pledge.agent.error.toast" = "잘못된 스테이킹 입니다. 스테이킹한 곳에서 출금을 시도해주세요.";
@@ -1078,9 +1078,9 @@
 "fund.DepositSuccess" = "성공적으로 전송되었습니다. 거래소 잔액을 확인하시겠습니까?";
 
 "transfer.from" = "From";
-"transfer.wallet.account" = "지갑 주소";
+"transfer.wallet.account" = "Main Wallet";
 "transfer.to" = "To";
-"transfer.dex.account" = "거래소 계정";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "토큰";
 "transfer.amount" = "수량";
 "transfer.available" = "잔액: ";
@@ -1246,7 +1246,7 @@
 // DexHome
 "dex.home.page.nav.title" = "DEX 자산";
 "dex.home.page.nav.btc.valuation.title" = "전체 금액(BTC)";
-"dex.home.page.segment.wallet" = "지갑";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "거래";
 
 "dex.home.page.header.btc.valuation.title" = "금액(BTC)";
