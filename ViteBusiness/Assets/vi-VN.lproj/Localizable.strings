@@ -232,17 +232,17 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Số dư";
 "balance.info.detail.unconfirmed.title" = "Chưa nhận";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ UT)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Khả dụng";
-"balance.info.detail.pledge.amount.title" = "Đã stake";
+"balance.info.detail.pledge.amount.title" = "Locked";
 "balance.info.detail.show.transactions.button.title" = "Kiểm tra lịch sử giao dịch trên Trình duyệt Ethereum";
 "balance.info.detail.reveice.button.title" = "Nhận";
 "balance.info.detail.send.button.title" = "Gửi";
 "balance.info.detail.vote" = "Bỏ phiếu";
 "balance.info.detail.pledge" = "Nhận Quota";
 "balance.info.detail.exchange.vite" = "Chuyển đổi VITE";
-"balance.info.detail.pledge.count.content" = "Quota có thể dùng/Hạn mức Quota";
-"balance.info.detail.pledge.none.tip" = "0 UT/0 UT";
+"balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
+"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Thông tin chi tiết Gateway";
 "gateway.info.detail.page.name" = "Tên Gateway";
@@ -288,8 +288,9 @@
 "send.page.title" = "Gửi";
 "send.page.my.address.title" = "Địa chỉ %@ của tôi";
 "send.page.my.balance.title" = "Số dư";
-"send.page.my.pledge.title" = "Đang stake";
-"send.page.my.quota.title" = "Quota có thể dùng/Hạn mức Quota";
+"send.page.wallet.balance.title" = "Wallet Balance";
+"send.page.my.pledge.title" = "Locked Amount";
+"send.page.my.quota.title" = "Quota Available/Quota Limit";
 "send.page.my.max.tx.count.title" = "Số Giao dịch Tối đa";
 "send.page.add.my.address.button.title" = "Khai thác";
 "send.page.vite.contacts.button.title" = "Danh bạ Địa chỉ VITE";
@@ -380,13 +381,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Nhận Quota";
 "quota.manage.page.input.address.title" = "Địa chỉ thụ hưởng Quota";
-"quota.manage.page.quota.money.title" = "Số lượng Stake";
+"quota.manage.page.quota.money.title" = "Locked Amount";
 "quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Vui lòng nhập số lượng stake, ít nhất 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Thời gian đóng băng stake";
+"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
 "quota.manage.page.quota.snapshoot.height.desc" = "Dự kiến %@ ngày";
-"quota.manage.page.submit.btn.title" = "Tiến hành Stake";
-"quota.manage.page.check.quotaList.btn.title" = "Danh sách Stake của tôi";
+"quota.manage.page.submit.btn.title" = "Submit to lock";
+"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
 "quota.manage.page.toast.money.error" = "Số lượng stake không được ít hơn 134";
 "quota.submit.pop.desc" = "Đảm bảo thế chấp %@ Vite để nhận quota, bạn chỉ có thể rút sau 3 ngày sau khi hết hạn stake.";
 "quota.submit.pop.submit.btn.title" = "Xác nhận";
@@ -400,7 +401,7 @@
 "quota.alert.pow.button.title" = "Chạy PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
-"quota.float.view.tip" = "Giao dịch có chi phí %@ UT";
+"quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
@@ -413,16 +414,16 @@
 
 
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
-"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@UT.";
+"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
 "quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Chuyển giao Nhanh hơn bằng Stake";
 
 /* Peldge History */
 "peldge.message" = "Hiện tại Vite App chỉ hỗ trợ kiểm tra danh sách staking, nếu cần thiết, vui lòng truy cập Ví Vite Web để rút token đã stake trong ngày đáo hạn.";
-"peldge.deadline" = "Ngày Đáo hạn";
-"peldge.title" = "Lịch sử Stake";
+"peldge.deadline" = "Time available to unlock";
+"peldge.title" = "Locking Record";
 "peldge.address.title" = "Người thụ hưởng";
-"peldge.cancel.peldge.button.title" = "Rút";
+"peldge.cancel.peldge.button.title" = "Unlock";
 "peldge.cancel.pledge.withdrawing.title" = "Đang rút";
 "peldge.cancel.pledge.amount.error.toast" = "Số lượng rút tối thiểu là 134 VITE, vui lòng stake đủ VITE trước.";
 "peldge.cancel.pledge.agent.error.toast" = "Không phải là stake phổ biến, vui lòng thử rút tại nơi bạn đã stake.";
@@ -1077,9 +1078,9 @@
 "fund.DepositSuccess" = "Chuyển thành công. Kiểm tra số dư sàn?";
 
 "transfer.from" = "Từ";
-"transfer.wallet.account" = "Tài khoản Ví";
+"transfer.wallet.account" = "Main Wallet";
 "transfer.to" = "Đến";
-"transfer.dex.account" = "Tài khoản Sàn";
+"transfer.dex.account" = "Trading Wallet";
 "transfer.token" = "Token";
 "transfer.amount" = "Số lượng";
 "transfer.available" = "Số dư: ";
@@ -1245,7 +1246,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Tài sản DEX";
 "dex.home.page.nav.btc.valuation.title" = "Tổng giá trị (BTC)";
-"dex.home.page.segment.wallet" = "Ví";
+"dex.home.page.segment.wallet" = "Main";
 "dex.home.page.segment.dex" = "Giao dịch";
 
 "dex.home.page.header.btc.valuation.title" = "Giá trị (BTC)";
