@@ -232,17 +232,17 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Saldo";
 "balance.info.detail.unconfirmed.title" = "Sin recibir";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Cuota)";
 "balance.info.detail.available.amount.title" = "Disponible";
-"balance.info.detail.pledge.amount.title" = "Locked";
+"balance.info.detail.pledge.amount.title" = "Bloqueado";
 "balance.info.detail.show.transactions.button.title" = "Comprobar el historial de transacciones en Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Recibir";
 "balance.info.detail.send.button.title" = "Enviar";
 "balance.info.detail.vote" = "Votar";
 "balance.info.detail.pledge" = "Obtener Cuota";
 "balance.info.detail.exchange.vite" = "Convertir VITE";
-"balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
-"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
+"balance.info.detail.pledge.count.content" = "Cuota disponible/Cuota límite";
+"balance.info.detail.pledge.none.tip" = "0 Cuota/0 Cuota";
 
 "gateway.info.detail.page.title" = "Detalles del Gateway";
 "gateway.info.detail.page.name" = "Nombre del Gateway";
@@ -288,9 +288,9 @@
 "send.page.title" = "Enviar";
 "send.page.my.address.title" = "Mi dirección %@";
 "send.page.my.balance.title" = "Saldo";
-"send.page.wallet.balance.title" = "Wallet Balance";
-"send.page.my.pledge.title" = "Locked Amount";
-"send.page.my.quota.title" = "Quota Available/Quota Limit";
+"send.page.wallet.balance.title" = "Balance de Billetera";
+"send.page.my.pledge.title" = "Cantidad bloqueada";
+"send.page.my.quota.title" = "Cuota disponible/Cuota límite";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
 "send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
@@ -381,13 +381,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
 "quota.manage.page.input.address.title" = "Beneficiario de la cuota";
-"quota.manage.page.quota.money.title" = "Locked Amount";
+"quota.manage.page.quota.money.title" = "Cantidad bloqueada";
 "quota.manage.page.quota.quota.title" = "Cuota";
 "quota.manage.page.quota.money.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
+"quota.manage.page.quota.snapshoot.height.title" = "Periodo de bloqueo";
 "quota.manage.page.quota.snapshoot.height.desc" = "Aproximadamente %@ días";
-"quota.manage.page.submit.btn.title" = "Submit to lock";
-"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
+"quota.manage.page.submit.btn.title" = "Confirmar bloqueo";
+"quota.manage.page.check.quotaList.btn.title" = "Registros de bloqueos";
 "quota.manage.page.toast.money.error" = "La cantidad a bloquear no debe ser menor que 134";
 "quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después que el bloqueo entre en rigor.";
 "quota.submit.pop.submit.btn.title" = "Confirmar";
@@ -401,7 +401,7 @@
 "quota.alert.pow.button.title" = "Ejecutar el PoW";
 "quota.alert.quota.button.title" = "Bloquear VITE";
 "quota.float.view.title" = "Calculando el PoW necesario para asegurar la cuota para esta transacción...";
-"quota.float.view.tip" = "This Transaction costs %@Quota";
+"quota.float.view.tip" = "Esta transacción cuesta %@Cuota";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
 "quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones disponibles. Por favor, ve a la página de cuotas y deja bloqueado VITE para realizar más transacciones.";
