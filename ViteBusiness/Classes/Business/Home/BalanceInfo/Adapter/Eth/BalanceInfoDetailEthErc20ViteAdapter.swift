@@ -32,11 +32,11 @@ class BalanceInfoDetailEthErc20ViteAdapter: BalanceInfoDetailAdapter {
 
     func setup(headerView: UIStackView) {
         let cardView = BalanceInfoEthChainCardView()
-        let operationView = BalanceInfoEthErc20ViteOperationView()
+//        let operationView = BalanceInfoEthErc20ViteOperationView()
         
         cardView.bind(tokenInfo: tokenInfo)
         headerView.addArrangedSubview(cardView.padding(horizontal: 24))
-        headerView.addPlaceholder(height: 16)
-        headerView.addArrangedSubview(operationView.padding(horizontal: 24))
+//        headerView.addPlaceholder(height: 16)
+//        headerView.addArrangedSubview(operationView.padding(horizontal: 24))
     }
 }
