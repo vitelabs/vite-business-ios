@@ -55,7 +55,7 @@ class GatewayDepositInfoViewController: BaseViewController {
     }
 
     lazy var descriptionLabel0 = UILabel().then {
-        $0.text = R.string.localizable.crosschainDepositMinAmountDesc("-", "-")
+        $0.text = R.string.localizable.crosschainDepositMinAmountDesc("-", "-", "-")
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.init(netHex: 0x3E4A59,alpha: 0.8)
@@ -202,10 +202,11 @@ class GatewayDepositInfoViewController: BaseViewController {
             if let minimumDepositAmountStr = Amount(info.minimumDepositAmount)?.amountShort(decimals: self.viteChainTokenDecimals)  {
                 let symbol = "\(mapped.symbol)(\(chainName))"
                 let num = "\(minimumDepositAmountStr) \(symbol)"
-                let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num)
+                let fullString =  R.string.localizable.crosschainDepositMinAmountDesc(symbol, num, num)
                 let attributeString = NSMutableAttributedString.init(string: fullString)
                 attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: symbol))
                 attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: num))
+                attributeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x007AFF)], range: NSString.init(string: fullString).range(of: num, options: .backwards))
                 self.descriptionLabel0.attributedText = attributeString
             }
             

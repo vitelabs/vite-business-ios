@@ -775,8 +775,8 @@
 "crosschain.deposit.otherwallet" = "Depositar desde otra billetera";
 "crosschain.deposit.history" = "Historial de depósitos";
 "crosschain.withdraw.history" = "Historial de Retiros";
-"crosschain.deposit.minAmountDesc" = "Solo puedes depositar %@ a través de la dirección proporcionada a continuación. No se aceptarán menos de %@.";
-"crosschain.deposit.minComfirm" = "La cuenta se actualizará después de %@ confirmaciones de red. Por favor espere.";
+"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
+"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
 "crosschain.deposit.selectDesc" = "Por favor, seleccione la red principal correcta o no podrá recuperar ningún token perdido.";
 "crosschain.deposit.address" = "Dirección de depósito";
 "crosschain.deposit.scanAddress" = "Por favor, escanea el código QR de la dirección";

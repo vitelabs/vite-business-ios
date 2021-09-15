@@ -775,8 +775,8 @@
 "crosschain.deposit.otherwallet" = "Deposit mula sa Isa pang Wallet";
 "crosschain.deposit.history" = "History ng Deposito";
 "crosschain.withdraw.history" = "Kasaysayan sa Pag-withdraw";
-"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
-"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
+"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
 "crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Address ng Deposito";
 "crosschain.deposit.scanAddress" = "Mangyaring i-scan ang address ng QR code";

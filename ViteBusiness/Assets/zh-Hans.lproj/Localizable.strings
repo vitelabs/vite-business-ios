@@ -790,7 +790,7 @@
 "crosschain.deposit.otherwallet" = "其他錢包轉入";
 "crosschain.deposit.history" = "充值記錄";
 "crosschain.withdraw.history" = "提現記錄";
-"crosschain.deposit.minAmountDesc" = "通過下方地址只能充值%@，且單筆金額不低於%@";
+"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
 "crosschain.deposit.minComfirm" = "%@個網絡確認之後到賬，請耐心等待";
 "crosschain.deposit.selectDesc" = "請選擇正確的主網，否則代幣丟失將無法找回";
 "crosschain.deposit.address" = "充值地址";
