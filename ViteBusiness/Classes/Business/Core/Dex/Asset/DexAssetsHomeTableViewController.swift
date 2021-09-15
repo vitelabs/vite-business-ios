@@ -56,7 +56,7 @@ class DexAssetsHomeTableViewController: BaseTableViewController {
 
         headerCell.transferButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            let vc = ViteXTokenSelectorViewController(type: .wallet, filter: .none) { [weak self] (tokenInfo, vc) in
+            let vc = ViteXTokenSelectorViewController(type: self.type == .wallet ? .wallet : .vitex, filter: .none) { [weak self] (tokenInfo, vc) in
                 guard let `self` = self else { return }
                 let transferVC = ManageViteXBanlaceViewController(tokenInfo: tokenInfo, actionType: self.type == .wallet ? .toVitex : .toWallet)
                 UIViewController.current?.navigationController?.pushViewController(transferVC, animated: true)

@@ -163,15 +163,15 @@ class CrossChainHistoryCell: UITableViewCell {
         return dateFormatter
     }()
     
-    func bind(tokenInfo: TokenInfo,withdrawRecord record: WithdrawRecord)  {
-        self.bind(tokenInfo: tokenInfo,record: record, type: .withdraw)
+    func bind(tokenInfo: TokenInfo, chainName: String, withdrawRecord record: WithdrawRecord)  {
+        self.bind(tokenInfo: tokenInfo, chainName: chainName,record: record, type: .withdraw)
     }
 
-    func bind(tokenInfo: TokenInfo,depositRecord record: DepositRecord)  {
-        self.bind(tokenInfo: tokenInfo, record: record, type: .desposit)
+    func bind(tokenInfo: TokenInfo, chainName: String, depositRecord record: DepositRecord)  {
+        self.bind(tokenInfo: tokenInfo, chainName: chainName, record: record, type: .desposit)
     }
 
-    func bind(tokenInfo: TokenInfo,record:  Record, type: CrossChainHistoryViewController.Style) {
+    func bind(tokenInfo: TokenInfo, chainName: String, record: Record, type: CrossChainHistoryViewController.Style) {
 
         seperator.isHidden = true
         reasonLabel.isHidden = true
@@ -186,7 +186,7 @@ class CrossChainHistoryCell: UITableViewCell {
         amountLabel.text = Amount(record.amount)?.amountShort(decimals: tokenInfo.decimals)
 
         let viteSymble = "VITE"
-        let othenPlatform = tokenInfo.gatewayInfo?.mappedToken.rawChainName ?? ""
+        let othenPlatform = chainName
 
         symbleLabel.text = tokenInfo.gatewayInfo?.mappedToken.symbol
 

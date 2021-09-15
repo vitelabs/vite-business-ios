@@ -26,6 +26,10 @@ class CrossChainHistoryViewController: BaseViewController {
         providers[index]
     }
     
+    fileprivate var chainName: String {
+        self.tokenInfo.gatewayInfo!.allMappedTokenExtraInfos[index].rawChainName ?? ""
+    }
+    
     init(tokenInfo: TokenInfo, index: Int, style: CrossChainHistoryViewController.Style) {
         self.tokenInfo = tokenInfo
         self.index = index
@@ -236,10 +240,10 @@ extension CrossChainHistoryViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "CrossChainHistoryCell") as! CrossChainHistoryCell
         if self.style == .desposit {
             let desposit = self.depositRecords[indexPath.row]
-            cell.bind(tokenInfo: self.tokenInfo, depositRecord: desposit)
+            cell.bind(tokenInfo: self.tokenInfo, chainName: self.chainName, depositRecord: desposit)
         } else if self.style == .withdraw  {
             let withdrawRecord = self.withdrawRecord[indexPath.row]
-            cell.bind(tokenInfo: self.tokenInfo, withdrawRecord: withdrawRecord)
+            cell.bind(tokenInfo: self.tokenInfo, chainName: self.chainName, withdrawRecord: withdrawRecord)
         }
         return cell
     }
