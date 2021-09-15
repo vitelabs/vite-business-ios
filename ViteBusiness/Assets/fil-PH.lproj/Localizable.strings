@@ -345,10 +345,8 @@
 "system.page.cell.change.currency" = "Salapi";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
-"system.page.cell.login.faceId" = "I-unlock Sa pamamagitan ng Face ID";
-"system.page.cell.login.touchId" = "I-unlock ng Touch ID";
-"system.page.cell.transfer.faceId" = "Gumamit ng Face ID Para sa Transaksyon";
-"system.page.cell.transfer.touchId" = "Gumamit ng Touch ID Para sa Transaksyon";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Pag-logout / magpalit ng wallet";
 "system.page.cell.upload.log.title" = "Mag-upload ng Log";
 "system.page.cell.upload.log.toast.success" = "Na-upload ang Log";

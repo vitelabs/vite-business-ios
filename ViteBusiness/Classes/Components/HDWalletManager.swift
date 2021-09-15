@@ -141,11 +141,6 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(wallet)
     }
 
-    func setIsAuthenticatedByBiometry(_ isAuthenticatedByBiometry: Bool) {
-        guard let wallet = storage.updateCurrentWallet(isAuthenticatedByBiometry: isAuthenticatedByBiometry) else { return }
-        walletBehaviorRelay.accept(wallet)
-    }
-
     func setIsTransferByBiometry(_ isTransferByBiometry: Bool) {
         guard let wallet = storage.updateCurrentWallet(isTransferByBiometry: isTransferByBiometry) else { return }
         walletBehaviorRelay.accept(wallet)
@@ -162,10 +157,6 @@ extension HDWalletManager {
 
     var isRequireAuthentication: Bool {
         return storage.currentWallet?.isRequireAuthentication ?? false
-    }
-
-    var isAuthenticatedByBiometry: Bool {
-        return storage.currentWallet?.getAuthenticatedByBiometry ?? false
     }
 
     var isTransferByBiometry: Bool {

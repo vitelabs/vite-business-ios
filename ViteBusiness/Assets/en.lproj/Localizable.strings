@@ -344,11 +344,9 @@
 "system.page.cell.change.language" = "Language";
 "system.page.cell.change.currency" = "Currency";
 "system.page.cell.node.settings" = "Node Settings";
-"system.page.cell.login.pwd" = "Unlock By Password";
-"system.page.cell.login.faceId" = "Unlock By Face ID";
-"system.page.cell.login.touchId" = "Unlock By Touch ID";
-"system.page.cell.transfer.faceId" = "Use Face ID For Transaction";
-"system.page.cell.transfer.touchId" = "Use Touch ID For Transaction";
+"system.page.cell.login.pwd" = "Auto-Lock";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Logout/switch wallet";
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
@@ -504,7 +502,7 @@
 "eth.page.gasFee.title" = "Gas Fee";
 "eth.page.gasFee.slow.title" = "Slow";
 "eth.page.gasFee.fast.title" = "Fast";
-"eth.page.gasFee.notice.title" = "We will return the rest of gas back to your account";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Details";

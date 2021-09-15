@@ -345,10 +345,8 @@
 "system.page.cell.change.currency" = "Tiền tệ";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Mở khoá bằng Mật khẩu";
-"system.page.cell.login.faceId" = "Mở khoá bằng Face ID";
-"system.page.cell.login.touchId" = "Mở khóa bằng Touch ID";
-"system.page.cell.transfer.faceId" = "Sử dụng Face ID để giao dịch";
-"system.page.cell.transfer.touchId" = "Sử dụng Touch ID để giao dịch";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Đăng xuất/Đổi ví";
 "system.page.cell.upload.log.title" = "Tải lên Log";
 "system.page.cell.upload.log.toast.success" = "Đã tải lên Log";

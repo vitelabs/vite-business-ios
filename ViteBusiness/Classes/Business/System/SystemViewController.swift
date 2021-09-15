@@ -172,51 +172,6 @@ class SystemViewController: FormViewController {
                 let vc = NodeSettingsListViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             })
-
-            <<< ViteSwitchRow("systemPageCellLoginPwd") {[unowned self] in
-                $0.title = R.string.localizable.systemPageCellLoginPwd()
-                $0.cell.height = { 60 }
-                $0.cell.bottomSeparatorLine.isHidden = false
-                $0.value = self.viewModel.isRequireAuthentication
-            }.cellUpdate({ (cell, _) in
-                    cell.textLabel?.textColor = Colors.cellTitleGray
-                    cell.textLabel?.font = Fonts.light16
-                }) .onChange { row  in
-                    guard let enabled = row.value else { return }
-                    HDWalletManager.instance.setIsRequireAuthentication(enabled)
-            }
-
-            <<< ViteSwitchRow("systemPageCellLoginFaceId") {[unowned self] in
-                let authType = BiometryAuthenticationType.current
-                let title = authType == .faceID ? R.string.localizable.systemPageCellLoginFaceId() : R.string.localizable.systemPageCellLoginTouchId()
-                $0.title = title
-                $0.value = self.viewModel.isAuthenticatedByBiometry
-                $0.cell.height = { 60 }
-                $0.cell.bottomSeparatorLine.isHidden = false
-                $0.hidden = self.viewModel.isTransferByBiometryHide ? "TRUEPREDICATE" :"$systemPageCellLoginPwd == false"
-            }.cellUpdate({ (cell, _) in
-                    cell.textLabel?.textColor = Colors.cellTitleGray
-                    cell.textLabel?.font = Fonts.light16
-                }) .onChange { [unowned self] row in
-                    guard let enabled = row.value else { return }
-                    self.showBiometricAuth("systemPageCellLoginFaceId", value: enabled)
-            }
-
-            <<< ViteSwitchRow("systemPageCellTransferFaceId") { [unowned self] in
-                let authType = BiometryAuthenticationType.current
-                let title = authType == .faceID ? R.string.localizable.systemPageCellTransferFaceId() : R.string.localizable.systemPageCellTransferTouchId()
-                $0.title = title
-                $0.value = self.viewModel.isTransferByBiometry
-                $0.cell.height = { 60 }
-                $0.cell.bottomSeparatorLine.isHidden = false
-            }.cellUpdate({ [unowned self] (cell, _) in
-                   cell.textLabel?.textColor = Colors.cellTitleGray
-                   cell.textLabel?.font = Fonts.light16
-                   cell.isHidden = self.viewModel.isTransferByBiometryHide
-                }) .onChange { [unowned self] row in
-                    guard let enabled = row.value else { return }
-                    self.showBiometricAuth("systemPageCellTransferFaceId", value: enabled)
-            }
             <<< ImageRow("uploadLog") {
                 $0.cell.titleLab.text = R.string.localizable.systemPageCellUploadLogTitle()
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
@@ -236,34 +191,3 @@ class SystemViewController: FormViewController {
         }
     }
 }
-
-extension SystemViewController {
-    private func showBiometricAuth(_ tag: String, value: Bool) {
-        self.touchValidation(tag, value: value)
-    }
-
-    private func touchValidation(_ tag: String, value: Bool) {
-        BiometryAuthenticationManager.shared.authenticate(reason: R.string.localizable.lockPageFingerprintAlterTitle(), completion: { (success, error) in
-            guard success else {
-                self.changeSwitchRowValue(tag, value: false)
-                if let error = error {
-                    Toast.show(error.localizedDescription)
-                }
-                return
-            }
-            if tag == "systemPageCellLoginFaceId" {
-                HDWalletManager.instance.setIsAuthenticatedByBiometry(value)
-            } else {
-                HDWalletManager.instance.setIsTransferByBiometry(value)
-            }
-        })
-    }
-
-    func changeSwitchRowValue (_ tag: String, value: Bool) {
-        let row = self.form.rowBy(tag: tag) as! ViteSwitchRow
-        row.value = value
-        row.updateCell()
-    }
-}
-
-

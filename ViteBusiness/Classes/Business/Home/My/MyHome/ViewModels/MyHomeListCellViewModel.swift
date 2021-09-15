@@ -13,6 +13,7 @@ class MyHomeListCellViewModel {
 
     enum ViewModelType {
         case settings
+        case security
         case about
         case custom(title: String, image: UIImage?, url: String)
     }
@@ -27,6 +28,10 @@ class MyHomeListCellViewModel {
         case .settings:
             title = R.string.localizable.myPageSystemCellTitle()
             image = R.image.icon_setting()
+            url = nil
+        case .security:
+            title = R.string.localizable.myPageSecurityCellTitle()
+            image = R.image.icon_security()
             url = nil
         case .about:
             title = R.string.localizable.myPageAboutUsCellTitle()
@@ -44,6 +49,9 @@ class MyHomeListCellViewModel {
         case .settings:
             Statistics.log(eventId: Statistics.Page.MyHome.settingClicked.rawValue)
             let vc = SystemViewController()
+            viewController.navigationController?.pushViewController(vc, animated: true)
+        case .security:
+            let vc = SecurityViewController()
             viewController.navigationController?.pushViewController(vc, animated: true)
         case .about:
             Statistics.log(eventId: Statistics.Page.MyHome.aboutClicked.rawValue)

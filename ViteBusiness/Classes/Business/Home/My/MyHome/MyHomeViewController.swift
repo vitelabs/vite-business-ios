@@ -69,6 +69,7 @@ class MyHomeViewController: BaseTableViewController {
 
     let models: [MyHomeListCellViewModel] = [
         MyHomeListCellViewModel(type: .settings),
+        MyHomeListCellViewModel(type: .security),
         MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageInviteCellTitle(),
                                               image: R.image.icon_my_home_invite(),
                                               url: "https://app.vite.net/webview/vitex_invite_inner/index.html")),

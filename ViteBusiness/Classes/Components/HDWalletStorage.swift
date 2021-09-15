@@ -136,16 +136,13 @@ extension HDWalletStorage {
         }
     }
 
-    func updateCurrentWallet(isBackedUp: Bool? = nil, isRequireAuthentication: Bool? = nil, isAuthenticatedByBiometry: Bool? = nil, isTransferByBiometry: Bool? = nil) -> Wallet? {
+    func updateCurrentWallet(isBackedUp: Bool? = nil, isRequireAuthentication: Bool? = nil, isTransferByBiometry: Bool? = nil) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in
             if let ret = isBackedUp {
                 wallet.isBackedUp = ret
             }
             if let ret = isRequireAuthentication {
                 wallet.isRequireAuthentication = ret
-            }
-            if let ret = isAuthenticatedByBiometry {
-                wallet.isAuthenticatedByBiometry = ret
             }
             if let ret = isTransferByBiometry {
                 wallet.isTransferByBiometry = ret
@@ -189,7 +186,6 @@ extension HDWalletStorage {
 
         fileprivate(set) var isBackedUp: Bool = true
         fileprivate(set) var isRequireAuthentication: Bool = false
-        fileprivate var isAuthenticatedByBiometry: Bool = false
         fileprivate var isTransferByBiometry: Bool = false
 
         required init?(map: Map) {
@@ -205,7 +201,6 @@ extension HDWalletStorage {
                     addressCount: Int = 1,
                     isBackedUp: Bool,
                     isRequireAuthentication: Bool = false,
-                    isAuthenticatedByBiometry: Bool = false,
                     isTransferByBiometry: Bool = false) {
             super.init(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptedKey)
 
@@ -214,7 +209,6 @@ extension HDWalletStorage {
 
             self.isBackedUp = isBackedUp
             self.isRequireAuthentication = isRequireAuthentication
-            self.isAuthenticatedByBiometry = isAuthenticatedByBiometry
             self.isTransferByBiometry = isTransferByBiometry
         }
 
@@ -226,16 +220,7 @@ extension HDWalletStorage {
 
             isBackedUp <- map["isBackedUp"]
             isRequireAuthentication <- map["isRequireAuthentication"]
-            isAuthenticatedByBiometry <- map["isAuthenticatedByBiometry"]
             isTransferByBiometry <- map["isTransferByBiometry"]
-        }
-
-
-        var getAuthenticatedByBiometry: Bool {
-            guard LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
-                return false
-            }
-            return isAuthenticatedByBiometry
         }
 
         var getTransferByBiometry: Bool {

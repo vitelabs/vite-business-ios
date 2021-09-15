@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 291 images.
+  /// This `R.image` struct is generated, and contains static references to 292 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -428,6 +428,8 @@ public struct R: Rswift.Validatable {
     public static let icon_right_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_right_white")
     /// Image `icon_search`.
     public static let icon_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_search")
+    /// Image `icon_security`.
+    public static let icon_security = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_security")
     /// Image `icon_setting`.
     public static let icon_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_setting")
     /// Image `icon_show_pwd`.
@@ -1626,6 +1628,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_search, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_security", bundle: ..., traitCollection: ...)`
+    public static func icon_security(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_security, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_setting", bundle: ..., traitCollection: ...)`
     public static func icon_setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_setting, compatibleWith: traitCollection)
@@ -2061,7 +2068,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1057 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1056 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2439,6 +2446,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let bifrostHomePageFreeAutoSignTitle = Rswift.StringResource(key: "bifrost.home.page.free.auto.sign.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Auto-Lock
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let systemPageCellLoginPwd = Rswift.StringResource(key: "system.page.cell.login.pwd", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Avail.: %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3355,6 +3366,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let manageWalletPageImportMnemonicCellTitle = Rswift.StringResource(key: "manage.wallet.page.importMnemonic.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Face ID
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let systemPageCellLoginFaceId = Rswift.StringResource(key: "system.page.cell.login.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Failed to connect with the full node.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5175,6 +5190,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicAffirmAlterTitle = Rswift.StringResource(key: "mnemonic.affirm.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: This is an estimated gas fee according to the current network traffic. The actual cost may differ.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let ethPageGasFeeNoticeTitle = Rswift.StringResource(key: "eth.page.gasFee.notice.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: This is your first VITE address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5343,6 +5362,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotPageTotal = Rswift.StringResource(key: "spot.page.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Touch ID
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let systemPageCellLoginTouchId = Rswift.StringResource(key: "system.page.cell.login.touchId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Trade
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5611,18 +5634,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let peldgeCancelPeldgeButtonTitle = Rswift.StringResource(key: "peldge.cancel.peldge.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Unlock By Face ID
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellLoginFaceId = Rswift.StringResource(key: "system.page.cell.login.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Unlock By Password
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellLoginPwd = Rswift.StringResource(key: "system.page.cell.login.pwd", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Unlock By Touch ID
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellLoginTouchId = Rswift.StringResource(key: "system.page.cell.login.touchId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Unreceived
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5655,18 +5666,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let systemPageCellUploadLogTitle = Rswift.StringResource(key: "system.page.cell.upload.log.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Use Face ID For Transaction
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellTransferFaceId = Rswift.StringResource(key: "system.page.cell.transfer.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Use HTTP Address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinSentUseHttp = Rswift.StringResource(key: "grin.sent.useHttp", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Use Touch ID For Transaction
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellTransferTouchId = Rswift.StringResource(key: "system.page.cell.transfer.touchId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Use Transaction File
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5943,10 +5946,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupPageAlterTitle = Rswift.StringResource(key: "mnemonic.backup.page.alter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: We will return the rest of gas back to your account
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let ethPageGasFeeNoticeTitle = Rswift.StringResource(key: "eth.page.gasFee.notice.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Website
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6279,6 +6278,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueNative = Rswift.StringResource(key: "token.info.detail.page.type.value.native", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 安全設置
+      /// 
+      /// Locales: zh-Hans
+      public static let myPageSecurityCellTitle = Rswift.StringResource(key: "my.page.security.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 我的投票數
       /// 
       /// Locales: zh-Hans
@@ -6948,6 +6951,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func bifrostHomePageFreeAutoSignTitle(_: Void = ()) -> String {
         return NSLocalizedString("bifrost.home.page.free.auto.sign.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Auto-Lock
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func systemPageCellLoginPwd(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.login.pwd", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Avail.: %@
@@ -8551,6 +8561,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func manageWalletPageImportMnemonicCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("manage.wallet.page.importMnemonic.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Face ID
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func systemPageCellLoginFaceId(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.login.faceId", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Failed to connect with the full node.
@@ -11738,6 +11755,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.affirm.alter.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: This is an estimated gas fee according to the current network traffic. The actual cost may differ.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func ethPageGasFeeNoticeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eth.page.gasFee.notice.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: This is your first VITE address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -12030,6 +12054,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func spotPageTotal(_ value1: String) -> String {
         return String(format: NSLocalizedString("spot.page.total", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Touch ID
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func systemPageCellLoginTouchId(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.login.touchId", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trade
@@ -12501,27 +12532,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.cancel.peldge.button.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Unlock By Face ID
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageCellLoginFaceId(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.login.faceId", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unlock By Password
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageCellLoginPwd(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.login.pwd", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unlock By Touch ID
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageCellLoginTouchId(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.login.touchId", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Unreceived
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -12578,25 +12588,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("system.page.cell.upload.log.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Use Face ID For Transaction
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageCellTransferFaceId(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.transfer.faceId", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Use HTTP Address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func grinSentUseHttp(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.useHttp", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Use Touch ID For Transaction
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageCellTransferTouchId(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.cell.transfer.touchId", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Use Transaction File
@@ -13080,13 +13076,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func mnemonicBackupPageAlterTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.page.alter.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: We will return the rest of gas back to your account
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func ethPageGasFeeNoticeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eth.page.gasFee.notice.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Website
@@ -13668,6 +13657,13 @@ public struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       public static func tokenInfoDetailPageTypeValueNative(_: Void = ()) -> String {
         return NSLocalizedString("token.info.detail.page.type.value.native", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 安全設置
+      /// 
+      /// Locales: zh-Hans
+      public static func myPageSecurityCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.security.cell.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 我的投票數

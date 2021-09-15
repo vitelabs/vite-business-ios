@@ -345,10 +345,8 @@
 "system.page.cell.change.currency" = "Валюта";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.login.pwd" = "Разблокировать по паролю";
-"system.page.cell.login.faceId" = "Разблокировать по Face ID";
-"system.page.cell.login.touchId" = "Разблокировать по Touch ID";
-"system.page.cell.transfer.faceId" = "Использовать Face ID для транзакций";
-"system.page.cell.transfer.touchId" = "Использовать Touch ID для транзакций";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Выйти/Сменить аккаунт";
 "system.page.cell.upload.log.title" = "Загрузить журнал";
 "system.page.cell.upload.log.toast.success" = "Журнал загружен";

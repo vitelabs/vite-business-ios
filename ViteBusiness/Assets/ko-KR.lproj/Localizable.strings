@@ -347,8 +347,6 @@
 "system.page.cell.login.pwd" = "비밀번호로 잠금해제";
 "system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
 "system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
-"system.page.cell.transfer.faceId" = "거래를 위해 페이스 아이디 사용";
-"system.page.cell.transfer.touchId" = "거래를 위해 터치 아이디 사용";
 "system.page.cell.logout.title" = "로그아웃/지갑 변경";
 "system.page.cell.upload.log.title" = "업로드 로그";
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";

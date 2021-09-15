@@ -187,6 +187,7 @@
 "my.page.contacts.cell.title" = "聯繫地址";
 "my.page.mnemonic.cell.title" = "助記詞";
 "my.page.system.cell.title" = "使用設置";
+"my.page.security.cell.title" = "安全設置";
 "my.page.invite.cell.title" = "邀請好友，一起挖礦";
 "my.page.reward.cell.title" = "獎勵查詢";
 "my.page.forum.cell.title" = "官方論壇";
@@ -347,11 +348,9 @@
 "system.page.cell.change.language" = "語言選擇";
 "system.page.cell.change.currency" = "貨幣單位";
 "system.page.cell.node.settings" = "節點設置";
-"system.page.cell.login.pwd" = "密碼解鎖";
-"system.page.cell.login.faceId" = "Face ID 解鎖";
-"system.page.cell.login.touchId" = "Touch ID 解鎖";
-"system.page.cell.transfer.faceId" = "使用 Face ID 轉賬";
-"system.page.cell.transfer.touchId" = "使用 Touch ID 轉賬";
+"system.page.cell.login.pwd" = "自动锁定";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "退出並切換錢包";
 "system.page.cell.upload.log.title" = "日誌回傳";
 "system.page.cell.upload.log.toast.success" = "日誌已上傳";

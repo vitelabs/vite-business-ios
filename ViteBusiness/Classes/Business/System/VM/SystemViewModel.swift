@@ -15,7 +15,6 @@ import Vite_HDWalletKit
 
 final class SystemViewModel: NSObject {
     var isRequireAuthentication =  false
-    var isAuthenticatedByBiometry =  false
     var isTransferByBiometry = false
     var isTransferByBiometryHide = true
 
@@ -24,7 +23,6 @@ final class SystemViewModel: NSObject {
         HDWalletManager.instance.walletDriver.filterNil().drive(onNext: { [weak self] (wallet) in
             guard let `self` = self else { return }
             self.isRequireAuthentication = wallet.isRequireAuthentication
-            self.isAuthenticatedByBiometry = wallet.getAuthenticatedByBiometry
             self.isTransferByBiometry = wallet.getTransferByBiometry
 
         }).disposed(by: rx.disposeBag)
