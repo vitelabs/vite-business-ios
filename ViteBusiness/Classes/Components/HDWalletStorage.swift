@@ -122,6 +122,16 @@ extension HDWalletStorage {
         wallets = [Wallet]()
         pri_save()
     }
+    
+    func updateCurrentWalletPassword(oldEncryptKey: String, newEncryptKey: String) throws -> Wallet {
+        guard let uuid = self.currentWalletUuid else { fatalError() }
+        guard let (index, wallet) = pri_walletAndIndexForUuid(uuid) else { fatalError() }
+        try wallet.updateEncryptedKey(newEncryptKey, old: oldEncryptKey)
+        wallets.remove(at: index)
+        wallets.insert(wallet, at: index)
+        pri_save()
+        return wallet
+    }
 
     func updateCurrentWalletName(_ name: String) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in

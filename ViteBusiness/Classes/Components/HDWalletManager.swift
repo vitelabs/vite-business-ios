@@ -69,6 +69,32 @@ public final class HDWalletManager {
     public internal(set) var locked = false
 
     fileprivate static let maxAddressCount = 100
+    
+    func changePassword(old: String, new: String, completion: @escaping (Bool) -> ()) {
+        DispatchQueue.main.async {
+            HUD.show()
+            DispatchQueue.global().async {
+                guard let uuid = self.storage.currentWallet?.uuid else { fatalError() }
+                let oldEncryptKey = old.toEncryptKey(salt: uuid)
+                let newEncryptKey = new.toEncryptKey(salt: uuid)
+                
+                do {
+                    let wallet = try self.storage.updateCurrentWalletPassword(oldEncryptKey: oldEncryptKey, newEncryptKey: newEncryptKey)
+                    self.encryptedKey = newEncryptKey
+                    KeychainService.instance.setCurrentWallet(uuid: uuid, encryptKey: newEncryptKey)
+                    DispatchQueue.main.async {
+                        HUD.hide()
+                        completion(true)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        HUD.hide()
+                        completion(false)
+                    }
+                }
+            }
+        }
+    }
 
     func updateName(name: String) {
         guard let wallet = storage.updateCurrentWalletName(name) else { return }

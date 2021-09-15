@@ -2068,7 +2068,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1056 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1064 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6274,6 +6274,26 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// zh-Hans translation: 两次输入的新密码不一致
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageNewErrorToast = Rswift.StringResource(key: "change.password.page.new.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 修改密码
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageTitle = Rswift.StringResource(key: "change.password.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 修改成功
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageSuccessToast = Rswift.StringResource(key: "change.password.page.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 再次输入新密码
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageNew2Title = Rswift.StringResource(key: "change.password.page.new.2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 原密码错误
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageOldErrorToast = Rswift.StringResource(key: "change.password.page.old.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
@@ -6286,6 +6306,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       public static let votePageVoteInfoNoDePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.no​​dePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 提交修改
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageButtonTitle = Rswift.StringResource(key: "change.password.page.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 暫無投票
       /// 
       /// Locales: zh-Hans
@@ -6294,6 +6318,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueOther = Rswift.StringResource(key: "token.info.detail.page.type.value.other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 输入原密码
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageOldTitle = Rswift.StringResource(key: "change.password.page.old.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 输入新密码
+      /// 
+      /// Locales: zh-Hans
+      public static let changePasswordPageNew1Title = Rswift.StringResource(key: "change.password.page.new.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -13652,6 +13684,41 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 两次输入的新密码不一致
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageNewErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.new.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 修改密码
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 修改成功
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageSuccessToast(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.success.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 再次输入新密码
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageNew2Title(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.new.2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 原密码错误
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageOldErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.old.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
@@ -13673,6 +13740,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vote.page.voteInfo.no​​dePolls.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 提交修改
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 暫無投票
       /// 
       /// Locales: zh-Hans
@@ -13685,6 +13759,20 @@ public struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       public static func tokenInfoDetailPageTypeValueOther(_: Void = ()) -> String {
         return NSLocalizedString("token.info.detail.page.type.value.other", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 输入原密码
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageOldTitle(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.old.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 输入新密码
+      /// 
+      /// Locales: zh-Hans
+      public static func changePasswordPageNew1Title(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.new.1.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

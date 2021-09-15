@@ -195,6 +195,16 @@
 "my.page.change.wallet.name.alter.title" = "修改賬戶名";
 "my.page.aboutUs.wechat.alert.title" = "掃描二維碼關注Vite官方公眾號";
 
+/* change password */
+"change.password.page.title" = "修改密码";
+"change.password.page.old.title" = "输入原密码";
+"change.password.page.new.1.title" = "输入新密码";
+"change.password.page.new.2.title" = "再次输入新密码";
+"change.password.page.button.title" = "提交修改";
+"change.password.page.success.toast" = "修改成功";
+"change.password.page.old.error.toast" = "原密码错误";
+"change.password.page.new.error.toast" = "两次输入的新密码不一致";
+
 /* Transaction List */
 "transaction.list.page.title" = "交易記錄";
 "transaction.list.page.empty" = "無記錄";

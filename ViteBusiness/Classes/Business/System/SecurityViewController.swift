@@ -126,6 +126,15 @@ class SecurityViewController: FormViewController {
                     guard let enabled = row.value else { return }
                     self.showBiometricAuth("systemPageCellTransferFaceId", value: enabled)
             }
+        
+            <<< ImageRow("secutityPageChangePassword") {
+                $0.cell.titleLab.text = R.string.localizable.changePasswordPageTitle()
+                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
+                $0.cell.bottomSeparatorLine.isHidden = false
+            }.onCellSelection({ [unowned self] _, _  in
+                let vc = ChangePasswordViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
 
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo((self.navigationTitleView?.snp.bottom)!)
