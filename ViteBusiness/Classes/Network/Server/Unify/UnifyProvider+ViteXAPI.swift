@@ -157,7 +157,19 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
-
+    
+    static func getOrderlist(address: ViteAddress, tradeTokenSymbol: String?, quoteTokenSymbol: String?, startTime: TimeInterval?, side: Int32?, status: MarketOrder.Status?, offset: Int, limit: Int) -> Promise<[MarketOrder]> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getOrderlist(address: address, tradeTokenSymbol: tradeTokenSymbol, quoteTokenSymbol: quoteTokenSymbol, startTime: startTime, side: side, status: status, offset: offset, limit: limit), responseToData: responseToData).map { string in
+            let json = JSON(parseJSON: string)
+            guard let order = json["order"].rawString(),
+                let ret = [MarketOrder](JSONString: order) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
+    
     static func getTokenInfoDetail(tokenCode: TokenCode) -> Promise<TokenInfoDetail> {
         let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
         return p.requestPromise(.getTokenInfoDetail(tokenCode), responseToData: responseToData).map { string in

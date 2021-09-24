@@ -124,8 +124,8 @@ public class BottomPopView: VisualEffectAnimationView {
             }.disposed(by: rx.disposeBag)
     }
 
-    public init(title: String, buttons: [UIButton]) {
-        super.init(superview: UIApplication.shared.keyWindow!)
+    public init(title: String, buttons: [UIButton], superview: UIView = UIApplication.shared.keyWindow!) {
+        super.init(superview: superview)
         initView(title: title, buttons: buttons)
     }
 

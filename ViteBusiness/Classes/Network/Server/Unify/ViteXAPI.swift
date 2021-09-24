@@ -7,6 +7,8 @@
 
 import Moya
 import ViteWallet
+import RxSwift
+import Foundation
 
 enum ViteXAPI: TargetType {
     case getMarketsClosed
@@ -17,6 +19,7 @@ enum ViteXAPI: TargetType {
     case getTrades(symbol: String)
     case getPairDetailInfo(tradeTokenId: ViteTokenId, quoteTokenId: ViteTokenId)
     case getOpenedOrderlist(address: ViteAddress, tradeTokenSymbol: String, quoteTokenSymbol: String, offset: Int, limit: Int)
+    case getOrderlist(address: ViteAddress, tradeTokenSymbol: String?, quoteTokenSymbol: String?, startTime: TimeInterval?, side: Int32?, status: MarketOrder.Status?, offset: Int, limit: Int)
 
     case getTokenInfoDetail(TokenCode)
     case getMiningTrade(address: ViteAddress, offset: Int, limit: Int)
@@ -26,6 +29,10 @@ enum ViteXAPI: TargetType {
     case getFullNodeTotalPledgeAmount(address: ViteAddress)
     
     var baseURL: URL {
+        switch self {
+        case .getOrderlist: return URL(string: "https://vitex.vite.net")!
+        default: return URL(string: ViteConst.instance.vite.x)!
+        }
         return URL(string: ViteConst.instance.vite.x)!
     }
 
@@ -39,6 +46,7 @@ enum ViteXAPI: TargetType {
         case .getTrades: return "api/v2/trades/all"
         case .getPairDetailInfo: return "api/v1/operator/tradepair"
         case .getOpenedOrderlist: return "api/v2/orders/open"
+        case .getOrderlist: return "api/v1/orders"
         case .getTokenInfoDetail: return "/api/v1/cryptocurrency/info/detail"
         case .getMiningTrade: return "/api/v1/mining/trade"
         case .getMiningPledge: return "/api/v1/mining/pledge"
@@ -58,6 +66,7 @@ enum ViteXAPI: TargetType {
         case .getTrades: return .get
         case .getPairDetailInfo: return .get
         case .getOpenedOrderlist: return .get
+        case .getOrderlist: return .get
         case .getTokenInfoDetail: return .post
         case .getMiningTrade: return .get
         case .getMiningPledge: return .get
@@ -109,6 +118,30 @@ enum ViteXAPI: TargetType {
                 "offset": String(offset),
                 "limit": String(limit)
             ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getOrderlist(address, tradeTokenSymbol, quoteTokenSymbol, startTime, side, status, offset, limit):
+            var parameters = [
+                "address": address,
+                "offset": String(offset),
+                "limit": String(limit)
+            ]
+            
+            if let t = tradeTokenSymbol, let q = quoteTokenSymbol {
+                parameters["tradeTokenSymbol"] = t
+                parameters["quoteTokenSymbol"] = q
+            }
+            
+            if let s = startTime {
+                parameters["startTime"] = String(Int(s))
+            }
+            
+            if let s = side {
+                parameters["side"] = String(s)
+            }
+            
+            if let s = status {
+                parameters["status"] = String(s.rawValue)
+            }
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case .getTokenInfoDetail(let tokenCode):
             return .requestJSONEncodable([tokenCode])

@@ -25,7 +25,7 @@ open class SeletcMarketPairManager {
             background.backgroundColor = UIColor.init(netHex: 0x000000, alpha: 0.25)
         }
         if carNav == nil {
-            carNav = UINavigationController.init(rootViewController: card)
+            carNav = BaseNavigationController.init(rootViewController: card)
         }
 
         UIApplication.shared.keyWindow?.addSubview(background)

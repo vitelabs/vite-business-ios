@@ -8,6 +8,7 @@
 import RxSwift
 import RxDataSources
 import PromiseKit
+import Foundation
 
 protocol ListCellable where Self: UITableViewCell {
     associatedtype Model
@@ -40,6 +41,7 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
     //MARK: pubilc
     let tableView: UITableView
     var items: [Model] = []
+    fileprivate var refreshTimestamp: TimeInterval = 0
     fileprivate(set) var hasMore: Bool = false
     fileprivate(set) var loadStatus: LoadStatus = .normal {
         didSet {
@@ -110,9 +112,12 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
 
         loadStatus = .refresh
         self.updateMJHeader()
+        let timestamp = Date().timeIntervalSince1970
+        self.refreshTimestamp = timestamp
         return refresh().then {[weak self] (items, hasMore) -> Promise<(items: [Model], hasMore: Bool)> in
             let ret = Promise.value((items: items, hasMore: hasMore))
             guard let `self` = self else { return ret }
+            guard self.refreshTimestamp == timestamp else { return ret }
             self.items = items
             self.hasMore = hasMore
             self.tableView.reloadData()
@@ -145,12 +150,17 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
     @discardableResult
     func tirggerLoadMore() -> Promise<(items: [Model], hasMore: Bool)> {
         loadStatus = .loadMore
+        let timestamp = Date().timeIntervalSince1970
+        self.refreshTimestamp = timestamp
         return loadMore().then {[weak self] (items, hasMore) -> Promise<(items: [Model], hasMore: Bool)> in
-            self?.merge(items: items)
-            self?.hasMore = hasMore
-            self?.tableView.reloadData()
-            self?.loadStatus = .normal
-            return Promise.value((items: items, hasMore: hasMore))
+            let ret = Promise.value((items: items, hasMore: hasMore))
+            guard let `self` = self else { return ret }
+            guard self.refreshTimestamp == timestamp else { return ret }
+            self.merge(items: items)
+            self.hasMore = hasMore
+            self.tableView.reloadData()
+            self.loadStatus = .normal
+            return ret
         }.recover {[weak self] (error) -> Promise<(items: [Model], hasMore: Bool)> in
             self?.loadStatus = .normal
             Toast.show(error.localizedDescription)

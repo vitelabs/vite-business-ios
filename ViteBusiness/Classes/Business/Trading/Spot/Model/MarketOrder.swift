@@ -17,7 +17,8 @@ struct MarketOrder : Mappable {
         case failed = 4
     }
 
-    var orderId : String = ""
+    var orderHash : String = ""
+    var _orderId : String = ""
     var symbol : String = ""
     var tradeTokenSymbol : String = ""
     var quoteTokenSymbol : String = ""
@@ -43,9 +44,14 @@ struct MarketOrder : Mappable {
     var quoteTokenSymbolWithoutIndex : String {
         quoteTokenSymbol.components(separatedBy: "-").first ?? quoteTokenSymbol
     }
+    
+    var orderId : String {
+        orderHash.isEmpty ? _orderId : orderHash
+    }
 
     init(orderProto: OrderProto) {
-        self.orderId = orderProto.orderHash
+        self.orderHash = orderProto.orderHash
+        self._orderId = orderProto.orderHash
         self.symbol = orderProto.symbol
         self.tradeTokenSymbol = orderProto.tradeTokenSymbol
         self.quoteTokenSymbol = orderProto.quoteTokenSymbol
@@ -71,7 +77,8 @@ struct MarketOrder : Mappable {
 
     mutating func mapping(map: Map) {
 
-        orderId <- map["orderId"]
+        orderHash <- map["orderHash"]
+        _orderId <- map["orderId"]
         symbol <- map["symbol"]
         tradeTokenSymbol <- map["tradeTokenSymbol"]
         quoteTokenSymbol <- map["quoteTokenSymbol"]

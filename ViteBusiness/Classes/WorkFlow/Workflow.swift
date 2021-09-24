@@ -509,12 +509,12 @@ public extension Workflow {
     }
 
     static func dexCancelOrderWithConfirm(account: Wallet.Account,
-                                          tradeTokenInfo: TokenInfo,
+                                          tradeTokenId: ViteTokenId,
                                           orderId: String,
                                           completion: @escaping (Result<AccountBlock>) -> ()) {
         send(account: account,
              toAddress: ViteWalletConst.ContractAddress.dexTrade.address,
-             tokenId: tradeTokenInfo.viteTokenId,
+             tokenId: tradeTokenId,
              amount: Amount(0),
              fee: nil,
              data: ABI.BuildIn.getDexCancelOrderData(sendBlockHash: orderId),

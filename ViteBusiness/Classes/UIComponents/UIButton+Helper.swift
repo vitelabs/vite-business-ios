@@ -21,6 +21,7 @@ extension UIButton {
         case navigationItemCustomView
         case red
         case green
+        case gray
     }
 
     convenience init(style: Style, title: String? = nil) {
@@ -96,6 +97,12 @@ extension UIButton {
             setTitleColor(UIColor.white, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x01D764)).resizable, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x01D764)).highlighted.resizable, for: .highlighted)
+            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
+        case .gray:
+            setTitleColor(UIColor(netHex: 0x3E4A59, alpha: 0.7), for: .normal)
+            setBackgroundImage(R.image.background_button_gray()?.resizable, for: .normal)
+            setBackgroundImage(R.image.background_button_gray()?.highlighted.resizable, for: .highlighted)
+            setTitleColor(UIColor.white, for: .disabled)
             setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
         }
     }

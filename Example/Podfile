@@ -44,7 +44,7 @@ target 'ViteBusiness_Example' do
   pod 'ActionSheetPicker-3.0'
   pod 'MBProgressHUD'
   pod 'Toast-Swift', '~> 4.0.1'
-  pod 'RazzleDazzle'
+  pod 'RazzleDazzle', :git => 'https://github.com/mazhigbee-pb/RazzleDazzle.git', :branch => 'xcode-13-beta-fixes'
   pod 'CHIPageControl'
 
   #table static form

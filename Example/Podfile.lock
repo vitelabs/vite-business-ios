@@ -364,7 +364,7 @@ DEPENDENCIES:
   - pop (~> 1.0)
   - PromiseKit (~> 6.8.4)
   - R.swift (= 5.0.0.alpha.3)
-  - RazzleDazzle
+  - RazzleDazzle (from `https://github.com/mazhigbee-pb/RazzleDazzle.git`, branch `xcode-13-beta-fixes`)
   - ReactorKit
   - ReusableKit (~> 2.1.0)
   - RxCocoa
@@ -441,7 +441,6 @@ SPEC REPOS:
     - Protobuf
     - R.swift
     - R.swift.Library
-    - RazzleDazzle
     - ReactorKit
     - Result
     - ReusableKit
@@ -470,6 +469,9 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   BinanceChain:
     :git: https://github.com/buckcao/SwiftBinanceChain.git
+  RazzleDazzle:
+    :branch: xcode-13-beta-fixes
+    :git: https://github.com/mazhigbee-pb/RazzleDazzle.git
   Vite_GrinWallet:
     :commit: 4f1141a131e223a5a41686d2e9efa636e3f1ee24
     :git: https://github.com/vitelabs/vite-grin-wallet-ios.git
@@ -485,6 +487,9 @@ CHECKOUT OPTIONS:
   BinanceChain:
     :commit: b71de4cbc632bba469d31ff87d5d434115c68dfb
     :git: https://github.com/buckcao/SwiftBinanceChain.git
+  RazzleDazzle:
+    :commit: 5d07292537f20a0b97dcd0d0ff5206fc94a6cbbc
+    :git: https://github.com/mazhigbee-pb/RazzleDazzle.git
   Vite_GrinWallet:
     :commit: 4f1141a131e223a5a41686d2e9efa636e3f1ee24
     :git: https://github.com/vitelabs/vite-grin-wallet-ios.git
@@ -551,7 +556,7 @@ SPEC CHECKSUMS:
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   R.swift: ca4207ecc94545a1611ca0b2ae1197458b6ba30a
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
+  RazzleDazzle: 6689b7ffb2e6b115ef2249828473e854e004b67c
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   ReusableKit: d0b040de03b293288b0ca27a78602691d3346d9b
@@ -579,6 +584,6 @@ SPEC CHECKSUMS:
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 210b40e1176c02a125318609bd6b81afa465381f
+PODFILE CHECKSUM: d3b90c6efdea9f0a0e8650462e549344dee47c3a
 
 COCOAPODS: 1.10.1

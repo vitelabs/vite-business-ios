@@ -31,6 +31,11 @@ class SpotOrderCell: BaseTableViewCell {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.3)
     }
+    
+    let statusLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+    }
 
     let cancelButton = UIButton().then {
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
@@ -74,6 +79,7 @@ class SpotOrderCell: BaseTableViewCell {
         contentView.addSubview(quoteLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(cancelButton)
+        contentView.addSubview(statusLabel)
         contentView.addSubview(volLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(dealLabel)
@@ -122,6 +128,12 @@ class SpotOrderCell: BaseTableViewCell {
             m.centerY.equalTo(typeButton)
             m.right.equalToSuperview().offset(-12)
         }
+        
+        statusLabel.snp.makeConstraints { (m) in
+            m.centerY.equalTo(typeButton)
+            m.right.equalToSuperview().offset(-12)
+        }
+        
 
         volLabel.snp.makeConstraints { (m) in
             m.top.equalTo(typeButton.snp.bottom).offset(7)
@@ -151,10 +163,10 @@ class SpotOrderCell: BaseTableViewCell {
 
         cancelButton.rx.tap.bind { [weak self] in
             guard let orderId = self?.orderId else { return }
-            guard let tradeTokenInfo = self?.tradeTokenInfo else { return }
+            guard let tradeTokenId = self?.tradeTokenId else { return }
 
             Workflow.dexCancelOrderWithConfirm(account: HDWalletManager.instance.account!,
-                                               tradeTokenInfo: tradeTokenInfo,
+                                               tradeTokenId: tradeTokenId,
                                                orderId: orderId)  { (r) in
                                                 if case .success = r {
 
@@ -170,13 +182,14 @@ class SpotOrderCell: BaseTableViewCell {
 
     var orderId: String?
     var tradeTokenInfo: TokenInfo?
+    var tradeTokenId: String?
 }
 
 extension SpotOrderCell {
 
-    func bind(_ item: MarketOrder, tradeTokenInfo: TokenInfo?) {
+    func bind(_ item: MarketOrder, showCancelButton: Bool) {
         self.orderId = item.orderId
-        self.tradeTokenInfo = tradeTokenInfo
+        self.tradeTokenId = item.tradeToken
         let isBuy = (item.side == 0)
         if isBuy {
             typeButton.setTitle(R.string.localizable.spotPageCellTypeBuy(), for: .normal)
@@ -187,7 +200,26 @@ extension SpotOrderCell {
             typeButton.setTitleColor(UIColor(netHex: 0xE5494D), for: .normal)
             typeButton.backgroundColor = UIColor(netHex: 0xE5494D, alpha: 0.1)
         }
-
+        
+        if showCancelButton {
+            statusLabel.isHidden = true
+            cancelButton.isHidden = false
+        } else {
+            statusLabel.isHidden = false
+            cancelButton.isHidden = true
+            
+            switch item.status {
+            case .open:
+                statusLabel.text = R.string.localizable.spotHistoryPageFilterStatusOpen()
+            case .closed:
+                statusLabel.text = R.string.localizable.spotHistoryPageFilterStatusCompleted()
+            case .canceled:
+                statusLabel.text = R.string.localizable.spotHistoryPageFilterStatusCanceled()
+            case .failed:
+                statusLabel.text = R.string.localizable.spotHistoryPageFilterStatusFailed()
+            }
+        }
+        
         tradeLabel.text = item.tradeTokenSymbol
         quoteLabel.text = "/\(item.quoteTokenSymbol)"
         timeLabel.text = Date(timeIntervalSince1970: TimeInterval(item.createTime)).format()

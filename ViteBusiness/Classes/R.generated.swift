@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 292 images.
+  /// This `R.image` struct is generated, and contains static references to 294 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -26,6 +26,8 @@ public struct R: Rswift.Validatable {
     public static let background_address_add_button_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_address_add_button_white")
     /// Image `background_button_blue`.
     public static let background_button_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_button_blue")
+    /// Image `background_button_gray`.
+    public static let background_button_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_button_gray")
     /// Image `background_button_white`.
     public static let background_button_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "background_button_white")
     /// Image `beifen`.
@@ -442,6 +444,8 @@ public struct R: Rswift.Validatable {
     public static let icon_spot_bubble_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_bubble_left")
     /// Image `icon_spot_bubble_right`.
     public static let icon_spot_bubble_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_bubble_right")
+    /// Image `icon_spot_filter`.
+    public static let icon_spot_filter = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_filter")
     /// Image `icon_spot_history_arrows`.
     public static let icon_spot_history_arrows = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_spot_history_arrows")
     /// Image `icon_spot_kilne`.
@@ -621,6 +625,11 @@ public struct R: Rswift.Validatable {
     /// `UIImage(named: "background_button_blue", bundle: ..., traitCollection: ...)`
     public static func background_button_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.background_button_blue, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "background_button_gray", bundle: ..., traitCollection: ...)`
+    public static func background_button_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.background_button_gray, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "background_button_white", bundle: ..., traitCollection: ...)`
@@ -1663,6 +1672,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_spot_bubble_right, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_spot_filter", bundle: ..., traitCollection: ...)`
+    public static func icon_spot_filter(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_spot_filter, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_spot_history_arrows", bundle: ..., traitCollection: ...)`
     public static func icon_spot_history_arrows(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_spot_history_arrows, compatibleWith: traitCollection)
@@ -2068,7 +2082,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1064 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1084 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2134,6 +2148,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let balanceInfoDetailPledgeNoneTip = Rswift.StringResource(key: "balance.info.detail.pledge.none.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 1 day
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterDate1d = Rswift.StringResource(key: "spot.history.page.filter.date.1d", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1 months
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterDate1m = Rswift.StringResource(key: "spot.history.page.filter.date.1m", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1 week
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterDate1w = Rswift.StringResource(key: "spot.history.page.filter.date.1w", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2166,6 +2192,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let marketDetailPageKlineTypeHour2Title = Rswift.StringResource(key: "market.detail.page.kline.type.hour2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 3 months
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterDate3m = Rswift.StringResource(key: "spot.history.page.filter.date.3m", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 30m
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2318,6 +2348,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let sendPageAllButtonTitle = Rswift.StringResource(key: "send.page.all.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterAll = Rswift.StringResource(key: "spot.history.page.filter.all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2630,6 +2664,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotPageCellTypeBuy = Rswift.StringResource(key: "spot.page.cell.type.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Buy
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterSideBuy = Rswift.StringResource(key: "spot.history.page.filter.side.buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Buy %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2746,6 +2784,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinTxTypeCanceled = Rswift.StringResource(key: "grin.txType.Canceled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Cancelled
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterStatusCanceled = Rswift.StringResource(key: "spot.history.page.filter.status.canceled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Candidate Nodes
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2782,6 +2824,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let bifrostOperationExtractReward = Rswift.StringResource(key: "bifrost.operation.extract.reward", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Clear
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterButtonClear = Rswift.StringResource(key: "spot.history.page.filter.button.clear", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Close
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -2810,6 +2856,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let receivePageTokenNoteLabel = Rswift.StringResource(key: "Receive.page.token.note.label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterStatusCompleted = Rswift.StringResource(key: "spot.history.page.filter.status.completed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Computing PoW to Secure Quota for this Transaction...
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3158,6 +3208,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let bifrostOperationTitleData = Rswift.StringResource(key: "bifrost.operation.title.data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Date
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterDateTitle = Rswift.StringResource(key: "spot.history.page.filter.date.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Decimals
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3374,6 +3428,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let systemPageCellLoginFaceId = Rswift.StringResource(key: "system.page.cell.login.faceId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterStatusFailed = Rswift.StringResource(key: "spot.history.page.filter.status.failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Failed to connect with the full node.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4198,6 +4256,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let marketDetailPageTokenInfoOfficial = Rswift.StringResource(key: "market.detail.page.token.info.official", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Ongoing
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterStatusOpen = Rswift.StringResource(key: "spot.history.page.filter.status.open", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4214,6 +4276,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotPageCurrentOrderTitle = Rswift.StringResource(key: "spot.page.current.order.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Open Orders
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageSegmentOpen = Rswift.StringResource(key: "spot.history.page.segment.open", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open Trading Pair
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4246,6 +4312,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let workflowToastCancelOrderSuccess = Rswift.StringResource(key: "workflow.toast.cancel.order.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Order History
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageSegmentHistory = Rswift.StringResource(key: "spot.history.page.segment.history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Order Placed
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4254,6 +4324,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let marketDetailPageSegmentOrderBookTitle = Rswift.StringResource(key: "market.detail.page.segment.order.book.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Order book
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageTitle = Rswift.StringResource(key: "spot.history.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Orderly select seed phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4782,6 +4856,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let voteListSearch = Rswift.StringResource(key: "vote.list.search", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Security
+      /// 
+      /// Locales: en, zh-Hans
+      public static let myPageSecurityCellTitle = Rswift.StringResource(key: "my.page.security.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4818,6 +4896,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotPageCellTypeSell = Rswift.StringResource(key: "spot.page.cell.type.sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Sell
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterSideSell = Rswift.StringResource(key: "spot.history.page.filter.side.sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Sell %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4914,6 +4996,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let quotaAlertPowAndQuotaMessage = Rswift.StringResource(key: "quota.alert.pow.and.quota.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Side
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterSideTitle = Rswift.StringResource(key: "spot.history.page.filter.side.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Signature Content
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5022,6 +5108,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinTeachViteSendStartSend = Rswift.StringResource(key: "grin.teach.vite.send.startSend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Status
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterStatusTitle = Rswift.StringResource(key: "spot.history.page.filter.status.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Submit
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5606,6 +5696,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let marketDetailPageTokenInfoType = Rswift.StringResource(key: "market.detail.page.token.info.type", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterTokenTitle = Rswift.StringResource(key: "spot.history.page.filter.token.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6270,46 +6364,54 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningTradingPageHeaderTotalEarningsAlertTitle = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 两次输入的新密码不一致
+      /// 
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageNewErrorToast = Rswift.StringResource(key: "change.password.page.new.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// zh-Hans translation: 两次输入的新密码不一致
+      /// en translation: 修改密码
       /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageNewErrorToast = Rswift.StringResource(key: "change.password.page.new.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 修改密码
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageTitle = Rswift.StringResource(key: "change.password.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 修改成功
       /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageTitle = Rswift.StringResource(key: "change.password.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 修改成功
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageSuccessToast = Rswift.StringResource(key: "change.password.page.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 再次输入新密码
       /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageSuccessToast = Rswift.StringResource(key: "change.password.page.success.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 再次输入新密码
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageNew2Title = Rswift.StringResource(key: "change.password.page.new.2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 原密码错误
       /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageNew2Title = Rswift.StringResource(key: "change.password.page.new.2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 原密码错误
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageOldErrorToast = Rswift.StringResource(key: "change.password.page.old.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 提交修改
       /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageOldErrorToast = Rswift.StringResource(key: "change.password.page.old.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageButtonTitle = Rswift.StringResource(key: "change.password.page.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 条件筛选
+      /// 
+      /// Locales: en, zh-Hans
+      public static let spotHistoryPageFilterTitle = Rswift.StringResource(key: "spot.history.page.filter.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 输入原密码
+      /// 
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageOldTitle = Rswift.StringResource(key: "change.password.page.old.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 输入新密码
+      /// 
+      /// Locales: en, zh-Hans
+      public static let changePasswordPageNew1Title = Rswift.StringResource(key: "change.password.page.new.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueNative = Rswift.StringResource(key: "token.info.detail.page.type.value.native", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 安全設置
-      /// 
-      /// Locales: zh-Hans
-      public static let myPageSecurityCellTitle = Rswift.StringResource(key: "my.page.security.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 我的投票數
       /// 
       /// Locales: zh-Hans
       public static let votePageVoteInfoNoDePollsTitle = Rswift.StringResource(key: "vote.page.voteInfo.no​​dePolls.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 提交修改
-      /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageButtonTitle = Rswift.StringResource(key: "change.password.page.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 暫無投票
       /// 
       /// Locales: zh-Hans
@@ -6318,14 +6420,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       public static let tokenInfoDetailPageTypeValueOther = Rswift.StringResource(key: "token.info.detail.page.type.value.other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 输入原密码
-      /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageOldTitle = Rswift.StringResource(key: "change.password.page.old.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 输入新密码
-      /// 
-      /// Locales: zh-Hans
-      public static let changePasswordPageNew1Title = Rswift.StringResource(key: "change.password.page.new.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// en translation: 
       /// 
@@ -6439,6 +6533,27 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("balance.info.detail.pledge.none.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1 day
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterDate1d(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.1d", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 1 months
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterDate1m(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.1m", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 1 week
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterDate1w(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.1w", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6493,6 +6608,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func marketDetailPageKlineTypeHour2Title(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.kline.type.hour2.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 3 months
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterDate3m(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.3m", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 30m
@@ -6759,6 +6881,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func sendPageAllButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("send.page.all.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: All
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterAll(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.all", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount
@@ -7307,6 +7436,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.page.cell.type.buy", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Buy
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterSideBuy(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.side.buy", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Buy %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -7510,6 +7646,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txType.Canceled", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Cancelled
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterStatusCanceled(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.status.canceled", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Candidate Nodes
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -7573,6 +7716,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.extract.reward", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Clear
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterButtonClear(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.button.clear", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Close
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -7620,6 +7770,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func receivePageTokenNoteLabel(_: Void = ()) -> String {
         return NSLocalizedString("Receive.page.token.note.label", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Completed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterStatusCompleted(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.status.completed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Computing PoW to Secure Quota for this Transaction...
@@ -8231,6 +8388,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("bifrost.operation.title.data", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Date
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterDateTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Decimals
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -8607,6 +8771,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func systemPageCellLoginFaceId(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.login.faceId", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Failed
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterStatusFailed(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.status.failed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Failed to connect with the full node.
@@ -10051,6 +10222,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("market.detail.page.token.info.official", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Ongoing
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterStatusOpen(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.status.open", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10077,6 +10255,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func spotPageCurrentOrderTitle(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.current.order.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Open Orders
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageSegmentOpen(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.segment.open", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Open Trading Pair
@@ -10135,6 +10320,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.toast.cancel.order.success", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Order History
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageSegmentHistory(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.segment.history", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Order Placed
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10147,6 +10339,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func marketDetailPageSegmentOrderBookTitle(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.segment.order.book.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Order book
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Orderly select seed phrase
@@ -11073,6 +11272,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vote.list.search", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Security
+      /// 
+      /// Locales: en, zh-Hans
+      public static func myPageSecurityCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.security.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -11134,6 +11340,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func spotPageCellTypeSell(_: Void = ()) -> String {
         return NSLocalizedString("spot.page.cell.type.sell", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Sell
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterSideSell(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.side.sell", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Sell %@
@@ -11302,6 +11515,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func quotaAlertPowAndQuotaMessage(_: Void = ()) -> String {
         return NSLocalizedString("quota.alert.pow.and.quota.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Side
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterSideTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.side.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Signature Content
@@ -11491,6 +11711,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func grinTeachViteSendStartSend(_: Void = ()) -> String {
         return NSLocalizedString("grin.teach.vite.send.startSend", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Status
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterStatusTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.status.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Submit
@@ -12513,6 +12740,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func marketDetailPageTokenInfoType(_: Void = ()) -> String {
         return NSLocalizedString("market.detail.page.token.info.type", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Type
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterTokenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.token.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Unable to revoke vote, you have to run PoW or stake VITE for TPS quota to revoke vote
@@ -13677,6 +13911,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 两次输入的新密码不一致
+      /// 
+      /// Locales: en, zh-Hans
+      public static func changePasswordPageNewErrorToast(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.new.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 中
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13684,39 +13925,60 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 两次输入的新密码不一致
+      /// en translation: 修改密码
       /// 
-      /// Locales: zh-Hans
-      public static func changePasswordPageNewErrorToast(_: Void = ()) -> String {
-        return NSLocalizedString("change.password.page.new.error.toast", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// zh-Hans translation: 修改密码
-      /// 
-      /// Locales: zh-Hans
+      /// Locales: en, zh-Hans
       public static func changePasswordPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("change.password.page.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 修改成功
+      /// en translation: 修改成功
       /// 
-      /// Locales: zh-Hans
+      /// Locales: en, zh-Hans
       public static func changePasswordPageSuccessToast(_: Void = ()) -> String {
         return NSLocalizedString("change.password.page.success.toast", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 再次输入新密码
+      /// en translation: 再次输入新密码
       /// 
-      /// Locales: zh-Hans
+      /// Locales: en, zh-Hans
       public static func changePasswordPageNew2Title(_: Void = ()) -> String {
         return NSLocalizedString("change.password.page.new.2.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 原密码错误
+      /// en translation: 原密码错误
       /// 
-      /// Locales: zh-Hans
+      /// Locales: en, zh-Hans
       public static func changePasswordPageOldErrorToast(_: Void = ()) -> String {
         return NSLocalizedString("change.password.page.old.error.toast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提交修改
+      /// 
+      /// Locales: en, zh-Hans
+      public static func changePasswordPageButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 条件筛选
+      /// 
+      /// Locales: en, zh-Hans
+      public static func spotHistoryPageFilterTitle(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 输入原密码
+      /// 
+      /// Locales: en, zh-Hans
+      public static func changePasswordPageOldTitle(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.old.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 输入新密码
+      /// 
+      /// Locales: en, zh-Hans
+      public static func changePasswordPageNew1Title(_: Void = ()) -> String {
+        return NSLocalizedString("change.password.page.new.1.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代幣
@@ -13726,25 +13988,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("token.info.detail.page.type.value.native", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 安全設置
-      /// 
-      /// Locales: zh-Hans
-      public static func myPageSecurityCellTitle(_: Void = ()) -> String {
-        return NSLocalizedString("my.page.security.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// zh-Hans translation: 我的投票數
       /// 
       /// Locales: zh-Hans
       public static func votePageVoteInfoNoDePollsTitle(_: Void = ()) -> String {
         return NSLocalizedString("vote.page.voteInfo.no​​dePolls.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// zh-Hans translation: 提交修改
-      /// 
-      /// Locales: zh-Hans
-      public static func changePasswordPageButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("change.password.page.button.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 暫無投票
@@ -13759,20 +14007,6 @@ public struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       public static func tokenInfoDetailPageTypeValueOther(_: Void = ()) -> String {
         return NSLocalizedString("token.info.detail.page.type.value.other", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// zh-Hans translation: 输入原密码
-      /// 
-      /// Locales: zh-Hans
-      public static func changePasswordPageOldTitle(_: Void = ()) -> String {
-        return NSLocalizedString("change.password.page.old.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// zh-Hans translation: 输入新密码
-      /// 
-      /// Locales: zh-Hans
-      public static func changePasswordPageNew1Title(_: Void = ()) -> String {
-        return NSLocalizedString("change.password.page.new.1.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

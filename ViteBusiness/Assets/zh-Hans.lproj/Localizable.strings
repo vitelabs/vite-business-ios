@@ -1258,6 +1258,32 @@
 "spot.page.cell.deal" = "成交: %@";
 "spot.page.cell.average" = "均價: %@";
 
+// Spot History
+"spot.history.page.title" = "委託訂單";
+"spot.history.page.segment.open" = "當前委託";
+"spot.history.page.segment.history" = "歷史委託";
+
+"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.button.clear" = "清空";
+"spot.history.page.filter.all" = "全部";
+"spot.history.page.filter.date.title" = "日期";
+"spot.history.page.filter.date.3m" = "近3個月";
+"spot.history.page.filter.date.1m" = "近1個月";
+"spot.history.page.filter.date.1w" = "近1週";
+"spot.history.page.filter.date.1d" = "近1天";
+
+"spot.history.page.filter.token.title" = "幣種";
+
+"spot.history.page.filter.side.title" = "方向";
+"spot.history.page.filter.side.buy" = "買";
+"spot.history.page.filter.side.sell" = "賣";
+
+"spot.history.page.filter.status.title" = "狀態";
+"spot.history.page.filter.status.open" = "委託中";
+"spot.history.page.filter.status.completed" = "已完成";
+"spot.history.page.filter.status.canceled" = "已撤銷";
+"spot.history.page.filter.status.failed" = "下單失敗";
+
 "grin.initing.desc" = "正在初始化，點擊查看注意事項";
 "grin.initing.detail" = "1、 首次添加GRIN錢包需初始化\n2、初始化預計持續15分鐘\n3、初始化過程中請勿殺掉app進程\n4、初始化會消耗大量流量，盡量在wifi環境下";
 

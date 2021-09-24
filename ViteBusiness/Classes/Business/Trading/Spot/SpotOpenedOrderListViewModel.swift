@@ -61,7 +61,7 @@ class SpotOpenedOrderListViewModel: ListViewModel<MarketOrder> {
 
     override func cellFor(model: MarketOrder, indexPath: IndexPath) -> UITableViewCell {
         let cell: SpotOrderCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.bind(model, tradeTokenInfo: self.spotViewModelBehaviorRelay.value?.quoteTokenInfo)
+        cell.bind(model, showCancelButton: true)
         return cell
     }
 

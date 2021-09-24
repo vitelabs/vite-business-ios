@@ -81,7 +81,8 @@ class SpotViewController: BaseTableViewController {
         }
 
         ordersHeaderView.historyButton.rx.tap.bind {
-            WebHandler.openMarketHistoryOrders()
+            let vc = SpotHistoryViewController()
+            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: rx.disposeBag)
 
         MarketInfoService.shared.sortedMarketDataBehaviorRelay.bind { [weak self] array in
