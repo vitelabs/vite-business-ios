@@ -184,12 +184,23 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mga Mnemonic na salita";
 "my.page.system.cell.title" = "Mga Setting";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "Mga Referral sa Pagmimina";
 "my.page.reward.cell.title" = "Mga Tanong sa Gantimpala";
 "my.page.forum.cell.title" = "Opisyal na Forum";
 "my.page.aboutUs.cell.title" = "Tungkol Sa Amin";
 "my.page.change.wallet.name.alter.title" = "I-edit ang Pangalan ng Account";
 "my.page.aboutUs.wechat.alert.title" = "I-scan ang QR code upang masundan ang Opisyal na Account ng Vite WeChat";
+
+/* change password */
+"change.password.page.title" = "修改密码";
+"change.password.page.old.title" = "输入原密码";
+"change.password.page.new.1.title" = "输入新密码";
+"change.password.page.new.2.title" = "再次输入新密码";
+"change.password.page.button.title" = "提交修改";
+"change.password.page.success.toast" = "修改成功";
+"change.password.page.old.error.toast" = "原密码错误";
+"change.password.page.new.error.toast" = "两次输入的新密码不一致";
 
 /* Transaction List */
 "transaction.list.page.title" = "Kasaysayan ng mga Transaksyon";
@@ -1237,6 +1248,32 @@
 "spot.page.cell.price" = "Presyo: %@";
 "spot.page.cell.deal" = "Punan: %@";
 "spot.page.cell.average" = "Avg.: %@";
+
+// Spot History
+"spot.history.page.title" = "Order book";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 months";
+"spot.history.page.filter.date.1m" = "1 months";
+"spot.history.page.filter.date.1w" = "1 week";
+"spot.history.page.filter.date.1d" = "1 day";
+
+"spot.history.page.filter.token.title" = "Type";
+
+"spot.history.page.filter.side.title" = "Side";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "Nagsisimula, mag-click upang matingnan ang mga detalye";
 "grin.initing.detail" = "1. Kinakailangan ang pauna sa pagdaragdag ng GRIN wallet\n2. Inaasahan na tatagal ng 15 minuto ang proseso\n3. Huwag magambala o patayin ang APP sa panahon ng pagsisimula\n4. Ang pagsisimula ay magkokonsume ng isang malaking halaga ng data ng cellular, inirerekumenda na ipagpatuloy ang proseso sa Wi-Fi.";

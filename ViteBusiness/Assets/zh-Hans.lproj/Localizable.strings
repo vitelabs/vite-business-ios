@@ -188,12 +188,23 @@
 "my.page.mnemonic.cell.title" = "助記詞";
 "my.page.system.cell.title" = "使用設置";
 "my.page.security.cell.title" = "安全設置";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "邀請好友，一起挖礦";
 "my.page.reward.cell.title" = "獎勵查詢";
 "my.page.forum.cell.title" = "官方論壇";
 "my.page.aboutUs.cell.title" = "關於我們";
 "my.page.change.wallet.name.alter.title" = "修改賬戶名";
 "my.page.aboutUs.wechat.alert.title" = "掃描二維碼關注Vite官方公眾號";
+
+/* change password */
+"change.password.page.title" = "修改密码";
+"change.password.page.old.title" = "输入原密码";
+"change.password.page.new.1.title" = "输入新密码";
+"change.password.page.new.2.title" = "再次输入新密码";
+"change.password.page.button.title" = "提交修改";
+"change.password.page.success.toast" = "修改成功";
+"change.password.page.old.error.toast" = "原密码错误";
+"change.password.page.new.error.toast" = "两次输入的新密码不一致";
 
 /* change password */
 "change.password.page.title" = "修改密码";
@@ -1283,6 +1294,32 @@
 "spot.history.page.filter.status.completed" = "已完成";
 "spot.history.page.filter.status.canceled" = "已撤銷";
 "spot.history.page.filter.status.failed" = "下單失敗";
+
+// Spot History
+"spot.history.page.title" = "Order book";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 months";
+"spot.history.page.filter.date.1m" = "1 months";
+"spot.history.page.filter.date.1w" = "1 week";
+"spot.history.page.filter.date.1d" = "1 day";
+
+"spot.history.page.filter.token.title" = "Type";
+
+"spot.history.page.filter.side.title" = "Side";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "正在初始化，點擊查看注意事項";
 "grin.initing.detail" = "1、 首次添加GRIN錢包需初始化\n2、初始化預計持續15分鐘\n3、初始化過程中請勿殺掉app進程\n4、初始化會消耗大量流量，盡量在wifi環境下";

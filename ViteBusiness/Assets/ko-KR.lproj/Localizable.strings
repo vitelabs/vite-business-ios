@@ -184,12 +184,23 @@
 "my.page.contacts.cell.title" = "연락처 주소";
 "my.page.mnemonic.cell.title" = "니모닉 단어";
 "my.page.system.cell.title" = "설정";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "채굴 추천인";
 "my.page.reward.cell.title" = "보상 문의";
 "my.page.forum.cell.title" = "공식 포럼";
 "my.page.aboutUs.cell.title" = "회사 소개";
 "my.page.change.wallet.name.alter.title" = "계정 이름 수정하기";
 "my.page.aboutUs.wechat.alert.title" = "QR코드를 스캔하고 Vite WeChat 공식 계정을 팔로우하세요";
+
+/* change password */
+"change.password.page.title" = "修改密码";
+"change.password.page.old.title" = "输入原密码";
+"change.password.page.new.1.title" = "输入新密码";
+"change.password.page.new.2.title" = "再次输入新密码";
+"change.password.page.button.title" = "提交修改";
+"change.password.page.success.toast" = "修改成功";
+"change.password.page.old.error.toast" = "原密码错误";
+"change.password.page.new.error.toast" = "两次输入的新密码不一致";
 
 /* Transaction List */
 "transaction.list.page.title" = "거래 내역";
@@ -1237,6 +1248,32 @@
 "spot.page.cell.price" = "가격: %@";
 "spot.page.cell.deal" = "완료됨: %@";
 "spot.page.cell.average" = "평균가: %@";
+
+// Spot History
+"spot.history.page.title" = "Order book";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 months";
+"spot.history.page.filter.date.1m" = "1 months";
+"spot.history.page.filter.date.1w" = "1 week";
+"spot.history.page.filter.date.1d" = "1 day";
+
+"spot.history.page.filter.token.title" = "Type";
+
+"spot.history.page.filter.side.title" = "Side";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "초기화 중, 클릭해서 자세한 내용 보기";
 "grin.initing.detail" = "1 GRIN 지갑을 추가할 때 초기화가 필요합니다.\n2. 프로세스 시간은 15분 예상됩니다.\n3. 초기화 중에는 앱을 중단하거나 종료하지 마십시오.\n4. 초기화는 많은 양의 셀룰러 데이터를 소비하므로 와이파이 사용을 권장합니다.";

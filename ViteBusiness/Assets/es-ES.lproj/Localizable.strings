@@ -184,12 +184,23 @@
 "my.page.contacts.cell.title" = "Dirección de contacto";
 "my.page.mnemonic.cell.title" = "Palabras mnemónicas";
 "my.page.system.cell.title" = "Ajustes";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "Minería por referidos";
 "my.page.reward.cell.title" = "Consulta de recompensas";
 "my.page.forum.cell.title" = "Foro oficial";
 "my.page.aboutUs.cell.title" = "Sobre Nosotros";
 "my.page.change.wallet.name.alter.title" = "Editar nombre de cuenta";
 "my.page.aboutUs.wechat.alert.title" = "Escanea el código QR para seguir la cuenta oficial de Vite en WeChat";
+
+/* change password */
+"change.password.page.title" = "修改密码";
+"change.password.page.old.title" = "输入原密码";
+"change.password.page.new.1.title" = "输入新密码";
+"change.password.page.new.2.title" = "再次输入新密码";
+"change.password.page.button.title" = "提交修改";
+"change.password.page.success.toast" = "修改成功";
+"change.password.page.old.error.toast" = "原密码错误";
+"change.password.page.new.error.toast" = "两次输入的新密码不一致";
 
 /* Transaction List */
 "transaction.list.page.title" = "Historial de transacciones";
@@ -1237,6 +1248,32 @@
 "spot.page.cell.price" = "Precio: %@";
 "spot.page.cell.deal" = "Completado: %@";
 "spot.page.cell.average" = "Promedio: %@";
+
+// Spot History
+"spot.history.page.title" = "Order book";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 months";
+"spot.history.page.filter.date.1m" = "1 months";
+"spot.history.page.filter.date.1w" = "1 week";
+"spot.history.page.filter.date.1d" = "1 day";
+
+"spot.history.page.filter.token.title" = "Type";
+
+"spot.history.page.filter.side.title" = "Side";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
 "grin.initing.detail" = "1. Es necesaria la inicialización al añadir una billetera GRIN\n2. Se espera que el proceso dure 15 minutos\n3. No interrumpir o matar la APP durante la inicialización\n4. La inicialización consumirá una gran cantidad de datos celulares, se recomienda continuar el proceso mediante Wi-Fi.";
