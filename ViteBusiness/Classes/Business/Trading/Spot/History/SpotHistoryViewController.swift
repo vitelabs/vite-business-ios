@@ -53,7 +53,7 @@ class SpotHistoryViewController: BaseTableViewController {
             filterBehaviorRelay.asDriver()).drive(onNext: { [weak self] (isOpen, filter) in
                 guard let `self` = self else { return }
                 if isOpen {
-                    self.viewModle.showOpen()
+                    self.viewModle.showOpen(tradeTokenSymbol: filter.tradeTokenSymbol, quoteTokenSymbol: filter.quoteTokenSymbol, startTime: filter.startTime, side: filter.side)
                 } else {
                     self.viewModle.showHistory(tradeTokenSymbol: filter.tradeTokenSymbol, quoteTokenSymbol: filter.quoteTokenSymbol, startTime: filter.startTime, side: filter.side, status: filter.status)
                 }
@@ -61,7 +61,7 @@ class SpotHistoryViewController: BaseTableViewController {
     }
     
     @objc func onFilter() {
-        SpotHistoryFilterView(superview: self.navigationController!.view, filter: self.filterBehaviorRelay.value, completion: { ret in
+        SpotHistoryFilterView(superview: self.navigationController!.view, isShowStatus: !self.viewModle.isShowOpen, filter: self.filterBehaviorRelay.value, completion: { ret in
             self.filterBehaviorRelay.accept(ret)
         }).show()
     }
@@ -176,7 +176,7 @@ extension SpotHistoryViewController {
             $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
         }
 
-        let isOpenBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+        let isOpenBehaviorRelay: BehaviorRelay<Bool> = BehaviorRelay(value: true)
 
         override init(frame: CGRect) {
             super.init(frame: frame)

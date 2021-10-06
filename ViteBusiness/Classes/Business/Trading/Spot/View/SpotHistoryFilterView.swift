@@ -10,7 +10,7 @@ import ActiveLabel
 
 class SpotHistoryFilterView: BottomPopView {
 
-    public init(superview: UIView, filter: SpotHistoryViewController.Filter, completion: @escaping (SpotHistoryViewController.Filter) -> ()) {
+    public init(superview: UIView, isShowStatus: Bool, filter: SpotHistoryViewController.Filter, completion: @escaping (SpotHistoryViewController.Filter) -> ()) {
         
         super.init(title: R.string.localizable.spotHistoryPageFilterTitle(), buttons: [], superview: superview)
 
@@ -58,8 +58,10 @@ class SpotHistoryFilterView: BottomPopView {
         stackView.addArrangedSubview(pairView)
         stackView.addArrangedSubview(sideTitleView)
         stackView.addArrangedSubview(sideView)
-        stackView.addArrangedSubview(statusTitleView)
-        stackView.addArrangedSubview(statusView)
+        if isShowStatus {
+            stackView.addArrangedSubview(statusTitleView)
+            stackView.addArrangedSubview(statusView)
+        }
         stackView.addPlaceholder(height: 24)
         stackView.addArrangedSubview(buttonView)
         
@@ -73,7 +75,9 @@ class SpotHistoryFilterView: BottomPopView {
             dataView.updateIndex(0)
             pairView.update(quoteTokenSymbol: nil, tradeTokenSymbol: nil)
             sideView.updateIndex(0)
-            statusView.updateIndex(0)
+            if isShowStatus {
+                statusView.updateIndex(0)
+            }
         }.disposed(by: rx.disposeBag)
         
         buttonView.okButton.rx.tap.bind { [weak self] in

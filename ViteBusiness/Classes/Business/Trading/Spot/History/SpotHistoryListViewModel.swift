@@ -21,11 +21,11 @@ class SpotHistoryListViewModel: ListViewModel<MarketOrder> {
     fileprivate var startTime: TimeInterval?
     fileprivate var side: Int32?
     fileprivate var status: MarketOrder.Status?
-    fileprivate var isShowOpen = false
+    fileprivate(set) var isShowOpen = true
     
-    func showOpen() {
+    func showOpen(tradeTokenSymbol: String?, quoteTokenSymbol: String?, startTime: TimeInterval?, side: Int32?) {
         isShowOpen = true
-        filter(tradeTokenSymbol: nil, quoteTokenSymbol: nil, startTime: nil, side: nil, status: .open)
+        filter(tradeTokenSymbol: tradeTokenSymbol, quoteTokenSymbol: quoteTokenSymbol, startTime: startTime, side: side, status: .open)
     }
     
     func showHistory(tradeTokenSymbol: String?, quoteTokenSymbol: String?, startTime: TimeInterval?, side: Int32?, status: MarketOrder.Status?) {
