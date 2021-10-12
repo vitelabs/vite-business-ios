@@ -172,6 +172,14 @@ class SystemViewController: FormViewController {
                 let vc = NodeSettingsListViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             })
+            <<< ImageRow("powSettings") {
+                $0.cell.titleLab.text = R.string.localizable.systemPageCellPowSettings()
+                $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable
+                $0.cell.bottomSeparatorLine.isHidden = false
+            }.onCellSelection({ [unowned self] _, _  in
+                let vc = PoWSettingsViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
             <<< ImageRow("uploadLog") {
                 $0.cell.titleLab.text = R.string.localizable.systemPageCellUploadLogTitle()
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable

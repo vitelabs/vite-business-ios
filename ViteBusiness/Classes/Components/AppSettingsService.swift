@@ -81,6 +81,7 @@ extension AppSettingsService {
             ChainNodeConfig(type: .vite, current: nil),
             ChainNodeConfig(type: .eth, current: nil),
             ]
+        public var powConfig = PowConfig(current: nil)
         public var guide = Guide()
 
         public init?(map: Map) { }
@@ -88,6 +89,7 @@ extension AppSettingsService {
             currency <- map["currency"]
             dexHideSmall <- map["dexHideSmall"]
             chainNodeConfigs <- map["chainNodeConfigs"]
+            powConfig <- map["powConfig"]
             guide <- map["guide"]
         }
 
@@ -129,6 +131,23 @@ extension AppSettingsService {
                 ETHWalletManager.check(node: url, result: result)
             }
         }
+    }
+    
+    public struct PowConfig: Mappable {
+        public var urls: [String] = []
+        public var current: String? = nil // nil means use official
+        
+        public init(current: String?) {
+            self.current = current
+        }
+        
+        public init?(map: Map) { }
+        public mutating func mapping(map: Map) {
+            urls <- map["urls"]
+            current <- map["current"]
+        }
+
+        public init() {}
     }
     
     public struct ChainNodeConfig: Mappable {
@@ -173,6 +192,17 @@ extension AppSettingsService {
         }
         guard let i = index else { return }
         appSettings.chainNodeConfigs[i] = config
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
+    }
+    
+    public func getPowConfig() -> PowConfig {
+        appSettings.powConfig
+    }
+    
+    public func updatePow(config: PowConfig) {
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        appSettings.powConfig = config
         appSettingsBehaviorRelay.accept(appSettings)
         save(mappable: appSettings)
     }

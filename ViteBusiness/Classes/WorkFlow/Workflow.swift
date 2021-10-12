@@ -61,7 +61,7 @@ public struct Workflow {
             cancelPow = true
         }
         getPowFloatView.show()
-        let waitAtLeast = after(seconds: TimeInterval(AppConfigService.instance.pDelay))
+        let waitAtLeast = after(seconds: TimeInterval(PowManager.instance.delay))
         return ViteNode.rawTx.send.getPow(context: context)
             .recover { (e) -> Promise<SendBlockContext> in
                 getPowFloatView.hide()
@@ -200,7 +200,7 @@ public struct Workflow {
                     }
                 } else {
                     if context.isNeedToCalcPoW {
-                        let waitAtLeast = after(seconds: TimeInterval(AppConfigService.instance.pDelay))
+                        let waitAtLeast = after(seconds: TimeInterval(PowManager.instance.delay))
                         return ViteNode.rawTx.send.getPow(context: context)
                             .then { context -> Promise<SendBlockContext> in
                                 return waitAtLeast.then({ () -> Promise<SendBlockContext> in

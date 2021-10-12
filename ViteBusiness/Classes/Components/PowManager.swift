@@ -19,7 +19,15 @@ public class PowManager {
         }
     }
     
+    var isOfficial: Bool { AppSettingsService.instance.appSettings.powConfig.current == nil }
+    var delay: Int { isOfficial ? AppConfigService.instance.pDelay : 0 }
+    
     func canGetPow(address: String) -> Bool {
+        
+        if !isOfficial {
+            return true
+        }
+        
         if AppConfigService.instance.getPowTimesPreDay == 0 {
             return false
         }
@@ -41,6 +49,10 @@ public class PowManager {
     }
     
     func update(address: String) {
+        guard isOfficial else {
+            return
+        }
+        
         if let info = storage.addressPowMap[address] {
             let date = Date(timeIntervalSince1970: info.timestamp)
             if Calendar.current.isDate(date, inSameDayAs: Date()) {
