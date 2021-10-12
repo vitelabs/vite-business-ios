@@ -153,8 +153,8 @@ public extension ViteConst {
 
         public static var premainnet =
             Env(type: .premainnet,
-                cos: Cos(config: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
-                         discover: "https://testnet-vite-1257137467.cos.ap-hongkong.myqcloud.com",
+                cos: Cos(config: "https://static.vite.net/testnet-vite-1257137467",
+                         discover: "https://static.vite.net/testnet-vite-1257137467",
                          strapi: "https://config.vite.net"),
                 vite: Vite(nodeHttp: "https://node.vite.net/gvite",
                            explorer: "https://vitescan.io",
@@ -182,8 +182,8 @@ public extension ViteConst {
 
         public static let testEnv =
             Env(type: .test,
-                cos: Cos(config: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
-                         discover: "https://testnet-vite-test-1257137467.cos.ap-beijing.myqcloud.com",
+                cos: Cos(config: "https://static.vite.net/testnet-vite-test-1257137467",
+                         discover: "https://static.vite.net/testnet-vite-test-1257137467",
                          strapi: "http://129.226.74.210:1337"),
                 vite: Vite(nodeHttp: "http://148.70.30.139:48132",
                            explorer: "http://132.232.134.168:8080",
@@ -210,8 +210,8 @@ public extension ViteConst {
 
         public static let stageEnv =
             Env(type: .stage,
-                cos: Cos(config: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com", // stage
-                         discover: "https://testnet-vite-stage-1257137467.cos.ap-beijing.myqcloud.com",// stage
+                cos: Cos(config: "https://static.vite.net/testnet-vite-stage-1257137467", // stage
+                         discover: "https://static.vite.net/testnet-vite-stage-1257137467",// stage
                          strapi: "https://config.vite.net"),
                 vite: Vite(nodeHttp: "https://node.vite.net/gvite",
                            explorer: "https://vitescan.io",

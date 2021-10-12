@@ -119,7 +119,7 @@ class MarketInfoService: NSObject {
 
     func fetchMarketHidden() {
         Alamofire
-            .request("https://web-wallet-1257137467.cos.ap-hongkong.myqcloud.com/uiController/main.json")
+            .request("https://static.vite.net/web-wallet-1257137467/uiController/main.json")
             .responseJSON()
             .map(on: .main) { data, response -> [String] in
                 return JSON(response.data)["hideSymbols"].arrayObject as? [String] ?? []
