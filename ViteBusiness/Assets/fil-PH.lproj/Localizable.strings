@@ -193,14 +193,14 @@
 "my.page.aboutUs.wechat.alert.title" = "I-scan ang QR code upang masundan ang Opisyal na Account ng Vite WeChat";
 
 /* change password */
-"change.password.page.title" = "修改密码";
-"change.password.page.old.title" = "输入原密码";
-"change.password.page.new.1.title" = "输入新密码";
-"change.password.page.new.2.title" = "再次输入新密码";
-"change.password.page.button.title" = "提交修改";
-"change.password.page.success.toast" = "修改成功";
-"change.password.page.old.error.toast" = "原密码错误";
-"change.password.page.new.error.toast" = "两次输入的新密码不一致";
+"change.password.page.title" = "Change Password";
+"change.password.page.old.title" = "Enter the old password";
+"change.password.page.new.1.title" = "Enter new password";
+"change.password.page.new.2.title" = "Enter confirm password";
+"change.password.page.button.title" = "Submit";
+"change.password.page.success.toast" = "Modified successfully";
+"change.password.page.old.error.toast" = "The old password is wrong";
+"change.password.page.new.error.toast" = "Passwords do not match";
 
 /* Transaction List */
 "transaction.list.page.title" = "Kasaysayan ng mga Transaksyon";
@@ -355,6 +355,7 @@
 "system.page.cell.change.language" = "Wika";
 "system.page.cell.change.currency" = "Salapi";
 "system.page.cell.node.settings" = "Node Settings";
+"system.page.cell.pow.settings" = "PoW Settings";
 "system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
@@ -371,6 +372,13 @@
 "node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
 "node.settings.page.node.invalid.error" = "Invalid node";
 "node.settings.page.node.exist.error" = "The node already exists";
+
+/* pow settings */
+"pow.settings.page.title" = "PoW Settings";
+"pow.settings.page.add.button.title" = "Add Custom PoW";
+"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
+"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
+"pow.settings.page.node.exist.error" = "Already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Kasalukuyang Taas";
@@ -1250,22 +1258,22 @@
 "spot.page.cell.average" = "Avg.: %@";
 
 // Spot History
-"spot.history.page.title" = "Order book";
+"spot.history.page.title" = "Orders";
 "spot.history.page.segment.open" = "Open Orders";
 "spot.history.page.segment.history" = "Order History";
 
-"spot.history.page.filter.title" = "条件筛选";
+"spot.history.page.filter.title" = "Order Filter";
 "spot.history.page.filter.button.clear" = "Clear";
 "spot.history.page.filter.all" = "All";
 "spot.history.page.filter.date.title" = "Date";
-"spot.history.page.filter.date.3m" = "3 months";
+"spot.history.page.filter.date.3m" = "3 Months";
 "spot.history.page.filter.date.1m" = "1 months";
-"spot.history.page.filter.date.1w" = "1 week";
-"spot.history.page.filter.date.1d" = "1 day";
+"spot.history.page.filter.date.1w" = "1 Week";
+"spot.history.page.filter.date.1d" = "1 Day";
 
-"spot.history.page.filter.token.title" = "Type";
+"spot.history.page.filter.token.title" = "Pair";
 
-"spot.history.page.filter.side.title" = "Side";
+"spot.history.page.filter.side.title" = "Type";
 "spot.history.page.filter.side.buy" = "Buy";
 "spot.history.page.filter.side.sell" = "Sell";
 
