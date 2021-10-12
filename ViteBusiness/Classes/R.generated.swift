@@ -4292,7 +4292,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.
+      /// en translation: Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let quotaPowTipFloatViewMessage1 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
@@ -10309,7 +10309,7 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
-      /// en translation: Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.
+      /// en translation: Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func quotaPowTipFloatViewMessage1(_ value1: String, _ value2: String) -> String {
