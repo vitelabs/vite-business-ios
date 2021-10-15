@@ -1267,7 +1267,7 @@
 "spot.history.page.filter.all" = "All";
 "spot.history.page.filter.date.title" = "Date";
 "spot.history.page.filter.date.3m" = "3 Months";
-"spot.history.page.filter.date.1m" = "1 months";
+"spot.history.page.filter.date.1m" = "1 Month";
 "spot.history.page.filter.date.1w" = "1 Week";
 "spot.history.page.filter.date.1d" = "1 Day";
 

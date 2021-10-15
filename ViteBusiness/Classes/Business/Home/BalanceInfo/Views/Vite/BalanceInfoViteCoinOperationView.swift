@@ -26,20 +26,21 @@ class BalanceInfoViteCoinOperationView: UIView {
         clipsToBounds = false
         
         addSubview(voteButton)
-        addSubview(buyCoinButton)
+//        addSubview(buyCoinButton)
 
 
         voteButton.snp.makeConstraints { (m) in
-           m.top.bottom.equalToSuperview()
-           m.left.equalToSuperview()
-       }
+            m.top.bottom.equalToSuperview()
+            m.left.equalToSuperview()
+            m.right.equalToSuperview()
+        }
 
-       buyCoinButton.snp.makeConstraints { (m) in
-           m.top.bottom.equalToSuperview()
-           m.left.equalTo(voteButton.snp.right).offset(15)
-           m.right.equalToSuperview()
-           m.width.equalTo(voteButton)
-       }
+//       buyCoinButton.snp.makeConstraints { (m) in
+//           m.top.bottom.equalToSuperview()
+//           m.left.equalTo(voteButton.snp.right).offset(15)
+//           m.right.equalToSuperview()
+//           m.width.equalTo(voteButton)
+//       }
 
         voteButton.button.rx.tap.bind {
             Statistics.log(eventId: Statistics.Page.WalletHome.voteClicked.rawValue)
@@ -47,10 +48,10 @@ class BalanceInfoViteCoinOperationView: UIView {
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
 
-        buyCoinButton.button.rx.tap.bind {
-            Statistics.log(eventId: "instant_purchase")
-        UIViewController.current?.navigationController?.pushViewController(ExchangeViewController(), animated: true)
-        }.disposed(by: rx.disposeBag)
+//        buyCoinButton.button.rx.tap.bind {
+//            Statistics.log(eventId: "instant_purchase")
+//        UIViewController.current?.navigationController?.pushViewController(ExchangeViewController(), animated: true)
+//        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -26,7 +26,7 @@ public class AppConfigService {
                                             "vite.wiki",
                                             "vite.blog"]
     public var pDelay: Int = 3
-    public var getPowTimesPreDay: Int = 5
+    public var getPowTimesPreDay: Int = 100
 
 
     public var isOnlineVersion: Bool {

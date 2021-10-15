@@ -2152,14 +2152,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotHistoryPageFilterDate1d = Rswift.StringResource(key: "spot.history.page.filter.date.1d", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 1 Month
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let spotHistoryPageFilterDate1m = Rswift.StringResource(key: "spot.history.page.filter.date.1m", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: 1 Week
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let spotHistoryPageFilterDate1w = Rswift.StringResource(key: "spot.history.page.filter.date.1w", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: 1 months
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let spotHistoryPageFilterDate1m = Rswift.StringResource(key: "spot.history.page.filter.date.1m", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6564,18 +6564,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("spot.history.page.filter.date.1d", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1 Month
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func spotHistoryPageFilterDate1m(_: Void = ()) -> String {
+        return NSLocalizedString("spot.history.page.filter.date.1m", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 1 Week
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func spotHistoryPageFilterDate1w(_: Void = ()) -> String {
         return NSLocalizedString("spot.history.page.filter.date.1w", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 1 months
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func spotHistoryPageFilterDate1m(_: Void = ()) -> String {
-        return NSLocalizedString("spot.history.page.filter.date.1m", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 1. Initialization is required upon adding GRIN wallet 2. The process is expected to last 15 minutes 3. Do not interrupt or kill the APP during initialization 4. Initialization will consume a large amount of cellular data, it is recommended to continue the process on Wi-Fi.
