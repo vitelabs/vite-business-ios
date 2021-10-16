@@ -151,7 +151,7 @@ public enum CurrencyCode: String {
     }
 
     static var allValues: [CurrencyCode] {
-        return [.CNY, .USD, .RUB, .KRW, .TRY, .VND, .EUR, .GBP]
+        return [.CNY, .EUR, .GBP, .KRW, .RUB, .TRY, .USD, .VND]
     }
 }
 
