@@ -200,6 +200,10 @@ extension AppSettingsService {
         appSettings.powConfig
     }
     
+    public func getPowURL() -> String {
+        getPowConfig().current ?? ViteConst.instance.vite.nodeHttp
+    }
+    
     public func updatePow(config: PowConfig) {
         var appSettings: AppSettings = appSettingsBehaviorRelay.value
         appSettings.powConfig = config

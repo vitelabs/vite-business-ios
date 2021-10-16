@@ -84,6 +84,7 @@ public class ViteBusinessLanucher: NSObject {
         Provider.default.update(server: ViteWallet.RPCServer(url: url))
         #else
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: AppSettingsService.instance.getNode(type: .vite))!))
+        Provider.pow.update(server: ViteWallet.RPCServer(url: URL(string: AppSettingsService.instance.getPowURL())!))
         #endif
         ETHWalletManager.instance.setProviderURL(URL(string: AppSettingsService.instance.getNode(type: .eth))!, net: ViteConst.instance.eth.chainType)
     }
