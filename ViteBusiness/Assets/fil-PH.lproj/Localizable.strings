@@ -184,12 +184,23 @@
 "my.page.contacts.cell.title" = "Contact Address";
 "my.page.mnemonic.cell.title" = "Mga Mnemonic na salita";
 "my.page.system.cell.title" = "Mga Setting";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "Mga Referral sa Pagmimina";
 "my.page.reward.cell.title" = "Mga Tanong sa Gantimpala";
 "my.page.forum.cell.title" = "Opisyal na Forum";
 "my.page.aboutUs.cell.title" = "Tungkol Sa Amin";
 "my.page.change.wallet.name.alter.title" = "I-edit ang Pangalan ng Account";
 "my.page.aboutUs.wechat.alert.title" = "I-scan ang QR code upang masundan ang Opisyal na Account ng Vite WeChat";
+
+/* change password */
+"change.password.page.title" = "Change Password";
+"change.password.page.old.title" = "Enter the old password";
+"change.password.page.new.1.title" = "Enter new password";
+"change.password.page.new.2.title" = "Enter confirm password";
+"change.password.page.button.title" = "Submit";
+"change.password.page.success.toast" = "Modified successfully";
+"change.password.page.old.error.toast" = "The old password is wrong";
+"change.password.page.new.error.toast" = "Passwords do not match";
 
 /* Transaction List */
 "transaction.list.page.title" = "Kasaysayan ng mga Transaksyon";
@@ -344,11 +355,10 @@
 "system.page.cell.change.language" = "Wika";
 "system.page.cell.change.currency" = "Salapi";
 "system.page.cell.node.settings" = "Node Settings";
-"system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
-"system.page.cell.login.faceId" = "I-unlock Sa pamamagitan ng Face ID";
-"system.page.cell.login.touchId" = "I-unlock ng Touch ID";
-"system.page.cell.transfer.faceId" = "Gumamit ng Face ID Para sa Transaksyon";
-"system.page.cell.transfer.touchId" = "Gumamit ng Touch ID Para sa Transaksyon";
+"system.page.cell.pow.settings" = "PoW Settings";
+"system.page.cell.login.pwd" = "Auto-Lock";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Pag-logout / magpalit ng wallet";
 "system.page.cell.upload.log.title" = "Mag-upload ng Log";
 "system.page.cell.upload.log.toast.success" = "Na-upload ang Log";
@@ -362,6 +372,13 @@
 "node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
 "node.settings.page.node.invalid.error" = "Invalid node";
 "node.settings.page.node.exist.error" = "The node already exists";
+
+/* pow settings */
+"pow.settings.page.title" = "PoW Settings";
+"pow.settings.page.add.button.title" = "Add Custom PoW";
+"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
+"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
+"pow.settings.page.node.exist.error" = "Already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Kasalukuyang Taas";
@@ -404,7 +421,7 @@
 "quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
 
 "quota.pow.tip.float.view.title.2" = "Get Quota";
@@ -504,7 +521,7 @@
 "eth.page.gasFee.title" = "Bayad sa Gas";
 "eth.page.gasFee.slow.title" = "Mabagal";
 "eth.page.gasFee.fast.title" = "Mabilis";
-"eth.page.gasFee.notice.title" = "Ibabalik namin ang natitirang gas sa iyong account";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Mga Detalye";
@@ -777,8 +794,8 @@
 "crosschain.deposit.otherwallet" = "Deposit mula sa Isa pang Wallet";
 "crosschain.deposit.history" = "History ng Deposito";
 "crosschain.withdraw.history" = "Kasaysayan sa Pag-withdraw";
-"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
-"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
+"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
 "crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "Address ng Deposito";
 "crosschain.deposit.scanAddress" = "Mangyaring i-scan ang address ng QR code";
@@ -1239,6 +1256,32 @@
 "spot.page.cell.price" = "Presyo: %@";
 "spot.page.cell.deal" = "Punan: %@";
 "spot.page.cell.average" = "Avg.: %@";
+
+// Spot History
+"spot.history.page.title" = "Orders";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "Order Filter";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 Months";
+"spot.history.page.filter.date.1m" = "1 Month";
+"spot.history.page.filter.date.1w" = "1 Week";
+"spot.history.page.filter.date.1d" = "1 Day";
+
+"spot.history.page.filter.token.title" = "Pair";
+
+"spot.history.page.filter.side.title" = "Type";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "Nagsisimula, mag-click upang matingnan ang mga detalye";
 "grin.initing.detail" = "1. Kinakailangan ang pauna sa pagdaragdag ng GRIN wallet\n2. Inaasahan na tatagal ng 15 minuto ang proseso\n3. Huwag magambala o patayin ang APP sa panahon ng pagsisimula\n4. Ang pagsisimula ay magkokonsume ng isang malaking halaga ng data ng cellular, inirerekumenda na ipagpatuloy ang proseso sa Wi-Fi.";
