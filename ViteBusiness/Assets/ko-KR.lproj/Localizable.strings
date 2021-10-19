@@ -184,12 +184,23 @@
 "my.page.contacts.cell.title" = "연락처 주소";
 "my.page.mnemonic.cell.title" = "니모닉 단어";
 "my.page.system.cell.title" = "설정";
+"my.page.security.cell.title" = "Security";
 "my.page.invite.cell.title" = "채굴 추천인";
 "my.page.reward.cell.title" = "보상 문의";
 "my.page.forum.cell.title" = "공식 포럼";
 "my.page.aboutUs.cell.title" = "회사 소개";
 "my.page.change.wallet.name.alter.title" = "계정 이름 수정하기";
 "my.page.aboutUs.wechat.alert.title" = "QR코드를 스캔하고 Vite WeChat 공식 계정을 팔로우하세요";
+
+/* change password */
+"change.password.page.title" = "Change Password";
+"change.password.page.old.title" = "Enter the old password";
+"change.password.page.new.1.title" = "Enter new password";
+"change.password.page.new.2.title" = "Enter confirm password";
+"change.password.page.button.title" = "Submit";
+"change.password.page.success.toast" = "Modified successfully";
+"change.password.page.old.error.toast" = "The old password is wrong";
+"change.password.page.new.error.toast" = "Passwords do not match";
 
 /* Transaction List */
 "transaction.list.page.title" = "거래 내역";
@@ -344,11 +355,10 @@
 "system.page.cell.change.language" = "언어";
 "system.page.cell.change.currency" = "통화";
 "system.page.cell.node.settings" = "Node Settings";
-"system.page.cell.login.pwd" = "비밀번호로 잠금해제";
-"system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
-"system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
-"system.page.cell.transfer.faceId" = "거래를 위해 페이스 아이디 사용";
-"system.page.cell.transfer.touchId" = "거래를 위해 터치 아이디 사용";
+"system.page.cell.pow.settings" = "PoW Settings";
+"system.page.cell.login.pwd" = "Auto-Lock";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "로그아웃/지갑 변경";
 "system.page.cell.upload.log.title" = "업로드 로그";
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";
@@ -362,6 +372,13 @@
 "node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
 "node.settings.page.node.invalid.error" = "Invalid node";
 "node.settings.page.node.exist.error" = "The node already exists";
+
+/* pow settings */
+"pow.settings.page.title" = "PoW Settings";
+"pow.settings.page.add.button.title" = "Add Custom PoW";
+"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
+"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
+"pow.settings.page.node.exist.error" = "Already exists";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "현재 높이";
@@ -404,7 +421,7 @@
 "quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without staking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and stake your VITE to perform more transactions.";
+"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
 
 "quota.pow.tip.float.view.title.2" = "Get Quota";
@@ -504,7 +521,7 @@
 "eth.page.gasFee.title" = "가스 수수료";
 "eth.page.gasFee.slow.title" = "느리게";
 "eth.page.gasFee.fast.title" = "빠르게";
-"eth.page.gasFee.notice.title" = "귀하의 계정으로 남은 가스 수수료를 돌려드립니다.";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "상세정보";
@@ -777,8 +794,8 @@
 "crosschain.deposit.otherwallet" = "다른 지갑으로 부터 입금하기";
 "crosschain.deposit.history" = "입금 내역";
 "crosschain.withdraw.history" = "출금 내역";
-"crosschain.deposit.minAmountDesc" = "You can only deposit %@ through the address provided below. No less than %@ will be accepted.";
-"crosschain.deposit.minComfirm" = "The account will update after %@ network confirmations. Please wait.";
+"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
+"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
 "crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
 "crosschain.deposit.address" = "입금 주소";
 "crosschain.deposit.scanAddress" = "주소 QR코드를 스캔해주세요.";
@@ -1239,6 +1256,32 @@
 "spot.page.cell.price" = "가격: %@";
 "spot.page.cell.deal" = "완료됨: %@";
 "spot.page.cell.average" = "평균가: %@";
+
+// Spot History
+"spot.history.page.title" = "Orders";
+"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.segment.history" = "Order History";
+
+"spot.history.page.filter.title" = "Order Filter";
+"spot.history.page.filter.button.clear" = "Clear";
+"spot.history.page.filter.all" = "All";
+"spot.history.page.filter.date.title" = "Date";
+"spot.history.page.filter.date.3m" = "3 Months";
+"spot.history.page.filter.date.1m" = "1 Month";
+"spot.history.page.filter.date.1w" = "1 Week";
+"spot.history.page.filter.date.1d" = "1 Day";
+
+"spot.history.page.filter.token.title" = "Pair";
+
+"spot.history.page.filter.side.title" = "Type";
+"spot.history.page.filter.side.buy" = "Buy";
+"spot.history.page.filter.side.sell" = "Sell";
+
+"spot.history.page.filter.status.title" = "Status";
+"spot.history.page.filter.status.open" = "Ongoing";
+"spot.history.page.filter.status.completed" = "Completed";
+"spot.history.page.filter.status.canceled" = "Cancelled";
+"spot.history.page.filter.status.failed" = "Failed";
 
 "grin.initing.desc" = "초기화 중, 클릭해서 자세한 내용 보기";
 "grin.initing.detail" = "1 GRIN 지갑을 추가할 때 초기화가 필요합니다.\n2. 프로세스 시간은 15분 예상됩니다.\n3. 초기화 중에는 앱을 중단하거나 종료하지 마십시오.\n4. 초기화는 많은 양의 셀룰러 데이터를 소비하므로 와이파이 사용을 권장합니다.";
