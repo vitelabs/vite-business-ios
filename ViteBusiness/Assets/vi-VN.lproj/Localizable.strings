@@ -184,7 +184,7 @@
 "my.page.contacts.cell.title" = "Địa chỉ liên hệ";
 "my.page.mnemonic.cell.title" = "Cụm từ khôi phục ví";
 "my.page.system.cell.title" = "Cài đặt";
-"my.page.security.cell.title" = "Security";
+"my.page.security.cell.title" = "Bảo mật";
 "my.page.invite.cell.title" = "Khai thác Giới thiệu";
 "my.page.reward.cell.title" = "Yêu cầu Phần thưởng";
 "my.page.forum.cell.title" = "Diễn đàn Chính thức";
@@ -193,14 +193,14 @@
 "my.page.aboutUs.wechat.alert.title" = "Quét mã QR để theo dõi Tài khoản Wechat chính thức của Vite";
 
 /* change password */
-"change.password.page.title" = "Change Password";
-"change.password.page.old.title" = "Enter the old password";
-"change.password.page.new.1.title" = "Enter new password";
-"change.password.page.new.2.title" = "Enter confirm password";
-"change.password.page.button.title" = "Submit";
-"change.password.page.success.toast" = "Modified successfully";
-"change.password.page.old.error.toast" = "The old password is wrong";
-"change.password.page.new.error.toast" = "Passwords do not match";
+"change.password.page.title" = "Đổi mật khẩu";
+"change.password.page.old.title" = "Nhập mật khẩu cũ";
+"change.password.page.new.1.title" = "Nhập mật khẩu mới";
+"change.password.page.new.2.title" = "Xác nhận mật khẩu mới";
+"change.password.page.button.title" = "Gửi";
+"change.password.page.success.toast" = "Đã sửa thành công";
+"change.password.page.old.error.toast" = "Mật khẩu cũ sai";
+"change.password.page.new.error.toast" = "Mật khẩu không khớp";
 
 /* Transaction List */
 "transaction.list.page.title" = "Lịch sử Giao dịch";
@@ -245,14 +245,14 @@
 "balance.info.detail.unconfirmed.title" = "Chưa nhận";
 "balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
 "balance.info.detail.available.amount.title" = "Khả dụng";
-"balance.info.detail.pledge.amount.title" = "Locked";
+"balance.info.detail.pledge.amount.title" = "Đã khoá";
 "balance.info.detail.show.transactions.button.title" = "Kiểm tra lịch sử giao dịch trên Trình duyệt Ethereum";
 "balance.info.detail.reveice.button.title" = "Nhận";
 "balance.info.detail.send.button.title" = "Gửi";
 "balance.info.detail.vote" = "Bỏ phiếu";
 "balance.info.detail.pledge" = "Nhận Quota";
 "balance.info.detail.exchange.vite" = "Chuyển đổi VITE";
-"balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
+"balance.info.detail.pledge.count.content" = "Quota đang có/Giới hạn quota";
 "balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
 
 "gateway.info.detail.page.title" = "Thông tin chi tiết Gateway";
@@ -299,9 +299,9 @@
 "send.page.title" = "Gửi";
 "send.page.my.address.title" = "Địa chỉ %@ của tôi";
 "send.page.my.balance.title" = "Số dư";
-"send.page.wallet.balance.title" = "Wallet Balance";
-"send.page.my.pledge.title" = "Locked Amount";
-"send.page.my.quota.title" = "Quota Available/Quota Limit";
+"send.page.wallet.balance.title" = "Số dư Ví";
+"send.page.my.pledge.title" = "Khoá Số lượng";
+"send.page.my.quota.title" = "Quota đang có/Giới hạn quota";
 "send.page.my.max.tx.count.title" = "Số Giao dịch Tối đa";
 "send.page.add.my.address.button.title" = "Khai thác";
 "send.page.vite.contacts.button.title" = "Danh bạ Địa chỉ VITE";
@@ -354,9 +354,9 @@
 "system.page.logout.loading" = "Đăng xuất";
 "system.page.cell.change.language" = "Ngôn ngữ";
 "system.page.cell.change.currency" = "Tiền tệ";
-"system.page.cell.node.settings" = "Node Settings";
-"system.page.cell.pow.settings" = "PoW Settings";
-"system.page.cell.login.pwd" = "Auto-Lock";
+"system.page.cell.node.settings" = "Cấu hình Node";
+"system.page.cell.pow.settings" = "Cài đặt PoW";
+"system.page.cell.login.pwd" = "Tự đông khoá";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Đăng xuất/Đổi ví";
@@ -366,19 +366,19 @@
 "system.page.cell.delete.wallet.alert.title" = "Bạn chỉ có thể khôi phục tài khoản của mình bằng các cụm từ khôi phục ví khi xóa tài khoản, bạn có xác nhận xóa tài khoản này không?";
 
 /* node settings */
-"node.settings.page.title" = "Node Settings";
-"node.settings.page.add.button.title" = "Add Custom Node";
-"node.settings.page.add.alert.title" = "Please enter a valid node address";
-"node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";
-"node.settings.page.node.invalid.error" = "Invalid node";
-"node.settings.page.node.exist.error" = "The node already exists";
+"node.settings.page.title" = "Cấu hình Node";
+"node.settings.page.add.button.title" = "Thêm Node Tuỳ chỉnh";
+"node.settings.page.add.alert.title" = "Vui lòng nhập một địa chỉ hợp lệ";
+"node.settings.page.add.alert.tip" = "Node hiện tại là %@, mạng lưới là Mainnet";
+"node.settings.page.node.invalid.error" = "Node không hợp lệ";
+"node.settings.page.node.exist.error" = "Node đã tồn tại";
 
 /* pow settings */
-"pow.settings.page.title" = "PoW Settings";
-"pow.settings.page.add.button.title" = "Add Custom PoW";
-"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
-"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
-"pow.settings.page.node.exist.error" = "Already exists";
+"pow.settings.page.title" = "Cài đặt PoW";
+"pow.settings.page.add.button.title" = "Thêm PoW Tuỳ chỉnh";
+"pow.settings.page.add.alert.title" = "Xin vui lòng nhập một URL hợp lệ";
+"pow.settings.page.add.alert.tip" = "Mạng hiện tại là Mainnet";
+"pow.settings.page.node.exist.error" = "Đã tồn tại";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Block Height hiện tại";
@@ -398,13 +398,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Nhận Quota";
 "quota.manage.page.input.address.title" = "Địa chỉ thụ hưởng Quota";
-"quota.manage.page.quota.money.title" = "Locked Amount";
+"quota.manage.page.quota.money.title" = "Khoá Số lượng";
 "quota.manage.page.quota.quota.title" = "Quota";
 "quota.manage.page.quota.money.placeholder" = "Vui lòng nhập số lượng stake, ít nhất 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
+"quota.manage.page.quota.snapshoot.height.title" = "Thời gian khoá";
 "quota.manage.page.quota.snapshoot.height.desc" = "Dự kiến %@ ngày";
-"quota.manage.page.submit.btn.title" = "Submit to lock";
-"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
+"quota.manage.page.submit.btn.title" = "Yêu cầu khoá";
+"quota.manage.page.check.quotaList.btn.title" = "Lịch sử Khoá";
 "quota.manage.page.toast.money.error" = "Số lượng stake không được ít hơn 134";
 "quota.submit.pop.desc" = "Đảm bảo thế chấp %@ Vite để nhận quota, bạn chỉ có thể rút sau 3 ngày sau khi hết hạn stake.";
 "quota.submit.pop.submit.btn.title" = "Xác nhận";
@@ -418,29 +418,29 @@
 "quota.alert.pow.button.title" = "Chạy PoW";
 "quota.alert.quota.button.title" = "Stake VITE";
 "quota.float.view.title" = "Tính toán PoW để tạo Quota cho Giao dịch này...";
-"quota.float.view.tip" = "This Transaction costs %@Quota";
+"quota.float.view.tip" = "Giao dịch có chi phí %@Quota";
 
-"quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.";
-"quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.title.1" = "Không đủ quota";
+"quota.pow.tip.float.view.message.1" = "VITE chỉ có thể thực hiện %@ giao dịch mỗi ngày cho mỗi địa chỉ mà không cần stake VITE. Địa chỉ của bạn đã dùng hết %@ giao dịch. Vui lòng truy cập trang Quota và stake VITE của bạn để thực hiện nhiều giao dịch hơn.";
+"quota.pow.tip.float.view.pledge.1" = "Nhận quota bây giờ";
 
-"quota.pow.tip.float.view.title.2" = "Get Quota";
-"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
-"quota.pow.tip.float.view.pledge.2" = "Lock VITE";
-"quota.pow.tip.float.view.notNow.2" = "Run POW";
+"quota.pow.tip.float.view.title.2" = "Nhận Quota";
+"quota.pow.tip.float.view.message.2" = "Chúng tôi nhận thấy bạn không có VITE nào bị khóa cho Quota. Vui lòng stake VITE hoặc nếu muốn, hoặc bạn có thể chạy POW để nhận Quota.";
+"quota.pow.tip.float.view.pledge.2" = "Khoá VITE";
+"quota.pow.tip.float.view.notNow.2" = "Chạy POW";
 
 
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
+"quota.pow.finished.float.view.h1" = "Bạn đã chi %1$@S trong tính toán PoW này, đồng thời bảo mật và sử dụng %2$@ Quota.";
 "quota.pow.finished.float.view.h2" = "Bạn có thể rút VITE đã stake của mình sau 3 ngày. Nếu quota bạn nhận được từ việc stake là đủ cho một giao dịch, bạn có thể bỏ qua bước PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Chuyển giao Nhanh hơn bằng Stake";
 
 /* Peldge History */
 "peldge.message" = "Hiện tại Vite App chỉ hỗ trợ kiểm tra danh sách staking, nếu cần thiết, vui lòng truy cập Ví Vite Web để rút token đã stake trong ngày đáo hạn.";
-"peldge.deadline" = "Time available to unlock";
-"peldge.title" = "Locking Record";
+"peldge.deadline" = "Thời gian mở khoá";
+"peldge.title" = "Thời gian khoá";
 "peldge.address.title" = "Người thụ hưởng";
-"peldge.cancel.peldge.button.title" = "Unlock";
+"peldge.cancel.peldge.button.title" = "Mở khóa";
 "peldge.cancel.pledge.withdrawing.title" = "Đang rút";
 "peldge.cancel.pledge.amount.error.toast" = "Số lượng rút tối thiểu là 134 VITE, vui lòng stake đủ VITE trước.";
 "peldge.cancel.pledge.agent.error.toast" = "Không phải là stake phổ biến, vui lòng thử rút tại nơi bạn đã stake.";
@@ -521,7 +521,7 @@
 "eth.page.gasFee.title" = "Phí Gas";
 "eth.page.gasFee.slow.title" = "Chậm";
 "eth.page.gasFee.fast.title" = "Nhanh";
-"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
+"eth.page.gasFee.notice.title" = "Đây là phí gas dự kiến trong điều kiện mạng lưới hiện tại. Chi phí thực tế có thể khác.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Chi tiết";
@@ -653,7 +653,7 @@
 "confirm.transaction.page.grin.confirm.button" = "Xác nhận";
 
 // Grin
-"grin.close.tips" = "Grin wallet temporarily unavailable. Access your account on another Grin supported wallet app with your Recovery Phrase.";
+"grin.close.tips" = "Ví Grin tạm thời không khả dụng. Truy cập tài khoản của bạn qua một ví hỗ trợ Grin khác bằng Cụm từ khôi phụ ví Vite.";
 "grin.balance.total" = "Tổng";
 "grin.balance.spendable" = "Có thể sử dụng";
 "grin.balance.awaiting" = "Đợi xác nhận";
@@ -794,9 +794,9 @@
 "crosschain.deposit.otherwallet" = "Nạp từ Ví khác";
 "crosschain.deposit.history" = "Lịch sử Nạp";
 "crosschain.withdraw.history" = "Lịch sử Rút";
-"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
-"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
-"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
+"crosschain.deposit.minAmountDesc" = "Chỉ %1$@ có thể nạp vào địa chỉ dưới đây. Số lượng nạp tối thiểu là %2$@. Nạp ít hơn %3$@ sẽ bị khoá và không thể khôi phục.";
+"crosschain.deposit.minComfirm" = "Tài khoản sẽ cập nhật sau khi %@ xác nhận mạng. Vui lòng đợi.";
+"crosschain.deposit.selectDesc" = "Vui lòng chọn đúng mạng chính nếu không token sẽ bị mất.";
 "crosschain.deposit.address" = "Địa chỉ Nạp";
 "crosschain.deposit.scanAddress" = "Vui lòng quét mã QR địa chỉ";
 "crosschain.deposit.scanLabel" = "Vui lòng quét mã %@";
@@ -859,7 +859,7 @@
 "crosschain.statement.detail" = "Điều khoản Dịch vụ";
 "crosschain.statement.agree" = "Bằng việc nhấp Tiếp theo, bạn đồng ý với %@ của %@";
 "crosschain.statement.title" = "Thông báo Quan trọng";
-"crosschain.chain.select.title" = "Select Network";
+"crosschain.chain.select.title" = "Chọn mạng";
 
 "unit.Million" = " Triệu";
 "unit.Billion" = " Tỷ";
@@ -1095,9 +1095,9 @@
 "fund.DepositSuccess" = "Chuyển thành công. Kiểm tra số dư sàn?";
 
 "transfer.from" = "Từ";
-"transfer.wallet.account" = "Main Wallet";
+"transfer.wallet.account" = "Ví chính";
 "transfer.to" = "Đến";
-"transfer.dex.account" = "Trading Wallet";
+"transfer.dex.account" = "Ví Sàn";
 "transfer.token" = "Token";
 "transfer.amount" = "Số lượng";
 "transfer.available" = "Số dư: ";
@@ -1258,18 +1258,18 @@
 "spot.page.cell.average" = "Trung bình: %@";
 
 // Spot History
-"spot.history.page.title" = "Orders";
-"spot.history.page.segment.open" = "Open Orders";
-"spot.history.page.segment.history" = "Order History";
+"spot.history.page.title" = "Các lệnh";
+"spot.history.page.segment.open" = "Lệnh đang mở";
+"spot.history.page.segment.history" = "Lịch sử lệnh";
 
-"spot.history.page.filter.title" = "Order Filter";
-"spot.history.page.filter.button.clear" = "Clear";
-"spot.history.page.filter.all" = "All";
-"spot.history.page.filter.date.title" = "Date";
-"spot.history.page.filter.date.3m" = "3 Months";
-"spot.history.page.filter.date.1m" = "1 Month";
-"spot.history.page.filter.date.1w" = "1 Week";
-"spot.history.page.filter.date.1d" = "1 Day";
+"spot.history.page.filter.title" = "Lọc lệnh";
+"spot.history.page.filter.button.clear" = "Xóa";
+"spot.history.page.filter.all" = "Tất cả";
+"spot.history.page.filter.date.title" = "Ngày";
+"spot.history.page.filter.date.3m" = "3 Tháng";
+"spot.history.page.filter.date.1m" = "1 Tháng";
+"spot.history.page.filter.date.1w" = "1 Tuần";
+"spot.history.page.filter.date.1d" = "1 Ngày";
 
 "spot.history.page.filter.token.title" = "Pair";
 
