@@ -1271,17 +1271,17 @@
 "spot.history.page.filter.date.1w" = "1 Tuần";
 "spot.history.page.filter.date.1d" = "1 Ngày";
 
-"spot.history.page.filter.token.title" = "Pair";
+"spot.history.page.filter.token.title" = "Cặp";
 
-"spot.history.page.filter.side.title" = "Type";
-"spot.history.page.filter.side.buy" = "Buy";
-"spot.history.page.filter.side.sell" = "Sell";
+"spot.history.page.filter.side.title" = "Loại";
+"spot.history.page.filter.side.buy" = "Mua";
+"spot.history.page.filter.side.sell" = "Bán";
 
-"spot.history.page.filter.status.title" = "Status";
-"spot.history.page.filter.status.open" = "Ongoing";
-"spot.history.page.filter.status.completed" = "Completed";
-"spot.history.page.filter.status.canceled" = "Cancelled";
-"spot.history.page.filter.status.failed" = "Failed";
+"spot.history.page.filter.status.title" = "Trạng thái";
+"spot.history.page.filter.status.open" = "Đang diễn ra";
+"spot.history.page.filter.status.completed" = "Đã hoàn thành";
+"spot.history.page.filter.status.canceled" = "Đã hủy";
+"spot.history.page.filter.status.failed" = "Thất bại";
 
 "grin.initing.desc" = "Đang khởi tạo, nhấp để xem chi tiết";
 "grin.initing.detail" = "1 Khởi tạo là bắt buộc khi thêm ví GRIN \n2. Quá trình này dự kiến sẽ kéo dài 15 phút \n3. Không làm gián đoạn hoặc tắt APP trong quá trình khởi tạo \n4. Khởi tạo sẽ tiêu tốn một lượng lớn dữ liệu di động, bạn nên sử dụng Wi-Fi.";
@@ -1289,7 +1289,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Tài sản DEX";
 "dex.home.page.nav.btc.valuation.title" = "Tổng giá trị (BTC)";
-"dex.home.page.segment.wallet" = "Main";
+"dex.home.page.segment.wallet" = "Chính";
 "dex.home.page.segment.dex" = "Giao dịch";
 
 "dex.home.page.header.btc.valuation.title" = "Giá trị (BTC)";
