@@ -375,10 +375,10 @@
 
 /* pow settings */
 "pow.settings.page.title" = "Configuración de PoW";
-"pow.settings.page.add.button.title" = "Añadir PoW Personalizado";
-"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
-"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
-"pow.settings.page.node.exist.error" = "Already exists";
+"pow.settings.page.add.button.title" = "Añadir nodo Pow personalizado";
+"pow.settings.page.add.alert.title" = "Por favor, introduce una URL válida para el nodo POW";
+"pow.settings.page.add.alert.tip" = "Mainnet como red actual";
+"pow.settings.page.node.exist.error" = "Ya existe";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Bloque actual";
