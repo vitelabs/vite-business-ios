@@ -794,8 +794,8 @@
 "crosschain.deposit.otherwallet" = "Depositar desde otra billetera";
 "crosschain.deposit.history" = "Historial de depósitos";
 "crosschain.withdraw.history" = "Historial de Retiros";
-"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
-"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
+"crosschain.deposit.minAmountDesc" = "Solo %1$@ puede depositarse en la dirección de abajo. El depósito mínimo es %2$@. Los depósitos inferiores a %3$@ serán bloqueados e irrecuperables.";
+"crosschain.deposit.minComfirm" = "Los saldos de la cuenta se actualizarán después de %@ confirmaciones de red. Por favor, tenga paciencia.";
 "crosschain.deposit.selectDesc" = "Por favor, seleccione la red principal correcta o no podrá recuperar ningún token perdido.";
 "crosschain.deposit.address" = "Dirección de depósito";
 "crosschain.deposit.scanAddress" = "Por favor, escanea el código QR de la dirección";
@@ -1258,30 +1258,30 @@
 "spot.page.cell.average" = "Promedio: %@";
 
 // Spot History
-"spot.history.page.title" = "Orders";
-"spot.history.page.segment.open" = "Open Orders";
-"spot.history.page.segment.history" = "Order History";
+"spot.history.page.title" = "Ordenes";
+"spot.history.page.segment.open" = "Órdenes abiertas";
+"spot.history.page.segment.history" = "Historial de órdenes";
 
-"spot.history.page.filter.title" = "Order Filter";
-"spot.history.page.filter.button.clear" = "Clear";
-"spot.history.page.filter.all" = "All";
-"spot.history.page.filter.date.title" = "Date";
-"spot.history.page.filter.date.3m" = "3 Months";
-"spot.history.page.filter.date.1m" = "1 Month";
-"spot.history.page.filter.date.1w" = "1 Week";
-"spot.history.page.filter.date.1d" = "1 Day";
+"spot.history.page.filter.title" = "Filtro de Órdenes";
+"spot.history.page.filter.button.clear" = "Limpiar";
+"spot.history.page.filter.all" = "Todo";
+"spot.history.page.filter.date.title" = "Fecha";
+"spot.history.page.filter.date.3m" = "3 Meses";
+"spot.history.page.filter.date.1m" = "1 Mes";
+"spot.history.page.filter.date.1w" = "1 Semana";
+"spot.history.page.filter.date.1d" = "1 Día";
 
-"spot.history.page.filter.token.title" = "Pair";
+"spot.history.page.filter.token.title" = "Par";
 
-"spot.history.page.filter.side.title" = "Type";
-"spot.history.page.filter.side.buy" = "Buy";
-"spot.history.page.filter.side.sell" = "Sell";
+"spot.history.page.filter.side.title" = "Tipo";
+"spot.history.page.filter.side.buy" = "Comprar";
+"spot.history.page.filter.side.sell" = "Vender";
 
-"spot.history.page.filter.status.title" = "Status";
-"spot.history.page.filter.status.open" = "Ongoing";
-"spot.history.page.filter.status.completed" = "Completed";
-"spot.history.page.filter.status.canceled" = "Cancelled";
-"spot.history.page.filter.status.failed" = "Failed";
+"spot.history.page.filter.status.title" = "Estado";
+"spot.history.page.filter.status.open" = "En curso";
+"spot.history.page.filter.status.completed" = "Completado";
+"spot.history.page.filter.status.canceled" = "Cancelado";
+"spot.history.page.filter.status.failed" = "Fallído";
 
 "grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
 "grin.initing.detail" = "1. Es necesaria la inicialización al añadir una billetera GRIN\n2. Se espera que el proceso dure 15 minutos\n3. No interrumpir o matar la APP durante la inicialización\n4. La inicialización consumirá una gran cantidad de datos celulares, se recomienda continuar el proceso mediante Wi-Fi.";
