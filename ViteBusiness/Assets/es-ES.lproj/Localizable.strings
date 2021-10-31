@@ -184,7 +184,7 @@
 "my.page.contacts.cell.title" = "Dirección de contacto";
 "my.page.mnemonic.cell.title" = "Palabras mnemónicas";
 "my.page.system.cell.title" = "Ajustes";
-"my.page.security.cell.title" = "Security";
+"my.page.security.cell.title" = "Seguridad";
 "my.page.invite.cell.title" = "Minería por referidos";
 "my.page.reward.cell.title" = "Consulta de recompensas";
 "my.page.forum.cell.title" = "Foro oficial";
@@ -193,14 +193,14 @@
 "my.page.aboutUs.wechat.alert.title" = "Escanea el código QR para seguir la cuenta oficial de Vite en WeChat";
 
 /* change password */
-"change.password.page.title" = "Change Password";
-"change.password.page.old.title" = "Enter the old password";
-"change.password.page.new.1.title" = "Enter new password";
-"change.password.page.new.2.title" = "Enter confirm password";
-"change.password.page.button.title" = "Submit";
-"change.password.page.success.toast" = "Modified successfully";
-"change.password.page.old.error.toast" = "The old password is wrong";
-"change.password.page.new.error.toast" = "Passwords do not match";
+"change.password.page.title" = "Cambiar contraseña";
+"change.password.page.old.title" = "Introduce tu contraseña anterior";
+"change.password.page.new.1.title" = "Introduzca nueva contraseña";
+"change.password.page.new.2.title" = "Introduzca confirmar la contraseña";
+"change.password.page.button.title" = "Enviar";
+"change.password.page.success.toast" = "Modificado correctamente";
+"change.password.page.old.error.toast" = "Su antigua contraseña no es correcta";
+"change.password.page.new.error.toast" = "Las contraseñas no coinciden";
 
 /* Transaction List */
 "transaction.list.page.title" = "Historial de transacciones";
@@ -355,7 +355,7 @@
 "system.page.cell.change.language" = "Idioma";
 "system.page.cell.change.currency" = "Tipo de moneda";
 "system.page.cell.node.settings" = "Ajustes del nodo";
-"system.page.cell.pow.settings" = "PoW Settings";
+"system.page.cell.pow.settings" = "Configuración de PoW";
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
