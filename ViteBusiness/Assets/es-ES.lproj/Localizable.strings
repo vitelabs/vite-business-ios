@@ -184,7 +184,7 @@
 "my.page.contacts.cell.title" = "Dirección de contacto";
 "my.page.mnemonic.cell.title" = "Palabras mnemónicas";
 "my.page.system.cell.title" = "Ajustes";
-"my.page.security.cell.title" = "Security";
+"my.page.security.cell.title" = "Seguridad";
 "my.page.invite.cell.title" = "Minería por referidos";
 "my.page.reward.cell.title" = "Consulta de recompensas";
 "my.page.forum.cell.title" = "Foro oficial";
@@ -193,14 +193,14 @@
 "my.page.aboutUs.wechat.alert.title" = "Escanea el código QR para seguir la cuenta oficial de Vite en WeChat";
 
 /* change password */
-"change.password.page.title" = "Change Password";
-"change.password.page.old.title" = "Enter the old password";
-"change.password.page.new.1.title" = "Enter new password";
-"change.password.page.new.2.title" = "Enter confirm password";
-"change.password.page.button.title" = "Submit";
-"change.password.page.success.toast" = "Modified successfully";
-"change.password.page.old.error.toast" = "The old password is wrong";
-"change.password.page.new.error.toast" = "Passwords do not match";
+"change.password.page.title" = "Cambiar contraseña";
+"change.password.page.old.title" = "Introduce tu contraseña anterior";
+"change.password.page.new.1.title" = "Introduzca nueva contraseña";
+"change.password.page.new.2.title" = "Introduzca confirmar la contraseña";
+"change.password.page.button.title" = "Enviar";
+"change.password.page.success.toast" = "Modificado correctamente";
+"change.password.page.old.error.toast" = "Su antigua contraseña no es correcta";
+"change.password.page.new.error.toast" = "Las contraseñas no coinciden";
 
 /* Transaction List */
 "transaction.list.page.title" = "Historial de transacciones";
@@ -243,17 +243,17 @@
 /* BalanceInfo */
 "balance.info.detail.balance.title" = "Saldo";
 "balance.info.detail.unconfirmed.title" = "Sin recibir";
-"balance.info.detail.unconfirmed.quota.title" = "(%@ Quota)";
+"balance.info.detail.unconfirmed.quota.title" = "(%@ Cuota)";
 "balance.info.detail.available.amount.title" = "Disponible";
-"balance.info.detail.pledge.amount.title" = "Locked";
+"balance.info.detail.pledge.amount.title" = "Bloqueado";
 "balance.info.detail.show.transactions.button.title" = "Comprobar el historial de transacciones en Ethereum Explorer";
 "balance.info.detail.reveice.button.title" = "Recibir";
 "balance.info.detail.send.button.title" = "Enviar";
 "balance.info.detail.vote" = "Votar";
 "balance.info.detail.pledge" = "Obtener Cuota";
 "balance.info.detail.exchange.vite" = "Convertir VITE";
-"balance.info.detail.pledge.count.content" = "Quota Available/Quota Limit";
-"balance.info.detail.pledge.none.tip" = "0 Quota/0 Quota";
+"balance.info.detail.pledge.count.content" = "Cuota disponible/Cuota límite";
+"balance.info.detail.pledge.none.tip" = "0 Cuota/0 Cuota";
 
 "gateway.info.detail.page.title" = "Detalles del Gateway";
 "gateway.info.detail.page.name" = "Nombre del Gateway";
@@ -299,9 +299,9 @@
 "send.page.title" = "Enviar";
 "send.page.my.address.title" = "Mi dirección %@";
 "send.page.my.balance.title" = "Saldo";
-"send.page.wallet.balance.title" = "Wallet Balance";
-"send.page.my.pledge.title" = "Locked Amount";
-"send.page.my.quota.title" = "Quota Available/Quota Limit";
+"send.page.wallet.balance.title" = "Balance de Billetera";
+"send.page.my.pledge.title" = "Cantidad bloqueada";
+"send.page.my.quota.title" = "Cuota disponible/Cuota límite";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
 "send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
@@ -355,8 +355,8 @@
 "system.page.cell.change.language" = "Idioma";
 "system.page.cell.change.currency" = "Tipo de moneda";
 "system.page.cell.node.settings" = "Ajustes del nodo";
-"system.page.cell.pow.settings" = "PoW Settings";
-"system.page.cell.login.pwd" = "Desbloquear por contraseña";
+"system.page.cell.pow.settings" = "Configuración de PoW";
+"system.page.cell.login.pwd" = "Bloqueo automático";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Cerrar sesión/cambiar de billetera";
@@ -374,11 +374,11 @@
 "node.settings.page.node.exist.error" = "El nodo ya existe";
 
 /* pow settings */
-"pow.settings.page.title" = "PoW Settings";
-"pow.settings.page.add.button.title" = "Add Custom PoW";
-"pow.settings.page.add.alert.title" = "Please enter a valid PoW URL";
-"pow.settings.page.add.alert.tip" = "The current network is Mainnet";
-"pow.settings.page.node.exist.error" = "Already exists";
+"pow.settings.page.title" = "Configuración de PoW";
+"pow.settings.page.add.button.title" = "Añadir nodo Pow personalizado";
+"pow.settings.page.add.alert.title" = "Por favor, introduce una URL válida para el nodo POW";
+"pow.settings.page.add.alert.tip" = "Mainnet como red actual";
+"pow.settings.page.node.exist.error" = "Ya existe";
 
 /* about us */
 "aboutUs.page.cell.blockHeight" = "Bloque actual";
@@ -398,13 +398,13 @@
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
 "quota.manage.page.input.address.title" = "Beneficiario de la cuota";
-"quota.manage.page.quota.money.title" = "Locked Amount";
+"quota.manage.page.quota.money.title" = "Cantidad bloqueada";
 "quota.manage.page.quota.quota.title" = "Cuota";
 "quota.manage.page.quota.money.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
-"quota.manage.page.quota.snapshoot.height.title" = "Lock period";
+"quota.manage.page.quota.snapshoot.height.title" = "Periodo de bloqueo";
 "quota.manage.page.quota.snapshoot.height.desc" = "Aproximadamente %@ días";
-"quota.manage.page.submit.btn.title" = "Submit to lock";
-"quota.manage.page.check.quotaList.btn.title" = "Locking Record";
+"quota.manage.page.submit.btn.title" = "Confirmar bloqueo";
+"quota.manage.page.check.quotaList.btn.title" = "Registros de bloqueos";
 "quota.manage.page.toast.money.error" = "La cantidad a bloquear no debe ser menor que 134";
 "quota.submit.pop.desc" = "Asegúrate de bloquear %@ para obtener cuota, no podrás retirarlo hasta en 3 días después que el bloqueo entre en rigor.";
 "quota.submit.pop.submit.btn.title" = "Confirmar";
@@ -418,10 +418,10 @@
 "quota.alert.pow.button.title" = "Ejecutar el PoW";
 "quota.alert.quota.button.title" = "Bloquear VITE";
 "quota.float.view.title" = "Calculando el PoW necesario para asegurar la cuota para esta transacción...";
-"quota.float.view.tip" = "This Transaction costs %@Quota";
+"quota.float.view.tip" = "Esta transacción cuesta %@Cuota";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
-"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y por dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones disponibles. Por favor, ve a la página de cuotas y deja bloqueado VITE para realizar más transacciones.";
+"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones. Ve a la página de cuotas y bloquea tu VITE para realizar más transacciones.";
 "quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
@@ -431,16 +431,16 @@
 
 
 "quota.pow.finished.float.view.title" = "Transacción enviada";
-"quota.pow.finished.float.view.h1" = "You spent %1$@S in this PoW computation, and secured and used %2$@Quota.";
+"quota.pow.finished.float.view.h1" = "Has gastado %1$@S en el computo de este PoW, y has asegurado y usado %2$@Cuota.";
 "quota.pow.finished.float.view.h2" = "Puedes retirar el VITE bloqueado después de 3 días. Si la cuota que recibiste al bloquear es suficiente para una transacción, puedes saltarte este paso de PoW.";
 "quota.pow.finished.float.view.pledge.button.title" = "Realiza transacciones más rápido al bloquear VITE";
 
 /* Peldge History */
 "peldge.message" = "Actualmente la aplicación de Vite sólo soporta comprobar la lista de staking, por favor vaya a la billetera Web si necesita retirar los token en stake que estén con la fecha de vencimiento cumplida.";
-"peldge.deadline" = "Time available to unlock";
-"peldge.title" = "Locking Record";
+"peldge.deadline" = "Tiempo disponible para desbloquear";
+"peldge.title" = "Registros de bloqueos";
 "peldge.address.title" = "Beneficiario";
-"peldge.cancel.peldge.button.title" = "Unlock";
+"peldge.cancel.peldge.button.title" = "Desbloquear";
 "peldge.cancel.pledge.withdrawing.title" = "Retirando";
 "peldge.cancel.pledge.amount.error.toast" = "El cantidad mínima a retirar es 134 VITE, por favor deje VITE suficiente en stake primero.";
 "peldge.cancel.pledge.agent.error.toast" = "Stake no común, por favor intenta retirar donde has colocado el stake.";
@@ -521,7 +521,7 @@
 "eth.page.gasFee.title" = "Tarifa de gas";
 "eth.page.gasFee.slow.title" = "Lento";
 "eth.page.gasFee.fast.title" = "Rápido";
-"eth.page.gasFee.notice.title" = "Devolveremos el resto de gas a su cuenta";
+"eth.page.gasFee.notice.title" = "Esta es una tarifa estimada de gas de acuerdo con el tráfico actual de la red. El costo real puede diferir.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Detalles";
@@ -794,8 +794,8 @@
 "crosschain.deposit.otherwallet" = "Depositar desde otra billetera";
 "crosschain.deposit.history" = "Historial de depósitos";
 "crosschain.withdraw.history" = "Historial de Retiros";
-"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
-"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
+"crosschain.deposit.minAmountDesc" = "Solo %1$@ puede depositarse en la dirección de abajo. El depósito mínimo es %2$@. Los depósitos inferiores a %3$@ serán bloqueados e irrecuperables.";
+"crosschain.deposit.minComfirm" = "Los saldos de la cuenta se actualizarán después de %@ confirmaciones de red. Por favor, tenga paciencia.";
 "crosschain.deposit.selectDesc" = "Por favor, seleccione la red principal correcta o no podrá recuperar ningún token perdido.";
 "crosschain.deposit.address" = "Dirección de depósito";
 "crosschain.deposit.scanAddress" = "Por favor, escanea el código QR de la dirección";
@@ -1095,9 +1095,9 @@
 "fund.DepositSuccess" = "Transferencia exitosa. ¿Comprobar el saldo del exchange?";
 
 "transfer.from" = "Desde";
-"transfer.wallet.account" = "Main Wallet";
+"transfer.wallet.account" = "Billetera principal";
 "transfer.to" = "A";
-"transfer.dex.account" = "Trading Wallet";
+"transfer.dex.account" = "Billetera de trading";
 "transfer.token" = "Token";
 "transfer.amount" = "Cantidad";
 "transfer.available" = "Saldo: ";
@@ -1258,30 +1258,30 @@
 "spot.page.cell.average" = "Promedio: %@";
 
 // Spot History
-"spot.history.page.title" = "Orders";
-"spot.history.page.segment.open" = "Open Orders";
-"spot.history.page.segment.history" = "Order History";
+"spot.history.page.title" = "Ordenes";
+"spot.history.page.segment.open" = "Órdenes abiertas";
+"spot.history.page.segment.history" = "Historial de órdenes";
 
-"spot.history.page.filter.title" = "Order Filter";
-"spot.history.page.filter.button.clear" = "Clear";
-"spot.history.page.filter.all" = "All";
-"spot.history.page.filter.date.title" = "Date";
-"spot.history.page.filter.date.3m" = "3 Months";
-"spot.history.page.filter.date.1m" = "1 Month";
-"spot.history.page.filter.date.1w" = "1 Week";
-"spot.history.page.filter.date.1d" = "1 Day";
+"spot.history.page.filter.title" = "Filtro de Órdenes";
+"spot.history.page.filter.button.clear" = "Limpiar";
+"spot.history.page.filter.all" = "Todo";
+"spot.history.page.filter.date.title" = "Fecha";
+"spot.history.page.filter.date.3m" = "3 Meses";
+"spot.history.page.filter.date.1m" = "1 Mes";
+"spot.history.page.filter.date.1w" = "1 Semana";
+"spot.history.page.filter.date.1d" = "1 Día";
 
-"spot.history.page.filter.token.title" = "Pair";
+"spot.history.page.filter.token.title" = "Par";
 
-"spot.history.page.filter.side.title" = "Type";
-"spot.history.page.filter.side.buy" = "Buy";
-"spot.history.page.filter.side.sell" = "Sell";
+"spot.history.page.filter.side.title" = "Tipo";
+"spot.history.page.filter.side.buy" = "Comprar";
+"spot.history.page.filter.side.sell" = "Vender";
 
-"spot.history.page.filter.status.title" = "Status";
-"spot.history.page.filter.status.open" = "Ongoing";
-"spot.history.page.filter.status.completed" = "Completed";
-"spot.history.page.filter.status.canceled" = "Cancelled";
-"spot.history.page.filter.status.failed" = "Failed";
+"spot.history.page.filter.status.title" = "Estado";
+"spot.history.page.filter.status.open" = "En curso";
+"spot.history.page.filter.status.completed" = "Completado";
+"spot.history.page.filter.status.canceled" = "Cancelado";
+"spot.history.page.filter.status.failed" = "Fallído";
 
 "grin.initing.desc" = "Inicializando, haga clic para ver los detalles";
 "grin.initing.detail" = "1. Es necesaria la inicialización al añadir una billetera GRIN\n2. Se espera que el proceso dure 15 minutos\n3. No interrumpir o matar la APP durante la inicialización\n4. La inicialización consumirá una gran cantidad de datos celulares, se recomienda continuar el proceso mediante Wi-Fi.";
@@ -1289,7 +1289,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Activos DEX";
 "dex.home.page.nav.btc.valuation.title" = "Valor total (BTC)";
-"dex.home.page.segment.wallet" = "Main";
+"dex.home.page.segment.wallet" = "Principal";
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Valor (BTC)";

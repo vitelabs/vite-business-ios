@@ -356,9 +356,9 @@
 "system.page.cell.change.currency" = "통화";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.pow.settings" = "PoW Settings";
-"system.page.cell.login.pwd" = "비밀번호로 잠금해제";
-"system.page.cell.login.faceId" = "페이스 아이디로 잠금 해제";
-"system.page.cell.login.touchId" = "터치 아이디로 잠금 해제";
+"system.page.cell.login.pwd" = "Auto-Lock";
+"system.page.cell.login.faceId" = "Face ID";
+"system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "로그아웃/지갑 변경";
 "system.page.cell.upload.log.title" = "업로드 로그";
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";
@@ -521,7 +521,7 @@
 "eth.page.gasFee.title" = "가스 수수료";
 "eth.page.gasFee.slow.title" = "느리게";
 "eth.page.gasFee.fast.title" = "빠르게";
-"eth.page.gasFee.notice.title" = "귀하의 계정으로 남은 가스 수수료를 돌려드립니다.";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "상세정보";

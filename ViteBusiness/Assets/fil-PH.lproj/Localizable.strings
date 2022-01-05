@@ -356,7 +356,7 @@
 "system.page.cell.change.currency" = "Salapi";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.pow.settings" = "PoW Settings";
-"system.page.cell.login.pwd" = "I-unlock sa pamamagitan ng Password";
+"system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Pag-logout / magpalit ng wallet";
@@ -521,7 +521,7 @@
 "eth.page.gasFee.title" = "Bayad sa Gas";
 "eth.page.gasFee.slow.title" = "Mabagal";
 "eth.page.gasFee.fast.title" = "Mabilis";
-"eth.page.gasFee.notice.title" = "Ibabalik namin ang natitirang gas sa iyong account";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Mga Detalye";

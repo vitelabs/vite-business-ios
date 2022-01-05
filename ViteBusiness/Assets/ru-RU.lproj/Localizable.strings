@@ -356,7 +356,7 @@
 "system.page.cell.change.currency" = "Валюта";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.pow.settings" = "PoW Settings";
-"system.page.cell.login.pwd" = "Разблокировать по паролю";
+"system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Выйти/Сменить аккаунт";
@@ -521,7 +521,7 @@
 "eth.page.gasFee.title" = "Комиссия ETH (Gas)";
 "eth.page.gasFee.slow.title" = "Медленно";
 "eth.page.gasFee.fast.title" = "Быстро";
-"eth.page.gasFee.notice.title" = "Мы вернем остаток газа обратно на ваш аккаунт";
+"eth.page.gasFee.notice.title" = "This is an estimated gas fee according to the current network traffic. The actual cost may differ.";
 
 // eth transaction detail
 "eth.transaction.detail.page.title" = "Подробнее";
