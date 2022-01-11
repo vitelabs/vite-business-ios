@@ -40,16 +40,13 @@ class MiningTradingViewController: BaseTableViewController {
             $0.distribution = .fill
             $0.spacing = 0
         }
-        var height: CGFloat = 20
+        var height: CGFloat = 0
         height += MiningColorfulView.height
-        height += 6
         height += DetailView.height
         height += ListHeaderView.height
         view.frame = CGRect(x: 0, y: 0, width: 0, height: height)
 
-        view.addPlaceholder(height: 20)
         view.addArrangedSubview(totalView.padding(horizontal: 12))
-        view.addPlaceholder(height: 6)
         view.addArrangedSubview(detailView.padding(horizontal: 12))
         view.addArrangedSubview(listHeaderView.padding(horizontal: 12))
 
@@ -60,7 +57,7 @@ class MiningTradingViewController: BaseTableViewController {
         HDWalletManager.instance.accountDriver.drive(onNext: {[weak self] (account) in
             guard let `self` = self else { return }
             if let address = account?.address {
-                let vm = MiningTradingListViewModel(tableView: self.tableView, address: "vite_836ba5e4d3f75b013bf33f1a19fafdcacc59eb8eb6e66d2b24")
+                let vm = MiningTradingListViewModel(tableView: self.tableView, address: address)
                 vm.totalViewModelBehaviorRelay.bind { [weak self] in
                     guard let `self` = self else { return }
                     self.totalView.valueLabel.text = $0 ?? "--.--"
@@ -83,15 +80,15 @@ extension MiningTradingViewController {
 
     class DetailView: UIView {
 
-        static let height: CGFloat = 256
+        static let height: CGFloat = 276
 
-        let titleLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.text = R.string.localizable.miningTradingPageHeaderTitle()
-        }
-
-        let lineImg = UIImageView(image: R.image.dotted_line()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.3)).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
+//        let titleLabel = UILabel().then {
+//            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+//            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+//            $0.text = R.string.localizable.miningTradingPageHeaderTitle()
+//        }
+//
+//        let lineImg = UIImageView(image: R.image.dotted_line()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.3)).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
 
         let viteView = ItemView(type: .VITE)
         let btcView = ItemView(type: .BTC)
@@ -101,51 +98,51 @@ extension MiningTradingViewController {
         override init(frame: CGRect) {
             super.init(frame: frame)
 
-            layer.masksToBounds = true
-            layer.cornerRadius = 2
-            backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 24, height: type(of: self).height), colors: [
-                UIColor(netHex: 0xE3F0FF),
-                UIColor(netHex: 0xF2F8FF),
-            ])
+//            layer.masksToBounds = true
+//            layer.cornerRadius = 2
+//            backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 24, height: type(of: self).height), colors: [
+//                UIColor(netHex: 0xE3F0FF),
+//                UIColor(netHex: 0xF2F8FF),
+//            ])
 
-            addSubview(titleLabel)
-            addSubview(lineImg)
+//            addSubview(titleLabel)
+//            addSubview(lineImg)
             addSubview(viteView)
             addSubview(btcView)
             addSubview(ethView)
             addSubview(usdtView)
 
-            titleLabel.snp.makeConstraints { (m) in
-                m.top.left.equalToSuperview().offset(12)
-            }
-
-            lineImg.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(40)
-                m.left.right.equalToSuperview().inset(12)
-            }
+//            titleLabel.snp.makeConstraints { (m) in
+//                m.top.left.equalToSuperview().offset(12)
+//            }
+//
+//            lineImg.snp.makeConstraints { (m) in
+//                m.top.equalToSuperview().offset(40)
+//                m.left.right.equalToSuperview().inset(12)
+//            }
 
             snp.makeConstraints { (m) in
                 m.height.equalTo(type(of: self).height)
             }
 
             viteView.snp.makeConstraints { (m) in
-                m.top.equalTo(lineImg.snp.bottom).offset(12)
-                m.left.right.equalToSuperview().inset(12)
+                m.top.equalToSuperview().offset(0)
+                m.left.right.equalToSuperview()
             }
 
             btcView.snp.makeConstraints { (m) in
-                m.top.equalTo(viteView.snp.bottom).offset(16)
-                m.left.right.equalToSuperview().inset(12)
+                m.top.equalTo(viteView.snp.bottom).offset(12)
+                m.left.right.equalToSuperview()
             }
 
             ethView.snp.makeConstraints { (m) in
-                m.top.equalTo(btcView.snp.bottom).offset(16)
-                m.left.right.equalToSuperview().inset(12)
+                m.top.equalTo(btcView.snp.bottom).offset(12)
+                m.left.right.equalToSuperview()
             }
 
             usdtView.snp.makeConstraints { (m) in
-                m.top.equalTo(ethView.snp.bottom).offset(16)
-                m.left.right.equalToSuperview().inset(12)
+                m.top.equalTo(ethView.snp.bottom).offset(12)
+                m.left.right.equalToSuperview()
             }
         }
 
@@ -155,29 +152,29 @@ extension MiningTradingViewController {
 
         func bind(vm: MiningTradingViewModel?) {
             if let vm = vm {
-                viteView.feeLabel.text = vm.viteFee
-                viteView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) \(vm.viteEarnings) VX"
+                viteView.feeLabel.text = "\(vm.viteFee) VITE"
+                viteView.earningsLabel.text = "\(vm.viteEarnings) VX"
 
-                btcView.feeLabel.text = vm.btcFee
-                btcView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) \(vm.btcEarnings) VX"
+                btcView.feeLabel.text = "\(vm.btcFee) VITE"
+                btcView.earningsLabel.text = "\(vm.btcEarnings) VX"
 
-                ethView.feeLabel.text = vm.ethFee
-                ethView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) \(vm.ethEarnings) VX"
+                ethView.feeLabel.text = "\(vm.ethFee) VITE"
+                ethView.earningsLabel.text = "\(vm.ethEarnings) VX"
 
-                usdtView.feeLabel.text = vm.usdtFee
-                usdtView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) \(vm.usdtEarnings) VX"
+                usdtView.feeLabel.text = "\(vm.usdtFee) VITE"
+                usdtView.earningsLabel.text = "\(vm.usdtEarnings) VX"
             } else {
-                viteView.feeLabel.text = "--.--"
-                viteView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) --.-- VX"
+                viteView.feeLabel.text = "--.-- VITE"
+                viteView.earningsLabel.text = "--.-- VX"
 
-                btcView.feeLabel.text = "--.--"
-                btcView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) --.-- VX"
+                btcView.feeLabel.text = "--.-- VITE"
+                btcView.earningsLabel.text = "--.-- VX"
 
-                ethView.feeLabel.text = "--.--"
-                ethView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) --.-- VX"
+                ethView.feeLabel.text = "--.-- VITE"
+                ethView.earningsLabel.text = "--.-- VX"
 
-                usdtView.feeLabel.text = "--.--"
-                usdtView.earningsLabel.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) --.-- VX"
+                usdtView.feeLabel.text = "--.-- VITE"
+                usdtView.earningsLabel.text = "--.-- VX"
             }
 
         }
@@ -215,20 +212,21 @@ extension MiningTradingViewController {
             }
 
             let feeLabel = UILabel().then {
-                $0.textColor = UIColor(netHex: 0x3E4A59)
-                $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
                 $0.text = "--.--"
             }
 
-            let symbolLabel = UILabel().then {
-                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            let earningsTitleLabel = UILabel().then {
+                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
                 $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+                $0.text = R.string.localizable.miningTradingPageHeaderExpect()
             }
 
             let earningsLabel = UILabel().then {
-                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
-                $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-                $0.text = "\(R.string.localizable.miningTradingPageHeaderExpect()) --.-- VX"
+                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 1)
+                $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+                $0.text = "--.-- VX"
             }
 
 
@@ -236,41 +234,46 @@ extension MiningTradingViewController {
                 super.init(frame: .zero)
 
                 iconImageView.image = type.image
-                symbolLabel.text = type.symbol
 
                 addSubview(iconImageView)
                 addSubview(feeTitleLabel)
                 addSubview(feeLabel)
-                addSubview(symbolLabel)
+                addSubview(earningsTitleLabel)
                 addSubview(earningsLabel)
+                
+                backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 24, height: 60), colors: [
+                    UIColor(netHex: 0xE3F0FF),
+                    UIColor(netHex: 0xF2F8FF),
+                ])
 
                 iconImageView.snp.makeConstraints { (m) in
-                    m.top.left.equalToSuperview()
-                    m.size.equalTo(CGSize(width: 16, height: 16))
+                    m.centerY.equalToSuperview()
+                    m.left.equalToSuperview().offset(12)
+                    m.size.equalTo(CGSize(width: 24, height: 24))
                 }
 
                 feeTitleLabel.snp.makeConstraints { (m) in
-                    m.centerY.equalTo(iconImageView)
-                    m.left.equalTo(iconImageView.snp.right).offset(8)
+                    m.top.equalToSuperview().offset(12)
+                    m.left.equalTo(iconImageView.snp.right).offset(12)
                 }
-
-                symbolLabel.snp.makeConstraints { (m) in
-                    m.centerY.equalTo(iconImageView)
-                    m.right.equalToSuperview().offset(-12)
-                }
-
+                
                 feeLabel.snp.makeConstraints { (m) in
-                    m.centerY.equalTo(iconImageView)
-                    m.right.equalTo(symbolLabel.snp.left).offset(-6)
+                    m.centerY.equalTo(feeTitleLabel)
+                    m.left.equalTo(feeTitleLabel.snp.right).offset(5)
+                }
+
+                earningsTitleLabel.snp.makeConstraints { (m) in
+                    m.bottom.equalToSuperview().offset(-12)
+                    m.left.equalTo(iconImageView.snp.right).offset(12)
                 }
 
                 earningsLabel.snp.makeConstraints { (m) in
-                    m.bottom.equalToSuperview()
-                    m.right.equalToSuperview().offset(-12)
+                    m.centerY.equalTo(earningsTitleLabel)
+                    m.left.equalTo(earningsTitleLabel.snp.right).offset(5)
                 }
 
                 self.snp.makeConstraints { (m) in
-                    m.height.equalTo(36)
+                    m.height.equalTo(60)
                 }
             }
 
@@ -282,7 +285,7 @@ extension MiningTradingViewController {
 
     class ListHeaderView: UIView {
 
-        static let height: CGFloat = 40
+        static let height: CGFloat = 38
 
         let titleLabel = UILabel().then {
             $0.textColor = UIColor(netHex: 0x3E4A59)
@@ -295,7 +298,7 @@ extension MiningTradingViewController {
 
             addSubview(titleLabel)
             titleLabel.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(16)
+                m.top.equalToSuperview().offset(14)
                 m.left.right.equalToSuperview()
             }
 

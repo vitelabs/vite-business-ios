@@ -1191,17 +1191,17 @@
 "mining.page.segment.invite" = "邀請挖礦";
 "mining.page.segment.making" = "掛單挖礦";
 
-"mining.page.header.total.real.time" = "實時挖礦數據";
+"mining.page.header.total.real.time" = "實時數據";
 "mining.page.list.title" = "挖礦明細";
 
-"mining.trading.page.header.total.earnings" = "交易挖礦總收益";
+"mining.trading.page.header.total.earnings" = "交易挖礦總收益(VX)";
 "mining.trading.page.header.total.earnings.alert.title" = "說明";
 "mining.trading.page.header.total.earnings.alert.message" = "當前頁面展示的手續費花銷僅為平台基礎手續費0.2%，實際估算挖礦成本時請注意不同交易對的運營手續費";
 
 
 "mining.trading.page.header.fee" = "手續費";
-"mining.trading.page.header.title" = "今日挖礦預估";
-"mining.trading.page.header.expect" = "預計今日可挖";
+"mining.trading.page.header.title" = "挖礦";
+"mining.trading.page.header.expect" = "預計挖礦";
 
 "mining.trading.page.cell.fee" = "手續費金額";
 

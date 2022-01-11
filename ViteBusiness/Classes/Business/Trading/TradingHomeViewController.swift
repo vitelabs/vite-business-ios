@@ -18,9 +18,6 @@ class TradingHomeViewController: BaseViewController {
     let spotVC = SpotViewController(symbol: "VITE_BTC-000")
     #endif
 
-//    let miningVC = MiningViewController()
-//    let dividendsVC = DividendsViewController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -54,9 +51,13 @@ class TradingHomeViewController: BaseViewController {
         segmentView.changed = { index in
             plog(level: .debug, log: index)
             if index == 1 {
-                WebHandler.openMarketMining()
+                let vc = MiningViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                WebHandler.openMarketMining()
             } else if index == 2 {
-                WebHandler.openMarketDividend()
+                let vc = DividendsViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+//                WebHandler.openMarketDividend()
             }
 
             DispatchQueue.main.async {

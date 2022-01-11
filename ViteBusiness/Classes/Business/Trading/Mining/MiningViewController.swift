@@ -32,10 +32,10 @@ class MiningViewController: BaseViewController {
         pageStyle.bottomLineRadius = 0
         pageStyle.isTitleViewScrollEnabled = true
         pageStyle.titleViewBackgroundColor = UIColor.clear
-        pageStyle.titleSelectedColor = UIColor.init(netHex: 0x3E4A59)
-        pageStyle.titleColor = UIColor.init(netHex: 0x3E4A59, alpha: 0.7)
+        pageStyle.titleSelectedColor = UIColor.init(netHex: 0xffffff)
+        pageStyle.titleColor = UIColor.init(netHex: 0xffffff, alpha: 0.7)
         pageStyle.titleFont = UIFont.boldSystemFont(ofSize: 13)
-        pageStyle.bottomLineColor = Colors.blueBg
+        pageStyle.bottomLineColor = UIColor.init(netHex: 0xffffff)
         pageStyle.bottomLineHeight = 2
         pageStyle.bottomLineWidth = 20
 
@@ -52,19 +52,27 @@ class MiningViewController: BaseViewController {
     }
 
     fileprivate func setupView() {
-
+        navigationBarStyle = .clear
+        navigationItem.title = R.string.localizable.tradingHomePageSegmentMining()
+        let navBgView = UIImageView(image: R.image.dex_nav_bg())
         let hLine = UIView().then {
             $0.backgroundColor = UIColor(netHex: 0xD3DFEF)
         }
 
+        view.addSubview(navBgView)
         view.addSubview(manager.titleView)
         view.addSubview(manager.contentView)
         view.addSubview(hLine)
 
         manager.contentView.delegate = self
+        
+        navBgView.snp.makeConstraints { (m) in
+            m.top.left.right.equalToSuperview()
+            m.bottom.equalTo(view.safeAreaLayoutGuideSnpTop).offset(38)
+        }
 
         manager.titleView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+            make.bottom.equalTo(navBgView.snp.bottom)
             make.left.equalToSuperview().offset(9)
             make.right.equalToSuperview().offset(-9)
             make.height.equalTo(36)

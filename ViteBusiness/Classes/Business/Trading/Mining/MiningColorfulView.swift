@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 class MiningColorfulView: UIView {
 
     static let height: CGFloat = 78
 
     let leftButton = UIButton().then {
-        $0.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .normal)
-        $0.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
+        $0.setTitleColor(UIColor.init(netHex: 0x3E4A59, alpha: 0.6), for: .normal)
+        $0.setTitleColor(UIColor.init(netHex: 0x3E4A59, alpha: 0.6), for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
         $0.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -24,10 +25,10 @@ class MiningColorfulView: UIView {
     }
 
     let rightButton = UIButton().then {
-        $0.setTitleColor(UIColor.white, for: .normal)
-        $0.setTitleColor(UIColor.white.highlighted, for: .highlighted)
-        $0.setImage(R.image.icon_mining_trading_right_white(), for: .normal)
-        $0.setImage(R.image.icon_mining_trading_right_white()?.highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor.init(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor.init(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_mining_trading_right_white()?.tintColor(UIColor.init(netHex: 0x007AFF)), for: .normal)
+        $0.setImage(R.image.icon_mining_trading_right_white()?.tintColor(UIColor.init(netHex: 0x007AFF)).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
         $0.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -38,7 +39,7 @@ class MiningColorfulView: UIView {
     }
 
     let valueLabel = UILabel().then {
-        $0.textColor = .white
+        $0.textColor = UIColor.init(netHex: 0x24272B)
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.numberOfLines = 1
         $0.text = "--.--"
@@ -51,27 +52,25 @@ class MiningColorfulView: UIView {
         leftButton.setTitle(leftText, for: .normal)
         rightButton.setTitle(rightText, for: .normal)
 
-        layer.masksToBounds = true
-        layer.cornerRadius = 2
-        backgroundColor = UIColor.gradientColor(style: .leftTop2rightBottom, frame: CGRect(x: 0, y: 0, width: kScreenW - 24, height: type(of: self).height), colors: TokenInfo.BuildIn.vite.value.coinBackgroundGradientColors)
+        backgroundColor = .white
 
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(valueLabel)
 
         leftButton.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(12)
-            m.left.equalToSuperview().offset(12)
+            m.top.equalToSuperview().offset(16)
+            m.left.equalToSuperview()
         }
 
         rightButton.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(12)
-            m.right.equalToSuperview().offset(-12)
+            m.top.equalToSuperview().offset(16)
+            m.right.equalToSuperview()
         }
 
         valueLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(leftButton.snp.bottom).offset(10)
-            m.left.right.equalToSuperview().inset(12)
+            m.top.equalTo(leftButton.snp.bottom).offset(6)
+            m.left.right.equalToSuperview()
         }
 
         snp.makeConstraints { (m) in
@@ -79,8 +78,8 @@ class MiningColorfulView: UIView {
         }
 
         if let leftClicked = leftClicked {
-            leftButton.setImage(R.image.icon_mining_trading_infor(), for: .normal)
-            leftButton.setImage(R.image.icon_mining_trading_infor()?.highlighted, for: .highlighted)
+            leftButton.setImage(R.image.icon_mining_trading_infor()?.tintColor(UIColor.init(netHex: 0x3E4A59, alpha: 0.6)), for: .normal)
+            leftButton.setImage(R.image.icon_mining_trading_infor()?.tintColor(UIColor.init(netHex: 0x3E4A59, alpha: 0.6)).highlighted, for: .highlighted)
             leftButton.rx.tap.bind {
                 leftClicked()
             }.disposed(by: rx.disposeBag)

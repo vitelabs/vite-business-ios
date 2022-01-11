@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MiningItemCellViewModel {
     let left: String
@@ -22,25 +23,28 @@ struct MiningItemCellViewModel {
 }
 
 class MiningItemCell: BaseTableViewCell {
-    static let cellHeight: CGFloat = 70
+    static let cellHeight: CGFloat = 62
+    
+    let iconImageView = UIImageView(image: R.image.icon_mining_trading_item())
 
-    let feeLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    let earningsTitleLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+        $0.text = R.string.localizable.miningTradingPageHeaderTitle()
     }
 
     let earningsLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         $0.textColor = UIColor(netHex: 0x24272B)
     }
 
-    let symbolLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    let feeLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
     }
 
     let timeLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
     }
 
@@ -50,9 +54,10 @@ class MiningItemCell: BaseTableViewCell {
 
         selectionStyle = .none
 
-        contentView.addSubview(feeLabel)
+        contentView.addSubview(iconImageView)
+        contentView.addSubview(earningsTitleLabel)
         contentView.addSubview(earningsLabel)
-        contentView.addSubview(symbolLabel)
+        contentView.addSubview(feeLabel)
         contentView.addSubview(timeLabel)
 
         let hLine = UIView().then {
@@ -61,24 +66,29 @@ class MiningItemCell: BaseTableViewCell {
 
         addSubview(hLine)
 
-        feeLabel.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(12)
+        iconImageView.snp.makeConstraints { (m) in
+            m.centerY.equalToSuperview()
             m.left.equalToSuperview().offset(12)
+        }
+        
+        earningsTitleLabel.snp.makeConstraints { (m) in
+            m.top.equalToSuperview().offset(12)
+            m.left.equalTo(iconImageView.snp.right).offset(6)
         }
 
         earningsLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(feeLabel)
+            m.centerY.equalTo(earningsTitleLabel)
+            m.left.equalTo(earningsTitleLabel.snp.right).offset(5)
         }
 
-        symbolLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(feeLabel)
-            m.left.equalTo(earningsLabel.snp.right).offset(6)
-            m.right.equalToSuperview().offset(-12)
+        feeLabel.snp.makeConstraints { (m) in
+            m.bottom.equalToSuperview().offset(-12)
+            m.left.equalTo(iconImageView.snp.right).offset(6)
         }
 
         timeLabel.snp.makeConstraints { (m) in
-            m.bottom.equalToSuperview().offset(-12)
-            m.left.equalToSuperview().offset(12)
+            m.centerY.equalTo(feeLabel)
+            m.right.equalToSuperview().offset(-12)
         }
 
         hLine.snp.makeConstraints { (m) in
@@ -93,9 +103,8 @@ class MiningItemCell: BaseTableViewCell {
     }
 
     func bind(_ vm: MiningItemCellViewModel) {
+        earningsLabel.text = "\(vm.earnings) \(vm.symbol)"
         feeLabel.text = vm.left
-        earningsLabel.text = vm.earnings
-        symbolLabel.text = vm.symbol
         timeLabel.text = Date(timeIntervalSince1970: TimeInterval(vm.date)).format()
 
     }

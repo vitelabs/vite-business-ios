@@ -51,7 +51,7 @@ class MiningTradingListViewModel: ListViewModel<MiningTradeDetail.Trade> {
     override func cellFor(model: MiningTradeDetail.Trade, indexPath: IndexPath) -> UITableViewCell {
         let cell: MiningItemCell = tableView.dequeueReusableCell(for: indexPath)
         let vm = MiningItemCellViewModel(
-            left: "\(R.string.localizable.miningTradingPageHeaderTitle()) \(model.feeAmount.tryToTruncation8Digits()) \(model.miningToken)",
+            left: "\(R.string.localizable.miningTradingPageHeaderFee()) \(model.feeAmount.tryToTruncation8Digits()) \(model.miningToken)",
             earnings: model.miningAmount.tryToTruncation6Digits(),
             symbol: "VX",
             date: model.date)
