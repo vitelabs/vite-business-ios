@@ -1260,28 +1260,28 @@
 // Spot History
 "spot.history.page.title" = "Emirler";
 "spot.history.page.segment.open" = "Açık Emirler";
-"spot.history.page.segment.history" = "Order History";
+"spot.history.page.segment.history" = "Emir Geçmişi";
 
-"spot.history.page.filter.title" = "Order Filter";
-"spot.history.page.filter.button.clear" = "Clear";
-"spot.history.page.filter.all" = "All";
-"spot.history.page.filter.date.title" = "Date";
-"spot.history.page.filter.date.3m" = "3 Months";
-"spot.history.page.filter.date.1m" = "1 Month";
-"spot.history.page.filter.date.1w" = "1 Week";
-"spot.history.page.filter.date.1d" = "1 Day";
+"spot.history.page.filter.title" = "Emirleri Filtrele";
+"spot.history.page.filter.button.clear" = "Temizle";
+"spot.history.page.filter.all" = "Tümü";
+"spot.history.page.filter.date.title" = "Tarih";
+"spot.history.page.filter.date.3m" = "3 Ay";
+"spot.history.page.filter.date.1m" = "1 Ay";
+"spot.history.page.filter.date.1w" = "1 Hafta";
+"spot.history.page.filter.date.1d" = "1 Gün";
 
-"spot.history.page.filter.token.title" = "Pair";
+"spot.history.page.filter.token.title" = "Parite";
 
-"spot.history.page.filter.side.title" = "Type";
-"spot.history.page.filter.side.buy" = "Buy";
-"spot.history.page.filter.side.sell" = "Sell";
+"spot.history.page.filter.side.title" = "Tür";
+"spot.history.page.filter.side.buy" = "Al";
+"spot.history.page.filter.side.sell" = "Sat";
 
-"spot.history.page.filter.status.title" = "Status";
-"spot.history.page.filter.status.open" = "Ongoing";
-"spot.history.page.filter.status.completed" = "Completed";
-"spot.history.page.filter.status.canceled" = "Cancelled";
-"spot.history.page.filter.status.failed" = "Failed";
+"spot.history.page.filter.status.title" = "Durum";
+"spot.history.page.filter.status.open" = "Devam ediyor";
+"spot.history.page.filter.status.completed" = "Tamamlandı";
+"spot.history.page.filter.status.canceled" = "İptal edildi";
+"spot.history.page.filter.status.failed" = "Başarısız";
 
 "grin.initing.desc" = "Başlatılıyor, ayrıntıları görüntülemek için tıklayın";
 "grin.initing.detail" = "1. GRIN cüzdanı eklendikten sonra başlatma gereklidir\n2. İşlemin 15 dakika sürmesi beklenmektedir\n3. Başlatma sırasında APP'i kesintiye uğratmayın veya sonlandırmayın\n4. Başlatma büyük miktarda hücresel veri tüketir, işleme Wi-Fi üzerinden devam etmeniz önerilir.";
@@ -1289,7 +1289,7 @@
 // DexHome
 "dex.home.page.nav.title" = "Dex Varlıkları";
 "dex.home.page.nav.btc.valuation.title" = "Toplam Değer (BTC)";
-"dex.home.page.segment.wallet" = "Main";
+"dex.home.page.segment.wallet" = "Ana";
 "dex.home.page.segment.dex" = "Alım Satım";
 
 "dex.home.page.header.btc.valuation.title" = "Değer (BTC)";
