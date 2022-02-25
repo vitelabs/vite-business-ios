@@ -794,9 +794,9 @@
 "crosschain.deposit.otherwallet" = "Başka Cüzdandan Yatırma";
 "crosschain.deposit.history" = "Yatırma Geçmişi";
 "crosschain.withdraw.history" = "Çekim Geçmişi";
-"crosschain.deposit.minAmountDesc" = "Only %1$@ can be deposited to the address below. The minimum deposit is %2$@. Deposits less than %3$@ will be locked and unrecoverable.";
-"crosschain.deposit.minComfirm" = "Account balances will update after %@ network confirmations. Please be patient.";
-"crosschain.deposit.selectDesc" = "Please select the correct mainnet or you will be unable to retrieve any lost tokens.";
+"crosschain.deposit.minAmountDesc" = "Belirtilen adrese yalnızca %1$@ gönderilebilir. Gönderilebilecek en az miktar %2$@. %3$@'dan daha az yapılan gönderimler kilitlenecek ve kurtarılamayacak.";
+"crosschain.deposit.minComfirm" = "Hesap bakiyesi %@ ağ onayından sonra güncellenecektir. Lütfen sabırlı olun.";
+"crosschain.deposit.selectDesc" = "Lütfen doğru ana ağı seçin, yoksa kaybolan token'ları geri alamayacaksınız.";
 "crosschain.deposit.address" = "Yatırma Adresi";
 "crosschain.deposit.scanAddress" = "Lütfen adres QR kodunu tarayın";
 "crosschain.deposit.scanLabel" = "Lütfen %@ kodunu tarayın";
@@ -859,7 +859,7 @@
 "crosschain.statement.detail" = "Hizmet Şartları";
 "crosschain.statement.agree" = "İleri'ye tıkladığınızda, %@'in %@'ini kabul etmiş olursunuz";
 "crosschain.statement.title" = "Önemli Uyarı";
-"crosschain.chain.select.title" = "Select Network";
+"crosschain.chain.select.title" = "Ağ Seçin";
 
 "unit.Million" = " Milyon";
 "unit.Billion" = " Milyar";
@@ -1095,9 +1095,9 @@
 "fund.DepositSuccess" = "İşlem başarılı. Exchange bakiyesini kontrol etmek ister misin?";
 
 "transfer.from" = "Gönderici";
-"transfer.wallet.account" = "Main Wallet";
+"transfer.wallet.account" = "Ana Cüzdan";
 "transfer.to" = "Alıcı";
-"transfer.dex.account" = "Trading Wallet";
+"transfer.dex.account" = "Alım Satım Cüzdanı";
 "transfer.token" = "Token";
 "transfer.amount" = "Miktar";
 "transfer.available" = "Bakiye: ";
@@ -1258,8 +1258,8 @@
 "spot.page.cell.average" = "Ort.: %@";
 
 // Spot History
-"spot.history.page.title" = "Orders";
-"spot.history.page.segment.open" = "Open Orders";
+"spot.history.page.title" = "Emirler";
+"spot.history.page.segment.open" = "Açık Emirler";
 "spot.history.page.segment.history" = "Order History";
 
 "spot.history.page.filter.title" = "Order Filter";
