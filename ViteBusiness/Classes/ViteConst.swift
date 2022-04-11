@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Vite_GrinWallet
+//import Vite_GrinWallet
 import web3swift
 
 public struct ViteConst {

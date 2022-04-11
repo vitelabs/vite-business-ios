@@ -7,7 +7,7 @@
 
 import Foundation
 import ObjectMapper
-import Vite_GrinWallet
+//import Vite_GrinWallet
 import SwiftyJSON
 
 class GrinGatewayInfo: NSObject, Mappable {

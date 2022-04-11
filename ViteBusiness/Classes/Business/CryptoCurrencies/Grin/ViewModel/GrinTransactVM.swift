@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Vite_GrinWallet
+//import Vite_GrinWallet
 import ReactorKit
 import ViteWallet
 import BigInt

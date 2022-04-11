@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Vite_GrinWallet
+//import Vite_GrinWallet
 
 extension TxLogEntry {
     var txSentFinalized: Bool {

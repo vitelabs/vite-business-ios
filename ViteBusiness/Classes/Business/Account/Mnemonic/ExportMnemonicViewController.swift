@@ -57,6 +57,10 @@ class ExportMnemonicViewController: BaseViewController {
 
         if forGrin == false {
             updateQRImageView(name: HDWalletManager.instance.wallet!.name, mnemonic: HDWalletManager.instance.mnemonic!, language: HDWalletManager.instance.language!, password: password)
+            
+            if HDWalletManager.instance.language != MnemonicCodeBook.english {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.grinExportMnemonic(), style: .plain, target: self, action: #selector(onExportGrin))
+            }
         }
     }
 
@@ -104,6 +108,11 @@ class ExportMnemonicViewController: BaseViewController {
         confirmBtn.addTarget(self, action: #selector(confirmBtnAction), for: .touchUpInside)
         return confirmBtn
     }()
+    
+    @objc func onExportGrin() {
+        let vc = ExportMnemonicViewController(password: password, forGrin: true)
+        UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ExportMnemonicViewController {

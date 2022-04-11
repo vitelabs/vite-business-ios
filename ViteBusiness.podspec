@@ -108,7 +108,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ViteWallet'
   #s.dependency 'ViteEthereum'
-  s.dependency 'Vite_GrinWallet'
+#  s.dependency 'Vite_GrinWallet'
   s.dependency 'BinanceChain'
 
 

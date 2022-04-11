@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Vite_GrinWallet
+////import Vite_GrinWallet
 import BigInt
 import ViteWallet
 
@@ -28,7 +28,7 @@ class GrinBalance: WalletHomeBalanceInfo {
 
     init() { }
 
-    init(_ info: Vite_GrinWallet.WalletInfo) {
+    init(_ info: GRINWalletInfo) {
         let spendableBalance = Amount(info.amountCurrentlySpendable)
         amountCurrentlySpendable = spendableBalance.amount(decimals: 9, count: 9)
         amountAwaitingConfirmation =

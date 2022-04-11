@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Vite_GrinWallet
+//import Vite_GrinWallet
 import BigInt
 import ViteWallet
 

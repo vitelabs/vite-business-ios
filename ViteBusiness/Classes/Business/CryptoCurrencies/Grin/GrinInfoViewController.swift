@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import Vite_GrinWallet
+//import Vite_GrinWallet
 import RxDataSources
 import BigInt
 import Moya
@@ -137,14 +137,14 @@ class GrinInfoViewController: BaseViewController {
                 }
 
                 let titles: [String]
-                if HDWalletManager.instance.language == MnemonicCodeBook.english {
-                    titles = [R.string.localizable.grinNodeConfigNode(),
-                              R.string.localizable.grinWalletCheck()]
-                } else {
+//                if HDWalletManager.instance.language == MnemonicCodeBook.english {
+//                    titles = [R.string.localizable.grinNodeConfigNode(),
+//                              R.string.localizable.grinWalletCheck()]
+//                } else {
                     titles = [R.string.localizable.grinNodeConfigNode(),
                               R.string.localizable.grinWalletCheck(),
                               R.string.localizable.grinExportMnemonic()]
-                }
+//                }
                 FloatButtonsView(targetView: spendableAcountLabel, delegate: self, titles: titles, direction: .leftBottom, offset: CGPoint(x: 0, y: -145)).show()
             }
             .disposed(by: rx.disposeBag)
