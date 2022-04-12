@@ -251,10 +251,6 @@ PODS:
   - Toast-Swift (4.0.1)
   - TrezorCryptoEd25519WithBlake2b (0.0.1)
   - URLNavigator (2.3.0)
-  - Vite_GrinWallet (0.1.0):
-    - ObjectMapper
-    - Result
-    - SwiftyJSON
   - Vite_HDWalletKit (1.4.0):
     - BigInt
     - CryptoSwift (= 1.0.0)
@@ -307,7 +303,6 @@ PODS:
     - Then
     - Toast-Swift (~> 4.0.1)
     - URLNavigator
-    - Vite_GrinWallet
     - Vite_HDWalletKit
     - ViteWallet
     - web3swift
@@ -377,10 +372,9 @@ DEPENDENCIES:
   - SwiftyJSON
   - Then
   - Toast-Swift (~> 4.0.1)
-  - Vite_GrinWallet (from `https://github.com/vitelabs/vite-grin-wallet-ios.git`, commit `4f1141a131e223a5a41686d2e9efa636e3f1ee24`)
   - Vite_HDWalletKit (from `https://github.com/vitelabs/vite-hd-wallet-kit-ios.git`, commit `afffc6fb34690e49ae94f2fd796032e08f487c53`)
   - ViteBusiness (from `../`)
-  - ViteWallet (from `../../vite-wallet-ios/`)
+  - ViteWallet (from `../../vite-swift-kit/`)
   - XCGLogger (~> 7.0)
 
 SPEC REPOS:
@@ -472,16 +466,13 @@ EXTERNAL SOURCES:
   RazzleDazzle:
     :branch: xcode-13-beta-fixes
     :git: https://github.com/mazhigbee-pb/RazzleDazzle.git
-  Vite_GrinWallet:
-    :commit: 4f1141a131e223a5a41686d2e9efa636e3f1ee24
-    :git: https://github.com/vitelabs/vite-grin-wallet-ios.git
   Vite_HDWalletKit:
     :commit: afffc6fb34690e49ae94f2fd796032e08f487c53
     :git: https://github.com/vitelabs/vite-hd-wallet-kit-ios.git
   ViteBusiness:
     :path: "../"
   ViteWallet:
-    :path: "../../vite-wallet-ios/"
+    :path: "../../vite-swift-kit/"
 
 CHECKOUT OPTIONS:
   BinanceChain:
@@ -490,9 +481,6 @@ CHECKOUT OPTIONS:
   RazzleDazzle:
     :commit: 5d07292537f20a0b97dcd0d0ff5206fc94a6cbbc
     :git: https://github.com/mazhigbee-pb/RazzleDazzle.git
-  Vite_GrinWallet:
-    :commit: 4f1141a131e223a5a41686d2e9efa636e3f1ee24
-    :git: https://github.com/vitelabs/vite-grin-wallet-ios.git
   Vite_HDWalletKit:
     :commit: afffc6fb34690e49ae94f2fd796032e08f487c53
     :git: https://github.com/vitelabs/vite-hd-wallet-kit-ios.git
@@ -577,13 +565,12 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   TrezorCryptoEd25519WithBlake2b: e70fc022094a2f2aa8b86117ab1085d7a7b62098
   URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
-  Vite_GrinWallet: e8f6c83adc0dbd9adcd110a4d51807cf43700582
   Vite_HDWalletKit: b37755ff71dd8d22ab5fa8d9dc8b6f5bf2fbfec5
-  ViteBusiness: a093a3003bff6bc48dce4539fe1aa91b7aa19938
+  ViteBusiness: 2b9cbdf3deafbc7727512e4e3ae6b26af7ba9ac8
   ViteWallet: 1276f22515bd7958156bc87499c1070d5aa13832
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: d3b90c6efdea9f0a0e8650462e549344dee47c3a
+PODFILE CHECKSUM: 95ae893f305eefaaaa3ba5512efe35cb72875b05
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

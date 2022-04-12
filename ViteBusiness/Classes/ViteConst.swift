@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import Vite_GrinWallet
 import web3swift
 
 public struct ViteConst {
@@ -27,11 +26,6 @@ public struct ViteConst {
     public var eth: Eth {
         return currentEnv.eth
     }
-
-    public var grin: Grin {
-        return currentEnv.grin
-    }
-
 
     public var crossChain: CrossChain {
         return currentEnv.crossChain
@@ -71,7 +65,6 @@ public extension ViteConst {
         public let viteCoin: String
         public let etherCoin: String
         public let viteERC20: String
-        public let grinCoin: String
         public let bnbCoin: String
     }
 
@@ -103,13 +96,6 @@ public extension ViteConst {
         public var api: String
     }
 
-    struct Grin {
-        public var nodeHttp: String
-        public var apiSecret: String
-        public var chainType: String
-        public var x: String
-    }
-
     struct CrossChain {
         public struct ETH {
             public var gateway: String
@@ -133,12 +119,11 @@ public extension ViteConst {
             case premainnet
         }
 
-        init(type: EnvType,cos:Cos,vite:Vite,eth:Eth,grin:Grin, crossChain: CrossChain,market: Market ) {
+        init(type: EnvType,cos:Cos,vite:Vite,eth:Eth, crossChain: CrossChain,market: Market ) {
             self.type = type
             self.cos = cos
             self.vite = vite
             self.eth = eth
-            self.grin = grin
             self.crossChain = crossChain
             self.market = market
         }
@@ -147,7 +132,6 @@ public extension ViteConst {
         public var cos: Cos
         public var vite: Vite
         public var eth: Eth
-        public var grin: Grin
         public var crossChain: CrossChain
         public var market: Market
 
@@ -171,10 +155,6 @@ public extension ViteConst {
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io",
                          api: "https://node.vite.net/etherscan"),
-                grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
-                           apiSecret: "Pbwnf9nJDEVcVPR8B42u",
-                           chainType: GrinChainType.mainnet.rawValue,
-                           x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")
@@ -199,10 +179,6 @@ public extension ViteConst {
                          chainType: .Ropsten,
                          explorer: "https://ropsten.etherscan.io",
                          api: "https://node.vite.net/beta/etherscan"),
-                grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
-                           apiSecret: "Pbwnf9nJDEVcVPR8B42u",
-                           chainType: GrinChainType.usernet.rawValue,
-                           x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexWS: "wss://vitex.vite.net/test/websocket")
@@ -228,10 +204,6 @@ public extension ViteConst {
                          chainType: .Mainnet,
                          explorer: "https://etherscan.io",
                          api: "https://node.vite.net/etherscan"),
-                grin: Grin(nodeHttp: "http://grin-v3.vite.net/fullnode",
-                           apiSecret: "Pbwnf9nJDEVcVPR8B42u",
-                           chainType: GrinChainType.mainnet.rawValue,
-                           x: "https://grinx.vite.net"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")

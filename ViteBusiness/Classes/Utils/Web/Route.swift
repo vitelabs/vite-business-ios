@@ -51,13 +51,6 @@ public struct Route {
         switch tokenInfo.coinType {
         case .eth, .vite, .bnb:
             balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
-        case .grin:
-            if !GrinManager.default.walletCreated.value {
-                Toast.show(R.string.localizable.grinCreating())
-                return
-            } else {
-                balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
-            }
         case .unsupport:
             fatalError()
         }

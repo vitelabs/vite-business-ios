@@ -104,20 +104,7 @@ Pod::Spec.new do |s|
   s.dependency 'Firebase/Analytics'
   s.dependency 'Firebase/Core'
 
-#  s.dependency 'MLeaksFinder'
-
   s.dependency 'ViteWallet'
-  #s.dependency 'ViteEthereum'
-#  s.dependency 'Vite_GrinWallet'
   s.dependency 'BinanceChain'
-
-
-  # s.resource_bundles = {
-  #   'ViteBusiness' => ['ViteBusiness/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 
 end

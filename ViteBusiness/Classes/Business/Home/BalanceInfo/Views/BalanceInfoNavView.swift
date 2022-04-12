@@ -99,12 +99,8 @@ class BalanceInfoNavView: UIView {
         } else {
             gatewayInfoBtn.isHidden = true
         }
-        if tokenInfo == GrinManager.tokenInfo {
-            helpButton.isHidden = false
-        } else {
-            helpButton.isHidden = true
-            helpButton.setImage(nil, for: .normal)
-        }
+        helpButton.isHidden = true
+        helpButton.setImage(nil, for: .normal)
     }
 }
 
@@ -125,8 +121,6 @@ extension TokenInfo {
             } else {
                 return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
             }
-        case .grin:
-            return nil
         case .unsupport:
             return nil
         }

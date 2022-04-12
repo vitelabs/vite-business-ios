@@ -31,16 +31,7 @@ final class AutoGatheringManager {
                 let service = ReceiveAllTransactionService(accounts: [account], interval: 5, completion: { (r) in
                     switch r {
                     case .success(let ret):
-                        for (send, _, account) in ret {
-                            if let data = send.data,
-                                data.contentTypeInUInt16 == 0x8001,
-                                let viteData = data.rawContent {
-//                                let text = String(bytes: viteData, encoding: .utf8) ?? "parse failure"
-//                                plog(level: .debug, log: "found grin data: \(text)", tag: .transaction)
-                                GrinManager.default.handle(viteData: viteData, fromAddress: send.accountAddress ?? "", account: account)
-                            }
-                        }
-//                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
+                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
                     case .failure(let error):
                         plog(level: .warning, log: "getOnroad for \(account.address) error: \(error.viteErrorMessage)", tag: .transaction)
                     }

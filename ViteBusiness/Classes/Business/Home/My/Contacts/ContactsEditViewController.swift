@@ -20,7 +20,7 @@ class ContactsEditViewController: BaseViewController {
     let contact: Contact?
     var type: BehaviorRelay<CoinType>
 
-    let allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
+    let allTypes: [CoinType] = [.vite, .eth, .bnb]
 
     init(contact: Contact) {
         self.contact = contact
@@ -122,11 +122,6 @@ class ContactsEditViewController: BaseViewController {
                 }
             case .eth:
                 guard let address = EthereumAddress(self.addressView.textView.text), address.isValid else {
-                    Toast.show(R.string.localizable.sendPageToastAddressError())
-                    return
-                }
-            case .grin:
-                guard self.addressView.textView.text.isViteAddress || self.addressView.textView.text.hasPrefix("http") else {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }

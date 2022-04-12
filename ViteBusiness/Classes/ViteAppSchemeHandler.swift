@@ -36,7 +36,7 @@ class ViteAppSchemeHandler {
             if url.scheme == "http" || url.scheme == "https" {
                 NavigatorManager.instance.route(url: url)
             } else if handleViteScheme(url) == false {
-                GrinManager.default.handle(url: url)
+                
             }
         }
 

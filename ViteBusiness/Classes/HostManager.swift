@@ -69,11 +69,6 @@ class HostManager {
             ViteConst.Env.premainnet.cos.strapi = wallet_config
         }
 
-        if let grinWalletAPI = data["GRIN_WALLET_HTTP"]["hostNameList"].array?.first?.string,
-            let _ = URL.init(string:grinWalletAPI) {
-            ViteConst.Env.premainnet.grin.x = grinWalletAPI
-        }
-
         if let viteGateWay = data["GATEWAY"]["hostNameList"].array?.first?.string,
             let _ = URL.init(string:viteGateWay) {
             ViteConst.Env.premainnet.vite.gateway = viteGateWay

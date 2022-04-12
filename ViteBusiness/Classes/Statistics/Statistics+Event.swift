@@ -88,8 +88,6 @@ extension TokenInfo {
             return "\(coinType.rawValue.lowercased())_vite"
         } else if coinType == .vite && symbol == "VX" {
             return "\(coinType.rawValue.lowercased())_vx"
-        } else if coinType == .grin {
-            return "\(coinType.rawValue.lowercased())_grin"
         } else {
             return "\(coinType.rawValue.lowercased())_\(tokenCode)"
         }

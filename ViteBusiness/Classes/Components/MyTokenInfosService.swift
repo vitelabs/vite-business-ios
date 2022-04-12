@@ -116,7 +116,6 @@ public final class MyTokenInfosService: NSObject {
         var viteTokenInfos: NSMutableArray = NSMutableArray()
         var ethTokenInfos: NSMutableArray = NSMutableArray()
         var bnbTokenInfos: NSMutableArray = NSMutableArray()
-        var grinTokenInfos: NSMutableArray = NSMutableArray()
 
         defaultTokenInfos.forEach { (tokenInfo) in
             if !removedTokenCodes.contains(tokenInfo.tokenCode) {
@@ -125,8 +124,6 @@ public final class MyTokenInfosService: NSObject {
                     viteTokenInfos.add(tokenInfo)
                 case .eth:
                     ethTokenInfos.add(tokenInfo)
-                case .grin:
-                    grinTokenInfos.add(tokenInfo)
                 case .bnb:
                     bnbTokenInfos.add(tokenInfo)
                 case .unsupport:
@@ -144,15 +141,13 @@ public final class MyTokenInfosService: NSObject {
                     ethTokenInfos.add(tokenInfo)
                 case .bnb:
                     bnbTokenInfos.add(tokenInfo)
-                case .grin:
-                    grinTokenInfos.add(tokenInfo)
                 case .unsupport:
                     break
                 }
             }
         }
 
-        return (viteTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo]) + (grinTokenInfos as! [TokenInfo])
+        return (viteTokenInfos as! [TokenInfo]) + (bnbTokenInfos as! [TokenInfo]) + (ethTokenInfos as! [TokenInfo])
     }
 
     //MARK: public func

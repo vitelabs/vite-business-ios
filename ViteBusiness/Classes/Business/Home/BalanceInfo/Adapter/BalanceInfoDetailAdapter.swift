@@ -42,8 +42,6 @@ extension TokenInfo {
             } else {
                 return BalanceInfoDetailEthChainAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             }
-        case .grin:
-            return GrinInfoAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         case .unsupport:
             fatalError()
         case .bnb:

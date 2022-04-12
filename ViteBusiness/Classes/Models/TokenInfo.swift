@@ -11,7 +11,6 @@ import ViteWallet
 public enum CoinType: String {
     case vite = "VITE"
     case eth = "ETH"
-    case grin = "GRIN"
     case bnb = "BNB"
     case unsupport = "unsupport"
 
@@ -19,7 +18,7 @@ public enum CoinType: String {
         return rawValue
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth, .grin, .bnb]
+    static var allTypes: [CoinType] = [.vite, .eth, .bnb]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -37,11 +36,6 @@ public enum CoinType: String {
                 UIColor(netHex: 0x429321),
                 UIColor(netHex: 0xB4EC51),
             ]
-        case .grin:
-            return [
-                UIColor(netHex: 0xFAE52D),
-                UIColor(netHex: 0xFFBB00)
-            ]
         case .bnb:
             return [
                 UIColor(netHex: 0xFFCC24),
@@ -58,8 +52,6 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF)
         case .eth:
             return UIColor(netHex: 0x01D764)
-        case .grin:
-            return UIColor(netHex: 0xFFD900)
         case .bnb:
             return UIColor(netHex: 0xF5A500)
         case .unsupport:
@@ -73,8 +65,6 @@ public enum CoinType: String {
             return UIColor(netHex: 0x007AFF, alpha: 0.67)
         case .eth:
             return UIColor(netHex: 0x01D764)
-        case .grin:
-            return UIColor(netHex: 0xFFD900)
         case .bnb:
             return UIColor(netHex: 0xF5A500)
         case .unsupport:
@@ -88,8 +78,6 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF8FFF2)
-        case .grin:
-            return UIColor(netHex: 0xFFF9E1)
         case .bnb:
             return UIColor(netHex: 0xFFF9E1)
         case .unsupport:
@@ -103,8 +91,6 @@ public enum CoinType: String {
             return UIColor(netHex: 0xF2F8FF)
         case .eth:
             return UIColor(netHex: 0xF1FFE6)
-        case .grin:
-            return UIColor(netHex: 0xFFF7DD)
         case .bnb:
             return UIColor(netHex: 0xFFFAEA)
         case .unsupport:
@@ -152,8 +138,6 @@ public struct TokenInfo: Mappable {
             } else {
                 return "ERC20 Token"
             }
-        case .grin:
-             return "Grin Coin"
         case .bnb:
             if isBnbCoin {
                 return "Binance Coin"
@@ -238,8 +222,6 @@ extension TokenInfo: Equatable {
             return R.string.localizable.tokenListPageSectionViteHeader()
         }else if self.coinType == .eth {
             return R.string.localizable.tokenListPageSectionEthHeader()
-        }else if self.coinType == .grin {
-            return R.string.localizable.tokenListPageSectionGrinHeader()
         }else if self.coinType == .bnb {
             return R.string.localizable.tokenListPageSectionBnbHeader()
         }

@@ -3443,14 +3443,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let tokenInfoDetailPageBrowser = Rswift.StringResource(key: "token.info.detail.page.browser", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Export Grin Seed Phrase
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let grinExportMnemonic = Rswift.StringResource(key: "grin.export.mnemonic", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let exportPageTitle = Rswift.StringResource(key: "export.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Export Seed Phrase
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let grinExportMnemonic = Rswift.StringResource(key: "grin.export.mnemonic", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -8818,18 +8818,18 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("token.info.detail.page.browser", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Export Seed Phrase
+      /// en translation: Export Grin Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func exportPageTitle(_: Void = ()) -> String {
-        return NSLocalizedString("export.page.title", bundle: R.hostingBundle, comment: "")
+      public static func grinExportMnemonic(_: Void = ()) -> String {
+        return NSLocalizedString("grin.export.mnemonic", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Export Seed Phrase
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func grinExportMnemonic(_: Void = ()) -> String {
-        return NSLocalizedString("grin.export.mnemonic", bundle: R.hostingBundle, comment: "")
+      public static func exportPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("export.page.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Export Seed Phrase

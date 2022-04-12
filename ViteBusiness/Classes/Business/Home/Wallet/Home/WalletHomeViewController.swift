@@ -151,15 +151,9 @@ class WalletHomeViewController: BaseViewController {
     }
 
     fileprivate let walletDataSource = WalletDataSource(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-        if item.tokenInfo.coinType == .grin {
-            let cell: WalletHomeGrinBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.bind(viewModel: item)
-            return cell
-        } else {
-            let cell: WalletHomeBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.bind(viewModel: item)
-            return cell
-        }
+        let cell: WalletHomeBalanceInfoCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.bind(viewModel: item)
+        return cell
     })
 
     fileprivate func bind() {
@@ -235,14 +229,6 @@ class WalletHomeViewController: BaseViewController {
                     switch viewModel.tokenInfo.coinType {
                     case .eth, .vite,.bnb:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
-                    case .grin:
-                        if !GrinManager.default.walletCreated.value {
-//                            Toast.show(R.string.localizable.grinCreating())
-                            Alert.show(title: "", message: R.string.localizable.grinInitingDetail(), titles: [.default(title: R.string.localizable.confirm())])
-                            return
-                        } else {
-                            balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
-                        }
                     case .unsupport:
                         fatalError()
                     }
