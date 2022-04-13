@@ -16,7 +16,7 @@ class MiningStakingListViewModel: ListViewModel<MiningPledgeDetail.Pledge> {
     let address: ViteAddress
 
     let totalViewModelBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let miningStakeInfoViewModelBehaviorRelay: BehaviorRelay<DexMiningStakeInfo?> = BehaviorRelay(value: nil)
+    let miningStakeInfoViewModelBehaviorRelay: BehaviorRelay<(DexMiningStakeInfo, DexMiningStakeInfo)?> = BehaviorRelay(value: nil)
 
     init(tableView: UITableView, address: ViteAddress) {
         self.address = address
@@ -50,7 +50,7 @@ class MiningStakingListViewModel: ListViewModel<MiningPledgeDetail.Pledge> {
     override func cellFor(model: MiningPledgeDetail.Pledge, indexPath: IndexPath) -> UITableViewCell {
         let cell: MiningItemCell = tableView.dequeueReusableCell(for: indexPath)
         let vm = MiningItemCellViewModel(
-            left: "\(R.string.localizable.miningTradingPageHeaderTitle()) \(model.pledgeAmount.tryToTruncation6Digits()) \(model.miningToken)",
+            left: "\(R.string.localizable.miningStakingPageCellAmount()) \(model.pledgeAmount.tryToTruncation6Digits()) \(model.miningToken)",
             earnings: model.miningAmount.tryToTruncation6Digits(),
             symbol: "VX",
             date: model.date)
@@ -65,9 +65,9 @@ class MiningStakingListViewModel: ListViewModel<MiningPledgeDetail.Pledge> {
 
 extension MiningStakingListViewModel {
     func fetch() {
-        ViteNode.dex.info.getDexMiningStakeInfo(address: address)
-            .done { [weak self] miningStakeInfo in
-            self?.miningStakeInfoViewModelBehaviorRelay.accept(miningStakeInfo)
+        ViteNode.dex.info.getDexMiningStakeInfo(address: address, index: 0, count: 0)
+            .done { [weak self] info in
+            self?.miningStakeInfoViewModelBehaviorRelay.accept(info)
         }.catch { (error) in
 
         }

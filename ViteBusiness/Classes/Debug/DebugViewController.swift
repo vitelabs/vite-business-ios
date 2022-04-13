@@ -93,6 +93,16 @@ class DebugViewController: FormViewController {
                     DebugService.instance.config.ignoreWhiteList = ret
                     exit(0)
             }
+            <<< LabelRow("openMarketMining") {
+                $0.title = "openMarketMining"
+            }.onCellSelection { _, _ in
+                WebHandler.openMarketMining()
+            }
+            <<< LabelRow("openMarketDividend") {
+                $0.title = "openMarketDividend"
+            }.onCellSelection { _, _ in
+                WebHandler.openMarketDividend()
+            }
             +++
             MultivaluedSection(multivaluedOptions: [],
                                header: "Web",

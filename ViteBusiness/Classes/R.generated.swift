@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1090 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1096 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6327,114 +6327,138 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageHeaderTotalRealTime = Rswift.StringResource(key: "mining.page.header.total.real.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageListTitle = Rswift.StringResource(key: "mining.page.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageSegmentInvite = Rswift.StringResource(key: "mining.page.segment.invite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageSegmentMaking = Rswift.StringResource(key: "mining.page.segment.making", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageSegmentStaking = Rswift.StringResource(key: "mining.page.segment.staking", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningPageSegmentTrading = Rswift.StringResource(key: "mining.page.segment.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageCellAmount = Rswift.StringResource(key: "mining.staking.page.cell.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmAmountPlaceholder = Rswift.StringResource(key: "mining.staking.page.confirm.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmAmountTitle = Rswift.StringResource(key: "mining.staking.page.confirm.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmAvailableTitle = Rswift.StringResource(key: "mining.staking.page.confirm.available.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmButtonTitle = Rswift.StringResource(key: "mining.staking.page.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmTip = Rswift.StringResource(key: "mining.staking.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageConfirmTitle = Rswift.StringResource(key: "mining.staking.page.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageDetailAddButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.add.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageDetailAmountTitle = Rswift.StringResource(key: "mining.staking.page.detail.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageDetailListButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.list.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageDetailTitle = Rswift.StringResource(key: "mining.staking.page.detail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageDetailUnlockingTitle = Rswift.StringResource(key: "mining.staking.page.detail.unlocking.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningStakingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.staking.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageCellFee = Rswift.StringResource(key: "mining.trading.page.cell.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderExpect = Rswift.StringResource(key: "mining.trading.page.header.expect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderFee = Rswift.StringResource(key: "mining.trading.page.header.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderTitle = Rswift.StringResource(key: "mining.trading.page.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.trading.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderTotalEarningsAlertMessage = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let miningTradingPageHeaderTotalEarningsAlertTitle = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 交易所可用餘額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmAvailableTitle = Rswift.StringResource(key: "mining.staking.page.confirm.available.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 交易挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageSegmentTrading = Rswift.StringResource(key: "mining.page.segment.trading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 交易挖礦總收益(VX)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.trading.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 到期快照块高度 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageHeight = Rswift.StringResource(key: "mining.staking.page.withdraw.page.height", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageButtonTitle = Rswift.StringResource(key: "mining.staking.page.withdraw.page.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageDetailListButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.list.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageTitle = Rswift.StringResource(key: "mining.staking.page.withdraw.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 增加
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageDetailAddButtonTitle = Rswift.StringResource(key: "mining.staking.page.detail.add.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 實時數據
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageHeaderTotalRealTime = Rswift.StringResource(key: "mining.page.header.total.real.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 手續費
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderFee = Rswift.StringResource(key: "mining.trading.page.header.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 手續費金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageCellFee = Rswift.StringResource(key: "mining.trading.page.cell.fee", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageCellAmount = Rswift.StringResource(key: "mining.staking.page.cell.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押VITE挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmTitle = Rswift.StringResource(key: "mining.staking.page.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageSegmentStaking = Rswift.StringResource(key: "mining.page.segment.staking", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押挖礦總收益(VX)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.staking.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmAmountTitle = Rswift.StringResource(key: "mining.staking.page.confirm.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 抵押金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageDetailAmountTitle = Rswift.StringResource(key: "mining.staking.page.detail.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderTitle = Rswift.StringResource(key: "mining.trading.page.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 挖礦明細
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageListTitle = Rswift.StringResource(key: "mining.page.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 掛單挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageSegmentMaking = Rswift.StringResource(key: "mining.page.segment.making", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 提交抵押
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmButtonTitle = Rswift.StringResource(key: "mining.staking.page.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmTip = Rswift.StringResource(key: "mining.staking.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 當前頁面展示的手續費花銷僅為平台基礎手續費0.2%，實際估算挖礦成本時請注意不同交易對的運營手續費
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderTotalEarningsAlertMessage = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 解鎖中的金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageDetailUnlockingTitle = Rswift.StringResource(key: "mining.staking.page.detail.unlocking.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageButtonDisTitle = Rswift.StringResource(key: "mining.staking.page.withdraw.page.button.dis.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 說明
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderTotalEarningsAlertTitle = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 請輸入抵押金額，最少134VITE
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningStakingPageConfirmAmountPlaceholder = Rswift.StringResource(key: "mining.staking.page.confirm.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 邀請挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningPageSegmentInvite = Rswift.StringResource(key: "mining.page.segment.invite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 預計挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let miningTradingPageHeaderExpect = Rswift.StringResource(key: "mining.trading.page.header.expect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 预计可取回时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageWithdrawTime = Rswift.StringResource(key: "mining.staking.page.withdraw.page.withdraw.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 预计解锁时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageLockTime = Rswift.StringResource(key: "mining.staking.page.withdraw.page.lock.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// ja-JP translation: xxxxx
+      /// 
+      /// Locales: ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, vi-VN, ru-RU
+      public static let miningStakingPageDetailTitle = Rswift.StringResource(key: "mining.staking.page.detail.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "vi-VN", "ru-RU"], comment: nil)
       /// zh-Hans translation: 原生代幣
       /// 
       /// Locales: zh-Hans
@@ -13865,193 +13889,235 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
+      /// en translation: 中
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageHeaderTotalRealTime(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.header.total.real.time", bundle: R.hostingBundle, comment: "")
+      public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
+        return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageListTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.list.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageSegmentInvite(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.segment.invite", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageSegmentMaking(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.segment.making", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageSegmentStaking(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.segment.staking", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningPageSegmentTrading(_: Void = ()) -> String {
-        return NSLocalizedString("mining.page.segment.trading", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageCellAmount(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.cell.amount", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageConfirmAmountPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.confirm.amount.placeholder", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageConfirmAmountTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.confirm.amount.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
+      /// en translation: 交易所可用餘額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningStakingPageConfirmAvailableTitle(_: Void = ()) -> String {
         return NSLocalizedString("mining.staking.page.confirm.available.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
+      /// en translation: 交易挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageConfirmButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.confirm.button.title", bundle: R.hostingBundle, comment: "")
+      public static func miningPageSegmentTrading(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.trading", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageConfirmTip(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.confirm.tip", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageConfirmTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.confirm.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageDetailAddButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.detail.add.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageDetailAmountTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.detail.amount.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageDetailListButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.detail.list.button.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageDetailTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.detail.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageDetailUnlockingTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.detail.unlocking.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningStakingPageHeaderTotalEarnings(_: Void = ()) -> String {
-        return NSLocalizedString("mining.staking.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningTradingPageCellFee(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.cell.fee", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningTradingPageHeaderExpect(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.header.expect", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningTradingPageHeaderFee(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.header.fee", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func miningTradingPageHeaderTitle(_: Void = ()) -> String {
-        return NSLocalizedString("mining.trading.page.header.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: xxxxx
+      /// en translation: 交易挖礦總收益(VX)
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningTradingPageHeaderTotalEarnings(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
+      /// en translation: 到期快照块高度 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageHeight(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mining.staking.page.withdraw.page.height", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.withdraw.page.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageDetailListButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.list.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 取回列表
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.withdraw.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 增加
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageDetailAddButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.add.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 實時數據
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningPageHeaderTotalRealTime(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.header.total.real.time", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 手續費
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningTradingPageHeaderFee(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 手續費金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningTradingPageCellFee(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.cell.fee", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageCellAmount(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.cell.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押VITE挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningPageSegmentStaking(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.staking", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押挖礦總收益(VX)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageHeaderTotalEarnings(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageConfirmAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 抵押金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageDetailAmountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.amount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningTradingPageHeaderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 挖礦明細
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningPageListTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.list.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 掛單挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningPageSegmentMaking(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.making", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提交抵押
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageConfirmButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 當前頁面展示的手續費花銷僅為平台基礎手續費0.2%，實際估算挖礦成本時請注意不同交易對的運營手續費
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningTradingPageHeaderTotalEarningsAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.message", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: xxxxx
+      /// en translation: 解鎖中的金額
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningStakingPageDetailUnlockingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.unlocking.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 解锁中
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageButtonDisTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.withdraw.page.button.dis.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 說明
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningTradingPageHeaderTotalEarningsAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: 中
+      /// en translation: 請輸入抵押金額，最少134VITE
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func mnemonicBackupLanguageZh(_: Void = ()) -> String {
-        return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
+      public static func miningStakingPageConfirmAmountPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.confirm.amount.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀請挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningPageSegmentInvite(_: Void = ()) -> String {
+        return NSLocalizedString("mining.page.segment.invite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 預計挖礦
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func miningTradingPageHeaderExpect(_: Void = ()) -> String {
+        return NSLocalizedString("mining.trading.page.header.expect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 预计可取回时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageWithdrawTime(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mining.staking.page.withdraw.page.withdraw.time", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 预计解锁时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageLockTime(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mining.staking.page.withdraw.page.lock.time", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// ja-JP translation: xxxxx
+      /// 
+      /// Locales: ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, vi-VN, ru-RU
+      public static func miningStakingPageDetailTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.detail.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 原生代幣

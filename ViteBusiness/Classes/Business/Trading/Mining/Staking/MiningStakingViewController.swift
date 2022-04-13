@@ -38,16 +38,13 @@ class MiningStakingViewController: BaseTableViewController {
             $0.distribution = .fill
             $0.spacing = 0
         }
-        var height: CGFloat = 20
+        var height: CGFloat = 0
         height += MiningColorfulView.height
-        height += 6
         height += DetailView.height
         height += ListHeaderView.height
         view.frame = CGRect(x: 0, y: 0, width: 0, height: height)
 
-        view.addPlaceholder(height: 20)
         view.addArrangedSubview(totalView.padding(horizontal: 12))
-        view.addPlaceholder(height: 6)
         view.addArrangedSubview(detailView.padding(horizontal: 12))
         view.addArrangedSubview(listHeaderView.padding(horizontal: 12))
 
@@ -77,43 +74,58 @@ class MiningStakingViewController: BaseTableViewController {
     }
 }
 
+extension MiningStakingViewController.DetailView {
+    class ItemView: UIView {
+        
+        static let height: CGFloat = 16+18+4
+        
+        let titleLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
+            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        }
+
+        let valueLabel = UILabel().then {
+            $0.textColor = UIColor(netHex: 0x24272B)
+            $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+            $0.text = "--.--"
+        }
+        
+        init(title: String) {
+            super.init(frame: .zero)
+            
+            addSubview(titleLabel)
+            addSubview(valueLabel)
+            
+            titleLabel.text = title
+            titleLabel.snp.makeConstraints { (m) in
+                m.top.left.equalToSuperview()
+                m.right.lessThanOrEqualToSuperview()
+            }
+            
+            valueLabel.snp.makeConstraints { (m) in
+                m.bottom.left.equalToSuperview()
+                m.right.lessThanOrEqualToSuperview()
+            }
+            
+            snp.makeConstraints { (m) in
+                m.height.equalTo(type(of: self).height)
+            }
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+}
+
 extension MiningStakingViewController {
 
     class DetailView: UIView {
 
-        static let height: CGFloat = 142
+        static let height: CGFloat = 150
 
-        let titleLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.text = R.string.localizable.miningStakingPageDetailTitle()
-        }
-
-        let lineImg = UIImageView(image: R.image.dotted_line()?.tintColor(UIColor(netHex: 0x3E4A59, alpha: 0.3)).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
-
-        let amountTitleLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.text = R.string.localizable.miningStakingPageDetailAmountTitle()
-        }
-
-        let unlockingTitleLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.text = R.string.localizable.miningStakingPageDetailUnlockingTitle()
-        }
-
-        let amountLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-            $0.text = "--.--"
-        }
-
-        let unlockingLabel = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-            $0.text = "--.--"
-        }
+        let amountItemView = ItemView(title: R.string.localizable.miningStakingPageDetailAmountTitle())
+        let unlockingItemView = ItemView(title: R.string.localizable.miningStakingPageDetailUnlockingTitle())
 
         let addButton = UIButton().then {
             $0.setBackgroundImage(R.image.icon_mining_staking_add_bg()?.resizable, for: .normal)
@@ -142,21 +154,17 @@ extension MiningStakingViewController {
                 UIColor(netHex: 0xF2F8FF),
             ])
 
-            addSubview(titleLabel)
-            addSubview(lineImg)
-            addSubview(amountTitleLabel)
-            addSubview(amountLabel)
-            addSubview(unlockingTitleLabel)
-            addSubview(unlockingLabel)
+            addSubview(amountItemView)
+            addSubview(unlockingItemView)
             addSubview(addButton)
             addSubview(listButton)
 
-            titleLabel.snp.makeConstraints { (m) in
-                m.top.left.equalToSuperview().offset(12)
+            amountItemView.snp.makeConstraints { (m) in
+                m.top.left.right.equalToSuperview().inset(12)
             }
 
-            lineImg.snp.makeConstraints { (m) in
-                m.top.equalToSuperview().offset(40)
+            unlockingItemView.snp.makeConstraints { (m) in
+                m.top.equalTo(amountItemView.snp.bottom).offset(12)
                 m.left.right.equalToSuperview().inset(12)
             }
 
@@ -166,58 +174,41 @@ extension MiningStakingViewController {
 
             addButton.snp.makeConstraints { (m) in
                 m.left.equalToSuperview().offset(12)
-                m.bottom.equalToSuperview().offset(-13)
+                m.bottom.equalToSuperview().offset(-12)
                 m.height.equalTo(26)
             }
 
             listButton.snp.makeConstraints { (m) in
-                m.left.equalTo(addButton.snp.right).offset(23)
+                m.left.equalTo(addButton.snp.right).offset(13)
                 m.width.equalTo(addButton)
-                m.bottom.equalToSuperview().offset(-13)
+                m.bottom.equalToSuperview().offset(-12)
                 m.size.equalTo(addButton)
                 m.right.equalToSuperview().offset(-12)
             }
 
-            amountTitleLabel.snp.makeConstraints { (m) in
-                m.top.equalTo(lineImg.snp.bottom).offset(12)
-                m.left.equalTo(addButton)
-            }
-
-            amountLabel.snp.makeConstraints { (m) in
-                m.top.equalTo(amountTitleLabel.snp.bottom).offset(5)
-                m.left.equalTo(addButton)
-            }
-
-            unlockingTitleLabel.snp.makeConstraints { (m) in
-                m.top.equalTo(lineImg.snp.bottom).offset(12)
-                m.left.equalTo(listButton)
-            }
-
-            unlockingLabel.snp.makeConstraints { (m) in
-                m.top.equalTo(unlockingTitleLabel.snp.bottom).offset(5)
-                m.left.equalTo(listButton)
-            }
-
             addButton.rx.tap.bind {
-                QuicklyGetQuotaConfirmView(completion: { (_, ret) in
-
-                }, canceled: { (_) in
-
-                }).show()
+                MiningStakingConfirmView().show()
             }.disposed(by: rx.disposeBag)
+            
+            listButton.rx.tap.bind {
+                let vc = MiningStakingWithdrawalListViewController()
+                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            }.disposed(by: rx.disposeBag)
+            
+            
         }
 
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func bind(vm: DexMiningStakeInfo?) {
+        func bind(vm: (DexMiningStakeInfo, DexMiningStakeInfo)?) {
             if let info = vm {
-                amountLabel.text = info.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
-                unlockingLabel.text = info.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
+                amountItemView.valueLabel.text = info.0.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
+                unlockingItemView.valueLabel.text = info.1.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
             } else {
-                amountLabel.text = "--.--"
-                unlockingLabel.text = "--.--"
+                amountItemView.valueLabel.text = "--.--"
+                unlockingItemView.valueLabel.text = "--.--"
             }
         }
     }

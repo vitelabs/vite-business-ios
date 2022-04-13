@@ -567,6 +567,20 @@ public extension Workflow {
         let viewModel = ConfirmViteDexCancelVipViewModel()
         confirmWorkflow(viewModel: viewModel, confirmSuccess: sendBlock, confirmFailure: { completion(Result.failure($0)) })
     }
+    
+    static func dexStakeForMiningWithConfirm(account: Wallet.Account,
+                                             amount: Amount,
+                                             completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexStakeForMining(amount: amount),
+             successToast: R.string.localizable.workflowToastSubmitSuccess(),
+             type: .other,
+             completion: completion)
+    }
 
     enum WorkflowError: Error {
         case notLogin

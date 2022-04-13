@@ -1205,13 +1205,19 @@
 
 "mining.trading.page.cell.fee" = "手續費金額";
 
-"mining.staking.page.header.total.earnings" = "抵押挖礦總收益";
-"mining.staking.page.detail.title" = "我的抵押";
+"mining.staking.page.header.total.earnings" = "抵押挖礦總收益(VX)";
 "mining.staking.page.detail.amount.title" = "抵押金額";
 "mining.staking.page.detail.unlocking.title" = "解鎖中的金額";
 "mining.staking.page.detail.add.button.title" = "增加";
 "mining.staking.page.detail.list.button.title" = "取回列表";
-"mining.staking.page.cell.amount" = "抵押金額";
+"mining.staking.page.cell.amount" = "抵押";
+
+"mining.staking.page.withdraw.page.title" = "取回列表";
+"mining.staking.page.withdraw.page.height" = "到期快照块高度 %@";
+"mining.staking.page.withdraw.page.withdraw.time" = "预计可取回时间 %@";
+"mining.staking.page.withdraw.page.lock.time" = "预计解锁时间 %@";
+"mining.staking.page.withdraw.page.button.title" = "取回";
+"mining.staking.page.withdraw.page.button.dis.title" = "解锁中";
 
 "mining.staking.page.confirm.title" = "抵押VITE挖礦";
 "mining.staking.page.confirm.available.title" = "交易所可用餘額";

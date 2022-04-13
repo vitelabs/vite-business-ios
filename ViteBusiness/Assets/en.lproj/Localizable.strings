@@ -1177,39 +1177,45 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
-"mining.page.segment.trading" = "xxxxx";
-"mining.page.segment.staking" = "xxxxx";
-"mining.page.segment.invite" = "xxxxx";
-"mining.page.segment.making" = "xxxxx";
+"mining.page.segment.trading" = "交易挖礦";
+"mining.page.segment.staking" = "抵押挖礦";
+"mining.page.segment.invite" = "邀請挖礦";
+"mining.page.segment.making" = "掛單挖礦";
 
-"mining.page.header.total.real.time" = "xxxxx";
-"mining.page.list.title" = "xxxxx";
+"mining.page.header.total.real.time" = "實時數據";
+"mining.page.list.title" = "挖礦明細";
 
-"mining.trading.page.header.total.earnings" = "xxxxx";
-"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
-"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+"mining.trading.page.header.total.earnings" = "交易挖礦總收益(VX)";
+"mining.trading.page.header.total.earnings.alert.title" = "說明";
+"mining.trading.page.header.total.earnings.alert.message" = "當前頁面展示的手續費花銷僅為平台基礎手續費0.2%，實際估算挖礦成本時請注意不同交易對的運營手續費";
 
 
-"mining.trading.page.header.fee" = "xxxxx";
-"mining.trading.page.header.title" = "xxxxx";
-"mining.trading.page.header.expect" = "xxxxx";
+"mining.trading.page.header.fee" = "手續費";
+"mining.trading.page.header.title" = "挖礦";
+"mining.trading.page.header.expect" = "預計挖礦";
 
-"mining.trading.page.cell.fee" = "xxxxx";
+"mining.trading.page.cell.fee" = "手續費金額";
 
-"mining.staking.page.header.total.earnings" = "xxxxx";
-"mining.staking.page.detail.title" = "xxxxx";
-"mining.staking.page.detail.amount.title" = "xxxxx";
-"mining.staking.page.detail.unlocking.title" = "xxxxx";
-"mining.staking.page.detail.add.button.title" = "xxxxx";
-"mining.staking.page.detail.list.button.title" = "xxxxx";
-"mining.staking.page.cell.amount" = "xxxxx";
+"mining.staking.page.header.total.earnings" = "抵押挖礦總收益(VX)";
+"mining.staking.page.detail.amount.title" = "抵押金額";
+"mining.staking.page.detail.unlocking.title" = "解鎖中的金額";
+"mining.staking.page.detail.add.button.title" = "增加";
+"mining.staking.page.detail.list.button.title" = "取回列表";
+"mining.staking.page.cell.amount" = "抵押";
 
-"mining.staking.page.confirm.title" = "xxxxx";
-"mining.staking.page.confirm.available.title" = "xxxxx";
-"mining.staking.page.confirm.amount.title" = "xxxxx";
-"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
-"mining.staking.page.confirm.tip" = "xxxxx";
-"mining.staking.page.confirm.button.title" = "xxxxx";
+"mining.staking.page.withdraw.page.title" = "取回列表";
+"mining.staking.page.withdraw.page.height" = "到期快照块高度 %@";
+"mining.staking.page.withdraw.page.withdraw.time" = "预计可取回时间 %@";
+"mining.staking.page.withdraw.page.lock.time" = "预计解锁时间 %@";
+"mining.staking.page.withdraw.page.button.title" = "取回";
+"mining.staking.page.withdraw.page.button.dis.title" = "解锁中";
+
+"mining.staking.page.confirm.title" = "抵押VITE挖礦";
+"mining.staking.page.confirm.available.title" = "交易所可用餘額";
+"mining.staking.page.confirm.amount.title" = "抵押金額";
+"mining.staking.page.confirm.amount.placeholder" = "請輸入抵押金額，最少134VITE";
+"mining.staking.page.confirm.tip" = "提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。";
+"mining.staking.page.confirm.button.title" = "提交抵押";
 
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
