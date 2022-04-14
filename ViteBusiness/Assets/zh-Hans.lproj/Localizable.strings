@@ -1219,6 +1219,10 @@
 "mining.staking.page.withdraw.page.button.title" = "取回";
 "mining.staking.page.withdraw.page.button.dis.title" = "解锁中";
 
+"mining.staking.page.withdraw.page.alert.title" = "取回抵押VITE";
+"mining.staking.page.withdraw.page.alert.message" = "可取回抵押金额：%@ VITE\n取回需经过7天到账";
+"mining.staking.page.withdraw.page.alert.ok" = "确认取回";
+
 "mining.staking.page.confirm.title" = "抵押VITE挖礦";
 "mining.staking.page.confirm.available.title" = "交易所可用餘額";
 "mining.staking.page.confirm.amount.title" = "抵押金額";

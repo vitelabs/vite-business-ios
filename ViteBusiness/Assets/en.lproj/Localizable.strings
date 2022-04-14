@@ -1217,6 +1217,10 @@
 "mining.staking.page.confirm.tip" = "提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。";
 "mining.staking.page.confirm.button.title" = "提交抵押";
 
+"mining.staking.page.withdraw.page.alert.title" = "取回抵押VITE";
+"mining.staking.page.withdraw.page.alert.message" = "可取回抵押金额：%@ VITE\n取回需经过7天到账";
+"mining.staking.page.withdraw.page.alert.ok" = "确认取回";
+
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
 "spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";

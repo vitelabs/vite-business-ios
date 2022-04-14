@@ -16,7 +16,7 @@ class MiningStakingListViewModel: ListViewModel<MiningPledgeDetail.Pledge> {
     let address: ViteAddress
 
     let totalViewModelBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let miningStakeInfoViewModelBehaviorRelay: BehaviorRelay<(DexMiningStakeInfo, DexMiningStakeInfo)?> = BehaviorRelay(value: nil)
+    let miningStakeInfoViewModelBehaviorRelay: BehaviorRelay<(DexMiningStakeInfo, DexCancelStakeInfo)?> = BehaviorRelay(value: nil)
 
     init(tableView: UITableView, address: ViteAddress) {
         self.address = address

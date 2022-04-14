@@ -582,6 +582,20 @@ public extension Workflow {
              completion: completion)
     }
 
+    static func dexCancelStakeWithConfirm(account: Wallet.Account,
+                                          id: String,
+                                          completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexCancelStakeById(id: id),
+             successToast: R.string.localizable.workflowToastContractSuccess(),
+             type: .other,
+             completion: completion)
+    }
+    
     enum WorkflowError: Error {
         case notLogin
         case accountAddressInconformity

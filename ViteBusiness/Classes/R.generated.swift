@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1096 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1099 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6359,6 +6359,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningStakingPageWithdrawPageTitle = Rswift.StringResource(key: "mining.staking.page.withdraw.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 取回抵押VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageAlertTitle = Rswift.StringResource(key: "mining.staking.page.withdraw.page.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 可取回抵押金额：%@ VITE 取回需经过7天到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageAlertMessage = Rswift.StringResource(key: "mining.staking.page.withdraw.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 增加
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6423,6 +6431,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningTradingPageHeaderTotalEarningsAlertMessage = Rswift.StringResource(key: "mining.trading.page.header.total.earnings.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 确认取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningStakingPageWithdrawPageAlertOk = Rswift.StringResource(key: "mining.staking.page.withdraw.page.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 解鎖中的金額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13945,6 +13957,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.staking.page.withdraw.page.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 取回抵押VITE
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.withdraw.page.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 可取回抵押金额：%@ VITE 取回需经过7天到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageAlertMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mining.staking.page.withdraw.page.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: 增加
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14055,6 +14081,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningTradingPageHeaderTotalEarningsAlertMessage(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.total.earnings.alert.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认取回
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningStakingPageWithdrawPageAlertOk(_: Void = ()) -> String {
+        return NSLocalizedString("mining.staking.page.withdraw.page.alert.ok", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 解鎖中的金額

@@ -13,12 +13,14 @@ struct MiningStakingWithdrawalListCellViewModel {
     let time: String
     let amount: String
     let date: Date
+    let id: String?
 
-    init(height: String, time: String, amount: String, date: Date) {
+    init(height: String, time: String, amount: String, date: Date, id: String?) {
         self.height = height
         self.time = time
         self.amount = amount
         self.date = date
+        self.id = id
     }
 }
 
@@ -50,7 +52,8 @@ class MiningStakingWithdrawalListCell: BaseTableViewCell {
 
     }
     
-
+    var vm: MiningStakingWithdrawalListCellViewModel?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -93,6 +96,11 @@ class MiningStakingWithdrawalListCell: BaseTableViewCell {
             m.bottom.equalToSuperview()
             m.left.right.equalToSuperview().inset(12)
         }
+        
+        cancelButton.rx.tap.bind { [weak self] _ in
+            guard let `self` = self else { return }
+            self.clicked()
+        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder: NSCoder) {
@@ -100,9 +108,37 @@ class MiningStakingWithdrawalListCell: BaseTableViewCell {
     }
 
     func bind(_ vm: MiningStakingWithdrawalListCellViewModel) {
-        heightdLabel.text = R.string.localizable.miningStakingPageWithdrawPageHeight(vm.height)
-        amountLabel.text = vm.amount
-        timeLabel.text = R.string.localizable.miningStakingPageWithdrawPageWithdrawTime(vm.time)
+        self.vm = vm;
+        amountLabel.text = vm.amount + " VITE"
+        timeLabel.text = vm.time
+        
+        if let _ = vm.id {
+            heightdLabel.text = vm.height
+            if vm.date > Date() {
+                cancelButton.setTitle(R.string.localizable.miningStakingPageWithdrawPageButtonTitle(), for: .normal)
+                cancelButton.isEnabled = false;
+            } else {
+                cancelButton.setTitle(R.string.localizable.miningStakingPageWithdrawPageButtonTitle(), for: .normal)
+                cancelButton.isEnabled = true;
+            }
+        } else {
+            heightdLabel.text = " "
+            cancelButton.setTitle(R.string.localizable.miningStakingPageWithdrawPageButtonDisTitle(), for: .normal)
+            cancelButton.isEnabled = false;
+        }
+    }
+    
+    func clicked() {
+        guard let vm = self.vm else { return }
+        guard let id = vm.id else { return }
+        Alert.show(title: R.string.localizable.miningStakingPageWithdrawPageAlertTitle(), message: R.string.localizable.miningStakingPageWithdrawPageAlertMessage(vm.amount), actions: [
+            (.default(title: R.string.localizable.mnemonicBackupScanAlertCancelTitle()), nil),
+            (.default(title: R.string.localizable.miningStakingPageWithdrawPageAlertOk()), {[weak self] _ in
+                Workflow.dexCancelStakeWithConfirm(account: HDWalletManager.instance.account!, id: id, completion: { _ in
+
+                })
+            })
+            ])
     }
 }
 

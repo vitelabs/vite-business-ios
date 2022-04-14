@@ -202,10 +202,10 @@ extension MiningStakingViewController {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func bind(vm: (DexMiningStakeInfo, DexMiningStakeInfo)?) {
+        func bind(vm: (DexMiningStakeInfo, DexCancelStakeInfo)?) {
             if let info = vm {
                 amountItemView.valueLabel.text = info.0.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
-                unlockingItemView.valueLabel.text = info.1.totalStakeAmount.amount(decimals: 18, count: 6, groupSeparator: true)
+                unlockingItemView.valueLabel.text = info.1.totalCancellingAmount.amount(decimals: 18, count: 6, groupSeparator: true)
             } else {
                 amountItemView.valueLabel.text = "--.--"
                 unlockingItemView.valueLabel.text = "--.--"
