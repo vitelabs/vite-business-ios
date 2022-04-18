@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1107 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1109 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6415,6 +6415,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningStakingPageDetailAmountTitle = Rswift.StringResource(key: "mining.staking.page.detail.amount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 挂单挖矿总收益(VX)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningOrderPageHeaderTotalEarnings = Rswift.StringResource(key: "mining.order.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6491,6 +6495,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningTradingPageHeaderExpect = Rswift.StringResource(key: "mining.trading.page.header.expect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 预计今日可挖
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningOrderPageHeaderEstimate = Rswift.StringResource(key: "mining.order.page.header.estimate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 预计可取回时间 %@
       /// 
       /// Locales: en, zh-Hans
@@ -14087,6 +14095,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.staking.page.detail.amount.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 挂单挖矿总收益(VX)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningOrderPageHeaderTotalEarnings(_: Void = ()) -> String {
+        return NSLocalizedString("mining.order.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14218,6 +14233,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningTradingPageHeaderExpect(_: Void = ()) -> String {
         return NSLocalizedString("mining.trading.page.header.expect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 预计今日可挖
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningOrderPageHeaderEstimate(_: Void = ()) -> String {
+        return NSLocalizedString("mining.order.page.header.estimate", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 预计可取回时间 %@

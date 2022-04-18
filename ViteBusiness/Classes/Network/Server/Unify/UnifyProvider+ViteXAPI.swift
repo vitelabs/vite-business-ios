@@ -37,7 +37,11 @@ extension UnifyProvider.vitex {
             guard let string = json["data"].rawString() else {
                 throw UnifyProvider.BackendError.format
             }
-            return string
+            if string == "null" {
+                return "{}"
+            } else {
+                return string
+            }
         }
     }
     
@@ -233,6 +237,23 @@ extension UnifyProvider.vitex {
                 throw UnifyProvider.BackendError.format
             }
             return ret
+        }
+    }
+    
+    static func getMiningOrderDetail(address: ViteAddress, offset: Int, limit: Int) -> Promise<(MiningOrderDetail, MiningOrderDetail.Estimate)> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        
+        let estimateString = p.requestPromise(.getMiningEstimate(address: address), responseToData: responseToData)
+        let orderString = p.requestPromise(.getMiningOrder(address: address, offset: offset, limit: limit), responseToData: responseToData)
+        
+        return when(fulfilled: estimateString, orderString).map { e, o -> (MiningOrderDetail, MiningOrderDetail.Estimate) in
+            guard let detail = MiningOrderDetail(JSONString: o) else {
+                throw UnifyProvider.BackendError.format
+            }
+            guard let estimate = MiningOrderDetail.Estimate(JSONString: e) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return (detail, estimate)
         }
     }
 }

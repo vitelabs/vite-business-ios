@@ -27,6 +27,8 @@ enum ViteXAPI: TargetType {
     case getInviter(address: ViteAddress)
     case getMiningInviter(address: ViteAddress, offset: Int, limit: Int)
     case getMiningOrderInviter(address: ViteAddress, offset: Int, limit: Int)
+    case getMiningOrder(address: ViteAddress, offset: Int, limit: Int)
+    case getMiningEstimate(address: ViteAddress)
     case getDexTokenInfos
     case getDexDepositWithdrawList(address: ViteAddress, viteTokenId: ViteTokenId, offset: Int, limit: Int)
     case getFullNodeTotalPledgeAmount(address: ViteAddress)
@@ -56,6 +58,8 @@ enum ViteXAPI: TargetType {
         case .getInviter: return "api/v1/inviter"
         case .getMiningInviter: return "api/v1/mining/invite"
         case .getMiningOrderInviter: return "api/v1/mining/order/invite"
+        case .getMiningOrder: return "api/v1/mining/order/address"
+        case .getMiningEstimate: return "api/v1/mining/order/estimate"
         case .getDexTokenInfos: return "api/v1/cryptocurrency/dex/tokens"
         case .getDexDepositWithdrawList: return "/api/v2/deposit-withdraw"
         case .getFullNodeTotalPledgeAmount: return "/reward/pledge/full/stat"
@@ -79,6 +83,8 @@ enum ViteXAPI: TargetType {
         case .getInviter: return .get
         case .getMiningInviter: return .get
         case .getMiningOrderInviter: return .get
+        case .getMiningOrder: return .get
+        case .getMiningEstimate: return .get
         case .getDexTokenInfos: return .get
         case .getDexDepositWithdrawList: return .get
         case .getFullNodeTotalPledgeAmount: return .get
@@ -185,6 +191,18 @@ enum ViteXAPI: TargetType {
                 "address": address,
                 "offset": String(offset),
                 "limit": String(limit)
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getMiningOrder(address, offset, limit):
+            let parameters = [
+                "address": address,
+                "offset": String(offset),
+                "limit": String(limit)
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getMiningEstimate(address):
+            let parameters = [
+                "address": address
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case .getDexTokenInfos:
