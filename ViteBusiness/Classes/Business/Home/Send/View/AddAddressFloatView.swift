@@ -51,7 +51,15 @@ class FloatButtonsView: VisualEffectAnimationView {
     init(targetView: UIView, delegate: FloatButtonsViewDelegate, titles: [String], direction: Direction = .leftTop, offset: CGPoint = .zero) {
 
         self.delegate = delegate
-        guard let superView = targetView.ofViewController?.navigationController?.view else { fatalError() }
+        let superView: UIView
+        if let s = targetView.ofViewController?.navigationController?.view {
+            superView = s
+        } else if let s = targetView.ofViewController?.view {
+            superView = s
+        } else {
+            fatalError()
+        }
+//        guard let superView = targetView.ofViewController?.navigationController?.view else { fatalError() }
         super.init(superview: superView, style: .color(color: UIColor.clear))
 
         contentView.addSubview(containerView)

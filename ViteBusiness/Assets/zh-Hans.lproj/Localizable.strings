@@ -1223,6 +1223,15 @@
 "mining.staking.page.withdraw.page.alert.message" = "可取回抵押金额：%@ VITE\n取回需经过7天到账";
 "mining.staking.page.withdraw.page.alert.ok" = "确认取回";
 
+"mining.invite.page.header.total.earnings" = "邀请挖矿总收益(VX)";
+"mining.invite.page.detail.count.title" = "邀请人数";
+"mining.invite.page.detail.trading.title" = "邀请交易挖矿收益";
+"mining.invite.page.detail.market.making.title" = "邀请挂单挖矿收益";
+"mining.invite.page.list.trading.title" = "邀请交易挖矿明细";
+"mining.invite.page.cell.fee.amount" = "交易手续费金额";
+"mining.invite.page.list.market.making.title" = "邀请挂单挖矿明细";
+"mining.invite.page.cell.per" = "占比";
+
 "mining.staking.page.confirm.title" = "抵押VITE挖礦";
 "mining.staking.page.confirm.available.title" = "交易所可用餘額";
 "mining.staking.page.confirm.amount.title" = "抵押金額";

@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1099 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1107 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6335,6 +6335,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningStakingPageConfirmAvailableTitle = Rswift.StringResource(key: "mining.staking.page.confirm.available.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 交易手续费金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageCellFeeAmount = Rswift.StringResource(key: "mining.invite.page.cell.fee.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6347,6 +6351,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningStakingPageWithdrawPageHeight = Rswift.StringResource(key: "mining.staking.page.withdraw.page.height", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 占比
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageCellPer = Rswift.StringResource(key: "mining.invite.page.cell.per", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 取回
       /// 
       /// Locales: en, zh-Hans
@@ -6455,6 +6463,30 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningPageSegmentInvite = Rswift.StringResource(key: "mining.page.segment.invite", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 邀请交易挖矿收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageDetailTradingTitle = Rswift.StringResource(key: "mining.invite.page.detail.trading.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请交易挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageListTradingTitle = Rswift.StringResource(key: "mining.invite.page.list.trading.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请人数
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageDetailCountTitle = Rswift.StringResource(key: "mining.invite.page.detail.count.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请挂单挖矿收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageDetailMarketMakingTitle = Rswift.StringResource(key: "mining.invite.page.detail.market.making.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请挂单挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageListMarketMakingTitle = Rswift.StringResource(key: "mining.invite.page.list.market.making.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 邀请挖矿总收益(VX)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let miningInvitePageHeaderTotalEarnings = Rswift.StringResource(key: "mining.invite.page.header.total.earnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 預計挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13915,6 +13947,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.staking.page.confirm.available.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易手续费金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageCellFeeAmount(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.cell.fee.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13934,6 +13973,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func miningStakingPageWithdrawPageHeight(_ value1: String) -> String {
         return String(format: NSLocalizedString("mining.staking.page.withdraw.page.height", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 占比
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageCellPer(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.cell.per", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 取回
@@ -14123,6 +14169,48 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningPageSegmentInvite(_: Void = ()) -> String {
         return NSLocalizedString("mining.page.segment.invite", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请交易挖矿收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageDetailTradingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.detail.trading.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请交易挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageListTradingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.list.trading.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请人数
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageDetailCountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.detail.count.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请挂单挖矿收益
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageDetailMarketMakingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.detail.market.making.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请挂单挖矿明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageListMarketMakingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.list.market.making.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 邀请挖矿总收益(VX)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func miningInvitePageHeaderTotalEarnings(_: Void = ()) -> String {
+        return NSLocalizedString("mining.invite.page.header.total.earnings", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 預計挖礦

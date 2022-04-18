@@ -206,6 +206,35 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+    
+    static func getMiningInviteDetail(address: ViteAddress, offset: Int, limit: Int) -> Promise<MiningInviteDetail> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        
+        let inviterString = p.requestPromise(.getInviter(address: address), responseToData: responseToData)
+        let miningInviterString = p.requestPromise(.getMiningInviter(address: address, offset: offset, limit: limit), responseToData: responseToData)
+        let miningOrderInviterString = p.requestPromise(.getMiningOrderInviter(address: address, offset: offset, limit: limit), responseToData: responseToData)
+        
+        return when(fulfilled: inviterString, miningInviterString, miningOrderInviterString).map { i, m, o -> MiningInviteDetail in
+            let ij = JSON(parseJSON: i)
+            let mj = JSON(parseJSON: m)
+            let oj = JSON(parseJSON: o)
+            
+            let json: JSON = [
+              "inviter": ij.dictionaryObject,
+              "miningInvite": mj.dictionaryObject,
+              "miningOrderInvite": oj.dictionaryObject
+            ]
+            
+            guard let string = json.rawString() else {
+                throw UnifyProvider.BackendError.format
+            }
+            
+            guard let ret = MiningInviteDetail(JSONString: string) else {
+                throw UnifyProvider.BackendError.format
+            }
+            return ret
+        }
+    }
 }
 
 // Dex

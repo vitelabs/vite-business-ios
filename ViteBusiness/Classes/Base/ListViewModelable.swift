@@ -88,6 +88,19 @@ class ListViewModel<Model>: NSObject, UITableViewDelegate, UITableViewDataSource
             self?.tirggerLoadMore()
         })
     }
+    
+    func rebindTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        tableView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
+            self?.tirggerRefresh(clear: false)
+        })
+
+        tableView.mj_footer = RefreshFooter(refreshingBlock: { [weak self] in
+            self?.tirggerLoadMore()
+        })
+    }
 
     deinit {
         clear()

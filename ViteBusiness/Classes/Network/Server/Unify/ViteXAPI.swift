@@ -24,6 +24,9 @@ enum ViteXAPI: TargetType {
     case getTokenInfoDetail(TokenCode)
     case getMiningTrade(address: ViteAddress, offset: Int, limit: Int)
     case getMiningPledge(address: ViteAddress, offset: Int, limit: Int)
+    case getInviter(address: ViteAddress)
+    case getMiningInviter(address: ViteAddress, offset: Int, limit: Int)
+    case getMiningOrderInviter(address: ViteAddress, offset: Int, limit: Int)
     case getDexTokenInfos
     case getDexDepositWithdrawList(address: ViteAddress, viteTokenId: ViteTokenId, offset: Int, limit: Int)
     case getFullNodeTotalPledgeAmount(address: ViteAddress)
@@ -50,6 +53,9 @@ enum ViteXAPI: TargetType {
         case .getTokenInfoDetail: return "/api/v1/cryptocurrency/info/detail"
         case .getMiningTrade: return "/api/v1/mining/trade"
         case .getMiningPledge: return "/api/v1/mining/pledge"
+        case .getInviter: return "api/v1/inviter"
+        case .getMiningInviter: return "api/v1/mining/invite"
+        case .getMiningOrderInviter: return "api/v1/mining/order/invite"
         case .getDexTokenInfos: return "api/v1/cryptocurrency/dex/tokens"
         case .getDexDepositWithdrawList: return "/api/v2/deposit-withdraw"
         case .getFullNodeTotalPledgeAmount: return "/reward/pledge/full/stat"
@@ -70,6 +76,9 @@ enum ViteXAPI: TargetType {
         case .getTokenInfoDetail: return .post
         case .getMiningTrade: return .get
         case .getMiningPledge: return .get
+        case .getInviter: return .get
+        case .getMiningInviter: return .get
+        case .getMiningOrderInviter: return .get
         case .getDexTokenInfos: return .get
         case .getDexDepositWithdrawList: return .get
         case .getFullNodeTotalPledgeAmount: return .get
@@ -153,6 +162,25 @@ enum ViteXAPI: TargetType {
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case let .getMiningPledge(address, offset, limit):
+            let parameters = [
+                "address": address,
+                "offset": String(offset),
+                "limit": String(limit)
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getInviter(address):
+            let parameters = [
+                "address": address
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getMiningInviter(address, offset, limit):
+            let parameters = [
+                "address": address,
+                "offset": String(offset),
+                "limit": String(limit)
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case let .getMiningOrderInviter(address, offset, limit):
             let parameters = [
                 "address": address,
                 "offset": String(offset),
