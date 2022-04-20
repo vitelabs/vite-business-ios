@@ -281,6 +281,45 @@ extension UnifyProvider.vitex {
             return ret
         }
     }
+    
+    static func getDexdividend(address: ViteAddress, offset: Int, limit: Int) -> Promise<DexDividendDetail> {
+        let p: MoyaProvider<ViteXAPI> = UnifyProvider.provider()
+        return p.requestPromise(.getDexdividend(address: address, offset: offset, limit: limit), responseToData: responseToData).map { string in
+            
+            var detail = DexDividendDetail()
+            let json = JSON(parseJSON: string)
+            
+            guard let myETHSring = json["dividendStat"]["ETH"]["dividendAmount"].string,
+                  let myBTCSring = json["dividendStat"]["BTC"]["dividendAmount"].string,
+                  let myUSDTSring = json["dividendStat"]["USDT"]["dividendAmount"].string,
+                  let myBTC = myBTCSring.toAmount(decimals: 8),
+                  let myETH = myETHSring.toAmount(decimals: 18),
+                  let myUSDT = myUSDTSring.toAmount(decimals: 6),
+                  let a = json["dividendList"].array else {
+                return detail
+            }
+            
+            detail.myDexDividendInfo = DexDividendInfo(btc: myBTC, eth: myETH, usdt: myUSDT)
+            
+            for json in a {
+                guard let date = json["date"].int64,
+                      let vxQuantity = json["vxQuantity"].string,
+                      let ETHSring = json["dividendStat"]["ETH"]["dividendAmount"].string,
+                      let BTCSring = json["dividendStat"]["BTC"]["dividendAmount"].string,
+                      let USDTSring = json["dividendStat"]["USDT"]["dividendAmount"].string,
+                      let BTC = BTCSring.toAmount(decimals: 8),
+                      let ETH = ETHSring.toAmount(decimals: 18),
+                      let USDT = USDTSring.toAmount(decimals: 6) else {
+                    return DexDividendDetail()
+                }
+                
+                let info = DexDividendDetail.Info(date: date, vxQuantity: vxQuantity, dividendInfo: DexDividendInfo(btc: BTC, eth: ETH, usdt: USDT))
+                detail.list.append(info)
+            }
+            
+            return detail
+        }
+    }
 }
 
 // Full Node

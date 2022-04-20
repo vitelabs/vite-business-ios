@@ -1233,6 +1233,18 @@
 "mining.order.page.header.total.earnings" = "挂单挖矿总收益(VX)";
 "mining.order.page.header.estimate" = "预计今日可挖";
 
+"dividends.page.title" = "分红";
+"dividends.page.total.title" = "分红池(BTC)";
+"dividends.page.my.title" = "我的分红(BTC)";
+"dividends.page.lock.amount" = "锁仓金额";
+"dividends.page.unlocking.amount" = "解锁中金额";
+"dividends.page.lock.auto" = "开启自动锁仓";
+"dividends.page.lock.detail.button.title" = "查看解锁明细";
+"dividends.page.lock.lock.button.title" = "锁仓";
+"dividends.page.lock.unlock.button.title" = "解锁";
+"dividends.page.lock.header.title" = "分红明细";
+"dividends.page.lock.cell.total" = "合计：≈";
+
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
 "spot.page.sell.mining.tip" = "Eligible for mining when price is less than %@";
