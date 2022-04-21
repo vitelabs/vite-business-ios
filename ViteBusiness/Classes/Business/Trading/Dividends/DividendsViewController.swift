@@ -319,6 +319,39 @@ extension DividendsViewController {
             }
         }
         
+        public class ConfirmView: UIView {
+
+            let checkButton = UIButton()
+            let label = ActiveLabel()
+
+            override init(frame: CGRect) {
+                super.init(frame: frame)
+
+                checkButton.setImage(R.image.unselected(), for: .normal)
+                checkButton.setImage(R.image.selected(), for: .selected)
+
+                label.numberOfLines = 0
+                label.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.45)
+                label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+
+                addSubview(checkButton)
+                addSubview(label)
+                checkButton.snp.makeConstraints { (m) in
+                    m.top.equalToSuperview().offset(3)
+                    m.left.equalToSuperview()
+                    m.size.equalTo(CGSize(width: 12, height: 12))
+                }
+                label.snp.makeConstraints { (m) in
+                    m.top.right.bottom.equalToSuperview()
+                    m.left.equalTo(checkButton.snp.right).offset(6)
+                }
+            }
+            
+            required init?(coder aDecoder: NSCoder) {
+                fatalError("init(coder:) has not been implemented")
+            }
+        }
+        
         class LockView: UIView {
 
             static let height: CGFloat = 178
@@ -326,17 +359,8 @@ extension DividendsViewController {
             let amountItemView = VItemView(title: R.string.localizable.dividendsPageLockAmount())
             let unlockingItemView = VItemView(title: R.string.localizable.dividendsPageUnlockingAmount())
             
-            let autoButton = BackupMnemonicViewController.ConfirmView().then { view in
+            let autoButton = ConfirmView().then { view in
                 view.label.text = R.string.localizable.dividendsPageLockAuto()
-                let customType = ActiveType.custom(pattern: view.label.text!)
-                view.label.enabledTypes = [customType]
-                view.label.customize { [weak view] label in
-                    label.customColor[customType] = view?.label.textColor
-                    label.customSelectedColor[customType] = view?.label.textColor
-                    label.handleCustomTap(for: customType) { [weak view] element in
-                        view?.checkButton.isSelected = !(view?.checkButton.isSelected ?? true)
-                    }
-                }
             }
             
             let detailButton = UIButton().then {
@@ -359,7 +383,7 @@ extension DividendsViewController {
                 $0.setBackgroundImage(R.image.icon_mining_staking_add_bg()?.highlighted.resizable, for: .highlighted)
                 $0.setTitleColor(.white, for: .normal)
                 $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-                $0.setTitle(R.string.localizable.miningStakingPageDetailAddButtonTitle(), for: .normal)
+                $0.setTitle(R.string.localizable.dividendsPageLockLockButtonTitle(), for: .normal)
             }
 
             let unlockButton = UIButton().then {
@@ -368,7 +392,7 @@ extension DividendsViewController {
                 $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
                 $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
                 $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-                $0.setTitle(R.string.localizable.miningStakingPageDetailListButtonTitle(), for: .normal)
+                $0.setTitle(R.string.localizable.dividendsPageLockUnlockButtonTitle(), for: .normal)
             }
 
             override init(frame: CGRect) {
@@ -426,15 +450,52 @@ extension DividendsViewController {
                 }
 
                 lockButton.rx.tap.bind {
-                    MiningStakingConfirmView().show()
+                    DividendsVXLockConfirmView().show()
                 }.disposed(by: rx.disposeBag)
                 
                 unlockButton.rx.tap.bind {
-                    let vc = MiningStakingWithdrawalListViewController()
+                    DividendsVXUnlockConfirmView().show()
+                }.disposed(by: rx.disposeBag)
+                
+                autoButton.checkButton.rx.tap.bind { [weak self] in
+                    guard let `self` = self else { return }
+                    self.checkButtonClicked()
+                }.disposed(by: rx.disposeBag)
+                
+                let customType = ActiveType.custom(pattern: autoButton.label.text!)
+                autoButton.label.enabledTypes = [customType]
+                autoButton.label.customize { [weak self] label in
+                    guard let `self` = self else { return }
+                    label.customColor[customType] = self.autoButton.label.textColor
+                    label.customSelectedColor[customType] = self.autoButton.label.textColor
+                    label.handleCustomTap(for: customType) { [weak self] element in
+                        self?.checkButtonClicked()
+                    }
+                }
+                
+                detailButton.rx.tap.bind {
+                    let vc = DividendsVXUnlockListViewController()
                     UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
                 }.disposed(by: rx.disposeBag)
                 
-                
+            }
+            
+            func checkButtonClicked() {
+                if self.autoButton.checkButton.isSelected {
+                    Workflow.dexSwitchConfigOffWithConfirm(account: HDWalletManager.instance.account!, completion: {[weak self] (r) in
+                        guard let `self` = self else { return }
+                        if case .success = r {
+                            self.autoButton.checkButton.isSelected = false
+                        }
+                    })
+                } else {
+                    Workflow.dexSwitchConfigOnWithConfirm(account: HDWalletManager.instance.account!, completion: {[weak self] (r) in
+                        guard let `self` = self else { return }
+                        if case .success = r {
+                            self.autoButton.checkButton.isSelected = true
+                        }
+                    })
+                }
             }
 
             required init?(coder: NSCoder) {

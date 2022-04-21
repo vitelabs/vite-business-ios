@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1120 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1136 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -6331,6 +6331,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupLanguageZh = Rswift.StringResource(key: "mnemonic.backup.language.zh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmAmountTotal = Rswift.StringResource(key: "dividends.page.lock.confirm.amount.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 交易所可用餘額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6358,15 +6362,15 @@ public struct R: Rswift.Validatable {
       /// en translation: 分红池(BTC)
       /// 
       /// Locales: en, zh-Hans
-      public static let dividendsPageMyTitle = Rswift.StringResource(key: "dividends.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 分红池(BTC)
-      /// 
-      /// Locales: en, zh-Hans
       public static let dividendsPageTotalTitle = Rswift.StringResource(key: "dividends.page.total.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 到期快照块高度 %@
       /// 
       /// Locales: en, zh-Hans
       public static let miningStakingPageWithdrawPageHeight = Rswift.StringResource(key: "mining.staking.page.withdraw.page.height", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 到期时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockListTime = Rswift.StringResource(key: "dividends.page.unlock.list.time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 占比
       /// 
       /// Locales: en, zh-Hans
@@ -6391,7 +6395,11 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningStakingPageWithdrawPageAlertMessage = Rswift.StringResource(key: "mining.staking.page.withdraw.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: 合计
+      /// en translation: 可解锁余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmAmountTotal = Rswift.StringResource(key: "dividends.page.unlock.confirm.amount.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 合计：≈
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageLockCellTotal = Rswift.StringResource(key: "dividends.page.lock.cell.total", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -6407,6 +6415,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageLockAuto = Rswift.StringResource(key: "dividends.page.lock.auto", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 我的分红(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageMyTitle = Rswift.StringResource(key: "dividends.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 手續費
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6459,10 +6471,22 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningStakingPageConfirmButtonTitle = Rswift.StringResource(key: "mining.staking.page.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmTip = Rswift.StringResource(key: "dividends.page.lock.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningStakingPageConfirmTip = Rswift.StringResource(key: "mining.staking.page.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmError = Rswift.StringResource(key: "dividends.page.lock.confirm.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmError = Rswift.StringResource(key: "dividends.page.unlock.confirm.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 查看解锁明细
       /// 
       /// Locales: en, zh-Hans
@@ -6475,6 +6499,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let miningStakingPageWithdrawPageAlertOk = Rswift.StringResource(key: "mining.staking.page.withdraw.page.alert.ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认解锁
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmButtonTitle = Rswift.StringResource(key: "dividends.page.unlock.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 确认锁仓
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmButtonTitle = Rswift.StringResource(key: "dividends.page.lock.confirm.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 解鎖中的金額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6483,6 +6515,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageLockUnlockButtonTitle = Rswift.StringResource(key: "dividends.page.lock.unlock.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmTitle = Rswift.StringResource(key: "dividends.page.unlock.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 解锁中
       /// 
       /// Locales: en, zh-Hans
@@ -6491,6 +6527,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageUnlockingAmount = Rswift.StringResource(key: "dividends.page.unlocking.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockListTitle = Rswift.StringResource(key: "dividends.page.unlock.list.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmAmount = Rswift.StringResource(key: "dividends.page.unlock.confirm.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 解锁需约7天时间到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmTip = Rswift.StringResource(key: "dividends.page.unlock.confirm.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 說明
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6499,6 +6547,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let miningStakingPageConfirmAmountPlaceholder = Rswift.StringResource(key: "mining.staking.page.confirm.amount.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: 请输入解锁金额，最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageUnlockConfirmPlaceholder = Rswift.StringResource(key: "dividends.page.unlock.confirm.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 请输入锁仓金额，最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmPlaceholder = Rswift.StringResource(key: "dividends.page.lock.confirm.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 邀請挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6531,10 +6587,18 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageLockLockButtonTitle = Rswift.StringResource(key: "dividends.page.lock.lock.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 锁仓VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmTitle = Rswift.StringResource(key: "dividends.page.lock.confirm.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 锁仓金额
       /// 
       /// Locales: en, zh-Hans
       public static let dividendsPageLockAmount = Rswift.StringResource(key: "dividends.page.lock.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 锁仓金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static let dividendsPageLockConfirmAmount = Rswift.StringResource(key: "dividends.page.lock.confirm.amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 預計挖礦
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13992,6 +14056,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mnemonic.backup.language.zh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 交易所可用余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmAmountTotal(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.amount.total", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 交易所可用餘額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14037,13 +14108,6 @@ public struct R: Rswift.Validatable {
       /// en translation: 分红池(BTC)
       /// 
       /// Locales: en, zh-Hans
-      public static func dividendsPageMyTitle(_: Void = ()) -> String {
-        return NSLocalizedString("dividends.page.my.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: 分红池(BTC)
-      /// 
-      /// Locales: en, zh-Hans
       public static func dividendsPageTotalTitle(_: Void = ()) -> String {
         return NSLocalizedString("dividends.page.total.title", bundle: R.hostingBundle, comment: "")
       }
@@ -14053,6 +14117,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func miningStakingPageWithdrawPageHeight(_ value1: String) -> String {
         return String(format: NSLocalizedString("mining.staking.page.withdraw.page.height", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: 到期时间 %@
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockListTime(_ value1: String) -> String {
+        return String(format: NSLocalizedString("dividends.page.unlock.list.time", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: 占比
@@ -14097,7 +14168,14 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("mining.staking.page.withdraw.page.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: 合计
+      /// en translation: 可解锁余额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmAmountTotal(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.amount.total", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 合计：≈
       /// 
       /// Locales: en, zh-Hans
       public static func dividendsPageLockCellTotal(_: Void = ()) -> String {
@@ -14123,6 +14201,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func dividendsPageLockAuto(_: Void = ()) -> String {
         return NSLocalizedString("dividends.page.lock.auto", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 我的分红(BTC)
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageMyTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.my.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 手續費
@@ -14216,11 +14301,32 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.staking.page.confirm.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningStakingPageConfirmTip(_: Void = ()) -> String {
         return NSLocalizedString("mining.staking.page.confirm.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmError(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.error", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmError(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.error", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 查看解锁明细
@@ -14244,6 +14350,20 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("mining.staking.page.withdraw.page.alert.ok", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 确认解锁
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 确认锁仓
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 解鎖中的金額
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14256,6 +14376,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       public static func dividendsPageLockUnlockButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("dividends.page.lock.unlock.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 解锁VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 解锁中
@@ -14272,6 +14399,27 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dividends.page.unlocking.amount", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 解锁明细
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockListTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.list.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 解锁金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmAmount(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 解锁需约7天时间到账
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmTip(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.tip", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 說明
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14284,6 +14432,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func miningStakingPageConfirmAmountPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("mining.staking.page.confirm.amount.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入解锁金额，最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageUnlockConfirmPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 请输入锁仓金额，最少1VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 邀請挖礦
@@ -14342,11 +14504,25 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dividends.page.lock.lock.button.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 锁仓VX
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 锁仓金额
       /// 
       /// Locales: en, zh-Hans
       public static func dividendsPageLockAmount(_: Void = ()) -> String {
         return NSLocalizedString("dividends.page.lock.amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 锁仓金额
+      /// 
+      /// Locales: en, zh-Hans
+      public static func dividendsPageLockConfirmAmount(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.confirm.amount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 預計挖礦

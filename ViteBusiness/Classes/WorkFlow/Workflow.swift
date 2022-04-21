@@ -596,6 +596,58 @@ public extension Workflow {
              completion: completion)
     }
     
+    static func dexSwitchConfigOnWithConfirm(account: Wallet.Account, completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexSwitchConfig(isAuto: true),
+             successToast: R.string.localizable.workflowToastContractSuccess(),
+             type: .other,
+             completion: completion)
+    }
+    
+    static func dexSwitchConfigOffWithConfirm(account: Wallet.Account, completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexSwitchConfig(isAuto: false),
+             successToast: R.string.localizable.workflowToastContractSuccess(),
+             type: .other,
+             completion: completion)
+    }
+    
+    static func dexLockVxForDividendWithConfirm(account: Wallet.Account,
+                                                amount: Amount,
+                                                completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexLockVxForDividend(isLock: true, amount: amount),
+             successToast: R.string.localizable.workflowToastSubmitSuccess(),
+             type: .other,
+             completion: completion)
+    }
+    
+    static func dexUnlockVxForDividendWithConfirm(account: Wallet.Account,
+                                                  amount: Amount,
+                                                  completion: @escaping (Result<AccountBlock>) -> ()) {
+        send(account: account,
+             toAddress: ViteWalletConst.ContractAddress.dexFund.address,
+             tokenId: ViteWalletConst.viteToken.id,
+             amount: Amount(0),
+             fee: nil,
+             data: ABI.BuildIn.getDexLockVxForDividend(isLock: false, amount: amount),
+             successToast: R.string.localizable.workflowToastSubmitSuccess(),
+             type: .other,
+             completion: completion)
+    }
+    
     enum WorkflowError: Error {
         case notLogin
         case accountAddressInconformity

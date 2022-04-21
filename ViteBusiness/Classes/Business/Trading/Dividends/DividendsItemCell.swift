@@ -87,13 +87,13 @@ class DividendsItemCell: BaseTableViewCell {
         ethItem.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(36)
             m.left.equalTo(btcItem.snp.right)
-            m.width.equalTo(btcItem)
+            m.width.equalTo(btcItem).multipliedBy(0.7)
         }
         
         usdtItem.snp.makeConstraints { (m) in
             m.top.equalToSuperview().offset(36)
             m.left.equalTo(ethItem.snp.right)
-            m.width.equalTo(btcItem)
+            m.width.equalTo(btcItem).multipliedBy(0.7)
             m.right.equalToSuperview().offset(-12)
         }
 

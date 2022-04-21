@@ -1254,6 +1254,25 @@
 "dividends.page.lock.header.title" = "分红明细";
 "dividends.page.lock.cell.total" = "合计：≈";
 
+"dividends.page.lock.confirm.title" = "锁仓VX";
+"dividends.page.lock.confirm.amount.total" = "交易所可用余额";
+"dividends.page.lock.confirm.amount" = "锁仓金额";
+"dividends.page.lock.confirm.placeholder" = "请输入锁仓金额，最少1VX";
+"dividends.page.lock.confirm.error" = "最少1VX";
+"dividends.page.lock.confirm.tip" = "提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账";
+"dividends.page.lock.confirm.button.title" = "确认锁仓";
+
+"dividends.page.unlock.confirm.title" = "解锁VX";
+"dividends.page.unlock.confirm.amount.total" = "可解锁余额";
+"dividends.page.unlock.confirm.amount" = "解锁金额";
+"dividends.page.unlock.confirm.placeholder" = "请输入解锁金额，最少1VX";
+"dividends.page.unlock.confirm.error" = "最少1VX";
+"dividends.page.unlock.confirm.tip" = "解锁需约7天时间到账";
+"dividends.page.unlock.confirm.button.title" = "确认解锁";
+
+"dividends.page.unlock.list.title" = "解锁明细";
+"dividends.page.unlock.list.time" = "到期时间 %@";
+
 // Spot
 "spot.page.buy.mining.tip" = "買入價大於 %@ 時滿足掛單挖礦條件";
 "spot.page.sell.mining.tip" = "賣出價小於 %@ 時滿足掛單挖礦條件";
