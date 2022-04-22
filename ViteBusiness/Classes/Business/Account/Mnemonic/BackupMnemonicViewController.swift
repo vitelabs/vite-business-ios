@@ -208,10 +208,10 @@ extension BackupMnemonicViewController {
             .takeUntil(self.rx.deallocated)
             .subscribe(onNext: { [weak self] (_) in
                 Alert.show(title: R.string.localizable.mnemonicBackupPageAlterTitle(), message: R.string.localizable.mnemonicBackupPageAlterMessage(), actions: [
-                    (.default(title: R.string.localizable.mnemonicBackupPageAlterCancel()), nil),
                     (.default(title: R.string.localizable.mnemonicBackupPageAlterConfirm()), {[weak self] _ in
                         self?.refreshMnemonicBehaviorRelay.accept(())
                     }),
+                    (.default(title: R.string.localizable.mnemonicBackupPageAlterCancel()), nil),
                     ])
             }).disposed(by: rx.disposeBag)
     }

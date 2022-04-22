@@ -19,7 +19,7 @@ class ConfirmDefaultInfoView: UIView {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.textColor = UIColor.init(netHex: 0x24272B, alpha: 0.7)
         $0.numberOfLines = 2
-        $0.adjustsFontSizeToFitWidth = true
+        $0.adjustsFontSizeToFitWidth = false
     }
 
     fileprivate let tokenIconView = TokenIconView()

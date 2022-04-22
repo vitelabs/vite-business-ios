@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
 "import.page.submit.loading" = "Import...";
 "import.page.submit.success" = "Import success";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "Confirm";
 "import.page.alert.exist.cancel" = "Cancel";
 
@@ -1298,7 +1298,7 @@
 "spot.page.confirm.tip" = "Do not ask again in 24 hours";
 
 "spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "Confirm";
 
 "spot.page.order.empty" = "No order";

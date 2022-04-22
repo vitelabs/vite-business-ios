@@ -104,9 +104,11 @@ extension MiningInviteViewController: FloatButtonsViewDelegate {
         if index == 0 {
             self.viewModle?.rebindTableView()
             self.tableView.reloadData()
+            listHeaderView.titleLabel.text = R.string.localizable.miningInvitePageListTradingTitle()
         } else if index == 1 {
             self.miningOrderInviteListViewModel?.rebindTableView()
             self.tableView.reloadData()
+            listHeaderView.titleLabel.text = R.string.localizable.miningInvitePageListMarketMakingTitle()
         }
     }
 }

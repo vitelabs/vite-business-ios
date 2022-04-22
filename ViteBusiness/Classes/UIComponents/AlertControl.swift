@@ -289,7 +289,7 @@ private class AlertCommenView: UIView {
     lazy var messageLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.init(netHex: 0x3e4a59, alpha: 0.7)
-        $0.textAlignment = .center
+        $0.textAlignment = .left
         $0.numberOfLines = 0
     }
 

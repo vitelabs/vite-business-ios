@@ -61,10 +61,6 @@ class ScanViewController: BaseViewController, View {
         }
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     private func setupAVComponents() {
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else { return }
         let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -92,7 +88,7 @@ class ScanViewController: BaseViewController, View {
 
     private func setupUIComponents() {
         navigationItem.title = R.string.localizable.scanPageTitle()
-        navigationBarStyle = .custom(tintColor: UIColor.white, backgroundColor: UIColor(netHex: 0x24272B))
+        navigationBarStyle = .default
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_photo_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(self.pickeImage(_:)))
 
         let clearView = UIView().then {
