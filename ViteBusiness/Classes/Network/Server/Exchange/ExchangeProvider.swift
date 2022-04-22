@@ -44,6 +44,8 @@ extension ExchangeProvider {
                            let vnd = $0["vnd"] as? String,
                            let eur = $0["eur"] as? String,
                            let gbp = $0["gbp"] as? String,
+                           let inr = $0["inr"] as? String,
+                           let uah = $0["uah"] as? String,
                             let usd = $0["usd"] as? String,
                             let cny = $0["cny"] as? String {
                             map[tokenCode] = [
@@ -54,6 +56,8 @@ extension ExchangeProvider {
                                 "vnd": vnd,
                                 "eur": eur,
                                 "gbp": gbp,
+                                "inr": inr,
+                                "uah": uah,
                                 "usd": usd,
                                 "cny": cny
                             ]

@@ -106,6 +106,8 @@ public enum CurrencyCode: String {
     case VND = "vnd"
     case EUR = "eur"
     case GBP = "gbp"
+    case INR = "inr"
+    case UAH = "uah"
     
 
     var symbol: String {
@@ -126,6 +128,10 @@ public enum CurrencyCode: String {
             return "€"
         case .GBP:
             return "£"
+        case .INR:
+            return "₹"
+        case .UAH:
+            return "₴"
         }
     }
 
@@ -147,11 +153,15 @@ public enum CurrencyCode: String {
             return "EUR"
         case .GBP:
             return "GBP"
+        case .INR:
+            return "INR"
+        case .UAH:
+            return "UAH"
         }
     }
 
     static var allValues: [CurrencyCode] {
-        return [.CNY, .EUR, .GBP, .KRW, .RUB, .TRY, .USD, .VND]
+        return [.CNY, .EUR, .GBP, .KRW, .RUB, .TRY, .USD, .VND, .INR, .UAH]
     }
 }
 

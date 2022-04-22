@@ -401,6 +401,10 @@ extension MarketInfoService {
                 rateMap[key] = Double(JSON(i)["eurRate"].string ?? "0")
             case .GBP:
                 rateMap[key] = Double(JSON(i)["gbpRate"].string ?? "0")
+            case .INR:
+                rateMap[key] = Double(JSON(i)["inrRate"].string ?? "0")
+            case .UAH:
+                rateMap[key] = Double(JSON(i)["uahRate"].string ?? "0")
             }
         }
         self.rateMap = rateMap
