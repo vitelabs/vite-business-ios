@@ -14,6 +14,7 @@ public enum ViteLanguage: String {
     case turkey = "tr"
     case korea = "ko"
     case vietnam = "vi"
+    case spanish = "es"
 
     // only used for local file
     public var resourceName: String {
@@ -30,6 +31,8 @@ public enum ViteLanguage: String {
             return "ko-KR"
         case .vietnam:
             return "vi-VN"
+        case .spanish:
+            return "es-ES"
         }
     }
 
@@ -47,6 +50,8 @@ public enum ViteLanguage: String {
             return "한국어"
         case .vietnam:
             return "Tiếng Việt"
+        case .spanish:
+            return "Español"
         }
     }
 
@@ -55,6 +60,6 @@ public enum ViteLanguage: String {
     }
 
     public static var allLanguages: [ViteLanguage] {
-        return [.base, .chinese, .russia, .turkey, .korea, .vietnam]
+        return [.base, .chinese, .russia, .turkey, .korea, .vietnam, .spanish]
     }
 }

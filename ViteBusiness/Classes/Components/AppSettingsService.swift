@@ -40,6 +40,8 @@ public class AppSettingsService {
                     return CurrencyCode.VND
                 case .base:
                     return CurrencyCode.USD
+                case .spanish:
+                    return CurrencyCode.USD
                 }
             }()
             var appSettings = AppSettings()
