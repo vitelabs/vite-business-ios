@@ -356,6 +356,7 @@
 "system.page.cell.change.currency" = "Salapi";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.pow.settings" = "PoW Settings";
+"system.page.cell.auto.receive.settings" = "Auto-Receive";
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";

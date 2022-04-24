@@ -359,6 +359,7 @@
 "system.page.cell.change.currency" = "貨幣單位";
 "system.page.cell.node.settings" = "節點設置";
 "system.page.cell.pow.settings" = "PoW設置";
+"system.page.cell.auto.receive.settings" = "自動接收";
 "system.page.cell.login.pwd" = "自動鎖定";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";

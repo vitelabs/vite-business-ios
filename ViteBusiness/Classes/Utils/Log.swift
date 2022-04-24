@@ -15,6 +15,7 @@ public enum Tag: String {
     case base
     case wallet
     case transaction
+    case onroad
     case server
     case getConfig
     case vote

@@ -356,6 +356,7 @@
 "system.page.cell.change.currency" = "Tiền tệ";
 "system.page.cell.node.settings" = "Cấu hình Node";
 "system.page.cell.pow.settings" = "Cài đặt PoW";
+"system.page.cell.auto.receive.settings" = "Auto-Receive";
 "system.page.cell.login.pwd" = "Tự đông khoá";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";

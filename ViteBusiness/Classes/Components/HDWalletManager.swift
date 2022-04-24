@@ -172,6 +172,11 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(wallet)
     }
 
+    func setIsAutoReceive(_ isAutoReceive: Bool) {
+        guard let wallet = storage.updateCurrentWallet(isAutoReceive: isAutoReceive) else { return }
+        walletBehaviorRelay.accept(wallet)
+    }
+    
     func setBackedUp() {
         guard let wallet = storage.updateCurrentWallet(isBackedUp: true) else { return }
         walletBehaviorRelay.accept(wallet)

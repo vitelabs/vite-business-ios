@@ -180,6 +180,18 @@ class SystemViewController: FormViewController {
                 let vc = PoWSettingsViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             })
+            <<< ViteSwitchRow("systemPageCellAutoReceive") { [unowned self] in
+                $0.title = R.string.localizable.systemPageCellAutoReceiveSettings()
+                $0.value = self.viewModel.isAutoReceive
+                $0.cell.height = { 60 }
+                $0.cell.bottomSeparatorLine.isHidden = false
+            }.cellUpdate({ (cell, _) in
+                cell.textLabel?.textColor = Colors.cellTitleGray
+                cell.textLabel?.font = Fonts.light16
+            }).onChange { [unowned self] row in
+                guard let enabled = row.value else { return }
+                HDWalletManager.instance.setIsAutoReceive(enabled)
+            }
             <<< ImageRow("uploadLog") {
                 $0.cell.titleLab.text = R.string.localizable.systemPageCellUploadLogTitle()
                 $0.cell.rightImageView.image = R.image.icon_right_white()?.tintColor(Colors.titleGray).resizable

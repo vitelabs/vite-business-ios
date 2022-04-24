@@ -17,6 +17,7 @@ final class SystemViewModel: NSObject {
     var isRequireAuthentication =  false
     var isTransferByBiometry = false
     var isTransferByBiometryHide = true
+    var isAutoReceive = true
 
     override init() {
         super.init()
@@ -24,7 +25,7 @@ final class SystemViewModel: NSObject {
             guard let `self` = self else { return }
             self.isRequireAuthentication = wallet.isRequireAuthentication
             self.isTransferByBiometry = wallet.getTransferByBiometry
-
+            self.isAutoReceive = wallet.isAutoReceive
         }).disposed(by: rx.disposeBag)
 
         if BiometryAuthenticationType.current == .none {

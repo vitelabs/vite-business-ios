@@ -146,7 +146,7 @@ extension HDWalletStorage {
         }
     }
 
-    func updateCurrentWallet(isBackedUp: Bool? = nil, isRequireAuthentication: Bool? = nil, isTransferByBiometry: Bool? = nil) -> Wallet? {
+    func updateCurrentWallet(isBackedUp: Bool? = nil, isRequireAuthentication: Bool? = nil, isTransferByBiometry: Bool? = nil, isAutoReceive: Bool? = nil) -> Wallet? {
         return pri_updateWalletForUuid(nil) { (wallet) in
             if let ret = isBackedUp {
                 wallet.isBackedUp = ret
@@ -156,6 +156,9 @@ extension HDWalletStorage {
             }
             if let ret = isTransferByBiometry {
                 wallet.isTransferByBiometry = ret
+            }
+            if let ret = isAutoReceive {
+                wallet.isAutoReceive = ret
             }
         }
     }
@@ -197,6 +200,9 @@ extension HDWalletStorage {
         fileprivate(set) var isBackedUp: Bool = true
         fileprivate(set) var isRequireAuthentication: Bool = false
         fileprivate var isTransferByBiometry: Bool = false
+        fileprivate(set)  var isAutoReceive: Bool = true
+        
+        
 
         required init?(map: Map) {
             super.init(map: map)
@@ -211,7 +217,8 @@ extension HDWalletStorage {
                     addressCount: Int = 1,
                     isBackedUp: Bool,
                     isRequireAuthentication: Bool = false,
-                    isTransferByBiometry: Bool = false) {
+                    isTransferByBiometry: Bool = false,
+                    isAutoReceive: Bool = true) {
             super.init(uuid: uuid, name: name, mnemonic: mnemonic, language: language, encryptedKey: encryptedKey)
 
             self.addressIndex = addressIndex
@@ -220,6 +227,7 @@ extension HDWalletStorage {
             self.isBackedUp = isBackedUp
             self.isRequireAuthentication = isRequireAuthentication
             self.isTransferByBiometry = isTransferByBiometry
+            self.isAutoReceive = isAutoReceive
         }
 
         override public func mapping(map: Map) {
@@ -231,6 +239,7 @@ extension HDWalletStorage {
             isBackedUp <- map["isBackedUp"]
             isRequireAuthentication <- map["isRequireAuthentication"]
             isTransferByBiometry <- map["isTransferByBiometry"]
+            isAutoReceive <- map["isAutoReceive"]
         }
 
         var getTransferByBiometry: Bool {

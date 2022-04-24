@@ -2089,7 +2089,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1136 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1137 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2503,6 +2503,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let systemPageCellLoginPwd = Rswift.StringResource(key: "system.page.cell.login.pwd", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Auto-Receive
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let systemPageCellAutoReceiveSettings = Rswift.StringResource(key: "system.page.cell.auto.receive.settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Avail.: %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4251,6 +4255,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let peldgeCancelPledgeAgentErrorToast = Rswift.StringResource(key: "peldge.cancel.pledge.agent.error.toast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Note that the selected trading pair %@ is being managed by an Unknown Operator. Trade at your own risk.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let spotPageAlertMessage = Rswift.StringResource(key: "spot.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5279,10 +5287,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let nodeSettingsPageAddAlertTip = Rswift.StringResource(key: "node.settings.page.add.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let spotPageAlertMessage = Rswift.StringResource(key: "spot.page.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: The deposit amount cannot be less than 
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5319,7 +5323,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinTxFileReceivedStatus = Rswift.StringResource(key: "grin.txFile.received.status", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account
+      /// en translation: The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let importPageAlertExistTitle = Rswift.StringResource(key: "import.page.alert.exist.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
@@ -7355,6 +7359,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func systemPageCellLoginPwd(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.login.pwd", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Auto-Receive
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func systemPageCellAutoReceiveSettings(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.cell.auto.receive.settings", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Avail.: %@
@@ -10416,6 +10427,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("peldge.cancel.pledge.agent.error.toast", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Note that the selected trading pair %@ is being managed by an Unknown Operator. Trade at your own risk.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func spotPageAlertMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("spot.page.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Notice
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -12215,13 +12233,6 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("node.settings.page.add.alert.tip", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func spotPageAlertMessage(_ value1: String) -> String {
-        return String(format: NSLocalizedString("spot.page.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: The deposit amount cannot be less than 
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -12285,7 +12296,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.txFile.received.status", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account
+      /// en translation: The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func importPageAlertExistTitle(_ value1: String) -> String {

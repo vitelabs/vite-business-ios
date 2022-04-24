@@ -21,30 +21,121 @@ final class AutoGatheringManager {
     private init() {}
 
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var service: ReceiveAllTransactionService?
+    fileprivate var service: NewReceiveTransactionService?
 
     func start() {
-        HDWalletManager.instance.accountDriver.drive(onNext: { (account) in
-            if let account = account {
-
-                plog(level: .debug, log: "start receive for \(account.address)", tag: .transaction)
-                let service = ReceiveAllTransactionService(accounts: [account], interval: 5, completion: { (r) in
-                    switch r {
-                    case .success(let ret):
-                        plog(level: .debug, log: "success for receive \(ret.count) blocks", tag: .transaction)
-                    case .failure(let error):
-                        plog(level: .warning, log: "getOnroad for \(account.address) error: \(error.viteErrorMessage)", tag: .transaction)
-                    }
-                })
-                service.startPoll()
+        Driver.combineLatest(HDWalletManager.instance.accountDriver,
+                             HDWalletManager.instance.walletDriver.map({ wallet in wallet?.isAutoReceive ?? false })
+        ).drive(onNext: { (account, isAutoReceive) in
+            if let account = account, isAutoReceive {
+                // stop old if has
+                self.service?.stop()
+                
+                plog(level: .debug, log: "start receive for \(account.address)", tag: .onroad)
+                let service = NewReceiveTransactionService(account: account)
+                service.startIfNeeded()
                 self.service = service
             } else {
-                self.service?.stopPoll()
+                plog(level: .debug, log: "stop receive", tag: .onroad)
+                self.service?.stop()
                 self.service = nil
-//                plog(level: .debug, log: "stop receive", tag: .transaction)
             }
         }).disposed(by: disposeBag)
     }
+}
+
+extension AutoGatheringManager {
+    
+    class NewReceiveTransactionService {
+        
+        public let account: Wallet.Account
+        fileprivate var isRun = false
+        init(account: Wallet.Account) {
+            self.account = account
+        }
+        
+        func startIfNeeded() {
+            guard isRun == false else { return }
+            isRun = true
+            startGetOnroad()
+        }
+        
+        func stop() {
+            isRun = false
+        }
+        
+        func hasQuotas() -> Bool {
+            return (ViteBalanceInfoManager.instance.balanceInfo(forViteTokenId: TokenInfo.BuildIn.vite.value.viteTokenId)?.viteStakeForPledge ?? Amount()) > 0
+        }
+        
+        func startGetOnroad() {
+            guard isRun else { return }
+            
+            getOnroad()
+                .done { accountBlocks in
+                    plog(level: .debug, log: "find \(accountBlocks.count) onroad blocks for \(self.account.address)", tag: .onroad)
+                    if accountBlocks.isEmpty {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: { self.startGetOnroad() })
+                    } else {
+                        self.startReceive(accountBlocks: accountBlocks)
+                    }
+                }.catch { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: { self.startGetOnroad() })
+                }
+        }
+        
+        func startReceive(accountBlocks: [AccountBlock]) {
+            guard isRun else { return }
+            plog(level: .debug, log: "receive current, \(accountBlocks.count - 1) onroad blocks left for \(self.account.address)", tag: .onroad)
+            self.receive(accountBlocks: accountBlocks).done { accountBlocks in
+                let delay: TimeInterval = self.hasQuotas() ? 0 : 5
+                if accountBlocks.isEmpty {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { self.startGetOnroad() })
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { self.startReceive(accountBlocks: accountBlocks) })
+                }
+            }
+        }
+        
+        func getOnroad() -> Promise<[AccountBlock]> {
+            return GetOnroadBlocksRequest(address: self.account.address, index: 0, count: 100).defaultProviderPromise.map { accountBlocks in
+                accountBlocks.sorted { b1, b2 in
+                    if b1.amount == b2.amount {
+                        return (b1.timestamp ?? 0) < (b2.timestamp ?? 0)
+                    } else {
+                        return (b1.amount ?? Amount()) > (b2.amount ?? Amount())
+                    }
+                }
+            }
+        }
+        
+        func receive(accountBlocks: [AccountBlock]) -> Promise<[AccountBlock]> {
+            guard let onroadBlock = accountBlocks.first else {
+                return .value([])
+            }
+            
+            return ViteNode.rawTx.receive.prepare(account: account, onroadBlock: onroadBlock)
+                .then({ (context) -> Promise<ReceiveBlockContext> in
+                    if context.isNeedToCalcPoW {
+                        return ViteNode.rawTx.receive.getPow(context: context)
+                    } else {
+                        return Promise.value(context)
+                    }
+                })
+                .then({ (context) -> Promise<AccountBlock> in
+                    return ViteNode.rawTx.receive.context(context)
+                })
+                .map({ (block) -> [AccountBlock] in
+                    return Array(accountBlocks.dropFirst())
+                })
+                // ignore error, and return all accountBlocks
+                .recover({ (error) -> Promise<[AccountBlock]> in
+                    return .value(accountBlocks)
+                })
+        }
+    }
+    
+    
 }
 
 extension AutoGatheringManager {

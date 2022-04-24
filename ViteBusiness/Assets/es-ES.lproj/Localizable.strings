@@ -356,6 +356,7 @@
 "system.page.cell.change.currency" = "Tipo de moneda";
 "system.page.cell.node.settings" = "Ajustes del nodo";
 "system.page.cell.pow.settings" = "Configuración de PoW";
+"system.page.cell.auto.receive.settings" = "Auto-Receive";
 "system.page.cell.login.pwd" = "Bloqueo automático";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
