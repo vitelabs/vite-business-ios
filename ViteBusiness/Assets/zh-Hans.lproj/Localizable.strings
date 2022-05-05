@@ -1214,15 +1214,15 @@
 "mining.staking.page.cell.amount" = "抵押";
 
 "mining.staking.page.withdraw.page.title" = "取回列表";
-"mining.staking.page.withdraw.page.height" = "到期快照块高度 %@";
-"mining.staking.page.withdraw.page.withdraw.time" = "预计可取回时间 %@";
-"mining.staking.page.withdraw.page.lock.time" = "预计解锁时间 %@";
+"mining.staking.page.withdraw.page.height" = "到期快照塊高度 %@";
+"mining.staking.page.withdraw.page.withdraw.time" = "預計可取回時間 %@";
+"mining.staking.page.withdraw.page.lock.time" = "預計解鎖時間 %@";
 "mining.staking.page.withdraw.page.button.title" = "取回";
-"mining.staking.page.withdraw.page.button.dis.title" = "解锁中";
+"mining.staking.page.withdraw.page.button.dis.title" = "解鎖中";
 
 "mining.staking.page.withdraw.page.alert.title" = "取回抵押VITE";
-"mining.staking.page.withdraw.page.alert.message" = "可取回抵押金额：%@ VITE\n取回需经过7天到账";
-"mining.staking.page.withdraw.page.alert.ok" = "确认取回";
+"mining.staking.page.withdraw.page.alert.message" = "可取回抵押金額：%@ VITE\n取回需經過7天到賬";
+"mining.staking.page.withdraw.page.alert.ok" = "確認取回";
 
 "mining.staking.page.confirm.title" = "抵押VITE挖礦";
 "mining.staking.page.confirm.available.title" = "交易所可用餘額";
@@ -1231,48 +1231,48 @@
 "mining.staking.page.confirm.tip" = "提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬。";
 "mining.staking.page.confirm.button.title" = "提交抵押";
 
-"mining.invite.page.header.total.earnings" = "邀请挖矿总收益(VX)";
-"mining.invite.page.detail.count.title" = "邀请人数";
-"mining.invite.page.detail.trading.title" = "邀请交易挖矿收益";
-"mining.invite.page.detail.market.making.title" = "邀请挂单挖矿收益";
-"mining.invite.page.list.trading.title" = "邀请交易挖矿明细";
-"mining.invite.page.cell.fee.amount" = "交易手续费金额";
-"mining.invite.page.list.market.making.title" = "邀请挂单挖矿明细";
-"mining.invite.page.cell.per" = "占比";
+"mining.invite.page.header.total.earnings" = "邀請挖礦總收益(VX)";
+"mining.invite.page.detail.count.title" = "邀請人數";
+"mining.invite.page.detail.trading.title" = "邀請交易挖礦收益";
+"mining.invite.page.detail.market.making.title" = "邀請掛單挖礦收益";
+"mining.invite.page.list.trading.title" = "邀請交易挖礦明細";
+"mining.invite.page.cell.fee.amount" = "交易手續費金額";
+"mining.invite.page.list.market.making.title" = "邀請掛單挖礦明細";
+"mining.invite.page.cell.per" = "佔比";
 
-"mining.order.page.header.total.earnings" = "挂单挖矿总收益(VX)";
-"mining.order.page.header.estimate" = "预计今日可挖";
+"mining.order.page.header.total.earnings" = "掛單挖礦總收益(VX)";
+"mining.order.page.header.estimate" = "預計今日可挖";
 
-"dividends.page.title" = "分红";
-"dividends.page.total.title" = "分红池(BTC)";
-"dividends.page.my.title" = "我的分红(BTC)";
-"dividends.page.lock.amount" = "锁仓金额";
-"dividends.page.unlocking.amount" = "解锁中金额";
-"dividends.page.lock.auto" = "开启自动锁仓";
-"dividends.page.lock.detail.button.title" = "查看解锁明细";
-"dividends.page.lock.lock.button.title" = "锁仓";
-"dividends.page.lock.unlock.button.title" = "解锁";
-"dividends.page.lock.header.title" = "分红明细";
-"dividends.page.lock.cell.total" = "合计：≈";
+"dividends.page.title" = "分紅";
+"dividends.page.total.title" = "分紅池(BTC)";
+"dividends.page.my.title" = "我的分紅(BTC)";
+"dividends.page.lock.amount" = "鎖倉金額";
+"dividends.page.unlocking.amount" = "解鎖中金額";
+"dividends.page.lock.auto" = "開啟自動鎖倉";
+"dividends.page.lock.detail.button.title" = "查看解鎖明細";
+"dividends.page.lock.lock.button.title" = "鎖倉";
+"dividends.page.lock.unlock.button.title" = "解鎖";
+"dividends.page.lock.header.title" = "分紅明細";
+"dividends.page.lock.cell.total" = "合計：≈";
 
-"dividends.page.lock.confirm.title" = "锁仓VX";
-"dividends.page.lock.confirm.amount.total" = "交易所可用余额";
-"dividends.page.lock.confirm.amount" = "锁仓金额";
-"dividends.page.lock.confirm.placeholder" = "请输入锁仓金额，最少1VX";
+"dividends.page.lock.confirm.title" = "鎖倉VX";
+"dividends.page.lock.confirm.amount.total" = "交易所可用餘額";
+"dividends.page.lock.confirm.amount" = "鎖倉金額";
+"dividends.page.lock.confirm.placeholder" = "請輸入鎖倉金額，最少1VX";
 "dividends.page.lock.confirm.error" = "最少1VX";
-"dividends.page.lock.confirm.tip" = "提交抵押后立即开始挖矿，3天后可取回；每天中午12点发放挖矿VX收益；取回VITE需经过7个周期(7天)到账";
-"dividends.page.lock.confirm.button.title" = "确认锁仓";
+"dividends.page.lock.confirm.tip" = "提交抵押後立即開始挖礦，3天后可取回；每天中午12點發放挖礦VX收益；取回VITE需經過7個週期(7天)到賬";
+"dividends.page.lock.confirm.button.title" = "確認鎖倉";
 
-"dividends.page.unlock.confirm.title" = "解锁VX";
-"dividends.page.unlock.confirm.amount.total" = "可解锁余额";
-"dividends.page.unlock.confirm.amount" = "解锁金额";
-"dividends.page.unlock.confirm.placeholder" = "请输入解锁金额，最少1VX";
+"dividends.page.unlock.confirm.title" = "解鎖VX";
+"dividends.page.unlock.confirm.amount.total" = "可解鎖餘額";
+"dividends.page.unlock.confirm.amount" = "解鎖金額";
+"dividends.page.unlock.confirm.placeholder" = "請輸入解鎖金額，最少1VX";
 "dividends.page.unlock.confirm.error" = "最少1VX";
-"dividends.page.unlock.confirm.tip" = "解锁需约7天时间到账";
-"dividends.page.unlock.confirm.button.title" = "确认解锁";
+"dividends.page.unlock.confirm.tip" = "解鎖需約7天時間到賬";
+"dividends.page.unlock.confirm.button.title" = "確認解鎖";
 
-"dividends.page.unlock.list.title" = "解锁明细";
-"dividends.page.unlock.list.time" = "到期时间 %@";
+"dividends.page.unlock.list.title" = "解鎖明細";
+"dividends.page.unlock.list.time" = "到期時間 %@";
 
 // Spot
 "spot.page.buy.mining.tip" = "買入價大於 %@ 時滿足掛單挖礦條件";
