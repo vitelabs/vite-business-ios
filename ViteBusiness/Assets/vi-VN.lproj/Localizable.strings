@@ -1244,6 +1244,7 @@
 "dividends.page.title" = "Dividend";
 "dividends.page.total.title" = "Dividend Pool (BTC)";
 "dividends.page.my.title" = "My Dividend (BTC)";
+"dividends.page.lock.title" = "My Staking";
 "dividends.page.lock.amount" = "Staking Amount";
 "dividends.page.unlocking.amount" = "Unstaking Amount";
 "dividends.page.lock.auto" = "Automatic Staking";

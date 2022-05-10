@@ -1247,6 +1247,7 @@
 "dividends.page.title" = "分紅";
 "dividends.page.total.title" = "分紅池(BTC)";
 "dividends.page.my.title" = "我的分紅(BTC)";
+"dividends.page.lock.title" = "我的鎖倉";
 "dividends.page.lock.amount" = "鎖倉金額";
 "dividends.page.unlocking.amount" = "解鎖中金額";
 "dividends.page.lock.auto" = "開啟自動鎖倉";

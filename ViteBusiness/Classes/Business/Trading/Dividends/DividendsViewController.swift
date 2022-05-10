@@ -102,7 +102,7 @@ extension DividendsViewController {
     
     class DetailView: UIView {
         
-        static let height: CGFloat = 10+190+12+190+12+178
+        static let height: CGFloat = 10+190+12+142+12+159
         
         let totalView = TotalView()
         let myView = MyView()
@@ -274,9 +274,9 @@ extension DividendsViewController {
             
             let titleView = TitleView()
             let lineImageView = UIImageView(image: R.image.dotted_line()?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .tile))
-            let btcItem = VItemView(title: "BTC")
-            let ethItem = VItemView(title: "ETH")
-            let usdtItem = VItemView(title: "USDT")
+            let btcItem = VItemView(title: "BTC", itemType: VItemView.ItemType.BTC)
+            let ethItem = VItemView(title: "ETH", itemType: VItemView.ItemType.ETH)
+            let usdtItem = VItemView(title: "USDT", itemType: VItemView.ItemType.USDT, isLeft: false)
 
             override init(frame: CGRect) {
                 super.init(frame: frame)
@@ -285,6 +285,10 @@ extension DividendsViewController {
                 addSubview(btcItem)
                 addSubview(ethItem)
                 addSubview(usdtItem)
+                
+                snp.remakeConstraints { (m) in
+                    m.height.equalTo(142)
+                }
                 
                 titleView.snp.makeConstraints { make in
                     make.top.left.equalToSuperview().offset(12)
@@ -303,14 +307,15 @@ extension DividendsViewController {
                 
                 ethItem.snp.makeConstraints { make in
                     make.top.equalTo(btcItem)
-                    make.left.equalTo(btcItem.snp.right).offset(12)
-                    make.right.equalToSuperview().offset(-12)
-                    make.width.equalTo(btcItem)
+                    make.left.equalTo(btcItem.snp.right)
+                    make.width.equalTo(btcItem).multipliedBy(0.7)
                 }
                 
                 usdtItem.snp.makeConstraints { make in
-                    make.top.equalTo(btcItem.snp.bottom).offset(6)
-                    make.left.equalToSuperview().inset(12)
+                    make.top.equalTo(btcItem)
+                    make.left.equalTo(ethItem.snp.right)
+                    make.right.equalToSuperview().inset(12)
+                    make.width.equalTo(btcItem).multipliedBy(0.7)
                 }
             }
 
@@ -354,8 +359,14 @@ extension DividendsViewController {
         
         class LockView: UIView {
 
-            static let height: CGFloat = 178
+            static let height: CGFloat = 159
 
+            let titleLabel = UILabel().then {
+                $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+                $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+                $0.text = R.string.localizable.dividendsPageLockTitle()
+            }
+            
             let amountItemView = VItemView(title: R.string.localizable.dividendsPageLockAmount())
             let unlockingItemView = VItemView(title: R.string.localizable.dividendsPageUnlockingAmount())
             
@@ -405,6 +416,7 @@ extension DividendsViewController {
                     UIColor(netHex: 0xF2F8FF),
                 ])
 
+                addSubview(titleLabel)
                 addSubview(amountItemView)
                 addSubview(unlockingItemView)
                 addSubview(detailButton)
@@ -412,18 +424,26 @@ extension DividendsViewController {
                 addSubview(lockButton)
                 addSubview(unlockButton)
                 
+                titleLabel.snp.makeConstraints { m in
+                    m.top.equalToSuperview().inset(12)
+                    m.left.equalToSuperview().inset(12)
+                }
+                
                 detailButton.snp.makeConstraints { m in
                     m.top.equalToSuperview().inset(12)
                     m.right.equalToSuperview().inset(16)
                 }
 
                 amountItemView.snp.makeConstraints { (m) in
-                    m.top.left.right.equalToSuperview().inset(12)
+                    m.top.equalTo(titleLabel.snp.bottom).offset(12)
+                    m.left.equalToSuperview().inset(12)
                 }
 
                 unlockingItemView.snp.makeConstraints { (m) in
-                    m.top.equalTo(amountItemView.snp.bottom).offset(12)
-                    m.left.right.equalToSuperview().inset(12)
+                    m.top.equalTo(amountItemView)
+                    m.right.equalToSuperview().inset(12)
+                    m.left.equalTo(amountItemView.snp.right)
+                    m.width.equalTo(amountItemView)
                 }
 
                 snp.makeConstraints { (m) in
@@ -517,6 +537,27 @@ extension DividendsViewController {
             
             static let height: CGFloat = 16+16+4
             
+            enum ItemType: String {
+                case BTC
+                case ETH
+                case USDT
+                
+                var image: UIImage? {
+                    switch self {
+                    case .BTC:
+                        return R.image.icon_mining_trading_btc()
+                    case .ETH:
+                        return R.image.icon_mining_trading_eth()
+                    case .USDT:
+                        return R.image.icon_mining_trading_usdt()
+                    }
+                }
+                
+                var symbol: String { self.rawValue }
+            }
+            
+            let iconImageView = UIImageView()
+            
             let titleLabel = UILabel().then {
                 $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.6)
                 $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -528,7 +569,7 @@ extension DividendsViewController {
                 $0.text = "--.--"
             }
             
-            init(title: String, isLeft: Bool = true) {
+            init(title: String, itemType:ItemType? = nil, isLeft: Bool = true) {
                 super.init(frame: .zero)
                 
                 addSubview(titleLabel)
@@ -537,19 +578,57 @@ extension DividendsViewController {
                 titleLabel.text = title
                 
                 if isLeft {
-                    titleLabel.snp.makeConstraints { (m) in
-                        m.top.left.equalToSuperview()
-                        m.right.lessThanOrEqualToSuperview()
+                    
+                    if let type = itemType {
+                        addSubview(iconImageView)
+                        iconImageView.image = type.image
+                        
+                        iconImageView.snp.makeConstraints { m in
+                            m.size.equalTo(CGSize(width: 14, height: 14))
+                            m.centerY.equalTo(titleLabel)
+                            m.left.equalToSuperview()
+                        }
+                        
+                        titleLabel.snp.makeConstraints { (m) in
+                            m.top.equalToSuperview()
+                            m.left.equalTo(iconImageView.snp.right).offset(5)
+                            m.right.lessThanOrEqualToSuperview()
+                        }
+                    } else {
+                        titleLabel.snp.makeConstraints { (m) in
+                            m.top.left.equalToSuperview()
+                            m.right.lessThanOrEqualToSuperview()
+                        }
                     }
+                    
+                    
                     
                     valueLabel.snp.makeConstraints { (m) in
                         m.bottom.left.equalToSuperview()
                         m.right.lessThanOrEqualToSuperview()
                     }
                 } else {
-                    titleLabel.snp.makeConstraints { (m) in
-                        m.top.right.equalToSuperview()
-                        m.left.greaterThanOrEqualToSuperview()
+                    
+                    if let type = itemType {
+                        addSubview(iconImageView)
+                        iconImageView.image = type.image
+                        
+                        iconImageView.snp.makeConstraints { m in
+                            m.size.equalTo(CGSize(width: 14, height: 14))
+                            m.centerY.equalTo(titleLabel)
+                            m.left.greaterThanOrEqualToSuperview()
+                            m.right.equalTo(titleLabel.snp.left).offset(-5)
+                        }
+                        
+                        titleLabel.snp.makeConstraints { (m) in
+                            m.top.right.equalToSuperview()
+                            
+                        }
+                    } else {
+                        titleLabel.snp.makeConstraints { (m) in
+                            m.top.right.equalToSuperview()
+                            m.left.greaterThanOrEqualToSuperview()
+                        }
                     }
                     
                     valueLabel.snp.makeConstraints { (m) in
