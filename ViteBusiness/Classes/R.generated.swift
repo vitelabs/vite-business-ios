@@ -16,7 +16,7 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 295 images.
+  /// This `R.image` struct is generated, and contains static references to 296 images.
   public struct image {
     /// Image `aboutus_logo`.
     public static let aboutus_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "aboutus_logo")
@@ -496,6 +496,8 @@ public struct R: Rswift.Validatable {
     public static let icon_trading_segment_selected_fram = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_trading_segment_selected_fram")
     /// Image `icon_trading_segment_unselected_fram`.
     public static let icon_trading_segment_unselected_fram = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_trading_segment_unselected_fram")
+    /// Image `icon_tutorial`.
+    public static let icon_tutorial = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tutorial")
     /// Image `icon_tx_coin`.
     public static let icon_tx_coin = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tx_coin")
     /// Image `icon_tx_contract`.
@@ -1804,6 +1806,11 @@ public struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.icon_trading_segment_unselected_fram, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "icon_tutorial", bundle: ..., traitCollection: ...)`
+    public static func icon_tutorial(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tutorial, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "icon_tx_coin", bundle: ..., traitCollection: ...)`
     public static func icon_tx_coin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_tx_coin, compatibleWith: traitCollection)
@@ -2089,7 +2096,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1136 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1137 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -4086,11 +4093,11 @@ public struct R: Rswift.Validatable {
       /// en translation: Logout
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageLogoutLoading = Rswift.StringResource(key: "system.page.logout.loading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Logout/switch wallet
+      public static let systemPageCellLogoutTitle = Rswift.StringResource(key: "system.page.cell.logout.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Logout
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let systemPageCellLogoutTitle = Rswift.StringResource(key: "system.page.cell.logout.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      public static let systemPageLogoutLoading = Rswift.StringResource(key: "system.page.logout.loading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Low
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6003,6 +6010,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let dexTokenDetailPageCellOut = Rswift.StringResource(key: "dex.token.detail.page.cell.out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Tutorial
+      /// 
+      /// Locales: en, ja-JP, fr-FR, id-ID, zh-Hans
+      public static let myPageTutorialCellTitle = Rswift.StringResource(key: "my.page.tutorial.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "id-ID", "zh-Hans"], comment: nil)
       /// en translation: Type
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6223,14 +6234,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let discoverPageVCWebTitleActivity = Rswift.StringResource(key: "discover.page.VCWebTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Vite Games
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageHeaderTitleGame = Rswift.StringResource(key: "discover.page.headerTitle.game", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Vite Games
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageVCWebTitleGame = Rswift.StringResource(key: "discover.page.VCWebTitle.game", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Vite Gateway Collection
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6615,6 +6618,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let workflowFastGetQuotaLink = Rswift.StringResource(key: "workflow.fast.get.quota.link", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: dApp
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageHeaderTitleGame = Rswift.StringResource(key: "discover.page.headerTitle.game", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: dApp
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageVCWebTitleGame = Rswift.StringResource(key: "discover.page.VCWebTitle.game", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: 中
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10125,15 +10136,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Logout
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func systemPageLogoutLoading(_: Void = ()) -> String {
-        return NSLocalizedString("system.page.logout.loading", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Logout/switch wallet
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func systemPageCellLogoutTitle(_: Void = ()) -> String {
         return NSLocalizedString("system.page.cell.logout.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Logout
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func systemPageLogoutLoading(_: Void = ()) -> String {
+        return NSLocalizedString("system.page.logout.loading", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Low
@@ -13482,6 +13493,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("dex.token.detail.page.cell.out", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Tutorial
+      /// 
+      /// Locales: en, ja-JP, fr-FR, id-ID, zh-Hans
+      public static func myPageTutorialCellTitle(_: Void = ()) -> String {
+        return NSLocalizedString("my.page.tutorial.cell.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Type
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13865,20 +13883,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func discoverPageVCWebTitleActivity(_: Void = ()) -> String {
         return NSLocalizedString("discover.page.VCWebTitle.activity", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vite Games
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageHeaderTitleGame(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.headerTitle.game", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vite Games
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageVCWebTitleGame(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.VCWebTitle.game", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vite Gateway Collection
@@ -14551,6 +14555,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func workflowFastGetQuotaLink(_: Void = ()) -> String {
         return NSLocalizedString("workflow.fast.get.quota.link", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: dApp
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageHeaderTitleGame(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.headerTitle.game", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: dApp
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageVCWebTitleGame(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.VCWebTitle.game", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 中

@@ -21,10 +21,10 @@
 "discover.page.news.cell.time.hour" = "%@h ago";
 "discover.page.news.cell.time.day" = "%@d ago";
 "discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
+"discover.page.headerTitle.game" = "dApp";
 "discover.page.headerTitle.news" = "Vite News";
 "discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
+"discover.page.VCWebTitle.game" = "dApp";
 "discover.page.VCWebTitle.news" = "Vite News";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
@@ -360,7 +360,7 @@
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
 "system.page.cell.delete.wallet.title" = "Delete Current Account";

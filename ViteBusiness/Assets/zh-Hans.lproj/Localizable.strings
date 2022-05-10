@@ -21,10 +21,10 @@
 "discover.page.news.cell.time.hour"="%@小時前";
 "discover.page.news.cell.time.day"="%@天前";
 "discover.page.headerTitle.activity"="活動中心";
-"discover.page.headerTitle.game"="Vite遊戲";
+"discover.page.headerTitle.game"="dApp";
 "discover.page.headerTitle.news"="Vite資訊";
 "discover.page.VCWebTitle.activity"="Vite活動";
-"discover.page.VCWebTitle.game"="Vite遊戲";
+"discover.page.VCWebTitle.game"="dApp";
 "discover.page.VCWebTitle.news"="Vite資訊";
 "discover.page.game.alter.title"="您所訪問的頁面將跳轉至第三方dApp，您在第三方dApp 上的使用行為將適用該第三方dApp 的用戶協議和隱私政策，VITE 官方將不承擔責任。";
 
@@ -191,6 +191,7 @@
 "my.page.invite.cell.title" = "邀請好友，一起挖礦";
 "my.page.reward.cell.title" = "獎勵查詢";
 "my.page.forum.cell.title" = "官方論壇";
+"my.page.tutorial.cell.title" = "教程";
 "my.page.aboutUs.cell.title" = "關於我們";
 "my.page.change.wallet.name.alter.title" = "修改賬戶名";
 "my.page.aboutUs.wechat.alert.title" = "掃描二維碼關注Vite官方公眾號";

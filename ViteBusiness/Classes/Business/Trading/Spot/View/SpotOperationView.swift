@@ -336,9 +336,9 @@ class SpotOperationView: UIView {
 
                                 plog(level: .debug, log: "checkAmount price: \(price), vol: \(vol)", tag: .market)
 
-                                if let vm = self.spotViewModelBehaviorRelay.value {
-                                    _ = type(of: self).checkAmount(vm: vm, isBuy: isBuy, priceText: price, volText: vol, isShowToast: true)
-                                }
+//                                if let vm = self.spotViewModelBehaviorRelay.value {
+//                                    _ = type(of: self).checkAmount(vm: vm, isBuy: isBuy, priceText: price, volText: vol, isShowToast: true)
+//                                }
         }).disposed(by: rx.disposeBag)
 
         percentView.changed = { [weak self] index in

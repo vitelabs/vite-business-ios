@@ -73,6 +73,9 @@ class MyHomeViewController: BaseTableViewController {
         MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageInviteCellTitle(),
                                               image: R.image.icon_my_home_invite(),
                                               url: "https://app.vite.net/webview/vitex_invite_inner/index.html")),
+        MyHomeListCellViewModel(type: .custom(title: R.string.localizable.myPageTutorialCellTitle(),
+                                              image: R.image.icon_tutorial(),
+                                              url: "https://tutorial.vite.net/vite-app-tutorial/")),
         MyHomeListCellViewModel(type: .about)
         ]
 
