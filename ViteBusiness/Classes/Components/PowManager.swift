@@ -22,6 +22,27 @@ public class PowManager {
     var isOfficial: Bool { AppSettingsService.instance.appSettings.powConfig.current == nil }
     var delay: Int { isOfficial ? AppConfigService.instance.pDelay : 0 }
     
+    func powCountLeft(address: String) -> Int {
+        if !isOfficial {
+            return 999
+        }
+        
+        if AppConfigService.instance.getPowTimesPreDay == 0 {
+            return 0
+        }
+        
+        if let info = storage.addressPowMap[address] {
+            let date = Date(timeIntervalSince1970: info.timestamp)
+            if Calendar.current.isDate(date, inSameDayAs: Date()) {
+                return AppConfigService.instance.getPowTimesPreDay - info.times
+            } else {
+                return AppConfigService.instance.getPowTimesPreDay
+            }
+        } else {
+            return AppConfigService.instance.getPowTimesPreDay
+        }
+    }
+    
     func canGetPow(address: String) -> Bool {
         
         if !isOfficial {

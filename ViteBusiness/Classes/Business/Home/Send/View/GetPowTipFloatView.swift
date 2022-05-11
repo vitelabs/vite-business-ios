@@ -47,6 +47,12 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
+    let buyButton = UIButton().then {
+        $0.setTitle(R.string.localizable.quotaPowTipFloatViewBuy1(), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    }
 
     let cancelButton = UIButton().then {
         $0.setImage(R.image.icon_quota_close(), for: .normal)
@@ -88,7 +94,7 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         if PowManager.instance.canGetPow(address: address) {
             
             titleLabel.text = R.string.localizable.quotaPowTipFloatViewTitle2()
-            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage2()
+            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage2(String(PowManager.instance.powCountLeft(address: address)))
             
             containerView.addSubview(pledgeButton)
             containerView.addSubview(notNowButton)
@@ -108,14 +114,23 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         } else {
             
             titleLabel.text = R.string.localizable.quotaPowTipFloatViewTitle1()
-            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1(String(AppConfigService.instance.getPowTimesPreDay), String(AppConfigService.instance.getPowTimesPreDay))
+            h1Label.text = R.string.localizable.quotaPowTipFloatViewMessage1()
             
             containerView.addSubview(onlyPledgeButton)
+            containerView.addSubview(buyButton)
             
             onlyPledgeButton.snp.makeConstraints { (m) in
                 m.top.equalTo(h1Label.snp.bottom).offset(12)
                 m.height.equalTo(49)
-                m.left.right.bottom.equalToSuperview()
+                m.left.bottom.equalToSuperview()
+            }
+            
+            buyButton.snp.makeConstraints { (m) in
+                m.top.equalTo(h1Label.snp.bottom).offset(12)
+                m.height.equalTo(49)
+                m.left.equalTo(onlyPledgeButton.snp.right)
+                m.width.equalTo(onlyPledgeButton)
+                m.right.bottom.equalToSuperview()
             }
 
             let line = UIView().then {
@@ -133,6 +148,12 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         onlyPledgeButton.rx.tap.bind { [weak self] in
             self?.hide()
             pledgeClick()
+            }.disposed(by: rx.disposeBag)
+        
+        buyButton.rx.tap.bind { [weak self] in
+            self?.hide()
+            guard let info = MarketInfoService.shared.marketInfo(symbol: "VITE_USDT-000") else { return }
+            NotificationCenter.default.post(name: .goTradingPage, object: self, userInfo: ["marketInfo": info, "isBuy" : true])
             }.disposed(by: rx.disposeBag)
 
         pledgeButton.rx.tap.bind { [weak self] in

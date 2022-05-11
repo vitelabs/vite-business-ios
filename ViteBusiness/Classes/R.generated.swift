@@ -2096,7 +2096,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1138 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1140 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -2750,6 +2750,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let exchangeCardTitle = Rswift.StringResource(key: "exchange.card.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Buy VITE
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let quotaPowTipFloatViewBuy1 = Rswift.StringResource(key: "quota.pow.tip.float.view.buy.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: By clicking Next, you agree with the %@'s %@
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3618,6 +3622,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinFinalize = Rswift.StringResource(key: "grin.finalize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Free Quota
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let quotaPowTipFloatViewNotNow2 = Rswift.StringResource(key: "quota.pow.tip.float.view.notNow.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Freeze Token
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4446,10 +4454,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let crosschainDepositMinAmountDesc = Rswift.StringResource(key: "crosschain.deposit.minAmountDesc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let quotaPowTipFloatViewMessage1 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Open
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5058,10 +5062,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let myPageRewardCellTitle = Rswift.StringResource(key: "my.page.reward.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Run POW
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let quotaPowTipFloatViewNotNow2 = Rswift.StringResource(key: "quota.pow.tip.float.view.notNow.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Run PoW
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6390,7 +6390,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let manageWalletPageErrorTypeName = Rswift.StringResource(key: "manage.wallet.page.error.type.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.
+      /// en translation: We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let quotaPowTipFloatViewMessage2 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
@@ -6466,6 +6466,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let crosschainWithdrawFeeDesc = Rswift.StringResource(key: "crosschain.withdraw.fee.desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Withdrawal is only applicable for staked amount larger than 10 VX.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let dividendsPageUnlockConfirmTip2 = Rswift.StringResource(key: "dividends.page.unlock.confirm.tip2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Withdrawal of staking quota
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6570,6 +6574,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let grinSentHttpSuccess = Rswift.StringResource(key: "grin.sent.http.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: You have used up all your free Quota for today. Please lock VITE.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let quotaPowTipFloatViewMessage1 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.1", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -7790,6 +7798,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func exchangeCardTitle(_: Void = ()) -> String {
         return NSLocalizedString("exchange.card.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Buy VITE
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func quotaPowTipFloatViewBuy1(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.buy.1", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: By clicking Next, you agree with the %@'s %@
@@ -9311,6 +9326,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("grin.finalize", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Free Quota
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func quotaPowTipFloatViewNotNow2(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.notNow.2", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Freeze Token
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10760,13 +10782,6 @@ public struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("crosschain.deposit.minAmountDesc", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
-      /// en translation: Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func quotaPowTipFloatViewMessage1(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("quota.pow.tip.float.view.message.1", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
-      }
-      
       /// en translation: Open
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -11829,13 +11844,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func myPageRewardCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.reward.cell.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Run POW
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func quotaPowTipFloatViewNotNow2(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.notNow.2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Run PoW
@@ -14162,11 +14170,11 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("manage.wallet.page.error.type.name", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.
+      /// en translation: We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func quotaPowTipFloatViewMessage2(_: Void = ()) -> String {
-        return NSLocalizedString("quota.pow.tip.float.view.message.2", bundle: R.hostingBundle, comment: "")
+      public static func quotaPowTipFloatViewMessage2(_ value1: String) -> String {
+        return String(format: NSLocalizedString("quota.pow.tip.float.view.message.2", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: We recommend the two following backup methods:
@@ -14293,6 +14301,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func crosschainWithdrawFeeDesc(_: Void = ()) -> String {
         return NSLocalizedString("crosschain.withdraw.fee.desc", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Withdrawal is only applicable for staked amount larger than 10 VX.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func dividendsPageUnlockConfirmTip2(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.unlock.confirm.tip2", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Withdrawal of staking quota
@@ -14475,6 +14490,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func grinSentHttpSuccess(_: Void = ()) -> String {
         return NSLocalizedString("grin.sent.http.success", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: You have used up all your free Quota for today. Please lock VITE.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func quotaPowTipFloatViewMessage1(_: Void = ()) -> String {
+        return NSLocalizedString("quota.pow.tip.float.view.message.1", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.

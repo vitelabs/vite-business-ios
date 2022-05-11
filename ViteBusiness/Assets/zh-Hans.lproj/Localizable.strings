@@ -427,13 +427,14 @@
 "quota.float.view.tip" = "本次交易需消耗%@Quota";
 
 "quota.pow.tip.float.view.title.1" = "配額不足";
-"quota.pow.tip.float.view.message.1" = "每個地址每天有%@筆交易不需要抵押，您當前地址%@次已用盡，請前往配額頁面抵押VITE";
-"quota.pow.tip.float.view.pledge.1" = "去抵押";
+"quota.pow.tip.float.view.message.1" = "您今天的免费配额次数已用尽。请锁定VITE获取配额。";
+"quota.pow.tip.float.view.pledge.1" = "锁定VITE";
+"quota.pow.tip.float.view.buy.1" = "购买VITE";
 
 "quota.pow.tip.float.view.title.2" = "配額不足";
-"quota.pow.tip.float.view.message.2" = "配額不足，請前往配額頁面抵押VITE獲取配額，抵押的VITE三天后可取回";
-"quota.pow.tip.float.view.pledge.2" = "去抵押";
-"quota.pow.tip.float.view.notNow.2" = "跳过抵押";
+"quota.pow.tip.float.view.message.2" = "我们注意到您没有锁定VITE获取配额。今天你还有%@次免费使用配额的机会，建议您提前锁定VITE获取配额。";
+"quota.pow.tip.float.view.pledge.2" = "锁定VITE";
+"quota.pow.tip.float.view.notNow.2" = "获取免费配额";
 
 "quota.pow.finished.float.view.title" = "交易已發出";
 "quota.pow.finished.float.view.h1" = "計算PoW花費%1$@秒，為您獲得%2$@Quota";
@@ -1271,6 +1272,7 @@
 "dividends.page.unlock.confirm.placeholder" = "請輸入解鎖金額，最少1VX";
 "dividends.page.unlock.confirm.error" = "最少1VX";
 "dividends.page.unlock.confirm.tip" = "解鎖需約7天時間到賬";
+"dividends.page.unlock.confirm.tip2" = "抵押金額超過10VX才可以申請取回";
 "dividends.page.unlock.confirm.button.title" = "確認解鎖";
 
 "dividends.page.unlock.list.title" = "解鎖明細";

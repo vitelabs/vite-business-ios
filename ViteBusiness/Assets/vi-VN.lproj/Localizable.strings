@@ -429,13 +429,15 @@
 "quota.float.view.tip" = "Giao dịch có chi phí %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Không đủ quota";
-"quota.pow.tip.float.view.message.1" = "VITE chỉ có thể thực hiện %@ giao dịch mỗi ngày cho mỗi địa chỉ mà không cần stake VITE. Địa chỉ của bạn đã dùng hết %@ giao dịch. Vui lòng truy cập trang Quota và stake VITE của bạn để thực hiện nhiều giao dịch hơn.";
+"quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Nhận quota bây giờ";
 
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
+
 "quota.pow.tip.float.view.title.2" = "Nhận Quota";
-"quota.pow.tip.float.view.message.2" = "Chúng tôi nhận thấy bạn không có VITE nào bị khóa cho Quota. Vui lòng stake VITE hoặc nếu muốn, hoặc bạn có thể chạy POW để nhận Quota.";
+"quota.pow.tip.float.view.message.2" = "We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
 "quota.pow.tip.float.view.pledge.2" = "Khoá VITE";
-"quota.pow.tip.float.view.notNow.2" = "Chạy POW";
+"quota.pow.tip.float.view.notNow.2" = "Free Quota";
 
 
 "quota.pow.finished.float.view.title" = "Đã gửi Giao dịch";
@@ -1268,6 +1270,7 @@
 "dividends.page.unlock.confirm.placeholder" = "Please input amount, minimum 1 VX";
 "dividends.page.unlock.confirm.error" = "Minimum 1 VX";
 "dividends.page.unlock.confirm.tip" = "It takes about 7 days to unlock";
+"dividends.page.unlock.confirm.tip2" = "Withdrawal is only applicable for staked amount larger than 10 VX.";
 "dividends.page.unlock.confirm.button.title" = "Unstake";
 
 "dividends.page.unlock.list.title" = "Unstaking Status";

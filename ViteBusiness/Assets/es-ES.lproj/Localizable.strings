@@ -422,13 +422,15 @@
 "quota.float.view.tip" = "Esta transacción cuesta %@Cuota";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
-"quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones. Ve a la página de cuotas y bloquea tu VITE para realizar más transacciones.";
+"quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
 
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
+
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
-"quota.pow.tip.float.view.message.2" = "Notamos que no tienes bloqueado VITE para cuota. Por favor bloquee VITE o si lo prefiere, puede ejecutar el PoW para obtener cuota.";
+"quota.pow.tip.float.view.message.2" = "We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
 "quota.pow.tip.float.view.pledge.2" = "Bloquear VITE";
-"quota.pow.tip.float.view.notNow.2" = "Ejecutar el PoW";
+"quota.pow.tip.float.view.notNow.2" = "Free Quota";
 
 
 "quota.pow.finished.float.view.title" = "Transacción enviada";
@@ -1261,6 +1263,7 @@
 "dividends.page.unlock.confirm.placeholder" = "Please input amount, minimum 1 VX";
 "dividends.page.unlock.confirm.error" = "Minimum 1 VX";
 "dividends.page.unlock.confirm.tip" = "It takes about 7 days to unlock";
+"dividends.page.unlock.confirm.tip2" = "Withdrawal is only applicable for staked amount larger than 10 VX.";
 "dividends.page.unlock.confirm.button.title" = "Unstake";
 
 "dividends.page.unlock.list.title" = "Unstaking Status";

@@ -68,11 +68,26 @@ public class DividendsVXUnlockConfirmView: BottomPopView {
             $0.layer.masksToBounds = true
             $0.layer.cornerRadius = 3
         }
+        
+        let tip2Label = UILabel().then {
+            $0.text = R.string.localizable.dividendsPageUnlockConfirmTip2()
+            $0.numberOfLines = 0
+            $0.textColor = UIColor(netHex: 0x3E4A59)
+            $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        }
+
+        let circle2View = UIView().then {
+            $0.backgroundColor = UIColor(netHex: 0x007AFF)
+            $0.layer.masksToBounds = true
+            $0.layer.cornerRadius = 3
+        }
 
         containerView.addSubview(totalView)
         containerView.addSubview(amountView)
         containerView.addSubview(tipLabel)
         containerView.addSubview(circleView)
+        containerView.addSubview(tip2Label)
+        containerView.addSubview(circle2View)
 
         totalView.snp.makeConstraints { (m) in
             m.top.equalToSuperview()
@@ -94,6 +109,18 @@ public class DividendsVXUnlockConfirmView: BottomPopView {
         tipLabel.snp.makeConstraints { (m) in
             m.top.equalTo(circleView).offset(-5)
             m.left.equalTo(circleView.snp.right).offset(6)
+            m.right.equalToSuperview()
+        }
+        
+        circle2View.snp.makeConstraints { (m) in
+            m.top.equalTo(circleView.snp.bottom).offset(20)
+            m.left.equalToSuperview()
+            m.size.equalTo(CGSize(width: 6, height: 6))
+        }
+
+        tip2Label.snp.makeConstraints { (m) in
+            m.top.equalTo(circle2View).offset(-5)
+            m.left.equalTo(circle2View.snp.right).offset(6)
             m.right.bottom.equalToSuperview()
         }
         
