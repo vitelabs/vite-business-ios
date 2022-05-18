@@ -34,9 +34,9 @@ final class WordCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 2
         self.layer.masksToBounds = true
 
-        self.addSubview(wordLabel)
+        self.contentView.addSubview(wordLabel)
         self.wordLabel.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(self)
+            make.edges.equalTo(self.contentView)
         }
     }
 }

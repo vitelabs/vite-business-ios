@@ -78,27 +78,17 @@ class ExportMnemonicViewController: BaseViewController {
             automaticallyAdjustsScrollViewInsets = false
         }
     }
-
-    lazy var contentTextView: UIView = {
-        let label = UILabel().then {
-            $0.font = Fonts.Font18
-            $0.textColor = Colors.descGray
-            $0.text = (self.forGrin ? HDWalletManager.instance.mnemonicForGrin : HDWalletManager.instance.mnemonic) ?? ""
-            $0.numberOfLines = 0
+    
+    lazy var mnemonicCollectionView: MnemonicCollectionView = {[unowned self]  in
+        let mnemonicWordsStr = (self.forGrin ? HDWalletManager.instance.mnemonicForGrin : HDWalletManager.instance.mnemonic) ?? ""
+        let array = mnemonicWordsStr.components(separatedBy: " ")
+        let view = MnemonicCollectionView.init(isHasSelected: true)
+        view.h_num = CGFloat(CGFloat(array.count) / 4.0)
+        view.dataList = array
+        view.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(kScreenH * ((array.count == 24 ? 186.0 : 110)/667.0))
         }
-
-        let view = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xEFF0F4)
-        }
-
-        view.addSubview(label)
-        label.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(16)
-            m.bottom.equalToSuperview().offset(-16)
-            m.left.equalToSuperview().offset(16)
-            m.right.equalToSuperview().offset(-16)
-        }
-
+        
         return view
     }()
 
@@ -134,13 +124,14 @@ extension ExportMnemonicViewController {
             m.top.equalTo((self.navigationTitleView?.snp.bottom)!)
         }
 
-        scrollView.stackView.addArrangedSubview(contentTextView)
+        scrollView.stackView.addArrangedSubview(mnemonicCollectionView)
 
         if forGrin == false {
             let tip1View = UILabel().then {
                 $0.textColor = UIColor(netHex: 0x24272B)
                 $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
                 $0.text = R.string.localizable.mnemonicBackupPageTip1()
+                $0.numberOfLines = 0
             }
 
             let tip2View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip2())

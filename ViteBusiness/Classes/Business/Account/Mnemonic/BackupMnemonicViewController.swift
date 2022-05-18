@@ -264,17 +264,11 @@ extension BackupMnemonicViewController {
             scrollView.stackView.addArrangedSubview(mnemonicSwitchView)
         }
 
-        let tip1Label = UILabel().then {
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.8)
-            $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            $0.numberOfLines = 0
-            $0.text = R.string.localizable.mnemonicBackupPageTip1()
-        }
-
         let tip1View = UILabel().then {
             $0.textColor = UIColor(netHex: 0x24272B)
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
             $0.text = R.string.localizable.mnemonicBackupPageTip1()
+            $0.numberOfLines = 0
         }
 
         let tip2View = TipTextView(text: R.string.localizable.mnemonicBackupPageTip2())

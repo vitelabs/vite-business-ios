@@ -50,7 +50,7 @@ class MiningMakingListViewModel: ListViewModel<MiningOrderDetail.MarketMaking> {
     override func cellFor(model: MiningOrderDetail.MarketMaking, indexPath: IndexPath) -> UITableViewCell {
         let cell: MiningItemCell = tableView.dequeueReusableCell(for: indexPath)
         let vm = MiningItemCellViewModel(
-            left: "\(R.string.localizable.miningInvitePageCellPer()) \(model.miningRatio.tryToTruncation6Digits())",
+            left: "\(R.string.localizable.miningInvitePageCellPer()) \(model.miningRatio.tryToTruncation6Digits())%",
             earnings: model.miningAmount.tryToTruncation6Digits(),
             symbol: "VX",
             date: model.date)

@@ -41,12 +41,8 @@ class GetPowTipFloatView: VisualEffectAnimationView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
-    let onlyPledgeButton = UIButton().then {
-        $0.setTitle(R.string.localizable.quotaPowTipFloatViewPledge1(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-    }
+    let onlyPledgeButton = UIButton(style: .blue, title: R.string.localizable.quotaPowTipFloatViewPledge1())
+
     let buyButton = UIButton().then {
         $0.setTitle(R.string.localizable.quotaPowTipFloatViewBuy1(), for: .normal)
         $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
@@ -121,16 +117,15 @@ class GetPowTipFloatView: VisualEffectAnimationView {
             
             onlyPledgeButton.snp.makeConstraints { (m) in
                 m.top.equalTo(h1Label.snp.bottom).offset(12)
-                m.height.equalTo(49)
-                m.left.bottom.equalToSuperview()
+                m.height.equalTo(50)
+                m.left.right.equalToSuperview().inset(16)
             }
             
             buyButton.snp.makeConstraints { (m) in
-                m.top.equalTo(h1Label.snp.bottom).offset(12)
-                m.height.equalTo(49)
-                m.left.equalTo(onlyPledgeButton.snp.right)
-                m.width.equalTo(onlyPledgeButton)
-                m.right.bottom.equalToSuperview()
+                m.top.equalTo(onlyPledgeButton.snp.bottom)
+                m.height.equalTo(44)
+                m.left.right.equalToSuperview().inset(16)
+                m.bottom.equalToSuperview()
             }
 
             let line = UIView().then {

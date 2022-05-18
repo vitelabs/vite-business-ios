@@ -96,7 +96,7 @@
 /* mnemonic */
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
 "mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.tip3" = "Scannen Sie den folgenden QR-Code mit der auf einem anderen Gerät installierten Vite-wallet App.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
@@ -569,7 +569,7 @@
 "contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
 

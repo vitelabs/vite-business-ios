@@ -14,13 +14,7 @@ class SendQuotaItemView: SendStaticItemView {
     init(utString: String) {
         self.utString = utString
         super.init(title: R.string.localizable.quotaManagePageQuotaQuotaTitle(), rightViewStyle: .label(style: .attributed(string: type(of: self).utStringToAttributedString(utString: utString))), titleTipButtonStyle: .button(style: .tip(clicked: {
-            var url: URL!
-            if LocalizationService.sharedInstance.currentLanguage == .chinese {
-                url = URL.init(string: "https://vite-static-pages.netlify.com/quota/zh/quota.html")
-            } else {
-                url = URL.init(string: "https://vite-static-pages.netlify.com/quota/en/quota.html")
-            }
-            let vc = WKWebViewController.init(url: url)
+            let vc = WKWebViewController.init(url: URL.init(string: "https://app.vite.net/webview/quota/")!)
             UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
 
 
