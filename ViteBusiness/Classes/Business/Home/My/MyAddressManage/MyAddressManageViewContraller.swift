@@ -61,7 +61,7 @@ class MyAddressManageViewController: BaseTableViewController {
     }
 
     fileprivate func setupView() {
-        navigationTitleView = NavigationTitleView(title: R.string.localizable.addressManagePageTitle(tableViewModel.coinType.rawValue))
+        navigationTitleView = NavigationTitleView(title: R.string.localizable.addressManagePageTitle(tableViewModel.coinType.coinNameForAddressVC))
         customHeaderView = headerView
 
         tableView.rowHeight = MyAddressManageAddressCell.cellHeight()

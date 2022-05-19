@@ -17,6 +17,19 @@ public enum CoinType: String {
     var name: String {
         return rawValue
     }
+    
+    var coinNameForAddressVC: String {
+        switch self {
+        case .vite:
+            return "Vite"
+        case .eth:
+            return "Ethereum"
+        case .bnb:
+            return "BNB"
+        case .unsupport:
+            return "unsupport"
+        }
+    }
 
     static var allTypes: [CoinType] = [.vite, .eth, .bnb]
 

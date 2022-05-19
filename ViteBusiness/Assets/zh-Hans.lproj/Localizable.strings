@@ -21,10 +21,10 @@
 "discover.page.news.cell.time.hour"="%@小時前";
 "discover.page.news.cell.time.day"="%@天前";
 "discover.page.headerTitle.activity"="活動中心";
-"discover.page.headerTitle.game"="dApp";
+"discover.page.headerTitle.game"="DApps";
 "discover.page.headerTitle.news"="Vite資訊";
 "discover.page.VCWebTitle.activity"="Vite活動";
-"discover.page.VCWebTitle.game"="dApp";
+"discover.page.VCWebTitle.game"="DApps";
 "discover.page.VCWebTitle.news"="Vite資訊";
 "discover.page.game.alter.title"="您所訪問的頁面將跳轉至第三方dApp，您在第三方dApp 上的使用行為將適用該第三方dApp 的用戶協議和隱私政策，VITE 官方將不承擔責任。";
 

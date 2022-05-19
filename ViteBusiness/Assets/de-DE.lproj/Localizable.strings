@@ -21,10 +21,10 @@
 "discover.page.news.cell.time.hour" = "%@h ago";
 "discover.page.news.cell.time.day" = "%@d ago";
 "discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "dApp";
+"discover.page.headerTitle.game" = "DApps";
 "discover.page.headerTitle.news" = "Vite News";
 "discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "dApp";
+"discover.page.VCWebTitle.game" = "DApps";
 "discover.page.VCWebTitle.news" = "Vite News";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
@@ -95,7 +95,7 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
 "mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
 "mnemonic.backup.page.tip3" = "Scannen Sie den folgenden QR-Code mit der auf einem anderen Gerät installierten Vite-wallet App.";
 "mnemonic.backup.language.zh" = "中";
